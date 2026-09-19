@@ -39,7 +39,8 @@ Enforcement status: items 1–3 are machine-checked (agents, skills, MCP, hygien
 and discovery validators, run by `generate` pre-flight and `validate`). Item 4 is
 warned (non-English markers) until import translation completes at F6. Item 5's
 generated output is asserted; canonical omission of `model` is not yet
-validated. Item 6 (governance) gains validators in F4.
+validated. Item 6 is enforced at RUNTIME (the concurrency governor + the TOON
+validator), not by a repository validator.
 
 ## Extending the framework (OCP)
 

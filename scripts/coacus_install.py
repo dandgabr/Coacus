@@ -83,12 +83,22 @@ def _plan_skills(root: Path, skills_dir: Path) -> list[tuple[Path, str]]:
 
 
 def _plan_opencode(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
-    """Plugin + mirrored skill trees for opencode."""
+    """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
     content = source.read_text(encoding="utf-8").replace(
         "__COACUS_ROOT__", root.as_posix()
     )
     plan: list[tuple[Path, str]] = [(config_dir / "plugins" / "coacus.js", content)]
+    gate = root / "harnesses/opencode/bootstrap/governor-gate.js"
+    if gate.is_file():
+        plan.append(
+            (
+                config_dir / "plugins" / "coacus-governor.js",
+                gate.read_text(encoding="utf-8").replace(
+                    "__COACUS_ROOT__", root.as_posix()
+                ),
+            )
+        )
     plan += _plan_skills(root, config_dir / "skills")
     return plan
 

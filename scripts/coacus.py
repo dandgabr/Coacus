@@ -23,7 +23,13 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from engine import provenance  # noqa: E402
-from engine.generators import agent_manifests, bootstrap, catalog, mcp_configs  # noqa: E402
+from engine.generators import (  # noqa: E402
+    agent_manifests,
+    bootstrap,
+    catalog,
+    discovery,
+    mcp_configs,
+)
 from engine.validators import agents as agent_validator  # noqa: E402
 from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
@@ -66,6 +72,7 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         agent_manifests.write_all(root)
         + mcp_configs.write_all(root)
         + bootstrap.write_all(root)
+        + discovery.write_all(root)
     )
     written_paths = catalog.write(root)
     print(f"generated {len(written)} manifest/bootstrap file(s)")
@@ -88,6 +95,7 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         agent_manifests.check(root)
         + mcp_configs.check(root)
         + bootstrap.check(root)
+        + discovery.check(root)
         + catalog.check(root)
     )
     if drift:
@@ -95,6 +103,22 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         _print(drift, "drift")
         return 1
     print("no drift: generated artifacts are up to date")
+    return 0
+
+
+def cmd_toon(args: argparse.Namespace) -> int:
+    from engine import toon  # noqa: E402
+
+    path = Path(args.path)
+    if not path.is_file():
+        print(f"not found: {path}")
+        return 1
+    errors = toon.validate(path.read_text(encoding="utf-8"))
+    if errors:
+        print(f"{len(errors)} TOON error(s):")
+        _print(errors, "error")
+        return 1
+    print("TOON payload OK")
     return 0
 
 
@@ -118,11 +142,15 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("generate", help="regenerate dist/, .agents/ and catalog/")
     sub.add_parser("check", help="fail if generated artifacts are stale")
     sub.add_parser("validate", help="run schema and hygiene validators")
+    toon = sub.add_parser("toon", help="validate a TOON handoff payload file")
+    toon.add_argument("path", help="path to a file containing a TOON payload")
     args = parser.parse_args(argv)
     if args.command == "generate":
         return cmd_generate(args)
     if args.command == "check":
         return cmd_check(args)
+    if args.command == "toon":
+        return cmd_toon(args)
     return cmd_validate(args)
 
 

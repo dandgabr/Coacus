@@ -144,6 +144,14 @@ class TestInstaller(unittest.TestCase):
         self.assertIn(victim.as_posix(), result["skipped"])
         self.assertTrue(victim.is_file())
 
+    def test_opencode_installs_governor_gate_when_present(self) -> None:
+        gate = self.root / "harnesses/opencode/bootstrap/governor-gate.js"
+        gate.write_text("const COACUS_ROOT = '__COACUS_ROOT__';\n", encoding="utf-8")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        installed = self.config / "plugins/coacus-governor.js"
+        self.assertTrue(installed.is_file())
+        self.assertNotIn("__COACUS_ROOT__", installed.read_text(encoding="utf-8"))
+
     def test_malformed_harness_manifest_is_a_clean_error(self) -> None:
         from engine.generators import bootstrap
 

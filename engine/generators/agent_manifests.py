@@ -183,6 +183,8 @@ def check(root: Path) -> list[str]:
     manifest_dir = root / ".agents"
     if manifest_dir.is_dir():
         for path in manifest_dir.glob("*.json"):
+            if path.stem in ("skills", "mcps", "agents"):
+                continue  # consolidated discovery manifests, owned by discovery.py
             actual_manifests.add(path.relative_to(root).as_posix())
     for rel in sorted(actual_manifests - set(expected)):
         drift.append(f"{rel}: orphan (source removed — delete or restore it)")

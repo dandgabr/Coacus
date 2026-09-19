@@ -23,7 +23,9 @@ Option A: TOON payloads for all agent handoffs:
 ```
 
 JSON is reserved for machine contracts (APIs, manifests). A payload validator
-(`engine/validators`) enforces required fields.
+(`engine/toon.py`, exposed as `python3 scripts/coacus.py toon <file>`) enforces
+required fields, the status enum, relative `@FILES` paths (no absolute paths,
+no `..` escapes) and rejects secret-like literals in any field.
 
 ## Consequences
 
