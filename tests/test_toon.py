@@ -64,6 +64,22 @@ class TestToon(unittest.TestCase):
         text = "@FROM: a\n@TO: b\n@STATUS: NEED_INFO\n@CTX: c\n@SUMMARY: s\n"
         self.assertEqual(toon.validate(text), [])
 
+    def test_path_with_colon_is_not_truncated(self) -> None:
+        # Regression: a relative path containing ':' must stay relative-valid.
+        text = VALID.replace(
+            "@FILES: engine/governor/ledger.py:1-120;tests/test_governor.py:1-90",
+            "@FILES: weird:name/f.py:1-5",
+        )
+        self.assertEqual(toon.validate(text), [])
+
+    def test_files_entry_without_path_is_rejected(self) -> None:
+        text = VALID.replace(
+            "@FILES: engine/governor/ledger.py:1-120;tests/test_governor.py:1-90",
+            "@FILES: :1-5",
+        )
+        errors = toon.validate(text)
+        self.assertTrue(any("no path" in e for e in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

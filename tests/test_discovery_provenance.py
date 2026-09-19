@@ -51,7 +51,9 @@ class TestDiscoveryValidator(unittest.TestCase):
         }
 
     def _write(self, entry: dict) -> None:
-        (self.manifest_dir / "sample-agent.json").write_text(
+        directory = self.root / ".agents" / "entries"
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "sample-agent.json").write_text(
             json.dumps(entry, indent=2) + "\n", encoding="utf-8"
         )
 
@@ -82,14 +84,28 @@ class TestDiscoveryValidator(unittest.TestCase):
 
     def test_stem_name_mismatch_fails(self) -> None:
         self._write(self._entry())
-        (self.manifest_dir / "sample-agent.json").rename(
-            self.manifest_dir / "other.json"
+        (self.manifest_dir / "entries" / "sample-agent.json").rename(
+            self.manifest_dir / "entries" / "other.json"
         )
         errors = discovery.validate(self.root)
         self.assertTrue(any("file stem" in e for e in errors))
 
     def test_no_manifests_is_clean(self) -> None:
         self.assertEqual(discovery.validate(self.root), [])
+
+    def test_absolute_source_is_rejected(self) -> None:
+        entry = self._entry()
+        entry["source"] = "/etc/hostname"
+        self._write(entry)
+        errors = discovery.validate(self.root)
+        self.assertTrue(any("relative in-repo path" in e for e in errors))
+
+    def test_upward_escaping_source_is_rejected(self) -> None:
+        entry = self._entry()
+        entry["source"] = "../../outside.md"
+        self._write(entry)
+        errors = discovery.validate(self.root)
+        self.assertTrue(any("relative in-repo path" in e for e in errors))
 
 
 class TestProvenance(unittest.TestCase):

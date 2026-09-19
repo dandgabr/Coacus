@@ -11,7 +11,8 @@ every turn.
 
 ## Decision
 
-Option A: static discovery manifests under `.agents/*.json` (GENERATED, see
+Option A: static discovery manifests under `.agents/{skills,mcps,agents}.json`
+(consolidated) and `.agents/entries/<name>.json` (per-agent) (GENERATED, see
 ADR-0014) plus a single-scan rule — read the indexes once at session start,
 then rely on session cache. Migrate to a DB-backed index only if the inventory
 grows past a few hundred assets or semantic search becomes a requirement.

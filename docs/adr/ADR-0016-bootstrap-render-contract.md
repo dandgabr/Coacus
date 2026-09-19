@@ -48,6 +48,6 @@ OCP variation point.
 
 ## Evidence
 
-`superpowers/hooks/session-start:11` (cats the skill); `superpowers/.opencode/plugins/superpowers.js:78-130`
+`superpowers/hooks/session-start:1-49` (cats the skill); `superpowers/.opencode/plugins/superpowers.js`
 (reads + strips; message transform + guard); `superpowers/docs/porting-to-a-new-harness.md:225-300`
 (shapes A/B/C and the routing table).

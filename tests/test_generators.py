@@ -30,7 +30,7 @@ class TestAgentGeneration(unittest.TestCase):
             "knowledge/agents/roles/sample-agent/dist/agent.yaml",
             "knowledge/agents/roles/sample-agent/dist/agent.json",
             "knowledge/agents/roles/sample-agent/dist/plugin.json",
-            ".agents/sample-agent.json",
+            ".agents/entries/sample-agent.json",
         }
         self.assertEqual(set(self.outputs), expected_keys)
 
@@ -61,7 +61,7 @@ class TestAgentGeneration(unittest.TestCase):
         self.assertIn("Sample instruction body.", payload["instruction"])
 
     def test_discovery_entry_has_fingerprint(self) -> None:
-        entry = json.loads(self.outputs[".agents/sample-agent.json"])
+        entry = json.loads(self.outputs[".agents/entries/sample-agent.json"])
         self.assertEqual(entry["name"], "sample-agent")
         self.assertEqual(len(entry["fingerprint"]), 16)
         self.assertTrue(entry["source"].endswith("agent.source.md"))
@@ -93,7 +93,7 @@ class TestAgentGeneration(unittest.TestCase):
         shutil.rmtree(self.root / "knowledge/agents/roles/sample-agent")
         drift = agent_manifests.check(self.root)
         self.assertTrue(any("orphan" in item for item in drift))
-        self.assertTrue(any(item.endswith(".agents/sample-agent.json: orphan (source removed — delete or restore it)") for item in drift))
+        self.assertTrue(any(item.endswith(".agents/entries/sample-agent.json: orphan (source removed — delete or restore it)") for item in drift))
 
     def test_non_list_skills_raise(self) -> None:
         source = self.root / "knowledge/agents/roles/sample-agent/agent.source.md"

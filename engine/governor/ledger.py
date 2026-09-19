@@ -76,14 +76,29 @@ class Ledger:
 
     @contextmanager
     def _locked(self):
-        import fcntl  # POSIX; imported lazily so the module loads on Windows
-
         fd = os.open(self.lock_path, os.O_RDWR | os.O_CREAT, 0o600)
+        unlock = None
         try:
-            fcntl.flock(fd, fcntl.LOCK_EX)
+            try:
+                import fcntl  # POSIX
+
+                fcntl.flock(fd, fcntl.LOCK_EX)
+
+                def unlock() -> None:
+                    fcntl.flock(fd, fcntl.LOCK_UN)
+            except ImportError:  # pragma: no cover - Windows fallback
+                import msvcrt
+
+                os.lseek(fd, 0, os.SEEK_SET)
+                msvcrt.locking(fd, msvcrt.LK_LOCK, 1)
+
+                def unlock() -> None:
+                    os.lseek(fd, 0, os.SEEK_SET)
+                    msvcrt.locking(fd, msvcrt.LK_UNLCK, 1)
             yield
         finally:
-            fcntl.flock(fd, fcntl.LOCK_UN)
+            if unlock is not None:
+                unlock()
             os.close(fd)
 
     # -- storage ---------------------------------------------------------

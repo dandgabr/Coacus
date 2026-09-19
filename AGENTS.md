@@ -10,7 +10,7 @@ Routing rules for any AI agent operating in this repository, in any harness.
 - `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
 - `sources.lock.json` — provenance manifest for imported artifacts (ADR-0015).
-- `.agents/*.json` — GENERATED discovery manifests. Do not hand-edit.
+- `.agents/*.json` + `.agents/entries/*.json` — GENERATED discovery manifests. Do not hand-edit.
 
 **Single-scan rule:** read the generated indexes once at session start. Never
 re-scan directories per turn (D5). If indexes look stale, run

@@ -35,7 +35,7 @@ class TestCliGenerate(unittest.TestCase):
         self.assertTrue(
             (self.root / "knowledge/agents/roles/sample-agent/dist/AGENT.md").is_file()
         )
-        self.assertTrue((self.root / ".agents/sample-agent.json").is_file())
+        self.assertTrue((self.root / ".agents/entries/sample-agent.json").is_file())
 
     def test_generate_recovers_stale_fingerprint(self) -> None:
         self.assertEqual(coacus.cmd_generate(root=self.root), 0)
