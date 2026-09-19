@@ -13,8 +13,13 @@ mixing them produces flaky CI or untested behavior.
 
 Option A: two layers. `tests/` — deterministic infrastructure tests (stdlib
 `unittest`, zero dependencies) run on every commit as a blocking gate.
-`evals/` — LLM behavior evaluation with a fixed rubric and a judge model, run
-in a separate scheduled pipeline, advisory (never blocking).
+`evals/` — behavior evaluation in two tiers:
+
+- **static** — the scenario-schema validator (`engine/validators/evals.py`),
+  deterministic and blocking (it is part of `validate`);
+- **live** — real agent sessions driven by `scripts/coacus_eval.py`, with a
+  fixed rubric and a pluggable or agent judge; **advisory**, local/manual
+  (never blocks CI), because it needs an installed harness CLI and credentials.
 
 ## Consequences
 

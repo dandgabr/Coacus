@@ -1,0 +1,16 @@
+{
+  "id": "skill-first-discipline",
+  "title": "Consults a skill before acting",
+  "harness": "opencode",
+  "prompt": "Without editing any file, describe the exact steps the entry guidance tells you to follow at the start of a session in this repository. Answer in at most three short lines.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(scan|read|consult)[^.]{0,40}(index|catalog)" },
+    { "kind": "regex", "value": "(?i)(skill|guidance)[^.]{0,40}(before|first)|before[^.]{0,30}(respond|act|an?y)" }
+  ],
+  "rubric": [
+    "The reply reflects the single-scan rule (read the index once, do not re-scan per turn).",
+    "It reflects the skill-first rule (check the catalog before acting).",
+    "No file was modified."
+  ],
+  "acceptance": "The model describes the repository's session discipline without needing to open files."
+}

@@ -43,6 +43,7 @@ python3 scripts/coacus.py validate   # schema + hygiene validators
 python3 -m unittest discover -s tests  # deterministic test suite
 
 python3 scripts/coacus_install.py opencode   # install rendered artifacts into a harness
+python3 scripts/coacus_eval.py validate      # static behavior-eval scenario gate
 ```
 
 CI (`.github/workflows/ci.yml`) runs `validate` → `check` → `tests` plus a
@@ -72,12 +73,13 @@ Phase tags mark representations produced in later phases.
 
 ## Status
 
-Phases **F0–F4 complete and merged** (F1 foundation · F2 quality gates · F3 MCP +
-SessionStart bootstrap · F4 execution governance). The framework has: generated
-catalog + discovery, multi-harness agent manifests, MCP single-source
-generation, per-harness SessionStart bootstrap, a concurrency/rate-limit
-governor, the TOON handoff validator and a per-harness installer. OpenCode live
-acceptance passed; claude-code is structure-verified (binary not installed) —
-see `docs/install.md`. Decision backlog D1–D12 ratified plus ADR-0015/0016.
-Next: **F5** behavior evals (`evals/`) and **F6** import of the three source
-repositories (with PT-BR → EN translation).
+Phases **F0–F5 implemented** (F1 foundation · F2 quality gates · F3 MCP +
+SessionStart bootstrap · F4 execution governance · F5 behavior evals — all
+merged except F5, which is pending merge). The framework has: generated catalog
++ discovery, multi-harness agent manifests, MCP single-source generation,
+per-harness SessionStart bootstrap, a concurrency/rate-limit governor, the TOON
+handoff validator, a per-harness installer, and behavior-eval scenarios with a
+static gate + opt-in live runner. OpenCode live acceptance passed; claude-code
+is structure-verified (binary not installed) — see `docs/install.md` and
+`evals/README.md`. Decision backlog D1–D12 ratified plus ADR-0015/0016. Next:
+**F6** import of the three source repositories (with PT-BR → EN translation).

@@ -7,6 +7,7 @@ Routing rules for any AI agent operating in this repository, in any harness.
 - `README.md` — what Coacus is; quickstart.
 - `docs/adr/` — ratified architecture decisions (D1–D12 + policies). Read before changing structure.
 - `docs/install.md` — how to install the rendered artifacts into each harness.
+- `evals/README.md` — behavior evals (static gate + opt-in live runner).
 - `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
 - `sources.lock.json` — provenance manifest for imported artifacts (ADR-0015).
