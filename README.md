@@ -56,7 +56,7 @@ See [`docs/install.md`](docs/install.md) for per-harness installation.
 | Artifact | Single source | Generated representations |
 |---|---|---|
 | Skill | `knowledge/skills/**/SKILL.md` + `methodology/workflows/**/SKILL.md` | catalog entry |
-| Agent | `knowledge/agents/**/agent.source.md` | `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/<name>.json` |
+| Agent | `knowledge/agents/**/agent.source.md` | `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/entries/<name>.json` |
 | MCP | `knowledge/mcps/<mcp>/MCP.md` (frontmatter) | `dist/mcp.json`, `dist/mcp_config.json` |
 | Harness adapter | `harnesses/<h>/harness.json` | rendered bootstrap (`harnesses/<h>/bootstrap/`, shapes A/B/C) |
 
@@ -72,11 +72,12 @@ Phase tags mark representations produced in later phases.
 
 ## Status
 
-Phase **F3 — MCP + SessionStart Bootstrap**: implementation complete (uncommitted
-at the time of writing) — MCP single-source generation + validator; canonical
-bootstrap wrapper rendered from the entry skill (`using-coacus`); `harness.json`
-adapters for opencode (B), claude-code (A), antigravity (C), codex
-(native-discovery) and cursor (stub); `scripts/coacus_install.py` for per-harness
-installation. OpenCode live acceptance passed; claude-code is structure-verified
-only (binary not installed) — see `docs/install.md`. Decision backlog D1–D12
-ratified plus ADR-0015/0016; migration of the three source repositories starts at F6.
+Phases **F0–F4 complete and merged** (F1 foundation · F2 quality gates · F3 MCP +
+SessionStart bootstrap · F4 execution governance). The framework has: generated
+catalog + discovery, multi-harness agent manifests, MCP single-source
+generation, per-harness SessionStart bootstrap, a concurrency/rate-limit
+governor, the TOON handoff validator and a per-harness installer. OpenCode live
+acceptance passed; claude-code is structure-verified (binary not installed) —
+see `docs/install.md`. Decision backlog D1–D12 ratified plus ADR-0015/0016.
+Next: **F5** behavior evals (`evals/`) and **F6** import of the three source
+repositories (with PT-BR → EN translation).

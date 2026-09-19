@@ -5,7 +5,7 @@ Writes `.agents/{skills,mcps,agents}.json` — each a list of `entries[].path`
 deterministic and drift-checked (ADR-0014). Single-scan rule: agents read these
 indexes once per session (AGENTS.md).
 
-The per-agent `.agents/<name>.json` files are still produced by
+The per-agent `.agents/entries/<name>.json` files are still produced by
 `agent_manifests` (fine-grained fingerprints); these consolidated manifests are
 the coarse by-kind index.
 """

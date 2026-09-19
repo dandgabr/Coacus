@@ -89,6 +89,16 @@ class TestFrontmatter(unittest.TestCase):
         doc = parse('---\nname: x\ndescription: "Does things\n  across lines."\n---\nbody\n')
         self.assertEqual(doc.meta["description"], "Does things across lines.")
 
+    def test_plain_scalar_keeps_inner_quotes(self) -> None:
+        # Regression: "He said \"hi\"" must not lose its trailing quote.
+        doc = parse('---\nname: x\ntitle: He said "hi"\n---\nbody\n')
+        self.assertEqual(doc.meta["title"], 'He said "hi"')
+
+    def test_inline_list_keeps_quoted_comma(self) -> None:
+        # Regression: a comma inside a quoted item is not a separator.
+        doc = parse('---\nname: x\ntags: ["a,b", c]\n---\nbody\n')
+        self.assertEqual(doc.meta["tags"], ["a,b", "c"])
+
     def test_indented_triple_dash_does_not_close(self) -> None:
         doc = parse("---\ndescription: >-\n  text\n  ---\n  more\n---\n# T\nbody\n")
         self.assertEqual(doc.meta["description"], "text --- more")

@@ -65,6 +65,28 @@ class TestDiscovery(unittest.TestCase):
         self.assertIn("entries", data)
         self.assertTrue(all("path" in e for e in data["entries"]))
 
+    def test_consolidated_stems_do_not_collide_with_agent_names(self) -> None:
+        # Regression: an agent literally named 'skills' must not overwrite the
+        # consolidated skills.json; per-agent manifests live under entries/.
+        from engine.generators import agent_manifests
+        from engine.validators import discovery as discovery_validator
+
+        source = self.root / "knowledge/agents/roles/skills/agent.source.md"
+        source.parent.mkdir(parents=True)
+        source.write_text(
+            "---\nname: skills\ncategory: roles\ndescription: x\nskills: []\n---\n\n# skills\nbody\n",
+            encoding="utf-8",
+        )
+        outputs = agent_manifests.expected_outputs(self.root)
+        self.assertIn(".agents/entries/skills.json", outputs)
+        self.assertNotIn(".agents/skills.json", outputs)
+        agent_manifests.write_all(self.root)
+        discovery.write_all(self.root)
+        # Both manifest kinds must coexist and validate.
+        self.assertTrue((self.root / ".agents/skills.json").is_file())
+        self.assertTrue((self.root / ".agents/entries/skills.json").is_file())
+        self.assertEqual(discovery_validator.validate(self.root), [])
+
 
 if __name__ == "__main__":
     unittest.main()

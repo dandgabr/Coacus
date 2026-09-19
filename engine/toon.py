@@ -88,9 +88,12 @@ def validate(text: str) -> list[str]:
             entry = entry.strip()
             if not entry:
                 continue
-            # Keep the full entry for the secret scan; the path is the leading
-            # segment up to the last ':<range>' when present.
-            path = re.sub(r":\d+(-\d+)?$", "", entry)
+            # Keep the full entry for the secret scan; a trailing `:<range>`
+            # (or a bare `:N`) is not part of the path.
+            path = re.sub(r"(:\d+(-\d+)?)?$", "", entry)
+            if not path:
+                errors.append(f"@FILES entry has no path: {entry!r}")
+                continue
             if _ABSOLUTE_PATH.match(path):
                 errors.append(f"@FILES path must be relative: {path!r}")
             if ".." in path.split("/"):

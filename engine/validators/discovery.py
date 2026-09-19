@@ -2,9 +2,11 @@
 
 Two kinds live under ``.agents/``:
 
-- per-agent entries ``<name>.json``: ``{name, description, category, source,
-  dist, fingerprint}`` — the fingerprint is RECOMPUTED from the source bytes,
-  so a tampered or stale entry fails even before the drift check.
+- per-agent entries ``entries/<name>.json``: ``{name, description, category,
+  source, dist, fingerprint}`` — the fingerprint is RECOMPUTED from the source
+  bytes, so a tampered or stale entry fails even before the drift check. The
+  ``entries/`` subdirectory keeps agent names from colliding with the
+  consolidated stems.
 - consolidated by-kind indexes ``skills.json`` / ``mcps.json`` / ``agents.json``:
   ``{entries: [{path}]}`` — the coarse single-scan surface.
 """
@@ -13,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 
 PER_AGENT_KEYS = ("name", "description", "category", "source", "dist", "fingerprint")
@@ -34,16 +37,33 @@ def _validate_per_agent(root: Path, manifest: Path, rel: str, errors: list[str])
     name = str(entry.get("name", ""))
     if manifest.stem != name:
         errors.append(f"{rel}: file stem {manifest.stem!r} != name {name!r}")
-    source = root / str(entry.get("source", ""))
+    source_rel = str(entry.get("source", ""))
+    if _unsafe_path(source_rel):
+        errors.append(f"{rel}: 'source' must be a relative in-repo path: {source_rel!r}")
+        return
+    source = root / source_rel
     if not source.is_file():
-        errors.append(f"{rel}: source does not exist: {entry.get('source')!r}")
+        errors.append(f"{rel}: source does not exist: {source_rel!r}")
         return
     fingerprint = hashlib.sha256(source.read_bytes()).hexdigest()[:16]
     if entry.get("fingerprint") != fingerprint:
         errors.append(f"{rel}: fingerprint mismatch (stale discovery entry)")
-    dist = root / str(entry.get("dist", ""))
+    dist_rel = str(entry.get("dist", ""))
+    if _unsafe_path(dist_rel):
+        errors.append(f"{rel}: 'dist' must be a relative in-repo path: {dist_rel!r}")
+        return
+    dist = root / dist_rel
     if not dist.is_dir():
-        errors.append(f"{rel}: dist directory does not exist: {entry.get('dist')!r}")
+        errors.append(f"{rel}: dist directory does not exist: {dist_rel!r}")
+
+
+def _unsafe_path(value: str) -> bool:
+    """Absolute, empty, or upward-escaping paths are unsafe to join onto root."""
+    if not value:
+        return True
+    if value.startswith(("/", "~")) or re.match(r"^[A-Za-z]:[/\\]", value):
+        return True
+    return ".." in Path(value).parts
 
 
 def _validate_consolidated(manifest: Path, rel: str, errors: list[str]) -> None:
@@ -65,14 +85,21 @@ def _validate_consolidated(manifest: Path, rel: str, errors: list[str]) -> None:
 def validate(root: Path) -> list[str]:
     """Return a list of error strings; empty list means valid."""
     errors: list[str] = []
-    manifest_dir = root / ".agents"
-    if not manifest_dir.is_dir():
+    agents_dir = root / ".agents"
+    if not agents_dir.is_dir():
         return errors
 
-    for manifest in sorted(manifest_dir.glob("*.json")):
-        rel = manifest.relative_to(root).as_posix()
-        if manifest.stem in CONSOLIDATED:
-            _validate_consolidated(manifest, rel, errors)
-        else:
-            _validate_per_agent(root, manifest, rel, errors)
+    # Consolidated by-kind indexes live directly under .agents/.
+    for name in CONSOLIDATED:
+        manifest = agents_dir / f"{name}.json"
+        if manifest.is_file():
+            _validate_consolidated(manifest, manifest.relative_to(root).as_posix(), errors)
+
+    # Per-agent manifests live under .agents/entries/ (no stem collision).
+    entries_dir = agents_dir / "entries"
+    if entries_dir.is_dir():
+        for manifest in sorted(entries_dir.glob("*.json")):
+            _validate_per_agent(
+                root, manifest, manifest.relative_to(root).as_posix(), errors
+            )
     return errors

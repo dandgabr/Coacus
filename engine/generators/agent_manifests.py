@@ -7,7 +7,7 @@ One canonical ``agent.source.md`` per agent yields, under a ``dist/`` folder:
 - ``agent.json``   neutral manifest for frameworks and APIs
 - ``plugin.json``  plugin shim
 
-plus a root-level ``.agents/<name>.json`` discovery entry (D5).
+plus a ``.agents/entries/<name>.json`` discovery entry (D5).
 
 Generated files contain no timestamps so regeneration is byte-idempotent
 (D3/ADR-0014). ``model`` is never emitted for AGENT.md/agent.json; the yaml
@@ -124,7 +124,7 @@ def generate(source_path: Path, root: Path) -> dict[str, str]:
     ) + "\n"
 
     fingerprint = hashlib.sha256(source_path.read_bytes()).hexdigest()[:16]
-    outputs[f".agents/{name}.json"] = json.dumps(
+    outputs[f".agents/entries/{name}.json"] = json.dumps(
         {
             "name": name,
             "description": description,
@@ -180,11 +180,9 @@ def check(root: Path) -> list[str]:
         drift.append(f"{rel}: orphan (source removed — delete or restore it)")
 
     actual_manifests: set[str] = set()
-    manifest_dir = root / ".agents"
+    manifest_dir = root / ".agents" / "entries"
     if manifest_dir.is_dir():
         for path in manifest_dir.glob("*.json"):
-            if path.stem in ("skills", "mcps", "agents"):
-                continue  # consolidated discovery manifests, owned by discovery.py
             actual_manifests.add(path.relative_to(root).as_posix())
     for rel in sorted(actual_manifests - set(expected)):
         drift.append(f"{rel}: orphan (source removed — delete or restore it)")

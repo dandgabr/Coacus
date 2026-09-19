@@ -49,14 +49,39 @@ def _indent_of(line: str) -> int:
 
 
 def _scalar(text: str) -> str:
-    return text.strip().strip("'\"")
+    text = text.strip()
+    if len(text) >= 2 and text[0] == text[-1] and text[0] in "\"'":
+        return text[1:-1]
+    return text
 
 
 def _inline_items(text: str) -> list[str]:
     inner = text.strip()[1:-1].strip()
     if not inner:
         return []
-    return [_scalar(part) for part in inner.split(",") if part.strip()]
+    return [_scalar(part) for part in _split_inline(inner) if part.strip()]
+
+
+def _split_inline(text: str) -> list[str]:
+    """Split an inline list on top-level commas (commas inside quotes survive)."""
+    parts: list[str] = []
+    current: list[str] = []
+    quote: str | None = None
+    for char in text:
+        if quote:
+            current.append(char)
+            if char == quote:
+                quote = None
+        elif char in "\"'":
+            quote = char
+            current.append(char)
+        elif char == ",":
+            parts.append("".join(current))
+            current = []
+        else:
+            current.append(char)
+    parts.append("".join(current))
+    return parts
 
 
 def _parse_value(
