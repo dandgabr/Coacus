@@ -41,38 +41,42 @@ python3 scripts/coacus.py generate   # regenerate per-agent dist/, .agents/, cat
 python3 scripts/coacus.py check      # fail if generated artifacts are stale
 python3 scripts/coacus.py validate   # schema + hygiene validators
 python3 -m unittest discover -s tests  # deterministic test suite
+
+python3 scripts/coacus_install.py opencode   # install rendered artifacts into a harness
 ```
 
 CI (`.github/workflows/ci.yml`) runs `validate` → `check` → `tests` plus a
 pinned gitleaks secrets scan — it never runs `generate` (that would mask drift).
-The workflow is authored in F2 but is not active until committed, pushed, and a
-ruleset requires its checks.
+It runs on push/PR; a `main` ruleset makes `ci` + `secrets` required checks.
+
+See [`docs/install.md`](docs/install.md) for per-harness installation.
 
 ## Canonical artifacts
 
 | Artifact | Single source | Generated representations |
 |---|---|---|
-| Skill | `knowledge/skills/**/SKILL.md` | catalog entry |
+| Skill | `knowledge/skills/**/SKILL.md` + `methodology/workflows/**/SKILL.md` | catalog entry |
 | Agent | `knowledge/agents/**/agent.source.md` | `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/<name>.json` |
-| MCP | triple: `MCP.md` + `mcp.json` + `mcp_config.json` (hand-authored, F3) | per-harness config (Option B, later) |
-| Harness adapter | `harnesses/<h>/harness.json` (F3) | bootstrap render (F3) |
+| MCP | `knowledge/mcps/<mcp>/MCP.md` (frontmatter) | `dist/mcp.json`, `dist/mcp_config.json` |
+| Harness adapter | `harnesses/<h>/harness.json` | rendered bootstrap (`harnesses/<h>/bootstrap/`, shapes A/B/C) |
 
 Phase tags mark representations produced in later phases.
 
 ## Hard conventions
 
 - No plaintext secrets — `{env:VAR}` only (D12); no absolute paths.
-- Skills prescribe **actions, never harness tools** (D2).
+- Skills prescribe **actions, never harness tools** (D2); tool mappings live in `references/`.
 - kebab-case names; `description` in 3rd person, trigger-oriented.
 - `model` omitted in canonical sources; resolved per harness (D1).
 - All repository content in English (ADR-0001); PT-BR imports are translated.
 
 ## Status
 
-Phase **F2 — Truth + Hygiene** complete (uncommitted at the time of writing):
-tolerant parser (parses 200/200 reference-corpus skills), skill/discovery/
-provenance validators, generated human catalog index, root provenance manifest
-(ADR-0015), and an authored CI workflow (`.github/workflows/ci.yml`) with `ci` +
-`secrets` jobs. The CI is **not active yet** — it requires commit + push and a
-GitHub ruleset requiring its checks. Decision backlog D1–D12 fully ratified plus
-ADR-0015; migration of the three source repositories starts at F6.
+Phase **F3 — MCP + SessionStart Bootstrap**: implementation complete (uncommitted
+at the time of writing) — MCP single-source generation + validator; canonical
+bootstrap wrapper rendered from the entry skill (`using-coacus`); `harness.json`
+adapters for opencode (B), claude-code (A), antigravity (C), codex
+(native-discovery) and cursor (stub); `scripts/coacus_install.py` for per-harness
+installation. OpenCode live acceptance passed; claude-code is structure-verified
+only (binary not installed) — see `docs/install.md`. Decision backlog D1–D12
+ratified plus ADR-0015/0016; migration of the three source repositories starts at F6.

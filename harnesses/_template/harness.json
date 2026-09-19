@@ -1,0 +1,17 @@
+{
+  "name": "_template",
+  "bootstrap": {
+    "supported": false,
+    "shape": "A",
+    "reason": "Authoring template: copy to harnesses/<name>/ and fill in."
+  },
+  "detection": ["<ENV_VAR_SET_BY_THE_HARNESS>"],
+  "tool_mapping": {
+    "action described in a skill": "native tool or fallback wording"
+  },
+  "tool_denylist": [],
+  "install": {
+    "method": "install through the harness's own mechanism (never edit user config)",
+    "target": null
+  }
+}
