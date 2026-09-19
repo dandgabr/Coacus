@@ -20,8 +20,17 @@ from pathlib import Path
 
 SCAN_ROOTS = ("knowledge", "methodology", "verticals", "harnesses", "templates")
 
+# Absolute paths: a POSIX path with >=2 segments (root + component), or a
+# known single-segment system root, or a Windows drive / home expansion.
+# This allows https:// URLs, HTML tags/closers (`</TAG>`) and lone `/word`.
+_KNOWN_ROOTS = r"home|Users|root|etc|tmp|var|usr|opt|bin|sbin|lib|srv|mnt|media|workspace|app"
 ABSOLUTE_PATH = re.compile(
-    r"(/home/|/Users/|/root/|(?<![A-Za-z0-9])[A-Za-z]:[/\\]|~[A-Za-z0-9_.-]*/)"
+    r"(?<![:/A-Za-z0-9])(?:"
+    r"(?:/[A-Za-z_][A-Za-z0-9_.-]*){2,}/?"
+    rf"|/(?:{_KNOWN_ROOTS})(?:[/\s\"'`]|$)"
+    r"|[A-Za-z]:[/\\]"
+    r"|~[A-Za-z0-9_.-]*/"
+    r")"
 )
 
 SECRET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [

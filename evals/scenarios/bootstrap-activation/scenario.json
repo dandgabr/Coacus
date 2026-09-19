@@ -1,0 +1,15 @@
+{
+  "id": "bootstrap-activation",
+  "title": "SessionStart bootstrap activates the entry skill",
+  "harness": "opencode",
+  "prompt": "In one short sentence, name one 'red flag' thought from the guidance already in your context. If you have no such guidance, reply exactly: none.",
+  "checks": [
+    { "kind": "contains", "value": "small change" }
+  ],
+  "rubric": [
+    "The reply quotes a red-flag thought that exists only in the using-coacus skill.",
+    "No tool call was required to recall it (the bootstrap was already injected).",
+    "The reply is a single short sentence."
+  ],
+  "acceptance": "In a fresh session with Coacus installed, the model names a red-flag thought without running a tool."
+}

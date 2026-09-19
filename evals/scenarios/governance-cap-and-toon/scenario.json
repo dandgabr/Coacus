@@ -1,0 +1,17 @@
+{
+  "id": "governance-cap-and-toon",
+  "title": "Knows the concurrency cap and the TOON handoff format",
+  "harness": "opencode",
+  "prompt": "In at most two short lines: what is the maximum number of concurrent agents allowed here (orchestrator included), and which field marks the status of a TOON handoff payload?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(cap|maximum|max|limit|concurrent)[^0-9]{0,30}\\b5\\b" },
+    { "kind": "not_contains", "value": "15" },
+    { "kind": "contains", "value": "@STATUS" }
+  ],
+  "rubric": [
+    "The reply states the concurrency cap is 5, counting the orchestrator.",
+    "It names @STATUS as the handoff-status field.",
+    "No tool call was required."
+  ],
+  "acceptance": "The model states the cap (5) and the @STATUS field from the injected guidance."
+}

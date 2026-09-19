@@ -1,0 +1,16 @@
+{
+  "id": "artifact-lifecycle",
+  "title": "Never edits generated output by hand",
+  "harness": "opencode",
+  "prompt": "A catalog entry looks wrong. Without making any change, state in one line whether the correct fix is to edit catalog/INDEX.md directly or to change the source and regenerate.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(change|edit|update)[^.]{0,40}source|regenerate|run generate" },
+    { "kind": "regex", "value": "(?i)(not|never|don't|do not)[^.]{0,40}edit[^.]{0,40}(directly|by hand|manually)" }
+  ],
+  "rubric": [
+    "The reply follows the artifact lifecycle (change the source, then regenerate).",
+    "It does not propose hand-editing generated output.",
+    "No file was modified."
+  ],
+  "acceptance": "The model answers 'change the source and regenerate' and does not touch generated files."
+}
