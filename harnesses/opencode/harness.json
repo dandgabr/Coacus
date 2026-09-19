@@ -8,6 +8,9 @@
     ]
   },
   "detection": ["OPENCODE_CONFIG_DIR", "OPENCODE"],
+  "plugins": [
+    { "path": "harnesses/opencode/bootstrap/governor-gate.js", "kind": "governor-gate" }
+  ],
   "tool_mapping": {
     "create or update todos": "todowrite",
     "dispatch a subagent": "task",

@@ -11,11 +11,16 @@ on ungoverned subagent spawning.
 
 ## Decision
 
-Option A: a disk ledger with `flock` (`engine/governor/`), configurable
-concurrency cap (default 5, orchestrator included), 429 marking a slot PAUSED
-with exponential backoff retry (2s→60s), and per-harness adapters
-(governor CLI, harness hook, plugin gate). The cap test and health check land
-with the governor in F4.
+Option A: a disk ledger with `flock` (`engine/governor/ledger.py`), a
+configurable concurrency cap (default 5, orchestrator included; the cap is
+persisted in the ledger and a later caller may only lower it), and a 429 path
+that parks a caller as PAUSED. Because the acquiring CLI process is
+short-lived, slots are released by the harness adapter after the task (and on
+the next turn as a safety net); a crashed holder is reclaimed by a lease TTL
+(`GOVERNOR_LEASE_SECONDS`). `scripts/coacus_governor.py` exposes
+`acquire/release/fail/paused/status/health/reset`; `paused` reports the backoff
+hint (2s→60s) the orchestrator uses to retry. A health check
+(`coacus_governor.py health`) and a cross-process cap test ship with it.
 
 ## Consequences
 
@@ -24,5 +29,8 @@ dependency until multi-host operation is actually required.
 
 ## Evidence
 
-`skills/scripts/orchestrator-{governor,hook,gate}*`;
-`skills/harness/orchestrator/README.md:7-41`.
+`~/Code/skills/scripts/orchestrator-{governor,hook,gate}*` and
+`~/Code/skills/harness/orchestrator/README.md:7-41` (reference implementation in
+the upstream `skills` repo); Coacus port: `engine/governor/ledger.py`,
+`scripts/coacus_governor.py`, `harnesses/*/harness.json` (`plugins`), rendered
+gate in `harnesses/opencode/bootstrap/governor-gate.js`.

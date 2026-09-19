@@ -201,6 +201,85 @@ def _render_shape_c(harness: dict, text: str) -> tuple[str, str]:
     return context, manifest
 
 
+def _render_governor_gate(harness: dict) -> dict[str, str]:
+    """Render harness plugin files that gate subagent spawn via the governor."""
+    name = harness["name"]
+    rendered: dict[str, str] = {}
+    for plugin in harness.get("plugins", []):
+        if plugin.get("kind") != "governor-gate":
+            continue
+        if name == "opencode":
+            rendered[plugin["path"]] = (
+                "// Coacus governor gate for opencode (generated — do not edit).\n"
+                "// Install: copy to <harness config>/plugins/coacus-governor.js.\n"
+                "// It intercepts `task` (subagent spawn), acquires a slot from the\n"
+                "// Coacus governor and ABORTS the spawn when no slot is free (the\n"
+                "// cap is enforced, not advisory). A rate-limit (429) in the result\n"
+                "// parks the caller as PAUSED for the orchestrator to retry with\n"
+                "// backoff (D6/ADR-0007).\n"
+                "\n"
+                "import { execFileSync } from 'node:child_process';\n"
+                "\n"
+                "const COACUS_ROOT = '__COACUS_ROOT__';\n"
+                "const GOVERNOR = COACUS_ROOT + '/scripts/coacus_governor.py';\n"
+                "const MAX_TOTAL = String(process.env.ORCH_MAX_CONCURRENT ?? 5);\n"
+                "const MAX_CALLS = 3;\n"
+                "const SPAWN_TOOLS = new Set(['task']);\n"
+                "const RATE_LIMIT_RE = /(429|Too Many Requests|rate.?limit|quota exceeded|RPM|TPM)/i;\n"
+                "\n"
+                "// caller -> {token, calls}; kept on the plugin instance, never in args.\n"
+                "const held = new Map();\n"
+                "\n"
+                "const gov = (action, caller, timeout = '5', orchestrator = 'no') => {\n"
+                "  try {\n"
+                "    return execFileSync(\n"
+                "      'python3',\n"
+                "      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL],\n"
+                "      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 70000 },\n"
+                "    ).trim();\n"
+                "  } catch { return ''; }\n"
+                "};\n"
+                "\n"
+                "export const CoacusGovernor = async () => ({\n"
+                "  'tool.execute.before': async (input, output) => {\n"
+                "    if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
+                "    const caller = `${input.tool}-${input.sessionID ?? 'sess'}-${input.callID ?? Date.now()}`;\n"
+                "    const token = gov('acquire', caller, '30');\n"
+                "    if (!token) {\n"
+                "      throw new Error(\n"
+                "        'Coacus governor: concurrency cap reached; no slot free. ' +\n"
+                "        'Retry after a running agent completes (cap = ' + MAX_TOTAL + ').',\n"
+                "      );\n"
+                "    }\n"
+                "    held.set(caller, { token, calls: 0 });\n"
+                "    // Do NOT mutate output.args (it would leak into the subagent payload).\n"
+                "  },\n"
+                "  'tool.execute.after': async (input, output) => {\n"
+                "    if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
+                "    const caller = `${input.tool}-${input.sessionID ?? 'sess'}-${input.callID ?? Date.now()}`;\n"
+                "    const entry = held.get(caller) ?? { token: '', calls: 0 };\n"
+                "    const text = `${output.output ?? ''} ${input.args?.prompt ?? ''}`;\n"
+                "    if (RATE_LIMIT_RE.test(text)) {\n"
+                "      held.delete(caller);\n"
+                "      gov('fail', caller);\n"
+                "      output.metadata = output.metadata || {};\n"
+                "      output.metadata.coacus = 'paused_rate_limit';\n"
+                "    } else {\n"
+                "      held.delete(caller);\n"
+                "      gov('release', caller);\n"
+                "    }\n"
+                "  },\n"
+                "  // Safety net: release any slot still held when a new turn begins,\n"
+                "  // so a cancelled/errored spawn (after-hook never ran) cannot leak it.\n"
+                "  'chat.message': async () => {\n"
+                "    for (const [caller] of held) gov('release', caller);\n"
+                "    held.clear();\n"
+                "  },\n"
+                "});\n"
+            )
+    return rendered
+
+
 def render(harness: dict, root: Path) -> dict[str, str]:
     """Compute rendered files for one harness (repo-relative path -> content)."""
     bootstrap = harness.get("bootstrap", {})
@@ -227,6 +306,7 @@ def render(harness: dict, root: Path) -> dict[str, str]:
         return {}
     else:
         raise ValueError(f"unknown bootstrap shape: {shape!r}")
+    rendered.update(_render_governor_gate(harness))
     return rendered
 
 

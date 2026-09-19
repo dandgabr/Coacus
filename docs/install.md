@@ -18,7 +18,13 @@ Run `python3 scripts/coacus.py generate` first so the rendered artifacts exist.
 
 | Harness | Shape | Bootstrap mechanism | Install target | How Coacus installs |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | message transform + `config.skills.paths` | `~/.config/opencode/plugins/coacus.js` + skills mirrored to `~/.config/opencode/skills/` | `coacus_install.py opencode` copies the plugin (substituting `__COACUS_ROOT__`) and mirrors the skill trees (SKILL.md + `references/`) |
+| **opencode** | B (in-process) | message transform + `config.skills.paths` | `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills mirrored to `~/.config/opencode/skills/` | `coacus_install.py opencode` copies both plugins (substituting `__COACUS_ROOT__`) and mirrors the skill trees |
+
+The opencode install includes the **governor gate** (`coacus-governor.js`): it
+intercepts subagent spawns, enforces the concurrency cap, and parks a caller as
+PAUSED on a rate-limit. Knobs: `ORCH_MAX_CONCURRENT` (default 5),
+`GOVERNOR_STATE_DIR` (ledger location), `GOVERNOR_LEASE_SECONDS` (stale-slot
+reclaim). Inspect the ledger with `python3 scripts/coacus_governor.py status`.
 | **claude-code** | A (shell-hook) | `SessionStart` hook → `hookSpecificOutput.additionalContext` | skills: `~/.claude/skills/<skill>/`; plugin: `~/.claude/plugins/coacus/` with the script at `bootstrap/session-start.sh` | `coacus_install.py claude-code` (a published Claude Code plugin/marketplace is the long-term path) |
 | **antigravity** | C (instructions-file) | extension context file (`contextFileName` → `ANTIGRAVITY.md`) | `<config>/config/plugins/coacus/` registered in `<config>/config/plugins.json` | `coacus_install.py antigravity` stages the plugin and registers its path (backs up `plugins.json`) |
 | **codex** | native-discovery | none — Codex surfaces skills natively, no SessionStart hook | `~/.codex/skills/<skill>/` | `coacus_install.py codex` mirrors the skill trees |
