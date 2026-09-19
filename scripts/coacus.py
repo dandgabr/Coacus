@@ -23,10 +23,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from engine import provenance  # noqa: E402
-from engine.generators import agent_manifests, catalog  # noqa: E402
+from engine.generators import agent_manifests, bootstrap, catalog, mcp_configs  # noqa: E402
 from engine.validators import agents as agent_validator  # noqa: E402
 from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
+from engine.validators import mcps as mcp_validator  # noqa: E402
 from engine.validators import skills as skill_validator  # noqa: E402
 
 
@@ -35,6 +36,7 @@ def source_errors(root: Path) -> list[str]:
     return (
         agent_validator.validate(root)
         + skill_validator.validate(root)
+        + mcp_validator.validate(root)
         + hygiene.validate(root)
     )
 
@@ -60,9 +62,13 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         print("cannot generate: source validation failed")
         _print(errors, "error")
         return 1
-    written = agent_manifests.write_all(root)
+    written = (
+        agent_manifests.write_all(root)
+        + mcp_configs.write_all(root)
+        + bootstrap.write_all(root)
+    )
     written_paths = catalog.write(root)
-    print(f"generated {len(written)} manifest file(s)")
+    print(f"generated {len(written)} manifest/bootstrap file(s)")
     for path in written_paths:
         print(f"generated {path.relative_to(root)}")
     warnings = _warnings(root)
@@ -78,7 +84,12 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
 
 def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
     root = root or ROOT
-    drift = agent_manifests.check(root) + catalog.check(root)
+    drift = (
+        agent_manifests.check(root)
+        + mcp_configs.check(root)
+        + bootstrap.check(root)
+        + catalog.check(root)
+    )
     if drift:
         print("DRIFT detected — run: python3 scripts/coacus.py generate")
         _print(drift, "drift")

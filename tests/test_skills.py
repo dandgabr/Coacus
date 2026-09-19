@@ -73,7 +73,7 @@ class TestSkillValidator(unittest.TestCase):
             "---\nname: flat\ndescription: x\n---\n\n# flat\nbody\n", encoding="utf-8"
         )
         errors = skills.validate(self.root)
-        self.assertTrue(any("must live at" in e for e in errors))
+        self.assertTrue(any("right depth" in e for e in errors))
 
     def test_nested_skill_fails(self) -> None:
         outer = write_skill(self.root, "roles", "outer-skill")

@@ -1,0 +1,274 @@
+"""Render the SessionStart bootstrap per harness from a single canonical body (D8).
+
+One canonical wrapper (`methodology/bootstrap/session-start.canonical.md`) plus
+the entry skill body are rendered into EXACTLY ONE native artifact per harness,
+driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a new data
+file; a new shape is an engine change).
+
+Shapes:
+- A (shell-hook): a POSIX shell script that cats the entry skill and emits one
+  JSON field. The native key comes from `harness.json`; the forbidden alias is
+  never emitted (Claude Code reads both fields without dedup — ADR-0009).
+- B (in-process): a JS module that injects the bootstrap into the first user
+  message, with an anti-reinjection guard.
+- C (instructions-file): a markdown context file plus the extension manifest
+  that declares it.
+- native-discovery: nothing rendered (the harness surfaces skills natively).
+
+Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from engine.frontmatter import parse
+
+BOOTSTRAP_SOURCE = "methodology/bootstrap/session-start.canonical.md"
+ENTRY_SKILL = "methodology/workflows/using-coacus/SKILL.md"
+SHAPES = ("A", "B", "C", "native-discovery")
+
+
+def discover_harnesses(root: Path) -> list[Path]:
+    """All harness manifests except the authoring template."""
+    harnesses_dir = root / "harnesses"
+    if not harnesses_dir.is_dir():
+        return []
+    return sorted(
+        path
+        for path in harnesses_dir.glob("*/harness.json")
+        if path.parent.name != "_template"
+    )
+
+
+def load_harness(path: Path, root: Path) -> dict:
+    """Parse a ``harness.json``; a malformed file raises a readable ValueError."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        rel = path.relative_to(root).as_posix() if path.is_relative_to(root) else path
+        raise ValueError(f"{rel}: invalid harness manifest ({exc})") from exc
+    if not isinstance(data, dict) or "name" not in data:
+        raise ValueError(f"{path.name}: harness manifest must be an object with a 'name'")
+    return data
+
+
+def _entry_body(root: Path) -> str:
+    doc = parse((root / ENTRY_SKILL).read_text(encoding="utf-8"))
+    return doc.body.strip()
+
+
+def _wrapper(root: Path) -> str:
+    return (root / BOOTSTRAP_SOURCE).read_text(encoding="utf-8")
+
+
+def _tool_mapping_block(mapping: dict) -> str:
+    if not mapping:
+        return ""
+    lines = ["**Tool mapping for this harness:**"]
+    lines += [f"- {action} -> {tool}" for action, tool in mapping.items()]
+    return "\n".join(lines)
+
+
+def _bootstrap_text(root: Path, mapping: dict) -> str:
+    wrapper = _wrapper(root)
+    return wrapper.replace("{entry_skill_body}", _entry_body(root)).replace(
+        "{tool_mapping}", _tool_mapping_block(mapping)
+    )
+
+
+def _json_escape(text: str) -> str:
+    return json.dumps(text)[1:-1]
+
+
+def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
+    """Shape A emits a shell script plus the harness hook config JSON.
+
+    The script carries exactly ONE native JSON key — the value declared by
+    ``harness.json`` (``native_key``); keys listed in ``forbidden_keys`` are
+    never emitted (Claude Code reads both fields without dedup — ADR-0009).
+    """
+    bootstrap = harness["bootstrap"]
+    native_key = bootstrap.get("native_key", "additionalContext")
+    forbidden = set(bootstrap.get("forbidden_keys", []))
+    if native_key in forbidden:
+        raise ValueError(
+            f"{harness['name']}: native_key {native_key!r} is also forbidden"
+        )
+    escaped = _json_escape(text)
+    if "." in native_key:  # nested field, e.g. hookSpecificOutput.additionalContext
+        outer, inner = native_key.split(".", 1)
+        native_json = (
+            "{\n"
+            f'  "{outer}": {{\n'
+            '    "hookEventName": "SessionStart",\n'
+            f'    "{inner}": "{escaped}"\n'
+            "  }\n"
+            "}"
+        )
+    else:
+        native_json = '{\n  "' + native_key + '": "' + escaped + '"\n}'
+    script = (
+        "#!/usr/bin/env bash\n"
+        "# SessionStart bootstrap for Coacus (generated — do not edit).\n"
+        "# Emits exactly ONE native JSON field; the forbidden alias is never\n"
+        "# emitted (Claude Code reads both fields without dedup — ADR-0009).\n"
+        "set -euo pipefail\n"
+        "cat <<'COACUS_EOF'\n"
+        f"{native_json}\n"
+        "COACUS_EOF\n"
+    )
+    hooks = json.dumps(
+        {
+            "hooks": {
+                "SessionStart": [
+                    {
+                        "matcher": "startup|clear|compact",
+                        "hooks": [
+                            {
+                                "type": "command",
+                                "command": '"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh"',
+                                "async": False,
+                            }
+                        ],
+                    }
+                ]
+            }
+        },
+        indent=2,
+    ) + "\n"
+    rendered: dict[str, str] = {}
+    for out in bootstrap.get("outputs", []):
+        rendered[out["path"]] = hooks if out["format"] == "json" else script
+    return rendered
+
+
+def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
+    name = harness["name"]
+    return (
+        "// Coacus bootstrap for harness '" + name + "' (generated — do not edit).\n"
+        "// Install: copy to <harness config>/plugins/coacus.js. The installer\n"
+        "// substitutes __COACUS_ROOT__ with the repository path; the plugin then\n"
+        "// registers the skill paths (no user-config edit) and injects the\n"
+        "// bootstrap into the first user message with an anti-reinjection guard\n"
+        "// (ADR-0009 / ADR-0016).\n"
+        "\n"
+        "const COACUS_ROOT = '__COACUS_ROOT__';\n"
+        "const SKILL_PATHS = [\n"
+        "  COACUS_ROOT + '/methodology/workflows',\n"
+        "  COACUS_ROOT + '/knowledge/skills',\n"
+        "];\n"
+        "const BOOTSTRAP = " + json.dumps(text) + ";\n"
+        "const GUARD = 'EXTREMELY_IMPORTANT';\n"
+        "\n"
+        "export const CoacusPlugin = async () => ({\n"
+        "  config: async (config) => {\n"
+        "    config.skills = config.skills || {};\n"
+        "    config.skills.paths = config.skills.paths || [];\n"
+        "    for (const p of SKILL_PATHS) {\n"
+        "      if (!config.skills.paths.includes(p)) config.skills.paths.push(p);\n"
+        "    }\n"
+        "  },\n"
+        "  'experimental.chat.messages.transform': async (_input, output) => {\n"
+        "    if (!output.messages.length) return;\n"
+        "    const firstUser = output.messages.find((m) => m.info.role === 'user');\n"
+        "    if (!firstUser || !firstUser.parts.length) return;\n"
+        "    if (firstUser.parts.some((p) => p.type === 'text' && p.text.includes(GUARD))) return;\n"
+        "    const ref = firstUser.parts[0];\n"
+        "    firstUser.parts.unshift({ ...ref, type: 'text', text: BOOTSTRAP });\n"
+        "  },\n"
+        "});\n"
+    )
+
+
+def _render_shape_c(harness: dict, text: str) -> tuple[str, str]:
+    name = harness["name"]
+    context_file = "ANTIGRAVITY.md"
+    context = (
+        "<!-- Generated by Coacus — do not edit. -->\n\n" + text + "\n"
+    )
+    manifest = json.dumps(
+        {
+            "name": f"coacus-{name}",
+            "displayName": "Coacus",
+            "version": "0.1.0",
+            "description": "Coacus agentic framework bootstrap",
+            "contextFileName": context_file,
+        },
+        indent=2,
+    ) + "\n"
+    return context, manifest
+
+
+def render(harness: dict, root: Path) -> dict[str, str]:
+    """Compute rendered files for one harness (repo-relative path -> content)."""
+    bootstrap = harness.get("bootstrap", {})
+    if not bootstrap.get("supported"):
+        return {}
+    shape = bootstrap.get("shape")
+    outputs = bootstrap.get("outputs", [])
+    mapping = harness.get("tool_mapping", {})
+    text = _bootstrap_text(root, mapping)
+
+    rendered: dict[str, str] = {}
+    if shape == "A":
+        rendered.update(_render_shape_a(harness, text))
+    elif shape == "B":
+        for out in outputs:
+            rendered[out["path"]] = _render_shape_b(harness, text, mapping)
+    elif shape == "C":
+        context, manifest = _render_shape_c(harness, text)
+        for out in outputs:
+            rendered[out["path"]] = (
+                context if out["format"] == "md" else manifest
+            )
+    elif shape == "native-discovery":
+        return {}
+    else:
+        raise ValueError(f"unknown bootstrap shape: {shape!r}")
+    return rendered
+
+
+def expected_outputs(root: Path) -> dict[str, str]:
+    """Union of rendered content for every harness."""
+    outputs: dict[str, str] = {}
+    for manifest_path in discover_harnesses(root):
+        harness = load_harness(manifest_path, root)
+        outputs.update(render(harness, root))
+    return outputs
+
+
+def write_all(root: Path) -> list[str]:
+    """Materialize all rendered bootstrap files. Returns repo-relative paths."""
+    written: list[str] = []
+    for rel, content in expected_outputs(root).items():
+        path = root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+        written.append(rel)
+    return sorted(written)
+
+
+def check(root: Path) -> list[str]:
+    """Drift check: expected vs disk, plus orphan detection (ADR-0014)."""
+    drift: list[str] = []
+    expected = expected_outputs(root)
+    for rel, content in expected.items():
+        path = root / rel
+        if not path.is_file():
+            drift.append(f"{rel}: missing (run generate)")
+        elif path.read_text(encoding="utf-8") != content:
+            drift.append(f"{rel}: out of date (run generate)")
+
+    for manifest_path in discover_harnesses(root):
+        harness = load_harness(manifest_path, root)
+        bootstrap_dir = root / "harnesses" / harness["name"] / "bootstrap"
+        if not bootstrap_dir.is_dir():
+            continue
+        for path in bootstrap_dir.rglob("*"):
+            if path.is_file():
+                rel = path.relative_to(root).as_posix()
+                if rel not in expected:
+                    drift.append(f"{rel}: orphan (no longer rendered)")
+    return sorted(drift)

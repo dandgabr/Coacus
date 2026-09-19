@@ -33,10 +33,16 @@ def build(root: Path) -> dict:
     agents.sort(key=lambda item: item["name"])
 
     skills_dir = root / "knowledge" / "skills"
+    workflow_dir = root / "methodology" / "workflows"
+    skill_paths: list[Path] = []
+    if skills_dir.is_dir():
+        skill_paths += sorted(skills_dir.rglob("SKILL.md"))
+    if workflow_dir.is_dir():
+        skill_paths += sorted(workflow_dir.rglob("SKILL.md"))
     skills = [
         {"name": path.parent.name, "path": path.relative_to(root).as_posix()}
-        for path in sorted(skills_dir.rglob("SKILL.md"))
-    ] if skills_dir.is_dir() else []
+        for path in skill_paths
+    ]
 
     mcps_dir = root / "knowledge" / "mcps"
     mcps = [

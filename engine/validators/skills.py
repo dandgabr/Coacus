@@ -1,15 +1,15 @@
 """Validate canonical skill sources (D2/ADR-0003, corpus import contract).
 
-Errors:
-- frontmatter parses and ``name`` is kebab-case, equal to the directory name
-- ``description`` present
-- globally unique slug (flat namespace — harnesses load skills by name)
-- SKILL.md lives at ``<category>[/<subcategory>]/<skill>/SKILL.md`` (no nesting)
-- local markdown links resolve relative to the skill directory
+Skills live under two roots sharing one flat name namespace:
 
-Warnings (non-blocking):
-- non-English markers in frontmatter/body (ADR-0001; becomes error post-import)
-- oversized description (corpus guidance: keep frontmatter lean)
+- ``knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md``
+- ``methodology/workflows/<skill>/SKILL.md`` (process skills)
+
+Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
+``description`` present; globally unique slug; correct placement; no nested
+SKILL.md; local markdown links resolve.
+
+Warnings (non-blocking): non-English markers and oversized descriptions.
 """
 
 from __future__ import annotations
@@ -25,41 +25,71 @@ SKIP_LINK_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
 DESCRIPTION_WARN_LEN = 1024
 PT_MARKERS = ("ção", "ções", "ã", "õ", "Atua como", "Especialista em")
 
+# root -> allowed depth (number of parts from the root to the skill dir)
+SKILL_ROOTS: dict[str, tuple[int, ...]] = {
+    "knowledge/skills": (2, 3),  # <category>[/<subcategory>]/<skill>
+    "methodology/workflows": (1,),  # <skill>
+}
+
+
+def _root_for(source: Path, root: Path) -> tuple[str, Path] | None:
+    for top in SKILL_ROOTS:
+        base = root / top
+        try:
+            source.relative_to(base)
+        except ValueError:
+            continue
+        return top, base
+    return None
+
 
 def discover_skills(root: Path) -> list[Path]:
-    """All ``SKILL.md`` under ``knowledge/skills`` (any depth, for guard)."""
-    skills_dir = root / "knowledge" / "skills"
-    if not skills_dir.is_dir():
-        return []
-    return sorted(skills_dir.rglob("SKILL.md"))
+    """All ``SKILL.md`` under every skill root."""
+    found: list[Path] = []
+    for top in SKILL_ROOTS:
+        base = root / top
+        if base.is_dir():
+            found.extend(sorted(base.rglob("SKILL.md")))
+    return found
 
 
 def validate(root: Path) -> list[str]:
     """Return a list of error strings; empty list means valid."""
     errors: list[str] = []
-    skills_dir = root / "knowledge" / "skills"
     discovered = discover_skills(root)
     skill_dirs = {source.parent for source in discovered}
     seen: set[str] = set()
 
     for source in discovered:
         rel = source.relative_to(root).as_posix()
-        parts = source.relative_to(skills_dir).parts
-        if len(parts) < 3:
-            errors.append(
-                f"{rel}: SKILL.md must live at <category>[/<subcategory>]/<skill>/"
-            )
+        located = _root_for(source, root)
+        if located is None:
+            errors.append(f"{rel}: SKILL.md is outside a known skill root")
             continue
+        _, base = located
+        parts = source.relative_to(base).parts
+        allowed = SKILL_ROOTS[located[0]]
+
         ancestor = source.parent.parent
         nested = False
-        while ancestor != skills_dir.parent and ancestor != skills_dir:
+        while ancestor != base.parent and ancestor != base:
             if ancestor in skill_dirs:
-                errors.append(f"{rel}: nested SKILL.md beneath {ancestor.name!r} (not allowed)")
+                errors.append(
+                    f"{rel}: nested SKILL.md beneath {ancestor.name!r} (not allowed)"
+                )
                 nested = True
                 break
             ancestor = ancestor.parent
         if nested:
             continue
+
+        if len(parts) - 1 not in allowed:  # minus the SKILL.md filename
+            errors.append(
+                f"{rel}: SKILL.md must live at the right depth for "
+                f"'{located[0]}' (expected {allowed})"
+            )
+            continue
+
         try:
             doc = parse(source.read_text(encoding="utf-8"))
         except FrontmatterError as exc:
@@ -99,8 +129,12 @@ def warnings(root: Path) -> list[str]:
             continue
         description = str(doc.meta.get("description", "")).strip()
         if len(description) > DESCRIPTION_WARN_LEN:
-            notes.append(f"{rel}: description is {len(description)} chars (> {DESCRIPTION_WARN_LEN})")
+            notes.append(
+                f"{rel}: description is {len(description)} chars (> {DESCRIPTION_WARN_LEN})"
+            )
         sample = f"{description} {doc.body}"
         if any(marker in sample for marker in PT_MARKERS):
-            notes.append(f"{rel}: non-English markers detected (ADR-0001; translate at import)")
+            notes.append(
+                f"{rel}: non-English markers detected (ADR-0001; translate at import)"
+            )
     return notes

@@ -2,10 +2,20 @@
   "schema": 1,
   "counts": {
     "agents": 0,
-    "skills": 0,
-    "mcps": 0
+    "skills": 1,
+    "mcps": 1
   },
   "agents": [],
-  "skills": [],
-  "mcps": []
+  "skills": [
+    {
+      "name": "using-coacus",
+      "path": "methodology/workflows/using-coacus/SKILL.md"
+    }
+  ],
+  "mcps": [
+    {
+      "name": "context7",
+      "path": "knowledge/mcps/context7/MCP.md"
+    }
+  ]
 }

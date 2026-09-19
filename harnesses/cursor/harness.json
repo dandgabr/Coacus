@@ -1,0 +1,24 @@
+{
+  "name": "cursor",
+  "bootstrap": {
+    "supported": false,
+    "shape": "A",
+    "reason": "No local installation to verify the SessionStart hook; render deferred until a live acceptance test is possible."
+  },
+  "detection": ["CURSOR_PLUGIN_ROOT"],
+  "tool_mapping": {
+    "create or update todos": "TodoWrite",
+    "dispatch a subagent": "Task",
+    "invoke a skill": "Skill",
+    "read a file": "Read",
+    "create, edit, or delete files": "Write / Edit",
+    "run shell commands": "Bash",
+    "search files": "Grep / Glob",
+    "fetch a URL": "WebFetch"
+  },
+  "tool_denylist": [],
+  "install": {
+    "method": "install as a Cursor plugin",
+    "target": "plugin marketplace"
+  }
+}

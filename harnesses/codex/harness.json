@@ -1,0 +1,15 @@
+{
+  "name": "codex",
+  "bootstrap": {
+    "supported": false,
+    "shape": "native-discovery",
+    "reason": "Codex surfaces skills natively and runs no session-start hook; nothing is rendered."
+  },
+  "detection": ["CODEX_HOME"],
+  "tool_mapping": {},
+  "tool_denylist": [],
+  "install": {
+    "method": "native skill discovery; no plugin",
+    "target": null
+  }
+}

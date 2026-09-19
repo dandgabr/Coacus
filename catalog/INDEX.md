@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 0 skill(s) · 0 agent(s) · 0 MCP(s)
+**Totals:** 1 skill(s) · 0 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -10,8 +10,12 @@ _None yet._
 
 ## Skills
 
-_None yet._
+| Skill | Path |
+|---|---|
+| using-coacus | [methodology/workflows/using-coacus/SKILL.md](../methodology/workflows/using-coacus/SKILL.md) |
 
 ## MCPs
 
-_None yet._
+| MCP | Path |
+|---|---|
+| context7 | [knowledge/mcps/context7/MCP.md](../knowledge/mcps/context7/MCP.md) |

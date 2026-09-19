@@ -1,0 +1,26 @@
+{
+  "name": "opencode",
+  "bootstrap": {
+    "supported": true,
+    "shape": "B",
+    "outputs": [
+      { "path": "harnesses/opencode/bootstrap/coacus.js", "format": "js" }
+    ]
+  },
+  "detection": ["OPENCODE_CONFIG_DIR", "OPENCODE"],
+  "tool_mapping": {
+    "create or update todos": "todowrite",
+    "dispatch a subagent": "task",
+    "invoke a skill": "skill",
+    "read a file": "read",
+    "create, edit, or delete files": "write / edit",
+    "run shell commands": "bash",
+    "search files": "grep / glob",
+    "fetch a URL": "webfetch"
+  },
+  "tool_denylist": ["todowrite", "apply_patch"],
+  "install": {
+    "method": "copy the rendered plugin into the harness plugin directory",
+    "target": "{config_dir}/plugins/coacus.js"
+  }
+}

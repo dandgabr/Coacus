@@ -24,6 +24,9 @@ var; the user's harness config is never edited directly. One acceptance test
 Bootstrap render is a generated artifact (ADR-0014); smoke tests run per
 supported harness; a negative test guards against double injection.
 
+* Note (F3, 2026-09-19): the render contract is fixed in ADR-0016 (one canonical
+  body from the entry skill; `harness.json` drives shapes A/B/C/native-discovery).
+
 ## Evidence
 
 `superpowers/hooks/session-start:1-49`; `superpowers/.opencode/plugins/superpowers.js:124-137`;

@@ -1,0 +1,29 @@
+{
+  "name": "claude-code",
+  "bootstrap": {
+    "supported": true,
+    "shape": "A",
+    "native_key": "hookSpecificOutput.additionalContext",
+    "forbidden_keys": ["additional_context"],
+    "outputs": [
+      { "path": "harnesses/claude-code/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/claude-code/bootstrap/hooks.json", "format": "json" }
+    ]
+  },
+  "detection": ["CLAUDE_PLUGIN_ROOT"],
+  "tool_mapping": {
+    "create or update todos": "TodoWrite",
+    "dispatch a subagent": "Task",
+    "invoke a skill": "Skill",
+    "read a file": "Read",
+    "create, edit, or delete files": "Write / Edit",
+    "run shell commands": "Bash",
+    "search files": "Grep / Glob",
+    "fetch a URL": "WebFetch"
+  },
+  "tool_denylist": ["TodoWrite", "WebFetch", "WebSearch", "NotebookEdit"],
+  "install": {
+    "method": "install as a Claude Code plugin (hooks.json is auto-discovered)",
+    "target": "plugin marketplace"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "context7",
+  "transport": "streamable-http",
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "url": "https://mcp.context7.com/mcp"
+}
