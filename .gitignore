@@ -1,0 +1,59 @@
+# ============================================================
+# Coacus — keep the commit cycle clean.
+# Local tool state, secrets and build artifacts must never be committed.
+# ============================================================
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# --- Editors / IDE ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
+
+# --- Secrets & credentials (hard rule) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials*.json
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Node / builds ---
+node_modules/
+/dist/
+/build/
+*.log
+npm-debug.log*
+
+# --- Local agent/tool state (session-local, not framework content) ---
+.ai-memory/
+.codegraph/
+.aider*
+.claude/settings.local.json
+.superpowers/sdd/
+
+# --- Temp / backups ---
+/tmp/
+*.tmp
+*.bak
