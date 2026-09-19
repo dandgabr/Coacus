@@ -2,6 +2,14 @@
 """Coacus thin CLI: generate | check | validate.
 
 Deterministic build tooling for the framework (ADR-0004, ADR-0013, ADR-0014).
+
+Validation is split in two layers:
+- SOURCE errors (agents, skills, hygiene) gate ``generate`` — invalid canonical
+  sources never produce committed artifacts.
+- ARTIFACT errors (discovery manifests, provenance) validate the GENERATED
+  outputs. They run AFTER writing in ``generate`` (a stale discovery
+  fingerprint is exactly what regeneration fixes), and alongside sources in
+  ``validate``.
 """
 
 from __future__ import annotations
@@ -14,42 +22,80 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from engine import provenance  # noqa: E402
 from engine.generators import agent_manifests, catalog  # noqa: E402
 from engine.validators import agents as agent_validator  # noqa: E402
+from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
+from engine.validators import skills as skill_validator  # noqa: E402
 
 
-def cmd_generate(_args: argparse.Namespace) -> int:
-    errors = agent_validator.validate(ROOT) + hygiene.validate(ROOT)
+def source_errors(root: Path) -> list[str]:
+    """Canonical-source contract violations (block generation)."""
+    return (
+        agent_validator.validate(root)
+        + skill_validator.validate(root)
+        + hygiene.validate(root)
+    )
+
+
+def artifact_errors(root: Path) -> list[str]:
+    """Generated-artifact violations (checked after writing / on validate)."""
+    return discovery_validator.validate(root) + provenance.validate(root)
+
+
+def _warnings(root: Path) -> list[str]:
+    return skill_validator.warnings(root)
+
+
+def _print(items: list[str], label: str) -> None:
+    for item in items:
+        print(f"  [{label}] {item}")
+
+
+def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    root = root or ROOT
+    errors = source_errors(root)
     if errors:
-        print("cannot generate: validation failed")
-        for item in errors:
-            print(f"  {item}")
+        print("cannot generate: source validation failed")
+        _print(errors, "error")
         return 1
-    written = agent_manifests.write_all(ROOT)
-    catalog_path = catalog.write(ROOT)
+    written = agent_manifests.write_all(root)
+    written_paths = catalog.write(root)
     print(f"generated {len(written)} manifest file(s)")
-    print(f"generated {catalog_path.relative_to(ROOT)}")
+    for path in written_paths:
+        print(f"generated {path.relative_to(root)}")
+    warnings = _warnings(root)
+    if warnings:
+        _print(warnings, "warn")
+    after = artifact_errors(root)
+    if after:
+        print("generated artifacts remain inconsistent:")
+        _print(after, "error")
+        return 1
     return 0
 
 
-def cmd_check(_args: argparse.Namespace) -> int:
-    drift = agent_manifests.check(ROOT) + catalog.check(ROOT)
+def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    root = root or ROOT
+    drift = agent_manifests.check(root) + catalog.check(root)
     if drift:
         print("DRIFT detected — run: python3 scripts/coacus.py generate")
-        for item in drift:
-            print(f"  {item}")
+        _print(drift, "drift")
         return 1
     print("no drift: generated artifacts are up to date")
     return 0
 
 
-def cmd_validate(_args: argparse.Namespace) -> int:
-    errors = agent_validator.validate(ROOT) + hygiene.validate(ROOT)
+def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    root = root or ROOT
+    warnings = _warnings(root)
+    if warnings:
+        _print(warnings, "warn")
+    errors = source_errors(root) + artifact_errors(root)
     if errors:
         print(f"{len(errors)} validation error(s):")
-        for item in errors:
-            print(f"  {item}")
+        _print(errors, "error")
         return 1
     print("validation OK")
     return 0

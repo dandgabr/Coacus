@@ -1,0 +1,7 @@
+# Normalize line endings for text files so generated artifacts compare
+# byte-stable across platforms (ADR-0014: generation is the contract).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary

@@ -6,7 +6,9 @@ Routing rules for any AI agent operating in this repository, in any harness.
 
 - `README.md` — what Coacus is; quickstart.
 - `docs/adr/` — ratified architecture decisions (D1–D12 + policies). Read before changing structure.
-- `catalog/catalog.json` — GENERATED index of all assets. Do not hand-edit.
+- `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
+- `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
+- `sources.lock.json` — provenance manifest for imported artifacts (ADR-0015).
 - `.agents/*.json` — GENERATED discovery manifests. Do not hand-edit.
 
 **Single-scan rule:** read the generated indexes once at session start. Never
@@ -32,9 +34,12 @@ re-scan directories per turn (D5). If indexes look stale, run
 6. **Multi-agent governance (D6/D7).** Cap concurrent subagents (governor);
    handoffs use TOON payloads; never spawn ungoverned subagents.
 
-Enforcement status: items 1–3 are machine-checked today (item 5's generated
-output is asserted; canonical omission of `model` is not yet validated).
-Item 4 (English-only) and item 6 (governance) gain validators in F2/F4.
+Enforcement status: items 1–3 are machine-checked (agents, skills, hygiene and
+discovery validators, run by `generate` pre-flight and `validate`; the MCP
+triple joins when its validator lands in F3). Item 4 is warned (non-English
+markers) until import translation completes at F6. Item 5's generated output is
+asserted; canonical omission of `model` is not yet validated. Item 6
+(governance) gains validators in F4.
 
 ## Extending the framework (OCP)
 

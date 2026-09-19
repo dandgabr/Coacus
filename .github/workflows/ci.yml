@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14'
+      - name: validate sources
+        run: python3 scripts/coacus.py validate
+      # NEVER run `generate` here: it rewrites the files under comparison and
+      # would silently mask drift. Regenerate locally and commit instead.
+      - name: drift check
+        run: python3 scripts/coacus.py check
+      - name: tests
+        run: python3 -m unittest discover -s tests
+
+  secrets:
+    name: secrets
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: gitleaks (pinned, checksum-verified)
+        run: |
+          set -euo pipefail
+          V=8.30.1
+          curl -sSfL -o gl.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${V}/gitleaks_${V}_linux_x64.tar.gz"
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gl.tar.gz" | sha256sum -c -
+          tar -xzf gl.tar.gz gitleaks
+          ./gitleaks git --redact --no-banner --exit-code 1 --config .gitleaks.toml

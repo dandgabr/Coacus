@@ -25,5 +25,9 @@ sources and run `generate`. Inherited drift is reconciled during migration (F6).
 
 ## Evidence
 
+* Note (F2, 2026-09-18): CI wiring **authored** — `.github/workflows/ci.yml` runs
+  `check` as a gate (never `generate`); active once committed, pushed and
+  required by a ruleset.
+
 `skills/scripts/generate_catalog.py:1-191`; `skills/scripts/validate_skills.py:5-180`;
 map findings S1–S4.

@@ -130,6 +130,21 @@ class TestCatalog(unittest.TestCase):
     def test_catalog_has_no_timestamps(self) -> None:
         self.assertNotIn("generated_at", json.dumps(catalog.build(self.root)))
 
+    def test_index_markdown_is_generated(self) -> None:
+        catalog.write(self.root)
+        index = (self.root / "catalog/INDEX.md").read_text(encoding="utf-8")
+        self.assertIn("# Coacus Catalog Index", index)
+        self.assertIn("1 skill(s) · 1 agent(s) · 0 MCP(s)", index)
+        self.assertIn("sample-agent", index)
+
+    def test_index_drift_is_detected(self) -> None:
+        catalog.write(self.root)
+        index = self.root / "catalog/INDEX.md"
+        index.write_text("tampered\n", encoding="utf-8")
+        self.assertEqual(
+            catalog.check(self.root), ["catalog/INDEX.md: out of date (run generate)"]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

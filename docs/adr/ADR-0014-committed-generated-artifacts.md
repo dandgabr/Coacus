@@ -18,6 +18,10 @@ timestamps so the check is deterministic.
 
 ## Consequences
 
+* Note (F2, 2026-09-18): CI gate **authored** — `.github/workflows/ci.yml` runs
+  `python3 scripts/coacus.py check` and never `generate`; no CI auto-commit.
+  Active once committed, pushed and required by a ruleset.
+
 Harnesses consume the repository as-is (clone → activate); every PR exposes
 generated diffs for review; contributors must run `generate` before committing.
 

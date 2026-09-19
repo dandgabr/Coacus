@@ -1,0 +1,21 @@
+# gitleaks configuration (ADR-0013).
+# Keep the full default ruleset; add narrow allowlists instead of disabling
+# rules. One-off false positives belong in `.gitleaksignore` (by fingerprint).
+
+title = "Coacus"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Documentation examples that intentionally show secret-shaped text"
+paths = [
+  # ADRs discuss secret formats as prose (e.g. api_key examples)
+  '''docs/adr/.*\.md''',
+]
+regexes = [
+  # Explicit placeholders sanctioned by ADR-0013
+  '''\{env:[A-Z0-9_]+\}''',
+  '''\$\{[A-Z0-9_]+\}''',
+  '''REDACTED''',
+]

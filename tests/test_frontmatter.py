@@ -52,9 +52,42 @@ class TestFrontmatter(unittest.TestCase):
         with self.assertRaises(FrontmatterError):
             parse("---\nthis is not a key\n---\nbody\n")
 
-    def test_inline_list_is_rejected(self) -> None:
-        with self.assertRaises(FrontmatterError):
-            parse("---\nname: x\nskills: [a, b]\n---\nbody\n")
+    def test_inline_list_is_accepted(self) -> None:
+        doc = parse("---\nname: x\nskills: [a, b]\ntags: []\n---\nbody\n")
+        self.assertEqual(doc.meta["skills"], ["a", "b"])
+        self.assertEqual(doc.meta["tags"], [])
+
+    def test_nested_map_is_accepted(self) -> None:
+        doc = parse(
+            "---\nname: x\nmetadata:\n  type: defensive\n  phase: analysis\n"
+            "  tools:\n    - opengrep\n    - semgrep\n---\nbody\n"
+        )
+        self.assertEqual(doc.meta["metadata"]["type"], "defensive")
+        self.assertEqual(doc.meta["metadata"]["phase"], "analysis")
+        self.assertEqual(doc.meta["metadata"]["tools"], ["opengrep", "semgrep"])
+
+    def test_multiline_plain_scalar_is_accepted(self) -> None:
+        doc = parse(
+            "---\nname: x\ndescription: Does things\n  across two lines.\n---\nbody\n"
+        )
+        self.assertEqual(doc.meta["description"], "Does things across two lines.")
+
+    def test_same_indent_nested_list_is_accepted(self) -> None:
+        doc = parse(
+            "---\nname: x\nmetadata:\n  mitre:\n  - T1068\n  - T1203\n"
+            "  type: defensive\n---\nbody\n"
+        )
+        self.assertEqual(doc.meta["metadata"]["mitre"], ["T1068", "T1203"])
+        self.assertEqual(doc.meta["metadata"]["type"], "defensive")
+
+    def test_quoted_scalars_are_unquoted(self) -> None:
+        doc = parse('---\nname: "cloud-aws"\ndescription: \'Quoted text.\'\n---\nbody\n')
+        self.assertEqual(doc.meta["name"], "cloud-aws")
+        self.assertEqual(doc.meta["description"], "Quoted text.")
+
+    def test_quoted_multiline_scalar_is_unquoted(self) -> None:
+        doc = parse('---\nname: x\ndescription: "Does things\n  across lines."\n---\nbody\n')
+        self.assertEqual(doc.meta["description"], "Does things across lines.")
 
     def test_indented_triple_dash_does_not_close(self) -> None:
         doc = parse("---\ndescription: >-\n  text\n  ---\n  more\n---\n# T\nbody\n")
