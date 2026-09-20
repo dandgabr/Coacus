@@ -310,6 +310,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/usage.md`](docs/usage.md) | Day-to-day commands: generate, validate, install, governor, evals, vertical. |
 | [`docs/extending.md`](docs/extending.md) | Add a skill, agent, MCP, harness, workflow, template or ingestion format. |
 | [`docs/install.md`](docs/install.md) | Per-harness installation tutorials. |
+| [`docs/tutorials/`](docs/tutorials/) | Guided walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |

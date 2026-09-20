@@ -24,6 +24,10 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   candidates into the prompt automatically.
 - Tests: `test_routing.py` (index/lexicon), `test_router.py` (scorer),
   `test_router_calibration.py` (quality against the real corpus).
+- `docs/tutorials/`: three verified walkthroughs — choose agents manually
+  (Mode M), choose agents automatically (Mode A, incl. `--rerank` and the opt-in
+  hook), and tune the bilingual routing lexicon. Each command's expected output
+  is shown, and the tuning example was exercised before writing.
 
 ### Changed
 

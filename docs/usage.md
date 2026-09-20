@@ -54,7 +54,8 @@ Mode A ranks the agents for a prompt from the generated routing index
 proposal at the governor's free slots. Mode M browses or validates an explicit
 selection — an unknown name is an error with suggestions. `--rerank "<command>"`
 plugs in an optional semantic reranker behind the same interface and fails open.
-See [routing](standards/routing.md).
+See [routing](standards/routing.md) and the
+[tutorials](tutorials/) for a guided walkthrough of each mode.
 
 ### Validate a TOON payload
 
