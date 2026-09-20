@@ -23,6 +23,7 @@ the same harness as an orchestrated subagent (multi-agent-orchestrator pattern).
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import re
 import shlex
@@ -40,6 +41,18 @@ from engine.validators import evals as scenario_validator  # noqa: E402
 # now only opencode is locally verifiable, so it is the one live runner.
 HARNESS_CLI = {"opencode": ["opencode", "run"]}
 ANSI = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
+
+
+def _redact(text: str) -> str:
+    """Redact a live transcript/verdict for logs.
+
+    An agent transcript may contain whatever the model saw (including any
+    credentials present in the environment), so we do not echo it by default.
+    Set COACUS_EVAL_VERBOSE=1 to print a bounded excerpt for local debugging.
+    """
+    if os.environ.get("COACUS_EVAL_VERBOSE") == "1":
+        return text[:400]
+    return f"<redacted {len(text)} chars; set COACUS_EVAL_VERBOSE=1 to print>"
 
 
 def _scenarios(root: Path) -> dict[str, dict]:
@@ -180,8 +193,8 @@ def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_ag
             "status": status,
             "passed": passed,
             "checks": checks,
-            "judge": judge,
-            "transcript_excerpt": transcript[:400],
+            "judge": {**judge, "verdict": _redact(str(judge.get("verdict", "")))},
+            "transcript_excerpt": _redact(transcript),
         }, indent=2))
     return 0 if all_passed else 1
 
