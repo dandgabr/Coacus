@@ -1,0 +1,6 @@
+{
+  "name": "medical-device-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Medical Device Cybersecurity, covering FDA \u00a7524B premarket requirements, the February 2026 FDA guidance, device SBOM/CBOM, postmarket vulnerability management and legacy-device safety risk.",
+  "entrypoint": "AGENT.md"
+}

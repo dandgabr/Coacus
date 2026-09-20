@@ -1,6 +1,6 @@
 ---
 name: software-supply-chain-security
-description: "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.5/v1.6 and SPDX v2.3/v3.0), VEX, SLSA v1.0 provenance, cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting and dependency confusion."
+description: "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.7 / ECMA-424 and SPDX v3.0.1), VEX, SLSA v1.2 provenance (Build and Source tracks), cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting, dependency confusion and protestware."
 metadata:
   type: defensive
   phase: recon
@@ -10,7 +10,7 @@ metadata:
 
 # Software Supply Chain Security (Supply Chain Security & SCA)
 
-This skill establishes the canonical guidelines for auditing, protecting, and managing vulnerabilities in third-party libraries (*Software Composition Analysis - SCA*), reachability analysis, license compliance, and end-to-end integrity verification in the software and firmware supply chain, grounded in the work of **Cassie Crossley** (*Software Supply Chain Security: Securing the End-to-end Supply Chain for Software, Firmware, and Hardware*), the **SLSA (Supply-chain Levels for Software Artifacts v1.0)** framework, **NIST SP 800-161 Rev. 1**, and the **NIST SSDF (SP 800-218)**.
+This skill establishes the canonical guidelines for auditing, protecting, and managing vulnerabilities in third-party libraries (*Software Composition Analysis - SCA*), reachability analysis, license compliance, and end-to-end integrity verification in the software and firmware supply chain, grounded in the work of **Cassie Crossley** (*Software Supply Chain Security: Securing the End-to-end Supply Chain for Software, Firmware, and Hardware*), the **SLSA (Supply-chain Levels for Software Artifacts v1.2)** framework, **NIST SP 800-161 Rev. 1**, and the **NIST SSDF (SP 800-218)**.
 
 ---
 
@@ -68,10 +68,12 @@ The AI must compute real risk based on the threat intelligence triad:
 
 ### 3.1 Official Formats
 
-- **CycloneDX (OWASP Foundation)**: Specialized in application security, inventory of direct and transitive dependencies, cloud services, VEX (*Vulnerability Exploitability eXchange*) formulation, and compliance forms.
-- **SPDX (Linux Foundation / ISO/IEC 5962:2021)**: International standard for open-source license compliance and file and package provenance.
+- **CycloneDX (OWASP Foundation / ECMA-424)**: Specialized in application security, inventory of direct and transitive dependencies, cloud services, VEX (*Vulnerability Exploitability eXchange*) formulation, and compliance forms. Version 1.7 is the current release and is standardized as ECMA-424.
+- **SPDX (Linux Foundation / ISO/IEC 5962:2021, SPDX v3.0.1)**: International standard for open-source license compliance and file and package provenance. SPDX 3.0.1 uses a modular profile model (Core, Software, Security, Licensing, Dataset, AI, Build) with native VEX relationships and CVSS v4.0 / EPSS / SSVC vocabularies.
 
-### 3.2 NTIA Minimum Elements for SBOM
+### 3.2 SBOM Minimum Elements (CISA 2026)
+
+The **CISA 2026 Minimum Elements for an SBOM** replaced the 2021 NTIA guidance:
 
 1. **Supplier Name**.
 2. **Component Name**.
@@ -80,6 +82,7 @@ The AI must compute real risk based on the threat intelligence triad:
 5. **Dependency Relationship**: Direct vs. transitive (*DependsOn*).
 6. **SBOM Metadata Author**.
 7. **Generation Timestamp**.
+8. **SBOM Data Fields, Practices and Processes** as defined by the 2026 CISA guidance, plus the supplemental **SBOM for AI** minimum elements.
 
 ### 3.3 VEX (Vulnerability Exploitability eXchange) Forms
 
@@ -104,11 +107,17 @@ VEX lets maintainers formally declare whether a vulnerability discovered in a de
 
 ## 🔒 5. SLSA Provenance and Cryptographic Signing (Sigstore / Cosign)
 
-### 5.1 SLSA v1.0 Levels
+### 5.1 SLSA v1.2 Tracks and Levels
 
-- **SLSA Build L1**: Automated build process generating a basic provenance attestation.
-- **SLSA Build L2**: Build run on a managed CI/CD runner with version control and cryptographically signed provenance.
-- **SLSA Build L3**: Hermetic and ephemeral build in an isolated environment, preventing tampering and guaranteeing strict reproducibility.
+SLSA v1.2 is the current specification (v1.0/v1.1 are retired) and organizes requirements into two tracks:
+
+- **Build Track**:
+  - **SLSA Build L1**: Automated build process generating a basic provenance attestation.
+  - **SLSA Build L2**: Build run on a managed CI/CD platform producing authenticated, signed provenance.
+  - **SLSA Build L3**: Hardened, isolated and ephemeral build producing unforgeable provenance.
+  - Note: "Isolated" is NOT "Hermetic". A hermetic (no-network) build and byte-level reproducibility are explicit future directions and MUST NOT be presented as an L3 guarantee. Consumers can rely on a **VSA (Verification Summary Attestation)** from a trusted intermediary instead of re-verifying provenance themselves.
+- **Source Track** (new in v1.2): L1 version-controlled source, L2 history and provenance, L3 continuous technical controls, L4 two-party review.
+- **Threat model (A–I)**: Source (A–C), Build (D–F), Distribution (G), Package selection (H: dependency confusion, typosquatting) and Usage (I).
 
 ### 5.2 Image Signing and SBOM Attachment
 
@@ -130,9 +139,13 @@ cosign verify --certificate-identity-regexp "https://github.com/empresa/.*" \
 
 ## 🛑 6. Protection Against Specific Supply Chain Vectors
 
-1. **Dependency Confusion**: Register private scopes `@empresa` in the public registry (npm/PyPI), or configure the package manager to query only the internal private registry for corporate packages.
+1. **Dependency Confusion**: Register private scopes `@company` in the public registry (npm/PyPI), or configure the package manager to query only the internal private registry for corporate packages.
 2. **Typosquatting**: Use phonetic and string similarity checking tools in PR pipelines before accepting new libraries.
 3. **Maintainer Account Takeover**: Use tools that assess the *OpenSSF Scorecard* (maintainer MFA, branch protection, recent commit activity).
+4. **Manifest Confusion**: Validate that the dependency metadata a registry serves matches the package's own manifest; a package can lie about its dependencies.
+5. **Protestware and Repo Hijacking**: Pin dependencies, monitor maintainer changes, and treat unexpected telemetry or destructive updates as an incident.
+6. **Build-Cache Poisoning and Forged Provenance**: Isolate build caches per trust boundary and verify provenance with a fixed builder identity; never reuse caches across unreviewed inputs.
+7. **Trusted Publishing**: Replace long-lived registry tokens with OIDC-based trusted publishing (npm, PyPI) so CI mints short-lived credentials bound to the repository identity.
 
 ---
 

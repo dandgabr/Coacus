@@ -1,0 +1,6 @@
+{
+  "name": "data-security-privacy-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+  "entrypoint": "AGENT.md"
+}

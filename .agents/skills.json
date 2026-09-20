@@ -109,6 +109,9 @@
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag"
     },
     {
+      "path": "knowledge/skills/domains/industry/automotive-cybersecurity"
+    },
+    {
       "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency"
     },
     {
@@ -122,6 +125,9 @@
     },
     {
       "path": "knowledge/skills/domains/industry/healthtech-standards-security"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/medical-device-cybersecurity"
     },
     {
       "path": "knowledge/skills/domains/industry/telecom-voice-engineering"
@@ -430,7 +436,16 @@
       "path": "knowledge/skills/roles/web-search-specialist"
     },
     {
+      "path": "knowledge/skills/security/ai/ai-adversarial-ml-security"
+    },
+    {
+      "path": "knowledge/skills/security/ai/ai-agentic-security"
+    },
+    {
       "path": "knowledge/skills/security/ai/ai-computer-vision-security"
+    },
+    {
+      "path": "knowledge/skills/security/ai/ai-governance-assurance"
     },
     {
       "path": "knowledge/skills/security/ai/ai-llm-slm-security"
@@ -439,10 +454,16 @@
       "path": "knowledge/skills/security/ai/ai-voice-stt-tts-security"
     },
     {
+      "path": "knowledge/skills/security/appsec/api-protocol-security"
+    },
+    {
       "path": "knowledge/skills/security/appsec/appsec-owasp-asvs"
     },
     {
       "path": "knowledge/skills/security/appsec/appsec-owasp-masvs"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/business-logic-flaws"
     },
     {
       "path": "knowledge/skills/security/appsec/dast-application-testing"
@@ -452,6 +473,15 @@
     },
     {
       "path": "knowledge/skills/security/appsec/malware-analysis-multios"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/mobile-app-pentest"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/mobile-malware-forensics"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/owasp-top-10-2025"
     },
     {
       "path": "knowledge/skills/security/appsec/pentest-scripter-python-bash-go"
@@ -472,13 +502,88 @@
       "path": "knowledge/skills/security/appsec/sast-code-review"
     },
     {
+      "path": "knowledge/skills/security/appsec/secure-sdlc-ssdf"
+    },
+    {
       "path": "knowledge/skills/security/appsec/software-supply-chain-security"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/web-injection-classes"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/cloud-detection-response"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/cloud-secrets-management"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/cloud-security-posture-cnapp"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/cloud-workload-identity-federation"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/iac-security-scanning"
+    },
+    {
+      "path": "knowledge/skills/security/cloud/serverless-security"
+    },
+    {
+      "path": "knowledge/skills/security/crypto/crypto-agility-pqc-migration"
+    },
+    {
+      "path": "knowledge/skills/security/crypto/crypto-kms-hsm-key-management"
+    },
+    {
+      "path": "knowledge/skills/security/crypto/crypto-pki-certificate-lifecycle"
     },
     {
       "path": "knowledge/skills/security/crypto/cryptography-pqc-standards"
     },
     {
+      "path": "knowledge/skills/security/crypto/tokenization-format-preserving-encryption"
+    },
+    {
+      "path": "knowledge/skills/security/cti/cti-mitre-attack"
+    },
+    {
+      "path": "knowledge/skills/security/cti/cti-platforms-stix-taxii-misp"
+    },
+    {
+      "path": "knowledge/skills/security/cti/cti-threat-intel-lifecycle"
+    },
+    {
+      "path": "knowledge/skills/security/data/data-classification-dspm"
+    },
+    {
+      "path": "knowledge/skills/security/data/dlp-data-loss-prevention"
+    },
+    {
+      "path": "knowledge/skills/security/data/privacy-enhancing-technologies"
+    },
+    {
+      "path": "knowledge/skills/security/grc/ai-governance-iso-42001"
+    },
+    {
       "path": "knowledge/skills/security/grc/cis-controls"
+    },
+    {
+      "path": "knowledge/skills/security/grc/consent-dsr-automation"
+    },
+    {
+      "path": "knowledge/skills/security/grc/enterprise-it-governance-cobit-itil"
+    },
+    {
+      "path": "knowledge/skills/security/grc/esports-integrity-governance"
+    },
+    {
+      "path": "knowledge/skills/security/grc/eu-digital-resilience-regulation"
+    },
+    {
+      "path": "knowledge/skills/security/grc/fedramp-cmmc-cloud-gov-assurance"
+    },
+    {
+      "path": "knowledge/skills/security/grc/grc-automation-oscal"
     },
     {
       "path": "knowledge/skills/security/grc/isc2-cissp-csslp-standards"
@@ -487,10 +592,16 @@
       "path": "knowledge/skills/security/grc/iso-27000-series"
     },
     {
+      "path": "knowledge/skills/security/grc/nis2-cra-compliance"
+    },
+    {
       "path": "knowledge/skills/security/grc/nist-frameworks-csf"
     },
     {
       "path": "knowledge/skills/security/grc/pci-dss-compliance"
+    },
+    {
+      "path": "knowledge/skills/security/grc/quantitative-risk-fair"
     },
     {
       "path": "knowledge/skills/security/grc/security-grc-compliance"
@@ -500,6 +611,15 @@
     },
     {
       "path": "knowledge/skills/security/grc/security-privacy"
+    },
+    {
+      "path": "knowledge/skills/security/grc/soc2-trust-services"
+    },
+    {
+      "path": "knowledge/skills/security/grc/third-party-risk-management"
+    },
+    {
+      "path": "knowledge/skills/security/iam/ciem-cloud-entitlements"
     },
     {
       "path": "knowledge/skills/security/iam/csa-cloud-security"
@@ -523,25 +643,97 @@
       "path": "knowledge/skills/security/iam/iam-access-power-platform"
     },
     {
+      "path": "knowledge/skills/security/iam/identity-governance-iga"
+    },
+    {
+      "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload"
+    },
+    {
+      "path": "knowledge/skills/security/iam/pam-privileged-access-management"
+    },
+    {
+      "path": "knowledge/skills/security/iam/secrets-management-vault"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/active-directory-attack-paths"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing"
+    },
+    {
       "path": "knowledge/skills/security/offensive/bug-bounty-methodology"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/exploit-development-vulnerability-research"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/kubernetes-attack-paths"
     },
     {
       "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp"
     },
     {
+      "path": "knowledge/skills/security/offensive/red-team-infrastructure"
+    },
+    {
       "path": "knowledge/skills/security/operations/auth-protocols-mfa"
+    },
+    {
+      "path": "knowledge/skills/security/operations/container-runtime-security"
+    },
+    {
+      "path": "knowledge/skills/security/operations/detection-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/operations/detection-engineering-yara-sigma"
     },
     {
       "path": "knowledge/skills/security/operations/devsecops-engineer"
     },
     {
+      "path": "knowledge/skills/security/operations/dfir-forensics"
+    },
+    {
+      "path": "knowledge/skills/security/operations/dns-security-protective-dns"
+    },
+    {
+      "path": "knowledge/skills/security/operations/endpoint-detection-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/operations/endpoint-forensics"
+    },
+    {
+      "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/operations/itdr-identity-threat-detection"
+    },
+    {
+      "path": "knowledge/skills/security/operations/kubernetes-security-posture"
+    },
+    {
+      "path": "knowledge/skills/security/operations/mobile-enterprise-mdm"
+    },
+    {
       "path": "knowledge/skills/security/operations/network-security-onprem-cloud"
+    },
+    {
+      "path": "knowledge/skills/security/operations/network-segmentation-microsegmentation"
+    },
+    {
+      "path": "knowledge/skills/security/operations/ot-ics-security"
     },
     {
       "path": "knowledge/skills/security/operations/secops-incident-responder"
     },
     {
+      "path": "knowledge/skills/security/operations/secure-by-design"
+    },
+    {
       "path": "knowledge/skills/security/operations/security-architect-sabsa"
+    },
+    {
+      "path": "knowledge/skills/security/operations/security-architecture-patterns"
     },
     {
       "path": "knowledge/skills/security/operations/security-champions"
@@ -550,16 +742,55 @@
       "path": "knowledge/skills/security/operations/security-technical-opinion"
     },
     {
+      "path": "knowledge/skills/security/operations/soc-operations-maturity"
+    },
+    {
+      "path": "knowledge/skills/security/operations/supply-chain-threat-modeling"
+    },
+    {
+      "path": "knowledge/skills/security/operations/threat-hunting"
+    },
+    {
       "path": "knowledge/skills/security/operations/threat-modeler"
+    },
+    {
+      "path": "knowledge/skills/security/operations/untrusted-content-security"
     },
     {
       "path": "knowledge/skills/security/platform/edr-evasion-endpoint-security"
     },
     {
+      "path": "knowledge/skills/security/platform/endpoint-application-control"
+    },
+    {
+      "path": "knowledge/skills/security/platform/firmware-uefi-implant-analysis"
+    },
+    {
+      "path": "knowledge/skills/security/platform/game-anticheat-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/platform/game-economy-fraud-security"
+    },
+    {
       "path": "knowledge/skills/security/platform/game-engine-security"
     },
     {
+      "path": "knowledge/skills/security/platform/game-network-authority-security"
+    },
+    {
+      "path": "knowledge/skills/security/platform/macos-endpoint-security"
+    },
+    {
+      "path": "knowledge/skills/security/platform/malware-unpacking-obfuscation"
+    },
+    {
+      "path": "knowledge/skills/security/platform/memory-forensics"
+    },
+    {
       "path": "knowledge/skills/security/platform/memory-manipulation"
+    },
+    {
+      "path": "knowledge/skills/security/platform/os-hardening-baselines"
     },
     {
       "path": "knowledge/skills/security/platform/windows-internals-security"
@@ -578,6 +809,12 @@
     },
     {
       "path": "knowledge/skills/security/tooling/program-owasp-zap"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-sbom-tooling"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-sigstore-cosign"
     },
     {
       "path": "methodology/workflows/superpowers-brainstorming"

@@ -134,7 +134,7 @@ partial install (`--only`/`--skills`).
 - `skills.paths` exists in the official config schema and the plugin's `config`
   hook can set it, but Coacus does not: doing so re-registers the whole repo and
   defeated the partial install (measured: `--only languages` still exposed all
-  208 repo skills). **[verified locally]**
+  287 repo skills). **[verified locally]**
 - `experimental.chat.messages.transform` is the injection point; the Coacus
   plugin loads and injects the bootstrap. **[verified locally]**
 

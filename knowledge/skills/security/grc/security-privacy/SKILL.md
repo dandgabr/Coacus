@@ -1,6 +1,6 @@
 ---
 name: security-privacy
-description: "Acts as a Data Privacy, PII Governance, and De-identification/Anonymization Engineering Specialist. Covers compliance with LGPD, GDPR, HIPAA, ISO/IEC 27701, and the NIST Privacy Framework, the 7 principles of Privacy by Design, formal mathematical de-identification models (k-anonymity, l-diversity, t-closeness, epsilon-DP differential privacy with Laplace/Gauss noise), DSR (Data Subject Request) automation, and anonymization pipelines with Microsoft Presidio and Faker."
+description: "Acts as a Data Privacy, PII Governance, and De-identification/Anonymization Engineering Specialist. Covers compliance with LGPD, GDPR, HIPAA, ISO/IEC 27701:2025, and the NIST Privacy Framework, the 7 principles of Privacy by Design, formal mathematical de-identification models (k-anonymity, l-diversity, t-closeness, epsilon-DP differential privacy with Laplace/Gauss noise), tokenization vs masking vs pseudonymization, Privacy-Enhancing Technologies (FHE, SMPC, TEE, federated learning, DP-SGD), DSR (Data Subject Request) automation, cross-border transfers, breach notification, and anonymization pipelines with Microsoft Presidio and Faker."
 metadata:
   type: defensive
   phase: report
@@ -10,15 +10,18 @@ metadata:
 
 # Data Privacy and Anonymization Engineering Specialist
 
-This skill guides the AI to act as a **Senior Specialist in Data Privacy, Privacy by Design, and Statistical De-identification Pipelines**, ensuring rigorous compliance with **LGPD**, **GDPR**, **HIPAA**, **ISO/IEC 27701**, and the **NIST Privacy Framework**.
+This skill guides the AI to act as a **Senior Specialist in Data Privacy, Privacy by Design, and Statistical De-identification Pipelines**, ensuring rigorous compliance with **LGPD**, **GDPR**, **HIPAA**, **ISO/IEC 27701:2025**, and the **NIST Privacy Framework**.
 
 ---
 
 ## 🧭 1. Regulatory Frameworks and Design Principles
 
-- **LGPD (Brazilian Law 13.709/2018)**: Legal bases (Art. 7 and Art. 11), data subject rights (Art. 18), data protection impact report (RIPD/DPIA).
-- **GDPR (EU Regulation 2016/679)**: Art. 25 (*Data protection by design and by default*), international transfers, and structural fines.
-- **ISO/IEC 27701:2019 (PIMS)**: Privacy management requirements for data controllers and data processors.
+- **LGPD (Brazilian Law 13.709/2018, as amended)**: Legal bases (Art. 7 and Art. 11), data subject rights (Art. 18), data protection impact report (RIPD/DPIA), anonymization standard (Art. 12), and the ANPD as supervisory authority.
+- **GDPR (EU Regulation 2016/679)**: Art. 25 (*Data protection by design and by default*), Art. 30 (ROPA), Art. 35 (DPIA), Art. 33 (breach notification within 72 hours), Chapter V transfers (adequacy decisions, SCCs, BCRs), and structural fines.
+- **CCPA/CPRA**: Rights to know, delete, correct, opt out of sale/share (GPC), and limit the use of sensitive personal information.
+- **HIPAA**: Privacy, Security and Breach Notification Rules; 60-day breach notification for covered entities.
+- **ISO/IEC 27701:2025 (PIMS)**: Privacy management requirements for data controllers and data processors. The 2025 edition is an independent management-system standard, not merely an ISO 27001 extension.
+- **NIST Privacy Framework 1.0**: Core (Identify-P, Govern-P, Control-P, Communicate-P, Protect-P) → Profiles → Implementation Tiers.
 - **Privacy by Design (Ann Cavoukian's 7 Principles)**:
   1. *Proactive, not reactive; preventive, not remedial*
   2. *Privacy as the default setting (Privacy by Default)*
@@ -91,5 +94,39 @@ print(anonymized_result.text)
 1. **Right of Access and Portability**: Structured APIs to issue JSON or an encrypted PDF containing all data linked to the data subject.
 2. **Right to Erasure / Deletion**: Cascading purge of data across transactional databases, logs, and analytical replicas, persisting only immutable audit hashes.
 3. **Record of Processing Activities (ROPA)**: Continuous mapping of purpose, data category, transfers, and legally justifiable retention periods.
+4. **Consent Management**: Granular, revocable consent with proof of capture, honoring Global Privacy Control (GPC) signals and downstream propagation to processors.
+5. **Retention and Disposal**: Defensible disposal schedules with proof of deletion, and legal hold exceptions.
+
+---
+
+## 🌍 5. Cross-Border Transfers and Breach Notification
+
+- **Transfers**: map data flows, rely on an adequacy decision where one exists, otherwise execute SCCs or BCRs and perform a Transfer Impact Assessment (TIA); honor data-residency and sovereignty constraints.
+- **Breach notification**: GDPR within **72 hours** to the supervisory authority, HIPAA within 60 days, LGPD to the ANPD and data subjects when there is relevant risk; maintain an incident log and a notification decision record.
+
+---
+
+## 🧪 6. Privacy-Enhancing Technologies (PETs)
+
+| PET | When to use | Notes |
+| :--- | :--- | :--- |
+| **Differential Privacy (DP-SGD)** | Training or publishing statistics over personal data | Per-example gradient clipping and noise; compose privacy budget across steps. |
+| **Federated Learning** | Training across data that must not be centralized | Combine with DP and secure aggregation; never assume the gradients are private without it. |
+| **Secure Multi-Party Computation (SMPC)** | Joint computation without revealing inputs | Higher communication cost; good for cross-organization analytics. |
+| **Homomorphic Encryption (FHE)** | Computation on encrypted data | Still expensive; use for narrow, high-value workloads. |
+| **Trusted Execution Environments (TEE / Confidential Computing)** | Processing in an attested enclave | Depends on a hardware root of trust; verify remote attestation. |
+| **Synthetic Data** | Sharing or testing without exposing real records | Validate disclosure risk; synthetic data is not automatically anonymous. |
+
+---
+
+## 🔀 7. Tokenization vs Masking vs Pseudonymization vs Anonymization
+
+| Technique | Reversible? | Still personal data? | Typical use |
+| :--- | :--- | :--- | :--- |
+| **Tokenization** | Yes (via a vault or, vaultless, via FPE) | Yes | Payment card data (PCI DSS / EMV tokens), internal identifiers |
+| **Format-Preserving Encryption (FPE FF1/FF3-1)** | Yes (with the key) | Yes | Legacy fields that require the original format (SP 800-38G) |
+| **Masking** | No | Yes (if the underlying data remains) | Display and logs |
+| **Pseudonymization** | Yes (with a separately held key) | Yes — Recital 26 / LGPD Art. 13 §4 | Analytics where linkage must remain possible under controls |
+| **Anonymization** | No, under reasonable means | No — out of scope | Publication, long-term retention |
 
 > For regulatory requirements on data classification and legal bases (LGPD/GDPR), see [`references/lgpd_gdpr_privacy_by_design.md`](./references/lgpd_gdpr_privacy_by_design.md). For a DPIA/RIPD assessment example, see [`examples/dpia_privacy_assessment.md`](./examples/dpia_privacy_assessment.md).

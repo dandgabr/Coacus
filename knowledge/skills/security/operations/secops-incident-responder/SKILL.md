@@ -51,40 +51,60 @@ This skill directly covers the following practices of the **Operations** functio
 
 ---
 
-## ⚙️ Incident Response Protocol (NIST SP 800-61 / SANS)
+## ⚙️ Incident Response Protocol (NIST SP 800-61r3 / SANS)
 
-When you identify that the system is actively under attack or after confirmation of a security breach, immediately apply the response cycle:
+NIST SP 800-61 Rev. 3 (final, 2025) restructured incident handling as a **CSF 2.0 Community Profile**, threading IR across the Govern, Identify, Protect, Detect, Respond and Recover functions. The SANS **PICERL** lifecycle remains the operational checklist and the two views are compatible.
 
 ```
 +-----------------------------------------------------------------------------+
-| 1. PREPARAÇÃO (Preparation)                                                 |
-|    - Garantir logs ativados, playbooks escritos e contatos de emergência.   |
+| 1. PREPARATION (Preparation)                                                |
+|    - Ensure logs are enabled, playbooks are written, contacts are current,  |
+|      and roles (incident commander, scribe, comms) are assigned.            |
 +-----------------------------------------------------------------------------+
                                        |
                                        v
 +-----------------------------------------------------------------------------+
-| 2. DETECÇÃO E ANÁLISE (Identification)                                      |
-|    - Analisar os logs (SIEM, WAF) para confirmar se é um incidente real.    |
+| 2. DETECTION AND ANALYSIS (Identification)                                  |
+|    - Triage the alert, confirm whether it is a real incident, and scope it. |
+|    - Preserve volatile evidence before containment.                          |
 +-----------------------------------------------------------------------------+
                                        |
                                        v
 +-----------------------------------------------------------------------------+
-| 3. CONTENÇÃO (Containment)                                                  |
-|    - Isolar os servidores afetados, revogar tokens, alterar chaves de API.  |
+| 3. CONTAINMENT (Containment)                                                |
+|    - Short-term: isolate affected hosts, revoke tokens, rotate API keys.    |
+|    - Long-term: rebuild on a segmented network with hardened config.        |
 +-----------------------------------------------------------------------------+
                                        |
                                        v
 +-----------------------------------------------------------------------------+
-| 4. ERRADICAÇÃO E RECUPERAÇÃO (Eradication & Recovery)                        |
-|    - Remover malwares, reconstruir a partir de builds limpos, restaurar DB. |
+| 4. ERADICATION AND RECOVERY (Eradication & Recovery)                        |
+|    - Remove malware and persistence, rebuild from clean builds, restore     |
+|      data, and validate against the RTO/RPO objectives.                      |
 +-----------------------------------------------------------------------------+
                                        |
                                        v
 +-----------------------------------------------------------------------------+
-| 5. LIÇÕES APRENDIDAS (Post-Incident / Lessons Learned)                       |
-|    - Analisar falhas, atualizar políticas e criar novas regras para o time. |
+| 5. POST-INCIDENT ACTIVITY (Lessons Learned)                                 |
+|    - Blameless review, detection and control improvements, and updated      |
+|      playbooks. This is a scheduled artifact, not an optional courtesy.     |
 +-----------------------------------------------------------------------------+
 ```
+
+### 3.1 Playbooks to maintain
+
+Ransomware, credential leakage, DDoS, data exfiltration, business-email compromise, and cloud-account takeover. Each playbook names the detection signal, the containment action, the evidence to preserve and the escalation path.
+
+### 3.2 Evidence and chain of custody (NIST SP 800-86)
+
+- Follow the **order of volatility**: memory and network state before disk.
+- Use write blockers for disk acquisition, hash every artifact at acquisition, and keep an acquisition log plus a custody log.
+- Document who handled the evidence, when, and why, so findings remain admissible.
+
+### 3.3 Metrics and testing
+
+- Track **MTTD, MTTA and MTTR**, false-positive rate and alert-to-incident ratio.
+- Run tabletop exercises and, where mature, purple-team detection validation against Atomic Red Team or MITRE CAR analytics.
 
 ---
 

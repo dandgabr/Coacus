@@ -1,0 +1,8 @@
+{
+  "name": "grc-security-specialist",
+  "description": "Specialist Agent in Governance, Risk and Compliance (GRC), covering ISO/IEC 27001 and 42001, NIST CSF 2.0 and SP 800-53, CIS Controls, OWASP SAMM, SOC 2, FedRAMP/CMMC, DORA, NIS2/CRA, OSCAL automation, quantitative risk (FAIR) and third-party risk management.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/grc-security-specialist/dist",
+  "fingerprint": "45da7e0d2214c1d2"
+}

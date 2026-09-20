@@ -34,7 +34,11 @@ Expanded to serve all types of organizations (not only critical infrastructure) 
 
 ### 2. NIST SP 800-53 Rev. 5 (Security and Privacy Controls for Information Systems and Organizations)
 
-A comprehensive catalog of more than 1,000 security and privacy controls organized into 20 families (e.g., AC - Access Control, AU - Audit and Accountability, IA - Identification and Authentication, SC - System and Communications Protection, SI - System and Information Integrity, PT - PII Processing and Transparency).
+A comprehensive catalog of more than 1,000 security and privacy controls organized into 20 families (e.g., AC - Access Control, AU - Audit and Accountability, IA - Identification and Authentication, SC - System and Communications Protection, SI - System and Information Integrity, PT - PII Processing and Transparency). Release 5.2.0 (August 2025) added controls such as SA-15(13), SA-24 and SI-02(07) and revised SI-07(12); baselines remain in SP 800-53B and assessment procedures in SP 800-53A.
+
+### 2.1 OSCAL (Open Security Controls Assessment Language)
+
+OSCAL is the machine-readable layer for the NIST catalog and its downstream artifacts: the Control layer (Catalog, Profile, Control Mapping), the Implementation layer (SSP, Component Definition) and the Assessment layer (Assessment Plan, Assessment Results, POA&M). It enables policy-as-code, continuous control monitoring and automated POA&M generation.
 
 ### 3. NIST SP 800-63-3 / SP 800-63-4 (Digital Identity Guidelines)
 

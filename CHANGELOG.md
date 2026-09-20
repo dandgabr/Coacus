@@ -5,6 +5,63 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Security corpus expansion (19 macro-areas)
+
+### Added
+
+- Security corpus expansion across 19 information-security macro-areas, based on
+  parallel web and academic research (3 rounds each; findings recorded in the
+  project's `ai-memory` namespace under `research/security-*`). Added **79 new
+  skills** and **14 new agents**, and refreshed the `skills:` lists of
+  `ai-security-specialist`, `malware-analyst`, `reverse-engineer-agent`,
+  `hardware-security-specialist`, `embedded-systems-specialist`,
+  `security-specialist`, `iam-specialist`, `pentester-agent` and
+  `security-architect`.
+- New security agents covering the remaining disciplines: `grc-security-specialist`,
+  `cryptography-specialist`, `network-security-specialist`,
+  `cloud-security-specialist`, `endpoint-security-specialist`,
+  `soc-dfir-specialist`, `threat-intelligence-specialist`,
+  `data-security-privacy-specialist`, `mobile-security-specialist`,
+  `container-security-specialist`, `game-security-specialist`,
+  `ot-security-specialist`, `automotive-security-specialist` and
+  `medical-device-security-specialist` (cybersecurity category now covers 22
+  disciplines).
+- New categories under `knowledge/skills/security/`: `cloud`, `cti` and `data`
+  (joining `ai`, `appsec`, `crypto`, `grc`, `iam`, `offensive`, `operations`,
+  `platform`, `tooling`).
+- `untrusted-content-security`: a prompt-injection trust boundary added to the
+  `web-researcher` and `scientific-researcher` agents, which now treat all
+  retrieved content as untrusted data.
+- Authored (non-imported) artifacts are now recorded in `sources.lock.json` with
+  `source_repo: authoring` and `transform: [authored]` so the F8 completeness gate
+  can reconcile them, since `sources.lock.json` was previously populated only by
+  the import pipeline.
+
+### Changed
+
+- Corrected factual drift in existing skills: TLS 1.3 `RFC 8446 → RFC 9846` and
+  PQC hybrid `RFC 10024`; SLSA `v1.2` (L3 is isolated, not hermetic) plus
+  CycloneDX `1.7`/ECMA-424 and SPDX `3.0.1`; MASVS `v2.1.0` (8 groups, MASWE);
+  OWASP LLM Top 10 `2026` (LLM01–LLM10); CSA CCM `v4.1` and Security Guidance v5;
+  SP 800-53 Rel 5.2.0 and OSCAL; OAuth `RFC 9700` and NIST SP 800-63-4;
+  ISO/IEC 27701:2025; and translated the Portuguese code-block prose in
+  `cryptography-pqc-standards`, `iso-27000-series` and `csa-cloud-security`
+  (english-only).
+- Expanded previously thin skills: `zero-trust-architecture-engineering` (NIST SP
+  800-207/207A, CISA ZTMM, SPIFFE/WIMSE, policy-as-code), `secops-incident-responder`
+  (SP 800-61r3, PICERL, evidence, metrics), `malware-analysis-multios` (PE internals,
+  unpacking, C2 taxonomy), `hardware-hacking-embedded-security` (secure boot,
+  TPM/HSM/TEE/PUF, firmware SBOM) and `security-privacy` (tokenization vs
+  pseudonymization, PETs, consent, cross-border transfers, breach notification).
+
+### Fixed
+
+- Reconciled corpus counts in `README.md`, `docs/architecture.md`,
+  `docs/roadmap.md` and `docs/install.md` with the measured values
+  (272 knowledge skills, 71 agents, 287 catalog skill entries), per the
+  "counts are measured, never copied" convention.
+- Fixed broken relative links in the new industry, endpoint and identity skills.
+
 ## [Unreleased] — F8 (completeness) and docs refresh
 
 ### Added

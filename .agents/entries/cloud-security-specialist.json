@@ -1,0 +1,8 @@
+{
+  "name": "cloud-security-specialist",
+  "description": "Specialist Agent in Cloud Security, covering CNAPP posture management, IaC security scanning, cloud secrets and workload identity federation, cloud detection and response, serverless security and multi-cloud assurance.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/cloud-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/cloud-security-specialist/dist",
+  "fingerprint": "589e4b4de1d1ea5e"
+}

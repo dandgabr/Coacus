@@ -30,8 +30,12 @@ instruction: >
   This agent operates using the guidelines and technical standards established in the following skills:
 
   - [security-architect-sabsa](knowledge/skills/security/operations/security-architect-sabsa/SKILL.md)
+  - [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
+  - [secure-by-design](knowledge/skills/security/operations/secure-by-design/SKILL.md)
+  - [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
   - [threat-modeler](knowledge/skills/security/operations/threat-modeler/SKILL.md)
   - [security-technical-opinion](knowledge/skills/security/operations/security-technical-opinion/SKILL.md)
+  - [quantitative-risk-fair](knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md)
   - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
   - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
   - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)
@@ -56,12 +60,20 @@ tools:
   - type: skill_integration
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/security/grc/quantitative-risk-fair/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/security/grc/security-privacy/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/operations/security-architecture-patterns/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/operations/security-architect-sabsa/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/operations/security-technical-opinion/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/operations/secure-by-design/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/operations/threat-modeler/SKILL.md

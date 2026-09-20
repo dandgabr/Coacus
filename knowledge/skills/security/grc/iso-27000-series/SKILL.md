@@ -36,7 +36,8 @@ The ISO/IEC 27000 series establishes the definitive international ecosystem for 
 | **ISO/IEC 27032** | General guidelines for cybersecurity and cyberspace protection. |
 | **ISO/IEC 27035** | Information security incident management (planning, response, and lessons learned). |
 | **ISO/IEC 27036** | Information security in supplier relationships and the supply chain. |
-| **ISO/IEC 27701:2019** | Extension of ISO 27001/27002 for Privacy Information Management (PIMS - LGPD/GDPR). |
+| **ISO/IEC 27701:2025** | Privacy Information Management System (PIMS). The 2025 edition is an independent management-system standard (no longer only an extension of ISO 27001/27002) and supersedes the 2019 edition. |
+| **ISO/IEC 42001:2023** | Artificial Intelligence Management System (AIMS), complemented by ISO/IEC 42005 (AI impact assessment), 23894 (AI risk) and 27090 (AI security threats). |
 
 ---
 
@@ -60,20 +61,20 @@ The 2022 version restructured the controls into **4 Thematic Categories** and in
 
 ```
 +-----------------------------------------------------------------------------------+
-| 1. Controles Organizacionais (Organizational Controls - 37 Controles)             |
-|    - Políticas, papéis, segregação de funções, gestão de ativos, uso aceitável,  |
-|      inteligência de ameaças (A.5.7), segurança em nuvem (A.5.23), fornecedores. |
+| 1. Organizational Controls (37 Controls)                                          |
+|    - Policies, roles, segregation of duties, asset management, acceptable use,     |
+|      threat intelligence (A.5.7), cloud security (A.5.23), suppliers.             |
 +-----------------------------------------------------------------------------------+
-| 2. Controles de Pessoas (People Controls - 8 Controles)                            |
-|    - Triagem antecedente, termos de contratação, conscientização, processo disciplinar|
+| 2. People Controls (8 Controls)                                                    |
+|    - Pre-employment screening, terms of employment, awareness, disciplinary process|
 +-----------------------------------------------------------------------------------+
-| 3. Controles Físicos (Physical Controls - 14 Controles)                           |
-|    - Perímetros físicos, controle de acesso físico, monitoramento (A.7.4), utilidades |
+| 3. Physical Controls (14 Controls)                                                 |
+|    - Physical perimeters, physical access control, monitoring (A.7.4), utilities   |
 +-----------------------------------------------------------------------------------+
-| 4. Controles Tecnológicos (Technological Controls - 34 Controles)                 |
-|    - IAM, gestão de privilégios, criptografia, prev. vazamento dados (DLP - A.8.12),|
-|      gerenciamento de configuração (A.8.9), deleção segura de dados (A.8.10),     |
-|      mascaramento de dados (A.8.11), desenvolvimento seguro (A.8.25-A.8.30).       |
+| 4. Technological Controls (34 Controls)                                            |
+|    - IAM, privilege management, cryptography, data leakage prevention (DLP - A.8.12),|
+|      configuration management (A.8.9), secure deletion of data (A.8.10),           |
+|      data masking (A.8.11), secure development (A.8.25-A.8.30).                    |
 +-----------------------------------------------------------------------------------+
 ```
 

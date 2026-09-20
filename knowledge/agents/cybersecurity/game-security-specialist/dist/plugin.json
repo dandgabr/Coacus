@@ -1,0 +1,6 @@
+{
+  "name": "game-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
+  "entrypoint": "AGENT.md"
+}

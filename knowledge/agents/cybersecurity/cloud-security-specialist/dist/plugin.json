@@ -1,0 +1,6 @@
+{
+  "name": "cloud-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Cloud Security, covering CNAPP posture management, IaC security scanning, cloud secrets and workload identity federation, cloud detection and response, serverless security and multi-cloud assurance.",
+  "entrypoint": "AGENT.md"
+}

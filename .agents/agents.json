@@ -64,6 +64,30 @@
       "path": "knowledge/agents/cybersecurity/ai-security-specialist"
     },
     {
+      "path": "knowledge/agents/cybersecurity/automotive-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/cloud-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/container-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/cryptography-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/data-security-privacy-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/endpoint-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/game-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/grc-security-specialist"
+    },
+    {
       "path": "knowledge/agents/cybersecurity/hardware-security-specialist"
     },
     {
@@ -71,6 +95,18 @@
     },
     {
       "path": "knowledge/agents/cybersecurity/malware-analyst"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/medical-device-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/mobile-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/network-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/ot-security-specialist"
     },
     {
       "path": "knowledge/agents/cybersecurity/pentester-agent"
@@ -83,6 +119,12 @@
     },
     {
       "path": "knowledge/agents/cybersecurity/security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/soc-dfir-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/threat-intelligence-specialist"
     },
     {
       "path": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect"
