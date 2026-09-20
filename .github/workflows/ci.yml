@@ -28,6 +28,8 @@ jobs:
       # would silently mask drift. Regenerate locally and commit instead.
       - name: drift check
         run: python3 scripts/coacus.py check
+      - name: completeness check
+        run: python3 scripts/coacus.py completeness
       - name: tests
         run: python3 -m unittest discover -s tests
 

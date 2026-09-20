@@ -84,4 +84,5 @@ SessionStart bootstrap, a concurrency/rate-limit governor, the TOON handoff
 validator, a per-harness installer and behavior-eval scenarios. OpenCode live
 acceptance passed; claude-code is structure-verified (binary not installed) —
 see `docs/install.md` and `evals/README.md`. Decision backlog D1–D12 ratified
-plus ADR-0015/0016. Next: **F7** final consolidation.
+plus ADR-0015/0016/0017. Documentation index: [`docs/README.md`](docs/README.md).
+Phases F0–F8 complete (F7 consolidation + F8 completeness verification).

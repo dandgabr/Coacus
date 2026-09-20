@@ -1,0 +1,795 @@
+# Python API Reference
+
+> GENERATED from source docstrings by `scripts/coacus.py generate` — do not edit.
+> Source of truth: the docstrings themselves.
+
+### `engine/frontmatter.py`
+
+Frontmatter parser for Coacus canonical sources.
+
+Tolerant subset of YAML, sufficient for the reference corpus (ADR-0011:
+stdlib only):
+
+- single-line scalars, with indented continuation lines (multi-line plain)
+- folded/literal block scalars: ``>-`` / ``>`` / ``|`` / ``|-``
+- block lists (``- item``) and inline lists (``[a, b]`` / ``[]``)
+- nested indented maps to any depth (e.g. the ``metadata:`` blocks found in
+  49 of the 200 reference skills)
+
+Unknown/extra keys are preserved as-is; the validators decide the canonical
+contract. The closing ``---`` must sit at column 0.
+
+#### `class FrontmatterError`
+
+Raised when frontmatter cannot be parsed.
+
+
+#### `class Document`
+
+Parsed canonical source: metadata plus markdown body.
+
+- `def title(self) -> str` — First ``# H1`` of the body, or an empty string.
+
+#### `def parse(text: str) -> Document`
+
+Parse ``---``-delimited frontmatter plus a markdown body.
+
+### `engine/generators/agent_manifests.py`
+
+Generate multi-harness agent representations from canonical sources (D1).
+
+One canonical ``agent.source.md`` per agent yields, under a ``dist/`` folder:
+
+- ``AGENT.md``     markdown profile (harness system-prompt consumers)
+- ``agent.yaml``   ADK/Antigravity profile (``model: inherit``)
+- ``agent.json``   neutral manifest for frameworks and APIs
+- ``plugin.json``  plugin shim
+
+plus a ``.agents/entries/<name>.json`` discovery entry (D5).
+
+Generated files contain no timestamps so regeneration is byte-idempotent
+(D3/ADR-0014). ``model`` is never emitted for AGENT.md/agent.json; the yaml
+profile uses ``model: inherit``.
+
+#### `def discover_sources(root: Path) -> list[Path]`
+
+All canonical agent sources: knowledge/agents/<category>/<name>/.
+
+#### `def generate(source_path: Path, root: Path) -> dict[str, str]`
+
+Compute generated files for one source.
+
+Returns a mapping of repo-relative path to file content. Nothing is
+written here; ``write_all`` materializes the outputs.
+
+#### `def expected_outputs(root: Path) -> dict[str, str]`
+
+Union of generated content for every canonical source.
+
+#### `def write_all(root: Path) -> list[str]`
+
+Materialize all generated files. Returns repo-relative paths written.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check (ADR-0014): disk vs a fresh regeneration, plus orphans.
+
+### `engine/generators/bootstrap.py`
+
+Render the SessionStart bootstrap per harness from a single canonical body (D8).
+
+One canonical wrapper (`methodology/bootstrap/session-start.canonical.md`) plus
+the entry skill body are rendered into EXACTLY ONE native artifact per harness,
+driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a new data
+file; a new shape is an engine change).
+
+Shapes:
+- A (shell-hook): a POSIX shell script that cats the entry skill and emits one
+  JSON field. The native key comes from `harness.json`; the forbidden alias is
+  never emitted (Claude Code reads both fields without dedup — ADR-0009).
+- B (in-process): a JS module that injects the bootstrap into the first user
+  message, with an anti-reinjection guard.
+- C (instructions-file): a markdown context file plus the extension manifest
+  that declares it.
+- native-discovery: nothing rendered (the harness surfaces skills natively).
+
+Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
+
+#### `def discover_harnesses(root: Path) -> list[Path]`
+
+All harness manifests except the authoring template.
+
+#### `def load_harness(path: Path, root: Path) -> dict`
+
+Parse a ``harness.json``; a malformed file raises a readable ValueError.
+
+#### `def render(harness: dict, root: Path) -> dict[str, str]`
+
+Compute rendered files for one harness (repo-relative path -> content).
+
+#### `def expected_outputs(root: Path) -> dict[str, str]`
+
+Union of rendered content for every harness.
+
+#### `def write_all(root: Path) -> list[str]`
+
+Materialize all rendered bootstrap files. Returns repo-relative paths.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check: expected vs disk, plus orphan detection (ADR-0014).
+
+### `engine/generators/catalog.py`
+
+Generate the repository catalog from disk (D3: disk is the truth).
+
+Writes ``catalog/catalog.json`` (machine index) and ``catalog/INDEX.md``
+(human index) — purely content-derived, no timestamps, so ``check`` can
+verify idempotency and CI can fail on drift (ADR-0014).
+
+#### `def build(root: Path) -> dict`
+
+Build the catalog structure from canonical sources on disk.
+
+#### `def write(root: Path) -> list[Path]`
+
+Materialize the catalog and its human index. Returns written paths.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the catalog and its index (ADR-0014).
+
+### `engine/generators/discovery.py`
+
+Generate consolidated discovery manifests from disk (D5/ADR-0006).
+
+Writes `.agents/{skills,mcps,agents}.json` — each a list of `entries[].path`
+(a directory or source file), derived purely from disk so discovery is
+deterministic and drift-checked (ADR-0014). Single-scan rule: agents read these
+indexes once per session (AGENTS.md).
+
+The per-agent `.agents/entries/<name>.json` files are still produced by
+`agent_manifests` (fine-grained fingerprints); these consolidated manifests are
+the coarse by-kind index.
+
+#### `def build(root: Path) -> dict[str, dict]`
+
+_No docstring._
+
+#### `def write_all(root: Path) -> list[str]`
+
+_No docstring._
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the consolidated discovery manifests (ADR-0014).
+
+### `engine/generators/docstrings.py`
+
+Generate a Python API reference from module/function/class docstrings (F7).
+
+Docstrings are the single source of truth (the "disk is the truth" principle):
+this generator walks the framework's Python modules, extracts signatures and
+docstrings via the stdlib ``ast`` parser, and writes a Markdown reference. The
+output is committed and drift-checked (ADR-0014) like any other generated
+artifact, so documentation cannot fall out of sync with the code.
+
+#### `def build(root: Path) -> str`
+
+_No docstring._
+
+#### `def write(root: Path) -> Path`
+
+_No docstring._
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the generated API reference (ADR-0014).
+
+### `engine/generators/mcp_configs.py`
+
+Generate per-MCP harness declarations from a single canonical source (D4).
+
+Supersedes the hand-authored MCP triple of ADR-0005: `knowledge/mcps/<mcp>/MCP.md`
+is the single source; the generator derives:
+
+- `dist/mcp.json`         server declaration (name, transport, command/url,
+                          args, ``{env:VAR}`` placeholders, capabilities)
+- `dist/mcp_config.json`  setup metadata (description, requires, env VAR names,
+                          docs, author, license, version)
+
+Generated files are committed and drift-checked (ADR-0014), contain no
+timestamps, and never carry secret values.
+
+#### `def discover_sources(root: Path) -> list[Path]`
+
+Canonical MCP sources: ``knowledge/mcps/<mcp>/MCP.md`` (flat).
+
+#### `def generate(source_path: Path, root: Path) -> dict[str, str]`
+
+Compute ``dist/mcp.json`` and ``dist/mcp_config.json`` for one MCP.
+
+#### `def expected_outputs(root: Path) -> dict[str, str]`
+
+Union of generated content for every canonical MCP source.
+
+#### `def write_all(root: Path) -> list[str]`
+
+Materialize all generated MCP files. Returns repo-relative paths.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check: expected vs disk, plus orphan detection (ADR-0014).
+
+### `engine/governor/ledger.py`
+
+On-disk concurrency governor with an flock-guarded slot ledger (D6/ADR-0007).
+
+Bounds how many agents may run at once (default 5, orchestrator included),
+handles rate-limit (429) by parking a caller as PAUSED for retry, and is the
+executable counterpart of the AGENTS.md governance rule. Zero dependencies.
+
+Ledger format (text, one record per line):
+    MAX <n>                                  # authoritative cap (first line)
+    RUNNING <caller> <yes|no> <token> <pid> <started-unix-ts>
+    PAUSED  <caller> <unix-ts> <attempts>
+
+Callers are validated tokens (``[A-Za-z0-9._:-]+``); matching is EXACT, never
+prefix-based. The cap is persisted so no caller can raise it. Stale RUNNING
+rows (dead PID or older than the lease) are reaped before capacity is judged,
+so a crashed holder cannot leak a slot forever.
+
+#### `def state_dir() -> Path`
+
+_No docstring._
+
+#### `class Ledger`
+
+A file-backed slot ledger guarded by ``fcntl.flock``.
+
+- `def acquire(self, caller: str, orchestrator: bool=False, timeout: float=30.0) -> str | None` — Reserve a slot. Returns the token, or None if the cap stayed full.
+- `def release(self, caller: str) -> None` — no docstring
+- `def fail(self, caller: str, attempts: int=1) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
+- `def paused(self) -> list[dict]` — Callers parked for retry, with a backoff hint (2s -> 60s).
+- `def clear_paused(self, caller: str | None=None) -> None` — no docstring
+- `def status(self) -> dict` — no docstring
+- `def reset(self) -> None` — no docstring
+
+### `engine/provenance.py`
+
+Provenance manifest for imported artifacts (P4 / ADR-0015).
+
+Lives at the repository root as ``sources.lock.json`` — deliberately OUTSIDE
+the generated ``catalog/`` surface so that the per-import ``imported_at``
+timestamp cannot break the ADR-0014 drift check (the catalog generator must
+stay timestamp-free and idempotent).
+
+This module owns the schema and the (empty) seed. The F6 import pipeline
+populates entries; nothing here writes timestamps at generation time.
+
+#### `def empty() -> dict`
+
+Seed structure, deterministic (no timestamp).
+
+#### `def load(root: Path) -> dict`
+
+Read the manifest, or return the empty seed if absent.
+
+#### `def validate(root: Path) -> list[str]`
+
+Check the manifest shape; entries may be empty pre-import.
+
+#### `def write(root: Path, data: dict | None=None) -> Path`
+
+Write the manifest (seed by default). Import pipeline supplies entries.
+
+### `engine/toon.py`
+
+TOON (Token-Oriented Object Notation) payload parsing and validation (D7/ADR-0008).
+
+TOON is the compact handoff format between agents:
+
+    @FROM: <emitter>
+    @TO: <receiver-or-orchestrator>
+    @STATUS: <OK | CONFLICT | BLOCKED | NEED_INFO>
+    @CTX: <context id>
+    @FILES: <path:lines>;<path:lines>       (optional, relative paths only)
+    @SUMMARY: <compact summary>
+    @ACTION_NEEDED: <objective next step>    (optional)
+
+JSON is reserved for machine contracts; TOON is for prose handoffs.
+
+#### `def parse(text: str) -> dict[str, str]`
+
+Parse a TOON payload into a field->value mapping (duplicates: last wins).
+
+#### `def validate(text: str) -> list[str]`
+
+Return a list of error strings; empty list means a valid payload.
+
+#### `def is_valid(text: str) -> bool`
+
+_No docstring._
+
+### `engine/validators/agents.py`
+
+Validate canonical agent sources (frontmatter contract, D1/ADR-0002).
+
+Checks: required keys, kebab-case name matching the directory, category
+matching the parent directory, existing skill paths, unique slugs and a
+non-empty instruction body.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
+### `engine/validators/completeness.py`
+
+Completeness verification (F8): nothing from the sources was left behind.
+
+A read-only audit that answers "did the import miss anything?" by reconciling:
+
+- the import manifest's declared expectations against the source repositories
+  (when they are available locally), and
+- the imported corpus against `sources.lock.json` and the generated catalog.
+
+It is dependency-free and degrades gracefully: on a machine without the source
+repos it still verifies the target side (lock + catalog + references).
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of completeness gaps (empty = nothing left behind).
+
+### `engine/validators/discovery.py`
+
+Validate generated discovery manifests (ADR-0006).
+
+Two kinds live under ``.agents/``:
+
+- per-agent entries ``entries/<name>.json``: ``{name, description, category,
+  source, dist, fingerprint}`` — the fingerprint is RECOMPUTED from the source
+  bytes, so a tampered or stale entry fails even before the drift check. The
+  ``entries/`` subdirectory keeps agent names from colliding with the
+  consolidated stems.
+- consolidated by-kind indexes ``skills.json`` / ``mcps.json`` / ``agents.json``:
+  ``{entries: [{path}]}`` — the coarse single-scan surface.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
+### `engine/validators/evals.py`
+
+Validate behavior-eval scenarios (D10/ADR-0011).
+
+Scenarios live at ``evals/scenarios/<id>/scenario.json``. The static validator
+is deterministic (no LLM) and safe for CI; it checks the schema, that the
+target harness exists, that every check is well-formed, and that no scenario
+string carries a secret or an absolute path (D12).
+
+#### `def discover(root: Path) -> list[Path]`
+
+_No docstring._
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
+### `engine/validators/hygiene.py`
+
+Repository hygiene validators (D2 anti-tools, D12 paths/secrets).
+
+Scans canonical source directories (never ``dist/`` derived content, never
+``docs/`` evidence) for:
+
+- absolute paths (``/home/``, ``/Users/``, ``/root/``, ``~``, ``C:\``/``C:/``)
+- secret-shaped literals — use ``{env:VAR}``
+- harness tool names inside canonical skill bodies (D2). ``references/``
+  directories are exempt: they are the sanctioned home for tool mappings.
+
+The tool-name denylist is the union of the built-in seed and every
+``harnesses/*/harness.json`` ``tool_denylist`` (D2 derivation, F3).
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means clean.
+
+### `engine/validators/language.py`
+
+Language policy check (ADR-0001).
+
+Validates that imported CONTENT is English across skills, workflows, agents and
+their reference/example assets. Prose only: fenced code blocks, inline code and
+markdown link targets are excluded, because samples, identifiers and anchor
+slugs are not prose.
+
+Returns WARNINGS (non-blocking during import) — it becomes a hard gate once the
+corpus is translated.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of warning strings (empty = English-clean).
+
+### `engine/validators/mcps.py`
+
+Validate canonical MCP sources (D4/ADR-0005 as amended at F3).
+
+Source contract only; the generated dist/ coherence and orphan detection live
+in ``engine.generators.mcp_configs.check`` (artifact layer), so an edited source
+never deadlocks ``generate``.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
+### `engine/validators/skills.py`
+
+Validate canonical skill sources (D2/ADR-0003, corpus import contract).
+
+Skills live under two roots sharing one flat name namespace:
+
+- ``knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md``
+- ``methodology/workflows/<skill>/SKILL.md`` (process skills)
+
+Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
+``description`` present; globally unique slug; correct placement; no nested
+SKILL.md; local markdown links resolve.
+
+Warnings (non-blocking): non-English markers and oversized descriptions.
+
+#### `def discover_skills(root: Path) -> list[Path]`
+
+All ``SKILL.md`` under every skill root.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
+#### `def warnings(root: Path) -> list[str]`
+
+Non-blocking findings (language, description size).
+
+The language check inspects PROSE only: fenced code blocks are skipped, so
+illustrative samples that quote upstream docs (SQL comments, config values)
+do not count as untranslated text. This mirrors the hygiene scan.
+
+### `scripts/coacus.py`
+
+Coacus thin CLI: generate | check | validate.
+
+Deterministic build tooling for the framework (ADR-0004, ADR-0013, ADR-0014).
+
+Validation is split in two layers:
+- SOURCE errors (agents, skills, hygiene) gate ``generate`` — invalid canonical
+  sources never produce committed artifacts.
+- ARTIFACT errors (discovery manifests, provenance) validate the GENERATED
+  outputs. They run AFTER writing in ``generate`` (a stale discovery
+  fingerprint is exactly what regeneration fixes), and alongside sources in
+  ``validate``.
+
+#### `def source_errors(root: Path) -> list[str]`
+
+Canonical-source contract violations (block generation).
+
+#### `def artifact_errors(root: Path) -> list[str]`
+
+Generated-artifact violations (checked after writing / on validate).
+
+#### `def cmd_generate(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
+
+_No docstring._
+
+#### `def cmd_check(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
+
+_No docstring._
+
+#### `def cmd_toon(args: argparse.Namespace) -> int`
+
+_No docstring._
+
+#### `def cmd_completeness(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
+
+_No docstring._
+
+#### `def cmd_validate(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
+
+_No docstring._
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `scripts/coacus_eval.py`
+
+Behavior-eval runner for Coacus (D10/ADR-0011).
+
+Deterministic by default; live evaluation is opt-in.
+
+    # static validation only (safe for CI, no LLM, no network)
+    python3 scripts/coacus_eval.py validate
+
+    # live run against a harness CLI installed locally
+    python3 scripts/coacus_eval.py run [--scenario <id>] [--harness opencode]
+        [--judge-cmd "<command that reads the transcript on stdin>"]
+        [--judge-agent]            # delegate judgment to a subagent via the harness
+
+Live scenarios drive a real agent CLI, so they need the CLI + credentials and
+run outside CI. Deterministic checks (`contains`/`not_contains`/`regex`) run on
+the captured transcript; the `rubric` is passed to the judge.
+
+The `--judge-cmd` receives JSON on stdin: {"scenario": {...}, "transcript": "..."}
+and must print a verdict line (anything). `--judge-agent` runs the rubric through
+the same harness as an orchestrated subagent (multi-agent-orchestrator pattern).
+
+#### `def cmd_validate(root: Path) -> int`
+
+_No docstring._
+
+#### `def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool, timeout: float) -> int`
+
+_No docstring._
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `scripts/coacus_governor.py`
+
+Thin CLI over the concurrency governor (D6/ADR-0007).
+
+Mirrors the reference command surface so harness adapters (the OpenCode gate
+plugin) can call it directly:
+
+    coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
+    coacus_governor.py release <caller>
+    coacus_governor.py fail    <caller>
+    coacus_governor.py paused
+    coacus_governor.py status  [max-total]
+    coacus_governor.py reset
+
+``acquire`` prints the token on success (exit 0) or nothing (exit 1) when the
+cap stayed saturated past the timeout.
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `scripts/coacus_import.py`
+
+Coacus corpus importer (F6).
+
+Imports the source corpora into the repository per `templates/import/import-manifest.json`,
+recording provenance in `sources.lock.json` (ADR-0015) and leaving content in
+its original language with `transform: [..., "pending-translation"]` (ADR-0001:
+PT-BR imports are translated in tracked batches).
+
+    python3 scripts/coacus_import.py plan   [--source skills|superpowers|agents]
+    python3 scripts/coacus_import.py apply  [--source ...]
+
+`plan` writes nothing and prints the actions; `apply` performs the copy and
+updates `sources.lock.json`. The import is idempotent: re-running refreshes the
+target and the provenance entry (dedup keyed on source repo/commit/path).
+
+#### `def plan_skills(manifest: dict) -> list[dict]`
+
+_No docstring._
+
+#### `def plan_superpowers(manifest: dict) -> list[dict]`
+
+_No docstring._
+
+#### `def plan_agents(manifest: dict) -> list[dict]`
+
+_No docstring._
+
+#### `def doc_title(doc) -> str`
+
+_No docstring._
+
+#### `def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]`
+
+_No docstring._
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `scripts/coacus_install.py`
+
+Coacus installer: activate rendered artifacts into a harness.
+
+The repository GENERATES the per-harness artifacts (ADR-0016); this script
+INSTALLS them into a harness's own discovery locations. It is explicit and
+idempotent — nothing runs at session start, and it never rewrites a harness
+config file wholesale.
+
+Mechanisms (verified, see docs/install.md):
+
+- opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
+              substituted), plus skill trees mirrored under <config_dir>/skills/.
+- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+              hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
+              script at bootstrap/session-start.sh (matching hooks.json).
+- antigravity plugin   -> <config_dir>/config/plugins/coacus/ + path registered
+              in <config_dir>/config/plugins.json        (backup first).
+- codex       skills   -> <config_dir>/skills/<skill>/    (native discovery).
+- cursor      not installed (no live SessionStart hook); prints guidance only.
+
+Usage:
+    python3 scripts/coacus_install.py <harness|all> [--dry-run] [--uninstall]
+    python3 scripts/coacus_install.py opencode --config-dir /tmp/oc
+
+A manifest (`coacus-install.json`) is written next to each target so re-runs
+are idempotent and `--uninstall` removes exactly what was installed.
+
+#### `def default_config_dir(harness: str, home: Path) -> Path`
+
+_No docstring._
+
+#### `def discover_skills(root: Path) -> list[Path]`
+
+All skill directories (the parent of a SKILL.md) in the repository.
+
+#### `def plan(harness: str, root: Path, config_dir: Path) -> list[tuple[Path, str]]`
+
+_No docstring._
+
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool) -> dict[str, object]`
+
+_No docstring._
+
+#### `def uninstall(harness: str, config_dir: Path, dry_run: bool=False) -> dict[str, object]`
+
+_No docstring._
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `scripts/coacus_vertical.py`
+
+Architecture-SI vertical CLI: document ingestion and analysis (F6c).
+
+Unifies the former `pdf2md` / `doc2md` / `doc-analyze` entrypoints over one
+dispatcher (ADR-0012):
+
+    coacus_vertical.py ingest  <file|--dir DIR> [output] [--toc-only] [--split-chapters]
+    coacus_vertical.py analyze <file|--dir DIR> [--json]
+    coacus_vertical.py formats
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/analyze/analyzer.py`
+
+Analyze Markdown documents: outline, metrics, diagrams, security keywords.
+
+Ported from the `agente-arquitetura-si` analyzer (F6c), translated and placed
+under the vertical pipeline. Dual output: human report or stable JSON, ready to
+be exposed as an MCP tool.
+
+#### `class Analysis`
+
+_No docstring._
+
+
+#### `def analyze_markdown(file_path: str) -> Analysis`
+
+_No docstring._
+
+#### `def human_report(analysis: Analysis) -> str`
+
+_No docstring._
+
+#### `def analyze_dir(directory: str, as_json: bool) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/_common.py`
+
+Shared formatting helpers for ingest handlers.
+
+#### `def format_markdown_table(rows: List[List[str]]) -> str`
+
+Format a 2D list of strings as a GitHub-flavored Markdown table.
+
+#### `def write_markdown(content: str, output_path: str | None, source: str) -> str`
+
+Write ``content`` to ``output_path``.
+
+Default output keeps the original extension to avoid stem collisions in a
+mixed directory (e.g. ``data.csv`` -> ``data.csv.md``), so ``a.txt`` and
+``a.csv`` never overwrite each other.
+
+### `verticals/architecture_si/pipelines/ingest/handlers/csv_table.py`
+
+CSV / TSV to a Markdown table.
+
+#### `def handle_csv(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/docx.py`
+
+DOCX to Markdown (headings, paragraphs, lists, tables).
+
+#### `def convert_docx_to_md(docx_path: str) -> str`
+
+_No docstring._
+
+#### `def handle_docx(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/html.py`
+
+HTML to Markdown, with a stdlib HTMLParser fallback when BeautifulSoup is absent.
+
+#### `def convert_html_to_md(html_path: str) -> str`
+
+_No docstring._
+
+#### `def handle_html(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/pdf.py`
+
+PDF to structured Markdown, with PyMuPDF → pypdf fallback (ADR-0012).
+
+Preserves the upstream behavior: TOC/bookmark map, per-page anchors, list and
+code heuristics, and the ``--toc-only`` / ``--split-chapters`` options. The
+dependency is auto-detected so the framework runs with either library.
+
+#### `def clean_text(text: str) -> str`
+
+Fix hyphenation across line breaks and normalize whitespace.
+
+#### `def convert_pdf_with_fitz(pdf_path: str, output_path: Optional[str]=None, split_chapters: bool=False, toc_only: bool=False) -> str`
+
+_No docstring._
+
+#### `def convert_pdf_with_pypdf(pdf_path: str, output_path: Optional[str]=None) -> str`
+
+_No docstring._
+
+#### `def convert_pdf_to_markdown(pdf_path: str, output_path: Optional[str]=None, **kwargs: Any) -> str`
+
+_No docstring._
+
+#### `def handle_pdf(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/pptx.py`
+
+PPTX to Markdown slides (text frames and tables).
+
+#### `def convert_pptx_to_md(pptx_path: str) -> str`
+
+_No docstring._
+
+#### `def handle_pptx(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/structured.py`
+
+JSON / YAML to a fenced Markdown code block.
+
+#### `def handle_structured(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._
+
+### `verticals/architecture_si/pipelines/ingest/handlers/text.py`
+
+Text-like formats: TXT, RTF, LOG, and the raw fallback.
+
+#### `def convert_txt_to_md(txt_path: str) -> str`
+
+_No docstring._
+
+#### `def handle_text(input_path: str, output_path: str | None=None) -> str`
+
+_No docstring._

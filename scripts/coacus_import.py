@@ -37,8 +37,33 @@ from engine.frontmatter import FrontmatterError, parse  # noqa: E402
 MANIFEST = ROOT / "templates/import/import-manifest.json"
 
 
+def _workspace() -> Path:
+    """The parent directory holding the sibling source repositories.
+
+    Defaults to the parent of this repository (Coacus lives beside `skills`,
+    `superpowers`, `agente-arquitetura-si`). Override with ``COACUS_WORKSPACE``.
+    """
+    override = os.environ.get("COACUS_WORKSPACE")
+    if override:
+        return Path(override)
+    return ROOT.parent
+
+
+def _resolve(value: str) -> str:
+    """Resolve the portable ``{workspace}`` token in a manifest path."""
+    return value.replace("{workspace}", _workspace().as_posix())
+
+
 def _load_manifest() -> dict:
-    return json.loads(MANIFEST.read_text(encoding="utf-8"))
+    """Load the import manifest and resolve portable ``{workspace}`` tokens."""
+    data = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    data["source_repos"] = {
+        key: _resolve(str(value)) for key, value in data.get("source_repos", {}).items()
+    }
+    data["exclude_import_from"] = [
+        _resolve(str(value)) for value in data.get("exclude_import_from", [])
+    ]
+    return data
 
 
 def _git_commit(repo: Path) -> str:

@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "source_repos": {
-    "skills": "/home/daniel/Code/skills",
-    "superpowers": "/home/daniel/Code/superpowers"
+    "skills": "{workspace}/skills",
+    "superpowers": "{workspace}/superpowers"
   },
-  "exclude_import_from": ["/home/daniel/Code/agente-arquitetura-si"],
+  "exclude_import_from": ["{workspace}/agente-arquitetura-si"],
   "category_map": {
     "languages": "languages",
     "framework": "frameworks",

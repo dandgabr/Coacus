@@ -28,9 +28,11 @@ from engine.generators import (  # noqa: E402
     bootstrap,
     catalog,
     discovery,
+    docstrings,
     mcp_configs,
 )
 from engine.validators import agents as agent_validator  # noqa: E402
+from engine.validators import completeness as completeness_validator  # noqa: E402
 from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import evals as eval_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
@@ -77,7 +79,7 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         + bootstrap.write_all(root)
         + discovery.write_all(root)
     )
-    written_paths = catalog.write(root)
+    written_paths = catalog.write(root) + [docstrings.write(root)]
     print(f"generated {len(written)} manifest/bootstrap file(s)")
     for path in written_paths:
         print(f"generated {path.relative_to(root)}")
@@ -100,6 +102,7 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         + bootstrap.check(root)
         + discovery.check(root)
         + catalog.check(root)
+        + docstrings.check(root)
     )
     if drift:
         print("DRIFT detected — run: python3 scripts/coacus.py generate")
@@ -125,6 +128,17 @@ def cmd_toon(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_completeness(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    root = root or ROOT
+    gaps = completeness_validator.validate(root)
+    if gaps:
+        print(f"{len(gaps)} completeness gap(s):")
+        _print(gaps, "gap")
+        return 1
+    print("completeness OK: nothing left behind")
+    return 0
+
+
 def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
     root = root or ROOT
     warnings = _warnings(root)
@@ -142,9 +156,10 @@ def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = No
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("generate", help="regenerate dist/, .agents/ and catalog/")
+    sub.add_parser("generate", help="regenerate dist/, .agents/, catalog/ and docs/")
     sub.add_parser("check", help="fail if generated artifacts are stale")
     sub.add_parser("validate", help="run schema and hygiene validators")
+    sub.add_parser("completeness", help="verify nothing from the sources was left behind (F8)")
     toon = sub.add_parser("toon", help="validate a TOON handoff payload file")
     toon.add_argument("path", help="path to a file containing a TOON payload")
     args = parser.parse_args(argv)
@@ -152,6 +167,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_generate(args)
     if args.command == "check":
         return cmd_check(args)
+    if args.command == "completeness":
+        return cmd_completeness(args)
     if args.command == "toon":
         return cmd_toon(args)
     return cmd_validate(args)
