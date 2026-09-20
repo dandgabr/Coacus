@@ -318,8 +318,9 @@ _No docstring._
 Validate canonical agent sources (frontmatter contract, D1/agent-manifests).
 
 Checks: required keys, kebab-case name matching the directory, category
-matching the parent directory, existing skill paths, unique slugs and a
-non-empty instruction body.
+matching the parent directory, existing skill paths, unique slugs, a non-empty
+instruction body and the D1 rule that `model` is omitted at source (harnesses
+resolve the actual model; the generated `agent.yaml` uses `model: inherit`).
 
 #### `def validate(root: Path) -> list[str]`
 

@@ -34,6 +34,11 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 - `_component_counts` distinguishes flat agent files (`<name>.md`) from nested
   ones (`<name>/agent.md`), so `--verify` reports the true agent count for every
   harness instead of collapsing a flat directory to one.
+- `engine/validators/agents.py` now enforces D1's canonical omission of `model`:
+  a `model` key in an `agent.source.md` fails validation. Harnesses resolve the
+  actual model, and the generated `agent.yaml` carries `model: inherit` (already
+  asserted in `tests/test_generators.py`). This closes the last self-declared
+  "not yet validated" gap in the `AGENTS.md` enforcement paragraph.
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and

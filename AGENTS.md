@@ -45,8 +45,9 @@ Enforcement status: skills, agents, MCP, hygiene, discovery and language
 validators run in `generate` pre-flight and `validate`; `completeness` (F8)
 reconciles the corpus against the sources; the eval scenario gate is static in
 CI. Item 4 (English-only) is machine-checked corpus-wide since the F6
-translation. Item 5's generated output is asserted; canonical omission of
-`model` is not yet validated. Item 6 is enforced at RUNTIME (the concurrency
+translation. Item 5 is checked: the agent validator rejects a `model` key in a
+canonical source, and the generated `agent.yaml` is asserted to carry
+`model: inherit`. Item 6 is enforced at RUNTIME (the concurrency
 governor + the TOON validator). Item 7 is enforced by the generated catalog and
 the installer's `--verify`; prose counts are not machine-checked.
 
