@@ -117,22 +117,35 @@ def validate(root: Path) -> list[str]:
         base = root / top
         if not base.is_dir():
             continue
-        for path in sorted(base.rglob("*.md")):
+        for path in sorted(base.rglob("*")):
+            if not path.is_file():
+                continue
             rel = path.relative_to(root).as_posix()
             if "/dist/" in f"/{rel}":
                 continue  # derived content is checked by drift, not hygiene
+            is_text = path.suffix == ".md"
+            is_data = path.suffix in (".json", ".yaml", ".yml") and rel.startswith("templates/")
+            if not (is_text or is_data):
+                continue
             text = path.read_text(encoding="utf-8", errors="replace")
             is_canonical_skill = rel.startswith(ANTI_TOOL_ROOTS)
             skip_tools = "/references/" in f"/{rel}"
-            for lineno, line in _prose_lines(text):
+            if is_text:
+                lines = _prose_lines(text)
+            else:
+                lines = list(enumerate(text.splitlines(), 1))
+            for lineno, line in lines:
                 if ABSOLUTE_PATH.search(line):
+                    # A portable {workspace} token is allowed in import data.
+                    if "{workspace}" in line:
+                        continue
                     errors.append(f"{rel}:{lineno}: absolute path detected (D12)")
                 for label, pattern in SECRET_PATTERNS:
                     if pattern.search(line):
                         errors.append(
                             f"{rel}:{lineno}: possible {label} — use {{env:VAR}} (D12)"
                         )
-                if is_canonical_skill and not skip_tools:
+                if is_text and is_canonical_skill and not skip_tools:
                     hit = tool_reference.search(line)
                     if hit:
                         errors.append(
