@@ -233,6 +233,16 @@ class TestAgentValidatorAdditional(unittest.TestCase):
         errors = agent_validator.validate(self.root)
         self.assertTrue(any("duplicate agent name" in e for e in errors))
 
+    def test_misplaced_agent_source_fails(self) -> None:
+        deep = self.root / "knowledge/agents/roles/sub/deep-agent"
+        deep.mkdir(parents=True)
+        (deep / "agent.source.md").write_text(
+            "---\nname: deep-agent\ncategory: roles\ndescription: x\n---\n\nbody\n",
+            encoding="utf-8",
+        )
+        errors = agent_validator.validate(self.root)
+        self.assertTrue(any("must be at knowledge/agents" in e for e in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

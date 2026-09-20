@@ -22,7 +22,16 @@ LOCK = "sources.lock.json"
 
 
 def _load(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
+    """Read a JSON object, returning {} on a missing/malformed file.
+
+    Completeness reports gaps rather than crashing: a malformed lock or catalog
+    is itself a gap, and the callers surface that separately.
+    """
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
 def _source_skills(repo: Path) -> dict[str, Path]:
@@ -71,13 +80,13 @@ def validate(root: Path) -> list[str]:
     lock_path = root / LOCK
     if lock_path.is_file():
         lock = _load(lock_path)
+        if not lock:
+            gaps.append(f"{LOCK}: unreadable or malformed")
         for entry in lock.get("entries", []):
             target = root / entry.get("target_path", "")
             if not target.is_file():
                 gaps.append(f"lock target missing on disk: {entry.get('target_path')}")
-        lock_targets = {e.get("target_path") for e in lock.get("entries", [])}
     else:
-        lock_targets = set()
         gaps.append(f"{LOCK}: missing")
 
     # --- catalog on disk vs live disk --------------------------------------
