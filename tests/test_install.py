@@ -581,6 +581,14 @@ class TestVerify(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn('"ok": true', buffer.getvalue())
 
+    def test_unknown_only_token_is_rejected(self) -> None:
+        import contextlib
+
+        with self.assertRaises(SystemExit), contextlib.redirect_stderr(StringIO()):
+            coacus_install.main(
+                ["opencode", "--only", "doesnotexist", "--dry-run"], root=self.root
+            )
+
     def test_main_verify_exit_one_on_drift(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
         (self.config / "skills/lang-python/SKILL.md").write_text(

@@ -142,7 +142,6 @@ class TestGovernorCrossProcess(unittest.TestCase):
     def test_multi_process_cap(self) -> None:
         # 6 independent processes race for a cap of 3 and HOLD their slots.
         # Assert the peak observed concurrency never exceeds the cap.
-        import json
 
         child = (
             "import sys, time, os; sys.path.insert(0, '.'); "

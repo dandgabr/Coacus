@@ -61,6 +61,17 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   skills. OpenCode discovers the mirrored `~/.config/opencode/skills/` tree
   natively, so the registration was both redundant and harmful. The plugin now
   only injects the bootstrap. **[verified locally]**
+- Installer hardening (final security audit): path-traversal via an agent
+  `name`, JSON corruption/injection when the checkout path has a quote, symlink
+  exfiltration from a skill tree, uninstall orphaning files whose source was
+  deleted, Codex/Cursor uninstall deleting the other's shared skills, binary
+  companion crashes, and tracebacks on a malformed install manifest.
+- `agents.validate` flags a misplaced `agent.source.md` (not at
+  `knowledge/agents/<cat>/<name>/`), closing a generator/validator/completeness
+  divergence; `completeness` reports a malformed lock/catalog instead of
+  crashing; the eval runner uses stderr when stdout is empty.
+- `--only <unknown>` is now a clear error instead of silently installing only
+  the harness files; dead imports/locals removed across `engine/` and `scripts/`.
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and

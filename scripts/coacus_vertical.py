@@ -39,7 +39,6 @@ def _cmd_ingest(args: argparse.Namespace) -> int:
             return 1
         files = sorted(f for f in directory.iterdir() if f.is_file())
         print(f"ingesting {len(files)} file(s) from {directory}")
-        seen: dict[str, str] = {}
         for path in files:
             try:
                 outputs = dispatcher.convert(str(path), **options)

@@ -49,7 +49,6 @@ import argparse
 import fnmatch
 import json
 import re
-import shlex
 import sys
 from pathlib import Path
 
@@ -919,6 +918,27 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     if not args.harness:
         parser.error("a harness is required unless --list is used")
+
+    # A filter that matches nothing silently installs only the harness files;
+    # surface the typo instead (categories come from --list). `--only` spans
+    # both trees, so agent categories are valid tokens too.
+    if only:
+        known = {
+            segment
+            for segments in _skill_groups(root or ROOT).values()
+            for segment in (segments or ["(root)"])
+        }
+        known.update(
+            segment
+            for segments in _agent_groups(root or ROOT).values()
+            for segment in segments
+        )
+        unknown = [token for token in only if token not in known]
+        if unknown:
+            parser.error(
+                f"unknown category token(s): {', '.join(unknown)} "
+                f"(run --list for the available categories)"
+            )
 
     harnesses = (
         ["opencode", "claude-code", "antigravity", "codex", "cursor"]

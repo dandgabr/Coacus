@@ -7,7 +7,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from engine import frontmatter
 from engine.generators import bootstrap
 
 ENTRY = """---
