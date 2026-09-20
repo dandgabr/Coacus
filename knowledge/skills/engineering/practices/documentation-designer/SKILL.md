@@ -217,6 +217,5 @@ flowchart LR
 - **Under [clean-code-reusability](../clean-code-reusability/SKILL.md)**: Ensures clarity and precision in inline documentation (docstrings, JSDoc, GoDoc) while avoiding obvious prolixity.
 - **Under [ui-ux-designer](../../../roles/ui-ux-designer/SKILL.md)**: Documents design tokens, design systems, and screen flows in a way both designers and engineers can understand.
 - **Under [frontend-developer](../../../roles/frontend-developer/SKILL.md)**: Documents component contracts and accessibility specifications (WCAG 2.2).
-- **Under [autodoc-code-explorer](../../../mapping/autodoc-code-explorer/SKILL.md)**: Uses the AutoDoc MCP Server to inspect repository topology automatically, extract file metrics, and generate C4 diagrams in Mermaid C4 syntax (C4Context, C4Container) to enrich technical documentation under the Diátaxis framework.
 
 > For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md).

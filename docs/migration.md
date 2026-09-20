@@ -144,6 +144,12 @@ produced 1163 entries (1096 from `skills`, 67 from `superpowers`); 370 carry the
 whose content is still non-English carry `pending-translation` until the
 translation pass clears it.
 
+> The F6 run produced 1163 entries. A later prune removed the components coupled
+> to a specific MCP server (`ai-memory` skills + `ai-memory-specialist`, and
+> `autodoc-code-explorer`), lowering the lock to 1136 entries. Those sources are
+> now declared in the manifest's `exclude_skills` / `exclude_agents` so a
+> re-import does not pull them back.
+
 ## Translation policy
 
 The repository language is English ([english-only](standards/english-only.md)).

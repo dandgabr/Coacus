@@ -54,10 +54,9 @@ A new harness is a new data file. A new shape is an engine change.
 
 ### Harnesses that render nothing
 
-`bootstrap.supported: false` harnesses render nothing. Codex uses
-`native-discovery` in reference deployments; Cursor stays a stub until a live
-acceptance test is possible. Antigravity rules are capped at 12,000 characters,
-so shape C content MUST respect that cap.
+A harness may declare `bootstrap.supported: false` and render nothing (the
+`native-discovery` shape) when it surfaces skills natively. Antigravity rules
+are capped at 12,000 characters, so shape C content MUST respect that cap.
 
 ## Rationale
 

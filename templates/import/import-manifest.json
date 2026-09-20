@@ -51,11 +51,6 @@
     "program-windbg": "mapping",
     "power-bi": "data",
     "power-automate": "platforms",
-    "program-ai-memory-durable-pages": "platforms",
-    "program-ai-memory-handoff": "platforms",
-    "program-ai-memory-learning-maintenance": "platforms",
-    "program-ai-memory-retrieval": "platforms",
-    "program-ai-memory-routing-install": "platforms",
     "default": "platforms"
   },
   "domains_map": {
@@ -72,7 +67,16 @@
       "quantum-computing-algorithms": "domains/academic"
     }
   },
-  "exclude_skills": ["template-skill"],
+  "exclude_skills": [
+    "template-skill",
+    "program-ai-memory-durable-pages",
+    "program-ai-memory-handoff",
+    "program-ai-memory-learning-maintenance",
+    "program-ai-memory-retrieval",
+    "program-ai-memory-routing-install",
+    "autodoc-code-explorer"
+  ],
+  "exclude_agents": ["ai-memory-specialist"],
   "name_dir_fixes": {
     "containers": "program-containers",
     "github-actions": "program-github-actions",

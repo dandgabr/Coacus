@@ -2,13 +2,12 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 214 skill(s) · 58 agent(s) · 1 MCP(s)
+**Totals:** 208 skill(s) · 57 agent(s) · 1 MCP(s)
 
 ## Agents
 
 | Agent | Category | Source |
 |---|---|---|
-| ai-memory-specialist | specialized-domains | [knowledge/agents/specialized-domains/ai-memory-specialist/agent.source.md](../knowledge/agents/specialized-domains/ai-memory-specialist/agent.source.md) |
 | ai-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md) |
 | antigravity-agent | core-orchestration | [knowledge/agents/core-orchestration/antigravity-agent/agent.source.md](../knowledge/agents/core-orchestration/antigravity-agent/agent.source.md) |
 | backend-developer | software-engineering | [knowledge/agents/software-engineering/backend-developer/agent.source.md](../knowledge/agents/software-engineering/backend-developer/agent.source.md) |
@@ -173,7 +172,6 @@
 | webassembly | [knowledge/skills/languages/webassembly/SKILL.md](../knowledge/skills/languages/webassembly/SKILL.md) |
 | api-service-mesh-mapping | [knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md](../knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md) |
 | app-dependency-discovery | [knowledge/skills/mapping/app-dependency-discovery/SKILL.md](../knowledge/skills/mapping/app-dependency-discovery/SKILL.md) |
-| autodoc-code-explorer | [knowledge/skills/mapping/autodoc-code-explorer/SKILL.md](../knowledge/skills/mapping/autodoc-code-explorer/SKILL.md) |
 | binary-app-reverse-mapping | [knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md](../knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md) |
 | cloud-topology-mapping | [knowledge/skills/mapping/cloud-topology-mapping/SKILL.md](../knowledge/skills/mapping/cloud-topology-mapping/SKILL.md) |
 | code-architecture-mapping | [knowledge/skills/mapping/code-architecture-mapping/SKILL.md](../knowledge/skills/mapping/code-architecture-mapping/SKILL.md) |
@@ -191,11 +189,6 @@
 | browser-harness | [knowledge/skills/platforms/browser-harness/SKILL.md](../knowledge/skills/platforms/browser-harness/SKILL.md) |
 | gemini-enterprise | [knowledge/skills/platforms/gemini-enterprise/SKILL.md](../knowledge/skills/platforms/gemini-enterprise/SKILL.md) |
 | power-automate | [knowledge/skills/platforms/power-automate/SKILL.md](../knowledge/skills/platforms/power-automate/SKILL.md) |
-| program-ai-memory-durable-pages | [knowledge/skills/platforms/program-ai-memory-durable-pages/SKILL.md](../knowledge/skills/platforms/program-ai-memory-durable-pages/SKILL.md) |
-| program-ai-memory-handoff | [knowledge/skills/platforms/program-ai-memory-handoff/SKILL.md](../knowledge/skills/platforms/program-ai-memory-handoff/SKILL.md) |
-| program-ai-memory-learning-maintenance | [knowledge/skills/platforms/program-ai-memory-learning-maintenance/SKILL.md](../knowledge/skills/platforms/program-ai-memory-learning-maintenance/SKILL.md) |
-| program-ai-memory-retrieval | [knowledge/skills/platforms/program-ai-memory-retrieval/SKILL.md](../knowledge/skills/platforms/program-ai-memory-retrieval/SKILL.md) |
-| program-ai-memory-routing-install | [knowledge/skills/platforms/program-ai-memory-routing-install/SKILL.md](../knowledge/skills/platforms/program-ai-memory-routing-install/SKILL.md) |
 | program-github-actions | [knowledge/skills/platforms/program-github-actions/SKILL.md](../knowledge/skills/platforms/program-github-actions/SKILL.md) |
 | program-markmap | [knowledge/skills/platforms/program-markmap/SKILL.md](../knowledge/skills/platforms/program-markmap/SKILL.md) |
 | program-moodle | [knowledge/skills/platforms/program-moodle/SKILL.md](../knowledge/skills/platforms/program-moodle/SKILL.md) |

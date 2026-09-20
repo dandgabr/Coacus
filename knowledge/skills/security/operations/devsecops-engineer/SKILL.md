@@ -38,9 +38,9 @@ This skill directly covers the following practices of the **Implementation** fun
 ### 1. Secure Build
 
 - **Integrating Scanners into CI/CD**:
-  - **SAST (Static Application Security Testing)**: Automated tools that inspect the source code (e.g., **Snyk Code CLI / Snyk MCP**, SonarQube, Semgrep) for vulnerable patterns.
-  - **SCA (Software Composition Analysis)**: Scanning open-source dependencies (e.g., **Snyk Open Source CLI / Snyk MCP**, OWASP Dependency-Check, Trivy) to alert on outdated or vulnerable third-party libraries (known CVEs).
-  - **Integrated Use of Snyk**: The **Snyk** suite is available as a CLI (`snyk code test`, `snyk test`, `snyk container test`, `snyk sbom`) and as an MCP server integrated with Gemini CLI (`snyk/*`) for automated and interactive inspections.
+  - **SAST (Static Application Security Testing)**: Automated tools that inspect the source code (e.g., **Snyk Code CLI**, SonarQube, Semgrep) for vulnerable patterns.
+  - **SCA (Software Composition Analysis)**: Scanning open-source dependencies (e.g., **Snyk Open Source CLI**, OWASP Dependency-Check, Trivy) to alert on outdated or vulnerable third-party libraries (known CVEs).
+  - **Integrated Use of Snyk**: The **Snyk** suite is available as a CLI (`snyk code test`, `snyk test`, `snyk container test`, `snyk sbom`) for automated and interactive inspections in CI/CD.
 - **Supply-Chain Integrity**: Digital signing of commits and Docker images, ensuring that what is deployed to production came from the official build (SLSA levels).
 
 ### 2. Secure Deployment

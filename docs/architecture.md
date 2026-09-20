@@ -17,8 +17,8 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 199 skills.
-- `knowledge/agents/<category>/<agent>/agent.source.md` — 58 agents.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 193 skills.
+- `knowledge/agents/<category>/<agent>/agent.source.md` — 57 agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).
 - `knowledge/rules/` — reserved for repository rules.
@@ -148,7 +148,7 @@ flowchart TD
   GEN --> DSC
   VAL -->|"gates generate"| GEN
   LOCK -->|"target-existence check"| VAL
-  DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex"]
+  DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex | cursor"]
   BC --> HARN
   GOV -.->|"bounds subagents"| HARN
   TOON -.->|"validates handoffs"| HARN
