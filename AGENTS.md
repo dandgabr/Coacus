@@ -20,7 +20,7 @@ re-scan directories per turn (D5). If indexes look stale, run
 ## Artifact lifecycle
 
 `create (from templates/authoring)` → `validate` → `register (generate)` →
-`discover (single-scan)` → `activate (SessionStart bootstrap, 1 format per harness, F3)`.
+`discover (single-scan)` → `activate (SessionStart bootstrap, 1 format per harness)`.
 
 ## Conventions
 
@@ -28,7 +28,7 @@ re-scan directories per turn (D5). If indexes look stale, run
    MCPs: the triple (`MCP.md` + configs). Everything under `dist/`, `.agents/`,
    `catalog/` is generated.
 2. **Agnostic content (D2).** Canonical bodies name ACTIONS, never harness tools.
-   Per-harness mappings live in `references/<harness>-tools.md` (F3).
+   Per-harness mappings live in `references/<harness>-tools.md`.
 3. **No secrets, no absolute paths (D12).** Secrets as `{env:VAR}` only.
 4. **English only (ADR-0001).** kebab-case; descriptions in 3rd person with triggers.
 5. **`model` omitted in canonical sources (D1).** Generated `agent.yaml` uses
@@ -36,12 +36,13 @@ re-scan directories per turn (D5). If indexes look stale, run
 6. **Multi-agent governance (D6/D7).** Cap concurrent subagents (governor);
    handoffs use TOON payloads; never spawn ungoverned subagents.
 
-Enforcement status: items 1–3 are machine-checked (agents, skills, MCP, hygiene
-and discovery validators, run by `generate` pre-flight and `validate`). Item 4 is
-warned (non-English markers) until import translation completes at F6. Item 5's
-generated output is asserted; canonical omission of `model` is not yet
-validated. Item 6 is enforced at RUNTIME (the concurrency governor + the TOON
-validator), not by a repository validator.
+Enforcement status: skills, agents, MCP, hygiene, discovery and language
+validators run in `generate` pre-flight and `validate`; `completeness` (F8)
+reconciles the corpus against the sources; the eval scenario gate is static in
+CI. Item 4 (English-only) is machine-checked corpus-wide since the F6
+translation. Item 5's generated output is asserted; canonical omission of
+`model` is not yet validated. Item 6 is enforced at RUNTIME (the concurrency
+governor + the TOON validator).
 
 ## Extending the framework (OCP)
 

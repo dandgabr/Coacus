@@ -3,22 +3,15 @@
   "bootstrap": {
     "supported": false,
     "shape": "A",
-    "reason": "No local installation to verify the SessionStart hook; render deferred until a live acceptance test is possible."
+    "reason": "Cursor has a sessionStart hook (project .cursor/hooks.json or user ~/.cursor/hooks.json) that emits snake_case additional_context and cannot block. Render stays deferred until a live acceptance test is possible; Coacus does not use the legacy hooks-cursor.json filename.",
+    "hook_path": ".cursor/hooks.json",
+    "native_key": "additional_context"
   },
-  "detection": ["CURSOR_PLUGIN_ROOT"],
-  "tool_mapping": {
-    "create or update todos": "TodoWrite",
-    "dispatch a subagent": "Task",
-    "invoke a skill": "Skill",
-    "read a file": "Read",
-    "create, edit, or delete files": "Write / Edit",
-    "run shell commands": "Bash",
-    "search files": "Grep / Glob",
-    "fetch a URL": "WebFetch"
-  },
+  "detection": ["CURSOR_TRACE_ID"],
+  "tool_mapping": {},
   "tool_denylist": [],
   "install": {
-    "method": "install as a Cursor plugin",
+    "method": "Cursor Plugins: .cursor-plugin/plugin.json; local testing under ~/.cursor/plugins/local/<name>/, or distribute via a marketplace",
     "target": "plugin marketplace"
   }
 }
