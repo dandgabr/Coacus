@@ -48,7 +48,6 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import json
-import os
 import re
 import sys
 from pathlib import Path
@@ -477,13 +476,8 @@ def _plan_opencode(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-    router_hook: bool = False,
 ) -> list[tuple[Path, FileContent]]:
-    """Plugin + governor gate + mirrored skill trees for opencode.
-
-    The routing hook is OPT-IN: it is installed only when ``router_hook`` is true,
-    so routing is never a hidden dependency (routing).
-    """
+    """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
     content = source.read_text(encoding="utf-8").replace(
         "__COACUS_ROOT__", root.as_posix()
@@ -495,16 +489,6 @@ def _plan_opencode(
             (
                 config_dir / "plugins" / "coacus-governor.js",
                 gate.read_text(encoding="utf-8").replace(
-                    "__COACUS_ROOT__", root.as_posix()
-                ),
-            )
-        )
-    router = root / "harnesses/opencode/bootstrap/router-hook.js"
-    if router.is_file() and router_hook:
-        plan.append(
-            (
-                config_dir / "plugins" / "coacus-router.js",
-                router.read_text(encoding="utf-8").replace(
                     "__COACUS_ROOT__", root.as_posix()
                 ),
             )
@@ -695,7 +679,6 @@ def plan(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-    router_hook: bool = False,
 ) -> list[tuple[Path, FileContent]]:
     """Compute the files to install for ``harness`` under the given filters.
 
@@ -704,7 +687,7 @@ def plan(
     name glob. Shared by ``install``, ``verify`` and ``uninstall``.
     """
     if harness == "opencode":
-        return _plan_opencode(root, config_dir, only, skills, agents, router_hook)
+        return _plan_opencode(root, config_dir, only, skills, agents)
     if harness == "claude-code":
         return _plan_claude(root, config_dir, only, skills, agents)
     if harness == "antigravity":
@@ -731,8 +714,7 @@ def install(
     containment-checked first, so an install never writes outside the allowed
     roots (see ``_assert_contained``).
     """
-    router_hook = os.environ.get("COACUS_ROUTER_HOOK") == "1"
-    files = plan(harness, root, config_dir, only, skills, agents, router_hook)
+    files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
     if dry_run:
         return {
@@ -760,7 +742,6 @@ def install(
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
-                "router_hook": router_hook,
             },
             indent=2,
         )
@@ -841,8 +822,7 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
-    router_hook = bool(data.get("router_hook"))
-    files = plan(harness, root, config_dir, only, skills, agents, router_hook)
+    files = plan(harness, root, config_dir, only, skills, agents)
     missing = [
         t.as_posix() for t, _ in files if not t.is_file()
     ]

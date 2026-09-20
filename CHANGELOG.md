@@ -36,6 +36,13 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   bare ``sistema``); the curated lexicon was enriched for paraphrase
   (``revisar``/``relatório``/``ameaça``).
 
+### Removed
+
+- The opt-in OpenCode router hook (`router-hook.js`, installed with
+  `COACUS_ROUTER_HOOK=1`). Routing is user-invoked only
+  (`scripts/coacus_route.py`); candidates are never injected into the
+  conversation automatically.
+
 ## [Unreleased] — Version freshness
 
 ### Added

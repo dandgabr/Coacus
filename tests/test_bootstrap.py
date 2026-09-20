@@ -119,25 +119,10 @@ class TestBootstrapRender(unittest.TestCase):
         self.assertIn("@returns", plugin)
         self.assertIn("/**", plugin)
 
-    def test_router_hook_renders_only_when_declared(self) -> None:
-        # No router-hook plugin declared -> no file.
-        write_harness(
-            self.root,
-            "opencode",
-            {
-                "name": "opencode",
-                "bootstrap": {
-                    "supported": True,
-                    "shape": "B",
-                    "outputs": [{"path": "harnesses/opencode/bootstrap/coacus.js", "format": "js"}],
-                },
-                "tool_mapping": {"run shell commands": "bash"},
-            },
-        )
-        outputs = bootstrap.expected_outputs(self.root)
-        self.assertNotIn("harnesses/opencode/bootstrap/router-hook.js", outputs)
-
-        # Declared -> rendered, and it calls the router over stdin (opt-in).
+    def test_router_hook_is_never_rendered(self) -> None:
+        # Routing is user-invoked only (coacus_route.py): even a declared
+        # router-hook plugin renders nothing, so the automatic injection of
+        # candidate blocks into the conversation cannot come back by accident.
         write_harness(
             self.root,
             "opencode",
@@ -155,10 +140,7 @@ class TestBootstrapRender(unittest.TestCase):
             },
         )
         outputs = bootstrap.expected_outputs(self.root)
-        hook = outputs["harnesses/opencode/bootstrap/router-hook.js"]
-        self.assertIn("coacus_route.py", hook)
-        self.assertIn("--stdin", hook)
-        self.assertIn("chat.message", hook)
+        self.assertNotIn("harnesses/opencode/bootstrap/router-hook.js", outputs)
 
     def test_shape_a_emits_single_native_key(self) -> None:
         write_harness(
