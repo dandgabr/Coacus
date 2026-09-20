@@ -506,6 +506,87 @@ def install(
     return {"harness": harness, "files": written, "manifest": manifest.as_posix()}
 
 
+def _classify(target: Path) -> str:
+    """Bucket an installed file: skill, agent, hook or other.
+
+    Classifies by the path the installer produces, so the counts reflect what
+    actually landed on disk rather than a number inferred elsewhere.
+    """
+    name = target.name
+    parent = target.parent.name
+    if name == "SKILL.md":
+        return "skill"
+    if name == "agent.md" or parent in ("agent", "agents"):
+        return "agent"
+    if name in ("hooks.json", "governor-hook.sh", "coacus-governor.js"):
+        return "hook"
+    return "other"
+
+
+def _component_counts(files: list[tuple[Path, str]]) -> dict[str, int]:
+    """Distinct skills/agents plus hook/other file counts, from a plan."""
+    skills = {t.parent.as_posix() for t, _ in files if t.name == "SKILL.md"}
+    agents = {t.parent.as_posix() for t, _ in files if _classify(t) == "agent"}
+    hooks = [t for t, _ in files if _classify(t) == "hook"]
+    other = [t for t, _ in files if _classify(t) == "other"]
+    return {
+        "skills": len(skills),
+        "agents": len(agents),
+        "hook_files": len(hooks),
+        "other_files": len(other),
+    }
+
+
+def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
+    """Compare an installed harness against the repository, read-only.
+
+    Reports canonical component counts, the install root, and any file that is
+    missing or has drifted from the repository. Exits non-zero (via the caller)
+    when the harness is not installed or drift is found. The counts come from
+    the plan the installer would write — never inferred — so a report can quote
+    this output verbatim.
+    """
+    manifest = config_dir / MANIFEST_NAME
+    result: dict[str, object] = {
+        "harness": harness,
+        "manifest": manifest.as_posix(),
+        "installed": manifest.is_file(),
+        "ok": False,
+    }
+    if not manifest.is_file():
+        result["error"] = "no manifest — harness not installed (run install first)"
+        return result
+    data = json.loads(manifest.read_text(encoding="utf-8"))
+    only = data.get("only") or None
+    skills = data.get("skills") or None
+    files = plan(harness, root, config_dir, only, skills)
+    missing = [
+        t.as_posix() for t, _ in files if not t.is_file()
+    ]
+    drift = [
+        t.as_posix()
+        for t, content in files
+        if t.is_file() and t.read_text(encoding="utf-8") != content
+    ]
+    recorded = set(data.get("files", []))
+    planned = {t.as_posix() for t, _ in files}
+    result.update(
+        {
+            "install_root": config_dir.as_posix(),
+            "only": only or [],
+            "skills_filter": skills or [],
+            "counts": _component_counts(files),
+            "planned_files": len(files),
+            "recorded_files": len(recorded),
+            "missing": missing,
+            "drifted": drift,
+            "extra_in_manifest": sorted(recorded - planned),
+        }
+    )
+    result["ok"] = not missing and not drift and recorded == planned
+    return result
+
+
 def _contained(path: Path, root: Path) -> bool:
     """True only if ``path`` resolves inside ``root`` (blocks manifest tampering)."""
     try:
@@ -536,7 +617,7 @@ def uninstall(harness: str, config_dir: Path, dry_run: bool = False) -> dict[str
     return {"harness": harness, "removed": planned, "skipped": skipped, "dry_run": dry_run}
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
     parser.add_argument(
         "harness",
@@ -561,13 +642,18 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="print available categories and skill names, then exit",
     )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
+    )
     args = parser.parse_args(argv)
 
     only = _split_filter(args.only)
     skills = _split_filter(args.skills)
 
     if args.list_:
-        print(json.dumps(list_skills(ROOT), indent=2))
+        print(json.dumps(list_skills(root or ROOT), indent=2))
         return 0
 
     if not args.harness:
@@ -578,6 +664,19 @@ def main(argv: list[str] | None = None) -> int:
         if args.harness == "all"
         else [args.harness]
     )
+    if args.verify:
+        results = []
+        ok = True
+        for harness in harnesses:
+            config_dir = Path(args.config_dir) if args.config_dir else default_config_dir(
+                harness, _home()
+            )
+            report = verify(harness, root or ROOT, config_dir)
+            results.append(report)
+            ok = ok and bool(report.get("ok"))
+        print(json.dumps(results, indent=2))
+        return 0 if ok else 1
+
     results = []
     for harness in harnesses:
         config_dir = Path(args.config_dir) if args.config_dir else default_config_dir(
@@ -587,7 +686,7 @@ def main(argv: list[str] | None = None) -> int:
             results.append(uninstall(harness, config_dir, dry_run=args.dry_run))
         else:
             results.append(
-                install(harness, ROOT, config_dir, args.dry_run, only, skills)
+                install(harness, root or ROOT, config_dir, args.dry_run, only, skills)
             )
     print(json.dumps(results, indent=2))
     return 0

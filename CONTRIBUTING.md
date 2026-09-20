@@ -40,7 +40,7 @@ Run the full gate before opening a pull request:
 python3 scripts/coacus.py generate     # produce the artifacts your change implies
 python3 scripts/coacus.py validate     # source + artifact contracts
 python3 scripts/coacus.py check        # must report no drift
-python3 -m unittest discover -s tests  # 206 deterministic tests
+python3 -m unittest discover -s tests  # 216 deterministic tests
 ```
 
 `generate` refuses to write while source validation fails. Fix `[error]` lines

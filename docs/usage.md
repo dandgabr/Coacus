@@ -10,7 +10,7 @@ dependency for the core tooling.
 python3 scripts/coacus.py generate   # regenerate dist/, harnesses/<h>/bootstrap/, .agents/ and catalog/
 python3 scripts/coacus.py check      # fail if generated artifacts are stale
 python3 scripts/coacus.py validate   # run source + artifact validators
-python3 -m unittest discover -s tests  # deterministic suite (206 tests)
+python3 -m unittest discover -s tests  # deterministic suite (216 tests)
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
@@ -49,6 +49,7 @@ python3 scripts/coacus_install.py opencode --config-dir /tmp/oc  # test location
 python3 scripts/coacus_install.py codex --only security,engineering  # partial install
 python3 scripts/coacus_install.py codex --skills 'lang-*'
 python3 scripts/coacus_install.py --list                 # categories and skill names
+python3 scripts/coacus_install.py antigravity --verify   # read-only: counts + drift, exit non-zero on mismatch
 ```
 
 Run `generate` first. The installer writes a `coacus-install.json` manifest next
