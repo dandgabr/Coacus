@@ -32,7 +32,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from engine import provenance  # noqa: E402
-from engine.frontmatter import FrontmatterError, parse  # noqa: E402
+from engine.frontmatter import parse  # noqa: E402
 
 MANIFEST = ROOT / "templates/import/import-manifest.json"
 
@@ -321,7 +321,6 @@ def _fix_skill_links(root: Path) -> None:
     """
     index = _skill_index(root)
     index.update(_workflow_index(root))
-    renames = _workflow_renames(root)
     # Agent sources resolve skill paths RELATIVE TO THE REPO ROOT (agent
     # contract); `_convert_agent` already produced those. Only skill and
     # workflow bodies use file-relative links, so skip knowledge/agents here.

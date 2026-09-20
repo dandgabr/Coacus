@@ -22,7 +22,7 @@ import os
 import re
 from pathlib import Path
 
-from engine.frontmatter import Document, parse
+from engine.frontmatter import parse
 
 SOURCE_NAME = "agent.source.md"
 AGENT_FILES = ("AGENT.md", "agent.yaml", "agent.json", "plugin.json")
