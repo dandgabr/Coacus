@@ -113,3 +113,10 @@ Ransomware, credential leakage, DDoS, data exfiltration, business-email compromi
 - To correlate physical infrastructure events with operational resilience goals and logical network zones, see the [security-architect-sabsa](../security-architect-sabsa/SKILL.md) skill.
 - To audit whether operational logs are being generated properly and with privacy (without containing sensitive user data), see the [appsec-owasp-asvs](../../appsec/appsec-owasp-asvs/SKILL.md) skill.
 - To run security incident simulations (Red Team vs Blue Team) and test detection effectiveness, see the [pentester-owasp-wstg](../../appsec/pentester-owasp-wstg/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST CSF 2.0** (verified) — nist.gov/cyberframework
+- **NIST SP 800-61r3** (verified) — csrc.nist.gov/pubs/sp/800/61/r3/final

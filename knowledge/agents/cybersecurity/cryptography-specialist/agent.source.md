@@ -7,6 +7,7 @@ description: >-
   agility and migration, tokenization and format-preserving encryption, and the
   cryptographic controls required by the digital signature standards.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/crypto/crypto-agility-pqc-migration/SKILL.md
   - knowledge/skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md

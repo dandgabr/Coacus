@@ -39,7 +39,15 @@ re-scan directories per turn (D5). If indexes look stale, run
    (skills, agents, tests, provenance) from prose or memory. Read the generated
    `catalog/INDEX.md` (`**Totals:**`), run
    `python3 scripts/coacus_install.py <harness> --verify`, or measure directly.
-   Prose drifts; the generator is the contract.
+   Prose drifts; the generator is the contract. The README corpus table is
+   reconciled against the catalog and the lock by `engine/validators/docs.py`, so
+   a stale count there is a build error; test counts are stated as a command to
+   run, never as a fixed number.
+8. **Versions are resolved, never recalled (version-freshness).** Before naming a
+   version of a standard, framework or library, resolve it in the current session
+   — Context7 for libraries/frameworks, the publisher for standards — and pin the
+   resolved version with its source and date. An unresolved pin is marked
+   `unverified`, never presented as current.
 
 Enforcement status: skills, agents, MCP, hygiene, discovery and language
 validators run in `generate` pre-flight and `validate`; `completeness` (F8)
@@ -48,8 +56,12 @@ CI. Item 4 (English-only) is machine-checked corpus-wide since the F6
 translation. Item 5 is checked: the agent validator rejects a `model` key in a
 canonical source, and the generated `agent.yaml` is asserted to carry
 `model: inherit`. Item 6 is enforced at RUNTIME (the concurrency
-governor + the TOON validator). Item 7 is enforced by the generated catalog and
-the installer's `--verify`; prose counts are not machine-checked.
+governor + the TOON validator). Item 7 is enforced by the generated catalog, the
+installer's `--verify` and the README-count reconciliation in
+`engine/validators/docs.py`. Item 8 is
+advisory: the freshness validator warns on a version-like pin with no nearby
+source anchor or resolution marker, and the `version-freshness` skill carries the
+resolution workflow.
 
 ## Extending the framework (OCP)
 

@@ -75,3 +75,4 @@ When structuring academic reports and reviews:
 - Present a Table of Study Characteristics (Author, Year, Sample/Dataset, Methodology, Main Metrics, and Limitations).
 - Explicitly report potential biases (Risk of Bias) and the level of evidence (e.g., GRADE).
 - Provide complete formal citations (DOI, journal, volume/issue, and authors).
+- **Verify versions and editions before asserting them** (version-freshness): resolve the current edition of a standard, protocol or tool from the publisher or an indexed publication in the current session; state the edition/revision with its source and resolution date, and mark an unresolved pin `unverified` rather than presenting it as current. Never cite a version from memory.

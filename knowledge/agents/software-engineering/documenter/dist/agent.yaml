@@ -45,6 +45,8 @@ instruction: >
   Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
 tools:
   - type: skill_integration
+    path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/engineering/practices/architecture-documentation/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md

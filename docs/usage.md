@@ -10,21 +10,36 @@ dependency for the core tooling.
 python3 scripts/coacus.py generate   # regenerate dist/, harnesses/<h>/bootstrap/, .agents/ and catalog/
 python3 scripts/coacus.py check      # fail if generated artifacts are stale
 python3 scripts/coacus.py validate   # run source + artifact validators
-python3 -m unittest discover -s tests  # deterministic suite (245 tests)
+python3 -m unittest discover -s tests  # deterministic suite
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
-artifacts. It then writes the generated files and checks the **artifact**
-outputs. If artifacts remain inconsistent after writing, it exits non-zero.
-Non-blocking warnings (language markers, oversized descriptions) print as
-`[warn]`.
+artifacts. It also records a provenance entry for every authored skill, workflow
+and agent ([provenance](standards/provenance.md)); the write is idempotent. It
+then writes the generated files and checks the **artifact** outputs. If artifacts
+remain inconsistent after writing, it exits non-zero. Non-blocking warnings
+(language markers, oversized descriptions) print as `[warn]`.
 
 `check` compares disk against a fresh in-memory regeneration and exits 1 on any
 diff. It never writes. Generated files carry no timestamps, so the check is
 deterministic.
 
 `validate` runs source and artifact validators together and prints warnings
-first.
+first. A moving version pin with no resolution anchor is an **error**
+([version-freshness](standards/version-freshness.md)), so the gate blocks a
+training-memory pin from entering the corpus.
+
+### Audit version pins
+
+```bash
+python3 scripts/coacus.py freshness            # read-only inventory of moving pins
+python3 scripts/coacus.py freshness --references  # also scan references/ assets
+```
+
+The command is offline and deterministic: it lists every moving release pin with
+`resolved` or `UNRESOLVED`, exits 1 if any pin is unresolved, and never fetches
+the network. Resolution itself follows the
+[version-freshness](standards/version-freshness.md) standard.
 
 ### Validate a TOON payload
 

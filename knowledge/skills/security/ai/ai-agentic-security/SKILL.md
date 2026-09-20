@@ -61,3 +61,9 @@ Map these to **MITRE ATLAS** (for example, AI Agent Tool Poisoning) and to the *
 - For the content trust boundary in research workflows, see the [untrusted-content-security](../../operations/untrusted-content-security/SKILL.md) skill.
 - For AI governance and assurance, see the [ai-governance-assurance](../ai-governance-assurance/SKILL.md) skill.
 - For adversarial ML in predictive models, see the [ai-adversarial-ml-security](../ai-adversarial-ml-security/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP Top 10 for Agentic Applications 2026** (verified) — genai.owasp.org

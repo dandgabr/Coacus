@@ -36,6 +36,8 @@ instruction: >
   Load the structured definitions from [`agent.json`](agent.json).
 tools:
   - type: skill_integration
+    path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/data/power-bi/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/academic/academic-enterprise-information-systems/SKILL.md

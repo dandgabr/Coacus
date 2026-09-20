@@ -57,3 +57,9 @@ Choose the model from the data sensitivity and the user population, not from con
 - For identity and conditional access, see the [iam-access-management](../../iam/iam-access-management/SKILL.md) skill.
 - For macOS endpoints, see the [macos-endpoint-security](../../platform/macos-endpoint-security/SKILL.md) skill.
 - For mobile malware and forensics, see the [mobile-malware-forensics](../../appsec/mobile-malware-forensics/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-124r2** (verified) — csrc.nist.gov/pubs/sp/800/124/r2/final

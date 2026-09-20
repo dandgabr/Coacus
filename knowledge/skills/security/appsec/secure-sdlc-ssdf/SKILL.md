@@ -56,3 +56,9 @@ When AI or generative models are part of the product, extend the SSDF with the A
 - For design-stage modeling, see the [threat-modeler](../../operations/threat-modeler/SKILL.md) skill.
 - For pipeline automation and security gates, see the [devsecops-engineer](../../operations/devsecops-engineer/SKILL.md) skill.
 - For the OWASP risk baseline, see the [owasp-top-10-2025](../owasp-top-10-2025/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-218 v1.1** (verified) — csrc.nist.gov/pubs/sp/800/218/final

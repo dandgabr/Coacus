@@ -193,3 +193,11 @@ When called upon to perform a Security Code Review or triage SAST findings:
 - **[software-supply-chain-security](../software-supply-chain-security/SKILL.md)**: Software composition analysis (SCA) and third-party dependency auditing.
 - **[appsec-owasp-asvs](../appsec-owasp-asvs/SKILL.md)**: Formal verification requirements (levels 1, 2, and 3) applied to the discovered vulnerabilities.
 - **[devsecops-engineer](../../operations/devsecops-engineer/SKILL.md)**: Automated configuration of SAST tools in the CI/CD pipeline and Quality Gates.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CVSS v3.1** (verified) — first.org/cvss
+- **CVSS v4.0** (verified) — first.org/cvss
+- **OWASP ASVS v5.0.x** (verified) — github.com/OWASP/ASVS tags

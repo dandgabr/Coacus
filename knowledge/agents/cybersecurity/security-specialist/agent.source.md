@@ -6,6 +6,7 @@ description: >-
   (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory
   compliance (LGPD/GDPR) and threat modeling.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/security/appsec/api-protocol-security/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
   - knowledge/skills/security/appsec/business-logic-flaws/SKILL.md

@@ -119,3 +119,13 @@ When asked to design, assess, or audit a solution based on NIST standards:
 - For general compliance and governance, see the [security-grc-compliance](../security-grc-compliance/SKILL.md) skill.
 - For mapping to the 18 CIS controls, see the [cis-controls](../cis-controls/SKILL.md) skill.
 - For SABSA and ZTA security architecture, see the [security-architect-sabsa](../../operations/security-architect-sabsa/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST CSF 2.0** (verified) — nist.gov/cyberframework
+- **NIST SP 800-171 Rev. 3** (verified) — csrc.nist.gov/pubs/sp/800/171/r3/final
+- **NIST SP 800-30 Rev. 1** (verified) — csrc.nist.gov/pubs/sp/800/30/r1/final
+- **NIST SP 800-37 Rev. 2** (verified) — csrc.nist.gov/pubs/sp/800/37/r2/final
+- **NIST SP 800-53 Rev. 5** (verified) — csrc.nist.gov/pubs/sp/800/53/r5/upd1/final (5.2.0)

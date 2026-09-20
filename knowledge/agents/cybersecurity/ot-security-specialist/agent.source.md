@@ -6,6 +6,7 @@ description: >-
   NIST SP 800-82r3, SCADA/PLC/DCS protection, legacy industrial protocols,
   safety-first constraints and MITRE ATT&CK for ICS.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md
   - knowledge/skills/security/operations/ot-ics-security/SKILL.md

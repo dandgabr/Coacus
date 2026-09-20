@@ -62,3 +62,9 @@ Map these to ATT&CK for ICS; note tactics such as Inhibit Response Function and 
 - For embedded device security, see the [hardware-hacking-embedded-security](../../../domains/industry/hardware-hacking-embedded-security/SKILL.md) skill.
 - For the control-loop context, see the [academic-control-systems-theory](../../../domains/academic/academic-control-systems-theory/SKILL.md) skill.
 - For the incident response, see the [secops-incident-responder](../secops-incident-responder/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-82r3** (verified) — csrc.nist.gov/pubs/sp/800/82/r3/final

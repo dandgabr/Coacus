@@ -74,6 +74,14 @@ only when a command produced it in this session.
 - State a number you did not measure as "unverified", or do not state it.
 - If a listing is truncated or errored, say so — do not fill the gap.
 
+## Freshness — resolve, do not recall
+
+Before naming a version of a standard, framework, library or regulation, resolve
+it in the current session — Context7 for libraries and frameworks, the
+publisher for standards — and pin the version with its source and date. An
+unresolved pin is marked `unverified`, never presented as current. The
+`version-freshness` skill carries the workflow.
+
 ## Harness adaptation
 
 This skill names actions, not platform tools. The concrete substitution for

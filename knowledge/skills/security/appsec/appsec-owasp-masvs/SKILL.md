@@ -46,43 +46,43 @@ The v2.x model replaced the legacy L1/L2/R profiles with **8 control groups**; r
 
 *   **Focus:** Prevent the leakage of secrets, PII, and tokens in the device's local storage.
 *   **Controls:** Use **Android KeyStore / EncryptedSharedPreferences** on Android and **iOS Keychain / Data Protection API** on iOS. Prevent writes to external/public directories, disable debug logs (Logcat/Console), and prohibit unsanitized caching of HTTP responses or screenshots.
-*   *Technical details:* [MASVS-STORAGE](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-storage-secure-storage-armazenamento-seguro)
+*   *Technical details:* [MASVS-STORAGE](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-storage-secure-storage)
 
 ### 2. MASVS-CRYPTO (Mobile Cryptography)
 
 *   **Focus:** Ensure the correct use of strong cryptographic primitives and hardware key protection.
 *   **Controls:** Adopt AES-GCM-256 or ChaCha20-Poly1305, prohibit hardcoded keys in code, use a CSPRNG for IVs/Nonces, and bind key generation to hardware modules (**Android StrongBox / iOS Secure Enclave**).
-*   *Technical details:* [MASVS-CRYPTO](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-crypto-cryptography-criptografia-móvel)
+*   *Technical details:* [MASVS-CRYPTO](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-crypto-cryptography)
 
 ### 3. MASVS-AUTH (Mobile Authentication and Session Management)
 
 *   **Focus:** Ensure user identification and protection of local and remote sessions.
 *   **Controls:** Use OAuth 2.0 with **PKCE (Proof Key for Code Exchange)**. For local biometric authentication (BiometricPrompt / LocalAuthentication), bind the access keys in the KeyStore/Keychain to biometric validation with `setUserAuthenticationRequired(true)`.
-*   *Technical details:* [MASVS-AUTH](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-auth-authentication-and-session-management-autenticação-e-sessão)
+*   *Technical details:* [MASVS-AUTH](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-auth-authentication-and-session-management)
 
 ### 4. MASVS-NETWORK (Network Communication)
 
 *   **Focus:** Ensure confidentiality and integrity in the app's data traffic to the API.
 *   **Controls:** Require TLS 1.2+ by default, disable plaintext HTTP traffic on Android (`cleartextTrafficPermitted="false"`) and iOS (ATS). In high-risk apps (MASVS-L2), implement **Certificate Pinning** (OkHttp `CertificatePinner` or TrustKit).
-*   *Technical details:* [MASVS-NETWORK](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-network-network-communication-comunicação-de-rede)
+*   *Technical details:* [MASVS-NETWORK](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-network-network-communication)
 
 ### 5. MASVS-PLATFORM (Interaction with the Mobile Platform)
 
 *   **Focus:** Protect IPC components, WebViews, deep links, and system permissions.
 *   **Controls:** Mark non-shared Android IPC components as `android:exported="false"`, thoroughly validate data coming from deep links/universal links, and harden WebViews (disable `allowFileAccess` and prohibit insecure JavaScript interfaces `addJavascriptInterface`).
-*   *Technical details:* [MASVS-PLATFORM](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-platform-platform-interaction-interação-com-a-plataforma)
+*   *Technical details:* [MASVS-PLATFORM](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-platform-platform-interaction)
 
 ### 6. MASVS-CODE (Code and Build Quality)
 
 *   **Focus:** Ensure compilation with compiler protections and the absence of debug code.
 *   **Controls:** Enable ASLR, PIE, and stack canaries in the build, always compile in **Release** mode (`android:debuggable="false"`), apply obfuscation (R8/ProGuard), and audit third-party SDKs through SCA.
-*   *Technical details:* [MASVS-CODE](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-code-code-quality-and-build-settings-qualidade-de-código-e-build)
+*   *Technical details:* [MASVS-CODE](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-code-code-quality-and-build-settings)
 
 ### 7. MASVS-RESILIENCE (Resilience Against Reverse Engineering)
 
 *   **Focus:** (optional group) Actively hinder analysis with Frida, root/jailbreak, and app tampering.
 *   **Controls:** Implement package integrity verification (Google Play Integrity / iOS App Attest), root/jailbreak detection (RootBeer, Magisk), anti-debugging, and advanced control-flow obfuscation (*Control Flow Flattening*).
-*   *Technical details:* [MASVS-RESILIENCE](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-resilience-resilience-resiliência-contra-engenharia-reversa-e-adulteração)
+*   *Technical details:* [MASVS-RESILIENCE](references/OWASP_MASVS_v2.1_Detailed_Controls.md#masvs-resilience-resilience)
 
 ### 8. MASVS-PRIVACY (Privacy Controls - new in v2.x)
 
@@ -177,3 +177,10 @@ When auditing an Android (APK/AAB) or iOS (IPA) application, deliver the matrix:
 - [threat-modeler](../../operations/threat-modeler/SKILL.md): Maps device theft scenarios, untrusted Wi-Fi networks, and mobile malware.
 - [pentester-owasp-wstg](../pentester-owasp-wstg/SKILL.md): Complements with the execution of dynamic penetration tests in the mobile ecosystem.
 - [security-privacy](../../grc/security-privacy/SKILL.md): Ensures LGPD/GDPR compliance when storing and transmitting PII collected by the mobile application.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP MASVS v2.1.0** (verified) — github.com/OWASP/masvs (latest release)
+- **OWASP Mobile Top 10 2024** (verified) — owasp.org/www-project-mobile-top-10

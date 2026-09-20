@@ -7,6 +7,7 @@ description: >-
   into structured Markdown, writing production-standard SKILL.md files,
   interlinking skills and repository governance.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/documentation-designer/SKILL.md
 ---

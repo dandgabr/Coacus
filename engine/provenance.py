@@ -89,3 +89,67 @@ def write(root: Path, data: dict | None = None) -> Path:
         json.dumps(data or empty(), indent=2) + "\n", encoding="utf-8"
     )
     return path
+
+
+def _sha256(path: Path) -> str:
+    import hashlib
+
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def sync_authoring(root: Path, imported_at: str) -> list[str]:
+    """Ensure every authored source has an ``authoring`` provenance entry.
+
+    The import pipeline records imported files; a file authored directly in this
+    repository (a new skill, workflow or agent) has no importer to record it, so
+    F8 completeness reported it as an orphan. This adds a missing entry and, when
+    an authored entry already exists, refreshes its hashes. It never touches an
+    imported entry and never removes one. Returns the target paths it added.
+
+    Idempotent: a second call with the same tree adds nothing, and an unchanged
+    authored entry keeps its original ``imported_at`` (only a content change
+    rewrites the hash).
+    """
+    data = load(root)
+    entries = data.setdefault("entries", [])
+    by_target = {str(e.get("target_path")): e for e in entries if isinstance(e, dict)}
+
+    candidates: list[Path] = []
+    for pattern in (
+        "knowledge/skills/**/SKILL.md",
+        "methodology/workflows/**/SKILL.md",
+        "knowledge/agents/**/agent.source.md",
+    ):
+        candidates.extend(root.glob(pattern))
+
+    added: list[str] = []
+    changed = False
+    for path in sorted(set(candidates)):
+        rel = path.relative_to(root).as_posix()
+        digest = _sha256(path)
+        entry = by_target.get(rel)
+        if entry is None:
+            entry = {
+                "source_repo": "authoring",
+                "source_commit": "native",
+                "source_path": rel,
+                "source_sha256": digest,
+                "target_path": rel,
+                "target_sha256": digest,
+                "origin_license": "AGPL-3.0",
+                "transform": ["authored"],
+                "aliases": [],
+                "import_run_id": "authored-sync",
+                "imported_at": imported_at,
+            }
+            entries.append(entry)
+            by_target[rel] = entry
+            added.append(rel)
+            changed = True
+        elif entry.get("source_repo") == "authoring" and entry.get("target_sha256") != digest:
+            entry["source_sha256"] = digest
+            entry["target_sha256"] = digest
+            changed = True
+    if changed:
+        write(root, data)
+    return added

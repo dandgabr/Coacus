@@ -11,6 +11,7 @@ validator that enforces it. The rule is what governs the repository.
 | [`agent-manifests.md`](agent-manifests.md) | The single `agent.source.md` source and its generated representations. |
 | [`generated-artifacts.md`](generated-artifacts.md) | Catalog-from-disk, committed generated output and the drift check. |
 | [`mcp-definition.md`](mcp-definition.md) | The single MCP source and its generated harness configs. |
+| [`version-freshness.md`](version-freshness.md) | The rule that versions are resolved from Context7 or an authoritative source, never from memory. |
 | [`discovery.md`](discovery.md) | Generated `.agents/` manifests and the single-scan-per-session rule. |
 | [`orchestration-governance.md`](orchestration-governance.md) | The concurrency governor, the cap, rate-limit handling and orchestrator duties. |
 | [`toon-protocol.md`](toon-protocol.md) | The TOON handoff payload fields, status enum and secret/path rules. |

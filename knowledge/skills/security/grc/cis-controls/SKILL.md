@@ -110,3 +110,10 @@ When planning or implementing CIS-based security improvements:
 - To align CIS Control 16 software security with OWASP ASVS validation, see the [appsec-owasp-asvs](../../appsec/appsec-owasp-asvs/SKILL.md) skill.
 - To map the correspondence of CIS Controls with NIST CSF 2.0 and SP 800-53, see the [nist-frameworks-csf](../nist-frameworks-csf/SKILL.md) skill.
 - To align hardening with the auditable compliance of ISO 27001 (A.8.9 - Configuration Management), see the [iso-27000-series](../iso-27000-series/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CIS Critical Security Controls v8.1** (verified) — cisecurity.org/controls
+- **NIST CSF 2.0** (verified) — nist.gov/cyberframework

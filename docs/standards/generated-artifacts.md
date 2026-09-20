@@ -18,6 +18,18 @@ regeneration, not by patching the catalog.
 completeness` compares those counts against a fresh build from live disk and
 reports any mismatch as a gap.
 
+Prose is not exempt: the README corpus table and the LIVING documentation
+(`README.md`, `CONTRIBUTING.md`, `evals/README.md`, `docs/architecture.md`,
+`docs/usage.md`, `docs/install.md`, `docs/extending.md`, `docs/roadmap.md`,
+`docs/standards/*.md`) state counts that the catalog and the lock already know.
+`engine/validators/docs.py` reconciles every declared number against the measured
+one during `validate`, so a hand-copied count that drifts is a build error (D5 —
+counts are measured, never copied). Historical records are exempt by design:
+`CHANGELOG.md` and `docs/migration.md` describe past states, and a paragraph that
+marks its era ("as of F6") is not a current claim. Volatile numbers that have no
+generator — the test count — are never stated as a fixed value; the docs give the
+command to measure them instead.
+
 ## Generated artifacts are committed
 
 Generated artifacts are committed to git. A harness consumes the repository as-is
@@ -66,6 +78,9 @@ regeneration can be compared byte-for-byte.
   `docstrings`).
 - `python3 scripts/coacus.py completeness` reconciles catalog counts, lock
   targets and orphan skills (`engine/validators/completeness.py`).
+- `python3 scripts/coacus.py validate` reconciles the README corpus table against
+  the catalog and the lock (`engine/validators/docs.py`,
+  `tests/test_docs_counts.py`).
 - `.github/workflows/ci.yml` runs both gates and never `generate`.
 - `tests/test_idempotency.py` asserts `generate` twice produces an identical tree
   and that generated files contain no timestamps.

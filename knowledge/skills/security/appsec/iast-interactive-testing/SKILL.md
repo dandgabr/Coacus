@@ -157,3 +157,9 @@ When structuring IAST in the engineering pipeline:
 - **[dast-application-testing](../dast-application-testing/SKILL.md)**: Provides the active exploitation traffic for the Active IAST mode.
 - **[rasp-runtime-protection](../rasp-runtime-protection/SKILL.md)**: Applies the same instrumentation principles for defensive blocking in production.
 - **[qa-engineer](../../../roles/qa-engineer/SKILL.md)**: Orchestrates the execution of functional test suites coupled to the IAST sensor.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP ASVS v5.0.x** (verified) — github.com/OWASP/ASVS tags

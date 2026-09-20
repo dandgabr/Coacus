@@ -5,6 +5,7 @@ Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Pr
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [architecture-documentation](../../../../skills/engineering/practices/architecture-documentation/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)

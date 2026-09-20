@@ -5,6 +5,7 @@ Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 pro
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [power-bi](../../../../skills/data/power-bi/SKILL.md)
 - [academic-enterprise-information-systems](../../../../skills/domains/academic/academic-enterprise-information-systems/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)

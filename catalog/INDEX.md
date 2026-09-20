@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 287 skill(s) · 71 agent(s) · 1 MCP(s)
+**Totals:** 288 skill(s) · 71 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -145,6 +145,7 @@
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
+| version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
 | framework-grpc | [knowledge/skills/frameworks/framework-grpc/SKILL.md](../knowledge/skills/frameworks/framework-grpc/SKILL.md) |

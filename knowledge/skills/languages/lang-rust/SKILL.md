@@ -100,10 +100,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 - **Dependency Configuration (`Cargo.toml`)**:
   - Define dependencies, optional features, and compilation profiles.
   - Use `cargo check` during development for fast compiles without machine code generation.
-- **Code Quality and Formatting**:
   - **`rustfmt`**: Strict official code formatting (`cargo fmt`).
   - **`clippy`**: Official linter to catch anti-patterns and optimizations (`cargo clippy -- -D warnings`).
-- **Dependency Security**: Run `cargo audit` periodically to check third-party crates for known vulnerabilities.
 
 ---
 

@@ -5,6 +5,7 @@ description: >-
   Specialist Agent in End-to-End Mapping of Code, Applications, Execution
   Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/documentation-designer/SKILL.md
   - knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md

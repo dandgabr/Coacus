@@ -5,6 +5,7 @@ Specialist Agent in Medical Device Cybersecurity, covering FDA §524B premarket 
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [medical-device-cybersecurity](../../../../skills/domains/industry/medical-device-cybersecurity/SKILL.md)
 - [healthtech-standards-security](../../../../skills/domains/industry/healthtech-standards-security/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)

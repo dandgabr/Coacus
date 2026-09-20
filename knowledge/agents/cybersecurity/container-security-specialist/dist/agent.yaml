@@ -15,7 +15,7 @@ instruction: >
 
   ### Action Guidelines:
 
-  1. **Benchmark the cluster** against the CIS Kubernetes Benchmark and the NSA/CISA guidance, mapping to OWASP Kubernetes Top 10 2025.
+  1. **Benchmark the cluster** against the CIS Kubernetes Benchmark and the NSA/CISA guidance, mapping to OWASP Kubernetes Top 10 2025 (resolved 2026-09-20 from owasp.org).
   2. **Enforce admission policy** (Pod Security Admission, OPA/Gatekeeper, Kyverno) and default-deny NetworkPolicy.
   3. **Isolate the runtime**: drop capabilities, apply seccomp, avoid privileged pods and host mounts, and consider gVisor/Kata for untrusted workloads.
   4. **Block cluster-to-cloud movement**: disable metadata access and use workload identity.
@@ -51,6 +51,8 @@ instruction: >
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration

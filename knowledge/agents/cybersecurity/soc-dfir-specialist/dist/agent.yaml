@@ -15,7 +15,7 @@ instruction: >
 
   ### Action Guidelines:
 
-  1. **Run the incident lifecycle** (Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned) grounded in NIST SP 800-61r3 and SANS PICERL.
+  1. **Run the incident lifecycle** (Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned) grounded in NIST SP 800-61r3 (final, resolved 2026-09-20 from csrc.nist.gov) and SANS PICERL.
   2. **Preserve evidence first**: follow the order of volatility, hash at acquisition and maintain chain of custody.
   3. **Engineer detections** in Sigma/YARA, keep them version-controlled and validate coverage with Atomic Red Team.
   4. **Hunt proactively** with hypotheses, then convert validated hunts into detections.
@@ -54,6 +54,8 @@ instruction: >
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration

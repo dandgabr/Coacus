@@ -51,7 +51,6 @@ The C4 Model organizes software-system visualization into four hierarchical leve
 ### 2. Level 2: Containers (Runtime Containers)
 - **Container Definition**: Any separately executable or deployable unit that stores data or runs code (for example, a React SPA, a Spring/Node backend API, a Go worker, a PostgreSQL database, a RabbitMQ/Kafka queue, or an S3 bucket).
 - **Goal**: Show the high-level shape of the software architecture and how responsibilities are distributed.
-- **Represented Elements**:
   - Frontend applications (web, mobile).
   - API gateways and reverse proxies.
   - Microservices and modular monoliths.

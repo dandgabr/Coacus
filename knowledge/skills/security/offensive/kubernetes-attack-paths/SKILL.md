@@ -56,3 +56,9 @@ This skill guides the AI to emulate and assess the Kubernetes-internal kill chai
 - For container runtime defense, see the [container-runtime-security](../../operations/container-runtime-security/SKILL.md) skill.
 - For cloud lateral movement, see the [pentest-cloud-aws-azure-gcp](../../offensive/pentest-cloud-aws-azure-gcp/SKILL.md) skill.
 - For entitlement analysis, see the [ciem-cloud-entitlements](../../iam/ciem-cloud-entitlements/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP Kubernetes Top 10 2025** (verified) — owasp.org/www-project-kubernetes-top-ten

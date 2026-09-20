@@ -6,6 +6,7 @@ description: >-
   BPMN 2.0 process modeling, ERP/CRM systems, IT service governance
   (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/data/power-bi/SKILL.md
   - knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md

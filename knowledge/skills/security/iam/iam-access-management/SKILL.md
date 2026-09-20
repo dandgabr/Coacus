@@ -134,3 +134,9 @@ When asked to design, audit, or resolve access control issues:
 - For cloud IAM controls per the Cloud Security Alliance (CCM v4 - IAM domain), see the [csa-cloud-security](../csa-cloud-security/SKILL.md) skill.
 - To align identity management with CIS Controls v8 controls 5 and 6, see the [cis-controls](../../grc/cis-controls/SKILL.md) skill.
 - For access control requirements in Annex A of ISO 27001:2022 (A.5.15 to A.5.18, A.8.2 to A.8.5), see the [iso-27000-series](../../grc/iso-27000-series/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CIS Critical Security Controls v8.1** (verified) — cisecurity.org/controls
