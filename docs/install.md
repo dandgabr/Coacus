@@ -68,7 +68,13 @@ python3 scripts/coacus_install.py opencode      # one harness
 python3 scripts/coacus_install.py all           # opencode, claude-code, antigravity, codex, cursor
 python3 scripts/coacus_install.py opencode --dry-run
 python3 scripts/coacus_install.py opencode --uninstall
+python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
 ```
+
+`--verify` is read-only: it re-derives the plan from the manifest, reports
+canonical component counts (skills, agents, hooks), the install root and any
+missing/drifted file, and exits non-zero on mismatch. Use it to answer "is it
+installed and current?" instead of counting directories by hand.
 
 Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as
@@ -224,9 +230,13 @@ activation unit; there is no shell hook and no in-process module.
   carries only `name` and `description`. There is **no** `contextFileName`
   field. **[documented]**
 - Plugin activation is by directory: `.agents/plugins/<name>/` in a workspace,
-  `~/.gemini/config/plugins/<name>/` globally. The CLI also supports
-  `agy plugin install /path/to/plugin`, which stages to
-  `~/.gemini/antigravity-cli/plugins/<name>/`. **[documented]**
+  `~/.gemini/config/plugins/<name>/` globally. `agy plugin install` stages an
+  operator-supplied plugin under the CLI's own data dir,
+  `~/.gemini/antigravity-cli/plugins/<name>/`, and imports/mirrors a plugin
+  between gemini and claude. **[documented]** Note this is the CLI's data
+  directory, not where Coacus installs: this script stages at
+  `~/.gemini/config/plugins/coacus/` and never writes
+  `~/.gemini/antigravity-cli/`.
 - Plugin components are `skills/`, `agents/`, `rules/`, `mcp_config.json` and
   `hooks.json`. Rules are capped at 12,000 characters. **[documented]**
 - There is **no** `~/.gemini/config/plugins.json` registry. Earlier Coacus

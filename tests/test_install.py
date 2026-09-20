@@ -361,5 +361,130 @@ class TestPartialInstall(unittest.TestCase):
         self.assertIn("security-grc-compliance", buffer.getvalue())
 
 
+class TestVerify(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        self.config = self.tmp / "config"
+        add_skill(self.root, "knowledge/skills/security/grc/security-grc-compliance")
+        add_skill(self.root, "knowledge/skills/languages/lang-python")
+        add_skill(self.root, "knowledge/skills/languages/lang-rust")
+
+    def test_verify_reports_not_installed(self) -> None:
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertFalse(report["installed"])
+        self.assertFalse(report["ok"])
+        self.assertIn("error", report)
+
+    def test_verify_ok_after_install(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertTrue(report["installed"])
+        self.assertTrue(report["ok"])
+        self.assertEqual(report["counts"]["skills"], 4)
+        self.assertEqual(report["missing"], [])
+        self.assertEqual(report["drifted"], [])
+        self.assertEqual(report["planned_files"], report["recorded_files"])
+
+    def test_verify_counts_are_canonical_not_inferred(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        report = coacus_install.verify("opencode", self.root, self.config)
+        # 4 skills (using-coacus + 3) and no agents in this minimal repo.
+        self.assertEqual(report["counts"]["skills"], 4)
+        self.assertEqual(report["counts"]["agents"], 0)
+        self.assertEqual(
+            report["counts"]["skills"]
+            + report["counts"]["agents"]
+            + report["counts"]["hook_files"]
+            + report["counts"]["other_files"],
+            report["planned_files"],
+        )
+
+    def test_verify_detects_drift(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "skills/lang-python/SKILL.md"
+        target.write_text("tampered\n", encoding="utf-8")
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertFalse(report["ok"])
+        self.assertEqual(report["drifted"], [target.as_posix()])
+
+    def test_verify_detects_missing_file(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "skills/lang-rust/SKILL.md"
+        target.unlink()
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertFalse(report["ok"])
+        self.assertEqual(report["missing"], [target.as_posix()])
+
+    def test_verify_honors_manifest_filters(self) -> None:
+        coacus_install.install(
+            "opencode",
+            self.root,
+            self.config,
+            dry_run=False,
+            only=["languages"],
+        )
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertTrue(report["ok"])
+        self.assertEqual(report["only"], ["languages"])
+        # only the two language skills, not the security one.
+        self.assertEqual(report["counts"]["skills"], 2)
+
+    def test_verify_is_read_only(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        before = sorted(
+            p.as_posix()
+            for p in self.config.rglob("*")
+            if p.is_file()
+        )
+        coacus_install.verify("opencode", self.root, self.config)
+        after = sorted(
+            p.as_posix() for p in self.config.rglob("*") if p.is_file()
+        )
+        self.assertEqual(before, after)
+
+    def test_main_verify_exit_zero_when_ok(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        buffer = StringIO()
+        with redirect_stdout(buffer):
+            code = coacus_install.main(
+                ["opencode", "--verify", "--config-dir", self.config.as_posix()],
+                root=self.root,
+            )
+        self.assertEqual(code, 0)
+        self.assertIn('"ok": true', buffer.getvalue())
+
+    def test_main_verify_exit_one_on_drift(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        (self.config / "skills/lang-python/SKILL.md").write_text(
+            "tampered\n", encoding="utf-8"
+        )
+        buffer = StringIO()
+        with redirect_stdout(buffer):
+            code = coacus_install.main(
+                ["opencode", "--verify", "--config-dir", self.config.as_posix()],
+                root=self.root,
+            )
+        self.assertEqual(code, 1)
+        self.assertIn('"ok": false', buffer.getvalue())
+
+    def test_component_counts_classifies_paths(self) -> None:
+        files = [
+            (Path("/c/skills/lang-python/SKILL.md"), ""),
+            (Path("/c/agent/backend-developer.md"), ""),
+            (Path("/c/agents/toml-agent.toml"), ""),
+            (Path("/c/plugins/coacus/agents/antigravity-agent/agent.md"), ""),
+            (Path("/c/plugins/coacus/governor-hook.sh"), ""),
+            (Path("/c/plugins/coacus/hooks.json"), ""),
+        ]
+        counts = coacus_install._component_counts(files)
+        self.assertEqual(counts["skills"], 1)
+        self.assertEqual(counts["agents"], 3)
+        self.assertEqual(counts["hook_files"], 2)
+        self.assertEqual(counts["other_files"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()

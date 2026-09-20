@@ -5,7 +5,7 @@ into the native shape each AI coding harness expects. Write it once; run it in
 OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
-[![Tests: 206](https://img.shields.io/badge/tests-206-brightgreen.svg)](docs/usage.md)
+[![Tests: 216](https://img.shields.io/badge/tests-216-brightgreen.svg)](docs/usage.md)
 [![Status: F0–F8 complete](https://img.shields.io/badge/status-F0%E2%80%93F8%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
@@ -149,7 +149,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 Six CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
 `coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`. The `tests/` tree
-holds 206 deterministic stdlib `unittest` tests. `evals/` holds four behavior
+holds 216 deterministic stdlib `unittest` tests. `evals/` holds four behavior
 scenarios behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
@@ -177,6 +177,7 @@ python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | co
 python3 scripts/coacus_install.py opencode --dry-run   # preview targets
 python3 scripts/coacus_install.py codex --only security,engineering   # partial install
 python3 scripts/coacus_install.py --list    # available categories and skills
+python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
 ```
 
 The installer is idempotent: it writes a `coacus-install.json` manifest beside
@@ -207,7 +208,7 @@ python3 scripts/coacus.py check         # fail if generated artifacts are stale
 python3 scripts/coacus.py validate      # run source + artifact validators
 python3 scripts/coacus.py completeness  # reconcile sources, lock file and catalog
 python3 scripts/coacus.py toon payload.toon   # validate a TOON handoff payload
-python3 -m unittest discover -s tests   # 206 deterministic tests
+python3 -m unittest discover -s tests   # 216 deterministic tests
 
 python3 scripts/coacus_governor.py status    # running/paused/max/slots_free
 python3 scripts/coacus_eval.py validate      # static scenario gate

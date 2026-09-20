@@ -9,12 +9,23 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
+- `coacus_install.py <harness> --verify`: a read-only check that re-derives the
+  plan from the install manifest and reports canonical component counts
+  (skills, agents, hooks), the install root and any missing/drifted file,
+  exiting non-zero on mismatch. Lets an agent answer "is it installed and
+  current?" with one command instead of counting directories, which is how a
+  concurrent report ended up citing a wrong agent count and two nonexistent
+  paths.
 - Partial installs in `scripts/coacus_install.py`: `--only <categories>` (matched
   against any path segment under a skill root) and `--skills <globs>`, plus
   `--list` to print the available categories and names. Selection is recorded in
   the `coacus-install.json` manifest, so `--uninstall` stays exact. Useful when a
   harness caps the session-start skills budget (e.g. Codex shortening
   descriptions on a full-corpus install).
+- A "Verification — measure, do not infer" section in the entry skill
+  (`using-coacus`), propagated to every harness bootstrap: quote a command's
+  output for any count, path or status; never extend a path from a sibling and
+  never state an unmeasured number.
 - `THIRD-PARTY-NOTICES.md` reproducing the MIT license of the Superpowers
   workflow collection by Jesse Vincent, and pointing at the GPL-3.0 license of
   the imported skills corpus. The installer writes it to each harness skills root.

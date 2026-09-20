@@ -60,6 +60,22 @@ change the source and regenerate.
 Cap concurrent work at the repository's governor limit and hand off between
 agents with compact TOON payloads. Never spawn ungoverned parallel work.
 
+## Verification — measure, do not infer
+
+When asked whether something is installed, loaded or working, run the command
+that answers it and quote its output. A count, a path or a status is a fact
+only when a command produced it in this session.
+
+- Prefer a purpose-built read-only check over `ls`: the installer exposes
+  `python3 scripts/coacus_install.py <harness> --verify`, which prints canonical
+  component counts (skills, agents, hooks), the install root and any drift, and
+  exits non-zero on mismatch. Quote it instead of counting directories.
+- Never extend a path from a sibling that exists. `~/.gemini/antigravity-cli/`
+  existing does not mean `~/.gemini/antigravity-cli/skills/` exists; check the
+  exact path.
+- State a number you did not measure as "unverified", or do not state it.
+- If a listing is truncated or errored, say so — do not fill the gap.
+
 ## Harness adaptation
 
 This skill names actions, not platform tools. The concrete substitution for

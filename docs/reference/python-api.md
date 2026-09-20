@@ -666,11 +666,21 @@ _No docstring._
 
 _No docstring._
 
+#### `def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]`
+
+Compare an installed harness against the repository, read-only.
+
+Reports canonical component counts, the install root, and any file that is
+missing or has drifted from the repository. Exits non-zero (via the caller)
+when the harness is not installed or drift is found. The counts come from
+the plan the installer would write — never inferred — so a report can quote
+this output verbatim.
+
 #### `def uninstall(harness: str, config_dir: Path, dry_run: bool=False) -> dict[str, object]`
 
 _No docstring._
 
-#### `def main(argv: list[str] | None=None) -> int`
+#### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 
 _No docstring._
 
