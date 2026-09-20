@@ -10,15 +10,19 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
-              <config_dir>/skills/.
+              <config_dir>/skills/ and agents under <config_dir>/agent/.
 - claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+              agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               script at bootstrap/session-start.sh (matching hooks.json).
-- antigravity plugin (manifest + rule + skills) -> <config_dir>/config/plugins/coacus/;
-              activation is by directory, so no registry edit is needed.
+- antigravity plugin (manifest + rule + skills + agents) ->
+              <config_dir>/config/plugins/coacus/; activation is by directory,
+              so no registry edit is needed.
 - codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
-              not ~/.codex/skills) + the SessionStart hook at <config_dir>/hooks.json.
-- cursor      skills   -> ~/.agents/skills/<skill>/  + the sessionStart hook at
+              not ~/.codex/skills); agents -> <config_dir>/agents/<name>.toml;
+              plus the SessionStart hook at <config_dir>/hooks.json.
+- cursor      skills   -> ~/.agents/skills/<skill>/; agents ->
+              <config_dir>/agents/<name>.md; plus the sessionStart hook at
               <config_dir>/hooks.json (snake_case `additional_context`).
 
 Usage:
@@ -30,10 +34,12 @@ are idempotent and `--uninstall` removes exactly what was installed.
 
 Partial installs keep the session-start skills budget small: a harness that
 indexes every skill pays for every description. Filter with `--only` (top-level
-category) and/or `--skills` (name glob); `--list` prints what is available.
+category, applied to skills and agents), `--skills` (skill name glob) and/or
+`--agents` (agent name glob); `--list` prints what is available.
 
     python3 scripts/coacus_install.py codex --only security,engineering
     python3 scripts/coacus_install.py codex --skills 'lang-python,framework-*'
+    python3 scripts/coacus_install.py codex --agents 'qa-*,*-architect'
     python3 scripts/coacus_install.py codex --list
 """
 
@@ -143,12 +149,46 @@ def list_skills(root: Path) -> dict[str, object]:
 AGENT_SOURCE_NAME = "agent.source.md"
 
 
-def discover_agents(root: Path) -> list[Path]:
-    """All canonical agent sources: knowledge/agents/<category>/<name>/."""
+def _agent_groups(root: Path) -> dict[str, list[str]]:
+    """Every canonical agent keyed by its source path, with its path segments.
+
+    Returns ``{agent_source: segments}`` where ``segments`` is the relative path
+    from ``knowledge/agents`` down to (but excluding) the agent directory. For
+    ``knowledge/agents/core-orchestration/antigravity-agent/agent.source.md``
+    that is ``("core-orchestration",)``.
+    """
     agents_dir = root / "knowledge" / "agents"
+    groups: dict[str, list[str]] = {}
     if not agents_dir.is_dir():
-        return []
-    return sorted(agents_dir.glob("*/*/" + AGENT_SOURCE_NAME))
+        return groups
+    for source in sorted(agents_dir.glob("*/*/" + AGENT_SOURCE_NAME)):
+        rel = source.parent.relative_to(agents_dir)
+        groups[str(source)] = list(rel.parts[:-1])
+    return groups
+
+
+def discover_agents(
+    root: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[Path]:
+    """All canonical agent sources: knowledge/agents/<category>/<name>/.
+
+    ``only`` keeps agents whose path under ``knowledge/agents`` contains one of
+    the given category tokens (matched against every path segment). ``agents``
+    keeps agents whose directory name matches one of the given fnmatch globs.
+    Both filters are OR-ed within their own list and AND-ed with each other; an
+    empty filter is no filter. ``--skills`` never narrows agents.
+    """
+    groups = _agent_groups(root)
+    found: list[Path] = []
+    for source_str, segments in groups.items():
+        if only and not any(token in segments for token in only):
+            continue
+        if agents and not any(
+            fnmatch.fnmatch(Path(source_str).parent.name, pat) for pat in agents
+        ):
+            continue
+        found.append(Path(source_str))
+    return found
 
 
 def _agent_meta(source: Path) -> dict[str, object]:
@@ -163,10 +203,13 @@ def _agent_meta(source: Path) -> dict[str, object]:
     }
 
 
-def _render_agent_opencode(source: Path) -> str:
+def _render_agent_opencode(source: Path, root: Path) -> str:
     """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
     meta = _agent_meta(source)
-    rel = source.relative_to(ROOT).as_posix()
+    try:
+        rel = source.relative_to(root).as_posix()
+    except ValueError:
+        rel = source.as_posix()
     return (
         "---\n"
         f"description: {meta['description']}\n"
@@ -177,8 +220,12 @@ def _render_agent_opencode(source: Path) -> str:
     )
 
 
-def _render_agent_antigravity(source: Path) -> str:
-    """Antigravity custom-agent markdown: frontmatter + H1-delimited body."""
+def _render_agent_named(source: Path) -> str:
+    """Agent markdown with name+description frontmatter and an H1 body.
+
+    Shared by antigravity, Claude Code and Cursor, whose agent files carry the
+    name in frontmatter (OpenCode derives it from the filename instead).
+    """
     meta = _agent_meta(source)
     body = meta["body"]
     first = body.lstrip().splitlines()[:1]
@@ -208,29 +255,44 @@ def _render_agent_codex(source: Path) -> str:
     )
 
 
-def _plan_agents_opencode(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+def _plan_agents_opencode(
+    root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[tuple[Path, str]]:
     plan: list[tuple[Path, str]] = []
-    for source in discover_agents(root):
+    for source in discover_agents(root, only=only, agents=agents):
         name = str(_agent_meta(source)["name"])
-        plan.append((agents_dir / f"{name}.md", _render_agent_opencode(source)))
+        plan.append((agents_dir / f"{name}.md", _render_agent_opencode(source, root)))
     return plan
 
 
-def _plan_agents_antigravity(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+def _plan_agents_antigravity(
+    root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[tuple[Path, str]]:
     plan: list[tuple[Path, str]] = []
-    for source in discover_agents(root):
+    for source in discover_agents(root, only=only, agents=agents):
         name = str(_agent_meta(source)["name"])
-        plan.append(
-            (agents_dir / name / "agent.md", _render_agent_antigravity(source))
-        )
+        plan.append((agents_dir / name / "agent.md", _render_agent_named(source)))
     return plan
 
 
-def _plan_agents_codex(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+def _plan_agents_codex(
+    root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[tuple[Path, str]]:
     plan: list[tuple[Path, str]] = []
-    for source in discover_agents(root):
+    for source in discover_agents(root, only=only, agents=agents):
         name = str(_agent_meta(source)["name"])
         plan.append((agents_dir / f"{name}.toml", _render_agent_codex(source)))
+    return plan
+
+
+def _plan_agents_named(
+    root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[tuple[Path, str]]:
+    """Agent markdown (name+description) for Claude Code and Cursor."""
+    plan: list[tuple[Path, str]] = []
+    for source in discover_agents(root, only=only, agents=agents):
+        name = str(_agent_meta(source)["name"])
+        plan.append((agents_dir / f"{name}.md", _render_agent_named(source)))
     return plan
 
 
@@ -263,6 +325,7 @@ def _plan_opencode(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
     """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
@@ -281,7 +344,7 @@ def _plan_opencode(
             )
         )
     plan += _plan_skills(root, config_dir / "skills", only, skills)
-    plan += _plan_agents_opencode(root, config_dir / "agent")
+    plan += _plan_agents_opencode(root, config_dir / "agent", only, agents)
     return plan
 
 
@@ -290,9 +353,12 @@ def _plan_claude(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
-    """Skills + a hook plugin whose script path matches the generated hooks.json."""
+    """Skills + subagents + a hook plugin whose script matches hooks.json."""
     plan = _plan_skills(root, config_dir / "skills", only, skills)
+    # Claude Code subagents load from ~/.claude/agents/<name>.md.
+    plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     plugin = config_dir / "plugins" / "coacus"
     plan.append(
         (
@@ -333,6 +399,7 @@ def _plan_antigravity(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
@@ -342,7 +409,7 @@ def _plan_antigravity(
     """
     plugin = config_dir / "config" / "plugins" / "coacus"
     plan = _plan_skills(root, plugin / "skills", only, skills)
-    plan += _plan_agents_antigravity(root, plugin / "agents")
+    plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
     for name in ("plugin.json", "coacus-rule.md"):
         source = root / "harnesses/antigravity/bootstrap" / name
         plan.append((plugin / name, source.read_text(encoding="utf-8")))
@@ -397,6 +464,7 @@ def _plan_codex(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
     """Skills to the documented scan root + the SessionStart hook.
 
@@ -408,7 +476,7 @@ def _plan_codex(
     # Codex scans $HOME/.agents/skills, not $config_dir/.codex/skills.
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     # Codex agent roles live in $CODEX_HOME/agents/*.toml.
-    plan += _plan_agents_codex(root, config_dir / "agents")
+    plan += _plan_agents_codex(root, config_dir / "agents", only, agents)
     script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
@@ -426,15 +494,18 @@ def _plan_cursor(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
-    """Skills to a Cursor scan root + the sessionStart hook.
+    """Skills to a Cursor scan root + subagents + the sessionStart hook.
 
     Cursor hooks live at ``~/.cursor/hooks.json`` (user) or
     ``<project>/.cursor/hooks.json``; the output key is snake_case
-    ``additional_context``. Commands are repo-absolute.
+    ``additional_context``. Subagents load from ``~/.cursor/agents/<name>.md``.
+    Commands are repo-absolute.
     """
     plan: list[tuple[Path, str]] = []
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
+    plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
@@ -453,17 +524,18 @@ def plan(
     config_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> list[tuple[Path, str]]:
     if harness == "opencode":
-        return _plan_opencode(root, config_dir, only, skills)
+        return _plan_opencode(root, config_dir, only, skills, agents)
     if harness == "claude-code":
-        return _plan_claude(root, config_dir, only, skills)
+        return _plan_claude(root, config_dir, only, skills, agents)
     if harness == "antigravity":
-        return _plan_antigravity(root, config_dir, only, skills)
+        return _plan_antigravity(root, config_dir, only, skills, agents)
     if harness == "codex":
-        return _plan_codex(root, config_dir, only, skills)
+        return _plan_codex(root, config_dir, only, skills, agents)
     if harness == "cursor":
-        return _plan_cursor(root, config_dir, only, skills)
+        return _plan_cursor(root, config_dir, only, skills, agents)
     return []
 
 
@@ -474,8 +546,9 @@ def install(
     dry_run: bool,
     only: list[str] | None = None,
     skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> dict[str, object]:
-    files = plan(harness, root, config_dir, only, skills)
+    files = plan(harness, root, config_dir, only, skills, agents)
     if dry_run:
         return {
             "harness": harness,
@@ -483,6 +556,7 @@ def install(
             "dry_run": True,
             "only": only or [],
             "skills": skills or [],
+            "agents": agents or [],
         }
     written: list[str] = []
     for target, content in files:
@@ -497,6 +571,7 @@ def install(
                 "files": written,
                 "only": only or [],
                 "skills": skills or [],
+                "agents": agents or [],
             },
             indent=2,
         )
@@ -523,10 +598,23 @@ def _classify(target: Path) -> str:
     return "other"
 
 
+def _agent_key(target: Path) -> str:
+    """Stable identity for an installed agent file across both layouts.
+
+    Antigravity nests ``<agents>/<name>/agent.md`` (identity = the directory);
+    OpenCode, Claude Code, Cursor and Codex write flat ``<agents>/<name>.md``
+    or ``.toml`` (identity = the file itself). Using ``parent`` for both would
+    collapse every flat agent in one directory into a single count.
+    """
+    if target.name == "agent.md":
+        return target.parent.as_posix()
+    return target.as_posix()
+
+
 def _component_counts(files: list[tuple[Path, str]]) -> dict[str, int]:
     """Distinct skills/agents plus hook/other file counts, from a plan."""
     skills = {t.parent.as_posix() for t, _ in files if t.name == "SKILL.md"}
-    agents = {t.parent.as_posix() for t, _ in files if _classify(t) == "agent"}
+    agents = {_agent_key(t) for t, _ in files if _classify(t) == "agent"}
     hooks = [t for t, _ in files if _classify(t) == "hook"]
     other = [t for t, _ in files if _classify(t) == "other"]
     return {
@@ -559,7 +647,8 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     data = json.loads(manifest.read_text(encoding="utf-8"))
     only = data.get("only") or None
     skills = data.get("skills") or None
-    files = plan(harness, root, config_dir, only, skills)
+    agents = data.get("agents") or None
+    files = plan(harness, root, config_dir, only, skills, agents)
     missing = [
         t.as_posix() for t, _ in files if not t.is_file()
     ]
@@ -575,6 +664,7 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
             "install_root": config_dir.as_posix(),
             "only": only or [],
             "skills_filter": skills or [],
+            "agents_filter": agents or [],
             "counts": _component_counts(files),
             "planned_files": len(files),
             "recorded_files": len(recorded),
@@ -637,6 +727,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="comma-separated skill name globs to install (e.g. 'lang-*,framework-*')",
     )
     parser.add_argument(
+        "--agents",
+        help="comma-separated agent name globs to install (e.g. 'qa-*,*-architect')",
+    )
+    parser.add_argument(
         "--list",
         dest="list_",
         action="store_true",
@@ -651,6 +745,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     only = _split_filter(args.only)
     skills = _split_filter(args.skills)
+    agents = _split_filter(args.agents)
 
     if args.list_:
         print(json.dumps(list_skills(root or ROOT), indent=2))
@@ -686,7 +781,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             results.append(uninstall(harness, config_dir, dry_run=args.dry_run))
         else:
             results.append(
-                install(harness, root or ROOT, config_dir, args.dry_run, only, skills)
+                install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents)
             )
     print(json.dumps(results, indent=2))
     return 0

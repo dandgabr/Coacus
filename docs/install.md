@@ -90,15 +90,26 @@ corpus overflows its skills context budget. Install only what a session needs:
 python3 scripts/coacus_install.py codex --only security,engineering
 python3 scripts/coacus_install.py codex --skills 'lang-*,framework-*'
 python3 scripts/coacus_install.py codex --only languages --skills 'lang-python,lang-rust'
+python3 scripts/coacus_install.py codex --agents 'qa-*,*-architect'
 python3 scripts/coacus_install.py --list     # categories and skill names, then exit
 ```
 
 - `--only` matches the top-level category (`security`, `domains`, `languages`, …)
   or any nested segment (`academic`, `appsec`, `grc`, …); the workflows
-  collection is selected with `workflows`.
-- `--skills` matches skill directory names with fnmatch globs.
-- Tokens are comma-separated; the two filters are AND-ed, and the selected files
+  collection is selected with `workflows`. It filters **both** trees: skills and
+  agents (agent categories live under `knowledge/agents/`, e.g.
+  `core-orchestration`, `cybersecurity`).
+- `--skills` matches skill directory names with fnmatch globs. It never narrows
+  agents.
+- `--agents` matches agent directory names with fnmatch globs. It never narrows
+  skills.
+- Tokens are comma-separated; the filters are AND-ed, and the selected files
   are recorded in the manifest, so `--uninstall` stays exact.
+
+Every harness installs agents: OpenCode and Cursor as
+`<config>/agent(s)/<name>.md`, Claude Code as `~/.claude/agents/<name>.md`,
+Antigravity as `<plugin>/agents/<name>/agent.md`, Codex as
+`~/.codex/agents/<name>.toml`.
 
 ## opencode
 
@@ -175,6 +186,9 @@ both injects the body twice ([session-start-bootstrap](standards/session-start-b
 **Vendor facts**
 
 - Personal skills live at `~/.claude/skills/<name>/SKILL.md`. **[documented]**
+- Personal subagents live at `~/.claude/agents/<name>.md` — markdown with YAML
+  frontmatter (`name`, `description`) and the system prompt as the body.
+  **[documented]**
 - The supported plugin route is a plugin directory with
   `.claude-plugin/plugin.json` plus a marketplace file
   `.claude-plugin/marketplace.json`, installed with `/plugin marketplace add`
@@ -194,8 +208,9 @@ both injects the body twice ([session-start-bootstrap](standards/session-start-b
 python3 scripts/coacus_install.py claude-code
 ```
 
-This mirrors the skills to `~/.claude/skills/<skill>/` and stages the hook plugin
-at `~/.claude/plugins/coacus/` with `.claude-plugin/plugin.json`,
+This mirrors the skills to `~/.claude/skills/<skill>/`, the agents to
+`~/.claude/agents/<name>.md`, and stages the hook plugin at
+`~/.claude/plugins/coacus/` with `.claude-plugin/plugin.json`,
 `hooks/hooks.json` and `bootstrap/session-start.sh`. Treat that staging as a
 local helper. For a durable install across machines, publish the repository as a
 Claude Code plugin and install it through the marketplace path, which is the
@@ -340,8 +355,14 @@ session. The handler is fire-and-forget and prints the snake_case top-level key
 - Skills load from `.cursor/skills/`, `~/.cursor/skills/`, `.agents/skills/` and
   `~/.agents/skills/`, plus the Claude and Codex compatibility locations.
   **[documented]**
+- Subagents are markdown files with YAML frontmatter (`name`, `description`) and
+  the prompt as the body; user subagents live at `~/.cursor/agents/<name>.md`,
+  project subagents at `<project>/.cursor/agents/`. Cursor also reads
+  `~/.claude/agents/` and `~/.codex/agents/`. **[documented]**
 - The Coacus hook install completes and emits `additional_context` against a
   temporary config directory. **[verified locally]**
+- The Coacus agent install writes `<config>/agents/<name>.md` and `--verify`
+  counts them. **[verified locally]**
 
 The legacy `hooks-cursor.json` filename is gone from the adapter. The render uses
 `.cursor/hooks.json` and emits `additional_context`.
@@ -352,10 +373,11 @@ The legacy `hooks-cursor.json` filename is gone from the adapter. The render use
 python3 scripts/coacus_install.py cursor
 ```
 
-The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root — and
-the hook to `~/.cursor/hooks.json` with `__COACUS_ROOT__` substituted. The
-bootstrap script is staged at `~/.cursor/coacus/session-start.sh`. For a project
-install, copy the same two artifacts into `<project>/.cursor/` by hand.
+The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root — the
+agents to `~/.cursor/agents/<name>.md`, and the hook to `~/.cursor/hooks.json`
+with `__COACUS_ROOT__` substituted. The bootstrap script is staged at
+`~/.cursor/coacus/session-start.sh`. For a project install, copy the same
+artifacts into `<project>/.cursor/` by hand.
 
 **Verify**
 
@@ -374,11 +396,11 @@ The last command must print `True`. The script must not emit
 
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` | plugin load **[verified locally]**; mirror path **[unverified]** |
-| **claude-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
-| **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/`; activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
-| **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
-| **cursor** | A (shell hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
+| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load **[verified locally]**; mirror path **[unverified]** |
+| **claude-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
+| **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
+| **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
+| **cursor** | A (shell hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
 
 ### Verifying
 

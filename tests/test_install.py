@@ -33,6 +33,17 @@ def make_repo(tmp: Path) -> Path:
     (plugin / "coacus.js").write_text(
         "const COACUS_ROOT = '__COACUS_ROOT__';\n", encoding="utf-8"
     )
+    for harness in ("claude-code", "codex", "cursor"):
+        base = root / f"harnesses/{harness}/bootstrap"
+        base.mkdir(parents=True)
+        (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
+        (base / "hooks.json").write_text(
+            '{"command": "__COACUS_ROOT__/x"}\n', encoding="utf-8"
+        )
+    anti = root / "harnesses/antigravity/bootstrap"
+    anti.mkdir(parents=True)
+    (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
+    (anti / "coacus-rule.md").write_text("# rule\n", encoding="utf-8")
     return root
 
 
@@ -46,6 +57,18 @@ def add_skill(root: Path, relative: str) -> Path:
         encoding="utf-8",
     )
     return skill
+
+
+def add_agent(root: Path, relative: str) -> Path:
+    """Create a minimal agent under ``relative`` (e.g. knowledge/agents/x/name)."""
+    agent = root / relative
+    agent.mkdir(parents=True, exist_ok=True)
+    name = agent.name
+    (agent / coacus_install.AGENT_SOURCE_NAME).write_text(
+        f"---\nname: {name}\ndescription: test agent\n---\n\n# {name}\n",
+        encoding="utf-8",
+    )
+    return agent
 
 
 class TestInstaller(unittest.TestCase):
@@ -484,6 +507,107 @@ class TestVerify(unittest.TestCase):
         self.assertEqual(counts["agents"], 3)
         self.assertEqual(counts["hook_files"], 2)
         self.assertEqual(counts["other_files"], 0)
+
+    def test_component_counts_distinguish_flat_agents(self) -> None:
+        files = [
+            (Path("/c/agents/backend-developer.md"), ""),
+            (Path("/c/agents/qa-testing-specialist.md"), ""),
+            (Path("/c/agent/task.md"), ""),
+        ]
+        counts = coacus_install._component_counts(files)
+        self.assertEqual(counts["agents"], 3)
+
+
+class TestAgentFiltering(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        self.config = self.tmp / "config"
+        add_agent(self.root, "knowledge/agents/cybersecurity/pentester-agent")
+        add_agent(self.root, "knowledge/agents/cybersecurity/security-architect")
+        add_agent(self.root, "knowledge/agents/core-orchestration/general")
+        add_agent(self.root, "knowledge/agents/software-engineering/backend-developer")
+
+    def installed_agents(self, config: Path | None = None) -> set[str]:
+        agents_dir = (config or self.config) / "agent"
+        if not agents_dir.is_dir():
+            return set()
+        return {p.stem for p in agents_dir.glob("*.md")}
+
+    def test_discover_agents_unfiltered_returns_everything(self) -> None:
+        names = {a.parent.name for a in coacus_install.discover_agents(self.root)}
+        self.assertEqual(
+            names,
+            {"pentester-agent", "security-architect", "general", "backend-developer"},
+        )
+
+    def test_only_selects_agents_by_category(self) -> None:
+        names = {
+            a.parent.name
+            for a in coacus_install.discover_agents(self.root, only=["cybersecurity"])
+        }
+        self.assertEqual(names, {"pentester-agent", "security-architect"})
+
+    def test_agents_filter_accepts_globs(self) -> None:
+        names = {
+            a.parent.name
+            for a in coacus_install.discover_agents(self.root, agents=["*-architect"])
+        }
+        self.assertEqual(names, {"security-architect"})
+
+    def test_only_token_matches_whole_segment_not_substring(self) -> None:
+        names = {
+            a.parent.name
+            for a in coacus_install.discover_agents(self.root, only=["security"])
+        }
+        self.assertEqual(names, set())
+
+    def test_skills_filter_never_narrows_agents(self) -> None:
+        coacus_install.install(
+            "opencode", self.root, self.config, dry_run=False, skills=["lang-*"]
+        )
+        self.assertEqual(len(self.installed_agents()), 4)
+
+    def test_partial_install_filters_agents_by_category(self) -> None:
+        coacus_install.install(
+            "opencode", self.root, self.config, dry_run=False, only=["cybersecurity"]
+        )
+        self.assertEqual(
+            self.installed_agents(), {"pentester-agent", "security-architect"}
+        )
+
+    def test_agents_glob_keeps_skills_intact(self) -> None:
+        coacus_install.install(
+            "opencode", self.root, self.config, dry_run=False, agents=["*-architect"]
+        )
+        self.assertEqual(self.installed_agents(), {"security-architect"})
+        self.assertTrue((self.config / "skills/using-coacus/SKILL.md").is_file())
+
+    def test_manifest_records_agents_filter(self) -> None:
+        coacus_install.install(
+            "opencode", self.root, self.config, dry_run=False, agents=["pentester-*"]
+        )
+        manifest = json.loads(
+            (self.config / coacus_install.MANIFEST_NAME).read_text(encoding="utf-8")
+        )
+        self.assertEqual(manifest["agents"], ["pentester-*"])
+
+    def test_all_harnesses_install_agents(self) -> None:
+        for harness in ("opencode", "claude-code", "antigravity", "codex", "cursor"):
+            config = self.tmp / f"cfg-{harness}"
+            coacus_install.install(harness, self.root, config, dry_run=False)
+            found = [
+                p
+                for p in config.rglob("*")
+                if p.is_file()
+                and (
+                    p.stem == "pentester-agent"
+                    or (p.name == "agent.md" and p.parent.name == "pentester-agent")
+                )
+            ]
+            self.assertTrue(found, f"{harness} installed no agent files")
 
 
 if __name__ == "__main__":
