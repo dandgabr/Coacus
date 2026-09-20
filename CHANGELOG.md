@@ -39,6 +39,14 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   actual model, and the generated `agent.yaml` carries `model: inherit` (already
   asserted in `tests/test_generators.py`). This closes the last self-declared
   "not yet validated" gap in the `AGENTS.md` enforcement paragraph.
+- The behavior-eval live runner (`scripts/coacus_eval.py`) now reads each
+  harness's non-interactive invocation from `harnesses/<h>/harness.json`
+  (`live_cli`) instead of a hardcoded `opencode`-only map, and gains
+  `--harness <name>` to override a scenario's target. Live acceptance is now
+  possible for OpenCode, Codex (`codex exec`) and Antigravity (`agy --print`) —
+  previously only OpenCode. A harness without `live_cli` is reported as
+  `NO_RUNNER`. The docstring's promised `--harness` flag, which the code never
+  implemented, now exists.
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and

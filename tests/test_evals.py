@@ -20,6 +20,9 @@ SCENARIO = {
     "acceptance": "Says ok.",
 }
 
+# A live-CLI map as the runner would read it from harness.json.
+CLIS = {"opencode": ["opencode", "run"], "codex": ["codex", "exec"]}
+
 
 def make_repo(tmp: Path, scenario: dict = SCENARIO) -> Path:
     root = tmp / "repo"
@@ -134,7 +137,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         fake = sp.CompletedProcess(args=[], returncode=1, stdout="partial", stderr="auth")
         with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
-            transcript, status = coacus_eval._run_harness(scenario, 5)
+            transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertEqual(status, "EXIT_1")
         self.assertEqual(transcript, "")
 
@@ -145,7 +148,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         fake = sp.CompletedProcess(args=[], returncode=0, stdout="\x1b[32mok\x1b[0m", stderr="")
         with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
-            transcript, status = coacus_eval._run_harness(scenario, 5)
+            transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertEqual(status, "OK")
         self.assertEqual(transcript, "ok")
 
@@ -156,8 +159,18 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         with mock.patch.object(
             coacus_eval.subprocess, "run", side_effect=FileNotFoundError
         ):
-            transcript, status = coacus_eval._run_harness(scenario, 5)
+            transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertTrue(status.startswith("NO_CLI"))
+
+    def test_harness_without_live_cli_is_no_runner(self) -> None:
+        scenario = {"harness": "cursor", "prompt": "x", "checks": []}
+        transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
+        self.assertEqual(status, "NO_RUNNER (cursor)")
+
+    def test_live_clis_read_from_harness_json(self) -> None:
+        clis = coacus_eval._live_clis(Path(coacus_eval.ROOT))
+        self.assertEqual(clis["codex"], ["codex", "exec"])
+        self.assertEqual(clis["antigravity"], ["agy", "--print"])
 
     def test_verdict_parsing(self) -> None:
         self.assertTrue(coacus_eval._verdict_pass("VERDICT: PASS\nok"))
@@ -171,7 +184,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         with mock.patch.object(
             coacus_eval.subprocess, "run", side_effect=FileNotFoundError
         ):
-            verdict = coacus_eval._judge(scenario, "t", "nonexistent-judge", False)
+            verdict = coacus_eval._judge(scenario, "t", "nonexistent-judge", False, CLIS)
         self.assertIsNone(verdict["passed"])
 
     def test_seeded_scenarios_are_valid(self) -> None:

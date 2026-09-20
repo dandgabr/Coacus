@@ -9,6 +9,7 @@
     ]
   },
   "detection": ["GEMINI_DIR", "ANTIGRAVITY"],
+  "live_cli": ["agy", "--print"],
   "plugins": [
     { "path": "harnesses/antigravity/bootstrap/governor-hook.sh", "kind": "governor-gate" }
   ],

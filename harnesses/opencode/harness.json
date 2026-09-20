@@ -8,6 +8,7 @@
     ]
   },
   "detection": ["OPENCODE_CONFIG_DIR", "OPENCODE"],
+  "live_cli": ["opencode", "run"],
   "plugins": [
     { "path": "harnesses/opencode/bootstrap/governor-gate.js", "kind": "governor-gate" }
   ],

@@ -42,10 +42,17 @@ python3 scripts/coacus_eval.py run --judge-cmd "my-judge"
 
 # judged by an orchestrated subagent through the same harness (multi-agent pattern)
 python3 scripts/coacus_eval.py run --judge-agent
+
+# override the scenario's harness — exercise any locally installed live CLI
+python3 scripts/coacus_eval.py run --scenario skill-first-discipline --harness codex
 ```
 
-The live runner requires the target harness CLI on `PATH` (currently `opencode`
-only, the locally verified harness). It never runs in CI.
+The live runner drives a real agent CLI and never runs in CI. Each harness
+declares its non-interactive invocation in `harnesses/<h>/harness.json`
+(`live_cli`): `opencode run`, `codex exec`, `agy --print`. A harness without one
+is reported as `NO_RUNNER` (currently `claude-code` and `cursor`, whose binaries
+were not available locally). `--harness` overrides the scenario's target, so one
+scenario runs against every installed CLI.
 
 ## Seeded scenarios (F5)
 

@@ -41,6 +41,9 @@ from the entry skill would create two hand-maintained copies that drift.
 - `bootstrap.native_key` and `bootstrap.forbidden_keys` — the one native field to
   emit and the aliases never to emit.
 - `detection`, `tool_mapping`, `tool_denylist`, `install`.
+- `live_cli` (optional) — the non-interactive invocation the behavior-eval live
+  runner uses for this harness (`["opencode", "run"]`, `["codex", "exec"]`,
+  `["agy", "--print"]`). Absent means the harness cannot run live.
 
 A new harness is a new data file. A new shape is an engine change.
 
