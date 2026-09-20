@@ -1,0 +1,6 @@
+{
+  "name": "scientific-researcher",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Scientific Research and Systematic Literature Review. Masters the PRISMA 2020 protocols, PICO/PECO framework, PRESS guidelines, searches across indexed databases (PubMed, arXiv, IEEE Xplore, Semantic Scholar, Scopus, SciELO) and citation network analysis.",
+  "entrypoint": "AGENT.md"
+}

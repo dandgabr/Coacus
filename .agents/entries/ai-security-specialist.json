@@ -1,0 +1,8 @@
+{
+  "name": "ai-security-specialist",
+  "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/ai-security-specialist/dist",
+  "fingerprint": "ee8a6d2ffe4dd464"
+}

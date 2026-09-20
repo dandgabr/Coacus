@@ -1,0 +1,6 @@
+{
+  "name": "reverse-engineer-agent",
+  "version": "0.1.0",
+  "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+  "entrypoint": "AGENT.md"
+}

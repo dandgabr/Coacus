@@ -1,0 +1,8 @@
+{
+  "name": "code-optimizer",
+  "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio) and data-intensive system architecture.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/code-optimizer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/code-optimizer/dist",
+  "fingerprint": "074ff28dd9d1c78f"
+}

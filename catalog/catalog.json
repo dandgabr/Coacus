@@ -1,12 +1,1213 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 0,
-    "skills": 1,
+    "agents": 58,
+    "skills": 214,
     "mcps": 1
   },
-  "agents": [],
+  "agents": [
+    {
+      "name": "ai-memory-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Long-Term Memory, Session Continuity and ai-memory Governance. Masters semantic wiki queries, structured recording of ADRs/durable decisions, cross-agent handoff management, integrity auditing and lifecycle observation consolidation.",
+      "source": "knowledge/agents/specialized-domains/ai-memory-specialist/agent.source.md"
+    },
+    {
+      "name": "ai-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
+      "source": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md"
+    },
+    {
+      "name": "antigravity-agent",
+      "category": "core-orchestration",
+      "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
+      "source": "knowledge/agents/core-orchestration/antigravity-agent/agent.source.md"
+    },
+    {
+      "name": "backend-developer",
+      "category": "software-engineering",
+      "description": "Senior Backend Development Agent specialized in designing robust APIs (REST, gRPC, GraphQL), integrating efficient databases (SQL/NoSQL), applying safe concurrency, resilient asynchronous processing and writing integration tests, while ensuring clean, secure, performant code.",
+      "source": "knowledge/agents/software-engineering/backend-developer/agent.source.md"
+    },
+    {
+      "name": "biomedical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Biomedical Engineering, covering biosignal processing (ECG, EEG, EMG), medical instrumentation with isolation amplifiers (IA), medical imaging physics (CT, MRI, ultrasound) and interoperability with DICOM and HL7/FHIR.",
+      "source": "knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md"
+    },
+    {
+      "name": "biotechnologist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
+      "source": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md"
+    },
+    {
+      "name": "career-coach-job-hunter",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Career Strategy, Job Sourcing, ATS Resume Review and Optimization and Professional Profile Improvement (LinkedIn, Upwork, GitHub). Masters ATS parsing algorithms, XYZ impact formulas, Google Dorks for job search and freelancer proposal strategies.",
+      "source": "knowledge/agents/specialized-domains/career-coach-job-hunter/agent.source.md"
+    },
+    {
+      "name": "chemical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Chemical Engineering, Synthesis and Industrial Processes, covering mass and energy balances, chemical kinetics, reactor design (CSTR, PFR, PBR), organic/inorganic synthesis, instrumental analysis (HPLC/GC/NMR), solution thermodynamics and transport phenomena.",
+      "source": "knowledge/agents/academic-sciences/chemical-engineer/agent.source.md"
+    },
+    {
+      "name": "civil-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Civil and Structural Engineering, covering structural analysis, mechanics of materials, soil mechanics and geotechnics (Terzaghi, Mohr-Coulomb), foundations and structural element design.",
+      "source": "knowledge/agents/academic-sciences/civil-engineer/agent.source.md"
+    },
+    {
+      "name": "cloud-infrastructure-architect",
+      "category": "data-cloud-devops",
+      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+      "source": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md"
+    },
+    {
+      "name": "cloudflare-specialist",
+      "category": "data-cloud-devops",
+      "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the new cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
+      "source": "knowledge/agents/data-cloud-devops/cloudflare-specialist/agent.source.md"
+    },
+    {
+      "name": "code-explorer",
+      "category": "research-discovery",
+      "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+      "source": "knowledge/agents/research-discovery/code-explorer/agent.source.md"
+    },
+    {
+      "name": "code-mapping-specialist",
+      "category": "research-discovery",
+      "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+      "source": "knowledge/agents/research-discovery/code-mapping-specialist/agent.source.md"
+    },
+    {
+      "name": "code-optimizer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio) and data-intensive system architecture.",
+      "source": "knowledge/agents/software-engineering/code-optimizer/agent.source.md"
+    },
+    {
+      "name": "computer-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Computer Engineering, covering microprocessor architecture (ARM/RISC-V), VLSI/CMOS integrated circuit design, logic synthesis in VHDL/Verilog, embedded Linux, RTOS and electronic circuit analysis.",
+      "source": "knowledge/agents/academic-sciences/computer-engineer/agent.source.md"
+    },
+    {
+      "name": "computer-scientist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures, Theory of Computation and Automata (Sipser), Compiler Engineering (Dragon Book) and Computer Graphics.",
+      "source": "knowledge/agents/academic-sciences/computer-scientist/agent.source.md"
+    },
+    {
+      "name": "data-ai-engineer",
+      "category": "data-cloud-devops",
+      "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
+      "source": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md"
+    },
+    {
+      "name": "data-engineer-specialist",
+      "category": "data-cloud-devops",
+      "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
+      "source": "knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md"
+    },
+    {
+      "name": "dba-specialist",
+      "category": "data-cloud-devops",
+      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+      "source": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md"
+    },
+    {
+      "name": "devops-engineer",
+      "category": "data-cloud-devops",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "source": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md"
+    },
+    {
+      "name": "documenter",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+      "source": "knowledge/agents/software-engineering/documenter/agent.source.md"
+    },
+    {
+      "name": "electrical-power-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
+      "source": "knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md"
+    },
+    {
+      "name": "embedded-systems-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
+      "source": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md"
+    },
+    {
+      "name": "frontend-developer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
+      "source": "knowledge/agents/software-engineering/frontend-developer/agent.source.md"
+    },
+    {
+      "name": "fullstack-developer",
+      "category": "software-engineering",
+      "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+      "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md"
+    },
+    {
+      "name": "general",
+      "category": "core-orchestration",
+      "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
+      "source": "knowledge/agents/core-orchestration/general/agent.source.md"
+    },
+    {
+      "name": "geoscientist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
+      "source": "knowledge/agents/academic-sciences/geoscientist/agent.source.md"
+    },
+    {
+      "name": "github-specialist",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+      "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md"
+    },
+    {
+      "name": "hardware-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+      "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md"
+    },
+    {
+      "name": "iam-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
+      "source": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md"
+    },
+    {
+      "name": "information-systems-specialist",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+      "source": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md"
+    },
+    {
+      "name": "java-enterprise-architect",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+      "source": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md"
+    },
+    {
+      "name": "linguistic-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Linguistic Review, Semantic Precision and Multilingual Editorial Quality (PT-BR, EN-US, ES-LATAM). Works by eliminating syntactic ambiguities, purging artificial-intelligence tics (Anti-AI Prose) and ensuring clear, human, technically rigorous communication.",
+      "source": "knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md"
+    },
+    {
+      "name": "malware-analyst",
+      "category": "cybersecurity",
+      "description": "Specialist in Malware Analysis, Binary Reverse Engineering, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
+      "source": "knowledge/agents/cybersecurity/malware-analyst/agent.source.md"
+    },
+    {
+      "name": "mathematician",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Pure and Applied Mathematics, covering Advanced Calculus (I to IV), Real and Complex Analysis, Abstract Algebra, Advanced Linear Algebra, Ordinary and Partial Differential Equations (ODE/PDE), Numerical Methods, Differential Geometry and Axiomatic Probability.",
+      "source": "knowledge/agents/academic-sciences/mathematician/agent.source.md"
+    },
+    {
+      "name": "mechanical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Mechanical Engineering, covering solid mechanics, mechanics of materials (Von Mises, Mohr), fluid mechanics and CFD (Navier-Stokes), heat transfer and mechanical system dynamics.",
+      "source": "knowledge/agents/academic-sciences/mechanical-engineer/agent.source.md"
+    },
+    {
+      "name": "mechatronics-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Mechatronics Engineering, Industrial/Mobile Robotics (ROS 2), Classical and Modern Control Theory (State Space, PID, LQR, Kalman), Programmable Logic Controllers (PLCs IEC 61131-3) and SCADA Systems.",
+      "source": "knowledge/agents/academic-sciences/mechatronics-engineer/agent.source.md"
+    },
+    {
+      "name": "moodle-specialist",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
+      "source": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md"
+    },
+    {
+      "name": "multi-agent-orchestrator",
+      "category": "core-orchestration",
+      "description": "Orchestrator and Supervisor Agent for Multi-Agent Systems. Specialized in problem decomposition, anchoring initial objectives, continuous monitoring of subagents, detecting scope drift (Agent Drift / Role Drift), proactive real-time correction and kill-switch/safe termination.",
+      "source": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md"
+    },
+    {
+      "name": "pentester-agent",
+      "category": "cybersecurity",
+      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, LLMs and Red Team Scripting) using CLI utilities and custom scripts.",
+      "source": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md"
+    },
+    {
+      "name": "physical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors.",
+      "source": "knowledge/agents/academic-sciences/physical-engineer/agent.source.md"
+    },
+    {
+      "name": "physicist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Theoretical and Applied Physics, covering Advanced Classical Mechanics (Lagrangian and Hamiltonian), Maxwell's Electromagnetism, Thermodynamics and Statistical Mechanics, Special and General Relativity, and Condensed Matter Quantum Mechanics.",
+      "source": "knowledge/agents/academic-sciences/physicist/agent.source.md"
+    },
+    {
+      "name": "project-reviewer",
+      "category": "software-engineering",
+      "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+      "source": "knowledge/agents/software-engineering/project-reviewer/agent.source.md"
+    },
+    {
+      "name": "qa-testing-specialist",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Quality Assurance (QA), Multi-Framework Test Automation, Mutation Testing, Fuzzing and Requirements Compliance Auditing. Masters systematic fault injection, test-gap elimination and rigorous validation of acceptance criteria.",
+      "source": "knowledge/agents/software-engineering/qa-testing-specialist/agent.source.md"
+    },
+    {
+      "name": "quantum-computing-specialist",
+      "category": "academic-sciences",
+      "description": "Specialist in Quantum Computing, Quantum Circuit Development (Qiskit, Cirq), Quantum Algorithms (Shor, Grover, VQE) and Post-Quantum Cryptography (PQC).",
+      "source": "knowledge/agents/academic-sciences/quantum-computing-specialist/agent.source.md"
+    },
+    {
+      "name": "reverse-engineer-agent",
+      "category": "cybersecurity",
+      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+      "source": "knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md"
+    },
+    {
+      "name": "scientific-researcher",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Scientific Research and Systematic Literature Review. Masters the PRISMA 2020 protocols, PICO/PECO framework, PRESS guidelines, searches across indexed databases (PubMed, arXiv, IEEE Xplore, Semantic Scholar, Scopus, SciELO) and citation network analysis.",
+      "source": "knowledge/agents/research-discovery/scientific-researcher/agent.source.md"
+    },
+    {
+      "name": "security-architect",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+      "source": "knowledge/agents/cybersecurity/security-architect/agent.source.md"
+    },
+    {
+      "name": "security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
+      "source": "knowledge/agents/cybersecurity/security-specialist/agent.source.md"
+    },
+    {
+      "name": "self",
+      "category": "core-orchestration",
+      "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
+      "source": "knowledge/agents/core-orchestration/self/agent.source.md"
+    },
+    {
+      "name": "skill-creator",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
+      "source": "knowledge/agents/specialized-domains/skill-creator/agent.source.md"
+    },
+    {
+      "name": "software-architect",
+      "category": "software-engineering",
+      "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+      "source": "knowledge/agents/software-engineering/software-architect/agent.source.md"
+    },
+    {
+      "name": "software-engineer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
+      "source": "knowledge/agents/software-engineering/software-engineer/agent.source.md"
+    },
+    {
+      "name": "telecom-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Telecommunications Engineering, covering Shannon information theory, advanced digital modulations (QAM, OFDM), optical fiber propagation (WDM/DWDM), 5G/6G cellular networks, satellite communications and Radio Frequency.",
+      "source": "knowledge/agents/academic-sciences/telecom-engineer/agent.source.md"
+    },
+    {
+      "name": "telecom-voice-specialist",
+      "category": "academic-sciences",
+      "description": "Specialist Agent in Voice Engineering, Telephony and Real-Time Communications (VoIP, SIP, SBC, PSTN, WebRTC, G.711/G.729/Opus codecs, Kamailio/FreeSWITCH, QoS and STIR/SHAKEN).",
+      "source": "knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md"
+    },
+    {
+      "name": "ui-ux-designer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
+      "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md"
+    },
+    {
+      "name": "vcs-repository-specialist",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Version Control Systems (VCS) and Advanced Repository Management, covering low-level Git (DAG, reflog, worktrees, sparse-checkout, LFS, filter-repo), Subversion/SVN (FSFS, trunk/branches/tags, mergeinfo, svnadmin, hooks), Mercurial (Hg), full legacy VCS migrations and branching governance.",
+      "source": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md"
+    },
+    {
+      "name": "web-researcher",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo). Masters advanced boolean operators, Google Dorks, domain filters, file types, defensive OSINT, data triangulation and factual source verification.",
+      "source": "knowledge/agents/research-discovery/web-researcher/agent.source.md"
+    }
+  ],
   "skills": [
+    {
+      "name": "data-intensive-systems",
+      "path": "knowledge/skills/data/data-intensive-systems/SKILL.md"
+    },
+    {
+      "name": "data-mesh-governance",
+      "path": "knowledge/skills/data/data-mesh-governance/SKILL.md"
+    },
+    {
+      "name": "db-mariadb",
+      "path": "knowledge/skills/data/db-mariadb/SKILL.md"
+    },
+    {
+      "name": "db-mongodb",
+      "path": "knowledge/skills/data/db-mongodb/SKILL.md"
+    },
+    {
+      "name": "db-postgresql",
+      "path": "knowledge/skills/data/db-postgresql/SKILL.md"
+    },
+    {
+      "name": "db-sqlite",
+      "path": "knowledge/skills/data/db-sqlite/SKILL.md"
+    },
+    {
+      "name": "jpa-hibernate-performance",
+      "path": "knowledge/skills/data/jpa-hibernate-performance/SKILL.md"
+    },
+    {
+      "name": "power-bi",
+      "path": "knowledge/skills/data/power-bi/SKILL.md"
+    },
+    {
+      "name": "realtime-streaming-event-driven",
+      "path": "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md"
+    },
+    {
+      "name": "academic-abstract-algebra-geometry",
+      "path": "knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md"
+    },
+    {
+      "name": "academic-algorithms-data-structures",
+      "path": "knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md"
+    },
+    {
+      "name": "academic-biomedical-instrumentation-signals",
+      "path": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md"
+    },
+    {
+      "name": "academic-biotechnology-bioprocesses",
+      "path": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md"
+    },
+    {
+      "name": "academic-calculus-differential-equations",
+      "path": "knowledge/skills/domains/academic/academic-calculus-differential-equations/SKILL.md"
+    },
+    {
+      "name": "academic-chemical-engineering-reactors",
+      "path": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md"
+    },
+    {
+      "name": "academic-chemistry-synthesis-analysis",
+      "path": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md"
+    },
+    {
+      "name": "academic-circuit-analysis-electronics",
+      "path": "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md"
+    },
+    {
+      "name": "academic-classical-mechanics-relativity",
+      "path": "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md"
+    },
+    {
+      "name": "academic-compilers-language-processors",
+      "path": "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md"
+    },
+    {
+      "name": "academic-computer-graphics-image-processing",
+      "path": "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md"
+    },
+    {
+      "name": "academic-control-systems-theory",
+      "path": "knowledge/skills/domains/academic/academic-control-systems-theory/SKILL.md"
+    },
+    {
+      "name": "academic-digital-communications-signals",
+      "path": "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md"
+    },
+    {
+      "name": "academic-digital-systems-vlsi",
+      "path": "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md"
+    },
+    {
+      "name": "academic-electrical-power-energy-systems",
+      "path": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md"
+    },
+    {
+      "name": "academic-electromagnetism-electrodynamics",
+      "path": "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md"
+    },
+    {
+      "name": "academic-enterprise-information-systems",
+      "path": "knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md"
+    },
+    {
+      "name": "academic-geosciences-remote-sensing-gis",
+      "path": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md"
+    },
+    {
+      "name": "academic-microprocessors-embedded-systems",
+      "path": "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md"
+    },
+    {
+      "name": "academic-probability-stochastic-processes",
+      "path": "knowledge/skills/domains/academic/academic-probability-stochastic-processes/SKILL.md"
+    },
+    {
+      "name": "academic-scientific-research",
+      "path": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md"
+    },
+    {
+      "name": "academic-solid-state-semiconductors",
+      "path": "knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md"
+    },
+    {
+      "name": "academic-structural-analysis-solid-mechanics",
+      "path": "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md"
+    },
+    {
+      "name": "academic-thermodynamics-statistical-physics",
+      "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md"
+    },
+    {
+      "name": "data-science-advanced-math",
+      "path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md"
+    },
+    {
+      "name": "quantum-computing-algorithms",
+      "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
+    },
+    {
+      "name": "ai-llm-engineering-rag",
+      "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md"
+    },
+    {
+      "name": "blockchain-cryptocurrency",
+      "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md"
+    },
+    {
+      "name": "edtech-andragogy",
+      "path": "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md"
+    },
+    {
+      "name": "financial-transaction-processing",
+      "path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md"
+    },
+    {
+      "name": "hardware-hacking-embedded-security",
+      "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md"
+    },
+    {
+      "name": "healthtech-standards-security",
+      "path": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md"
+    },
+    {
+      "name": "telecom-voice-engineering",
+      "path": "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md"
+    },
+    {
+      "name": "linguistic-en-us",
+      "path": "knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md"
+    },
+    {
+      "name": "linguistic-es-latam",
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md"
+    },
+    {
+      "name": "linguistic-pt-br",
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md"
+    },
+    {
+      "name": "arch-bce-pattern",
+      "path": "knowledge/skills/engineering/patterns/arch-bce-pattern/SKILL.md"
+    },
+    {
+      "name": "dp-behavioral-patterns",
+      "path": "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md"
+    },
+    {
+      "name": "dp-creational-patterns",
+      "path": "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md"
+    },
+    {
+      "name": "dp-structural-patterns",
+      "path": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md"
+    },
+    {
+      "name": "architecture-documentation",
+      "path": "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md"
+    },
+    {
+      "name": "c4-model-architecture",
+      "path": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md"
+    },
+    {
+      "name": "clean-code-reusability",
+      "path": "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+    },
+    {
+      "name": "documentation-designer",
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md"
+    },
+    {
+      "name": "empirical-software-design",
+      "path": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md"
+    },
+    {
+      "name": "git-conventional-commits",
+      "path": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md"
+    },
+    {
+      "name": "latency-engineering",
+      "path": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md"
+    },
+    {
+      "name": "python-performance-parallelism",
+      "path": "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md"
+    },
+    {
+      "name": "system-design-scalability",
+      "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "vcs-repository-management",
+      "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md"
+    },
+    {
+      "name": "framework-criterion",
+      "path": "knowledge/skills/frameworks/framework-criterion/SKILL.md"
+    },
+    {
+      "name": "framework-graphql",
+      "path": "knowledge/skills/frameworks/framework-graphql/SKILL.md"
+    },
+    {
+      "name": "framework-grpc",
+      "path": "knowledge/skills/frameworks/framework-grpc/SKILL.md"
+    },
+    {
+      "name": "framework-microprofile-jakarta",
+      "path": "knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md"
+    },
+    {
+      "name": "framework-quarkus-jnosql",
+      "path": "knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md"
+    },
+    {
+      "name": "framework-react",
+      "path": "knowledge/skills/frameworks/framework-react/SKILL.md"
+    },
+    {
+      "name": "framework-rest-api",
+      "path": "knowledge/skills/frameworks/framework-rest-api/SKILL.md"
+    },
+    {
+      "name": "framework-soap",
+      "path": "knowledge/skills/frameworks/framework-soap/SKILL.md"
+    },
+    {
+      "name": "framework-spring-boot",
+      "path": "knowledge/skills/frameworks/framework-spring-boot/SKILL.md"
+    },
+    {
+      "name": "framework-testing",
+      "path": "knowledge/skills/frameworks/framework-testing/SKILL.md"
+    },
+    {
+      "name": "framework-testing-javascript",
+      "path": "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md"
+    },
+    {
+      "name": "framework-testing-python",
+      "path": "knowledge/skills/frameworks/framework-testing-python/SKILL.md"
+    },
+    {
+      "name": "framework-vue",
+      "path": "knowledge/skills/frameworks/framework-vue/SKILL.md"
+    },
+    {
+      "name": "mutation-fuzzing-testing",
+      "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md"
+    },
+    {
+      "name": "cloud-aws",
+      "path": "knowledge/skills/infrastructure/cloud-aws/SKILL.md"
+    },
+    {
+      "name": "cloud-azure",
+      "path": "knowledge/skills/infrastructure/cloud-azure/SKILL.md"
+    },
+    {
+      "name": "cloud-cloudflare",
+      "path": "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md"
+    },
+    {
+      "name": "cloud-gcp",
+      "path": "knowledge/skills/infrastructure/cloud-gcp/SKILL.md"
+    },
+    {
+      "name": "cloud-oci",
+      "path": "knowledge/skills/infrastructure/cloud-oci/SKILL.md"
+    },
+    {
+      "name": "hpc-supercomputing-clusters",
+      "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md"
+    },
+    {
+      "name": "linux-kernel-systemd-internals",
+      "path": "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md"
+    },
+    {
+      "name": "program-containers",
+      "path": "knowledge/skills/infrastructure/program-containers/SKILL.md"
+    },
+    {
+      "name": "zero-trust-architecture-engineering",
+      "path": "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md"
+    },
+    {
+      "name": "javascript-high-performance",
+      "path": "knowledge/skills/languages/javascript-high-performance/SKILL.md"
+    },
+    {
+      "name": "lang-assembly-x64",
+      "path": "knowledge/skills/languages/lang-assembly-x64/SKILL.md"
+    },
+    {
+      "name": "lang-bash",
+      "path": "knowledge/skills/languages/lang-bash/SKILL.md"
+    },
+    {
+      "name": "lang-c",
+      "path": "knowledge/skills/languages/lang-c/SKILL.md"
+    },
+    {
+      "name": "lang-cpp",
+      "path": "knowledge/skills/languages/lang-cpp/SKILL.md"
+    },
+    {
+      "name": "lang-csharp",
+      "path": "knowledge/skills/languages/lang-csharp/SKILL.md"
+    },
+    {
+      "name": "lang-go",
+      "path": "knowledge/skills/languages/lang-go/SKILL.md"
+    },
+    {
+      "name": "lang-java",
+      "path": "knowledge/skills/languages/lang-java/SKILL.md"
+    },
+    {
+      "name": "lang-latex",
+      "path": "knowledge/skills/languages/lang-latex/SKILL.md"
+    },
+    {
+      "name": "lang-lua",
+      "path": "knowledge/skills/languages/lang-lua/SKILL.md"
+    },
+    {
+      "name": "lang-markdown",
+      "path": "knowledge/skills/languages/lang-markdown/SKILL.md"
+    },
+    {
+      "name": "lang-perl",
+      "path": "knowledge/skills/languages/lang-perl/SKILL.md"
+    },
+    {
+      "name": "lang-powershell",
+      "path": "knowledge/skills/languages/lang-powershell/SKILL.md"
+    },
+    {
+      "name": "lang-python",
+      "path": "knowledge/skills/languages/lang-python/SKILL.md"
+    },
+    {
+      "name": "lang-rust",
+      "path": "knowledge/skills/languages/lang-rust/SKILL.md"
+    },
+    {
+      "name": "lang-typescript",
+      "path": "knowledge/skills/languages/lang-typescript/SKILL.md"
+    },
+    {
+      "name": "lang-typst",
+      "path": "knowledge/skills/languages/lang-typst/SKILL.md"
+    },
+    {
+      "name": "webassembly",
+      "path": "knowledge/skills/languages/webassembly/SKILL.md"
+    },
+    {
+      "name": "api-service-mesh-mapping",
+      "path": "knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md"
+    },
+    {
+      "name": "app-dependency-discovery",
+      "path": "knowledge/skills/mapping/app-dependency-discovery/SKILL.md"
+    },
+    {
+      "name": "autodoc-code-explorer",
+      "path": "knowledge/skills/mapping/autodoc-code-explorer/SKILL.md"
+    },
+    {
+      "name": "binary-app-reverse-mapping",
+      "path": "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md"
+    },
+    {
+      "name": "cloud-topology-mapping",
+      "path": "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md"
+    },
+    {
+      "name": "code-architecture-mapping",
+      "path": "knowledge/skills/mapping/code-architecture-mapping/SKILL.md"
+    },
+    {
+      "name": "db-schema-reverse-mapping",
+      "path": "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md"
+    },
+    {
+      "name": "execution-flow-callgraph",
+      "path": "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md"
+    },
+    {
+      "name": "graph-relationship-mapping",
+      "path": "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md"
+    },
+    {
+      "name": "infra-inventory-cmdb",
+      "path": "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md"
+    },
+    {
+      "name": "k8s-container-mapping",
+      "path": "knowledge/skills/mapping/k8s-container-mapping/SKILL.md"
+    },
+    {
+      "name": "network-flow-discovery",
+      "path": "knowledge/skills/mapping/network-flow-discovery/SKILL.md"
+    },
+    {
+      "name": "observability-correlation",
+      "path": "knowledge/skills/mapping/observability-correlation/SKILL.md"
+    },
+    {
+      "name": "program-cheat-engine",
+      "path": "knowledge/skills/mapping/program-cheat-engine/SKILL.md"
+    },
+    {
+      "name": "program-windbg",
+      "path": "knowledge/skills/mapping/program-windbg/SKILL.md"
+    },
+    {
+      "name": "uml-diagram-generation",
+      "path": "knowledge/skills/mapping/uml-diagram-generation/SKILL.md"
+    },
+    {
+      "name": "antigravity-guide",
+      "path": "knowledge/skills/platforms/antigravity-guide/SKILL.md"
+    },
+    {
+      "name": "browser-harness",
+      "path": "knowledge/skills/platforms/browser-harness/SKILL.md"
+    },
+    {
+      "name": "gemini-enterprise",
+      "path": "knowledge/skills/platforms/gemini-enterprise/SKILL.md"
+    },
+    {
+      "name": "power-automate",
+      "path": "knowledge/skills/platforms/power-automate/SKILL.md"
+    },
+    {
+      "name": "program-ai-memory-durable-pages",
+      "path": "knowledge/skills/platforms/program-ai-memory-durable-pages/SKILL.md"
+    },
+    {
+      "name": "program-ai-memory-handoff",
+      "path": "knowledge/skills/platforms/program-ai-memory-handoff/SKILL.md"
+    },
+    {
+      "name": "program-ai-memory-learning-maintenance",
+      "path": "knowledge/skills/platforms/program-ai-memory-learning-maintenance/SKILL.md"
+    },
+    {
+      "name": "program-ai-memory-retrieval",
+      "path": "knowledge/skills/platforms/program-ai-memory-retrieval/SKILL.md"
+    },
+    {
+      "name": "program-ai-memory-routing-install",
+      "path": "knowledge/skills/platforms/program-ai-memory-routing-install/SKILL.md"
+    },
+    {
+      "name": "program-github-actions",
+      "path": "knowledge/skills/platforms/program-github-actions/SKILL.md"
+    },
+    {
+      "name": "program-markmap",
+      "path": "knowledge/skills/platforms/program-markmap/SKILL.md"
+    },
+    {
+      "name": "program-moodle",
+      "path": "knowledge/skills/platforms/program-moodle/SKILL.md"
+    },
+    {
+      "name": "ats-resume-optimization",
+      "path": "knowledge/skills/roles/ats-resume-optimization/SKILL.md"
+    },
+    {
+      "name": "backend-developer",
+      "path": "knowledge/skills/roles/backend-developer/SKILL.md"
+    },
+    {
+      "name": "career-profile-optimization",
+      "path": "knowledge/skills/roles/career-profile-optimization/SKILL.md"
+    },
+    {
+      "name": "cloud-infrastructure-architect",
+      "path": "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md"
+    },
+    {
+      "name": "code-mapping-specialist",
+      "path": "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
+    },
+    {
+      "name": "code-optimizer",
+      "path": "knowledge/skills/roles/code-optimizer/SKILL.md"
+    },
+    {
+      "name": "dba-database-administrator",
+      "path": "knowledge/skills/roles/dba-database-administrator/SKILL.md"
+    },
+    {
+      "name": "devops-engineer",
+      "path": "knowledge/skills/roles/devops-engineer/SKILL.md"
+    },
+    {
+      "name": "explore",
+      "path": "knowledge/skills/roles/explore/SKILL.md"
+    },
+    {
+      "name": "frontend-developer",
+      "path": "knowledge/skills/roles/frontend-developer/SKILL.md"
+    },
+    {
+      "name": "fullstack-developer",
+      "path": "knowledge/skills/roles/fullstack-developer/SKILL.md"
+    },
+    {
+      "name": "general",
+      "path": "knowledge/skills/roles/general/SKILL.md"
+    },
+    {
+      "name": "job-hunting-sourcing",
+      "path": "knowledge/skills/roles/job-hunting-sourcing/SKILL.md"
+    },
+    {
+      "name": "multi-agent-orchestration-supervision",
+      "path": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
+    },
+    {
+      "name": "product-owner",
+      "path": "knowledge/skills/roles/product-owner/SKILL.md"
+    },
+    {
+      "name": "project-reviewer",
+      "path": "knowledge/skills/roles/project-reviewer/SKILL.md"
+    },
+    {
+      "name": "qa-engineer",
+      "path": "knowledge/skills/roles/qa-engineer/SKILL.md"
+    },
+    {
+      "name": "scrum-master",
+      "path": "knowledge/skills/roles/scrum-master/SKILL.md"
+    },
+    {
+      "name": "software-architect",
+      "path": "knowledge/skills/roles/software-architect/SKILL.md"
+    },
+    {
+      "name": "ui-ux-designer",
+      "path": "knowledge/skills/roles/ui-ux-designer/SKILL.md"
+    },
+    {
+      "name": "web-search-specialist",
+      "path": "knowledge/skills/roles/web-search-specialist/SKILL.md"
+    },
+    {
+      "name": "ai-computer-vision-security",
+      "path": "knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md"
+    },
+    {
+      "name": "ai-llm-slm-security",
+      "path": "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md"
+    },
+    {
+      "name": "ai-voice-stt-tts-security",
+      "path": "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md"
+    },
+    {
+      "name": "appsec-owasp-asvs",
+      "path": "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+    },
+    {
+      "name": "appsec-owasp-masvs",
+      "path": "knowledge/skills/security/appsec/appsec-owasp-masvs/SKILL.md"
+    },
+    {
+      "name": "dast-application-testing",
+      "path": "knowledge/skills/security/appsec/dast-application-testing/SKILL.md"
+    },
+    {
+      "name": "iast-interactive-testing",
+      "path": "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md"
+    },
+    {
+      "name": "malware-analysis-multios",
+      "path": "knowledge/skills/security/appsec/malware-analysis-multios/SKILL.md"
+    },
+    {
+      "name": "pentest-scripter-python-bash-go",
+      "path": "knowledge/skills/security/appsec/pentest-scripter-python-bash-go/SKILL.md"
+    },
+    {
+      "name": "pentest-web-application-modern",
+      "path": "knowledge/skills/security/appsec/pentest-web-application-modern/SKILL.md"
+    },
+    {
+      "name": "pentester-owasp-api-security-2023",
+      "path": "knowledge/skills/security/appsec/pentester-owasp-api-security-2023/SKILL.md"
+    },
+    {
+      "name": "pentester-owasp-wstg",
+      "path": "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md"
+    },
+    {
+      "name": "rasp-runtime-protection",
+      "path": "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md"
+    },
+    {
+      "name": "sast-code-review",
+      "path": "knowledge/skills/security/appsec/sast-code-review/SKILL.md"
+    },
+    {
+      "name": "software-supply-chain-security",
+      "path": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md"
+    },
+    {
+      "name": "cryptography-pqc-standards",
+      "path": "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md"
+    },
+    {
+      "name": "cis-controls",
+      "path": "knowledge/skills/security/grc/cis-controls/SKILL.md"
+    },
+    {
+      "name": "isc2-cissp-csslp-standards",
+      "path": "knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md"
+    },
+    {
+      "name": "iso-27000-series",
+      "path": "knowledge/skills/security/grc/iso-27000-series/SKILL.md"
+    },
+    {
+      "name": "nist-frameworks-csf",
+      "path": "knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md"
+    },
+    {
+      "name": "pci-dss-compliance",
+      "path": "knowledge/skills/security/grc/pci-dss-compliance/SKILL.md"
+    },
+    {
+      "name": "security-grc-compliance",
+      "path": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md"
+    },
+    {
+      "name": "security-manager-samm",
+      "path": "knowledge/skills/security/grc/security-manager-samm/SKILL.md"
+    },
+    {
+      "name": "security-privacy",
+      "path": "knowledge/skills/security/grc/security-privacy/SKILL.md"
+    },
+    {
+      "name": "csa-cloud-security",
+      "path": "knowledge/skills/security/iam/csa-cloud-security/SKILL.md"
+    },
+    {
+      "name": "iam-access-aws",
+      "path": "knowledge/skills/security/iam/iam-access-aws/SKILL.md"
+    },
+    {
+      "name": "iam-access-azure",
+      "path": "knowledge/skills/security/iam/iam-access-azure/SKILL.md"
+    },
+    {
+      "name": "iam-access-gcp",
+      "path": "knowledge/skills/security/iam/iam-access-gcp/SKILL.md"
+    },
+    {
+      "name": "iam-access-management",
+      "path": "knowledge/skills/security/iam/iam-access-management/SKILL.md"
+    },
+    {
+      "name": "iam-access-oci",
+      "path": "knowledge/skills/security/iam/iam-access-oci/SKILL.md"
+    },
+    {
+      "name": "iam-access-power-platform",
+      "path": "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
+    },
+    {
+      "name": "bug-bounty-methodology",
+      "path": "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md"
+    },
+    {
+      "name": "pentest-cloud-aws-azure-gcp",
+      "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md"
+    },
+    {
+      "name": "auth-protocols-mfa",
+      "path": "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md"
+    },
+    {
+      "name": "devsecops-engineer",
+      "path": "knowledge/skills/security/operations/devsecops-engineer/SKILL.md"
+    },
+    {
+      "name": "network-security-onprem-cloud",
+      "path": "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
+    },
+    {
+      "name": "secops-incident-responder",
+      "path": "knowledge/skills/security/operations/secops-incident-responder/SKILL.md"
+    },
+    {
+      "name": "security-architect-sabsa",
+      "path": "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md"
+    },
+    {
+      "name": "security-champions",
+      "path": "knowledge/skills/security/operations/security-champions/SKILL.md"
+    },
+    {
+      "name": "security-technical-opinion",
+      "path": "knowledge/skills/security/operations/security-technical-opinion/SKILL.md"
+    },
+    {
+      "name": "threat-modeler",
+      "path": "knowledge/skills/security/operations/threat-modeler/SKILL.md"
+    },
+    {
+      "name": "edr-evasion-endpoint-security",
+      "path": "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md"
+    },
+    {
+      "name": "game-engine-security",
+      "path": "knowledge/skills/security/platform/game-engine-security/SKILL.md"
+    },
+    {
+      "name": "memory-manipulation",
+      "path": "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+    },
+    {
+      "name": "windows-internals-security",
+      "path": "knowledge/skills/security/platform/windows-internals-security/SKILL.md"
+    },
+    {
+      "name": "program-dongtai-iast",
+      "path": "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md"
+    },
+    {
+      "name": "program-opengrep",
+      "path": "knowledge/skills/security/tooling/program-opengrep/SKILL.md"
+    },
+    {
+      "name": "program-openrasp",
+      "path": "knowledge/skills/security/tooling/program-openrasp/SKILL.md"
+    },
+    {
+      "name": "program-owasp-dependency-check",
+      "path": "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md"
+    },
+    {
+      "name": "program-owasp-zap",
+      "path": "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md"
+    },
+    {
+      "name": "superpowers-brainstorming",
+      "path": "methodology/workflows/superpowers-brainstorming/SKILL.md"
+    },
+    {
+      "name": "superpowers-diagnosing-superpowers",
+      "path": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md"
+    },
+    {
+      "name": "superpowers-dispatching-parallel-agents",
+      "path": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md"
+    },
+    {
+      "name": "superpowers-executing-plans",
+      "path": "methodology/workflows/superpowers-executing-plans/SKILL.md"
+    },
+    {
+      "name": "superpowers-finishing-a-development-branch",
+      "path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
+    },
+    {
+      "name": "superpowers-receiving-code-review",
+      "path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md"
+    },
+    {
+      "name": "superpowers-requesting-code-review",
+      "path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md"
+    },
+    {
+      "name": "superpowers-subagent-driven-development",
+      "path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
+    },
+    {
+      "name": "superpowers-systematic-debugging",
+      "path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md"
+    },
+    {
+      "name": "superpowers-test-driven-development",
+      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md"
+    },
+    {
+      "name": "superpowers-using-git-worktrees",
+      "path": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "superpowers-verification-before-completion",
+      "path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md"
+    },
+    {
+      "name": "superpowers-writing-plans",
+      "path": "methodology/workflows/superpowers-writing-plans/SKILL.md"
+    },
+    {
+      "name": "superpowers-writing-skills",
+      "path": "methodology/workflows/superpowers-writing-skills/SKILL.md"
+    },
     {
       "name": "using-coacus",
       "path": "methodology/workflows/using-coacus/SKILL.md"

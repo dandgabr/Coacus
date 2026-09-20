@@ -1,0 +1,6 @@
+{
+  "name": "mechanical-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Mechanical Engineering, covering solid mechanics, mechanics of materials (Von Mises, Mohr), fluid mechanics and CFD (Navier-Stokes), heat transfer and mechanical system dynamics.",
+  "entrypoint": "AGENT.md"
+}

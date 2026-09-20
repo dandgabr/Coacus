@@ -1,0 +1,6 @@
+{
+  "name": "software-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
+  "entrypoint": "AGENT.md"
+}

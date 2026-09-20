@@ -1,0 +1,6 @@
+{
+  "name": "hardware-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+  "entrypoint": "AGENT.md"
+}

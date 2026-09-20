@@ -1,0 +1,8 @@
+{
+  "name": "dba-specialist",
+  "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/dba-specialist/dist",
+  "fingerprint": "e8ce55e16fd73e4f"
+}

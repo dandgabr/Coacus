@@ -1,0 +1,8 @@
+{
+  "name": "data-ai-engineer",
+  "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/data-ai-engineer/dist",
+  "fingerprint": "38215ea22f5018dc"
+}

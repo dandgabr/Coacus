@@ -1,0 +1,6 @@
+{
+  "name": "ai-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
+  "entrypoint": "AGENT.md"
+}

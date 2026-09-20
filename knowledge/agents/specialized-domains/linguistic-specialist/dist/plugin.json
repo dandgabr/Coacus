@@ -1,0 +1,6 @@
+{
+  "name": "linguistic-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Linguistic Review, Semantic Precision and Multilingual Editorial Quality (PT-BR, EN-US, ES-LATAM). Works by eliminating syntactic ambiguities, purging artificial-intelligence tics (Anti-AI Prose) and ensuring clear, human, technically rigorous communication.",
+  "entrypoint": "AGENT.md"
+}

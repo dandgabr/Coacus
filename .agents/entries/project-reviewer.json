@@ -1,0 +1,8 @@
+{
+  "name": "project-reviewer",
+  "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/project-reviewer/dist",
+  "fingerprint": "54b8bedbfef03c26"
+}

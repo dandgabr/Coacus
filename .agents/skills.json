@@ -1,6 +1,645 @@
 {
   "entries": [
     {
+      "path": "knowledge/skills/data/data-intensive-systems"
+    },
+    {
+      "path": "knowledge/skills/data/data-mesh-governance"
+    },
+    {
+      "path": "knowledge/skills/data/db-mariadb"
+    },
+    {
+      "path": "knowledge/skills/data/db-mongodb"
+    },
+    {
+      "path": "knowledge/skills/data/db-postgresql"
+    },
+    {
+      "path": "knowledge/skills/data/db-sqlite"
+    },
+    {
+      "path": "knowledge/skills/data/jpa-hibernate-performance"
+    },
+    {
+      "path": "knowledge/skills/data/power-bi"
+    },
+    {
+      "path": "knowledge/skills/data/realtime-streaming-event-driven"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-abstract-algebra-geometry"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-algorithms-data-structures"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-calculus-differential-equations"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-circuit-analysis-electronics"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-classical-mechanics-relativity"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-compilers-language-processors"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-computer-graphics-image-processing"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-control-systems-theory"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-digital-communications-signals"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-digital-systems-vlsi"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-enterprise-information-systems"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-probability-stochastic-processes"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-scientific-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-solid-state-semiconductors"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/data-science-advanced-math"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/edtech-andragogy"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/financial-transaction-processing"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/healthtech-standards-security"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/telecom-voice-engineering"
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-en-us"
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam"
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br"
+    },
+    {
+      "path": "knowledge/skills/engineering/patterns/arch-bce-pattern"
+    },
+    {
+      "path": "knowledge/skills/engineering/patterns/dp-behavioral-patterns"
+    },
+    {
+      "path": "knowledge/skills/engineering/patterns/dp-creational-patterns"
+    },
+    {
+      "path": "knowledge/skills/engineering/patterns/dp-structural-patterns"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/architecture-documentation"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/c4-model-architecture"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/clean-code-reusability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/empirical-software-design"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/git-conventional-commits"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/latency-engineering"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/python-performance-parallelism"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/system-design-scalability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/vcs-repository-management"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-criterion"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-graphql"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-grpc"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-microprofile-jakarta"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-quarkus-jnosql"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-react"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-rest-api"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-soap"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-spring-boot"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-testing"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-testing-javascript"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-testing-python"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-vue"
+    },
+    {
+      "path": "knowledge/skills/frameworks/mutation-fuzzing-testing"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/cloud-aws"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/cloud-azure"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/cloud-cloudflare"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/cloud-gcp"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/cloud-oci"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/linux-kernel-systemd-internals"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/program-containers"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/zero-trust-architecture-engineering"
+    },
+    {
+      "path": "knowledge/skills/languages/javascript-high-performance"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-assembly-x64"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-bash"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-c"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-cpp"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-csharp"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-go"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-java"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-latex"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-lua"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-markdown"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-perl"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-powershell"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-python"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-rust"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-typescript"
+    },
+    {
+      "path": "knowledge/skills/languages/lang-typst"
+    },
+    {
+      "path": "knowledge/skills/languages/webassembly"
+    },
+    {
+      "path": "knowledge/skills/mapping/api-service-mesh-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/app-dependency-discovery"
+    },
+    {
+      "path": "knowledge/skills/mapping/autodoc-code-explorer"
+    },
+    {
+      "path": "knowledge/skills/mapping/binary-app-reverse-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/cloud-topology-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/code-architecture-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/db-schema-reverse-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/execution-flow-callgraph"
+    },
+    {
+      "path": "knowledge/skills/mapping/graph-relationship-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/infra-inventory-cmdb"
+    },
+    {
+      "path": "knowledge/skills/mapping/k8s-container-mapping"
+    },
+    {
+      "path": "knowledge/skills/mapping/network-flow-discovery"
+    },
+    {
+      "path": "knowledge/skills/mapping/observability-correlation"
+    },
+    {
+      "path": "knowledge/skills/mapping/program-cheat-engine"
+    },
+    {
+      "path": "knowledge/skills/mapping/program-windbg"
+    },
+    {
+      "path": "knowledge/skills/mapping/uml-diagram-generation"
+    },
+    {
+      "path": "knowledge/skills/platforms/antigravity-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/browser-harness"
+    },
+    {
+      "path": "knowledge/skills/platforms/gemini-enterprise"
+    },
+    {
+      "path": "knowledge/skills/platforms/power-automate"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-ai-memory-durable-pages"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-ai-memory-handoff"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-ai-memory-learning-maintenance"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-ai-memory-retrieval"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-ai-memory-routing-install"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-github-actions"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-markmap"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-moodle"
+    },
+    {
+      "path": "knowledge/skills/roles/ats-resume-optimization"
+    },
+    {
+      "path": "knowledge/skills/roles/backend-developer"
+    },
+    {
+      "path": "knowledge/skills/roles/career-profile-optimization"
+    },
+    {
+      "path": "knowledge/skills/roles/cloud-infrastructure-architect"
+    },
+    {
+      "path": "knowledge/skills/roles/code-mapping-specialist"
+    },
+    {
+      "path": "knowledge/skills/roles/code-optimizer"
+    },
+    {
+      "path": "knowledge/skills/roles/dba-database-administrator"
+    },
+    {
+      "path": "knowledge/skills/roles/devops-engineer"
+    },
+    {
+      "path": "knowledge/skills/roles/explore"
+    },
+    {
+      "path": "knowledge/skills/roles/frontend-developer"
+    },
+    {
+      "path": "knowledge/skills/roles/fullstack-developer"
+    },
+    {
+      "path": "knowledge/skills/roles/general"
+    },
+    {
+      "path": "knowledge/skills/roles/job-hunting-sourcing"
+    },
+    {
+      "path": "knowledge/skills/roles/multi-agent-orchestration-supervision"
+    },
+    {
+      "path": "knowledge/skills/roles/product-owner"
+    },
+    {
+      "path": "knowledge/skills/roles/project-reviewer"
+    },
+    {
+      "path": "knowledge/skills/roles/qa-engineer"
+    },
+    {
+      "path": "knowledge/skills/roles/scrum-master"
+    },
+    {
+      "path": "knowledge/skills/roles/software-architect"
+    },
+    {
+      "path": "knowledge/skills/roles/ui-ux-designer"
+    },
+    {
+      "path": "knowledge/skills/roles/web-search-specialist"
+    },
+    {
+      "path": "knowledge/skills/security/ai/ai-computer-vision-security"
+    },
+    {
+      "path": "knowledge/skills/security/ai/ai-llm-slm-security"
+    },
+    {
+      "path": "knowledge/skills/security/ai/ai-voice-stt-tts-security"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/appsec-owasp-asvs"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/appsec-owasp-masvs"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/dast-application-testing"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/iast-interactive-testing"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/malware-analysis-multios"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentest-scripter-python-bash-go"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentest-web-application-modern"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentester-owasp-api-security-2023"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentester-owasp-wstg"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/rasp-runtime-protection"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/sast-code-review"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/software-supply-chain-security"
+    },
+    {
+      "path": "knowledge/skills/security/crypto/cryptography-pqc-standards"
+    },
+    {
+      "path": "knowledge/skills/security/grc/cis-controls"
+    },
+    {
+      "path": "knowledge/skills/security/grc/isc2-cissp-csslp-standards"
+    },
+    {
+      "path": "knowledge/skills/security/grc/iso-27000-series"
+    },
+    {
+      "path": "knowledge/skills/security/grc/nist-frameworks-csf"
+    },
+    {
+      "path": "knowledge/skills/security/grc/pci-dss-compliance"
+    },
+    {
+      "path": "knowledge/skills/security/grc/security-grc-compliance"
+    },
+    {
+      "path": "knowledge/skills/security/grc/security-manager-samm"
+    },
+    {
+      "path": "knowledge/skills/security/grc/security-privacy"
+    },
+    {
+      "path": "knowledge/skills/security/iam/csa-cloud-security"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-aws"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-azure"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-gcp"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-management"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-oci"
+    },
+    {
+      "path": "knowledge/skills/security/iam/iam-access-power-platform"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/bug-bounty-methodology"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp"
+    },
+    {
+      "path": "knowledge/skills/security/operations/auth-protocols-mfa"
+    },
+    {
+      "path": "knowledge/skills/security/operations/devsecops-engineer"
+    },
+    {
+      "path": "knowledge/skills/security/operations/network-security-onprem-cloud"
+    },
+    {
+      "path": "knowledge/skills/security/operations/secops-incident-responder"
+    },
+    {
+      "path": "knowledge/skills/security/operations/security-architect-sabsa"
+    },
+    {
+      "path": "knowledge/skills/security/operations/security-champions"
+    },
+    {
+      "path": "knowledge/skills/security/operations/security-technical-opinion"
+    },
+    {
+      "path": "knowledge/skills/security/operations/threat-modeler"
+    },
+    {
+      "path": "knowledge/skills/security/platform/edr-evasion-endpoint-security"
+    },
+    {
+      "path": "knowledge/skills/security/platform/game-engine-security"
+    },
+    {
+      "path": "knowledge/skills/security/platform/memory-manipulation"
+    },
+    {
+      "path": "knowledge/skills/security/platform/windows-internals-security"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-dongtai-iast"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-opengrep"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-openrasp"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-owasp-dependency-check"
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-owasp-zap"
+    },
+    {
+      "path": "methodology/workflows/superpowers-brainstorming"
+    },
+    {
+      "path": "methodology/workflows/superpowers-diagnosing-superpowers"
+    },
+    {
+      "path": "methodology/workflows/superpowers-dispatching-parallel-agents"
+    },
+    {
+      "path": "methodology/workflows/superpowers-executing-plans"
+    },
+    {
+      "path": "methodology/workflows/superpowers-finishing-a-development-branch"
+    },
+    {
+      "path": "methodology/workflows/superpowers-receiving-code-review"
+    },
+    {
+      "path": "methodology/workflows/superpowers-requesting-code-review"
+    },
+    {
+      "path": "methodology/workflows/superpowers-subagent-driven-development"
+    },
+    {
+      "path": "methodology/workflows/superpowers-systematic-debugging"
+    },
+    {
+      "path": "methodology/workflows/superpowers-test-driven-development"
+    },
+    {
+      "path": "methodology/workflows/superpowers-using-git-worktrees"
+    },
+    {
+      "path": "methodology/workflows/superpowers-verification-before-completion"
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-plans"
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-skills"
+    },
+    {
       "path": "methodology/workflows/using-coacus"
     }
   ]

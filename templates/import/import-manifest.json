@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "source_repos": {
+    "skills": "/home/daniel/Code/skills",
+    "superpowers": "/home/daniel/Code/superpowers"
+  },
+  "exclude_import_from": ["/home/daniel/Code/agente-arquitetura-si"],
+  "category_map": {
+    "languages": "languages",
+    "framework": "frameworks",
+    "databases": "data",
+    "cloud-infra": "infrastructure",
+    "engineering-practices": "engineering/practices",
+    "patterns": "engineering/patterns",
+    "mapping": "mapping",
+    "roles": "roles",
+    "linguistics": "domains/linguistics"
+  },
+  "security_map": {
+    "ai-security": "security/ai",
+    "appsec": {
+      "default": "security/appsec",
+      "override": {
+        "pentest-cloud-aws-azure-gcp": "security/offensive",
+        "bug-bounty-methodology": "security/offensive",
+        "edr-evasion-endpoint-security": "security/platform",
+        "memory-manipulation": "security/platform",
+        "windows-internals-security": "security/platform",
+        "game-engine-security": "security/platform"
+      }
+    },
+    "cloud-iam": "security/iam",
+    "crypto-pki": "security/crypto",
+    "grc-compliance": {
+      "default": "security/grc",
+      "override": {
+        "network-security-onprem-cloud": "security/operations",
+        "healthtech-standards-security": "domains/industry"
+      }
+    },
+    "ops-architecture": "security/operations"
+  },
+  "programs_map": {
+    "containers": "infrastructure",
+    "program-owasp-zap": "security/tooling",
+    "program-owasp-dependency-check": "security/tooling",
+    "program-opengrep": "security/tooling",
+    "program-openrasp": "security/tooling",
+    "program-dongtai-iast": "security/tooling",
+    "program-cheat-engine": "mapping",
+    "program-windbg": "mapping",
+    "power-bi": "data",
+    "power-automate": "platforms",
+    "program-ai-memory-durable-pages": "platforms",
+    "program-ai-memory-handoff": "platforms",
+    "program-ai-memory-learning-maintenance": "platforms",
+    "program-ai-memory-retrieval": "platforms",
+    "program-ai-memory-routing-install": "platforms",
+    "default": "platforms"
+  },
+  "domains_map": {
+    "academic-prefix": "domains/academic",
+    "industry": {
+      "blockchain-cryptocurrency": "domains/industry",
+      "financial-transaction-processing": "domains/industry",
+      "edtech-andragogy": "domains/industry",
+      "telecom-voice-engineering": "domains/industry",
+      "hardware-hacking-embedded-security": "domains/industry",
+      "webassembly": "languages",
+      "javascript-high-performance": "languages",
+      "data-science-advanced-math": "domains/academic",
+      "quantum-computing-algorithms": "domains/academic"
+    }
+  },
+  "exclude_skills": ["template-skill"],
+  "name_dir_fixes": {
+    "containers": "program-containers",
+    "github-actions": "program-github-actions",
+    "markmap": "program-markmap",
+    "moodle": "program-moodle"
+  },
+  "agent_merges": {
+    "code-explorer": ["explore", "code-researcher"],
+    "security-architect": ["arquiteto-seguranca"],
+    "documenter": ["documentador"]
+  },
+  "superpowers": {
+    "namespace_prefix": "superpowers-",
+    "target_dir": "methodology/workflows"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "computer-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Computer Engineering, covering microprocessor architecture (ARM/RISC-V), VLSI/CMOS integrated circuit design, logic synthesis in VHDL/Verilog, embedded Linux, RTOS and electronic circuit analysis.",
+  "entrypoint": "AGENT.md"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "biomedical-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Biomedical Engineering, covering biosignal processing (ECG, EEG, EMG), medical instrumentation with isolation amplifiers (IA), medical imaging physics (CT, MRI, ultrasound) and interoperability with DICOM and HL7/FHIR.",
+  "entrypoint": "AGENT.md"
+}

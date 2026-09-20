@@ -1,0 +1,6 @@
+{
+  "name": "telecom-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Telecommunications Engineering, covering Shannon information theory, advanced digital modulations (QAM, OFDM), optical fiber propagation (WDM/DWDM), 5G/6G cellular networks, satellite communications and Radio Frequency.",
+  "entrypoint": "AGENT.md"
+}

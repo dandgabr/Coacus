@@ -1,0 +1,8 @@
+{
+  "name": "civil-engineer",
+  "description": "Senior specialist agent in Civil and Structural Engineering, covering structural analysis, mechanics of materials, soil mechanics and geotechnics (Terzaghi, Mohr-Coulomb), foundations and structural element design.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/civil-engineer/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/civil-engineer/dist",
+  "fingerprint": "991e03db568edefb"
+}

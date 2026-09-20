@@ -1,0 +1,8 @@
+{
+  "name": "geoscientist",
+  "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/geoscientist/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/geoscientist/dist",
+  "fingerprint": "77d53f0d0394233b"
+}

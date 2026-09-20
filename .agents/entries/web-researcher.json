@@ -1,0 +1,8 @@
+{
+  "name": "web-researcher",
+  "description": "Specialist Agent in Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo). Masters advanced boolean operators, Google Dorks, domain filters, file types, defensive OSINT, data triangulation and factual source verification.",
+  "category": "research-discovery",
+  "source": "knowledge/agents/research-discovery/web-researcher/agent.source.md",
+  "dist": "knowledge/agents/research-discovery/web-researcher/dist",
+  "fingerprint": "5cc8d565937b512c"
+}

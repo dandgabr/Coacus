@@ -1,0 +1,8 @@
+{
+  "name": "chemical-engineer",
+  "description": "Senior specialist agent in Chemical Engineering, Synthesis and Industrial Processes, covering mass and energy balances, chemical kinetics, reactor design (CSTR, PFR, PBR), organic/inorganic synthesis, instrumental analysis (HPLC/GC/NMR), solution thermodynamics and transport phenomena.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/chemical-engineer/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/chemical-engineer/dist",
+  "fingerprint": "d5ee842dbdffdc14"
+}

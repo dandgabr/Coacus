@@ -101,7 +101,7 @@ class TestEvalValidator(unittest.TestCase):
         self.assertTrue(any("aws-access-key" in e for e in evals.validate(root)))
 
     def test_absolute_path_in_acceptance_is_rejected(self) -> None:
-        bad = {**SCENARIO, "acceptance": "reads /etc/passwd"}
+        bad = {**SCENARIO, "acceptance": "reads /home/dev/notes.md"}
         root = make_repo(Path(self._tmp.name) / "m", bad)
         self.assertTrue(any("absolute path" in e for e in evals.validate(root)))
 

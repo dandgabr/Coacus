@@ -34,6 +34,7 @@ from engine.validators import agents as agent_validator  # noqa: E402
 from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import evals as eval_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
+from engine.validators import language as language_validator  # noqa: E402
 from engine.validators import mcps as mcp_validator  # noqa: E402
 from engine.validators import skills as skill_validator  # noqa: E402
 
@@ -55,7 +56,7 @@ def artifact_errors(root: Path) -> list[str]:
 
 
 def _warnings(root: Path) -> list[str]:
-    return skill_validator.warnings(root)
+    return skill_validator.warnings(root) + language_validator.validate(root)
 
 
 def _print(items: list[str], label: str) -> None:

@@ -1,0 +1,8 @@
+{
+  "name": "mechatronics-engineer",
+  "description": "Senior specialist agent in Mechatronics Engineering, Industrial/Mobile Robotics (ROS 2), Classical and Modern Control Theory (State Space, PID, LQR, Kalman), Programmable Logic Controllers (PLCs IEC 61131-3) and SCADA Systems.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/mechatronics-engineer/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/mechatronics-engineer/dist",
+  "fingerprint": "9eb276ba5e3763a5"
+}

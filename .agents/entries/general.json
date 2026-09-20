@@ -1,0 +1,8 @@
+{
+  "name": "general",
+  "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
+  "category": "core-orchestration",
+  "source": "knowledge/agents/core-orchestration/general/agent.source.md",
+  "dist": "knowledge/agents/core-orchestration/general/dist",
+  "fingerprint": "8815e54ce76a17c7"
+}

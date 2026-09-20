@@ -1,0 +1,6 @@
+{
+  "name": "qa-testing-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Quality Assurance (QA), Multi-Framework Test Automation, Mutation Testing, Fuzzing and Requirements Compliance Auditing. Masters systematic fault injection, test-gap elimination and rigorous validation of acceptance criteria.",
+  "entrypoint": "AGENT.md"
+}

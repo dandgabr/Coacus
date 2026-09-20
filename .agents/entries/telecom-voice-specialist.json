@@ -1,0 +1,8 @@
+{
+  "name": "telecom-voice-specialist",
+  "description": "Specialist Agent in Voice Engineering, Telephony and Real-Time Communications (VoIP, SIP, SBC, PSTN, WebRTC, G.711/G.729/Opus codecs, Kamailio/FreeSWITCH, QoS and STIR/SHAKEN).",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/telecom-voice-specialist/dist",
+  "fingerprint": "1d47fbbf8cde7b53"
+}

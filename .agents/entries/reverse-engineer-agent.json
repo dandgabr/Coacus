@@ -1,0 +1,8 @@
+{
+  "name": "reverse-engineer-agent",
+  "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/reverse-engineer-agent/dist",
+  "fingerprint": "78004b32c975fb40"
+}

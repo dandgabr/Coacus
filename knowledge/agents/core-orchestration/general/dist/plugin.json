@@ -1,0 +1,6 @@
+{
+  "name": "general",
+  "version": "0.1.0",
+  "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
+  "entrypoint": "AGENT.md"
+}

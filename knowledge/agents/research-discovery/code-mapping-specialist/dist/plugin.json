@@ -1,0 +1,6 @@
+{
+  "name": "code-mapping-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+  "entrypoint": "AGENT.md"
+}

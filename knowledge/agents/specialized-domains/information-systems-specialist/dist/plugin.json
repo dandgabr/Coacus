@@ -1,0 +1,6 @@
+{
+  "name": "information-systems-specialist",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+  "entrypoint": "AGENT.md"
+}

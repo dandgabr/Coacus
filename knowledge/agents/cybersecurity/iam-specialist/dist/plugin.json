@@ -1,0 +1,6 @@
+{
+  "name": "iam-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
+  "entrypoint": "AGENT.md"
+}

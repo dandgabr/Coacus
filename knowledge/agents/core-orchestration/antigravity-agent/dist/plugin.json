@@ -1,0 +1,6 @@
+{
+  "name": "antigravity-agent",
+  "version": "0.1.0",
+  "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
+  "entrypoint": "AGENT.md"
+}

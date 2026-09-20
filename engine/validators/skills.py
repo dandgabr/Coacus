@@ -25,6 +25,17 @@ SKIP_LINK_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
 DESCRIPTION_WARN_LEN = 1024
 PT_MARKERS = ("ção", "ções", "ã", "õ", "Atua como", "Especialista em")
 
+# Skills whose canonical content is INTENTIONALLY non-English: the PT-BR
+# linguistic skill, skills that quote Portuguese examples as teaching material,
+# and prose containing Portuguese proper nouns / book titles. Exempt from the
+# language warning (ADR-0001 concerns imported prose, not quoted material).
+LANGUAGE_EXEMPT = frozenset({
+    "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+    "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+    "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md",
+    "knowledge/skills/languages/lang-rust/SKILL.md",
+})
+
 # root -> allowed depth (number of parts from the root to the skill dir)
 SKILL_ROOTS: dict[str, tuple[int, ...]] = {
     "knowledge/skills": (2, 3),  # <category>[/<subcategory>]/<skill>
@@ -119,7 +130,12 @@ def validate(root: Path) -> list[str]:
 
 
 def warnings(root: Path) -> list[str]:
-    """Non-blocking findings (language, description size)."""
+    """Non-blocking findings (language, description size).
+
+    The language check inspects PROSE only: fenced code blocks are skipped, so
+    illustrative samples that quote upstream docs (SQL comments, config values)
+    do not count as untranslated text. This mirrors the hygiene scan.
+    """
     notes: list[str] = []
     for source in discover_skills(root):
         rel = source.relative_to(root).as_posix()
@@ -132,9 +148,35 @@ def warnings(root: Path) -> list[str]:
             notes.append(
                 f"{rel}: description is {len(description)} chars (> {DESCRIPTION_WARN_LEN})"
             )
-        sample = f"{description} {doc.body}"
-        if any(marker in sample for marker in PT_MARKERS):
+        sample = f"{description} {_prose_only(doc.body)}"
+        if rel not in LANGUAGE_EXEMPT and any(marker in sample for marker in PT_MARKERS):
             notes.append(
                 f"{rel}: non-English markers detected (ADR-0001; translate at import)"
             )
     return notes
+
+
+def _prose_only(body: str) -> str:
+    """Body text that should read as English.
+
+    Excluded: fenced code blocks (samples/config), inline code spans (literal
+    identifiers, anchors, quoted PT examples), and markdown link targets
+    (anchors can carry non-English slugs). What remains is the prose the
+    author is expected to have written in English.
+    """
+    import re
+
+    lines: list[str] = []
+    in_fence = False
+    for line in body.splitlines():
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        # Drop markdown link targets: [text](target) -> text
+        line = re.sub(r"\]\([^)]*\)", "]", line)
+        # Drop inline code spans: `code`
+        line = re.sub(r"`[^`]*`", "", line)
+        lines.append(line)
+    return "\n".join(lines)

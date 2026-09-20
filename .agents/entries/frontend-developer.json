@@ -1,0 +1,8 @@
+{
+  "name": "frontend-developer",
+  "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/frontend-developer/dist",
+  "fingerprint": "0c597e6c8067719b"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "java-enterprise-architect",
+  "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/java-enterprise-architect/dist",
+  "fingerprint": "367caedc41b6ee34"
+}

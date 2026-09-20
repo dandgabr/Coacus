@@ -1,0 +1,6 @@
+{
+  "name": "physical-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors.",
+  "entrypoint": "AGENT.md"
+}

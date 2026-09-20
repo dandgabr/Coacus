@@ -1,0 +1,6 @@
+{
+  "name": "electrical-power-engineer",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
+  "entrypoint": "AGENT.md"
+}

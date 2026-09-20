@@ -1,0 +1,6 @@
+{
+  "name": "project-reviewer",
+  "version": "0.1.0",
+  "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+  "entrypoint": "AGENT.md"
+}

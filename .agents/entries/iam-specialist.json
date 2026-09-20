@@ -1,0 +1,8 @@
+{
+  "name": "iam-specialist",
+  "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/iam-specialist/dist",
+  "fingerprint": "a595c2f2ee5ca865"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "web-researcher",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo). Masters advanced boolean operators, Google Dorks, domain filters, file types, defensive OSINT, data triangulation and factual source verification.",
+  "entrypoint": "AGENT.md"
+}

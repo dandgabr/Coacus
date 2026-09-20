@@ -1,0 +1,6 @@
+{
+  "name": "software-architect",
+  "version": "0.1.0",
+  "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+  "entrypoint": "AGENT.md"
+}
