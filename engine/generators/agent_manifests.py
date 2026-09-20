@@ -19,6 +19,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 
 from engine.frontmatter import Document, parse
@@ -46,6 +47,29 @@ def _strip_first_h1(body: str) -> str:
     if lines and lines[0].startswith("# "):
         return "\n".join(lines[1:]).strip()
     return body.strip()
+
+
+_MD_LINK = re.compile(r"\]\(([^)\s]+)(#[^)]*)?\)")
+
+
+def _rerelativize_links(body: str, root: Path, dist: Path) -> str:
+    """Re-point repo-root-relative markdown links so they resolve from ``dist/``.
+
+    Canonical agent bodies link skills as ``knowledge/skills/...`` (root-relative
+    per the agent contract); the generated ``dist/AGENT.md`` lives four levels
+    below the root, so those links must be rewritten against ``dist/``.
+    """
+    def repl(match: re.Match) -> str:
+        target, anchor = match.group(1), match.group(2) or ""
+        if target.startswith(("http://", "https://", "#", "mailto:")):
+            return match.group(0)
+        candidate = root / target.split("#", 1)[0]
+        if not candidate.exists():
+            return match.group(0)
+        rel = Path(os.path.relpath(candidate, dist)).as_posix()
+        return f"]({rel}{anchor})"
+
+    return _MD_LINK.sub(repl, _strip_first_h1(body))
 
 
 def generate(source_path: Path, root: Path) -> dict[str, str]:
@@ -81,7 +105,7 @@ def generate(source_path: Path, root: Path) -> dict[str, str]:
         "<!-- coacus:generated:skills -->\n"
         f"{skill_links}\n"
         "<!-- /coacus:generated:skills -->\n\n"
-        f"{_strip_first_h1(doc.body)}\n"
+        f"{_rerelativize_links(doc.body, root, dist)}\n"
     )
 
     tools = "".join(

@@ -1,0 +1,6 @@
+{
+  "name": "fullstack-developer",
+  "version": "0.1.0",
+  "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+  "entrypoint": "AGENT.md"
+}

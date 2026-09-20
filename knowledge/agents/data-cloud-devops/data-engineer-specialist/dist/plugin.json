@@ -1,0 +1,6 @@
+{
+  "name": "data-engineer-specialist",
+  "version": "0.1.0",
+  "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
+  "entrypoint": "AGENT.md"
+}

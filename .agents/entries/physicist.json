@@ -1,0 +1,8 @@
+{
+  "name": "physicist",
+  "description": "Senior specialist agent in Theoretical and Applied Physics, covering Advanced Classical Mechanics (Lagrangian and Hamiltonian), Maxwell's Electromagnetism, Thermodynamics and Statistical Mechanics, Special and General Relativity, and Condensed Matter Quantum Mechanics.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/physicist/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/physicist/dist",
+  "fingerprint": "6c1066fcbc7d230c"
+}

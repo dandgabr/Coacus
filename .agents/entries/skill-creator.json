@@ -1,0 +1,8 @@
+{
+  "name": "skill-creator",
+  "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/skill-creator/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/skill-creator/dist",
+  "fingerprint": "c1ec17b7cf5e4acb"
+}

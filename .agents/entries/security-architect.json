@@ -1,0 +1,8 @@
+{
+  "name": "security-architect",
+  "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/security-architect/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/security-architect/dist",
+  "fingerprint": "d5f219d5c19d5548"
+}

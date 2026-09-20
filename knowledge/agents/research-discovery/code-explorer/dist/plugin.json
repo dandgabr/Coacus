@@ -1,0 +1,6 @@
+{
+  "name": "code-explorer",
+  "version": "0.1.0",
+  "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+  "entrypoint": "AGENT.md"
+}

@@ -1,3 +1,178 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "path": "knowledge/agents/academic-sciences/biomedical-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/biotechnologist"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/chemical-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/civil-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/computer-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/computer-scientist"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/electrical-power-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/geoscientist"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/mathematician"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/mechanical-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/mechatronics-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/physical-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/physicist"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/quantum-computing-specialist"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/telecom-engineer"
+    },
+    {
+      "path": "knowledge/agents/academic-sciences/telecom-voice-specialist"
+    },
+    {
+      "path": "knowledge/agents/core-orchestration/antigravity-agent"
+    },
+    {
+      "path": "knowledge/agents/core-orchestration/general"
+    },
+    {
+      "path": "knowledge/agents/core-orchestration/multi-agent-orchestrator"
+    },
+    {
+      "path": "knowledge/agents/core-orchestration/self"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/ai-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/hardware-security-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/iam-specialist"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/malware-analyst"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/pentester-agent"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/reverse-engineer-agent"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/security-architect"
+    },
+    {
+      "path": "knowledge/agents/cybersecurity/security-specialist"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/cloudflare-specialist"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/data-ai-engineer"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/data-engineer-specialist"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/dba-specialist"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/devops-engineer"
+    },
+    {
+      "path": "knowledge/agents/research-discovery/code-explorer"
+    },
+    {
+      "path": "knowledge/agents/research-discovery/code-mapping-specialist"
+    },
+    {
+      "path": "knowledge/agents/research-discovery/scientific-researcher"
+    },
+    {
+      "path": "knowledge/agents/research-discovery/web-researcher"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/backend-developer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/code-optimizer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/documenter"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/frontend-developer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/fullstack-developer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/github-specialist"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/java-enterprise-architect"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/project-reviewer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/qa-testing-specialist"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/software-architect"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/software-engineer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/ui-ux-designer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/vcs-repository-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/ai-memory-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/career-coach-job-hunter"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/embedded-systems-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/information-systems-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/linguistic-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/moodle-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/skill-creator"
+    }
+  ]
 }

@@ -1,0 +1,8 @@
+{
+  "name": "backend-developer",
+  "description": "Senior Backend Development Agent specialized in designing robust APIs (REST, gRPC, GraphQL), integrating efficient databases (SQL/NoSQL), applying safe concurrency, resilient asynchronous processing and writing integration tests, while ensuring clean, secure, performant code.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/backend-developer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/backend-developer/dist",
+  "fingerprint": "ae9a0094db86dc7e"
+}

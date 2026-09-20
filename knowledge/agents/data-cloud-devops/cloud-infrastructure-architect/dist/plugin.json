@@ -1,0 +1,6 @@
+{
+  "name": "cloud-infrastructure-architect",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+  "entrypoint": "AGENT.md"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "computer-scientist",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures, Theory of Computation and Automata (Sipser), Compiler Engineering (Dragon Book) and Computer Graphics.",
+  "entrypoint": "AGENT.md"
+}

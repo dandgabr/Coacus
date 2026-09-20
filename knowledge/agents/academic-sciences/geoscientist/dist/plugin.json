@@ -1,0 +1,6 @@
+{
+  "name": "geoscientist",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
+  "entrypoint": "AGENT.md"
+}

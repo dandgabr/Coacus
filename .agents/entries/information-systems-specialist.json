@@ -1,0 +1,8 @@
+{
+  "name": "information-systems-specialist",
+  "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/information-systems-specialist/dist",
+  "fingerprint": "b3b7ec06fc556764"
+}

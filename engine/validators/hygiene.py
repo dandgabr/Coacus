@@ -23,14 +23,15 @@ SCAN_ROOTS = ("knowledge", "methodology", "verticals", "harnesses", "templates")
 # Absolute paths: a POSIX path with >=2 segments (root + component), or a
 # known single-segment system root, or a Windows drive / home expansion.
 # This allows https:// URLs, HTML tags/closers (`</TAG>`) and lone `/word`.
-_KNOWN_ROOTS = r"home|Users|root|etc|tmp|var|usr|opt|bin|sbin|lib|srv|mnt|media|workspace|app"
+# Machine-specific paths only (D12): a concrete user's home, the author's
+# conversion workspace under /tmp/opencode, a Windows user profile, or a
+# file:// URL. Legitimate system paths and tool default config locations
+# (/etc/systemd, ~/.config/<tool>) documented by OS/container skills pass.
 ABSOLUTE_PATH = re.compile(
-    r"(?<![:/A-Za-z0-9])(?:"
-    r"(?:/[A-Za-z_][A-Za-z0-9_.-]*){2,}/?"
-    rf"|/(?:{_KNOWN_ROOTS})(?:[/\s\"'`]|$)"
-    r"|[A-Za-z]:[/\\]"
-    r"|~[A-Za-z0-9_.-]*/"
-    r")"
+    r"(?<![\w:/.])(/home/[^\s/]+|/Users/[^\s/]+|/root(?:[/\s]|$)"
+    r"|/tmp/opencode[^\s]*"
+    r"|[A-Za-z]:[\\/]{1,2}Users[\\/][^\s\\/]+"
+    r"|file:///)"
 )
 
 SECRET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
@@ -47,11 +48,11 @@ SECRET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ),
 ]
 
-# Seed denylist of harness tool names (ADR-0003). Ambiguous English words
-# (Read/Write/Edit/Task/Glob/Grep) are intentionally excluded to avoid false
-# positives on legitimate prose. Harness vocabularies extend this set.
+# Seed denylist of harness tool names (ADR-0003). Ambiguous names are excluded
+# to avoid false positives: English words (Read/Write/Edit/Task/Glob/Grep) and
+# "Bash" (also the shell/language name). Extend via harness vocabularies.
 BUILTIN_TOOL_NAMES = [
-    "Bash", "MultiEdit", "WebFetch", "WebSearch", "TodoWrite", "NotebookEdit",
+    "MultiEdit", "WebFetch", "WebSearch", "TodoWrite", "NotebookEdit",
     "google_web_search", "read_file", "write_file", "list_directory",
     "run_command",
 ]
@@ -89,6 +90,25 @@ def _tool_reference(root: Path) -> re.Pattern[str]:
     )
 
 
+def _prose_lines(text: str) -> list[tuple[int, str]]:
+    """Lines outside fenced code blocks, with their 1-based numbers.
+
+    Code fences legitimately contain example absolute paths and token-shaped
+    config values; D12 governs the prose/config the framework ships, not
+    illustrative snippets inside documentation.
+    """
+    lines: list[tuple[int, str]] = []
+    in_fence = False
+    for lineno, line in enumerate(text.splitlines(), 1):
+        stripped = line.lstrip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if not in_fence:
+            lines.append((lineno, line))
+    return lines
+
+
 def validate(root: Path) -> list[str]:
     """Return a list of error strings; empty list means clean."""
     errors: list[str] = []
@@ -102,7 +122,9 @@ def validate(root: Path) -> list[str]:
             if "/dist/" in f"/{rel}":
                 continue  # derived content is checked by drift, not hygiene
             text = path.read_text(encoding="utf-8", errors="replace")
-            for lineno, line in enumerate(text.splitlines(), 1):
+            is_canonical_skill = rel.startswith(ANTI_TOOL_ROOTS)
+            skip_tools = "/references/" in f"/{rel}"
+            for lineno, line in _prose_lines(text):
                 if ABSOLUTE_PATH.search(line):
                     errors.append(f"{rel}:{lineno}: absolute path detected (D12)")
                 for label, pattern in SECRET_PATTERNS:
@@ -110,9 +132,7 @@ def validate(root: Path) -> list[str]:
                         errors.append(
                             f"{rel}:{lineno}: possible {label} — use {{env:VAR}} (D12)"
                         )
-            is_canonical_skill = rel.startswith(ANTI_TOOL_ROOTS)
-            if is_canonical_skill and "/references/" not in f"/{rel}":
-                for lineno, line in enumerate(text.splitlines(), 1):
+                if is_canonical_skill and not skip_tools:
                     hit = tool_reference.search(line)
                     if hit:
                         errors.append(

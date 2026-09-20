@@ -1,0 +1,8 @@
+{
+  "name": "cloudflare-specialist",
+  "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the new cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/cloudflare-specialist/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/cloudflare-specialist/dist",
+  "fingerprint": "6c4063310f99ef2a"
+}

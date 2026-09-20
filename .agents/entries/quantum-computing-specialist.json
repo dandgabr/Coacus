@@ -1,0 +1,8 @@
+{
+  "name": "quantum-computing-specialist",
+  "description": "Specialist in Quantum Computing, Quantum Circuit Development (Qiskit, Cirq), Quantum Algorithms (Shor, Grover, VQE) and Post-Quantum Cryptography (PQC).",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/quantum-computing-specialist/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/quantum-computing-specialist/dist",
+  "fingerprint": "bd693ea9c0e5722d"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
+  "entrypoint": "AGENT.md"
+}

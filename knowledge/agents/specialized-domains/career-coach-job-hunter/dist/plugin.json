@@ -1,0 +1,6 @@
+{
+  "name": "career-coach-job-hunter",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Career Strategy, Job Sourcing, ATS Resume Review and Optimization and Professional Profile Improvement (LinkedIn, Upwork, GitHub). Masters ATS parsing algorithms, XYZ impact formulas, Google Dorks for job search and freelancer proposal strategies.",
+  "entrypoint": "AGENT.md"
+}

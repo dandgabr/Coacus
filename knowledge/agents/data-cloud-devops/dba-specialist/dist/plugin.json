@@ -1,0 +1,6 @@
+{
+  "name": "dba-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+  "entrypoint": "AGENT.md"
+}

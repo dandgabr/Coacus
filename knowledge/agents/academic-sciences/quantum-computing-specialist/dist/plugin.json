@@ -1,0 +1,6 @@
+{
+  "name": "quantum-computing-specialist",
+  "version": "0.1.0",
+  "description": "Specialist in Quantum Computing, Quantum Circuit Development (Qiskit, Cirq), Quantum Algorithms (Shor, Grover, VQE) and Post-Quantum Cryptography (PQC).",
+  "entrypoint": "AGENT.md"
+}

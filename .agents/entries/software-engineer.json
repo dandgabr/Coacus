@@ -1,0 +1,8 @@
+{
+  "name": "software-engineer",
+  "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/software-engineer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/software-engineer/dist",
+  "fingerprint": "ca9f6f5c752e2311"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "self",
+  "version": "0.1.0",
+  "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
+  "entrypoint": "AGENT.md"
+}

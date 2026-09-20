@@ -1,0 +1,8 @@
+{
+  "name": "data-engineer-specialist",
+  "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/data-engineer-specialist/dist",
+  "fingerprint": "f81cfac7659d8767"
+}

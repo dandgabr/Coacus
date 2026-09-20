@@ -22,7 +22,7 @@ Codex, Cursor, and frameworks like LangChain/AutoGen/CrewAI).
 Coacus/
 ├── knowledge/          # WHAT to know: skills/, agents/, mcps/, rules/
 ├── methodology/        # HOW to work: workflows/ + bootstrap (SessionStart)
-├── verticals/          # domain applications (architecture-si: ingest→markdown→analyze)
+├── verticals/          # domain applications: architecture_si (ingest→analyze)
 ├── harnesses/          # thin per-harness adapters (harness.json + bootstrap render, F3)
 ├── templates/          # single source of templates (authoring + domains)
 ├── engine/             # closed core: generators, validators (dispatcher/governor: later phases)
@@ -44,6 +44,7 @@ python3 -m unittest discover -s tests  # deterministic test suite
 
 python3 scripts/coacus_install.py opencode   # install rendered artifacts into a harness
 python3 scripts/coacus_eval.py validate      # static behavior-eval scenario gate
+python3 scripts/coacus_vertical.py formats   # architecture_si document ingestion/analysis
 ```
 
 CI (`.github/workflows/ci.yml`) runs `validate` → `check` → `tests` plus a
@@ -73,13 +74,14 @@ Phase tags mark representations produced in later phases.
 
 ## Status
 
-Phases **F0–F5 implemented** (F1 foundation · F2 quality gates · F3 MCP +
-SessionStart bootstrap · F4 execution governance · F5 behavior evals — all
-merged except F5, which is pending merge). The framework has: generated catalog
-+ discovery, multi-harness agent manifests, MCP single-source generation,
-per-harness SessionStart bootstrap, a concurrency/rate-limit governor, the TOON
-handoff validator, a per-harness installer, and behavior-eval scenarios with a
-static gate + opt-in live runner. OpenCode live acceptance passed; claude-code
-is structure-verified (binary not installed) — see `docs/install.md` and
-`evals/README.md`. Decision backlog D1–D12 ratified plus ADR-0015/0016. Next:
-**F6** import of the three source repositories (with PT-BR → EN translation).
+Phases **F0–F6** (F1 foundation · F2 quality gates · F3 MCP + SessionStart
+bootstrap · F4 execution governance · F5 behavior evals · F6 corpus import).
+The framework now carries the imported corpus — **199 skills, 58 agents and 15
+workflows (14 imported + the native `using-coacus`); 214 catalog entries** —
+fully translated to English, with generated catalog + discovery,
+multi-harness agent manifests, MCP single-source generation, per-harness
+SessionStart bootstrap, a concurrency/rate-limit governor, the TOON handoff
+validator, a per-harness installer and behavior-eval scenarios. OpenCode live
+acceptance passed; claude-code is structure-verified (binary not installed) —
+see `docs/install.md` and `evals/README.md`. Decision backlog D1–D12 ratified
+plus ADR-0015/0016. Next: **F7** final consolidation.

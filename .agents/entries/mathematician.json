@@ -1,0 +1,8 @@
+{
+  "name": "mathematician",
+  "description": "Senior specialist agent in Pure and Applied Mathematics, covering Advanced Calculus (I to IV), Real and Complex Analysis, Abstract Algebra, Advanced Linear Algebra, Ordinary and Partial Differential Equations (ODE/PDE), Numerical Methods, Differential Geometry and Axiomatic Probability.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/mathematician/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/mathematician/dist",
+  "fingerprint": "52ca02d9ddf003ae"
+}

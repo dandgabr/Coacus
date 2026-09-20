@@ -109,7 +109,7 @@ class TestHygiene(unittest.TestCase):
     def test_tool_name_in_skill_body_is_rejected(self) -> None:
         skill = self._skill()
         skill.write_text(
-            skill.read_text(encoding="utf-8") + "\nNow run the Bash tool.\n",
+            skill.read_text(encoding="utf-8") + "\nNow call the WebFetch tool.\n",
             encoding="utf-8",
         )
         errors = hygiene.validate(self.root)
@@ -118,7 +118,7 @@ class TestHygiene(unittest.TestCase):
     def test_windows_absolute_path_is_rejected(self) -> None:
         skill = self._skill()
         skill.write_text(
-            skill.read_text(encoding="utf-8") + "\nOpen C:\\temp\\file.md\n",
+            skill.read_text(encoding="utf-8") + "\nOpen C:\\Users\\dev\\file.md\n",
             encoding="utf-8",
         )
         errors = hygiene.validate(self.root)
@@ -136,11 +136,38 @@ class TestHygiene(unittest.TestCase):
     def test_tilde_home_path_is_rejected(self) -> None:
         skill = self._skill()
         skill.write_text(
-            skill.read_text(encoding="utf-8") + "\nStored at ~/notes/file.md\n",
+            skill.read_text(encoding="utf-8") + "\nStored at file:///home/dev/notes.md\n",
             encoding="utf-8",
         )
         errors = hygiene.validate(self.root)
         self.assertTrue(any("absolute path" in e for e in errors))
+
+    def test_system_paths_are_allowed(self) -> None:
+        # D12 targets machine-specific paths; documented OS paths must pass.
+        skill = self._skill()
+        skill.write_text(
+            skill.read_text(encoding="utf-8")
+            + "\nConfig lives at /etc/systemd/system/foo.service\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(hygiene.validate(self.root), [])
+
+    def test_api_endpoints_are_allowed(self) -> None:
+        skill = self._skill()
+        skill.write_text(
+            skill.read_text(encoding="utf-8") + "\nGET /v1/orders and /health/live\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(hygiene.validate(self.root), [])
+
+    def test_code_fences_are_not_scanned(self) -> None:
+        skill = self._skill()
+        skill.write_text(
+            skill.read_text(encoding="utf-8")
+            + "\n```ini\nwsrep_provider = /usr/lib/galera/libgalera_smm.so\n```\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(hygiene.validate(self.root), [])
 
     def test_dollar_var_interpolation_is_accepted(self) -> None:
         skill = self._skill()

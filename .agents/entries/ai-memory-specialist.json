@@ -1,0 +1,8 @@
+{
+  "name": "ai-memory-specialist",
+  "description": "Specialist Agent in Long-Term Memory, Session Continuity and ai-memory Governance. Masters semantic wiki queries, structured recording of ADRs/durable decisions, cross-agent handoff management, integrity auditing and lifecycle observation consolidation.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/ai-memory-specialist/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/ai-memory-specialist/dist",
+  "fingerprint": "70a2396005eaa6c6"
+}

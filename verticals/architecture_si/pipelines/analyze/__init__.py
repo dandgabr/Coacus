@@ -1,0 +1,1 @@
+"""Coacus vertical package."""

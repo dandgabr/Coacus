@@ -1,0 +1,6 @@
+{
+  "name": "github-specialist",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+  "entrypoint": "AGENT.md"
+}

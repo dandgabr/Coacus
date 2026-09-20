@@ -1,0 +1,6 @@
+{
+  "name": "biotechnologist",
+  "version": "0.1.0",
+  "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
+  "entrypoint": "AGENT.md"
+}

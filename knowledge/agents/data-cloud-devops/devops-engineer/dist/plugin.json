@@ -1,0 +1,6 @@
+{
+  "name": "devops-engineer",
+  "version": "0.1.0",
+  "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+  "entrypoint": "AGENT.md"
+}

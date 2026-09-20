@@ -1,0 +1,8 @@
+{
+  "name": "moodle-specialist",
+  "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/moodle-specialist/dist",
+  "fingerprint": "b40a84a1ef78ce51"
+}

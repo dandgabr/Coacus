@@ -1,0 +1,6 @@
+{
+  "name": "embedded-systems-specialist",
+  "version": "0.1.0",
+  "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
+  "entrypoint": "AGENT.md"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "computer-engineer",
+  "description": "Senior specialist agent in Computer Engineering, covering microprocessor architecture (ARM/RISC-V), VLSI/CMOS integrated circuit design, logic synthesis in VHDL/Verilog, embedded Linux, RTOS and electronic circuit analysis.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/computer-engineer/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/computer-engineer/dist",
+  "fingerprint": "eee84639a268f3b4"
+}

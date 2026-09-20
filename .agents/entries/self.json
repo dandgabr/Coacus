@@ -1,0 +1,8 @@
+{
+  "name": "self",
+  "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
+  "category": "core-orchestration",
+  "source": "knowledge/agents/core-orchestration/self/agent.source.md",
+  "dist": "knowledge/agents/core-orchestration/self/dist",
+  "fingerprint": "5b02c0848993e4b5"
+}
