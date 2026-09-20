@@ -10,7 +10,7 @@ dependency for the core tooling.
 python3 scripts/coacus.py generate   # regenerate dist/, harnesses/<h>/bootstrap/, .agents/ and catalog/
 python3 scripts/coacus.py check      # fail if generated artifacts are stale
 python3 scripts/coacus.py validate   # run source + artifact validators
-python3 -m unittest discover -s tests  # deterministic suite (216 tests)
+python3 -m unittest discover -s tests  # deterministic suite (226 tests)
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
@@ -48,6 +48,7 @@ python3 scripts/coacus_install.py opencode --uninstall   # remove a previous ins
 python3 scripts/coacus_install.py opencode --config-dir /tmp/oc  # test location
 python3 scripts/coacus_install.py codex --only security,engineering  # partial install
 python3 scripts/coacus_install.py codex --skills 'lang-*'
+python3 scripts/coacus_install.py codex --agents 'qa-*'   # filter agents only
 python3 scripts/coacus_install.py --list                 # categories and skill names
 python3 scripts/coacus_install.py antigravity --verify   # read-only: counts + drift, exit non-zero on mismatch
 ```
@@ -55,9 +56,11 @@ python3 scripts/coacus_install.py antigravity --verify   # read-only: counts + d
 Run `generate` first. The installer writes a `coacus-install.json` manifest next
 to each target, so re-runs are idempotent and `--uninstall` removes exactly what
 was installed. All five harnesses install (`opencode`, `claude-code`,
-`antigravity`, `codex`, `cursor`), or `all` for every one of them. `--only`
-filters by category (top-level or nested segment; `workflows` for the process
-collection) and `--skills` by name glob; both are comma-separated and AND-ed.
+`antigravity`, `codex`, `cursor`) — skills and agents — or `all` for every one of
+them. `--only` filters by category (top-level or nested segment; `workflows` for
+the process collection) across **both** skills and agents; `--skills` and
+`--agents` narrow one tree each by name glob. All are comma-separated and
+AND-ed.
 
 Per-harness behavior and manual paths are in [`install.md`](install.md).
 

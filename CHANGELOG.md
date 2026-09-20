@@ -22,6 +22,18 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   the `coacus-install.json` manifest, so `--uninstall` stays exact. Useful when a
   harness caps the session-start skills budget (e.g. Codex shortening
   descriptions on a full-corpus install).
+- Agent filtering in the installer: `--only` now filters **agents as well as
+  skills** (agent categories under `knowledge/agents/`), and a new `--agents
+  <globs>` narrows agents by name. `--skills` never narrows agents. The manifest
+  records the agent filter, so `--uninstall` and `--verify` stay exact.
+- Claude Code and Cursor now install agents. Claude Code writes
+  `~/.claude/agents/<name>.md`; Cursor writes `~/.cursor/agents/<name>.md` (both
+  with `name`+`description` frontmatter). All five harnesses install agents:
+  OpenCode and Cursor flat `<config>/agent(s)/<name>.md`, Antigravity
+  `<plugin>/agents/<name>/agent.md`, Codex `<config>/agents/<name>.toml`.
+- `_component_counts` distinguishes flat agent files (`<name>.md`) from nested
+  ones (`<name>/agent.md`), so `--verify` reports the true agent count for every
+  harness instead of collapsing a flat directory to one.
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and

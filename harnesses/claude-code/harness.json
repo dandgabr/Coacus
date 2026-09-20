@@ -40,7 +40,7 @@
   },
   "tool_denylist": ["TodoWrite", "WebFetch", "WebSearch", "NotebookEdit"],
   "install": {
-    "method": "publish as a plugin (.claude-plugin/plugin.json + marketplace) and install via '/plugin marketplace add' + '/plugin install'; skills also load from ~/.claude/skills/",
+    "method": "publish as a plugin (.claude-plugin/plugin.json + marketplace) and install via '/plugin marketplace add' + '/plugin install'; skills also load from ~/.claude/skills/ and agents from ~/.claude/agents/",
     "target": "plugin marketplace"
   }
 }

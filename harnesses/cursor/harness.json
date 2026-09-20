@@ -31,7 +31,7 @@
   },
   "tool_denylist": [],
   "install": {
-    "method": "place the SessionStart hook at <project>/.cursor/hooks.json (or ~/.cursor/hooks.json) referencing the script; ship skills in a .cursor/skills/ or .agents/skills/ tree; package as a Cursor Plugin via .cursor-plugin/plugin.json",
+    "method": "place the SessionStart hook at <project>/.cursor/hooks.json (or ~/.cursor/hooks.json) referencing the script; ship skills in a .cursor/skills/ or .agents/skills/ tree and agents at ~/.cursor/agents/<name>.md; package as a Cursor Plugin via .cursor-plugin/plugin.json",
     "target": ".cursor/hooks.json"
   }
 }

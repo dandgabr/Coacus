@@ -609,15 +609,19 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
-              <config_dir>/skills/.
+              <config_dir>/skills/ and agents under <config_dir>/agent/.
 - claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+              agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               script at bootstrap/session-start.sh (matching hooks.json).
-- antigravity plugin (manifest + rule + skills) -> <config_dir>/config/plugins/coacus/;
-              activation is by directory, so no registry edit is needed.
+- antigravity plugin (manifest + rule + skills + agents) ->
+              <config_dir>/config/plugins/coacus/; activation is by directory,
+              so no registry edit is needed.
 - codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
-              not ~/.codex/skills) + the SessionStart hook at <config_dir>/hooks.json.
-- cursor      skills   -> ~/.agents/skills/<skill>/  + the sessionStart hook at
+              not ~/.codex/skills); agents -> <config_dir>/agents/<name>.toml;
+              plus the SessionStart hook at <config_dir>/hooks.json.
+- cursor      skills   -> ~/.agents/skills/<skill>/; agents ->
+              <config_dir>/agents/<name>.md; plus the sessionStart hook at
               <config_dir>/hooks.json (snake_case `additional_context`).
 
 Usage:
@@ -629,10 +633,12 @@ are idempotent and `--uninstall` removes exactly what was installed.
 
 Partial installs keep the session-start skills budget small: a harness that
 indexes every skill pays for every description. Filter with `--only` (top-level
-category) and/or `--skills` (name glob); `--list` prints what is available.
+category, applied to skills and agents), `--skills` (skill name glob) and/or
+`--agents` (agent name glob); `--list` prints what is available.
 
     python3 scripts/coacus_install.py codex --only security,engineering
     python3 scripts/coacus_install.py codex --skills 'lang-python,framework-*'
+    python3 scripts/coacus_install.py codex --agents 'qa-*,*-architect'
     python3 scripts/coacus_install.py codex --list
 
 #### `def default_config_dir(harness: str, home: Path) -> Path`
@@ -654,15 +660,21 @@ no filter.
 
 Inventory for `--list`: categories and skill names, no harness needed.
 
-#### `def discover_agents(root: Path) -> list[Path]`
+#### `def discover_agents(root: Path, only: list[str] | None=None, agents: list[str] | None=None) -> list[Path]`
 
 All canonical agent sources: knowledge/agents/<category>/<name>/.
 
-#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[tuple[Path, str]]`
+``only`` keeps agents whose path under ``knowledge/agents`` contains one of
+the given category tokens (matched against every path segment). ``agents``
+keeps agents whose directory name matches one of the given fnmatch globs.
+Both filters are OR-ed within their own list and AND-ed with each other; an
+empty filter is no filter. ``--skills`` never narrows agents.
+
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, str]]`
 
 _No docstring._
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> dict[str, object]`
 
 _No docstring._
 
