@@ -419,5 +419,7 @@ The last command must print `True`. The script must not emit
 The live test for any harness is behavioral: a fresh session with the bootstrap
 must produce a string that exists only in `using-coacus` — the red-flag thought
 `"This is just a small change."` A session without the bootstrap must not produce
-it. Live acceptance has been run on OpenCode; Claude Code, Codex and Cursor are
-structure-verified only, because their binaries were not available locally.
+it. Live acceptance has been run on OpenCode, Codex (`codex exec`) and
+Antigravity (`agy --print`) via `python3 scripts/coacus_eval.py run
+--harness <name>`; Claude Code and Cursor remain structure-verified only,
+because their binaries were not available locally.

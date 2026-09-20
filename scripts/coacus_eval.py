@@ -7,13 +7,17 @@ Deterministic by default; live evaluation is opt-in.
     python3 scripts/coacus_eval.py validate
 
     # live run against a harness CLI installed locally
-    python3 scripts/coacus_eval.py run [--scenario <id>] [--harness opencode]
+    python3 scripts/coacus_eval.py run [--scenario <id>] [--harness codex]
         [--judge-cmd "<command that reads the transcript on stdin>"]
         [--judge-agent]            # delegate judgment to a subagent via the harness
 
 Live scenarios drive a real agent CLI, so they need the CLI + credentials and
-run outside CI. Deterministic checks (`contains`/`not_contains`/`regex`) run on
-the captured transcript; the `rubric` is passed to the judge.
+run outside CI. Each harness declares its non-interactive invocation in
+`harnesses/<h>/harness.json` (`live_cli`); a harness without one is reported as
+`NO_RUNNER`. `--harness` overrides the scenario's target so one scenario can be
+exercised against any locally installed live CLI. Deterministic checks
+(`contains`/`not_contains`/`regex`) run on the captured transcript; the `rubric`
+is passed to the judge.
 
 The `--judge-cmd` receives JSON on stdin: {"scenario": {...}, "transcript": "..."}
 and must print a verdict line (anything). `--judge-agent` runs the rubric through
@@ -37,10 +41,31 @@ if str(ROOT) not in sys.path:
 
 from engine.validators import evals as scenario_validator  # noqa: E402
 
-# Live CLI per harness. Kept as data in harness.json would be better (OCP); for
-# now only opencode is locally verifiable, so it is the one live runner.
+# Live CLI per harness is DATA: each harness.json may declare a `live_cli`
+# invocation (e.g. ["opencode", "run"], ["codex", "exec"], ["agy", "--print"]).
+# A harness without one cannot run live and is reported as NO_RUNNER. The
+# constant is the fallback for a minimal repo whose manifests declare none.
 HARNESS_CLI = {"opencode": ["opencode", "run"]}
 ANSI = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
+
+
+def _live_clis(root: Path) -> dict[str, list[str]]:
+    """Map harness name -> live CLI argv prefix, read from harness.json."""
+    clis: dict[str, list[str]] = {}
+    harnesses_dir = root / "harnesses"
+    if harnesses_dir.is_dir():
+        for manifest in sorted(harnesses_dir.glob("*/harness.json")):
+            try:
+                data = json.loads(manifest.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                continue
+            name = data.get("name")
+            cli = data.get("live_cli")
+            if isinstance(name, str) and isinstance(cli, list) and all(
+                isinstance(part, str) and part for part in cli
+            ):
+                clis[name] = cli
+    return clis or dict(HARNESS_CLI)
 
 
 def _redact(text: str) -> str:
@@ -81,10 +106,10 @@ def _apply_checks(scenario: dict, transcript: str) -> list[dict]:
     return results
 
 
-def _run_harness(scenario: dict, timeout: float) -> tuple[str, str]:
+def _run_harness(scenario: dict, timeout: float, clis: dict[str, list[str]]) -> tuple[str, str]:
     """Run the harness CLI. Returns (cleaned transcript, status)."""
     harness = scenario["harness"]
-    cli = HARNESS_CLI.get(harness)
+    cli = clis.get(harness)
     if not cli:
         return "", f"NO_RUNNER ({harness})"
     try:
@@ -108,11 +133,12 @@ def _run_harness(scenario: dict, timeout: float) -> tuple[str, str]:
     return combined, "OK"
 
 
-def _judge(scenario: dict, transcript: str, judge_cmd: str | None, judge_agent: bool) -> dict:
+def _judge(scenario: dict, transcript: str, judge_cmd: str | None, judge_agent: bool,
+           clis: dict[str, list[str]]) -> dict:
     payload = json.dumps({"scenario": scenario, "transcript": transcript})
     if judge_agent:
         # Route the rubric through the harness as an orchestrated subagent.
-        cli = HARNESS_CLI.get(scenario["harness"], ["opencode", "run"])
+        cli = clis.get(scenario["harness"]) or clis.get("opencode") or ["opencode", "run"]
         prompt = (
             "You are a strict verifier. Given this JSON with a scenario and a "
             "transcript, judge whether the transcript satisfies each rubric item. "
@@ -162,7 +188,8 @@ def cmd_validate(root: Path) -> int:
     return 0
 
 
-def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool, timeout: float) -> int:
+def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool,
+            timeout: float, harness: str | None = None) -> int:
     # Fail fast on invalid scenarios (same contract as the static gate).
     errors = scenario_validator.validate(root)
     if errors:
@@ -177,19 +204,28 @@ def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_ag
     if scenario_id and scenario_id not in scenarios:
         print(f"unknown scenario: {scenario_id}")
         return 1
+    clis = _live_clis(root)
+    if harness and harness not in clis:
+        print(f"unknown harness: {harness} (no live_cli; available: {', '.join(sorted(clis))})")
+        return 1
     selected = {scenario_id: scenarios[scenario_id]} if scenario_id else scenarios
 
     all_passed = True
     for sid, scenario in selected.items():
-        transcript, status = _run_harness(scenario, timeout)
+        if harness:
+            # Override the scenario's harness so one scenario can be exercised
+            # against any locally installed live CLI.
+            scenario = {**scenario, "harness": harness}
+        transcript, status = _run_harness(scenario, timeout, clis)
         checks = _apply_checks(scenario, transcript)
-        judge = _judge(scenario, transcript, judge_cmd, judge_agent)
+        judge = _judge(scenario, transcript, judge_cmd, judge_agent, clis)
         passed = status == "OK" and all(c["passed"] for c in checks)
         if judge.get("passed") is not None:
             passed = passed and judge["passed"]
         all_passed = all_passed and passed
         print(json.dumps({
             "scenario": sid,
+            "harness": scenario["harness"],
             "status": status,
             "passed": passed,
             "checks": checks,
@@ -203,13 +239,19 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus-eval", description=__doc__)
     parser.add_argument("action", choices=["validate", "run"])
     parser.add_argument("--scenario", help="run only this scenario id")
+    parser.add_argument(
+        "--harness",
+        help="override the scenario's harness with a locally installed live CLI",
+    )
     parser.add_argument("--judge-cmd", help="command reading the transcript JSON on stdin")
     parser.add_argument("--judge-agent", action="store_true", help="judge via an orchestrated subagent")
     parser.add_argument("--timeout", type=float, default=300.0)
     args = parser.parse_args(argv)
     if args.action == "validate":
         return cmd_validate(ROOT)
-    return cmd_run(ROOT, args.scenario, args.judge_cmd, args.judge_agent, args.timeout)
+    return cmd_run(
+        ROOT, args.scenario, args.judge_cmd, args.judge_agent, args.timeout, args.harness
+    )
 
 
 if __name__ == "__main__":

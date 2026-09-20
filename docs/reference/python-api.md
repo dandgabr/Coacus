@@ -512,13 +512,17 @@ Deterministic by default; live evaluation is opt-in.
     python3 scripts/coacus_eval.py validate
 
     # live run against a harness CLI installed locally
-    python3 scripts/coacus_eval.py run [--scenario <id>] [--harness opencode]
+    python3 scripts/coacus_eval.py run [--scenario <id>] [--harness codex]
         [--judge-cmd "<command that reads the transcript on stdin>"]
         [--judge-agent]            # delegate judgment to a subagent via the harness
 
 Live scenarios drive a real agent CLI, so they need the CLI + credentials and
-run outside CI. Deterministic checks (`contains`/`not_contains`/`regex`) run on
-the captured transcript; the `rubric` is passed to the judge.
+run outside CI. Each harness declares its non-interactive invocation in
+`harnesses/<h>/harness.json` (`live_cli`); a harness without one is reported as
+`NO_RUNNER`. `--harness` overrides the scenario's target so one scenario can be
+exercised against any locally installed live CLI. Deterministic checks
+(`contains`/`not_contains`/`regex`) run on the captured transcript; the `rubric`
+is passed to the judge.
 
 The `--judge-cmd` receives JSON on stdin: {"scenario": {...}, "transcript": "..."}
 and must print a verdict line (anything). `--judge-agent` runs the rubric through
@@ -528,7 +532,7 @@ the same harness as an orchestrated subagent (multi-agent-orchestrator pattern).
 
 _No docstring._
 
-#### `def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool, timeout: float) -> int`
+#### `def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool, timeout: float, harness: str | None=None) -> int`
 
 _No docstring._
 

@@ -28,6 +28,7 @@
     ]
   },
   "detection": ["CODEX_HOME"],
+  "live_cli": ["codex", "exec"],
   "tool_mapping": {
     "create or update todos": "update_plan",
     "dispatch a subagent": "spawn_agent",
