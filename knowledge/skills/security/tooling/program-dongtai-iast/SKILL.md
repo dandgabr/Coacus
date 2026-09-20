@@ -83,7 +83,7 @@ The DongTai Java agent is composed of three internal modules (`dongtai-agent.jar
 ```bash
 # Baixar o agente Java compilado
 curl -X GET "http://dongtai-server:8888/openapi/api/v1/agent/download?url=http://dongtai-server:8888/openapi&language=java" \
-     -H "Authorization: Token SEU_TOKEN_AQUI" -o dongtai-agent.jar
+     -H "Authorization: Token ${DONGTAI_TOKEN}" -o dongtai-agent.jar
 
 # Executar a aplicação Java com o agente acoplado
 java -javaagent:/opt/dongtai/dongtai-agent.jar \

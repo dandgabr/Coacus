@@ -95,7 +95,7 @@ Guarantee that duplicate requests sent due to network failure never result in do
 ```json
 // Header de requisição obrigatório na API de Pagamento
 HTTP/1.1 POST /v1/payments
-Idempotency-Key: 7b9e83c2-84b1-4c6e-821a-298317a9412d
+Idempotency-Key: ${IDEMPOTENCY_KEY}
 ```
 
 - **Idempotency Engine**: Concurrent locking in Redis/Cache with payload hash verification and idempotency key. If the request has already been processed, the previous result is returned immediately without resending the transaction to the acquirer/bank.

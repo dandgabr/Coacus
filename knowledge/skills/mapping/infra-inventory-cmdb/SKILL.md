@@ -56,7 +56,7 @@ import pynetbox
 
 nb = pynetbox.api(
     url="https://netbox.corp.local",
-    token="0123456789abcdef0123456789abcdef01234567"
+    token="${NETBOX_TOKEN}"
 )
 
 # Criar prefixo de sub-rede e alocar primeiro IP disponível
