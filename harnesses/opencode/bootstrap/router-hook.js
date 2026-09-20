@@ -33,20 +33,17 @@ const route = (prompt) => {
  */
 export const CoacusRouter = async () => ({
   'chat.message': async (input, output) => {
-    const text = (output.parts ?? [])
-      .filter((p) => p.type === 'text')
-      .map((p) => p.text ?? '')
-      .join(' ');
-    if (!text.trim()) return;
-    const candidates = route(text);
+    const textPart = (output.parts ?? []).find((p) => p.type === 'text');
+    if (!textPart || !textPart.text?.trim()) return;
+    const candidates = route(textPart.text);
     if (!candidates.length) return;
     const suggestion = [
-      '<coacus-routing>',
+      '\n\n<coacus-routing>',
       'Deterministic agent candidates for this request (routing):',
       ...candidates.map((c) => '- ' + c),
       'Confirm or adjust; do not spawn more than the free governor slots.',
       '</coacus-routing>',
     ].join('\n');
-    output.parts.push({ type: 'text', text: suggestion });
+    textPart.text += suggestion;
   },
 });
