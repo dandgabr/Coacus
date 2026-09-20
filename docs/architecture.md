@@ -170,7 +170,7 @@ Coacus/
 ├── .agents/              # GENERATED discovery manifests
 ├── tests/                # deterministic infrastructure tests (stdlib unittest)
 ├── evals/                # LLM behavior evals (static gate + opt-in live runner)
-├── docs/                 # this documentation + adr/
+├── docs/                 # this documentation + standards/
 ├── sources.lock.json     # provenance for imported artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```

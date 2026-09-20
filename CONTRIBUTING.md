@@ -40,14 +40,14 @@ Run the full gate before opening a pull request:
 python3 scripts/coacus.py generate     # produce the artifacts your change implies
 python3 scripts/coacus.py validate     # source + artifact contracts
 python3 scripts/coacus.py check        # must report no drift
-python3 -m unittest discover -s tests  # 230 deterministic tests
+python3 -m unittest discover -s tests  # 240 deterministic tests
 ```
 
 `generate` refuses to write while source validation fails. Fix `[error]` lines
 first; `[warn]` lines are non-blocking (non-English markers, oversized
 descriptions) but should be addressed when they concern your change.
 
-CI runs `validate` → `check` → tests and **never** `generate`: regeneration in CI
+CI runs `validate` → `check` → `completeness` → tests and **never** `generate`: regeneration in CI
 would rewrite the files under comparison and mask drift. If you see a drift
 failure, regenerate locally and commit.
 
@@ -99,7 +99,7 @@ Rules:
 2. Make the change; run the full local gate.
 3. Stage only intended files. Commit `generate` output together with its sources.
 4. Open a pull request against `main`.
-5. CI runs the `ci` job (validate → check → tests) and the `secrets` job
+5. CI runs the `ci` job (validate → check → completeness → tests) and the `secrets` job
    (pinned gitleaks in directory mode, scanning the checked-out state). A `main`
    ruleset makes **both** checks required.
 6. Review the generated diff in the PR. It is the visible proof that source and

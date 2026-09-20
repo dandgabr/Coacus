@@ -73,9 +73,8 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   `apply` relabels existing entries in place without re-importing content.
 - `engine/validators/completeness.py` and `python3 scripts/coacus.py
   completeness`: reconciles the import manifest against the source repositories,
-  the target tree, the committed catalog, provenance (no orphan targets), agent
-  skill references and the ADR set (ADR-0001…ADR-0017); recognises renames and
-  merges. Wired into CI.
+  the target tree, the committed catalog, provenance (no orphan targets) and
+  agent skill references; recognises renames and merges. Wired into CI.
 - `engine/generators/docstrings.py`: generates `docs/reference/python-api.md`
   from source docstrings, drift-checked like any generated artifact.
 - Per-harness installation tutorial (`docs/install.md`) with an evidence class

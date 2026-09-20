@@ -5,7 +5,7 @@ into the native shape each AI coding harness expects. Write it once; run it in
 OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
-[![Tests: 230](https://img.shields.io/badge/tests-230-brightgreen.svg)](docs/usage.md)
+[![Tests: 240](https://img.shields.io/badge/tests-240-brightgreen.svg)](docs/usage.md)
 [![Status: F0–F8 complete](https://img.shields.io/badge/status-F0%E2%80%93F8%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
@@ -121,11 +121,11 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 199 | `security` 50, `domains` 36, `roles` 21, `languages` 18, `mapping` 16, `frameworks` 14, `engineering` 14, `platforms` 12, `infrastructure` 9, `data` 9 |
-| Agents | 58 | `academic-sciences` 16, `software-engineering` 13, `cybersecurity` 8, `specialized-domains` 7, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
+| Skills | 193 | `security` 50, `domains` 36, `roles` 21, `languages` 18, `mapping` 15, `frameworks` 14, `engineering` 14, `infrastructure` 9, `data` 9, `platforms` 7 |
+| Agents | 57 | `academic-sciences` 16, `software-engineering` 13, `cybersecurity` 8, `specialized-domains` 6, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 208 skill entries | `catalog/catalog.json` + `catalog/INDEX.md`, generated from disk |
+| Catalog | 208 skill entries | 193 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
 | Provenance | 1136 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
@@ -149,7 +149,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 Six CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
 `coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`. The `tests/` tree
-holds 230 deterministic stdlib `unittest` tests. `evals/` holds six behavior
+holds 240 deterministic stdlib `unittest` tests. `evals/` holds six behavior
 scenarios behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
@@ -211,7 +211,7 @@ python3 scripts/coacus.py check         # fail if generated artifacts are stale
 python3 scripts/coacus.py validate      # run source + artifact validators
 python3 scripts/coacus.py completeness  # reconcile sources, lock file and catalog
 python3 scripts/coacus.py toon payload.toon   # validate a TOON handoff payload
-python3 -m unittest discover -s tests   # 230 deterministic tests
+python3 -m unittest discover -s tests   # 240 deterministic tests
 
 python3 scripts/coacus_governor.py status    # running/paused/max/slots_free
 python3 scripts/coacus_eval.py validate      # static scenario gate
