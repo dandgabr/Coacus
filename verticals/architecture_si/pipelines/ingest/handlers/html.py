@@ -1,14 +1,46 @@
-"""HTML to Markdown, with a regex fallback when BeautifulSoup is unavailable."""
+"""HTML to Markdown, with a stdlib HTMLParser fallback when BeautifulSoup is absent."""
 
 from __future__ import annotations
 
-import html as html_module
 import re
+from html.parser import HTMLParser
 from pathlib import Path
 
 from engine.dispatcher import register_converter
 
 from verticals.architecture_si.pipelines.ingest.handlers import _common as common
+
+
+class _TextExtractor(HTMLParser):
+    """Extract visible text without pulling in a parser dependency.
+
+    Using the stdlib parser (not tag regexes) keeps the fallback correct and
+    avoids CodeQL's `bad-tag-filter` finding.
+    """
+
+    _SKIP = {"script", "style", "nav", "footer", "head"}
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self._skip_depth = 0
+
+    def handle_starttag(self, tag: str, attrs) -> None:
+        if tag in self._SKIP:
+            self._skip_depth += 1
+        elif tag in ("p", "br", "div", "li", "h1", "h2", "h3", "h4", "tr"):
+            self.parts.append("\n")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in self._SKIP and self._skip_depth:
+            self._skip_depth -= 1
+
+    def handle_data(self, data: str) -> None:
+        if not self._skip_depth and data.strip():
+            self.parts.append(data.strip())
+
+    def text(self) -> str:
+        return re.sub(r"\n{3,}", "\n\n", "\n".join(self.parts)).strip()
 
 
 def convert_html_to_md(html_path: str) -> str:
@@ -17,13 +49,9 @@ def convert_html_to_md(html_path: str) -> str:
     try:
         from bs4 import BeautifulSoup
     except ImportError:
-        # Fallback without BeautifulSoup: strip whole elements with a
-        # non-backtracking dotall pattern (avoids the bad-tag-filter warning).
-        text = re.sub(r"<script\b[^>]*>.*?</script\s*>", "", html, flags=re.DOTALL | re.IGNORECASE)
-        text = re.sub(r"<style\b[^>]*>.*?</style\s*>", "", text, flags=re.DOTALL | re.IGNORECASE)
-        text = re.sub(r"<[^>]+>", "\n", text)
-        text = html_module.unescape(text)
-        return re.sub(r"\n{3,}", "\n\n", text)
+        parser = _TextExtractor()
+        parser.feed(html)
+        return parser.text()
 
     soup = BeautifulSoup(html, "html.parser")
     for tag in soup(["script", "style", "nav", "footer"]):
