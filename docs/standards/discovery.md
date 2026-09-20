@@ -16,6 +16,9 @@ At session start, read the generated indexes ONCE:
 
 - `.agents/skills.json`, `.agents/mcps.json`, `.agents/agents.json` — consolidated
   by-kind indexes, each `{entries: [{path}]}`.
+- `.agents/routing.json` — the routing index (`routing`), which merges each
+  agent's canonical facts with the curated bilingual triggers so the router
+  (`engine/router.py`) selects agents without re-scanning the tree.
 - `.agents/entries/<name>.json` — per-agent entries
   `{name, description, category, source, dist, fingerprint}`.
 

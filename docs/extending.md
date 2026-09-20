@@ -65,6 +65,11 @@ Validator contract (`engine/validators/agents.py`): `name` kebab-case and equal
 to the directory; `category` equal to the parent directory; `description`
 required; instruction body non-empty; every `skills:` path exists; names unique.
 
+Then add bilingual routing triggers for the new agent to
+`knowledge/routing/lexicon.json` ([routing](standards/routing.md)). The routing
+validator fails until every agent has a trigger list, so a new agent without one
+does not pass `validate`.
+
 `generate` produces `dist/AGENT.md`, `dist/agent.yaml`, `dist/agent.json`,
 `dist/plugin.json` and `.agents/entries/<name>.json` from the single source. Do
 not hand-edit any of them.

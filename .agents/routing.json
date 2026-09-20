@@ -1,0 +1,1837 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "name": "ai-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
+        "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md",
+        "knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md",
+        "knowledge/skills/security/ai/ai-governance-assurance/SKILL.md",
+        "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
+        "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
+      ],
+      "triggers": [
+        "adversarial ml",
+        "ai security",
+        "ia",
+        "jailbreak",
+        "llm security",
+        "modelo de ia",
+        "prompt injection",
+        "red team de ia",
+        "seguran\u00e7a de ia"
+      ]
+    },
+    {
+      "name": "antigravity-agent",
+      "category": "core-orchestration",
+      "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/platforms/program-github-actions/SKILL.md"
+      ],
+      "triggers": [
+        "agy",
+        "antigravity",
+        "antigravity cli",
+        "google antigravity",
+        "pair programmer",
+        "pair programming"
+      ]
+    },
+    {
+      "name": "automotive-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Automotive Cybersecurity, covering ISO/SAE 21434, UNECE WP.29 R155/R156, TARA, in-vehicle network security and secure OTA update and vehicle lifecycle protection.",
+      "skills": [
+        "knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md",
+        "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md"
+      ],
+      "triggers": [
+        "automotive",
+        "automotivo",
+        "can bus",
+        "ecu",
+        "iso 21434",
+        "unr155",
+        "vehicle",
+        "ve\u00edculo"
+      ]
+    },
+    {
+      "name": "backend-developer",
+      "category": "software-engineering",
+      "description": "Senior Backend Development Agent specialized in designing robust APIs (REST, gRPC, GraphQL), integrating efficient databases (SQL/NoSQL), applying safe concurrency, resilient asynchronous processing and writing integration tests, while ensuring clean, secure, performant code.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/frameworks/framework-grpc/SKILL.md",
+        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
+        "knowledge/skills/languages/lang-csharp/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/languages/lang-typescript/SKILL.md",
+        "knowledge/skills/roles/backend-developer/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+      ],
+      "triggers": [
+        "api",
+        "back-end",
+        "backend",
+        "graphql",
+        "grpc",
+        "rest",
+        "server",
+        "service",
+        "servidor",
+        "servi\u00e7o"
+      ]
+    },
+    {
+      "name": "biomedical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Biomedical Engineering, covering biosignal processing (ECG, EEG, EMG), medical instrumentation with isolation amplifiers (IA), medical imaging physics (CT, MRI, ultrasound) and interoperability with DICOM and HL7/FHIR.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+        "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "biomedical",
+        "biom\u00e9dica",
+        "biosignal",
+        "dicom",
+        "ecg",
+        "eeg",
+        "instrumenta\u00e7\u00e3o m\u00e9dica",
+        "sinais fisiol\u00f3gicos"
+      ]
+    },
+    {
+      "name": "biotechnologist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+        "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+        "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "bioprocess",
+        "bioprocesso",
+        "bioreactor",
+        "biorreator",
+        "biotechnology",
+        "biotecnologia",
+        "downstream",
+        "fermenta\u00e7\u00e3o",
+        "upstream"
+      ]
+    },
+    {
+      "name": "career-coach-job-hunter",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Career Strategy, Job Sourcing, ATS Resume Review and Optimization and Professional Profile Improvement (LinkedIn, Upwork, GitHub). Masters ATS parsing algorithms, XYZ impact formulas, Google Dorks for job search and freelancer proposal strategies.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/roles/ats-resume-optimization/SKILL.md",
+        "knowledge/skills/roles/career-profile-optimization/SKILL.md",
+        "knowledge/skills/roles/job-hunting-sourcing/SKILL.md",
+        "knowledge/skills/roles/web-search-specialist/SKILL.md"
+      ],
+      "triggers": [
+        "ats",
+        "career",
+        "carreira",
+        "curr\u00edculo",
+        "cv",
+        "entrevista",
+        "interview",
+        "job",
+        "linkedin",
+        "resume",
+        "vaga"
+      ]
+    },
+    {
+      "name": "chemical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Chemical Engineering, Synthesis and Industrial Processes, covering mass and energy balances, chemical kinetics, reactor design (CSTR, PFR, PBR), organic/inorganic synthesis, instrumental analysis (HPLC/GC/NMR), solution thermodynamics and transport phenomena.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+        "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
+        "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+        "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "chemical",
+        "gc-ms",
+        "hplc",
+        "processo qu\u00edmico",
+        "qu\u00edmica",
+        "reactor",
+        "reator",
+        "termodin\u00e2mica"
+      ]
+    },
+    {
+      "name": "civil-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Civil and Structural Engineering, covering structural analysis, mechanics of materials, soil mechanics and geotechnics (Terzaghi, Mohr-Coulomb), foundations and structural element design.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "civil",
+        "concrete",
+        "concreto",
+        "estrutura",
+        "estrutural",
+        "foundation",
+        "funda\u00e7\u00e3o",
+        "geotecnia",
+        "solo",
+        "structural"
+      ]
+    },
+    {
+      "name": "cloud-infrastructure-architect",
+      "category": "data-cloud-devops",
+      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+      "skills": [
+        "knowledge/skills/infrastructure/cloud-aws/SKILL.md",
+        "knowledge/skills/infrastructure/cloud-azure/SKILL.md",
+        "knowledge/skills/infrastructure/cloud-gcp/SKILL.md",
+        "knowledge/skills/infrastructure/cloud-oci/SKILL.md",
+        "knowledge/skills/security/iam/csa-cloud-security/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-management/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
+      ],
+      "triggers": [
+        "arquitetura de nuvem",
+        "aws",
+        "azure",
+        "cloud",
+        "finops",
+        "gcp",
+        "iac",
+        "multi-cloud",
+        "nuvem",
+        "oci",
+        "terraform"
+      ]
+    },
+    {
+      "name": "cloud-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cloud Security, covering CNAPP posture management, IaC security scanning, cloud secrets and workload identity federation, cloud detection and response, serverless security and multi-cloud assurance.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/cloud/cloud-detection-response/SKILL.md",
+        "knowledge/skills/security/cloud/cloud-secrets-management/SKILL.md",
+        "knowledge/skills/security/cloud/cloud-security-posture-cnapp/SKILL.md",
+        "knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md",
+        "knowledge/skills/security/cloud/iac-security-scanning/SKILL.md",
+        "knowledge/skills/security/cloud/serverless-security/SKILL.md",
+        "knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md",
+        "knowledge/skills/security/iam/csa-cloud-security/SKILL.md"
+      ],
+      "triggers": [
+        "cloud posture",
+        "cloud security",
+        "cnapp",
+        "cspm",
+        "postura de nuvem",
+        "seguran\u00e7a aws",
+        "seguran\u00e7a azure",
+        "seguran\u00e7a de nuvem"
+      ]
+    },
+    {
+      "name": "cloudflare-specialist",
+      "category": "data-cloud-devops",
+      "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the new cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/roles/devops-engineer/SKILL.md"
+      ],
+      "triggers": [
+        "cloudflare",
+        "d1",
+        "edge",
+        "pages",
+        "r2",
+        "workers",
+        "wrangler",
+        "zero trust cloudflare"
+      ]
+    },
+    {
+      "name": "code-explorer",
+      "category": "research-discovery",
+      "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/roles/explore/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md"
+      ],
+      "triggers": [
+        "buscar no c\u00f3digo",
+        "codebase",
+        "entender o c\u00f3digo",
+        "explorar c\u00f3digo",
+        "explore code",
+        "mapear reposit\u00f3rio",
+        "understand code"
+      ]
+    },
+    {
+      "name": "code-mapping-specialist",
+      "category": "research-discovery",
+      "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+        "knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md",
+        "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
+        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
+        "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
+        "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
+        "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md",
+        "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md",
+        "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
+        "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
+        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
+        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
+        "knowledge/skills/mapping/observability-correlation/SKILL.md",
+        "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
+        "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
+      ],
+      "triggers": [
+        "arquitetura de c\u00f3digo",
+        "call graph",
+        "dependency graph",
+        "depend\u00eancias",
+        "mapeamento",
+        "mapping",
+        "topologia",
+        "uml"
+      ]
+    },
+    {
+      "name": "code-optimizer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio) and data-intensive system architecture.",
+      "skills": [
+        "knowledge/skills/data/data-intensive-systems/SKILL.md",
+        "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
+        "knowledge/skills/engineering/practices/latency-engineering/SKILL.md",
+        "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md",
+        "knowledge/skills/languages/lang-csharp/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/roles/code-optimizer/SKILL.md"
+      ],
+      "triggers": [
+        "bottleneck",
+        "consulta lenta",
+        "desempenho",
+        "gargalo",
+        "latency",
+        "lat\u00eancia",
+        "lentidao",
+        "optimize",
+        "otimizacao",
+        "otimizar",
+        "performance",
+        "profiling",
+        "refatorar performance"
+      ]
+    },
+    {
+      "name": "computer-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Computer Engineering, covering microprocessor architecture (ARM/RISC-V), VLSI/CMOS integrated circuit design, logic synthesis in VHDL/Verilog, embedded Linux, RTOS and electronic circuit analysis.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
+        "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md",
+        "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
+        "knowledge/skills/languages/lang-assembly-x64/SKILL.md"
+      ],
+      "triggers": [
+        "embarcado",
+        "fpga",
+        "hardware",
+        "microprocessador",
+        "microprocessor",
+        "sistema digital",
+        "verilog",
+        "vhdl",
+        "vlsi"
+      ]
+    },
+    {
+      "name": "computer-scientist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures, Theory of Computation and Automata (Sipser), Compiler Engineering (Dragon Book) and Computer Graphics.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md",
+        "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md",
+        "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "algorithm",
+        "algoritmo",
+        "aut\u00f4mato",
+        "compilador",
+        "compiler",
+        "complexidade",
+        "complexity",
+        "data structure",
+        "estrutura de dados"
+      ]
+    },
+    {
+      "name": "container-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Container and Kubernetes Security, covering CIS Kubernetes Benchmark conformance, Pod Security and admission control, RBAC, runtime security and container escapes, image supply chain and offensive Kubernetes attack paths.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/infrastructure/program-containers/SKILL.md",
+        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
+        "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md",
+        "knowledge/skills/security/operations/container-runtime-security/SKILL.md",
+        "knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md",
+        "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
+      ],
+      "triggers": [
+        "container security",
+        "docker security",
+        "escape de container",
+        "kubernetes security",
+        "pod security",
+        "seguran\u00e7a de container",
+        "seguran\u00e7a k8s"
+      ]
+    },
+    {
+      "name": "cryptography-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/204/205), PKI and certificate lifecycle, KMS/HSM key management, crypto agility and migration, tokenization and format-preserving encryption, and the cryptographic controls required by the digital signature standards.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/crypto/crypto-agility-pqc-migration/SKILL.md",
+        "knowledge/skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md",
+        "knowledge/skills/security/crypto/crypto-pki-certificate-lifecycle/SKILL.md",
+        "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md",
+        "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md",
+        "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md"
+      ],
+      "triggers": [
+        "assinatura digital",
+        "certificado",
+        "cripto",
+        "criptografia",
+        "cryptography",
+        "hsm",
+        "kms",
+        "pki",
+        "post-quantum",
+        "pqc",
+        "p\u00f3s-qu\u00e2ntica"
+      ]
+    },
+    {
+      "name": "data-ai-engineer",
+      "category": "data-cloud-devops",
+      "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
+      "skills": [
+        "knowledge/skills/data/data-mesh-governance/SKILL.md",
+        "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
+        "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "airflow",
+        "dados e ia",
+        "data and ai",
+        "data pipeline",
+        "deep learning",
+        "machine learning",
+        "mlops",
+        "pipeline de dados",
+        "rag",
+        "spark"
+      ]
+    },
+    {
+      "name": "data-engineer-specialist",
+      "category": "data-cloud-devops",
+      "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
+      "skills": [
+        "knowledge/skills/data/data-mesh-governance/SKILL.md",
+        "knowledge/skills/data/db-postgresql/SKILL.md",
+        "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "data engineering",
+        "data mesh",
+        "engenharia de dados",
+        "etl",
+        "flink",
+        "kafka",
+        "lakehouse",
+        "streaming"
+      ]
+    },
+    {
+      "name": "data-security-privacy-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md",
+        "knowledge/skills/security/data/data-classification-dspm/SKILL.md",
+        "knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md",
+        "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md",
+        "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "anonymization",
+        "classifica\u00e7\u00e3o de dados",
+        "data protection",
+        "dlp",
+        "dsr",
+        "gdpr",
+        "lgpd",
+        "privacidade",
+        "privacy",
+        "prote\u00e7\u00e3o de dados"
+      ]
+    },
+    {
+      "name": "dba-specialist",
+      "category": "data-cloud-devops",
+      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+      "skills": [
+        "knowledge/skills/data/db-mariadb/SKILL.md",
+        "knowledge/skills/data/db-mongodb/SKILL.md",
+        "knowledge/skills/data/db-postgresql/SKILL.md",
+        "knowledge/skills/data/db-sqlite/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md"
+      ],
+      "triggers": [
+        "banco de dados",
+        "consulta",
+        "database",
+        "dba",
+        "index",
+        "mariadb",
+        "mongodb",
+        "mysql",
+        "postgres",
+        "postgresql",
+        "query",
+        "sql",
+        "sqlite",
+        "\u00edndice"
+      ]
+    },
+    {
+      "name": "devops-engineer",
+      "category": "data-cloud-devops",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "skills": [
+        "knowledge/skills/infrastructure/program-containers/SKILL.md",
+        "knowledge/skills/platforms/program-github-actions/SKILL.md",
+        "knowledge/skills/roles/devops-engineer/SKILL.md",
+        "knowledge/skills/security/grc/cis-controls/SKILL.md",
+        "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
+        "knowledge/skills/security/tooling/program-opengrep/SKILL.md",
+        "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
+        "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md"
+      ],
+      "triggers": [
+        "ansible",
+        "backstage",
+        "ci/cd",
+        "deploy",
+        "devops",
+        "gitops",
+        "observabilidade",
+        "pipeline",
+        "sre",
+        "vagrant"
+      ]
+    },
+    {
+      "name": "documenter",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md"
+      ],
+      "triggers": [
+        "adr",
+        "diagrama",
+        "di\u00e1taxis",
+        "document",
+        "documentar",
+        "documentation",
+        "documenta\u00e7\u00e3o",
+        "mermaid",
+        "readme"
+      ]
+    },
+    {
+      "name": "electrical-power-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
+        "knowledge/skills/domains/academic/academic-control-systems-theory/SKILL.md",
+        "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+        "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "electrical",
+        "el\u00e9trica",
+        "energia",
+        "inversor",
+        "nbr 5410",
+        "power",
+        "power grid",
+        "rede el\u00e9trica",
+        "subesta\u00e7\u00e3o",
+        "transformador"
+      ]
+    },
+    {
+      "name": "embedded-systems-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md",
+        "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
+        "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
+        "knowledge/skills/languages/lang-c/SKILL.md",
+        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
+        "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
+      ],
+      "triggers": [
+        "device tree",
+        "embarcado",
+        "embedded",
+        "firmware",
+        "microcontrolador",
+        "microcontroller",
+        "rtos",
+        "spi",
+        "uart",
+        "yocto",
+        "zephyr"
+      ]
+    },
+    {
+      "name": "endpoint-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md",
+        "knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md",
+        "knowledge/skills/security/operations/endpoint-forensics/SKILL.md",
+        "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
+        "knowledge/skills/security/platform/endpoint-application-control/SKILL.md",
+        "knowledge/skills/security/platform/macos-endpoint-security/SKILL.md",
+        "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md",
+        "knowledge/skills/security/platform/windows-internals-security/SKILL.md"
+      ],
+      "triggers": [
+        "application control",
+        "edr",
+        "endpoint",
+        "hardening",
+        "macos security",
+        "patch management",
+        "seguran\u00e7a de endpoint",
+        "sysmon",
+        "xdr"
+      ]
+    },
+    {
+      "name": "frontend-developer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/frameworks/framework-react/SKILL.md",
+        "knowledge/skills/frameworks/framework-vue/SKILL.md",
+        "knowledge/skills/languages/lang-typescript/SKILL.md",
+        "knowledge/skills/roles/frontend-developer/SKILL.md",
+        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+      ],
+      "triggers": [
+        "accessibility",
+        "acessibilidade",
+        "component",
+        "componente",
+        "css",
+        "front-end",
+        "frontend",
+        "react",
+        "tailwind",
+        "ui",
+        "ux",
+        "vue"
+      ]
+    },
+    {
+      "name": "fullstack-developer",
+      "category": "software-engineering",
+      "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/frameworks/framework-grpc/SKILL.md",
+        "knowledge/skills/frameworks/framework-react/SKILL.md",
+        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
+        "knowledge/skills/languages/lang-csharp/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/languages/lang-typescript/SKILL.md",
+        "knowledge/skills/roles/backend-developer/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
+        "knowledge/skills/roles/frontend-developer/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+      ],
+      "triggers": [
+        "aplica\u00e7\u00e3o web",
+        "end-to-end",
+        "full stack",
+        "full-stack",
+        "fullstack",
+        "ponta a ponta",
+        "web app"
+      ]
+    },
+    {
+      "name": "game-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/mapping/program-cheat-engine/SKILL.md",
+        "knowledge/skills/security/grc/esports-integrity-governance/SKILL.md",
+        "knowledge/skills/security/platform/game-anticheat-engineering/SKILL.md",
+        "knowledge/skills/security/platform/game-economy-fraud-security/SKILL.md",
+        "knowledge/skills/security/platform/game-engine-security/SKILL.md",
+        "knowledge/skills/security/platform/game-network-authority-security/SKILL.md"
+      ],
+      "triggers": [
+        "anti-cheat",
+        "anticheat",
+        "esports",
+        "game",
+        "game economy",
+        "jogo",
+        "unity security",
+        "unreal security"
+      ]
+    },
+    {
+      "name": "general",
+      "category": "core-orchestration",
+      "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/roles/general/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md"
+      ],
+      "triggers": [
+        "general",
+        "geral",
+        "multi-step",
+        "multietapa",
+        "orchestrate",
+        "orquestrar",
+        "varias tarefas",
+        "v\u00e1rias tarefas"
+      ]
+    },
+    {
+      "name": "geoscientist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
+        "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "cartografia",
+        "geoci\u00eancias",
+        "geoprocessamento",
+        "geoscience",
+        "gis",
+        "ndvi",
+        "remote sensing",
+        "satellite",
+        "sat\u00e9lite",
+        "sensoriamento remoto"
+      ]
+    },
+    {
+      "name": "github-specialist",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
+        "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
+        "knowledge/skills/platforms/program-github-actions/SKILL.md",
+        "knowledge/skills/roles/devops-engineer/SKILL.md"
+      ],
+      "triggers": [
+        "actions",
+        "codeql",
+        "dependabot",
+        "gh cli",
+        "ghas",
+        "github",
+        "pull request",
+        "reposit\u00f3rio github",
+        "workflow"
+      ]
+    },
+    {
+      "name": "grc-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Governance, Risk and Compliance (GRC), covering ISO/IEC 27001 and 42001, NIST CSF 2.0 and SP 800-53, CIS Controls, OWASP SAMM, SOC 2, FedRAMP/CMMC, DORA, NIS2/CRA, OSCAL automation, quantitative risk (FAIR) and third-party risk management.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md",
+        "knowledge/skills/security/grc/cis-controls/SKILL.md",
+        "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
+        "knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md",
+        "knowledge/skills/security/grc/eu-digital-resilience-regulation/SKILL.md",
+        "knowledge/skills/security/grc/fedramp-cmmc-cloud-gov-assurance/SKILL.md",
+        "knowledge/skills/security/grc/grc-automation-oscal/SKILL.md",
+        "knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md",
+        "knowledge/skills/security/grc/iso-27000-series/SKILL.md",
+        "knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md",
+        "knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md",
+        "knowledge/skills/security/grc/pci-dss-compliance/SKILL.md",
+        "knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md",
+        "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
+        "knowledge/skills/security/grc/security-manager-samm/SKILL.md",
+        "knowledge/skills/security/grc/soc2-trust-services/SKILL.md",
+        "knowledge/skills/security/grc/third-party-risk-management/SKILL.md"
+      ],
+      "triggers": [
+        "audit",
+        "auditoria",
+        "compliance",
+        "conformidade",
+        "dora",
+        "grc",
+        "iso 27001",
+        "nis2",
+        "nist csf",
+        "oscal",
+        "oscar",
+        "risco",
+        "risk",
+        "soc 2"
+      ]
+    },
+    {
+      "name": "hardware-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+      "skills": [
+        "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
+        "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
+        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
+        "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+      ],
+      "triggers": [
+        "canal lateral",
+        "firmware extraction",
+        "glitching",
+        "hardware hacking",
+        "iot security",
+        "jtag",
+        "secure boot",
+        "side-channel",
+        "uart"
+      ]
+    },
+    {
+      "name": "iam-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
+      "skills": [
+        "knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md",
+        "knowledge/skills/security/iam/csa-cloud-security/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-aws/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-azure/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-gcp/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-management/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-oci/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md",
+        "knowledge/skills/security/iam/identity-governance-iga/SKILL.md",
+        "knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md",
+        "knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md",
+        "knowledge/skills/security/iam/secrets-management-vault/SKILL.md",
+        "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md",
+        "knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md"
+      ],
+      "triggers": [
+        "access",
+        "acesso",
+        "active directory",
+        "autentica\u00e7\u00e3o",
+        "authentication",
+        "entra id",
+        "iam",
+        "identidade",
+        "identity",
+        "oauth",
+        "pam",
+        "sso",
+        "zero trust"
+      ]
+    },
+    {
+      "name": "information-systems-specialist",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/data/power-bi/SKILL.md",
+        "knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/power-automate/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
+      ],
+      "triggers": [
+        "bpmn",
+        "business intelligence",
+        "cobit",
+        "crm",
+        "erp",
+        "information systems",
+        "itil",
+        "processo de neg\u00f3cio",
+        "sistemas de informa\u00e7\u00e3o"
+      ]
+    },
+    {
+      "name": "java-enterprise-architect",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+      "skills": [
+        "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
+        "knowledge/skills/engineering/patterns/arch-bce-pattern/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md",
+        "knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md",
+        "knowledge/skills/frameworks/framework-spring-boot/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md"
+      ],
+      "triggers": [
+        "enterprise java",
+        "hibernate",
+        "jakarta",
+        "java",
+        "jpa",
+        "jvm",
+        "microprofile",
+        "quarkus",
+        "spring",
+        "spring boot"
+      ]
+    },
+    {
+      "name": "linguistic-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Linguistic Review, Semantic Precision and Multilingual Editorial Quality (PT-BR, EN-US, ES-LATAM). Works by eliminating syntactic ambiguities, purging artificial-intelligence tics (Anti-AI Prose) and ensuring clear, human, technically rigorous communication.",
+      "skills": [
+        "knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md",
+        "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+        "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md"
+      ],
+      "triggers": [
+        "clareza",
+        "copywriting",
+        "en-us",
+        "espanhol",
+        "gram\u00e1tica",
+        "ingles",
+        "linguistic",
+        "lingu\u00edstica",
+        "portugues",
+        "proofread",
+        "pt-br",
+        "reda\u00e7\u00e3o",
+        "relatorio",
+        "revisao",
+        "revisar",
+        "revis\u00e3o de texto",
+        "texto",
+        "tradu\u00e7\u00e3o",
+        "translation"
+      ]
+    },
+    {
+      "name": "malware-analyst",
+      "category": "cybersecurity",
+      "description": "Specialist in Malware Analysis, Binary Reverse Engineering, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
+        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
+        "knowledge/skills/security/appsec/malware-analysis-multios/SKILL.md",
+        "knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md",
+        "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
+        "knowledge/skills/security/platform/malware-unpacking-obfuscation/SKILL.md",
+        "knowledge/skills/security/platform/memory-forensics/SKILL.md",
+        "knowledge/skills/security/platform/memory-manipulation/SKILL.md",
+        "knowledge/skills/security/platform/windows-internals-security/SKILL.md"
+      ],
+      "triggers": [
+        "an\u00e1lise de malware",
+        "malware",
+        "malware analysis",
+        "ransomware",
+        "reverse engineering de malware",
+        "trojan",
+        "unpacking",
+        "v\u00edrus",
+        "yara"
+      ]
+    },
+    {
+      "name": "mathematician",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Pure and Applied Mathematics, covering Advanced Calculus (I to IV), Real and Complex Analysis, Abstract Algebra, Advanced Linear Algebra, Ordinary and Partial Differential Equations (ODE/PDE), Numerical Methods, Differential Geometry and Axiomatic Probability.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md",
+        "knowledge/skills/domains/academic/academic-calculus-differential-equations/SKILL.md",
+        "knowledge/skills/domains/academic/academic-probability-stochastic-processes/SKILL.md",
+        "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "algebra",
+        "calculus",
+        "c\u00e1lculo",
+        "equa\u00e7\u00e3o diferencial",
+        "estat\u00edstica",
+        "matem\u00e1tica",
+        "math",
+        "otimiza\u00e7\u00e3o",
+        "probabilidade",
+        "probability",
+        "\u00e1lgebra"
+      ]
+    },
+    {
+      "name": "mechanical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Mechanical Engineering, covering solid mechanics, mechanics of materials (Von Mises, Mohr), fluid mechanics and CFD (Navier-Stokes), heat transfer and mechanical system dynamics.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
+        "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md",
+        "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "cfd",
+        "fluid",
+        "fluido",
+        "heat transfer",
+        "mechanical",
+        "mec\u00e2nica",
+        "navier-stokes",
+        "resist\u00eancia dos materiais",
+        "transfer\u00eancia de calor"
+      ]
+    },
+    {
+      "name": "mechatronics-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Mechatronics Engineering, Industrial/Mobile Robotics (ROS 2), Classical and Modern Control Theory (State Space, PID, LQR, Kalman), Programmable Logic Controllers (PLCs IEC 61131-3) and SCADA Systems.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
+        "knowledge/skills/domains/academic/academic-control-systems-theory/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "control",
+        "controle",
+        "kalman",
+        "lqr",
+        "mecatr\u00f4nica",
+        "mechatronics",
+        "pid",
+        "plc",
+        "robotics",
+        "rob\u00f3tica",
+        "ros 2",
+        "scada"
+      ]
+    },
+    {
+      "name": "medical-device-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Medical Device Cybersecurity, covering FDA \u00a7524B premarket requirements, the February 2026 FDA guidance, device SBOM/CBOM, postmarket vulnerability management and legacy-device safety risk.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md",
+        "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md"
+      ],
+      "triggers": [
+        "dispositivo m\u00e9dico",
+        "fda",
+        "iec 81001",
+        "medical device",
+        "patient safety",
+        "sa\u00fade security",
+        "sbom m\u00e9dico"
+      ]
+    },
+    {
+      "name": "mobile-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Mobile Security, covering OWASP MASVS/MASTG, Android and iOS application testing, mobile malware and forensics, enterprise MDM/UEM and mobile threat defense.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-masvs/SKILL.md",
+        "knowledge/skills/security/appsec/mobile-app-pentest/SKILL.md",
+        "knowledge/skills/security/appsec/mobile-malware-forensics/SKILL.md",
+        "knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md"
+      ],
+      "triggers": [
+        "android",
+        "app m\u00f3vel",
+        "celular",
+        "ios",
+        "ios security",
+        "mastg",
+        "masvs",
+        "mobile",
+        "mobile app",
+        "owasp mobile",
+        "pentest mobile"
+      ]
+    },
+    {
+      "name": "moodle-specialist",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
+      "skills": [
+        "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/program-moodle/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
+        "knowledge/skills/roles/ui-ux-designer/SKILL.md"
+      ],
+      "triggers": [
+        "ava",
+        "ead",
+        "edtech",
+        "education",
+        "educa\u00e7\u00e3o",
+        "lms",
+        "lti",
+        "moodle",
+        "scorm",
+        "xapi"
+      ]
+    },
+    {
+      "name": "multi-agent-orchestrator",
+      "category": "core-orchestration",
+      "description": "Orchestrator and Supervisor Agent for Multi-Agent Systems. Specialized in problem decomposition, anchoring initial objectives, continuous monitoring of subagents, detecting scope drift (Agent Drift / Role Drift), proactive real-time correction and kill-switch/safe termination.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/roles/general/SKILL.md",
+        "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
+      ],
+      "triggers": [
+        "governan\u00e7a de agentes",
+        "multi-agent",
+        "multi-agente",
+        "orchestrator",
+        "orquestrador",
+        "subagentes",
+        "subagents",
+        "supervisor"
+      ]
+    },
+    {
+      "name": "network-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
+        "knowledge/skills/security/operations/dns-security-protective-dns/SKILL.md",
+        "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md",
+        "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
+        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
+      ],
+      "triggers": [
+        "dns security",
+        "firewall",
+        "ids",
+        "ips",
+        "microsegmenta\u00e7\u00e3o",
+        "ndr",
+        "network",
+        "network security",
+        "rede",
+        "sase",
+        "seguran\u00e7a de rede",
+        "vpn",
+        "ztna"
+      ]
+    },
+    {
+      "name": "ot-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in OT/ICS Security, covering the Purdue model, IEC 62443, NIST SP 800-82r3, SCADA/PLC/DCS protection, legacy industrial protocols, safety-first constraints and MITRE ATT&CK for ICS.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
+        "knowledge/skills/security/operations/ot-ics-security/SKILL.md",
+        "knowledge/skills/security/operations/secops-incident-responder/SKILL.md"
+      ],
+      "triggers": [
+        "automa\u00e7\u00e3o industrial",
+        "ics",
+        "iec 62443",
+        "industrial control",
+        "modbus",
+        "ot",
+        "plc",
+        "profinet",
+        "purdue",
+        "scada"
+      ]
+    },
+    {
+      "name": "pentester-agent",
+      "category": "cybersecurity",
+      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, Active Directory, Kubernetes, LLMs and Red Team Infrastructure) using CLI utilities and custom scripts.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
+        "knowledge/skills/security/appsec/dast-application-testing/SKILL.md",
+        "knowledge/skills/security/appsec/pentest-scripter-python-bash-go/SKILL.md",
+        "knowledge/skills/security/appsec/pentest-web-application-modern/SKILL.md",
+        "knowledge/skills/security/appsec/pentester-owasp-api-security-2023/SKILL.md",
+        "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md",
+        "knowledge/skills/security/offensive/active-directory-attack-paths/SKILL.md",
+        "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md",
+        "knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md",
+        "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md",
+        "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md",
+        "knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md",
+        "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md"
+      ],
+      "triggers": [
+        "bug bounty",
+        "ethical hacking",
+        "exploit",
+        "explora\u00e7\u00e3o",
+        "hacking \u00e9tico",
+        "owasp",
+        "penetration test",
+        "pentest",
+        "teste de intrus\u00e3o"
+      ]
+    },
+    {
+      "name": "physical-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md",
+        "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "f\u00edsica aplicada",
+        "microfabrica\u00e7\u00e3o",
+        "nanomaterial",
+        "nanotechnology",
+        "nanotecnologia",
+        "physical engineering",
+        "semiconductor",
+        "semicondutor"
+      ]
+    },
+    {
+      "name": "physicist",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Theoretical and Applied Physics, covering Advanced Classical Mechanics (Lagrangian and Hamiltonian), Maxwell's Electromagnetism, Thermodynamics and Statistical Mechanics, Special and General Relativity, and Condensed Matter Quantum Mechanics.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md",
+        "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md",
+        "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+        "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "electromagnetism",
+        "eletromagnetismo",
+        "estat\u00edstica f\u00edsica",
+        "f\u00edsica",
+        "mec\u00e2nica cl\u00e1ssica",
+        "physics",
+        "relatividade",
+        "relativity",
+        "termodin\u00e2mica"
+      ]
+    },
+    {
+      "name": "project-reviewer",
+      "category": "software-engineering",
+      "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+      "skills": [
+        "knowledge/skills/roles/project-reviewer/SKILL.md"
+      ],
+      "triggers": [
+        "auditar",
+        "auditoria de c\u00f3digo",
+        "boas pr\u00e1ticas",
+        "code audit",
+        "code review",
+        "conformidade de codigo",
+        "project review",
+        "revisao",
+        "revisar arquitetura",
+        "revisar codigo",
+        "revis\u00e3o de projeto"
+      ]
+    },
+    {
+      "name": "qa-testing-specialist",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Quality Assurance (QA), Multi-Framework Test Automation, Mutation Testing, Fuzzing and Requirements Compliance Auditing. Masters systematic fault injection, test-gap elimination and rigorous validation of acceptance criteria.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/frameworks/framework-criterion/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing/SKILL.md",
+        "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
+        "knowledge/skills/roles/qa-engineer/SKILL.md"
+      ],
+      "triggers": [
+        "automa\u00e7\u00e3o de testes",
+        "bdd",
+        "fuzzing",
+        "mutation testing",
+        "qa",
+        "qualidade",
+        "quality",
+        "tdd",
+        "test",
+        "test automation",
+        "teste",
+        "testing"
+      ]
+    },
+    {
+      "name": "quantum-computing-specialist",
+      "category": "academic-sciences",
+      "description": "Specialist in Quantum Computing, Quantum Circuit Development (Qiskit, Cirq), Quantum Algorithms (Shor, Grover, VQE) and Post-Quantum Cryptography (PQC).",
+      "skills": [
+        "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+        "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md"
+      ],
+      "triggers": [
+        "cirq",
+        "computa\u00e7\u00e3o qu\u00e2ntica",
+        "grover",
+        "qiskit",
+        "quantum",
+        "quantum computing",
+        "qubit",
+        "qu\u00e2ntica",
+        "shor"
+      ]
+    },
+    {
+      "name": "reverse-engineer-agent",
+      "category": "cybersecurity",
+      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+      "skills": [
+        "knowledge/skills/mapping/program-cheat-engine/SKILL.md",
+        "knowledge/skills/mapping/program-windbg/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
+        "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
+        "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md",
+        "knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md",
+        "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+      ],
+      "triggers": [
+        "debug de bin\u00e1rio",
+        "decompilar",
+        "decompile",
+        "desmontar",
+        "disassembly",
+        "engenharia reversa",
+        "frida",
+        "ghidra",
+        "reverse engineering",
+        "reversing"
+      ]
+    },
+    {
+      "name": "scientific-researcher",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Scientific Research and Systematic Literature Review. Masters the PRISMA 2020 protocols, PICO/PECO framework, PRESS guidelines, searches across indexed databases (PubMed, arXiv, IEEE Xplore, Semantic Scholar, Scopus, SciELO) and citation network analysis.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
+      ],
+      "triggers": [
+        "academic",
+        "acad\u00eamico",
+        "artigo",
+        "literatura",
+        "literature",
+        "paper",
+        "pesquisa cient\u00edfica",
+        "prisma",
+        "revis\u00e3o sistem\u00e1tica",
+        "scientific research",
+        "systematic review"
+      ]
+    },
+    {
+      "name": "security-architect",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
+        "knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md",
+        "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
+        "knowledge/skills/security/operations/security-technical-opinion/SKILL.md",
+        "knowledge/skills/security/operations/secure-by-design/SKILL.md",
+        "knowledge/skills/security/operations/threat-modeler/SKILL.md"
+      ],
+      "triggers": [
+        "ameaca",
+        "arquitetura de seguran\u00e7a",
+        "modelagem de amea\u00e7as",
+        "parecer",
+        "parecer t\u00e9cnico",
+        "pasta",
+        "revisao de seguranca",
+        "risco de arquitetura",
+        "sabsa",
+        "security architecture",
+        "stride",
+        "threat",
+        "threat modeling",
+        "zero trust architecture"
+      ]
+    },
+    {
+      "name": "security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/security/appsec/api-protocol-security/SKILL.md",
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
+        "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
+        "knowledge/skills/security/appsec/dast-application-testing/SKILL.md",
+        "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
+        "knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md",
+        "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md",
+        "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
+        "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md",
+        "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
+        "knowledge/skills/security/appsec/web-injection-classes/SKILL.md",
+        "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-management/SKILL.md",
+        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md",
+        "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
+        "knowledge/skills/security/operations/supply-chain-threat-modeling/SKILL.md",
+        "knowledge/skills/security/operations/threat-modeler/SKILL.md",
+        "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md",
+        "knowledge/skills/security/tooling/program-opengrep/SKILL.md",
+        "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
+        "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
+        "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
+        "knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md",
+        "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
+      ],
+      "triggers": [
+        "appsec",
+        "dast",
+        "devsecops",
+        "iast",
+        "rasp",
+        "sast",
+        "sca",
+        "security",
+        "seguran\u00e7a",
+        "vulnerabilidade",
+        "vulnerability"
+      ]
+    },
+    {
+      "name": "self",
+      "category": "core-orchestration",
+      "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/roles/general/SKILL.md"
+      ],
+      "triggers": [
+        "clone",
+        "contexto isolado",
+        "delegar a si",
+        "fork",
+        "self subagent",
+        "subagente pr\u00f3prio"
+      ]
+    },
+    {
+      "name": "skill-creator",
+      "category": "specialized-domains",
+      "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md"
+      ],
+      "triggers": [
+        "catalogar skill",
+        "cat\u00e1logo de skills",
+        "create skill",
+        "criar skill",
+        "pdf para markdown",
+        "skill",
+        "skill.md"
+      ]
+    },
+    {
+      "name": "soc-dfir-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/cti/cti-mitre-attack/SKILL.md",
+        "knowledge/skills/security/operations/detection-engineering/SKILL.md",
+        "knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md",
+        "knowledge/skills/security/operations/dfir-forensics/SKILL.md",
+        "knowledge/skills/security/operations/endpoint-forensics/SKILL.md",
+        "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
+        "knowledge/skills/security/operations/soc-operations-maturity/SKILL.md",
+        "knowledge/skills/security/operations/threat-hunting/SKILL.md",
+        "knowledge/skills/security/platform/memory-forensics/SKILL.md"
+      ],
+      "triggers": [
+        "detection",
+        "detec\u00e7\u00e3o",
+        "dfir",
+        "forense",
+        "forensics",
+        "incident response",
+        "resposta a incidente",
+        "siem",
+        "soar",
+        "soc",
+        "threat hunting"
+      ]
+    },
+    {
+      "name": "software-architect",
+      "category": "software-engineering",
+      "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+      "skills": [
+        "knowledge/skills/languages/lang-c/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
+        "knowledge/skills/languages/lang-csharp/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/languages/lang-typescript/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md"
+      ],
+      "triggers": [
+        "adr",
+        "architecture",
+        "arquitetura",
+        "clean architecture",
+        "ddd",
+        "design pattern",
+        "microservices",
+        "microservi\u00e7os",
+        "padr\u00e3o de projeto",
+        "solid"
+      ]
+    },
+    {
+      "name": "software-engineer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
+      "skills": [
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing/SKILL.md",
+        "knowledge/skills/languages/lang-bash/SKILL.md",
+        "knowledge/skills/languages/lang-c/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
+        "knowledge/skills/languages/lang-csharp/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-java/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/languages/lang-typescript/SKILL.md",
+        "knowledge/skills/roles/backend-developer/SKILL.md"
+      ],
+      "triggers": [
+        "arquitetura limpa",
+        "clean architecture",
+        "engenharia de software",
+        "refactoring",
+        "refatora\u00e7\u00e3o",
+        "requirements",
+        "requisitos",
+        "software engineering"
+      ]
+    },
+    {
+      "name": "telecom-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in Telecommunications Engineering, covering Shannon information theory, advanced digital modulations (QAM, OFDM), optical fiber propagation (WDM/DWDM), 5G/6G cellular networks, satellite communications and Radio Frequency.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
+        "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "5g",
+        "antena",
+        "antenna",
+        "fibra \u00f3ptica",
+        "modula\u00e7\u00e3o",
+        "ofdm",
+        "optical fiber",
+        "sat\u00e9lite",
+        "telecom",
+        "telecommunications",
+        "telecomunica\u00e7\u00f5es"
+      ]
+    },
+    {
+      "name": "telecom-voice-specialist",
+      "category": "academic-sciences",
+      "description": "Specialist Agent in Voice Engineering, Telephony and Real-Time Communications (VoIP, SIP, SBC, PSTN, WebRTC, G.711/G.729/Opus codecs, Kamailio/FreeSWITCH, QoS and STIR/SHAKEN).",
+      "skills": [
+        "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md",
+        "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md",
+        "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md"
+      ],
+      "triggers": [
+        "asterisk",
+        "codec",
+        "freeswitch",
+        "kamailio",
+        "sbc",
+        "sip",
+        "telefonia",
+        "telephony",
+        "voice",
+        "voip",
+        "voz",
+        "webrtc"
+      ]
+    },
+    {
+      "name": "threat-intelligence-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cyber Threat Intelligence, covering the intelligence lifecycle, MITRE ATT&CK and D3FEND mapping, the Diamond Model and Kill Chain, STIX 2.1/TAXII 2.1/MISP exchange, structured analytic techniques and estimative reporting.",
+      "skills": [
+        "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
+        "knowledge/skills/security/cti/cti-mitre-attack/SKILL.md",
+        "knowledge/skills/security/cti/cti-platforms-stix-taxii-misp/SKILL.md",
+        "knowledge/skills/security/cti/cti-threat-intel-lifecycle/SKILL.md",
+        "knowledge/skills/security/operations/threat-modeler/SKILL.md"
+      ],
+      "triggers": [
+        "adversario",
+        "ameaca",
+        "att&ck",
+        "cti",
+        "intel",
+        "intelig\u00eancia de amea\u00e7as",
+        "ioc",
+        "misp",
+        "mitre attack",
+        "osint de amea\u00e7as",
+        "stix",
+        "taxii",
+        "threat",
+        "threat intelligence"
+      ]
+    },
+    {
+      "name": "ui-ux-designer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/roles/frontend-developer/SKILL.md",
+        "knowledge/skills/roles/product-owner/SKILL.md",
+        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "design",
+        "design system",
+        "identidade visual",
+        "prototipagem",
+        "prototype",
+        "tipografia",
+        "ui design",
+        "usabilidade",
+        "usability",
+        "ux design",
+        "wcag"
+      ]
+    },
+    {
+      "name": "vcs-repository-specialist",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in Version Control Systems (VCS) and Advanced Repository Management, covering low-level Git (DAG, reflog, worktrees, sparse-checkout, LFS, filter-repo), Subversion/SVN (FSFS, trunk/branches/tags, mergeinfo, svnadmin, hooks), Mercurial (Hg), full legacy VCS migrations and branching governance.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
+        "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
+        "knowledge/skills/roles/devops-engineer/SKILL.md"
+      ],
+      "triggers": [
+        "branch",
+        "git",
+        "mercurial",
+        "merge",
+        "monorepo",
+        "reflog",
+        "subversion",
+        "svn",
+        "version control",
+        "versionamento",
+        "worktree"
+      ]
+    },
+    {
+      "name": "web-researcher",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo). Masters advanced boolean operators, Google Dorks, domain filters, file types, defensive OSINT, data triangulation and factual source verification.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/roles/web-search-specialist/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
+      ],
+      "triggers": [
+        "busca na internet",
+        "dorks",
+        "fonte",
+        "google",
+        "internet search",
+        "news",
+        "not\u00edcia",
+        "osint",
+        "pesquisar na web",
+        "source",
+        "web research"
+      ]
+    }
+  ]
+}

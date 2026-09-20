@@ -49,8 +49,14 @@ def make_repo(tmp_path: Path) -> Path:
     root = tmp_path / "repo"
     agent_dir = root / "knowledge" / "agents" / "roles" / "sample-agent"
     skill_dir = root / "knowledge" / "skills" / "roles" / "sample-skill"
+    routing_dir = root / "knowledge" / "routing"
     agent_dir.mkdir(parents=True)
     skill_dir.mkdir(parents=True)
+    routing_dir.mkdir(parents=True)
     (skill_dir / "SKILL.md").write_text(SAMPLE_SKILL, encoding="utf-8")
     (agent_dir / "agent.source.md").write_text(SAMPLE_AGENT, encoding="utf-8")
+    (routing_dir / "lexicon.json").write_text(
+        '{\n  "schema": 1,\n  "agents": {\n    "sample-agent": ["sample", "amostra"]\n  }\n}\n',
+        encoding="utf-8",
+    )
     return root

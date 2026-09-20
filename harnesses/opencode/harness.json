@@ -4,13 +4,29 @@
     "supported": true,
     "shape": "B",
     "outputs": [
-      { "path": "harnesses/opencode/bootstrap/coacus.js", "format": "js" }
+      {
+        "path": "harnesses/opencode/bootstrap/coacus.js",
+        "format": "js"
+      }
     ]
   },
-  "detection": ["OPENCODE_CONFIG_DIR", "OPENCODE"],
-  "live_cli": ["opencode", "run"],
+  "detection": [
+    "OPENCODE_CONFIG_DIR",
+    "OPENCODE"
+  ],
+  "live_cli": [
+    "opencode",
+    "run"
+  ],
   "plugins": [
-    { "path": "harnesses/opencode/bootstrap/governor-gate.js", "kind": "governor-gate" }
+    {
+      "path": "harnesses/opencode/bootstrap/governor-gate.js",
+      "kind": "governor-gate"
+    },
+    {
+      "path": "harnesses/opencode/bootstrap/router-hook.js",
+      "kind": "router-hook"
+    }
   ],
   "tool_mapping": {
     "create or update todos": "todowrite",
@@ -22,7 +38,10 @@
     "search files": "grep / glob",
     "fetch a URL": "webfetch"
   },
-  "tool_denylist": ["todowrite", "apply_patch"],
+  "tool_denylist": [
+    "todowrite",
+    "apply_patch"
+  ],
   "install": {
     "method": "copy the rendered plugin into the harness plugin directory",
     "target": "{config_dir}/plugins/coacus.js"
