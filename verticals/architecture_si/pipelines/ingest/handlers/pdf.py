@@ -45,11 +45,12 @@ def clean_text(text: str) -> str:
 def _toc_map(doc: Any) -> Dict[int, str]:
     toc_map: Dict[int, str] = {}
     try:
-        for level, title, page in doc.get_toc() or []:
-            if page > 0:
-                toc_map[page] = "#" * min(max(level, 1), 6) + " " + title.strip()
-    except Exception:
-        pass
+        toc = doc.get_toc() or []
+    except Exception:  # pragma: no cover - malformed PDF metadata
+        return toc_map
+    for level, title, page in toc:
+        if page > 0:
+            toc_map[page] = "#" * min(max(level, 1), 6) + " " + title.strip()
     return toc_map
 
 
