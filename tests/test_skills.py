@@ -1,4 +1,4 @@
-"""Tests for the skill contract validator (ADR-0003, corpus import)."""
+"""Tests for the skill contract validator (skill-authoring, corpus import)."""
 
 from __future__ import annotations
 

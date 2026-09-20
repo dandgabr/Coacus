@@ -1,4 +1,4 @@
-"""Validate canonical agent sources (frontmatter contract, D1/ADR-0002).
+"""Validate canonical agent sources (frontmatter contract, D1/agent-manifests).
 
 Checks: required keys, kebab-case name matching the directory, category
 matching the parent directory, existing skill paths, unique slugs and a

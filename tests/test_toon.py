@@ -1,4 +1,4 @@
-"""Tests for the TOON payload parser/validator (D7/ADR-0008)."""
+"""Tests for the TOON payload parser/validator (toon-protocol)."""
 
 from __future__ import annotations
 

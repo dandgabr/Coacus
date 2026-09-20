@@ -1,4 +1,4 @@
-"""Language policy check (ADR-0001).
+"""Language policy check (english-only).
 
 Validates that imported CONTENT is English across skills, workflows, agents and
 their reference/example assets. Prose only: fenced code blocks, inline code and
@@ -66,5 +66,5 @@ def validate(root: Path) -> list[str]:
             else:
                 sample = _prose_only(text)
             if any(marker in _strip_math_and_anchors(sample) for marker in PT_MARKERS):
-                warnings.append(f"{rel}: non-English prose (ADR-0001)")
+                warnings.append(f"{rel}: non-English prose (english-only)")
     return warnings

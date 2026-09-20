@@ -1,4 +1,4 @@
-"""On-disk concurrency governor with an flock-guarded slot ledger (D6/ADR-0007).
+"""On-disk concurrency governor with an flock-guarded slot ledger (orchestration-governance).
 
 Bounds how many agents may run at once (default 5, orchestrator included),
 handles rate-limit (429) by parking a caller as PAUSED for retry, and is the

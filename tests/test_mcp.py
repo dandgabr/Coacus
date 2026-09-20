@@ -1,4 +1,4 @@
-"""Tests for MCP generation and validation (D4/ADR-0005 amended)."""
+"""Tests for MCP generation and validation (D4/mcp-definition amended)."""
 
 from __future__ import annotations
 

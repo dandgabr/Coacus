@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Thin CLI over the concurrency governor (D6/ADR-0007).
+"""Thin CLI over the concurrency governor (orchestration-governance).
 
 Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:

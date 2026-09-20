@@ -1,4 +1,4 @@
-"""Validate generated discovery manifests (ADR-0006).
+"""Validate generated discovery manifests (discovery).
 
 Two kinds live under ``.agents/``:
 

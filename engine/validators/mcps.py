@@ -1,4 +1,4 @@
-"""Validate canonical MCP sources (D4/ADR-0005 as amended at F3).
+"""Validate canonical MCP sources (D4/mcp-definition as amended at F3).
 
 Source contract only; the generated dist/ coherence and orphan detection live
 in ``engine.generators.mcp_configs.check`` (artifact layer), so an edited source

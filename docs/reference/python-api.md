@@ -7,7 +7,7 @@
 
 Frontmatter parser for Coacus canonical sources.
 
-Tolerant subset of YAML, sufficient for the reference corpus (ADR-0011:
+Tolerant subset of YAML, sufficient for the reference corpus (testing:
 stdlib only):
 
 - single-line scalars, with indented continuation lines (multi-line plain)
@@ -48,7 +48,7 @@ One canonical ``agent.source.md`` per agent yields, under a ``dist/`` folder:
 plus a ``.agents/entries/<name>.json`` discovery entry (D5).
 
 Generated files contain no timestamps so regeneration is byte-idempotent
-(D3/ADR-0014). ``model`` is never emitted for AGENT.md/agent.json; the yaml
+(generated-artifacts). ``model`` is never emitted for AGENT.md/agent.json; the yaml
 profile uses ``model: inherit``.
 
 #### `def discover_sources(root: Path) -> list[Path]`
@@ -72,7 +72,7 @@ Materialize all generated files. Returns repo-relative paths written.
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check (ADR-0014): disk vs a fresh regeneration, plus orphans.
+Drift check (generated-artifacts): disk vs a fresh regeneration, plus orphans.
 
 ### `engine/generators/bootstrap.py`
 
@@ -88,14 +88,14 @@ Shapes:
   harness hook config. Claude Code and Codex read
   ``hookSpecificOutput.additionalContext``; Cursor reads the top-level
   ``additional_context``. The native key and the hook config come from
-  ``harness.json``; the forbidden alias is never emitted (ADR-0009).
+  ``harness.json``; the forbidden alias is never emitted (session-start-bootstrap).
 - B (in-process): a JS module that injects the bootstrap into the first user
   message, with an anti-reinjection guard.
 - C (instructions-file / rule): a markdown context file plus the plugin manifest
   that declares it. Antigravity rules are capped at 12,000 characters.
 - native-discovery: nothing rendered (the harness surfaces skills natively).
 
-Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
+Rendered artifacts are committed and drift-checked (generated-artifacts); no timestamps.
 
 #### `def discover_harnesses(root: Path) -> list[Path]`
 
@@ -119,7 +119,7 @@ Materialize all rendered bootstrap files. Returns repo-relative paths.
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check: expected vs disk, plus orphan detection (ADR-0014).
+Drift check: expected vs disk, plus orphan detection (generated-artifacts).
 
 ### `engine/generators/catalog.py`
 
@@ -127,7 +127,7 @@ Generate the repository catalog from disk (D3: disk is the truth).
 
 Writes ``catalog/catalog.json`` (machine index) and ``catalog/INDEX.md``
 (human index) — purely content-derived, no timestamps, so ``check`` can
-verify idempotency and CI can fail on drift (ADR-0014).
+verify idempotency and CI can fail on drift (generated-artifacts).
 
 #### `def build(root: Path) -> dict`
 
@@ -139,15 +139,15 @@ Materialize the catalog and its human index. Returns written paths.
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check for the catalog and its index (ADR-0014).
+Drift check for the catalog and its index (generated-artifacts).
 
 ### `engine/generators/discovery.py`
 
-Generate consolidated discovery manifests from disk (D5/ADR-0006).
+Generate consolidated discovery manifests from disk (discovery).
 
 Writes `.agents/{skills,mcps,agents}.json` — each a list of `entries[].path`
 (a directory or source file), derived purely from disk so discovery is
-deterministic and drift-checked (ADR-0014). Single-scan rule: agents read these
+deterministic and drift-checked (generated-artifacts). Single-scan rule: agents read these
 indexes once per session (AGENTS.md).
 
 The per-agent `.agents/entries/<name>.json` files are still produced by
@@ -164,7 +164,7 @@ _No docstring._
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check for the consolidated discovery manifests (ADR-0014).
+Drift check for the consolidated discovery manifests (generated-artifacts).
 
 ### `engine/generators/docstrings.py`
 
@@ -173,7 +173,7 @@ Generate a Python API reference from module/function/class docstrings (F7).
 Docstrings are the single source of truth (the "disk is the truth" principle):
 this generator walks the framework's Python modules, extracts signatures and
 docstrings via the stdlib ``ast`` parser, and writes a Markdown reference. The
-output is committed and drift-checked (ADR-0014) like any other generated
+output is committed and drift-checked (generated-artifacts) like any other generated
 artifact, so documentation cannot fall out of sync with the code.
 
 #### `def build(root: Path) -> str`
@@ -186,13 +186,13 @@ _No docstring._
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check for the generated API reference (ADR-0014).
+Drift check for the generated API reference (generated-artifacts).
 
 ### `engine/generators/mcp_configs.py`
 
 Generate per-MCP harness declarations from a single canonical source (D4).
 
-Supersedes the hand-authored MCP triple of ADR-0005: `knowledge/mcps/<mcp>/MCP.md`
+Supersedes the hand-authored MCP triple of mcp-definition: `knowledge/mcps/<mcp>/MCP.md`
 is the single source; the generator derives:
 
 - `dist/mcp.json`         server declaration (name, transport, command/url,
@@ -200,7 +200,7 @@ is the single source; the generator derives:
 - `dist/mcp_config.json`  setup metadata (description, requires, env VAR names,
                           docs, author, license, version)
 
-Generated files are committed and drift-checked (ADR-0014), contain no
+Generated files are committed and drift-checked (generated-artifacts), contain no
 timestamps, and never carry secret values.
 
 #### `def discover_sources(root: Path) -> list[Path]`
@@ -221,11 +221,11 @@ Materialize all generated MCP files. Returns repo-relative paths.
 
 #### `def check(root: Path) -> list[str]`
 
-Drift check: expected vs disk, plus orphan detection (ADR-0014).
+Drift check: expected vs disk, plus orphan detection (generated-artifacts).
 
 ### `engine/governor/ledger.py`
 
-On-disk concurrency governor with an flock-guarded slot ledger (D6/ADR-0007).
+On-disk concurrency governor with an flock-guarded slot ledger (orchestration-governance).
 
 Bounds how many agents may run at once (default 5, orchestrator included),
 handles rate-limit (429) by parking a caller as PAUSED for retry, and is the
@@ -259,11 +259,11 @@ A file-backed slot ledger guarded by ``fcntl.flock``.
 
 ### `engine/provenance.py`
 
-Provenance manifest for imported artifacts (P4 / ADR-0015).
+Provenance manifest for imported artifacts (P4 / provenance).
 
 Lives at the repository root as ``sources.lock.json`` — deliberately OUTSIDE
 the generated ``catalog/`` surface so that the per-import ``imported_at``
-timestamp cannot break the ADR-0014 drift check (the catalog generator must
+timestamp cannot break the generated-artifacts drift check (the catalog generator must
 stay timestamp-free and idempotent).
 
 This module owns the schema and the (empty) seed. The F6 import pipeline
@@ -287,7 +287,7 @@ Write the manifest (seed by default). Import pipeline supplies entries.
 
 ### `engine/toon.py`
 
-TOON (Token-Oriented Object Notation) payload parsing and validation (D7/ADR-0008).
+TOON (Token-Oriented Object Notation) payload parsing and validation (toon-protocol).
 
 TOON is the compact handoff format between agents:
 
@@ -315,7 +315,7 @@ _No docstring._
 
 ### `engine/validators/agents.py`
 
-Validate canonical agent sources (frontmatter contract, D1/ADR-0002).
+Validate canonical agent sources (frontmatter contract, D1/agent-manifests).
 
 Checks: required keys, kebab-case name matching the directory, category
 matching the parent directory, existing skill paths, unique slugs and a
@@ -344,7 +344,7 @@ Return a list of completeness gaps (empty = nothing left behind).
 
 ### `engine/validators/discovery.py`
 
-Validate generated discovery manifests (ADR-0006).
+Validate generated discovery manifests (discovery).
 
 Two kinds live under ``.agents/``:
 
@@ -362,7 +362,7 @@ Return a list of error strings; empty list means valid.
 
 ### `engine/validators/evals.py`
 
-Validate behavior-eval scenarios (D10/ADR-0011).
+Validate behavior-eval scenarios (testing).
 
 Scenarios live at ``evals/scenarios/<id>/scenario.json``. The static validator
 is deterministic (no LLM) and safe for CI; it checks the schema, that the
@@ -398,7 +398,7 @@ Return a list of error strings; empty list means clean.
 
 ### `engine/validators/language.py`
 
-Language policy check (ADR-0001).
+Language policy check (english-only).
 
 Validates that imported CONTENT is English across skills, workflows, agents and
 their reference/example assets. Prose only: fenced code blocks, inline code and
@@ -414,7 +414,7 @@ Return a list of warning strings (empty = English-clean).
 
 ### `engine/validators/mcps.py`
 
-Validate canonical MCP sources (D4/ADR-0005 as amended at F3).
+Validate canonical MCP sources (D4/mcp-definition as amended at F3).
 
 Source contract only; the generated dist/ coherence and orphan detection live
 in ``engine.generators.mcp_configs.check`` (artifact layer), so an edited source
@@ -426,7 +426,7 @@ Return a list of error strings; empty list means valid.
 
 ### `engine/validators/skills.py`
 
-Validate canonical skill sources (D2/ADR-0003, corpus import contract).
+Validate canonical skill sources (D2/skill-authoring, corpus import contract).
 
 Skills live under two roots sharing one flat name namespace:
 
@@ -459,7 +459,7 @@ do not count as untranslated text. This mirrors the hygiene scan.
 
 Coacus thin CLI: generate | check | validate.
 
-Deterministic build tooling for the framework (ADR-0004, ADR-0013, ADR-0014).
+Deterministic build tooling for the framework (generated-artifacts, secrets-portability, generated-artifacts).
 
 Validation is split in two layers:
 - SOURCE errors (agents, skills, hygiene) gate ``generate`` — invalid canonical
@@ -503,7 +503,7 @@ _No docstring._
 
 ### `scripts/coacus_eval.py`
 
-Behavior-eval runner for Coacus (D10/ADR-0011).
+Behavior-eval runner for Coacus (testing).
 
 Deterministic by default; live evaluation is opt-in.
 
@@ -537,7 +537,7 @@ _No docstring._
 
 ### `scripts/coacus_governor.py`
 
-Thin CLI over the concurrency governor (D6/ADR-0007).
+Thin CLI over the concurrency governor (orchestration-governance).
 
 Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:
@@ -561,8 +561,8 @@ _No docstring._
 Coacus corpus importer (F6).
 
 Imports the source corpora into the repository per `templates/import/import-manifest.json`,
-recording provenance in `sources.lock.json` (ADR-0015) and leaving content in
-its original language with `transform: [..., "pending-translation"]` (ADR-0001:
+recording provenance in `sources.lock.json` (provenance) and leaving content in
+its original language with `transform: [..., "pending-translation"]` (english-only:
 PT-BR imports are translated in tracked batches).
 
     python3 scripts/coacus_import.py plan   [--source skills|superpowers|agents]
@@ -600,7 +600,7 @@ _No docstring._
 
 Coacus installer: activate rendered artifacts into a harness.
 
-The repository GENERATES the per-harness artifacts (ADR-0016); this script
+The repository GENERATES the per-harness artifacts (session-start-bootstrap); this script
 INSTALLS them into a harness's own discovery locations. It is explicit and
 idempotent — nothing runs at session start, and it never rewrites a harness
 config file wholesale.
@@ -656,7 +656,7 @@ _No docstring._
 Architecture-SI vertical CLI: document ingestion and analysis (F6c).
 
 Unifies the former `pdf2md` / `doc2md` / `doc-analyze` entrypoints over one
-dispatcher (ADR-0012):
+dispatcher (knowledge-ingestion):
 
     coacus_vertical.py ingest  <file|--dir DIR> [output] [--toc-only] [--split-chapters]
     coacus_vertical.py analyze <file|--dir DIR> [--json]
@@ -741,7 +741,7 @@ _No docstring._
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/pdf.py`
 
-PDF to structured Markdown, with PyMuPDF → pypdf fallback (ADR-0012).
+PDF to structured Markdown, with PyMuPDF → pypdf fallback (knowledge-ingestion).
 
 Preserves the upstream behavior: TOC/bookmark map, per-page anchors, list and
 code heuristics, and the ``--toc-only`` / ``--split-chapters`` options. The

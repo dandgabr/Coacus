@@ -1,4 +1,4 @@
-"""PDF to structured Markdown, with PyMuPDF → pypdf fallback (ADR-0012).
+"""PDF to structured Markdown, with PyMuPDF → pypdf fallback (knowledge-ingestion).
 
 Preserves the upstream behavior: TOC/bookmark map, per-page anchors, list and
 code heuristics, and the ``--toc-only`` / ``--split-chapters`` options. The

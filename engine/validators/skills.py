@@ -1,4 +1,4 @@
-"""Validate canonical skill sources (D2/ADR-0003, corpus import contract).
+"""Validate canonical skill sources (D2/skill-authoring, corpus import contract).
 
 Skills live under two roots sharing one flat name namespace:
 
@@ -28,7 +28,7 @@ PT_MARKERS = ("ção", "ções", "ã", "õ", "Atua como", "Especialista em")
 # Skills whose canonical content is INTENTIONALLY non-English: the PT-BR
 # linguistic skill, skills that quote Portuguese examples as teaching material,
 # and prose containing Portuguese proper nouns / book titles. Exempt from the
-# language warning (ADR-0001 concerns imported prose, not quoted material).
+# language warning (english-only concerns imported prose, not quoted material).
 LANGUAGE_EXEMPT = frozenset({
     "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
     "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
@@ -151,7 +151,7 @@ def warnings(root: Path) -> list[str]:
         sample = f"{description} {_prose_only(doc.body)}"
         if rel not in LANGUAGE_EXEMPT and any(marker in sample for marker in PT_MARKERS):
             notes.append(
-                f"{rel}: non-English markers detected (ADR-0001; translate at import)"
+                f"{rel}: non-English markers detected (english-only; translate at import)"
             )
     return notes
 

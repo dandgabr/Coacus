@@ -5,7 +5,7 @@ injects its bootstrap at session start. Work through the harness that matches yo
 editor; each section is self-contained.
 
 The repository **generates** the per-harness artifacts and commits them
-([ADR-0016](adr/ADR-0016-bootstrap-render-contract.md)). Making a harness load
+([session-start-bootstrap](standards/session-start-bootstrap.md)). Making a harness load
 them is a separate, explicit step: each harness discovers plugins and skills from
 its own locations, and Coacus never rewrites a harness config file wholesale. The
 installer writes only the files a vendor mechanism actually reads — a plugin
@@ -72,7 +72,7 @@ Skill sources installed everywhere are `methodology/workflows/**` and
 harness loads. The plugin does two jobs: it registers the two skill roots, and it
 injects the bootstrap into the first user message. The bootstrap carries an
 anti-reinjection guard so a compact or replay does not duplicate it
-([ADR-0009](adr/ADR-0009-session-start-bootstrap.md)).
+([session-start-bootstrap](standards/session-start-bootstrap.md)).
 
 **Vendor facts**
 
@@ -134,7 +134,7 @@ the harness exposes a `SessionStart` hook that emits JSON. Coacus ships a shell
 script that prints exactly one native field —
 `hookSpecificOutput.additionalContext` — and never the forbidden alias
 `additional_context`; Claude Code reads both without deduplication, so emitting
-both injects the body twice ([ADR-0009](adr/ADR-0009-session-start-bootstrap.md)).
+both injects the body twice ([session-start-bootstrap](standards/session-start-bootstrap.md)).
 
 **Vendor facts**
 

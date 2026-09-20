@@ -1,8 +1,8 @@
 # Extending the framework
 
 Coacus is open for extension, closed for modification
-([ADR-0003](adr/ADR-0003-agnostic-skills-thin-adapters.md),
-[ADR-0012](adr/ADR-0012-ingestion-dispatcher.md)). Extend it by adding **data**:
+([skill-authoring](standards/skill-authoring.md),
+[knowledge-ingestion](standards/knowledge-ingestion.md)). Extend it by adding **data**:
 a new skill, agent, MCP, harness, workflow, template or ingestion handler is a
 new file. The `engine/` core changes only when a new *concept* arrives — a new
 representation target, a new validation class, a new bootstrap shape.
@@ -31,7 +31,7 @@ does not.
 3. Prescribe actions only — no harness tool names. Put tool mappings in
    `references/<harness>-tools.md` beside the skill. Put examples in
    `examples/`, runnable helpers in `scripts/`.
-4. Keep paths relative and secrets as `{env:VAR}` ([ADR-0013](adr/ADR-0013-secrets-portability.md)).
+4. Keep paths relative and secrets as `{env:VAR}` ([secrets-portability](standards/secrets-portability.md)).
 
 Validator contract (`engine/validators/skills.py`): frontmatter parses; `name`
 is kebab-case and equals the directory; `description` present; the slug is
@@ -59,7 +59,7 @@ sessions start, edit that skill, not the bootstrap.
    and list every skill in `skills:` as a **repository-root-relative** path
    (`knowledge/skills/.../SKILL.md`).
 3. Omit `model`. The generated `agent.yaml` uses `model: inherit`; harnesses
-   resolve the real model ([ADR-0002](adr/ADR-0002-agent-manifests-single-source.md)).
+   resolve the real model ([agent-manifests](standards/agent-manifests.md)).
 
 Validator contract (`engine/validators/agents.py`): `name` kebab-case and equal
 to the directory; `category` equal to the parent directory; `description`
@@ -85,7 +85,7 @@ require `remote_url`; `capabilities` is a mapping if present; `env_vars` is a
 list of upper-case names.
 
 `generate` writes `dist/mcp.json` and `dist/mcp_config.json`
-([ADR-0005](adr/ADR-0005-mcp-triple-definition.md)).
+([mcp-definition](standards/mcp-definition.md)).
 
 ## Add a harness
 
@@ -106,11 +106,11 @@ fill in the data. A harness manifest declares:
 A new harness that uses an existing shape needs **no engine change**: run
 `generate`, then `python3 scripts/coacus_install.py <name>` (add a `_plan_<name>`
 only if its install mechanism is new). A new *shape* is an engine change in
-`engine/generators/bootstrap.py`; see [ADR-0016](adr/ADR-0016-bootstrap-render-contract.md).
+`engine/generators/bootstrap.py`; see [session-start-bootstrap](standards/session-start-bootstrap.md).
 
 ## Add a template
 
-Templates follow [ADR-0010](adr/ADR-0010-single-source-scripts-templates.md): one
+Templates follow [single-source](standards/single-source.md): one
 copy, consumed by path. Authoring templates live in `templates/authoring/`.
 Domain templates live under `templates/domains/<vertical>/` and already cover
 ADRs (`adr.template.md`), C4 models, threat models, DPIAs and security technical
@@ -121,7 +121,7 @@ generator or validator change is needed.
 
 The dispatcher is open-closed: a new format is a new handler file, and
 `engine/dispatcher/__init__.py` never changes
-([ADR-0012](adr/ADR-0012-ingestion-dispatcher.md)).
+([knowledge-ingestion](standards/knowledge-ingestion.md)).
 
 1. Create `verticals/architecture_si/pipelines/ingest/handlers/<format>.py`.
 2. Register the extensions with the decorator and import shared helpers:
@@ -152,4 +152,4 @@ directory, so the new extension appears in
 Only these changes belong in `engine/`: a new representation target for an
 existing artifact, a new validation class, a new bootstrap shape, or a new
 runtime gate. Treat each as a deliberate core change, add tests under `tests/`,
-and record the decision as an ADR in `docs/adr/` before merging.
+and record the decision as a new standard in `docs/standards/` before merging.

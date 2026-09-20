@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Behavior-eval runner for Coacus (D10/ADR-0011).
+"""Behavior-eval runner for Coacus (testing).
 
 Deterministic by default; live evaluation is opt-in.
 

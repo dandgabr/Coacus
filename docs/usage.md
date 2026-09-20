@@ -72,7 +72,7 @@ python3 scripts/coacus_governor.py reset
 `acquire` prints the token and exits 0 on success, or prints nothing and exits 1
 when the cap stayed saturated past the timeout. The default cap is 5, orchestrator
 included. Knobs: `ORCH_MAX_CONCURRENT`, `GOVERNOR_STATE_DIR`,
-`GOVERNOR_LEASE_SECONDS`. See [ADR-0007](adr/ADR-0007-orchestration-governor.md).
+`GOVERNOR_LEASE_SECONDS`. See [orchestration-governance](standards/orchestration-governance.md).
 
 `status` example output:
 
@@ -82,7 +82,7 @@ running=0 paused=0 max=5 orchestrator=false slots_free=5
 
 ## Behavior evals
 
-Two tiers ([ADR-0011](adr/ADR-0011-two-layer-testing.md)). Static is
+Two tiers ([testing](standards/testing.md)). Static is
 deterministic and blocking; live needs a harness CLI and credentials and never
 runs in CI.
 
@@ -104,7 +104,7 @@ and the scenario schema are documented in [`../evals/README.md`](../evals/README
 ## architecture_si vertical
 
 Document ingestion and analysis over one dispatcher
-([ADR-0012](adr/ADR-0012-ingestion-dispatcher.md)).
+([knowledge-ingestion](standards/knowledge-ingestion.md)).
 
 ```bash
 python3 scripts/coacus_vertical.py formats
@@ -125,7 +125,7 @@ security keyword hits).
 ## Corpus import
 
 The F6 importer is driven by `templates/import/import-manifest.json` and records
-provenance in `sources.lock.json` ([ADR-0015](adr/ADR-0015-provenance-manifest-location.md)).
+provenance in `sources.lock.json` ([provenance](standards/provenance.md)).
 
 ```bash
 python3 scripts/coacus_import.py plan  [--source skills|superpowers|agents]

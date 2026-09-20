@@ -1,4 +1,4 @@
-"""Tests for consolidated discovery manifest generation (D5/ADR-0006)."""
+"""Tests for consolidated discovery manifest generation (discovery)."""
 
 from __future__ import annotations
 

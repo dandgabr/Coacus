@@ -2,8 +2,8 @@
 """Coacus corpus importer (F6).
 
 Imports the source corpora into the repository per `templates/import/import-manifest.json`,
-recording provenance in `sources.lock.json` (ADR-0015) and leaving content in
-its original language with `transform: [..., "pending-translation"]` (ADR-0001:
+recording provenance in `sources.lock.json` (provenance) and leaving content in
+its original language with `transform: [..., "pending-translation"]` (english-only:
 PT-BR imports are translated in tracked batches).
 
     python3 scripts/coacus_import.py plan   [--source skills|superpowers|agents]

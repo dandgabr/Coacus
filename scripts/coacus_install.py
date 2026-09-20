@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Coacus installer: activate rendered artifacts into a harness.
 
-The repository GENERATES the per-harness artifacts (ADR-0016); this script
+The repository GENERATES the per-harness artifacts (session-start-bootstrap); this script
 INSTALLS them into a harness's own discovery locations. It is explicit and
 idempotent — nothing runs at session start, and it never rewrites a harness
 config file wholesale.

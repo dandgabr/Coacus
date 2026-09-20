@@ -1,4 +1,4 @@
-"""Golden tests for agent manifest generation (D1/ADR-0002)."""
+"""Golden tests for agent manifest generation (agent-manifests)."""
 
 from __future__ import annotations
 

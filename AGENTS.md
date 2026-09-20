@@ -5,12 +5,12 @@ Routing rules for any AI agent operating in this repository, in any harness.
 ## Mental map (scan once per session — single-scan, D5)
 
 - `README.md` — what Coacus is; quickstart.
-- `docs/adr/` — ratified architecture decisions (D1–D12 + policies). Read before changing structure.
+- `docs/standards/` — the normative standards. Read the relevant one before changing that area.
 - `docs/install.md` — how to install the rendered artifacts into each harness.
 - `evals/README.md` — behavior evals (static gate + opt-in live runner).
 - `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
-- `sources.lock.json` — provenance manifest for imported artifacts (ADR-0015).
+- `sources.lock.json` — provenance manifest for imported artifacts (provenance).
 - `.agents/*.json` + `.agents/entries/*.json` — GENERATED discovery manifests. Do not hand-edit.
 
 **Single-scan rule:** read the generated indexes once at session start. Never
@@ -30,7 +30,7 @@ re-scan directories per turn (D5). If indexes look stale, run
 2. **Agnostic content (D2).** Canonical bodies name ACTIONS, never harness tools.
    Per-harness mappings live in `references/<harness>-tools.md`.
 3. **No secrets, no absolute paths (D12).** Secrets as `{env:VAR}` only.
-4. **English only (ADR-0001).** kebab-case; descriptions in 3rd person with triggers.
+4. **English only (english-only).** kebab-case; descriptions in 3rd person with triggers.
 5. **`model` omitted in canonical sources (D1).** Generated `agent.yaml` uses
    `model: inherit`; harnesses resolve the actual model.
 6. **Multi-agent governance (D6/D7).** Cap concurrent subagents (governor);
@@ -54,4 +54,4 @@ arrives (new representation target, new validation class, new bootstrap shape).
 ## Memory
 
 Project memory namespace: `Coacus/coacus` (see `.ai-memory.toml`). Decision
-audit trail lives in `decisions/` of the memory namespace and `docs/adr/` here.
+audit trail lives in `decisions/` of the memory namespace and `docs/standards/` here.

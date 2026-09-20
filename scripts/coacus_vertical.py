@@ -2,7 +2,7 @@
 """Architecture-SI vertical CLI: document ingestion and analysis (F6c).
 
 Unifies the former `pdf2md` / `doc2md` / `doc-analyze` entrypoints over one
-dispatcher (ADR-0012):
+dispatcher (knowledge-ingestion):
 
     coacus_vertical.py ingest  <file|--dir DIR> [output] [--toc-only] [--split-chapters]
     coacus_vertical.py analyze <file|--dir DIR> [--json]

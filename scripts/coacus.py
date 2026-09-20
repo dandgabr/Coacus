@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Coacus thin CLI: generate | check | validate.
 
-Deterministic build tooling for the framework (ADR-0004, ADR-0013, ADR-0014).
+Deterministic build tooling for the framework (generated-artifacts, secrets-portability, generated-artifacts).
 
 Validation is split in two layers:
 - SOURCE errors (agents, skills, hygiene) gate ``generate`` — invalid canonical

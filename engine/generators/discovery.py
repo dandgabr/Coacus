@@ -1,8 +1,8 @@
-"""Generate consolidated discovery manifests from disk (D5/ADR-0006).
+"""Generate consolidated discovery manifests from disk (discovery).
 
 Writes `.agents/{skills,mcps,agents}.json` — each a list of `entries[].path`
 (a directory or source file), derived purely from disk so discovery is
-deterministic and drift-checked (ADR-0014). Single-scan rule: agents read these
+deterministic and drift-checked (generated-artifacts). Single-scan rule: agents read these
 indexes once per session (AGENTS.md).
 
 The per-agent `.agents/entries/<name>.json` files are still produced by
@@ -60,7 +60,7 @@ def write_all(root: Path) -> list[str]:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check for the consolidated discovery manifests (ADR-0014)."""
+    """Drift check for the consolidated discovery manifests (generated-artifacts)."""
     drift: list[str] = []
     for rel, content in _expected(root).items():
         path = root / rel

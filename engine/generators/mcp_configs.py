@@ -1,6 +1,6 @@
 """Generate per-MCP harness declarations from a single canonical source (D4).
 
-Supersedes the hand-authored MCP triple of ADR-0005: `knowledge/mcps/<mcp>/MCP.md`
+Supersedes the hand-authored MCP triple of mcp-definition: `knowledge/mcps/<mcp>/MCP.md`
 is the single source; the generator derives:
 
 - `dist/mcp.json`         server declaration (name, transport, command/url,
@@ -8,7 +8,7 @@ is the single source; the generator derives:
 - `dist/mcp_config.json`  setup metadata (description, requires, env VAR names,
                           docs, author, license, version)
 
-Generated files are committed and drift-checked (ADR-0014), contain no
+Generated files are committed and drift-checked (generated-artifacts), contain no
 timestamps, and never carry secret values.
 """
 
@@ -115,7 +115,7 @@ def write_all(root: Path) -> list[str]:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check: expected vs disk, plus orphan detection (ADR-0014)."""
+    """Drift check: expected vs disk, plus orphan detection (generated-artifacts)."""
     drift: list[str] = []
     expected = expected_outputs(root)
     for rel, content in expected.items():

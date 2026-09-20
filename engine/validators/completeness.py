@@ -160,11 +160,19 @@ def validate(root: Path) -> list[str]:
         if "using-coacus" not in imported_workflows:
             gaps.append("entry workflow using-coacus is missing")
 
-    # --- ADRs D1–D12 + the import/taxonomy ADR present ---------------------
-    adr_dir = root / "docs" / "adr"
-    present = {p.name.split("-")[1] for p in adr_dir.glob("ADR-*.md")}
-    for number in [f"{n:04d}" for n in range(1, 18)]:  # ADR-0001..ADR-0017
-        if number not in present:
-            gaps.append(f"missing ADR: ADR-{number}")
+    # --- the normative standards are present ------------------------------
+    standards = (
+        "principles", "english-only", "skill-authoring", "agent-manifests",
+        "generated-artifacts", "mcp-definition", "discovery",
+        "orchestration-governance", "toon-protocol", "session-start-bootstrap",
+        "single-source", "testing", "knowledge-ingestion", "secrets-portability",
+        "provenance", "corpus-and-taxonomy",
+    )
+    standards_dir = root / "docs" / "standards"
+    for name in standards:
+        if not (standards_dir / f"{name}.md").is_file():
+            gaps.append(f"missing standard: docs/standards/{name}.md")
+    if not (standards_dir / "README.md").is_file():
+        gaps.append("missing standard: docs/standards/README.md")
 
     return gaps

@@ -1,4 +1,4 @@
-"""Tests for the SessionStart bootstrap renderer (D8/ADR-0009)."""
+"""Tests for the SessionStart bootstrap renderer (session-start-bootstrap)."""
 
 from __future__ import annotations
 
@@ -215,7 +215,7 @@ class TestBootstrapRender(unittest.TestCase):
 
     def test_one_top_level_key_per_bootstrap_output(self) -> None:
         # Guard against double injection: any rendered JSON bootstrap must carry
-        # exactly one top-level key (ADR-0009).
+        # exactly one top-level key (session-start-bootstrap).
         write_harness(
             self.root,
             "claude-code",
