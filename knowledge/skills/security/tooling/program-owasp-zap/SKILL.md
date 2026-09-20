@@ -65,7 +65,7 @@ env:
         - name: "test-user"
           credentials:
             username: "qa-sec-user"
-            password: "SecurePassword123!"
+            password: "${ZAP_AUTH_PASSWORD}"
   parameters:
     failOnError: true
     failOnWarning: false

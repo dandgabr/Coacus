@@ -142,7 +142,7 @@ services:
     environment:
       POSTGRES_DB: appdb
       POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: secure_database_password
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
@@ -170,7 +170,7 @@ services:
         condition: service_healthy
     environment:
       PORT: 8080
-      DATABASE_URL: postgres://appuser:secure_database_password@database:5432/appdb?sslmode=disable
+      DATABASE_URL: postgres://appuser:${POSTGRES_PASSWORD}@database:5432/appdb?sslmode=disable
     ports:
       - "8080:8080"
     networks:

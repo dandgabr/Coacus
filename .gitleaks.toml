@@ -17,5 +17,8 @@ regexes = [
   # Explicit placeholders sanctioned by ADR-0013
   '''\{env:[A-Z0-9_]+\}''',
   '''\$\{[A-Z0-9_]+\}''',
+  '''%[A-Za-z0-9_]+%''',
   '''REDACTED''',
+  # AWS's own documented example key (not a real credential)
+  '''AKIAIOSFODNN7EXAMPLE''',
 ]
