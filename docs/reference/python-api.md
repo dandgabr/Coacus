@@ -627,19 +627,42 @@ Usage:
 A manifest (`coacus-install.json`) is written next to each target so re-runs
 are idempotent and `--uninstall` removes exactly what was installed.
 
+Partial installs keep the session-start skills budget small: a harness that
+indexes every skill pays for every description. Filter with `--only` (top-level
+category) and/or `--skills` (name glob); `--list` prints what is available.
+
+    python3 scripts/coacus_install.py codex --only security,engineering
+    python3 scripts/coacus_install.py codex --skills 'lang-python,framework-*'
+    python3 scripts/coacus_install.py codex --list
+
 #### `def default_config_dir(harness: str, home: Path) -> Path`
 
 _No docstring._
 
-#### `def discover_skills(root: Path) -> list[Path]`
+#### `def discover_skills(root: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[Path]`
 
 All skill directories (the parent of a SKILL.md) in the repository.
 
-#### `def plan(harness: str, root: Path, config_dir: Path) -> list[tuple[Path, str]]`
+``only`` keeps skills whose path under its root contains one of the given
+category tokens (matched against every path segment, so both ``domains`` and
+``academic`` select the academic skills). ``skills`` keeps skills whose
+directory name matches one of the given fnmatch globs. Both filters are
+OR-ed within their own list and AND-ed with each other; an empty filter is
+no filter.
+
+#### `def list_skills(root: Path) -> dict[str, object]`
+
+Inventory for `--list`: categories and skill names, no harness needed.
+
+#### `def discover_agents(root: Path) -> list[Path]`
+
+All canonical agent sources: knowledge/agents/<category>/<name>/.
+
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[tuple[Path, str]]`
 
 _No docstring._
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None) -> dict[str, object]`
 
 _No docstring._
 

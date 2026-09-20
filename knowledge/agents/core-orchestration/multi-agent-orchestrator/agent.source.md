@@ -57,10 +57,9 @@ When acting, follow rigorously the guidelines in the associated skills: [multi-a
 
 The 5-agent simultaneous limit and the rate-limit retry are **enforced by a slot governor**, not merely described in prose:
 
-- **Governor script** ([`scripts/orchestrator-governor.sh`](../../../scripts/orchestrator-governor.sh)): maintains the slot ledger (`RUNNING`/`PAUSED`) with atomic `flock()`. Commands: `acquire|release|fail|status|reset`. `acquire` blocks when the cap is saturated; `fail` marks the agent `PAUSED` (429/rate-limit) for retry.
-- **Antigravity hook** ([`scripts/orchestrator-hook.sh`](../../../scripts/orchestrator-hook.sh)): CLI bridge for the `PreToolUse`/`PostToolUse`/`PreInvocation` hooks (matcher `invoke_subagent|manage_subagents|task`).
-- **Canonical OpenCode plugin** ([`scripts/orchestrator-gate.ts`](../../../scripts/orchestrator-gate.ts)): reference implementation of the gate plugin (deploy at `~/.config/opencode/plugins/orchestrator-gate.ts`).
-- **Executable validation** ([`scripts/orchestrator-governor.test.sh`](../../../scripts/orchestrator-governor.test.sh)): proves that exactly *N* agents get a slot and the rest are queued. Run it with `bash scripts/orchestrator-governor.test.sh`.
+- **Governor script** ([`scripts/coacus_governor.py`](../../../scripts/coacus_governor.py)): maintains the slot ledger (`RUNNING`/`PAUSED`) with an atomic lock. Commands: `acquire|release|fail|paused|status|health|reset`. `acquire` blocks when the cap is saturated; `fail` marks the caller `PAUSED` (429/rate-limit) for retry.
+- **OpenCode gate** ([`~/.config/opencode/plugins/coacus-governor.js`](../../../harnesses/opencode/bootstrap/governor-gate.js)): intercepts `task`, acquires a slot before the spawn, releases/marks it after, and parks the caller as `PAUSED` on a rate limit.
+- **Antigravity hook** (`~/.gemini/config/hooks.json`, key `coacus-governor`): calls `scripts/coacus_governor.py` on `PreToolUse` of `invoke_subagent|manage_subagents|task` and releases on `PostToolUse`.
 
 When you (the orchestrator) need to schedule: check `status` (via tool/hook) before firing; if `running >= 5`, queue the subtask and wait for a slot to open; if a subagent fails with a rate-limit symptom, `fail` it (→ `PAUSED`), wait for `running < 5` and relaunch with exponential *backoff* (2s→60s, max 5 attempts).
 

@@ -118,10 +118,9 @@ When one of these symptoms is detected on an active subagent:
 
 The concurrency cap above is **enforced at runtime** by a slot governor, not merely described in prose:
 
-- **Governor** (`scripts/orchestrator-governor.sh`): a ledger with atomic `flock()`. `acquire` blocks (queues) when the cap is saturated; `fail` marks `PAUSED` for retry. The cap = `ORCH_MAX_CONCURRENT` (default 5, counting the orchestrator).
-- **Antigravity Hooks** (`scripts/orchestrator-hook.sh` + `~/.gemini/config/hooks.json` key `orchestrator-governor`): reserve a slot in `PreToolUse` of `invoke_subagent`, release/mark in `PostToolUse`, and inject the budget in `PreInvocation`.
-- **OpenCode Plugin** (`scripts/orchestrator-gate.ts`, deployed to `~/.config/opencode/plugins/orchestrator-gate.ts`): intercepts `task`, reserves a slot before the spawn, releases/marks after, and exposes the `orchestrator_governor` tool.
-- **Validation** (`scripts/orchestrator-governor.test.sh` and `orchestrator-governor.check.sh`): prove that the cap of *N* really holds back excess and that the `429` retry works. Run `bash scripts/orchestrator-governor.check.sh`.
+- **Governor** (`scripts/coacus_governor.py`): the slot ledger. `acquire` blocks (queues) when the cap is saturated; `fail` marks the caller `PAUSED` for retry. The cap = `ORCH_MAX_CONCURRENT` (default 5, counting the orchestrator). Commands: `acquire|release|fail|paused|status|health|reset`; inspect with `python3 scripts/coacus_governor.py status`.
+- **OpenCode gate** (`~/.config/opencode/plugins/coacus-governor.js`): intercepts `task`, acquires a slot before the spawn, releases/marks it after, and parks a caller as `PAUSED` when it sees a rate limit.
+- **Antigravity hook** (`~/.gemini/config/hooks.json`, key `coacus-governor`): calls `scripts/coacus_governor.py` on the pre-spawn hook of every subagent dispatch and releases on the post-spawn hook.
 
 ---
 

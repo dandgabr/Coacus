@@ -4,6 +4,10 @@
     "skills": "{workspace}/skills",
     "superpowers": "{workspace}/superpowers"
   },
+  "licenses": {
+    "skills": "GPL-3.0",
+    "superpowers": "MIT"
+  },
   "exclude_import_from": ["{workspace}/agente-arquitetura-si"],
   "category_map": {
     "languages": "languages",

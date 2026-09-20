@@ -9,6 +9,18 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
+- Partial installs in `scripts/coacus_install.py`: `--only <categories>` (matched
+  against any path segment under a skill root) and `--skills <globs>`, plus
+  `--list` to print the available categories and names. Selection is recorded in
+  the `coacus-install.json` manifest, so `--uninstall` stays exact. Useful when a
+  harness caps the session-start skills budget (e.g. Codex shortening
+  descriptions on a full-corpus install).
+- `THIRD-PARTY-NOTICES.md` reproducing the MIT license of the Superpowers
+  workflow collection by Jesse Vincent, and pointing at the GPL-3.0 license of
+  the imported skills corpus. The installer writes it to each harness skills root.
+- `scripts/coacus_import.py` resolves `origin_license` from a `licenses` map in
+  the import manifest (`GPL-3.0` for `skills`, `MIT` for `superpowers`) and
+  `apply` relabels existing entries in place without re-importing content.
 - `engine/validators/completeness.py` and `python3 scripts/coacus.py
   completeness`: reconciles the import manifest against the source repositories,
   the target tree, the committed catalog, provenance (no orphan targets), agent

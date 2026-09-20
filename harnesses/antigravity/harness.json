@@ -9,6 +9,9 @@
     ]
   },
   "detection": ["GEMINI_DIR", "ANTIGRAVITY"],
+  "plugins": [
+    { "path": "harnesses/antigravity/bootstrap/governor-hook.sh", "kind": "governor-gate" }
+  ],
   "tool_mapping": {
     "create or update todos": "manage_task (task artifact)",
     "dispatch a subagent": "invoke_subagent",
