@@ -74,6 +74,7 @@ def _render_module(root: Path, path: Path) -> list[str]:
 
 
 def build(root: Path) -> str:
+    """Render the Markdown API reference from the sources' docstrings."""
     lines = [
         "# Python API Reference",
         "",
@@ -87,6 +88,7 @@ def build(root: Path) -> str:
 
 
 def write(root: Path) -> Path:
+    """Write the generated API reference to disk and return its path."""
     out = root / DOCS_PATH
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(build(root), encoding="utf-8")

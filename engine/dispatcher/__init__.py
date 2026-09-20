@@ -27,10 +27,12 @@ def register_converter(*extensions: str):
 
 
 def supported_extensions() -> list[str]:
+    """Return the sorted list of file extensions with a registered converter."""
     return sorted(_REGISTRY)
 
 
 def converter_for(path: str | Path) -> Callable[[str, Optional[str]], str] | None:
+    """Return the converter registered for ``path``'s extension, or ``None``."""
     return _REGISTRY.get(Path(path).suffix.lower())
 
 

@@ -156,11 +156,11 @@ the coarse by-kind index.
 
 #### `def build(root: Path) -> dict[str, dict]`
 
-_No docstring._
+Build the three discovery manifests (skills, mcps, agents) from disk.
 
 #### `def write_all(root: Path) -> list[str]`
 
-_No docstring._
+Materialize ``.agents/{skills,mcps,agents}.json``; return written paths.
 
 #### `def check(root: Path) -> list[str]`
 
@@ -178,11 +178,11 @@ artifact, so documentation cannot fall out of sync with the code.
 
 #### `def build(root: Path) -> str`
 
-_No docstring._
+Render the Markdown API reference from the sources' docstrings.
 
 #### `def write(root: Path) -> Path`
 
-_No docstring._
+Write the generated API reference to disk and return its path.
 
 #### `def check(root: Path) -> list[str]`
 
@@ -243,19 +243,19 @@ so a crashed holder cannot leak a slot forever.
 
 #### `def state_dir() -> Path`
 
-_No docstring._
+The governor's state directory (``GOVERNOR_STATE_DIR`` or a runtime default).
 
 #### `class Ledger`
 
 A file-backed slot ledger guarded by ``fcntl.flock``.
 
 - `def acquire(self, caller: str, orchestrator: bool=False, timeout: float=30.0) -> str | None` — Reserve a slot. Returns the token, or None if the cap stayed full.
-- `def release(self, caller: str) -> None` — no docstring
+- `def release(self, caller: str) -> None` — Release the slot held by ``caller`` (a no-op if it holds none).
 - `def fail(self, caller: str, attempts: int=1) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
 - `def paused(self) -> list[dict]` — Callers parked for retry, with a backoff hint (2s -> 60s).
-- `def clear_paused(self, caller: str | None=None) -> None` — no docstring
-- `def status(self) -> dict` — no docstring
-- `def reset(self) -> None` — no docstring
+- `def clear_paused(self, caller: str | None=None) -> None` — Drop PAUSED rows for ``caller``, or for every caller when ``None``.
+- `def status(self) -> dict` — Reap stale leases and return the current running/paused/slots snapshot.
+- `def reset(self) -> None` — Clear every record, returning the ledger to an idle state.
 
 ### `engine/provenance.py`
 
@@ -311,7 +311,7 @@ Return a list of error strings; empty list means a valid payload.
 
 #### `def is_valid(text: str) -> bool`
 
-_No docstring._
+Return ``True`` when ``text`` is a valid TOON payload (no errors).
 
 ### `engine/validators/agents.py`
 
@@ -372,7 +372,7 @@ string carries a secret or an absolute path (D12).
 
 #### `def discover(root: Path) -> list[Path]`
 
-_No docstring._
+Return every scenario file (``evals/scenarios/<id>/scenario.json``).
 
 #### `def validate(root: Path) -> list[str]`
 
@@ -480,27 +480,27 @@ Generated-artifact violations (checked after writing / on validate).
 
 #### `def cmd_generate(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
-_No docstring._
+Regenerate every derived artifact; return a non-zero exit on failure.
 
 #### `def cmd_check(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
-_No docstring._
+Fail if any generated artifact has drifted from its source.
 
 #### `def cmd_toon(args: argparse.Namespace) -> int`
 
-_No docstring._
+Validate a TOON handoff payload file; print errors and return the exit code.
 
 #### `def cmd_completeness(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
-_No docstring._
+Reconcile the corpus against its sources; fail if anything is unreconciled.
 
 #### `def cmd_validate(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
-_No docstring._
+Run the schema and hygiene validators; fail on any error.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-_No docstring._
+Parse arguments and dispatch to the selected subcommand.
 
 ### `scripts/coacus_eval.py`
 
@@ -530,15 +530,15 @@ the same harness as an orchestrated subagent (multi-agent-orchestrator pattern).
 
 #### `def cmd_validate(root: Path) -> int`
 
-_No docstring._
+Statically validate every eval scenario; return non-zero on any error.
 
 #### `def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool, timeout: float, harness: str | None=None) -> int`
 
-_No docstring._
+Run scenarios live and report check/judge results; fail if any did not pass.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-_No docstring._
+Parse arguments and dispatch to ``validate`` or ``run``.
 
 ### `scripts/coacus_governor.py`
 
@@ -559,7 +559,7 @@ cap stayed saturated past the timeout.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-_No docstring._
+Parse arguments and run the requested governor action.
 
 ### `scripts/coacus_import.py`
 
@@ -579,27 +579,27 @@ target and the provenance entry (dedup keyed on source repo/commit/path).
 
 #### `def plan_skills(manifest: dict) -> list[dict]`
 
-_No docstring._
+Plan the import (or exclusion) of every source skill into the taxonomy.
 
 #### `def plan_superpowers(manifest: dict) -> list[dict]`
 
-_No docstring._
+Plan the import of the Superpowers workflow collection, namespaced.
 
 #### `def plan_agents(manifest: dict) -> list[dict]`
 
-_No docstring._
+Plan agent imports, applying the manifest's merge and exclusion rules.
 
 #### `def doc_title(doc) -> str`
 
-_No docstring._
+Return the first ``# `` heading of a parsed document, or an empty string.
 
 #### `def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]`
 
-_No docstring._
+Execute the planned actions and return the recorded provenance entries.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-_No docstring._
+Parse arguments and run the ``plan`` or ``apply`` import action.
 
 ### `scripts/coacus_install.py`
 
@@ -648,7 +648,7 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
 
 #### `def default_config_dir(harness: str, home: Path) -> Path`
 
-_No docstring._
+Return the default config directory for ``harness`` under ``home``.
 
 #### `def discover_skills(root: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[Path]`
 
@@ -677,11 +677,19 @@ empty filter is no filter. ``--skills`` never narrows agents.
 
 #### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, FileContent]]`
 
-_No docstring._
+Compute the files to install for ``harness`` under the given filters.
+
+Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
+category across skills and agents; ``skills``/``agents`` narrow each tree by
+name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
 #### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> dict[str, object]`
 
-_No docstring._
+Install a harness and write its manifest; report files written.
+
+With ``dry_run``, returns the plan without touching disk. Every target is
+containment-checked first, so an install never writes outside the allowed
+roots (see ``_assert_contained``).
 
 #### `def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]`
 
@@ -707,7 +715,7 @@ is skipped, so the manifest cannot delete arbitrary files.
 
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 
-_No docstring._
+Parse arguments and run install, uninstall, verify or list.
 
 ### `scripts/coacus_vertical.py`
 
@@ -722,7 +730,7 @@ dispatcher (knowledge-ingestion):
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-_No docstring._
+Parse arguments and dispatch to the ``ingest`` or ``analyze`` subcommand.
 
 ### `verticals/architecture_si/pipelines/analyze/analyzer.py`
 
@@ -734,20 +742,20 @@ be exposed as an MCP tool.
 
 #### `class Analysis`
 
-_No docstring._
+Structured result of analysing one Markdown document.
 
 
 #### `def analyze_markdown(file_path: str) -> Analysis`
 
-_No docstring._
+Analyse a Markdown file and return its metrics, outline and detected terms.
 
 #### `def human_report(analysis: Analysis) -> str`
 
-_No docstring._
+Render an analysis as a human-readable text report.
 
 #### `def analyze_dir(directory: str, as_json: bool) -> str`
 
-_No docstring._
+Analyse every ``*.md`` file in ``directory``, as JSON or human reports.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/_common.py`
 
@@ -771,7 +779,7 @@ CSV / TSV to a Markdown table.
 
 #### `def handle_csv(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a CSV/TSV file to a Markdown table and return the written path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/docx.py`
 
@@ -779,11 +787,13 @@ DOCX to Markdown (headings, paragraphs, lists, tables).
 
 #### `def convert_docx_to_md(docx_path: str) -> str`
 
-_No docstring._
+Convert a DOCX document's headings, paragraphs, lists and tables to Markdown.
+
+Legacy ``.doc`` (OLE) raises ``RuntimeError`` (unsupported by python-docx).
 
 #### `def handle_docx(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a DOCX file to Markdown and return the written path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/html.py`
 
@@ -791,11 +801,11 @@ HTML to Markdown, with a stdlib HTMLParser fallback when BeautifulSoup is absent
 
 #### `def convert_html_to_md(html_path: str) -> str`
 
-_No docstring._
+Convert an HTML file to Markdown, preferring BeautifulSoup when present.
 
 #### `def handle_html(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert an HTML file to Markdown and return the written path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/pdf.py`
 
@@ -811,19 +821,22 @@ Fix hyphenation across line breaks and normalize whitespace.
 
 #### `def convert_pdf_with_fitz(pdf_path: str, output_path: Optional[str]=None, split_chapters: bool=False, toc_only: bool=False) -> str`
 
-_No docstring._
+Convert a PDF to Markdown using PyMuPDF (per-page anchors, TOC map).
+
+``toc_only`` emits just the outline; ``split_chapters`` is accepted for
+interface parity with the upstream converter.
 
 #### `def convert_pdf_with_pypdf(pdf_path: str, output_path: Optional[str]=None) -> str`
 
-_No docstring._
+Convert a PDF to Markdown using pypdf (plain per-page text extraction).
 
 #### `def convert_pdf_to_markdown(pdf_path: str, output_path: Optional[str]=None, **kwargs: Any) -> str`
 
-_No docstring._
+Convert a PDF to Markdown, selecting PyMuPDF or pypdf by availability.
 
 #### `def handle_pdf(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a PDF to Markdown and return the written path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/pptx.py`
 
@@ -831,11 +844,13 @@ PPTX to Markdown slides (text frames and tables).
 
 #### `def convert_pptx_to_md(pptx_path: str) -> str`
 
-_No docstring._
+Convert a PPTX presentation's slides to Markdown.
+
+Legacy ``.ppt`` (OLE) raises ``RuntimeError`` (unsupported by python-pptx).
 
 #### `def handle_pptx(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a PPTX file to Markdown and return the written path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/structured.py`
 
@@ -843,7 +858,7 @@ JSON / YAML to a fenced Markdown code block.
 
 #### `def handle_structured(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a JSON/YAML file to a fenced Markdown block; return the path.
 
 ### `verticals/architecture_si/pipelines/ingest/handlers/text.py`
 
@@ -851,8 +866,8 @@ Text-like formats: TXT, RTF, LOG, and the raw fallback.
 
 #### `def convert_txt_to_md(txt_path: str) -> str`
 
-_No docstring._
+Read a text-like file and return it as Markdown with an H1 title.
 
 #### `def handle_text(input_path: str, output_path: str | None=None) -> str`
 
-_No docstring._
+Convert a text-like file to Markdown and return the written path.

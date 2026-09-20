@@ -69,6 +69,7 @@ def _home() -> Path:
 
 
 def default_config_dir(harness: str, home: Path) -> Path:
+    """Return the default config directory for ``harness`` under ``home``."""
     return {
         "opencode": home / ".config" / "opencode",
         "claude-code": home / ".claude",
@@ -679,6 +680,12 @@ def plan(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
 ) -> list[tuple[Path, FileContent]]:
+    """Compute the files to install for ``harness`` under the given filters.
+
+    Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
+    category across skills and agents; ``skills``/``agents`` narrow each tree by
+    name glob. Shared by ``install``, ``verify`` and ``uninstall``.
+    """
     if harness == "opencode":
         return _plan_opencode(root, config_dir, only, skills, agents)
     if harness == "claude-code":
@@ -701,6 +708,12 @@ def install(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
 ) -> dict[str, object]:
+    """Install a harness and write its manifest; report files written.
+
+    With ``dry_run``, returns the plan without touching disk. Every target is
+    containment-checked first, so an install never writes outside the allowed
+    roots (see ``_assert_contained``).
+    """
     files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
     if dry_run:
@@ -952,6 +965,7 @@ def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
 
 
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
+    """Parse arguments and run install, uninstall, verify or list."""
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
     parser.add_argument(
         "harness",

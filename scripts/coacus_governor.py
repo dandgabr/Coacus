@@ -29,6 +29,7 @@ from engine.governor.ledger import Ledger  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Parse arguments and run the requested governor action."""
     parser = argparse.ArgumentParser(prog="coacus-governor", description=__doc__)
     parser.add_argument(
         "action",

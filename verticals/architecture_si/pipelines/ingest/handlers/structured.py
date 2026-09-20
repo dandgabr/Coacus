@@ -11,6 +11,7 @@ from verticals.architecture_si.pipelines.ingest.handlers import _common as commo
 
 @register_converter(".json", ".yaml", ".yml")
 def handle_structured(input_path: str, output_path: str | None = None) -> str:
+    """Convert a JSON/YAML file to a fenced Markdown block; return the path."""
     ext = Path(input_path).suffix.lower()
     with open(input_path, "r", encoding="utf-8", errors="replace") as handle:
         content = handle.read()

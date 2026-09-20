@@ -60,6 +60,11 @@ def convert_pdf_with_fitz(
     split_chapters: bool = False,
     toc_only: bool = False,
 ) -> str:
+    """Convert a PDF to Markdown using PyMuPDF (per-page anchors, TOC map).
+
+    ``toc_only`` emits just the outline; ``split_chapters`` is accepted for
+    interface parity with the upstream converter.
+    """
     doc = fitz.open(pdf_path)
     base = Path(pdf_path).stem
     if output_path is None:
@@ -107,6 +112,7 @@ def convert_pdf_with_fitz(
 
 
 def convert_pdf_with_pypdf(pdf_path: str, output_path: Optional[str] = None) -> str:
+    """Convert a PDF to Markdown using pypdf (plain per-page text extraction)."""
     reader = pypdf.PdfReader(pdf_path)
     base = Path(pdf_path).stem
     if output_path is None:
@@ -121,6 +127,7 @@ def convert_pdf_with_pypdf(pdf_path: str, output_path: Optional[str] = None) -> 
 def convert_pdf_to_markdown(
     pdf_path: str, output_path: Optional[str] = None, **kwargs: Any
 ) -> str:
+    """Convert a PDF to Markdown, selecting PyMuPDF or pypdf by availability."""
     if not Path(pdf_path).exists():
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
     if HAVE_FITZ:
@@ -132,4 +139,5 @@ def convert_pdf_to_markdown(
 
 @register_converter(".pdf")
 def handle_pdf(input_path: str, output_path: str | None = None) -> str:
+    """Convert a PDF to Markdown and return the written path."""
     return convert_pdf_to_markdown(input_path, output_path)

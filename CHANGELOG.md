@@ -98,6 +98,13 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Changed
 
+- Docstring convention applied across the codebase (PEP 257): every public
+  module, function, class and public method under `engine/`, `scripts/` and
+  `verticals/` now carries a docstring. The generated JavaScript plugins
+  (`harnesses/opencode/bootstrap/{coacus.js,governor-gate.js}`) document their
+  exported symbols with JSDoc (`@param`/`@returns`), emitted from the generator.
+  `tests/test_docstrings.py` enforces the Python side; the three imported
+  Superpowers JS/TS files are verbatim MIT copies and stay out of scope.
 - `templates/import/import-manifest.json` now resolves source repositories from
   a portable `{workspace}` token (`COACUS_WORKSPACE` override) instead of
   machine absolute paths.
