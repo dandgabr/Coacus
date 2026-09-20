@@ -374,6 +374,67 @@ def _substitute_json(text: str, placeholder: str, value: str) -> str:
     return json.dumps(walk(json.loads(text)), indent=2) + "\n"
 
 
+def _hook_owner_marker(root: Path, harness: str) -> str:
+    """Substring identifying a Coacus-owned hook entry in a shared hooks.json."""
+    return f"{root.as_posix()}/harnesses/{harness}/bootstrap/session-start.sh"
+
+
+def _entry_owned(entry: object, marker: str) -> bool:
+    """True if a hook entry references the Coacus script (by our marker)."""
+    return marker in json.dumps(entry)
+
+
+def _load_existing_json(path: Path) -> dict:
+    """Read an existing JSON object, or {} when absent/unreadable."""
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _merge_hooks(existing: dict, fragment: dict, marker: str) -> dict:
+    """Merge our hook entries into the user's hooks.json, preserving theirs.
+
+    For each event we drop any prior Coacus entry (identified by ``marker``) and
+    append ours. Every other key and event is left untouched, so installing does
+    not rewrite a harness config file wholesale.
+    """
+    merged = dict(existing) if isinstance(existing, dict) else {}
+    merged_hooks = dict(merged.get("hooks", {})) if isinstance(merged.get("hooks"), dict) else {}
+    for event, entries in (fragment.get("hooks") or {}).items():
+        kept = [e for e in merged_hooks.get(event, []) if not _entry_owned(e, marker)]
+        merged_hooks[event] = kept + list(entries)
+    merged["hooks"] = merged_hooks
+    return merged
+
+
+def _strip_hooks(existing: dict, marker: str) -> dict | None:
+    """Remove Coacus hook entries from the user's hooks.json.
+
+    Returns the trimmed document, or None when nothing but Coacus remained (the
+    file may then be deleted). Other keys and events are preserved.
+    """
+    if not isinstance(existing, dict) or not isinstance(existing.get("hooks"), dict):
+        return existing if existing else None
+    hooks = {}
+    for event, entries in existing["hooks"].items():
+        if not isinstance(entries, list):
+            hooks[event] = entries
+            continue
+        kept = [e for e in entries if not _entry_owned(e, marker)]
+        if kept:
+            hooks[event] = kept
+    trimmed = {k: v for k, v in existing.items() if k != "hooks"}
+    if hooks:
+        trimmed["hooks"] = hooks
+    else:
+        trimmed.pop("hooks", None)
+    return trimmed or None
+
+
 def _plan_skills(
     root: Path,
     skills_dir: Path,
@@ -568,10 +629,12 @@ def _plan_codex(
     script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
+    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    existing = _load_existing_json(config_dir / "hooks.json")
     plan.append(
         (
             config_dir / "hooks.json",
-            _substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()),
+            json.dumps(_merge_hooks(existing, fragment, _hook_owner_marker(root, "codex")), indent=2) + "\n",
         )
     )
     return plan
@@ -597,10 +660,12 @@ def _plan_cursor(
     script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
+    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    existing = _load_existing_json(config_dir / "hooks.json")
     plan.append(
         (
             config_dir / "hooks.json",
-            _substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()),
+            json.dumps(_merge_hooks(existing, fragment, _hook_owner_marker(root, "cursor")), indent=2) + "\n",
         )
     )
     return plan
@@ -832,6 +897,10 @@ def uninstall(
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
+    hooks_path = config_dir / "hooks.json"
+    marker = _hook_owner_marker(root, harness)
+    existing_hooks = _load_existing_json(hooks_path) if hooks_path.is_file() else {}
+    had_hooks_entry = marker in json.dumps(existing_hooks)
     for path in data.get("files", []):
         target = Path(path)
         if not any(_is_within(target.resolve(), r) for r in roots):
@@ -839,6 +908,16 @@ def uninstall(
             continue
         if path in shared:
             skipped.append(path)
+            continue
+        if not dry_run and target == hooks_path and had_hooks_entry:
+            # hooks.json is a user file we merged into; strip only our entries
+            # and never delete the user's other keys.
+            trimmed = _strip_hooks(_load_existing_json(hooks_path), marker)
+            if trimmed is None:
+                target.unlink()
+            else:
+                target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
+            planned.append(path)
             continue
         if target.is_file():
             if not dry_run:
