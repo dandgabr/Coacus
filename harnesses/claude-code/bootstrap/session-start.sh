@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# SessionStart bootstrap for Coacus (generated — do not edit).
+# SessionStart bootstrap for claude-code (generated — do not edit).
 # Emits exactly ONE native JSON field; the forbidden alias is never
-# emitted (Claude Code reads both fields without dedup — ADR-0009).
+# emitted (some harnesses read both fields without dedup — ADR-0009).
 set -euo pipefail
 cat <<'COACUS_EOF'
 {

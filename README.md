@@ -4,7 +4,7 @@ A unified, multi-harness agentic framework for software development,
 information security and infrastructure. Coacus holds one portable library of
 skills, agents, workflows and MCP declarations, then renders that library into
 the native shape each AI coding harness expects. The same asset runs in OpenCode,
-Claude Code, Antigravity and Codex — and in framework consumers such as
+Claude Code, Antigravity, Codex and Cursor — and in framework consumers such as
 LangChain, AutoGen or CrewAI — without a fork per tool.
 
 License: **AGPL-3.0**. Repository language: **English**
@@ -64,7 +64,9 @@ Three layers, plus one closed engine:
 - **`methodology/`** — the canonical HOW. Process workflows and the single
   bootstrap wrapper body ([ADR-0016](docs/adr/ADR-0016-bootstrap-render-contract.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
-  file: bootstrap shape, output paths, tool mapping, install method.
+  file: bootstrap shape, output paths, tool mapping, install method. Shapes:
+  opencode B (in-process plugin), claude-code A (shell hook), antigravity C
+  (rule file), codex A, cursor A.
 - **`engine/`** — the closed core. Generators, validators, the governor, the
   dispatcher, the TOON validator and the provenance checker. The engine changes
   only when a new concept arrives, not when new data arrives.
@@ -114,7 +116,7 @@ flowchart TD
   GEN --> DSC
   VAL -->|"gates generate"| GEN
   LOCK -->|"existence check"| VAL
-  DIST -->|"install"| HARN["harnesses: opencode, claude-code, antigravity, codex"]
+  DIST -->|"install"| HARN["harnesses: opencode, claude-code, antigravity, codex, cursor"]
   BC --> HARN
   GOV -.->|"bounds subagents"| HARN
   TOON -.->|"validates handoffs"| HARN
@@ -240,7 +242,7 @@ Generate first, then install into a harness:
 
 ```bash
 python3 scripts/coacus.py generate                # render every artifact
-python3 scripts/coacus_install.py opencode        # or: claude-code | antigravity | codex | all
+python3 scripts/coacus_install.py opencode        # or: claude-code | antigravity | codex | cursor | all
 python3 scripts/coacus_install.py opencode --dry-run    # preview targets
 python3 scripts/coacus_install.py opencode --uninstall   # remove exactly what was installed
 ```

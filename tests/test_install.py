@@ -68,24 +68,39 @@ class TestInstaller(unittest.TestCase):
         self.assertTrue(result["removed"])
         self.assertFalse((self.config / "plugins/coacus.js").exists())
 
-    def test_antigravity_registers_plugin_path(self) -> None:
-        # give antigravity its rendered artifacts
+    def test_antigravity_stages_plugin_without_registry_edit(self) -> None:
+        # Antigravity activates by directory placement; no registry edit.
         for name, content in (
-            ("plugin.json", '{"contextFileName": "ANTIGRAVITY.md"}'),
-            ("ANTIGRAVITY.md", "# bootstrap"),
+            ("plugin.json", '{"name": "coacus-antigravity", "description": "x"}'),
+            ("coacus-rule.md", "---\nactivation: always_on\n---\n# bootstrap"),
         ):
             target = self.root / "harnesses/antigravity/bootstrap" / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(content, encoding="utf-8")
         coacus_install.install("antigravity", self.root, self.config, dry_run=False)
-        registry = json.loads((self.config / "config/plugins.json").read_text())
-        paths = [e["path"] for e in registry["entries"]]
-        self.assertIn((self.config / "config/plugins/coacus").as_posix(), paths)
+        plugin = self.config / "config/plugins/coacus"
+        self.assertTrue((plugin / "plugin.json").is_file())
+        self.assertTrue((plugin / "coacus-rule.md").is_file())
+        self.assertFalse((self.config / "config/plugins.json").exists())
 
-    def test_codex_installs_only_skills(self) -> None:
+    def test_codex_installs_skills_and_hook(self) -> None:
+        for name in ("hooks.json", "session-start.sh"):
+            target = self.root / "harnesses/codex/bootstrap" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(
+                '{"hooks":{"SessionStart":[{"hooks":[{"command":'
+                '"bash \\"__COACUS_ROOT__/x.sh\\""}]}]}}\n'
+                if name == "hooks.json"
+                else "#!/usr/bin/env bash\necho ok\n",
+                encoding="utf-8",
+            )
         coacus_install.install("codex", self.root, self.config, dry_run=False)
-        self.assertTrue((self.config / "skills/using-coacus/SKILL.md").is_file())
-        self.assertFalse((self.config / "plugins").exists())
+        # Codex scans $HOME/.agents/skills (config_dir.parent), not ~/.codex/skills.
+        self.assertTrue((self.config.parent / ".agents/skills/using-coacus/SKILL.md").is_file())
+        self.assertTrue((self.config / "hooks.json").is_file())
+        hooks = (self.config / "hooks.json").read_text(encoding="utf-8")
+        self.assertNotIn("__COACUS_ROOT__", hooks)
+        self.assertIn(self.root.as_posix(), hooks)
 
     def test_claude_code_stages_hook_plugin_and_skills(self) -> None:
         for name in ("hooks.json", "session-start.sh"):

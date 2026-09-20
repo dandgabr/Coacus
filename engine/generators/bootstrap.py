@@ -1,18 +1,20 @@
 """Render the SessionStart bootstrap per harness from a single canonical body (D8).
 
 One canonical wrapper (`methodology/bootstrap/session-start.canonical.md`) plus
-the entry skill body are rendered into EXACTLY ONE native artifact per harness,
-driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a new data
-file; a new shape is an engine change).
+the entry skill body are rendered into the native artifact(s) each harness
+expects, driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a
+new data file; a new shape is an engine change).
 
 Shapes:
-- A (shell-hook): a POSIX shell script that cats the entry skill and emits one
-  JSON field. The native key comes from `harness.json`; the forbidden alias is
-  never emitted (Claude Code reads both fields without dedup — ADR-0009).
+- A (hook): a POSIX shell script that emits ONE native JSON field, plus the
+  harness hook config. Claude Code and Codex read
+  ``hookSpecificOutput.additionalContext``; Cursor reads the top-level
+  ``additional_context``. The native key and the hook config come from
+  ``harness.json``; the forbidden alias is never emitted (ADR-0009).
 - B (in-process): a JS module that injects the bootstrap into the first user
   message, with an anti-reinjection guard.
-- C (instructions-file): a markdown context file plus the extension manifest
-  that declares it.
+- C (instructions-file / rule): a markdown context file plus the plugin manifest
+  that declares it. Antigravity rules are capped at 12,000 characters.
 - native-discovery: nothing rendered (the harness surfaces skills natively).
 
 Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
@@ -82,12 +84,13 @@ def _json_escape(text: str) -> str:
     return json.dumps(text)[1:-1]
 
 
-def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
-    """Shape A emits a shell script plus the harness hook config JSON.
+def _native_json(harness: dict, text: str) -> str:
+    """Build the single-key native JSON payload declared by ``native_key``.
 
-    The script carries exactly ONE native JSON key — the value declared by
-    ``harness.json`` (``native_key``); keys listed in ``forbidden_keys`` are
-    never emitted (Claude Code reads both fields without dedup — ADR-0009).
+    Supports a nested key (``hookSpecificOutput.additionalContext``) and a
+    flat key (``additional_context``). The emitted object carries exactly one
+    native context key plus, for the nested form, the required
+    ``hookEventName``. It never contains a key listed in ``forbidden_keys``.
     """
     bootstrap = harness["bootstrap"]
     native_key = bootstrap.get("native_key", "additionalContext")
@@ -97,9 +100,11 @@ def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
             f"{harness['name']}: native_key {native_key!r} is also forbidden"
         )
     escaped = _json_escape(text)
-    if "." in native_key:  # nested field, e.g. hookSpecificOutput.additionalContext
+    if "." in native_key:
         outer, inner = native_key.split(".", 1)
-        native_json = (
+        if outer in forbidden or inner in forbidden:
+            raise ValueError(f"{harness['name']}: forbidden key inside {native_key!r}")
+        return (
             "{\n"
             f'  "{outer}": {{\n'
             '    "hookEventName": "SessionStart",\n'
@@ -107,40 +112,63 @@ def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
             "  }\n"
             "}"
         )
-    else:
-        native_json = '{\n  "' + native_key + '": "' + escaped + '"\n}'
-    script = (
+    return '{\n  "' + native_key + '": "' + escaped + '"\n}'
+
+
+def _render_hook_script(harness: dict, text: str) -> str:
+    native_json = _native_json(harness, text)
+    return (
         "#!/usr/bin/env bash\n"
-        "# SessionStart bootstrap for Coacus (generated — do not edit).\n"
+        f"# SessionStart bootstrap for {harness['name']} (generated — do not edit).\n"
         "# Emits exactly ONE native JSON field; the forbidden alias is never\n"
-        "# emitted (Claude Code reads both fields without dedup — ADR-0009).\n"
+        "# emitted (some harnesses read both fields without dedup — ADR-0009).\n"
         "set -euo pipefail\n"
         "cat <<'COACUS_EOF'\n"
         f"{native_json}\n"
         "COACUS_EOF\n"
     )
-    hooks = json.dumps(
-        {
-            "hooks": {
-                "SessionStart": [
-                    {
-                        "matcher": "startup|clear|compact",
-                        "hooks": [
-                            {
-                                "type": "command",
-                                "command": '"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh"',
-                                "async": False,
-                            }
-                        ],
-                    }
-                ]
-            }
-        },
-        indent=2,
-    ) + "\n"
+
+
+def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
+    """Shape A emits a shell script plus the harness hook config JSON.
+
+    The hook config location, command template and matcher come from
+    ``harness.json`` so Claude Code and Codex share the shape while Cursor uses
+    its own ``sessionStart`` config.
+    """
+    bootstrap = harness["bootstrap"]
+    script = _render_hook_script(harness, text)
+    hooks = bootstrap.get("hooks_config")
+    hooks_json = (
+        json.dumps(hooks, indent=2) + "\n"
+        if hooks
+        else json.dumps(
+            {
+                "hooks": {
+                    "SessionStart": [
+                        {
+                            "matcher": "startup|clear|compact",
+                            "hooks": [
+                                {
+                                    "type": "command",
+                                    "command": bootstrap.get(
+                                        "command",
+                                        '"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh"',
+                                    ),
+                                    "async": False,
+                                }
+                            ],
+                        }
+                    ]
+                }
+            },
+            indent=2,
+        )
+        + "\n"
+    )
     rendered: dict[str, str] = {}
     for out in bootstrap.get("outputs", []):
-        rendered[out["path"]] = hooks if out["format"] == "json" else script
+        rendered[out["path"]] = hooks_json if out["format"] == "json" else script
     return rendered
 
 
@@ -182,23 +210,38 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
     )
 
 
-def _render_shape_c(harness: dict, text: str) -> tuple[str, str]:
+def _render_shape_c(harness: dict, text: str) -> dict[str, str]:
+    """Shape C emits an instructions/rule markdown file plus a plugin manifest.
+
+    Antigravity's ``plugin.json`` schema is strict (``name`` + ``description``
+    only, ``additionalProperties: false``), so the manifest carries no
+    ``contextFileName``. Activation comes from a workspace/global
+    ``.agents/rules/*.md`` (``activation: always_on``) or a plugin-bundled
+    ``rules/`` file; rules are capped at 12,000 characters.
+    """
     name = harness["name"]
-    context_file = "ANTIGRAVITY.md"
-    context = (
-        "<!-- Generated by Coacus — do not edit. -->\n\n" + text + "\n"
-    )
+    files = harness["bootstrap"].get("outputs", [])
     manifest = json.dumps(
         {
             "name": f"coacus-{name}",
-            "displayName": "Coacus",
-            "version": "0.1.0",
-            "description": "Coacus agentic framework bootstrap",
-            "contextFileName": context_file,
+            "description": "Coacus agentic framework bootstrap.",
         },
         indent=2,
     ) + "\n"
-    return context, manifest
+    body = text
+    if len(text) > 12000:
+        body = text[:11500].rstrip() + "\n\n<!-- truncated: rule length cap -->\n"
+    rule = (
+        "---\n"
+        "activation: always_on\n"
+        "description: Coacus agentic framework bootstrap rule.\n"
+        "---\n\n"
+        f"{body}\n"
+    )
+    rendered: dict[str, str] = {}
+    for out in files:
+        rendered[out["path"]] = manifest if out["format"] == "json" else rule
+    return rendered
 
 
 def _render_governor_gate(harness: dict) -> dict[str, str]:
@@ -297,11 +340,7 @@ def render(harness: dict, root: Path) -> dict[str, str]:
         for out in outputs:
             rendered[out["path"]] = _render_shape_b(harness, text, mapping)
     elif shape == "C":
-        context, manifest = _render_shape_c(harness, text)
-        for out in outputs:
-            rendered[out["path"]] = (
-                context if out["format"] == "md" else manifest
-            )
+        rendered.update(_render_shape_c(harness, text))
     elif shape == "native-discovery":
         return {}
     else:

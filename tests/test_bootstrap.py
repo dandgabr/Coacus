@@ -135,7 +135,7 @@ class TestBootstrapRender(unittest.TestCase):
                     "supported": True,
                     "shape": "C",
                     "outputs": [
-                        {"path": "harnesses/antigravity/bootstrap/ANTIGRAVITY.md", "format": "md"},
+                        {"path": "harnesses/antigravity/bootstrap/coacus-rule.md", "format": "md"},
                         {"path": "harnesses/antigravity/bootstrap/plugin.json", "format": "json"},
                     ],
                 },
@@ -143,12 +143,39 @@ class TestBootstrapRender(unittest.TestCase):
             },
         )
         outputs = bootstrap.expected_outputs(self.root)
-        context = outputs["harnesses/antigravity/bootstrap/ANTIGRAVITY.md"]
-        self.assertIn("ENTRY-BODY-MARKER", context)
+        rule = outputs["harnesses/antigravity/bootstrap/coacus-rule.md"]
+        self.assertIn("ENTRY-BODY-MARKER", rule)
+        self.assertIn("activation: always_on", rule)
         manifest = json.loads(
             outputs["harnesses/antigravity/bootstrap/plugin.json"]
         )
-        self.assertEqual(manifest["contextFileName"], "ANTIGRAVITY.md")
+        # Antigravity's plugin.json schema allows only name + description.
+        self.assertEqual(set(manifest), {"name", "description"})
+        self.assertNotIn("contextFileName", manifest)
+
+    def test_shape_c_caps_rule_length(self) -> None:
+        write_harness(
+            self.root,
+            "antigravity",
+            {
+                "name": "antigravity",
+                "bootstrap": {
+                    "supported": True,
+                    "shape": "C",
+                    "outputs": [
+                        {"path": "harnesses/antigravity/bootstrap/coacus-rule.md", "format": "md"},
+                    ],
+                },
+                "tool_mapping": {},
+            },
+        )
+        # The entry body is tiny here, so simulate the cap directly.
+        big = {"name": "antigravity", "bootstrap": {"supported": True, "shape": "C",
+               "outputs": [{"path": "harnesses/antigravity/bootstrap/coacus-rule.md", "format": "md"}]}}
+        rendered = bootstrap._render_shape_c(big, "x" * 20000)
+        rule = rendered["harnesses/antigravity/bootstrap/coacus-rule.md"]
+        self.assertLess(len(rule), 12000)
+        self.assertIn("truncated", rule)
 
     def test_native_discovery_renders_nothing(self) -> None:
         write_harness(

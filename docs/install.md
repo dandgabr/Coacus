@@ -7,7 +7,9 @@ editor; each section is self-contained.
 The repository **generates** the per-harness artifacts and commits them
 ([ADR-0016](adr/ADR-0016-bootstrap-render-contract.md)). Making a harness load
 them is a separate, explicit step: each harness discovers plugins and skills from
-its own locations, and Coacus never rewrites a harness config file wholesale.
+its own locations, and Coacus never rewrites a harness config file wholesale. The
+installer writes only the files a vendor mechanism actually reads — a plugin
+directory, a hook manifest — and nothing else.
 
 ## Evidence classes
 
@@ -36,9 +38,7 @@ python3 scripts/coacus.py generate
 ```
 
 You now have `harnesses/<h>/bootstrap/`, the agent `dist/` trees, `.agents/`,
-`catalog/` and `docs/reference/python-api.md`. The installer never touches the
-harness's own config except where a vendor mechanism explicitly requires a
-registry entry (Antigravity only).
+`catalog/` and `docs/reference/python-api.md`.
 
 ## Step 2 — install
 
@@ -51,12 +51,11 @@ Two routes exist:
   sections below and the tables in [Reference](#reference).
 
 The script writes a `coacus-install.json` manifest beside each target so re-runs
-and uninstalls are exact. It also backs up an Antigravity `plugins.json` before
-editing it.
+and uninstalls are exact.
 
 ```bash
 python3 scripts/coacus_install.py opencode      # one harness
-python3 scripts/coacus_install.py all           # opencode, claude-code, antigravity, codex
+python3 scripts/coacus_install.py all           # opencode, claude-code, antigravity, codex, cursor
 python3 scripts/coacus_install.py opencode --dry-run
 python3 scripts/coacus_install.py opencode --uninstall
 ```
@@ -179,27 +178,36 @@ context key, not two.
 
 ## antigravity
 
-**Goal:** Antigravity loads Coacus as a plugin and injects an instructions file
-at session start.
+**Goal:** Antigravity loads Coacus as a plugin and applies its rule at session
+start.
 
-**How it works.** Antigravity uses an **instructions-file** bootstrap: instead of
-a shell hook or an in-process module, the adapter renders `ANTIGRAVITY.md`, and
-the harness injects that file's content through its plugin context mechanism.
+**How it works.** Antigravity uses an **instructions-file** bootstrap: the adapter
+renders a rule file, `coacus-rule.md`, with frontmatter `activation: always_on`,
+plus the `plugin.json` manifest that packages it. The rule directory is the
+activation unit; there is no shell hook and no in-process module.
 
 **Vendor facts**
 
 - `agy plugin install <dir>` installs a plugin; `list`, `enable`, `disable` and
   `uninstall` manage it. **[documented]**
-- The manifest is `plugin.json` with only `name` and `description`. **[documented]**
-- Plugin activation is by directory: `.agents/plugins/` in a workspace,
-  `~/.gemini/config/plugins/` globally. The CLI stages plugins at
+- The `plugin.json` schema is strict: `additionalProperties: false`, so it
+  carries only `name` and `description`. There is **no** `contextFileName`
+  field. **[documented]**
+- Plugin activation is by directory: `.agents/plugins/<name>/` in a workspace,
+  `~/.gemini/config/plugins/<name>/` globally. The CLI also supports
+  `agy plugin install /path/to/plugin`, which stages to
   `~/.gemini/antigravity-cli/plugins/<name>/`. **[documented]**
+- Plugin components are `skills/`, `agents/`, `rules/`, `mcp_config.json` and
+  `hooks.json`. Rules are capped at 12,000 characters. **[documented]**
+- There is **no** `~/.gemini/config/plugins.json` registry. Earlier Coacus
+  revisions claimed one; that claim was wrong and has been removed. Activation
+  is by directory placement alone. **[documented]**
 - `agy plugin validate` returned `[ok]` on the staged Coacus plugin.
   **[verified locally]**
-- `contextFileName` in `plugin.json` and the `~/.gemini/config/plugins.json`
-  `entries[].path` registry are **not** in the official documentation. Coacus
-  uses both empirically because they activate the context file in the local
-  installation. **[unverified]**
+- Hooks (`hooks.json`) support `PreToolUse`, `PostToolUse`, `PreInvocation`,
+  `PostInvocation` and `Stop`. `PreInvocation` can return `injectSteps` with an
+  `ephemeralMessage`, which is a candidate for bootstrap injection on a future
+  revision; the current adapter does not use it. **[documented]**
 
 **Install**
 
@@ -207,11 +215,10 @@ the harness injects that file's content through its plugin context mechanism.
 python3 scripts/coacus_install.py antigravity
 ```
 
-The script stages the plugin at `<config>/config/plugins/coacus/` with
-`plugin.json`, `ANTIGRAVITY.md` and the skills, then registers the plugin path in
-`<config>/config/plugins.json` under `entries[].path`, backing up the file first.
-It does not invoke `agy plugin install` itself; that command expects a plugin or
-marketplace target and is left to the operator.
+The script stages the plugin at `~/.gemini/config/plugins/coacus/` with
+`plugin.json`, `coacus-rule.md` and the skills. It does not edit any registry —
+none exists — and it does not invoke `agy plugin install` itself; that command
+expects a plugin or marketplace target and is left to the operator.
 
 **Verify**
 
@@ -220,74 +227,106 @@ agy plugin validate ~/.gemini/config/plugins/coacus   # expect: [ok]
 ```
 
 If `agy plugin install` is your preferred route, point it at the staged
-directory. The registry edit is the fallback the adapter performs.
+directory.
 
 ## codex
 
-**Goal:** Codex discovers the Coacus skills natively.
+**Goal:** a `SessionStart` hook injects the bootstrap, and Codex discovers the
+Coacus skills natively.
 
-**Current state.** Coacus's Codex adapter is **native-discovery**: it mirrors the
-skill trees and renders no bootstrap. `harnesses/codex/harness.json` reports
-`bootstrap.supported: false` with the reason "Codex surfaces skills natively and
-runs no session-start hook; nothing is rendered."
+**How it works.** Codex supports both halves of the adapter. It scans
+`.agents/skills` for skills, and its hooks framework runs a `SessionStart` hook
+that emits `hookSpecificOutput.additionalContext` — the same native key Claude
+Code uses. The adapter renders `harnesses/codex/bootstrap/session-start.sh` and
+the matching `hooks.json`.
 
 **Vendor facts**
 
 - Codex loads skills from `$CWD/.agents/skills`, `$REPO_ROOT/.agents/skills` and
   `$HOME/.agents/skills` — **not** `~/.codex/skills/`. **[documented]**
-- Codex **does** have a `SessionStart` hook framework, configured through
-  `~/.codex/hooks.json`, `config.toml`, or `<repo>/.codex/hooks.json`, emitting
-  `additionalContext`. **[documented]**
+- Codex has a full hooks framework: a `SessionStart` hook emitting
+  `hookSpecificOutput.additionalContext`, configured through
+  `~/.codex/hooks.json`, `<repo>/.codex/hooks.json`, inline `[hooks]` in
+  `config.toml`, or a plugin-bundled `hooks/hooks.json`. **[documented]**
+- The Coacus skill install and hook install both complete against a temporary
+  config directory. **[verified locally]**
 - `[[skills.config]]` enables skills explicitly. **[documented]**
 
-> **Known gap.** The Coacus Codex adapter predates Codex's SessionStart support.
-> It still installs skills to `~/.codex/skills/` and renders no bootstrap, so a
-> Codex session never receives the entry skill through a hook. This is a candidate
-> for a future phase: a shape-A render for Codex plus an install target under
-> `.agents/skills` and a `SessionStart` hook manifest. The adapter file is not
-> changed here; the gap is recorded so the next phase can close it.
+Codex is supported via its SessionStart hook. There is no known gap.
 
-**Install** (skills only):
+**Install**
 
 ```bash
 python3 scripts/coacus_install.py codex
 ```
 
-Because Codex's documented skill search does not include `~/.codex/skills/`, a
-manual install should target a directory Codex actually scans — for example
-`~/.agents/skills/` for a user-wide install, or `<repo>/.agents/skills/` for a
-single project:
+The script installs skills to `$HOME/.agents/skills/` — the root Codex actually
+scans, beside `~/.codex/`, not inside it — and the hook to `~/.codex/hooks.json`
+with `__COACUS_ROOT__` substituted for this repository's path. The bootstrap
+script is staged at `~/.codex/coacus/session-start.sh`.
+
+**Verify**
 
 ```bash
-python3 scripts/coacus_install.py codex --config-dir ~            # -> ~/.codex/... (current default)
-python3 scripts/coacus_install.py codex --config-dir ~/.agents    # -> ~/.agents/skills/<skill>/
+python3 -c "import json; json.load(open('harnesses/codex/bootstrap/hooks.json'))"
+bash -n harnesses/codex/bootstrap/session-start.sh
+bash harnesses/codex/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
 ```
 
-Confirm which root your Codex version scans before relying on the default.
+The last command must print `['additionalContext', 'hookEventName']`. No flat
+`additional_context` key may appear.
 
 ## cursor
 
-**Goal:** none yet — the render is deferred.
+**Goal:** a `sessionStart` hook injects the bootstrap, and Cursor discovers the
+Coacus skills from its scan roots.
 
-**Current state.** Coacus's Cursor adapter is a **stub**. `harness.json` reports
-`bootstrap.supported: false` because Cursor's `sessionStart` hook cannot be
-verified live here; the render is deferred until a live acceptance test is
-possible. `coacus_install.py cursor` prints guidance and exits 0.
+**How it works.** Cursor's hook framework runs `sessionStart` at the top of a
+session. The handler is fire-and-forget and prints the snake_case top-level key
+`additional_context` — **not** `additionalContext`, and **not** a nested
+`hookSpecificOutput`. The adapter renders
+`harnesses/cursor/bootstrap/session-start.sh` and the matching `hooks.json`.
 
-**Vendor facts** (recorded for when the render is built)
+**Vendor facts**
 
-- Plugins use `.cursor-plugin/plugin.json`. **[documented]**
-- Hooks live in `.cursor/hooks.json` (project) or `~/.cursor/hooks.json` (user) —
-  **not** `hooks-cursor.json`. **[documented]**
+- Hooks live at `<project>/.cursor/hooks.json` (project) or
+  `~/.cursor/hooks.json` (user) — **not** `hooks-cursor.json`. **[documented]**
+- The schema is version 1: top-level `version`, an event map, and each handler a
+  `{ "command": ... }` object with no matcher. **[documented]**
 - `sessionStart` is fire-and-forget and outputs the snake_case key
   `additional_context`. **[documented]**
+- Plugins use `.cursor-plugin/plugin.json`, or a root `plugin.json` under the
+  agent-plugins standard. **[documented]**
 - Skills load from `.cursor/skills/`, `~/.cursor/skills/`, `.agents/skills/` and
   `~/.agents/skills/`, plus the Claude and Codex compatibility locations.
   **[documented]**
+- The Coacus hook install completes and emits `additional_context` against a
+  temporary config directory. **[verified locally]**
 
-The legacy `hooks-cursor.json` filename is gone from the adapter; a future
-render must use `.cursor/hooks.json` and emit `additional_context`, then pass a
-live acceptance test before it is promoted out of stub status.
+The legacy `hooks-cursor.json` filename is gone from the adapter. The render uses
+`.cursor/hooks.json` and emits `additional_context`.
+
+**Install**
+
+```bash
+python3 scripts/coacus_install.py cursor
+```
+
+The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root — and
+the hook to `~/.cursor/hooks.json` with `__COACUS_ROOT__` substituted. The
+bootstrap script is staged at `~/.cursor/coacus/session-start.sh`. For a project
+install, copy the same two artifacts into `<project>/.cursor/` by hand.
+
+**Verify**
+
+```bash
+python3 -c "import json; json.load(open('harnesses/cursor/bootstrap/hooks.json'))"
+bash -n harnesses/cursor/bootstrap/session-start.sh
+bash harnesses/cursor/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print('additional_context' in d)"
+```
+
+The last command must print `True`. The script must not emit
+`additionalContext` or `hookSpecificOutput`.
 
 ## Reference
 
@@ -295,11 +334,11 @@ live acceptance test before it is promoted out of stub status.
 
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` | plugin load **[verified locally]**; mirror path **[unverified]** |
+| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` | plugin load **[verified locally]**; mirror path **[unverified]** |
 | **claude-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
-| **antigravity** | C (instructions file) | context file (`ANTIGRAVITY.md`) via `plugin.json` | `<config>/config/plugins/coacus/` registered in `<config>/config/plugins.json` | registry + `contextFileName` **[unverified]**; `agy plugin validate` **[verified locally]** |
-| **codex** | native-discovery | none rendered | skills (see the Known gap; Codex scans `.agents/skills`) | skill roots + hook framework **[documented]** |
-| **cursor** | stub | deferred | not installed | vendor hook facts **[documented]**; render deferred |
+| **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/`; activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
+| **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
+| **cursor** | A (shell hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
 
 ### Verifying
 
@@ -310,9 +349,13 @@ live acceptance test before it is promoted out of stub status.
 | Antigravity plugin | `agy plugin validate <staged-dir>` |
 | Claude Code hook parses | `python3 -c "import json; json.load(open('harnesses/claude-code/bootstrap/hooks.json'))"` |
 | Claude Code script syntax | `bash -n harnesses/claude-code/bootstrap/session-start.sh` |
+| Codex hook parses | `python3 -c "import json; json.load(open('harnesses/codex/bootstrap/hooks.json'))"` |
+| Codex script syntax | `bash -n harnesses/codex/bootstrap/session-start.sh` |
+| Cursor hook parses | `python3 -c "import json; json.load(open('harnesses/cursor/bootstrap/hooks.json'))"` |
+| Cursor emits `additional_context` | `bash harnesses/cursor/bootstrap/session-start.sh \| python3 -c "import json,sys; print('additional_context' in json.load(sys.stdin))"` |
 
 The live test for any harness is behavioral: a fresh session with the bootstrap
 must produce a string that exists only in `using-coacus` — the red-flag thought
 `"This is just a small change."` A session without the bootstrap must not produce
-it. Live acceptance has been run on OpenCode; Claude Code is structure-verified
-only, because the binary was not available locally.
+it. Live acceptance has been run on OpenCode; Claude Code, Codex and Cursor are
+structure-verified only, because their binaries were not available locally.
