@@ -1,15 +1,46 @@
 {
   "name": "codex",
   "bootstrap": {
-    "supported": false,
-    "shape": "native-discovery",
-    "reason": "Codex surfaces skills natively and runs no session-start hook; nothing is rendered."
+    "supported": true,
+    "shape": "A",
+    "native_key": "hookSpecificOutput.additionalContext",
+    "forbidden_keys": ["additional_context"],
+    "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
+    "hooks_config": {
+      "hooks": {
+        "SessionStart": [
+          {
+            "matcher": "startup|resume|clear|compact",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
+                "additionalContextLimit": 5000
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "outputs": [
+      { "path": "harnesses/codex/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/codex/bootstrap/hooks.json", "format": "json" }
+    ]
   },
   "detection": ["CODEX_HOME"],
-  "tool_mapping": {},
-  "tool_denylist": [],
+  "tool_mapping": {
+    "create or update todos": "update_plan",
+    "dispatch a subagent": "spawn_agent",
+    "invoke a skill": "skill",
+    "read a file": "read",
+    "create, edit, or delete files": "apply_patch",
+    "run shell commands": "shell",
+    "search files": "grep / glob",
+    "fetch a URL": "web_search"
+  },
+  "tool_denylist": ["update_plan", "spawn_agent", "apply_patch"],
   "install": {
-    "method": "native skill discovery; no plugin",
-    "target": null
+    "method": "skills to ~/.agents/skills/ (Codex scans .agents/skills, not ~/.codex/skills) and the SessionStart hook as ~/.codex/hooks.json (or a plugin's hooks/hooks.json)",
+    "target": "{config_dir}/hooks.json"
   }
 }

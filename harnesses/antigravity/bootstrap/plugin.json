@@ -1,7 +1,4 @@
 {
   "name": "coacus-antigravity",
-  "displayName": "Coacus",
-  "version": "0.1.0",
-  "description": "Coacus agentic framework bootstrap",
-  "contextFileName": "ANTIGRAVITY.md"
+  "description": "Coacus agentic framework bootstrap."
 }

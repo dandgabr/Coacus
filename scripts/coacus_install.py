@@ -6,17 +6,20 @@ INSTALLS them into a harness's own discovery locations. It is explicit and
 idempotent — nothing runs at session start, and it never rewrites a harness
 config file wholesale.
 
-Mechanisms (verified, see docs/install.md):
+Mechanisms (verified against vendor docs, see docs/install.md):
 
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
-              substituted), plus skill trees mirrored under <config_dir>/skills/.
+              substituted) + governor gate, plus skill trees under
+              <config_dir>/skills/.
 - claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               script at bootstrap/session-start.sh (matching hooks.json).
-- antigravity plugin   -> <config_dir>/config/plugins/coacus/ + path registered
-              in <config_dir>/config/plugins.json        (backup first).
-- codex       skills   -> <config_dir>/skills/<skill>/    (native discovery).
-- cursor      not installed (no live SessionStart hook); prints guidance only.
+- antigravity plugin (manifest + rule + skills) -> <config_dir>/config/plugins/coacus/;
+              activation is by directory, so no registry edit is needed.
+- codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
+              not ~/.codex/skills) + the SessionStart hook at <config_dir>/hooks.json.
+- cursor      skills   -> ~/.agents/skills/<skill>/  + the sessionStart hook at
+              <config_dir>/hooks.json (snake_case `additional_context`).
 
 Usage:
     python3 scripts/coacus_install.py <harness|all> [--dry-run] [--uninstall]
@@ -142,11 +145,60 @@ def _plan_claude(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
 
 
 def _plan_antigravity(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+    """Plugin (manifest + rule + skills) under the global plugins dir.
+
+    Antigravity activates plugins by directory placement (``~/.gemini/config/plugins/``
+    globally or ``.agents/plugins/`` per workspace). Rules load from the plugin's
+    ``rules/`` dir with ``activation: always_on``; no registry edit is required.
+    """
     plugin = config_dir / "config" / "plugins" / "coacus"
     plan = _plan_skills(root, plugin / "skills")
-    for name in ("plugin.json", "ANTIGRAVITY.md"):
+    for name in ("plugin.json", "coacus-rule.md"):
         source = root / "harnesses/antigravity/bootstrap" / name
         plan.append((plugin / name, source.read_text(encoding="utf-8")))
+    return plan
+
+
+def _plan_codex(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+    """Skills to the documented scan root + the SessionStart hook.
+
+    Codex scans ``.agents/skills`` (not ``~/.codex/skills``), and its hooks load
+    from ``~/.codex/hooks.json``. The hook command needs an absolute script
+    path, so we stage the script beside the hook and substitute the repo root.
+    """
+    plan: list[tuple[Path, str]] = []
+    # Codex scans $HOME/.agents/skills, not $config_dir/.codex/skills.
+    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills")
+    script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
+    plan.append((config_dir / "coacus" / "session-start.sh", script))
+    hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
+    plan.append(
+        (
+            config_dir / "hooks.json",
+            hooks.replace("__COACUS_ROOT__", root.as_posix()),
+        )
+    )
+    return plan
+
+
+def _plan_cursor(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+    """Skills to a Cursor scan root + the sessionStart hook.
+
+    Cursor hooks live at ``~/.cursor/hooks.json`` (user) or
+    ``<project>/.cursor/hooks.json``; the output key is snake_case
+    ``additional_context``. Commands are repo-absolute.
+    """
+    plan: list[tuple[Path, str]] = []
+    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills")
+    script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
+    plan.append((config_dir / "coacus" / "session-start.sh", script))
+    hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
+    plan.append(
+        (
+            config_dir / "hooks.json",
+            hooks.replace("__COACUS_ROOT__", root.as_posix()),
+        )
+    )
     return plan
 
 
@@ -158,25 +210,10 @@ def plan(harness: str, root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     if harness == "antigravity":
         return _plan_antigravity(root, config_dir)
     if harness == "codex":
-        return _plan_skills(root, config_dir / "skills")
+        return _plan_codex(root, config_dir)
+    if harness == "cursor":
+        return _plan_cursor(root, config_dir)
     return []
-
-
-def _register_antigravity_path(config_dir: Path, plugin_dir: Path) -> None:
-    """Add the plugin path to <config_dir>/config/plugins.json (backup first)."""
-    registry = config_dir / "config" / "plugins.json"
-    registry.parent.mkdir(parents=True, exist_ok=True)
-    data: dict = {"entries": []}
-    if registry.is_file():
-        try:
-            data = json.loads(registry.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            data = {"entries": []}
-        shutil.copy2(registry, registry.with_suffix(".json.bak"))
-    entries = data.setdefault("entries", [])
-    if not any(e.get("path") == plugin_dir.as_posix() for e in entries):
-        entries.append({"path": plugin_dir.as_posix()})
-    registry.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
 def install(
@@ -190,8 +227,6 @@ def install(
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
-    if harness == "antigravity":
-        _register_antigravity_path(config_dir, config_dir / "config" / "plugins" / "coacus")
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
         json.dumps({"harness": harness, "files": written}, indent=2) + "\n",
@@ -241,12 +276,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--uninstall", action="store_true")
     args = parser.parse_args(argv)
 
-    if args.harness == "cursor":
-        print("cursor: no live SessionStart hook; render deferred (see docs/install.md)")
-        return 0
-
     harnesses = (
-        ["opencode", "claude-code", "antigravity", "codex"]
+        ["opencode", "claude-code", "antigravity", "codex", "cursor"]
         if args.harness == "all"
         else [args.harness]
     )

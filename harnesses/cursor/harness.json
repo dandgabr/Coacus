@@ -1,17 +1,37 @@
 {
   "name": "cursor",
   "bootstrap": {
-    "supported": false,
+    "supported": true,
     "shape": "A",
-    "reason": "Cursor has a sessionStart hook (project .cursor/hooks.json or user ~/.cursor/hooks.json) that emits snake_case additional_context and cannot block. Render stays deferred until a live acceptance test is possible; Coacus does not use the legacy hooks-cursor.json filename.",
-    "hook_path": ".cursor/hooks.json",
-    "native_key": "additional_context"
+    "native_key": "additional_context",
+    "forbidden_keys": ["additionalContext", "hookSpecificOutput"],
+    "hooks_config": {
+      "version": 1,
+      "hooks": {
+        "sessionStart": [
+          { "command": "__COACUS_ROOT__/harnesses/cursor/bootstrap/session-start.sh" }
+        ]
+      }
+    },
+    "outputs": [
+      { "path": "harnesses/cursor/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/cursor/bootstrap/hooks.json", "format": "json" }
+    ]
   },
-  "detection": ["CURSOR_TRACE_ID"],
-  "tool_mapping": {},
+  "detection": ["CURSOR_TRACE_ID", "CURSOR_PLUGIN_ROOT"],
+  "tool_mapping": {
+    "create or update todos": "todo write",
+    "dispatch a subagent": "task",
+    "invoke a skill": "skill",
+    "read a file": "read",
+    "create, edit, or delete files": "edit",
+    "run shell commands": "terminal",
+    "search files": "grep / glob",
+    "fetch a URL": "fetch"
+  },
   "tool_denylist": [],
   "install": {
-    "method": "Cursor Plugins: .cursor-plugin/plugin.json; local testing under ~/.cursor/plugins/local/<name>/, or distribute via a marketplace",
-    "target": "plugin marketplace"
+    "method": "place the SessionStart hook at <project>/.cursor/hooks.json (or ~/.cursor/hooks.json) referencing the script; ship skills in a .cursor/skills/ or .agents/skills/ tree; package as a Cursor Plugin via .cursor-plugin/plugin.json",
+    "target": ".cursor/hooks.json"
   }
 }

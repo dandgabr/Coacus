@@ -5,6 +5,23 @@
     "shape": "A",
     "native_key": "hookSpecificOutput.additionalContext",
     "forbidden_keys": ["additional_context"],
+    "command": "\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\"",
+    "hooks_config": {
+      "hooks": {
+        "SessionStart": [
+          {
+            "matcher": "startup|clear|compact",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\"",
+                "async": false
+              }
+            ]
+          }
+        ]
+      }
+    },
     "outputs": [
       { "path": "harnesses/claude-code/bootstrap/session-start.sh", "format": "sh" },
       { "path": "harnesses/claude-code/bootstrap/hooks.json", "format": "json" }
@@ -23,7 +40,7 @@
   },
   "tool_denylist": ["TodoWrite", "WebFetch", "WebSearch", "NotebookEdit"],
   "install": {
-    "method": "install as a Claude Code plugin (hooks.json is auto-discovered)",
+    "method": "publish as a plugin (.claude-plugin/plugin.json + marketplace) and install via '/plugin marketplace add' + '/plugin install'; skills also load from ~/.claude/skills/",
     "target": "plugin marketplace"
   }
 }

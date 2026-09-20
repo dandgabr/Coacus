@@ -79,18 +79,20 @@ Drift check (ADR-0014): disk vs a fresh regeneration, plus orphans.
 Render the SessionStart bootstrap per harness from a single canonical body (D8).
 
 One canonical wrapper (`methodology/bootstrap/session-start.canonical.md`) plus
-the entry skill body are rendered into EXACTLY ONE native artifact per harness,
-driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a new data
-file; a new shape is an engine change).
+the entry skill body are rendered into the native artifact(s) each harness
+expects, driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a
+new data file; a new shape is an engine change).
 
 Shapes:
-- A (shell-hook): a POSIX shell script that cats the entry skill and emits one
-  JSON field. The native key comes from `harness.json`; the forbidden alias is
-  never emitted (Claude Code reads both fields without dedup — ADR-0009).
+- A (hook): a POSIX shell script that emits ONE native JSON field, plus the
+  harness hook config. Claude Code and Codex read
+  ``hookSpecificOutput.additionalContext``; Cursor reads the top-level
+  ``additional_context``. The native key and the hook config come from
+  ``harness.json``; the forbidden alias is never emitted (ADR-0009).
 - B (in-process): a JS module that injects the bootstrap into the first user
   message, with an anti-reinjection guard.
-- C (instructions-file): a markdown context file plus the extension manifest
-  that declares it.
+- C (instructions-file / rule): a markdown context file plus the plugin manifest
+  that declares it. Antigravity rules are capped at 12,000 characters.
 - native-discovery: nothing rendered (the harness surfaces skills natively).
 
 Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
@@ -603,17 +605,20 @@ INSTALLS them into a harness's own discovery locations. It is explicit and
 idempotent — nothing runs at session start, and it never rewrites a harness
 config file wholesale.
 
-Mechanisms (verified, see docs/install.md):
+Mechanisms (verified against vendor docs, see docs/install.md):
 
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
-              substituted), plus skill trees mirrored under <config_dir>/skills/.
+              substituted) + governor gate, plus skill trees under
+              <config_dir>/skills/.
 - claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               script at bootstrap/session-start.sh (matching hooks.json).
-- antigravity plugin   -> <config_dir>/config/plugins/coacus/ + path registered
-              in <config_dir>/config/plugins.json        (backup first).
-- codex       skills   -> <config_dir>/skills/<skill>/    (native discovery).
-- cursor      not installed (no live SessionStart hook); prints guidance only.
+- antigravity plugin (manifest + rule + skills) -> <config_dir>/config/plugins/coacus/;
+              activation is by directory, so no registry edit is needed.
+- codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
+              not ~/.codex/skills) + the SessionStart hook at <config_dir>/hooks.json.
+- cursor      skills   -> ~/.agents/skills/<skill>/  + the sessionStart hook at
+              <config_dir>/hooks.json (snake_case `additional_context`).
 
 Usage:
     python3 scripts/coacus_install.py <harness|all> [--dry-run] [--uninstall]

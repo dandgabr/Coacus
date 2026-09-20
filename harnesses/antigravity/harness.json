@@ -4,24 +4,24 @@
     "supported": true,
     "shape": "C",
     "outputs": [
-      { "path": "harnesses/antigravity/bootstrap/ANTIGRAVITY.md", "format": "md" },
+      { "path": "harnesses/antigravity/bootstrap/coacus-rule.md", "format": "md" },
       { "path": "harnesses/antigravity/bootstrap/plugin.json", "format": "json" }
     ]
   },
   "detection": ["GEMINI_DIR", "ANTIGRAVITY"],
   "tool_mapping": {
-    "create or update todos": "task artifact",
+    "create or update todos": "manage_task (task artifact)",
     "dispatch a subagent": "invoke_subagent",
-    "invoke a skill": "skillPaths discovery",
-    "read a file": "read_file",
+    "invoke a skill": "Skill tool (skillPaths discovery)",
+    "read a file": "view_file",
     "create, edit, or delete files": "write_to_file / replace_file_content",
     "run shell commands": "run_command",
-    "search files": "search files",
-    "fetch a URL": "fetch URL"
+    "search files": "grep_search / find_by_name",
+    "fetch a URL": "read_url_content"
   },
-  "tool_denylist": ["google_web_search", "read_file", "write_file", "list_directory", "run_command", "write_to_file", "replace_file_content", "invoke_subagent"],
+  "tool_denylist": ["view_file", "write_to_file", "replace_file_content", "multi_replace_file_content", "list_dir", "find_by_name", "grep_search", "search_web", "read_url_content", "run_command", "manage_task", "invoke_subagent", "send_message", "manage_subagents"],
   "install": {
-    "method": "stage the plugin (manifest, context file, skills) and register its path in plugins.json",
-    "target": "{config_dir}/config/plugins.json"
+    "method": "stage the plugin (manifest, rule file, skills) under <config>/config/plugins/coacus/; place the rule in .agents/rules/ or the plugin rules/ dir; optionally 'agy plugin install <dir>'",
+    "target": "{config_dir}/config/plugins"
   }
 }
