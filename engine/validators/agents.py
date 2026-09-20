@@ -1,8 +1,9 @@
 """Validate canonical agent sources (frontmatter contract, D1/agent-manifests).
 
 Checks: required keys, kebab-case name matching the directory, category
-matching the parent directory, existing skill paths, unique slugs and a
-non-empty instruction body.
+matching the parent directory, existing skill paths, unique slugs, a non-empty
+instruction body and the D1 rule that `model` is omitted at source (harnesses
+resolve the actual model; the generated `agent.yaml` uses `model: inherit`).
 """
 
 from __future__ import annotations
@@ -48,6 +49,11 @@ def validate(root: Path) -> list[str]:
             )
         if not str(meta.get("description", "")).strip():
             errors.append(f"{rel}: 'description' is required")
+        if "model" in meta:
+            errors.append(
+                f"{rel}: 'model' must be omitted at source (D1); harnesses resolve "
+                "it and the generated agent.yaml uses 'model: inherit'"
+            )
         if not doc.body.strip():
             errors.append(f"{rel}: instruction body is empty")
         raw_skills = meta.get("skills", [])

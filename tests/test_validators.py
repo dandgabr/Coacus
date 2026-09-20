@@ -60,6 +60,15 @@ class TestAgentValidator(unittest.TestCase):
         errors = agent_validator.validate(self.root)
         self.assertTrue(any("kebab-case" in e for e in errors))
 
+    def test_model_in_source_fails(self) -> None:
+        source = self._source()
+        text = source.read_text(encoding="utf-8").replace(
+            "description: >-\n", "model: inherit\ndescription: >-\n"
+        )
+        source.write_text(text, encoding="utf-8")
+        errors = agent_validator.validate(self.root)
+        self.assertTrue(any("'model' must be omitted" in e for e in errors))
+
 
 class TestHygiene(unittest.TestCase):
     def setUp(self) -> None:
