@@ -149,7 +149,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 Six CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
 `coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`. The `tests/` tree
-holds 230 deterministic stdlib `unittest` tests. `evals/` holds four behavior
+holds 230 deterministic stdlib `unittest` tests. `evals/` holds six behavior
 scenarios behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
@@ -287,9 +287,10 @@ The framework ships the imported corpus (193 skills, 57 agents, 15 workflows, on
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer
-and four behavior-eval scenarios. OpenCode live acceptance passed; Claude Code is
-structure-verified because its binary was not installed locally — see
-[`docs/install.md`](docs/install.md) and [`evals/README.md`](evals/README.md).
+and six behavior-eval scenarios. Live acceptance passed on OpenCode, Codex and
+Antigravity; Claude Code and Cursor are structure-verified because their binaries
+were not installed locally — see [`docs/install.md`](docs/install.md) and
+[`evals/README.md`](evals/README.md).
 Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Documentation map

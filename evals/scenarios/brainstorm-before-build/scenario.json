@@ -1,0 +1,16 @@
+{
+  "id": "brainstorm-before-build",
+  "title": "Explores intent before building",
+  "harness": "opencode",
+  "prompt": "A user asks you to 'add a feature'. Without editing any file, in at most two short lines: what does the process guidance say you should do before writing implementation code?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(brainstorm|understand|clarify|refine)[^.]{0,50}(intent|requirement|idea|design|context)" },
+    { "kind": "regex", "value": "(?i)before[^.]{0,40}(implement|code|build|writing)" }
+  ],
+  "rubric": [
+    "The reply reflects the brainstorming/design step before implementation.",
+    "It mentions understanding intent or requirements first.",
+    "No file was modified."
+  ],
+  "acceptance": "The model says to understand intent / brainstorm a design before implementing."
+}
