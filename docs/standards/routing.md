@@ -2,8 +2,7 @@
 
 **Status:** normative
 **Scope:** the agent routing index, the curated lexicon, the deterministic router
-and the surfaces that use it (the orchestrator, the CLI and the opt-in harness
-hook).
+and the surfaces that use it (the orchestrator and the CLI).
 
 ## Rule
 
@@ -45,12 +44,12 @@ Prompts are PT-BR and EN; canonical descriptions are English only
 and language do not block a lexical match. Paraphrase beyond the vocabulary is the
 reranker's job, not the lexical scorer's.
 
-### The hook is opt-in
+### User-invoked only
 
-The OpenCode router hook (`harnesses/opencode/bootstrap/router-hook.js`) injects
-the candidates into the prompt automatically. It is OPT-IN: it renders only when
-`harness.json` declares a `router-hook` plugin and installs only with
-`COACUS_ROUTER_HOOK=1`. Routing must never be a hidden dependency.
+Routing never injects candidates into a conversation automatically. Selection
+happens when the user or the orchestrator explicitly calls
+`scripts/coacus_route.py` or names the agents; nothing observes the prompts or
+spends context on unsolicited suggestions.
 
 ## Rationale
 

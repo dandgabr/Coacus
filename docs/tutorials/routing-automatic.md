@@ -94,26 +94,13 @@ The reranker **fails open**: if the command is missing or exits non-zero, the
 lexical order is returned unchanged, so routing never breaks because the optional
 piece is absent.
 
-## 6. Make it automatic in the session (opt-in)
-
-So you do not call the router by hand, install the OpenCode hook. It runs the
-router on each user message and appends the candidates to the prompt:
-
-```bash
-COACUS_ROUTER_HOOK=1 python3 scripts/coacus_install.py opencode
-```
-
-The opt-in is recorded in the install manifest; `--verify` replays it, so a later
-plain `--verify` does not report the hook as unexpected. Without
-`COACUS_ROUTER_HOOK=1`, the hook is **not** installed — routing is never a hidden
-dependency.
-
 ## What you learned
 
 - Route a prompt with `--top`; read `matched-terms` to justify or debug a ranking.
 - `--min-score` sets a confidence floor; `--max-slots` respects the governor.
 - `--rerank` adds an optional semantic layer and fails open.
-- The OpenCode hook makes the proposal automatic and is opt-in.
+- Routing is user-invoked only: nothing injects candidates into a conversation
+  automatically ([routing](../standards/routing.md)).
 
 Next: read [routing](../standards/routing.md) for the index and the weights, or
 [choose agents manually](routing-manual.md) for the explicit path.

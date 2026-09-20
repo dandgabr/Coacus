@@ -38,8 +38,6 @@ def _free_slots() -> int:
 
 def _cmd_rank(args: argparse.Namespace, root: Path) -> int:
     prompt = args.prompt
-    if args.stdin:
-        prompt = sys.stdin.read()
     limit = args.top
     if args.max_slots:
         limit = _free_slots() if limit is None else min(limit, _free_slots())
@@ -74,11 +72,6 @@ def main(argv: list[str] | None = None) -> int:
     """Parse arguments and dispatch to the selected routing mode."""
     parser = argparse.ArgumentParser(prog="coacus-route", description=__doc__)
     parser.add_argument("prompt", nargs="?", default="", help="prompt to route (Mode A)")
-    parser.add_argument(
-        "--stdin",
-        action="store_true",
-        help="read the prompt from stdin (used by the harness hook)",
-    )
     parser.add_argument("--top", type=int, default=None, help="maximum candidates to print")
     parser.add_argument("--min-score", type=float, default=router.DEFAULT_MIN_SCORE)
     parser.add_argument(
@@ -107,9 +100,9 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_agents(args, root)
     if args.list:
         return _cmd_list(args, root)
-    if args.prompt or args.stdin:
+    if args.prompt:
         return _cmd_rank(args, root)
-    parser.error("provide a prompt, --stdin, --list, or --agents")
+    parser.error("provide a prompt, --list, or --agents")
 
 
 if __name__ == "__main__":

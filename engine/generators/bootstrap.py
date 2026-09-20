@@ -443,78 +443,6 @@ def _render_governor_gate(harness: dict) -> dict[str, str]:
     return rendered
 
 
-def _render_router_hook(harness: dict) -> dict[str, str]:
-    """Render the OPT-IN routing hook plugin declared in ``harness.json``.
-
-    The plugin runs the offline router on the incoming user message and appends a
-    short list of candidate agents to the prompt, so the orchestrator proposes the
-    right specialists without a manual lookup. It is opt-in: it only renders when
-    the harness declares a ``router-hook`` plugin, and the caller decides whether
-    to install it. The router never spawns anything.
-    """
-    name = harness["name"]
-    rendered: dict[str, str] = {}
-    for plugin in harness.get("plugins", []):
-        if plugin.get("kind") != "router-hook":
-            continue
-        if name == "opencode":
-            rendered[plugin["path"]] = (
-                "// Coacus router hook for opencode (generated — do not edit).\n"
-                "// OPT-IN: install by copying to <harness config>/plugins/coacus-router.js.\n"
-                "// On each user message it runs the offline router over the prompt and\n"
-                "// appends the ranked candidate agents, so the orchestrator proposes\n"
-                "// the right specialists without a manual lookup (routing). It never\n"
-                "// spawns an agent; concurrency stays the governor's job.\n"
-                "\n"
-                "import { execFileSync } from 'node:child_process';\n"
-                "\n"
-                "const COACUS_ROOT = '__COACUS_ROOT__';\n"
-                "const ROUTE = COACUS_ROOT + '/scripts/coacus_route.py';\n"
-                "const TOP = String(process.env.COACUS_ROUTE_TOP ?? 4);\n"
-                "\n"
-                "/**\n"
-                " * Run the router for one prompt and return its candidate lines.\n"
-                " *\n"
-                " * @param {string} prompt - The user's message text.\n"
-                " * @returns {string[]} Candidate rows (score, name, category, matched).\n"
-                " */\n"
-                "const route = (prompt) => {\n"
-                "  try {\n"
-                "    return execFileSync('python3', [ROUTE, '--stdin', '--top', TOP],\n"
-                "      { input: prompt, encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'],\n"
-                "        timeout: 20000 },\n"
-                "    ).trim().split('\\n').filter(Boolean);\n"
-                "  } catch { return []; }\n"
-                "};\n"
-                "\n"
-                "/**\n"
-                " * Router hook plugin: suggest agents for the incoming message.\n"
-                " *\n"
-                " * @returns {Promise<object>} The plugin hook map.\n"
-                " */\n"
-                "export const CoacusRouter = async () => ({\n"
-                "  'chat.message': async (input, output) => {\n"
-                "    const text = (output.parts ?? [])\n"
-                "      .filter((p) => p.type === 'text')\n"
-                "      .map((p) => p.text ?? '')\n"
-                "      .join(' ');\n"
-                "    if (!text.trim()) return;\n"
-                "    const candidates = route(text);\n"
-                "    if (!candidates.length) return;\n"
-                "    const suggestion = [\n"
-                "      '<coacus-routing>',\n"
-                "      'Deterministic agent candidates for this request (routing):',\n"
-                "      ...candidates.map((c) => '- ' + c),\n"
-                "      'Confirm or adjust; do not spawn more than the free governor slots.',\n"
-                "      '</coacus-routing>',\n"
-                "    ].join('\\n');\n"
-                "    output.parts.push({ type: 'text', text: suggestion });\n"
-                "  },\n"
-                "});\n"
-            )
-    return rendered
-
-
 def render(harness: dict, root: Path) -> dict[str, str]:
     """Compute rendered files for one harness (repo-relative path -> content)."""
     bootstrap = harness.get("bootstrap", {})
@@ -538,7 +466,6 @@ def render(harness: dict, root: Path) -> dict[str, str]:
     else:
         raise ValueError(f"unknown bootstrap shape: {shape!r}")
     rendered.update(_render_governor_gate(harness))
-    rendered.update(_render_router_hook(harness))
     return rendered
 
 

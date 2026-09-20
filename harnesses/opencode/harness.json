@@ -22,10 +22,6 @@
     {
       "path": "harnesses/opencode/bootstrap/governor-gate.js",
       "kind": "governor-gate"
-    },
-    {
-      "path": "harnesses/opencode/bootstrap/router-hook.js",
-      "kind": "router-hook"
     }
   ],
   "tool_mapping": {
