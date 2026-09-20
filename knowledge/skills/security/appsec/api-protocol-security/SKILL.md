@@ -52,3 +52,9 @@ This skill guides the AI to harden modern API protocols. The OWASP API Security 
 - For the API pentest checklist, see the existing [pentester-owasp-api-security-2023](../pentester-owasp-api-security-2023/SKILL.md) skill.
 - For authentication protocol details, see the [auth-protocols-mfa](../../operations/auth-protocols-mfa/SKILL.md) skill.
 - For gRPC and GraphQL framework conventions, see the [framework-graphql](../../../frameworks/framework-graphql/SKILL.md) and [framework-grpc](../../../frameworks/framework-grpc/SKILL.md) skills.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP API Security Top 10 2023** (verified) — owasp.org/API-Security

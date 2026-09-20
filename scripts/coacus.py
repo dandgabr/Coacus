@@ -34,7 +34,9 @@ from engine.generators import (  # noqa: E402
 from engine.validators import agents as agent_validator  # noqa: E402
 from engine.validators import completeness as completeness_validator  # noqa: E402
 from engine.validators import discovery as discovery_validator  # noqa: E402
+from engine.validators import docs as docs_validator  # noqa: E402
 from engine.validators import evals as eval_validator  # noqa: E402
+from engine.validators import freshness as freshness_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
 from engine.validators import language as language_validator  # noqa: E402
 from engine.validators import mcps as mcp_validator  # noqa: E402
@@ -49,12 +51,17 @@ def source_errors(root: Path) -> list[str]:
         + mcp_validator.validate(root)
         + hygiene.validate(root)
         + eval_validator.validate(root)
+        + freshness_validator.validate(root)
     )
 
 
 def artifact_errors(root: Path) -> list[str]:
     """Generated-artifact violations (checked after writing / on validate)."""
-    return discovery_validator.validate(root) + provenance.validate(root)
+    return (
+        discovery_validator.validate(root)
+        + provenance.validate(root)
+        + docs_validator.validate(root)
+    )
 
 
 def _warnings(root: Path) -> list[str]:
@@ -81,6 +88,13 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         + discovery.write_all(root)
     )
     written_paths = catalog.write(root) + [docstrings.write(root)]
+    from datetime import datetime, timezone  # noqa: E402
+
+    authored = provenance.sync_authoring(
+        root, datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    )
+    if authored:
+        print(f"recorded {len(authored)} authored provenance entrie(s)")
     print(f"generated {len(written)} manifest/bootstrap file(s)")
     for path in written_paths:
         print(f"generated {path.relative_to(root)}")
@@ -143,6 +157,17 @@ def cmd_completeness(_args: argparse.Namespace | None = None, root: Path | None 
     return 0
 
 
+def cmd_freshness(args: argparse.Namespace, root: Path | None = None) -> int:
+    """Read-only, offline inventory of moving version pins (version-freshness)."""
+    root = root or ROOT
+    rows = freshness_validator.report(root, include_references=args.references)
+    unresolved = [r for r in rows if r.startswith("UNRESOLVED")]
+    print(f"{len(rows)} version pin(s); {len(unresolved)} unresolved")
+    for row in rows:
+        print(f"  {row}")
+    return 1 if unresolved else 0
+
+
 def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
     """Run the schema and hygiene validators; fail on any error."""
     root = root or ROOT
@@ -166,6 +191,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("check", help="fail if generated artifacts are stale")
     sub.add_parser("validate", help="run schema and hygiene validators")
     sub.add_parser("completeness", help="verify nothing from the sources was left behind (F8)")
+    fresh = sub.add_parser("freshness", help="read-only inventory of version pins (version-freshness)")
+    fresh.add_argument("--references", action="store_true", help="also scan references/ assets")
     toon = sub.add_parser("toon", help="validate a TOON handoff payload file")
     toon.add_argument("path", help="path to a file containing a TOON payload")
     args = parser.parse_args(argv)
@@ -175,6 +202,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_check(args)
     if args.command == "completeness":
         return cmd_completeness(args)
+    if args.command == "freshness":
+        return cmd_freshness(args)
     if args.command == "toon":
         return cmd_toon(args)
     return cmd_validate(args)

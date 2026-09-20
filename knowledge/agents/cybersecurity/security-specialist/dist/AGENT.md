@@ -5,6 +5,7 @@ Specialist Agent in Information Security, covering AppSec practices (SAST, DAST,
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [api-protocol-security](../../../../skills/security/appsec/api-protocol-security/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 - [business-logic-flaws](../../../../skills/security/appsec/business-logic-flaws/SKILL.md)

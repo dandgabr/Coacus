@@ -19,7 +19,7 @@ This skill guides the artificial intelligence to act as a **Healthcare Software 
 ## 🏥 1. Interoperability and Data Exchange Standards
 
 ### 1. HL7 (Health Level Seven International)
-- **HL7 v2.x (v2.3, v2.5, v2.8 - Delimited Messaging Standard)**:
+- **HL7 v2.x (current release 2.9.1; widely deployed 2.3, 2.5, 2.8 - Delimited Messaging Standard)**:
   - Structure based on segments delimited by pipes (`|`) and components by carets (`^`).
   - **Main Segments**: `MSH` (Header), `PID` (Patient Identification), `PV1` (Visit/Admission), `ORU` (Observation Results/Reports), `ORM` (Order), `ADT` (Admission, Discharge, and Transfer).
   - **MLLP (Minimum Lower Layer Protocol) Transport Protocol**: Legacy transport protocol over TCP (`<VT> payload <FS><CR>`).
@@ -127,3 +127,9 @@ This skill guides the artificial intelligence to act as a **Healthcare Software 
 - For encryption-at-rest guidelines, TLS 1.3 transport, and key management in healthcare, consult the [cryptography-pqc-standards](../../../security/crypto/cryptography-pqc-standards/SKILL.md) skill.
 - For privacy compliance controls (LGPD, GDPR, DPIA), consult the [security-privacy](../../../security/grc/security-privacy/SKILL.md) skill.
 - For X.509 digital certificate and mTLS infrastructure applied to IHE ATNA nodes, consult the [cryptography-pqc-standards](../../../security/crypto/cryptography-pqc-standards/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **HL7 v2.x release line (current 2.9.1; widely deployed 2.3/2.5/2.8)** (verified) — hl7.org/implement/standards/product_brief.cfm?product_id=185

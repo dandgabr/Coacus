@@ -5,6 +5,7 @@ Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, I
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [documentation-designer](../../../../skills/engineering/practices/documentation-designer/SKILL.md)
 - [api-service-mesh-mapping](../../../../skills/mapping/api-service-mesh-mapping/SKILL.md)

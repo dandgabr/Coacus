@@ -5,6 +5,7 @@ Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [crypto-agility-pqc-migration](../../../../skills/security/crypto/crypto-agility-pqc-migration/SKILL.md)
 - [crypto-kms-hsm-key-management](../../../../skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md)

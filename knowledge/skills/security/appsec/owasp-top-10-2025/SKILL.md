@@ -56,3 +56,9 @@ This skill guides the AI to act as an **Application Security Specialist** using 
 - For API-specific risks, see the [api-protocol-security](../api-protocol-security/SKILL.md) skill and the existing [pentester-owasp-api-security-2023](../pentester-owasp-api-security-2023/SKILL.md) skill.
 - For the dependency and build-chain specifics of A03, see the [software-supply-chain-security](../software-supply-chain-security/SKILL.md) skill.
 - For logic-driven abuse that is not a memory-safety bug, see the [business-logic-flaws](../business-logic-flaws/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP Top 10 2025** (verified) — owasp.org/Top10

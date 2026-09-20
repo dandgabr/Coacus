@@ -5,7 +5,7 @@ into the native shape each AI coding harness expects. Write it once; run it in
 OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
-[![Tests: 245](https://img.shields.io/badge/tests-245-brightgreen.svg)](docs/usage.md)
+[![Tests](https://img.shields.io/badge/tests-deterministic%20suite-brightgreen.svg)](docs/usage.md)
 [![Status: F0–F8 complete](https://img.shields.io/badge/status-F0%E2%80%93F8%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 272 skills across ten categories, 60
+- **Knowledge** — what the framework knows: 273 skills across ten categories, 71
   agents, one MCP declaration.
 - **Methodology** — how work proceeds: 15 process workflows for planning,
   debugging, review and verification.
@@ -121,12 +121,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 272 | `security` 127, `domains` 38, `roles` 21, `languages` 18, `mapping` 15, `frameworks` 14, `engineering` 14, `data` 9, `infrastructure` 9, `platforms` 7 |
+| Skills | 273 | `security` 127, `domains` 38, `roles` 21, `languages` 18, `mapping` 15, `frameworks` 14, `engineering` 15, `data` 9, `infrastructure` 9, `platforms` 7 |
 | Agents | 71 | `academic-sciences` 16, `software-engineering` 13, `cybersecurity` 22, `specialized-domains` 6, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 287 skill entries | 272 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1218 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 288 skill entries | 273 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1234 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -149,7 +149,8 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 Six CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
 `coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`. The `tests/` tree
-holds 245 deterministic stdlib `unittest` tests. `evals/` holds six behavior
+holds a deterministic stdlib `unittest` suite (measure it with
+`python3 -m unittest discover -s tests`). `evals/` holds six behavior
 scenarios behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
@@ -196,9 +197,11 @@ skills budget.
 - **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
   keyless (`https://mcp.context7.com/mcp`), and declared under
   [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies
-  up-to-date library and framework documentation, which the corpus skills assume
-  when they need current API references. Optional: the framework and its scripts
-  run without it.
+  up-to-date library and framework documentation and is the first resolution
+  channel of the [version-freshness](docs/standards/version-freshness.md) rule:
+  agents resolve a version in-session before asserting it, and never pin one from
+  memory. Optional: the framework and its scripts run without it, in which case
+  an unresolved pin is marked `unverified`.
 
 ## Everyday commands
 
@@ -211,7 +214,7 @@ python3 scripts/coacus.py check         # fail if generated artifacts are stale
 python3 scripts/coacus.py validate      # run source + artifact validators
 python3 scripts/coacus.py completeness  # reconcile sources, lock file and catalog
 python3 scripts/coacus.py toon payload.toon   # validate a TOON handoff payload
-python3 -m unittest discover -s tests   # 245 deterministic tests
+python3 -m unittest discover -s tests   # deterministic suite
 
 python3 scripts/coacus_governor.py status    # running/paused/max/slots_free
 python3 scripts/coacus_eval.py validate      # static scenario gate
@@ -266,6 +269,7 @@ read the relevant one before changing that area of the repository.
 | [secrets-portability](docs/standards/secrets-portability.md) | No plaintext secrets, no absolute paths. |
 | [provenance](docs/standards/provenance.md) | The provenance manifest at the repository root. |
 | [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its ten-category taxonomy. |
+| [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from Context7 or the publisher, never recalled; the most recent definition wins. |
 
 ## Status
 
@@ -283,7 +287,7 @@ Phases **F0–F8 complete**; the repository is finished.
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract. |
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 
-The framework ships the imported corpus (272 skills, 71 agents, 15 workflows, one
+The framework ships the imported corpus (273 skills, 71 agents, 15 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer
@@ -305,7 +309,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 16 normative standards. Read before changing that area. |
+| [`docs/standards/`](docs/standards/) | The 17 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |

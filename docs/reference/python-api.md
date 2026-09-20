@@ -285,6 +285,20 @@ Check the manifest shape; entries may be empty pre-import.
 
 Write the manifest (seed by default). Import pipeline supplies entries.
 
+#### `def sync_authoring(root: Path, imported_at: str) -> list[str]`
+
+Ensure every authored source has an ``authoring`` provenance entry.
+
+The import pipeline records imported files; a file authored directly in this
+repository (a new skill, workflow or agent) has no importer to record it, so
+F8 completeness reported it as an orphan. This adds a missing entry and, when
+an authored entry already exists, refreshes its hashes. It never touches an
+imported entry and never removes one. Returns the target paths it added.
+
+Idempotent: a second call with the same tree adds nothing, and an unchanged
+authored entry keeps its original ``imported_at`` (only a content change
+rewrites the hash).
+
 ### `engine/toon.py`
 
 TOON (Token-Oriented Object Notation) payload parsing and validation (toon-protocol).
@@ -361,6 +375,30 @@ Two kinds live under ``.agents/``:
 
 Return a list of error strings; empty list means valid.
 
+### `engine/validators/docs.py`
+
+Prose-count reconciliation (D5 — counts are measured, never copied).
+
+Prose drifts. The documentation states counts — skills, agents, workflows, MCPs,
+catalog entries, provenance entries — that the generator and the lock file already
+know, and hand-copied numbers fall behind the disk. This validator reconciles
+every declared number (a) in the README corpus table and (b) anywhere in the
+LIVING documentation, so a stale count is a build error rather than a silent lie.
+
+Measured sources: the generated ``catalog/catalog.json`` counts, the on-disk
+``methodology/workflows`` tree, and the entry count of ``sources.lock.json``.
+
+Historical records are exempt by design: ``CHANGELOG.md`` and ``docs/migration.md``
+describe past states, and ``docs/roadmap.md`` marks a past state with an "as of
+F<n>" era, so a paragraph that is explicitly historical is not reconciled.
+
+Counts have no generator (the test suite), so they are never stated as a fixed
+number in the docs; the docs give the command to measure them instead.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return prose-count mismatches (empty = docs agree with disk).
+
 ### `engine/validators/evals.py`
 
 Validate behavior-eval scenarios (testing).
@@ -377,6 +415,53 @@ Return every scenario file (``evals/scenarios/<id>/scenario.json``).
 #### `def validate(root: Path) -> list[str]`
 
 Return a list of error strings; empty list means valid.
+
+### `engine/validators/freshness.py`
+
+Version-freshness check (version-freshness).
+
+Canonical artifacts pin versions of standards, frameworks, libraries and
+regulations in their instruction bodies. A training-memory pin is a claim about
+an unknown instant, so every such pin must sit near evidence that it was
+resolved: a source anchor (a URL, an RFC identifier, a publisher or vendor name)
+or an explicit resolution marker (``resolved YYYY-MM-DD``).
+
+This validator reports WARNINGS, not errors. It keeps a machine surface on the
+pin list so the corpus can be reconciled; the standard promotes it to a hard gate
+once the list is clean.
+
+Prose only. The scan excludes the YAML frontmatter, fenced code blocks and inline
+code spans: those are samples and identifiers, not behavioural claims, and flagging
+them buries the real pins.
+
+Only MOVING targets are flagged: a release line that a publisher supersedes — a
+``vX.Y[.Z]`` framework version, an ``OWASP ... YYYY`` release, a ``MASVS``/``CSF``/
+``CIS Controls``/``SLSA``/``SBOM``/``PCI DSS`` release, or a ``NIST SP`` WITH a
+revision suffix (``800-61r3``, ``Rev. 5``). A bare document identifier — ``RFC 9110``,
+``ISO/IEC 9899``, ``FIPS 203``, ``NIST SP 800-53`` without a revision — names a
+fixed document, not a current-version claim, and is not flagged.
+
+#### `def discover_sources(root: Path) -> list[Path]`
+
+Every canonical artifact subject to the freshness rule.
+
+#### `def warnings(root: Path) -> list[str]`
+
+Return a list of warning strings (empty = no unanchored pins).
+
+#### `def validate(root: Path) -> list[str]`
+
+Alias of :func:`warnings` for callers that expect ``validate``.
+
+#### `def report(root: Path, include_references: bool=False) -> list[str]`
+
+Read-only pin inventory (offline; no network).
+
+Lists every moving release pin with its artifact and line and one of three
+statuses: ``resolved`` (has a resolution declaration), ``unverified`` (the
+standard's explicit "could not resolve" state, with a reason) or
+``UNRESOLVED`` (a gate error). Never fails: it is the audit surface for "how
+old is the corpus", not a gate.
 
 ### `engine/validators/hygiene.py`
 
@@ -493,6 +578,10 @@ Validate a TOON handoff payload file; print errors and return the exit code.
 #### `def cmd_completeness(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
 Reconcile the corpus against its sources; fail if anything is unreconciled.
+
+#### `def cmd_freshness(args: argparse.Namespace, root: Path | None=None) -> int`
+
+Read-only, offline inventory of moving version pins (version-freshness).
 
 #### `def cmd_validate(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 

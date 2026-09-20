@@ -45,3 +45,9 @@ This skill guides the AI to navigate the two US federal assurance regimes that m
 - For the general GRC program, see the [security-grc-compliance](../security-grc-compliance/SKILL.md) skill.
 - For cloud assurance overlap, see the [csa-cloud-security](../../iam/csa-cloud-security/SKILL.md) skill.
 - For the incident and continuous-monitoring obligations, see the [secops-incident-responder](../../operations/secops-incident-responder/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-171 Rev. 3** (verified) — csrc.nist.gov/pubs/sp/800/171/r3/final

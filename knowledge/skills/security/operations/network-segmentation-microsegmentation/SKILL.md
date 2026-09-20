@@ -68,3 +68,9 @@ This skill guides the AI to design segmentation that actually prevents lateral m
 - For the broader network controls, see the [network-security-onprem-cloud](../network-security-onprem-cloud/SKILL.md) skill.
 - For the zero-trust architecture, see the [zero-trust-architecture-engineering](../../../infrastructure/zero-trust-architecture-engineering/SKILL.md) skill.
 - For Kubernetes hardening, see the [kubernetes-security-posture](../kubernetes-security-posture/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP Kubernetes Top 10 2025** (verified) — owasp.org/www-project-kubernetes-top-ten

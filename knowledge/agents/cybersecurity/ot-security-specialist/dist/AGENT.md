@@ -5,6 +5,7 @@ Specialist Agent in OT/ICS Security, covering the Purdue model, IEC 62443, NIST 
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
 - [ot-ics-security](../../../../skills/security/operations/ot-ics-security/SKILL.md)

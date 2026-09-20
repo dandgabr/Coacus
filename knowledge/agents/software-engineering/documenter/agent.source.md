@@ -6,6 +6,7 @@ description: >-
   Human Prose (Anti-AI Writing Manifesto), Diátaxis Architecture and
   Visual Diagram Modeling with Mermaid.js.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/architecture-documentation/SKILL.md
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md

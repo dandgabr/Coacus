@@ -25,7 +25,7 @@ Always generate the SBOM from the actual artifact, not from the manifest alone.
 
 ## 🔄 2. Conversion and Interoperability
 
-- **SPDX 3.0.1** uses a modular profile model; **CycloneDX 1.7 (ECMA-424)** is optimized for security use cases.
+- **SPDX 3.0.1** uses a modular profile model; **CycloneDX 1.7.2 (ECMA-424)** is optimized for security use cases.
 - Convert between formats deliberately and record the conversion; conversions lose fields.
 - Keep the SBOM attached to the artifact (for example, as an OCI attachment) so the inventory travels with the software.
 
@@ -54,3 +54,10 @@ Always generate the SBOM from the actual artifact, not from the manifest alone.
 - For signing and attestation, see the [program-sigstore-cosign](../program-sigstore-cosign/SKILL.md) skill.
 - For the SCA methodology, see the [software-supply-chain-security](../../appsec/software-supply-chain-security/SKILL.md) skill.
 - For the dependency-check tool, see the [program-owasp-dependency-check](../program-owasp-dependency-check/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CycloneDX 1.7.2** (verified) — github.com/CycloneDX/specification (latest release)
+- **SPDX 3.0.1** (verified) — github.com/spdx/spdx-spec (latest release)

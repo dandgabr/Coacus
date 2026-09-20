@@ -48,6 +48,8 @@ instruction: >
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
   - type: skill_integration
+    path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/domains/industry/medical-device-cybersecurity/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/industry/healthtech-standards-security/SKILL.md

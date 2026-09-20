@@ -1,6 +1,6 @@
 ---
 name: software-supply-chain-security
-description: "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.7 / ECMA-424 and SPDX v3.0.1), VEX, SLSA v1.2 provenance (Build and Source tracks), cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting, dependency confusion and protestware."
+description: "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.7.2 / ECMA-424 and SPDX v3.0.1), VEX, SLSA v1.2 provenance (Build and Source tracks), cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting, dependency confusion and protestware."
 metadata:
   type: defensive
   phase: recon
@@ -68,7 +68,7 @@ The AI must compute real risk based on the threat intelligence triad:
 
 ### 3.1 Official Formats
 
-- **CycloneDX (OWASP Foundation / ECMA-424)**: Specialized in application security, inventory of direct and transitive dependencies, cloud services, VEX (*Vulnerability Exploitability eXchange*) formulation, and compliance forms. Version 1.7 is the current release and is standardized as ECMA-424.
+- **CycloneDX (OWASP Foundation / ECMA-424)**: Specialized in application security, inventory of direct and transitive dependencies, cloud services, VEX (*Vulnerability Exploitability eXchange*) formulation, and compliance forms. Version 1.7.2 is the current release (github.com/CycloneDX/specification, resolved 2026-09-20) and is standardized as ECMA-424.
 - **SPDX (Linux Foundation / ISO/IEC 5962:2021, SPDX v3.0.1)**: International standard for open-source license compliance and file and package provenance. SPDX 3.0.1 uses a modular profile model (Core, Software, Security, Licensing, Dataset, AI, Build) with native VEX relationships and CVSS v4.0 / EPSS / SSVC vocabularies.
 
 ### 3.2 SBOM Minimum Elements (CISA 2026)
@@ -155,3 +155,15 @@ cosign verify --certificate-identity-regexp "https://github.com/empresa/.*" \
 - **[sast-code-review](../sast-code-review/SKILL.md)**: Complements library analysis with vulnerability auditing in proprietary code.
 - **[devsecops-engineer](../../operations/devsecops-engineer/SKILL.md)**: Orchestration of SCA pipelines, SBOM generation, and Quality Gates in CI/CD.
 - **[program-containers](../../../infrastructure/program-containers/SKILL.md)**: Auditing and signing of container images and operating system base packages.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CVSS v3.1** (verified) — first.org/cvss
+- **CVSS v4.0** (verified) — first.org/cvss
+- **CycloneDX 1.7.2** (verified) — github.com/CycloneDX/specification (latest release)
+- **NIST SP 800-161 Rev. 1** (verified) — csrc.nist.gov/pubs/sp/800/161/r1/final
+- **NIST SP 800-218 v1.1** (verified) — csrc.nist.gov/pubs/sp/800/218/final
+- **SLSA v1.2** (verified) — slsa.dev/spec/v1.2
+- **SPDX 3.0.1** (verified) — github.com/spdx/spdx-spec (latest release)

@@ -183,3 +183,9 @@ The SABSA Architect acts as the conductor of information security in the skills 
 - **[clean-code-reusability](../../../engineering/practices/clean-code-reusability/SKILL.md)**: Ensures that diagrams, policies, and security specifications are written without duplication and reusing existing definitions.
 
 > For a Business Attribute Profile (BAP) example, see [`examples/sabsa_bap_sample.md`](./examples/sabsa_bap_sample.md).
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CISA Zero Trust Maturity Model v2.0** (verified) — cisa.gov/zero-trust-maturity-model

@@ -127,3 +127,10 @@ When asked to design or audit a cloud service or provider:
 - To align cloud IAM controls (IAM domain) with AWS, Azure, GCP, and OCI, see the [iam-access-management](../iam-access-management/SKILL.md) skill.
 - To map the correspondence of CSA cloud controls with CIS cloud hardening benchmarks, see the [cis-controls](../../grc/cis-controls/SKILL.md) skill.
 - For DevSecOps validation and security in cloud deployment pipelines, see the [devsecops-engineer](../../operations/devsecops-engineer/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CSA CCM/CAIQ v4.1** (verified) — cloudsecurityalliance.org
+- **CVSS v4.0** (verified) — first.org/cvss

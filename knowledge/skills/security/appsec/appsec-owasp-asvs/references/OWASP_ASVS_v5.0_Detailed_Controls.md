@@ -2,6 +2,8 @@
 
 This document serves as the technical security reference database for all audits, code reviews, and architectural proposals. Every control below maps to the 17 categories of **OWASP ASVS v5.0.0**.
 
+> Version resolved 2026-09-20 from github.com/OWASP/ASVS (tag v5.0.0_release).
+
 ---
 
 ## 📊 ASVS Verification Levels

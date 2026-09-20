@@ -165,3 +165,13 @@ When conducting or automating a DAST audit:
 - **[sast-code-review](../sast-code-review/SKILL.md)**: Correlation of vulnerabilities found in DAST with the vulnerable source code lines (Shift Left).
 - **[iast-interactive-testing](../iast-interactive-testing/SKILL.md)**: Combination of DAST dynamics with internal instrumentation agents for real-time memory inspection.
 - **[devsecops-engineer](../../operations/devsecops-engineer/SKILL.md)**: Automation of dynamic tests and definition of Quality Gates in CI/CD pipelines.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CISA Zero Trust Maturity Model v2.0** (verified) — cisa.gov/zero-trust-maturity-model
+- **CVSS v3.1** (verified) — first.org/cvss
+- **CVSS v4.0** (verified) — first.org/cvss
+- **OWASP WSTG v4.2** (verified) — github.com/OWASP/wstg (latest release)
+- **SPDX 3.0.1** (verified) — github.com/spdx/spdx-spec (latest release)

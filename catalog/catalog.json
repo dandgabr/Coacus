@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 71,
-    "skills": 287,
+    "skills": 288,
     "mcps": 1
   },
   "agents": [
@@ -677,6 +677,10 @@
     {
       "name": "vcs-repository-management",
       "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md"
+    },
+    {
+      "name": "version-freshness",
+      "path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md"
     },
     {
       "name": "framework-criterion",

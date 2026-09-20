@@ -91,3 +91,9 @@ The federal reference organizes maturity across **5 pillars** (Identity, Devices
 - To harden the network components that host the PEPs, see the [network-security-onprem-cloud](../../security/operations/network-security-onprem-cloud/SKILL.md) skill.
 - To engineer the workload identity certificates and mTLS, see the [cryptography-pqc-standards](../../security/crypto/cryptography-pqc-standards/SKILL.md) skill.
 - For the SABSA/TOGAF strategic view of trust domains, see the [security-architect-sabsa](../../security/operations/security-architect-sabsa/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CISA Zero Trust Maturity Model v2.0** (verified) — cisa.gov/zero-trust-maturity-model

@@ -6,6 +6,7 @@ description: >-
   premarket requirements, the February 2026 FDA guidance, device SBOM/CBOM,
   postmarket vulnerability management and legacy-device safety risk.
 skills:
+  - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md
   - knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md

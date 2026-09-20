@@ -64,3 +64,9 @@ This skill guides the AI to secure the resolution path and to use DNS as both a 
 - For flow and DPI tooling, see the [network-flow-discovery](../../../mapping/network-flow-discovery/SKILL.md) skill.
 - For NDR detection, see the [ids-ips-ndr-engineering](../ids-ips-ndr-engineering/SKILL.md) skill.
 - For routing integrity, see the BGP section of the [network-security-onprem-cloud](../network-security-onprem-cloud/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-81r3** (verified) — csrc.nist.gov/pubs/sp/800/81/r3/final

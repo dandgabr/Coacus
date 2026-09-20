@@ -75,3 +75,10 @@ To maximize the triage score and avoid severity disputes:
    - Data from two distinct test accounts.
 5. **Proof of Concept (Evidence)**: Screenshots, logs, or screen recording with restricted impact (without massively exploiting other users).
 6. **Remediation Recommendation**: Suggested code or configuration to fix the root cause.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CVSS v3.1** (verified) — first.org/cvss
+- **CVSS v4.0** (verified) — first.org/cvss

@@ -5,6 +5,73 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Version freshness
+
+### Added
+
+- `version-freshness` normative standard (`docs/standards/version-freshness.md`)
+  plus the operational skill (`knowledge/skills/engineering/practices/version-freshness/SKILL.md`):
+  a version of a standard, framework, library or regulation is resolved in the
+  current session before it is asserted — Context7 for libraries and frameworks,
+  the publisher for standards — and pinned with its source and resolution date.
+  An unresolved pin is marked `unverified`, never presented as current.
+- `engine/validators/freshness.py` (with `tests/test_freshness.py`): flags a
+  moving release pin in a canonical artifact with no nearby source anchor or
+  resolution marker. It is a **hard gate** (`source_errors`), so the corpus
+  cannot regress; fixed document identifiers (RFC/ISO/IEC base/FIPS numbers) are
+  not release claims and are not flagged.
+- `python3 scripts/coacus.py freshness [--references]`: a read-only, offline
+  inventory of every moving pin with its `resolved`/`UNRESOLVED` status, so pin
+  age can be audited without a network.
+- `provenance.sync_authoring`, called by `generate`: every authored skill,
+  workflow and agent gets an idempotent `authoring` provenance entry, closing the
+  orphan gap F8 used to report when a file was authored without an importer.
+- The standard records the precedence rule: Context7 is the first channel for
+  libraries/frameworks but does not guarantee the newest release, so on a
+  divergence the **most recent** definition wins, the publisher remains the
+  authority for standards, and the divergence is recorded. Context7 stays
+  recommended, never required.
+- The MASVS reference was rewritten to the current **v2.1.0** (8 control groups,
+  24 controls, real upstream control text) and renamed
+  `OWASP_MASVS_v2.1_Detailed_Controls.md`; the obsolete v2.0.0 profiles and
+  invented controls were removed.
+- Freshness guidance in the research agents: a "Documentation Freshness (mandatory)"
+  section and a version-provenance line in the response protocol for
+  `web-researcher` and `scientific-researcher`; every agent that names a version
+  now lists the `version-freshness` skill.
+- A "Version Sources" section in the 35 skills that carried a moving release pin:
+  each pinned release line is listed with `(verified)` or `(unverified)` and its
+  publisher source, resolved 2026-09-20. Fixed document identifiers (RFC numbers,
+  ISO/IEC base numbers, FIPS) are not release claims and are not listed. All 61
+  entries are `verified`; HL7 v2.x was confirmed as the current 2.9.1 release.
+- The Context7 MCP endpoint was exercised over its streamable-HTTP transport
+  (`tools/list`, `resolve-library-id`, `query-docs`), confirming it as a working
+  library/framework resolution channel; the standard keeps the publisher as the
+  authority for standards, where Context7 can lag (its OpenAPI index stops at
+  3.1.1 while the publisher publishes 3.2.1).
+
+- `engine/validators/docs.py` (with `tests/test_docs_counts.py`): the README
+  corpus table AND the living-documentation prose (`README.md`,
+  `CONTRIBUTING.md`, `evals/README.md`, `docs/architecture.md`, `docs/usage.md`,
+  `docs/install.md`, `docs/extending.md`, `docs/roadmap.md`,
+  `docs/standards/*.md`) are reconciled against the catalog and the lock during
+  `validate`, so a stale hand-copied count is a build error. Historical
+  paragraphs (`CHANGELOG.md`, `docs/migration.md`, an "as of F6" era) are exempt.
+  Volatile counts (the test suite) are no longer stated as fixed numbers — the
+  docs give the command to measure them. Corrected the drifted provenance count
+  (1233 → 1234).
+
+### Changed
+
+- Corrected version drift verified against publishers this session: PCI DSS
+  `v4.0 → v4.0.1`; CycloneDX `1.7 → 1.7.2`; `MASVS v2.1.0`, `NIST SP 800-61r3`,
+  `OWASP Kubernetes Top 10 2025` and `ISO/IEC 27701:2025` confirmed and now carry
+  their source and resolution date in the agent bodies.
+- `using-coacus`, `web-search-specialist` and `academic-scientific-research` now
+  require version resolution before a version is stated. The `version-freshness`
+  skill is on the agents that cite a version plus the artifact authors
+  (`skill-creator`, `documenter`, `code-mapping-specialist`).
+
 ## [Unreleased] — Security corpus expansion (19 macro-areas)
 
 ### Added

@@ -172,3 +172,10 @@ When asked to validate or generate application-security-focused code:
 - [secops-incident-responder](../../operations/secops-incident-responder/SKILL.md): Consumes the logs generated in compliance with AppSec rules for intrusion detection.
 
 > For a practical audit checklist, see [`examples/asvs_audit_checklist.md`](./examples/asvs_audit_checklist.md).
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **OWASP ASVS v5.0.0** (verified) — github.com/OWASP/ASVS tags (v5.0.0_release)
+- **OWASP ASVS v5.0.x** (verified) — github.com/OWASP/ASVS tags

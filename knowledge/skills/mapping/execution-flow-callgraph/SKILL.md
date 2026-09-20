@@ -58,7 +58,6 @@ code2flow src/main.py src/auth.py src/database.py -o execution_flow.svg
 
 ### 2. Go Callvis (Go / Golang)
 - **Concept**: An interactive call graph generator for Go. It uses advanced static pointer analysis (`pointer analysis`) to resolve interfaces and dynamic dispatch, grouping functions by their origin package.
-- **CLI Usage**:
 ```bash
 # Focar no ponto de entrada main e ignorar bibliotecas padrão do Go
 go-callvis -nostd -focus github.com/empresa/projeto/cmd/server .

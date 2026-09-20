@@ -5,6 +5,7 @@ Senior specialist agent in Skill Architecture, Creation, Improvement and Catalog
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [documentation-designer](../../../../skills/engineering/practices/documentation-designer/SKILL.md)
 <!-- /coacus:generated:skills -->

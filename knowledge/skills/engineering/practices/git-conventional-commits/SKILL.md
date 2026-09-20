@@ -52,3 +52,9 @@ This skill establishes the rigorous standard for authoring commit messages and m
 1. **Inspect the Staging Area**: Run `git diff --cached` to analyze the staged files and hunks.
 2. **Classify the Nature**: Pick the correct semantic type and scope.
 3. **Write the Message in Imperative Mood**: Write "add", "fix", "update" (not "added", "fixing", "fixes").
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **Conventional Commits 1.0.0** (verified) — conventionalcommits.org/en/v1.0.0

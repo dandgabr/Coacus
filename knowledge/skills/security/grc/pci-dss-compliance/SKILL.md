@@ -1,5 +1,5 @@
 ---
-description: Acts as a specialist in PCI DSS v4.0 compliance (Payment Card Industry
+description: Acts as a specialist in PCI DSS v4.0.1 compliance (Payment Card Industry
   Data Security Standard), covering CHD/SAD protection, tokenization, CDE scope,
   network segmentation, cryptography, payment HSMs, QSA, SAQ, and security controls.
 metadata:
@@ -11,13 +11,13 @@ metadata:
   type: defensive
 name: pci-dss-compliance
 ---
-# AI Skill: PCI DSS v4.0 and Payment Data Security Specialist
+# AI Skill: PCI DSS v4.0.1 and Payment Data Security Specialist
 
-This skill guides the AI to act as a **PCI DSS (Payment Card Industry Data Security Standard - Version 4.0) Specialist**, providing security architecture for payment environments, CDE scope reduction techniques, credit card data protection, payment HSMs, and audit and compliance requirements.
+This skill guides the AI to act as a **PCI DSS (Payment Card Industry Data Security Standard - Version 4.0.1; pcisecuritystandards.org, resolved 2026-09-20) Specialist**, providing security architecture for payment environments, CDE scope reduction techniques, credit card data protection, payment HSMs, and audit and compliance requirements.
 
 ---
 
-## 💳 1. Fundamental Concepts and Data Classification (PCI DSS v4.0)
+## 💳 1. Fundamental Concepts and Data Classification (PCI DSS v4.0.1)
 
 PCI DSS protects two distinct categories of data in the payment chain:
 
@@ -51,7 +51,7 @@ Critical data used to authorize transactions. **ABSOLUTE PROHIBITION ON POST-AUT
 
 ---
 
-## 🛡️ 3. The 12 PCI DSS v4.0 Requirements
+## 🛡️ 3. The 12 PCI DSS v4.0.1 Requirements
 
 ### Principle 1: Build and Maintain Secure Networks and Systems
 
@@ -120,3 +120,9 @@ Critical data used to authorize transactions. **ABSOLUTE PROHIBITION ON POST-AUT
 - For encryption architecture, FPE (FF1/FF3-1), and key wrapping, see the [cryptography-pqc-standards](../../crypto/cryptography-pqc-standards/SKILL.md) skill.
 - For payment architecture, ISO 8583, and gateways in Brazil and abroad, see the [financial-transaction-processing](../../../domains/industry/financial-transaction-processing/SKILL.md) skill.
 - For IAM and PAM controls in the CDE, see the [iam-access-management](../../iam/iam-access-management/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **PCI DSS v4.0.1** (verified) — pcisecuritystandards.org/document_library

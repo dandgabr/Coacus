@@ -69,3 +69,9 @@ When asked to validate compliance, draft policies, or define metrics:
 - To align team training with the technical controls most violated in code tests, see the [appsec-owasp-asvs](../../appsec/appsec-owasp-asvs/SKILL.md) skill.
 - To consolidate vulnerabilities identified in audits and update the general risk rules, see the [security-manager-samm](../security-manager-samm/SKILL.md) skill.
 - To align system development with specific data protection regulations (such as LGPD and GDPR), see the [security-privacy](../security-privacy/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **CVSS v4.0** (verified) — first.org/cvss

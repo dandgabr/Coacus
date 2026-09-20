@@ -134,7 +134,7 @@ emcc with-glue.c -O3 -s WASM=1 -s USE_SDL=2 -s MODULARIZE=1 -o custom-loading.js
 
 - **Memory API**: `grow(delta)` expands in 64 KB pages; TypedArray views become **detached** after growth — recreate the views after every `grow()`.
 - **Threading**: the threads proposal adds *shared* memories (`SharedArrayBuffer`) + atomic instructions. In the browser: each thread runs a `Web Worker` with the **same** shared memory (transferred via `postMessage`); blocking/synchronization with `Atomics.wait`/`notify` (in the worker; not on the main thread). It requires COOP/COEP headers to enable `SharedArrayBuffer`. Emscripten exposes it via `-pthread`/`PTHREAD_POOL_SIZE` (ch. 12 "threads, garbage collection, and exceptions" as evolving proposals).
-- **Stack/Heap**: inside linear memory there is a fixed *data/stack* region (addresses in `__data_end`/`__heap_base` in the exports — visible in `wasm-objdump -x` of Rust modules); dynamic allocations go to the heap (dlmalloc/emmalloc in Emscripten; the AssemblyScript runtime does its own GC since v0.18). `memory.grow()` is the only expansion mechanism.
+- **Stack/Heap**: inside linear memory there is a fixed *data/stack* region (addresses in `__data_end`/`__heap_base` in the exports — visible in `wasm-objdump -x` of Rust modules); dynamic allocations go to the heap (dlmalloc/emmalloc in Emscripten; the AssemblyScript runtime does its own GC since v0.18; resolved 2026-09-20 from github.com/AssemblyScript/assemblyscript — current release v0.28.20). `memory.grow()` is the only expansion mechanism.
 - **Feature testing**: check proposal by proposal at runtime before depending on threads/SIMD/multi-value.
 
 ## 7. Where Not to Use wasm

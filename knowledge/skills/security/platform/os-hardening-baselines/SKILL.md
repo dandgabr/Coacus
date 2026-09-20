@@ -60,3 +60,9 @@ Firmware and hypervisor updates are in scope, not just the OS packages.
 - For Linux kernel protections, see the [linux-kernel-systemd-internals](../../../infrastructure/linux-kernel-systemd-internals/SKILL.md) skill.
 - For the EDR layer, see the [edr-evasion-endpoint-security](../edr-evasion-endpoint-security/SKILL.md) skill.
 - For macOS specifics, see the [macos-endpoint-security](../macos-endpoint-security/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+Moving release pins in this skill were resolved 2026-09-20:
+
+- **NIST SP 800-40r4** (verified) — csrc.nist.gov/pubs/sp/800/40/r4/final
