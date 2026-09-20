@@ -152,6 +152,17 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         self.assertEqual(status, "OK")
         self.assertEqual(transcript, "ok")
 
+    def test_stderr_is_used_when_stdout_is_empty(self) -> None:
+        import subprocess as sp
+        from unittest import mock
+
+        scenario = {"harness": "opencode", "prompt": "x", "checks": []}
+        fake = sp.CompletedProcess(args=[], returncode=0, stdout="", stderr="the answer is 5")
+        with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
+            transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
+        self.assertEqual(status, "OK")
+        self.assertEqual(transcript, "the answer is 5")
+
     def test_missing_cli_is_reported(self) -> None:
         from unittest import mock
 

@@ -126,10 +126,12 @@ def _run_harness(scenario: dict, timeout: float, clis: dict[str, list[str]]) -> 
         return "", "TIMEOUT"
     if proc.returncode != 0:
         return "", f"EXIT_{proc.returncode}"
-    stdout = ANSI.sub("", proc.stdout)
-    stderr = ANSI.sub("", proc.stderr)
-    combined = stdout.strip()
-    # The harness prints its banner/logs to stderr; keep them only for context.
+    stdout = ANSI.sub("", proc.stdout).strip()
+    stderr = ANSI.sub("", proc.stderr).strip()
+    # Most harnesses print the answer on stdout and their banner on stderr, so
+    # prefer stdout; fall back to stderr when stdout is empty (some CLIs and
+    # wrappers emit the reply there), rather than reporting an empty transcript.
+    combined = stdout or stderr
     return combined, "OK"
 
 
