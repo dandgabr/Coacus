@@ -48,7 +48,8 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import json
-import shutil
+import re
+import shlex
 import sys
 from pathlib import Path
 
@@ -58,6 +59,9 @@ if str(ROOT) not in sys.path:
 
 MANIFEST_NAME = "coacus-install.json"
 NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
+
+# A planned file's content: text normally, bytes for a binary companion.
+FileContent = str | bytes
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
 
 
@@ -203,6 +207,52 @@ def _agent_meta(source: Path) -> dict[str, object]:
     }
 
 
+SAFE_NAME = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+def _safe_agent_name(source: Path) -> str:
+    """The agent name, guaranteed usable as a filename (defense in depth).
+
+    The validator rejects non-kebab names, but the installer must not trust a
+    source it may be pointed at directly: a name like ``../../x`` would escape
+    ``agents_dir``. Raise rather than write outside the plan.
+    """
+    name = str(_agent_meta(source)["name"])
+    if not SAFE_NAME.match(name):
+        raise ValueError(
+            f"{source}: agent name {name!r} is not kebab-case; refusing to install"
+        )
+    return name
+
+
+def _allowed_roots(config_dir: Path) -> list[Path]:
+    """Roots the installer legitimately writes under.
+
+    ``config_dir`` for the harness's own files, plus ``<config_dir>/../.agents``
+    for the shared ``~/.agents/skills`` tree Codex and Cursor scan.
+    """
+    return [config_dir, config_dir.parent / ".agents"]
+
+
+def _assert_contained(targets: list[tuple[Path, FileContent]], config_dir: Path) -> None:
+    """Refuse to write anywhere outside the allowed roots (traversal guard)."""
+    roots = [r.resolve() for r in _allowed_roots(config_dir)]
+    for target, _ in targets:
+        resolved = target.resolve()
+        if not any(_is_within(resolved, r) for r in roots):
+            raise ValueError(
+                f"refusing to install outside {config_dir}: {target} resolves to {resolved}"
+            )
+
+
+def _is_within(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+    except ValueError:
+        return False
+    return True
+
+
 def _render_agent_opencode(source: Path, root: Path) -> str:
     """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
     meta = _agent_meta(source)
@@ -257,48 +307,72 @@ def _render_agent_codex(source: Path) -> str:
 
 def _plan_agents_opencode(
     root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
-) -> list[tuple[Path, str]]:
-    plan: list[tuple[Path, str]] = []
+) -> list[tuple[Path, FileContent]]:
+    plan: list[tuple[Path, FileContent]] = []
     for source in discover_agents(root, only=only, agents=agents):
-        name = str(_agent_meta(source)["name"])
+        name = _safe_agent_name(source)
         plan.append((agents_dir / f"{name}.md", _render_agent_opencode(source, root)))
     return plan
 
 
 def _plan_agents_antigravity(
     root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
-) -> list[tuple[Path, str]]:
-    plan: list[tuple[Path, str]] = []
+) -> list[tuple[Path, FileContent]]:
+    plan: list[tuple[Path, FileContent]] = []
     for source in discover_agents(root, only=only, agents=agents):
-        name = str(_agent_meta(source)["name"])
+        name = _safe_agent_name(source)
         plan.append((agents_dir / name / "agent.md", _render_agent_named(source)))
     return plan
 
 
 def _plan_agents_codex(
     root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
-) -> list[tuple[Path, str]]:
-    plan: list[tuple[Path, str]] = []
+) -> list[tuple[Path, FileContent]]:
+    plan: list[tuple[Path, FileContent]] = []
     for source in discover_agents(root, only=only, agents=agents):
-        name = str(_agent_meta(source)["name"])
+        name = _safe_agent_name(source)
         plan.append((agents_dir / f"{name}.toml", _render_agent_codex(source)))
     return plan
 
 
 def _plan_agents_named(
     root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Agent markdown (name+description) for Claude Code and Cursor."""
-    plan: list[tuple[Path, str]] = []
+    plan: list[tuple[Path, FileContent]] = []
     for source in discover_agents(root, only=only, agents=agents):
-        name = str(_agent_meta(source)["name"])
+        name = _safe_agent_name(source)
         plan.append((agents_dir / f"{name}.md", _render_agent_named(source)))
     return plan
 
 
 def _skill_files(skill_dir: Path) -> list[Path]:
-    """Every file belonging to a skill, so companions (references/) travel too."""
-    return sorted(p for p in skill_dir.rglob("*") if p.is_file())
+    """Every file belonging to a skill, so companions (references/) travel too.
+
+    Symlinks are skipped: a link inside a skill tree must not point the installer
+    at an arbitrary file outside the repository.
+    """
+    return sorted(
+        p for p in skill_dir.rglob("*") if p.is_file() and not p.is_symlink()
+    )
+
+
+def _substitute_json(text: str, placeholder: str, value: str) -> str:
+    """Replace ``placeholder`` inside every string of a JSON document.
+
+    A naive ``str.replace`` corrupts the JSON (and can inject) when the value
+    contains a quote or backslash. Parse, substitute, re-serialize instead.
+    """
+    def walk(node: object) -> object:
+        if isinstance(node, str):
+            return node.replace(placeholder, value)
+        if isinstance(node, dict):
+            return {k: walk(v) for k, v in node.items()}
+        if isinstance(node, list):
+            return [walk(item) for item in node]
+        return node
+
+    return json.dumps(walk(json.loads(text)), indent=2) + "\n"
 
 
 def _plan_skills(
@@ -306,18 +380,33 @@ def _plan_skills(
     skills_dir: Path,
     only: list[str] | None = None,
     skills: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Mirror every selected skill tree (SKILL.md + references/examples/scripts)."""
-    plan: list[tuple[Path, str]] = []
+    plan: list[tuple[Path, FileContent]] = []
     for skill in discover_skills(root, only=only, skills=skills):
         for source in _skill_files(skill):
             relative = source.relative_to(skill)
             target = skills_dir / skill.name / relative
-            plan.append((target, source.read_text(encoding="utf-8")))
+            plan.append((target, _read_source(source)))
     notice = root / NOTICE_NAME
     if notice.is_file():
-        plan.append((skills_dir / NOTICE_NAME, notice.read_text(encoding="utf-8")))
+        plan.append((skills_dir / NOTICE_NAME, _read_source(notice)))
     return plan
+
+
+def _read_source(path: Path) -> FileContent:
+    """Text for a UTF-8 file, raw bytes for a binary companion (e.g. an image)."""
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return path.read_bytes()
+
+
+def _read_installed(path: Path, expected: FileContent) -> FileContent:
+    """Read an installed file the same way its plan content was produced."""
+    if isinstance(expected, bytes):
+        return path.read_bytes()
+    return path.read_text(encoding="utf-8")
 
 
 def _plan_opencode(
@@ -326,13 +415,13 @@ def _plan_opencode(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
     content = source.read_text(encoding="utf-8").replace(
         "__COACUS_ROOT__", root.as_posix()
     )
-    plan: list[tuple[Path, str]] = [(config_dir / "plugins" / "coacus.js", content)]
+    plan: list[tuple[Path, FileContent]] = [(config_dir / "plugins" / "coacus.js", content)]
     gate = root / "harnesses/opencode/bootstrap/governor-gate.js"
     if gate.is_file():
         plan.append(
@@ -354,7 +443,7 @@ def _plan_claude(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Skills + subagents + a hook plugin whose script matches hooks.json."""
     plan = _plan_skills(root, config_dir / "skills", only, skills)
     # Claude Code subagents load from ~/.claude/agents/<name>.md.
@@ -400,7 +489,7 @@ def _plan_antigravity(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
     Antigravity activates plugins by directory placement (``~/.gemini/config/plugins/``
@@ -465,14 +554,14 @@ def _plan_codex(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Skills to the documented scan root + the SessionStart hook.
 
     Codex scans ``.agents/skills`` (not ``~/.codex/skills``), and its hooks load
     from ``~/.codex/hooks.json``. The hook command needs an absolute script
     path, so we stage the script beside the hook and substitute the repo root.
     """
-    plan: list[tuple[Path, str]] = []
+    plan: list[tuple[Path, FileContent]] = []
     # Codex scans $HOME/.agents/skills, not $config_dir/.codex/skills.
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     # Codex agent roles live in $CODEX_HOME/agents/*.toml.
@@ -483,7 +572,7 @@ def _plan_codex(
     plan.append(
         (
             config_dir / "hooks.json",
-            hooks.replace("__COACUS_ROOT__", root.as_posix()),
+            _substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()),
         )
     )
     return plan
@@ -495,7 +584,7 @@ def _plan_cursor(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     """Skills to a Cursor scan root + subagents + the sessionStart hook.
 
     Cursor hooks live at ``~/.cursor/hooks.json`` (user) or
@@ -503,7 +592,7 @@ def _plan_cursor(
     ``additional_context``. Subagents load from ``~/.cursor/agents/<name>.md``.
     Commands are repo-absolute.
     """
-    plan: list[tuple[Path, str]] = []
+    plan: list[tuple[Path, FileContent]] = []
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
@@ -512,7 +601,7 @@ def _plan_cursor(
     plan.append(
         (
             config_dir / "hooks.json",
-            hooks.replace("__COACUS_ROOT__", root.as_posix()),
+            _substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()),
         )
     )
     return plan
@@ -525,7 +614,7 @@ def plan(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
-) -> list[tuple[Path, str]]:
+) -> list[tuple[Path, FileContent]]:
     if harness == "opencode":
         return _plan_opencode(root, config_dir, only, skills, agents)
     if harness == "claude-code":
@@ -549,6 +638,7 @@ def install(
     agents: list[str] | None = None,
 ) -> dict[str, object]:
     files = plan(harness, root, config_dir, only, skills, agents)
+    _assert_contained(files, config_dir)
     if dry_run:
         return {
             "harness": harness,
@@ -561,7 +651,10 @@ def install(
     written: list[str] = []
     for target, content in files:
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding="utf-8")
+        if isinstance(content, bytes):
+            target.write_bytes(content)
+        else:
+            target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -611,7 +704,7 @@ def _agent_key(target: Path) -> str:
     return target.as_posix()
 
 
-def _component_counts(files: list[tuple[Path, str]]) -> dict[str, int]:
+def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
     """Distinct skills/agents plus hook/other file counts, from a plan."""
     skills = {t.parent.as_posix() for t, _ in files if t.name == "SKILL.md"}
     agents = {_agent_key(t) for t, _ in files if _classify(t) == "agent"}
@@ -644,7 +737,11 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     if not manifest.is_file():
         result["error"] = "no manifest — harness not installed (run install first)"
         return result
-    data = json.loads(manifest.read_text(encoding="utf-8"))
+    try:
+        data = _parse_manifest(manifest)
+    except ValueError as exc:
+        result["error"] = str(exc)
+        return result
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
@@ -655,7 +752,7 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     drift = [
         t.as_posix()
         for t, content in files
-        if t.is_file() and t.read_text(encoding="utf-8") != content
+        if t.is_file() and _read_installed(t, content) != content
     ]
     recorded = set(data.get("files", []))
     planned = {t.as_posix() for t, _ in files}
@@ -677,25 +774,71 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     return result
 
 
-def _contained(path: Path, root: Path) -> bool:
-    """True only if ``path`` resolves inside ``root`` (blocks manifest tampering)."""
+def _parse_manifest(path: Path) -> dict:
+    """Read an install manifest, raising a readable ValueError when malformed."""
     try:
-        path.resolve().relative_to(root.resolve())
-    except ValueError:
-        return False
-    return True
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"{path}: unreadable install manifest ({exc})") from exc
+    if not isinstance(data, dict):
+        raise ValueError(f"{path}: install manifest must be a JSON object")
+    return data
 
 
-def uninstall(harness: str, config_dir: Path, dry_run: bool = False) -> dict[str, object]:
+def _claimed_elsewhere(config_dir: Path, own_manifest: Path) -> set[str]:
+    """Files another Coacus install manifest still claims.
+
+    Codex and Cursor both mirror skills to ``<home>/.agents/skills``, so their
+    manifests overlap. Uninstalling one must not delete files the other still
+    needs. We scan sibling config dirs for other manifests.
+    """
+    claimed: set[str] = set()
+    parent = config_dir.parent
+    for manifest in parent.glob("*/coacus-install.json"):
+        if manifest.resolve() == own_manifest.resolve():
+            continue
+        try:
+            data = _parse_manifest(manifest)
+        except ValueError:
+            continue
+        claimed.update(str(p) for p in data.get("files", []))
+    return claimed
+
+
+def uninstall(
+    harness: str,
+    root: Path,
+    config_dir: Path,
+    dry_run: bool = False,
+) -> dict[str, object]:
+    """Remove the recorded install, staying inside the allowed roots.
+
+    Deletion is gated on containment under ``config_dir`` or the shared
+    ``<config_dir>/../.agents`` tree — not on membership in a freshly re-derived
+    plan, which would orphan a file whose repository source was deleted after
+    install. Files still claimed by another harness's manifest (the shared
+    ``.agents/skills`` tree) are skipped, so uninstalling Codex does not break
+    Cursor. A path recorded by a doctored manifest but outside the allowed roots
+    is skipped, so the manifest cannot delete arbitrary files.
+    """
     manifest = config_dir / MANIFEST_NAME
     if not manifest.is_file():
-        return {"harness": harness, "removed": [], "note": "no manifest"}
-    data = json.loads(manifest.read_text(encoding="utf-8"))
+        return {"harness": harness, "removed": [], "skipped": [], "note": "no manifest"}
+    try:
+        data = _parse_manifest(manifest)
+    except ValueError as exc:
+        return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
+
+    roots = [r.resolve() for r in _allowed_roots(config_dir)]
+    shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
     for path in data.get("files", []):
         target = Path(path)
-        if not _contained(target, config_dir):
+        if not any(_is_within(target.resolve(), r) for r in roots):
+            skipped.append(path)
+            continue
+        if path in shared:
             skipped.append(path)
             continue
         if target.is_file():
@@ -703,8 +846,31 @@ def uninstall(harness: str, config_dir: Path, dry_run: bool = False) -> dict[str
                 target.unlink()
             planned.append(path)
     if not dry_run:
+        _prune_empty_dirs([str(p) for p in data.get("files", [])], roots)
         manifest.unlink()
     return {"harness": harness, "removed": planned, "skipped": skipped, "dry_run": dry_run}
+
+
+def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
+    """Remove now-empty directories created for ``paths``, deepest first.
+
+    Every ancestor of a recorded file up to (but excluding) an allowed root is a
+    candidate. Only empty directories are removed, and never a root itself, so
+    unrelated user directories and the harness config dir are left untouched.
+    """
+    candidates: set[Path] = set()
+    for raw in paths:
+        parent = Path(raw).parent
+        while not any(_is_within(parent, r) or parent == r for r in roots):
+            candidates.add(parent)
+            if parent.parent == parent:
+                break
+            parent = parent.parent
+    for directory in sorted(candidates, key=lambda p: len(p.parts), reverse=True):
+        try:
+            directory.rmdir()
+        except OSError:
+            pass  # not empty or already gone
 
 
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
@@ -778,7 +944,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             harness, _home()
         )
         if args.uninstall:
-            results.append(uninstall(harness, config_dir, dry_run=args.dry_run))
+            results.append(uninstall(harness, root or ROOT, config_dir, dry_run=args.dry_run))
         else:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents)

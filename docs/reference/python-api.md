@@ -675,7 +675,7 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
-#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, str]]`
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, FileContent]]`
 
 _No docstring._
 
@@ -693,9 +693,17 @@ when the harness is not installed or drift is found. The counts come from
 the plan the installer would write — never inferred — so a report can quote
 this output verbatim.
 
-#### `def uninstall(harness: str, config_dir: Path, dry_run: bool=False) -> dict[str, object]`
+#### `def uninstall(harness: str, root: Path, config_dir: Path, dry_run: bool=False) -> dict[str, object]`
 
-_No docstring._
+Remove the recorded install, staying inside the allowed roots.
+
+Deletion is gated on containment under ``config_dir`` or the shared
+``<config_dir>/../.agents`` tree — not on membership in a freshly re-derived
+plan, which would orphan a file whose repository source was deleted after
+install. Files still claimed by another harness's manifest (the shared
+``.agents/skills`` tree) are skipped, so uninstalling Codex does not break
+Cursor. A path recorded by a doctored manifest but outside the allowed roots
+is skipped, so the manifest cannot delete arbitrary files.
 
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 

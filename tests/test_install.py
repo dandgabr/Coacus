@@ -101,7 +101,7 @@ class TestInstaller(unittest.TestCase):
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
         manifest = self.config / coacus_install.MANIFEST_NAME
         self.assertTrue(manifest.is_file())
-        result = coacus_install.uninstall("opencode", self.config)
+        result = coacus_install.uninstall("opencode", self.root, self.config)
         self.assertTrue(result["removed"])
         self.assertFalse((self.config / "plugins/coacus.js").exists())
 
@@ -178,12 +178,12 @@ class TestInstaller(unittest.TestCase):
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
         plugin = self.config / "plugins/coacus.js"
         manifest = self.config / coacus_install.MANIFEST_NAME
-        result = coacus_install.uninstall("opencode", self.config, dry_run=True)
+        result = coacus_install.uninstall("opencode", self.root, self.config, dry_run=True)
         self.assertTrue(result["dry_run"])
         self.assertTrue(plugin.is_file())
         self.assertTrue(manifest.is_file())
 
-    def test_uninstall_rejects_paths_outside_config_dir(self) -> None:
+    def test_uninstall_rejects_paths_outside_the_plan(self) -> None:
         victim = self.tmp / "victim.txt"
         victim.write_text("do not delete\n", encoding="utf-8")
         self.config.mkdir(parents=True, exist_ok=True)
@@ -191,10 +191,112 @@ class TestInstaller(unittest.TestCase):
             json.dumps({"harness": "opencode", "files": [victim.as_posix()]}),
             encoding="utf-8",
         )
-        result = coacus_install.uninstall("opencode", self.config)
+        result = coacus_install.uninstall("opencode", self.root, self.config)
         self.assertEqual(result["removed"], [])
         self.assertIn(victim.as_posix(), result["skipped"])
         self.assertTrue(victim.is_file())
+
+    def test_uninstall_removes_skills_stored_outside_config_dir(self) -> None:
+        # Codex and Cursor write skills to <home>/.agents/skills, outside their
+        # config dir. They must still be removed on uninstall.
+        home = self.tmp / "home"
+        config = home / ".codex"
+        coacus_install.install("codex", self.root, config, dry_run=False)
+        skills = home / ".agents" / "skills"
+        self.assertTrue(any(skills.glob("*/SKILL.md")))
+        result = coacus_install.uninstall("codex", self.root, config)
+        self.assertEqual(result["skipped"], [])
+        self.assertTrue(result["removed"])
+        self.assertFalse(any(skills.glob("*/SKILL.md")))
+
+    def test_uninstall_removes_orphan_when_source_was_deleted(self) -> None:
+        import shutil
+
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        shutil.rmtree(self.root / "methodology/workflows/using-coacus")
+        result = coacus_install.uninstall("opencode", self.root, self.config)
+        self.assertEqual(result["skipped"], [])
+        self.assertFalse(
+            (self.config / "skills/using-coacus/SKILL.md").exists()
+        )
+
+    def test_uninstall_preserves_files_another_harness_claims(self) -> None:
+        # Codex and Cursor share <home>/.agents/skills; uninstalling one must
+        # not delete files the other still needs.
+        root = make_repo(self.tmp / "shared")
+        home = self.tmp / "home2"
+        for harness in ("codex", "cursor"):
+            base = root / f"harnesses/{harness}/bootstrap"
+            base.mkdir(parents=True, exist_ok=True)
+            (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
+            (base / "hooks.json").write_text(
+                '{"command": "__COACUS_ROOT__/x"}', encoding="utf-8"
+            )
+        coacus_install.install("codex", root, home / ".codex", dry_run=False)
+        coacus_install.install("cursor", root, home / ".cursor", dry_run=False)
+        coacus_install.uninstall("codex", root, home / ".codex")
+        self.assertTrue(
+            (home / ".agents/skills/using-coacus/SKILL.md").is_file()
+        )
+        self.assertTrue(coacus_install.verify("cursor", root, home / ".cursor")["ok"])
+
+    def test_agent_name_traversal_is_refused(self) -> None:
+        evil = self.root / "knowledge/agents/roles/evil"
+        evil.mkdir(parents=True)
+        (evil / "agent.source.md").write_text(
+            "---\nname: ../../../../escaped\ndescription: x\n---\n\nbody\n",
+            encoding="utf-8",
+        )
+        with self.assertRaises(ValueError) as ctx:
+            coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertIn("kebab-case", str(ctx.exception))
+
+    def test_symlinks_in_a_skill_are_not_followed(self) -> None:
+        skill = self.root / "knowledge/skills/roles/leaky"
+        skill.mkdir(parents=True)
+        (skill / "SKILL.md").write_text(
+            "---\nname: leaky\ndescription: x\n---\n\nbody\n", encoding="utf-8"
+        )
+        secret = self.tmp / "secret.txt"
+        secret.write_text("top secret", encoding="utf-8")
+        (skill / "link.txt").symlink_to(secret)
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertFalse((self.config / "skills/leaky/link.txt").exists())
+
+    def test_binary_skill_companion_installs_and_verifies(self) -> None:
+        skill = self.root / "knowledge/skills/roles/with-image"
+        skill.mkdir(parents=True)
+        (skill / "SKILL.md").write_text(
+            "---\nname: with-image\ndescription: x\n---\n\nbody\n", encoding="utf-8"
+        )
+        (skill / "logo.png").write_bytes(b"\x89PNG\x00\xff")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertEqual(
+            (self.config / "skills/with-image/logo.png").read_bytes(),
+            b"\x89PNG\x00\xff",
+        )
+        self.assertTrue(coacus_install.verify("opencode", self.root, self.config)["ok"])
+
+    def test_malformed_install_manifest_is_a_clean_error(self) -> None:
+        self.config.mkdir(parents=True, exist_ok=True)
+        (self.config / coacus_install.MANIFEST_NAME).write_text(
+            "{ not json", encoding="utf-8"
+        )
+        self.assertIn(
+            "unreadable install manifest",
+            str(coacus_install.verify("opencode", self.root, self.config)["error"]),
+        )
+        self.assertIn(
+            "unreadable install manifest",
+            str(coacus_install.uninstall("opencode", self.root, self.config)["error"]),
+        )
+
+    def test_hooks_json_survives_a_quote_in_the_repo_path(self) -> None:
+        # A naive str.replace would corrupt the JSON when the root has a quote.
+        root = make_repo(self.tmp / 'we"ird')
+        config = self.tmp / "qcfg"
+        coacus_install.install("codex", root, config, dry_run=False)
+        json.loads((config / "hooks.json").read_text(encoding="utf-8"))
 
     def test_opencode_installs_governor_gate_when_present(self) -> None:
         gate = self.root / "harnesses/opencode/bootstrap/governor-gate.js"
@@ -338,7 +440,7 @@ class TestPartialInstall(unittest.TestCase):
         coacus_install.install(
             "opencode", self.root, self.config, dry_run=False, only=["languages"]
         )
-        result = coacus_install.uninstall("opencode", self.config)
+        result = coacus_install.uninstall("opencode", self.root, self.config)
         self.assertTrue(result["removed"])
         self.assertEqual(self.installed_skills(), set())
 
