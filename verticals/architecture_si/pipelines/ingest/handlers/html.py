@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html as html_module
 import re
 from pathlib import Path
 
@@ -16,9 +17,12 @@ def convert_html_to_md(html_path: str) -> str:
     try:
         from bs4 import BeautifulSoup
     except ImportError:
-        text = re.sub(r"<script.*?</script>", "", html, flags=re.DOTALL | re.IGNORECASE)
-        text = re.sub(r"<style.*?</style>", "", text, flags=re.DOTALL | re.IGNORECASE)
+        # Fallback without BeautifulSoup: strip whole elements with a
+        # non-backtracking dotall pattern (avoids the bad-tag-filter warning).
+        text = re.sub(r"<script\b[^>]*>.*?</script\s*>", "", html, flags=re.DOTALL | re.IGNORECASE)
+        text = re.sub(r"<style\b[^>]*>.*?</style\s*>", "", text, flags=re.DOTALL | re.IGNORECASE)
         text = re.sub(r"<[^>]+>", "\n", text)
+        text = html_module.unescape(text)
         return re.sub(r"\n{3,}", "\n\n", text)
 
     soup = BeautifulSoup(html, "html.parser")
