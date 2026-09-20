@@ -14,9 +14,13 @@ This skill establishes the methodology for supervision, coordination, and operat
 1. **Intent Grounding**:
    - Every workflow begins by extracting and fixing the user's original problem into an explicit intent contract.
    - The contract must contain: Primary Objective, Non-Negotiable Constraints, Expected Deliverables, and Stop Criteria.
-2. **Active Execution Vigilance (Observation Loop)**:
+2. **Routing Before Delegation (mandatory)**:
+   - Choose the subagents through the deterministic router, not by guess. Run `python3 scripts/coacus_route.py "<prompt>" --max-slots` and start from the ranked candidates with their matched terms; the `--max-slots` cap ties the proposal to the governor's free slots.
+   - Honor an explicit user selection by validating it: `python3 scripts/coacus_route.py --agents name1,name2`. An unknown name is an error with suggestions, never a silent drop.
+   - When the router returns nothing, browse with `--list` and select manually; never invent an agent name.
+3. **Active Execution Vigilance (Observation Loop)**:
    - The supervisor does not perform the domain's hands-on work, but monitors the tool calls, messages emitted, and files modified by the subagents.
-3. **Principle of Minimum Efficient Intervention**:
+4. **Principle of Minimum Efficient Intervention**:
    - Adjust first with contextual guidance (*re-prompting*).
    - Contain second (limit permissions or pause execution).
    - Terminate (*kill*) only when drift persists, there is an infinite loop, or there is operational risk.

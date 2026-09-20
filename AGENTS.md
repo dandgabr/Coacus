@@ -12,6 +12,8 @@ Routing rules for any AI agent operating in this repository, in any harness.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
 - `sources.lock.json` — provenance manifest for imported artifacts (provenance).
 - `.agents/*.json` + `.agents/entries/*.json` — GENERATED discovery manifests. Do not hand-edit.
+- `.agents/routing.json` — GENERATED routing index; select agents with
+  `python3 scripts/coacus_route.py` (manual or automated), never by guessing a name.
 
 **Single-scan rule:** read the generated indexes once at session start. Never
 re-scan directories per turn (D5). If indexes look stale, run

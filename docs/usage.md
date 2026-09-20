@@ -41,6 +41,21 @@ The command is offline and deterministic: it lists every moving release pin with
 the network. Resolution itself follows the
 [version-freshness](standards/version-freshness.md) standard.
 
+### Select agents (routing)
+
+```bash
+python3 scripts/coacus_route.py "<prompt>" --top 4 --max-slots   # Mode A: automated
+python3 scripts/coacus_route.py --list --category cybersecurity # Mode M: browse
+python3 scripts/coacus_route.py --agents mobile-security-specialist,dba-specialist  # Mode M: validate
+```
+
+Mode A ranks the agents for a prompt from the generated routing index
+(`.agents/routing.json`) and is offline and deterministic; `--max-slots` caps the
+proposal at the governor's free slots. Mode M browses or validates an explicit
+selection — an unknown name is an error with suggestions. `--rerank "<command>"`
+plugs in an optional semantic reranker behind the same interface and fails open.
+See [routing](standards/routing.md).
+
 ### Validate a TOON payload
 
 ```bash

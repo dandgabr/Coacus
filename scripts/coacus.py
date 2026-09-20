@@ -30,6 +30,7 @@ from engine.generators import (  # noqa: E402
     discovery,
     docstrings,
     mcp_configs,
+    routing,
 )
 from engine.validators import agents as agent_validator  # noqa: E402
 from engine.validators import completeness as completeness_validator  # noqa: E402
@@ -40,6 +41,7 @@ from engine.validators import freshness as freshness_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
 from engine.validators import language as language_validator  # noqa: E402
 from engine.validators import mcps as mcp_validator  # noqa: E402
+from engine.validators import routing as routing_validator  # noqa: E402
 from engine.validators import skills as skill_validator  # noqa: E402
 
 
@@ -52,6 +54,7 @@ def source_errors(root: Path) -> list[str]:
         + hygiene.validate(root)
         + eval_validator.validate(root)
         + freshness_validator.validate(root)
+        + routing_validator.validate_sources(root)
     )
 
 
@@ -61,6 +64,7 @@ def artifact_errors(root: Path) -> list[str]:
         discovery_validator.validate(root)
         + provenance.validate(root)
         + docs_validator.validate(root)
+        + routing_validator.validate_index(root)
     )
 
 
@@ -86,6 +90,7 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         + mcp_configs.write_all(root)
         + bootstrap.write_all(root)
         + discovery.write_all(root)
+        + routing.write_all(root)
     )
     written_paths = catalog.write(root) + [docstrings.write(root)]
     from datetime import datetime, timezone  # noqa: E402
@@ -117,6 +122,7 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         + mcp_configs.check(root)
         + bootstrap.check(root)
         + discovery.check(root)
+        + routing.check(root)
         + catalog.check(root)
         + docstrings.check(root)
     )

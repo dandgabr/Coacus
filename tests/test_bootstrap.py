@@ -119,6 +119,47 @@ class TestBootstrapRender(unittest.TestCase):
         self.assertIn("@returns", plugin)
         self.assertIn("/**", plugin)
 
+    def test_router_hook_renders_only_when_declared(self) -> None:
+        # No router-hook plugin declared -> no file.
+        write_harness(
+            self.root,
+            "opencode",
+            {
+                "name": "opencode",
+                "bootstrap": {
+                    "supported": True,
+                    "shape": "B",
+                    "outputs": [{"path": "harnesses/opencode/bootstrap/coacus.js", "format": "js"}],
+                },
+                "tool_mapping": {"run shell commands": "bash"},
+            },
+        )
+        outputs = bootstrap.expected_outputs(self.root)
+        self.assertNotIn("harnesses/opencode/bootstrap/router-hook.js", outputs)
+
+        # Declared -> rendered, and it calls the router over stdin (opt-in).
+        write_harness(
+            self.root,
+            "opencode",
+            {
+                "name": "opencode",
+                "bootstrap": {
+                    "supported": True,
+                    "shape": "B",
+                    "outputs": [{"path": "harnesses/opencode/bootstrap/coacus.js", "format": "js"}],
+                },
+                "plugins": [
+                    {"path": "harnesses/opencode/bootstrap/router-hook.js", "kind": "router-hook"}
+                ],
+                "tool_mapping": {"run shell commands": "bash"},
+            },
+        )
+        outputs = bootstrap.expected_outputs(self.root)
+        hook = outputs["harnesses/opencode/bootstrap/router-hook.js"]
+        self.assertIn("coacus_route.py", hook)
+        self.assertIn("--stdin", hook)
+        self.assertIn("chat.message", hook)
+
     def test_shape_a_emits_single_native_key(self) -> None:
         write_harness(
             self.root,

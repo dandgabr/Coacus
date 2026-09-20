@@ -223,6 +223,31 @@ Materialize all generated MCP files. Returns repo-relative paths.
 
 Drift check: expected vs disk, plus orphan detection (generated-artifacts).
 
+### `engine/generators/routing.py`
+
+Generate the routing index from the canonical agents plus the curated lexicon.
+
+Writes ``.agents/routing.json``: for every agent, its canonical facts (name,
+category, description, skills) merged with the curated bilingual trigger terms
+from ``knowledge/routing/lexicon.json``. The router (``engine/router.py``) reads
+this single file, so selection never re-scans directories per turn (discovery,
+single-scan).
+
+Deterministic and timestamp-free, like every other generated artifact
+(generated-artifacts): ``check`` verifies idempotency.
+
+#### `def build(root: Path) -> dict`
+
+Build the routing index: one entry per agent, sorted by name.
+
+#### `def write_all(root: Path) -> list[str]`
+
+Materialize ``.agents/routing.json``; return the written path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the routing index (generated-artifacts).
+
 ### `engine/governor/ledger.py`
 
 On-disk concurrency governor with an flock-guarded slot ledger (orchestration-governance).
@@ -298,6 +323,64 @@ imported entry and never removes one. Returns the target paths it added.
 Idempotent: a second call with the same tree adds nothing, and an unchanged
 authored entry keeps its original ``imported_at`` (only a content change
 rewrites the hash).
+
+### `engine/router.py`
+
+Deterministic agent router (routing).
+
+Given a user prompt, rank the agents in the routing index and return the best
+candidates. This is the lexical, offline scorer:
+
+- **Mode A (automated curation)**: ``rank(prompt)`` scores each agent against the
+  prompt and returns the top-N above a minimum threshold.
+- **Mode M (manual selection)**: ``resolve(names)`` validates a user's explicit
+  list of agent names, returning the matched entries and an error per unknown
+  name with close suggestions.
+
+Scoring is a weighted token/phrase overlap without external dependencies:
+
+- a curated trigger phrase (``knowledge/routing/lexicon.json``) weighs most, so
+  the bilingual vocabulary is authoritative;
+- a term in the agent's name weighs next;
+- a term in the description or a skill slug weighs least.
+
+The router never runs the agents and never spawns anything; it only proposes.
+Concurrency is the governor's job (orchestration-governance), and ``rank`` accepts
+a ``limit`` so a caller can cap the proposal at the free slots.
+
+#### `class Candidate`
+
+One ranked agent proposal.
+
+
+#### `def rank(root: Path, prompt: str, limit: int | None=None, min_score: float=DEFAULT_MIN_SCORE) -> list[Candidate]`
+
+Rank agents for ``prompt`` (Mode A); best first, above ``min_score``.
+
+#### `def resolve(root: Path, names: list[str]) -> tuple[list[dict], list[str]]`
+
+Validate an explicit list of agent names (Mode M).
+
+Returns ``(matched_entries, errors)``. A name that does not exist yields an
+error carrying close suggestions; matching is exact on the canonical name or
+a case-insensitive trigger alias.
+
+#### `def list_agents(root: Path, category: str | None=None, grep: str | None=None) -> list[dict]`
+
+Enumerate the agents for manual browsing (Mode M).
+
+#### `def rerank(candidates: list[Candidate], prompt: str, command: str) -> list[Candidate]`
+
+Re-rank lexical candidates with an external command (Mode A, opt-in).
+
+The lexical scorer is the offline default; a semantic reranker (embeddings, a
+local model, an LLM) plugs in here without becoming a dependency. The command
+mirrors the eval judge: it reads JSON on stdin
+``{"prompt": ..., "candidates": [{name, score, matched}, ...]}`` and prints an
+ordered list of agent names, one per line.
+
+Fails open: an absent or failing command returns the lexical ranking unchanged,
+so routing never breaks because the optional reranker is missing.
 
 ### `engine/toon.py`
 
@@ -509,6 +592,40 @@ never deadlocks ``generate``.
 #### `def validate(root: Path) -> list[str]`
 
 Return a list of error strings; empty list means valid.
+
+### `engine/validators/routing.py`
+
+Validate the routing index and its curated lexicon (routing).
+
+``.agents/routing.json`` is generated; this validator checks:
+
+- every canonical agent has exactly one entry and vice versa;
+- each entry carries the required keys with the right types;
+- the curated lexicon (``knowledge/routing/lexicon.json``) covers every agent
+  and names none that does not exist, so a rename cannot silently drop a
+  vocabulary;
+- trigger terms are lowercase and non-empty.
+
+The drift check (``python3 scripts/coacus.py check``) proves the committed index
+matches a fresh regeneration; this validator proves the data is coherent.
+
+#### `def validate_sources(root: Path) -> list[str]`
+
+Source contract: the curated lexicon is present and coherent.
+
+Runs in ``source_errors`` (before ``generate``); it never reads the generated
+index, so a missing/regenerating ``.agents/routing.json`` cannot deadlock
+generation.
+
+#### `def validate_index(root: Path) -> list[str]`
+
+Artifact contract: the generated routing index matches the agents.
+
+Runs in ``artifact_errors`` (after generation / on ``validate``).
+
+#### `def validate(root: Path) -> list[str]`
+
+Full contract: curated lexicon (source) plus the generated index (artifact).
 
 ### `engine/validators/skills.py`
 
@@ -764,7 +881,7 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
-#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, FileContent]]`
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, router_hook: bool=False) -> list[tuple[Path, FileContent]]`
 
 Compute the files to install for ``harness`` under the given filters.
 
@@ -805,6 +922,26 @@ is skipped, so the manifest cannot delete arbitrary files.
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 
 Parse arguments and run install, uninstall, verify or list.
+
+### `scripts/coacus_route.py`
+
+Select agents for a prompt (routing) — manual and automated modes.
+
+    coacus_route.py "<prompt>" [--top N] [--min-score X] [--max-slots]   # Mode A
+    coacus_route.py --list [--category C] [--grep TERM]                  # Mode M
+    coacus_route.py --agents name1,name2                                # Mode M
+
+Mode A (automated curation) ranks the agents against the prompt and prints the
+best candidates, one per line: ``score<TAB>name<TAB>category<TAB>matched``.
+Mode M (manual) browses or validates an explicit selection; an unknown name is an
+error with suggestions and a non-zero exit.
+
+The command only PROPOSES; it never spawns an agent. ``--max-slots`` caps the
+proposal at the governor's free slots so a caller cannot over-subscribe.
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Parse arguments and dispatch to the selected routing mode.
 
 ### `scripts/coacus_vertical.py`
 

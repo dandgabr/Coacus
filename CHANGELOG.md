@@ -5,6 +5,33 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Agent routing
+
+### Added
+
+- `routing` standard plus the agent routing system: a generated index
+  (`.agents/routing.json`) merging each agent's canonical facts with a curated
+  bilingual (PT-BR + EN) trigger lexicon (`knowledge/routing/lexicon.json`), and a
+  deterministic, offline scorer (`engine/router.py`). Two modes share one source:
+  **Mode M** (manual — `--list`, `--agents`, with suggestions on an unknown name)
+  and **Mode A** (automated curation — `--top`, `--max-slots`).
+- `scripts/coacus_route.py`, the routing CLI. It only PROPOSES; `--max-slots` caps
+  the proposal at the governor's free slots, and `--rerank "<command>"` plugs in an
+  optional semantic reranker behind the same interface, failing open.
+- The orchestrator now routes BEFORE delegating (mandatory step 0), and the
+  multi-agent supervision skill carries the same rule. An OPT-IN OpenCode router
+  hook (`router-hook.js`, installed with `COACUS_ROUTER_HOOK=1`) injects the
+  candidates into the prompt automatically.
+- Tests: `test_routing.py` (index/lexicon), `test_router.py` (scorer),
+  `test_router_calibration.py` (quality against the real corpus).
+
+### Changed
+
+- Calibration fixes: diacritics are folded so ``latência`` matches ``latencia``;
+  multi-word triggers match as phrases (``sistema digital`` no longer matches a
+  bare ``sistema``); the curated lexicon was enriched for paraphrase
+  (``revisar``/``relatório``/``ameaça``).
+
 ## [Unreleased] — Version freshness
 
 ### Added

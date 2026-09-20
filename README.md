@@ -147,8 +147,8 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 ### Scripts, tests and evals
 
-Six CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
-`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`. The `tests/` tree
+Seven CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
+`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`, `coacus_route.py`. The `tests/` tree
 holds a deterministic stdlib `unittest` suite (measure it with
 `python3 -m unittest discover -s tests`). `evals/` holds six behavior
 scenarios behind a static gate and an opt-in live runner
@@ -213,6 +213,9 @@ python3 scripts/coacus.py generate      # regenerate dist/, bootstraps, .agents/
 python3 scripts/coacus.py check         # fail if generated artifacts are stale
 python3 scripts/coacus.py validate      # run source + artifact validators
 python3 scripts/coacus.py completeness  # reconcile sources, lock file and catalog
+python3 scripts/coacus.py freshness     # read-only inventory of version pins
+python3 scripts/coacus_route.py "<prompt>" --top 4   # suggest agents (Mode A)
+python3 scripts/coacus_route.py --agents a,b          # validate a selection (Mode M)
 python3 scripts/coacus.py toon payload.toon   # validate a TOON handoff payload
 python3 -m unittest discover -s tests   # deterministic suite
 
@@ -269,6 +272,7 @@ read the relevant one before changing that area of the repository.
 | [secrets-portability](docs/standards/secrets-portability.md) | No plaintext secrets, no absolute paths. |
 | [provenance](docs/standards/provenance.md) | The provenance manifest at the repository root. |
 | [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its ten-category taxonomy. |
+| [routing](docs/standards/routing.md) | Agents are selected through a generated index, in a manual or an automated mode. |
 | [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from Context7 or the publisher, never recalled; the most recent definition wins. |
 
 ## Status
@@ -309,7 +313,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 17 normative standards. Read before changing that area. |
+| [`docs/standards/`](docs/standards/) | The 18 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |
