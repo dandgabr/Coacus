@@ -5,7 +5,7 @@ validator that enforces it. The rule is what governs the repository.
 
 | Standard | What it governs |
 |---|---|
-| [`principles.md`](principles.md) | The core principle and the five project principles every other standard inherits. |
+| [`principles.md`](principles.md) | The core principle and the four project principles every other standard inherits. |
 | [`english-only.md`](english-only.md) | Repo-wide English-only content, and the translation of imported non-English material. |
 | [`skill-authoring.md`](skill-authoring.md) | `SKILL.md` structure, placement, agnostic bodies and per-harness adapters. |
 | [`agent-manifests.md`](agent-manifests.md) | The single `agent.source.md` source and its generated representations. |

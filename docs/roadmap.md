@@ -26,7 +26,7 @@ the contract.
 
 ### F1 — Foundation
 
-Built the engine: `frontmatter.py`, the five generators, the source validators,
+Built the engine: `frontmatter.py`, the generators (five at the time), the source validators,
 the thin `coacus.py` CLI, and the first deterministic tests. Established that
 the engine is closed for modification and operates on data registries.
 
@@ -63,9 +63,9 @@ evaluation never blocks CI.
 
 Imported and translated the corpus using `templates/import/import-manifest.json`
 and `scripts/coacus_import.py`, recorded provenance in `sources.lock.json`, and
-reorganized the material into the ten-category taxonomy. Delivered 199 knowledge
-skills, 58 agents, 15 process workflows and one MCP (214 catalog skill entries:
-199 + 15). See [`migration.md`](migration.md) and
+reorganized the material into the ten-category taxonomy. Delivered (as of F6)
+199 knowledge skills, 58 agents, 15 process workflows and one MCP (214 catalog
+skill entries: 199 + 15). See [`migration.md`](migration.md) and
 [corpus-and-taxonomy](standards/corpus-and-taxonomy.md).
 
 > Post-F7 the corpus was pruned of components coupled to a specific MCP server
