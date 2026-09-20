@@ -46,4 +46,7 @@ jobs:
           curl -sSfL -o gl.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${V}/gitleaks_${V}_linux_x64.tar.gz"
           echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gl.tar.gz" | sha256sum -c -
           tar -xzf gl.tar.gz gitleaks
-          ./gitleaks git --redact --no-banner --exit-code 1 --config .gitleaks.toml
+          # Scan the checked-out STATE (what squash-merge ships), not every
+          # historical commit on the branch: intermediate commits that were
+          # remediated before merge never reach main and must not fail CI.
+          ./gitleaks dir --redact --no-banner --exit-code 1 --config .gitleaks.toml .
