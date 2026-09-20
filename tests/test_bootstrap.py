@@ -78,6 +78,27 @@ class TestBootstrapRender(unittest.TestCase):
         self.assertIn("run shell commands -> bash", plugin)
         self.assertIn("EXTREMELY_IMPORTANT", plugin)
 
+    def test_shape_b_does_not_register_repo_skill_paths(self) -> None:
+        # Registering the repo skill roots bypasses a partial install: the
+        # harness discovers the installed skills tree natively instead.
+        write_harness(
+            self.root,
+            "opencode",
+            {
+                "name": "opencode",
+                "bootstrap": {
+                    "supported": True,
+                    "shape": "B",
+                    "outputs": [{"path": "harnesses/opencode/bootstrap/coacus.js", "format": "js"}],
+                },
+                "tool_mapping": {"run shell commands": "bash"},
+            },
+        )
+        outputs = bootstrap.expected_outputs(self.root)
+        plugin = outputs["harnesses/opencode/bootstrap/coacus.js"]
+        self.assertNotIn("SKILL_PATHS", plugin)
+        self.assertNotIn("skills.paths", plugin)
+
     def test_shape_a_emits_single_native_key(self) -> None:
         write_harness(
             self.root,

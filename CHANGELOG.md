@@ -47,6 +47,16 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   previously only OpenCode. A harness without `live_cli` is reported as
   `NO_RUNNER`. The docstring's promised `--harness` flag, which the code never
   implemented, now exists.
+
+### Fixed
+
+- The OpenCode plugin no longer registers the repository's skill roots via
+  `config.skills.paths`. Doing so re-registered the whole corpus at runtime and
+  bypassed partial installs: measured with `opencode debug skill`, an
+  `--only languages` install (19 mirrored skills) still exposed all 208 repo
+  skills. OpenCode discovers the mirrored `~/.config/opencode/skills/` tree
+  natively, so the registration was both redundant and harmful. The plugin now
+  only injects the bootstrap. **[verified locally]**
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and
