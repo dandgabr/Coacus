@@ -28,6 +28,16 @@ evidence class. Do not treat them as equally authoritative.
 - The harness CLI you intend to install into, unless you only want a dry run.
 - Run every command from the repository root.
 
+### Recommended MCP dependency
+
+The [`context7`](https://context7.com/) MCP server is the framework's recommended
+external dependency. It is hosted, keyless and declared once under
+[`knowledge/mcps/context7/`](../knowledge/mcps/context7/MCP.md); the generator
+derives `dist/mcp.json` and `dist/mcp_config.json` from it. Registering it with a
+harness is optional — the scripts, validators and generated artifacts all work
+without it — but the corpus skills assume current library/framework docs when a
+task needs them, which is what context7 provides.
+
 ## Step 1 — render the artifacts
 
 Do this once, before any install. The installer copies rendered files; it does
