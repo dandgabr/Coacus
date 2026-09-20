@@ -5,7 +5,32 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
-## [Unreleased] — F7 (consolidation)
+## [Unreleased] — F8 (completeness) and docs refresh
+
+### Added
+
+- `engine/validators/completeness.py` and `python3 scripts/coacus.py
+  completeness`: reconciles the import manifest against the source repositories,
+  the target tree, the committed catalog, provenance (no orphan targets), agent
+  skill references and the ADR set (ADR-0001…ADR-0017); recognises renames and
+  merges. Wired into CI.
+- `engine/generators/docstrings.py`: generates `docs/reference/python-api.md`
+  from source docstrings, drift-checked like any generated artifact.
+- Per-harness installation tutorial (`docs/install.md`) with an evidence class
+  per vendor claim, plus a rewritten top-level `README.md`.
+
+### Changed
+
+- `templates/import/import-manifest.json` now resolves source repositories from
+  a portable `{workspace}` token (`COACUS_WORKSPACE` override) instead of
+  machine absolute paths.
+- `engine/validators/hygiene.py` also scans `templates/**/*.json|yaml|yml`,
+  closing the D12 blind spot for data files.
+- `harnesses/cursor/harness.json` corrected to the documented Cursor hook path
+  (`.cursor/hooks.json`, snake_case `additional_context`).
+- Documentation count references reconciled (181 tests, six CLIs).
+
+## [F7] — 2026-09-20 — consolidation
 
 ### Added
 
