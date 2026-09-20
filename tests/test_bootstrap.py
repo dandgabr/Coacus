@@ -98,6 +98,27 @@ class TestBootstrapRender(unittest.TestCase):
         self.assertNotIn("SKILL_PATHS", plugin)
         self.assertNotIn("skills.paths", plugin)
 
+    def test_shape_b_jsdoc_documents_the_export(self) -> None:
+        # The generated plugin follows the JSDoc convention.
+        write_harness(
+            self.root,
+            "opencode",
+            {
+                "name": "opencode",
+                "bootstrap": {
+                    "supported": True,
+                    "shape": "B",
+                    "outputs": [{"path": "harnesses/opencode/bootstrap/coacus.js", "format": "js"}],
+                },
+                "tool_mapping": {"run shell commands": "bash"},
+            },
+        )
+        outputs = bootstrap.expected_outputs(self.root)
+        plugin = outputs["harnesses/opencode/bootstrap/coacus.js"]
+        self.assertIn("@param", plugin)
+        self.assertIn("@returns", plugin)
+        self.assertIn("/**", plugin)
+
     def test_shape_a_emits_single_native_key(self) -> None:
         write_harness(
             self.root,

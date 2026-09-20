@@ -21,6 +21,7 @@ STRING_KEYS = ("id", "title", "harness", "prompt", "acceptance")
 
 
 def discover(root: Path) -> list[Path]:
+    """Return every scenario file (``evals/scenarios/<id>/scenario.json``)."""
     base = root / SCENARIOS_DIR
     if not base.is_dir():
         return []

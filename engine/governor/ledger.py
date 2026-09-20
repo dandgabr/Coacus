@@ -31,6 +31,7 @@ CALLER_RE = re.compile(r"^[A-Za-z0-9._:-]+$")
 
 
 def state_dir() -> Path:
+    """The governor's state directory (``GOVERNOR_STATE_DIR`` or a runtime default)."""
     override = os.environ.get("GOVERNOR_STATE_DIR")
     if override:
         return Path(override)
@@ -63,6 +64,7 @@ class Ledger:
         max_total: int | None = None,
         lease_seconds: int = DEFAULT_LEASE_SECONDS,
     ):
+        """Open the ledger, creating its directory with owner-only permissions."""
         self.dir = Path(directory) if directory else state_dir()
         self.requested_max = int(max_total) if max_total is not None else _env_max_total()
         self.lease_seconds = int(lease_seconds) if lease_seconds else _lease_seconds()
@@ -198,6 +200,7 @@ class Ledger:
             time.sleep(POLL_SECONDS)
 
     def release(self, caller: str) -> None:
+        """Release the slot held by ``caller`` (a no-op if it holds none)."""
         self._validate_caller(caller)
         with self._locked():
             max_total, records = self._read()
@@ -249,6 +252,7 @@ class Ledger:
             return result
 
     def clear_paused(self, caller: str | None = None) -> None:
+        """Drop PAUSED rows for ``caller``, or for every caller when ``None``."""
         with self._locked():
             max_total, records = self._read()
             if caller:
@@ -262,6 +266,7 @@ class Ledger:
             self._write(max_total, records)
 
     def status(self) -> dict:
+        """Reap stale leases and return the current running/paused/slots snapshot."""
         with self._locked():
             max_total, records = self._read()
             now = time.time()
@@ -281,5 +286,6 @@ class Ledger:
             }
 
     def reset(self) -> None:
+        """Clear every record, returning the ledger to an idle state."""
         with self._locked():
             self._write(self.requested_max, [])

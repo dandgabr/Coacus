@@ -173,6 +173,11 @@ def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
 
 
 def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
+    """Render the in-process plugin (shape B) with a JSDoc'd exported hook.
+
+    The JS follows the JSDoc convention: the exported plugin factory and its
+    callbacks document parameters and return contracts with ``@param``/``@returns``.
+    """
     name = harness["name"]
     return (
         "// Coacus bootstrap for harness '" + name + "' (generated — do not edit).\n"
@@ -187,6 +192,15 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
         "const BOOTSTRAP = " + json.dumps(text) + ";\n"
         "const GUARD = 'EXTREMELY_IMPORTANT';\n"
         "\n"
+        "/**\n"
+        " * Inject the Coacus entry guidance into the first user message.\n"
+        " *\n"
+        " * @param {object} _input - The transform input (unused).\n"
+        " * @param {{ messages: Array<{ info: { role: string }, parts: Array<object> }> }} output\n"
+        " *   - The message list to mutate in place; the bootstrap is unshifted onto\n"
+        " *     the first user message unless the anti-reinjection guard is present.\n"
+        " * @returns {Promise<void>} Resolves after the (possibly) mutated list is written.\n"
+        " */\n"
         "export const CoacusPlugin = async () => ({\n"
         "  'experimental.chat.messages.transform': async (_input, output) => {\n"
         "    if (!output.messages.length) return;\n"
@@ -361,6 +375,15 @@ def _render_governor_gate(harness: dict) -> dict[str, str]:
                 "// caller -> {token, calls}; kept on the plugin instance, never in args.\n"
                 "const held = new Map();\n"
                 "\n"
+                "/**\n"
+                " * Invoke the Coacus governor CLI.\n"
+                " *\n"
+                " * @param {string} action - Governor action (acquire, release, fail, ...).\n"
+                " * @param {string} caller - Stable caller identity for the ledger slot.\n"
+                " * @param {string} [timeout='5'] - Seconds to wait for a free slot.\n"
+                " * @param {string} [orchestrator='no'] - 'yes' if the caller orchestrates.\n"
+                " * @returns {string} The governor token on success, or '' on failure/cap.\n"
+                " */\n"
                 "const gov = (action, caller, timeout = '5', orchestrator = 'no') => {\n"
                 "  try {\n"
                 "    return execFileSync(\n"
@@ -371,6 +394,15 @@ def _render_governor_gate(harness: dict) -> dict[str, str]:
                 "  } catch { return ''; }\n"
                 "};\n"
                 "\n"
+                "/**\n"
+                " * Governor gate plugin: enforce the concurrency cap on subagent spawns.\n"
+                " *\n"
+                " * Acquires a ledger slot before a `task` spawn and aborts it when no slot\n"
+                " * is free; releases the slot after, parking the caller as PAUSED on a\n"
+                " * detected rate limit.\n"
+                " *\n"
+                " * @returns {Promise<object>} The plugin hook map.\n"
+                " */\n"
                 "export const CoacusGovernor = async () => ({\n"
                 "  'tool.execute.before': async (input, output) => {\n"
                 "    if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"

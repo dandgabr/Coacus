@@ -126,6 +126,7 @@ def _iter_skill_files(skill_dir: Path) -> list[Path]:
 
 
 def plan_skills(manifest: dict) -> list[dict]:
+    """Plan the import (or exclusion) of every source skill into the taxonomy."""
     source_root = _source_dir(manifest, "skills")
     actions: list[dict] = []
     for skill_dir in _skill_dirs(source_root):
@@ -151,6 +152,7 @@ def plan_skills(manifest: dict) -> list[dict]:
 
 
 def plan_superpowers(manifest: dict) -> list[dict]:
+    """Plan the import of the Superpowers workflow collection, namespaced."""
     source_root = _source_dir(manifest, "superpowers")
     base = source_root / "skills"
     actions: list[dict] = []
@@ -174,6 +176,7 @@ def plan_superpowers(manifest: dict) -> list[dict]:
 
 
 def plan_agents(manifest: dict) -> list[dict]:
+    """Plan agent imports, applying the manifest's merge and exclusion rules."""
     source_root = _source_dir(manifest, "skills")
     base = source_root / "agents"
     actions: list[dict] = []
@@ -465,6 +468,7 @@ def _convert_agent(
 
 
 def doc_title(doc) -> str:
+    """Return the first ``# `` heading of a parsed document, or an empty string."""
     for line in doc.body.splitlines():
         if line.startswith("# "):
             return line[2:].strip()
@@ -491,6 +495,7 @@ def _namespace_workflow_name(target: Path) -> None:
 
 
 def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
+    """Execute the planned actions and return the recorded provenance entries."""
     entries: list[dict] = []
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     skills_commit = _source_commit(_source_dir(manifest, "skills"))
@@ -573,6 +578,7 @@ def _relabel_licenses(lock: dict, manifest: dict) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Parse arguments and run the ``plan`` or ``apply`` import action."""
     parser = argparse.ArgumentParser(prog="coacus-import", description=__doc__)
     parser.add_argument("action", choices=["plan", "apply"])
     parser.add_argument("--source", choices=["skills", "superpowers", "agents"], default=None)

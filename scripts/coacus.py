@@ -67,6 +67,7 @@ def _print(items: list[str], label: str) -> None:
 
 
 def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    """Regenerate every derived artifact; return a non-zero exit on failure."""
     root = root or ROOT
     errors = source_errors(root)
     if errors:
@@ -95,6 +96,7 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
 
 
 def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    """Fail if any generated artifact has drifted from its source."""
     root = root or ROOT
     drift = (
         agent_manifests.check(root)
@@ -113,6 +115,7 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
 
 
 def cmd_toon(args: argparse.Namespace) -> int:
+    """Validate a TOON handoff payload file; print errors and return the exit code."""
     from engine import toon  # noqa: E402
 
     path = Path(args.path)
@@ -129,6 +132,7 @@ def cmd_toon(args: argparse.Namespace) -> int:
 
 
 def cmd_completeness(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    """Reconcile the corpus against its sources; fail if anything is unreconciled."""
     root = root or ROOT
     gaps = completeness_validator.validate(root)
     if gaps:
@@ -140,6 +144,7 @@ def cmd_completeness(_args: argparse.Namespace | None = None, root: Path | None 
 
 
 def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    """Run the schema and hygiene validators; fail on any error."""
     root = root or ROOT
     warnings = _warnings(root)
     if warnings:
@@ -154,6 +159,7 @@ def cmd_validate(_args: argparse.Namespace | None = None, root: Path | None = No
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Parse arguments and dispatch to the selected subcommand."""
     parser = argparse.ArgumentParser(prog="coacus", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("generate", help="regenerate dist/, .agents/, catalog/ and docs/")

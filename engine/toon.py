@@ -102,4 +102,5 @@ def validate(text: str) -> list[str]:
 
 
 def is_valid(text: str) -> bool:
+    """Return ``True`` when ``text`` is a valid TOON payload (no errors)."""
     return not validate(text)

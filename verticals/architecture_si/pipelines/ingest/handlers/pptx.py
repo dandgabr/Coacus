@@ -10,6 +10,10 @@ from verticals.architecture_si.pipelines.ingest.handlers import _common as commo
 
 
 def convert_pptx_to_md(pptx_path: str) -> str:
+    """Convert a PPTX presentation's slides to Markdown.
+
+    Legacy ``.ppt`` (OLE) raises ``RuntimeError`` (unsupported by python-pptx).
+    """
     if Path(pptx_path).suffix.lower() == ".ppt":
         raise RuntimeError(
             "legacy .ppt (OLE) is not supported by python-pptx; convert it to "
@@ -46,4 +50,5 @@ def convert_pptx_to_md(pptx_path: str) -> str:
 
 @register_converter(".pptx", ".ppt")
 def handle_pptx(input_path: str, output_path: str | None = None) -> str:
+    """Convert a PPTX file to Markdown and return the written path."""
     return common.write_markdown(convert_pptx_to_md(input_path), output_path, input_path)

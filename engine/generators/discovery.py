@@ -27,6 +27,7 @@ def _entries(root: Path, paths: list[Path]) -> dict:
 
 
 def build(root: Path) -> dict[str, dict]:
+    """Build the three discovery manifests (skills, mcps, agents) from disk."""
     skills: list[Path] = []
     for top in SKILL_ROOTS:
         base = root / top
@@ -50,6 +51,7 @@ def _expected(root: Path) -> dict[str, str]:
 
 
 def write_all(root: Path) -> list[str]:
+    """Materialize ``.agents/{skills,mcps,agents}.json``; return written paths."""
     written: list[str] = []
     for rel, content in _expected(root).items():
         path = root / rel

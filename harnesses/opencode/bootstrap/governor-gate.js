@@ -18,6 +18,15 @@ const RATE_LIMIT_RE = /(429|Too Many Requests|rate.?limit|quota exceeded|RPM|TPM
 // caller -> {token, calls}; kept on the plugin instance, never in args.
 const held = new Map();
 
+/**
+ * Invoke the Coacus governor CLI.
+ *
+ * @param {string} action - Governor action (acquire, release, fail, ...).
+ * @param {string} caller - Stable caller identity for the ledger slot.
+ * @param {string} [timeout='5'] - Seconds to wait for a free slot.
+ * @param {string} [orchestrator='no'] - 'yes' if the caller orchestrates.
+ * @returns {string} The governor token on success, or '' on failure/cap.
+ */
 const gov = (action, caller, timeout = '5', orchestrator = 'no') => {
   try {
     return execFileSync(
@@ -28,6 +37,15 @@ const gov = (action, caller, timeout = '5', orchestrator = 'no') => {
   } catch { return ''; }
 };
 
+/**
+ * Governor gate plugin: enforce the concurrency cap on subagent spawns.
+ *
+ * Acquires a ledger slot before a `task` spawn and aborts it when no slot
+ * is free; releases the slot after, parking the caller as PAUSED on a
+ * detected rate limit.
+ *
+ * @returns {Promise<object>} The plugin hook map.
+ */
 export const CoacusGovernor = async () => ({
   'tool.execute.before': async (input, output) => {
     if (!SPAWN_TOOLS.has(input.tool ?? '')) return;

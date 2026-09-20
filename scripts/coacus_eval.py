@@ -180,6 +180,7 @@ def _verdict_pass(text: str) -> bool | None:
 
 
 def cmd_validate(root: Path) -> int:
+    """Statically validate every eval scenario; return non-zero on any error."""
     errors = scenario_validator.validate(root)
     if errors:
         print(f"{len(errors)} scenario error(s):")
@@ -192,6 +193,7 @@ def cmd_validate(root: Path) -> int:
 
 def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_agent: bool,
             timeout: float, harness: str | None = None) -> int:
+    """Run scenarios live and report check/judge results; fail if any did not pass."""
     # Fail fast on invalid scenarios (same contract as the static gate).
     errors = scenario_validator.validate(root)
     if errors:
@@ -238,6 +240,7 @@ def cmd_run(root: Path, scenario_id: str | None, judge_cmd: str | None, judge_ag
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Parse arguments and dispatch to ``validate`` or ``run``."""
     parser = argparse.ArgumentParser(prog="coacus-eval", description=__doc__)
     parser.add_argument("action", choices=["validate", "run"])
     parser.add_argument("--scenario", help="run only this scenario id")

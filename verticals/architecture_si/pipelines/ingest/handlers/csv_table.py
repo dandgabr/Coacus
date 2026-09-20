@@ -12,6 +12,7 @@ from verticals.architecture_si.pipelines.ingest.handlers import _common as commo
 
 @register_converter(".csv", ".tsv")
 def handle_csv(input_path: str, output_path: str | None = None) -> str:
+    """Convert a CSV/TSV file to a Markdown table and return the written path."""
     with open(input_path, "r", encoding="utf-8", errors="replace") as handle:
         sample = handle.read(2048)
         handle.seek(0)

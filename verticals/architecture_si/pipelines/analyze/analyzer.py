@@ -25,6 +25,8 @@ SECURITY_KEYWORDS: dict[str, list[str]] = {
 
 @dataclass
 class Analysis:
+    """Structured result of analysing one Markdown document."""
+
     file_name: str
     file_path: str
     total_lines: int
@@ -46,6 +48,7 @@ def _has_term(text_lower: str, term: str) -> bool:
 
 
 def analyze_markdown(file_path: str) -> Analysis:
+    """Analyse a Markdown file and return its metrics, outline and detected terms."""
     path = Path(file_path)
     if not path.exists():
         raise FileNotFoundError(f"file not found: {file_path}")
@@ -86,6 +89,7 @@ def analyze_markdown(file_path: str) -> Analysis:
 
 
 def human_report(analysis: Analysis) -> str:
+    """Render an analysis as a human-readable text report."""
     parts = [
         "=" * 50,
         f"Analysis report: {analysis.file_name}",
@@ -110,6 +114,7 @@ def human_report(analysis: Analysis) -> str:
 
 
 def analyze_dir(directory: str, as_json: bool) -> str:
+    """Analyse every ``*.md`` file in ``directory``, as JSON or human reports."""
     files = sorted(Path(directory).glob("*.md"))
     chunks: list[str] = []
     for path in files:

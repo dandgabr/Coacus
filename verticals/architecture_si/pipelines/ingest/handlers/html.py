@@ -21,29 +21,35 @@ class _TextExtractor(HTMLParser):
     _SKIP = {"script", "style", "nav", "footer", "head"}
 
     def __init__(self) -> None:
+        """Initialize the extractor with an empty buffer and no skip depth."""
         super().__init__(convert_charrefs=True)
         self.parts: list[str] = []
         self._skip_depth = 0
 
     def handle_starttag(self, tag: str, attrs) -> None:
+        """Track skipped subtrees and emit a line break for block-level tags."""
         if tag in self._SKIP:
             self._skip_depth += 1
         elif tag in ("p", "br", "div", "li", "h1", "h2", "h3", "h4", "tr"):
             self.parts.append("\n")
 
     def handle_endtag(self, tag: str) -> None:
+        """Leave a skipped subtree when its closing tag arrives."""
         if tag in self._SKIP and self._skip_depth:
             self._skip_depth -= 1
 
     def handle_data(self, data: str) -> None:
+        """Buffer visible text, ignoring whitespace-only runs and skipped tags."""
         if not self._skip_depth and data.strip():
             self.parts.append(data.strip())
 
     def text(self) -> str:
+        """Return the buffered text with runs of blank lines collapsed."""
         return re.sub(r"\n{3,}", "\n\n", "\n".join(self.parts)).strip()
 
 
 def convert_html_to_md(html_path: str) -> str:
+    """Convert an HTML file to Markdown, preferring BeautifulSoup when present."""
     with open(html_path, "r", encoding="utf-8", errors="replace") as handle:
         html = handle.read()
     try:
@@ -87,4 +93,5 @@ def convert_html_to_md(html_path: str) -> str:
 
 @register_converter(".html", ".htm")
 def handle_html(input_path: str, output_path: str | None = None) -> str:
+    """Convert an HTML file to Markdown and return the written path."""
     return common.write_markdown(convert_html_to_md(input_path), output_path, input_path)

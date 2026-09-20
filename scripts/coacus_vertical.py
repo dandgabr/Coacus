@@ -72,6 +72,7 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Parse arguments and dispatch to the ``ingest`` or ``analyze`` subcommand."""
     parser = argparse.ArgumentParser(prog="coacus-vertical", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
 

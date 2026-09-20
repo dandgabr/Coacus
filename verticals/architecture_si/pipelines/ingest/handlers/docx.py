@@ -10,6 +10,10 @@ from verticals.architecture_si.pipelines.ingest.handlers import _common as commo
 
 
 def convert_docx_to_md(docx_path: str) -> str:
+    """Convert a DOCX document's headings, paragraphs, lists and tables to Markdown.
+
+    Legacy ``.doc`` (OLE) raises ``RuntimeError`` (unsupported by python-docx).
+    """
     if Path(docx_path).suffix.lower() == ".doc":
         raise RuntimeError(
             "legacy .doc (OLE) is not supported by python-docx; convert it to "
@@ -49,4 +53,5 @@ def convert_docx_to_md(docx_path: str) -> str:
 
 @register_converter(".docx", ".doc")
 def handle_docx(input_path: str, output_path: str | None = None) -> str:
+    """Convert a DOCX file to Markdown and return the written path."""
     return common.write_markdown(convert_docx_to_md(input_path), output_path, input_path)

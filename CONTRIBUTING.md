@@ -40,7 +40,7 @@ Run the full gate before opening a pull request:
 python3 scripts/coacus.py generate     # produce the artifacts your change implies
 python3 scripts/coacus.py validate     # source + artifact contracts
 python3 scripts/coacus.py check        # must report no drift
-python3 -m unittest discover -s tests  # 242 deterministic tests
+python3 -m unittest discover -s tests  # 245 deterministic tests
 ```
 
 `generate` refuses to write while source validation fails. Fix `[error]` lines
@@ -69,6 +69,15 @@ These are machine-checked by the validators and the hygiene scan:
 5. **Agnostic skill bodies** ([skill-authoring](docs/standards/skill-authoring.md)).
    Canonical content names actions, never harness tool names. Tool mappings go
    in `references/<harness>-tools.md` and in `harness.json`.
+6. **Docstring and JSDoc conventions.** Python modules, public functions, classes
+   and public methods carry a docstring ([PEP 257](https://peps.python.org/pep-0257/));
+   these are the single source of the generated `docs/reference/python-api.md`, so
+   a missing docstring is also a hole in the reference. Generated JavaScript
+   (`harnesses/opencode/bootstrap/*.js`) documents exported symbols with
+   [JSDoc](https://jsdoc.app/) (`@param`/`@returns`). `tests/test_docstrings.py`
+   enforces the Python side in CI. Verbatim third-party assets under
+   `methodology/` are exempt — they are byte-identical upstream copies recorded in
+   `sources.lock.json` and must not be edited.
 6. **kebab-case names; third-person, trigger-oriented descriptions.**
 7. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
 8. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).

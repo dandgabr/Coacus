@@ -10,7 +10,7 @@ dependency for the core tooling.
 python3 scripts/coacus.py generate   # regenerate dist/, harnesses/<h>/bootstrap/, .agents/ and catalog/
 python3 scripts/coacus.py check      # fail if generated artifacts are stale
 python3 scripts/coacus.py validate   # run source + artifact validators
-python3 -m unittest discover -s tests  # deterministic suite (242 tests)
+python3 -m unittest discover -s tests  # deterministic suite (245 tests)
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
