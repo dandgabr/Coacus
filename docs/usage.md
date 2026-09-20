@@ -107,7 +107,7 @@ python3 scripts/coacus_eval.py run --judge-agent
 `--judge-cmd` receives `{"scenario": ..., "transcript": ...}` as JSON on stdin
 and must print a verdict line. `--judge-agent` routes the rubric through the
 same harness as a subagent. Transcripts are redacted by default; set
-`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The four seeded scenarios
+`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The six seeded scenarios
 and the scenario schema are documented in [`../evals/README.md`](../evals/README.md).
 
 ## architecture_si vertical

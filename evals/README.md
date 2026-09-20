@@ -60,6 +60,8 @@ scenario runs against every installed CLI.
 - `skill-first-discipline` — the single-scan + skill-first rules are known.
 - `artifact-lifecycle` — generated output is never hand-edited.
 - `governance-cap-and-toon` — the cap (5, orchestrator included) and `@STATUS`.
+- `evidence-before-claims` — run the verification command before claiming done.
+- `brainstorm-before-build` — explore intent/design before writing code.
 
 ## Judge
 

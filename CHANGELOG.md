@@ -47,6 +47,10 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   previously only OpenCode. A harness without `live_cli` is reported as
   `NO_RUNNER`. The docstring's promised `--harness` flag, which the code never
   implemented, now exists.
+- Two behavior-eval scenarios: `evidence-before-claims` (run the verification
+  command before claiming done) and `brainstorm-before-build` (explore intent and
+  design before implementation). Both are live-green on OpenCode; the seeded set
+  is now six.
 
 ### Fixed
 
