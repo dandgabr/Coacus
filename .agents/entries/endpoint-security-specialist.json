@@ -1,0 +1,8 @@
+{
+  "name": "endpoint-security-specialist",
+  "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/endpoint-security-specialist/dist",
+  "fingerprint": "d1205ba4089eed6f"
+}

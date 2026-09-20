@@ -1,0 +1,6 @@
+{
+  "name": "automotive-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Automotive Cybersecurity, covering ISO/SAE 21434, UNECE WP.29 R155/R156, TARA, in-vehicle network security and secure OTA update and vehicle lifecycle protection.",
+  "entrypoint": "AGENT.md"
+}

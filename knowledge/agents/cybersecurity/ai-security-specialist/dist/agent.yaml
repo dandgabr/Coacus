@@ -14,6 +14,9 @@ instruction: >
   ### 📚 Associated Skills
 
   - [ai-llm-slm-security](knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md)
+  - [ai-agentic-security](knowledge/skills/security/ai/ai-agentic-security/SKILL.md)
+  - [ai-adversarial-ml-security](knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md)
+  - [ai-governance-assurance](knowledge/skills/security/ai/ai-governance-assurance/SKILL.md)
   - [ai-computer-vision-security](knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md)
   - [ai-voice-stt-tts-security](knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
@@ -36,8 +39,16 @@ tools:
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/security/ai/ai-agentic-security/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/ai/ai-adversarial-ml-security/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/security/ai/ai-computer-vision-security/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/ai/ai-governance-assurance/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/ai/ai-llm-slm-security/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/ai/ai-voice-stt-tts-security/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/operations/untrusted-content-security/SKILL.md

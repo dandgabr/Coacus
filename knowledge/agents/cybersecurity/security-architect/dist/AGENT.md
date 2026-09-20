@@ -6,10 +6,14 @@ Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, t
 
 <!-- coacus:generated:skills -->
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
+- [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [quantitative-risk-fair](../../../../skills/security/grc/quantitative-risk-fair/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [security-architecture-patterns](../../../../skills/security/operations/security-architecture-patterns/SKILL.md)
 - [security-architect-sabsa](../../../../skills/security/operations/security-architect-sabsa/SKILL.md)
 - [security-technical-opinion](../../../../skills/security/operations/security-technical-opinion/SKILL.md)
+- [secure-by-design](../../../../skills/security/operations/secure-by-design/SKILL.md)
 - [threat-modeler](../../../../skills/security/operations/threat-modeler/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -40,8 +44,12 @@ When acting, consult and rigorously follow the associated skills. Every assessme
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [security-architect-sabsa](../../../../skills/security/operations/security-architect-sabsa/SKILL.md)
+- [security-architecture-patterns](../../../../skills/security/operations/security-architecture-patterns/SKILL.md)
+- [secure-by-design](../../../../skills/security/operations/secure-by-design/SKILL.md)
+- [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [threat-modeler](../../../../skills/security/operations/threat-modeler/SKILL.md)
 - [security-technical-opinion](../../../../skills/security/operations/security-technical-opinion/SKILL.md)
+- [quantitative-risk-fair](../../../../skills/security/grc/quantitative-risk-fair/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)

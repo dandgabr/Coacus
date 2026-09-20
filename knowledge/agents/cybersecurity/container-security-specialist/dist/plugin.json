@@ -1,0 +1,6 @@
+{
+  "name": "container-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Container and Kubernetes Security, covering CIS Kubernetes Benchmark conformance, Pod Security and admission control, RBAC, runtime security and container escapes, image supply chain and offensive Kubernetes attack paths.",
+  "entrypoint": "AGENT.md"
+}

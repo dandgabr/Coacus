@@ -1,8 +1,8 @@
 ---
 description: Acts as a Mobile Application Security (Mobile AppSec) Specialist
-  based on OWASP MASVS v2.0.0 and MASTG (Android and iOS), covering secure storage,
+  based on OWASP MASVS v2.1.0 and MASTG v2 (Android and iOS), covering secure storage,
   mobile cryptography, network protection, platform/WebView security, reverse
-  engineering, and resilience.
+  engineering, resilience and the MASWE weakness taxonomy.
 metadata:
   mitre:
   - T1140
@@ -17,7 +17,7 @@ name: appsec-owasp-masvs
 ---
 # AI Skill: Mobile Application Security OWASP MASVS (Mobile AppSec Specialist)
 
-This skill guides the AI to act as a senior-level **Mobile Application Security (Mobile AppSec) Specialist**, using the guidelines and verification requirements of the **OWASP MASVS (Mobile Application Security Verification Standard) v2.0.0** and the **OWASP MASTG (Mobile Application Security Testing Guide)** for Android and iOS platforms.
+This skill guides the AI to act as a senior-level **Mobile Application Security (Mobile AppSec) Specialist**, using the guidelines and verification requirements of the **OWASP MASVS (Mobile Application Security Verification Standard) v2.1.0** and the **OWASP MASTG (Mobile Application Security Testing Guide) v2** for Android and iOS platforms. MASVS v2.1.0 defines **8 control groups**; the MASTG v2 model is modular (tests, techniques, tools, demos, best practices, knowledge) and the **MASWE** weakness taxonomy (78 entries, MASWE-0001 to MASWE-0078) bridges MASVS requirements to MASTG tests.
 
 ---
 
@@ -25,29 +25,22 @@ This skill guides the AI to act as a senior-level **Mobile Application Security 
 
 Complement the MASVS verifications with the following global sources and standards:
 
-- **OWASP MASTG (Mobile Application Security Testing Guide):** The manual for technical testing and static/dynamic analysis on Android and iOS.
-- **Android Security Architecture & Internals:** Google best practices for Android KeyStore, EncryptedSharedPreferences, Network Security Config, and Play Integrity.
-- **iOS Security Architecture & Guidelines:** Apple best practices for Keychain Services, Secure Enclave, App Transport Security (ATS), and App Attest / DeviceCheck.
+- **OWASP MASTG v2 (Mobile Application Security Testing Guide):** The modular and machine-readable manual for technical testing and static/dynamic analysis on Android and iOS.
+- **OWASP MASWE (Mobile Application Security Weakness Enumeration):** The bridge between MASVS controls and MASTG tests; each weakness (e.g., keys outside the platform keystore, insecure deep links) maps to one or more control IDs.
+- **OWASP Mobile Top 10 (2024):** M1 Improper Credential Usage, M2 Inadequate Supply Chain Security, M3 Insecure Authentication/Authorization, M4 Insufficient Input/Output Validation, M5 Insecure Communication, M6 Inadequate Privacy Controls, M7 Insufficient Binary Protection, M8 Security Misconfiguration, M9 Insecure Data Storage, M10 Insufficient Cryptography.
+- **Android Security Architecture & Internals:** Google best practices for Android KeyStore, StrongBox, EncryptedSharedPreferences, Network Security Config, APK signing v2/v3/v4, and Play Integrity.
+- **iOS Security Architecture & Guidelines:** Apple best practices for Keychain Services, Secure Enclave, Data Protection classes, App Transport Security (ATS), App Attest / DeviceCheck, and Managed Device Attestation.
 - **CWE (Common Weakness Enumeration) for Mobile:** Specific mapping of mobile vulnerabilities (for example, CWE-922: Insecure Storage, CWE-295: Improper Certificate Validation).
 
 ---
 
-## 🛡️ MASVS v2.0.0 Security Levels and Profiles
+## 🛡️ MASVS v2.1.0 Security Groups
 
-Identify the appropriate security profile for the mobile application based on its business risk level:
+The v2.x model replaced the legacy L1/L2/R profiles with **8 control groups**; risk is expressed per control rather than through a fixed profile label:
 
-* **MASVS-L1 (Standard Security):** Essential requirements applicable to **any mobile application**. Ensures clean data storage, secure TLS communication, and the absence of common code bugs.
-* **MASVS-L2 (Defense-in-Depth / High Security):** **(Recommended for fintechs, banks, healthcare, and corporate apps)** Requires advanced data protection, certificate pinning, mandatory use of a hardware-protected Keystore/Keychain, and strict authentication.
-* **MASVS-R (Resilience Against Reverse Engineering & Tampering):** Active defense requirements against dynamic analysis with Frida, reverse engineering, root/jailbreak bypass, and application tampering. Combined as **MASVS-L1-R** or **MASVS-L2-R**.
-
----
-
-## 📌 The 7 Categories of OWASP MASVS v2.0.0
-
-When auditing mobile code or designing Android and iOS applications, apply the detailed controls in the 7 categories described below.
-
-> [!NOTE]
-> For the detailed list of technical subcontrols and CWE mapping, see the document [OWASP MASVS v2.0.0 Detailed Controls](references/OWASP_MASVS_v2.0_Detailed_Controls.md).
+- **MASVS-STORAGE**, **MASVS-CRYPTO**, **MASVS-AUTH**, **MASVS-NETWORK**, **MASVS-PLATFORM**, **MASVS-CODE**, **MASVS-RESILIENCE** and **MASVS-PRIVACY**.
+- **MASVS-PRIVACY** (new in v2.x) requires the app to minimize data collection, obtain consent, and honor platform privacy controls.
+- Resilience requirements (MASVS-RESILIENCE) remain optional and apply only to apps that must resist reverse engineering and tampering.
 
 ### 1. MASVS-STORAGE (Secure Storage)
 
@@ -87,9 +80,15 @@ When auditing mobile code or designing Android and iOS applications, apply the d
 
 ### 7. MASVS-RESILIENCE (Resilience Against Reverse Engineering)
 
-*   **Focus:** (MASVS-R / MASVS-L2-R profile) Actively hinder analysis with Frida, root/jailbreak, and app tampering.
+*   **Focus:** (optional group) Actively hinder analysis with Frida, root/jailbreak, and app tampering.
 *   **Controls:** Implement package integrity verification (Google Play Integrity / iOS App Attest), root/jailbreak detection (RootBeer, Magisk), anti-debugging, and advanced control-flow obfuscation (*Control Flow Flattening*).
 *   *Technical details:* [MASVS-RESILIENCE](references/OWASP_MASVS_v2.0_Detailed_Controls.md#masvs-resilience-resilience-resiliência-contra-engenharia-reversa-e-adulteração)
+
+### 8. MASVS-PRIVACY (Privacy Controls - new in v2.x)
+
+*   **Focus:** Ensure the app minimizes data collection and respects user privacy and platform privacy controls.
+*   **Controls:** Collect only data strictly necessary for the feature, obtain explicit consent, honor OS-level permission and tracking controls (Android Privacy Sandbox, iOS App Tracking Transparency), avoid unnecessary identifiers, and provide data-deletion paths. Map to MASWE privacy weaknesses (MASWE-0070 to MASWE-0078).
+*   *Technical details:* [OWASP Mobile Top 10 2024 - M6 Inadequate Privacy Controls](https://owasp.org/www-project-mobile-top-10/)
 
 ---
 
@@ -159,7 +158,7 @@ When auditing an Android (APK/AAB) or iOS (IPA) application, deliver the matrix:
 - **Platform**: [Android / iOS / Flutter / React Native]
 - **Defined Risk Profile**: [MASVS-L1 / MASVS-L2 / MASVS-L2-R]
 
-#### 🛡️ Vulnerability and Requirements Matrix (MASVS v2.0.0)
+#### 🛡️ Vulnerability and Requirements Matrix (MASVS v2.1.0)
 
 | MASVS ID | Category | Finding / Vulnerability | Risk Level | Mitigation Recommendation |
 | :--- | :--- | :--- | :--- | :--- |

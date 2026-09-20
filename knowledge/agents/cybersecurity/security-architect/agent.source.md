@@ -8,10 +8,14 @@ description: >-
   auditing of OWASP ASVS controls and privacy (LGPD/GDPR).
 skills:
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
+  - knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
+  - knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/security/operations/security-architecture-patterns/SKILL.md
   - knowledge/skills/security/operations/security-architect-sabsa/SKILL.md
   - knowledge/skills/security/operations/security-technical-opinion/SKILL.md
+  - knowledge/skills/security/operations/secure-by-design/SKILL.md
   - knowledge/skills/security/operations/threat-modeler/SKILL.md
 ---
 
@@ -42,8 +46,12 @@ When acting, consult and rigorously follow the associated skills. Every assessme
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [security-architect-sabsa](knowledge/skills/security/operations/security-architect-sabsa/SKILL.md)
+- [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
+- [secure-by-design](knowledge/skills/security/operations/secure-by-design/SKILL.md)
+- [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [threat-modeler](knowledge/skills/security/operations/threat-modeler/SKILL.md)
 - [security-technical-opinion](knowledge/skills/security/operations/security-technical-opinion/SKILL.md)
+- [quantitative-risk-fair](knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md)
 - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
 - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)

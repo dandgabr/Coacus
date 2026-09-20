@@ -1,0 +1,6 @@
+{
+  "name": "endpoint-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+  "entrypoint": "AGENT.md"
+}

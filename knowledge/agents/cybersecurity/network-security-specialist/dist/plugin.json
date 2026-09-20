@@ -1,0 +1,6 @@
+{
+  "name": "network-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
+  "entrypoint": "AGENT.md"
+}

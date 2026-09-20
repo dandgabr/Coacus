@@ -9,6 +9,7 @@ Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extracti
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [binary-app-reverse-mapping](../../../../skills/mapping/binary-app-reverse-mapping/SKILL.md)
 - [edr-evasion-endpoint-security](../../../../skills/security/platform/edr-evasion-endpoint-security/SKILL.md)
+- [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
 - [memory-manipulation](../../../../skills/security/platform/memory-manipulation/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -33,6 +34,7 @@ When assessing electronic boards and connected devices:
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [hardware-hacking-embedded-security](../../../../skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
+- [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
 - [binary-app-reverse-mapping](../../../../skills/mapping/binary-app-reverse-mapping/SKILL.md)
 - [memory-manipulation](../../../../skills/security/platform/memory-manipulation/SKILL.md)
 - [edr-evasion-endpoint-security](../../../../skills/security/platform/edr-evasion-endpoint-security/SKILL.md)

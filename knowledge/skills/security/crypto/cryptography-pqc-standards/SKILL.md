@@ -16,11 +16,11 @@ This skill guides the AI to act as a **Senior Specialist in Cryptographic Engine
 
 ## 🧭 1. Reference Standards and Specifications
 
-- **Post-Quantum Cryptography (PQC)**: NIST FIPS 203 (ML-KEM / Kyber), FIPS 204 (ML-DSA / Dilithium), FIPS 205 (SLH-DSA / SPHINCS+), SP 800-208 (LMS / XMSS).
-- **Symmetric Cryptography and Modes of Operation**: NIST SP 800-38A/D/E/F/G (GCM, XTS-AES, Key Wrap KW/KWP, Format-Preserving FF1/FF3-1).
-- **Key Management and Lifecycle**: NIST SP 800-57 Part 1 Rev. 5, SP 800-131A, RFC 3394/5649.
-- **Secure Transport Protocols**: RFC 8446 (TLS 1.3), RFC 9458 (Encrypted Client Hello - ECH), RFC 9000/9114 (QUIC/HTTP-3), RFC 8804 (WireGuard), RFC 7296 (IPsec IKEv2), SPIFFE/SPIRE (mTLS for workloads).
-- **PKI and Digital Signatures**: RFC 5280 (X.509v3 PKI), ETSI EN 319 122 (CAdES), ETSI EN 319 132 (XAdES), ETSI EN 319 142 (PAdES), ETSI TS 119 182 (JAdES), RFC 3161 (TSA - Time Stamping Authority), ICP-Brasil (DOC-ICP-01/05), eIDAS (EU Regulation 910/2014).
+- **Post-Quantum Cryptography (PQC)**: NIST FIPS 203 (ML-KEM / Kyber), FIPS 204 (ML-DSA / Dilithium), FIPS 205 (SLH-DSA / SPHINCS+), SP 800-208 (LMS / XMSS), SP 800-227 (Recommendations for KEMs and hybrid combiners). FIPS 206 (FN-DSA / FALCON) remains in development and MUST NOT be presented as final. HQC was selected as an additional code-based KEM (2025).
+- **Symmetric Cryptography and Modes of Operation**: NIST SP 800-38A/D/E/F/G upd1 (GCM, XTS-AES, Key Wrap KW/KWP, Format-Preserving FF1/FF3-1; the base SP 800-38G is withdrawn and superseded by its update).
+- **Key Management and Lifecycle**: NIST SP 800-57 Part 1 Rev. 5, SP 800-131A, SP 800-108 (KDF), SP 800-90A/B/C (DRBG, entropy, constructions), RFC 3394/5649.
+- **Secure Transport Protocols**: RFC 9846 (TLS 1.3, which supersedes RFC 8446), RFC 9458 (Encrypted Client Hello - ECH), RFC 9000/9114 (QUIC/HTTP-3), RFC 8804 (WireGuard), RFC 7296 (IPsec IKEv2), SPIFFE/SPIRE (mTLS for workloads). Post-quantum hybrid key exchange is standardized by RFC 10024 (with terminology in RFC 9794 and the hybrid framework in RFC 9954), superseding the experimental Kyber768 code points.
+- **PKI and Digital Signatures**: RFC 5280 (X.509v3 PKI), RFC 9881 (ML-DSA in X.509 and CRLs; HashML-DSA is disallowed in PKIX), RFC 8555 (ACME), ETSI EN 319 122 (CAdES), ETSI EN 319 132 (XAdES), ETSI EN 319 142 (PAdES), ETSI TS 119 182 (JAdES), RFC 3161 (TSA - Time Stamping Authority), ICP-Brasil (DOC-ICP-01/05), eIDAS 2.0 (EU Regulation 2024/1183, EUDI Wallet and zero-knowledge proofs).
 
 ---
 
@@ -41,11 +41,11 @@ This skill guides the AI to act as a **Senior Specialist in Cryptographic Engine
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. Offline Root CA (Air-gapped HSM, 4096-bit RSA / P-384)   │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ Assina exclusivamente CAs subordinadas
+                               │ Signs subordinate CAs exclusively
 ┌──────────────────────────────▼──────────────────────────────┐
 │ 2. Intermediate / Issuing CA (Vault PKI / Step-CA / EJBCA)  │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ Emissão automatizada (ACME / SCEP / EST)
+                               │ Automated issuance (ACME / SCEP / EST)
 ┌──────────────────────────────▼──────────────────────────────┐
 │ 3. End-Entity Certs (TLS Server, mTLS Client, Code Signing)  │
 └─────────────────────────────────────────────────────────────┘
@@ -54,12 +54,12 @@ This skill guides the AI to act as a **Senior Specialist in Cryptographic Engine
 ### 3.1 Essential Commands with `step-cli` and `openssl`
 
 ```bash
-# Gerar CA Raiz e Intermediária efêmera com step-cli
-step certificate create "Root CA Corporativa" root-ca.crt root-ca.key --profile root-ca
+# Create an ephemeral Root and Intermediate CA with step-cli
+step certificate create "Corporate Root CA" root-ca.crt root-ca.key --profile root-ca
 step certificate create "Intermediate CA" intermediate-ca.crt intermediate-ca.key \
     --profile intermediate-ca --ca root-ca.crt --ca-key root-ca.key
 
-# Inspecionar CSR e certificado X.509
+# Inspect a CSR and an X.509 certificate
 openssl req -in server.csr -noout -text
 openssl x509 -in server.crt -noout -text -certopt no_pubkey,no_sigdump
 ```
@@ -84,9 +84,11 @@ openssl x509 -in server.crt -noout -text -certopt no_pubkey,no_sigdump
 
 1. **ML-KEM (FIPS 203 - Kyber)**:
    - Key Encapsulation Mechanism based on algebraic lattices (*Module-LWE*).
-   - Security levels: Kyber-512 (Level 1 ~ AES-128), Kyber-768 (Level 3 ~ AES-192), Kyber-1024 (Level 5 ~ AES-256).
+   - NIST security categories: ML-KEM-512 (Category 1), ML-KEM-768 (Category 3), ML-KEM-1024 (Category 5).
 2. **ML-DSA (FIPS 204 - Dilithium)**:
    - Digital Signature standard based on lattices (*Module-LWE/SIS*).
+   - NIST security categories: ML-DSA-44 (Category 2), ML-DSA-65 (Category 3), ML-DSA-87 (Category 5).
    - Replaces RSA and ECDSA in government PKI and PQC X.509 digital certificates.
 3. **Hybrid Classical + PQC Schemes**:
-   - Secure transition in TLS 1.3 combining `X25519 + Kyber768` (IETF draft) to guarantee confidentiality against *"Harvest Now, Decrypt Later"* attacks without breaking legacy compatibility.
+   - Secure transition in TLS 1.3 combining a traditional group with a PQC KEM to guarantee confidentiality against *"Harvest Now, Decrypt Later"* attacks without breaking legacy compatibility.
+   - Standardized hybrid groups: `X25519MLKEM768` (0x11EC), `SecP256r1MLKEM768` (0x11EB), `SecP384r1MLKEM1024` (0x11ED). The shared-secret combiner follows SP 800-227 (concatenate and derive via HKDF).

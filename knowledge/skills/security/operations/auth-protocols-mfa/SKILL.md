@@ -1,8 +1,8 @@
 ---
 description: Acts as a specialist in authentication and authorization protocols (RADIUS,
-  TACACS+, Kerberos, OAuth 2.0, OpenID Connect, SAML 2.0, SCIM 2.0, WebAuthn/FIDO2,
+  TACACS+, Kerberos, OAuth 2.0/2.1, OpenID Connect, SAML 2.0, SCIM 2.0, WebAuthn/FIDO2,
   LDAP, EAP, JWT) and Multi-Factor Authentication architecture (MFA, Passkeys, TOTP,
-  Phishing-Resistant MFA, and Adaptive Access).
+  Phishing-Resistant MFA, and Adaptive Access), aligned with RFC 9700 and NIST SP 800-63-4.
 metadata:
   mitre:
   - T1212
@@ -55,14 +55,15 @@ This skill guides the AI to act as an **Identity Engineering, Authentication Pro
   - **Components**: Identity Provider (IdP), Service Provider (SP), digitally signed assertions (XML Signature).
   - **Flows**: SP-Initiated SSO vs. IdP-Initiated SSO. Bindings (HTTP Redirect for requests, HTTP POST for sending assertions).
   - **Security**: Rigorous XML signature validation, receipt at explicit HTTPS URLs, and timestamp/expiration validation against XML Signature Wrapping (XSW) vulnerabilities.
-- **OAuth 2.0 (Authorization Framework - RFC 6749, RFC 6750)**:
+- **OAuth 2.0 / 2.1 (Authorization Framework - RFC 6749, RFC 6750, and the OAuth 2.0 Security Best Current Practice RFC 9700)**:
   - **Delegated authorization** protocol (it is NOT an authentication protocol on its own).
   - **Recommended Grant Types**:
-    - **Authorization Code Flow with PKCE (RFC 7636)**: Mandatory for Single Page Applications (SPAs), mobile apps, and native applications. It prevents authorization code interception using `code_verifier` and `code_challenge` (S256).
+    - **Authorization Code Flow with PKCE (RFC 7636)**: Mandatory for Single Page Applications (SPAs), mobile apps, and native applications. It prevents authorization code interception using `code_verifier` and `code_challenge` (S256 only).
     - **Client Credentials Flow**: M2M (Machine-to-Machine) service-to-service communication.
     - **Device Authorization Grant (RFC 8628)**: For devices without a browser or with limited input (smart TVs, CLI).
-  - **Security Extensions**: **DPoP (Demonstrating Proof-of-Possession - RFC 9449)** to bind access tokens to the client's private key, preventing theft and reuse of access tokens.
-  - *Discontinued Flows*: Implicit Grant and Resource Owner Password Credentials (ROPC) are **prohibited** by the OAuth 2.1 Security Best Current Practice.
+  - **Security Extensions**: **DPoP (Demonstrating Proof-of-Possession - RFC 9449)** and **mTLS certificate-bound tokens (RFC 8705)** bind access tokens to the client's key, preventing theft and replay. Asymmetric client authentication (`private_key_jwt`, mTLS) is preferred over shared secrets.
+  - **RFC 9700 hardening rules**: exact redirect-URI matching (no wildcards or open redirectors), PKCE downgrade protection, mix-up attack mitigation via the `iss` parameter (RFC 9207), authorization-code injection and CSRF defenses (`state`, `nonce`), audience-restricted access tokens, and sender-constrained or rotated refresh tokens for public clients.
+  - *Discontinued Flows*: Implicit Grant and Resource Owner Password Credentials (ROPC) are **prohibited**. OAuth 2.1 remains a draft and MUST NOT be presented as a published standard; RFC 9700 is the current normative baseline.
 - **OpenID Connect (OIDC Core 1.0)**:
   - **Identity** layer built on top of the OAuth 2.0 infrastructure.
   - Introduces the **ID Token** (JWT signed by the IdP containing user *claims* such as `sub`, `iss`, `aud`, `exp`, `iat`) and the `/userinfo` endpoint.
@@ -82,11 +83,18 @@ This skill guides the AI to act as an **Identity Engineering, Authentication Pro
 
 ## 🔑 Multi-Factor Authentication (MFA) and FIDO2 / WebAuthn
 
-NIST SP 800-63B classifies authentication factors into three logical categories:
+NIST SP 800-63-4 (final, supersedes SP 800-63-3) classifies authentication factors into three logical categories:
 
 1. **Something you know (Knowledge)**: Passwords, PINs, security questions (weak factor).
 2. **Something you have (Possession)**: FIDO2/hardware tokens, cryptographic keys, TOTP apps, smartcards.
 3. **Something you are (Inherence)**: Physical biometrics (fingerprint, FaceID, iris).
+
+### SP 800-63-4 normative rules to encode
+
+- **AAL1**: single factor, minimum 15-character passwords, overall timeout at most 30 days.
+- **AAL2**: two distinct factors; verifiers SHALL offer at least one phishing-resistant option; overall timeout at most 24 hours and inactivity timeout at most 1 hour.
+- **AAL3**: public-key, non-exportable key, phishing-resistant; **syncable authenticators (passkeys synced across devices) SHALL NOT be used at AAL3**; overall timeout at most 12 hours and inactivity timeout at most 15 minutes.
+- **Passwords**: no periodic rotation, no composition rules, compare the full password against a blocklist, allow password managers and paste, salt of at least 32 bits, and hash with a memory-hard function per SP 800-132.
 
 ```
 +-----------------------------------------------------------------------------------+

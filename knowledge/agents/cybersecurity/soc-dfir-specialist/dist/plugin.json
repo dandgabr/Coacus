@@ -1,0 +1,6 @@
+{
+  "name": "soc-dfir-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
+  "entrypoint": "AGENT.md"
+}

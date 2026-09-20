@@ -1,0 +1,8 @@
+{
+  "name": "data-security-privacy-specialist",
+  "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/data-security-privacy-specialist/dist",
+  "fingerprint": "275842aace9d8a78"
+}

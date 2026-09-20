@@ -10,6 +10,8 @@ skills:
   - knowledge/skills/mapping/program-windbg/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
   - knowledge/skills/security/appsec/sast-code-review/SKILL.md
+  - knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md
+  - knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md
   - knowledge/skills/security/platform/memory-manipulation/SKILL.md
 ---
 
@@ -34,6 +36,8 @@ This agent operates using the guidelines and technical standards established in 
 - [program-cheat-engine](knowledge/skills/mapping/program-cheat-engine/SKILL.md)
 - [program-windbg](knowledge/skills/mapping/program-windbg/SKILL.md)
 - [memory-manipulation](knowledge/skills/security/platform/memory-manipulation/SKILL.md)
+- [binary-symbolic-execution-fuzzing](knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md)
+- [exploit-development-vulnerability-research](knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md)
 - [sast-code-review](knowledge/skills/security/appsec/sast-code-review/SKILL.md)
 - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 

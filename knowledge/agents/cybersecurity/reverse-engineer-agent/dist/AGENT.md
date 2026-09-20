@@ -9,6 +9,8 @@ Reverse Engineering and Low-Level Analysis Agent, specialized in process debuggi
 - [program-windbg](../../../../skills/mapping/program-windbg/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 - [sast-code-review](../../../../skills/security/appsec/sast-code-review/SKILL.md)
+- [binary-symbolic-execution-fuzzing](../../../../skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md)
+- [exploit-development-vulnerability-research](../../../../skills/security/offensive/exploit-development-vulnerability-research/SKILL.md)
 - [memory-manipulation](../../../../skills/security/platform/memory-manipulation/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -33,6 +35,8 @@ This agent operates using the guidelines and technical standards established in 
 - [program-cheat-engine](../../../../skills/mapping/program-cheat-engine/SKILL.md)
 - [program-windbg](../../../../skills/mapping/program-windbg/SKILL.md)
 - [memory-manipulation](../../../../skills/security/platform/memory-manipulation/SKILL.md)
+- [binary-symbolic-execution-fuzzing](../../../../skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md)
+- [exploit-development-vulnerability-research](../../../../skills/security/offensive/exploit-development-vulnerability-research/SKILL.md)
 - [sast-code-review](../../../../skills/security/appsec/sast-code-review/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 

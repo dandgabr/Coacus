@@ -26,6 +26,12 @@ instruction: >
   - [iam-access-aws](knowledge/skills/security/iam/iam-access-aws/SKILL.md)
   - [iam-access-gcp](knowledge/skills/security/iam/iam-access-gcp/SKILL.md)
   - [iam-access-oci](knowledge/skills/security/iam/iam-access-oci/SKILL.md)
+  - [pam-privileged-access-management](knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md)
+  - [secrets-management-vault](knowledge/skills/security/iam/secrets-management-vault/SKILL.md)
+  - [machine-identity-spiffe-workload](knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md)
+  - [identity-governance-iga](knowledge/skills/security/iam/identity-governance-iga/SKILL.md)
+  - [ciem-cloud-entitlements](knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md)
+  - [itdr-identity-threat-detection](knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md)
   - [csa-cloud-security](knowledge/skills/security/iam/csa-cloud-security/SKILL.md)
   - [auth-protocols-mfa](knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md)
 
@@ -47,6 +53,8 @@ instruction: >
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
   - type: skill_integration
+    path: ../../../../skills/security/iam/ciem-cloud-entitlements/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/security/iam/csa-cloud-security/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/iam/iam-access-aws/SKILL.md
@@ -61,4 +69,14 @@ tools:
   - type: skill_integration
     path: ../../../../skills/security/iam/iam-access-power-platform/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/security/iam/identity-governance-iga/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/iam/machine-identity-spiffe-workload/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/iam/pam-privileged-access-management/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/iam/secrets-management-vault/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/security/operations/auth-protocols-mfa/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/operations/itdr-identity-threat-detection/SKILL.md

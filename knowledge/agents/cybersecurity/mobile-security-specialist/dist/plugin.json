@@ -1,0 +1,6 @@
+{
+  "name": "mobile-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Mobile Security, covering OWASP MASVS/MASTG, Android and iOS application testing, mobile malware and forensics, enterprise MDM/UEM and mobile threat defense.",
+  "entrypoint": "AGENT.md"
+}

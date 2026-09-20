@@ -7,9 +7,12 @@ Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C
 <!-- coacus:generated:skills -->
 - [academic-digital-systems-vlsi](../../../../skills/domains/academic/academic-digital-systems-vlsi/SKILL.md)
 - [academic-microprocessors-embedded-systems](../../../../skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md)
+- [hardware-hacking-embedded-security](../../../../skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [lang-assembly-x64](../../../../skills/languages/lang-assembly-x64/SKILL.md)
 - [lang-c](../../../../skills/languages/lang-c/SKILL.md)
+- [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
+- [os-hardening-baselines](../../../../skills/security/platform/os-hardening-baselines/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -34,6 +37,9 @@ This agent operates using the guidelines and technical standards established in 
 
 - [academic-microprocessors-embedded-systems](../../../../skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md)
 - [academic-digital-systems-vlsi](../../../../skills/domains/academic/academic-digital-systems-vlsi/SKILL.md)
+- [hardware-hacking-embedded-security](../../../../skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
+- [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
+- [os-hardening-baselines](../../../../skills/security/platform/os-hardening-baselines/SKILL.md)
 - [lang-c](../../../../skills/languages/lang-c/SKILL.md)
 - [lang-assembly-x64](../../../../skills/languages/lang-assembly-x64/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)

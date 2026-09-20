@@ -1,0 +1,8 @@
+{
+  "name": "threat-intelligence-specialist",
+  "description": "Specialist Agent in Cyber Threat Intelligence, covering the intelligence lifecycle, MITRE ATT&CK and D3FEND mapping, the Diamond Model and Kill Chain, STIX 2.1/TAXII 2.1/MISP exchange, structured analytic techniques and estimative reporting.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/threat-intelligence-specialist/dist",
+  "fingerprint": "98b47f3949f7e579"
+}

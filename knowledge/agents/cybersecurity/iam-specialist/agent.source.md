@@ -6,6 +6,7 @@ description: >-
   Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS,
   Azure, GCP and OCI IAM.
 skills:
+  - knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md
   - knowledge/skills/security/iam/csa-cloud-security/SKILL.md
   - knowledge/skills/security/iam/iam-access-aws/SKILL.md
   - knowledge/skills/security/iam/iam-access-azure/SKILL.md
@@ -13,7 +14,12 @@ skills:
   - knowledge/skills/security/iam/iam-access-management/SKILL.md
   - knowledge/skills/security/iam/iam-access-oci/SKILL.md
   - knowledge/skills/security/iam/iam-access-power-platform/SKILL.md
+  - knowledge/skills/security/iam/identity-governance-iga/SKILL.md
+  - knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md
+  - knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md
+  - knowledge/skills/security/iam/secrets-management-vault/SKILL.md
   - knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md
+  - knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -39,6 +45,12 @@ This agent operates using the guidelines and technical standards established in 
 - [iam-access-aws](knowledge/skills/security/iam/iam-access-aws/SKILL.md)
 - [iam-access-gcp](knowledge/skills/security/iam/iam-access-gcp/SKILL.md)
 - [iam-access-oci](knowledge/skills/security/iam/iam-access-oci/SKILL.md)
+- [pam-privileged-access-management](knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md)
+- [secrets-management-vault](knowledge/skills/security/iam/secrets-management-vault/SKILL.md)
+- [machine-identity-spiffe-workload](knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md)
+- [identity-governance-iga](knowledge/skills/security/iam/identity-governance-iga/SKILL.md)
+- [ciem-cloud-entitlements](knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md)
+- [itdr-identity-threat-detection](knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md)
 - [csa-cloud-security](knowledge/skills/security/iam/csa-cloud-security/SKILL.md)
 - [auth-protocols-mfa](knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md)
 

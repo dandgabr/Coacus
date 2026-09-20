@@ -5,6 +5,7 @@ Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governanc
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [ciem-cloud-entitlements](../../../../skills/security/iam/ciem-cloud-entitlements/SKILL.md)
 - [csa-cloud-security](../../../../skills/security/iam/csa-cloud-security/SKILL.md)
 - [iam-access-aws](../../../../skills/security/iam/iam-access-aws/SKILL.md)
 - [iam-access-azure](../../../../skills/security/iam/iam-access-azure/SKILL.md)
@@ -12,7 +13,12 @@ Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governanc
 - [iam-access-management](../../../../skills/security/iam/iam-access-management/SKILL.md)
 - [iam-access-oci](../../../../skills/security/iam/iam-access-oci/SKILL.md)
 - [iam-access-power-platform](../../../../skills/security/iam/iam-access-power-platform/SKILL.md)
+- [identity-governance-iga](../../../../skills/security/iam/identity-governance-iga/SKILL.md)
+- [machine-identity-spiffe-workload](../../../../skills/security/iam/machine-identity-spiffe-workload/SKILL.md)
+- [pam-privileged-access-management](../../../../skills/security/iam/pam-privileged-access-management/SKILL.md)
+- [secrets-management-vault](../../../../skills/security/iam/secrets-management-vault/SKILL.md)
 - [auth-protocols-mfa](../../../../skills/security/operations/auth-protocols-mfa/SKILL.md)
+- [itdr-identity-threat-detection](../../../../skills/security/operations/itdr-identity-threat-detection/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -38,6 +44,12 @@ This agent operates using the guidelines and technical standards established in 
 - [iam-access-aws](../../../../skills/security/iam/iam-access-aws/SKILL.md)
 - [iam-access-gcp](../../../../skills/security/iam/iam-access-gcp/SKILL.md)
 - [iam-access-oci](../../../../skills/security/iam/iam-access-oci/SKILL.md)
+- [pam-privileged-access-management](../../../../skills/security/iam/pam-privileged-access-management/SKILL.md)
+- [secrets-management-vault](../../../../skills/security/iam/secrets-management-vault/SKILL.md)
+- [machine-identity-spiffe-workload](../../../../skills/security/iam/machine-identity-spiffe-workload/SKILL.md)
+- [identity-governance-iga](../../../../skills/security/iam/identity-governance-iga/SKILL.md)
+- [ciem-cloud-entitlements](../../../../skills/security/iam/ciem-cloud-entitlements/SKILL.md)
+- [itdr-identity-threat-detection](../../../../skills/security/operations/itdr-identity-threat-detection/SKILL.md)
 - [csa-cloud-security](../../../../skills/security/iam/csa-cloud-security/SKILL.md)
 - [auth-protocols-mfa](../../../../skills/security/operations/auth-protocols-mfa/SKILL.md)
 

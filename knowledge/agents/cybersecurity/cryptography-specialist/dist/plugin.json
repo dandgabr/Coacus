@@ -1,0 +1,6 @@
+{
+  "name": "cryptography-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/204/205), PKI and certificate lifecycle, KMS/HSM key management, crypto agility and migration, tokenization and format-preserving encryption, and the cryptographic controls required by the digital signature standards.",
+  "entrypoint": "AGENT.md"
+}

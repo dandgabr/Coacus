@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 57,
-    "skills": 208,
+    "agents": 71,
+    "skills": 287,
     "mcps": 1
   },
   "agents": [
@@ -17,6 +17,12 @@
       "category": "core-orchestration",
       "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
       "source": "knowledge/agents/core-orchestration/antigravity-agent/agent.source.md"
+    },
+    {
+      "name": "automotive-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Automotive Cybersecurity, covering ISO/SAE 21434, UNECE WP.29 R155/R156, TARA, in-vehicle network security and secure OTA update and vehicle lifecycle protection.",
+      "source": "knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md"
     },
     {
       "name": "backend-developer",
@@ -61,6 +67,12 @@
       "source": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md"
     },
     {
+      "name": "cloud-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cloud Security, covering CNAPP posture management, IaC security scanning, cloud secrets and workload identity federation, cloud detection and response, serverless security and multi-cloud assurance.",
+      "source": "knowledge/agents/cybersecurity/cloud-security-specialist/agent.source.md"
+    },
+    {
       "name": "cloudflare-specialist",
       "category": "data-cloud-devops",
       "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the new cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
@@ -97,6 +109,18 @@
       "source": "knowledge/agents/academic-sciences/computer-scientist/agent.source.md"
     },
     {
+      "name": "container-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Container and Kubernetes Security, covering CIS Kubernetes Benchmark conformance, Pod Security and admission control, RBAC, runtime security and container escapes, image supply chain and offensive Kubernetes attack paths.",
+      "source": "knowledge/agents/cybersecurity/container-security-specialist/agent.source.md"
+    },
+    {
+      "name": "cryptography-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/204/205), PKI and certificate lifecycle, KMS/HSM key management, crypto agility and migration, tokenization and format-preserving encryption, and the cryptographic controls required by the digital signature standards.",
+      "source": "knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md"
+    },
+    {
       "name": "data-ai-engineer",
       "category": "data-cloud-devops",
       "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
@@ -107,6 +131,12 @@
       "category": "data-cloud-devops",
       "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
       "source": "knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md"
+    },
+    {
+      "name": "data-security-privacy-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "source": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md"
     },
     {
       "name": "dba-specialist",
@@ -139,6 +169,12 @@
       "source": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md"
     },
     {
+      "name": "endpoint-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+      "source": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md"
+    },
+    {
       "name": "frontend-developer",
       "category": "software-engineering",
       "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
@@ -149,6 +185,12 @@
       "category": "software-engineering",
       "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
       "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md"
+    },
+    {
+      "name": "game-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
+      "source": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md"
     },
     {
       "name": "general",
@@ -167,6 +209,12 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
       "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md"
+    },
+    {
+      "name": "grc-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Governance, Risk and Compliance (GRC), covering ISO/IEC 27001 and 42001, NIST CSF 2.0 and SP 800-53, CIS Controls, OWASP SAMM, SOC 2, FedRAMP/CMMC, DORA, NIS2/CRA, OSCAL automation, quantitative risk (FAIR) and third-party risk management.",
+      "source": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md"
     },
     {
       "name": "hardware-security-specialist",
@@ -223,6 +271,18 @@
       "source": "knowledge/agents/academic-sciences/mechatronics-engineer/agent.source.md"
     },
     {
+      "name": "medical-device-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Medical Device Cybersecurity, covering FDA \u00a7524B premarket requirements, the February 2026 FDA guidance, device SBOM/CBOM, postmarket vulnerability management and legacy-device safety risk.",
+      "source": "knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md"
+    },
+    {
+      "name": "mobile-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Mobile Security, covering OWASP MASVS/MASTG, Android and iOS application testing, mobile malware and forensics, enterprise MDM/UEM and mobile threat defense.",
+      "source": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md"
+    },
+    {
       "name": "moodle-specialist",
       "category": "specialized-domains",
       "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
@@ -235,9 +295,21 @@
       "source": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md"
     },
     {
+      "name": "network-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
+      "source": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md"
+    },
+    {
+      "name": "ot-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in OT/ICS Security, covering the Purdue model, IEC 62443, NIST SP 800-82r3, SCADA/PLC/DCS protection, legacy industrial protocols, safety-first constraints and MITRE ATT&CK for ICS.",
+      "source": "knowledge/agents/cybersecurity/ot-security-specialist/agent.source.md"
+    },
+    {
       "name": "pentester-agent",
       "category": "cybersecurity",
-      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, LLMs and Red Team Scripting) using CLI utilities and custom scripts.",
+      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, Active Directory, Kubernetes, LLMs and Red Team Infrastructure) using CLI utilities and custom scripts.",
       "source": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md"
     },
     {
@@ -307,6 +379,12 @@
       "source": "knowledge/agents/specialized-domains/skill-creator/agent.source.md"
     },
     {
+      "name": "soc-dfir-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
+      "source": "knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md"
+    },
+    {
       "name": "software-architect",
       "category": "software-engineering",
       "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
@@ -329,6 +407,12 @@
       "category": "academic-sciences",
       "description": "Specialist Agent in Voice Engineering, Telephony and Real-Time Communications (VoIP, SIP, SBC, PSTN, WebRTC, G.711/G.729/Opus codecs, Kamailio/FreeSWITCH, QoS and STIR/SHAKEN).",
       "source": "knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md"
+    },
+    {
+      "name": "threat-intelligence-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Cyber Threat Intelligence, covering the intelligence lifecycle, MITRE ATT&CK and D3FEND mapping, the Diamond Model and Kill Chain, STIX 2.1/TAXII 2.1/MISP exchange, structured analytic techniques and estimative reporting.",
+      "source": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md"
     },
     {
       "name": "ui-ux-designer",
@@ -495,6 +579,10 @@
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md"
     },
     {
+      "name": "automotive-cybersecurity",
+      "path": "knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md"
+    },
+    {
       "name": "blockchain-cryptocurrency",
       "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md"
     },
@@ -513,6 +601,10 @@
     {
       "name": "healthtech-standards-security",
       "path": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md"
+    },
+    {
+      "name": "medical-device-cybersecurity",
+      "path": "knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md"
     },
     {
       "name": "telecom-voice-engineering",
@@ -923,8 +1015,20 @@
       "path": "knowledge/skills/roles/web-search-specialist/SKILL.md"
     },
     {
+      "name": "ai-adversarial-ml-security",
+      "path": "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md"
+    },
+    {
+      "name": "ai-agentic-security",
+      "path": "knowledge/skills/security/ai/ai-agentic-security/SKILL.md"
+    },
+    {
       "name": "ai-computer-vision-security",
       "path": "knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md"
+    },
+    {
+      "name": "ai-governance-assurance",
+      "path": "knowledge/skills/security/ai/ai-governance-assurance/SKILL.md"
     },
     {
       "name": "ai-llm-slm-security",
@@ -935,12 +1039,20 @@
       "path": "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md"
     },
     {
+      "name": "api-protocol-security",
+      "path": "knowledge/skills/security/appsec/api-protocol-security/SKILL.md"
+    },
+    {
       "name": "appsec-owasp-asvs",
       "path": "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
     },
     {
       "name": "appsec-owasp-masvs",
       "path": "knowledge/skills/security/appsec/appsec-owasp-masvs/SKILL.md"
+    },
+    {
+      "name": "business-logic-flaws",
+      "path": "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md"
     },
     {
       "name": "dast-application-testing",
@@ -953,6 +1065,18 @@
     {
       "name": "malware-analysis-multios",
       "path": "knowledge/skills/security/appsec/malware-analysis-multios/SKILL.md"
+    },
+    {
+      "name": "mobile-app-pentest",
+      "path": "knowledge/skills/security/appsec/mobile-app-pentest/SKILL.md"
+    },
+    {
+      "name": "mobile-malware-forensics",
+      "path": "knowledge/skills/security/appsec/mobile-malware-forensics/SKILL.md"
+    },
+    {
+      "name": "owasp-top-10-2025",
+      "path": "knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md"
     },
     {
       "name": "pentest-scripter-python-bash-go",
@@ -979,16 +1103,116 @@
       "path": "knowledge/skills/security/appsec/sast-code-review/SKILL.md"
     },
     {
+      "name": "secure-sdlc-ssdf",
+      "path": "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md"
+    },
+    {
       "name": "software-supply-chain-security",
       "path": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md"
+    },
+    {
+      "name": "web-injection-classes",
+      "path": "knowledge/skills/security/appsec/web-injection-classes/SKILL.md"
+    },
+    {
+      "name": "cloud-detection-response",
+      "path": "knowledge/skills/security/cloud/cloud-detection-response/SKILL.md"
+    },
+    {
+      "name": "cloud-secrets-management",
+      "path": "knowledge/skills/security/cloud/cloud-secrets-management/SKILL.md"
+    },
+    {
+      "name": "cloud-security-posture-cnapp",
+      "path": "knowledge/skills/security/cloud/cloud-security-posture-cnapp/SKILL.md"
+    },
+    {
+      "name": "cloud-workload-identity-federation",
+      "path": "knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md"
+    },
+    {
+      "name": "iac-security-scanning",
+      "path": "knowledge/skills/security/cloud/iac-security-scanning/SKILL.md"
+    },
+    {
+      "name": "serverless-security",
+      "path": "knowledge/skills/security/cloud/serverless-security/SKILL.md"
+    },
+    {
+      "name": "crypto-agility-pqc-migration",
+      "path": "knowledge/skills/security/crypto/crypto-agility-pqc-migration/SKILL.md"
+    },
+    {
+      "name": "crypto-kms-hsm-key-management",
+      "path": "knowledge/skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md"
+    },
+    {
+      "name": "crypto-pki-certificate-lifecycle",
+      "path": "knowledge/skills/security/crypto/crypto-pki-certificate-lifecycle/SKILL.md"
     },
     {
       "name": "cryptography-pqc-standards",
       "path": "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md"
     },
     {
+      "name": "tokenization-format-preserving-encryption",
+      "path": "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md"
+    },
+    {
+      "name": "cti-mitre-attack",
+      "path": "knowledge/skills/security/cti/cti-mitre-attack/SKILL.md"
+    },
+    {
+      "name": "cti-platforms-stix-taxii-misp",
+      "path": "knowledge/skills/security/cti/cti-platforms-stix-taxii-misp/SKILL.md"
+    },
+    {
+      "name": "cti-threat-intel-lifecycle",
+      "path": "knowledge/skills/security/cti/cti-threat-intel-lifecycle/SKILL.md"
+    },
+    {
+      "name": "data-classification-dspm",
+      "path": "knowledge/skills/security/data/data-classification-dspm/SKILL.md"
+    },
+    {
+      "name": "dlp-data-loss-prevention",
+      "path": "knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md"
+    },
+    {
+      "name": "privacy-enhancing-technologies",
+      "path": "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md"
+    },
+    {
+      "name": "ai-governance-iso-42001",
+      "path": "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md"
+    },
+    {
       "name": "cis-controls",
       "path": "knowledge/skills/security/grc/cis-controls/SKILL.md"
+    },
+    {
+      "name": "consent-dsr-automation",
+      "path": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md"
+    },
+    {
+      "name": "enterprise-it-governance-cobit-itil",
+      "path": "knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md"
+    },
+    {
+      "name": "esports-integrity-governance",
+      "path": "knowledge/skills/security/grc/esports-integrity-governance/SKILL.md"
+    },
+    {
+      "name": "eu-digital-resilience-regulation",
+      "path": "knowledge/skills/security/grc/eu-digital-resilience-regulation/SKILL.md"
+    },
+    {
+      "name": "fedramp-cmmc-cloud-gov-assurance",
+      "path": "knowledge/skills/security/grc/fedramp-cmmc-cloud-gov-assurance/SKILL.md"
+    },
+    {
+      "name": "grc-automation-oscal",
+      "path": "knowledge/skills/security/grc/grc-automation-oscal/SKILL.md"
     },
     {
       "name": "isc2-cissp-csslp-standards",
@@ -999,12 +1223,20 @@
       "path": "knowledge/skills/security/grc/iso-27000-series/SKILL.md"
     },
     {
+      "name": "nis2-cra-compliance",
+      "path": "knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md"
+    },
+    {
       "name": "nist-frameworks-csf",
       "path": "knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md"
     },
     {
       "name": "pci-dss-compliance",
       "path": "knowledge/skills/security/grc/pci-dss-compliance/SKILL.md"
+    },
+    {
+      "name": "quantitative-risk-fair",
+      "path": "knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md"
     },
     {
       "name": "security-grc-compliance",
@@ -1017,6 +1249,18 @@
     {
       "name": "security-privacy",
       "path": "knowledge/skills/security/grc/security-privacy/SKILL.md"
+    },
+    {
+      "name": "soc2-trust-services",
+      "path": "knowledge/skills/security/grc/soc2-trust-services/SKILL.md"
+    },
+    {
+      "name": "third-party-risk-management",
+      "path": "knowledge/skills/security/grc/third-party-risk-management/SKILL.md"
+    },
+    {
+      "name": "ciem-cloud-entitlements",
+      "path": "knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md"
     },
     {
       "name": "csa-cloud-security",
@@ -1047,32 +1291,128 @@
       "path": "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
     },
     {
+      "name": "identity-governance-iga",
+      "path": "knowledge/skills/security/iam/identity-governance-iga/SKILL.md"
+    },
+    {
+      "name": "machine-identity-spiffe-workload",
+      "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md"
+    },
+    {
+      "name": "pam-privileged-access-management",
+      "path": "knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md"
+    },
+    {
+      "name": "secrets-management-vault",
+      "path": "knowledge/skills/security/iam/secrets-management-vault/SKILL.md"
+    },
+    {
+      "name": "active-directory-attack-paths",
+      "path": "knowledge/skills/security/offensive/active-directory-attack-paths/SKILL.md"
+    },
+    {
+      "name": "binary-symbolic-execution-fuzzing",
+      "path": "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md"
+    },
+    {
       "name": "bug-bounty-methodology",
       "path": "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md"
+    },
+    {
+      "name": "exploit-development-vulnerability-research",
+      "path": "knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md"
+    },
+    {
+      "name": "kubernetes-attack-paths",
+      "path": "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md"
     },
     {
       "name": "pentest-cloud-aws-azure-gcp",
       "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md"
     },
     {
+      "name": "red-team-infrastructure",
+      "path": "knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md"
+    },
+    {
       "name": "auth-protocols-mfa",
       "path": "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md"
+    },
+    {
+      "name": "container-runtime-security",
+      "path": "knowledge/skills/security/operations/container-runtime-security/SKILL.md"
+    },
+    {
+      "name": "detection-engineering",
+      "path": "knowledge/skills/security/operations/detection-engineering/SKILL.md"
+    },
+    {
+      "name": "detection-engineering-yara-sigma",
+      "path": "knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md"
     },
     {
       "name": "devsecops-engineer",
       "path": "knowledge/skills/security/operations/devsecops-engineer/SKILL.md"
     },
     {
+      "name": "dfir-forensics",
+      "path": "knowledge/skills/security/operations/dfir-forensics/SKILL.md"
+    },
+    {
+      "name": "dns-security-protective-dns",
+      "path": "knowledge/skills/security/operations/dns-security-protective-dns/SKILL.md"
+    },
+    {
+      "name": "endpoint-detection-engineering",
+      "path": "knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md"
+    },
+    {
+      "name": "endpoint-forensics",
+      "path": "knowledge/skills/security/operations/endpoint-forensics/SKILL.md"
+    },
+    {
+      "name": "ids-ips-ndr-engineering",
+      "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md"
+    },
+    {
+      "name": "itdr-identity-threat-detection",
+      "path": "knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md"
+    },
+    {
+      "name": "kubernetes-security-posture",
+      "path": "knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md"
+    },
+    {
+      "name": "mobile-enterprise-mdm",
+      "path": "knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md"
+    },
+    {
       "name": "network-security-onprem-cloud",
       "path": "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
+    },
+    {
+      "name": "network-segmentation-microsegmentation",
+      "path": "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md"
+    },
+    {
+      "name": "ot-ics-security",
+      "path": "knowledge/skills/security/operations/ot-ics-security/SKILL.md"
     },
     {
       "name": "secops-incident-responder",
       "path": "knowledge/skills/security/operations/secops-incident-responder/SKILL.md"
     },
     {
+      "name": "secure-by-design",
+      "path": "knowledge/skills/security/operations/secure-by-design/SKILL.md"
+    },
+    {
       "name": "security-architect-sabsa",
       "path": "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md"
+    },
+    {
+      "name": "security-architecture-patterns",
+      "path": "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md"
     },
     {
       "name": "security-champions",
@@ -1083,20 +1423,72 @@
       "path": "knowledge/skills/security/operations/security-technical-opinion/SKILL.md"
     },
     {
+      "name": "soc-operations-maturity",
+      "path": "knowledge/skills/security/operations/soc-operations-maturity/SKILL.md"
+    },
+    {
+      "name": "supply-chain-threat-modeling",
+      "path": "knowledge/skills/security/operations/supply-chain-threat-modeling/SKILL.md"
+    },
+    {
+      "name": "threat-hunting",
+      "path": "knowledge/skills/security/operations/threat-hunting/SKILL.md"
+    },
+    {
       "name": "threat-modeler",
       "path": "knowledge/skills/security/operations/threat-modeler/SKILL.md"
+    },
+    {
+      "name": "untrusted-content-security",
+      "path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
     },
     {
       "name": "edr-evasion-endpoint-security",
       "path": "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md"
     },
     {
+      "name": "endpoint-application-control",
+      "path": "knowledge/skills/security/platform/endpoint-application-control/SKILL.md"
+    },
+    {
+      "name": "firmware-uefi-implant-analysis",
+      "path": "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md"
+    },
+    {
+      "name": "game-anticheat-engineering",
+      "path": "knowledge/skills/security/platform/game-anticheat-engineering/SKILL.md"
+    },
+    {
+      "name": "game-economy-fraud-security",
+      "path": "knowledge/skills/security/platform/game-economy-fraud-security/SKILL.md"
+    },
+    {
       "name": "game-engine-security",
       "path": "knowledge/skills/security/platform/game-engine-security/SKILL.md"
     },
     {
+      "name": "game-network-authority-security",
+      "path": "knowledge/skills/security/platform/game-network-authority-security/SKILL.md"
+    },
+    {
+      "name": "macos-endpoint-security",
+      "path": "knowledge/skills/security/platform/macos-endpoint-security/SKILL.md"
+    },
+    {
+      "name": "malware-unpacking-obfuscation",
+      "path": "knowledge/skills/security/platform/malware-unpacking-obfuscation/SKILL.md"
+    },
+    {
+      "name": "memory-forensics",
+      "path": "knowledge/skills/security/platform/memory-forensics/SKILL.md"
+    },
+    {
       "name": "memory-manipulation",
       "path": "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+    },
+    {
+      "name": "os-hardening-baselines",
+      "path": "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
     },
     {
       "name": "windows-internals-security",
@@ -1121,6 +1513,14 @@
     {
       "name": "program-owasp-zap",
       "path": "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md"
+    },
+    {
+      "name": "program-sbom-tooling",
+      "path": "knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md"
+    },
+    {
+      "name": "program-sigstore-cosign",
+      "path": "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
     },
     {
       "name": "superpowers-brainstorming",

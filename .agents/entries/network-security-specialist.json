@@ -1,0 +1,8 @@
+{
+  "name": "network-security-specialist",
+  "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/network-security-specialist/dist",
+  "fingerprint": "4404f2e88be07b50"
+}

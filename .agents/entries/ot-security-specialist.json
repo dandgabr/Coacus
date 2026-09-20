@@ -1,0 +1,8 @@
+{
+  "name": "ot-security-specialist",
+  "description": "Specialist Agent in OT/ICS Security, covering the Purdue model, IEC 62443, NIST SP 800-82r3, SCADA/PLC/DCS protection, legacy industrial protocols, safety-first constraints and MITRE ATT&CK for ICS.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/ot-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/ot-security-specialist/dist",
+  "fingerprint": "8bb2d28b3c1757aa"
+}

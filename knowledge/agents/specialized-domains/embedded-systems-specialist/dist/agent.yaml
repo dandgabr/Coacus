@@ -25,6 +25,9 @@ instruction: >
 
   - [academic-microprocessors-embedded-systems](knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md)
   - [academic-digital-systems-vlsi](knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md)
+  - [hardware-hacking-embedded-security](knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
+  - [firmware-uefi-implant-analysis](knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
+  - [os-hardening-baselines](knowledge/skills/security/platform/os-hardening-baselines/SKILL.md)
   - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
   - [lang-assembly-x64](knowledge/skills/languages/lang-assembly-x64/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
@@ -51,8 +54,14 @@ tools:
   - type: skill_integration
     path: ../../../../skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/domains/industry/hardware-hacking-embedded-security/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration
     path: ../../../../skills/languages/lang-assembly-x64/SKILL.md
   - type: skill_integration
     path: ../../../../skills/languages/lang-c/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/platform/os-hardening-baselines/SKILL.md

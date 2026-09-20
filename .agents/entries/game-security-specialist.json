@@ -1,0 +1,8 @@
+{
+  "name": "game-security-specialist",
+  "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/game-security-specialist/dist",
+  "fingerprint": "0f9a58ca6d28a83f"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "mobile-security-specialist",
+  "description": "Specialist Agent in Mobile Security, covering OWASP MASVS/MASTG, Android and iOS application testing, mobile malware and forensics, enterprise MDM/UEM and mobile threat defense.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/mobile-security-specialist/dist",
+  "fingerprint": "54a5df6b879e3990"
+}

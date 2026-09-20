@@ -6,23 +6,31 @@ description: >-
   (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory
   compliance (LGPD/GDPR) and threat modeling.
 skills:
+  - knowledge/skills/security/appsec/api-protocol-security/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
+  - knowledge/skills/security/appsec/business-logic-flaws/SKILL.md
   - knowledge/skills/security/appsec/dast-application-testing/SKILL.md
   - knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md
+  - knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md
   - knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md
   - knowledge/skills/security/appsec/sast-code-review/SKILL.md
+  - knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md
   - knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md
+  - knowledge/skills/security/appsec/web-injection-classes/SKILL.md
   - knowledge/skills/security/grc/security-grc-compliance/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
   - knowledge/skills/security/iam/iam-access-management/SKILL.md
   - knowledge/skills/security/iam/iam-access-power-platform/SKILL.md
   - knowledge/skills/security/operations/devsecops-engineer/SKILL.md
+  - knowledge/skills/security/operations/supply-chain-threat-modeling/SKILL.md
   - knowledge/skills/security/operations/threat-modeler/SKILL.md
   - knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md
   - knowledge/skills/security/tooling/program-opengrep/SKILL.md
   - knowledge/skills/security/tooling/program-openrasp/SKILL.md
   - knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md
   - knowledge/skills/security/tooling/program-owasp-zap/SKILL.md
+  - knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md
+  - knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -48,12 +56,20 @@ You master the full application security testing suite:
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [owasp-top-10-2025](knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md)
+- [web-injection-classes](knowledge/skills/security/appsec/web-injection-classes/SKILL.md)
+- [business-logic-flaws](knowledge/skills/security/appsec/business-logic-flaws/SKILL.md)
+- [api-protocol-security](knowledge/skills/security/appsec/api-protocol-security/SKILL.md)
+- [secure-sdlc-ssdf](knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md)
 - [devsecops-engineer](knowledge/skills/security/operations/devsecops-engineer/SKILL.md)
 - [sast-code-review](knowledge/skills/security/appsec/sast-code-review/SKILL.md)
 - [dast-application-testing](knowledge/skills/security/appsec/dast-application-testing/SKILL.md)
 - [iast-interactive-testing](knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md)
 - [rasp-runtime-protection](knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md)
 - [software-supply-chain-security](knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md)
+- [supply-chain-threat-modeling](knowledge/skills/security/operations/supply-chain-threat-modeling/SKILL.md)
+- [program-sbom-tooling](knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md)
+- [program-sigstore-cosign](knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md)
 - [program-opengrep](knowledge/skills/security/tooling/program-opengrep/SKILL.md)
 - [program-openrasp](knowledge/skills/security/tooling/program-openrasp/SKILL.md)
 - [program-dongtai-iast](knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md)

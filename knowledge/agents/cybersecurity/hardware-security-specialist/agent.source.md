@@ -9,6 +9,7 @@ skills:
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md
   - knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md
+  - knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md
   - knowledge/skills/security/platform/memory-manipulation/SKILL.md
 ---
 
@@ -33,6 +34,7 @@ When assessing electronic boards and connected devices:
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [hardware-hacking-embedded-security](knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
+- [firmware-uefi-implant-analysis](knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
 - [binary-app-reverse-mapping](knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md)
 - [memory-manipulation](knowledge/skills/security/platform/memory-manipulation/SKILL.md)
 - [edr-evasion-endpoint-security](knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md)
