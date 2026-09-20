@@ -64,6 +64,9 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 - `harnesses/cursor/harness.json` corrected to the documented Cursor hook path
   (`.cursor/hooks.json`, snake_case `additional_context`).
 - Documentation count references reconciled (181 tests, six CLIs).
+- `docs/roadmap.md` count wording reconciled: it now labels the 193 knowledge
+  skills, the 15 process workflows and the 208 catalog skill entries (193 + 15)
+  separately, instead of using "skills" for two different totals.
 
 ## [F7] — 2026-09-20 — consolidation
 

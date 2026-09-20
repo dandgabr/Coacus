@@ -63,15 +63,17 @@ evaluation never blocks CI.
 
 Imported and translated the corpus using `templates/import/import-manifest.json`
 and `scripts/coacus_import.py`, recorded provenance in `sources.lock.json`, and
-reorganized the material into the ten-category taxonomy. Delivered 199 skills,
-58 agents, 15 workflows and one MCP (214 catalog skill entries). See
-[`migration.md`](migration.md) and [corpus-and-taxonomy](standards/corpus-and-taxonomy.md).
+reorganized the material into the ten-category taxonomy. Delivered 199 knowledge
+skills, 58 agents, 15 process workflows and one MCP (214 catalog skill entries:
+199 + 15). See [`migration.md`](migration.md) and
+[corpus-and-taxonomy](standards/corpus-and-taxonomy.md).
 
 > Post-F7 the corpus was pruned of components coupled to a specific MCP server
 > (the `ai-memory` skills + `ai-memory-specialist`, and `autodoc-code-explorer`,
 > which drives the AutoDoc MCP). They are deliberately excluded in the import
-> manifest (`exclude_skills` / `exclude_agents`); the current corpus is 193
-> skills, 57 agents, one MCP (208 catalog skill entries).
+> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **193
+> knowledge skills plus 15 process workflows (208 catalog skill entries, the
+> number the installer and `--verify` report)**, 57 agents and one MCP.
 
 ### F7 — Final consolidation (done)
 
