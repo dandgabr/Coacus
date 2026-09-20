@@ -85,6 +85,15 @@ def _source_dir(manifest: dict, repo_key: str) -> Path:
     return Path(manifest["source_repos"][repo_key])
 
 
+def _origin_license(manifest: dict, repo_key: str) -> str:
+    """The license declared for a source repo in the import manifest.
+
+    Falls back to a pointer at the source repo when none is declared, so the
+    provenance entry never claims a license that was not verified.
+    """
+    return manifest.get("licenses", {}).get(repo_key, "see source repo")
+
+
 def _skill_dirs(source_root: Path) -> list[Path]:
     base = source_root / "skills"
     if not base.is_dir():
@@ -513,7 +522,7 @@ def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
                 "source_sha256": _sha256(source / "AGENT.md"),
                 "target_path": target_file.relative_to(ROOT).as_posix(),
                 "target_sha256": _sha256(target_file),
-                "origin_license": "see source repo",
+                "origin_license": _origin_license(manifest, source_repo),
                 "transform": transform,
                 "aliases": [p.name for p in action.get("merge_sources", [])],
                 "import_run_id": run_id,
@@ -538,12 +547,30 @@ def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
                 "source_sha256": _sha256(source_file),
                 "target_path": file.relative_to(ROOT).as_posix(),
                 "target_sha256": _sha256(file),
-                "origin_license": "see source repo",
+                "origin_license": _origin_license(manifest, source_repo),
                 "transform": transform,
                 "import_run_id": run_id,
                 "imported_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             })
     return entries
+
+
+def _relabel_licenses(lock: dict, manifest: dict) -> int:
+    """Stamp the declared license onto every entry of a known source repo.
+
+    ``origin_license`` is written at import time, so entries imported before a
+    license was declared still read ``see source repo``. Re-importing content to
+    fix a label would pull unrelated upstream changes; this rewrites the label in
+    place and leaves provenance hashes untouched. Returns the number relabeled.
+    """
+    licenses = manifest.get("licenses", {})
+    relabeled = 0
+    for entry in lock.get("entries", []):
+        declared = licenses.get(entry.get("source_repo"))
+        if declared and entry.get("origin_license") != declared:
+            entry["origin_license"] = declared
+            relabeled += 1
+    return relabeled
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -595,8 +622,13 @@ def main(argv: list[str] | None = None) -> int:
     lock["entries"] = [e for e in lock.get("entries", []) if e["target_path"] not in targets]
     lock["entries"].extend(entries)
     lock["entries"].sort(key=lambda e: e["target_path"])
+    relabeled = _relabel_licenses(lock, manifest)
     provenance.write(ROOT, lock)
-    print(json.dumps({"imported_files": len(entries), "lock_entries": len(lock["entries"])}, indent=2))
+    print(json.dumps({
+        "imported_files": len(entries),
+        "lock_entries": len(lock["entries"]),
+        "relabeled_licenses": relabeled,
+    }, indent=2))
     return 0
 
 

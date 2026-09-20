@@ -27,11 +27,20 @@ Usage:
 
 A manifest (`coacus-install.json`) is written next to each target so re-runs
 are idempotent and `--uninstall` removes exactly what was installed.
+
+Partial installs keep the session-start skills budget small: a harness that
+indexes every skill pays for every description. Filter with `--only` (top-level
+category) and/or `--skills` (name glob); `--list` prints what is available.
+
+    python3 scripts/coacus_install.py codex --only security,engineering
+    python3 scripts/coacus_install.py codex --skills 'lang-python,framework-*'
+    python3 scripts/coacus_install.py codex --list
 """
 
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import shutil
 import sys
@@ -42,6 +51,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 MANIFEST_NAME = "coacus-install.json"
+NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
 
 
@@ -59,14 +69,169 @@ def default_config_dir(harness: str, home: Path) -> Path:
     }[harness]
 
 
-def discover_skills(root: Path) -> list[Path]:
-    """All skill directories (the parent of a SKILL.md) in the repository."""
-    found: list[Path] = []
+def _split_filter(value: str | None) -> list[str]:
+    """Parse a comma-separated filter into clean tokens (`None` -> no filter)."""
+    if not value:
+        return []
+    return [token.strip() for token in value.split(",") if token.strip()]
+
+
+def _skill_groups(root: Path) -> dict[str, list[Path]]:
+    """Every skill keyed by its top-level root, with the path segments under it.
+
+    Returns ``{skill_dir: segments}`` where ``segments`` is the relative path
+    from the skill root down to (but excluding) the skill directory. For
+    ``knowledge/skills/domains/academic/foo/SKILL.md`` that is
+    ``("domains", "academic")``; for ``methodology/workflows/using-coacus`` it is
+    ``("workflows",)`` so the workflows collection has a stable category name.
+    """
+    groups: dict[str, list[str]] = {}
     for top in SKILL_ROOTS:
         base = root / top
-        if base.is_dir():
-            found.extend(sorted(p.parent for p in base.rglob("SKILL.md")))
+        if not base.is_dir():
+            continue
+        default = "workflows" if top == "methodology/workflows" else ""
+        for skill_md in sorted(base.rglob("SKILL.md")):
+            skill = skill_md.parent
+            rel = skill.relative_to(base)
+            segments = list(rel.parts[:-1])
+            if default and not segments:
+                segments = [default]
+            groups[str(skill)] = segments
+    return groups
+
+
+def discover_skills(
+    root: Path, only: list[str] | None = None, skills: list[str] | None = None
+) -> list[Path]:
+    """All skill directories (the parent of a SKILL.md) in the repository.
+
+    ``only`` keeps skills whose path under its root contains one of the given
+    category tokens (matched against every path segment, so both ``domains`` and
+    ``academic`` select the academic skills). ``skills`` keeps skills whose
+    directory name matches one of the given fnmatch globs. Both filters are
+    OR-ed within their own list and AND-ed with each other; an empty filter is
+    no filter.
+    """
+    groups = _skill_groups(root)
+    found: list[Path] = []
+    for skill_str, segments in groups.items():
+        skill = Path(skill_str)
+        if only and not any(token in segments for token in only):
+            continue
+        if skills and not any(fnmatch.fnmatch(skill.name, pat) for pat in skills):
+            continue
+        found.append(skill)
     return found
+
+
+def list_skills(root: Path) -> dict[str, object]:
+    """Inventory for `--list`: categories and skill names, no harness needed."""
+    groups = _skill_groups(root)
+    categories: dict[str, list[str]] = {}
+    for skill_str, segments in groups.items():
+        name = Path(skill_str).name
+        for segment in segments or ["(root)"]:
+            categories.setdefault(segment, []).append(name)
+    return {
+        "skills": sorted(Path(s).name for s in groups),
+        "categories": {k: sorted(v) for k, v in sorted(categories.items())},
+        "count": len(groups),
+    }
+
+
+AGENT_SOURCE_NAME = "agent.source.md"
+
+
+def discover_agents(root: Path) -> list[Path]:
+    """All canonical agent sources: knowledge/agents/<category>/<name>/."""
+    agents_dir = root / "knowledge" / "agents"
+    if not agents_dir.is_dir():
+        return []
+    return sorted(agents_dir.glob("*/*/" + AGENT_SOURCE_NAME))
+
+
+def _agent_meta(source: Path) -> dict[str, object]:
+    """Parse name/description/body from a canonical agent source."""
+    from engine.frontmatter import parse
+
+    doc = parse(source.read_text(encoding="utf-8"))
+    return {
+        "name": str(doc.meta.get("name", "")).strip(),
+        "description": str(doc.meta.get("description", "")).strip(),
+        "body": doc.body.strip(),
+    }
+
+
+def _render_agent_opencode(source: Path) -> str:
+    """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
+    meta = _agent_meta(source)
+    rel = source.relative_to(ROOT).as_posix()
+    return (
+        "---\n"
+        f"description: {meta['description']}\n"
+        "mode: subagent\n"
+        "---\n\n"
+        f"<!-- Generated from {rel} (Coacus) -->\n\n"
+        f"{meta['body']}\n"
+    )
+
+
+def _render_agent_antigravity(source: Path) -> str:
+    """Antigravity custom-agent markdown: frontmatter + H1-delimited body."""
+    meta = _agent_meta(source)
+    body = meta["body"]
+    first = body.lstrip().splitlines()[:1]
+    if not first or not first[0].startswith("# "):
+        body = f"# {meta['name']}\n\n{body}"
+    return (
+        "---\n"
+        f"name: {meta['name']}\n"
+        f"description: {meta['description']}\n"
+        "---\n\n"
+        f"{body}\n"
+    )
+
+
+def _render_agent_codex(source: Path) -> str:
+    """Codex agent role TOML: name/description + developer_instructions."""
+    meta = _agent_meta(source)
+    # TOML basic multiline string: escape backslashes and triple quotes.
+    body = meta["body"].replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
+    description = str(meta["description"]).replace("\\", "\\\\").replace('"', '\\"')
+    return (
+        f'name = "{meta["name"]}"\n'
+        f'description = "{description}"\n'
+        'developer_instructions = """\n'
+        f"{body}\n"
+        '"""\n'
+    )
+
+
+def _plan_agents_opencode(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+    plan: list[tuple[Path, str]] = []
+    for source in discover_agents(root):
+        name = str(_agent_meta(source)["name"])
+        plan.append((agents_dir / f"{name}.md", _render_agent_opencode(source)))
+    return plan
+
+
+def _plan_agents_antigravity(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+    plan: list[tuple[Path, str]] = []
+    for source in discover_agents(root):
+        name = str(_agent_meta(source)["name"])
+        plan.append(
+            (agents_dir / name / "agent.md", _render_agent_antigravity(source))
+        )
+    return plan
+
+
+def _plan_agents_codex(root: Path, agents_dir: Path) -> list[tuple[Path, str]]:
+    plan: list[tuple[Path, str]] = []
+    for source in discover_agents(root):
+        name = str(_agent_meta(source)["name"])
+        plan.append((agents_dir / f"{name}.toml", _render_agent_codex(source)))
+    return plan
 
 
 def _skill_files(skill_dir: Path) -> list[Path]:
@@ -74,18 +239,31 @@ def _skill_files(skill_dir: Path) -> list[Path]:
     return sorted(p for p in skill_dir.rglob("*") if p.is_file())
 
 
-def _plan_skills(root: Path, skills_dir: Path) -> list[tuple[Path, str]]:
-    """Mirror every skill tree (SKILL.md + references/examples/scripts)."""
+def _plan_skills(
+    root: Path,
+    skills_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
+    """Mirror every selected skill tree (SKILL.md + references/examples/scripts)."""
     plan: list[tuple[Path, str]] = []
-    for skill in discover_skills(root):
+    for skill in discover_skills(root, only=only, skills=skills):
         for source in _skill_files(skill):
             relative = source.relative_to(skill)
             target = skills_dir / skill.name / relative
             plan.append((target, source.read_text(encoding="utf-8")))
+    notice = root / NOTICE_NAME
+    if notice.is_file():
+        plan.append((skills_dir / NOTICE_NAME, notice.read_text(encoding="utf-8")))
     return plan
 
 
-def _plan_opencode(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def _plan_opencode(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
     content = source.read_text(encoding="utf-8").replace(
@@ -102,13 +280,19 @@ def _plan_opencode(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
                 ),
             )
         )
-    plan += _plan_skills(root, config_dir / "skills")
+    plan += _plan_skills(root, config_dir / "skills", only, skills)
+    plan += _plan_agents_opencode(root, config_dir / "agent")
     return plan
 
 
-def _plan_claude(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def _plan_claude(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     """Skills + a hook plugin whose script path matches the generated hooks.json."""
-    plan = _plan_skills(root, config_dir / "skills")
+    plan = _plan_skills(root, config_dir / "skills", only, skills)
     plugin = config_dir / "plugins" / "coacus"
     plan.append(
         (
@@ -144,7 +328,12 @@ def _plan_claude(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     return plan
 
 
-def _plan_antigravity(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def _plan_antigravity(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
     Antigravity activates plugins by directory placement (``~/.gemini/config/plugins/``
@@ -152,14 +341,63 @@ def _plan_antigravity(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     ``rules/`` dir with ``activation: always_on``; no registry edit is required.
     """
     plugin = config_dir / "config" / "plugins" / "coacus"
-    plan = _plan_skills(root, plugin / "skills")
+    plan = _plan_skills(root, plugin / "skills", only, skills)
+    plan += _plan_agents_antigravity(root, plugin / "agents")
     for name in ("plugin.json", "coacus-rule.md"):
         source = root / "harnesses/antigravity/bootstrap" / name
         plan.append((plugin / name, source.read_text(encoding="utf-8")))
+    # Governor hook (governance-executable) + its plugin hooks.json root file.
+    hook = root / "harnesses/antigravity/bootstrap/governor-hook.sh"
+    if hook.is_file():
+        plan.append(
+            (
+                plugin / "governor-hook.sh",
+                hook.read_text(encoding="utf-8").replace(
+                    "__COACUS_ROOT__", root.as_posix()
+                ),
+            )
+        )
+        plan.append((plugin / "hooks.json", _antigravity_hooks_json(plugin)))
     return plan
 
 
-def _plan_codex(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def _antigravity_hooks_json(plugin_dir: Path) -> str:
+    """Antigravity plugin hooks.json wiring the governor hook to lifecycle events."""
+    command = f"{plugin_dir.as_posix()}/governor-hook.sh"
+    matcher = "invoke_subagent|manage_subagents|task"
+    return (
+        json.dumps(
+            {
+                "coacus-governor": {
+                    "PreToolUse": [
+                        {
+                            "matcher": matcher,
+                            "hooks": [{"type": "command", "command": f"{command} pretool"}],
+                        }
+                    ],
+                    "PostToolUse": [
+                        {
+                            "matcher": matcher,
+                            "hooks": [{"type": "command", "command": f"{command} posttool"}],
+                        }
+                    ],
+                    "PreInvocation": [
+                        {"type": "command", "command": f"{command} preinv"}
+                    ],
+                }
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+
+
+def _plan_codex(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     """Skills to the documented scan root + the SessionStart hook.
 
     Codex scans ``.agents/skills`` (not ``~/.codex/skills``), and its hooks load
@@ -168,7 +406,9 @@ def _plan_codex(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     """
     plan: list[tuple[Path, str]] = []
     # Codex scans $HOME/.agents/skills, not $config_dir/.codex/skills.
-    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills")
+    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
+    # Codex agent roles live in $CODEX_HOME/agents/*.toml.
+    plan += _plan_agents_codex(root, config_dir / "agents")
     script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
@@ -181,7 +421,12 @@ def _plan_codex(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     return plan
 
 
-def _plan_cursor(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def _plan_cursor(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     """Skills to a Cursor scan root + the sessionStart hook.
 
     Cursor hooks live at ``~/.cursor/hooks.json`` (user) or
@@ -189,7 +434,7 @@ def _plan_cursor(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     ``additional_context``. Commands are repo-absolute.
     """
     plan: list[tuple[Path, str]] = []
-    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills")
+    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
@@ -202,26 +447,43 @@ def _plan_cursor(root: Path, config_dir: Path) -> list[tuple[Path, str]]:
     return plan
 
 
-def plan(harness: str, root: Path, config_dir: Path) -> list[tuple[Path, str]]:
+def plan(
+    harness: str,
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, str]]:
     if harness == "opencode":
-        return _plan_opencode(root, config_dir)
+        return _plan_opencode(root, config_dir, only, skills)
     if harness == "claude-code":
-        return _plan_claude(root, config_dir)
+        return _plan_claude(root, config_dir, only, skills)
     if harness == "antigravity":
-        return _plan_antigravity(root, config_dir)
+        return _plan_antigravity(root, config_dir, only, skills)
     if harness == "codex":
-        return _plan_codex(root, config_dir)
+        return _plan_codex(root, config_dir, only, skills)
     if harness == "cursor":
-        return _plan_cursor(root, config_dir)
+        return _plan_cursor(root, config_dir, only, skills)
     return []
 
 
 def install(
-    harness: str, root: Path, config_dir: Path, dry_run: bool
+    harness: str,
+    root: Path,
+    config_dir: Path,
+    dry_run: bool,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
 ) -> dict[str, object]:
-    files = plan(harness, root, config_dir)
+    files = plan(harness, root, config_dir, only, skills)
     if dry_run:
-        return {"harness": harness, "files": [str(t) for t, _ in files], "dry_run": True}
+        return {
+            "harness": harness,
+            "files": [str(t) for t, _ in files],
+            "dry_run": True,
+            "only": only or [],
+            "skills": skills or [],
+        }
     written: list[str] = []
     for target, content in files:
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -229,7 +491,16 @@ def install(
         written.append(target.as_posix())
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
-        json.dumps({"harness": harness, "files": written}, indent=2) + "\n",
+        json.dumps(
+            {
+                "harness": harness,
+                "files": written,
+                "only": only or [],
+                "skills": skills or [],
+            },
+            indent=2,
+        )
+        + "\n",
         encoding="utf-8",
     )
     return {"harness": harness, "files": written, "manifest": manifest.as_posix()}
@@ -269,12 +540,38 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
     parser.add_argument(
         "harness",
+        nargs="?",
         choices=["opencode", "claude-code", "antigravity", "codex", "cursor", "all"],
+        help="harness to install into (omit with --list)",
     )
     parser.add_argument("--config-dir", help="override the harness config directory")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--uninstall", action="store_true")
+    parser.add_argument(
+        "--only",
+        help="comma-separated categories to install (e.g. security,engineering)",
+    )
+    parser.add_argument(
+        "--skills",
+        help="comma-separated skill name globs to install (e.g. 'lang-*,framework-*')",
+    )
+    parser.add_argument(
+        "--list",
+        dest="list_",
+        action="store_true",
+        help="print available categories and skill names, then exit",
+    )
     args = parser.parse_args(argv)
+
+    only = _split_filter(args.only)
+    skills = _split_filter(args.skills)
+
+    if args.list_:
+        print(json.dumps(list_skills(ROOT), indent=2))
+        return 0
+
+    if not args.harness:
+        parser.error("a harness is required unless --list is used")
 
     harnesses = (
         ["opencode", "claude-code", "antigravity", "codex", "cursor"]
@@ -289,7 +586,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.uninstall:
             results.append(uninstall(harness, config_dir, dry_run=args.dry_run))
         else:
-            results.append(install(harness, ROOT, config_dir, args.dry_run))
+            results.append(
+                install(harness, ROOT, config_dir, args.dry_run, only, skills)
+            )
     print(json.dumps(results, indent=2))
     return 0
 

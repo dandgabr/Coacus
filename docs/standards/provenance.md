@@ -24,7 +24,7 @@ Required per entry:
 | `source_sha256` | Content hash of the source file |
 | `target_path` | Repository-relative target |
 | `target_sha256` | Content hash of the imported file |
-| `origin_license` | License carried by the origin |
+| `origin_license` | License carried by the origin (resolved from the import manifest's `licenses` map; `see source repo` when undeclared) |
 | `transform` | Normalizations applied (rename, merge, conversion, translation) |
 | `import_run_id` | Import run that produced the entry |
 | `imported_at` | Import timestamp |
@@ -60,3 +60,5 @@ generated artifacts.
   `python3 scripts/coacus.py completeness`) reconciles lock targets against disk,
   flags orphan skills with no provenance, and checks source repos when present.
 - `tests/test_discovery_provenance.py` covers the schema and target checks.
+  `tests/test_import_licenses.py` covers the license resolution and the
+  in-place relabel applied by `scripts/coacus_import.py apply`.

@@ -74,6 +74,26 @@ Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as
 `<skill>/SKILL.md` plus its companions (`references/`, `examples/`, `scripts/`).
 
+### Partial installs
+
+A harness that indexes every skill pays, at session start, for every skill
+description it must load — Codex, for example, shortens descriptions when the
+corpus overflows its skills context budget. Install only what a session needs:
+
+```bash
+python3 scripts/coacus_install.py codex --only security,engineering
+python3 scripts/coacus_install.py codex --skills 'lang-*,framework-*'
+python3 scripts/coacus_install.py codex --only languages --skills 'lang-python,lang-rust'
+python3 scripts/coacus_install.py --list     # categories and skill names, then exit
+```
+
+- `--only` matches the top-level category (`security`, `domains`, `languages`, …)
+  or any nested segment (`academic`, `appsec`, `grc`, …); the workflows
+  collection is selected with `workflows`.
+- `--skills` matches skill directory names with fnmatch globs.
+- Tokens are comma-separated; the two filters are AND-ed, and the selected files
+  are recorded in the manifest, so `--uninstall` stays exact.
+
 ## opencode
 
 **Goal:** the OpenCode session starts with the Coacus entry skill already loaded.
