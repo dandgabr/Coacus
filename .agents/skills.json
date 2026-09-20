@@ -307,9 +307,6 @@
       "path": "knowledge/skills/mapping/app-dependency-discovery"
     },
     {
-      "path": "knowledge/skills/mapping/autodoc-code-explorer"
-    },
-    {
       "path": "knowledge/skills/mapping/binary-app-reverse-mapping"
     },
     {
@@ -359,21 +356,6 @@
     },
     {
       "path": "knowledge/skills/platforms/power-automate"
-    },
-    {
-      "path": "knowledge/skills/platforms/program-ai-memory-durable-pages"
-    },
-    {
-      "path": "knowledge/skills/platforms/program-ai-memory-handoff"
-    },
-    {
-      "path": "knowledge/skills/platforms/program-ai-memory-learning-maintenance"
-    },
-    {
-      "path": "knowledge/skills/platforms/program-ai-memory-retrieval"
-    },
-    {
-      "path": "knowledge/skills/platforms/program-ai-memory-routing-install"
     },
     {
       "path": "knowledge/skills/platforms/program-github-actions"

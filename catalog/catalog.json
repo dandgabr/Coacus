@@ -1,17 +1,11 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 58,
-    "skills": 214,
+    "agents": 57,
+    "skills": 208,
     "mcps": 1
   },
   "agents": [
-    {
-      "name": "ai-memory-specialist",
-      "category": "specialized-domains",
-      "description": "Specialist Agent in Long-Term Memory, Session Continuity and ai-memory Governance. Masters semantic wiki queries, structured recording of ADRs/durable decisions, cross-agent handoff management, integrity auditing and lifecycle observation consolidation.",
-      "source": "knowledge/agents/specialized-domains/ai-memory-specialist/agent.source.md"
-    },
     {
       "name": "ai-security-specialist",
       "category": "cybersecurity",
@@ -765,10 +759,6 @@
       "path": "knowledge/skills/mapping/app-dependency-discovery/SKILL.md"
     },
     {
-      "name": "autodoc-code-explorer",
-      "path": "knowledge/skills/mapping/autodoc-code-explorer/SKILL.md"
-    },
-    {
       "name": "binary-app-reverse-mapping",
       "path": "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md"
     },
@@ -835,26 +825,6 @@
     {
       "name": "power-automate",
       "path": "knowledge/skills/platforms/power-automate/SKILL.md"
-    },
-    {
-      "name": "program-ai-memory-durable-pages",
-      "path": "knowledge/skills/platforms/program-ai-memory-durable-pages/SKILL.md"
-    },
-    {
-      "name": "program-ai-memory-handoff",
-      "path": "knowledge/skills/platforms/program-ai-memory-handoff/SKILL.md"
-    },
-    {
-      "name": "program-ai-memory-learning-maintenance",
-      "path": "knowledge/skills/platforms/program-ai-memory-learning-maintenance/SKILL.md"
-    },
-    {
-      "name": "program-ai-memory-retrieval",
-      "path": "knowledge/skills/platforms/program-ai-memory-retrieval/SKILL.md"
-    },
-    {
-      "name": "program-ai-memory-routing-install",
-      "path": "knowledge/skills/platforms/program-ai-memory-routing-install/SKILL.md"
     },
     {
       "name": "program-github-actions",

@@ -1,6 +1,0 @@
-{
-  "name": "ai-memory-specialist",
-  "version": "0.1.0",
-  "description": "Specialist Agent in Long-Term Memory, Session Continuity and ai-memory Governance. Masters semantic wiki queries, structured recording of ADRs/durable decisions, cross-agent handoff management, integrity auditing and lifecycle observation consolidation.",
-  "entrypoint": "AGENT.md"
-}

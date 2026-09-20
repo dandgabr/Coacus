@@ -51,7 +51,6 @@ The specialist orchestrates 13 fundamental mapping areas:
 
 | Domain | Specialized Sub-Skill | Key Tools |
 | :--- | :--- | :--- |
-| **Code Mapping & C4 Model** | [`autodoc-code-explorer`](../../mapping/autodoc-code-explorer/SKILL.md) | AutoDoc MCP, Tree-Sitter AST, Rayon, Mermaid C4, Structurizr DSL, Taint Analysis |
 | **App Discovery & Tracing** | [`app-dependency-discovery`](../../mapping/app-dependency-discovery/SKILL.md) | OpenTelemetry eBPF (OBI), Caretta, Jaeger, Zipkin, SkyWalking, SigNoz, Grafana Tempo |
 | **Network Flow Analysis** | [`network-flow-discovery`](../../mapping/network-flow-discovery/SKILL.md) | Zeek, ntopng, Arkime, Wireshark, tcpdump, pmacct, ElastiFlow, NetworkMiner, p0f, RITA, Nmap |
 | **Kubernetes, Containers & eBPF** | [`k8s-container-mapping`](../../mapping/k8s-container-mapping/SKILL.md) | Cilium, Hubble, Kiali, Kubeshark, Pixie, Inspektor Gadget, Parca, Tetragon, Falco, Tracee |

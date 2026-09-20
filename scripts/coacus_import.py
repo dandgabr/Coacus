@@ -188,8 +188,12 @@ def plan_agents(manifest: dict) -> list[dict]:
             "name": target_name,
         })
     consumed = {n for names in merges.values() for n in names}
+    excluded_agents = set(manifest.get("exclude_agents", []))
     for name, agent_dir in sorted(by_name.items()):
         if name in consumed:
+            continue
+        if name in excluded_agents:
+            actions.append({"action": "exclude", "name": name, "reason": "manifest exclude_agents"})
             continue
         category = agent_dir.parent.name
         actions.append({

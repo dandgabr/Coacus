@@ -120,6 +120,7 @@ def validate(root: Path) -> list[str]:
     # --- source side (only when the repos are present) ----------------------
     source_repos = manifest.get("source_repos", {})
     excluded_skills = set(manifest.get("exclude_skills", []))
+    excluded_agents = set(manifest.get("exclude_agents", []))
     merged_sources = {
         name
         for names in manifest.get("agent_merges", {}).values()
@@ -143,6 +144,8 @@ def validate(root: Path) -> list[str]:
         for name in _source_agents(repo):
             if name in merged_sources:
                 continue  # merged into a target agent
+            if name in excluded_agents:
+                continue  # deliberately excluded by the manifest
             if name not in imported_agents:
                 gaps.append(f"source agent not imported: {name}")
         for target in merge_targets:
