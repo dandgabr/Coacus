@@ -10,14 +10,14 @@ Shapes:
   harness hook config. Claude Code and Codex read
   ``hookSpecificOutput.additionalContext``; Cursor reads the top-level
   ``additional_context``. The native key and the hook config come from
-  ``harness.json``; the forbidden alias is never emitted (ADR-0009).
+  ``harness.json``; the forbidden alias is never emitted (session-start-bootstrap).
 - B (in-process): a JS module that injects the bootstrap into the first user
   message, with an anti-reinjection guard.
 - C (instructions-file / rule): a markdown context file plus the plugin manifest
   that declares it. Antigravity rules are capped at 12,000 characters.
 - native-discovery: nothing rendered (the harness surfaces skills natively).
 
-Rendered artifacts are committed and drift-checked (ADR-0014); no timestamps.
+Rendered artifacts are committed and drift-checked (generated-artifacts); no timestamps.
 """
 
 from __future__ import annotations
@@ -121,7 +121,7 @@ def _render_hook_script(harness: dict, text: str) -> str:
         "#!/usr/bin/env bash\n"
         f"# SessionStart bootstrap for {harness['name']} (generated — do not edit).\n"
         "# Emits exactly ONE native JSON field; the forbidden alias is never\n"
-        "# emitted (some harnesses read both fields without dedup — ADR-0009).\n"
+        "# emitted (some harnesses read both fields without dedup — session-start-bootstrap).\n"
         "set -euo pipefail\n"
         "cat <<'COACUS_EOF'\n"
         f"{native_json}\n"
@@ -180,7 +180,7 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
         "// substitutes __COACUS_ROOT__ with the repository path; the plugin then\n"
         "// registers the skill paths (no user-config edit) and injects the\n"
         "// bootstrap into the first user message with an anti-reinjection guard\n"
-        "// (ADR-0009 / ADR-0016).\n"
+        "// (session-start-bootstrap / session-start-bootstrap).\n"
         "\n"
         "const COACUS_ROOT = '__COACUS_ROOT__';\n"
         "const SKILL_PATHS = [\n"
@@ -259,7 +259,7 @@ def _render_governor_gate(harness: dict) -> dict[str, str]:
                 "// Coacus governor and ABORTS the spawn when no slot is free (the\n"
                 "// cap is enforced, not advisory). A rate-limit (429) in the result\n"
                 "// parks the caller as PAUSED for the orchestrator to retry with\n"
-                "// backoff (D6/ADR-0007).\n"
+                "// backoff (orchestration-governance).\n"
                 "\n"
                 "import { execFileSync } from 'node:child_process';\n"
                 "\n"
@@ -370,7 +370,7 @@ def write_all(root: Path) -> list[str]:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check: expected vs disk, plus orphan detection (ADR-0014)."""
+    """Drift check: expected vs disk, plus orphan detection (generated-artifacts)."""
     drift: list[str] = []
     expected = expected_outputs(root)
     for rel, content in expected.items():

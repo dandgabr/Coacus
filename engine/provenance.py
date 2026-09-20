@@ -1,8 +1,8 @@
-"""Provenance manifest for imported artifacts (P4 / ADR-0015).
+"""Provenance manifest for imported artifacts (P4 / provenance).
 
 Lives at the repository root as ``sources.lock.json`` — deliberately OUTSIDE
 the generated ``catalog/`` surface so that the per-import ``imported_at``
-timestamp cannot break the ADR-0014 drift check (the catalog generator must
+timestamp cannot break the generated-artifacts drift check (the catalog generator must
 stay timestamp-free and idempotent).
 
 This module owns the schema and the (empty) seed. The F6 import pipeline

@@ -27,7 +27,7 @@ proven judgment; skipping them means improvising what already has an answer.
 1. Process skills first (planning, debugging, review), then domain skills.
 2. When two skills touch the same work, the more specific one wins.
 3. User instructions outrank every skill; repository rules (`AGENTS.md`,
-   `docs/adr/`) outrank individual skills.
+   `docs/standards/`) outrank individual skills.
 
 ## Red flags — you are about to rationalize skipping a skill
 

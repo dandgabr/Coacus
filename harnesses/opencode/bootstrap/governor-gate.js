@@ -4,7 +4,7 @@
 // Coacus governor and ABORTS the spawn when no slot is free (the
 // cap is enforced, not advisory). A rate-limit (429) in the result
 // parks the caller as PAUSED for the orchestrator to retry with
-// backoff (D6/ADR-0007).
+// backoff (orchestration-governance).
 
 import { execFileSync } from 'node:child_process';
 

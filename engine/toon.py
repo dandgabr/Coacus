@@ -1,4 +1,4 @@
-"""TOON (Token-Oriented Object Notation) payload parsing and validation (D7/ADR-0008).
+"""TOON (Token-Oriented Object Notation) payload parsing and validation (toon-protocol).
 
 TOON is the compact handoff format between agents:
 

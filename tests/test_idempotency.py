@@ -1,4 +1,4 @@
-"""Idempotency golden tests (D3/ADR-0014): generate twice, zero diff."""
+"""Idempotency golden tests (generated-artifacts): generate twice, zero diff."""
 
 from __future__ import annotations
 

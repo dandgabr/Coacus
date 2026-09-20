@@ -1,6 +1,6 @@
 """Frontmatter parser for Coacus canonical sources.
 
-Tolerant subset of YAML, sufficient for the reference corpus (ADR-0011:
+Tolerant subset of YAML, sufficient for the reference corpus (testing:
 stdlib only):
 
 - single-line scalars, with indented continuation lines (multi-line plain)

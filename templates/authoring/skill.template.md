@@ -8,7 +8,7 @@ tags: []
 
 # My Skill
 
-Prescribe ACTIONS and intentions only — never harness tool names (ADR-0003).
+Prescribe ACTIONS and intentions only — never harness tool names (skill-authoring).
 Keep progressive disclosure: depth goes in `references/`, `examples/`,
-`scripts/` beside this file. Paths must be relative (ADR-0013). Secrets only
-as {env:VAR} (ADR-0013). Everything in English (ADR-0001).
+`scripts/` beside this file. Paths must be relative (secrets-portability). Secrets only
+as {env:VAR} (secrets-portability). Everything in English (english-only).

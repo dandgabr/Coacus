@@ -1,6 +1,6 @@
 name: evals
 
-# Behavior evals (D10/ADR-0011). The blocking CI only ever runs the STATIC
+# Behavior evals (testing). The blocking CI only ever runs the STATIC
 # scenario gate (no LLM, no secrets); live scenarios drive a real agent CLI and
 # must be run locally (see evals/README.md). This workflow adds a scheduled +
 # manual static check so scenario drift is caught outside PRs.

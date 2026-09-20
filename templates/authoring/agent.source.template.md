@@ -13,5 +13,5 @@ tags:
 # My Agent
 
 Instruction body: the durable behavior contract. Prescribe ACTIONS, never
-harness tool names (ADR-0003). Paths must be relative (ADR-0013). Secrets
-only as {env:VAR} (ADR-0013). Everything in English (ADR-0001).
+harness tool names (skill-authoring). Paths must be relative (secrets-portability). Secrets
+only as {env:VAR} (secrets-portability). Everything in English (english-only).

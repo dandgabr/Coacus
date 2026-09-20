@@ -1,4 +1,4 @@
-"""Open-closed dispatcher for document ingestion (D11/ADR-0012).
+"""Open-closed dispatcher for document ingestion (knowledge-ingestion).
 
 Formats register themselves with ``@register_converter``; adding a new format
 is a new handler file — the dispatcher never changes (OCP). Handlers live in

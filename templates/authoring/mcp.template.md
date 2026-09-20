@@ -25,9 +25,9 @@ version: 1.0.0
 # My MCP
 
 What the server exposes and when to use it. Names resolve to ACTIONS, never
-harness tool names (ADR-0003). Secrets are referenced only as `{env:VAR}` and
+harness tool names (skill-authoring). Secrets are referenced only as `{env:VAR}` and
 declared (by NAME) in `env_vars`; values never live in the repository
-(ADR-0013). Transport is one of `stdio`, `http`, `streamable-http`, `sse`.
+(secrets-portability). Transport is one of `stdio`, `http`, `streamable-http`, `sse`.
 
 The generator writes `dist/mcp.json` (server declaration for harnesses) and
 `dist/mcp_config.json` (setup metadata for consumers). Keep the body lean; heavy

@@ -1,4 +1,4 @@
-"""Tests for the concurrency governor (D6/ADR-0007)."""
+"""Tests for the concurrency governor (orchestration-governance)."""
 
 from __future__ import annotations
 

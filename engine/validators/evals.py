@@ -1,4 +1,4 @@
-"""Validate behavior-eval scenarios (D10/ADR-0011).
+"""Validate behavior-eval scenarios (testing).
 
 Scenarios live at ``evals/scenarios/<id>/scenario.json``. The static validator
 is deterministic (no LLM) and safe for CI; it checks the schema, that the

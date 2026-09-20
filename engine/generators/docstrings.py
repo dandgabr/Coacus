@@ -3,7 +3,7 @@
 Docstrings are the single source of truth (the "disk is the truth" principle):
 this generator walks the framework's Python modules, extracts signatures and
 docstrings via the stdlib ``ast`` parser, and writes a Markdown reference. The
-output is committed and drift-checked (ADR-0014) like any other generated
+output is committed and drift-checked (generated-artifacts) like any other generated
 artifact, so documentation cannot fall out of sync with the code.
 """
 
@@ -94,7 +94,7 @@ def write(root: Path) -> Path:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check for the generated API reference (ADR-0014)."""
+    """Drift check for the generated API reference (generated-artifacts)."""
     target = root / DOCS_PATH
     if not target.is_file():
         return [f"{DOCS_PATH}: missing (run generate)"]

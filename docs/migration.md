@@ -3,8 +3,8 @@
 Coacus was assembled by importing two external source repositories into the
 repository's own taxonomy. This document records where the material came from,
 how it was mapped and deduplicated, how provenance is kept, and how the
-translation was handled. The decision is ratified as
-[ADR-0017](adr/ADR-0017-corpus-import-and-taxonomy.md).
+translation was handled. The rules are recorded in
+[corpus-and-taxonomy](standards/corpus-and-taxonomy.md).
 
 The import is reproducible: `templates/import/import-manifest.json` is the
 single data file that drives it, and `scripts/coacus_import.py` performs it.
@@ -20,9 +20,9 @@ single data file that drives it, and `scripts/coacus_import.py` performs it.
 `agente-arquitetura-si` is listed in `exclude_import_from`. The importer enforces
 the exclusion on the actual action sources, so even a malformed manifest cannot
 read that repository. Its pipeline was ported by hand into
-`verticals/architecture_si/` instead ([ADR-0012](adr/ADR-0012-ingestion-dispatcher.md)),
+`verticals/architecture_si/` instead ([knowledge-ingestion](standards/knowledge-ingestion.md)),
 and its templates were copied once into `templates/domains/architecture_si/`
-([ADR-0010](adr/ADR-0010-single-source-scripts-templates.md)).
+([single-source](standards/single-source.md)).
 
 Each provenance entry records the source commit at import time. The F6 run used
 a dirty working tree for `skills`, so the recorded commit carries a `+dirty`
@@ -72,7 +72,7 @@ An imported `AGENT.md` references skills with the old taxonomy. The importer
 converts `AGENT.md` into the canonical `agent.source.md` and rewrites every
 `skills:` frontmatter path and inline `SKILL.md` link to the new
 repository-root-relative location. Paths are written root-relative because that
-is the agent-source contract ([ADR-0002](adr/ADR-0002-agent-manifests-single-source.md)).
+is the agent-source contract ([agent-manifests](standards/agent-manifests.md)).
 Cross-skill links inside imported bodies are resolved against the current tree,
 tolerating renames through the `program-` and `superpowers-` variants.
 
@@ -117,14 +117,14 @@ so the old name remains discoverable.
 
 `document_converter.py` and `document_analyzer.py` existed as byte-identical
 copies across two repositories, and most templates did too
-([ADR-0010](adr/ADR-0010-single-source-scripts-templates.md)). The import keeps
+([single-source](standards/single-source.md)). The import keeps
 one copy: pipeline code under `verticals/architecture_si/`, shared templates
 under `templates/domains/architecture_si/`.
 
 ## Provenance
 
 Every imported file is recorded in `sources.lock.json` at the repository root
-([ADR-0015](adr/ADR-0015-provenance-manifest-location.md)). It is deliberately
+([provenance](standards/provenance.md)). It is deliberately
 outside `catalog/`: provenance entries carry `imported_at`, and a timestamped
 file inside the generated surface would make `coacus.py check` fail forever.
 
@@ -146,7 +146,7 @@ translation pass clears it.
 
 ## Translation policy
 
-The repository language is English ([ADR-0001](adr/ADR-0001-language-policy.md)).
+The repository language is English ([english-only](standards/english-only.md)).
 Legacy PT-BR content was **translated at import, never copied verbatim**. The
 `linguistic-specialist` agent performs the translation, under orchestrator
 governance.

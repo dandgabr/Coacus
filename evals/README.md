@@ -1,6 +1,6 @@
 # Behavior evals
 
-`evals/` holds **LLM behavior** evaluations (ADR-0011). They are separate from
+`evals/` holds **LLM behavior** evaluations (testing). They are separate from
 `tests/` (deterministic infrastructure): a behavior eval asks whether an agent
 actually *follows* the framework, not whether the code is correct.
 

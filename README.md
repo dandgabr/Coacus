@@ -8,7 +8,7 @@ Claude Code, Antigravity, Codex and Cursor — and in framework consumers such a
 LangChain, AutoGen or CrewAI — without a fork per tool.
 
 License: **AGPL-3.0**. Repository language: **English**
-([ADR-0001](docs/adr/ADR-0001-language-policy.md)).
+([english-only](docs/standards/english-only.md)).
 
 ## What it is, and why
 
@@ -37,7 +37,7 @@ travel with the team, not with the editor.
 > generated from it and verified by a drift check
 > (`python3 scripts/coacus.py check`). Drift is a build error, not silent debt.
 
-Generated output is committed ([ADR-0014](docs/adr/ADR-0014-committed-generated-artifacts.md)),
+Generated output is committed ([generated-artifacts](docs/standards/generated-artifacts.md)),
 and CI runs `check`, never `generate` — regenerating in CI would rewrite the very
 files under comparison and hide the drift it is meant to catch.
 
@@ -60,9 +60,9 @@ Three layers, plus one closed engine:
 
 - **`knowledge/`** — the canonical WHAT. Skills, agents and MCP declarations,
   harness-agnostic. Bodies name actions, never tool names
-  ([ADR-0003](docs/adr/ADR-0003-agnostic-skills-thin-adapters.md)).
+  ([skill-authoring](docs/standards/skill-authoring.md)).
 - **`methodology/`** — the canonical HOW. Process workflows and the single
-  bootstrap wrapper body ([ADR-0016](docs/adr/ADR-0016-bootstrap-render-contract.md)).
+  bootstrap wrapper body ([session-start-bootstrap](docs/standards/session-start-bootstrap.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
   file: bootstrap shape, output paths, tool mapping, install method. Shapes:
   opencode B (in-process plugin), claude-code A (shell hook), antigravity C
@@ -135,8 +135,8 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Agents | 58 | `academic-sciences` 16, `software-engineering` 13, `cybersecurity` 8, `specialized-domains` 7, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 214 skill entries | `catalog/catalog.json` + `catalog/INDEX.md`, generated from disk ([ADR-0004](docs/adr/ADR-0004-catalog-generated-from-disk.md)) |
-| Provenance | 1163 entries | `sources.lock.json` ([ADR-0015](docs/adr/ADR-0015-provenance-manifest-location.md)) |
+| Catalog | 214 skill entries | `catalog/catalog.json` + `catalog/INDEX.md`, generated from disk ([generated-artifacts](docs/standards/generated-artifacts.md)) |
+| Provenance | 1163 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -179,47 +179,51 @@ Coacus/
 ├── tests/                # 181 deterministic infrastructure tests
 ├── evals/                # behavior evals: static gate + opt-in live runner
 ├── docs/                 # documentation + adr/
-├── sources.lock.json     # provenance for imported artifacts (ADR-0015)
+├── sources.lock.json     # provenance for imported artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```
 
-## Premises and conventions
+## Principles and standards
 
-### Premises (ratified at F0)
+### Principles
 
-- **P1 — Sources are read-only.** The importer copies; it never writes back to a
-  source repository.
-- **P2 — Import and adapt, autonomously.** No symlinks. Imported material is
-  copied and adapted into the repository's taxonomy.
-- **P3 — Phase-gated approvals.** Work proceeds phase by phase; each phase is
-  authorized before it starts.
-- **P4 — Provenance per artifact.** Every imported file is recorded in
-  `sources.lock.json` ([ADR-0015](docs/adr/ADR-0015-provenance-manifest-location.md)).
+These are the framework's standing rules. The full normative text is in
+[`docs/standards/principles.md`](docs/standards/principles.md).
 
-### Decisions D1–D12
+1. **Disk is the truth; generation is the contract.** Every artifact has one
+   source; every representation is generated and drift-checked.
+2. **Sources are read-only.** The importer copies; it never writes back to a
+   source repository.
+3. **Import and adapt, autonomously.** No symlinks; imported material is copied
+   and adapted into the repository's taxonomy.
+4. **Changes ship through review.** Work is gated: it reaches the default branch
+   only through a reviewed pull request whose required checks pass.
+5. **Provenance per artifact.** Every imported file is recorded in
+   `sources.lock.json`.
 
-| # | Decision | ADR |
-|---|---|---|
-| D1 | Agent manifests come from one source; `model` omitted canonically. | [ADR-0002](docs/adr/ADR-0002-agent-manifests-single-source.md) |
-| D2 | Agnostic skills, thin adapters. | [ADR-0003](docs/adr/ADR-0003-agnostic-skills-thin-adapters.md) |
-| D3 | Catalog generated from disk. | [ADR-0004](docs/adr/ADR-0004-catalog-generated-from-disk.md) |
-| D4 | MCP single source with generated configs. | [ADR-0005](docs/adr/ADR-0005-mcp-triple-definition.md) |
-| D5 | Static discovery, single scan per session. | [ADR-0006](docs/adr/ADR-0006-static-discovery-single-scan.md) |
-| D6 | Orchestration governor with a disk ledger. | [ADR-0007](docs/adr/ADR-0007-orchestration-governor.md) |
-| D7 | TOON protocol for handoffs. | [ADR-0008](docs/adr/ADR-0008-toon-handoff-protocol.md) |
-| D8 | SessionStart bootstrap injection. | [ADR-0009](docs/adr/ADR-0009-session-start-bootstrap.md) |
-| D9 | Single source for scripts and templates. | [ADR-0010](docs/adr/ADR-0010-single-source-scripts-templates.md) |
-| D10 | Two-layer testing: deterministic tests plus behavior evals. | [ADR-0011](docs/adr/ADR-0011-two-layer-testing.md) |
-| D11 | Ingestion pipeline with an open-closed dispatcher. | [ADR-0012](docs/adr/ADR-0012-ingestion-dispatcher.md) |
-| D12 | Secrets and portability guardrails. | [ADR-0013](docs/adr/ADR-0013-secrets-portability.md) |
+### Standards
 
-Policy ADRs: [ADR-0001](docs/adr/ADR-0001-language-policy.md) (English),
-[ADR-0014](docs/adr/ADR-0014-committed-generated-artifacts.md) (generated
-artifacts committed), [ADR-0015](docs/adr/ADR-0015-provenance-manifest-location.md)
-(provenance at the root),
-[ADR-0016](docs/adr/ADR-0016-bootstrap-render-contract.md) (bootstrap render
-contract), [ADR-0017](docs/adr/ADR-0017-corpus-import-and-taxonomy.md) (corpus
-import and taxonomy).
+Each standard is normative and lives in [`docs/standards/`](docs/standards/) —
+read the relevant one before changing that area of the repository.
+
+| Standard | Governs |
+|---|---|
+| [principles](docs/standards/principles.md) | The five principles above and their consequences. |
+| [english-only](docs/standards/english-only.md) | Repository language: everything is English. |
+| [skill-authoring](docs/standards/skill-authoring.md) | Skills name actions, never harness tools; descriptions, kebab-case, references. |
+| [agent-manifests](docs/standards/agent-manifests.md) | Agents are one source rendered into the multi-harness manifests. |
+| [generated-artifacts](docs/standards/generated-artifacts.md) | Catalog generated from disk; generated artifacts committed and drift-checked. |
+| [mcp-definition](docs/standards/mcp-definition.md) | MCP single source and generated configs. |
+| [discovery](docs/standards/discovery.md) | Static discovery manifests and single-scan per session. |
+| [orchestration-governance](docs/standards/orchestration-governance.md) | Concurrency cap, disk ledger, rate-limit handling. |
+| [toon-protocol](docs/standards/toon-protocol.md) | The TOON handoff format between agents. |
+| [session-start-bootstrap](docs/standards/session-start-bootstrap.md) | Bootstrap injection and the per-harness render contract. |
+| [single-source](docs/standards/single-source.md) | One source for scripts and templates. |
+| [testing](docs/standards/testing.md) | Two-layer testing: deterministic tests plus behavior evals. |
+| [knowledge-ingestion](docs/standards/knowledge-ingestion.md) | The open-closed ingestion dispatcher. |
+| [secrets-portability](docs/standards/secrets-portability.md) | No plaintext secrets, no absolute paths. |
+| [provenance](docs/standards/provenance.md) | The provenance manifest at the repository root. |
+| [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its ten-category taxonomy. |
 
 ### Hard conventions
 
@@ -302,14 +306,14 @@ Phases **F0–F8 complete**:
 
 | Phase | Scope |
 |---|---|
-| **F0** | Framework charter: ratify D1–D12 and lay the skeleton. |
+| **F0** | Framework charter: settle the architecture standards and lay the skeleton. |
 | **F1** | Foundation: engine core — parser, generators, validators, thin CLI, first tests. |
 | **F2** | Quality gates: tolerant parser, hardened CI (`ci` + `secrets`), drift check, two-layer testing. |
 | **F3** | MCP single-source generation and per-harness SessionStart bootstrap render. |
 | **F4** | Execution governance: concurrency/rate-limit governor, TOON validator, discovery manifests. |
 | **F5** | Behavior evals: static scenario gate plus opt-in live runner with a pluggable judge. |
 | **F6** | Corpus import: import, translate and organize the full corpus into the ten-category taxonomy. |
-| **F7** | Final consolidation: documentation set, ADR-0017, changelog, contribution contract. |
+| **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract. |
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 
 The framework carries the imported corpus (199 skills, 58 agents, 15 workflows,
@@ -333,7 +337,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/adr/`](docs/adr/) | Ratified architecture decisions (MADR, English). Read before changing structure. |
+| [`docs/standards/`](docs/standards/) | The normative standards (English). Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`AGENTS.md`](AGENTS.md) | Routing and single-scan rules for any agent in this repository. |
@@ -343,8 +347,8 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 
 Extend by adding data, not core code. A new skill, agent, MCP, harness, workflow,
 template or ingestion handler is a new file; `engine/` changes only when a new
-concept arrives ([ADR-0003](docs/adr/ADR-0003-agnostic-skills-thin-adapters.md),
-[ADR-0012](docs/adr/ADR-0012-ingestion-dispatcher.md)). After every addition, run
+concept arrives ([skill-authoring](docs/standards/skill-authoring.md),
+[knowledge-ingestion](docs/standards/knowledge-ingestion.md)). After every addition, run
 `generate`, `validate`, `check` and the tests. Steps per artifact type are in
 [`docs/extending.md`](docs/extending.md).
 

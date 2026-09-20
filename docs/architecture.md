@@ -9,7 +9,7 @@ lifecycle and the layout.
 The governing principle is one sentence: **disk is the truth; generation is the
 contract.** Every canonical artifact has exactly one source, every derived
 artifact is produced by the engine, and drift between source and output is a
-build failure — not silent debt ([ADR-0014](adr/ADR-0014-committed-generated-artifacts.md)).
+build failure — not silent debt ([generated-artifacts](standards/generated-artifacts.md)).
 
 ## Three layers
 
@@ -20,11 +20,11 @@ What the framework knows. This layer is harness-agnostic and holds only sources:
 - `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 199 skills.
 - `knowledge/agents/<category>/<agent>/agent.source.md` — 58 agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
-  configs, [ADR-0005](adr/ADR-0005-mcp-triple-definition.md)).
+  configs, [mcp-definition](standards/mcp-definition.md)).
 - `knowledge/rules/` — reserved for repository rules.
 
 Skills prescribe **actions and intentions, never harness tool names**
-([ADR-0003](adr/ADR-0003-agnostic-skills-thin-adapters.md)). Per-harness tool
+([skill-authoring](standards/skill-authoring.md)). Per-harness tool
 mappings live outside the body, in `references/<harness>-tools.md`, and in each
 harness's `tool_mapping`.
 
@@ -35,7 +35,7 @@ How knowledge becomes runnable in a specific harness.
 - `harnesses/<h>/harness.json` is **data**: bootstrap shape, output paths,
   detection env vars, tool mapping, tool denylist, install method. A new harness
   is a new data file; a new bootstrap shape is an engine change
-  ([ADR-0016](adr/ADR-0016-bootstrap-render-contract.md)).
+  ([session-start-bootstrap](standards/session-start-bootstrap.md)).
 - `engine/` is the **closed core**. Generators render artifacts, validators
   enforce contracts, and the governor, dispatcher, TOON validator and provenance
   manifest are the remaining runtime pieces. The engine changes only when a new
@@ -53,23 +53,23 @@ How work proceeds inside a Coacus repository.
 - `methodology/bootstrap/session-start.canonical.md` — the single wrapper body
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`
   slots. The entry body comes from `using-coacus/SKILL.md`, so the bootstrap and
-  the skill cannot diverge ([ADR-0016](adr/ADR-0016-bootstrap-render-contract.md)).
+  the skill cannot diverge ([session-start-bootstrap](standards/session-start-bootstrap.md)).
 
 ## The engine
 
 | Module | Responsibility |
 |---|---|
-| `engine/frontmatter.py` | Tolerant YAML-subset parser for canonical sources (stdlib only, [ADR-0011](adr/ADR-0011-two-layer-testing.md)). |
-| `engine/generators/agent_manifests.py` | `agent.source.md` → `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/entries/<name>.json` ([ADR-0002](adr/ADR-0002-agent-manifests-single-source.md)). |
-| `engine/generators/mcp_configs.py` | `MCP.md` frontmatter → `dist/mcp.json`, `dist/mcp_config.json` ([ADR-0005](adr/ADR-0005-mcp-triple-definition.md)). |
-| `engine/generators/bootstrap.py` | Canonical wrapper + entry body → one native bootstrap artifact per harness ([ADR-0016](adr/ADR-0016-bootstrap-render-contract.md)). |
-| `engine/generators/catalog.py` | Disk → `catalog/catalog.json` + `catalog/INDEX.md`; timestamp-free and byte-idempotent ([ADR-0004](adr/ADR-0004-catalog-generated-from-disk.md)). |
-| `engine/generators/discovery.py` | Disk → `.agents/{skills,mcps,agents}.json` for single-scan discovery ([ADR-0006](adr/ADR-0006-static-discovery-single-scan.md)). |
+| `engine/frontmatter.py` | Tolerant YAML-subset parser for canonical sources (stdlib only, [testing](standards/testing.md)). |
+| `engine/generators/agent_manifests.py` | `agent.source.md` → `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/entries/<name>.json` ([agent-manifests](standards/agent-manifests.md)). |
+| `engine/generators/mcp_configs.py` | `MCP.md` frontmatter → `dist/mcp.json`, `dist/mcp_config.json` ([mcp-definition](standards/mcp-definition.md)). |
+| `engine/generators/bootstrap.py` | Canonical wrapper + entry body → one native bootstrap artifact per harness ([session-start-bootstrap](standards/session-start-bootstrap.md)). |
+| `engine/generators/catalog.py` | Disk → `catalog/catalog.json` + `catalog/INDEX.md`; timestamp-free and byte-idempotent ([generated-artifacts](standards/generated-artifacts.md)). |
+| `engine/generators/discovery.py` | Disk → `.agents/{skills,mcps,agents}.json` for single-scan discovery ([discovery](standards/discovery.md)). |
 | `engine/validators/` | Source and artifact contracts: `agents`, `skills`, `mcps`, `hygiene`, `evals`, `language`, `discovery`, `completeness`. |
-| `engine/governor/ledger.py` | Disk ledger (`flock`) bounding concurrent subagents and parking rate-limited callers ([ADR-0007](adr/ADR-0007-orchestration-governor.md)). |
-| `engine/toon.py` | Validator for TOON handoff payloads ([ADR-0008](adr/ADR-0008-toon-handoff-protocol.md)). |
-| `engine/dispatcher/` | `@register_converter` registry for ingestion formats; handlers register themselves ([ADR-0012](adr/ADR-0012-ingestion-dispatcher.md)). |
-| `engine/provenance.py` | Schema and existence checks for `sources.lock.json` ([ADR-0015](adr/ADR-0015-provenance-manifest-location.md)). |
+| `engine/governor/ledger.py` | Disk ledger (`flock`) bounding concurrent subagents and parking rate-limited callers ([orchestration-governance](standards/orchestration-governance.md)). |
+| `engine/toon.py` | Validator for TOON handoff payloads ([toon-protocol](standards/toon-protocol.md)). |
+| `engine/dispatcher/` | `@register_converter` registry for ingestion formats; handlers register themselves ([knowledge-ingestion](standards/knowledge-ingestion.md)). |
+| `engine/provenance.py` | Schema and existence checks for `sources.lock.json` ([provenance](standards/provenance.md)). |
 
 `engine/validators/completeness.py` is the F8 read-only audit that reconciles
 the source repositories, the imported corpus, `sources.lock.json` and the
@@ -97,7 +97,7 @@ create (templates/authoring)   →   validate (source contracts)
 5. **Activate** — each harness injects exactly one rendered bootstrap at
    SessionStart, in its own native format.
 
-Generated output is committed and drift-checked ([ADR-0014](adr/ADR-0014-committed-generated-artifacts.md)).
+Generated output is committed and drift-checked ([generated-artifacts](standards/generated-artifacts.md)).
 CI never runs `generate`; it runs `check`, which fails on any un-regenerated
 diff.
 
@@ -171,7 +171,7 @@ Coacus/
 ├── tests/                # deterministic infrastructure tests (stdlib unittest)
 ├── evals/                # LLM behavior evals (static gate + opt-in live runner)
 ├── docs/                 # this documentation + adr/
-├── sources.lock.json     # provenance for imported artifacts (ADR-0015)
+├── sources.lock.json     # provenance for imported artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```
 
@@ -180,32 +180,32 @@ Coacus/
 - **One source per artifact.** Skills: `SKILL.md`. Agents: `agent.source.md`.
   MCPs: `MCP.md`. Everything under `dist/`, `.agents/`, `catalog/` and
   `harnesses/<h>/bootstrap/` is generated.
-- **Language is English** ([ADR-0001](adr/ADR-0001-language-policy.md)).
-- **No plaintext secrets, no machine-specific absolute paths** ([ADR-0013](adr/ADR-0013-secrets-portability.md)).
+- **Language is English** ([english-only](standards/english-only.md)).
+- **No plaintext secrets, no machine-specific absolute paths** ([secrets-portability](standards/secrets-portability.md)).
 - **No ungoverned parallel work.** The concurrency cap is 5, orchestrator
-  included ([ADR-0007](adr/ADR-0007-orchestration-governor.md)); handoffs are
-  TOON payloads ([ADR-0008](adr/ADR-0008-toon-handoff-protocol.md)).
+  included ([orchestration-governance](standards/orchestration-governance.md)); handoffs are
+  TOON payloads ([toon-protocol](standards/toon-protocol.md)).
 - **`model` is omitted in canonical sources** and resolved per harness
-  ([ADR-0002](adr/ADR-0002-agent-manifests-single-source.md)).
+  ([agent-manifests](standards/agent-manifests.md)).
 
-## Decision record map
+## Standards map
 
-| ADR | Decision |
+| Standard | Subject |
 |---|---|
-| [ADR-0001](adr/ADR-0001-language-policy.md) | Repository language is English. |
-| [ADR-0002](adr/ADR-0002-agent-manifests-single-source.md) | Agent manifests generated from one source (D1). |
-| [ADR-0003](adr/ADR-0003-agnostic-skills-thin-adapters.md) | Agnostic skills, thin adapters (D2). |
-| [ADR-0004](adr/ADR-0004-catalog-generated-from-disk.md) | Catalog generated from disk (D3). |
-| [ADR-0005](adr/ADR-0005-mcp-triple-definition.md) | MCP single source with generation (D4). |
-| [ADR-0006](adr/ADR-0006-static-discovery-single-scan.md) | Static discovery, single scan (D5). |
-| [ADR-0007](adr/ADR-0007-orchestration-governor.md) | Orchestration governor with disk ledger (D6). |
-| [ADR-0008](adr/ADR-0008-toon-handoff-protocol.md) | TOON protocol for handoffs (D7). |
-| [ADR-0009](adr/ADR-0009-session-start-bootstrap.md) | SessionStart bootstrap injection (D8). |
-| [ADR-0010](adr/ADR-0010-single-source-scripts-templates.md) | Single source for scripts and templates (D9). |
-| [ADR-0011](adr/ADR-0011-two-layer-testing.md) | Two-layer testing strategy (D10). |
-| [ADR-0012](adr/ADR-0012-ingestion-dispatcher.md) | Ingestion pipeline with OCP dispatcher (D11). |
-| [ADR-0013](adr/ADR-0013-secrets-portability.md) | Secrets and portability guardrails (D12). |
-| [ADR-0014](adr/ADR-0014-committed-generated-artifacts.md) | Generated artifacts are committed. |
-| [ADR-0015](adr/ADR-0015-provenance-manifest-location.md) | Provenance manifest at the repository root. |
-| [ADR-0016](adr/ADR-0016-bootstrap-render-contract.md) | Bootstrap rendered from one canonical body. |
-| [ADR-0017](adr/ADR-0017-corpus-import-and-taxonomy.md) | Corpus import with a data-driven manifest and 10-category taxonomy. |
+| [english-only](standards/english-only.md) | Repository language is English. |
+| [agent-manifests](standards/agent-manifests.md) | Agent manifests generated from one source (D1). |
+| [skill-authoring](standards/skill-authoring.md) | Agnostic skills, thin adapters (D2). |
+| [generated-artifacts](standards/generated-artifacts.md) | Catalog generated from disk (D3). |
+| [mcp-definition](standards/mcp-definition.md) | MCP single source with generation (D4). |
+| [discovery](standards/discovery.md) | Static discovery, single scan (D5). |
+| [orchestration-governance](standards/orchestration-governance.md) | Orchestration governor with disk ledger (D6). |
+| [toon-protocol](standards/toon-protocol.md) | TOON protocol for handoffs (D7). |
+| [session-start-bootstrap](standards/session-start-bootstrap.md) | SessionStart bootstrap injection (D8). |
+| [single-source](standards/single-source.md) | Single source for scripts and templates (D9). |
+| [testing](standards/testing.md) | Two-layer testing strategy (D10). |
+| [knowledge-ingestion](standards/knowledge-ingestion.md) | Ingestion pipeline with OCP dispatcher (D11). |
+| [secrets-portability](standards/secrets-portability.md) | Secrets and portability guardrails (D12). |
+| [generated-artifacts](standards/generated-artifacts.md) | Generated artifacts are committed. |
+| [provenance](standards/provenance.md) | Provenance manifest at the repository root. |
+| [session-start-bootstrap](standards/session-start-bootstrap.md) | Bootstrap rendered from one canonical body. |
+| [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and 10-category taxonomy. |

@@ -1,1 +1,1 @@
-"""Concurrency + rate-limit governor (D6 / ADR-0007)."""
+"""Concurrency + rate-limit governor (D6 / orchestration-governance)."""

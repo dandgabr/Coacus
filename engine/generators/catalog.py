@@ -2,7 +2,7 @@
 
 Writes ``catalog/catalog.json`` (machine index) and ``catalog/INDEX.md``
 (human index) — purely content-derived, no timestamps, so ``check`` can
-verify idempotency and CI can fail on drift (ADR-0014).
+verify idempotency and CI can fail on drift (generated-artifacts).
 """
 
 from __future__ import annotations
@@ -124,7 +124,7 @@ def _expected(root: Path) -> dict[str, str]:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check for the catalog and its index (ADR-0014)."""
+    """Drift check for the catalog and its index (generated-artifacts)."""
     drift: list[str] = []
     for rel, content in _expected(root).items():
         target = root / rel

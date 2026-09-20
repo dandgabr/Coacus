@@ -11,7 +11,7 @@ Index of the repository's documentation. Each file has one job.
 | [`migration.md`](migration.md) | The F6 corpus import: source repos, taxonomy mapping, dedup, provenance, translation. |
 | [`roadmap.md`](roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`reference/python-api.md`](reference/python-api.md) | GENERATED Python API reference from source docstrings. Do not edit. |
-| [`adr/`](adr/) | Ratified architecture decisions (MADR, English). Read before changing structure. |
+| [`standards/`](standards/) | The normative standards (English). Read the relevant one before changing that area. |
 
 Repository-wide rules for agents live in [`../AGENTS.md`](../AGENTS.md). The
 contribution contract lives in [`../CONTRIBUTING.md`](../CONTRIBUTING.md).

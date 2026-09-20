@@ -48,7 +48,7 @@ SECRET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ),
 ]
 
-# Seed denylist of harness tool names (ADR-0003). Ambiguous names are excluded
+# Seed denylist of harness tool names (skill-authoring). Ambiguous names are excluded
 # to avoid false positives: English words (Read/Write/Edit/Task/Glob/Grep) and
 # "Bash" (also the shell/language name). Extend via harness vocabularies.
 BUILTIN_TOOL_NAMES = [

@@ -2,14 +2,14 @@
 
 Coacus is a generated-artifact repository. Contributions add canonical sources,
 regenerate the derived artifacts, and pass the same gate CI runs. This document
-is the contract; the rationale lives in [`docs/adr/`](docs/adr/).
+is the contract; the rationale lives in [`docs/standards/`](docs/standards/).
 
 ## Before you start
 
 - Read [`README.md`](README.md) for what the framework is.
 - Read [`docs/architecture.md`](docs/architecture.md) for the layers and the
   artifact lifecycle.
-- Read the ADRs before changing structure. The engine is closed for
+- Read the standards in `docs/standards/` before changing structure. The engine is closed for
   modification; most contributions are new data files.
 
 ## The artifact lifecycle
@@ -57,21 +57,21 @@ These are machine-checked by the validators and the hygiene scan:
 
 1. **One source per artifact.** Skills: `SKILL.md`. Agents: `agent.source.md`.
    MCPs: `MCP.md`. Everything generated is generated.
-2. **English only** ([ADR-0001](docs/adr/ADR-0001-language-policy.md)). Comments,
+2. **English only** ([english-only](docs/standards/english-only.md)). Comments,
    docs, frontmatter, commit messages. PT-BR source material is translated, not
    copied.
-3. **No secrets** ([ADR-0013](docs/adr/ADR-0013-secrets-portability.md)).
+3. **No secrets** ([secrets-portability](docs/standards/secrets-portability.md)).
    Reference secrets only as `{env:VAR}`. Secret-shaped literals fail the build
    and the gitleaks scan.
-4. **No machine-specific absolute paths** ([ADR-0013](docs/adr/ADR-0013-secrets-portability.md)).
+4. **No machine-specific absolute paths** ([secrets-portability](docs/standards/secrets-portability.md)).
    Use repository-relative paths. `/home/...`, `/Users/...`, `C:\...` and similar
    are rejected.
-5. **Agnostic skill bodies** ([ADR-0003](docs/adr/ADR-0003-agnostic-skills-thin-adapters.md)).
+5. **Agnostic skill bodies** ([skill-authoring](docs/standards/skill-authoring.md)).
    Canonical content names actions, never harness tool names. Tool mappings go
    in `references/<harness>-tools.md` and in `harness.json`.
 6. **kebab-case names; third-person, trigger-oriented descriptions.**
-7. **Omit `model` in canonical agent sources** ([ADR-0002](docs/adr/ADR-0002-agent-manifests-single-source.md)).
-8. **Governed parallelism** ([ADR-0007](docs/adr/ADR-0007-orchestration-governor.md)).
+7. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
+8. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).
    The concurrency cap is 5, orchestrator included; hand off with TOON payloads.
 
 ## Commit style
@@ -112,7 +112,7 @@ under review.
 ## Adding an ingestion format
 
 Handlers register themselves; the dispatcher never changes
-([ADR-0012](docs/adr/ADR-0012-ingestion-dispatcher.md)). Add a file under
+([knowledge-ingestion](docs/standards/knowledge-ingestion.md)). Add a file under
 `verticals/architecture_si/pipelines/ingest/handlers/` decorated with
 `@register_converter("<ext>")`, import no sibling handler, and add a test under
 `tests/test_vertical.py`. See [`docs/extending.md`](docs/extending.md).

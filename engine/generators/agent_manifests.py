@@ -10,7 +10,7 @@ One canonical ``agent.source.md`` per agent yields, under a ``dist/`` folder:
 plus a ``.agents/entries/<name>.json`` discovery entry (D5).
 
 Generated files contain no timestamps so regeneration is byte-idempotent
-(D3/ADR-0014). ``model`` is never emitted for AGENT.md/agent.json; the yaml
+(generated-artifacts). ``model`` is never emitted for AGENT.md/agent.json; the yaml
 profile uses ``model: inherit``.
 """
 
@@ -183,7 +183,7 @@ def write_all(root: Path) -> list[str]:
 
 
 def check(root: Path) -> list[str]:
-    """Drift check (ADR-0014): disk vs a fresh regeneration, plus orphans."""
+    """Drift check (generated-artifacts): disk vs a fresh regeneration, plus orphans."""
     drift: list[str] = []
     expected = expected_outputs(root)
     for rel, content in expected.items():
