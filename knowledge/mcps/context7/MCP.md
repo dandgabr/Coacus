@@ -20,3 +20,8 @@ version: 1.0.0
 Hosted documentation server exposing a documentation-resolution tool. Prefer it
 over searching when a question concerns a library or framework API. It requires
 no secret; the endpoint is public.
+
+This is the framework's **recommended** external dependency: hosted, keyless and
+optional. Registering it with a harness is not required — the scripts and
+generated artifacts run without it — but the corpus skills assume current
+library/framework documentation when a task needs it.

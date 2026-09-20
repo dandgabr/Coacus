@@ -179,7 +179,18 @@ python3 scripts/coacus_install.py opencode --dry-run   # preview targets
 
 The installer is idempotent: it writes a `coacus-install.json` manifest beside
 each target, never rewrites a harness config file wholesale, and removes exactly
-what it installed with `--uninstall`. Prerequisite: Python 3.14.
+what it installed with `--uninstall`.
+
+### Dependencies
+
+- **Required:** [Python 3.14](https://www.python.org/) (the CI target). The core
+  tooling uses the standard library only.
+- **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
+  keyless (`https://mcp.context7.com/mcp`), and declared under
+  [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies
+  up-to-date library and framework documentation, which the corpus skills assume
+  when they need current API references. Optional: the framework and its scripts
+  run without it.
 
 ## Everyday commands
 
