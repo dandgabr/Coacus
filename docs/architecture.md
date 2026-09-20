@@ -148,7 +148,7 @@ flowchart TD
   GEN --> DSC
   VAL -->|"gates generate"| GEN
   LOCK -->|"target-existence check"| VAL
-  DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex"]
+  DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex | cursor"]
   BC --> HARN
   GOV -.->|"bounds subagents"| HARN
   TOON -.->|"validates handoffs"| HARN
