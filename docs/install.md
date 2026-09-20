@@ -116,10 +116,12 @@ Antigravity as `<plugin>/agents/<name>/agent.md`, Codex as
 **Goal:** the OpenCode session starts with the Coacus entry skill already loaded.
 
 **How it works.** Coacus ships an OpenCode **plugin** — an in-process module the
-harness loads. The plugin does two jobs: it registers the two skill roots, and it
-injects the bootstrap into the first user message. The bootstrap carries an
-anti-reinjection guard so a compact or replay does not duplicate it
-([session-start-bootstrap](standards/session-start-bootstrap.md)).
+harness loads. The plugin injects the bootstrap into the first user message; the
+bootstrap carries an anti-reinjection guard so a compact or replay does not
+duplicate it ([session-start-bootstrap](standards/session-start-bootstrap.md)).
+Skills are **not** registered from the repository root: OpenCode discovers the
+installed skills tree natively, and registering the repo root would bypass a
+partial install (`--only`/`--skills`).
 
 **Vendor facts**
 
@@ -127,14 +129,14 @@ anti-reinjection guard so a compact or replay does not duplicate it
 - Plugins load from `~/.config/opencode/plugins/` and `.opencode/plugins/`.
   **[documented]**
 - Skill discovery includes `~/.config/opencode/skills/`, `.opencode/skills/`,
-  `~/.claude/skills/` and `~/.agents/skills/`. **[documented]**
-- `skills.paths` exists in the official config schema; the plugin sets it through
-  the `config` hook. The `experimental.chat.messages.transform` hook is the
-  injection point. Both hooks are documented. **[documented]**
-- The Coacus plugin loads and injects the bootstrap. **[verified locally]**
-- Whether OpenCode mirrors skills under an `OPENCODE_CONFIG_DIR` override is not
-  stated in the docs; the installer relies on it for isolated testing.
-  **[unverified]**
+  `~/.claude/skills/` and `~/.agents/skills/`. The installed
+  `~/.config/opencode/skills/` tree is picked up natively. **[verified locally]**
+- `skills.paths` exists in the official config schema and the plugin's `config`
+  hook can set it, but Coacus does not: doing so re-registers the whole repo and
+  defeated the partial install (measured: `--only languages` still exposed all
+  208 repo skills). **[verified locally]**
+- `experimental.chat.messages.transform` is the injection point; the Coacus
+  plugin loads and injects the bootstrap. **[verified locally]**
 
 **Install**
 
@@ -152,8 +154,10 @@ Inspect the ledger with `python3 scripts/coacus_governor.py status`.
 
 **Manual equivalent.** Copy `harnesses/opencode/bootstrap/coacus.js` and
 `governor-gate.js` to `~/.config/opencode/plugins/`, replacing
-`__COACUS_ROOT__` with this repository's absolute path. Alternatively, skip the
-skill registration and add the folders to `opencode.json` yourself:
+`__COACUS_ROOT__` with this repository's absolute path. Skills load from the
+mirrored `~/.config/opencode/skills/` tree. To load the corpus **in place**
+instead of mirroring (no filtering), add both roots to `opencode.json`
+yourself:
 
 ```jsonc
 { "skills": { "paths": ["<repo>/methodology/workflows", "<repo>/knowledge/skills"] } }
@@ -396,7 +400,7 @@ The last command must print `True`. The script must not emit
 
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load **[verified locally]**; mirror path **[unverified]** |
+| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
 | **claude-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
 | **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
 | **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
