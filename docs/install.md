@@ -322,7 +322,10 @@ python3 scripts/coacus_install.py codex
 The script installs skills to `$HOME/.agents/skills/` — the root Codex actually
 scans, beside `~/.codex/`, not inside it — and the hook to `~/.codex/hooks.json`
 with `__COACUS_ROOT__` substituted for this repository's path. The bootstrap
-script is staged at `~/.codex/coacus/session-start.sh`.
+script is staged at `~/.codex/coacus/session-start.sh`. An existing
+`~/.codex/hooks.json` is **merged**, not overwritten: Coacus adds its
+`SessionStart` entry and leaves every other key and event intact. `--uninstall`
+strips only that entry (the file is removed when nothing else remains).
 
 **Verify**
 
@@ -380,8 +383,9 @@ python3 scripts/coacus_install.py cursor
 The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root — the
 agents to `~/.cursor/agents/<name>.md`, and the hook to `~/.cursor/hooks.json`
 with `__COACUS_ROOT__` substituted. The bootstrap script is staged at
-`~/.cursor/coacus/session-start.sh`. For a project install, copy the same
-artifacts into `<project>/.cursor/` by hand.
+`~/.cursor/coacus/session-start.sh`. An existing `~/.cursor/hooks.json` is
+merged, not overwritten; `--uninstall` strips only the Coacus entry. For a
+project install, copy the same artifacts into `<project>/.cursor/` by hand.
 
 **Verify**
 

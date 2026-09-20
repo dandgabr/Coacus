@@ -37,9 +37,30 @@ def make_repo(tmp: Path) -> Path:
         base = root / f"harnesses/{harness}/bootstrap"
         base.mkdir(parents=True)
         (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
-        (base / "hooks.json").write_text(
-            '{"command": "__COACUS_ROOT__/x"}\n', encoding="utf-8"
-        )
+        if harness == "cursor":
+            fragment = {
+                "version": 1,
+                "hooks": {
+                    "sessionStart": [
+                        {
+                            "command": "__COACUS_ROOT__/harnesses/"
+                            "cursor/bootstrap/session-start.sh"
+                        }
+                    ]
+                },
+            }
+        else:
+            fragment = {
+                "hooks": {
+                    "SessionStart": [
+                        {
+                            "command": "__COACUS_ROOT__/harnesses/"
+                            f"{harness}/bootstrap/session-start.sh"
+                        }
+                    ]
+                }
+            }
+        (base / "hooks.json").write_text(json.dumps(fragment), encoding="utf-8")
     anti = root / "harnesses/antigravity/bootstrap"
     anti.mkdir(parents=True)
     (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
@@ -297,6 +318,32 @@ class TestInstaller(unittest.TestCase):
         config = self.tmp / "qcfg"
         coacus_install.install("codex", root, config, dry_run=False)
         json.loads((config / "hooks.json").read_text(encoding="utf-8"))
+
+    def test_install_merges_and_uninstall_strips_user_hooks(self) -> None:
+        config = self.tmp / "home/.codex"
+        config.mkdir(parents=True)
+        existing = {"mySetting": 42, "hooks": {"UserOwn": [{"x": 1}]}}
+        (config / "hooks.json").write_text(json.dumps(existing), encoding="utf-8")
+        coacus_install.install("codex", self.root, config, dry_run=False)
+        after = json.loads((config / "hooks.json").read_text(encoding="utf-8"))
+        self.assertEqual(after["mySetting"], 42)
+        self.assertIn("UserOwn", after["hooks"])
+        marker = coacus_install._hook_owner_marker(self.root, "codex")
+        self.assertTrue(any(marker in json.dumps(e) for e in after["hooks"]["SessionStart"]))
+
+        # Idempotent: re-installing does not duplicate our entry.
+        coacus_install.install("codex", self.root, config, dry_run=False)
+        again = json.loads((config / "hooks.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            sum(marker in json.dumps(e) for e in again["hooks"]["SessionStart"]), 1
+        )
+
+        # Uninstall strips only our entries, keeping the user's other keys.
+        coacus_install.uninstall("codex", self.root, config)
+        final = json.loads((config / "hooks.json").read_text(encoding="utf-8"))
+        self.assertEqual(final["mySetting"], 42)
+        self.assertIn("UserOwn", final["hooks"])
+        self.assertNotIn(marker, json.dumps(final))
 
     def test_opencode_installs_governor_gate_when_present(self) -> None:
         gate = self.root / "harnesses/opencode/bootstrap/governor-gate.js"

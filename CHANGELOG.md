@@ -72,6 +72,11 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   crashing; the eval runner uses stderr when stdout is empty.
 - `--only <unknown>` is now a clear error instead of silently installing only
   the harness files; dead imports/locals removed across `engine/` and `scripts/`.
+- Codex and Cursor installs **merge** into an existing `hooks.json` instead of
+  overwriting it. The prior behaviour discarded the user's other keys and events,
+  contradicting the installer's own "never rewrites a harness config file
+  wholesale" contract; `--uninstall` now strips only the Coacus `SessionStart`
+  entry and keeps the rest.
 - A "Verification — measure, do not infer" section in the entry skill
   (`using-coacus`), propagated to every harness bootstrap: quote a command's
   output for any count, path or status; never extend a path from a sibling and
