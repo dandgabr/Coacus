@@ -24,6 +24,13 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - cursor      skills   -> ~/.agents/skills/<skill>/; agents ->
               <config_dir>/agents/<name>.md; plus the sessionStart hook at
               <config_dir>/hooks.json (snake_case `additional_context`).
+- command-code skills   -> ~/.agents/skills/<skill>/ (a Command Code user scan
+              root); agents -> <config_dir>/agents/<name>.md; the SessionStart
+              bootstrap is merged into <config_dir>/settings.json under the
+              'hooks' key (Command Code has no separate hooks.json); the context7
+              MCP is merged into <config_dir>/mcp.json under 'mcpServers'; and
+              the Coacus user rules are written to <config_dir>/AGENTS.md when
+              that file does not already exist.
 
 Usage:
     python3 scripts/coacus_install.py <harness|all> [--dry-run] [--uninstall]
@@ -76,6 +83,7 @@ def default_config_dir(harness: str, home: Path) -> Path:
         "antigravity": home / ".gemini",
         "codex": home / ".codex",
         "cursor": home / ".cursor",
+        "command-code": home / ".commandcode",
     }[harness]
 
 
@@ -346,6 +354,48 @@ def _plan_agents_named(
     return plan
 
 
+def _render_agent_command_code(source: Path) -> str:
+    """Command Code agent markdown: name + description + tools, body as prompt.
+
+    Command Code reads ``name`` and ``description`` from the frontmatter (it does
+    not derive the name from the filename), and matching is done against the
+    description. An omitted ``tools`` grants the agent **no** tools at all, so
+    ``tools: "*"`` is required for an installed agent to be usable; the ``agent``
+    tool is never grantable, which keeps delegation one level deep.
+    """
+    meta = _agent_meta(source)
+    body = meta["body"]
+    first = body.lstrip().splitlines()[:1]
+    if not first or not first[0].startswith("# "):
+        body = f"# {meta['name']}\n\n{body}"
+    return (
+        "---\n"
+        f"name: {meta['name']}\n"
+        f"description: {meta['description']}\n"
+        'tools: "*"\n'
+        "---\n\n"
+        f"{body}\n"
+    )
+
+
+# Command Code ignores a custom agent file whose name is one of its reserved
+# built-ins, so writing those would be a silent no-op.
+COMMAND_CODE_RESERVED = frozenset({"explore", "plan", "review", "general"})
+
+
+def _plan_agents_command_code(
+    root: Path, agents_dir: Path, only: list[str] | None = None, agents: list[str] | None = None
+) -> list[tuple[Path, FileContent]]:
+    """Agent markdown for Command Code, skipping names the harness reserves."""
+    plan: list[tuple[Path, FileContent]] = []
+    for source in discover_agents(root, only=only, agents=agents):
+        name = _safe_agent_name(source)
+        if name in COMMAND_CODE_RESERVED:
+            continue
+        plan.append((agents_dir / f"{name}.md", _render_agent_command_code(source)))
+    return plan
+
+
 def _skill_files(skill_dir: Path) -> list[Path]:
     """Every file belonging to a skill, so companions (references/) travel too.
 
@@ -433,6 +483,70 @@ def _strip_hooks(existing: dict, marker: str) -> dict | None:
         trimmed["hooks"] = hooks
     else:
         trimmed.pop("hooks", None)
+    return trimmed or None
+
+
+def _mcp_servers(root: Path) -> dict[str, dict]:
+    """Coacus MCP servers as ``{name: config}`` for a harness MCP config.
+
+    Read from the generated ``knowledge/mcps/*/dist/mcp.json`` manifests. The
+    transport is normalized to the values a harness config accepts: ``stdio``
+    stays ``stdio``; every HTTP flavor (``http``, ``streamable-http``, ``sse``)
+    maps to ``http``.
+    """
+    servers: dict[str, dict] = {}
+    mcp_root = root / "knowledge" / "mcps"
+    if not mcp_root.is_dir():
+        return servers
+    for manifest in sorted(mcp_root.glob("*/dist/mcp.json")):
+        data = _load_existing_json(manifest)
+        name = str(data.get("name") or manifest.parent.parent.name)
+        if str(data.get("transport") or "").lower() == "stdio":
+            entry: dict = {"transport": "stdio", "enabled": True}
+            if data.get("command"):
+                entry["command"] = data["command"]
+            if data.get("args"):
+                entry["args"] = data["args"]
+        else:
+            entry = {"transport": "http", "enabled": True}
+            if data.get("url"):
+                entry["url"] = data["url"]
+        servers[name] = entry
+    return servers
+
+
+def _merge_mcp(existing: dict, servers: dict[str, dict]) -> dict:
+    """Merge Coacus MCP servers into the user's MCP config, preserving theirs.
+
+    Each Coacus server name is replaced wholesale; every other server and every
+    top-level key is left untouched, so installing never rewrites a shared MCP
+    config file (the same contract as the hook merge).
+    """
+    merged = dict(existing) if isinstance(existing, dict) else {}
+    current = merged.get("mcpServers")
+    current = dict(current) if isinstance(current, dict) else {}
+    current.update(servers)
+    if current:
+        merged["mcpServers"] = current
+    return merged
+
+
+def _strip_mcp(existing: dict, names: set[str]) -> dict | None:
+    """Remove the given Coacus MCP servers; return the trimmed document or None.
+
+    Returns None when nothing but Coacus servers remained (the file may then be
+    deleted). Other servers and every top-level key are preserved.
+    """
+    if not isinstance(existing, dict) or not isinstance(existing.get("mcpServers"), dict):
+        return existing if existing else None
+    servers = {
+        key: value
+        for key, value in existing["mcpServers"].items()
+        if key not in names
+    }
+    trimmed = {key: value for key, value in existing.items() if key != "mcpServers"}
+    if servers:
+        trimmed["mcpServers"] = servers
     return trimmed or None
 
 
@@ -672,6 +786,81 @@ def _plan_cursor(
     return plan
 
 
+COMMAND_CODE_HOOKS_FILE = "settings.json"
+COMMAND_CODE_MCP_FILE = "mcp.json"
+COMMAND_CODE_RULES_FILE = "AGENTS.md"
+
+
+def _plan_command_code(
+    root: Path,
+    config_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+    agents: list[str] | None = None,
+) -> list[tuple[Path, FileContent]]:
+    """Skills (shared tree) + agents + SessionStart hook + MCP for Command Code.
+
+    Command Code discovers skills from ``~/.agents/skills/`` (a user scan root,
+    shared with Codex and Cursor), agents from ``<config>/agents/<name>.md``,
+    hooks from ``<config>/settings.json`` under the ``hooks`` key — it has no
+    separate hooks.json — and MCP servers from ``<config>/mcp.json`` under
+    ``mcpServers``. Both config files are MERGED into the user's file, never
+    rewritten wholesale. The Coacus user rules (``<config>/AGENTS.md``) are
+    provisioned separately by ``install`` because that file is user memory.
+    """
+    plan: list[tuple[Path, FileContent]] = []
+    plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
+    plan += _plan_agents_command_code(root, config_dir / "agents", only, agents)
+    script = (root / "harnesses/command-code/bootstrap/session-start.sh").read_text(
+        encoding="utf-8"
+    )
+    plan.append((config_dir / "coacus" / "session-start.sh", script))
+    hooks = (root / "harnesses/command-code/bootstrap/hooks.json").read_text(encoding="utf-8")
+    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    existing = _load_existing_json(config_dir / COMMAND_CODE_HOOKS_FILE)
+    plan.append(
+        (
+            config_dir / COMMAND_CODE_HOOKS_FILE,
+            json.dumps(
+                _merge_hooks(existing, fragment, _hook_owner_marker(root, "command-code")),
+                indent=2,
+            )
+            + "\n",
+        )
+    )
+    servers = _mcp_servers(root)
+    if servers:
+        mcp_existing = _load_existing_json(config_dir / COMMAND_CODE_MCP_FILE)
+        plan.append(
+            (
+                config_dir / COMMAND_CODE_MCP_FILE,
+                json.dumps(_merge_mcp(mcp_existing, servers), indent=2) + "\n",
+            )
+        )
+    return plan
+
+
+def _provision_rules(harness: str, root: Path, config_dir: Path) -> Path | None:
+    """Write the Coacus user rules for ``harness`` when the file is absent.
+
+    The rules are user memory (``<config>/AGENTS.md``), so they are written only
+    when the file does not already exist and are never overwritten or removed —
+    a pre-existing memory file is the user's. Returns the path written, or None.
+    """
+    if harness != "command-code":
+        return None
+    source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
+    target = config_dir / COMMAND_CODE_RULES_FILE
+    if not source.is_file() or target.exists():
+        return None
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(
+        source.read_text(encoding="utf-8").replace("__COACUS_ROOT__", root.as_posix()),
+        encoding="utf-8",
+    )
+    return target
+
+
 def plan(
     harness: str,
     root: Path,
@@ -696,6 +885,8 @@ def plan(
         return _plan_codex(root, config_dir, only, skills, agents)
     if harness == "cursor":
         return _plan_cursor(root, config_dir, only, skills, agents)
+    if harness == "command-code":
+        return _plan_command_code(root, config_dir, only, skills, agents)
     return []
 
 
@@ -712,14 +903,24 @@ def install(
 
     With ``dry_run``, returns the plan without touching disk. Every target is
     containment-checked first, so an install never writes outside the allowed
-    roots (see ``_assert_contained``).
+    roots (see ``_assert_contained``). For ``command-code`` the user rules
+    (``<config>/AGENTS.md``) are written only when absent and are not part of the
+    manifest — a pre-existing memory file is left untouched.
     """
     files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
+    rules_target = config_dir / COMMAND_CODE_RULES_FILE
+    rules_source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
+    rules_pending = (
+        rules_source.is_file() and not rules_target.exists()
+        if harness == "command-code"
+        else False
+    )
     if dry_run:
         return {
             "harness": harness,
             "files": [str(t) for t, _ in files],
+            "rules": rules_target.as_posix() if rules_pending else None,
             "dry_run": True,
             "only": only or [],
             "skills": skills or [],
@@ -733,6 +934,7 @@ def install(
         else:
             target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
+    rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
         json.dumps(
@@ -748,7 +950,12 @@ def install(
         + "\n",
         encoding="utf-8",
     )
-    return {"harness": harness, "files": written, "manifest": manifest.as_posix()}
+    return {
+        "harness": harness,
+        "files": written,
+        "rules": rules.as_posix() if rules else None,
+        "manifest": manifest.as_posix(),
+    }
 
 
 def _classify(target: Path) -> str:
@@ -763,7 +970,7 @@ def _classify(target: Path) -> str:
         return "skill"
     if name == "agent.md" or parent in ("agent", "agents"):
         return "agent"
-    if name in ("hooks.json", "governor-hook.sh", "coacus-governor.js"):
+    if name in ("hooks.json", "settings.json", "governor-hook.sh", "coacus-governor.js"):
         return "hook"
     return "other"
 
@@ -795,6 +1002,40 @@ def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
     }
 
 
+def _installed_state(
+    files: list[tuple[Path, FileContent]], harness: str, root: Path, config_dir: Path
+) -> tuple[list[str], list[str]]:
+    """Compute ``(missing, drifted)`` for a plan, honoring merged user files.
+
+    A file Coacus MERGES into (a harness's ``hooks.json``/``settings.json``, an
+    MCP config) is user-owned: the harness or the user may add keys after the
+    install, so drift there means the Coacus entry is gone — not that the bytes
+    differ. Every other file is compared verbatim.
+    """
+    hooks_path = _merged_config_path(harness, config_dir)
+    marker = _hook_owner_marker(root, harness)
+    mcp_path = _merged_mcp_path(harness, config_dir)
+    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
+    missing: list[str] = []
+    drift: list[str] = []
+    for target, content in files:
+        if not target.is_file():
+            missing.append(target.as_posix())
+            continue
+        if target == hooks_path:
+            if marker not in json.dumps(_load_existing_json(target)):
+                drift.append(target.as_posix())
+            continue
+        if mcp_path is not None and target == mcp_path:
+            servers = _load_existing_json(target).get("mcpServers") or {}
+            if not any(name in servers for name in mcp_names):
+                drift.append(target.as_posix())
+            continue
+        if _read_installed(target, content) != content:
+            drift.append(target.as_posix())
+    return missing, drift
+
+
 def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     """Compare an installed harness against the repository, read-only.
 
@@ -823,14 +1064,7 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     skills = data.get("skills") or None
     agents = data.get("agents") or None
     files = plan(harness, root, config_dir, only, skills, agents)
-    missing = [
-        t.as_posix() for t, _ in files if not t.is_file()
-    ]
-    drift = [
-        t.as_posix()
-        for t, content in files
-        if t.is_file() and _read_installed(t, content) != content
-    ]
+    missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
     planned = {t.as_posix() for t, _ in files}
     result.update(
@@ -882,6 +1116,24 @@ def _claimed_elsewhere(config_dir: Path, own_manifest: Path) -> set[str]:
     return claimed
 
 
+def _merged_config_path(harness: str, config_dir: Path) -> Path:
+    """The user config file Coacus merges its hook entry into for ``harness``.
+
+    Most harnesses keep hooks in ``hooks.json``; Command Code keeps them in its
+    ``settings.json`` (key ``hooks``), so the uninstall strip must target that.
+    """
+    if harness == "command-code":
+        return config_dir / COMMAND_CODE_HOOKS_FILE
+    return config_dir / "hooks.json"
+
+
+def _merged_mcp_path(harness: str, config_dir: Path) -> Path | None:
+    """The user MCP config Coacus merges into, or None when it installs none."""
+    if harness == "command-code":
+        return config_dir / COMMAND_CODE_MCP_FILE
+    return None
+
+
 def uninstall(
     harness: str,
     root: Path,
@@ -910,10 +1162,18 @@ def uninstall(
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
-    hooks_path = config_dir / "hooks.json"
+    hooks_path = _merged_config_path(harness, config_dir)
     marker = _hook_owner_marker(root, harness)
     existing_hooks = _load_existing_json(hooks_path) if hooks_path.is_file() else {}
     had_hooks_entry = marker in json.dumps(existing_hooks)
+    mcp_path = _merged_mcp_path(harness, config_dir)
+    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
+    mcp_existing = (
+        _load_existing_json(mcp_path) if (mcp_path and mcp_path.is_file()) else {}
+    )
+    had_mcp_entry = bool(mcp_names) and any(
+        name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
+    )
     for path in data.get("files", []):
         target = Path(path)
         if not any(_is_within(target.resolve(), r) for r in roots):
@@ -923,13 +1183,22 @@ def uninstall(
             skipped.append(path)
             continue
         if not dry_run and target == hooks_path and had_hooks_entry:
-            # hooks.json is a user file we merged into; strip only our entries
-            # and never delete the user's other keys.
+            # hooks.json / settings.json is a user file we merged into; strip only
+            # our entries and never delete the user's other keys.
             trimmed = _strip_hooks(_load_existing_json(hooks_path), marker)
             if trimmed is None:
                 target.unlink()
             else:
                 target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
+            planned.append(path)
+            continue
+        if not dry_run and mcp_path and target == mcp_path and had_mcp_entry:
+            # mcp.json is a user file we merged into; strip only our servers.
+            trimmed_mcp = _strip_mcp(_load_existing_json(mcp_path), mcp_names)
+            if trimmed_mcp is None:
+                target.unlink()
+            else:
+                target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
             planned.append(path)
             continue
         if target.is_file():
@@ -970,7 +1239,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     parser.add_argument(
         "harness",
         nargs="?",
-        choices=["opencode", "claude-code", "antigravity", "codex", "cursor", "all"],
+        choices=["opencode", "claude-code", "antigravity", "codex", "cursor", "command-code", "all"],
         help="harness to install into (omit with --list)",
     )
     parser.add_argument("--config-dir", help="override the harness config directory")
@@ -1034,7 +1303,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             )
 
     harnesses = (
-        ["opencode", "claude-code", "antigravity", "codex", "cursor"]
+        ["opencode", "claude-code", "antigravity", "codex", "cursor", "command-code"]
         if args.harness == "all"
         else [args.harness]
     )

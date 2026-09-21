@@ -834,6 +834,13 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - cursor      skills   -> ~/.agents/skills/<skill>/; agents ->
               <config_dir>/agents/<name>.md; plus the sessionStart hook at
               <config_dir>/hooks.json (snake_case `additional_context`).
+- command-code skills   -> ~/.agents/skills/<skill>/ (a Command Code user scan
+              root); agents -> <config_dir>/agents/<name>.md; the SessionStart
+              bootstrap is merged into <config_dir>/settings.json under the
+              'hooks' key (Command Code has no separate hooks.json); the context7
+              MCP is merged into <config_dir>/mcp.json under 'mcpServers'; and
+              the Coacus user rules are written to <config_dir>/AGENTS.md when
+              that file does not already exist.
 
 Usage:
     python3 scripts/coacus_install.py <harness|all> [--dry-run] [--uninstall]
@@ -895,7 +902,9 @@ Install a harness and write its manifest; report files written.
 
 With ``dry_run``, returns the plan without touching disk. Every target is
 containment-checked first, so an install never writes outside the allowed
-roots (see ``_assert_contained``).
+roots (see ``_assert_contained``). For ``command-code`` the user rules
+(``<config>/AGENTS.md``) are written only when absent and are not part of the
+manifest — a pre-existing memory file is left untouched.
 
 #### `def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]`
 

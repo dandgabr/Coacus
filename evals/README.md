@@ -50,8 +50,9 @@ python3 scripts/coacus_eval.py run --scenario skill-first-discipline --harness c
 The live runner drives a real agent CLI and never runs in CI. Each harness
 declares its non-interactive invocation in `harnesses/<h>/harness.json`
 (`live_cli`): `opencode run`, `codex exec`, `agy --print`. A harness without one
-is reported as `NO_RUNNER` (currently `claude-code` and `cursor`, whose binaries
-were not available locally). `--harness` overrides the scenario's target, so one
+is reported as `NO_RUNNER` (currently `claude-code`, `cursor` and
+`command-code`, whose binaries/live paths were not available or do not fire the
+`SessionStart` bootstrap in print mode). `--harness` overrides the scenario's target, so one
 scenario runs against every installed CLI.
 
 ## Seeded scenarios (F5)

@@ -1,0 +1,44 @@
+{
+  "name": "command-code",
+  "bootstrap": {
+    "supported": true,
+    "shape": "A",
+    "native_key": "hookSpecificOutput.additionalContext",
+    "forbidden_keys": ["additional_context"],
+    "command": "bash \"__COACUS_ROOT__/harnesses/command-code/bootstrap/session-start.sh\"",
+    "hooks_config": {
+      "hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "bash \"__COACUS_ROOT__/harnesses/command-code/bootstrap/session-start.sh\""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "outputs": [
+      { "path": "harnesses/command-code/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/command-code/bootstrap/hooks.json", "format": "json" }
+    ]
+  },
+  "detection": ["COMMANDCODE_PROJECT_DIR"],
+  "tool_mapping": {
+    "create or update todos": "todo_write",
+    "dispatch a subagent": "agent",
+    "invoke a skill": "skill",
+    "read a file": "read_file",
+    "create, edit, or delete files": "write_file / edit_file",
+    "run shell commands": "shell_command",
+    "search files": "grep / glob",
+    "fetch a URL": "web_fetch"
+  },
+  "tool_denylist": ["todo_write", "agent_output"],
+  "install": {
+    "method": "skills mirror to ~/.agents/skills/ (a Command Code user scan root); agents to <config>/agents/<name>.md with tools: \"*\"; the SessionStart bootstrap is merged into <config>/settings.json under the 'hooks' key (never a separate hooks.json); the context7 MCP is merged into <config>/mcp.json under 'mcpServers'; the Coacus user rules land at <config>/AGENTS.md only when that file is absent",
+    "target": "{config_dir}/settings.json"
+  }
+}
