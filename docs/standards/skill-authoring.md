@@ -45,6 +45,21 @@ beneath another skill directory are forbidden.
 - Reference assets (`references/`, `examples/`) are exempt from the anti-tool
   rule: that is their sanctioned purpose.
 
+### App-owned sources
+
+A skill root under `knowledge/skills/` is the framework's SOURCE. It MUST NOT be
+declared as a WRITE target of an external application (a Maestri `skillBases`
+entry, an editor's skill directory, a sync tool's destination). Such an app drops
+its own copies of its bundled skills into the declared path on every launch,
+which lands generated files in the canonical tree, drifts the corpus and fails
+`validate`.
+
+An app that ships and installs its own skills is integrated at the HARNESS level
+(the installer publishes the corpus to each harness's skill directory), never by
+pointing the app at `knowledge/skills/`. If an app's bundled skills are worth
+owning here, they are imported as canonical sources under the correct category
+and depth — the app keeps its own copy at its own path.
+
 ## Rationale
 
 A skill that cites concrete harness tools locks itself to one harness; the next

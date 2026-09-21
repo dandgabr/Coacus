@@ -5,6 +5,55 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Skill source is not an app write target
+
+### Added
+
+- `skill-authoring` standard: an "App-owned sources" section stating that a root
+  under `knowledge/skills/` is the framework's SOURCE and must never be declared
+  as an external application's WRITE target (a Maestri `skillBases` entry, an
+  editor's skill directory, a sync destination). An app that installs its own
+  bundled skills is integrated at the harness level instead.
+
+### Fixed
+
+- Diagnosed the source of flat `knowledge/skills/maestri*` directories appearing in
+  the canonical tree: the Maestri canvas declares its `skillBases` as install
+  destinations and rewrites its bundled skills into each enabled base on launch.
+  One base pointed at this repository's `knowledge/skills/`. The app's own copies
+  are not corpus; the corpus stays at 273 knowledge skills and the app keeps its
+  skills at its own paths.
+
+## [Unreleased] — Command Code harness
+
+### Added
+
+- `command-code` harness adapter (`harnesses/command-code/harness.json`, shape A)
+  plus installer support in `scripts/coacus_install.py`. It mirrors skills to the
+  shared `~/.agents/skills/` tree, writes agents to
+  `~/.commandcode/agents/<name>.md` with `tools: "*"`, stages the bootstrap script
+  at `~/.commandcode/coacus/session-start.sh`, **merges** the `SessionStart` entry
+  into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in a
+  `hooks.json`), **merges** `context7` into `~/.commandcode/mcp.json`, and writes
+  the Coacus user rules to `~/.commandcode/AGENTS.md` only when that file does not
+  already exist. `--uninstall` strips only the merged hook and MCP entries (via
+  new `_merge_mcp`/`_strip_mcp` helpers and a generalized merged-config path) and
+  keeps the user's other keys.
+- Command Code reserved agent names (`explore`, `plan`, `review`, `general`) are
+  skipped by the agent renderer, since the harness ignores a custom file with one
+  of those names.
+- `harnesses/command-code/AGENTS.md`: the Coacus user rules for Command Code
+  (inspection auto-approve, phase gating, skill-first + specialist delegation, and
+  the advisory concurrency governor), installed to `~/.commandcode/AGENTS.md`.
+
+### Changed
+
+- The concurrency governor is **advisory** for `command-code`: Command Code hooks
+  cover only `shell`/`read`/`write`/`edit`, so the `agent` tool cannot be
+  intercepted and the cap is documented rather than enforced in-process. Command
+  Code subagents cannot spawn subagents, so the main agent is the orchestrator and
+  `multi-agent-orchestrator` installs as a coordinator persona.
+
 ## [Unreleased] — Agent routing
 
 ### Added

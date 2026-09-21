@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"__COACUS_ROOT__/harnesses/command-code/bootstrap/session-start.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

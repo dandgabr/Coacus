@@ -398,6 +398,88 @@ bash harnesses/cursor/bootstrap/session-start.sh | python3 -c "import json,sys; 
 The last command must print `True`. The script must not emit
 `additionalContext` or `hookSpecificOutput`.
 
+## command-code
+
+**Goal:** a `SessionStart` hook injects the bootstrap, Command Code discovers the
+Coacus skills and agents natively, and context7 is registered.
+
+**How it works.** Command Code has no in-process plugin API. It runs a
+`SessionStart` hook that emits JSON and reads a single native key,
+`hookSpecificOutput.additionalContext` — the same key Claude Code and Codex use.
+The adapter renders `harnesses/command-code/bootstrap/session-start.sh` and a
+`hooks.json` **fragment**. Command Code keeps its hooks in
+`~/.commandcode/settings.json` (key `hooks`), so unlike the other hook harnesses
+this adapter **merges** its `SessionStart` entry into `settings.json` rather than
+writing a standalone `hooks.json`.
+
+Command Code's orchestration model differs from OpenCode's in one structural
+way: a subagent cannot spawn subagents (the `agent` tool is removed from a
+subagent's toolset). The main agent is therefore the orchestrator; the Coacus
+`multi-agent-orchestrator` agent installs as a coordinator persona, not as a
+spawner. The concurrency governor is **advisory** here — hooks cannot intercept
+the `agent` tool — so the cap is documented in `~/.commandcode/AGENTS.md` and the
+ledger stays available through `python3 scripts/coacus_governor.py`.
+
+**Vendor facts**
+
+- Skills load from `.commandcode/skills/` (project), `.agents/skills/` (project),
+  `~/.commandcode/skills/` (user), `~/.agents/skills/` (user, `[.agents]` badge)
+  and extra locations; `.commandcode/` wins on a name conflict. **[documented]**
+- Agents are markdown files at `~/.commandcode/agents/<name>.md` and
+  `<project>/.commandcode/agents/<name>.md`, with `name`, `description` and
+  `tools` frontmatter. An omitted `tools` grants **no** tools; `explore`, `plan`,
+  `review` and `general` are reserved and a custom file with one of those names
+  is ignored. **[documented]**
+- Hooks live under the `hooks` key in `settings.json` — `~/.commandcode/settings.json`
+  (user) or `.commandcode/settings.json` (project). There is no separate
+  `hooks.json`. **[documented]**
+- `SessionStart` is non-blocking, carries no tool, and a `matcher` on it makes
+  the hook **not fire**; it injects `hookSpecificOutput.additionalContext` into
+  the first turn. **[documented]**
+- The `agent` tool is always allowed and is **not** interceptable by a hook
+  (hooks cover only `shell`, `read`, `write`, `edit`), so the concurrency cap
+  cannot be enforced in-process. **[documented]**
+- MCP servers are stored per user at `~/.commandcode/mcp.json` (`mcpServers`,
+  transport `http`/`stdio`). **[documented]**
+- User memory is `~/.commandcode/AGENTS.md`, loaded into the system prompt on
+  every turn. **[documented]**
+- Headless runs use `cmd -p "<prompt>"`. **[documented]**
+
+**Install**
+
+```bash
+python3 scripts/coacus_install.py command-code
+```
+
+The script mirrors the skills to `~/.agents/skills/` (a Command Code user scan
+root, shared with Codex and Cursor), writes agents to
+`~/.commandcode/agents/<name>.md` with `tools: "*"`, stages the bootstrap script
+at `~/.commandcode/coacus/session-start.sh`, **merges** the `SessionStart` entry
+into `~/.commandcode/settings.json`, **merges** `context7` into
+`~/.commandcode/mcp.json`, and writes the Coacus user rules to
+`~/.commandcode/AGENTS.md` — only when that file does not already exist, since it
+is your memory. An existing `settings.json` or `mcp.json` is merged, never
+overwritten; `--uninstall` strips only the Coacus entries and keeps the rest. The
+`AGENTS.md` memory file is left in place on uninstall.
+
+**Verify** (structure only; Command Code's runtime behavior is not exercised in
+CI):
+
+```bash
+python3 -c "import json; json.load(open('harnesses/command-code/bootstrap/hooks.json'))"
+bash -n harnesses/command-code/bootstrap/session-start.sh
+bash harnesses/command-code/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
+```
+
+The last command must print `['additionalContext', 'hookEventName']`. No flat
+`additional_context` key may appear.
+
+Command Code reads user hooks from `~/.commandcode/settings.json` — a `PreToolUse`
+probe there fires, which confirms the file is loaded. Note that a `SessionStart`
+hook does **not** fire in headless print mode (`cmd -p`); the bootstrap lands in
+interactive `cmd` sessions. The harness declares no `live_cli`, so the behavior
+evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
+
 ## Reference
 
 ### Install targets
@@ -409,6 +491,7 @@ The last command must print `True`. The script must not emit
 | **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
 | **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
 | **cursor** | A (shell hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
+| **command-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
 
 ### Verifying
 
@@ -423,6 +506,9 @@ The last command must print `True`. The script must not emit
 | Codex script syntax | `bash -n harnesses/codex/bootstrap/session-start.sh` |
 | Cursor hook parses | `python3 -c "import json; json.load(open('harnesses/cursor/bootstrap/hooks.json'))"` |
 | Cursor emits `additional_context` | `bash harnesses/cursor/bootstrap/session-start.sh \| python3 -c "import json,sys; print('additional_context' in json.load(sys.stdin))"` |
+| Command Code hook parses | `python3 -c "import json; json.load(open('harnesses/command-code/bootstrap/hooks.json'))"` |
+| Command Code script syntax | `bash -n harnesses/command-code/bootstrap/session-start.sh` |
+| Command Code emit key | `bash harnesses/command-code/bootstrap/session-start.sh \| python3 -c "import json,sys; print(sorted(json.load(sys.stdin)['hookSpecificOutput']))"` |
 
 The live test for any harness is behavioral: a fresh session with the bootstrap
 must produce a string that exists only in `using-coacus` — the red-flag thought

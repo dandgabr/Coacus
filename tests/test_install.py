@@ -33,7 +33,7 @@ def make_repo(tmp: Path) -> Path:
     (plugin / "coacus.js").write_text(
         "const COACUS_ROOT = '__COACUS_ROOT__';\n", encoding="utf-8"
     )
-    for harness in ("claude-code", "codex", "cursor"):
+    for harness in ("claude-code", "codex", "cursor", "command-code"):
         base = root / f"harnesses/{harness}/bootstrap"
         base.mkdir(parents=True)
         (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
@@ -65,6 +65,23 @@ def make_repo(tmp: Path) -> Path:
     anti.mkdir(parents=True)
     (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
     (anti / "coacus-rule.md").write_text("# rule\n", encoding="utf-8")
+    # Command Code carries its user rules as a static AGENTS.md beside the
+    # harness, and its MCP declaration comes from the generated dist manifest.
+    (root / "harnesses/command-code/AGENTS.md").write_text(
+        "# rules\n\nroot=__COACUS_ROOT__\n", encoding="utf-8"
+    )
+    mcp = root / "knowledge/mcps/context7/dist"
+    mcp.mkdir(parents=True)
+    (mcp / "mcp.json").write_text(
+        json.dumps(
+            {
+                "name": "context7",
+                "transport": "streamable-http",
+                "url": "https://mcp.context7.com/mcp",
+            }
+        ),
+        encoding="utf-8",
+    )
     return root
 
 
@@ -250,8 +267,10 @@ class TestInstaller(unittest.TestCase):
             base = root / f"harnesses/{harness}/bootstrap"
             base.mkdir(parents=True, exist_ok=True)
             (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
+            command = f"__COACUS_ROOT__/harnesses/{harness}/bootstrap/session-start.sh"
+            event = "sessionStart" if harness == "cursor" else "SessionStart"
             (base / "hooks.json").write_text(
-                '{"command": "__COACUS_ROOT__/x"}', encoding="utf-8"
+                json.dumps({"hooks": {event: [{"command": command}]}}), encoding="utf-8"
             )
         coacus_install.install("codex", root, home / ".codex", dry_run=False)
         coacus_install.install("cursor", root, home / ".cursor", dry_run=False)
@@ -752,7 +771,7 @@ class TestAgentFiltering(unittest.TestCase):
         self.assertEqual(manifest["agents"], ["pentester-*"])
 
     def test_all_harnesses_install_agents(self) -> None:
-        for harness in ("opencode", "claude-code", "antigravity", "codex", "cursor"):
+        for harness in ("opencode", "claude-code", "antigravity", "codex", "cursor", "command-code"):
             config = self.tmp / f"cfg-{harness}"
             coacus_install.install(harness, self.root, config, dry_run=False)
             found = [
@@ -765,6 +784,110 @@ class TestAgentFiltering(unittest.TestCase):
                 )
             ]
             self.assertTrue(found, f"{harness} installed no agent files")
+
+
+class TestCommandCode(unittest.TestCase):
+    """Command Code installs agents + hooks (settings.json) + MCP + user rules."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        self.config = self.tmp / "home/.commandcode"
+        add_agent(self.root, "knowledge/agents/core-orchestration/general")
+        add_agent(self.root, "knowledge/agents/cybersecurity/pentester-agent")
+
+    def test_installs_agents_skills_settings_hook_and_mcp(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        # Skills mirror to the shared ~/.agents/skills tree (config_dir.parent).
+        self.assertTrue(
+            (self.config.parent / ".agents/skills/using-coacus/SKILL.md").is_file()
+        )
+        agent = (self.config / "agents/pentester-agent.md").read_text(encoding="utf-8")
+        self.assertIn('tools: "*"', agent)
+        # Hooks live in settings.json; there is no separate hooks.json.
+        self.assertFalse((self.config / "hooks.json").exists())
+        settings = json.loads((self.config / "settings.json").read_text(encoding="utf-8"))
+        marker = coacus_install._hook_owner_marker(self.root, "command-code")
+        self.assertTrue(
+            any(marker in json.dumps(e) for e in settings["hooks"]["SessionStart"])
+        )
+        self.assertNotIn("__COACUS_ROOT__", json.dumps(settings))
+        self.assertTrue((self.config / "coacus/session-start.sh").is_file())
+        mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
+        self.assertEqual(mcp["mcpServers"]["context7"]["url"], "https://mcp.context7.com/mcp")
+
+    def test_reserved_agent_name_is_skipped(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        self.assertFalse((self.config / "agents/general.md").exists())
+        self.assertTrue((self.config / "agents/pentester-agent.md").is_file())
+
+    def test_merges_settings_and_mcp_then_strips_on_uninstall(self) -> None:
+        self.config.mkdir(parents=True)
+        (self.config / "settings.json").write_text(
+            json.dumps(
+                {"permissions": {"deny": ["Read(.env*)"]}, "hooks": {"Stop": [{"x": 1}]}}
+            ),
+            encoding="utf-8",
+        )
+        (self.config / "mcp.json").write_text(
+            json.dumps({"mcpServers": {"other": {"transport": "stdio", "command": "foo"}}}),
+            encoding="utf-8",
+        )
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        settings = json.loads((self.config / "settings.json").read_text(encoding="utf-8"))
+        self.assertEqual(settings["permissions"], {"deny": ["Read(.env*)"]})
+        self.assertIn("Stop", settings["hooks"])
+        mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
+        self.assertIn("context7", mcp["mcpServers"])
+        self.assertIn("other", mcp["mcpServers"])
+
+        coacus_install.uninstall("command-code", self.root, self.config)
+        settings = json.loads((self.config / "settings.json").read_text(encoding="utf-8"))
+        self.assertEqual(settings["permissions"], {"deny": ["Read(.env*)"]})
+        self.assertNotIn("SessionStart", settings.get("hooks", {}))
+        mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
+        self.assertNotIn("context7", mcp["mcpServers"])
+        self.assertIn("other", mcp["mcpServers"])
+
+    def test_rules_written_only_when_absent(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        rules = self.config / "AGENTS.md"
+        self.assertTrue(rules.is_file())
+        self.assertIn(self.root.as_posix(), rules.read_text(encoding="utf-8"))
+        # A pre-existing memory file is never overwritten.
+        rules.write_text("user memory\n", encoding="utf-8")
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        self.assertEqual(rules.read_text(encoding="utf-8"), "user memory\n")
+
+    def test_verify_ok_after_install(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        report = coacus_install.verify("command-code", self.root, self.config)
+        self.assertTrue(report["ok"], report)
+
+    def test_verify_tolerates_keys_added_to_merged_files(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        # The harness (or the user) may add keys to the merged user files later.
+        settings = json.loads((self.config / "settings.json").read_text(encoding="utf-8"))
+        settings["permissions"] = {"allow": ["Shell(git status:*)"]}
+        (self.config / "settings.json").write_text(json.dumps(settings), encoding="utf-8")
+        mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
+        mcp["mcpServers"]["other"] = {"transport": "stdio", "command": "foo"}
+        (self.config / "mcp.json").write_text(json.dumps(mcp), encoding="utf-8")
+        report = coacus_install.verify("command-code", self.root, self.config)
+        self.assertTrue(report["ok"], report)
+
+    def test_verify_detects_removed_hook_entry(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        (self.config / "settings.json").write_text(
+            json.dumps({"permissions": {}}), encoding="utf-8"
+        )
+        report = coacus_install.verify("command-code", self.root, self.config)
+        self.assertFalse(report["ok"])
+        self.assertIn(
+            (self.config / "settings.json").as_posix(), report["drifted"]
+        )
 
 
 if __name__ == "__main__":

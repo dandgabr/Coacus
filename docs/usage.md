@@ -86,12 +86,18 @@ python3 scripts/coacus_install.py antigravity --verify   # read-only: counts + d
 
 Run `generate` first. The installer writes a `coacus-install.json` manifest next
 to each target, so re-runs are idempotent and `--uninstall` removes exactly what
-was installed. All five harnesses install (`opencode`, `claude-code`,
-`antigravity`, `codex`, `cursor`) — skills and agents — or `all` for every one of
+was installed. Six harnesses install (`opencode`, `claude-code`, `antigravity`,
+`codex`, `cursor`, `command-code`) — skills and agents — or `all` for every one of
 them. `--only` filters by category (top-level or nested segment; `workflows` for
 the process collection) across **both** skills and agents; `--skills` and
 `--agents` narrow one tree each by name glob. All are comma-separated and
 AND-ed.
+
+`command-code` differs from the hook harnesses: it merges its `SessionStart`
+entry into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in
+a `hooks.json`), merges the `context7` server into `~/.commandcode/mcp.json`, and
+writes its user rules to `~/.commandcode/AGENTS.md` only when that file does not
+yet exist. It shares the `~/.agents/skills/` tree with Codex and Cursor.
 
 Per-harness behavior and manual paths are in [`install.md`](install.md).
 

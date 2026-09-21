@@ -99,7 +99,7 @@ flowchart TD
   end
 
   RUN["Runtime: governor · TOON validator · dispatcher · provenance"]
-  HARN["harnesses: opencode, claude-code, antigravity, codex, cursor"]
+  HARN["harnesses: opencode, claude-code, antigravity, codex, cursor, command-code"]
 
   K --> GEN
   M --> GEN
@@ -166,6 +166,7 @@ each one gets exactly one rendered bootstrap in its own native format.
 | **antigravity** | C — rule file | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | `python3 scripts/coacus_install.py antigravity` |
 | **codex** | A — shell hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py codex` |
 | **cursor** | A — shell hook | `sessionStart` → top-level `additional_context` | `python3 scripts/coacus_install.py cursor` |
+| **command-code** | A — shell hook | `SessionStart` → `hookSpecificOutput.additionalContext`, merged into `settings.json` | `python3 scripts/coacus_install.py command-code` |
 
 Per-harness tutorials, vendor facts and the evidence class behind each claim:
 [`docs/install.md`](docs/install.md).
@@ -174,7 +175,7 @@ Per-harness tutorials, vendor facts and the evidence class behind each claim:
 
 ```bash
 python3 scripts/coacus.py generate          # render every artifact first
-python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | all
+python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | command-code | all
 python3 scripts/coacus_install.py opencode --dry-run   # preview targets
 python3 scripts/coacus_install.py codex --only security,engineering   # partial install
 python3 scripts/coacus_install.py codex --agents 'qa-*'   # filter agents only
