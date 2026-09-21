@@ -51,6 +51,7 @@ npm-debug.log*
 .codegraph/
 .aider*
 .claude/settings.local.json
+.commandcode/
 .superpowers/sdd/
 
 # --- Temp / backups ---
