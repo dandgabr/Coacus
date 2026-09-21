@@ -5,6 +5,25 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Skill source is not an app write target
+
+### Added
+
+- `skill-authoring` standard: an "App-owned sources" section stating that a root
+  under `knowledge/skills/` is the framework's SOURCE and must never be declared
+  as an external application's WRITE target (a Maestri `skillBases` entry, an
+  editor's skill directory, a sync destination). An app that installs its own
+  bundled skills is integrated at the harness level instead.
+
+### Fixed
+
+- Diagnosed the source of flat `knowledge/skills/maestri*` directories appearing in
+  the canonical tree: the Maestri canvas declares its `skillBases` as install
+  destinations and rewrites its bundled skills into each enabled base on launch.
+  One base pointed at this repository's `knowledge/skills/`. The app's own copies
+  are not corpus; the corpus stays at 273 knowledge skills and the app keeps its
+  skills at its own paths.
+
 ## [Unreleased] — Agent routing
 
 ### Added
