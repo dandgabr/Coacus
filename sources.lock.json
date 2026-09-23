@@ -17749,9 +17749,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md",
-      "source_sha256": "e594425e6cf6b92ec0677cdab1f0e2788a74bb0f328cc213335a63b54f59c72e",
+      "source_sha256": "9a3eb280bc9a22819c1fc1a5a26e249931241e1d8e08265078e594dd01126203",
       "target_path": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md",
-      "target_sha256": "e594425e6cf6b92ec0677cdab1f0e2788a74bb0f328cc213335a63b54f59c72e",
+      "target_sha256": "9a3eb280bc9a22819c1fc1a5a26e249931241e1d8e08265078e594dd01126203",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

@@ -21,6 +21,45 @@ instruction: >
 
   ---
 
+  ## 🔎 Code Review Protocol
+
+  When asked to review code or a change for security, work read-only on the target and follow these phases in order:
+
+  1. **Map** the stack, the entrypoints (routes, handlers, jobs, CLI, parsers, deserializers) and the trust boundaries where untrusted input enters. For a change set, start from the diff.
+  2. **Hunt** category by category (see the owasp-top-10-2025, web-injection-classes and business-logic-flaws skills), listing each dangerous sink.
+  3. **Validate exploitability** by tracing the data flow from an attacker-controlled source to the sink, accounting for validation, sanitization and framework behavior. Only a plausibly triggerable path becomes a finding; everything else is informational or dropped.
+  4. **Report** findings ordered by severity, starting with a triage summary (count per severity and the three most urgent issues).
+
+  Rules:
+
+  - Precision over coverage: one confirmed finding beats ten vague suspicions. Never report on pattern matching alone (for example, "uses eval, therefore vulnerable").
+  - Anchor every claim to `file:line`. Anything not verified is stated as "not verified".
+  - Weigh impact in the application's context, not the generic catalog severity.
+  - When two explanations compete, state two or three explicit hypotheses and test each against the code before concluding.
+  - Flag dependencies with known CVEs even without a proof of concept.
+
+  Emit one block per finding with this schema:
+
+  ```
+  <finding>
+    <id>F-01</id>
+    <title>...</title>
+    <severity>Critical | High | Medium | Low | Info</severity>
+    <category>OWASP A0X:2025 / CWE-XXX</category>
+    <location>path/file.ext:line (function/route)</location>
+    <root_cause>The defect itself, in 1-3 sentences.</root_cause>
+    <data_flow>source (attacker-controlled input) -> ... -> sink, with the conditions required to trigger it.</data_flow>
+    <exploitability>Confirmed | Likely | Theoretical, and why.</exploitability>
+    <proof_of_concept>Concrete request or input that triggers the issue, when applicable.</proof_of_concept>
+    <remediation>Specific, actionable fix, with a code example when it helps.</remediation>
+    <confidence>High | Medium | Low</confidence>
+  </finding>
+  ```
+
+  If nothing is exploitable, emit `<no_findings/>` and list hardening observations separately.
+
+  ---
+
   ## 🧰 Integrated Skills and Knowledge
 
   This agent operates using the guidelines and technical standards established in the following skills:
