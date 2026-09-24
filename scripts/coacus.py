@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Coacus thin CLI: generate | check | validate.
+"""Coacus thin CLI: generate | check | validate | refresh.
 
 Deterministic build tooling for the framework (generated-artifacts, secrets-portability, generated-artifacts).
 
@@ -163,6 +163,23 @@ def cmd_completeness(_args: argparse.Namespace | None = None, root: Path | None 
     return 0
 
 
+def cmd_refresh(_args: argparse.Namespace | None = None, root: Path | None = None) -> int:
+    """Re-hash drifted provenance targets; fail if the manifest stays inconsistent."""
+    root = root or ROOT
+    refreshed = provenance.refresh_targets(root)
+    if refreshed:
+        print(f"refreshed {len(refreshed)} provenance target hash(es)")
+        _print(refreshed, "refresh")
+    else:
+        print("provenance OK: no target hashes drifted")
+    remaining = provenance.validate(root)
+    if remaining:
+        print(f"{len(remaining)} provenance error(s) remain:")
+        _print(remaining, "error")
+        return 1
+    return 0
+
+
 def cmd_freshness(args: argparse.Namespace, root: Path | None = None) -> int:
     """Read-only, offline inventory of moving version pins (version-freshness)."""
     root = root or ROOT
@@ -196,6 +213,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("generate", help="regenerate dist/, .agents/, catalog/ and docs/")
     sub.add_parser("check", help="fail if generated artifacts are stale")
     sub.add_parser("validate", help="run schema and hygiene validators")
+    sub.add_parser("refresh", help="re-hash drifted provenance targets in sources.lock.json")
     sub.add_parser("completeness", help="verify nothing from the sources was left behind (F8)")
     fresh = sub.add_parser("freshness", help="read-only inventory of version pins (version-freshness)")
     fresh.add_argument("--references", action="store_true", help="also scan references/ assets")
@@ -206,6 +224,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_generate(args)
     if args.command == "check":
         return cmd_check(args)
+    if args.command == "refresh":
+        return cmd_refresh(args)
     if args.command == "completeness":
         return cmd_completeness(args)
     if args.command == "freshness":

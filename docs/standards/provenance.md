@@ -53,9 +53,16 @@ generated artifacts.
 
 ## Enforcement
 
-- `engine/provenance.py` owns the schema, the seed and `validate()`, which checks
-  the required keys, the `aliases` list shape and target existence. It runs in
-  `python3 scripts/coacus.py validate` and after writing in `generate`.
+- `engine/provenance.py` owns the schema, the seed, `validate()` (the required
+  keys, the `aliases` list shape, target existence and the `target_sha256` drift
+  key) and `refresh_targets()`. `validate()` runs in
+  `python3 scripts/coacus.py validate` and after writing in `generate`; a target
+  whose recorded hash no longer matches disk is an error.
+- `python3 scripts/coacus.py refresh` recomputes `target_sha256` from disk for
+  every drifted entry (and advances `source_sha256` too when the entry is
+  in-place, `source_sha256 == target_sha256`). Use it after editing an imported
+  file without re-running the importer; the importer's `apply` remains the
+  canonical path for a fresh import.
 - `engine/validators/completeness.py` (via
   `python3 scripts/coacus.py completeness`) reconciles lock targets against disk,
   flags orphan skills with no provenance, and checks source repos when present.

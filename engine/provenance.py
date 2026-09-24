@@ -79,6 +79,16 @@ def validate(root: Path) -> list[str]:
             errors.append(
                 f"{LOCK_PATH}: entry {index} target does not exist: {entry['target_path']!r}"
             )
+            continue
+        # Drift key: the recorded content hash of the target must match disk
+        # (provenance.md, "Drift key"). A hand-edited imported file that never
+        # re-ran the import leaves the lock lying about the corpus.
+        recorded = entry.get("target_sha256")
+        if entry.get("target_path") and recorded and recorded != _sha256(target):
+            errors.append(
+                f"{LOCK_PATH}: entry {index} target_sha256 mismatch for "
+                f"{entry['target_path']!r} (run: python3 scripts/coacus.py refresh)"
+            )
     return errors
 
 
@@ -153,3 +163,48 @@ def sync_authoring(root: Path, imported_at: str) -> list[str]:
     if changed:
         write(root, data)
     return added
+
+
+def refresh_targets(root: Path) -> list[str]:
+    """Re-hash every drifted target in the manifest; return the paths refreshed.
+
+    The lock's drift key is ``target_sha256`` (provenance.md). When a canonical
+    source is edited outside the importer — a direct hand-edit of an imported
+    file — the hash goes stale and ``validate`` now fails. This recomputes
+    ``target_sha256`` from disk for each entry whose recorded hash no longer
+    matches.
+
+    For an in-place entry (``source_sha256 == target_sha256``, the imported or
+    authored convention where the target IS the content) the source hash is
+    advanced alongside it, preserving the equality. For a transformed entry
+    (``source_sha256 != target_sha256``) only the target hash moves: the source
+    hash describes the upstream file, which is not verifiable from here and must
+    not be fabricated.
+
+    Idempotent: a clean manifest is left byte-identical and nothing is written.
+    """
+    data = load(root)
+    entries = data.get("entries", [])
+    refreshed: list[str] = []
+    changed = False
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        target_path = entry.get("target_path")
+        if not target_path:
+            continue
+        target = root / str(target_path)
+        if not target.is_file():
+            continue
+        recorded = entry.get("target_sha256")
+        digest = _sha256(target)
+        if not recorded or recorded == digest:
+            continue
+        if entry.get("source_sha256") == recorded:
+            entry["source_sha256"] = digest
+        entry["target_sha256"] = digest
+        refreshed.append(str(target_path))
+        changed = True
+    if changed:
+        write(root, data)
+    return refreshed

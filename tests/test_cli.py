@@ -66,5 +66,41 @@ class TestCliGenerate(unittest.TestCase):
         self.assertFalse((self.root / ".agents").exists())
 
 
+class TestCliRefresh(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = make_repo(Path(self._tmp.name))
+
+    def test_refresh_recovers_drifted_provenance(self) -> None:
+        from engine import provenance
+
+        # A generated repo whose provenance entry then drifts on disk.
+        self.assertEqual(coacus.cmd_generate(root=self.root), 0)
+        lock = provenance.load(self.root)
+        lock["entries"] = [
+            {
+                "source_repo": "skills",
+                "source_commit": "deadbeef",
+                "source_path": "agents/roles/sample-agent/AGENT.md",
+                "source_sha256": "0" * 64,
+                "target_path": "knowledge/agents/roles/sample-agent/agent.source.md",
+                "target_sha256": "0" * 64,
+                "origin_license": "GPL-3.0",
+                "transform": ["imported"],
+                "import_run_id": "seed",
+                "imported_at": "2026-01-01T00:00:00Z",
+                "aliases": [],
+            }
+        ]
+        provenance.write(self.root, lock)
+        self.assertEqual(coacus.cmd_validate(root=self.root), 1)
+        self.assertEqual(coacus.cmd_refresh(root=self.root), 0)
+        self.assertEqual(coacus.cmd_validate(root=self.root), 0)
+
+    def test_refresh_on_clean_manifest_is_ok(self) -> None:
+        self.assertEqual(coacus.cmd_refresh(root=self.root), 0)
+
+
 if __name__ == "__main__":
     unittest.main()
