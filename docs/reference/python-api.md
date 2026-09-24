@@ -324,6 +324,25 @@ Idempotent: a second call with the same tree adds nothing, and an unchanged
 authored entry keeps its original ``imported_at`` (only a content change
 rewrites the hash).
 
+#### `def refresh_targets(root: Path) -> list[str]`
+
+Re-hash every drifted target in the manifest; return the paths refreshed.
+
+The lock's drift key is ``target_sha256`` (provenance.md). When a canonical
+source is edited outside the importer — a direct hand-edit of an imported
+file — the hash goes stale and ``validate`` now fails. This recomputes
+``target_sha256`` from disk for each entry whose recorded hash no longer
+matches.
+
+For an in-place entry (``source_sha256 == target_sha256``, the imported or
+authored convention where the target IS the content) the source hash is
+advanced alongside it, preserving the equality. For a transformed entry
+(``source_sha256 != target_sha256``) only the target hash moves: the source
+hash describes the upstream file, which is not verifiable from here and must
+not be fabricated.
+
+Idempotent: a clean manifest is left byte-identical and nothing is written.
+
 ### `engine/router.py`
 
 Deterministic agent router (routing).
@@ -660,7 +679,7 @@ do not count as untranslated text. This mirrors the hygiene scan.
 
 ### `scripts/coacus.py`
 
-Coacus thin CLI: generate | check | validate.
+Coacus thin CLI: generate | check | validate | refresh.
 
 Deterministic build tooling for the framework (generated-artifacts, secrets-portability, generated-artifacts).
 
@@ -695,6 +714,10 @@ Validate a TOON handoff payload file; print errors and return the exit code.
 #### `def cmd_completeness(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
 Reconcile the corpus against its sources; fail if anything is unreconciled.
+
+#### `def cmd_refresh(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
+
+Re-hash drifted provenance targets; fail if the manifest stays inconsistent.
 
 #### `def cmd_freshness(args: argparse.Namespace, root: Path | None=None) -> int`
 

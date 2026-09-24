@@ -27,7 +27,19 @@ deterministic.
 `validate` runs source and artifact validators together and prints warnings
 first. A moving version pin with no resolution anchor is an **error**
 ([version-freshness](standards/version-freshness.md)), so the gate blocks a
-training-memory pin from entering the corpus.
+training-memory pin from entering the corpus. A provenance target whose recorded
+hash no longer matches disk is also an error: the lock must not lie about the
+corpus ([provenance](standards/provenance.md)).
+
+### Repair drifted provenance
+
+```bash
+python3 scripts/coacus.py refresh   # re-hash drifted targets in sources.lock.json
+```
+
+`refresh` recomputes `target_sha256` from disk for every entry whose recorded
+hash drifted (editing an imported file without re-running the importer). It is
+idempotent, verifies the result and exits non-zero if any error remains.
 
 ### Audit version pins
 

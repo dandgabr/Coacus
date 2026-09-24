@@ -165,5 +165,72 @@ class TestProvenance(unittest.TestCase):
         self.assertTrue(any("'aliases' must be a list" in e for e in errors))
 
 
+class TestProvenanceDrift(unittest.TestCase):
+    """The target_sha256 drift key and the refresh path (provenance.md)."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name) / "repo"
+        self.root.mkdir()
+
+    def _entry(self, target: str, digest: str, *, in_place: bool = True) -> dict:
+        entry = {key: "x" for key in provenance.REQUIRED_ENTRY_KEYS}
+        entry["target_path"] = target
+        entry["target_sha256"] = digest
+        entry["source_sha256"] = digest if in_place else "a" * 64
+        return entry
+
+    def _write_target(self, rel: str, text: str) -> str:
+        path = self.root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+        return provenance._sha256(path)
+
+    def test_matching_hash_validates_clean(self) -> None:
+        rel = "knowledge/skills/roles/one/SKILL.md"
+        digest = self._write_target(rel, "body\n")
+        provenance.write(self.root, {"schema": 1, "entries": [self._entry(rel, digest)]})
+        self.assertEqual(provenance.validate(self.root), [])
+
+    def test_stale_hash_fails(self) -> None:
+        rel = "knowledge/skills/roles/one/SKILL.md"
+        self._write_target(rel, "body\n")
+        provenance.write(self.root, {"schema": 1, "entries": [self._entry(rel, "0" * 64)]})
+        errors = provenance.validate(self.root)
+        self.assertTrue(any("target_sha256 mismatch" in e for e in errors))
+
+    def test_refresh_advances_in_place_entry(self) -> None:
+        rel = "knowledge/skills/roles/one/SKILL.md"
+        digest = self._write_target(rel, "body\n")
+        provenance.write(self.root, {"schema": 1, "entries": [self._entry(rel, "0" * 64)]})
+        refreshed = provenance.refresh_targets(self.root)
+        self.assertEqual(refreshed, [rel])
+        entry = provenance.load(self.root)["entries"][0]
+        self.assertEqual(entry["target_sha256"], digest)
+        self.assertEqual(entry["source_sha256"], digest)
+        self.assertEqual(provenance.validate(self.root), [])
+
+    def test_refresh_keeps_transformed_source_hash(self) -> None:
+        rel = "knowledge/skills/roles/one/SKILL.md"
+        digest = self._write_target(rel, "body\n")
+        provenance.write(
+            self.root, {"schema": 1, "entries": [self._entry(rel, "0" * 64, in_place=False)]}
+        )
+        provenance.refresh_targets(self.root)
+        entry = provenance.load(self.root)["entries"][0]
+        self.assertEqual(entry["target_sha256"], digest)
+        self.assertEqual(entry["source_sha256"], "a" * 64)
+
+    def test_refresh_is_idempotent(self) -> None:
+        rel = "knowledge/skills/roles/one/SKILL.md"
+        digest = self._write_target(rel, "body\n")
+        provenance.write(self.root, {"schema": 1, "entries": [self._entry(rel, digest)]})
+        before = (self.root / provenance.LOCK_PATH).read_text(encoding="utf-8")
+        self.assertEqual(provenance.refresh_targets(self.root), [])
+        after = (self.root / provenance.LOCK_PATH).read_text(encoding="utf-8")
+        self.assertEqual(before, after)
+
+
 if __name__ == "__main__":
     unittest.main()
