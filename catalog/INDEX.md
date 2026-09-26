@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 288 skill(s) · 71 agent(s) · 1 MCP(s)
+**Totals:** 292 skill(s) · 73 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -26,6 +26,7 @@
 | computer-engineer | academic-sciences | [knowledge/agents/academic-sciences/computer-engineer/agent.source.md](../knowledge/agents/academic-sciences/computer-engineer/agent.source.md) |
 | computer-scientist | academic-sciences | [knowledge/agents/academic-sciences/computer-scientist/agent.source.md](../knowledge/agents/academic-sciences/computer-scientist/agent.source.md) |
 | container-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/container-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/container-security-specialist/agent.source.md) |
+| cpp-systems-engineer | software-engineering | [knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md](../knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md) |
 | cryptography-specialist | cybersecurity | [knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md](../knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md) |
 | data-ai-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md) |
 | data-engineer-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md) |
@@ -48,6 +49,7 @@
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |
 | linguistic-specialist | specialized-domains | [knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md](../knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md) |
+| llvm-compiler-engineer | academic-sciences | [knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md](../knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md) |
 | malware-analyst | cybersecurity | [knowledge/agents/cybersecurity/malware-analyst/agent.source.md](../knowledge/agents/cybersecurity/malware-analyst/agent.source.md) |
 | mathematician | academic-sciences | [knowledge/agents/academic-sciences/mathematician/agent.source.md](../knowledge/agents/academic-sciences/mathematician/agent.source.md) |
 | mechanical-engineer | academic-sciences | [knowledge/agents/academic-sciences/mechanical-engineer/agent.source.md](../knowledge/agents/academic-sciences/mechanical-engineer/agent.source.md) |
@@ -93,6 +95,7 @@
 | jpa-hibernate-performance | [knowledge/skills/data/jpa-hibernate-performance/SKILL.md](../knowledge/skills/data/jpa-hibernate-performance/SKILL.md) |
 | power-bi | [knowledge/skills/data/power-bi/SKILL.md](../knowledge/skills/data/power-bi/SKILL.md) |
 | realtime-streaming-event-driven | [knowledge/skills/data/realtime-streaming-event-driven/SKILL.md](../knowledge/skills/data/realtime-streaming-event-driven/SKILL.md) |
+| vector-databases | [knowledge/skills/data/vector-databases/SKILL.md](../knowledge/skills/data/vector-databases/SKILL.md) |
 | academic-abstract-algebra-geometry | [knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md](../knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md) |
 | academic-algorithms-data-structures | [knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md](../knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md) |
 | academic-biomedical-instrumentation-signals | [knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md](../knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md) |
@@ -142,6 +145,7 @@
 | empirical-software-design | [knowledge/skills/engineering/practices/empirical-software-design/SKILL.md](../knowledge/skills/engineering/practices/empirical-software-design/SKILL.md) |
 | git-conventional-commits | [knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md](../knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md) |
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
+| llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
@@ -169,6 +173,8 @@
 | linux-kernel-systemd-internals | [knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md](../knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md) |
 | program-containers | [knowledge/skills/infrastructure/program-containers/SKILL.md](../knowledge/skills/infrastructure/program-containers/SKILL.md) |
 | zero-trust-architecture-engineering | [knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md](../knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md) |
+| cpp-template-metaprogramming | [knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md](../knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md) |
+| gpu-programming-cuda | [knowledge/skills/languages/gpu-programming-cuda/SKILL.md](../knowledge/skills/languages/gpu-programming-cuda/SKILL.md) |
 | javascript-high-performance | [knowledge/skills/languages/javascript-high-performance/SKILL.md](../knowledge/skills/languages/javascript-high-performance/SKILL.md) |
 | lang-assembly-x64 | [knowledge/skills/languages/lang-assembly-x64/SKILL.md](../knowledge/skills/languages/lang-assembly-x64/SKILL.md) |
 | lang-bash | [knowledge/skills/languages/lang-bash/SKILL.md](../knowledge/skills/languages/lang-bash/SKILL.md) |

@@ -14,6 +14,8 @@ instruction: >
   ### 📚 Associated Skills
 
   - [ai-llm-engineering-rag](knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
+  - [vector-databases](knowledge/skills/data/vector-databases/SKILL.md)
+  - [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
   - [data-mesh-governance](knowledge/skills/data/data-mesh-governance/SKILL.md)
   - [realtime-streaming-event-driven](knowledge/skills/data/realtime-streaming-event-driven/SKILL.md)
   - [data-science-advanced-math](knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md)
@@ -41,9 +43,13 @@ tools:
   - type: skill_integration
     path: ../../../../skills/data/realtime-streaming-event-driven/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/data/vector-databases/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/domains/academic/data-science-advanced-math/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/gpu-programming-cuda/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration

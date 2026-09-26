@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 273 skills across ten categories, 71
+- **Knowledge** — what the framework knows: 277 skills across ten categories, 73
   agents, one MCP declaration.
 - **Methodology** — how work proceeds: 15 process workflows for planning,
   debugging, review and verification.
@@ -121,12 +121,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 273 | `security` 127, `domains` 38, `roles` 21, `languages` 18, `mapping` 15, `frameworks` 14, `engineering` 15, `data` 9, `infrastructure` 9, `platforms` 7 |
-| Agents | 71 | `academic-sciences` 16, `software-engineering` 13, `cybersecurity` 22, `specialized-domains` 6, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
+| Skills | 277 | `security` 127, `domains` 38, `roles` 21, `languages` 20, `mapping` 15, `frameworks` 14, `engineering` 16, `data` 10, `infrastructure` 9, `platforms` 7 |
+| Agents | 73 | `academic-sciences` 17, `software-engineering` 14, `cybersecurity` 22, `specialized-domains` 6, `data-cloud-devops` 6, `research-discovery` 4, `core-orchestration` 4 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 288 skill entries | 273 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1234 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 292 skill entries | 277 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1240 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -292,7 +292,7 @@ Phases **F0–F8 complete**; the repository is finished.
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract. |
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 
-The framework ships the imported corpus (273 skills, 71 agents, 15 workflows, one
+The framework ships the imported corpus (277 skills, 73 agents, 15 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer

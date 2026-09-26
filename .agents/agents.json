@@ -25,6 +25,9 @@
       "path": "knowledge/agents/academic-sciences/geoscientist"
     },
     {
+      "path": "knowledge/agents/academic-sciences/llvm-compiler-engineer"
+    },
+    {
       "path": "knowledge/agents/academic-sciences/mathematician"
     },
     {
@@ -161,6 +164,9 @@
     },
     {
       "path": "knowledge/agents/software-engineering/code-optimizer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/cpp-systems-engineer"
     },
     {
       "path": "knowledge/agents/software-engineering/documenter"

@@ -212,8 +212,45 @@ impl ServerConfigBuilder {
 - **UTF-8 Strings**: Never index a `String` by byte (it can cut a multibyte character/freeze) — iterate with `chars()`/`bytes()` or use slices at valid character boundaries.
 - **Arithmetic Overflow**: in release, overflow wraps silently — validate inputs before operating; for counters/protocols use Checked/Saturating APIs.
 
+## 🧪 Rust for Machine Learning (Silveira)
+
+> Scope note: *Rust for Machine Learning* (Marcos Silveira) is an early-release draft. Only the introductory chapters — the perceptron and the linear/SVM classifier — are published; the deep-learning, unsupervised, reinforcement-learning and micro-transformer chapters are planned. The patterns below are the published, verified subset; do not attribute unverified library or GPU content to the book. Resolve the current versions and APIs of the ML crates (`ndarray`, `burn`, `candle`, `tch-rs`, `linfa`, `polars`, `smartcore`) from their publishers before use.
+
+The book builds models **from first principles** in Rust, delegating only peripheral concerns (randomness, plotting) to crates. Three dimensions: **representation** (choose the model class), **learning** (fit on data), and **inference** (apply to new data).
+
+### Numeric and data conventions
+- Use `f32` throughout for memory-bound ML work (Rust defaults to `f64`). Represent a matrix as `Vec<Vec<f32>>` (outer index = row) and refactor to a dedicated `Matrix` type once the shape is stable.
+- CSV ingestion from a string, with `Result<T, E>` plus `unwrap()` used only didactically (it panics — avoid in production):
+```rust
+fn load_data_from_csv(content: String) -> Vec<Vec<f32>> {
+    content.lines()
+        .map(|line| line.split(',')
+            .map(|field| field.trim().parse().unwrap())
+            .collect())
+        .collect()
+}
+```
+- Encode boolean labels as `1.0`/`-1.0`. Ownership is the first friction point: `zip(x_train, y_train)` **moves** its arguments, so a subsequent consume triggers `E0382: borrow of moved value` — borrow (`&Vec<f32>`) or clone explicitly.
+
+### Models and the shared trait
+Training and classifying are the two behaviors every model shares:
+```rust
+pub trait Classifier {
+    fn train(&mut self, input: Vec<Vec<f32>>, labels: Vec<f32>);
+    fn classify(&self, input: Vec<f32>) -> f32;
+}
+```
+- **Perceptron** (`y = σ(wᵀx + b)` with a step activation) learns by *forward → loss → update*; the update rule `w += error · x`, `b += error` is applied only on a misclassified example, and the same code learns AND/OR purely from a different dataset. Weights start at zero and grow to the feature count on first use.
+- **Marginal/SVM classifier** adds **hinge loss + L2 regularization** optimized by gradient descent with a margin. Two pitfalls the author hit and fixed: **shuffle ordered data** before training, and **scale features** (`x' = 2·(x − min)/(max − min) − 1`) or large-magnitude features dominate the gradients and convergence stalls.
+
+### Testing discipline
+Adopt test-driven development from the first line: define the function returning `todo!()` to get a red test, then implement. Tests read as documentation (`it_loads_or_data`) and use `#[cfg(test)] mod tests { use super::*; #[test] fn ... }`, run with `cargo test`. This keeps the numeric code verifiable as it grows toward neural networks.
+
 ## 🔗 Integration with Other Skills
 
+- For numerical/linear-algebra foundations and optimization, see [data-science-advanced-math](../../domains/academic/data-science-advanced-math/SKILL.md).
+- For the Python-side MLOps/LLMOps stack, see [ai-llm-engineering-rag](../../domains/industry/ai-llm-engineering-rag/SKILL.md).
+- For GPU acceleration, see [gpu-programming-cuda](../gpu-programming-cuda/SKILL.md).
 - To apply static analysis and security review to Rust code, see [sast-code-review](../../security/appsec/sast-code-review/SKILL.md) and [appsec-owasp-asvs](../../security/appsec/appsec-owasp-asvs/SKILL.md).
 - To integrate compile-time verified database access in Rust (`sqlx`, `diesel`, `tokio-postgres`, `mongodb`), see [dba-database-administrator](../../roles/dba-database-administrator/SKILL.md), [db-postgresql](../../data/db-postgresql/SKILL.md), [db-sqlite](../../data/db-sqlite/SKILL.md), [db-mariadb](../../data/db-mariadb/SKILL.md), and [db-mongodb](../../data/db-mongodb/SKILL.md).
 - To develop offensive tools, security agents, or high-performance parsers in Rust, see [pentest-scripter-python-bash-go](../../security/appsec/pentest-scripter-python-bash-go/SKILL.md).

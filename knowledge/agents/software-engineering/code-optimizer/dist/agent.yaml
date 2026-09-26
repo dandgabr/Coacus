@@ -24,6 +24,8 @@ instruction: >
   - [latency-engineering](knowledge/skills/engineering/practices/latency-engineering/SKILL.md)
   - [empirical-software-design](knowledge/skills/engineering/practices/empirical-software-design/SKILL.md)
   - [python-performance-parallelism](knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md)
+  - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
+  - [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
   - [jpa-hibernate-performance](knowledge/skills/data/jpa-hibernate-performance/SKILL.md)
   - [lang-java](knowledge/skills/languages/lang-java/SKILL.md)
@@ -61,6 +63,10 @@ tools:
     path: ../../../../skills/engineering/practices/latency-engineering/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/python-performance-parallelism/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/lang-cpp/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/gpu-programming-cuda/SKILL.md
   - type: skill_integration
     path: ../../../../skills/languages/lang-csharp/SKILL.md
   - type: skill_integration

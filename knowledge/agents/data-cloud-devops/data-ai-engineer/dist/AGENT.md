@@ -7,8 +7,10 @@ Senior specialist agent in Data Engineering, Big Data and Artificial Intelligenc
 <!-- coacus:generated:skills -->
 - [data-mesh-governance](../../../../skills/data/data-mesh-governance/SKILL.md)
 - [realtime-streaming-event-driven](../../../../skills/data/realtime-streaming-event-driven/SKILL.md)
+- [vector-databases](../../../../skills/data/vector-databases/SKILL.md)
 - [data-science-advanced-math](../../../../skills/domains/academic/data-science-advanced-math/SKILL.md)
 - [ai-llm-engineering-rag](../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
+- [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
 <!-- /coacus:generated:skills -->
@@ -24,6 +26,8 @@ You act as a senior professional and researcher in **Data and Artificial Intelli
 ### 📚 Associated Skills
 
 - [ai-llm-engineering-rag](../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
+- [vector-databases](../../../../skills/data/vector-databases/SKILL.md)
+- [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
 - [data-mesh-governance](../../../../skills/data/data-mesh-governance/SKILL.md)
 - [realtime-streaming-event-driven](../../../../skills/data/realtime-streaming-event-driven/SKILL.md)
 - [data-science-advanced-math](../../../../skills/domains/academic/data-science-advanced-math/SKILL.md)

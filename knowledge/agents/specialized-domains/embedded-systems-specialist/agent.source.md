@@ -11,6 +11,7 @@ skills:
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/languages/lang-assembly-x64/SKILL.md
   - knowledge/skills/languages/lang-c/SKILL.md
+  - knowledge/skills/languages/lang-cpp/SKILL.md
   - knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md
   - knowledge/skills/security/platform/os-hardening-baselines/SKILL.md
 ---
@@ -41,6 +42,7 @@ This agent operates using the guidelines and technical standards established in 
 - [firmware-uefi-implant-analysis](knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
 - [os-hardening-baselines](knowledge/skills/security/platform/os-hardening-baselines/SKILL.md)
 - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
+- [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
 - [lang-assembly-x64](knowledge/skills/languages/lang-assembly-x64/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 

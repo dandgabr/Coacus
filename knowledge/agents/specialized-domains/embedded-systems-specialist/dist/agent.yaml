@@ -29,6 +29,7 @@ instruction: >
   - [firmware-uefi-implant-analysis](knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
   - [os-hardening-baselines](knowledge/skills/security/platform/os-hardening-baselines/SKILL.md)
   - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
+  - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
   - [lang-assembly-x64](knowledge/skills/languages/lang-assembly-x64/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
@@ -61,6 +62,8 @@ tools:
     path: ../../../../skills/languages/lang-assembly-x64/SKILL.md
   - type: skill_integration
     path: ../../../../skills/languages/lang-c/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/lang-cpp/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md
   - type: skill_integration
