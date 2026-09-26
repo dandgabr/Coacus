@@ -348,6 +348,8 @@
         "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
         "knowledge/skills/engineering/practices/latency-engineering/SKILL.md",
         "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
+        "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
         "knowledge/skills/languages/lang-csharp/SKILL.md",
         "knowledge/skills/languages/lang-go/SKILL.md",
         "knowledge/skills/languages/lang-java/SKILL.md",
@@ -378,7 +380,9 @@
         "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
         "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md",
         "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
-        "knowledge/skills/languages/lang-assembly-x64/SKILL.md"
+        "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
+        "knowledge/skills/languages/lang-c/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md"
       ],
       "triggers": [
         "embarcado",
@@ -439,6 +443,48 @@
       ]
     },
     {
+      "name": "cpp-systems-engineer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 14882 standard (C++17/20/23), STL and ranges, memory management and RAII, template metaprogramming and concepts, GPU/CUDA acceleration, low-latency and lock-free programming, and C++ design patterns. Designs high-performance, memory-safe C++ libraries and applications and diagnoses performance and lifetime defects.",
+      "skills": [
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
+        "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
+        "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
+        "knowledge/skills/security/platform/memory-manipulation/SKILL.md",
+        "knowledge/skills/engineering/practices/latency-engineering/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "baixa latencia",
+        "c++",
+        "c++ moderno",
+        "c++ systems",
+        "concepts",
+        "cpp",
+        "cuda",
+        "design patterns c++",
+        "gpu",
+        "gpu programming",
+        "kernel cuda",
+        "lock-free",
+        "low latency c++",
+        "memoria em c++",
+        "memory management c++",
+        "metaprogramacao de templates",
+        "programacao gpu",
+        "raii",
+        "ranges",
+        "sistemas em c++",
+        "smart pointers",
+        "stl",
+        "template metaprogramming"
+      ]
+    },
+    {
       "name": "cryptography-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/204/205), PKI and certificate lifecycle, KMS/HSM key management, crypto agility and migration, tokenization and format-preserving encryption, and the cryptographic controls required by the digital signature standards.",
@@ -473,8 +519,10 @@
       "skills": [
         "knowledge/skills/data/data-mesh-governance/SKILL.md",
         "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
+        "knowledge/skills/data/vector-databases/SKILL.md",
         "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
         "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/security/grc/security-privacy/SKILL.md"
       ],
@@ -653,6 +701,7 @@
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
         "knowledge/skills/languages/lang-c/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
         "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
         "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
       ],
@@ -1029,6 +1078,44 @@
         "texto",
         "tradu\u00e7\u00e3o",
         "translation"
+      ]
+    },
+    {
+      "name": "llvm-compiler-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in LLVM-based compiler and toolchain engineering, covering the LLVM IR and SSA, frontend construction, the pass manager and custom passes, TableGen target description, instruction selection (SelectionDAG and GlobalISel), legalization, register allocation and scheduling, the MC layer, the ORC JIT, and clang tooling. Builds and debugs language frontends, optimizers, backends and JITs.",
+      "skills": [
+        "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+        "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md",
+        "knowledge/skills/languages/lang-cpp/SKILL.md",
+        "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
+        "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
+        "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
+        "knowledge/skills/frameworks/framework-testing/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "alocacao de registradores",
+        "backend de compilador",
+        "clang",
+        "code generation",
+        "codegen",
+        "compilador",
+        "compiler",
+        "frontend de compilador",
+        "geracao de codigo",
+        "globalisel",
+        "ir",
+        "jit",
+        "llvm",
+        "llvm ir",
+        "orc jit",
+        "otimizacao de compilador",
+        "passes do llvm",
+        "register allocation",
+        "selectiondag",
+        "ssa",
+        "tablegen"
       ]
     },
     {

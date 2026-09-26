@@ -167,3 +167,49 @@ gh run view --log-failed
 
 - **GitHub Container Registry (`ghcr.io`)**: Native authentication with `GITHUB_TOKEN`, publishing and versioning of OCI images with commit SHA and semver tags.
 - **GitHub Codespaces**: Configuration with `.devcontainer/devcontainer.json` for reproducible, pre-configured development environments in seconds.
+
+---
+
+## 🧰 6. Runners, Containers and Custom Actions (Chandrasekara & Herath)
+
+### 6.1 Jobs, runners and dependencies
+Jobs run **in parallel** by default; order them with `needs: <job>`. Runners are GitHub-hosted (`ubuntu-latest`, `macos-latest`, `windows-latest`) or **self-hosted** (registered at repo, organization or enterprise level via `config.cmd`/`config.sh` plus a registration token, ideally run as a service). **Never attach a self-hosted runner to a public repository** — fork pull requests can execute arbitrary code on it.
+
+Jobs can run **inside a container** (`container: node:...`) with **service containers** (e.g. Redis). Container-to-container reaches a service by its **label** (`REDIS_HOST: redis`); a job on the runner instead maps ports (`"6379:6379"`) and uses `localhost`. Docker container *actions* require Linux with Docker installed.
+
+```yaml
+services:
+  redis:
+    image: redis
+    options: >-
+      --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+```
+
+### 6.2 Artifacts, caching and passing data
+Artifacts persist files across jobs (default retention 90 days) via `actions/upload-artifact`/`download-artifact`. Caching keys on a lockfile hash:
+
+```yaml
+- uses: actions/cache@v4
+  with:
+    path: ~/.npm
+    key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+    restore-keys: ${{ runner.os }}-build-
+```
+
+Cache limits: evicted after 7 days unused, 5 GB per repository. **Never cache secrets** — forks can restore the cache.
+
+### 6.3 Custom actions (three types)
+| Type | `runs.using` | Runners | Notes |
+|---|---|---|---|
+| JavaScript | `node20` | Windows/macOS/Linux | Fastest; bundle with `ncc build` |
+| Composite | `composite` | Any | Combine `run` steps; each needs `shell:` |
+| Docker | `docker` | **Linux only** | Any language; slower; needs Docker |
+
+Metadata must be `action.yml` at the repository root; a JavaScript action uses `@actions/core`/`@actions/github` and exposes outputs consumed as `${{ steps.<id>.outputs.<name> }}`. To publish on the Marketplace: public repo, a single action, an unused name, and 2FA enabled.
+
+### 6.4 Variables, secrets and version currency
+- Scope `env:` at workflow, job and step level; set `$GITHUB_ENV` to export to later steps (the legacy `::set-env`/`::set-output` and `node12` are **deprecated**). Default variables include `GITHUB_RUN_ID`, `GITHUB_RUN_NUMBER`, `GITHUB_SHA`, `GITHUB_REF`, `GITHUB_ACTOR`, `GITHUB_REPOSITORY`.
+- Secrets are referenced as `${{ secrets.NAME }}`, limited to 100 secrets of 64 KB, hidden from fork PRs, auto-redacted in logs, and may not use the `GITHUB_` prefix. `GITHUB_TOKEN` is auto-created and repo-scoped; use a PAT when its permissions are insufficient.
+- Step conditions `success()`/`failure()`/`always()`/`cancelled()` drive rollback and cleanup steps. On Windows the default shell is PowerShell — use `${env:VAR}` (never `${VAR}`) or set `shell: bash`.
+
+**Version currency:** resolve current action majors (`actions/checkout`, `setup-*`, `cache`, `upload-artifact`), runner images and Node runtime from GitHub before pinning them; the table and snippets above are pattern-correct but tags must be verified at authoring time.

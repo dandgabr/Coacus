@@ -197,6 +197,23 @@ class DatabaseConnection:
 
 ---
 
+## 🅨 6. C++ Creational Idioms (Pikus)
+
+The GoF patterns are reborn in modern C++ through generic programming.
+
+- **Friend Factory (Barton-Nackman)**: a non-template `friend` defined inline inside a class template generates exactly one non-member function per instantiation, found only by ADL — a clean factory seam with no runtime dispatch:
+```cpp
+template <typename T> class C {
+  int x_;
+public:
+  friend C operator+(const C& a, const C& b) { return C(a.x_ + b.x_); }
+};
+```
+- **Virtual constructors / factories**: constructors cannot be virtual (`sizeof(T)` is compile-time), so clone through a virtual method (`virtual Base* clone() const = 0;`), a dynamic type registry, or a CRTP factory where the base knows `Derived` and `clone()` need not be virtual. Polymorphic copy and object registries build on this.
+- **Named arguments, method chaining and Builder**: fluent builders over a shared abstract builder, or an **implicit builder** derived from the type itself, avoid the telescoping-constructor problem; a fluent hierarchy also avoids virtual dispatch.
+- **Singleton, C++-correct**: prefer an accessor-local `static` (thread-safe since C++11) or a type-erased registry over manual locking; see the existing Singleton section for the full contract.
+- Cross-cutting C++ enablers used by all of these: `std::make_unique`/`std::make_shared` for ownerless-resource avoidance, `auto`/CTAD for deducing concrete products, and concepts/`requires` to constrain factory overloads.
+
 ## ⚖️ Comparative Matrix of Creational Patterns
 
 | Pattern | Complexity | Central Purpose | When to Choose |

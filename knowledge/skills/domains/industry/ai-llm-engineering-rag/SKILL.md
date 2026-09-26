@@ -83,3 +83,44 @@ where $\mathbf{B} \in \mathbb{R}^{d \times r}$ and $\mathbf{A} \in \mathbb{R}^{r
 2. **Answer Relevance**: How pertinent the answer is to the user's original question, penalizing incomplete or redundant answers.
 3. **Context Precision**: Assesses whether the most relevant retrieved chunks appear in the top positions of the ranking.
 4. **Context Recall**: Proportion of sentences in the reference answer (ground truth) that were captured by the retrieved chunks.
+
+---
+
+## 🏭 6. End-to-End LLM System Engineering (Iusztin & Labonne)
+
+The *LLM Engineer's Handbook* frames LLM work as a production system, not a notebook. Its running case study ("LLM Twin") walks the full path from raw data to a deployed, monitored inference API.
+
+### 6.1 The four-pillar production architecture
+1. **Data engineering** — collect, clean and store raw data; a **feature pipeline** turns it into instruct/instruction datasets. Design for **idempotency** and reproducibility; use a data warehouse (not a data lake) for curated, versioned datasets, and **Change Data Capture (CDC)** to sync operational stores into the feature store incrementally.
+2. **Training** — supervised fine-tuning (SFT) and preference alignment (DPO/RLHF) on the curated datasets; see the PEFT/LoRA/QLoRA section above for parameter-efficient paths.
+3. **Inference** — the RAG + agent serving layer; optimize for latency and cost.
+4. **LLMOps** — orchestration, deployment (Docker/Kubernetes or serverless), monitoring, continual improvement.
+
+### 6.2 LLMOps and orchestration
+- **Orchestration vs. pipelines** differ: an orchestrator (e.g. ZenML/Airflow) schedules and versions **pipelines** (a sequence of cached, reproducible steps), while raw scripts do not. Cache steps so retraining resumes from the last successful stage.
+- Track **metadata and artifacts** (dataset versions, model checkpoints, evaluation scores) as first-class outputs. Promote models across environments (dev/staging/production) with the same artifact identity.
+- **Experiment tracking** (Weights & Biases/MLflow) records hyperparameters, losses and eval metrics; every promoted checkpoint should be reproducible from its recorded inputs.
+
+### 6.3 Inference optimization and serving
+- **Quantization** (4-bit NF4/GGUF/AWQ/GPTQ) and **distillation** cut memory and latency; **speculative decoding** and **KV-cache** reuse accelerate generation.
+- **Batching** (continuous/dynamic batching) raises throughput but adds per-request latency — the same latency/throughput trade-off as classic serving. Tune it against the SLO.
+- Serve behind an **OpenAI-compatible API** so clients can swap providers; separate the **business microservice** from the **inference microservice** and deploy the model on a GPU host.
+- **Deployment targets**: serverless (Hugging Face Inference Endpoints, SageMaker, Modal, Beam) for spiky load; self-managed (Kubernetes + KServe, Ray Serve, Text Generation Inference/vLLM) for stable high throughput and cost control.
+
+### 6.4 Monitoring and continual improvement
+- Monitor **system** metrics (latency p50/p99, throughput, error rate, GPU utilization) and **model/quality** metrics (retrieval recall, RAGAS faithfulness, hallucination rate, toxicity, user feedback).
+- Close the loop: collect production prompts/responses as new data → filter and label → new instruction dataset → retrain → re-evaluate → promote. Treat the RAG index, the prompt template and the model weights as independently versioned artifacts.
+
+### 6.5 Engineering practices
+- Keep **prompts under version control**, with evaluation as a gate before promotion.
+- Prefer **open-weight models** with a small, reproducible training pipeline over opaque fine-tuning; the handbook's stack (Hugging Face, Qdrant, ZenML, MLflow, Comet) is tool-agnostic and each layer can be swapped.
+- For the vector-store layer (index choice, hybrid retrieval, chunking, evaluation), see [vector-databases](../../../data/vector-databases/SKILL.md).
+
+---
+
+## 🔗 Integration with Other Skills
+
+- [vector-databases](../../../data/vector-databases/SKILL.md): embeddings, ANN indexes, hybrid vector+keyword retrieval and pgvector.
+- [data-mesh-governance](../../../data/data-mesh-governance/SKILL.md): data contracts and federated governance for the feature/dataset layer.
+- [realtime-streaming-event-driven](../../../data/realtime-streaming-event-driven/SKILL.md): CDC and streaming feature pipelines.
+- [ai-llm-slm-security](../../../security/ai/ai-llm-slm-security/SKILL.md): prompt injection, jailbreak and RAG security controls.

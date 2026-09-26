@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 71,
-    "skills": 288,
+    "agents": 73,
+    "skills": 292,
     "mcps": 1
   },
   "agents": [
@@ -113,6 +113,12 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Container and Kubernetes Security, covering CIS Kubernetes Benchmark conformance, Pod Security and admission control, RBAC, runtime security and container escapes, image supply chain and offensive Kubernetes attack paths.",
       "source": "knowledge/agents/cybersecurity/container-security-specialist/agent.source.md"
+    },
+    {
+      "name": "cpp-systems-engineer",
+      "category": "software-engineering",
+      "description": "Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 14882 standard (C++17/20/23), STL and ranges, memory management and RAII, template metaprogramming and concepts, GPU/CUDA acceleration, low-latency and lock-free programming, and C++ design patterns. Designs high-performance, memory-safe C++ libraries and applications and diagnoses performance and lifetime defects.",
+      "source": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md"
     },
     {
       "name": "cryptography-specialist",
@@ -245,6 +251,12 @@
       "category": "specialized-domains",
       "description": "Specialist Agent in Linguistic Review, Semantic Precision and Multilingual Editorial Quality (PT-BR, EN-US, ES-LATAM). Works by eliminating syntactic ambiguities, purging artificial-intelligence tics (Anti-AI Prose) and ensuring clear, human, technically rigorous communication.",
       "source": "knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md"
+    },
+    {
+      "name": "llvm-compiler-engineer",
+      "category": "academic-sciences",
+      "description": "Senior specialist agent in LLVM-based compiler and toolchain engineering, covering the LLVM IR and SSA, frontend construction, the pass manager and custom passes, TableGen target description, instruction selection (SelectionDAG and GlobalISel), legalization, register allocation and scheduling, the MC layer, the ORC JIT, and clang tooling. Builds and debugs language frontends, optimizers, backends and JITs.",
+      "source": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md"
     },
     {
       "name": "malware-analyst",
@@ -471,6 +483,10 @@
       "path": "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md"
     },
     {
+      "name": "vector-databases",
+      "path": "knowledge/skills/data/vector-databases/SKILL.md"
+    },
+    {
       "name": "academic-abstract-algebra-geometry",
       "path": "knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md"
     },
@@ -667,6 +683,10 @@
       "path": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md"
     },
     {
+      "name": "llvm-compiler-infrastructure",
+      "path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md"
+    },
+    {
       "name": "python-performance-parallelism",
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md"
     },
@@ -773,6 +793,14 @@
     {
       "name": "zero-trust-architecture-engineering",
       "path": "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md"
+    },
+    {
+      "name": "cpp-template-metaprogramming",
+      "path": "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md"
+    },
+    {
+      "name": "gpu-programming-cuda",
+      "path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md"
     },
     {
       "name": "javascript-high-performance",

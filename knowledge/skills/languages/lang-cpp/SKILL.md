@@ -200,8 +200,56 @@ endif()
 - **Operator Overloading and Copy Constructors**: Avoid resource leaks on object assignment by correctly implementing the copy constructor and assignment operator (Rule of Three/Five/Zero).
 - **Virtual Method Injection (vtable hijacking)**: Prevent unintended inheritance by declaring classes or methods as `final` to reduce the attack surface for control-flow hijacking.
 
+## 📚 C++23 STL and Cookbook Recipes (Weinman, Băncilă, Sutherland)
+
+### The `std` module and modern I/O
+- `import std;` replaces the classic header set; `import std.compat;` additionally exposes legacy C symbols (`printf`, `puts`) in the global namespace.
+- `std::print`/`std::println` (`<print>`) are type-safe, built on `std::format`, and avoid iostream overhead. Prefer targeted `using std::println;` over `using namespace std;`.
+- `std::osyncstream` synchronizes multi-threaded output; `std::spanstream` (`ispanstream`/`ospanstream`/`spanstream`, C++23) streams over externally allocated fixed-size buffers without ownership — use `std::stringstream` when ownership is needed.
+
+### C++23 library features
+- **`std::expected<T, E>`** with monadic chaining (`.and_then`, `.transform`, `.or_else`, `.transform_error`) — the C++ answer to Rust's `Result`. `T` may be `void`; `E` must be destructible and not an array/reference/cv-qualified.
+- **`std::generator<T>`** — the first standard coroutine, a synchronous generator view (`co_yield`); `for (auto n : gen() | views::take(10))`.
+- **`std::mdspan`** — a non-owning multidimensional view with the C++23 multidimensional subscript `mds[i, j]`; const-qualify to avoid mutation.
+- **`std::flat_map`/`std::flat_set`** — contiguous-memory adapters with excellent cache locality.
+- **`std::stacktrace`** — `std::stacktrace::current()` yields `source_file()`/`source_line()`/`description()`.
+- **`std::ranges::to<C>()`** — materialize a pipeline (`views::iota(1, 11) | views::transform(...) | ranges::to<std::vector>()`); the trailing `()` is required.
+- **`contains`/`contains_subrange`** — `std::string`/`string_view::contains(...)` and `ranges::contains`/`ranges::contains_subrange` with projections return `bool`.
+- **`std::source_location`**, **`if consteval`** (replaces `std::is_constant_evaluated()`), **`std::to_underlying`**, **`std::is_scoped_enum`**, `#elifdef`/`#elifndef`, `[[assume]]`.
+
+### Error handling, allocators and streams
+- Exception-safety levels, RAII and transaction-based operations; prefer `nothrow` allocation where failure is recoverable. Diagnose with **Clang-Tidy** (static), **Valgrind**/address-memory-thread sanitizers (dynamic), conditional breakpoints and structured logging.
+- **Custom allocators** expose `allocate`/`deallocate` plus member typedefs and enable pooling; C++20/23 `allocate_at_least()` returns `std::allocation_result`. See [memory-manipulation](../../security/platform/memory-manipulation/SKILL.md) for `pmr` and arena details.
+- **Custom streambufs** let a stream tee output (override `overflow(int)`) or feed input (override `underflow()`); locales/facets handle internationalization.
+
+### Concurrency recipes
+`std::jthread` with cancellation tokens, `std::latch`/`std::barrier`/`std::semaphore`, parallel algorithms with execution policies (`std::execution::par`), `promise`/`future`/`std::async`, and deadlock avoidance via lock ordering, bounded granularity and `std::lock`.
+
+### Idioms
+pimpl, named-parameter, NVI (non-virtual interface), attorney-client, CRTP, mixins, type erasure, and thread-safe singleton — see the [design-pattern skills](../../engineering/patterns/dp-creational-patterns/SKILL.md) for full C++ treatments.
+
+---
+
+## 🧠 Judgment: Debunking C++ Myths (Bolboacă & Deák)
+
+Treat widely repeated claims as **conditional**, not absolutes:
+
+- **"C++ is very difficult to learn"** — the obstacle is often teaching order, not the language. Teach safe STL structures (`vector`, `map`, `string`, `unique_ptr`, `span`) before raw pointers (the Stroustrup method), and use a lightweight test framework (doctest) for safe exploration.
+- **"Every C++ program is standard-compliant"** — real code relies on compiler extensions, platform quirks and UB; compliance buys portability and generic optimization, extensions buy speed and vendor tooling.
+- **"There is a single, object-oriented C++"** — C++ is structured, OOP, functional and metaprogramming in one. Prefer **strong types** (`class Hour`) over primitive obsession. TMP is Turing-complete; `constexpr`/`consteval` trade executable size for CPU cycles.
+- **"`main()` is the entry point"** — `_start()` (Linux ELF) or the PE loader runs first; `void main(void)` is non-standard.
+- **"C++ is not memory-safe"** — true only if written as in 2000. Spatial (out-of-bounds) and temporal (use-after-free) failures are addressable with `std::span`, smart pointers and avoiding naked pointers, but the mechanisms are incomplete; safety profiles are a proposed direction.
+- **"The fastest code is inline assembly"** — modern optimizing compilers routinely match or beat hand-written assembly; assembly should be a last resort.
+- **"C++ is backward compatible with C"** — conditional. `void*` needs a cast in C++, enums are distinct types, `malloc`/`free` differ from `new`/`delete` (never mix them), C99 `_Bool`/`_Atomic`/`_Generic`/`static_assert` were retired in C23, VLAs never entered C++. `extern "C"` suppresses name mangling for cross-language linking.
+- **"There are no modern C++ libraries"** — there are too many; the real concerns are discoverability, ABI/version compatibility and **supply-chain security**. **Boost** remains a giant with no equal elsewhere; see [software-supply-chain-security](../../security/appsec/software-supply-chain-security/SKILL.md).
+
+---
+
 ## 🔗 Integration with Other Skills
 
+- For template metaprogramming in depth (concepts, SFINAE, CRTP, expression templates), see [cpp-template-metaprogramming](../cpp-template-metaprogramming/SKILL.md).
+- For compiler/backend implementation of the generated IR, see [llvm-compiler-infrastructure](../../engineering/practices/llvm-compiler-infrastructure/SKILL.md).
+- For GPU-parallel kernels written in C++, see [gpu-programming-cuda](../gpu-programming-cuda/SKILL.md).
 - For direct development and interoperability with C code (C23/C17), see [lang-c](../lang-c/SKILL.md).
 - To run unit tests on C++ code using modern frameworks, see [framework-testing](../../frameworks/framework-testing/SKILL.md) and [framework-criterion](../../frameworks/framework-criterion/SKILL.md).
 - To audit memory safety, Use-After-Free, buffer overflow, and C++ code security vulnerabilities, see [sast-code-review](../../security/appsec/sast-code-review/SKILL.md) and [appsec-owasp-asvs](../../security/appsec/appsec-owasp-asvs/SKILL.md).

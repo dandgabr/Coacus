@@ -1,0 +1,8 @@
+{
+  "name": "cpp-systems-engineer",
+  "description": "Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 14882 standard (C++17/20/23), STL and ranges, memory management and RAII, template metaprogramming and concepts, GPU/CUDA acceleration, low-latency and lock-free programming, and C++ design patterns. Designs high-performance, memory-safe C++ libraries and applications and diagnoses performance and lifetime defects.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/cpp-systems-engineer/dist",
+  "fingerprint": "5c511c834d08b96e"
+}
