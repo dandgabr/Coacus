@@ -7,6 +7,9 @@
       "path": "knowledge/skills/data/data-mesh-governance"
     },
     {
+      "path": "knowledge/skills/data/data-science-workflow"
+    },
+    {
       "path": "knowledge/skills/data/db-mariadb"
     },
     {
@@ -19,10 +22,19 @@
       "path": "knowledge/skills/data/db-sqlite"
     },
     {
+      "path": "knowledge/skills/data/distributed-ml-scaling"
+    },
+    {
+      "path": "knowledge/skills/data/high-performance-java-persistence"
+    },
+    {
       "path": "knowledge/skills/data/jpa-hibernate-performance"
     },
     {
       "path": "knowledge/skills/data/power-bi"
+    },
+    {
+      "path": "knowledge/skills/data/python-data-science"
     },
     {
       "path": "knowledge/skills/data/realtime-streaming-event-driven"
@@ -109,7 +121,13 @@
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
     },
     {
+      "path": "knowledge/skills/domains/industry/ai-application-engineering"
+    },
+    {
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/applied-ai-automation"
     },
     {
       "path": "knowledge/skills/domains/industry/automotive-cybersecurity"
@@ -118,7 +136,13 @@
       "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency"
     },
     {
+      "path": "knowledge/skills/domains/industry/computer-vision-deep-learning"
+    },
+    {
       "path": "knowledge/skills/domains/industry/edtech-andragogy"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/explainable-ai"
     },
     {
       "path": "knowledge/skills/domains/industry/financial-transaction-processing"
@@ -157,19 +181,37 @@
       "path": "knowledge/skills/engineering/patterns/dp-structural-patterns"
     },
     {
+      "path": "knowledge/skills/engineering/practices/api-design"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/architecture-ddd"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/architecture-documentation"
     },
     {
       "path": "knowledge/skills/engineering/practices/c4-model-architecture"
     },
     {
+      "path": "knowledge/skills/engineering/practices/clean-architecture"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/clean-code-reusability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/distributed-systems"
     },
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer"
     },
     {
       "path": "knowledge/skills/engineering/practices/empirical-software-design"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/flow-architectures"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/functional-concurrent-programming"
     },
     {
       "path": "knowledge/skills/engineering/practices/git-conventional-commits"
@@ -185,6 +227,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/ui-ux-principles"
     },
     {
       "path": "knowledge/skills/engineering/practices/vcs-repository-management"
@@ -203,6 +248,9 @@
     },
     {
       "path": "knowledge/skills/frameworks/framework-microprofile-jakarta"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-qt6"
     },
     {
       "path": "knowledge/skills/frameworks/framework-quarkus-jnosql"

@@ -13,6 +13,9 @@ Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS
 - [framework-spring-boot](../../../../skills/frameworks/framework-spring-boot/SKILL.md)
 - [lang-java](../../../../skills/languages/lang-java/SKILL.md)
 - [antigravity-guide](../../../../skills/platforms/antigravity-guide/SKILL.md)
+- [high-performance-java-persistence](../../../../skills/data/high-performance-java-persistence/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [functional-concurrent-programming](../../../../skills/engineering/practices/functional-concurrent-programming/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -48,6 +51,9 @@ When acting, follow the guidelines in the associated skills: [lang-java](../../.
 This agent operates using the following skills:
 - [lang-java](../../../../skills/languages/lang-java/SKILL.md)
 - [framework-spring-boot](../../../../skills/frameworks/framework-spring-boot/SKILL.md)
+- [high-performance-java-persistence](../../../../skills/data/high-performance-java-persistence/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [functional-concurrent-programming](../../../../skills/engineering/practices/functional-concurrent-programming/SKILL.md)
 - [framework-quarkus-jnosql](../../../../skills/frameworks/framework-quarkus-jnosql/SKILL.md)
 - [framework-microprofile-jakarta](../../../../skills/frameworks/framework-microprofile-jakarta/SKILL.md)
 - [jpa-hibernate-performance](../../../../skills/data/jpa-hibernate-performance/SKILL.md)

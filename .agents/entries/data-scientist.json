@@ -1,0 +1,8 @@
+{
+  "name": "data-scientist",
+  "description": "Senior data scientist who turns data into decisions: exploratory analysis and statistics, feature engineering, supervised and unsupervised modeling with scikit-learn, model evaluation and explainability, and clear communication of results. Applies Python data science, applied machine learning, explainable AI and distributed scaling.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/data-scientist/dist",
+  "fingerprint": "f33c453a25814800"
+}

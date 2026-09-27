@@ -13,6 +13,11 @@ Senior specialist agent in Data Engineering, Big Data and Artificial Intelligenc
 - [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [python-data-science](../../../../skills/data/python-data-science/SKILL.md)
+- [distributed-ml-scaling](../../../../skills/data/distributed-ml-scaling/SKILL.md)
+- [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)
+- [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
+- [ai-application-engineering](../../../../skills/domains/industry/ai-application-engineering/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.
@@ -32,6 +37,11 @@ You act as a senior professional and researcher in **Data and Artificial Intelli
 - [realtime-streaming-event-driven](../../../../skills/data/realtime-streaming-event-driven/SKILL.md)
 - [data-science-advanced-math](../../../../skills/domains/academic/data-science-advanced-math/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [python-data-science](../../../../skills/data/python-data-science/SKILL.md)
+- [distributed-ml-scaling](../../../../skills/data/distributed-ml-scaling/SKILL.md)
+- [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)
+- [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
+- [ai-application-engineering](../../../../skills/domains/industry/ai-application-engineering/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

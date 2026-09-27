@@ -20,6 +20,11 @@ instruction: >
   - [realtime-streaming-event-driven](knowledge/skills/data/realtime-streaming-event-driven/SKILL.md)
   - [data-science-advanced-math](knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md)
   - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
+  - [python-data-science](knowledge/skills/data/python-data-science/SKILL.md)
+  - [distributed-ml-scaling](knowledge/skills/data/distributed-ml-scaling/SKILL.md)
+  - [computer-vision-deep-learning](knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md)
+  - [explainable-ai](knowledge/skills/domains/industry/explainable-ai/SKILL.md)
+  - [ai-application-engineering](knowledge/skills/domains/industry/ai-application-engineering/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
   ---
@@ -54,3 +59,13 @@ tools:
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/security-privacy/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/python-data-science/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/distributed-ml-scaling/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/explainable-ai/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/ai-application-engineering/SKILL.md
