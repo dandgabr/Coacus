@@ -11,6 +11,8 @@ skills:
   - knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md
   - knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md
   - knowledge/skills/languages/lang-assembly-x64/SKILL.md
+  - knowledge/skills/languages/lang-c/SKILL.md
+  - knowledge/skills/languages/lang-cpp/SKILL.md
 ---
 
 Senior specialist agent in Computer Engineering, covering microprocessor architecture (ARM/RISC-V), VLSI/CMOS integrated circuit design, logic synthesis in VHDL/Verilog, embedded Linux, RTOS and electronic circuit analysis.
@@ -28,6 +30,8 @@ You act as a senior professional and researcher in **Computer Engineering and Ha
 - [academic-circuit-analysis-electronics](knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md)
 - [academic-digital-systems-vlsi](knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md)
 - [lang-assembly-x64](knowledge/skills/languages/lang-assembly-x64/SKILL.md)
+- [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
+- [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
 
 ---
 

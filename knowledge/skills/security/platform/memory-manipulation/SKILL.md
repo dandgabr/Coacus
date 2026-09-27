@@ -177,7 +177,39 @@ Compile the proof of concept under different profiles to gauge security effectiv
 
 ---
 
+## 🧬 C++ Object Model, Lifetime and Allocation (Roy)
+
+A rigorous mental model of memory is the precondition for both secure and high-performance code.
+
+### Object model, alignment and lifetime
+- A **byte** is the smallest addressable unit (at least 8 bits, not necessarily an octet); an **object** has an address, non-zero storage, a lifetime, a type and a storage duration (`automatic`, `static`, `thread_local`). Functions have addresses but **are not objects** (`std::is_object_v`).
+- **Alignment** must be a power of 2; violating it is undefined behavior. `alignof(T)` gives natural alignment; `alignas` raises (never lowers) it. Composite alignment is the worst member alignment; `sizeof == alignof` does not generalize to composites because of padding. Overaligned types need `operator new(size_t, std::align_val_t)`; plain `new` only guarantees `std::max_align_t`.
+- Lifetime control: `std::memcpy`, `std::bit_cast` (C++20), and `std::start_lifetime_as`/`std::start_lifetime_as_array` (C++23). Reading a **non-active union member is UB**; `std::launder()` is an optimization barrier for type-punned pointers and should be used sparingly.
+- **UB vs IFNDR**: compilers optimize *around* undefined behavior (deleting branches and loops); ODR violations are IFNDR.
+
+### Value semantics and exception safety
+- Copy-and-swap is the safe assignment idiom; move constructors/assignment are `noexcept`. `std::move` **does not move** — it is a cast marking an object movable; forward with `std::forward<Args>(args)...`.
+- Destructors are implicitly `noexcept`; throwing during unwinding calls `std::terminate()`. Make functions exception-safe and exception-neutral (bare `throw;` re-throws).
+
+### Smart pointers and the ownership trap
+- `std::make_unique<T>(args...)` avoids ownerless resources; two `new` calls in one constructor can interleave and leak on throw.
+- `std::make_shared<T>(args)` co-locates object and control block in one allocation. `std::shared_ptr` cycles leak — break them with `std::weak_ptr` (`if (auto sp = w.lock()) { ... }`), and return `weak_ptr` from caches.
+- Polymorphic deletion requires `virtual ~Base() = default`.
+
+### Overloading allocation operators
+Overload the full group (`operator new/new[]/delete/delete[]`); the sized form `operator delete(void*, std::size_t)` (C++14) and `std::destroying_delete_t` (C++20) let a class own finalization and deallocation. `new X` allocates **and** constructs; a throwing constructor triggers the matching `operator delete`. Placement `new` drives memory-mapped hardware regions. A leak detector must over-allocate by `sizeof(std::max_align_t)` and return `static_cast<std::max_align_t*>(p) + 1` — hiding a size header of the wrong width causes misalignment and crashes.
+
+### Arenas, PMR and deferred reclamation
+- **Arena / bump allocation**: allocate by pointer bump, deallocate as a no-op, free wholesale — deterministic and low-fragmentation; a size-bucketed variant adds `std::mutex` and sequential blocks.
+- **Deferred reclamation** separates finalization (destructor) from reclamation (free).
+- **Allocators** trade *objects*, not bytes, and expose `construct`/`destroy`/`rebind`; `std::allocator_traits<A>` wraps them statically. C++17 **PMR** (`std::pmr::memory_resource`, `polymorphic_allocator<T>`, `monotonic_buffer_resource`, `synchronized_pool_resource`, `new_delete_resource`) lets containers carry a runtime resource; note `std::pmr::vector` is a distinct type with no implicit copy.
+- C++11-and-later **value types** (`std::array`, custom `Vector<T>` built on `std::construct_at`/`std::destroy_at`) eliminate manual `new`/`delete` and shrink the attack surface for UAF and double-free.
+- **Trivial relocation** (`std::is_trivially_relocatable_v`, `std::relocate`) is a contemporary direction to let containers move without per-element reallocation.
+
+---
+
 ## 🔒 Global Security and Compliance Guidelines
 
 - Strictly follow the directives set in [appsec-owasp-asvs](../../appsec/appsec-owasp-asvs/SKILL.md) and [clean-code-reusability](../../../engineering/practices/clean-code-reusability/SKILL.md).
 - Replace insecure legacy functions and patterns with managed memory allocation types and modern safe abstractions.
+- For the full language-level ownership and RAII contract, see [lang-cpp](../../../languages/lang-cpp/SKILL.md).

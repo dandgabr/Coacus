@@ -1,0 +1,8 @@
+{
+  "name": "llvm-compiler-engineer",
+  "description": "Senior specialist agent in LLVM-based compiler and toolchain engineering, covering the LLVM IR and SSA, frontend construction, the pass manager and custom passes, TableGen target description, instruction selection (SelectionDAG and GlobalISel), legalization, register allocation and scheduling, the MC layer, the ORC JIT, and clang tooling. Builds and debugs language frontends, optimizers, backends and JITs.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/llvm-compiler-engineer/dist",
+  "fingerprint": "a70af1ebcd3deace"
+}

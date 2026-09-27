@@ -15,6 +15,8 @@ skills:
   - knowledge/skills/engineering/practices/empirical-software-design/SKILL.md
   - knowledge/skills/engineering/practices/latency-engineering/SKILL.md
   - knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md
+  - knowledge/skills/languages/lang-cpp/SKILL.md
+  - knowledge/skills/languages/gpu-programming-cuda/SKILL.md
   - knowledge/skills/languages/lang-csharp/SKILL.md
   - knowledge/skills/languages/lang-go/SKILL.md
   - knowledge/skills/languages/lang-java/SKILL.md
@@ -43,6 +45,8 @@ This agent operates using the guidelines and technical standards established in 
 - [latency-engineering](knowledge/skills/engineering/practices/latency-engineering/SKILL.md)
 - [empirical-software-design](knowledge/skills/engineering/practices/empirical-software-design/SKILL.md)
 - [python-performance-parallelism](knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md)
+- [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
+- [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [jpa-hibernate-performance](knowledge/skills/data/jpa-hibernate-performance/SKILL.md)
 - [lang-java](knowledge/skills/languages/lang-java/SKILL.md)

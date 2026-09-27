@@ -9,8 +9,10 @@ description: >-
 skills:
   - knowledge/skills/data/data-mesh-governance/SKILL.md
   - knowledge/skills/data/realtime-streaming-event-driven/SKILL.md
+  - knowledge/skills/data/vector-databases/SKILL.md
   - knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md
   - knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md
+  - knowledge/skills/languages/gpu-programming-cuda/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
 ---
@@ -26,6 +28,8 @@ You act as a senior professional and researcher in **Data and Artificial Intelli
 ### 📚 Associated Skills
 
 - [ai-llm-engineering-rag](knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
+- [vector-databases](knowledge/skills/data/vector-databases/SKILL.md)
+- [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
 - [data-mesh-governance](knowledge/skills/data/data-mesh-governance/SKILL.md)
 - [realtime-streaming-event-driven](knowledge/skills/data/realtime-streaming-event-driven/SKILL.md)
 - [data-science-advanced-math](knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md)

@@ -186,3 +186,31 @@ Given a source point set $\mathcal{P} = \{\mathbf{p}_i\}$ and target set $\mathc
 3. Factor via SVD: $\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T$.
 4. Optimal rotation: $\mathbf{R} = \mathbf{V} \mathbf{U}^T$ (with correction $\det(\mathbf{R}) = 1$) and translation $\mathbf{t} = \bar{\mathbf{q}} - \mathbf{R} \bar{\mathbf{p}}$.
 5. Update $\mathbf{p}_i \leftarrow \mathbf{R}\mathbf{p}_i + \mathbf{t}$ and repeat until convergence $\|\mathbf{e}\| < \epsilon$.
+
+---
+
+## 🖼️ 8. Reference Image-Processing Implementation with CImg (Tschumperlé, Tilmant, Barra)
+
+The **CImg** library is a single-header, template, header-only C++ toolkit for practical image processing — the reference implementation layer that turns the algorithms above into runnable code.
+
+### 8.1 Core API and conventions
+- `#include "CImg.h"` then `using namespace cimg_library;`. Four classes (`CImg<T>`, `CImgList<T>`, `CImgDisplay`, `CImgException`); helper functions in `cimg`. `T` defaults to `float`, so `CImg<>` means `CImg<float>`. On Linux with display: `g++ -o prog prog.cpp -lX11 -lpthread`.
+- An image is always **4D**: width × height × depth (slices) × spectrum (channels), coordinates from `(0,0)`. Load/save: `CImg<unsigned char> img("kingfisher.bmp"); img.save("out.png");`.
+- **Loop macros** (`cimg_forX`, `cimg_forXY`, `cimg_forC`, `cimg_for3x3`, `cimg_forNxN`) give cache-friendly traversal and readable code.
+- **`get_` vs non-`get`**: `get_f()` allocates and returns a new image; `f()` mutates in place and returns a reference — use the non-`get` form on temporaries to avoid copies and enable chaining:
+```cpp
+CImg<> lum = img.get_norm().blur(sigma).normalize(0, 255);
+CImgList<> grad = lum.get_gradient("xy");
+CImg<> normGrad = (grad[0].get_sqr() += grad[1].get_sqr()).sqrt();
+```
+
+### 8.2 Algorithm families implemented
+- **Point operations, histograms, LUTs**: `exp`/`sqrt`/`get_pow`/`cut`/`mul`/`div`, `operator|=|&|^`, `equalize`, `get_histogram`, `map(LUT)`, and the bytecode evaluator `img.fill("(x*y)%255", true)`.
+- **Morphology**: `get_erode`/`get_dilate`/`get_opening`/`get_closing` with a structuring element; the dual/alternating filters, Beucher and half gradients, and skeletonization via two-pass `cimg_for3x3`.
+- **Filtering**: spatial (`get_convolve`, mean/Gaussian, median/order, adaptive σ, Nagao windows), **recursive IIR** (the **Deriche** filter — `deriche(img, alpha, order, boundary)` with constant cost independent of α; orders 0/1/2 for smoothing and derivatives), **frequency** (`get_FFT`, ideal/Gaussian low/high-pass, ringing), and **PDE diffusion** (linear isotropic = Gaussian; **Perona-Malik** anisotropic diffusion on 2D images and 2D+T video).
+- **Feature extraction**: **Harris & Stephens** corners from the structure tensor (`R = det(M) − k·Tr(M)²`, `k ∈ [0.04, 0.15]`), **Shi-Tomasi** (`R = min(λ₁, λ₂)`); the **Hough transform** for lines and circles; texture via LBP, texture spectrum and Tamura coefficients for CBIR.
+- **Segmentation**: implicit **active contours / level sets** (signed distance, curvature and advection), **Otsu** and Bernsen thresholding, **k-means** on local mean/variance features, and **SLIC super-pixels** (k-means in CIE L*a*b*).
+- **Motion, multispectral, 3D**: dense optical flow (Horn-Schunck, Lucas-Kanade), phase correlation and Kalman tracking, PCA dimension reduction over multispectral channels, color spaces (RGB/HSV/YCbCr/L*a*b*), JPEG DCT/IDCT compression, tomographic reconstruction and RBF warping.
+
+### 8.3 Parallelism and best practices
+CImg is header-only: only the used template combinations are instantiated (lighter binaries, longer compilations) and third-party features (display, PNG/JPEG) are compile-time flags. Optional **OpenMP** parallelization (`-fopenmp`) applies to the data-parallel loops the macros expose. Best practices: minimize allocations (prefer non-`get` in-place methods), use in-place operators (`+=`), reuse temporaries, traverse with loop macros, and build cache-friendly pipelines.

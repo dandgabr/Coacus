@@ -78,9 +78,50 @@ Speedup limit from parallelization: **Speedup = 1 / (F + (1 − F)/N)**, where F
 
 ---
 
+## 🧱 5. Low-Latency C++ Implementation (Ghosh)
+
+Theory meets code when building a latency-critical system from scratch (electronic trading, market data). The pattern is a **pipeline of threads joined by lock-free queues**.
+
+### Vocabulary and measurement
+- Distinguish **latency-sensitive** (improves as latency falls) from **latency-critical** (fails above a threshold). Track **mean, median, peak and jitter** — trading wants low mean *and* low variance.
+- Latency spans: **time-to-first-byte**, **round-trip time**, and **tick-to-trade**. Measure with `rdtsc` (`asm volatile ("rdtsc" : "=a"(lo), "=d"(hi))`) but beware: it is non-portable and CPU frequency varies per core. Accurate measurement needs a tuned host: interrupts disabled, correct NUMA, pinned power and `isolcpus`.
+
+### Hot-path C++ discipline
+- Storage hierarchy: **registers > stack locals > everything else**. Prefer `const&` for composite parameters, by value for primitives. Avoid `static`/global (poor cache reuse) and `volatile` (kills register caching and reordering) on the hot path.
+- **Eliminate dynamic allocation** from the hot path: a pre-allocated memory pool (`std::vector<ObjectBlock>` where the object and its `is_free_` flag share a cache line) fixes fragmentation and pointer aliasing. Only the constructor allocates.
+- **Avoid virtual dispatch, RTTI and `std::function`** on the hot path — they block inlining and devirtualization. Replace runtime callbacks with **CRTP** compile-time polymorphism. A benchmark showed removing a per-character `std::function` logging callback cut ~25,757 → 466 cycles/op.
+- Branch hints and cache-friendly layout:
+```cpp
+#define LIKELY(x)   __builtin_expect(!!(x), 1)
+#define UNLIKELY(x) __builtin_expect(!!(x), 0)
+```
+  Prefer branchless selection (index by `sideToInt(side)`) over `if` on a hot path; linearize with loop unrolling/inlining.
+- **Thread affinity**: pin critical threads with `pthread_setaffinity_np` (`CPU_ZERO`/`CPU_SET`); migration and context switches are costly.
+
+### Lock-free building blocks
+Locks cause context switches and are rejected on the hot path. The canonical SPSC queue pre-allocates storage and splits access to keep critical windows short:
+```cpp
+template <typename T> class LFQueue final {
+  std::vector<T> store_;
+  std::atomic<size_t> next_write_index_{0};
+  std::atomic<size_t> next_read_index_{0};
+  std::atomic<size_t> num_elements_{0};
+};
+```
+Split `getNextToWriteTo()`/`updateWriteIndex()` and `getNextToRead()`/`updateReadIndex()` to avoid long critical windows and large-object copies; delete copy/move. Threads start with variadic perfect-forwarding plus a core id. **This covers SPSC only** — for MPMC, the ABA problem, hazard pointers, RCU, false-sharing mitigation (`alignas`, `std::hardware_destructive_interference_size`), hugepages and kernel bypass (DPDK, Solarflare Onload) consult a dedicated lock-free reference, since they are outside this outline's scope.
+
+### Networking and ordering
+TCP for order flow (reliability, in-order), **UDP multicast** for market data (avoids ACK/retransmit bandwidth). Set `TCP_NODELAY` (disable Nagle), non-blocking sockets (`O_NONBLOCK`), `SO_TIMESTAMP`; run a TCP server with **edge-triggered `epoll`** (`EPOLLET | EPOLLIN`). Above the wire, enforce strictly incrementing sequence numbers, heartbeats and a logon handshake; market data uses a **snapshot stream + incremental stream synchronizer** that clears the book, subscribes to snapshots, buffers increments and replays from the snapshot's last sequence. Serialize as **binary-packed POD** structs (SBE-like); JSON/protobuf are not appropriate on this path.
+
+### Compiler flags and methodology
+`-O3 -flto -fwhole-program -march=native -fno-rtti -fno-exceptions`, PGO with `-fprofile-generate`; note the compiler cannot optimize across modules, through pointers, through floats (induction variables) or through virtual/function pointers. Benchmark **isolated** subsystems with many iterations, and inspect **distribution spikes**, not just means — a function with a 90 µs mean and 1,200 µs spikes has a jitter problem.
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - [system-design-scalability](../system-design-scalability/SKILL.md): CAP/PACELC trade-offs, sharding, and distributed caching at scale.
+- [lang-cpp](../../../languages/lang-cpp/SKILL.md): the language constructs (move semantics, RAII, templates) the hot path relies on.
 - [data-intensive-systems](../../../data/data-intensive-systems/SKILL.md): replicas, partitioning, and queues that influence end-to-end latency.
 - [lang-python](../../../languages/lang-python/SKILL.md) and [python-performance-parallelism](../python-performance-parallelism/SKILL.md): CPU/GC optimization in interpreted runtimes.
 - [observability-correlation](../../../mapping/observability-correlation/SKILL.md): instrumentation (traces, metrics) to locate bottlenecks.

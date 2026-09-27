@@ -276,6 +276,15 @@ classDiagram
 
 ---
 
+## 🅨 11. C++ Behavioral Idioms (Pikus)
+
+- **Policy-Based Design** — Strategy reborn as a *type*: policies are classes with template members, static functions or constant-value classes, composed by **composition (preferred)** or private inheritance (empty-base optimization). Policies may be rebindable (`using value_type = T;`) and constrained with concepts to *disable* (never add) interface members. Drawbacks: long positional policy lists and code bloat.
+- **NVI (Non-Virtual Interface) as Template Method**: a public non-virtual method calls a private virtual. Pitfalls are the fragile base class and composability limits; **never apply NVI to destructors**.
+- **Visitors in modern C++**: keep the double-dispatch skeleton (`virtual void accept(PetVisitor&)` + `virtual void visit(Cat*)`) and extend it with **Acyclic Visitor** (break the visitor/visitable cycle via cross-casting), generic/lambda visitors, compile-time visitors, and recursive visits that map onto serialization.
+- **ScopeGuard**: `MakeGuard` plus a `commit()` relies on lifetime extension of a temporary bound to a `const` reference (hence `commit()` is `const` and `commit_` is `mutable`); variants are generic, exception-driven, and type-erased.
+- **Concurrency patterns**: "no sharing is best"; waiting via `condition_variable::wait` and `std::atomic_flag::wait`; a lock-free **publishing protocol** with `memory_order_acquire`/`release`; the **Active Object** (a `std::thread` is itself a type-erased active object wrapping a `Job`/`std::function<void()>`), plus **Reactor**, **Proactor** and **Monitor**.
+- **Iterator** is the standard library's home turf — prefer ranges and adaptors (`views::filter`/`transform`) over hand-written iterators; **Observer** maps onto callback/`std::function` registries, mindful of lifetime and reentrancy.
+
 ## ⚖️ Comparative Matrix of Behavioral Patterns
 
 | Pattern | Primary Focus | Mechanism |

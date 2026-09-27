@@ -28,6 +28,9 @@
       "path": "knowledge/skills/data/realtime-streaming-event-driven"
     },
     {
+      "path": "knowledge/skills/data/vector-databases"
+    },
+    {
       "path": "knowledge/skills/domains/academic/academic-abstract-algebra-geometry"
     },
     {
@@ -175,6 +178,9 @@
       "path": "knowledge/skills/engineering/practices/latency-engineering"
     },
     {
+      "path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism"
     },
     {
@@ -254,6 +260,12 @@
     },
     {
       "path": "knowledge/skills/infrastructure/zero-trust-architecture-engineering"
+    },
+    {
+      "path": "knowledge/skills/languages/cpp-template-metaprogramming"
+    },
+    {
+      "path": "knowledge/skills/languages/gpu-programming-cuda"
     },
     {
       "path": "knowledge/skills/languages/javascript-high-performance"

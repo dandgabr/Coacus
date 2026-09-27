@@ -204,6 +204,21 @@ classDiagram
 
 ---
 
+## 🅨 8. C++ Structural Idioms (Pikus)
+
+Classic GoF structural patterns have C++-specific realizations and pitfalls.
+
+- **Decorator limitations**: a decorated object is not owned by the decorator, and cross-casting breaks the abstraction — a `VeteranUnit` wrapping a `Knight` *is a* `Unit` but not a `Knight`, so `vk.charge()` fails. A compile-time **policy** decorator sidesteps this with a variadic template-template pack:
+```cpp
+template <typename T, template <typename, typename> class... Policies>
+class Value : public Policies<T, Value<T, Policies...>>... {};
+```
+  This is why C++ favors **adapters and policies over runtime decorators**.
+- **Type erasure** (a structural façade over unrelated types): intrusive inheritance (what `shared_ptr`/`std::function` do, hiding the deleter behind a base) versus a **non-allocating** form storing a function pointer plus an aligned buffer (`alignas(8) char buf_[8]`) and reifying via an `invoke_destroy<Deleter>` template. `std::any`/`any_cast` is the standard type-erased value.
+- **RAII as the structural backbone**: `mutex_guard` and "very modern RAII" implemented with coroutines (`co_resource`) place acquisition and release textually adjacent, at the cost of suspend/resume.
+- **CRTP** (`class D : public B<D>`) provides static-polymorphic "wrappers" where a virtual proxy would be too costly; make a non-virtual base destructor `protected` to prevent polymorphic deletion.
+- **Local buffer optimization** (`small_vector`, `small_queue`): a union of an inline buffer and a heap pointer delivers flyweight-like allocation avoidance, at the cost of iterator-invalidation guarantees, possible throwing moves, and heavy `reinterpret_cast` boilerplate.
+
 ## ⚖️ Comparative Matrix of Structural Patterns
 
 | Pattern | Problem Solved | Structural Strategy |

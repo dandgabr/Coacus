@@ -75,7 +75,7 @@
       "source_path": "agents/academic-sciences/computer-engineer/AGENT.md",
       "source_sha256": "4533c1fea50f7b3385c7c3a61fbabb16fb3d6fcf4281fbb6ae0e74faf73ecd82",
       "target_path": "knowledge/agents/academic-sciences/computer-engineer/agent.source.md",
-      "target_sha256": "eee84639a268f3b42274e2e20b0856f276ed3da95f4754bc856fcc6bf5f37bbc",
+      "target_sha256": "2dc7f70bdcb52fb0505ddd106940a0cf5d4a1c5c5e95bfa7482c51c729a3948c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -517,7 +517,7 @@
       "source_path": "agents/data-cloud-devops/data-ai-engineer/AGENT.md",
       "source_sha256": "bfd0b5d3af2fdb9e6661240c1f6b7638505d44b6cfcc1c76199b589a53f71aeb",
       "target_path": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
-      "target_sha256": "38215ea22f5018dc4f4dc502d425cada0bd66dd99fec443eb7110dae4ed2ec05",
+      "target_sha256": "abce44ade5f40ba985d057a3b58f47d7e320da1989d22246c8a90e399dc01196",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -673,7 +673,7 @@
       "source_path": "agents/software-engineering/code-optimizer/AGENT.md",
       "source_sha256": "b34c2e3157739d43cbeccf88f18e59f8cc873101b02344b7971827027c67db88",
       "target_path": "knowledge/agents/software-engineering/code-optimizer/agent.source.md",
-      "target_sha256": "074ff28dd9d1c78f6e13c51eb5bd7cb100aac52799a98886c1ba015be850e093",
+      "target_sha256": "d4de8950bd3d66faa9bda046166e43a8422d1bc954cc66379da0a979f0a8067d",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -892,9 +892,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "agents/specialized-domains/embedded-systems-specialist/AGENT.md",
-      "source_sha256": "b0463147f751612bdfdb47106d5416aea657a33a3c19464d86ac1b1af0654f1f",
+      "source_sha256": "97a7f2cdff9a3742663bbf6a897792ee2d7e5f474aada07dff18709f9c6b92b8",
       "target_path": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md",
-      "target_sha256": "b0463147f751612bdfdb47106d5416aea657a33a3c19464d86ac1b1af0654f1f",
+      "target_sha256": "97a7f2cdff9a3742663bbf6a897792ee2d7e5f474aada07dff18709f9c6b92b8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2328,7 +2328,7 @@
       "source_path": "skills/domains/academic-computer-graphics-image-processing/SKILL.md",
       "source_sha256": "40ea442548aead09a19dd1275b95bfd2983d026433a3daa78079ac74aa960ced",
       "target_path": "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md",
-      "target_sha256": "c8e1f82da0e030f05945e551c9ce172a3aac747b0d3ba79f4caa4320c822afcb",
+      "target_sha256": "7f59af9ab49b190ddbbb4eaf6fdc48698711e390321fb8cd02a27f64750cac03",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2896,7 +2896,7 @@
       "source_path": "skills/domains/academic-microprocessors-embedded-systems/SKILL.md",
       "source_sha256": "78427e039b8575795d2043e88156c86aa5d16ade74ccf18e9267afb5e1084fd0",
       "target_path": "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
-      "target_sha256": "b0837b9001035c304e02261d75fb5a8a6b66566c6f3772fdaa7c6ea362555502",
+      "target_sha256": "61795ed7f007f1bf56b0dde108beead56a7665d4464263f6bf84020a0ed1afc2",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3464,7 +3464,7 @@
       "source_path": "skills/domains/ai-llm-engineering-rag/SKILL.md",
       "source_sha256": "734a5cdf76463a1e5ab6e85d7eac74dc8d4f82c0f1ef28ecc8d5ff156e31bb3f",
       "target_path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
-      "target_sha256": "fbc40d5e153473986bef636a1a52a658d234dfc1673939f8b833442ff26ef193",
+      "target_sha256": "34b0be3403182a877d887a989ac2487f6e6479a68da0dc19ce43a15dec3297ff",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4243,7 +4243,7 @@
       "source_path": "skills/patterns/behavioral/dp-behavioral-patterns/SKILL.md",
       "source_sha256": "5632a7ba08579bcf77d101aa8418a1bb7b6da4d2a2ce24d5c7a0d968a3a233a8",
       "target_path": "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md",
-      "target_sha256": "7b00476fc5ad20270ffa934c669ffa91c52519644372a3353eed9bcb28216f69",
+      "target_sha256": "7588ace7fbe9e6ed81ccaf4b4654a3bae4f1ac8efeaf5d99b0858514eefd3fdd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4314,7 +4314,7 @@
       "source_path": "skills/patterns/creational/dp-creational-patterns/SKILL.md",
       "source_sha256": "18974caf6596e352da5bfe326ec00502c25935df414e3f44d946c1bb2fbeac76",
       "target_path": "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md",
-      "target_sha256": "bfed2a6dc4d0f64b7f9c92ea3a2b50e594c6dcd2bc852830a7c12b0961bc9a28",
+      "target_sha256": "5a9fb18c2c074f1d39aa124c2e81822ec29a1ad7ce82cdb129e6f55d22335c62",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4385,7 +4385,7 @@
       "source_path": "skills/patterns/structural/dp-structural-patterns/SKILL.md",
       "source_sha256": "0f25237e549152370e605f2265254b6c18345678534db3b582a1f5deb81aeff8",
       "target_path": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
-      "target_sha256": "ea92a6ac93d06fe006db53428ca7c6f86615e7c2531bf21559b973777ca06bb8",
+      "target_sha256": "59f163e576fa5ab66f2bfd574d1dc7d1a5ce1fceec5ec53febe2533469ab4011",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5006,7 +5006,7 @@
       "source_path": "skills/engineering-practices/latency-engineering/SKILL.md",
       "source_sha256": "c1b814840ec04af89fc5df2943fbe4ff55d11a636292e32552f1b3b1c06c9fdf",
       "target_path": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md",
-      "target_sha256": "f37589b93df43c8ff8ce971fc3e39e402fa2ca5b931893bed8b0b24973e14d2b",
+      "target_sha256": "17a87b5f2d23624665bda184d0cf417fdf8a6f36b7a04a4bd911b201c77e5043",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -7355,7 +7355,7 @@
       "source_path": "skills/languages/lang-cpp/SKILL.md",
       "source_sha256": "6a499d74f46f77ddb61ef8c7bdbb98d09502a4bde238f5b24bb609f5181c76fb",
       "target_path": "knowledge/skills/languages/lang-cpp/SKILL.md",
-      "target_sha256": "d1086347b24cbf829abf4d3b7703c4b0e87443c5c09f86acac039236e3c963b7",
+      "target_sha256": "d00d5b156492d8c73243e16c2d2d79a5a656de2d723fe9859398e3f998a539a9",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -8108,9 +8108,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/languages/lang-rust/SKILL.md",
-      "source_sha256": "12f805358c3686910e27f0385d3fef48223562252ff4c15bd90e1dab290ed18e",
+      "source_sha256": "007fdcbe91906c15bfd719809c2738afed7a1c74591e3031a487ef3260bea4c7",
       "target_path": "knowledge/skills/languages/lang-rust/SKILL.md",
-      "target_sha256": "12f805358c3686910e27f0385d3fef48223562252ff4c15bd90e1dab290ed18e",
+      "target_sha256": "007fdcbe91906c15bfd719809c2738afed7a1c74591e3031a487ef3260bea4c7",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -9950,7 +9950,7 @@
       "source_path": "skills/programs/github-actions/SKILL.md",
       "source_sha256": "9d824919d87912a3a38cae4e1b87fa00ac046bfd4e245e9b10107decb3ad2378",
       "target_path": "knowledge/skills/platforms/program-github-actions/SKILL.md",
-      "target_sha256": "e56d150629045b929e41f65f6664ca8e1bc086de4c8946ae9a1821a1ca2fe94a",
+      "target_sha256": "015f42d53b95254fa574ef196efa37795ffb1113a976a936d7bb822547b7644a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -14981,7 +14981,7 @@
       "source_path": "skills/security/appsec/memory-manipulation/SKILL.md",
       "source_sha256": "b25f8d72a74d612d7302e7618190760b44f7e5d881f6ddcfb6dfa0f9897e84b3",
       "target_path": "knowledge/skills/security/platform/memory-manipulation/SKILL.md",
-      "target_sha256": "308463892ab462045453f9fa594b660292140f64675fdceee2a434dfb503bbc1",
+      "target_sha256": "651163a1b286c6c5b684f844cf3d8ccf7fe4e8d4b6044ea41d8f4d59f0cbe200",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17879,6 +17879,96 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-20T19:52:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md",
+      "source_sha256": "a70af1ebcd3deace0ab09648753224b9045020a4abc637eea83aa0247286f447",
+      "target_path": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md",
+      "target_sha256": "a70af1ebcd3deace0ab09648753224b9045020a4abc637eea83aa0247286f447",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
+      "source_sha256": "5c511c834d08b96e831f15a5830397059ca1ff72f176a97e7af9f18213ad5f68",
+      "target_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
+      "target_sha256": "5c511c834d08b96e831f15a5830397059ca1ff72f176a97e7af9f18213ad5f68",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/vector-databases/SKILL.md",
+      "source_sha256": "65d50f80829d375161074fb9b80bc1aa2477cd59e6cfd1a6e5260d50b3aa0e9f",
+      "target_path": "knowledge/skills/data/vector-databases/SKILL.md",
+      "target_sha256": "65d50f80829d375161074fb9b80bc1aa2477cd59e6cfd1a6e5260d50b3aa0e9f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+      "source_sha256": "ceb75b4384b04cf6b1241a234d93a6fa8c59779633ceb82f870f1742acc61bc1",
+      "target_path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+      "target_sha256": "ceb75b4384b04cf6b1241a234d93a6fa8c59779633ceb82f870f1742acc61bc1",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
+      "source_sha256": "15c1b47b557e84cd823f1d016e6f6172dcc8ec8b4b743a7ea63057a6d2f9ac82",
+      "target_path": "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
+      "target_sha256": "15c1b47b557e84cd823f1d016e6f6172dcc8ec8b4b743a7ea63057a6d2f9ac82",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
+      "source_sha256": "1c9df4466ee848861934d7a94379e9123c4f172448d308a3696b83290c9a4cb3",
+      "target_path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
+      "target_sha256": "1c9df4466ee848861934d7a94379e9123c4f172448d308a3696b83290c9a4cb3",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-26T23:17:40Z"
     }
   ]
 }
