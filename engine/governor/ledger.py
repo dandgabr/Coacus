@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import os
 import re
+import tempfile
 import time
 import uuid
 from contextlib import contextmanager
@@ -35,7 +36,7 @@ def state_dir() -> Path:
     override = os.environ.get("GOVERNOR_STATE_DIR")
     if override:
         return Path(override)
-    runtime = os.environ.get("XDG_RUNTIME_DIR") or "/tmp"
+    runtime = os.environ.get("XDG_RUNTIME_DIR") or tempfile.gettempdir()
     return Path(runtime) / "coacus-governor"
 
 
