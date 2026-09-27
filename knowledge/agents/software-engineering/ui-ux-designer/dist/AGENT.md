@@ -9,6 +9,7 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [product-owner](../../../../skills/roles/product-owner/SKILL.md)
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -30,6 +31,7 @@ When acting, you must strictly follow the guidelines of the main ui-ux-designer 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [product-owner](../../../../skills/roles/product-owner/SKILL.md)

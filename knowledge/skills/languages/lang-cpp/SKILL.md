@@ -245,9 +245,33 @@ Treat widely repeated claims as **conditional**, not absolutes:
 
 ---
 
+## 🧰 STL Containers, Algorithms and the Systems Mindset (Farrier; Morley)
+
+### Choosing a container
+`std::vector` gives O(1) random access and O(1) amortized push-back (O(n) middle insert); `std::array` is fixed-size contiguous; `std::deque` is O(1) at both ends; `std::list`/`std::forward_list` give O(1) insert/delete anywhere at the cost of locality and O(n) access. Ordered associative (`set`/`map`) give O(log n); unordered (`unordered_set`/`unordered_map`) give average O(1) with custom hash functions. **C++23 flat containers** (`flat_map`/`flat_set`) use sorted contiguous storage — cache locality over node stability. `std::span` and `std::mdspan` (C++23) are non-owning views. **Iterator invalidation** is a first-class hazard.
+
+```cpp
+data | std::views::filter(is_prime) | std::views::take(3);   // C++20/23 ranges, lazy
+```
+
+Algorithms: `std::sort` (introsort, O(n log n)), searching (`binary_search`/`lower_bound`/`upper_bound`), `std::rotate`, `std::partition`, `std::iota`/`accumulate`/`inner_product`, heap ops and permutations. Extend the STL by writing category-correct iterators, value semantics, operator overloads and custom hash functions.
+
+### Systems mindset (Morley)
+- **Computational thinking:** decompose → abstract → recognise patterns → formulate algorithms; complexity, **amortized** cost, divide-and-conquer, dynamic programming, randomized algorithms.
+- **Understand the machine:** storage spectrum (registers → cache → memory), **cache lines**, alignment, aliasing, virtual memory; **structure-of-arrays vs array-of-structures**; `std::span`/small vectors for locality; query CPU features via `CPUID`.
+- **Modern CMake** treats code and dependencies as **targets**; `FetchContent`/`find_package` pull deps; profile with `perf stat`/`perf record`/`perf report`.
+- **Concepts** declare requirements up front (better diagnostics, faster compiles); example:
+```cpp
+template <typename T>
+concept OrderableContainer = std::input_range<const T>
+    && std::totally_ordered<std::range_value_t<const T>>
+    && std::copy_constructible<std::range_value_t<const T>>;
+```
+
 ## 🔗 Integration with Other Skills
 
 - For template metaprogramming in depth (concepts, SFINAE, CRTP, expression templates), see [cpp-template-metaprogramming](../cpp-template-metaprogramming/SKILL.md).
+- For Qt 6 GUI applications, see [framework-qt6](../../frameworks/framework-qt6/SKILL.md).
 - For compiler/backend implementation of the generated IR, see [llvm-compiler-infrastructure](../../engineering/practices/llvm-compiler-infrastructure/SKILL.md).
 - For GPU-parallel kernels written in C++, see [gpu-programming-cuda](../gpu-programming-cuda/SKILL.md).
 - For direct development and interoperability with C code (C23/C17), see [lang-c](../lang-c/SKILL.md).

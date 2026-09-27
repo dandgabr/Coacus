@@ -87,6 +87,16 @@ Apply the decision tree before any change:
 
 ---
 
+## 🧰 7. Refactoring Craft: Smells, Abstractions and Patterns (Metz; Danilov; Shvets)
+
+- **Shameless Green** (Metz): obvious, duplicated, intention-revealing code that reaches green fast often wins on SLOC/complexity. Resist abstractions until change forces them; early/wrong abstractions create a catch-22.
+- **The Flocking Rules** turn duplication into abstraction mechanically: (1) select the things that are most alike; (2) find the smallest difference; (3) make the simplest change that removes that difference. Change one line at a time, run tests after each, undo on red. Focus on **difference**, not sameness.
+- **Conditionals → polymorphism**: dismember conditionals, manufacture objects, introduce a **factory** as the sole creator for a role, then open the factory (conditional → factory method → self-registering candidates). Obey **Liskov**, invert dependencies, respect the **Law of Demeter**, and push object creation to the edge.
+- **Code smells vs anti-patterns** (Danilov): smells are symptoms, not bugs; anti-patterns include **Singleton, God Object, Copy-Paste Programming, Premature Optimization, Spaghetti Code**. Replace magic numbers with named `constexpr`. A `switch` over an enum becomes a **Strategy** interface; tight widget coupling loosens via **Observer**.
+- **Rich static types** reduce runtime error: `<chrono>` durations, **GSL `not_null`**, `std::optional`, **`std::expected`**, `enum class`, `std::variant`/`std::any`.
+- **Tooling**: Clang-Format (presets, overrides, CI check), Clang-Tidy (check categories, custom checks, naming auto-fix), static analysis (GCC/Clang/MSVC hardening flags, PVS-Studio, SonarQube) and dynamic analysis (ASan/LSan/MSan/TSan/UBSan; Valgrind Memcheck/Helgrind/DRD/Cachegrind/Callgrind/Massif). Tests with Google Test + gMock (Nice/Strict/Naggy), Catch2, Boost.Test, Doctest; third-party via CMake `FetchContent`, **Conan**, **vcpkg**, Docker.
+- **Design pattern language** (Shvets): 22 GoF patterns across creational/structural/behavioral plus **SOLID**; each is a vocabulary for a recurring problem — apply only when the problem is present.
+
 ## 🔗 Integration with Other Skills
 
 - [clean-code-reusability](../clean-code-reusability/SKILL.md): clean code supplies the vocabulary; Tidy First supplies the *rhythm* and economics of change.

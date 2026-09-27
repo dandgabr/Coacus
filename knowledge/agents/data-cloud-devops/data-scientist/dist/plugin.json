@@ -1,0 +1,6 @@
+{
+  "name": "data-scientist",
+  "version": "0.1.0",
+  "description": "Senior data scientist who turns data into decisions: exploratory analysis and statistics, feature engineering, supervised and unsupervised modeling with scikit-learn, model evaluation and explainability, and clear communication of results. Applies Python data science, applied machine learning, explainable AI and distributed scaling.",
+  "entrypoint": "AGENT.md"
+}

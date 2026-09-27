@@ -94,6 +94,25 @@ $$\beta_k = \frac{\mathbf{r}_{k+1}^T \mathbf{r}_{k+1}}{\mathbf{r}_k^T \mathbf{r}
 
 ---
 
+## 🧾 6b. Numerical Linear Algebra and Optimization Algorithms (Solomon)
+
+- **Error and conditioning:** floating point, absolute vs relative error, forward/backward error; **condition number** = relative output change / relative input change. Root-finding conditioning ≈ `1/|f'(x)|`.
+- **Direct solves:** Gaussian elimination / **LU** (`PA = LU`, `O(n³)`), **partial pivoting** for stability, `O(n)` tridiagonal solves; factor once, reuse across right-hand sides. **Cholesky** `A = BBᵀ` for SPD (half the cost, numerically stable); solve via forward/back substitution. `A = BBᵀ` for invertible `B` ⇒ SPD.
+- **Least squares and regularization:** normal equations `AᵀA x = Aᵀb`; **Tikhonov** `(AᵀA + αI)x = Aᵀb` conditions ill-posed systems; minimum-norm `x = Aᵀ(AAᵀ)⁻¹b`.
+- **QR:** Gram–Schmidt vs **Householder** `H = I − 2WWᵀ/(WᵀW)` (stable choice).
+- **Eigen:** power iteration, inverse iteration, shifting, **Rayleigh-quotient iteration** (cubic convergence), deflation, **QR iteration**, Hessenberg reduction, Lanczos/Hermitian, **Rayleigh–Ritz**.
+- **SVD:** `A = UΣVᵀ`; `V` columns are eigenvectors of `AᵀA`; **pseudoinverse** `A⁺ = VΣ⁺Uᵀ`; low-rank approximation, PCA, Eigenfaces, Procrustes. **Never form `AᵀA`** explicitly for SVD (loss of accuracy).
+- **Iterative solvers:** Jacobi, Gauss–Seidel, relaxation, **conjugate gradients** (SPD, A-conjugate directions, preconditioning).
+- **Root finding:** bisection, fixed-point, **Newton** (quadratic), **secant**, multivariate Newton (`x − J⁻¹f`), quasi-Newton/**Broyden**.
+- **Optimization:** `∇f = 0` (necessary, not sufficient — saddle points); gradient descent with line search/backtracking; multivariable Newton (`x − H⁻¹∇f`); **BFGS** inverse-Hessian update; **KKT** for equality/inequality constraints; duality (Lagrangian, conjugate/Legendre), **Uzawa**, augmented Lagrangian, **ADMM** (for ℓ₁ problems):
+```text
+x^{k+1}=argmin_x Lρ(x,z^k,λ^k);  z^{k+1}=argmin_z Lρ(x^{k+1},z,λ^k);  λ^{k+1}=λ^k+ρ(Ax^{k+1}+Bz^{k+1}−c)
+```
+    Specialized: Gauss–Newton, **Levenberg–Marquardt**, **IRLS**, coordinate descent, graduated optimization.
+- **Interpolation:** polynomial (Lagrange/Newton), piecewise-linear, barycentric, Delaunay/k-NN. Beware **Runge oscillation** — prefer piecewise/Chebyshev nodes.
+- **Integration/differentiation:** Newton–Cotes (trapezoid, Simpson), **Gaussian quadrature**, adaptive quadrature; finite differences, **Richardson extrapolation**, step-size selection, **automatic differentiation**.
+- **ODEs/PDEs:** forward Euler (unstable on **stiff** systems), backward Euler and trapezoidal (unconditionally stable), **RK4**; Newmark/leapfrog; finite differences, collocation, **finite elements**, finite volumes; consistency/convergence/**CFL stability**.
+
 ## 🎲 7. Statistical Inference and Regularization
 
 ### 7.1 L1, L2, and Elastic Net Regularization

@@ -32,6 +32,10 @@ instruction: >
   - [lang-csharp](knowledge/skills/languages/lang-csharp/SKILL.md)
   - [lang-rust](knowledge/skills/languages/lang-rust/SKILL.md)
   - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+  - [api-design](knowledge/skills/engineering/practices/api-design/SKILL.md)
+  - [distributed-systems](knowledge/skills/engineering/practices/distributed-systems/SKILL.md)
+  - [clean-architecture](knowledge/skills/engineering/practices/clean-architecture/SKILL.md)
+  - [high-performance-java-persistence](knowledge/skills/data/high-performance-java-persistence/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
   ---
@@ -75,3 +79,11 @@ tools:
     path: ../../../../skills/roles/dba-database-administrator/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/api-design/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/distributed-systems/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/clean-architecture/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/high-performance-java-persistence/SKILL.md

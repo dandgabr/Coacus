@@ -15,6 +15,11 @@ skills:
   - knowledge/skills/languages/gpu-programming-cuda/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/data/python-data-science/SKILL.md
+  - knowledge/skills/data/distributed-ml-scaling/SKILL.md
+  - knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md
+  - knowledge/skills/domains/industry/explainable-ai/SKILL.md
+  - knowledge/skills/domains/industry/ai-application-engineering/SKILL.md
 ---
 
 Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.
@@ -34,6 +39,11 @@ You act as a senior professional and researcher in **Data and Artificial Intelli
 - [realtime-streaming-event-driven](knowledge/skills/data/realtime-streaming-event-driven/SKILL.md)
 - [data-science-advanced-math](knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md)
 - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
+- [python-data-science](knowledge/skills/data/python-data-science/SKILL.md)
+- [distributed-ml-scaling](knowledge/skills/data/distributed-ml-scaling/SKILL.md)
+- [computer-vision-deep-learning](knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md)
+- [explainable-ai](knowledge/skills/domains/industry/explainable-ai/SKILL.md)
+- [ai-application-engineering](knowledge/skills/domains/industry/ai-application-engineering/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

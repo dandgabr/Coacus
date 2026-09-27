@@ -14,6 +14,12 @@ skills:
   - knowledge/skills/languages/lang-rust/SKILL.md
   - knowledge/skills/languages/lang-typescript/SKILL.md
   - knowledge/skills/roles/software-architect/SKILL.md
+  - knowledge/skills/engineering/practices/architecture-ddd/SKILL.md
+  - knowledge/skills/engineering/practices/clean-architecture/SKILL.md
+  - knowledge/skills/engineering/practices/distributed-systems/SKILL.md
+  - knowledge/skills/engineering/practices/api-design/SKILL.md
+  - knowledge/skills/engineering/practices/flow-architectures/SKILL.md
+  - knowledge/skills/engineering/practices/empirical-software-design/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -33,6 +39,12 @@ You are the Principal Software Architect Agent. Your role is to plan the system 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
+- [architecture-ddd](knowledge/skills/engineering/practices/architecture-ddd/SKILL.md)
+- [clean-architecture](knowledge/skills/engineering/practices/clean-architecture/SKILL.md)
+- [distributed-systems](knowledge/skills/engineering/practices/distributed-systems/SKILL.md)
+- [api-design](knowledge/skills/engineering/practices/api-design/SKILL.md)
+- [flow-architectures](knowledge/skills/engineering/practices/flow-architectures/SKILL.md)
+- [empirical-software-design](knowledge/skills/engineering/practices/empirical-software-design/SKILL.md)
 - [lang-typescript](knowledge/skills/languages/lang-typescript/SKILL.md)
 - [lang-python](knowledge/skills/languages/lang-python/SKILL.md)
 - [lang-go](knowledge/skills/languages/lang-go/SKILL.md)

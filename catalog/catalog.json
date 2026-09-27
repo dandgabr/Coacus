@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 73,
-    "skills": 292,
+    "agents": 74,
+    "skills": 308,
     "mcps": 1
   },
   "agents": [
@@ -137,6 +137,12 @@
       "category": "data-cloud-devops",
       "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
       "source": "knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md"
+    },
+    {
+      "name": "data-scientist",
+      "category": "data-cloud-devops",
+      "description": "Senior data scientist who turns data into decisions: exploratory analysis and statistics, feature engineering, supervised and unsupervised modeling with scikit-learn, model evaluation and explainability, and clear communication of results. Applies Python data science, applied machine learning, explainable AI and distributed scaling.",
+      "source": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md"
     },
     {
       "name": "data-security-privacy-specialist",
@@ -455,6 +461,10 @@
       "path": "knowledge/skills/data/data-mesh-governance/SKILL.md"
     },
     {
+      "name": "data-science-workflow",
+      "path": "knowledge/skills/data/data-science-workflow/SKILL.md"
+    },
+    {
       "name": "db-mariadb",
       "path": "knowledge/skills/data/db-mariadb/SKILL.md"
     },
@@ -471,12 +481,24 @@
       "path": "knowledge/skills/data/db-sqlite/SKILL.md"
     },
     {
+      "name": "distributed-ml-scaling",
+      "path": "knowledge/skills/data/distributed-ml-scaling/SKILL.md"
+    },
+    {
+      "name": "high-performance-java-persistence",
+      "path": "knowledge/skills/data/high-performance-java-persistence/SKILL.md"
+    },
+    {
       "name": "jpa-hibernate-performance",
       "path": "knowledge/skills/data/jpa-hibernate-performance/SKILL.md"
     },
     {
       "name": "power-bi",
       "path": "knowledge/skills/data/power-bi/SKILL.md"
+    },
+    {
+      "name": "python-data-science",
+      "path": "knowledge/skills/data/python-data-science/SKILL.md"
     },
     {
       "name": "realtime-streaming-event-driven",
@@ -591,8 +613,16 @@
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
     },
     {
+      "name": "ai-application-engineering",
+      "path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md"
+    },
+    {
       "name": "ai-llm-engineering-rag",
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md"
+    },
+    {
+      "name": "applied-ai-automation",
+      "path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md"
     },
     {
       "name": "automotive-cybersecurity",
@@ -603,8 +633,16 @@
       "path": "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md"
     },
     {
+      "name": "computer-vision-deep-learning",
+      "path": "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md"
+    },
+    {
       "name": "edtech-andragogy",
       "path": "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md"
+    },
+    {
+      "name": "explainable-ai",
+      "path": "knowledge/skills/domains/industry/explainable-ai/SKILL.md"
     },
     {
       "name": "financial-transaction-processing",
@@ -655,6 +693,14 @@
       "path": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md"
     },
     {
+      "name": "api-design",
+      "path": "knowledge/skills/engineering/practices/api-design/SKILL.md"
+    },
+    {
+      "name": "architecture-ddd",
+      "path": "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md"
+    },
+    {
       "name": "architecture-documentation",
       "path": "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md"
     },
@@ -663,8 +709,16 @@
       "path": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md"
     },
     {
+      "name": "clean-architecture",
+      "path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md"
+    },
+    {
       "name": "clean-code-reusability",
       "path": "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+    },
+    {
+      "name": "distributed-systems",
+      "path": "knowledge/skills/engineering/practices/distributed-systems/SKILL.md"
     },
     {
       "name": "documentation-designer",
@@ -673,6 +727,14 @@
     {
       "name": "empirical-software-design",
       "path": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md"
+    },
+    {
+      "name": "flow-architectures",
+      "path": "knowledge/skills/engineering/practices/flow-architectures/SKILL.md"
+    },
+    {
+      "name": "functional-concurrent-programming",
+      "path": "knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md"
     },
     {
       "name": "git-conventional-commits",
@@ -693,6 +755,10 @@
     {
       "name": "system-design-scalability",
       "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "ui-ux-principles",
+      "path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md"
     },
     {
       "name": "vcs-repository-management",
@@ -717,6 +783,10 @@
     {
       "name": "framework-microprofile-jakarta",
       "path": "knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md"
+    },
+    {
+      "name": "framework-qt6",
+      "path": "knowledge/skills/frameworks/framework-qt6/SKILL.md"
     },
     {
       "name": "framework-quarkus-jnosql",
