@@ -1,0 +1,6 @@
+{
+  "name": "data-architect",
+  "version": "0.1.0",
+  "description": "Data Architecture agent that owns the enterprise data asset \u2014 conceptual and logical models, governance, lineage, quality, master and reference data \u2014 and aligns it with business and application architecture. Use when defining enterprise data models, setting data governance and quality standards, or planning master data strategy.",
+  "entrypoint": "AGENT.md"
+}

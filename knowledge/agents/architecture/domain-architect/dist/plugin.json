@@ -1,0 +1,6 @@
+{
+  "name": "domain-architect",
+  "version": "0.1.0",
+  "description": "Domain Architecture agent that owns the reference architecture and standards for one business or technical domain at near-enterprise scope, delegating from the enterprise architect and governing domain-level decisions across many solutions. Use when defining a domain reference architecture, maintaining a domain roadmap, or deciding within a domain that spans many initiatives.",
+  "entrypoint": "AGENT.md"
+}

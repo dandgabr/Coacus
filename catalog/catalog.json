@@ -1,11 +1,17 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 78,
-    "skills": 352,
+    "agents": 92,
+    "skills": 366,
     "mcps": 1
   },
   "agents": [
+    {
+      "name": "ai-ml-architect",
+      "category": "architecture",
+      "description": "AI/ML Architecture agent that owns the end-to-end architecture of machine learning and generative AI systems \u2014 data and feature pipelines, training, serving, monitoring, MLOps/GenAIOps and responsible-AI governance. Use when designing ML or GenAI platforms, defining MLOps pipelines, or governing AI risk.",
+      "source": "knowledge/agents/architecture/ai-ml-architect/agent.source.md"
+    },
     {
       "name": "ai-product-manager",
       "category": "specialized-domains",
@@ -23,6 +29,18 @@
       "category": "core-orchestration",
       "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
       "source": "knowledge/agents/core-orchestration/antigravity-agent/agent.source.md"
+    },
+    {
+      "name": "api-architect",
+      "category": "architecture",
+      "description": "API Architecture agent that owns API strategy, productization and governance \u2014 design-first style guides, versioning policy, security, the API catalog and lifecycle, and consumer experience. Use when setting API standards, governing the API lifecycle, defining API security, or assessing API monetization.",
+      "source": "knowledge/agents/architecture/api-architect/agent.source.md"
+    },
+    {
+      "name": "application-architect",
+      "category": "architecture",
+      "description": "Application Architecture agent that owns the application portfolio \u2014 its map and lifecycle, standards, reference architectures and integration coherence \u2014 and the build-versus-buy and SaaS fit decisions. Use when rationalizing an application portfolio, defining application standards, or guiding modernization.",
+      "source": "knowledge/agents/architecture/application-architect/agent.source.md"
     },
     {
       "name": "automotive-security-specialist",
@@ -47,6 +65,12 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
       "source": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md"
+    },
+    {
+      "name": "business-architect",
+      "category": "architecture",
+      "description": "Business Architecture agent that models business capabilities, value streams and business motivation, producing the pre-technology business architecture that the enterprise target state and every downstream application must serve. Use when mapping capabilities, defining value streams, aligning strategy to change, or tracing business objectives to IT investment.",
+      "source": "knowledge/agents/architecture/business-architect/agent.source.md"
     },
     {
       "name": "career-coach-job-hunter",
@@ -145,6 +169,12 @@
       "source": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md"
     },
     {
+      "name": "data-architect",
+      "category": "architecture",
+      "description": "Data Architecture agent that owns the enterprise data asset \u2014 conceptual and logical models, governance, lineage, quality, master and reference data \u2014 and aligns it with business and application architecture. Use when defining enterprise data models, setting data governance and quality standards, or planning master data strategy.",
+      "source": "knowledge/agents/architecture/data-architect/agent.source.md"
+    },
+    {
       "name": "data-engineer-specialist",
       "category": "data-cloud-devops",
       "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
@@ -181,6 +211,12 @@
       "source": "knowledge/agents/software-engineering/documenter/agent.source.md"
     },
     {
+      "name": "domain-architect",
+      "category": "architecture",
+      "description": "Domain Architecture agent that owns the reference architecture and standards for one business or technical domain at near-enterprise scope, delegating from the enterprise architect and governing domain-level decisions across many solutions. Use when defining a domain reference architecture, maintaining a domain roadmap, or deciding within a domain that spans many initiatives.",
+      "source": "knowledge/agents/architecture/domain-architect/agent.source.md"
+    },
+    {
       "name": "electrical-power-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
@@ -197,6 +233,12 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
       "source": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md"
+    },
+    {
+      "name": "enterprise-architect",
+      "category": "architecture",
+      "description": "Lead Enterprise Architecture agent that orchestrates the whole architecture function: sets architecture principles, the target state across the four EA domains, the governance gates and the arbitration between the specialist architects (business, solution, data, application, technology, network and security). Use when defining enterprise standards, running an architecture review board, producing target-state roadmaps, or reconciling conflicting domain decisions.",
+      "source": "knowledge/agents/architecture/enterprise-architect/agent.source.md"
     },
     {
       "name": "frontend-developer",
@@ -247,6 +289,12 @@
       "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md"
     },
     {
+      "name": "iam-architect",
+      "category": "architecture",
+      "description": "Identity and Access Architecture agent that owns identity lifecycle, authentication and authorization, federation, privileged access and identity governance across applications and clouds. Use when designing IAM/CIAM architecture, defining identity lifecycle and access governance, or standardizing identity across systems and clouds.",
+      "source": "knowledge/agents/architecture/iam-architect/agent.source.md"
+    },
+    {
       "name": "iam-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
@@ -257,6 +305,12 @@
       "category": "specialized-domains",
       "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
       "source": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md"
+    },
+    {
+      "name": "integration-architect",
+      "category": "architecture",
+      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+      "source": "knowledge/agents/architecture/integration-architect/agent.source.md"
     },
     {
       "name": "java-enterprise-architect",
@@ -325,6 +379,12 @@
       "source": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md"
     },
     {
+      "name": "network-architect",
+      "category": "architecture",
+      "description": "Network Architecture agent that owns the network topology \u2014 LAN/WAN/WLAN, data-center fabric, routing and switching, addressing, SD-WAN, DNS, load balancing, QoS and resilience. Use when designing network topology and segmentation, planning addressing and routing, or specifying network capacity and vendor roadmaps.",
+      "source": "knowledge/agents/architecture/network-architect/agent.source.md"
+    },
+    {
       "name": "network-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
@@ -353,6 +413,12 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Theoretical and Applied Physics, covering Advanced Classical Mechanics (Lagrangian and Hamiltonian), Maxwell's Electromagnetism, Thermodynamics and Statistical Mechanics, Special and General Relativity, and Condensed Matter Quantum Mechanics.",
       "source": "knowledge/agents/academic-sciences/physicist/agent.source.md"
+    },
+    {
+      "name": "platform-architect",
+      "category": "architecture",
+      "description": "Platform Architecture agent that owns the internal developer platform as a product \u2014 platform capabilities, golden paths, self-service provisioning, tenancy, reliability and cost-to-serve. Use when defining a developer platform, designing golden paths and self-service, or balancing platform opinionation against team autonomy.",
+      "source": "knowledge/agents/architecture/platform-architect/agent.source.md"
     },
     {
       "name": "project-reviewer",
@@ -427,6 +493,24 @@
       "source": "knowledge/agents/software-engineering/software-engineer/agent.source.md"
     },
     {
+      "name": "solution-architect",
+      "category": "architecture",
+      "description": "Solution Architecture agent that designs one bounded solution inside the enterprise guardrails \u2014 structure, components, interfaces and quality attributes \u2014 selecting technologies and integration patterns and proving compliance at the architecture review gate. Use when architecting a specific initiative, choosing technologies for a delivery, or producing solution options.",
+      "source": "knowledge/agents/architecture/solution-architect/agent.source.md"
+    },
+    {
+      "name": "systems-architect",
+      "category": "architecture",
+      "description": "Systems Architecture agent that architects a whole system \u2014 hardware, software, human and environment \u2014 decomposing it into subsystems, defining interfaces, requirements and cost/benefit trade-offs and maintaining architectural integrity across the lifecycle. Use when architecting cyber-physical or multi-component systems, defining system interfaces, or performing system trade analyses.",
+      "source": "knowledge/agents/architecture/systems-architect/agent.source.md"
+    },
+    {
+      "name": "technology-architect",
+      "category": "architecture",
+      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, networking, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
+      "source": "knowledge/agents/architecture/technology-architect/agent.source.md"
+    },
+    {
       "name": "telecom-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Telecommunications Engineering, covering Shannon information theory, advanced digital modulations (QAM, OFDM), optical fiber propagation (WDM/DWDM), 5G/6G cellular networks, satellite communications and Radio Frequency.",
@@ -476,6 +560,62 @@
     }
   ],
   "skills": [
+    {
+      "name": "iam-architect",
+      "path": "knowledge/skills/architecture/delivery/iam-architect/SKILL.md"
+    },
+    {
+      "name": "network-architect",
+      "path": "knowledge/skills/architecture/delivery/network-architect/SKILL.md"
+    },
+    {
+      "name": "platform-architect",
+      "path": "knowledge/skills/architecture/delivery/platform-architect/SKILL.md"
+    },
+    {
+      "name": "systems-architect",
+      "path": "knowledge/skills/architecture/delivery/systems-architect/SKILL.md"
+    },
+    {
+      "name": "ai-ml-architect",
+      "path": "knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md"
+    },
+    {
+      "name": "api-architect",
+      "path": "knowledge/skills/architecture/domains/api-architect/SKILL.md"
+    },
+    {
+      "name": "application-architect",
+      "path": "knowledge/skills/architecture/domains/application-architect/SKILL.md"
+    },
+    {
+      "name": "data-architect",
+      "path": "knowledge/skills/architecture/domains/data-architect/SKILL.md"
+    },
+    {
+      "name": "integration-architect",
+      "path": "knowledge/skills/architecture/domains/integration-architect/SKILL.md"
+    },
+    {
+      "name": "technology-architect",
+      "path": "knowledge/skills/architecture/domains/technology-architect/SKILL.md"
+    },
+    {
+      "name": "business-architect",
+      "path": "knowledge/skills/architecture/enterprise/business-architect/SKILL.md"
+    },
+    {
+      "name": "domain-architect",
+      "path": "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md"
+    },
+    {
+      "name": "enterprise-architect",
+      "path": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md"
+    },
+    {
+      "name": "solution-architect",
+      "path": "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md"
+    },
     {
       "name": "data-intensive-systems",
       "path": "knowledge/skills/data/data-intensive-systems/SKILL.md"

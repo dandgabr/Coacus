@@ -2,6 +2,35 @@
   "schema": 1,
   "entries": [
     {
+      "name": "ai-ml-architect",
+      "category": "architecture",
+      "description": "AI/ML Architecture agent that owns the end-to-end architecture of machine learning and generative AI systems \u2014 data and feature pipelines, training, serving, monitoring, MLOps/GenAIOps and responsible-AI governance. Use when designing ML or GenAI platforms, defining MLOps pipelines, or governing AI risk.",
+      "skills": [
+        "knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/architecture/domains/data-architect/SKILL.md",
+        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
+        "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+        "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
+        "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md"
+      ],
+      "triggers": [
+        "ai architect",
+        "ai architecture",
+        "arquiteto de ia",
+        "arquiteto de machine learning",
+        "arquiteto de ml",
+        "arquitetura de ia",
+        "arquitetura de ml",
+        "genai architecture",
+        "ml architect",
+        "mlops architect"
+      ]
+    },
+    {
       "name": "ai-product-manager",
       "category": "specialized-domains",
       "description": "Senior AI product manager who frames AI products as data products: dual lifecycle management, ML problem-class framing, opportunity discovery and prioritization, model selection under governance constraints, shadow/A-B/ canary deployment strategy, AI UX trust obligations, bias and privacy governance, and metrics discipline. Applies AI product management, product ownership, evaluation and responsible-AI practices.",
@@ -76,6 +105,67 @@
         "google antigravity",
         "pair programmer",
         "pair programming"
+      ]
+    },
+    {
+      "name": "api-architect",
+      "category": "architecture",
+      "description": "API Architecture agent that owns API strategy, productization and governance \u2014 design-first style guides, versioning policy, security, the API catalog and lifecycle, and consumer experience. Use when setting API standards, governing the API lifecycle, defining API security, or assessing API monetization.",
+      "skills": [
+        "knowledge/skills/architecture/domains/api-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
+        "knowledge/skills/frameworks/framework-grpc/SKILL.md",
+        "knowledge/skills/frameworks/framework-graphql/SKILL.md",
+        "knowledge/skills/security/appsec/api-protocol-security/SKILL.md"
+      ],
+      "triggers": [
+        "api architect",
+        "api architecture",
+        "api catalog",
+        "api design-first",
+        "api governance",
+        "api lifecycle",
+        "api monetization",
+        "api product",
+        "api style guide",
+        "arquiteto de api",
+        "arquiteto de apis",
+        "arquitetura de api",
+        "cat\u00e1logo de apis",
+        "ciclo de vida de api",
+        "governan\u00e7a de api",
+        "guia de estilo de api",
+        "monetiza\u00e7\u00e3o de api",
+        "produto de api"
+      ]
+    },
+    {
+      "name": "application-architect",
+      "category": "architecture",
+      "description": "Application Architecture agent that owns the application portfolio \u2014 its map and lifecycle, standards, reference architectures and integration coherence \u2014 and the build-versus-buy and SaaS fit decisions. Use when rationalizing an application portfolio, defining application standards, or guiding modernization.",
+      "skills": [
+        "knowledge/skills/architecture/domains/application-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+      ],
+      "triggers": [
+        "application architect",
+        "application architecture",
+        "application portfolio",
+        "arquiteto de aplica\u00e7\u00e3o",
+        "arquiteto de aplica\u00e7\u00f5es",
+        "arquitetura de aplica\u00e7\u00e3o",
+        "portf\u00f3lio de aplica\u00e7\u00f5es",
+        "racionaliza\u00e7\u00e3o de aplica\u00e7\u00f5es"
       ]
     },
     {
@@ -175,6 +265,32 @@
         "downstream",
         "fermenta\u00e7\u00e3o",
         "upstream"
+      ]
+    },
+    {
+      "name": "business-architect",
+      "category": "architecture",
+      "description": "Business Architecture agent that models business capabilities, value streams and business motivation, producing the pre-technology business architecture that the enterprise target state and every downstream application must serve. Use when mapping capabilities, defining value streams, aligning strategy to change, or tracing business objectives to IT investment.",
+      "skills": [
+        "knowledge/skills/architecture/enterprise/business-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md",
+        "knowledge/skills/roles/product-owner/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de neg\u00f3cio",
+        "arquiteto de neg\u00f3cios",
+        "arquitetura de neg\u00f3cio",
+        "business architect",
+        "business architecture",
+        "business capability",
+        "cadeia de valor",
+        "capacidades de neg\u00f3cio",
+        "togaf fase b",
+        "value stream"
       ]
     },
     {
@@ -620,6 +736,34 @@
       ]
     },
     {
+      "name": "data-architect",
+      "category": "architecture",
+      "description": "Data Architecture agent that owns the enterprise data asset \u2014 conceptual and logical models, governance, lineage, quality, master and reference data \u2014 and aligns it with business and application architecture. Use when defining enterprise data models, setting data governance and quality standards, or planning master data strategy.",
+      "skills": [
+        "knowledge/skills/architecture/domains/data-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
+        "knowledge/skills/data/data-mesh-governance/SKILL.md",
+        "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/security/data/data-classification-dspm/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de dados",
+        "arquiteto de dados corporativo",
+        "arquitetura de dados",
+        "data architect",
+        "data architecture",
+        "governan\u00e7a de dados",
+        "linhagem de dados",
+        "master data",
+        "mdm",
+        "modelo de dados corporativo"
+      ]
+    },
+    {
       "name": "data-engineer-specialist",
       "category": "data-cloud-devops",
       "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
@@ -792,6 +936,29 @@
       ]
     },
     {
+      "name": "domain-architect",
+      "category": "architecture",
+      "description": "Domain Architecture agent that owns the reference architecture and standards for one business or technical domain at near-enterprise scope, delegating from the enterprise architect and governing domain-level decisions across many solutions. Use when defining a domain reference architecture, maintaining a domain roadmap, or deciding within a domain that spans many initiatives.",
+      "skills": [
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de dom\u00ednio",
+        "arquiteto de dom\u00ednios",
+        "arquitetura de dom\u00ednio",
+        "arquitetura de refer\u00eancia de dom\u00ednio",
+        "domain architect",
+        "domain architecture",
+        "domain reference architecture"
+      ]
+    },
+    {
       "name": "electrical-power-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
@@ -869,6 +1036,55 @@
         "seguran\u00e7a de endpoint",
         "sysmon",
         "xdr"
+      ]
+    },
+    {
+      "name": "enterprise-architect",
+      "category": "architecture",
+      "description": "Lead Enterprise Architecture agent that orchestrates the whole architecture function: sets architecture principles, the target state across the four EA domains, the governance gates and the arbitration between the specialist architects (business, solution, data, application, technology, network and security). Use when defining enterprise standards, running an architecture review board, producing target-state roadmaps, or reconciling conflicting domain decisions.",
+      "skills": [
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
+        "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/business-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/data-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/application-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/api-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md",
+        "knowledge/skills/architecture/delivery/network-architect/SKILL.md",
+        "knowledge/skills/architecture/delivery/platform-architect/SKILL.md",
+        "knowledge/skills/architecture/delivery/systems-architect/SKILL.md",
+        "knowledge/skills/architecture/delivery/iam-architect/SKILL.md"
+      ],
+      "triggers": [
+        "arb",
+        "archimate",
+        "architecture governance",
+        "architecture review board",
+        "arquiteto corporativo",
+        "arquitetura corporativa",
+        "arquitetura empresarial",
+        "enterprise architect",
+        "enterprise architecture",
+        "estado alvo",
+        "governan\u00e7a de arquitetura",
+        "iso 42010",
+        "roadmap de arquitetura",
+        "target state",
+        "togaf"
       ]
     },
     {
@@ -1123,6 +1339,35 @@
       ]
     },
     {
+      "name": "iam-architect",
+      "category": "architecture",
+      "description": "Identity and Access Architecture agent that owns identity lifecycle, authentication and authorization, federation, privileged access and identity governance across applications and clouds. Use when designing IAM/CIAM architecture, defining identity lifecycle and access governance, or standardizing identity across systems and clouds.",
+      "skills": [
+        "knowledge/skills/architecture/delivery/iam-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md",
+        "knowledge/skills/security/iam/identity-governance-iga/SKILL.md",
+        "knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md",
+        "knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md",
+        "knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de iam",
+        "arquiteto de identidade",
+        "arquitetura de identidade",
+        "ciam architect",
+        "gest\u00e3o de identidade",
+        "iam architect",
+        "identidade e acesso",
+        "identity architect",
+        "identity architecture"
+      ]
+    },
+    {
       "name": "iam-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
@@ -1180,6 +1425,34 @@
         "itil",
         "processo de neg\u00f3cio",
         "sistemas de informa\u00e7\u00e3o"
+      ]
+    },
+    {
+      "name": "integration-architect",
+      "category": "architecture",
+      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+      "skills": [
+        "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/architecture/domains/api-architect/SKILL.md",
+        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
+        "knowledge/skills/frameworks/framework-grpc/SKILL.md",
+        "knowledge/skills/frameworks/framework-graphql/SKILL.md",
+        "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de integra\u00e7\u00e3o",
+        "arquiteto de integra\u00e7\u00f5es",
+        "arquitetura de integra\u00e7\u00e3o",
+        "barramento de eventos",
+        "canonical model",
+        "event backbone",
+        "integration architect",
+        "integration architecture",
+        "mensageria"
       ]
     },
     {
@@ -1476,6 +1749,32 @@
       ]
     },
     {
+      "name": "network-architect",
+      "category": "architecture",
+      "description": "Network Architecture agent that owns the network topology \u2014 LAN/WAN/WLAN, data-center fabric, routing and switching, addressing, SD-WAN, DNS, load balancing, QoS and resilience. Use when designing network topology and segmentation, planning addressing and routing, or specifying network capacity and vendor roadmaps.",
+      "skills": [
+        "knowledge/skills/architecture/delivery/network-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
+        "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/mapping/network-flow-discovery/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de rede",
+        "arquiteto de redes",
+        "arquitetura de rede",
+        "arquitetura de redes",
+        "network architect",
+        "network architecture",
+        "sd-wan",
+        "segmenta\u00e7\u00e3o de rede",
+        "topologia de rede"
+      ]
+    },
+    {
       "name": "network-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and NDR, DNS security and protective DNS, segmentation and microsegmentation, IPsec/WireGuard, SASE/ZTNA, RPKI/BGP security and network flow analysis.",
@@ -1602,6 +1901,32 @@
         "relatividade",
         "relativity",
         "termodin\u00e2mica"
+      ]
+    },
+    {
+      "name": "platform-architect",
+      "category": "architecture",
+      "description": "Platform Architecture agent that owns the internal developer platform as a product \u2014 platform capabilities, golden paths, self-service provisioning, tenancy, reliability and cost-to-serve. Use when defining a developer platform, designing golden paths and self-service, or balancing platform opinionation against team autonomy.",
+      "skills": [
+        "knowledge/skills/architecture/delivery/platform-architect/SKILL.md",
+        "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/infrastructure/program-containers/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/mapping/observability-correlation/SKILL.md",
+        "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de plataforma",
+        "arquiteto de plataformas",
+        "arquitetura de plataforma",
+        "developer platform",
+        "golden path",
+        "idp",
+        "plataforma de desenvolvedor",
+        "platform architect",
+        "platform architecture"
       ]
     },
     {
@@ -1938,6 +2263,89 @@
         "requirements",
         "requisitos",
         "software engineering"
+      ]
+    },
+    {
+      "name": "solution-architect",
+      "category": "architecture",
+      "description": "Solution Architecture agent that designs one bounded solution inside the enterprise guardrails \u2014 structure, components, interfaces and quality attributes \u2014 selecting technologies and integration patterns and proving compliance at the architecture review gate. Use when architecting a specific initiative, choosing technologies for a delivery, or producing solution options.",
+      "skills": [
+        "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/api-design/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
+        "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md",
+        "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de solu\u00e7\u00e3o",
+        "arquiteto de solu\u00e7\u00f5es",
+        "arquitetura de solu\u00e7\u00e3o",
+        "desenho de solu\u00e7\u00e3o",
+        "solution architect",
+        "solution architecture",
+        "solution design",
+        "togaf solution"
+      ]
+    },
+    {
+      "name": "systems-architect",
+      "category": "architecture",
+      "description": "Systems Architecture agent that architects a whole system \u2014 hardware, software, human and environment \u2014 decomposing it into subsystems, defining interfaces, requirements and cost/benefit trade-offs and maintaining architectural integrity across the lifecycle. Use when architecting cyber-physical or multi-component systems, defining system interfaces, or performing system trade analyses.",
+      "skills": [
+        "knowledge/skills/architecture/delivery/systems-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de sistema",
+        "arquiteto de sistemas",
+        "arquitetura de sistemas",
+        "decomposi\u00e7\u00e3o de subsistemas",
+        "engenharia de sistemas",
+        "system architect",
+        "systems architect",
+        "systems architecture",
+        "systems engineering"
+      ]
+    },
+    {
+      "name": "technology-architect",
+      "category": "architecture",
+      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, networking, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
+      "skills": [
+        "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/infrastructure/program-containers/SKILL.md",
+        "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md"
+      ],
+      "triggers": [
+        "arquiteto de infraestrutura",
+        "arquiteto de tecnologia",
+        "arquitetura de infraestrutura",
+        "arquitetura de tecnologia",
+        "capacidade e dr",
+        "technology architect",
+        "technology architecture",
+        "togaf fase d"
       ]
     },
     {

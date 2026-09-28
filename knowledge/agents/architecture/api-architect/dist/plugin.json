@@ -1,0 +1,6 @@
+{
+  "name": "api-architect",
+  "version": "0.1.0",
+  "description": "API Architecture agent that owns API strategy, productization and governance \u2014 design-first style guides, versioning policy, security, the API catalog and lifecycle, and consumer experience. Use when setting API standards, governing the API lifecycle, defining API security, or assessing API monetization.",
+  "entrypoint": "AGENT.md"
+}

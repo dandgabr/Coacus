@@ -1,6 +1,48 @@
 {
   "entries": [
     {
+      "path": "knowledge/skills/architecture/delivery/iam-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/delivery/network-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/delivery/platform-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/delivery/systems-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/ai-ml-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/api-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/application-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/data-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/integration-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/domains/technology-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/enterprise/business-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/enterprise/domain-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/enterprise/enterprise-architect"
+    },
+    {
+      "path": "knowledge/skills/architecture/enterprise/solution-architect"
+    },
+    {
       "path": "knowledge/skills/data/data-intensive-systems"
     },
     {

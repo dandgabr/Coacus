@@ -1,0 +1,8 @@
+{
+  "name": "technology-architect",
+  "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, networking, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/technology-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/technology-architect/dist",
+  "fingerprint": "7e9ab92b95282100"
+}

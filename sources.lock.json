@@ -18944,6 +18944,426 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
+      "source_sha256": "b763c308aba94970b839281be91c9f6dd21afbfeb9b996837011354141de30cc",
+      "target_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
+      "target_sha256": "b763c308aba94970b839281be91c9f6dd21afbfeb9b996837011354141de30cc",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:48:20Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+      "source_sha256": "ed38a0889c7e443f4879ba16b61184d2d414b71cf25d27c89f7db3e49020f6ae",
+      "target_path": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+      "target_sha256": "ed38a0889c7e443f4879ba16b61184d2d414b71cf25d27c89f7db3e49020f6ae",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:48:20Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
+      "source_sha256": "755ef2e9f69910860acb21de40af84ffa74e50c093cf3be6fea7bb272eb5163c",
+      "target_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
+      "target_sha256": "755ef2e9f69910860acb21de40af84ffa74e50c093cf3be6fea7bb272eb5163c",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/api-architect/agent.source.md",
+      "source_sha256": "742e22e451d3cf86918072913767a7ccd9456d97c997c46a6eb636e0be3087b4",
+      "target_path": "knowledge/agents/architecture/api-architect/agent.source.md",
+      "target_sha256": "742e22e451d3cf86918072913767a7ccd9456d97c997c46a6eb636e0be3087b4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/application-architect/agent.source.md",
+      "source_sha256": "549d38b24af9c844b025cf852c13fae365e318b8102a76ac527b01ef67373d35",
+      "target_path": "knowledge/agents/architecture/application-architect/agent.source.md",
+      "target_sha256": "549d38b24af9c844b025cf852c13fae365e318b8102a76ac527b01ef67373d35",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/business-architect/agent.source.md",
+      "source_sha256": "aaa19b301b5d7f19bb6b991a5d22acccca6ab3433804d999bf151f256b92bb8e",
+      "target_path": "knowledge/agents/architecture/business-architect/agent.source.md",
+      "target_sha256": "aaa19b301b5d7f19bb6b991a5d22acccca6ab3433804d999bf151f256b92bb8e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/data-architect/agent.source.md",
+      "source_sha256": "1c667de5f01147251b5c2d9601416de992c4d10abfeaf983d581f27812e2714f",
+      "target_path": "knowledge/agents/architecture/data-architect/agent.source.md",
+      "target_sha256": "1c667de5f01147251b5c2d9601416de992c4d10abfeaf983d581f27812e2714f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
+      "source_sha256": "3ae2ff80ae6ef6ec3ecf5488a8caac12a7ae6f5f9c68d0d0df9cb913dcfb0d42",
+      "target_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
+      "target_sha256": "3ae2ff80ae6ef6ec3ecf5488a8caac12a7ae6f5f9c68d0d0df9cb913dcfb0d42",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
+      "source_sha256": "647394d9cb8bba70931d4048305263e1d59a85cca74b9e0bc621ce03c5ca41af",
+      "target_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
+      "target_sha256": "647394d9cb8bba70931d4048305263e1d59a85cca74b9e0bc621ce03c5ca41af",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
+      "source_sha256": "6a837c48e14c3d6504298f2dad12fbc2c5b2375296be56b0f04cf95a2c53b274",
+      "target_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
+      "target_sha256": "6a837c48e14c3d6504298f2dad12fbc2c5b2375296be56b0f04cf95a2c53b274",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/network-architect/agent.source.md",
+      "source_sha256": "64bdb8ac16b9286766e269b2ee315016e0a556bbfd988d921a2dbc215262135e",
+      "target_path": "knowledge/agents/architecture/network-architect/agent.source.md",
+      "target_sha256": "64bdb8ac16b9286766e269b2ee315016e0a556bbfd988d921a2dbc215262135e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
+      "source_sha256": "7c8435ab3a092b415549a6eecf90ad4414c1d64432c42510c56eab6fd2b31301",
+      "target_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
+      "target_sha256": "7c8435ab3a092b415549a6eecf90ad4414c1d64432c42510c56eab6fd2b31301",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
+      "source_sha256": "5a3932d1fe8d3f7309c9eaad1fcf42e0fa0e059b99a665e1e20888bfe6eda984",
+      "target_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
+      "target_sha256": "5a3932d1fe8d3f7309c9eaad1fcf42e0fa0e059b99a665e1e20888bfe6eda984",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
+      "source_sha256": "3260362344fd9274d34e957a3442c255c89c5b9ceb25a01eecbf9c0eba984104",
+      "target_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
+      "target_sha256": "3260362344fd9274d34e957a3442c255c89c5b9ceb25a01eecbf9c0eba984104",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
+      "source_sha256": "7e9ab92b952821007d5bfe53c8e266df376a771c073dfe0b9c9c2fe131e0bcf3",
+      "target_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
+      "target_sha256": "7e9ab92b952821007d5bfe53c8e266df376a771c073dfe0b9c9c2fe131e0bcf3",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/delivery/iam-architect/SKILL.md",
+      "source_sha256": "d54d27d6c4e1340a4f8ef69f7198d65c13be3861951fff4ae22ca8e65c790bf2",
+      "target_path": "knowledge/skills/architecture/delivery/iam-architect/SKILL.md",
+      "target_sha256": "d54d27d6c4e1340a4f8ef69f7198d65c13be3861951fff4ae22ca8e65c790bf2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/delivery/network-architect/SKILL.md",
+      "source_sha256": "76086ec35439f2d3095024205c2c6bb53528bba431b865a2e52c75a0d0bf9bcf",
+      "target_path": "knowledge/skills/architecture/delivery/network-architect/SKILL.md",
+      "target_sha256": "76086ec35439f2d3095024205c2c6bb53528bba431b865a2e52c75a0d0bf9bcf",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/delivery/platform-architect/SKILL.md",
+      "source_sha256": "fb8c862dca625208a97d40c04f0640de37c33e45e23c7930c63e35a1cee062ea",
+      "target_path": "knowledge/skills/architecture/delivery/platform-architect/SKILL.md",
+      "target_sha256": "fb8c862dca625208a97d40c04f0640de37c33e45e23c7930c63e35a1cee062ea",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/delivery/systems-architect/SKILL.md",
+      "source_sha256": "75e01832192c8d89b099fda7f05fccc38b02551a5ff6ea4e0a95b7a70d4f3843",
+      "target_path": "knowledge/skills/architecture/delivery/systems-architect/SKILL.md",
+      "target_sha256": "75e01832192c8d89b099fda7f05fccc38b02551a5ff6ea4e0a95b7a70d4f3843",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md",
+      "source_sha256": "b16eba22decd49ceaad96380f9e51ce2375fc2863cf42867520eff6769695ecc",
+      "target_path": "knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md",
+      "target_sha256": "b16eba22decd49ceaad96380f9e51ce2375fc2863cf42867520eff6769695ecc",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/api-architect/SKILL.md",
+      "source_sha256": "fd5c16e3f1cf4fcfdba27d1b1f9b0fa4d2d7927bd81bfd083d31c748eb6a417d",
+      "target_path": "knowledge/skills/architecture/domains/api-architect/SKILL.md",
+      "target_sha256": "fd5c16e3f1cf4fcfdba27d1b1f9b0fa4d2d7927bd81bfd083d31c748eb6a417d",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/application-architect/SKILL.md",
+      "source_sha256": "468ce6739669b153c72e76149e52ffaf387011bf3f94ff6e5c9cd7f51943837f",
+      "target_path": "knowledge/skills/architecture/domains/application-architect/SKILL.md",
+      "target_sha256": "468ce6739669b153c72e76149e52ffaf387011bf3f94ff6e5c9cd7f51943837f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/data-architect/SKILL.md",
+      "source_sha256": "e1000cdf7d21da101e41587cf03c9f0372351ec14bf71e2b466f759695c1ffce",
+      "target_path": "knowledge/skills/architecture/domains/data-architect/SKILL.md",
+      "target_sha256": "e1000cdf7d21da101e41587cf03c9f0372351ec14bf71e2b466f759695c1ffce",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
+      "source_sha256": "4d3022dd6d15294a1b03dc764d0dd212466f12d472e565a4ed0f8a732fa079db",
+      "target_path": "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
+      "target_sha256": "4d3022dd6d15294a1b03dc764d0dd212466f12d472e565a4ed0f8a732fa079db",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+      "source_sha256": "0139e72e0e83d28f61b6520fb93a005fdeedd02d7ead3ddcb8424fc957afcb0e",
+      "target_path": "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
+      "target_sha256": "0139e72e0e83d28f61b6520fb93a005fdeedd02d7ead3ddcb8424fc957afcb0e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/enterprise/business-architect/SKILL.md",
+      "source_sha256": "b59bfcb7b049e7500563037dd1ebbe5a02dfc04ea80f6b6c2343bc9d79991cf2",
+      "target_path": "knowledge/skills/architecture/enterprise/business-architect/SKILL.md",
+      "target_sha256": "b59bfcb7b049e7500563037dd1ebbe5a02dfc04ea80f6b6c2343bc9d79991cf2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+      "source_sha256": "c1be4fc859b96f0c093fb82a0d3d538123db20aafa676126089a8b417277a6dd",
+      "target_path": "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
+      "target_sha256": "c1be4fc859b96f0c093fb82a0d3d538123db20aafa676126089a8b417277a6dd",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+      "source_sha256": "58f05ba1639cb803afb2db61bca2f61f866ddd0f844f707183b0c3e0e42ffdf3",
+      "target_path": "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
+      "target_sha256": "58f05ba1639cb803afb2db61bca2f61f866ddd0f844f707183b0c3e0e42ffdf3",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:54:13Z"
     }
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "name": "application-architect",
+  "description": "Application Architecture agent that owns the application portfolio \u2014 its map and lifecycle, standards, reference architectures and integration coherence \u2014 and the build-versus-buy and SaaS fit decisions. Use when rationalizing an application portfolio, defining application standards, or guiding modernization.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/application-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/application-architect/dist",
+  "fingerprint": "549d38b24af9c844"
+}

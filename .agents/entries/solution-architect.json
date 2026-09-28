@@ -1,0 +1,8 @@
+{
+  "name": "solution-architect",
+  "description": "Solution Architecture agent that designs one bounded solution inside the enterprise guardrails \u2014 structure, components, interfaces and quality attributes \u2014 selecting technologies and integration patterns and proving compliance at the architecture review gate. Use when architecting a specific initiative, choosing technologies for a delivery, or producing solution options.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/solution-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/solution-architect/dist",
+  "fingerprint": "5a3932d1fe8d3f73"
+}

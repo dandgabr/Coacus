@@ -52,6 +52,48 @@
       "path": "knowledge/agents/academic-sciences/telecom-voice-specialist"
     },
     {
+      "path": "knowledge/agents/architecture/ai-ml-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/api-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/application-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/business-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/data-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/domain-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/enterprise-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/iam-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/integration-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/network-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/platform-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/solution-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/systems-architect"
+    },
+    {
+      "path": "knowledge/agents/architecture/technology-architect"
+    },
+    {
       "path": "knowledge/agents/core-orchestration/antigravity-agent"
     },
     {

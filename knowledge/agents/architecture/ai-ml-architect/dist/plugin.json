@@ -1,0 +1,6 @@
+{
+  "name": "ai-ml-architect",
+  "version": "0.1.0",
+  "description": "AI/ML Architecture agent that owns the end-to-end architecture of machine learning and generative AI systems \u2014 data and feature pipelines, training, serving, monitoring, MLOps/GenAIOps and responsible-AI governance. Use when designing ML or GenAI platforms, defining MLOps pipelines, or governing AI risk.",
+  "entrypoint": "AGENT.md"
+}
