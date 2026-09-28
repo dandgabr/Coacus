@@ -35,7 +35,7 @@ When conceiving interfaces, it is **STRICTLY FORBIDDEN** to fall into the follow
 
 ## 🏛️ 2. Taxonomy of the 24 Page Design Styles
 
-The designer must consciously select the project's visual language from the encyclopedic catalog of styles (detailed in [references/web-design-styles-encyclopedia.md](references/web-design-styles-encyclopedia.md)):
+The designer must consciously select the project's visual language from the encyclopedic catalog of styles (detailed in [references/web-design-styles-encyclopedia.md](references/web-design-styles-encyclopedia.md); per-style deep dives with bibliographies live in the [design style library](../../domains/design/ui-style-glassmorphism/SKILL.md) — one `ui-style-*` skill each):
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
