@@ -97,6 +97,18 @@ The UI discipline: the surface craft — hierarchy, typography, color, layout, c
 
 ---
 
+## 🌈 Color Theory Library
+
+Five companion skills cover color end to end:
+
+- [color theory foundations](../../domains/design/color-theory-foundations/SKILL.md)
+- [color harmony palettes](../../domains/design/color-harmony-palettes/SKILL.md)
+- [color contrast accessibility](../../domains/design/color-contrast-accessibility/SKILL.md)
+- [color ui systems](../../domains/design/color-ui-systems/SKILL.md)
+- [color data visualization](../../domains/design/color-data-visualization/SKILL.md)
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - For the experience discipline this craft serves, see [ux-designer](../ux-designer/SKILL.md).

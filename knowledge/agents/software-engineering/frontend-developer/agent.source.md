@@ -15,6 +15,11 @@ skills:
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
   - knowledge/skills/roles/ui-designer/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
+  - knowledge/skills/domains/design/color-theory-foundations/SKILL.md
+  - knowledge/skills/domains/design/color-harmony-palettes/SKILL.md
+  - knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md
+  - knowledge/skills/domains/design/color-ui-systems/SKILL.md
+  - knowledge/skills/domains/design/color-data-visualization/SKILL.md
   - knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md
   - knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md
   - knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md
@@ -68,6 +73,11 @@ This agent operates using the guidelines and technical standards established in 
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [color theory foundations](knowledge/skills/domains/design/color-theory-foundations/SKILL.md)
+- [color harmony palettes](knowledge/skills/domains/design/color-harmony-palettes/SKILL.md)
+- [color contrast accessibility](knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md)
+- [color ui systems](knowledge/skills/domains/design/color-ui-systems/SKILL.md)
+- [color data visualization](knowledge/skills/domains/design/color-data-visualization/SKILL.md)
 - [3d-immersive-webgl](knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
 - [acid-anti-design](knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md)
 - [ai-native-generative-ui](knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md)

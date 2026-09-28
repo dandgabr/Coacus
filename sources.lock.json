@@ -707,7 +707,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "bf8bb1fb0a0455f30abdc784e92de5c00da52078ca03100b6a86b0de0a1e8cb0",
+      "target_sha256": "5025301e243217e080ba7e91f9f67571d63a621f642bdb7d3266783621ed3846",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10821,7 +10821,7 @@
       "source_path": "skills/roles/frontend-developer/SKILL.md",
       "source_sha256": "8c668ea5b9d7219f63fa9d7de4d89af1b01c81aea854fb970f9c5942b0180b03",
       "target_path": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "target_sha256": "3a288c180254c8d76f0d7cc4d457a3a71d55484bcdd03f0c624d2f52b67a8b95",
+      "target_sha256": "acf599cd0384594f4e43a8189f6a9e5a12e58428c910e037732cf38a5288a603",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18814,9 +18814,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "source_sha256": "77680501706e0b93024e406dd006ec3b91176595a6608f66528a963fcf5750d8",
+      "source_sha256": "41fd555a28b98dd064307a568ae3010743ae51c6a0bc3c6f9fc2066836d5e764",
       "target_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "target_sha256": "77680501706e0b93024e406dd006ec3b91176595a6608f66528a963fcf5750d8",
+      "target_sha256": "41fd555a28b98dd064307a568ae3010743ae51c6a0bc3c6f9fc2066836d5e764",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18844,9 +18844,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "source_sha256": "681eac0e93376b979bab26b44ea146e52dbfdd4126913999d56e5d66e72ab458",
+      "source_sha256": "6dbed7d2e93888d88d52a55abd934278cd5c2c43bd6e759f6d486ab3eb5b0322",
       "target_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "target_sha256": "681eac0e93376b979bab26b44ea146e52dbfdd4126913999d56e5d66e72ab458",
+      "target_sha256": "6dbed7d2e93888d88d52a55abd934278cd5c2c43bd6e759f6d486ab3eb5b0322",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18869,6 +18869,81 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-28T13:11:43Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/color-theory-foundations/SKILL.md",
+      "source_sha256": "cd05d19187d8c0e0628a5b2d737210dec53c663c6680964a38e30d661fce09f3",
+      "target_path": "knowledge/skills/domains/design/color-theory-foundations/SKILL.md",
+      "target_sha256": "cd05d19187d8c0e0628a5b2d737210dec53c663c6680964a38e30d661fce09f3",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/color-harmony-palettes/SKILL.md",
+      "source_sha256": "bb706b1cbe1153e4d68f125d1f317411f19b7a23244f680c98fab71b398badb6",
+      "target_path": "knowledge/skills/domains/design/color-harmony-palettes/SKILL.md",
+      "target_sha256": "bb706b1cbe1153e4d68f125d1f317411f19b7a23244f680c98fab71b398badb6",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
+      "source_sha256": "865743b183f9b6624347db59f89c17a0e2f6707752f290b838b4945f4c6b1feb",
+      "target_path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
+      "target_sha256": "865743b183f9b6624347db59f89c17a0e2f6707752f290b838b4945f4c6b1feb",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
+      "source_sha256": "022e9694864bec1174d5d30a1ae7be84a556a897cc503483e2dd1b8e41883347",
+      "target_path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
+      "target_sha256": "022e9694864bec1174d5d30a1ae7be84a556a897cc503483e2dd1b8e41883347",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "source_sha256": "5abeb512c966f2268d933c24998cfc2add73c71ae852346af760a3446df674b4",
+      "target_path": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "target_sha256": "5abeb512c966f2268d933c24998cfc2add73c71ae852346af760a3446df674b4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:29:38Z"
     }
   ]
 }
