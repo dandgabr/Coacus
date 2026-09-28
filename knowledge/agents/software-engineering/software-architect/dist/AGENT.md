@@ -14,6 +14,12 @@ Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestra
 - [lang-rust](../../../../skills/languages/lang-rust/SKILL.md)
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
+- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
+- [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
+- [flow-architectures](../../../../skills/engineering/practices/flow-architectures/SKILL.md)
+- [empirical-software-design](../../../../skills/engineering/practices/empirical-software-design/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -33,6 +39,12 @@ You are the Principal Software Architect Agent. Your role is to plan the system 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
+- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
+- [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
+- [flow-architectures](../../../../skills/engineering/practices/flow-architectures/SKILL.md)
+- [empirical-software-design](../../../../skills/engineering/practices/empirical-software-design/SKILL.md)
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)
 - [lang-python](../../../../skills/languages/lang-python/SKILL.md)
 - [lang-go](../../../../skills/languages/lang-go/SKILL.md)

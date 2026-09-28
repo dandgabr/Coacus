@@ -14,6 +14,9 @@ skills:
   - knowledge/skills/frameworks/framework-spring-boot/SKILL.md
   - knowledge/skills/languages/lang-java/SKILL.md
   - knowledge/skills/platforms/antigravity-guide/SKILL.md
+  - knowledge/skills/data/high-performance-java-persistence/SKILL.md
+  - knowledge/skills/engineering/practices/clean-architecture/SKILL.md
+  - knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -49,6 +52,9 @@ When acting, follow the guidelines in the associated skills: [lang-java](knowled
 This agent operates using the following skills:
 - [lang-java](knowledge/skills/languages/lang-java/SKILL.md)
 - [framework-spring-boot](knowledge/skills/frameworks/framework-spring-boot/SKILL.md)
+- [high-performance-java-persistence](knowledge/skills/data/high-performance-java-persistence/SKILL.md)
+- [clean-architecture](knowledge/skills/engineering/practices/clean-architecture/SKILL.md)
+- [functional-concurrent-programming](knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md)
 - [framework-quarkus-jnosql](knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md)
 - [framework-microprofile-jakarta](knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md)
 - [jpa-hibernate-performance](knowledge/skills/data/jpa-hibernate-performance/SKILL.md)

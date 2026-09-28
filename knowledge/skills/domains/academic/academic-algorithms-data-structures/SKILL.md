@@ -114,3 +114,19 @@ def a_star(
                 came_from[neighbor] = current
     return None
 ```
+
+---
+
+## 🧰 6. A Breadth-First Algorithm Toolbox (Ahmad)
+
+Organize the working catalogue by problem class; each entry carries complexity and a use case.
+
+- **Design paradigms:** divide-and-conquer, **dynamic programming**, **greedy**; brute-force vs approximate vs randomized algorithms, with **explainability** as a selection criterion.
+- **Sorting/searching:** bubble, insertion, merge, shell, selection; linear, binary, interpolation search — always choose by the data shape and stability needs.
+- **Graphs:** adjacency list vs matrix; BFS/DFS; shortest path; **centrality** (degree, betweenness, closeness, eigenvector) for network analysis and fraud analytics (watchtower methodology).
+- **Unsupervised:** similarity metrics (Euclidean, Manhattan, cosine); k-means, hierarchical clustering, cluster evaluation; **PCA**; **association rules** (support, confidence, lift; **Apriori** and **FP-growth**); density/one-class anomaly detection.
+- **Supervised:** confusion matrix, precision/recall, bias–variance; decision trees, ensembles (**random forest**, **XGBoost**), logistic regression, SVM, naive Bayes; regression (linear, regression trees, gradient boosting).
+- **Neural networks:** backprop + gradient descent; activation functions (sigmoid, ReLU, leaky ReLU, tanh, softmax); CNN, RNN, GAN, transfer learning.
+- **NLP:** normalization, tokenization, NER, stemming/lemmatization; bag-of-words, word embeddings, RNN sentiment.
+- **Recommenders:** content-based, **collaborative filtering**, hybrid; cold-start, sparsity and social-influence limitations.
+- **Advanced:** **CAP theorem** (CA/AP/CP); streaming; **Huffman** lossless compression; cryptography (symmetric vs asymmetric, hash, PKI, TLS handshake); large-scale algorithms — latency, throughput, bisection bandwidth, elasticity, **Amdahl's law**, task granularity, load balancing, locality (CUDA, Spark); NP-hard strategies and black-swan handling.

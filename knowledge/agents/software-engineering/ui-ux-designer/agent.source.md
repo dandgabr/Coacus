@@ -11,6 +11,7 @@ skills:
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/roles/product-owner/SKILL.md
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
+  - knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
 ---
 
@@ -32,6 +33,7 @@ When acting, you must strictly follow the guidelines of the main ui-ux-designer 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
+- [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [product-owner](knowledge/skills/roles/product-owner/SKILL.md)

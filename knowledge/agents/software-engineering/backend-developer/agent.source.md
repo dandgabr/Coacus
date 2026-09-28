@@ -20,6 +20,10 @@ skills:
   - knowledge/skills/roles/backend-developer/SKILL.md
   - knowledge/skills/roles/dba-database-administrator/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
+  - knowledge/skills/engineering/practices/api-design/SKILL.md
+  - knowledge/skills/engineering/practices/distributed-systems/SKILL.md
+  - knowledge/skills/engineering/practices/clean-architecture/SKILL.md
+  - knowledge/skills/data/high-performance-java-persistence/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -51,6 +55,10 @@ This agent operates using the guidelines and technical standards established in 
 - [lang-csharp](knowledge/skills/languages/lang-csharp/SKILL.md)
 - [lang-rust](knowledge/skills/languages/lang-rust/SKILL.md)
 - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [api-design](knowledge/skills/engineering/practices/api-design/SKILL.md)
+- [distributed-systems](knowledge/skills/engineering/practices/distributed-systems/SKILL.md)
+- [clean-architecture](knowledge/skills/engineering/practices/clean-architecture/SKILL.md)
+- [high-performance-java-persistence](knowledge/skills/data/high-performance-java-persistence/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

@@ -17,6 +17,10 @@ Senior Backend Development Agent specialized in designing robust APIs (REST, gRP
 - [backend-developer](../../../../skills/roles/backend-developer/SKILL.md)
 - [dba-database-administrator](../../../../skills/roles/dba-database-administrator/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
+- [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [high-performance-java-persistence](../../../../skills/data/high-performance-java-persistence/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -48,6 +52,10 @@ This agent operates using the guidelines and technical standards established in 
 - [lang-csharp](../../../../skills/languages/lang-csharp/SKILL.md)
 - [lang-rust](../../../../skills/languages/lang-rust/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
+- [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
+- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
+- [high-performance-java-persistence](../../../../skills/data/high-performance-java-persistence/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

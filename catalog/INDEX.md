@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 292 skill(s) · 73 agent(s) · 1 MCP(s)
+**Totals:** 308 skill(s) · 74 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -30,6 +30,7 @@
 | cryptography-specialist | cybersecurity | [knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md](../knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md) |
 | data-ai-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md) |
 | data-engineer-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md) |
+| data-scientist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-scientist/agent.source.md](../knowledge/agents/data-cloud-devops/data-scientist/agent.source.md) |
 | data-security-privacy-specialist | cybersecurity | [knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md](../knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md) |
 | dba-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md) |
 | devops-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md) |
@@ -88,12 +89,16 @@
 |---|---|
 | data-intensive-systems | [knowledge/skills/data/data-intensive-systems/SKILL.md](../knowledge/skills/data/data-intensive-systems/SKILL.md) |
 | data-mesh-governance | [knowledge/skills/data/data-mesh-governance/SKILL.md](../knowledge/skills/data/data-mesh-governance/SKILL.md) |
+| data-science-workflow | [knowledge/skills/data/data-science-workflow/SKILL.md](../knowledge/skills/data/data-science-workflow/SKILL.md) |
 | db-mariadb | [knowledge/skills/data/db-mariadb/SKILL.md](../knowledge/skills/data/db-mariadb/SKILL.md) |
 | db-mongodb | [knowledge/skills/data/db-mongodb/SKILL.md](../knowledge/skills/data/db-mongodb/SKILL.md) |
 | db-postgresql | [knowledge/skills/data/db-postgresql/SKILL.md](../knowledge/skills/data/db-postgresql/SKILL.md) |
 | db-sqlite | [knowledge/skills/data/db-sqlite/SKILL.md](../knowledge/skills/data/db-sqlite/SKILL.md) |
+| distributed-ml-scaling | [knowledge/skills/data/distributed-ml-scaling/SKILL.md](../knowledge/skills/data/distributed-ml-scaling/SKILL.md) |
+| high-performance-java-persistence | [knowledge/skills/data/high-performance-java-persistence/SKILL.md](../knowledge/skills/data/high-performance-java-persistence/SKILL.md) |
 | jpa-hibernate-performance | [knowledge/skills/data/jpa-hibernate-performance/SKILL.md](../knowledge/skills/data/jpa-hibernate-performance/SKILL.md) |
 | power-bi | [knowledge/skills/data/power-bi/SKILL.md](../knowledge/skills/data/power-bi/SKILL.md) |
+| python-data-science | [knowledge/skills/data/python-data-science/SKILL.md](../knowledge/skills/data/python-data-science/SKILL.md) |
 | realtime-streaming-event-driven | [knowledge/skills/data/realtime-streaming-event-driven/SKILL.md](../knowledge/skills/data/realtime-streaming-event-driven/SKILL.md) |
 | vector-databases | [knowledge/skills/data/vector-databases/SKILL.md](../knowledge/skills/data/vector-databases/SKILL.md) |
 | academic-abstract-algebra-geometry | [knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md](../knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md) |
@@ -122,10 +127,14 @@
 | academic-thermodynamics-statistical-physics | [knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md](../knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md) |
 | data-science-advanced-math | [knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md](../knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md) |
 | quantum-computing-algorithms | [knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md](../knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md) |
+| ai-application-engineering | [knowledge/skills/domains/industry/ai-application-engineering/SKILL.md](../knowledge/skills/domains/industry/ai-application-engineering/SKILL.md) |
 | ai-llm-engineering-rag | [knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md](../knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md) |
+| applied-ai-automation | [knowledge/skills/domains/industry/applied-ai-automation/SKILL.md](../knowledge/skills/domains/industry/applied-ai-automation/SKILL.md) |
 | automotive-cybersecurity | [knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md) |
 | blockchain-cryptocurrency | [knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md](../knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) |
+| computer-vision-deep-learning | [knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md](../knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md) |
 | edtech-andragogy | [knowledge/skills/domains/industry/edtech-andragogy/SKILL.md](../knowledge/skills/domains/industry/edtech-andragogy/SKILL.md) |
+| explainable-ai | [knowledge/skills/domains/industry/explainable-ai/SKILL.md](../knowledge/skills/domains/industry/explainable-ai/SKILL.md) |
 | financial-transaction-processing | [knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md](../knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) |
 | hardware-hacking-embedded-security | [knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md](../knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md) |
 | healthtech-standards-security | [knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md](../knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md) |
@@ -138,22 +147,30 @@
 | dp-behavioral-patterns | [knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md) |
 | dp-creational-patterns | [knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md) |
 | dp-structural-patterns | [knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md) |
+| api-design | [knowledge/skills/engineering/practices/api-design/SKILL.md](../knowledge/skills/engineering/practices/api-design/SKILL.md) |
+| architecture-ddd | [knowledge/skills/engineering/practices/architecture-ddd/SKILL.md](../knowledge/skills/engineering/practices/architecture-ddd/SKILL.md) |
 | architecture-documentation | [knowledge/skills/engineering/practices/architecture-documentation/SKILL.md](../knowledge/skills/engineering/practices/architecture-documentation/SKILL.md) |
 | c4-model-architecture | [knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md](../knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md) |
+| clean-architecture | [knowledge/skills/engineering/practices/clean-architecture/SKILL.md](../knowledge/skills/engineering/practices/clean-architecture/SKILL.md) |
 | clean-code-reusability | [knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md](../knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md) |
+| distributed-systems | [knowledge/skills/engineering/practices/distributed-systems/SKILL.md](../knowledge/skills/engineering/practices/distributed-systems/SKILL.md) |
 | documentation-designer | [knowledge/skills/engineering/practices/documentation-designer/SKILL.md](../knowledge/skills/engineering/practices/documentation-designer/SKILL.md) |
 | empirical-software-design | [knowledge/skills/engineering/practices/empirical-software-design/SKILL.md](../knowledge/skills/engineering/practices/empirical-software-design/SKILL.md) |
+| flow-architectures | [knowledge/skills/engineering/practices/flow-architectures/SKILL.md](../knowledge/skills/engineering/practices/flow-architectures/SKILL.md) |
+| functional-concurrent-programming | [knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md](../knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md) |
 | git-conventional-commits | [knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md](../knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md) |
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
+| ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
 | framework-grpc | [knowledge/skills/frameworks/framework-grpc/SKILL.md](../knowledge/skills/frameworks/framework-grpc/SKILL.md) |
 | framework-microprofile-jakarta | [knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md](../knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md) |
+| framework-qt6 | [knowledge/skills/frameworks/framework-qt6/SKILL.md](../knowledge/skills/frameworks/framework-qt6/SKILL.md) |
 | framework-quarkus-jnosql | [knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md](../knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md) |
 | framework-react | [knowledge/skills/frameworks/framework-react/SKILL.md](../knowledge/skills/frameworks/framework-react/SKILL.md) |
 | framework-rest-api | [knowledge/skills/frameworks/framework-rest-api/SKILL.md](../knowledge/skills/frameworks/framework-rest-api/SKILL.md) |

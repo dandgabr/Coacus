@@ -896,6 +896,36 @@
       "frontend de compilador",
       "otimizacao de compilador",
       "passes do llvm"
+    ],
+    "data-scientist": [
+      "cientista de dados",
+      "data science",
+      "ciencia de dados",
+      "data scientist",
+      "analise de dados",
+      "analise exploratoria",
+      "eda",
+      "estatistica",
+      "statistics",
+      "machine learning",
+      "aprendizado de maquina",
+      "scikit-learn",
+      "sklearn",
+      "pandas",
+      "numpy",
+      "modelo preditivo",
+      "feature engineering",
+      "cross-validation",
+      "bootstrap",
+      "teste a/b",
+      "ab testing",
+      "regressao",
+      "classificacao",
+      "clustering",
+      "explicabilidade",
+      "shap",
+      "lime",
+      "jupyter notebook"
     ]
   }
 }

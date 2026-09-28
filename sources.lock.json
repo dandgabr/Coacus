@@ -517,7 +517,7 @@
       "source_path": "agents/data-cloud-devops/data-ai-engineer/AGENT.md",
       "source_sha256": "bfd0b5d3af2fdb9e6661240c1f6b7638505d44b6cfcc1c76199b589a53f71aeb",
       "target_path": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
-      "target_sha256": "abce44ade5f40ba985d057a3b58f47d7e320da1989d22246c8a90e399dc01196",
+      "target_sha256": "0f9d9e7342087741d4a9e7647d52916dee7d6772963b5c59ef941e8f8e34e7cc",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -656,7 +656,7 @@
       "source_path": "agents/software-engineering/backend-developer/AGENT.md",
       "source_sha256": "3d1ad2591e09c769a854ff5f10481ea02320d6fabdeb484d0e1faf837583eece",
       "target_path": "knowledge/agents/software-engineering/backend-developer/agent.source.md",
-      "target_sha256": "ae9a0094db86dc7e80b492a853aa7a51ff030a2b5a8ba923a4a4ea0b2c3798b2",
+      "target_sha256": "3d1b50351bec05a34b5acab973c57fb9089f5bc95a7236cc64a2c1b67268f6e8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -758,7 +758,7 @@
       "source_path": "agents/software-engineering/java-enterprise-architect/AGENT.md",
       "source_sha256": "a841f6db6ced267ea8efa9ffd209bdc160dc1029227be640d3cd5448177497bd",
       "target_path": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md",
-      "target_sha256": "367caedc41b6ee346b7137a8b8e2388d25475bce3c1092c1868eb60b38ce8eda",
+      "target_sha256": "898be614c4f7c98e0a03e1b6122985f4cdcb80c39e26c939521c1b5279cb2a5f",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -809,7 +809,7 @@
       "source_path": "agents/software-engineering/software-architect/AGENT.md",
       "source_sha256": "7c22af03d3c0120cd73472b2586f89babcc4aad647d3d947926797a9f7e7db4b",
       "target_path": "knowledge/agents/software-engineering/software-architect/agent.source.md",
-      "target_sha256": "1ccbef9073bfbfc0a7da332a65fe5ad316a45499f4caa6549fbe58d1e5e322e0",
+      "target_sha256": "6659933b62a64b783129d6078322de18f249142cde05cb3926ee4c19da0a9aba",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -843,7 +843,7 @@
       "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
       "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
       "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "0ec52284d2e64645a46f916fd3b5bf3dd8326e280851c8bb1759fb798df0fcda",
+      "target_sha256": "ddf806c98ddbb1baf2dd6e477ea1a27029f2a9bdac5eedacf14d8e29492828b3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -1689,7 +1689,7 @@
       "source_path": "skills/domains/academic-algorithms-data-structures/SKILL.md",
       "source_sha256": "4095bea9afdc697cc5118932e435e35d9b695c7b36407e84a86d0c8a181da929",
       "target_path": "knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md",
-      "target_sha256": "ced9ad986a28472be6c5711de3f88919eca70884b7c9bffa0ecb70bf66865ecd",
+      "target_sha256": "2313bb4ab67bf5a118ee36b16c62c57c4ed23801c663b3bb66836c7ff5ba1fde",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3322,7 +3322,7 @@
       "source_path": "skills/domains/data-science-advanced-math/SKILL.md",
       "source_sha256": "4cb4a784958025cbf2e33bcc49bad1a7dee970ce400582f4a384be9b376fbf5f",
       "target_path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
-      "target_sha256": "e7d106b578d9ea31d762cd161d2565910b6e02aff3759f64e56c11f47a2faf1b",
+      "target_sha256": "0abf0a1e23103ec00d2633f0bd6d55033810707d8802e26ebf9677c4e38f0b34",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4864,7 +4864,7 @@
       "source_path": "skills/engineering-practices/empirical-software-design/SKILL.md",
       "source_sha256": "da38890dc957e67c901fc68cc080b43560093b125bdaf0803a4220f7fce2f2e7",
       "target_path": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
-      "target_sha256": "2a7a5c7594f8b9a14fe5a8595b7680007563300249a39aaf227792d3e1bdd790",
+      "target_sha256": "2addd14a5b6a82ca935defedb300d28ebb8385a6d802fdf19bd5d70c33cf30ca",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -7355,7 +7355,7 @@
       "source_path": "skills/languages/lang-cpp/SKILL.md",
       "source_sha256": "6a499d74f46f77ddb61ef8c7bdbb98d09502a4bde238f5b24bb609f5181c76fb",
       "target_path": "knowledge/skills/languages/lang-cpp/SKILL.md",
-      "target_sha256": "d00d5b156492d8c73243e16c2d2d79a5a656de2d723fe9859398e3f998a539a9",
+      "target_sha256": "ae4db27cbf7cc88d85110539d7828645ec5305d569e96742ee954a7ac3fc1fbc",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16444,9 +16444,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md",
-      "source_sha256": "7b1dd2fbf2d0d456385fb10c3585947e6a45c5da9d101c091362a1f5c603416f",
+      "source_sha256": "b88187c65a994963a2283a7dc7500515248a78fa4d0ea90d19e2d5fe87093e2c",
       "target_path": "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md",
-      "target_sha256": "7b1dd2fbf2d0d456385fb10c3585947e6a45c5da9d101c091362a1f5c603416f",
+      "target_sha256": "b88187c65a994963a2283a7dc7500515248a78fa4d0ea90d19e2d5fe87093e2c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17969,6 +17969,261 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-26T23:17:40Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
+      "source_sha256": "f33c453a25814800ac61e374be279b060ca330ca426859b3bfe0ca25c8599411",
+      "target_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
+      "target_sha256": "f33c453a25814800ac61e374be279b060ca330ca426859b3bfe0ca25c8599411",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "source_sha256": "1a12679880a4fda91bd71628e08ee58f22366ed1ca6545577216112c61f16d8e",
+      "target_path": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "target_sha256": "1a12679880a4fda91bd71628e08ee58f22366ed1ca6545577216112c61f16d8e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+      "source_sha256": "27d48bc1c6c16a4ec113f91520722ac0525e722b92daad1a44e45e949c232a2a",
+      "target_path": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+      "target_sha256": "27d48bc1c6c16a4ec113f91520722ac0525e722b92daad1a44e45e949c232a2a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/high-performance-java-persistence/SKILL.md",
+      "source_sha256": "925ae4eed85e394b573a9c3c9c9b4964bedeb7786c57636c8c88c7e141cf1423",
+      "target_path": "knowledge/skills/data/high-performance-java-persistence/SKILL.md",
+      "target_sha256": "925ae4eed85e394b573a9c3c9c9b4964bedeb7786c57636c8c88c7e141cf1423",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/python-data-science/SKILL.md",
+      "source_sha256": "96ccd32adeea1830fdf65190394bafdec5f11c17a2f85cf5bb7bcc362a7c06ac",
+      "target_path": "knowledge/skills/data/python-data-science/SKILL.md",
+      "target_sha256": "96ccd32adeea1830fdf65190394bafdec5f11c17a2f85cf5bb7bcc362a7c06ac",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+      "source_sha256": "c5de7c7edf36666002de8da6c0c16a7f0a235a24ece1a5dd26923c90b4509fbb",
+      "target_path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+      "target_sha256": "c5de7c7edf36666002de8da6c0c16a7f0a235a24ece1a5dd26923c90b4509fbb",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
+      "source_sha256": "b4947b5084b002e3f3079679e4cc53ac64ff92c98d2fc28c41f9bd2c4396ee54",
+      "target_path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
+      "target_sha256": "b4947b5084b002e3f3079679e4cc53ac64ff92c98d2fc28c41f9bd2c4396ee54",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
+      "source_sha256": "5a46f43ac64a0ec74829bb9bd6f0c5487fe627213db8b53dfb8fcd6fd684b6c4",
+      "target_path": "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
+      "target_sha256": "5a46f43ac64a0ec74829bb9bd6f0c5487fe627213db8b53dfb8fcd6fd684b6c4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
+      "source_sha256": "40637aa9b07bd71659c372eecb5283a859b40da1e14f00fb516973a43b4843f7",
+      "target_path": "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
+      "target_sha256": "40637aa9b07bd71659c372eecb5283a859b40da1e14f00fb516973a43b4843f7",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/api-design/SKILL.md",
+      "source_sha256": "5e6fc70de3bb6bfc3bfa00e8b8a25069945285c8b42c82c04fd54e25c6bb11ba",
+      "target_path": "knowledge/skills/engineering/practices/api-design/SKILL.md",
+      "target_sha256": "5e6fc70de3bb6bfc3bfa00e8b8a25069945285c8b42c82c04fd54e25c6bb11ba",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+      "source_sha256": "6820adce5aa4ce2cbdb94aa3c186a8c5c9f4098b3bd3d8762ba8b417863e6e16",
+      "target_path": "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+      "target_sha256": "6820adce5aa4ce2cbdb94aa3c186a8c5c9f4098b3bd3d8762ba8b417863e6e16",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+      "source_sha256": "4f85b61e4d2a435490ffa93c79ad13e213c1c9b76901e55c72cf86b5e6664bc0",
+      "target_path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+      "target_sha256": "4f85b61e4d2a435490ffa93c79ad13e213c1c9b76901e55c72cf86b5e6664bc0",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+      "source_sha256": "abe3f8c7eb96aa425a1613053340a5a57184ede15e33460ba4de0f5b21a12d17",
+      "target_path": "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+      "target_sha256": "abe3f8c7eb96aa425a1613053340a5a57184ede15e33460ba4de0f5b21a12d17",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/flow-architectures/SKILL.md",
+      "source_sha256": "4695bf5f2fbc58d3f8c3fbb5495449610ee5fb9b0fa73ff84542f26408fd69e8",
+      "target_path": "knowledge/skills/engineering/practices/flow-architectures/SKILL.md",
+      "target_sha256": "4695bf5f2fbc58d3f8c3fbb5495449610ee5fb9b0fa73ff84542f26408fd69e8",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md",
+      "source_sha256": "5ffe70b787fcf71da8c414084c6cccdcb46b907d955ff7f125bdde86bf47b09f",
+      "target_path": "knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md",
+      "target_sha256": "5ffe70b787fcf71da8c414084c6cccdcb46b907d955ff7f125bdde86bf47b09f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+      "source_sha256": "9210a852f7a80995404022708bd7db192e7b53ce5eb84f5d328a2e38b1150259",
+      "target_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+      "target_sha256": "9210a852f7a80995404022708bd7db192e7b53ce5eb84f5d328a2e38b1150259",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/frameworks/framework-qt6/SKILL.md",
+      "source_sha256": "bb1a1ba71885b9484d5f39bacfd32be60f49d79d4d0093c59d77efef2443de2b",
+      "target_path": "knowledge/skills/frameworks/framework-qt6/SKILL.md",
+      "target_sha256": "bb1a1ba71885b9484d5f39bacfd32be60f49d79d4d0093c59d77efef2443de2b",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-27T05:32:24Z"
     }
   ]
 }

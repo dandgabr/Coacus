@@ -82,7 +82,11 @@
         "knowledge/skills/languages/lang-typescript/SKILL.md",
         "knowledge/skills/roles/backend-developer/SKILL.md",
         "knowledge/skills/roles/dba-database-administrator/SKILL.md",
-        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
+        "knowledge/skills/engineering/practices/api-design/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+        "knowledge/skills/data/high-performance-java-persistence/SKILL.md"
       ],
       "triggers": [
         "api",
@@ -524,7 +528,12 @@
         "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
         "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/data/python-data-science/SKILL.md",
+        "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+        "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
+        "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
+        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md"
       ],
       "triggers": [
         "airflow",
@@ -560,6 +569,51 @@
         "kafka",
         "lakehouse",
         "streaming"
+      ]
+    },
+    {
+      "name": "data-scientist",
+      "category": "data-cloud-devops",
+      "description": "Senior data scientist who turns data into decisions: exploratory analysis and statistics, feature engineering, supervised and unsupervised modeling with scikit-learn, model evaluation and explainability, and clear communication of results. Applies Python data science, applied machine learning, explainable AI and distributed scaling.",
+      "skills": [
+        "knowledge/skills/data/python-data-science/SKILL.md",
+        "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+        "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
+        "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
+        "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "ab testing",
+        "analise de dados",
+        "analise exploratoria",
+        "aprendizado de maquina",
+        "bootstrap",
+        "ciencia de dados",
+        "cientista de dados",
+        "classificacao",
+        "clustering",
+        "cross-validation",
+        "data science",
+        "data scientist",
+        "eda",
+        "estatistica",
+        "explicabilidade",
+        "feature engineering",
+        "jupyter notebook",
+        "lime",
+        "machine learning",
+        "modelo preditivo",
+        "numpy",
+        "pandas",
+        "regressao",
+        "scikit-learn",
+        "shap",
+        "sklearn",
+        "statistics",
+        "teste a/b"
       ]
     },
     {
@@ -1032,7 +1086,10 @@
         "knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md",
         "knowledge/skills/frameworks/framework-spring-boot/SKILL.md",
         "knowledge/skills/languages/lang-java/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md"
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
+        "knowledge/skills/data/high-performance-java-persistence/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md"
       ],
       "triggers": [
         "enterprise java",
@@ -1722,7 +1779,13 @@
         "knowledge/skills/languages/lang-python/SKILL.md",
         "knowledge/skills/languages/lang-rust/SKILL.md",
         "knowledge/skills/languages/lang-typescript/SKILL.md",
-        "knowledge/skills/roles/software-architect/SKILL.md"
+        "knowledge/skills/roles/software-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/api-design/SKILL.md",
+        "knowledge/skills/engineering/practices/flow-architectures/SKILL.md",
+        "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md"
       ],
       "triggers": [
         "adr",
@@ -1855,6 +1918,7 @@
         "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/roles/product-owner/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
         "knowledge/skills/security/grc/security-privacy/SKILL.md"
       ],
       "triggers": [
