@@ -447,9 +447,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "agents/cybersecurity/security-architect/AGENT.md",
-      "source_sha256": "1271fb74006514f8ce9dd622b916547c9cb6a24f9f63b3ec9dbfa55bab27e7f9",
-      "target_path": "knowledge/agents/cybersecurity/security-architect/agent.source.md",
-      "target_sha256": "1271fb74006514f8ce9dd622b916547c9cb6a24f9f63b3ec9dbfa55bab27e7f9",
+      "source_sha256": "c68675c96cf4ef541886e361880f86199fc0af2b28e1431f33aaf8fa50ea844b",
+      "target_path": "knowledge/agents/architecture/security-architect/agent.source.md",
+      "target_sha256": "c68675c96cf4ef541886e361880f86199fc0af2b28e1431f33aaf8fa50ea844b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

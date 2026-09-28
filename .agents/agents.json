@@ -85,6 +85,9 @@
       "path": "knowledge/agents/architecture/platform-architect"
     },
     {
+      "path": "knowledge/agents/architecture/security-architect"
+    },
+    {
       "path": "knowledge/agents/architecture/solution-architect"
     },
     {
@@ -158,9 +161,6 @@
     },
     {
       "path": "knowledge/agents/cybersecurity/reverse-engineer-agent"
-    },
-    {
-      "path": "knowledge/agents/cybersecurity/security-architect"
     },
     {
       "path": "knowledge/agents/cybersecurity/security-specialist"

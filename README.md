@@ -122,7 +122,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Asset | Count | Breakdown |
 |---|---|---|
 | Skills | 351 | `security` 127, `domains` 80, `roles` 23, `languages` 20, `mapping` 15, `frameworks` 15, `engineering` 25, `data` 16, `infrastructure` 9, `platforms` 7, `architecture` 14 |
-| Agents | 92 | `academic-sciences` 17, `software-engineering` 16, `cybersecurity` 22, `specialized-domains` 7, `data-cloud-devops` 8, `research-discovery` 4, `core-orchestration` 4, `architecture` 14 |
+| Agents | 92 | `academic-sciences` 17, `software-engineering` 16, `cybersecurity` 21, `specialized-domains` 7, `data-cloud-devops` 8, `research-discovery` 4, `core-orchestration` 4, `architecture` 15 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
 | Catalog | 366 skill entries | 351 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |

@@ -30,6 +30,8 @@ instruction: >
   This agent operates using the guidelines and technical standards established in the following skills:
 
   - [security-architect-sabsa](knowledge/skills/security/operations/security-architect-sabsa/SKILL.md)
+  - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
+  - [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
   - [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
   - [secure-by-design](knowledge/skills/security/operations/secure-by-design/SKILL.md)
   - [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
@@ -48,7 +50,7 @@ instruction: >
   Load this `AGENT.md` file directly as the session system prompt or persona instruction:
   ```bash
   # Generic example via a CLI harness:
-  opencode run --system-prompt agents/cybersecurity/security-architect/AGENT.md
+  opencode run --system-prompt agents/architecture/security-architect/AGENT.md
   ```
 
   ### 2. Google Antigravity / ADK 2.0
@@ -59,6 +61,10 @@ instruction: >
 tools:
   - type: skill_integration
     path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/architecture/enterprise/domain-architect/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md
   - type: skill_integration

@@ -6,6 +6,8 @@ Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, t
 
 <!-- coacus:generated:skills -->
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
+- [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
+- [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
@@ -45,6 +47,8 @@ When acting, consult and rigorously follow the associated skills. Every assessme
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [security-architect-sabsa](../../../../skills/security/operations/security-architect-sabsa/SKILL.md)
+- [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
+- [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [security-architecture-patterns](../../../../skills/security/operations/security-architecture-patterns/SKILL.md)
 - [secure-by-design](../../../../skills/security/operations/secure-by-design/SKILL.md)
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
@@ -63,7 +67,7 @@ This agent operates using the guidelines and technical standards established in 
 Load this `AGENT.md` file directly as the session system prompt or persona instruction:
 ```bash
 # Generic example via a CLI harness:
-opencode run --system-prompt agents/cybersecurity/security-architect/AGENT.md
+opencode run --system-prompt agents/architecture/security-architect/AGENT.md
 ```
 
 ### 2. Google Antigravity / ADK 2.0

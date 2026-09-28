@@ -702,7 +702,7 @@ class TestAgentFiltering(unittest.TestCase):
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
         add_agent(self.root, "knowledge/agents/cybersecurity/pentester-agent")
-        add_agent(self.root, "knowledge/agents/cybersecurity/security-architect")
+        add_agent(self.root, "knowledge/agents/architecture/security-architect")
         add_agent(self.root, "knowledge/agents/core-orchestration/general")
         add_agent(self.root, "knowledge/agents/software-engineering/backend-developer")
 
@@ -724,7 +724,12 @@ class TestAgentFiltering(unittest.TestCase):
             a.parent.name
             for a in coacus_install.discover_agents(self.root, only=["cybersecurity"])
         }
-        self.assertEqual(names, {"pentester-agent", "security-architect"})
+        self.assertEqual(names, {"pentester-agent"})
+        architecture = {
+            a.parent.name
+            for a in coacus_install.discover_agents(self.root, only=["architecture"])
+        }
+        self.assertEqual(architecture, {"security-architect"})
 
     def test_agents_filter_accepts_globs(self) -> None:
         names = {
@@ -750,9 +755,7 @@ class TestAgentFiltering(unittest.TestCase):
         coacus_install.install(
             "opencode", self.root, self.config, dry_run=False, only=["cybersecurity"]
         )
-        self.assertEqual(
-            self.installed_agents(), {"pentester-agent", "security-architect"}
-        )
+        self.assertEqual(self.installed_agents(), {"pentester-agent"})
 
     def test_agents_glob_keeps_skills_intact(self) -> None:
         coacus_install.install(

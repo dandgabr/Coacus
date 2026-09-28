@@ -82,7 +82,7 @@
 | quantum-computing-specialist | academic-sciences | [knowledge/agents/academic-sciences/quantum-computing-specialist/agent.source.md](../knowledge/agents/academic-sciences/quantum-computing-specialist/agent.source.md) |
 | reverse-engineer-agent | cybersecurity | [knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md](../knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md) |
 | scientific-researcher | research-discovery | [knowledge/agents/research-discovery/scientific-researcher/agent.source.md](../knowledge/agents/research-discovery/scientific-researcher/agent.source.md) |
-| security-architect | cybersecurity | [knowledge/agents/cybersecurity/security-architect/agent.source.md](../knowledge/agents/cybersecurity/security-architect/agent.source.md) |
+| security-architect | architecture | [knowledge/agents/architecture/security-architect/agent.source.md](../knowledge/agents/architecture/security-architect/agent.source.md) |
 | security-specialist | cybersecurity | [knowledge/agents/cybersecurity/security-specialist/agent.source.md](../knowledge/agents/cybersecurity/security-specialist/agent.source.md) |
 | self | core-orchestration | [knowledge/agents/core-orchestration/self/agent.source.md](../knowledge/agents/core-orchestration/self/agent.source.md) |
 | skill-creator | specialized-domains | [knowledge/agents/specialized-domains/skill-creator/agent.source.md](../knowledge/agents/specialized-domains/skill-creator/agent.source.md) |
