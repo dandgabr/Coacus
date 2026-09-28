@@ -311,9 +311,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
-      "source_sha256": "03afe96832cde3666f4597e2f926ccc9ddf918459d5abf771d1eeefa5818f40a",
+      "source_sha256": "b81af38edca3a05686745b93e5eefc61607c5cd548d55910fcf8555bc8b4b0f5",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "03afe96832cde3666f4597e2f926ccc9ddf918459d5abf771d1eeefa5818f40a",
+      "target_sha256": "b81af38edca3a05686745b93e5eefc61607c5cd548d55910fcf8555bc8b4b0f5",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18949,9 +18949,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
-      "source_sha256": "b763c308aba94970b839281be91c9f6dd21afbfeb9b996837011354141de30cc",
+      "source_sha256": "527fcc62a90ea2011f915f3b6e26caa2a1e0e6eeac08272fde6bbf76317aebb8",
       "target_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
-      "target_sha256": "b763c308aba94970b839281be91c9f6dd21afbfeb9b996837011354141de30cc",
+      "target_sha256": "527fcc62a90ea2011f915f3b6e26caa2a1e0e6eeac08272fde6bbf76317aebb8",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18979,9 +18979,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "source_sha256": "755ef2e9f69910860acb21de40af84ffa74e50c093cf3be6fea7bb272eb5163c",
+      "source_sha256": "098e143d7f574593c9df1fa1dea5217a581364327eeaa34ba8c649ac666a1454",
       "target_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "target_sha256": "755ef2e9f69910860acb21de40af84ffa74e50c093cf3be6fea7bb272eb5163c",
+      "target_sha256": "098e143d7f574593c9df1fa1dea5217a581364327eeaa34ba8c649ac666a1454",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18994,9 +18994,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/api-architect/agent.source.md",
-      "source_sha256": "742e22e451d3cf86918072913767a7ccd9456d97c997c46a6eb636e0be3087b4",
+      "source_sha256": "c612f490b9bfb8927a810a6a76b68b9d9a6297444f992f659283f21e5707dd70",
       "target_path": "knowledge/agents/architecture/api-architect/agent.source.md",
-      "target_sha256": "742e22e451d3cf86918072913767a7ccd9456d97c997c46a6eb636e0be3087b4",
+      "target_sha256": "c612f490b9bfb8927a810a6a76b68b9d9a6297444f992f659283f21e5707dd70",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19009,9 +19009,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/application-architect/agent.source.md",
-      "source_sha256": "549d38b24af9c844b025cf852c13fae365e318b8102a76ac527b01ef67373d35",
+      "source_sha256": "757a66e272a66e20c20b5f81fe848e4ee46e546e591b1ef8cc6829eaa4866a7a",
       "target_path": "knowledge/agents/architecture/application-architect/agent.source.md",
-      "target_sha256": "549d38b24af9c844b025cf852c13fae365e318b8102a76ac527b01ef67373d35",
+      "target_sha256": "757a66e272a66e20c20b5f81fe848e4ee46e546e591b1ef8cc6829eaa4866a7a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19024,9 +19024,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/business-architect/agent.source.md",
-      "source_sha256": "aaa19b301b5d7f19bb6b991a5d22acccca6ab3433804d999bf151f256b92bb8e",
+      "source_sha256": "258dde100cc72fd2a7f4e9e2a5da0db0d8cf4d71e63c2a7d513058e671b79811",
       "target_path": "knowledge/agents/architecture/business-architect/agent.source.md",
-      "target_sha256": "aaa19b301b5d7f19bb6b991a5d22acccca6ab3433804d999bf151f256b92bb8e",
+      "target_sha256": "258dde100cc72fd2a7f4e9e2a5da0db0d8cf4d71e63c2a7d513058e671b79811",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19039,9 +19039,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/data-architect/agent.source.md",
-      "source_sha256": "1c667de5f01147251b5c2d9601416de992c4d10abfeaf983d581f27812e2714f",
+      "source_sha256": "f5af3382f96680bab0affcd96dca4431812c93d05dd152cbf4d35e87df99750a",
       "target_path": "knowledge/agents/architecture/data-architect/agent.source.md",
-      "target_sha256": "1c667de5f01147251b5c2d9601416de992c4d10abfeaf983d581f27812e2714f",
+      "target_sha256": "f5af3382f96680bab0affcd96dca4431812c93d05dd152cbf4d35e87df99750a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19054,9 +19054,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
-      "source_sha256": "3ae2ff80ae6ef6ec3ecf5488a8caac12a7ae6f5f9c68d0d0df9cb913dcfb0d42",
+      "source_sha256": "8aec2ef6e2dce1cdf1d21ca208d369b2a68e545ac0a9cc07c2b8adb76ece2135",
       "target_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
-      "target_sha256": "3ae2ff80ae6ef6ec3ecf5488a8caac12a7ae6f5f9c68d0d0df9cb913dcfb0d42",
+      "target_sha256": "8aec2ef6e2dce1cdf1d21ca208d369b2a68e545ac0a9cc07c2b8adb76ece2135",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19069,9 +19069,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "source_sha256": "647394d9cb8bba70931d4048305263e1d59a85cca74b9e0bc621ce03c5ca41af",
+      "source_sha256": "3cc793f2724b69af643a6f83cfdb52531ec8fd23a832de4305afdb2a89084532",
       "target_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "target_sha256": "647394d9cb8bba70931d4048305263e1d59a85cca74b9e0bc621ce03c5ca41af",
+      "target_sha256": "3cc793f2724b69af643a6f83cfdb52531ec8fd23a832de4305afdb2a89084532",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19084,9 +19084,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "source_sha256": "6a837c48e14c3d6504298f2dad12fbc2c5b2375296be56b0f04cf95a2c53b274",
+      "source_sha256": "5ede674e82cc795e0244307fd74f048aa5c936d83cd6d96ebcd3c204270893c3",
       "target_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "target_sha256": "6a837c48e14c3d6504298f2dad12fbc2c5b2375296be56b0f04cf95a2c53b274",
+      "target_sha256": "5ede674e82cc795e0244307fd74f048aa5c936d83cd6d96ebcd3c204270893c3",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19099,9 +19099,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/network-architect/agent.source.md",
-      "source_sha256": "64bdb8ac16b9286766e269b2ee315016e0a556bbfd988d921a2dbc215262135e",
+      "source_sha256": "9c39bc1c9e211ee5a34b854c788042fbfba2f897d12d69150d1aad7c59af0eb4",
       "target_path": "knowledge/agents/architecture/network-architect/agent.source.md",
-      "target_sha256": "64bdb8ac16b9286766e269b2ee315016e0a556bbfd988d921a2dbc215262135e",
+      "target_sha256": "9c39bc1c9e211ee5a34b854c788042fbfba2f897d12d69150d1aad7c59af0eb4",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19114,9 +19114,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "source_sha256": "7c8435ab3a092b415549a6eecf90ad4414c1d64432c42510c56eab6fd2b31301",
+      "source_sha256": "83a644de2cc0571431a5c1ddb9c131e0ddabc0f059f70e6779066926d3a040f3",
       "target_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "target_sha256": "7c8435ab3a092b415549a6eecf90ad4414c1d64432c42510c56eab6fd2b31301",
+      "target_sha256": "83a644de2cc0571431a5c1ddb9c131e0ddabc0f059f70e6779066926d3a040f3",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19129,9 +19129,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "source_sha256": "5a3932d1fe8d3f7309c9eaad1fcf42e0fa0e059b99a665e1e20888bfe6eda984",
+      "source_sha256": "2dfec0a5df1fec25973948f79dc4b4a33abe24f86b2bfcaee9b629cd12064a93",
       "target_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "target_sha256": "5a3932d1fe8d3f7309c9eaad1fcf42e0fa0e059b99a665e1e20888bfe6eda984",
+      "target_sha256": "2dfec0a5df1fec25973948f79dc4b4a33abe24f86b2bfcaee9b629cd12064a93",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19144,9 +19144,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
-      "source_sha256": "3260362344fd9274d34e957a3442c255c89c5b9ceb25a01eecbf9c0eba984104",
+      "source_sha256": "66d518fac7c6156855279ed95bc1f951a3507d9e9ee0bad120ee09215d9db6e7",
       "target_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
-      "target_sha256": "3260362344fd9274d34e957a3442c255c89c5b9ceb25a01eecbf9c0eba984104",
+      "target_sha256": "66d518fac7c6156855279ed95bc1f951a3507d9e9ee0bad120ee09215d9db6e7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19159,9 +19159,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
-      "source_sha256": "7e9ab92b952821007d5bfe53c8e266df376a771c073dfe0b9c9c2fe131e0bcf3",
+      "source_sha256": "bd17feecf50d22f865687cd2bce65aade98b7bfc8368e3e5b81e1670c01f1f41",
       "target_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
-      "target_sha256": "7e9ab92b952821007d5bfe53c8e266df376a771c073dfe0b9c9c2fe131e0bcf3",
+      "target_sha256": "bd17feecf50d22f865687cd2bce65aade98b7bfc8368e3e5b81e1670c01f1f41",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

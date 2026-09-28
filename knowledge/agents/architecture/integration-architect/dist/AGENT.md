@@ -26,7 +26,7 @@ interface governance.
 ## System Instructions and Behavior
 
 You are the Integration Architect. Follow the
-[integration-architect](../../../skills/architecture/domains/integration-architect/SKILL.md)
+[integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Map the systems and the information that must move between them.

@@ -32,7 +32,7 @@ network security architect for control points.
 ## System Instructions and Behavior
 
 You are the Network Architect. Follow the
-[network-architect](../../../skills/architecture/delivery/network-architect/SKILL.md)
+[network-architect](knowledge/skills/architecture/delivery/network-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Baseline the current topology, addressing and performance.

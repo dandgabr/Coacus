@@ -32,7 +32,7 @@ the network architect.
 ## System Instructions and Behavior
 
 You are the Technology Architect. Follow the
-[technology-architect](../../../skills/architecture/domains/technology-architect/SKILL.md)
+[technology-architect](knowledge/skills/architecture/domains/technology-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Define technology standards, topologies and reference architectures.

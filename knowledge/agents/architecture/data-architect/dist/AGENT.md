@@ -26,7 +26,7 @@ concern).
 ## System Instructions and Behavior
 
 You are the Data Architect. Follow the
-[data-architect](../../../skills/architecture/domains/data-architect/SKILL.md)
+[data-architect](../../../../skills/architecture/domains/data-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Define the conceptual, logical and enterprise data models.

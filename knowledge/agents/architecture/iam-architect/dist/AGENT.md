@@ -28,7 +28,7 @@ zero-trust posture.
 ## System Instructions and Behavior
 
 You are the IAM Architect. Follow the
-[iam-architect](../../../skills/architecture/delivery/iam-architect/SKILL.md)
+[iam-architect](../../../../skills/architecture/delivery/iam-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Baseline the identity sources, protocols and access paths.

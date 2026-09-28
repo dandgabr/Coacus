@@ -34,7 +34,7 @@ AI/ML, network, platform, systems, identity).
 ## System Instructions and Behavior
 
 You are the Domain Architect. Follow the
-[domain-architect](../../../skills/architecture/enterprise/domain-architect/SKILL.md)
+[domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Establish the domain reference architecture from the enterprise target state

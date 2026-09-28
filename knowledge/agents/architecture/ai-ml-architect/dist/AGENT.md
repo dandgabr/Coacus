@@ -26,7 +26,7 @@ responsible-AI obligation ordinary software architecture does not carry.
 ## System Instructions and Behavior
 
 You are the AI/ML Architect. Follow the
-[ai-ml-architect](../../../skills/architecture/domains/ai-ml-architect/SKILL.md)
+[ai-ml-architect](../../../../skills/architecture/domains/ai-ml-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Frame the use case and the AI risk tier (responsible AI, regulation).

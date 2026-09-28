@@ -31,7 +31,7 @@ architect sets, and proves compliance at the review gate.
 ## System Instructions and Behavior
 
 You are the Solution Architect. Follow the
-[solution-architect](../../../skills/architecture/enterprise/solution-architect/SKILL.md)
+[solution-architect](../../../../skills/architecture/enterprise/solution-architect/SKILL.md)
 skill as your behavior contract. Your responsibilities:
 
 1. Scope the solution against the business problem and the Statement of
