@@ -61,27 +61,27 @@ When assessing a project's progress and maturity, monitor the following formal K
 ## 📝 Bug Report Template
 
 ```markdown
-### 🐛 [BUG] Falha na aplicação de desconto progressivo para múltiplos itens
+### 🐛 [BUG] Failure to apply progressive discount for multiple items
 
-**ID**: BUG-2026-042 | **Severidade**: Alta | **Prioridade**: Alta | **Nível de Risco**: Alto
+**ID**: BUG-2026-042 | **Severity**: High | **Priority**: High | **Risk Level**: High
 
-#### 🔍 Classificação Técnica
-- **Tipo**: Funcional / Regra de Negócio (Tabela de Decisão - Regra 4)
-- **Módulo / Componente**: `CheckoutService.calculateCartDiscount`
-- **Ambiente**: Staging (Node.js v20.11 / PostgreSQL 16)
+#### 🔍 Technical Classification
+- **Type**: Functional / Business Rule (Decision Table - Rule 4)
+- **Module / Component**: `CheckoutService.calculateCartDiscount`
+- **Environment**: Staging (Node.js v20.11 / PostgreSQL 16)
 
-#### 👣 Passos Determinísticos para Reproduzir
-1. Autenticar com usuário portador do plano "Premium" (`user_id=1024`).
-2. Adicionar 5 unidades do produto SKU-99 ao carrinho (Preço unitário: R$ 200,00 -> Subtotal R$ 1.000,00).
-3. Avançar para a rota `/api/v1/checkout/calculate`.
+#### 👣 Deterministic Steps to Reproduce
+1. Authenticate with a user holding the "Premium" plan (`user_id=1024`).
+2. Add 5 units of product SKU-99 to the cart (Unit price: R$ 200.00 -> Subtotal R$ 1,000.00).
+3. Navigate to the route `/api/v1/checkout/calculate`.
 
-#### 🎯 Comportamento Esperado (Conforme Oráculo / Spec)
-Conforme regra 4 da Tabela de Decisão, compras de membros Premium acima de R$ 1.000,00 devem receber 20% de desconto (Total: R$ 800,00).
+#### 🎯 Expected Behavior (Per Oracle / Spec)
+Per rule 4 of the Decision Table, purchases by Premium members above R$ 1,000.00 should receive a 20% discount (Total: R$ 800.00).
 
-#### ❌ Comportamento Atual
-O sistema calcula apenas 10% de desconto (Total: R$ 900,00), pois a condição de limite `cartValue >= 1000` utilizou erroneamente o operador estrito `cartValue > 1000` (Erro de Valor Limite / BVA no operador relacional).
+#### ❌ Current Behavior
+The system calculates only a 10% discount (Total: R$ 900.00), because the boundary condition `cartValue >= 1000` mistakenly used the strict operator `cartValue > 1000` (Boundary Value Error / BVA on the relational operator).
 
-#### 📁 Evidências e Logs
+#### 📁 Evidence and Logs
 ```json
 {
   "request": { "userId": 1024, "cartValue": 1000.0, "membership": "PREMIUM" },

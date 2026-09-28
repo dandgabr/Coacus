@@ -25,13 +25,13 @@ This skill guides the AI to act as a **GCP IAM (Identity and Access Management) 
 Granting roles at higher nodes is inherited by all child resources without exception (there is no inheritance denial):
 
 ```text
-Organization (Empresa Domain)
-  ├── Folder: Producao
+Organization (Company Domain)
+  ├── Folder: Production
   │     ├── Project: prj-app-prod-01
   │     │     ├── GCS Bucket: bkt-dados-prod
   │     │     └── Compute Engine Instance: vm-app-01
   │     └── Project: prj-db-prod-01
-  └── Folder: Desenvolvimento
+  └── Folder: Development
         └── Project: prj-app-dev-01
 ```
 
@@ -86,10 +86,10 @@ Organization (Empresa Domain)
 - **Conditional IAM Bindings**:
   - Assignment of permissions that take effect only if expressions in **CEL (Common Expression Language)** are satisfied:
 ```text
-// Permissão válida apenas dentro do horário comercial (Fuso UTC)
+// Permission valid only during business hours (UTC timezone)
 request.time.getHours('UTC') >= 9 && request.time.getHours('UTC') <= 18
 
-// Permissão restrita a requisições originadas do intervalo de IP da VPN corporativa
+// Permission restricted to requests originating from the corporate VPN IP range
 resource.type == "storage.googleapis.com/Bucket" &&
 request.auth.access_levels["accessPolicies/12345/accessLevels/VpnAccess"]
 ```

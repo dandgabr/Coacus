@@ -45,15 +45,15 @@ class Point:
 def process_event(event: tuple | Point) -> str:
     match event:
         case Point(x=0, y=0):
-            return "Origem central"
+            return "Center origin"
         case Point(x=x, y=y) if x == y:
-            return f"Ponto na diagonal principal: {x}"
+            return f"Point on the main diagonal: {x}"
         case ("click", x, y):
-            return f"Clique no ponteiro: ({x}, {y})"
+            return f"Pointer click: ({x}, {y})"
         case ("key", str(k)) if len(k) == 1:
-            return f"Tecla pressionada: {k}"
+            return f"Key pressed: {k}"
         case _:
-            return "Evento desconhecido"
+            return "Unknown event"
 ```
 
 ### 4. Static Typing System and Generics (PEP 484, PEP 526 & PEP 695)
@@ -62,7 +62,7 @@ def process_event(event: tuple | Point) -> str:
   - Declare generics directly with the `type` keyword and bracketed parameters:
 
 ```python
-# Sintaxe PEP 695 (Python 3.12+)
+# PEP 695 syntax (Python 3.12+)
 type Result[T] = dict[str, T]
 
 class Repository[T]:
@@ -114,7 +114,7 @@ def execution_timer(task_name: str) -> Generator[None, None, None]:
         yield
     finally:
         elapsed = time.perf_counter() - start_time
-        logger.info(f"Tarefa '{task_name}' concluída em {elapsed:.4f}s")
+        logger.info(f"Task '{task_name}' completed in {elapsed:.4f}s")
 ```
 
 ### 2. Native Asyncio Application with Signal Handling
@@ -127,9 +127,9 @@ logger = logging.getLogger("worker")
 
 async def worker_task(task_id: int, semaphore: asyncio.Semaphore) -> None:
     async with semaphore:
-        logger.info(f"Iniciando task {task_id}")
+        logger.info(f"Starting task {task_id}")
         await asyncio.sleep(0.5)
-        logger.info(f"Concluída task {task_id}")
+        logger.info(f"Completed task {task_id}")
 
 async fn main() -> None:
     semaphore = asyncio.Semaphore(3)

@@ -46,16 +46,16 @@ $$\begin{bmatrix} \mathbf{V}_a \\ \mathbf{V}_b \\ \mathbf{V}_c \end{bmatrix} = \
 
 ### 2.2 Protection Philosophy and IEC 61850 Standard
 ```
-Principais Funções ANSI de Proteção:
-├── ANSI 50/51: Sobrecorrente Instantânea e Temporizada (Curvas IEC/IEEE)
-├── ANSI 50N/51N: Sobrecorrente de Neutro / Residual de Terra
-├── ANSI 21: Proteção de Distância Mho / Quadrilateral (Zonas Z1: 80-85%, Z2: 120%, Z3 reversa)
-├── ANSI 87: Proteção Diferencial Percentual (87T Transformadores com restrição harmônica 2ª/5ª, 87B Barramentos)
-└── ANSI 27/59: Subtensão e Sobretensão
+Main ANSI Protection Functions:
+├── ANSI 50/51: Instantaneous and Time-Delayed Overcurrent (IEC/IEEE Curves)
+├── ANSI 50N/51N: Neutral / Ground Residual Overcurrent
+├── ANSI 21: Mho / Quadrilateral Distance Protection (Zones Z1: 80-85%, Z2: 120%, Z3 reverse)
+├── ANSI 87: Percentage Differential Protection (87T Transformers with 2nd/5th harmonic restraint, 87B Busbars)
+└── ANSI 27/59: Undervoltage and Overvoltage
 
-Arquitetura de Subestações Digitais (IEC 61850):
-├── Process Bus: Tráfego de Sampled Values (SV - IEC 61850-9-2LE a 4800/4000 Hz) e GOOSE (mensagens de trip < 3 ms)
-└── Station Bus: Tráfego MMS para Sistemas SCADA e sincronização temporal IEEE 1588 PTP (Precision Time Protocol)
+Digital Substation Architecture (IEC 61850):
+├── Process Bus: Sampled Values traffic (SV - IEC 61850-9-2LE at 4800/4000 Hz) and GOOSE (trip messages < 3 ms)
+└── Station Bus: MMS traffic for SCADA Systems and time synchronization IEEE 1588 PTP (Precision Time Protocol)
 ```
 
 ---

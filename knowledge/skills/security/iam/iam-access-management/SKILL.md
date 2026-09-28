@@ -87,7 +87,7 @@ This skill guides the AI to act as a **Identity & Access Management (IAM)** and 
 
 - **OCI Policy Syntax**:
   ```text
-  Allow group <NomeDoGrupo> to <verbo> <tipo-de-recurso> in compartment <NomeDoCompartimento> where <condições>
+  Allow group <GroupName> to <verb> <resource-type> in compartment <CompartmentName> where <conditions>
   ```
 - **Control Verbs**: `inspect` (list), `read` (read metadata and content), `use` (work with existing resources), `manage` (full/creative control).
 - **Compartments and Domains**: Use logical isolation through compartments and identity domains integrated with IDCS.

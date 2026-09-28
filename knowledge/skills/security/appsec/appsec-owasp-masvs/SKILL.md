@@ -101,12 +101,12 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 fun getSecurePreferences(context: Context): SharedPreferences {
-    // Cria ou recupera a chave mestre protegida pelo Android KeyStore
+    // Creates or retrieves the master key protected by the Android KeyStore
     val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
 
-    // Inicializa o EncryptedSharedPreferences com criptografia de chaves e valores
+    // Initializes EncryptedSharedPreferences with key and value encryption
     return EncryptedSharedPreferences.create(
         context,
         "secure_app_prefs",
@@ -124,7 +124,7 @@ import Foundation
 import Security
 
 class PinnedURLSessionDelegate: NSObject, URLSessionDelegate {
-    // Hash SHA-256 da Chave Pública (SPKI) esperada
+    // SHA-256 hash of the expected Public Key (SPKI)
     let expectedPublicKeyHash = "d6w/NnE77d853w..."
 
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
@@ -134,9 +134,9 @@ class PinnedURLSessionDelegate: NSObject, URLSessionDelegate {
             return
         }
 
-        // Validação da cadeia TLS e comparação da Chave Pública
+        // TLS chain validation and Public Key comparison
         if SecTrustEvaluateWithError(serverTrust, nil) {
-            // Lógica de verificação do hash SPKI
+            // SPKI hash verification logic
             completionHandler(.useCredential, URLCredential(trust: serverTrust))
         } else {
             completionHandler(.cancelAuthenticationChallenge, nil)

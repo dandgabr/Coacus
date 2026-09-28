@@ -35,7 +35,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     const value = e.target.value;
     setInput(value);
     
-    // Atualização de baixa prioridade sem congelar a interface
+    // Low-priority update without freezing the interface
     startTransition(() => {
       onSearch(value);
     });
@@ -43,15 +43,15 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 
   return (
     <div className="search-container">
-      <label htmlFor={inputId}>Buscar Produtos:</label>
+      <label htmlFor={inputId}>Search Products:</label>
       <input
         id={inputId}
         type="text"
         value={input}
         onChange={handleChange}
-        placeholder="Digite para pesquisar..."
+        placeholder="Type to search..."
       />
-      {isPending && <span className="spinner">Atualizando resultados...</span>}
+      {isPending && <span className="spinner">Updating results...</span>}
     </div>
   );
 };

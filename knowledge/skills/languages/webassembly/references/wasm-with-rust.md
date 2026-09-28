@@ -88,7 +88,7 @@ pub struct Stats {
     pub moves: i32,
 }
 
-// no callback do jogo:
+// in the game callback:
 stats_updated(JsValue::from_serde(&stats).unwrap());
 ```
 
@@ -121,7 +121,7 @@ wasmi = "0.4"
 use wasmi::{ImportsBuilder, ModuleInstance, NopExternals, RuntimeValue};
 
 let module = wasmi::Module::from_buffer(buffer)?;
-// injeta host functions via ImportsBuilder; invoca exports e lê RuntimeValue
+// injects host functions via ImportsBuilder; invokes exports and reads RuntimeValue
 ```
 
 - **Host functions**: the host registers Rust functions that the module calls via imports — this is how modules do I/O (satisfying the host contract). A "mock" host that satisfies the same imports makes modules testable outside the real environment.

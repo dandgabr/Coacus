@@ -25,7 +25,7 @@ This skill guides the artificial intelligence to act as a **Payments and Financi
 ### 2. SPB (Brazilian Payment System) & Registrars
 - **STR (Reserve Transfer System)**: Real-time settlement system maintained by the BCB for interbank operations and TEDs (Available Electronic Transfer).
 - **Bank Boleto & CIP (Núclea)**:
-  - Mandatory registration of boletos in the CIP/Núclea or C3 database.
+  - Mandatory registration of Boletos in the CIP/Núclea or C3 database.
   - Real-time validation of the barcode / digitable line with retrieval of payer data and settlement discount.
 
 ---
@@ -57,19 +57,19 @@ An international XML/JSON standard that replaces legacy text formats and standar
 ### 1. The Card Transaction Flow (4-Party Cycle)
 
 ```text
-  Portador do Cartão  --->  Estabelecimento (POS / E-commerce)
-                                        |
-                                        v
-                                 Gateway / Subadquirente
-                                        |
-                                        v
-                                    Adquirente (Cielo, Rede, Stone, etc.)
-                                        |
-                                        v
-                                 Bandeira (Visa, Mastercard, Elo)
-                                        |
-                                        v
-                                   Banco Emissor
+  Cardholder  --->  Merchant (POS / E-commerce)
+                          |
+                          v
+                   Gateway / Sub-acquirer
+                          |
+                          v
+                      Acquirer (Cielo, Rede, Stone, etc.)
+                          |
+                          v
+                     Card Network (Visa, Mastercard, Elo)
+                          |
+                          v
+                     Issuing Bank
 ```
 
 ### 2. ISO 8583 Protocol (Card Financial Messaging)
@@ -93,7 +93,7 @@ An international XML/JSON standard that replaces legacy text formats and standar
 Guarantee that duplicate requests sent due to network failure never result in double debits:
 
 ```json
-// Header de requisição obrigatório na API de Pagamento
+// Mandatory request header in the Payment API
 HTTP/1.1 POST /v1/payments
 Idempotency-Key: ${IDEMPOTENCY_KEY}
 ```

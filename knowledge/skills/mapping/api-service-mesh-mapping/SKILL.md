@@ -15,24 +15,24 @@ Modern API governance centralizes service contracts in unified catalogs while mo
 
 ```mermaid
 flowchart TD
-    subgraph Development["Design & Código"]
-        OPENAPI["Especificação OpenAPI / Swagger (YAML/JSON)"]
-        GRPC_PROTO["Arquivos Protobuf (.proto)"]
+    subgraph Development["Design & Code"]
+        OPENAPI["OpenAPI / Swagger Specification (YAML/JSON)"]
+        GRPC_PROTO["Protobuf Files (.proto)"]
         GRAPHQL_SCHEMA["GraphQL Schema (.graphql)"]
     end
 
-    subgraph DeveloperPortals["Catálogo de Software & Documentação"]
+    subgraph DeveloperPortals["Software Catalog & Documentation"]
         BACKSTAGE["Spotify Backstage (Software Catalog & System Model)"]
         REDOC["Redoc & Swagger UI (API Specs)"]
     end
 
-    subgraph Gateways["API Gateways & Roteamento L7"]
-        KONG["Kong Gateway (Plugins, Rotas & Consumidores)"]
+    subgraph Gateways["API Gateways & L7 Routing"]
+        KONG["Kong Gateway (Plugins, Routes & Consumers)"]
         APISIX["Apache APISIX (Dynamic Route Matching)"]
         GRAVITEE["Gravitee.io / WSO2 API Manager"]
     end
 
-    subgraph ServiceMeshMesh["Malha de Serviços & Frameworks"]
+    subgraph ServiceMeshMesh["Service Mesh & Frameworks"]
         KIALI["Kiali (Istio/Linkerd Topology & mTLS Graph)"]
         WEAVER["Service Weaver (Distributed App Framework)"]
     end
@@ -55,7 +55,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: order-service
-  description: Serviço central de processamento de pedidos
+  description: Core order-processing service
   tags:
     - java
     - spring-boot
@@ -78,7 +78,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: order-api-v1
-  description: API REST de gerenciamento de pedidos
+  description: REST API for order management
 spec:
   type: openapi
   lifecycle: production
@@ -92,7 +92,7 @@ spec:
 - **OpenAPI 3.1**: The industry-standard specification for describing HTTP/REST contracts, enabling client, server, and contract test generation.
 - **Redoc**: A high-performance rendering engine for responsive static documentation generated from OpenAPI specifications.
 ```bash
-# Gerar documentação HTML autônoma do OpenAPI
+# Generate standalone HTML documentation from OpenAPI
 npx @redocly/cli build-docs openapi.yaml -o api-docs.html
 ```
 

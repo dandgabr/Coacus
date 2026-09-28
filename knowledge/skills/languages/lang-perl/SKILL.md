@@ -36,7 +36,7 @@ While working under this skill, apply the following patterns strictly:
 - **Lexical Filehandles and 3-Argument `open`**: Always use the three-argument form of the `open` function combined with `my`-scoped variables:
   ```perl
   open(my $fh, '<:encoding(UTF-8)', $filename)
-      or die "Não foi possível abrir '$filename': $!";
+      or die "Could not open '$filename': $!";
   ```
 - **Using `autodie` or Error Handling**: Use `use autodie;` in automation scripts to avoid repetitive `or die` checks on file and system operations.
 
@@ -63,11 +63,11 @@ While working under this skill, apply the following patterns strictly:
 - **`/x` Modifier (Extended Regex)**: Write complex regexes across multiple commented lines using the `/x` modifier:
   ```perl
   if ($input =~ /
-      ^                     # Início da linha
-      (?<area_code> \d{3} ) # Código de área (3 dígitos)
+      ^                     # Start of line
+      (?<area_code> \d{3} ) # Area code (3 digits)
       -
-      (?<number>    \d{7} ) # Número principal (7 dígitos)
-      $                     # Fim da linha
+      (?<number>    \d{7} ) # Main number (7 digits)
+      $                     # End of line
   /x) {
       my $area = $+{area_code};
   }
@@ -86,7 +86,7 @@ use autodie;
 use Path::Tiny;
 use Getopt::Long qw(GetOptions);
 
-# Declaração de Opções
+# Option Declaration
 my $input_dir  = '.';
 my $output_file = 'report.csv';
 my $verbose     = 0;
@@ -95,10 +95,10 @@ GetOptions(
     'dir|d=s'    => \$input_dir,
     'output|o=s' => \$output_file,
     'verbose|v'  => \$verbose,
-) or die("Erro nos argumentos passados da linha de comando.\n");
+) or die("Error in the arguments passed on the command line.\n");
 
 sub process_log_file ($file_path) {
-    say "Processando: $file_path" if $verbose;
+    say "Processing: $file_path" if $verbose;
     
     my $file = path($file_path);
     my @lines = $file->lines_utf8({ chomp => 1 });
@@ -119,7 +119,7 @@ sub process_log_file ($file_path) {
 
 sub main () {
     my $dir = path($input_dir);
-    die "Diretório inexistente: $input_dir\n" unless $dir->is_dir;
+    die "Nonexistent directory: $input_dir\n" unless $dir->is_dir;
 
     my @results;
     my $iterator = $dir->iterator({ recurse => 0 });
@@ -129,7 +129,7 @@ sub main () {
         push @results, process_log_file($path);
     }
 
-    # Gravando relatório CSV de saída
+    # Writing the output CSV report
     my $out_fh = path($output_file)->openw_utf8;
     $out_fh->say("Filename,ErrorCount,SizeBytes");
 
@@ -137,7 +137,7 @@ sub main () {
         $out_fh->say(sprintf("%s,%d,%d", $res->{filename}, $res->{errors}, $res->{size}));
     }
 
-    say "Relatório gerado com sucesso em: $output_file";
+    say "Report successfully generated at: $output_file";
 }
 
 main();
@@ -152,7 +152,7 @@ use Types::Standard qw(Str Num BoolObject InstanceOf);
 use namespace::autoclean;
 use v5.36;
 
-# Atributos declarativos tipados
+# Typed declarative attributes
 has api_key => (
     is       => 'ro',
     isa      => Str,
@@ -171,18 +171,18 @@ has timeout => (
     default => 30.0,
 );
 
-# Método público usando assinaturas
+# Public method using signatures
 sub process_transaction ($self, $amount, $currency = 'USD') {
-    die "Valor da transação deve ser maior que zero" if $amount <= 0;
+    die "Transaction amount must be greater than zero" if $amount <= 0;
 
     my $endpoint = $self->sandbox_mode
         ? 'https://sandbox.api.payment.com/v1/charge'
         : 'https://api.payment.com/v1/charge';
 
-    say sprintf("Enviando cobrança de %.2f %s para %s (Timeout: %.1fs)...",
+    say sprintf("Sending charge of %.2f %s to %s (Timeout: %.1fs)...",
         $amount, $currency, $endpoint, $self->timeout);
 
-    # Simulação de resposta da API
+    # Simulated API response
     return {
         success        => 1,
         transaction_id => 'TXN-' . int(rand(1_000_000)),

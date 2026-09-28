@@ -61,17 +61,17 @@ Ideal for complex business rules, intricate logical relationships, and condition
 
 ```
 +------------------------------------+-------+-------+-------+-------+
-| Condições / Entradas               | Regra 1| Regra 2| Regra 3| Regra 4|
+| Conditions / Inputs                | Rule 1| Rule 2| Rule 3| Rule 4|
 +------------------------------------+-------+-------+-------+-------+
-| C1: Saldo suficiente               |   T   |   T   |   F   |   F   |
-| C2: Cartão ativo e desbloqueado    |   T   |   F   |   T   |   F   |
-| C3: Limite diário não excedido     |   T   |   -   |   -   |   -   |
+| C1: Sufficient balance             |      T|      T|      F|      F|
+| C2: Card active and unlocked       |      T|      F|      T|      F|
+| C3: Daily limit not exceeded       |      T|      -|      -|      -|
 +------------------------------------+-------+-------+-------+-------+
-| Ações / Saídas Esperadas           |       |       |       |       |
+| Actions / Expected Outputs         |       |       |       |       |
 +------------------------------------+-------+-------+-------+-------+
-| A1: Aprovar transação              |   X   |       |       |       |
-| A2: Recusar por cartão bloqueado   |       |   X   |       |       |
-| A3: Recusar por saldo insuficiente |       |       |   X   |   X   |
+| A1: Approve transaction            |      X|       |       |       |
+| A2: Decline for blocked card       |       |      X|       |       |
+| A3: Decline for insufficient bal.  |       |       |      X|      X|
 +------------------------------------+-------+-------+-------+-------+
 ```
 

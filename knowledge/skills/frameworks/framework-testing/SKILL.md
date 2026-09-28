@@ -86,7 +86,7 @@ See the complete guide in [white-box-and-dataflow.md](./references/white-box-and
 See the complete guide in [mutation-and-fault-based-testing.md](./references/mutation-and-fault-based-testing.md).
 
 - **Mutation Score ($MS$)**:
-  $$MS(T, P) = \frac{\text{Mutantes Mortos}}{\text{Total de Mutantes} - \text{Mutantes Equivalentes}} \times 100\%$$
+  $$MS(T, P) = \frac{\text{Dead Mutants}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\%$$
 - **Mutation Operators**: AOR (Arithmetic), ROR (Relational), COR (Conditional), SDL (Statement Deletion).
 - **Mills Fault Seeding Model (Capture-Recapture)**:
   $$\hat{N} = \frac{n \cdot S}{s} \implies N_{\text{residual}} = n \left(\frac{S}{s} - 1\right)$$
@@ -118,40 +118,40 @@ See the complete guide in [integration-and-system-testing.md](./references/integ
 ```typescript
 import { describe, it, expect } from 'vitest';
 
-// Função de cálculo de desconto e elegibilidade
+// Discount calculation and eligibility function
 export interface DiscountInput {
-  customerAge: number;   // Limites válidos: [18, 100]
-  cartValue: number;     // Limites válidos: [1, 10000]
+  customerAge: number;   // Valid limits: [18, 100]
+  cartValue: number;     // Valid limits: [1, 10000]
   isLoyalMember: boolean;
 }
 
 export function calculateDiscount(input: DiscountInput): number {
   if (input.customerAge < 18 || input.customerAge > 100) {
-    throw new Error('Idade fora do intervalo permitido [18, 100].');
+    throw new Error('Age outside the allowed range [18, 100].');
   }
   if (input.cartValue < 1 || input.cartValue > 10000) {
-    throw new Error('Valor do carrinho fora do intervalo [1, 10000].');
+    throw new Error('Cart value outside the range [1, 10000].');
   }
 
   if (input.isLoyalMember && input.cartValue >= 1000) {
-    return 0.20; // 20% desconto
+    return 0.20; // 20% discount
   }
   if (input.isLoyalMember || input.customerAge >= 60) {
-    return 0.10; // 10% desconto
+    return 0.10; // 10% discount
   }
   return 0.0;
 }
 
 describe('calculateDiscount - BVA & Decision Table Tests', () => {
-  // 1. Testes de Robustez nos Limites de Idade [18, 100]
+  // 1. Robustness Tests at the Age Limits [18, 100]
   it.each([
-    { age: 17, cart: 500, loyal: false, error: true },   // min- (Robusto Inválido)
+    { age: 17, cart: 500, loyal: false, error: true },   // min- (Invalid Robust)
     { age: 18, cart: 500, loyal: false, expected: 0.0 }, // min
     { age: 19, cart: 500, loyal: false, expected: 0.0 }, // min+
-    { age: 99, cart: 500, loyal: false, expected: 0.10 },// max- (Idoso)
+    { age: 99, cart: 500, loyal: false, expected: 0.10 },// max- (Elderly)
     { age: 100, cart: 500, loyal: false, expected: 0.10 },// max
-    { age: 101, cart: 500, loyal: false, error: true },  // max+ (Robusto Inválido)
-  ])('valida limites de idade (BVA): age=$age', ({ age, cart, loyal, expected, error }) => {
+    { age: 101, cart: 500, loyal: false, error: true },  // max+ (Invalid Robust)
+  ])('validates age limits (BVA): age=$age', ({ age, cart, loyal, expected, error }) => {
     if (error) {
       expect(() => calculateDiscount({ customerAge: age, cartValue: cart, isLoyalMember: loyal })).toThrow();
     } else {
@@ -160,8 +160,8 @@ describe('calculateDiscount - BVA & Decision Table Tests', () => {
     }
   });
 
-  // 2. Testes de Regras da Tabela de Decisão
-  it('aplica 20% de desconto para membro fiel com carrinho >= 1000', () => {
+  // 2. Decision Table Rule Tests
+  it('applies a 20% discount for a loyal member with cart >= 1000', () => {
     const discount = calculateDiscount({ customerAge: 30, cartValue: 1000, isLoyalMember: true });
     expect(discount).toBe(0.20);
   });

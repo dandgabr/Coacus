@@ -34,19 +34,19 @@ This skill instructs the autonomous agent to execute rigorous, standardized tech
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        FLUXO DE EXECUÇÃO DO PARECER TÉCNICO                            │
+│                        FLOW OF EXECUTION OF THE TECHNICAL OPINION                      │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. INGESTÃO & EVIDÊNCIAS ──► Validação de topologias, APIs, DPA, TPRM e Pentests       │
+│ 1. INGESTION & EVIDENCE ──► Validation of topologies, APIs, DPA, TPRM, and Pentests    │
 │                                                                                        │
-│ 2. SELEÇÃO METODOLÓGICA ──► Escolha justificada: STRIDE / PASTA / LINDDUN / VAST / ... │
+│ 2. METHODOLOGICAL SELECTION ──► Justified choice: STRIDE / PASTA / LINDDUN / VAST /... │
 │                                                                                        │
-│ 3. MAPA ASVS & DFD      ──► Mapeamento de Zonas (Trust Boundaries) e Capítulos V1-V17  │
+│ 3. ASVS MAP & DFD      ──► Zone Mapping (Trust Boundaries) and Chapters V1-V17         │
 │                                                                                        │
-│ 4. MODELAGEM & MATRIZ   ──► Cálculo de Severidade (5x5) e Enquadramento P0 a P3        │
+│ 4. MODELING & MATRIX    ──► Severity Calculation (5x5) and Classification P0 to P3     │
 │                                                                                        │
-│ 5. GATING & 3 ONDAS     ──► Definição de Bloqueadores (7d) e Roadmap (7d / 30d / 180d) │
+│ 5. GATING & 3 WAVES      ──► Definition of Blockers (7d) and Roadmap (7d / 30d / 180d) │
 │                                                                                        │
-│ 6. VEREDITO & EMISSÃO   ──► Geração do parecer em conformidade com o template padrão   │
+│ 6. VERDICT & ISSUANCE    ──► Opinion generated per the standard template               │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -60,7 +60,7 @@ This skill instructs the autonomous agent to execute rigorous, standardized tech
 
 ### **Step 2: 5x5 Risk Matrix and Normative Classification (P0 to P3)**
 
-$$\text{Severidade} = \text{Probabilidade (1 a 5)} \times \text{Impacto (1 a 5)}$$
+$$\text{Severity} = \text{Likelihood (1 to 5)} \times \text{Impact (1 to 5)}$$
 
 | Matrix Score | Normative Level | Severity | Mandatory SLA | Handling and Governance |
 | :---: | :---: | :---: | :---: | :--- |

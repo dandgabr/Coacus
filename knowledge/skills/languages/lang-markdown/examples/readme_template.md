@@ -39,8 +39,8 @@ A concise, clear, and objective description of what the project does, which prob
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/usuario/nome-do-projeto.git
-   cd nome-do-projeto
+   git clone https://github.com/user/project-name.git
+   cd project-name
    ```
 
 2. **Install the dependencies**:
@@ -64,9 +64,9 @@ A concise, clear, and objective description of what the project does, which prob
 
 ```mermaid
 flowchart TD
-    Cliente[Navegador / App Mobile] -->|HTTPS / REST| API[API Gateway]
-    API --> ServiceA[Serviço Autenticação]
-    API --> ServiceB[Serviço de Dados]
+    Client[Browser / Mobile App] -->|HTTPS / REST| API[API Gateway]
+    API --> ServiceA[Authentication Service]
+    API --> ServiceB[Data Service]
     ServiceA --> DB[(PostgreSQL)]
     ServiceB --> DB
 ```

@@ -57,37 +57,37 @@ While working under this skill, apply the following patterns strictly:
 % !TEX program = lualatex
 \documentclass[12pt, a4paper, oneside]{article}
 
-% --- Pré-ambulo: Pacotes Fundamentais ---
+% --- Preamble: Fundamental Packages ---
 \usepackage{fontspec}
 \setmainfont{Latin Modern Roman}
 
-% Idioma e Ajustes de Margem
+% Language and Margin Settings
 \usepackage[portuguese]{babel}
 \usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 
-% Matemática e Símbolos
+% Mathematics and Symbols
 \usepackage{amsmath, amssymb, mathtools}
 
-% Tabelas e Figuras
+% Tables and Figures
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{tikz}
 
-% Bibliografia Avançada
+% Advanced Bibliography
 \usepackage[backend=biber, style=alphabetic, sorting=nyt]{biblatex}
 \addbibresource{bibliography.bib}
 
-% Links e Referências Inteligentes
+% Links and Smart References
 \usepackage[colorlinks=true, linkcolor=blue, citecolor=teal, urlcolor=magenta]{hyperref}
 \usepackage{cleveref}
 
-% --- Macros Customizadas ---
+% --- Custom Macros ---
 \NewDocumentCommand{\vectornorm}{m}{%
   \left\lVert #1 \right\rVert
 }
 
-\title{\textbf{Modelagem Estocástica de Redes Complexas}}
-\author{Dandara Gabriel \and Equipe de Pesquisa}
+\title{\textbf{Stochastic Modeling of Complex Networks}}
+\author{Dandara Gabriel \and Research Team}
 \date{\today}
 
 \begin{document}
@@ -95,38 +95,38 @@ While working under this skill, apply the following patterns strictly:
 \maketitle
 
 \begin{abstract}
-Este trabalho apresenta um modelo matemático para previsão de convergência em grafos direcionados orientados a eventos.
+This work presents a mathematical model for predicting convergence in event-driven directed graphs.
 \end{abstract}
 
 \tableofcontents
 \newpage
 
-% --- Conteúdo Modular ---
-\section{Introdução}
-A análise de grafos dinâmicos é fundamental para a compreensão de sistemas complexos~\cite{smith2024}.
+% --- Modular Content ---
+\section{Introduction}
+The analysis of dynamic graphs is fundamental for understanding complex systems~\cite{smith2024}.
 
-\section{Fundamentação Matemática}
-Dada uma matriz de adjacência $A \in \mathbb{R}^{n \times n}$, a norma Frobenius do operador de transição é dada pela \cref{eq:norma}:
+\section{Mathematical Foundations}
+Given an adjacency matrix $A \in \mathbb{R}^{n \times n}$, the Frobenius norm of the transition operator is given by \cref{eq:norma}:
 
 \begin{equation}
 \label{eq:norma}
 \vectornorm{A}_F = \sqrt{\sum_{i=1}^{n} \sum_{j=1}^{n} |a_{ij}|^2}
 \end{equation}
 
-\section{Resultados e Tabelas}
-A \cref{tab:resultados} resume o desempenho obtido.
+\section{Results and Tables}
+The \cref{tab:resultados} summarizes the performance obtained.
 
 \begin{table}[htbp]
   \centering
-  \caption{Desempenho de Convergência do Algoritmo}
+  \caption{Algorithm Convergence Performance}
   \label{tab:resultados}
   \begin{tabular}{@{}llrr@{}}
     \toprule
-    \textbf{Grafo} & \textbf{Método} & \textbf{Iterações} & \textbf{Tempo (s)} \\
+    \textbf{Graph} & \textbf{Method} & \textbf{Iterations} & \textbf{Time (s)} \\
     \midrule
-    Erdős--Rényi & Standard Power Iter & 1.420 & 3,45 \\
-    Erdős--Rényi & Accelerated Krylov  & 310   & 0,82 \\
-    Barabási--Albert & Accelerated Krylov & 540 & 1,12 \\
+    Erdős--Rényi & Standard Power Iter & 1,420 & 3.45 \\
+    Erdős--Rényi & Accelerated Krylov  & 310   & 0.82 \\
+    Barabási--Albert & Accelerated Krylov & 540 & 1.12 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -141,7 +141,7 @@ A \cref{tab:resultados} resume o desempenho obtido.
 ```latex
 \usepackage[many]{tcolorbox}
 
-% Definindo uma caixa de teorema/aviso elegante
+% Defining an elegant theorem/warning box
 \newtcolorbox{alertbox}[2][]{%
   colback=blue!5!white,
   colframe=blue!75!black,
@@ -151,24 +151,24 @@ A \cref{tab:resultados} resume o desempenho obtido.
   #1
 }
 
-% Exemplo de Uso:
-\begin{alertbox}{Teorema Fundamental de Limite}
-Se uma sequência $\{a_n\}$ é limitada e monotônica, então a sequência $\{a_n\}$ é convergente.
+% Usage Example:
+\begin{alertbox}{Fundamental Limit Theorem}
+If a sequence $\{a_n\}$ is bounded and monotonic, then the sequence $\{a_n\}$ is convergent.
 \end{alertbox}
 
-% Exemplo de Diagrama TikZ Limpo:
+% Clean TikZ Diagram Example:
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}[node distance=2cm, auto, >=stealth']
-    \node [draw, circle, fill=blue!10] (A) {Nó A};
-    \node [draw, circle, fill=green!10, right of=A, node distance=3cm] (B) {Nó B};
-    \node [draw, circle, fill=orange!10, below of=B] (C) {Nó C};
+    \node [draw, circle, fill=blue!10] (A) {Node A};
+    \node [draw, circle, fill=green!10, right of=A, node distance=3cm] (B) {Node B};
+    \node [draw, circle, fill=orange!10, below of=B] (C) {Node C};
 
     \draw[->, thick] (A) -- node {$\lambda_{ab}$} (B);
     \draw[->, thick] (B) -- node {$w_{bc}$} (C);
     \draw[->, thick] (C) -| node[near start] {$\mu_{ca}$} (A);
   \end{tikzpicture}
-  \caption{Grafo de Transição de Estados}
+  \caption{State Transition Graph}
   \label{fig:tikz_state}
 \end{figure}
 ```

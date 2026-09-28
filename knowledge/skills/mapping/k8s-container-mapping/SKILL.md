@@ -30,7 +30,7 @@ flowchart TD
         end
     end
 
-    subgraph eBPF_Layer["Camada de Kernel eBPF (Host Level)"]
+    subgraph eBPF_Layer["eBPF Kernel Layer (Host Level)"]
         CILIUM["Cilium CNI & Socket Filtering"]
         HUBBLE["Hubble Relay & UI"]
         PIXIE["Pixie (Auto-Telemetry & Scripting)"]
@@ -39,7 +39,7 @@ flowchart TD
         PARCA["Parca (Continuous eBPF Profiling)"]
     end
 
-    subgraph Visualizers["Visualizadores de Topologia"]
+    subgraph Visualizers["Topology Visualizers"]
         KIALI["Kiali (Istio/Linkerd Mesh Graph)"]
         KUBESHARK["Kubeshark (API Traffic Analyzer)"]
         FALCO_TRACEE["Falco & Tracee (Audit Graphs)"]
@@ -66,13 +66,13 @@ flowchart TD
 - **Concept**: A high-performance eBPF-based CNI that replaces `kube-proxy` (via eBPF host routing) and **Hubble**, its observability layer that builds real-time service flow graphs, DNS, HTTP, and Network Policy drop monitoring.
 - **CLI Inspection and Mapping Commands**:
 ```bash
-# Observar fluxos L7 em tempo real filtrados por namespace e protocolo
+# Observe L7 flows in real time filtered by namespace and protocol
 hubble observe --namespace backend --protocol http --follow
 
-# Inspecionar quedas de tráfego (Network Policy Drops)
+# Inspect traffic drops (Network Policy Drops)
 hubble observe --verdict DROPPED --namespace backend
 
-# Gerar mapa de fluxo entre serviços e endpoints
+# Generate a flow map between services and endpoints
 hubble observe --to-service backend/api-server -o jsonpb | jq '.flow | {src: .source.workload_names, dst: .destination.workload_names, l7: .l7}'
 ```
 
@@ -83,9 +83,9 @@ hubble observe --to-service backend/api-server -o jsonpb | jq '.flow | {src: .so
 - **Concept**: An L7 traffic sniffer and analyzer for Kubernetes, capable of intercepting and decoding protocols such as HTTP/1.1, HTTP/2, gRPC, WebSocket, AMQP, Kafka, and Redis in real time, including channels encrypted via TLS through eBPF uretprobes.
 - **CLI Usage**:
 ```bash
-# Iniciar Kubeshark e abrir interface web local
+# Start Kubeshark and open the local web interface
 kubeshark tap -n production
-# Filtrar apenas chamadas com erro de status HTTP >= 400
+# Filter only calls with HTTP status error >= 400
 kubeshark tap "response.status >= 400"
 ```
 
@@ -95,7 +95,7 @@ kubeshark tap "response.status >= 400"
 ```python
 import px
 
-# Mapear latência e queries SQL executadas por serviço
+# Map latency and SQL queries executed per service
 df = px.DataFrame(table='pgsql_events', start_time='-5m')
 df.service = df.ctx['service']
 df = df.groupby(['service', 'req']).agg(
@@ -113,13 +113,13 @@ px.display(df)
 - **Concept**: A collection of packaged tools and eBPF tools for debugging, process mapping, and container auditing in Kubernetes.
 - **Essential Gadgets**:
 ```bash
-# Rastrear novas conexões TCP abertas por pods em tempo real
+# Trace new TCP connections opened by pods in real time
 kubectl gadget trace tcp --namespace production
 
-# Mapear arquivos abertos e modificados por contêineres
+# Map files opened and modified by containers
 kubectl gadget trace open -A
 
-# Perfil de processos que mais consomem I/O de disco
+# Profile the processes consuming the most disk I/O
 kubectl gadget top block-io
 ```
 

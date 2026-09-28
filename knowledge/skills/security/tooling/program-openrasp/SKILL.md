@@ -25,31 +25,31 @@ OpenRASP operates by injecting instrumentation probes directly into the runtimes
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                      ARQUITETURA GERAL DO OPENRASP                     │
+│                     GENERAL OPENRASP ARCHITECTURE                      │
 └────────────────────────────────────────────────────────────────────────┘
-  [ NÓ DE APLICAÇÃO (Java / PHP) ]
+  [ APPLICATION NODE (Java / PHP) ]
   ┌────────────────────────────────────────────────────────────────────┐
-  │  1. Invocação de Método Sensível (Ex: Statement.executeQuery)      │
+  │  1. Sensitive Method Invocation (e.g., Statement.executeQuery)     │
   │     │                                                              │
   │     ▼                                                              │
-  │  2. Sonda OpenRASP Hook Intercepta a Chamada                       │
+  │  2. OpenRASP Probe Hook Intercepts the Call                        │
   │     │                                                              │
   │     ▼                                                              │
-  │  3. Motor Google V8 Embutido Executa o Plugin JavaScript           │
-  │     │ (Analisa AST da query SQL, tokenização, regex e stack trace) │
+  │  3. Embedded Google V8 Engine Executes the JavaScript Plugin       │
+  │     │ (Parses SQL query AST, tokenization, regex, and stack trace) │
   │     │                                                              │
-  │     ├──► Ação: BLOCK  ──► Aborta execução + Lança Erro HTTP 403    │
-  │     ├──► Ação: LOG    ──► Registra alerta e permite a chamada      │
-  │     └──► Ação: IGNORE ──► Permite a operação normalmente           │
+  │     ├──► Action: BLOCK  ──► Aborts execution + Throws HTTP 403     │
+  │     ├──► Action: LOG    ──► Logs an alert and allows the call      │
+  │     └──► Action: IGNORE ──► Allows the operation normally          │
   └─────────────────────────────────┬──────────────────────────────────┘
-                                    │ (Heartbeat + Logs de Alerta JSON)
+                                    │ (Heartbeat + JSON Alert Logs)
                                     ▼
-  [ OPENRASP CLOUD MANAGEMENT CONSOLE ] (Painel Web + API)
+  [ OPENRASP CLOUD MANAGEMENT CONSOLE ] (Web Panel + API)
   ┌────────────────────────────────────────────────────────────────────┐
   │  - Backend: Go / Python                                            │
-  │  - Banco de Dados: MongoDB / MySQL                                 │
+  │  - Database: MongoDB / MySQL                                       │
   │  - Logs & Analytics: Elasticsearch + Kibana                        │
-  │  - Gestão de Políticas e Atualização Automática de Plugins em JS   │
+  │  - Policy Management and Automatic JS Plugin Updates               │
   └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -68,29 +68,29 @@ Download the latest version of the OpenRASP Java Agent and unpack it into the `/
 ```
 /opt/rasp/
 ├── conf/
-│   └── openrasp.yml      # Configurações do agente e conexão com o Cloud
+│   └── openrasp.yml      # Agent configuration and Cloud connection
 ├── plugins/
-│   └── official.js       # Plugin JavaScript padrão de detecção
-├── logs/                 # Logs de alarmes e auditoria em JSON
-└── rasp.jar              # Binário principal do Java Agent
+│   └── official.js       # Default JavaScript detection plugin
+├── logs/                 # JSON alarm and audit logs
+└── rasp.jar              # Main Java Agent binary
 ```
 
 #### Configuration of the `conf/openrasp.yml` File:
 
 ```yaml
-# Conexão com o OpenRASP Cloud Management
+# Connection to the OpenRASP Cloud Management
 cloud:
   enable: true
   backend_url: "http://openrasp-cloud.empresa.local:8086"
   app_id: "a1b2c3d4e5f6g7h8i9j0"
-  app_secret: "secret-token-gerado-no-painel"
+  app_secret: "secret-token-generated-in-the-panel"
   heartbeat_interval: 180
 
-# Modos de proteção (true = Bloqueio Ativo, false = Apenas Log)
+# Protection modes (true = Active Blocking, false = Log Only)
 block:
   status: true
 
-# Configurações de logging
+# Logging settings
 logger:
   max_size: 500MB
   max_backup: 10
@@ -99,10 +99,10 @@ logger:
 #### Application Startup with the Agent:
 
 ```bash
-# Executando aplicação Spring Boot (.jar)
+# Running a Spring Boot application (.jar)
 java -javaagent:/opt/rasp/rasp.jar -Dfile.encoding=UTF-8 -jar app.jar
 
-# Configuração para Apache Tomcat (no arquivo catalina.sh ou setenv.sh)
+# Configuration for Apache Tomcat (in the catalina.sh or setenv.sh file)
 export JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/rasp/rasp.jar"
 ```
 
@@ -113,7 +113,7 @@ export JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/rasp/rasp.jar"
 #### Module Installation:
 
 ```bash
-# Compilação ou instalação via script oficial
+# Compilation or installation via the official script
 cd /tmp && git clone https://github.com/baidu/openrasp.git
 cd openrasp/agent/php && phpize
 ./configure --with-php-config=/usr/bin/php-config
@@ -123,13 +123,13 @@ make && sudo make install
 #### Configuration in `php.ini`:
 
 ```ini
-; Carregamento da extensão OpenRASP
+; Loading the OpenRASP extension
 extension=openrasp.so
 
-; Diretório raiz de configurações e plugins
+; Root directory for settings and plugins
 openrasp.root_dir=/opt/rasp
 
-; Habilitar proteção ativa
+; Enable active protection
 openrasp.inject_urlprefix=/
 openrasp.block_status=1
 ```
@@ -148,12 +148,12 @@ OpenRASP's great differentiator is the ability to extend its policies through Ja
 var plugin = new RASP('custom-security-rules');
 
 // =========================================================================
-// 1. Interceptação de Injeção de Comandos do Sistema Operacional (RCE)
+// 1. Interception of Operating System Command Injection (RCE)
 // =========================================================================
 plugin.register('command', function (params, context) {
     var command = params.command;
     
-    // Bloquear invocações de shells reversas ou comandos destrutivos
+    // Block reverse shell invocations or destructive commands
     var dangerousPatterns = [
         /nc\s+-e/i,
         /bash\s+-i/i,
@@ -166,7 +166,7 @@ plugin.register('command', function (params, context) {
         if (dangerousPatterns[i].test(command)) {
             return {
                 action: 'block',
-                message: 'Injeção de Comando Crítica bloqueada pelo OpenRASP: ' + command,
+                message: 'Critical Command Injection blocked by OpenRASP: ' + command,
                 confidence: 100
             };
         }
@@ -176,16 +176,16 @@ plugin.register('command', function (params, context) {
 });
 
 // =========================================================================
-// 2. Interceptação de SQL Injection com Análise Sintática
+// 2. Interception of SQL Injection with Syntactic Analysis
 // =========================================================================
 plugin.register('sql', function (params, context) {
     var query = params.query;
     
-    // Detectar injeções booleanas ou de união clássicas
+    // Detect classic boolean or union injections
     if (/union(\s+all)?\s+select/i.test(query) || /or\s+1\s*=\s*1/i.test(query)) {
         return {
             action: 'block',
-            message: 'SQL Injection detectada em tempo de execução: ' + query,
+            message: 'SQL Injection detected at runtime: ' + query,
             confidence: 95
         };
     }
@@ -194,16 +194,16 @@ plugin.register('sql', function (params, context) {
 });
 
 // =========================================================================
-// 3. Interceptação de SSRF (Server-Side Request Forgery)
+// 3. Interception of SSRF (Server-Side Request Forgery)
 // =========================================================================
 plugin.register('ssrf', function (params, context) {
     var url = params.url;
 
-    // Bloquear acesso aos metadados de nuvem (AWS/GCP/Azure) e interfaces de loopback
+    // Block access to cloud metadata (AWS/GCP/Azure) and loopback interfaces
     if (/169\.254\.169\.254/i.test(url) || /127\.0\.0\.1/i.test(url) || /localhost/i.test(url)) {
         return {
             action: 'block',
-            message: 'Requisição SSRF para endereço interno/metadados bloqueada: ' + url,
+            message: 'SSRF request to an internal address/metadata blocked: ' + url,
             confidence: 100
         };
     }

@@ -24,12 +24,12 @@ OWASP ZAP operates as an intercepting proxy and dynamic vulnerability scanner, i
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        MODOS DE EXECUÇÃO DO ZAP                        │
+│                          ZAP EXECUTION MODES                           │
 └────────────────────────────────────────────────────────────────────────┘
-  1. Desktop GUI / HUD: Auditoria interativa, exploração manual e depuração.
-  2. Headless Daemon: Serviço de segundo plano expondo REST API (porta 8080).
-  3. ZAP Automation Framework (AF): Execução headless dirigida por arquivo YAML.
-  4. Docker Packaged Scans: Contêineres efêmeros para pipelines de CI/CD.
+  1. Desktop GUI / HUD: Interactive auditing, manual exploration, and debugging.
+  2. Headless Daemon: Background service exposing the REST API (port 8080).
+  3. ZAP Automation Framework (AF): Headless execution driven by a YAML file.
+  4. Docker Packaged Scans: Ephemeral containers for CI/CD pipelines.
 ```
 
 ---
@@ -72,7 +72,7 @@ env:
     progressToStdout: true
 
 jobs:
-  # 1. Spider Tradicional (Crawling de HTML)
+  # 1. Traditional Spider (HTML crawling)
   - type: spider
     parameters:
       context: "Ecommerce-Staging"
@@ -80,7 +80,7 @@ jobs:
       maxDuration: 10
       maxDepth: 5
 
-  # 2. Ajax Spider (Navegação Headless em SPAs React/Vue via Chromium)
+  # 2. Ajax Spider (headless navigation in React/Vue SPAs via Chromium)
   - type: spiderAjax
     parameters:
       context: "Ecommerce-Staging"
@@ -88,18 +88,18 @@ jobs:
       maxDuration: 15
       browserId: "firefox-headless"
 
-  # 3. Configuração de Varredura Passiva
+  # 3. Passive Scan Configuration
   - type: passiveScan-config
     parameters:
       maxAlertsPerRule: 5
       scanOnlyInScope: true
 
-  # 4. Aguardar Conclusão da Análise Passiva
+  # 4. Wait for Passive Analysis Completion
   - type: passiveScan-wait
     parameters:
       maxDuration: 10
 
-  # 5. Varredura Ativa (Fuzzing de Parâmetros e Injeções)
+  # 5. Active Scan (parameter fuzzing and injections)
   - type: activeScan
     parameters:
       context: "Ecommerce-Staging"
@@ -108,7 +108,7 @@ jobs:
       maxRuleDurationInMins: 5
       maxScanDurationInMins: 30
 
-  # 6. Geração de Relatórios (HTML, JSON e SARIF)
+  # 6. Report Generation (HTML, JSON, and SARIF)
   - type: report
     parameters:
       template: "traditional-html"
@@ -124,13 +124,13 @@ jobs:
 ### 2. Running the Plan via CLI:
 
 ```bash
-# Executar o plano YAML em modo headless
+# Run the YAML plan in headless mode
 ./zap.sh -cmd -autorun zap-scan-plan.yaml
 
-# Gerar template mínimo de plano YAML
+# Generate a minimal YAML plan template
 ./zap.sh -cmd -autogenmin template-min.yaml
 
-# Gerar template com todos os parâmetros possíveis
+# Generate a template with every possible parameter
 ./zap.sh -cmd -autogenmax template-max.yaml
 ```
 
@@ -169,13 +169,13 @@ docker run --rm -v $(pwd):/zap/wrk:rw -t zaproxy/zap-stable zap-full-scan.py \
 Designed specifically for REST APIs (OpenAPI/Swagger), GraphQL, and SOAP.
 
 ```bash
-# Varredura de contrato OpenAPI v3
+# OpenAPI v3 contract scan
 docker run --rm -v $(pwd):/zap/wrk:rw -t zaproxy/zap-stable zap-api-scan.py \
     -t https://staging.empresa.com/api/v3/openapi.json \
     -f openapi \
     -r zap-api-report.html
 
-# Varredura de endpoint GraphQL
+# GraphQL endpoint scan
 docker run --rm -v $(pwd):/zap/wrk:rw -t zaproxy/zap-stable zap-api-scan.py \
     -t https://staging.empresa.com/graphql \
     -f graphql \
@@ -189,7 +189,7 @@ docker run --rm -v $(pwd):/zap/wrk:rw -t zaproxy/zap-stable zap-api-scan.py \
 ### 1. Static Bearer Token / API Key Injection:
 
 ```bash
-# Injetar cabeçalho Authorization em todas as requisições disparadas pelo ZAP
+# Inject the Authorization header into every request triggered by ZAP
 docker run --rm -v $(pwd):/zap/wrk:rw -t zaproxy/zap-stable zap-api-scan.py \
     -t https://api.empresa.com/openapi.json \
     -f openapi \
@@ -210,7 +210,7 @@ name: DAST Dynamic Security Scan (OWASP ZAP)
 
 on:
   schedule:
-    - cron: '0 2 * * *' # Execução noturna diária às 02:00
+    - cron: '0 2 * * *' # Daily nightly run at 02:00
   workflow_dispatch:
 
 jobs:

@@ -68,7 +68,7 @@ WebAssembly.instantiateStreaming(fetch("simple.wasm"), importObject)
   .then(({ instance }) => instance.exports.exported_func())
   .catch((err) => {
     if (err instanceof WebAssembly.CompileError) {
-      console.error("Bytes wasm inválidos ou MIME incorreto:", err);
+      console.error("Invalid wasm bytes or incorrect MIME:", err);
     }
   });
 ```
@@ -82,7 +82,7 @@ WebAssembly.instantiateStreaming(fetch("memory.wasm"), { js: { mem: memory } })
     let i32 = new Uint32Array(memory.buffer);
     for (let i = 0; i < 10; i++) i32[i] = i;
     const sum = instance.exports.accumulate(0, 10);
-    // ⚠️ se o módulo chamar memory.grow internamente, recrie a view:
+    // ⚠️ if the module calls memory.grow internally, recreate the view:
     i32 = new Uint32Array(memory.buffer);
   });
 ```
@@ -103,7 +103,7 @@ WebAssembly.instantiateStreaming(fetch("global.wasm"), { js: { global: sharedCou
 ```javascript
 WebAssembly.instantiateStreaming(fetch("table.wasm")).then(({ instance }) => {
   const tbl = instance.exports.tbl;
-  console.log(tbl.get(0)()); // 13 — get() devolve a referência; segundo () invoca
+  console.log(tbl.get(0)()); // 13 — get() returns the reference; the second () invokes it
 });
 ```
 

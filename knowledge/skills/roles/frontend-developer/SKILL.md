@@ -27,11 +27,11 @@ The strongest signal of code generated uncritically by AI in the frontend is the
        --border-subtle: rgba(0, 0, 0, 0.08);
        --text-primary: #121316;
        --accent-primary: #101114;
-       --radius-base: 2px; /* Cantos contidos e precisos em vez de arredondamento genérico */
+       --radius-base: 2px; /* Contained, precise corners instead of generic rounding */
      }
 
      .dark {
-       --canvas-bg: #080a0a; /* Near-black autêntico */
+       --canvas-bg: #080a0a; /* Authentic near-black */
        --surface-card: #0f1112;
        --surface-card-hover: #16191b;
        --border-subtle: rgba(255, 255, 255, 0.06); /* Hairline border */
@@ -48,7 +48,7 @@ The strongest signal of code generated uncritically by AI in the frontend is the
 ### 1.2. Performant Implementation of Analog Noise (CSS / SVG Grain)
 Breaking digital sterility comes from applying a light Perlin noise layer that does not tax processing or block user interaction:
 ```css
-/* Injeção de ruído sutil de fundo sem requisição de imagens pesadas */
+/* Injection of subtle background noise without requesting heavy images */
 .grain-canvas {
   position: relative;
 }
@@ -90,23 +90,23 @@ Avoid mechanical, standardized transitions based on linear time (`transition: al
 ### 2.1. Calibrating Natural Springs (Spring Physics)
 In professional interfaces, eliminate the excessive "bounce" that conveys a childish feel. Calibrate the critical damping to give motion a firm, fast character:
 ```typescript
-// Configuração canônica de mola firme para software profissional
+// Canonical firm-spring configuration for professional software
 export const springPresets = {
-  // Transição firme, sem bounce, ideal para modais, dropdowns e abas
+  // Firm transition, no bounce, ideal for modals, dropdowns and tabs
   snappy: {
     type: "spring",
     stiffness: 400,
     damping: 32,
     mass: 0.8
   },
-  // Toque suave e orgânico para cards e revelações em scroll
+  // Soft, organic touch for cards and scroll reveals
   gentle: {
     type: "spring",
     stiffness: 260,
     damping: 24,
     mass: 1
   },
-  // Clique tátil de botão (afundamento e retorno imediato)
+  // Tactile button click (sink and immediate return)
   press: {
     type: "spring",
     stiffness: 500,

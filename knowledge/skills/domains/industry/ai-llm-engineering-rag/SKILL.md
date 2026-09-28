@@ -26,13 +26,13 @@ where $\mathbf{M}$ is the causal mask for autoregressive models.
 
 ```mermaid
 flowchart TD
-    Q["Pergunta do Usuário (Query)"] --> REW["1. Query Transformation (HyDE / Multi-Query Expansion)"]
-    REW --> RET_D["Busca Densa (Embeddings Vetoriais)"]
-    REW --> RET_S["Busca Esparsa (BM25 / Splade)"]
+    Q["User Question (Query)"] --> REW["1. Query Transformation (HyDE / Multi-Query Expansion)"]
+    REW --> RET_D["Dense Search (Vector Embeddings)"]
+    REW --> RET_S["Sparse Search (BM25 / Splade)"]
     RET_D & RET_S --> RRF["2. Reciprocal Rank Fusion (RRF)"]
     RRF --> RERANK["3. Cross-Encoder Re-Ranking (Cohere / BGE-Reranker)"]
-    RERANK --> PROMPT["4. Prompt com Contexto Comprimido"]
-    PROMPT --> LLM["5. Geração Factual com Citações"]
+    RERANK --> PROMPT["4. Prompt with Compressed Context"]
+    PROMPT --> LLM["5. Factual Generation with Citations"]
 ```
 
 ### 2.1 Reciprocal Rank Fusion (RRF)
@@ -63,13 +63,13 @@ where $\mathbf{B} \in \mathbb{R}^{d \times r}$ and $\mathbf{A} \in \mathbb{R}^{r
 
 - **ReAct Pattern (Reasoning + Acting)**:
   ```
-  Loop de Execução:
-  Thought: Raciocínio sobre o próximo passo necessário.
-  Action: Nome da ferramenta externa a invocar (Tool / API / SQL / Python).
-  Action Input: Argumentos serializados em JSON.
-  Observation: Saída retornada pela execução da ferramenta.
-  ... (repete até conclusão)
-  Final Answer: Resposta sintetizada com base nas observações.
+  Execution Loop:
+  Thought: Reasoning about the next required step.
+  Action: Name of the external tool to invoke (Tool / API / SQL / Python).
+  Action Input: Arguments serialized in JSON.
+  Observation: Output returned by the tool execution.
+  ... (repeats until completion)
+  Final Answer: Answer synthesized from the observations.
   ```
 - **Direct Preference Optimization (DPO)**:
   Directly optimizes the policy $\pi_\theta$ without needing to train a separate reward model:

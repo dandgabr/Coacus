@@ -12,21 +12,21 @@ This skill defines the engineering guidelines and modeling strategies for the **
 ## 🏛️ 1. The Three Canonical BCE Layers
 
 ```
-[ Cliente Externo / UI ]
+[ External Client / UI ]
           │
           ▼
 ┌──────────────────┐
-│     BOUNDARY     │  <-- Entrada, APIs REST/gRPC, Web, Mensageria, Tradução DTO
+│     BOUNDARY     │  <-- Entry point, REST/gRPC APIs, Web, Messaging, DTO Translation
 └─────────┬────────┘
           │
           ▼
 ┌──────────────────┐
-│     CONTROL      │  <-- Coordenação do Caso de Uso, Regras de Negócio, Transações
+│     CONTROL      │  <-- Use Case Coordination, Business Rules, Transactions
 └─────────┬────────┘
           │
           ▼
 ┌──────────────────┐
-│      ENTITY      │  <-- Modelo de Domínio, Invariantes, Estado e Persistência
+│      ENTITY      │  <-- Domain Model, Invariants, State, and Persistence
 └──────────────────┘
 ```
 

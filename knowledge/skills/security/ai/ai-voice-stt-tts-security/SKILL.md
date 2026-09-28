@@ -39,22 +39,22 @@ This skill consolidates architectures and methodologies from the following refer
 ┌───────────────────────────────────────────────────────────────────────────────────┐
 │                 OWASP Risk Matrix for Voice & STT/TTS Pipelines                   │
 ├───────────────────────────────────────┬───────────────────────────────────────────┤
-│ Vulnerabilidade OWASP                 │ Controles Arquiteturais e Mitigações      │
+│ OWASP Vulnerability                   │ Architectural Controls and Mitigations    │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ OWASP ML01: Input Manipulation        │ AudioSignalSanitizer (passa-baixa 16kHz), │
-│ (Ultrasonic, Laser, Audio CW Attacks) │ amortecedor acústico MEMS, compressão MP3.│
+│ OWASP ML01: Input Manipulation        │ AudioSignalSanitizer (16kHz low-pass),    │
+│ (Ultrasonic, Laser, Audio CW Attacks) │ MEMS acoustic damper, MP3 compression.    │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ OWASP ML05: Voice Model Theft         │ Mascaramento de embeddings de voz,        │
-│ (Extracao de biometria por API)       │ rate limiting e adição de ruído a scores. │
+│ OWASP ML05: Voice Model Theft         │ Voice embedding masking,                  │
+│ (Biometric extraction via API)        │ rate limiting, and noise addition to scores.│
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ OWASP ML06: AI Supply Chain           │ Carregamento exclusivo de `.safetensors`  │
-│ (Pesos maliciosos de ASR/TTS Pickle)  │ para modelos Whisper/Kaldi/Coqui TTS.     │
+│ OWASP ML06: AI Supply Chain           │ Exclusive loading of `.safetensors`       │
+│ (Malicious ASR/TTS Pickle Weights)    │ for Whisper/Kaldi/Coqui TTS models.       │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ OWASP API4: Unrestricted Consumption  │ Limite de duração de stream de áudio,     │
-│ (Flooding de GPU em ASR em tempo real)│ timeouts estritos e max_duration (máx 30s).│
+│ OWASP API4: Unrestricted Consumption  │ Audio stream duration limit,              │
+│ (GPU flooding in real-time ASR)       │ strict timeouts, and max_duration (max 30s).│
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ OWASP API7: Server Side Request Forgery│ Sanitização estrita de URLs extraídas de  │
-│ (SSRF via NLU Intent Parsing)         │ comandos de voz antes de requisições HTTP.│
+│ OWASP API7: Server Side Request Forgery│ Strict sanitization of URLs extracted from│
+│ (SSRF via NLU Intent Parsing)         │ voice commands before HTTP requests.      │
 └───────────────────────────────────────┴───────────────────────────────────────────┘
 ```
 
@@ -99,13 +99,13 @@ from safetensors.torch import load_file
 import torch
 
 class AudioSignalSanitizer:
-    """Sanitizador defensivo de sinal de áudio contra injeções ultrassônicas e ruído adversarial (OWASP ML01)."""
+    """Defensive audio signal sanitizer against ultrasonic injections and adversarial noise (OWASP ML01)."""
     def __init__(self, sample_rate: int = 44100, cutoff_freq: int = 16000):
         self.sample_rate = sample_rate
         self.cutoff_freq = cutoff_freq
 
     def apply_lowpass_filter(self, audio_data: np.ndarray) -> np.ndarray:
-        """Aplica um filtro Butterworth passa-baixa digital para cortar ultrassom (>16kHz)."""
+        """Applies a digital Butterworth low-pass filter to cut ultrasound (>16kHz)."""
         nyquist = 0.5 * self.sample_rate
         normal_cutoff = self.cutoff_freq / nyquist
         b, a = signal.butter(6, normal_cutoff, btype='low', analog=False)
@@ -113,18 +113,18 @@ class AudioSignalSanitizer:
         return sanitized_audio
 
     def sanitize(self, raw_pcm_audio: np.ndarray) -> np.ndarray:
-        # 1. Eliminação de frequências ultrassônicas acima de 16kHz
+        # 1. Removal of ultrasonic frequencies above 16kHz
         clean_audio = self.apply_lowpass_filter(raw_pcm_audio)
-        # 2. Normalização de amplitude para prevenir picos de saturação
+        # 2. Amplitude normalization to prevent saturation peaks
         max_val = np.max(np.abs(clean_audio))
         if max_val > 0:
             clean_audio = clean_audio / max_val
         return clean_audio
 
 def load_secure_asr_model(weights_path: str, model: torch.nn.Module):
-    """Carrega modelos ASR/TTS imunes a RCE em conformidade com OWASP ML06."""
+    """Loads ASR/TTS models immune to RCE in compliance with OWASP ML06."""
     if not weights_path.endswith(".safetensors"):
-        raise ValueError("ERRO DE SEGURANÇA: Apenas arquivos .safetensors são permitidos para evitar RCE via Pickle.")
+        raise ValueError("SECURITY ERROR: Only .safetensors files are allowed to prevent RCE via Pickle.")
     state_dict = load_file(weights_path)
     model.load_state_dict(state_dict)
     return model

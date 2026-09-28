@@ -6,35 +6,35 @@ Definitions of the C4 Model's four levels of abstraction and how to express them
 
 ```mermaid
 C4Context
-    title Diagrama de Contexto - Plataforma de Laudos SI
-    Person(user, "Médico / Especialista", "Usuário do sistema para validação de exames")
-    System(core_si, "Sistema Central SI", "Gerenciamento, validação e entrega de laudos")
-    System_Ext(lis, "LIS Laboratorial", "Sistema de origem dos exames brutos")
-    System_Ext(iam, "Identity Provider", "Serviço SSO / OAuth2")
+    title Context Diagram - SI Report Platform
+    Person(user, "Physician / Specialist", "System user for exam validation")
+    System(core_si, "SI Central System", "Management, validation, and delivery of reports")
+    System_Ext(lis, "Laboratory LIS", "Source system for raw exams")
+    System_Ext(iam, "Identity Provider", "SSO / OAuth2 service")
 
-    Rel(user, core_si, "Acessa portal e assina laudos", "HTTPS")
-    Rel(core_si, iam, "Autentica usuário e valida escopo", "OIDC")
-    Rel(lis, core_si, "Envia eventos de exames concluídos", "Kafka / HL7 FHIR")
+    Rel(user, core_si, "Accesses the portal and signs reports", "HTTPS")
+    Rel(core_si, iam, "Authenticates the user and validates scope", "OIDC")
+    Rel(lis, core_si, "Sends completed exam events", "Kafka / HL7 FHIR")
 ```
 
 ## Level 2: Container Diagram
 
 ```mermaid
 C4Container
-    title Diagrama de Contêineres - Plataforma de Laudos SI
-    Person(user, "Médico", "Usuário do sistema")
+    title Container Diagram - SI Report Platform
+    Person(user, "Physician", "System user")
 
-    Container_Boundary(c1, "Plataforma Central SI") {
-        Container(web_app, "Frontend SPA", "React / TypeScript", "Interface visual do usuário")
-        Container(api_gw, "API Gateway", "Envoy", "Roteamento, TLS e Rate Limiting")
-        Container(report_svc, "Report Service", "Python / FastAPI", "Regras de negócio de laudos")
-        ContainerDb(report_db, "Report Database", "PostgreSQL", "Armazenamento transacional cifrado")
-        ContainerQueue(event_bus, "Event Bus", "Apache Kafka", "Fila de mensageria assíncrona")
+    Container_Boundary(c1, "SI Central Platform") {
+        Container(web_app, "SPA Frontend", "React / TypeScript", "User visual interface")
+        Container(api_gw, "API Gateway", "Envoy", "Routing, TLS, and Rate Limiting")
+        Container(report_svc, "Report Service", "Python / FastAPI", "Report business rules")
+        ContainerDb(report_db, "Report Database", "PostgreSQL", "Encrypted transactional storage")
+        ContainerQueue(event_bus, "Event Bus", "Apache Kafka", "Asynchronous messaging queue")
     }
 
-    Rel(user, web_app, "Usa interface", "HTTPS")
-    Rel(web_app, api_gw, "Chamadas de API", "JSON/HTTPS")
-    Rel(api_gw, report_svc, "Roteia requisições", "gRPC")
-    Rel(report_svc, report_db, "Lê e grava laudos", "SQL/TCP")
-    Rel(report_svc, event_bus, "Publica eventos", "Kafka")
+    Rel(user, web_app, "Uses the interface", "HTTPS")
+    Rel(web_app, api_gw, "API calls", "JSON/HTTPS")
+    Rel(api_gw, report_svc, "Routes requests", "gRPC")
+    Rel(report_svc, report_db, "Reads and writes reports", "SQL/TCP")
+    Rel(report_svc, event_bus, "Publishes events", "Kafka")
 ```

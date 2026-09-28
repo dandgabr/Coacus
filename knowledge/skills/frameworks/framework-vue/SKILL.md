@@ -37,21 +37,21 @@ When working in this skill, guide code development by the following practices:
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 
-// Definição de Props tipadas estritamente
+// Definition of strictly typed Props
 const props = defineProps<{
   title: string;
   initialCount?: number;
 }>();
 
-// Definição de Emits tipados
+// Definition of typed Emits
 const emit = defineEmits<{
   (e: 'update', count: number): void;
 }>();
 
-// Estados reativos
+// Reactive states
 const count = ref(props.initialCount ?? 0);
 
-// Estado derivado reativo (Computed)
+// Reactive derived state (Computed)
 const doubledCount = computed(() => count.value * 2);
 
 function increment() {
@@ -63,8 +63,8 @@ function increment() {
 <template>
   <div class="counter-card">
     <h3>{{ title }}</h3>
-    <p>Contador: {{ count }} (Dobro: {{ doubledCount }})</p>
-    <button @click="increment">Incrementar</button>
+    <p>Counter: {{ count }} (Double: {{ doubledCount }})</p>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 

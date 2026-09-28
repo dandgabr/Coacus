@@ -23,8 +23,8 @@ Static testing examines software artifacts (requirements, diagrams, source code)
 ### 2.1. Levels of Formality in Human Reviews
 
 ```
-[ Informal ] ────► [ Walkthrough ] ────► [ Revisão Técnica ] ────► [ Inspeção Formal ]
-  (Sem atas)      (Conduzido pelo autor)    (Especialistas/Pares)     (Fagan - Papéis e métricas)
+[ Informal ] ────► [ Walkthrough ] ────► [ Technical Review ] ────► [ Formal Inspection ]
+  (No minutes)     (Led by the author)   (Specialists/Peers)        (Fagan - Roles and metrics)
 ```
 
 | Review Type | Formality | Conducted By | Main Focus | Metrics Collected |
@@ -49,21 +49,21 @@ RBT directs test effort, time, and budget toward the areas of the system with th
 
 ### 3.1. Risk Assessment Matrix
 
-$$Nível\ de\ Risco = Probabilidade\ (Likelihood) \times Impacto\ no\ Negócio\ (Impact)$$
+$$Risk\ Level = Likelihood \times Business\ Impact$$
 
 ```
-Alto     │   MÉDIO    │    ALTO    │  CRÍTICO   │
-         │  (Testar)  │ (Prioridade)│(Extensivo) │
-Impacto  ├────────────┼────────────┼────────────┤
-Médio    │   BAIXO    │   MÉDIO    │    ALTO    │
-         │(Amostragem)│  (Testar)  │ (Prioridade)│
+High     │   MEDIUM   │    HIGH    │  CRITICAL  │
+         │   (Test)   │ (Priority) │(Extensive) │
+Impact   ├────────────┼────────────┼────────────┤
+Medium   │    LOW     │   MEDIUM   │    HIGH    │
+         │ (Sampling) │   (Test)   │ (Priority) │
          ├────────────┼────────────┼────────────┤
-Baixo    │   MÍNIMO   │   BAIXO    │   MÉDIO    │
-         │(Se houver  │(Amostragem)│  (Testar)  │
-         │  tempo)    │            │            │
+Low      │  MINIMAL   │    LOW     │   MEDIUM   │
+         │(If time    │ (Sampling) │   (Test)   │
+         │  permits)  │            │            │
          └────────────┴────────────┴────────────┘
-             Baixa        Média        Alta
-                     Probabilidade
+             Low          Medium       High
+                     Probability
 ```
 
 ### 3.2. Practical Application of RBT
@@ -77,14 +77,14 @@ Baixo    │   MÍNIMO   │   BAIXO    │   MÉDIO    │
 ### 4.1. Defect Removal Efficiency (DRE)
 Measures the percentage of defects eliminated before the release to production:
 
-$$DRE = \frac{D_{interno}}{D_{interno} + D_{producao}} \times 100\%$$
+$$DRE = \frac{D_{internal}}{D_{internal} + D_{production}} \times 100\%$$
 
 Where:
-- $D_{interno}$: Defects found and fixed during the development and testing phases.
-- $D_{producao}$: Defects reported by users after the release.
+- $D_{internal}$: Defects found and fixed during the development and testing phases.
+- $D_{production}$: Defects reported by users after the release.
 - *Excellence Target*: $DRE \ge 95\%$.
 
 ### 4.2. Defect Density
-$$Densidade = \frac{\text{Total de Defeitos}}{\text{Tamanho do Software (KLOC ou Pontos de Função)}}$$
+$$Density = \frac{\text{Total Defects}}{\text{Software Size (KLOC or Function Points)}}$$
 
 It reveals components in the repository that are abnormally prone to failure.

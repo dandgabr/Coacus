@@ -18,15 +18,15 @@ This skill establishes the canonical guidelines for auditing, protecting, and ma
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ 1. Fonte & Upstream (Manifestos, Lockfiles, Dependências Diretas/Trans) │
+│ 1. Source & Upstream (Manifests, Lockfiles, Direct/Transitive deps)    │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
 ┌──────────────────────────────────▼─────────────────────────────────────┐
-│ 2. Pipeline de Build CI/CD (Hermetic Builds, Runners Efêmeros, SLSA)   │
+│ 2. CI/CD Build Pipeline (Hermetic Builds, Ephemeral Runners, SLSA)     │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
 ┌──────────────────────────────────▼─────────────────────────────────────┐
-│ 3. Pacotes & Artefatos (SBOM CycloneDX/SPDX, Assinatura Sigstore/Cosign)│
+│ 3. Packages & Artifacts (SBOM CycloneDX/SPDX, Sigstore/Cosign Signing) │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
 ┌──────────────────────────────────▼─────────────────────────────────────┐
@@ -122,14 +122,14 @@ SLSA v1.2 is the current specification (v1.0/v1.1 are retired) and organizes req
 ### 5.2 Image Signing and SBOM Attachment
 
 ```bash
-# Assinar imagem de contêiner usando OIDC (Keyless via Sigstore)
+# Sign a container image using OIDC (Keyless via Sigstore)
 cosign sign --yes ghcr.io/empresa/app:v1.0.0
 
-# Anexar e assinar o SBOM CycloneDX à imagem no registro OCI
+# Attach and sign the CycloneDX SBOM to the image in the OCI registry
 cosign attach sbom --sbom sbom.cyclonedx.json ghcr.io/empresa/app:v1.0.0
 cosign sign --yes --attachment sbom ghcr.io/empresa/app:v1.0.0
 
-# Verificar assinatura no Kubernetes Admission Controller
+# Verify the signature in the Kubernetes Admission Controller
 cosign verify --certificate-identity-regexp "https://github.com/empresa/.*" \
               --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
               ghcr.io/empresa/app:v1.0.0

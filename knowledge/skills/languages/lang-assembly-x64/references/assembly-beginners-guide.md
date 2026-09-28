@@ -70,7 +70,7 @@ Idiomatic patterns from the book:
 NASM data sizes: `DB` (byte, 1), `DW` (word, 2), `DD` (dword, 4), `DQ` (qword, 8), `DT` (tbyte, 10); reservations with `TIMES`/`RESB` series. Constants with `EQU`:
 
 ```nasm
-MY_TABLE TIMES 10 DW 0   ; 10 words inicializadas a 0
+MY_TABLE TIMES 10 DW 0   ; 10 words initialized to 0
 MOV EBX, [MY_TABLE]      ; effective address
 MOV [EBX], 110           ; MY_TABLE[0] = 110
 ADD EBX, 2               ; EBX = EBX + 2
@@ -91,7 +91,7 @@ MOV [EBX], 123           ; MY_TABLE[1] = 123
 MOV CL, 10
 L1:
   ; loop body
-  DEC CL        ; (ou LOOP L1, que decrementa CX e salta se != 0)
+  DEC CL        ; (or LOOP L1, which decrements CX and jumps if != 0)
   JNZ L1
 ```
 
@@ -136,10 +136,10 @@ A modularization mechanism: a sequence of instructions assigned to a name, expan
 Steps from the book (IA-32):
 
 ```nasm
-1. Número da syscall em EAX
-2. Argumentos em EBX, ECX, EDX, ESI, EDI, EBP (ordem consecutiva)
-3. Interrupção: int 0x80
-4. Resultado (código de retorno) em EAX
+1. Syscall number in EAX
+2. Arguments in EBX, ECX, EDX, ESI, EDI, EBP (consecutive order)
+3. Interrupt: int 0x80
+4. Result (return code) in EAX
 ```
 
 With more than six arguments: `EBX` holds the memory pointer of the first argument.
@@ -156,11 +156,11 @@ With more than six arguments: `EBX` holds the memory pointer of the first argume
 Read + write example:
 
 ```nasm
-; leitura (sys_read = 3)
+; reading (sys_read = 3)
 MOV ECX, num
 MOV EDX, 5
 INT 80H
-; escrita (sys_write = 4)
+; writing (sys_write = 4)
 MOV ECX, dispMsg
 MOV EDX, lenDispMsg
 INT 80H
@@ -175,9 +175,9 @@ The complete syscall list lives in /usr/include/asm/unistd.h.
 Create/open (`sys_creat` no. 8, `sys_open` no. 5), write (`sys_write` no. 4), close (`sys_close` no. 6):
 
 ```nasm
-; criação: EAX=8, EBX=filename, ECX=permissões (ex.: 0377 octal)
-; escrita: EAX=4, EBX=fd, ECX=buffer, EDX=comprimento
-; fechamento: EAX=6, EBX=fd
+; creation: EAX=8, EBX=filename, ECX=permissions (e.g. 0377 octal)
+; writing: EAX=4, EBX=fd, ECX=buffer, EDX=length
+; closing: EAX=6, EBX=fd
 ```
 
 ---
@@ -189,11 +189,11 @@ Create/open (`sys_creat` no. 8, `sys_open` no. 5), write (`sys_write` no. 4), cl
 ```nasm
 MOV EAX, 45        ; sys_brk
 XOR EBX, EBX
-INT 80H            ; endereço atual
+INT 80H            ; current address
 ADD EAX, 16384     ; + 16 KB
 MOV EBX, EAX
 MOV EAX, 45
-INT 80H            ; nova quebra definida
+INT 80H            ; new break set
 ```
 
 Fill the block with `REP STOSD` (with `STD`/`CLD` for direction).

@@ -32,17 +32,17 @@ sla:
 schema:
   - name: order_id
     type: string
-    description: "UUID da transação aprovada"
+    description: "UUID of the approved transaction"
     required: true
     pii: false
   - name: customer_tax_id
     type: string
-    description: "CPF/Tax ID do comprador"
+    description: "CPF/Tax ID of the buyer"
     required: true
     pii: true
     classification: restricted
   - name: total_amount_cents
     type: integer
-    description: "Valor em centavos de moeda corrente"
+    description: "Amount in cents of the local currency"
     required: true
 ```

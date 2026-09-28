@@ -30,7 +30,7 @@ classDiagram
     }
     Client --> Target
     Target <|.. Adapter
-    Adapter o-- Adaptee : traduz chamada
+    Adapter o-- Adaptee : translates call
 ```
 
 ---
@@ -64,7 +64,7 @@ classDiagram
         +method2()
     }
     Abstraction <|-- RefinedAbstraction
-    Abstraction o-- Implementation : ponte
+    Abstraction o-- Implementation : bridge
     Implementation <|.. ConcreteImplA
     Implementation <|.. ConcreteImplB
 ```
@@ -93,7 +93,7 @@ classDiagram
     }
     Component <|.. Leaf
     Component <|.. Composite
-    Composite o-- Component : contém
+    Composite o-- Component : contains
 ```
 
 ---
@@ -174,7 +174,7 @@ classDiagram
         +draw(canvas)
     }
     FlyweightFactory o-- TreeType
-    Tree o-- TreeType : compartilha estado intrínseco
+    Tree o-- TreeType : shares intrinsic state
 ```
 
 ---
@@ -199,7 +199,7 @@ classDiagram
     }
     ServiceInterface <|.. RealService
     ServiceInterface <|.. Proxy
-    Proxy o-- RealService : controla acesso
+    Proxy o-- RealService : controls access
 ```
 
 ---

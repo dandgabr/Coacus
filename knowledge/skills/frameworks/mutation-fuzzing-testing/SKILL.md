@@ -21,7 +21,7 @@ Mutation Testing evaluates the true effectiveness of a test suite by introducing
 5. **LCR (Logical Connector Replacement)**: Negation of boolean expressions (`if condition` becomes `if not condition`).
 
 ### B. Mutation Score Metric
-$$\text{Mutation Score (MS)} = \frac{\text{Mutantes Mortos}}{\text{Total de Mutantes} - \text{Mutantes Equivalentes}} \times 100\%$$
+$$\text{Mutation Score (MS)} = \frac{\text{Killed Mutants}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\%$$
 - **Equivalent Mutant**: A mutant that is syntactically different but semantically identical in behavior to the original code (must be excluded from the denominator).
 - **Minimum Corporate Target**: $MS \ge 85\%$ for critical components and $MS \ge 90\%$ for financial/security rules.
 
@@ -48,7 +48,7 @@ Fuzzing subjects the program to semi-random, malformed, or genetically generated
 ### B. The Oracle Problem in Fuzzing
 - **Basic Failure Oracle**: Detection of crashes, `NullPointerException`, division by zero, infinite loops (*Timeout*), or improper memory use (*ASan / AddressSanitizer*).
 - **Metamorphic Oracle**: Validation of relational consistency properties:
-  $$f(\text{entrada\_ordenada}) = f(\text{entrada})$$
+  $$f(\text{sorted\_input}) = f(\text{input})$$
 
 ---
 
@@ -59,11 +59,11 @@ Tests with 100% line coverage can still violate system requirements if they vali
 ### A. Requirements Traceability Matrix (RTM)
 Every test case must be explicitly mapped to an original acceptance criterion:
 ```text
-[REQ-01: Pagamento Pix com Desconto]
-├── Teste Funcional: test_pix_discount_applied_nominal()
-├── Teste de Limite (BVA): test_pix_discount_boundary_values()
-├── Teste de Mutação: mutante em `discount_rate` deve ser morto
-└── Teste de Fuzzing: hypothesis_pix_arbitrary_amounts_never_negative()
+[REQ-01: Pix Payment with Discount]
+├── Functional Test: test_pix_discount_applied_nominal()
+├── Boundary Test (BVA): test_pix_discount_boundary_values()
+├── Mutation Test: a mutant in `discount_rate` must be killed
+└── Fuzzing Test: hypothesis_pix_arbitrary_amounts_never_negative()
 ```
 
 ### B. Test Gap Analysis

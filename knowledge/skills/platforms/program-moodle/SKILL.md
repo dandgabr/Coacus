@@ -15,11 +15,11 @@ Moodle uses the **Frankenstyle** naming convention (`[plugintype]_[pluginname]`)
 
 ```
 moodle/
-├── mod/               # Módulos de atividades (ex: mod_quiz, mod_assign)
-├── block/             # Blocos laterais (ex: block_myoverview)
-├── local/             # Plugins locais de customização (ex: local_custom_reports)
-├── theme/             # Temas visuais (ex: theme_boost)
-└── enrol/             # Métodos de inscrição (ex: enrol_manual)
+├── mod/               # Activity modules (e.g., mod_quiz, mod_assign)
+├── block/             # Side blocks (e.g., block_myoverview)
+├── local/             # Local customization plugins (e.g., local_custom_reports)
+├── theme/             # Visual themes (e.g., theme_boost)
+└── enrol/             # Enrollment methods (e.g., enrol_manual)
 ```
 
 - **Standard Plugin Structure**:

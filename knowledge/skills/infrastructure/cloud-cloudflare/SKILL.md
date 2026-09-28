@@ -15,14 +15,14 @@ Cloudflare offers an integrated set of command-line tools for automation, local 
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                          ECOSSISTEMA DE CLIS CLOUDFLARE                                │
+│                          CLOUDFLARE CLI ECOSYSTEM                                      │
 ├─────────────────────────┬─────────────────────────┬────────────────────────────────────┤
-│ 🚀 CLI Unificada `cf`   │ 🛠️ Wrangler CLI (v3/v4) │ 🔒 cloudflared CLI                 │
+│ 🚀 Unified `cf` CLI     │ 🛠️ Wrangler CLI (v3/v4) │ 🔒 cloudflared CLI                 │
 ├─────────────────────────┼─────────────────────────┼────────────────────────────────────┤
 │ • npx cf                │ • npx wrangler dev      │ • cloudflared tunnel create        │
-│ • Superfície unificada  │ • npx wrangler deploy   │ • Zero-port reverse proxy          │
-│ • Design para Agentes/IA│ • npx wrangler types    │ • Ingress rules privadas           │
-│ • Gerencia toda a conta │ • Local Miniflare/workerd│ • Integração Zero Trust Access    │
+│ • Unified surface       │ • npx wrangler deploy   │ • Zero-port reverse proxy          │
+│ • Designed for Agents/AI│ • npx wrangler types    │ • Private ingress rules            │
+│ • Manages the whole acct│ • Local Miniflare/workerd│ • Zero Trust Access integration   │
 └─────────────────────────┴─────────────────────────┴────────────────────────────────────┘
 ```
 
@@ -30,16 +30,16 @@ Cloudflare offers an integrated set of command-line tools for automation, local 
 The `cf` CLI is Cloudflare's next-generation command-line interface, designed to consolidate all products and APIs of the platform under a predictable, consistent syntax, purpose-built to be consumed by both engineers and **autonomous AI agents**:
 
 ```bash
-# Execução direta via npx ou instalação global
+# Direct execution via npx or global installation
 npx cf --help
 npm install -g cf
 
-# Autenticação e contexto de conta
+# Authentication and account context
 cf login
 cf whoami
 cf accounts list
 
-# Inspeção e gerenciamento de recursos globais
+# Inspection and management of global resources
 cf zones list
 cf dns records list --zone <zone_id>
 cf workers list
@@ -51,23 +51,23 @@ cf d1 databases list
 Wrangler is the heart of the development lifecycle for edge applications:
 
 ```bash
-# Inicialização e desenvolvimento local (emulado com motor nativo workerd / Miniflare)
+# Initialization and local development (emulated with the native workerd / Miniflare engine)
 npx wrangler dev
-npx wrangler dev --remote         # Executa contra recursos reais da Cloudflare
+npx wrangler dev --remote         # Runs against real Cloudflare resources
 
-# Geração automática de contratos de tipagem TypeScript a partir do wrangler.jsonc/toml
+# Automatic generation of TypeScript typing contracts from wrangler.jsonc/toml
 npx wrangler types
 
-# Deploy para produção ou ambientes específicos (staging/preview)
+# Deploy to production or specific environments (staging/preview)
 npx wrangler deploy
 npx wrangler deploy --env staging
 
-# Gerenciamento de segredos de ambiente criptografados
+# Management of encrypted environment secrets
 npx wrangler secret put API_SECRET_KEY
 npx wrangler secret list
 npx wrangler secret delete API_SECRET_KEY
 
-# Streaming de telemetria e logs de execução em tempo real
+# Telemetry and runtime log streaming in real time
 npx wrangler tail
 npx wrangler tail --format pretty --status error
 ```
@@ -75,41 +75,41 @@ npx wrangler tail --format pretty --status error
 ### 1.3. C3 (`create-cloudflare`): Project Scaffolding
 Standardized initialization of Workers and Pages applications with modern templates:
 ```bash
-# Inicialização interativa de novos projetos com frameworks suportados
-npm create cloudflare@latest meu-projeto-edge
-# Suporta: Hono, Astro, Next.js (OpenNext), Remix, Nuxt, SvelteKit
+# Interactive initialization of new projects with supported frameworks
+npm create cloudflare@latest my-edge-project
+# Supports: Hono, Astro, Next.js (OpenNext), Remix, Nuxt, SvelteKit
 ```
 
 ### 1.4. `cloudflared` CLI: Private Tunnels and Zero Trust
 Connects local servers, containers, and networks directly to Cloudflare's network without exposing any public inbound port to the internet:
 
 ```bash
-# Autenticação do cloudflared com a conta Cloudflare
+# Authenticating cloudflared with the Cloudflare account
 cloudflared tunnel login
 
-# Criação de um túnel nomeado
-cloudflared tunnel create producao-tunnel
+# Creating a named tunnel
+cloudflared tunnel create production-tunnel
 
-# Roteamento de tráfego DNS para o túnel
-cloudflared tunnel route dns producao-tunnel api.minhaempresa.com
+# Routing DNS traffic to the tunnel
+cloudflared tunnel route dns production-tunnel api.mycompany.com
 
-# Execução do túnel baseado no arquivo de configuração
-cloudflared tunnel run producao-tunnel
+# Running the tunnel based on the configuration file
+cloudflared tunnel run production-tunnel
 ```
 
 #### `config.yml` Example for Private Ingress Rules:
 ```yaml
-tunnel: <UUID_DO_TUNEL>
-credentials-file: /etc/cloudflared/<UUID_DO_TUNEL>.json
+tunnel: <TUNNEL_UUID>
+credentials-file: /etc/cloudflared/<TUNNEL_UUID>.json
 
 ingress:
-  # Roteamento para microsserviço interno seguro
-  - hostname: api.minhaempresa.com
+  # Routing to a secure internal microservice
+  - hostname: api.mycompany.com
     service: http://localhost:8080
     originRequest:
       connectTimeout: 10s
       noTLSVerify: false
-  # Fallback obrigatório: retorna 404 para qualquer outro tráfego
+  # Mandatory fallback: returns 404 for any other traffic
   - service: http_status:404
 ```
 
@@ -133,7 +133,7 @@ Unlike traditional containers and serverless functions (such as AWS Lambda) that
   "main": "src/index.ts",
   "compatibility_date": "2024-09-01",
   "compatibility_flags": ["nodejs_compat"],
-  // Binds para Bancos e Armazenamento
+  // Bindings for Databases and Storage
   "d1_databases": [
     {
       "binding": "DB",
@@ -169,16 +169,16 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    // Rota de Health Check
+    // Health Check Route
     if (url.pathname === "/health") {
       return new Response(JSON.stringify({ status: "healthy", region: request.cf?.colo }), {
         headers: { "Content-Type": "application/json" }
       });
     }
 
-    // Consulta otimizada com D1 (SQLite distribuído)
+    // Optimized query with D1 (distributed SQLite)
     if (url.pathname === "/users" && request.method === "GET") {
-      // Checa cache na borda via KV
+      // Checks the cache at the edge via KV
       const cached = await env.CACHE_KV.get("active_users", "json");
       if (cached) {
         return Response.json(cached, { headers: { "X-Cache": "HIT" } });
@@ -188,7 +188,7 @@ export default {
         "SELECT id, name, email, created_at FROM users WHERE active = 1 LIMIT 50"
       ).all();
 
-      // Salva no KV em background sem bloquear a resposta ao usuário
+      // Saves to KV in the background without blocking the response to the user
       ctx.waitUntil(env.CACHE_KV.put("active_users", JSON.stringify(results), { expirationTtl: 300 }));
 
       return Response.json(results, { headers: { "X-Cache": "MISS" } });
@@ -216,30 +216,30 @@ Cloudflare offers a complete suite of serverless persistence at the edge:
 
 ### 3.1. D1: Migrations and Queries
 ```bash
-# Criação do banco D1
+# Creating the D1 database
 npx wrangler d1 create app-production-db
 
-# Criação de arquivo de migração
-npx wrangler d1 migrations create app-production-db criar_tabela_usuarios
+# Creating a migration file
+npx wrangler d1 migrations create app-production-db create_users_table
 
-# Aplicação local das migrações
+# Applying migrations locally
 npx wrangler d1 migrations apply app-production-db --local
 
-# Aplicação em produção na borda global
+# Applying migrations in production at the global edge
 npx wrangler d1 migrations apply app-production-db --remote
 ```
 
 ### 3.2. R2: S3-Compatible Storage
 ```typescript
-// Upload de arquivo para o R2 com metadados customizados
-await env.STORAGE.put("uploads/relatorio.pdf", request.body, {
+// File upload to R2 with custom metadata
+await env.STORAGE.put("uploads/report.pdf", request.body, {
   httpMetadata: { contentType: "application/pdf" },
-  customMetadata: { autor: "sistema", data: new Date().toISOString() }
+  customMetadata: { author: "system", date: new Date().toISOString() }
 });
 
-// Download com streaming direto
-const object = await env.STORAGE.get("uploads/relatorio.pdf");
-if (!object) return new Response("Objeto não encontrado", { status: 404 });
+// Download with direct streaming
+const object = await env.STORAGE.get("uploads/report.pdf");
+if (!object) return new Response("Object not found", { status: 404 });
 
 const headers = new Headers();
 object.writeHttpMetadata(headers);
@@ -282,7 +282,7 @@ const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/si
 
 const outcome = await verifyRes.json<{ success: boolean }>();
 if (!outcome.success) {
-  return new Response("Falha na validação anti-bot", { status: 403 });
+  return new Response("Anti-bot validation failed", { status: 403 });
 }
 ```
 

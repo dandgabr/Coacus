@@ -39,20 +39,20 @@ The designer must consciously select the project's visual language from the ency
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                      CATÁLOGO DOS 24 ESTILOS DE DESIGN DE PÁGINAS                      │
+│                      CATALOG OF THE 24 PAGE DESIGN STYLES                      │
 ├───────────────────────────────┬────────────────────────────────────────────────────────┤
-│ 1. Movimentos Históricos      │ • Bauhaus (1919) • Swiss Style (1950s) • De Stijl      │
-│    e Vanguardas               │ • Art Déco (1925) • Art Nouveau (1890) • Memphis (80s) │
+│ 1. Historical Movements       │ • Bauhaus (1919) • Swiss Style (1950s) • De Stijl      │
+│    and Avant-Gardes           │ • Art Déco (1925) • Art Nouveau (1890) • Memphis (80s) │
 ├───────────────────────────────┼────────────────────────────────────────────────────────┤
-│ 2. Era Digital Inicial        │ • Retro-Computing (8/16-bit) • CLI/Terminal TUI        │
-│    e Nostalgia Retrô          │ • Raw HTML / Classic Brutalism • Y2K Futurism          │
-│                               │ • Frutiger Aero (2004) • Skeuomorphism Clássico       │
+│ 2. Early Digital Era          │ • Retro-Computing (8/16-bit) • CLI/Terminal TUI        │
+│    and Retro Nostalgia        │ • Raw HTML / Classic Brutalism • Y2K Futurism          │
+│                               │ • Frutiger Aero (2004) • Classic Skeuomorphism         │
 ├───────────────────────────────┼────────────────────────────────────────────────────────┤
-│ 3. Minimalismo Moderno        │ • Flat Design 1.0 • Flat 2.0 / Material Design         │
-│    e Design Systems           │ • Neumorphism (Soft UI) • Glassmorphism • Claymorphism │
+│ 3. Modern Minimalism          │ • Flat Design 1.0 • Flat 2.0 / Material Design         │
+│    and Design Systems         │ • Neumorphism (Soft UI) • Glassmorphism • Claymorphism │
 ├───────────────────────────────┼────────────────────────────────────────────────────────┤
-│ 4. Vanguarda Contemporânea    │ • Bento Grid • Tactile Brutalism & Engineered Minimal  │
-│    e Estilos Anti-IA          │ • Neo-Brutalism • Editorial Luxury • Solarpunk/Organic │
+│ 4. Contemporary Avant-Garde   │ • Bento Grid • Tactile Brutalism & Engineered Minimal  │
+│    and Anti-AI Styles         │ • Neo-Brutalism • Editorial Luxury • Solarpunk/Organic │
 │                               │ • Cyberpunk HUD • Acid Graphics / Anti-Design          │
 └───────────────────────────────┴────────────────────────────────────────────────────────┘
 ```

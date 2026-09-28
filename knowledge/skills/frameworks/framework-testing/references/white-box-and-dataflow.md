@@ -28,7 +28,7 @@ $$V(G) = e - n + 2p$$
 
 For planar graphs where all decisions are binary (simple predicates $d$):
 $$V(G) = d + 1$$
-$$V(G) = \text{Número de regiões fechadas no plano} + 1$$
+$$V(G) = \text{Number of closed regions in the plane} + 1$$
 
 ### 2.2. Basis Path Testing Algorithm
 1. **Draw the CFG** corresponding to the code.
@@ -56,7 +56,7 @@ $$V(G) = \text{Número de regiões fechadas no plano} + 1$$
 
 ### 3.1. Statement Coverage ($C_0$)
 - Requires that every executable statement be traversed at least once.
-- **Formula**: $\text{Cobertura } C_0 = \frac{\text{Instruções Executadas}}{\text{Total de Instruções}} \times 100\%$.
+- **Formula**: $\text{Coverage } C_0 = \frac{\text{Statements Executed}}{\text{Total Statements}} \times 100\%$.
 - **Limitation**: Insensitive to empty branches (`if (cond) { ... }` without `else`), which can leave branches and conditions entirely untested.
 
 ### 3.2. Branch / Decision Coverage ($C_1$)

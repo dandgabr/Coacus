@@ -32,9 +32,9 @@ This skill establishes the rigorous microscopic and macroscopic bridge between t
 ```mermaid
 graph TD
     subgraph Ensembles
-        EM["1. Ensemble Microcanônico<br/>(E, V, N isolados)"] -->|Entropia de Boltzmann| S["S = kB ln Ω(E)"]
-        EC["2. Ensemble Canônico<br/>(T, V, N banho térmico)"] -->|Função de Partição Z| F["F = -kB T ln Z"]
-        EGC["3. Ensemble Grão-Canônico<br/>(T, V, μ partículas abertas)"] -->|Grande Função de Partição 𝒵| PHI["Φ = -kB T ln 𝒵 = -PV"]
+        EM["1. Microcanonical Ensemble<br/>(E, V, N isolated)"] -->|Boltzmann Entropy| S["S = kB ln Ω(E)"]
+        EC["2. Canonical Ensemble<br/>(T, V, N thermal bath)"] -->|Partition Function Z| F["F = -kB T ln Z"]
+        EGC["3. Grand Canonical Ensemble<br/>(T, V, μ open particles)"] -->|Grand Partition Function 𝒵| PHI["Φ = -kB T ln 𝒵 = -PV"]
     end
 ```
 

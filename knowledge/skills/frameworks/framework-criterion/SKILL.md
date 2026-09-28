@@ -33,13 +33,13 @@ When using Criterion in C code projects:
 
 Test(calculator_suite, test_add_positive_numbers) {
     int result = add(15, 25);
-    cr_assert_eq(result, 40, "Esperado 40, mas obteve %d", result);
+    cr_assert_eq(result, 40, "Expected 40, but got %d", result);
 }
 
 Test(calculator_suite, test_string_formatting) {
     char *formatted = format_currency(100.50);
-    cr_assert_str_eq(formatted, "$100.50", "String formatada incorreta: %s", formatted);
-    free(formatted); // Limpeza de memória
+    cr_assert_str_eq(formatted, "$100.50", "Incorrect formatted string: %s", formatted);
+    free(formatted); // Memory cleanup
 }
 ```
 
@@ -66,9 +66,9 @@ void teardown_db(void) {
 }
 
 Test(database_suite, test_insert_record, .init = setup_db, .fini = teardown_db) {
-    cr_assert_not_null(db_conn, "Conexão com o banco de dados deve estar ativa.");
+    cr_assert_not_null(db_conn, "The database connection must be active.");
     int status = db_insert(db_conn, "users", "Alice");
-    cr_assert_eq(status, DB_SUCCESS, "Falha ao inserir registro.");
+    cr_assert_eq(status, DB_SUCCESS, "Failed to insert record.");
 }
 ```
 
@@ -80,12 +80,12 @@ Test(database_suite, test_insert_record, .init = setup_db, .fini = teardown_db) 
 #include <signal.h>
 #include "utils.h"
 
-// Teste espera que a função dispare Segmentation Fault se receber ponteiro nulo
+// Test expects the function to throw a Segmentation Fault if it receives a null pointer
 Test(safety_suite, test_null_pointer_crash, .signal = SIGSEGV) {
     process_buffer(NULL, 100);
 }
 
-// Teste é cancelado se demorar mais de 1.5 segundos
+// Test is canceled if it takes longer than 1.5 seconds
 Test(performance_suite, test_infinite_loop_prevention, .timeout = 1.5) {
     compute_complex_hash("payload");
 }
@@ -105,8 +105,8 @@ void setup_redirects(void) {
 }
 
 Test(cli_suite, test_print_welcome_message, .init = setup_redirects) {
-    puts("Bem-vindo ao Sistema!");
-    cr_assert_stdout_eq_str("Bem-vindo ao Sistema!\n");
+    puts("Welcome to the System!");
+    cr_assert_stdout_eq_str("Welcome to the System!\n");
 }
 ```
 

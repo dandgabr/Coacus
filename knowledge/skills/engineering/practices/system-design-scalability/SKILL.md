@@ -29,7 +29,7 @@ This skill supplies the principles, patterns, and heuristics for designing scala
 
 ### Sharding and Partitioning Strategies
 - **Horizontal Sharding (Range-Based)**: Split by key ranges (for example, ID 1-1M on Shard A, 1M-2M on Shard B). Prone to *Hotspots*.
-- **Hash-Based Sharding**: Distribution via `hash(chave) % num_shards`. Requires costly re-sharding when nodes are added.
+- **Hash-Based Sharding**: Distribution via `hash(key) % num_shards`. Requires costly re-sharding when nodes are added.
 - **Consistent Hashing**: A virtual ring with virtual nodes (V-Nodes). Minimizes key movement when servers are added or removed (used by DynamoDB, Cassandra, and CDNs).
 
 ### Replication Strategies
@@ -59,7 +59,7 @@ This skill supplies the principles, patterns, and heuristics for designing scala
 
 ```
                ┌────────────────────────┐
-               │    Cliente / Gateway   │
+               │    Client / Gateway    │
                └───────────┬────────────┘
                            │
                  [ Rate Limiting & WAF ]
@@ -74,7 +74,7 @@ This skill supplies the principles, patterns, and heuristics for designing scala
               └────────────┬────────────┘
                            │
               ┌────────────▼────────────┐
-              │    Serviço Dependente   │
+               │   Dependent Service    │
               └─────────────────────────┘
 ```
 

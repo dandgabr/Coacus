@@ -38,30 +38,30 @@ Unlike a WAF (Web Application Firewall), which operates at the network edge insp
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        ARQUITETURA DE UM AGENTE RASP                   │
+│                      ARCHITECTURE OF A RASP AGENT                      │
 └────────────────────────────────────────────────────────────────────────┘
-  [ Requisição HTTP de Entrada ] ──► [ Servidor Web (Tomcat, Gunicorn, Express) ]
+  [ Inbound HTTP Request ] ──► [ Web Server (Tomcat, Gunicorn, Express) ]
                                                 │
                                                 ▼
-                                   [ Código da Aplicação (Lógica) ]
+                                   [ Application Code (Logic) ]
                                                 │
   ┌─────────────────────────────────────────────┼─────────────────────────────────────────────┐
-  │ AGENTE RASP (Instrumentação de Bytecode)     │                                             │
+  │ RASP AGENT (Bytecode Instrumentation)      │                                             │
   │                                             ▼                                             │
-  │   [ Hook Interceptor no Sink ] ──► (Ex: java.sql.Statement.executeQuery)                  │
+  │   [ Hook Interceptor at the Sink ] ──► (e.g., java.sql.Statement.executeQuery)           │
   │          │                                                                                │
   │          ▼                                                                                │
-  │   [ Análise Contextual & AST Taint Check ]                                                │
+  │   [ Contextual Analysis & AST Taint Check ]                                               │
   │          │                                                                                │
-  │          ├──► [ Ameaça Detectada? ]                                                       │
-  │          │          ├── SIM (Block Mode) ──► Bloqueia execução + Lança SecurityException  │
-  │          │          │                        + Emite Alarme Estruturado (JSON/SIEM)       │
+  │          ├──► [ Threat Detected? ]                                                        │
+  │          │          ├── YES (Block Mode) ──► Blocks execution + Throws SecurityException │
+  │          │          │                         + Emits Structured Alert (JSON/SIEM)      │
   │          │          │                                                                     │
-  │          │          └── NÃO (ou Log Mode) ─► Permite a invocação do Driver Real           │
+  │          │          └── NO (or Log Mode) ───► Allows the Real Driver invocation           │
   │          │                                                                                │
   └──────────┼────────────────────────────────────────────────────────────────────────────────┘
              ▼
-     [ Recurso Real: Banco de Dados / Sistema de Arquivos / Shell do SO ]
+     [ Real Resource: Database / File System / OS Shell ]
 ```
 
 ### RASP Advantages Over Perimeter WAFs:

@@ -65,14 +65,14 @@ Consolidated from the official MDN Web Docs documentation (developer.mozilla.org
 
 ```javascript
 const importObject = {
-  imports: { imported_func: (arg) => console.log(arg) }, // namespace de 2 níveis
+  imports: { imported_func: (arg) => console.log(arg) }, // two-level namespace
 };
 
 WebAssembly.instantiateStreaming(fetch("simple.wasm"), importObject).then(
   (obj) => obj.instance.exports.exported_func(),
 );
 
-// Sem streaming (fallback):
+// Without streaming (fallback):
 fetch("simple.wasm")
   .then((r) => r.arrayBuffer())
   .then((bytes) => WebAssembly.instantiate(bytes, importObject))
@@ -89,9 +89,9 @@ fetch("simple.wasm")
 ### WebAssembly.Memory
 
 ```javascript
-const memory = new WebAssembly.Memory({ initial: 10, maximum: 100 }); // páginas de 64KB
-new Uint32Array(memory.buffer)[0] = 42;      // escrita
-memory.grow(1);                              // +1 página (64KB)
+const memory = new WebAssembly.Memory({ initial: 10, maximum: 100 }); // 64KB pages
+new Uint32Array(memory.buffer)[0] = 42;      // write
+memory.grow(1);                              // +1 page (64KB)
 ```
 
 - The units of `initial`/`maximum`/`grow()` = **64 KB pages**.
@@ -115,7 +115,7 @@ memory.grow(1);                              // +1 página (64KB)
   ```javascript
   WebAssembly.instantiateStreaming(fetch("table.wasm")).then(({ instance }) => {
     const tbl = instance.exports.tbl;
-    console.log(tbl.get(0)()); // 13  — dois parênteses: get() retorna a função
+    console.log(tbl.get(0)()); // 13  — two parentheses: get() returns the function
   });
   ```
 
@@ -127,7 +127,7 @@ global.value = 42;                       // set via JS
 WebAssembly.instantiateStreaming(fetch("global.wasm"), { js: { global } })
   .then(({ instance }) => {
     instance.exports.getGlobal();        // 42
-    instance.exports.incGlobal();        // wasm muta o global
+    instance.exports.incGlobal();        // wasm mutates the global
     global.value;                        // 43
   });
 ```

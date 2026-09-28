@@ -35,52 +35,52 @@ Opengrep analyzes source code through abstract syntax tree (AST - *Abstract Synt
 ### 1. Installation and Verification
 
 ```bash
-# Executar verificação de versão e integridade
+# Run the version and integrity check
 opengrep --version
 
-# Exibir ajuda e catálogo de opções
+# Display help and the options catalog
 opengrep --help
 ```
 
 ### 2. Scan Commands (`opengrep scan`)
 
 ```bash
-# Varredura básica utilizando conjunto de regras local ou automático
+# Basic scan using a local or automatic rule set
 opengrep scan --config auto .
 
-# Varredura apontando para um diretório ou arquivo de regras YAML específico
+# Scan pointing to a specific YAML rule directory or file
 opengrep scan --config ./rules/security.yaml src/
 
-# Varredura com múltiplos conjuntos de regras
+# Scan with multiple rule sets
 opengrep scan --config ./rules/sast/ --config ./rules/custom/ src/
 
-# Filtragem por severidade mínima (INFO, WARNING, ERROR)
+# Filter by minimum severity (INFO, WARNING, ERROR)
 opengrep scan --config auto --severity ERROR .
 
-# Forçar código de saída não-zero em caso de vulnerabilidades encontradas (ideal para CI/CD Quality Gate)
+# Force a non-zero exit code when vulnerabilities are found (ideal for a CI/CD Quality Gate)
 opengrep scan --config auto --error .
 
-# Exclusão e inclusão de diretórios/arquivos específicos
+# Exclusion and inclusion of specific directories/files
 opengrep scan --config auto --exclude "tests/" --exclude "vendor/" --exclude "*.min.js" .
 ```
 
 ### 3. Output Formats and Export
 
 ```bash
-# Exportar relatório em formato JSON estruturado
+# Export the report in a structured JSON format
 opengrep scan --config auto --json --output opengrep-report.json .
 
-# Exportar relatório no padrão OASIS SARIF (para ingestão no GitHub Security Tab / SonarQube / DefectDojo)
+# Export the report in the OASIS SARIF standard (for ingestion into GitHub Security Tab / SonarQube / DefectDojo)
 opengrep scan --config auto --sarif-output=opengrep.sarif .
 
-# Modo silencioso apenas com o resumo final
+# Quiet mode with only the final summary
 opengrep scan --config auto --quiet .
 ```
 
 ### 4. Custom Rule Testing (`opengrep test`)
 
 ```bash
-# Executar a suíte de testes unitários de regras YAML contra arquivos de teste
+# Run the unit test suite for YAML rules against test files
 opengrep test ./rules/
 ```
 
@@ -103,7 +103,7 @@ rules:
     languages:
       - javascript
       - typescript
-    message: "Possível injeção de comandos detectada. O uso de child_process.exec com dados dinâmicos pode permitir execução arbitrária de código no sistema operacional. Utilize execFile ou spawn com lista de argumentos fixa."
+    message: "Possible command injection detected. Using child_process.exec with dynamic data can allow arbitrary code execution on the operating system. Use execFile or spawn with a fixed argument list."
     severity: ERROR
     metadata:
       cwe: "CWE-78: Improper Neutralization of Special Elements used in an OS Command"
@@ -126,14 +126,14 @@ rules:
     mode: taint
     languages:
       - python
-    message: "SQL Injection detectado: entrada não confiável originada da requisição Flask alcança a execução de query SQL sem parametrização."
+    message: "SQL Injection detected: untrusted input originating from the Flask request reaches SQL query execution without parameterization."
     severity: ERROR
     metadata:
       cwe: "CWE-89: SQL Injection"
       owasp: "A03:2021 - Injection"
       category: security
     
-    # 1. Origens de dados não confiáveis
+    # 1. Untrusted data sources
     pattern-sources:
       - pattern: flask.request.args.get(...)
       - pattern: flask.request.form[...]
@@ -141,7 +141,7 @@ rules:
       - pattern: flask.request.headers.get(...)
       - pattern: flask.request.get_json(...)
     
-    # 2. Propagação através de concatenações ou formatações de string
+    # 2. Propagation through concatenations or string formatting
     pattern-propagators:
       - pattern: $TARGET = f"...{$SOURCE}..."
         from: $SOURCE
@@ -153,14 +153,14 @@ rules:
         from: $SOURCE
         to: $TARGET
 
-    # 3. Sanitizadores (Neutralizam a contaminação)
+    # 3. Sanitizers (neutralize the taint)
     pattern-sanitizers:
       - pattern: int(...)
       - pattern: float(...)
       - pattern: uuid.UUID(...)
       - pattern: sqlalchemy.text(...)
 
-    # 4. Sumidouros críticos (Sinks)
+    # 4. Critical sinks (Sinks)
     pattern-sinks:
       - pattern: $DB.session.execute($QUERY, ...)
       - pattern: $CURSOR.execute($QUERY, ...)

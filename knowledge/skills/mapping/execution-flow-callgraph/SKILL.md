@@ -17,31 +17,31 @@ Reconstructing execution paths involves two synergistic approaches:
 
 ```mermaid
 flowchart TD
-    subgraph Layer1["1. Controller / Camada de Entrada"]
+    subgraph Layer1["1. Controller / Input Layer"]
         CTRL["OrderController.checkout(req)"]
     end
 
-    subgraph Layer2["2. Service / Camada de Negócio"]
+    subgraph Layer2["2. Service / Business Layer"]
         SRV["OrderService.processOrder(order)"]
         VAL["ValidationService.validate(order)"]
     end
 
-    subgraph Layer3["3. Gateway / Clientes Externos"]
+    subgraph Layer3["3. Gateway / External Clients"]
         PAY_GW["PaymentClient.chargeCreditCard(token, amount)"]
         NOTIF["NotificationClient.sendEmail(user)"]
     end
 
-    subgraph Layer4["4. Repository / Persistência"]
+    subgraph Layer4["4. Repository / Persistence"]
         REPO["OrderRepository.save(order)"]
         DB[(PostgreSQL Database)]
     end
 
-    CTRL -->|"1. Chama"| SRV
-    SRV -->|"1.1. Valida"| VAL
-    SRV -->|"1.2. Processa Pagamento"| PAY_GW
-    SRV -->|"1.3. Persiste Estado"| REPO
+    CTRL -->|"1. Calls"| SRV
+    SRV -->|"1.1. Validates"| VAL
+    SRV -->|"1.2. Processes Payment"| PAY_GW
+    SRV -->|"1.3. Persists State"| REPO
     REPO -->|"SQL: INSERT INTO orders"| DB
-    SRV -->|"1.4. Notificação Assíncrona"| NOTIF
+    SRV -->|"1.4. Asynchronous Notification"| NOTIF
 ```
 
 ---
@@ -52,14 +52,14 @@ flowchart TD
 - **Concept**: A multilingual utility (Python, JavaScript, Ruby, PHP) that generates visual executable flowcharts from source code, mapping directly how functions interact with one another.
 - **CLI Usage**:
 ```bash
-# Gerar fluxograma de execução em SVG
+# Generate an execution flowchart in SVG
 code2flow src/main.py src/auth.py src/database.py -o execution_flow.svg
 ```
 
 ### 2. Go Callvis (Go / Golang)
 - **Concept**: An interactive call graph generator for Go. It uses advanced static pointer analysis (`pointer analysis`) to resolve interfaces and dynamic dispatch, grouping functions by their origin package.
 ```bash
-# Focar no ponto de entrada main e ignorar bibliotecas padrão do Go
+# Focus on the main entry point and ignore the Go standard libraries
 go-callvis -nostd -focus github.com/empresa/projeto/cmd/server .
 ```
 

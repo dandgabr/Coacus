@@ -15,28 +15,28 @@ Database mapping extracts the relational structure from the DBMS catalog and cor
 
 ```mermaid
 flowchart TD
-    subgraph SGBDs["Motores de Banco de Dados"]
+    subgraph SGBDs["Database Engines"]
         PG["PostgreSQL"]
         MYSQL["MySQL / MariaDB"]
         ORACLE["Oracle Database"]
         MSSQL["Microsoft SQL Server"]
     end
 
-    subgraph ReverseEngines["Engenharia Reversa & Modelagem ER"]
+    subgraph ReverseEngines["Reverse Engineering & ER Modeling"]
         SCHEMASPY["SchemaSpy (HTML + Graphviz ERD)"]
         PGMODELER["pgModeler (PostgreSQL Native Modeler)"]
         DBSCHEMA["DbSchema & DBeaver (Universal ERD Tools)"]
         SSDT["SQL Server Data Tools (SSDT)"]
     end
 
-    subgraph ProfilingEngines["Análise de Dependência de I/O & Queries"]
+    subgraph ProfilingEngines["I/O Dependency & Query Analysis"]
         PGBADGER["pgBadger (PostgreSQL Log Analyzer)"]
         PMM["Percona Monitoring & Management (QAN)"]
     end
 
-    subgraph Outputs["Artefatos de Mapeamento"]
-        ERD_DOCS["Documentação HTML / Diagramas ER"]
-        ANOMALIES["Detecção de Chaves Órfãs & Faltantes"]
+    subgraph Outputs["Mapping Artifacts"]
+        ERD_DOCS["HTML Documentation / ER Diagrams"]
+        ANOMALIES["Detection of Orphaned & Missing Keys"]
         SLOW_QUERIES["Top Slow Queries & Missing Indexes"]
     end
 
@@ -57,7 +57,7 @@ flowchart TD
 java -jar schemaspy-6.2.4.jar \
   -t pgsql \
   -dp /opt/drivers/postgresql-42.7.2.jar \
-  -db meubanco \
+  -db mydb \
   -host localhost \
   -port 5432 \
   -s public \

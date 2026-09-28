@@ -13,23 +13,23 @@ This skill establishes the formal procedures for automated reconnaissance, attac
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. Reconhecimento Amplo (Subdomínios, ASN, WHOIS, CIDR)     │
+│ 1. Broad Reconnaissance (Subdomains, ASN, WHOIS, CIDR)      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 2. Probing e Descoberta de Serviços (HTTP/S, Portas, Tecn.) │
+│ 2. Probing and Service Discovery (HTTP/S, Ports, Tech.)     │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 3. Mapeamento de Conteúdo e Endpoints (JS Mining, Wayback)  │
+│ 3. Content and Endpoint Mapping (JS Mining, Wayback)        │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 4. Testes de Vulnerabilidades Lógicas e de Negócio          │
+│ 4. Logic and Business Vulnerability Testing                 │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 5. Elaboração de Relatório de Alto Impacto (Triagem & PoC)  │
+│ 5. High-Impact Report Writing (Triage & PoC)                │
 └─────────────────────────────────────────────────────────────┘
 ```
 

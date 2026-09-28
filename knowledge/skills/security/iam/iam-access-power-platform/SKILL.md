@@ -24,7 +24,7 @@ Security in Microsoft Power Platform is structured as defense in depth divided i
 
 ```text
 +-----------------------------------------------------------------------+
-| 1. Tenant Level (Microsoft Entra ID, Licenciamento, Conditional Access)|
+| 1. Tenant Level (Microsoft Entra ID, Licensing, Conditional Access)|
 +-----------------------------------------------------------------------+
                                   |
                                   v
@@ -85,19 +85,19 @@ For each table in Dataverse, 8 fundamental privileges can be configured:
 Privileges are associated with scope levels that determine the reach of the permission in the organizational tree:
 
 ```text
-[ Global / Organization ] ──> Acesso a todos os registros do ambiente.
+[ Global / Organization ] ──> Access to all records in the environment.
         |
         v
-[ Deep / Parent: Child BUs ] ──> Acesso na BU do usuário e em todas as BUs filhas subordinadas.
+[ Deep / Parent: Child BUs ] ──> Access in the user's BU and in all subordinate child BUs.
         |
         v
-[ Local / Business Unit ] ──> Acesso estrito aos registros mantidos na mesma BU do usuário.
+[ Local / Business Unit ] ──> Strict access to records held in the user's same BU.
         |
         v
-[ Basic / User ] ──> Acesso exclusivo a registros pertencentes ao usuário ou compartilhados com ele/suas equipes.
+[ Basic / User ] ──> Exclusive access to records belonging to the user or shared with them/their teams.
         |
         v
-[ None ] ──> Nenhum acesso permitido.
+[ None ] ──> No access allowed.
 ```
 
 ---
@@ -137,7 +137,7 @@ When assigning a Security Role to a user or team, the inheritance form is config
    - **JIT (Just-In-Time) Provisioning**: When a user joins the Entra ID group, they automatically gain access to Dataverse resources without manual role management in the Power Platform Admin Center.
 
 ```text
-Entra ID Security Group ──(Sincronização Automática)──> Dataverse Group Team ──(Security Role)──> Acesso ao Dataverse
+Entra ID Security Group ──(Automatic Synchronization)──> Dataverse Group Team ──(Security Role)──> Dataverse Access
 ```
 
 ---
@@ -154,10 +154,10 @@ When table-level privileges are not enough to protect sensitive attributes (e.g.
 4. Assign the profile to users or Group Teams.
 
 ```text
-Tabela: Funcionário
- ├── Nome (Acesso padrão via Security Role)
- ├── Cargo (Acesso padrão via Security Role)
- └── Salário [IsSecured = True] ──> Column Security Profile (Permissão de Leitura exclusiva do RH)
+Table: Employee
+ ├── Name (Default access via Security Role)
+ ├── Position (Default access via Security Role)
+ └── Salary [IsSecured = True] ──> Column Security Profile (Read permission exclusive to HR)
 ```
 
 ---

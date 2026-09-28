@@ -21,8 +21,8 @@ Before loading any checkpoint or AI model in development or production environme
 ### 1.2 Static Scanning with `picklescan`
 
 ```bash
-# Varrer diretório de modelos antes de carregar na memória
-picklescan --path /caminho/do/modelo/
+# Scan the model directory before loading it into memory
+picklescan --path /path/to/model/
 ```
 
 ### 1.3 Inspection of `trust_remote_code=True`

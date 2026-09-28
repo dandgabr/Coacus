@@ -26,12 +26,12 @@ This skill establishes the theoretical, mathematical, and engineering foundation
 
 ```mermaid
 graph LR
-    Bits[Bits de Informação] --> FEC[Codificação de Canal LDPC/Turbo]
-    FEC --> Map[Mapeador de Constelação QAM]
-    Map --> IFFT[iFFT Modulador OFDM]
-    IFFT --> CP[Inserção de Prefixo Cíclico]
-    CP --> DAC[DAC & Upconverter RF/Óptico]
-    DAC --> Channel[Canal AWGN / Fibra / Fading]
+    Bits[Information Bits] --> FEC[LDPC/Turbo Channel Coding]
+    FEC --> Map[QAM Constellation Mapper]
+    Map --> IFFT[OFDM Modulator iFFT]
+    IFFT --> CP[Cyclic Prefix Insertion]
+    CP --> DAC[DAC & RF/Optical Upconverter]
+    DAC --> Channel[AWGN Channel / Fiber / Fading]
 ```
 
 ### 1.3 Forward Error Correction (FEC) Codes

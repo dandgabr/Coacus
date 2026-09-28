@@ -47,7 +47,7 @@ Root Management Group
 {
   "Name": "Virtual Machine Operator",
   "IsCustom": true,
-  "Description": "Permite reiniciar e monitorar VMs sem alterar configurações de rede ou disco.",
+  "Description": "Allows restarting and monitoring VMs without changing network or disk configurations.",
   "Actions": [
     "Microsoft.Compute/virtualMachines/read",
     "Microsoft.Compute/virtualMachines/start/action",
@@ -109,7 +109,7 @@ The Entra ID Zero Trust decision engine that evaluates real-time signals before 
 
 - **KQL Queries in Azure Monitor Log Analytics (AuditLogs & SigninLogs)**:
 ```kusto
-// Identificar alterações de atribuições de papéis no Azure RBAC nas últimas 24h
+// Identify changes to role assignments in Azure RBAC over the last 24h
 AzureActivity
 | where TimeGenerated > ago(24h)
 | where OperationNameValue == "MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE"

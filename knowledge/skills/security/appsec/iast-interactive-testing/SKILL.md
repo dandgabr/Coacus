@@ -36,33 +36,33 @@ IAST operates by inserting a lightweight instrumentation agent (probe) inside th
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        ARQUITETURA GERAL DO IAST                       │
+  │                      IAST GENERAL ARCHITECTURE                       │
 └────────────────────────────────────────────────────────────────────────┘
-  [ Suíte de Testes (QA/CI) ]  OU  [ Crawler Ativo (DAST / Fuzzer) ]
-         │ (Requisições HTTP Funcionais / End-to-End)
+  [ Test Suite (QA/CI) ]  OR  [ Active Crawler (DAST / Fuzzer) ]
+         │ (Functional HTTP / End-to-End requests)
          ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │ APLICAÇÃO EM EXECUÇÃO (Ambiente de Staging / Testes)                 │
+  │APPLICATION UNDER EXECUTION (Staging / Test environment)              │
   │                                                                      │
-  │  1. [ HTTP Request Receiver ] ──► [ SOURCE Identificado ]            │
-  │                                         │ (Marca variável como suja) │
+  │  1. [ HTTP Request Receiver ] ──► [ SOURCE Identified ]              │
+  │                                         │ (Marks variable as tainted)│
   │                                         ▼                            │
-  │  2. [ Métodos de Negócio ]   ──► [ PROPAGATORS Rastreados ]          │
-  │                                         │ (Acompanha contaminação)   │
+  │  2. [ Business Methods ]     ──► [ PROPAGATORS Tracked ]             │
+  │                                         │ (Tracks contamination)     │
   │                                         ▼                            │
-  │  3. [ Sanitizadores/Filtros ]──► [ SANITIZERS Verificados ]          │
-  │                                         │ (Checa se neutralizou)     │
+  │  3. [ Sanitizers/Filters ]   ──► [ SANITIZERS Verified ]             │
+  │                                         │ (Checks if neutralized)    │
   │                                         ▼                            │
-  │  4. [ Invocação Crítica ]    ──► [ SINK Atingido ]                   │
+  │  4. [ Critical Invocation ]  ──► [ SINK Reached ]                    │
   │                                                                      │
-  │  AGENTE IAST (Bytecode / AST Sensor):                                │
-  │   - Captura: Linha de Código, Arquivo, Stack Trace e Payload Real    │
+  │  IAST AGENT (Bytecode / AST Sensor):                                 │
+  │   - Captures: Code Line, File, Stack Trace and Real Payload          │
   └──────────────────────────────────┬───────────────────────────────────┘
-                                     │ (Relato assíncrono de telemetria)
+                                     │ (Asynchronous telemetry report)
                                      ▼
-                    [ Servidor Central IAST / Dashboard ]
+                    [ Central IAST Server / Dashboard ]
                                      │
-                    [ Alerta Confirmado: ZERO Falso Positivo ]
+                    [ Confirmed Alert: ZERO False Positive ]
 ```
 
 ---

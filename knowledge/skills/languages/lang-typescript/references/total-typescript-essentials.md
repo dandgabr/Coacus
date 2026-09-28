@@ -35,7 +35,7 @@ A consolidated summary of *Total TypeScript: The Essentials* (Matt Pocock, Taylo
 
   const refund = (album: Album) => {
     if (album.format === "digital") {
-      // narrowed: DigitalAlbum — acessa só campos dessa variante
+      // narrowed: DigitalAlbum — accesses only fields of this variant
       return album.downloadUrl;
     }
     // narrowed: PhysicalAlbum
@@ -76,7 +76,7 @@ A consolidated summary of *Total TypeScript: The Essentials* (Matt Pocock, Taylo
 - **`implements`** validates that the class adheres to a contract:
   ```typescript
   interface IAlbum { displayInfo(): string }
-  class Album implements IAlbum { /* erro se displayInfo faltar */ }
+  class Album implements IAlbum { /* error if displayInfo is missing */ }
   ```
   `implements` does not change the class's type — it is a check; type inheritance comes from `extends`.
 - Modifiers: `public` (default), `protected`, `private` — erased at runtime. JS's `#private` is **real encapsulation** (not visible outside, not even through a type cast). TS `private` is compile-time only. For libraries, prefer `#private`.
@@ -87,7 +87,7 @@ A consolidated summary of *Total TypeScript: The Essentials* (Matt Pocock, Taylo
 ### 9. TypeScript-Only Features
 - **Enums**: a TS feature with its own runtime (IIFE) — extra code in the bundle. Idiomatic alternative:
   ```typescript
-  // enum vs objeto as const:
+  // enum vs object as const:
   const AlbumFormat = {
     Digital: "MP3",
     Physical: "LP",
@@ -115,7 +115,7 @@ A consolidated summary of *Total TypeScript: The Essentials* (Matt Pocock, Taylo
   ```
 - **`Awaited`** unwraps the Promise (including nested ones), essential for async functions:
   ```typescript
-  type User = Awaited<ReturnType<typeof getUser>>; // T de Promise<T>
+  type User = Awaited<ReturnType<typeof getUser>>; // T of Promise<T>
   ```
 - Inferred factory pattern: `ReturnType<typeof createUser>` derives the user type without a duplicated interface.
 
@@ -125,12 +125,12 @@ A consolidated summary of *Total TypeScript: The Essentials* (Matt Pocock, Taylo
   const config = {
     port: 8080,
     env: "production",
-  } satisfies Config; // valida contra Config, mas port continua 8080 e env o literal "production"
+  } satisfies Config; // validates against Config, but port stays 8080 and env the literal "production"
   ```
 - **Double casting** (`expr as unknown as T`) is a code smell — it signals that the declared type does not match reality; fix the type or validate at runtime.
 - **`@ts-expect-error` > `@ts-ignore`**: `@ts-expect-error` **fails when there is no error** — it self-documents the suppression and does not rot; `@ts-ignore` silences blindly forever.
   ```typescript
-  // @ts-expect-error O endpoint ainda não foi tipado
+  // @ts-expect-error The endpoint has not been typed yet
   legacyApi.call();
   ```
 - Non-null assertion `!` and `as` — use only at boundaries that have already been validated.

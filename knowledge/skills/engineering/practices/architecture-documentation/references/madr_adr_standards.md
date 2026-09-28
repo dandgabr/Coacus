@@ -5,32 +5,32 @@ Formal structure for recording architectural decisions.
 ## Standard Format
 
 ```markdown
-# ADR [Número]: [Título da Decisão]
+# ADR [Number]: [Decision Title]
 
 * **Status**: [PROPOSED | ACCEPTED | REJECTED | DEPRECATED | SUPERSEDED]
-* **Decisores**: [Nomes / Papéis dos Envolvidos]
-* **Data**: [AAAA-MM-DD]
+* **Deciders**: [Names / Roles of Those Involved]
+* **Date**: [YYYY-MM-DD]
 
-## Contexto e Declaração do Problema
-[Descrição do cenário técnico ou de negócio e a necessidade da decisão]
+## Context and Problem Statement
+[Description of the technical or business scenario and the need for the decision]
 
-## Decision Drivers (Forças Motivadoras)
-* [Driver 1: ex. Latência p99 < 50ms]
-* [Driver 2: ex. Conformidade estrita com LGPD]
+## Decision Drivers
+* [Driver 1: e.g. p99 latency < 50ms]
+* [Driver 2: e.g. strict LGPD compliance]
 
-## Opções Consideradas
-* [Opção 1: Nome da Alternativa A]
-* [Opção 2: Nome da Alternativa B]
-* [Opção 3: Nome da Alternativa C]
+## Considered Options
+* [Option 1: Name of Alternative A]
+* [Option 2: Name of Alternative B]
+* [Option 3: Name of Alternative C]
 
-## Decisão Tomada
-[Opção escolhida e justificativa técnica central]
+## Decision Outcome
+[Chosen option and core technical justification]
 
-### Consequências Positivas
-* [Benefício 1]
-* [Benefício 2]
+### Positive Consequences
+* [Benefit 1]
+* [Benefit 2]
 
-### Consequências Negativas / Trade-offs
-* [Impacto negativo 1 ou débito operacional assumido]
-* [Trade-off mitigado]
+### Negative Consequences / Trade-offs
+* [Negative impact 1 or accepted operational debt]
+* [Mitigated trade-off]
 ```

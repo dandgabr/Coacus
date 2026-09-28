@@ -40,7 +40,7 @@ This skill guides the artificial intelligence to act as a **Blockchain Engineeri
 ### 3. EIP/ERC Standards (Ethereum Improvement Proposals)
 
 ```solidity
-// Exemplo de Interface ERC-20 Padrão
+// Example of a Standard ERC-20 Interface
 interface IERC20 {
     function totalSupply() external view returns (uint256);
     function balanceOf(address account) external view returns (uint256);

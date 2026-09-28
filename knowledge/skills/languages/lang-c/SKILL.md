@@ -78,14 +78,14 @@ When developing in C, consult the specification and the formal header tables of 
 [[nodiscard]] bool safe_multiply_and_add(int a, int b, int c, int *result) {
     int temp = 0;
     
-    // Multiplicação com checagem de estouro em C23
+    // Multiplication with overflow checking in C23
     if (ckd_mul(&temp, a, b)) {
-        return false; // Estouro detectado
+        return false; // Overflow detected
     }
     
-    // Adição com checagem de estouro em C23
+    // Addition with overflow checking in C23
     if (ckd_add(result, temp, c)) {
-        return false; // Estouro detectado
+        return false; // Overflow detected
     }
     
     return true;
@@ -94,9 +94,9 @@ When developing in C, consult the specification and the formal header tables of 
 int main(void) {
     int val = 0;
     if (safe_multiply_and_add(100000, 200000, 50, &val)) {
-        printf("[+] Resultado seguro: %d\n", val);
+        printf("[+] Safe result: %d\n", val);
     } else {
-        printf("[-] Erro: Estouro de inteiro prevenido!\n");
+        printf("[-] Error: Integer overflow prevented!\n");
     }
     return 0;
 }
@@ -111,12 +111,12 @@ int main(void) {
 int main(void) {
     uint32_t mask = 0b00111010;
     
-    // Funções padronizadas de contagem de bits em C23 (stdbit.h)
+    // Standardized bit-counting functions in C23 (stdbit.h)
     unsigned int ones = stdc_count_ones(mask);
     bool is_power_of_two = stdc_has_single_bit(mask);
 
-    printf("[+] Número de bits 1: %u\n", ones);
-    printf("[+] É potência de dois? %s\n", is_power_of_two ? "sim" : "não");
+    printf("[+] Number of 1 bits: %u\n", ones);
+    printf("[+] Is it a power of two? %s\n", is_power_of_two ? "yes" : "no");
 
     return 0;
 }
@@ -138,17 +138,17 @@ void wipe_sensitive_data(UserAccountSecure *account) {
         return;
     }
     
-    // memset_explicit garante que o compilador não otimizará a exclusão
+    // memset_explicit guarantees the compiler will not optimize away the wipe
     memset_explicit(account->secret_token, 0, sizeof(account->secret_token));
 }
 
 int main(void) {
-    // Inicialização vazia C23
+    // C23 empty initialization
     UserAccountSecure user = {};
     snprintf(user.username, sizeof(user.username), "alice");
     snprintf(user.secret_token, sizeof(user.secret_token), "secret_12345");
 
-    printf("[+] Usuário ativado: %s\n", user.username);
+    printf("[+] User activated: %s\n", user.username);
 
     wipe_sensitive_data(&user);
     return 0;
@@ -163,14 +163,14 @@ int main(void) {
 cmake_minimum_required(VERSION 3.25)
 project(c23_modern_project C)
 
-# Define o padrão C23 (ISO/IEC 9899:2024)
+# Defines the C23 standard (ISO/IEC 9899:2024)
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 add_executable(app_main src/main.c)
 
-# Bateria estrita de avisos do compilador
+# Strict compiler warning battery
 if (MSVC)
     target_compile_options(app_main PRIVATE /W4 /WX)
 else()

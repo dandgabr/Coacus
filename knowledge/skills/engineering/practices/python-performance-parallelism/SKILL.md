@@ -78,16 +78,16 @@ This skill guides the artificial intelligence to diagnose and eliminate CPU, mem
 
 ### 5.2 Decision tree
 ```
-Tarefa CPU-bound?
-├─ Numérica/Array → NumPy/Numba (@njit parallel)/GPU
-├─ Função Python pura isolável → multiprocessing/ProcessPoolExecutor
-│   └─ serializável (pickle)? Não → shared memory (multiprocessing.shared_memory)
-└─ Mixed → joblib/Swarm paralelismo nivelado
+CPU-bound task?
+├─ Numeric/Array → NumPy/Numba (@njit parallel)/GPU
+├─ Isolable pure Python function → multiprocessing/ProcessPoolExecutor
+│   └─ serializable (pickle)? No → shared memory (multiprocessing.shared_memory)
+└─ Mixed → joblib/Swarm balanced parallelism
 I/O-bound?
-├─ Muitas conexões/concorrência alta (1000+) → asyncio (uvloop)
-├─ I/O bloqueante legado → threads (ThreadPoolExecutor)
-└─ Firewall de subprocessos → multiprocess na borda apenas
-Máquina cheia → Dask (distribuído local) / Ray (clusters)
+├─ Many connections/high concurrency (1000+) → asyncio (uvloop)
+├─ Legacy blocking I/O → threads (ThreadPoolExecutor)
+└─ Subprocess firewall → multiprocess only at the edge
+Whole machine → Dask (local distributed) / Ray (clusters)
 ```
 
 ### 5.3 Correct multiprocessing

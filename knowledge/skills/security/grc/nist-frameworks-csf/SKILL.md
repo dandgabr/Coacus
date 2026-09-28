@@ -73,25 +73,25 @@ When mapping the organization's security posture, use the three-dimensional stru
 
 ```
 +-----------------------------------------------------------------------------------+
-| 1. CSF CORE (Núcleo)                                                              |
-|    - 6 Funções: Govern, Identify, Protect, Detect, Respond, Recover               |
-|    - Categorias & Subcategorias (ex: GV.RM-01, PR.AA-01, DE.CM-01)               |
+| 1. CSF CORE                                                                       |
+|    - 6 Functions: Govern, Identify, Protect, Detect, Respond, Recover             |
+|    - Categories & Subcategories (e.g., GV.RM-01, PR.AA-01, DE.CM-01)             |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 2. CSF PROFILES (Perfis de Cibersegurança)                                        |
-|    - Current Profile (Estado Atual) vs Target Profile (Estado Desejado)           |
-|    - Análise de Gaps (Gap Analysis) e plano de ação priorizado                     |
+| 2. CSF PROFILES (Cybersecurity Profiles)                                          |
+|    - Current Profile vs Target Profile                                            |
+|    - Gap Analysis and prioritized action plan                                     |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 3. CSF TIERS (Níveis de Maturidade)                                               |
-|    - Tier 1: Parcial (Reativo, informal)                                          |
-|    - Tier 2: Risco Informado (Políticas aprovadas, execução inconsistente)        |
-|    - Tier 3: Repetível (Políticas organizacionais formais, gestão ativa de risco)  |
-|    - Tier 4: Adaptativo (Segurança evolutiva contínua, preditiva e automatizada)  |
+| 3. CSF TIERS (Maturity Levels)                                                    |
+|    - Tier 1: Partial (Reactive, informal)                                         |
+|    - Tier 2: Risk Informed (Approved policies, inconsistent execution)            |
+|    - Tier 3: Repeatable (Formal organizational policies, active risk management)  |
+|    - Tier 4: Adaptive (Continuous, predictive, and automated evolutionary security)|
 +-----------------------------------------------------------------------------------+
 ```
 

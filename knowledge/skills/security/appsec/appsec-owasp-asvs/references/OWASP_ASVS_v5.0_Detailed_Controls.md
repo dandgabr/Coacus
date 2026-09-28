@@ -13,7 +13,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V1: Encoding and Sanitization (Codificação e Sanitização)
+## V1: Encoding and Sanitization
 *Objective:* Ensure every data output is properly encoded for its respective context (HTML, JavaScript, SQL, LDAP, and so on) before the destination interprets it.
 - **ASVS 1.1.1 (CWE-79):** Contextually encode every user input reflected on web pages (HTML body, attributes, `<script>` tags, and so on) with well-established libraries (for example, OWASP Java Encoder, DOMPurify).
 - **ASVS 1.1.2 (CWE-116):** Sanitize strings against parameter injection in system commands and shell scripts using robust escaping APIs.
@@ -21,7 +21,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V2: Validation and Business Logic (Validação e Lógica de Negócio)
+## V2: Validation and Business Logic
 *Objective:* Structurally validate every data input before processing it, and ensure logical flows cannot be bypassed or abused.
 - **ASVS 2.1.1 (CWE-20):** Validate all input against strict allow-lists. Define data types, maximum and minimum lengths, and rigid regular expressions.
 - **ASVS 2.1.2 (CWE-89):** Use parameterized queries (prepared statements) or ORMs that are secure by default to interact with the database. Never concatenate user data directly into SQL strings.
@@ -31,7 +31,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V3: Web Frontend Security (Segurança do Frontend Web)
+## V3: Web Frontend Security
 *Objective:* Protect the client against browser-based attacks through strict security policies and headers.
 - **ASVS 3.1.1 (CWE-1021):** Implement a strict `Content-Security-Policy (CSP)` to restrict the origin from which scripts and resources may execute (`script-src 'self' 'nonce-...'`).
 - **ASVS 3.1.2 (CWE-1021):** Configure anti-clickjacking protection headers (`Frame-Options: DENY` or `SAMEORIGIN`, or the `frame-ancestors` directive in the CSP).
@@ -40,7 +40,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V4: API and Web Service (APIs e Web Services)
+## V4: API and Web Service
 *Objective:* Ensure the integrity, authentication, and rate control of REST, SOAP, and GraphQL API buses or WebSocket channels.
 - **ASVS 4.1.1 (CWE-20):** Validate inbound payloads against an explicit JSON/XML schema before processing.
 - **ASVS 4.1.2 (CWE-770):** Implement rate limiting per IP and per user token to mitigate application-level denial-of-service (DoS) attacks.
@@ -49,7 +49,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V5: File Handling (Manipulação de Arquivos)
+## V5: File Handling
 *Objective:* Protect the server against remote code execution (RCE) and denial of service resulting from uploading or downloading malicious files.
 - **ASVS 5.1.1 (CWE-434):** Store files uploaded by users outside the web root and without execution permission at the server/OS level.
 - **ASVS 5.1.2 (CWE-434):** Rename files uploaded to the server using secure random name generators (for example, UUIDv4) to prevent overwrites and path traversal.
@@ -58,7 +58,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V6: Authentication (Autenticação)
+## V6: Authentication
 *Objective:* Ensure robust user identity verification by managing passwords and MFA with modern practices.
 - **ASVS 6.1.1 (CWE-521):** Require passwords with a minimum length of 12 characters (and a maximum of at least 64 characters) without arbitrary complexity rules that hinder the use of password managers.
 - **ASVS 6.1.2 (CWE-521):** Validate passwords against lists of known or breached weak passwords, or dictionaries of common terms, during registration and password changes.
@@ -67,7 +67,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V7: Session Management (Gerenciamento de Sessão)
+## V7: Session Management
 *Objective:* Ensure a secure lifecycle for session tokens and cookies, preventing hijacking or leakage of login state.
 - **ASVS 7.1.1 (CWE-613):** Generate session IDs with high entropy using cryptographically secure pseudo-random number generators (CSPRNG) with at least 128 bits of entropy.
 - **ASVS 7.1.2 (CWE-613):** Implement idle session timeouts (for example, 15–30 minutes) and absolute session expiry (for example, 24 hours).
@@ -76,7 +76,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V8: Authorization (Autorização e Controle de Acesso)
+## V8: Authorization
 *Objective:* Enforce least privilege and deny by default across all transactions, logical resources, and objects.
 - **ASVS 8.1.1 (CWE-276):** Adopt a deny-by-default policy. Every system route and function must require explicit authorization unless it is explicitly marked public.
 - **ASVS 8.1.2 (CWE-639):** Mitigate Broken Object Level Authorization (BOLA/IDOR) by validating on every request whether the authenticated user actually has the right to read, update, or delete the corresponding database record.
@@ -84,7 +84,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V9: Self-contained Tokens (Tokens Autocontidos / JWT)
+## V9: Self-contained Tokens (JWT)
 *Objective:* Ensure the integrity, confidentiality, and revocability of digitally signed bearer tokens.
 - **ASVS 9.1.1 (CWE-347):** Validate JWT token signatures using secure asymmetric algorithms (RS256, ES256) rather than weak symmetric algorithms, and explicitly reject the `none` algorithm.
 - **ASVS 9.1.2 (CWE-613):** Mandatorily set and verify the JWT token's expiration date (`exp`), keeping the token lifetime as short as possible.
@@ -92,7 +92,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V10: OAuth and OIDC (OAuth e OpenID Connect)
+## V10: OAuth and OIDC
 *Objective:* Validate identity-federation and authority-delegation flows between the application and external identity providers.
 - **ASVS 10.1.1 (CWE-20):** Strictly validate the redirect URL (`redirect_uri`) against an exact, static list registered with the Identity Provider, preventing redirects to malicious domains.
 - **ASVS 10.1.2 (CWE-352):** Use the `state` parameter or the PKCE mechanism (Proof Key for Code Exchange) to prevent Cross-Site Request Forgery (CSRF) attacks and authorization-code theft in OAuth flows.
@@ -100,7 +100,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V11: Cryptography (Criptografia)
+## V11: Cryptography
 *Objective:* Ensure confidential data is protected with strong cryptography and well-managed keys.
 - **ASVS 11.1.1 (CWE-327):** Use robust industry-standard cryptographic algorithms (for example, AES-GCM, ChaCha20-Poly1305) with keys of at least 128 bits (preferably 256 bits).
 - **ASVS 11.1.2 (CWE-328):** Disable the use of obsolete, insecure, or broken cryptographic algorithms (for example, DES, 3DES, RC4, MD5, SHA1).
@@ -109,7 +109,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V12: Secure Communication (Comunicação Segura)
+## V12: Secure Communication
 *Objective:* Ensure that all external and internal network channels are protected against traffic interception and eavesdropping.
 - **ASVS 12.1.1 (CWE-319):** Encrypt all network communication using TLS 1.2 or TLS 1.3 by default, explicitly disabling older versions of the protocol (SSLv3, TLS 1.0, TLS 1.1).
 - **ASVS 12.1.2 (CWE-319):** Configure high-security cipher suites that support Forward Secrecy (for example, ECDHE-RSA-AES256-GCM-SHA384).
@@ -117,7 +117,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V13: Configuration (Configuração Segura)
+## V13: Configuration
 *Objective:* Ensure the hardening of the infrastructure and servers on which the application runs.
 - **ASVS 13.1.1 (CWE-16):** Disable unused features, services, and ports on production containers and servers.
 - **ASVS 13.1.2 (CWE-489):** Disable debug tools and interactive developer consoles in production.
@@ -125,7 +125,7 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V14: Data Protection (Proteção de Dados e Privacidade)
+## V14: Data Protection
 *Objective:* Ensure confidential user data and PII are stored securely end to end and discarded in line with compliance requirements (LGPD/GDPR).
 - **ASVS 14.1.1 (CWE-311):** Encrypt sensitive user data at rest in corporate databases (for example, CPF, email, credit cards, phone numbers) using symmetric encryption with independently managed keys.
 - **ASVS 14.1.2 (CWE-538):** Ensure sensitive data is not exposed in the URL (query string) and prevent browser caching of those pages by setting the `Cache-Control: no-store` and `Pragma: no-cache` headers.
@@ -133,14 +133,14 @@ This document serves as the technical security reference database for all audits
 
 ---
 
-## V15: Secure Coding and Architecture (Codificação e Arquitetura Seguras)
+## V15: Secure Coding and Architecture
 *Objective:* Ensure the system design supports defense in depth and mitigates the risk of vulnerable third-party dependencies.
 - **ASVS 15.1.1 (CWE-1104):** Maintain an up-to-date list of external dependencies (Software Bill of Materials – SBOM) and submit every third-party library package to automated software composition analysis (SCA) scanners in CI/CD to detect and block vulnerable packages.
 - **ASVS 15.2.1 (CWE-1008):** Organize the software into isolated, decoupled trust zones, preventing a compromised low-privilege component from gaining immediate access to critical system data.
 
 ---
 
-## V16: Security Logging and Error Handling (Logs de Segurança e Tratamento de Erros)
+## V16: Security Logging and Error Handling
 *Objective:* Ensure auditing and early detection of malicious activity without exposing confidential data in log files.
 - **ASVS 16.1.1 (CWE-778):** Log significant security events with structured, contextual metadata (JSON log) including: who performed the action (user ID), when (ISO 8601 standard timestamp), what (event/action ID), and the outcome (success or failure).
 - **ASVS 16.1.2 (CWE-117):** Ensure log sanitization so that PII (LGPD), plaintext passwords, cryptographic keys, and session tokens are never written.

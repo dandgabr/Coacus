@@ -15,26 +15,26 @@ Effective correlation between observability signals lets the engineer move fluid
 
 ```mermaid
 flowchart LR
-    subgraph Sinais["Sinais Fundamentais"]
-        METRICS["Métricas (Prometheus / VictoriaMetrics)"]
+    subgraph Signals["Fundamental Signals"]
+        METRICS["Metrics (Prometheus / VictoriaMetrics)"]
         LOGS["Logs (Grafana Loki / Elastic / OpenSearch)"]
         TRACES["Traces (Tempo / Jaeger / OTel)"]
     end
 
-    subgraph Correlacao["Mecanismos de Correlação"]
+    subgraph Correlation["Correlation Mechanisms"]
         TRACE_ID["TraceID & SpanID"]
-        LABELS["Labels Padronizados (app, env, version, pod)"]
-        EXEMPLARS["Exemplars de Métricas"]
+        LABELS["Standardized Labels (app, env, version, pod)"]
+        EXEMPLARS["Metric Exemplars"]
     end
 
-    subgraph Interface["Camada de Visualização & Alerta"]
+    subgraph Interface["Visualization & Alerting Layer"]
         GRAFANA["Grafana Dashboards & Node Graph Panel"]
         ALERTMANAGER["Alertmanager / PagerDuty"]
     end
 
-    METRICS -->|"Exemplars vinculam TraceID"| TRACES
-    LOGS -->|"Filtro por TraceID"| TRACES
-    TRACES -->|"Logs associados ao Span"| LOGS
+    METRICS -->|"Exemplars link TraceID"| TRACES
+    LOGS -->|"Filter by TraceID"| TRACES
+    TRACES -->|"Logs associated with the Span"| LOGS
     
     METRICS & LOGS & TRACES --> GRAFANA
     GRAFANA --> ALERTMANAGER
@@ -52,13 +52,13 @@ flowchart LR
 - **Concept**: A pull-based time-series database and the de facto standard in the Cloud Native Computing Foundation (CNCF).
 - **PromQL Queries for Dependency and Latency Mapping**:
 ```promql
-# Taxa de requisições HTTP entre serviços nos últimos 5 minutos
+# HTTP request rate between services over the last 5 minutes
 sum by (service, endpoint, status_code) (rate(http_requests_total[5m]))
 
-# Latência p99 de comunicação inter-serviços
+# p99 latency of inter-service communication
 histogram_quantile(0.99, sum by (le, service) (rate(http_request_duration_seconds_bucket[5m])))
 
-# Taxa de erros 5xx que afetam SLAs
+# 5xx error rate affecting SLAs
 sum(rate(http_requests_total{status_code=~"5.."}[5m])) 
   / 
 sum(rate(http_requests_total[5m])) * 100

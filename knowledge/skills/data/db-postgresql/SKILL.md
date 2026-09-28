@@ -50,10 +50,10 @@ CREATE TABLE app_events (
     created_at timestamptz DEFAULT clock_timestamp()
 );
 
--- Criando índice GIN no campo JSONB
+-- Creating a GIN index on the JSONB column
 CREATE INDEX idx_events_payload_gin ON app_events USING gin (payload);
 
--- Consulta otimizada usando operador de contenção (@>)
+-- Optimized query using the containment operator (@>)
 SELECT * FROM app_events WHERE payload @> '{"event_type": "user_signup"}';
 ```
 

@@ -17,13 +17,13 @@ $$u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt}$$
 
 ```
         ┌─────────────────────────────────────────────────────────────┐
-        │                 Saturação do Atuador u_sat                  │
+        │                  Actuator Saturation u_sat                  │
         └──────────────────────────────┬──────────────────────────────┘
-                                       │ u_sat - u (Erro de Saturação)
+                                       │ u_sat - u (Saturation Error)
                                        ▼
-    e(t) ───[ Ki ]───(+)───[ 1/s ]───(+)───[ u(t) ]───[ Saturação ]───> u_sat(t)
+    e(t) ───[ Ki ]───(+)───[ 1/s ]───(+)───[ u(t) ]───[ Saturation ]───> u_sat(t)
                       ▲               │
-                      └───[ 1/Tt ]────┘ (Realimentação Anti-Windup)
+                      └───[ 1/Tt ]────┘ (Anti-Windup Feedback)
 ```
 
 ### 1.2 Nyquist Stability Criterion
@@ -72,7 +72,7 @@ $$^{i-1}\mathbf{T}_i = \begin{bmatrix}
 
 ### 4.1 Function Block in Structured Text (ST - IEC 61131-3)
 ```iecst
-// Bloco Funcional de Controle de Processo com Intertravamento de Segurança
+// Process Control Function Block with Safety Interlock
 FUNCTION_BLOCK FB_ProcessControl
 VAR_INPUT
     bAutoMode     : BOOL;

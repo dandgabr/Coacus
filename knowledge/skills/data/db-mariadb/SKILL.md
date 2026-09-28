@@ -26,14 +26,14 @@ Unlike other relational DBMSs, MariaDB lets you choose a specific storage engine
 ### 1. Memory and Buffer Pool (InnoDB)
 ```ini
 [mysqld]
-# Alocar de 50% a 70% da RAM em servidores dedicados a banco OLTP
+# Allocate 50% to 70% of RAM on servers dedicated to OLTP database
 innodb_buffer_pool_size = 16G
 innodb_buffer_pool_instances = 16
 innodb_log_file_size = 2G
 innodb_flush_log_at_trx_commit = 1
 innodb_file_per_table = 1
 
-# Gerenciamento de conexões e threads
+# Connection and thread management
 max_connections = 500
 thread_handling = pool-of-threads
 thread_pool_size = 16
@@ -60,7 +60,7 @@ GROUP BY c.id;
 - Guarantees zero data loss (*RPO = 0*) and instant failover.
 ```ini
 [mysqld]
-# Configuração básica de nó Galera
+# Basic Galera node configuration
 wsrep_on = ON
 wsrep_provider = /usr/lib/galera/libgalera_smm.so
 wsrep_cluster_name = "production_galera_cluster"
@@ -75,10 +75,10 @@ wsrep_sst_method = mariabackup
 ### 3. Online Physical Backups with Mariabackup
 - A native open-source tool for non-blocking physical copies of InnoDB and Aria tables:
 ```bash
-# Executando backup físico completo sem bloquear gravações
+# Running a full physical backup without blocking writes
 mariabackup --backup --target-dir=/var/backups/mariadb/full --user=backup_user --password=secret
 
-# Preparando o backup para restauração (consistência de logs)
+# Preparing the backup for restoration (log consistency)
 mariabackup --prepare --target-dir=/var/backups/mariadb/full
 ```
 

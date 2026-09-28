@@ -16,13 +16,13 @@ Many companies publish jobs on their own ATS portals before feeding paid platfor
 | ATS Platform | Search Operator | Example Query |
 | :--- | :--- | :--- |
 | **Greenhouse** | `site:boards.greenhouse.io` | `site:boards.greenhouse.io ("software engineer" OR "backend") "remote" "brazil"` |
-| **Lever** | `site:jobs.lever.co` | `site:jobs.lever.co ("java" OR "spring") "remoto" -estágio` |
+| **Lever** | `site:jobs.lever.co` | `site:jobs.lever.co ("java" OR "spring") "remote" -internship` |
 | **Workday** | `site:myworkdayjobs.com` | `site:myworkdayjobs.com "cloud architect" ("aws" OR "gcp") "latam"` |
 | **Ashby** | `site:jobs.ashbyhq.com` | `site:jobs.ashbyhq.com "tech lead" "remote"` |
 
 ### A. Grouped Multi-Platform Search
 ```text
-(site:boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:myworkdayjobs.com) ("software engineer" OR "developer") ("remote" OR "remoto") after:2026-08-01
+(site:boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:myworkdayjobs.com) ("software engineer" OR "developer") "remote" after:2026-08-01
 ```
 
 ### B. Exclusion Filters and Seniority Level

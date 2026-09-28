@@ -26,23 +26,23 @@ This skill establishes the standards and guidelines for strategic information se
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. Secure Software Concepts (CIA Triad, AAA, Defesa em      │
-│    Profundidade, Menor Privilégio, Fail-Safe Defaults)      │
+│ 1. Secure Software Concepts (CIA Triad, AAA, Defense in     │
+│    Depth, Least Privilege, Fail-Safe Defaults)              │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 2. Secure Software Requirements (Requisitos de Segurança,   │
-│    Modelagem de Ameaças, Conformidade Regulatória)          │
+│ 2. Secure Software Requirements (Security Requirements,     │
+│    Threat Modeling, Regulatory Compliance)                  │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 3. Secure Software Architecture and Design (Padrões de      │
-│    Design Seguro, Redução de Superfície de Ataque)          │
+│ 3. Secure Software Architecture and Design (Secure Design   │
+│    Patterns, Attack Surface Reduction)                      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 4. Secure Software Implementation (Codificação Segura,      │
-│    Tratamento Defensivo de Erros, Sanitização de Inputs)    │
+│ 4. Secure Software Implementation (Secure Coding,           │
+│    Defensive Error Handling, Input Sanitization)            │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
@@ -50,7 +50,7 @@ This skill establishes the standards and guidelines for strategic information se
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 6. Secure Lifecycle Management (Gestão de Patches, Decom.)  │
+│ 6. Secure Lifecycle Management (Patch Management, Decomm.)  │
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
@@ -58,7 +58,7 @@ This skill establishes the standards and guidelines for strategic information se
 └──────────────────────────────┬──────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────┐
-│ 8. Secure Software Supply Chain (SBOM, Proveniência SLSA)   │
+│ 8. Secure Software Supply Chain (SBOM, SLSA Provenance)     │
 └─────────────────────────────────────────────────────────────┘
 ```
 

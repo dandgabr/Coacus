@@ -21,12 +21,12 @@ While working under this skill, apply the following patterns strictly:
   #set page(
     paper: "a4",
     margin: (x: 2cm, top: 2.5cm, bottom: 2.5cm),
-    header: align(right)[_Relatório Técnico_],
+    header: align(right)[_Technical Report_],
     footer: [
       #align(center)[#counter(page).display("1 / 1", both: true)]
     ]
   )
-  #set text(font: "Liberation Serif", size: 11pt, lang: "pt")
+  #set text(font: "Liberation Serif", size: 11pt, lang: "en")
   ```
 
 ### 2. Operation Modes (Text, Math, and Code)
@@ -45,9 +45,9 @@ While working under this skill, apply the following patterns strictly:
     columns: (1fr, 2fr, 1fr),
     align: (left, left, center),
     stroke: 0.5pt + luma(150),
-    table.header([*ID*], [*Descrição*], [*Status*]),
-    [01], [Atualização de firmware], [OK],
-    [02], [Verificação de integridade], [Pendente]
+    table.header([*ID*], [*Description*], [*Status*]),
+    [01], [Firmware update], [OK],
+    [02], [Integrity check], [Pending]
   )
   ```
 - **Callout Boxes**: Create stylized visual blocks using `block` with rounded borders and subtle fill.
@@ -71,26 +71,26 @@ While working under this skill, apply the following patterns strictly:
   logo: none,
   body
 ) = {
-  // Configuração global de página
+  // Global page configuration
   set page(
     paper: "a4",
     margin: (x: 2.5cm, y: 3cm),
     numbering: "1",
   )
   
-  // Configuração de tipografia
-  set text(font: "DejaVu Serif", size: 11pt, lang: "pt", region: "BR")
+  // Typography configuration
+  set text(font: "DejaVu Serif", size: 11pt, lang: "en", region: "US")
   set par(justify: true, leading: 0.65em)
   set heading(numbering: "1.1")
 
-  // Personalização visual dos títulos
+  // Visual customization of the headings
   show heading: it => [
     #v(0.5em)
     #text(fill: rgb("#1a365d"), weight: "bold")[#it]
     #v(0.3em)
   ]
 
-  // Cabeçalho / Capa resumida
+  // Header / Condensed cover page
   align(center)[
     #if logo != none {
       image(logo, width: 25%)
@@ -109,7 +109,7 @@ While working under this skill, apply the following patterns strictly:
     #v(1.5em)
   ]
 
-  // Resumo (se houver)
+  // Abstract (if any)
   if abstract != none {
     rect(
       width: 100%,
@@ -118,14 +118,14 @@ While working under this skill, apply the following patterns strictly:
       radius: 4pt,
       stroke: 0.5pt + rgb("#e2e8f0")
     )[
-      #text(weight: "bold", fill: rgb("#2d3748"))[Resumo] \
+      #text(weight: "bold", fill: rgb("#2d3748"))[Abstract] \
       #v(0.3em)
       #abstract
     ]
     #v(1.5em)
   }
 
-  // Corpo do Documento
+  // Document Body
   body
 }
 ```
@@ -136,22 +136,22 @@ While working under this skill, apply the following patterns strictly:
 #import "template.typst": project
 
 #show: doc => project(
-  title: "Análise de Desempenho de Algoritmos Distribuídos",
+  title: "Performance Analysis of Distributed Algorithms",
   authors: (
     (name: "Dandara Gabriel", email: "dandara@example.com"),
     (name: "Alex Silva", email: "alex@example.com")
   ),
   abstract: [
-    Este documento apresenta uma avaliação comparativa de throughput e latência entre arquiteturas de mensageria assíncrona operando sob alta carga.
+    This document presents a comparative evaluation of throughput and latency between asynchronous messaging architectures operating under high load.
   ],
   doc
 )
 
-= Introdução
+= Introduction
 
-A escalabilidade de sistemas distribuídos modernos depende diretamente do padrão de comunicação adotado entre os nós receptores e emissores.
+The scalability of modern distributed systems depends directly on the communication pattern adopted between the receiving and sending nodes.
 
-#let callout(title: "Nota", body, color: blue) = {
+#let callout(title: "Note", body, color: blue) = {
   block(
     fill: color.lighten(90%),
     stroke: (left: 4pt + color),
@@ -165,31 +165,31 @@ A escalabilidade de sistemas distribuídos modernos depende diretamente do padr�
   )
 }
 
-#callout(title: "Importante", color: rgb("#2b6cb0"))[
-  Certifique-se de que os nós do cluster estejam sincronizados via protocolo NTP antes de iniciar os testes de carga.
+#callout(title: "Important", color: rgb("#2b6cb0"))[
+  Ensure that the cluster nodes are synchronized via the NTP protocol before starting the load tests.
 ]
 
-= Formulacão Matemática
+= Mathematical Formulation
 
-O tempo médio de resposta $T(n)$ para um sistema de fila com $n$ requisições concorrentes é modelado pela equação:
+The average response time $T(n)$ for a queueing system with $n$ concurrent requests is modeled by the equation:
 
 $ T(n) = sum_(k=1)^n (lambda_k / (mu_k - lambda_k)) + float("overhead") $
 
-Onde $lambda_k$ representa a taxa de chegada e $mu_k$ a taxa de serviço do canal $k$.
+Where $lambda_k$ represents the arrival rate and $mu_k$ the service rate of channel $k$.
 
-= Resultados Experimentais
+= Experimental Results
 
 #figure(
   table(
     columns: (1fr, 1.5fr, 1fr),
     align: (center, left, right),
     stroke: 0.5pt + luma(180),
-    table.header([*Métrica*], [*Algoritmo*], [*Valor Médio*]),
-    [Throughput], [Event-Driven Reactive], [45.200 req/s],
-    [Latência p99], [Event-Driven Reactive], [1.2 ms],
-    [Throughput], [Blocking I/O Standard], [12.800 req/s],
+    table.header([*Metric*], [*Algorithm*], [*Average Value*]),
+    [Throughput], [Event-Driven Reactive], [45,200 req/s],
+    [p99 Latency], [Event-Driven Reactive], [1.2 ms],
+    [Throughput], [Blocking I/O Standard], [12,800 req/s],
   ),
-  caption: [Comparativo de Desempenho entre Arquiteturas]
+  caption: [Performance Comparison between Architectures]
 )
 ```
 

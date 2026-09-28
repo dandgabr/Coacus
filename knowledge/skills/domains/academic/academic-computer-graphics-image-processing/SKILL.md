@@ -83,20 +83,20 @@ $$L_o(\mathbf{x}, \omega_o) = L_e(\mathbf{x}, \omega_o) + \int_{\Omega} f_r(\mat
 
 ### 4.1 Local Feature Detectors and Descriptors (Scott Krig Taxonomy)
 ```
-Taxonomia de Features Visuais:
-├── Detectores de Cantos & Bordas:
-│   ├── Gradiente Espacial: Sobel, Prewitt, Scharr
-│   ├── Autovalores de Autocorrelação: Harris Corner Detector, Shi-Tomasi (Good Features to Track)
-│   └── Testes de Segmento Acelerados: FAST (Features from Accelerated Segment Test), AGAST
-├── Descritores Baseados em Histograma de Gradiente:
-│   ├── SIFT (Scale-Invariant Feature Transform) - DoG (Difference of Gaussians), 128-dim vetor
-│   ├── SURF (Speeded-Up Robust Features) - Box Filters e Imagens Integrais, 64-dim vetor
-│   └── HOG (Histogram of Oriented Gradients) - Detecção densa de pedestres/objetos
-└── Descritores Binários (Baixo Custo / Mobile):
+Taxonomy of Visual Features:
+├── Corner & Edge Detectors:
+│   ├── Spatial Gradient: Sobel, Prewitt, Scharr
+│   ├── Autocorrelation Eigenvalues: Harris Corner Detector, Shi-Tomasi (Good Features to Track)
+│   └── Accelerated Segment Tests: FAST (Features from Accelerated Segment Test), AGAST
+├── Descriptors Based on Gradient Histograms:
+│   ├── SIFT (Scale-Invariant Feature Transform) - DoG (Difference of Gaussians), 128-dim vector
+│   ├── SURF (Speeded-Up Robust Features) - Box Filters and Integral Images, 64-dim vector
+│   └── HOG (Histogram of Oriented Gradients) - Dense detection of pedestrians/objects
+└── Binary Descriptors (Low Cost / Mobile):
     ├── BRIEF (Binary Robust Independent Elementary Features)
-    ├── ORB (Oriented FAST and Rotated BRIEF) - Rotação invariante e resistente a ruído
-    ├── BRISK (Binary Robust Invariant Scalable Keypoints) - Padrão de amostragem circular
-    └── FREAK (Fast Retina Keypoint) - Amostragem inspirada na retina humana
+    ├── ORB (Oriented FAST and Rotated BRIEF) - Rotation invariant and noise resistant
+    ├── BRISK (Binary Robust Invariant Scalable Keypoints) - Circular sampling pattern
+    └── FREAK (Fast Retina Keypoint) - Sampling inspired by the human retina
 ```
 
 ### 4.2 Similarity, Distance, and Image Quality Metrics
@@ -120,11 +120,11 @@ Taxonomia de Features Visuais:
 import torch
 import torchvision.models as models
 
-# Modelo Vision Transformer compilado com PyTorch 2.0
+# Vision Transformer model compiled with PyTorch 2.0
 model = models.vit_b_16(weights=models.ViT_B_16_Weights.DEFAULT).cuda()
 model.eval()
 
-# Otimização TorchDynamo + TorchInductor
+# TorchDynamo + TorchInductor optimization
 compiled_model = torch.compile(model, mode="max-autotune")
 
 with torch.inference_mode():
