@@ -1,0 +1,6 @@
+{
+  "name": "iam-architect",
+  "version": "0.1.0",
+  "description": "Identity and Access Architecture agent that owns identity lifecycle, authentication and authorization, federation, privileged access and identity governance across applications and clouds. Use when designing IAM/CIAM architecture, defining identity lifecycle and access governance, or standardizing identity across systems and clouds.",
+  "entrypoint": "AGENT.md"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "integration-architect",
+  "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/integration-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/integration-architect/dist",
+  "fingerprint": "6a837c48e14c3d65"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "integration-architect",
+  "version": "0.1.0",
+  "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+  "entrypoint": "AGENT.md"
+}

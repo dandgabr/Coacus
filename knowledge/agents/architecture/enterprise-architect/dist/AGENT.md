@@ -17,6 +17,19 @@ Lead Enterprise Architecture agent that orchestrates the whole architecture func
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
+- [business-architect](../../../../skills/architecture/enterprise/business-architect/SKILL.md)
+- [solution-architect](../../../../skills/architecture/enterprise/solution-architect/SKILL.md)
+- [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
+- [data-architect](../../../../skills/architecture/domains/data-architect/SKILL.md)
+- [application-architect](../../../../skills/architecture/domains/application-architect/SKILL.md)
+- [technology-architect](../../../../skills/architecture/domains/technology-architect/SKILL.md)
+- [integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
+- [api-architect](../../../../skills/architecture/domains/api-architect/SKILL.md)
+- [ai-ml-architect](../../../../skills/architecture/domains/ai-ml-architect/SKILL.md)
+- [network-architect](../../../../skills/architecture/delivery/network-architect/SKILL.md)
+- [platform-architect](../../../../skills/architecture/delivery/platform-architect/SKILL.md)
+- [systems-architect](../../../../skills/architecture/delivery/systems-architect/SKILL.md)
+- [iam-architect](../../../../skills/architecture/delivery/iam-architect/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## Description and Purpose
@@ -67,6 +80,19 @@ yourself. Before naming any framework version, resolve it in the current session
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
+- [business-architect](../../../../skills/architecture/enterprise/business-architect/SKILL.md)
+- [solution-architect](../../../../skills/architecture/enterprise/solution-architect/SKILL.md)
+- [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
+- [data-architect](../../../../skills/architecture/domains/data-architect/SKILL.md)
+- [application-architect](../../../../skills/architecture/domains/application-architect/SKILL.md)
+- [technology-architect](../../../../skills/architecture/domains/technology-architect/SKILL.md)
+- [integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
+- [api-architect](../../../../skills/architecture/domains/api-architect/SKILL.md)
+- [ai-ml-architect](../../../../skills/architecture/domains/ai-ml-architect/SKILL.md)
+- [network-architect](../../../../skills/architecture/delivery/network-architect/SKILL.md)
+- [platform-architect](../../../../skills/architecture/delivery/platform-architect/SKILL.md)
+- [systems-architect](../../../../skills/architecture/delivery/systems-architect/SKILL.md)
+- [iam-architect](../../../../skills/architecture/delivery/iam-architect/SKILL.md)
 
 ## Handoff Boundaries
 

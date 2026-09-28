@@ -1,0 +1,8 @@
+{
+  "name": "systems-architect",
+  "description": "Systems Architecture agent that architects a whole system \u2014 hardware, software, human and environment \u2014 decomposing it into subsystems, defining interfaces, requirements and cost/benefit trade-offs and maintaining architectural integrity across the lifecycle. Use when architecting cyber-physical or multi-component systems, defining system interfaces, or performing system trade analyses.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/systems-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/systems-architect/dist",
+  "fingerprint": "3260362344fd9274"
+}

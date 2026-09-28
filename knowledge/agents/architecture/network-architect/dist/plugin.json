@@ -1,0 +1,6 @@
+{
+  "name": "network-architect",
+  "version": "0.1.0",
+  "description": "Network Architecture agent that owns the network topology \u2014 LAN/WAN/WLAN, data-center fabric, routing and switching, addressing, SD-WAN, DNS, load balancing, QoS and resilience. Use when designing network topology and segmentation, planning addressing and routing, or specifying network capacity and vendor roadmaps.",
+  "entrypoint": "AGENT.md"
+}

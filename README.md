@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 338 skills across eleven categories, 79
+- **Knowledge** — what the framework knows: 351 skills across eleven categories, 92
   agents, one MCP declaration.
 - **Methodology** — how work proceeds: 15 process workflows for planning,
   debugging, review and verification.
@@ -121,12 +121,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 338 | `security` 127, `domains` 80, `roles` 23, `languages` 20, `mapping` 15, `frameworks` 15, `engineering` 25, `data` 16, `infrastructure` 9, `platforms` 7, `architecture` 1 |
-| Agents | 79 | `academic-sciences` 17, `software-engineering` 16, `cybersecurity` 22, `specialized-domains` 7, `data-cloud-devops` 8, `research-discovery` 4, `core-orchestration` 4, `architecture` 1 |
+| Skills | 351 | `security` 127, `domains` 80, `roles` 23, `languages` 20, `mapping` 15, `frameworks` 15, `engineering` 25, `data` 16, `infrastructure` 9, `platforms` 7, `architecture` 14 |
+| Agents | 92 | `academic-sciences` 17, `software-engineering` 16, `cybersecurity` 22, `specialized-domains` 7, `data-cloud-devops` 8, `research-discovery` 4, `core-orchestration` 4, `architecture` 14 |
 | Workflows | 15 | 14 `superpowers-*` process skills plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 353 skill entries | 338 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1307 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 366 skill entries | 351 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1333 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -292,7 +292,7 @@ Phases **F0–F8 complete**; the repository is finished.
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract. |
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 
-The framework ships the imported corpus (338 skills, 79 agents, 15 workflows, one
+The framework ships the imported corpus (351 skills, 92 agents, 15 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer

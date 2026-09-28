@@ -112,14 +112,24 @@ Dispatch to the specialist architect that owns the domain, never to yourself:
 
 | Concern | Owning skill |
 |---|---|
-| Business capabilities, value streams | Business architect (see `corpus-and-taxonomy`) |
-| One solution's structure and interfaces | [software-architect](../../../roles/software-architect/SKILL.md) |
+| Business capabilities, value streams | [business-architect](../business-architect/SKILL.md) |
+| One solution's structure and interfaces | [solution-architect](../solution-architect/SKILL.md) |
+| A domain reference architecture across solutions | [domain-architect](../domain-architect/SKILL.md) |
+| Data models, governance, lineage | [data-architect](../../domains/data-architect/SKILL.md) |
+| Application portfolio and lifecycle | [application-architect](../../domains/application-architect/SKILL.md) |
+| Platforms, compute, storage, network as infrastructure | [technology-architect](../../domains/technology-architect/SKILL.md) |
+| Messaging, events, integration contracts | [integration-architect](../../domains/integration-architect/SKILL.md) |
+| API strategy, lifecycle, governance | [api-architect](../../domains/api-architect/SKILL.md) |
+| ML/GenAI pipelines, MLOps, model governance | [ai-ml-architect](../../domains/ai-ml-architect/SKILL.md) |
+| Network topology and connectivity | [network-architect](../../delivery/network-architect/SKILL.md) |
+| Internal developer platform as a product | [platform-architect](../../delivery/platform-architect/SKILL.md) |
+| Whole-system decomposition and interfaces | [systems-architect](../../delivery/systems-architect/SKILL.md) |
+| Identity, access, federation, privileged access | [iam-architect](../../delivery/iam-architect/SKILL.md) |
 | Security controls, risk, trust domains | [security-architect-sabsa](../../../security/operations/security-architect-sabsa/SKILL.md) |
 | Security patterns and reference architectures | [security-architecture-patterns](../../../security/operations/security-architecture-patterns/SKILL.md) |
 | Cloud landing zone, multi-cloud topology | [cloud-infrastructure-architect](../../../roles/cloud-infrastructure-architect/SKILL.md) |
-| Zero-trust architecture | [zero-trust-architecture-engineering](../../../infrastructure/zero-trust-architecture-engineering/SKILL.md) |
+| Internal software structure, DDD, patterns | [software-architect](../../../roles/software-architect/SKILL.md) |
 | Scale, resilience, CAP/PACELC trade-offs | [system-design-scalability](../../../engineering/practices/system-design-scalability/SKILL.md) |
-| Domain boundaries, bounded contexts | [architecture-ddd](../../../engineering/practices/architecture-ddd/SKILL.md) |
 | Diagrams and architecture descriptions | [c4-model-architecture](../../../engineering/practices/c4-model-architecture/SKILL.md) |
 | Architecture documentation, ADRs | [architecture-documentation](../../../engineering/practices/architecture-documentation/SKILL.md) |
 

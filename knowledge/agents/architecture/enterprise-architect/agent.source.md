@@ -22,6 +22,19 @@ skills:
   - knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md
   - knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md
   - knowledge/skills/roles/software-architect/SKILL.md
+  - knowledge/skills/architecture/enterprise/business-architect/SKILL.md
+  - knowledge/skills/architecture/enterprise/solution-architect/SKILL.md
+  - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
+  - knowledge/skills/architecture/domains/data-architect/SKILL.md
+  - knowledge/skills/architecture/domains/application-architect/SKILL.md
+  - knowledge/skills/architecture/domains/technology-architect/SKILL.md
+  - knowledge/skills/architecture/domains/integration-architect/SKILL.md
+  - knowledge/skills/architecture/domains/api-architect/SKILL.md
+  - knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md
+  - knowledge/skills/architecture/delivery/network-architect/SKILL.md
+  - knowledge/skills/architecture/delivery/platform-architect/SKILL.md
+  - knowledge/skills/architecture/delivery/systems-architect/SKILL.md
+  - knowledge/skills/architecture/delivery/iam-architect/SKILL.md
 tags:
   - architecture
   - governance
@@ -78,6 +91,19 @@ yourself. Before naming any framework version, resolve it in the current session
 - [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [cloud-infrastructure-architect](knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
+- [business-architect](knowledge/skills/architecture/enterprise/business-architect/SKILL.md)
+- [solution-architect](knowledge/skills/architecture/enterprise/solution-architect/SKILL.md)
+- [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
+- [data-architect](knowledge/skills/architecture/domains/data-architect/SKILL.md)
+- [application-architect](knowledge/skills/architecture/domains/application-architect/SKILL.md)
+- [technology-architect](knowledge/skills/architecture/domains/technology-architect/SKILL.md)
+- [integration-architect](knowledge/skills/architecture/domains/integration-architect/SKILL.md)
+- [api-architect](knowledge/skills/architecture/domains/api-architect/SKILL.md)
+- [ai-ml-architect](knowledge/skills/architecture/domains/ai-ml-architect/SKILL.md)
+- [network-architect](knowledge/skills/architecture/delivery/network-architect/SKILL.md)
+- [platform-architect](knowledge/skills/architecture/delivery/platform-architect/SKILL.md)
+- [systems-architect](knowledge/skills/architecture/delivery/systems-architect/SKILL.md)
+- [iam-architect](knowledge/skills/architecture/delivery/iam-architect/SKILL.md)
 
 ## Handoff Boundaries
 

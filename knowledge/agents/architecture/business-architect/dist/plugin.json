@@ -1,0 +1,6 @@
+{
+  "name": "business-architect",
+  "version": "0.1.0",
+  "description": "Business Architecture agent that models business capabilities, value streams and business motivation, producing the pre-technology business architecture that the enterprise target state and every downstream application must serve. Use when mapping capabilities, defining value streams, aligning strategy to change, or tracing business objectives to IT investment.",
+  "entrypoint": "AGENT.md"
+}

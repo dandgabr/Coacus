@@ -1,0 +1,8 @@
+{
+  "name": "platform-architect",
+  "description": "Platform Architecture agent that owns the internal developer platform as a product \u2014 platform capabilities, golden paths, self-service provisioning, tenancy, reliability and cost-to-serve. Use when defining a developer platform, designing golden paths and self-service, or balancing platform opinionation against team autonomy.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/platform-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/platform-architect/dist",
+  "fingerprint": "7c8435ab3a092b41"
+}
