@@ -1,0 +1,6 @@
+{
+  "name": "ui-designer",
+  "version": "0.1.0",
+  "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+  "entrypoint": "AGENT.md"
+}

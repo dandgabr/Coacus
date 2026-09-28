@@ -1,0 +1,8 @@
+{
+  "name": "ux-designer",
+  "description": "Senior UX designer who owns the experience end to end: discovery and research method selection, information architecture, flows and journey maps, usability evaluation with heuristics and metrics (SUS, HEART), and ethical design governance. Applies the full UX discipline from ISO 9241-210 framing to deceptive-pattern review.",
+  "category": "software-engineering",
+  "source": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
+  "dist": "knowledge/agents/software-engineering/ux-designer/dist",
+  "fingerprint": "77707a266b27fbfa"
+}

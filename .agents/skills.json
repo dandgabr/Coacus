@@ -604,7 +604,13 @@
       "path": "knowledge/skills/roles/software-architect"
     },
     {
+      "path": "knowledge/skills/roles/ui-designer"
+    },
+    {
       "path": "knowledge/skills/roles/ui-ux-designer"
+    },
+    {
+      "path": "knowledge/skills/roles/ux-designer"
     },
     {
       "path": "knowledge/skills/roles/web-search-specialist"

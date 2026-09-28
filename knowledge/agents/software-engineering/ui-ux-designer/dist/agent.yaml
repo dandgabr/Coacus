@@ -5,7 +5,7 @@ description: >-
 instruction: >
   ## 🎯 Description and Purpose
 
-  Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
+  Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
 
   ---
 
@@ -21,6 +21,8 @@ instruction: >
   This agent operates using the guidelines and technical standards established in the following skills:
 
   - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
+  - [ui-designer](knowledge/skills/roles/ui-designer/SKILL.md)
+  - [ux-designer](knowledge/skills/roles/ux-designer/SKILL.md)
   - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
   - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
   - [3d-immersive-webgl](knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
@@ -83,6 +85,10 @@ tools:
     path: ../../../../skills/roles/product-owner/SKILL.md
   - type: skill_integration
     path: ../../../../skills/roles/ui-ux-designer/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/roles/ui-designer/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/roles/ux-designer/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/ui-ux-principles/SKILL.md
   - type: skill_integration

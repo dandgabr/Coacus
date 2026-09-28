@@ -882,6 +882,7 @@
         "knowledge/skills/languages/lang-typescript/SKILL.md",
         "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/roles/ui-designer/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
         "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
@@ -2012,6 +2013,41 @@
       ]
     },
     {
+      "name": "ui-designer",
+      "category": "software-engineering",
+      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+      "skills": [
+        "knowledge/skills/roles/ui-designer/SKILL.md",
+        "knowledge/skills/roles/frontend-developer/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md"
+      ],
+      "triggers": [
+        "alta fidelidade",
+        "art direction",
+        "color tokens",
+        "componentes de interface",
+        "design de interface",
+        "design system",
+        "design tokens",
+        "design visual",
+        "direcao de arte",
+        "hi-fi",
+        "interface design",
+        "mockup",
+        "paleta de cores",
+        "sistema de design",
+        "tipografia",
+        "typography",
+        "ui design",
+        "visual design"
+      ]
+    },
+    {
       "name": "ui-ux-designer",
       "category": "software-engineering",
       "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
@@ -2020,6 +2056,8 @@
         "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/roles/product-owner/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/roles/ui-designer/SKILL.md",
+        "knowledge/skills/roles/ux-designer/SKILL.md",
         "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
@@ -2066,6 +2104,43 @@
         "usability",
         "ux design",
         "wcag"
+      ]
+    },
+    {
+      "name": "ux-designer",
+      "category": "software-engineering",
+      "description": "Senior UX designer who owns the experience end to end: discovery and research method selection, information architecture, flows and journey maps, usability evaluation with heuristics and metrics (SUS, HEART), and ethical design governance. Applies the full UX discipline from ISO 9241-210 framing to deceptive-pattern review.",
+      "skills": [
+        "knowledge/skills/roles/ux-designer/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+        "knowledge/skills/roles/product-owner/SKILL.md",
+        "knowledge/skills/roles/ui-designer/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "arquitetura de informacao",
+        "card sorting",
+        "design de experiencia",
+        "double diamond",
+        "experiencia do usuario",
+        "heur\u00edsticas de nielsen",
+        "information architecture",
+        "job to be done",
+        "journey map",
+        "nielsen heuristics",
+        "persona",
+        "pesquisa com usuario",
+        "teste de usabilidade",
+        "tree testing",
+        "usabilidade",
+        "usability",
+        "usability testing",
+        "user experience",
+        "user research",
+        "ux design",
+        "wireframe"
       ]
     },
     {

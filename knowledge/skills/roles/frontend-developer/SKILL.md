@@ -206,6 +206,12 @@ export function AccessibleAnimatedCard({ children }: { children: React.ReactNode
 
 ---
 
+## 🤝 6. Role Boundary: UI Design vs UX Design
+
+Interface craft is distinct from experience design: the [ui-designer](../ui-designer/SKILL.md) skill owns the surface discipline (hierarchy, type, color tokens, component states, handoff) and [ux-designer](../ux-designer/SKILL.md) owns research, IA and usability; [ui-ux-designer](../ui-ux-designer/SKILL.md) orchestrates both.
+
+---
+
 ## 🎨 6. Design Style Library (per-style deep dives)
 
 One canonical skill per style — visual DNA, motion, CSS techniques, accessibility trade-offs and bibliography:
