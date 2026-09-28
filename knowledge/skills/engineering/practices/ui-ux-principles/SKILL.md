@@ -112,6 +112,43 @@ Reject "the model is the interface"; a bare chat box lowers the barrier to **mis
 
 ---
 
+## 🎨 Design Style Library (per-style deep dives)
+
+The catalog now carries one canonical skill per style with visual DNA, motion, CSS techniques, accessibility trade-offs and a verified bibliography:
+
+- [3d immersive webgl](../../../domains/design/ui-style-3d-immersive-webgl/SKILL.md)
+- [acid anti design](../../../domains/design/ui-style-acid-anti-design/SKILL.md)
+- [ai native generative ui](../../../domains/design/ui-style-ai-native-generative-ui/SKILL.md)
+- [aurora mesh gradient](../../../domains/design/ui-style-aurora-mesh-gradient/SKILL.md)
+- [bento grid](../../../domains/design/ui-style-bento-grid/SKILL.md)
+- [card based ui](../../../domains/design/ui-style-card-based-ui/SKILL.md)
+- [claymorphism](../../../domains/design/ui-style-claymorphism/SKILL.md)
+- [cyberpunk hud](../../../domains/design/ui-style-cyberpunk-hud/SKILL.md)
+- [dark mode first](../../../domains/design/ui-style-dark-mode-first/SKILL.md)
+- [editorial archive luxury](../../../domains/design/ui-style-editorial-archive-luxury/SKILL.md)
+- [expressive variable typography](../../../domains/design/ui-style-expressive-variable-typography/SKILL.md)
+- [flat design](../../../domains/design/ui-style-flat-design/SKILL.md)
+- [frutiger aero](../../../domains/design/ui-style-frutiger-aero/SKILL.md)
+- [glassmorphism](../../../domains/design/ui-style-glassmorphism/SKILL.md)
+- [gradient duotone](../../../domains/design/ui-style-gradient-duotone/SKILL.md)
+- [kinetic typography](../../../domains/design/ui-style-kinetic-typography/SKILL.md)
+- [material you](../../../domains/design/ui-style-material-you/SKILL.md)
+- [maximalism](../../../domains/design/ui-style-maximalism/SKILL.md)
+- [metro modern ui](../../../domains/design/ui-style-metro-modern-ui/SKILL.md)
+- [micro interactions](../../../domains/design/ui-style-micro-interactions/SKILL.md)
+- [neo brutalism](../../../domains/design/ui-style-neo-brutalism/SKILL.md)
+- [neumorphism](../../../domains/design/ui-style-neumorphism/SKILL.md)
+- [one page long scroll](../../../domains/design/ui-style-one-page-long-scroll/SKILL.md)
+- [organic biophilic](../../../domains/design/ui-style-organic-biophilic/SKILL.md)
+- [parallax scrolling](../../../domains/design/ui-style-parallax-scrolling/SKILL.md)
+- [scrollytelling](../../../domains/design/ui-style-scrollytelling/SKILL.md)
+- [skeuomorphism](../../../domains/design/ui-style-skeuomorphism/SKILL.md)
+- [swiss web minimalism](../../../domains/design/ui-style-swiss-web-minimalism/SKILL.md)
+- [web brutalism](../../../domains/design/ui-style-web-brutalism/SKILL.md)
+- [y2k revival](../../../domains/design/ui-style-y2k-revival/SKILL.md)
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - For the design-engineering and anti-slop visual craft, see [ui-ux-designer](../../../roles/ui-ux-designer/SKILL.md) and [frontend-developer](../../../roles/frontend-developer/SKILL.md).

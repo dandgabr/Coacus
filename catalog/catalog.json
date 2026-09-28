@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 76,
-    "skills": 315,
+    "skills": 345,
     "mcps": 1
   },
   "agents": [
@@ -631,6 +631,126 @@
     {
       "name": "quantum-computing-algorithms",
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
+    },
+    {
+      "name": "ui-style-3d-immersive-webgl",
+      "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md"
+    },
+    {
+      "name": "ui-style-acid-anti-design",
+      "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md"
+    },
+    {
+      "name": "ui-style-ai-native-generative-ui",
+      "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md"
+    },
+    {
+      "name": "ui-style-aurora-mesh-gradient",
+      "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md"
+    },
+    {
+      "name": "ui-style-bento-grid",
+      "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md"
+    },
+    {
+      "name": "ui-style-card-based-ui",
+      "path": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md"
+    },
+    {
+      "name": "ui-style-claymorphism",
+      "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md"
+    },
+    {
+      "name": "ui-style-cyberpunk-hud",
+      "path": "knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md"
+    },
+    {
+      "name": "ui-style-dark-mode-first",
+      "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md"
+    },
+    {
+      "name": "ui-style-editorial-archive-luxury",
+      "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md"
+    },
+    {
+      "name": "ui-style-expressive-variable-typography",
+      "path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md"
+    },
+    {
+      "name": "ui-style-flat-design",
+      "path": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md"
+    },
+    {
+      "name": "ui-style-frutiger-aero",
+      "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md"
+    },
+    {
+      "name": "ui-style-glassmorphism",
+      "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md"
+    },
+    {
+      "name": "ui-style-gradient-duotone",
+      "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md"
+    },
+    {
+      "name": "ui-style-kinetic-typography",
+      "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md"
+    },
+    {
+      "name": "ui-style-material-you",
+      "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md"
+    },
+    {
+      "name": "ui-style-maximalism",
+      "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-metro-modern-ui",
+      "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md"
+    },
+    {
+      "name": "ui-style-micro-interactions",
+      "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md"
+    },
+    {
+      "name": "ui-style-neo-brutalism",
+      "path": "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-neumorphism",
+      "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md"
+    },
+    {
+      "name": "ui-style-one-page-long-scroll",
+      "path": "knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md"
+    },
+    {
+      "name": "ui-style-organic-biophilic",
+      "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md"
+    },
+    {
+      "name": "ui-style-parallax-scrolling",
+      "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md"
+    },
+    {
+      "name": "ui-style-scrollytelling",
+      "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md"
+    },
+    {
+      "name": "ui-style-skeuomorphism",
+      "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md"
+    },
+    {
+      "name": "ui-style-swiss-web-minimalism",
+      "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-web-brutalism",
+      "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-y2k-revival",
+      "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md"
     },
     {
       "name": "ai-application-engineering",
