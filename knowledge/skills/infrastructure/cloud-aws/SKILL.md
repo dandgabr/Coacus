@@ -67,7 +67,7 @@ Every proposed solution must align with the 6 pillars of the **AWS Well-Architec
                | +------------+-------------------------+------------+ |
                +--------------|-------------------------|--------------+
                               v                         v
-                           Internet              Serviços S3/DynamoDB
+                           Internet              S3/DynamoDB Services
 ```
 
 - **Amazon VPC (Virtual Private Cloud)**:

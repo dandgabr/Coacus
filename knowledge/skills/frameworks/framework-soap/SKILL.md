@@ -21,15 +21,15 @@ Every SOAP message must be a valid XML document structured into an `Envelope`, a
    <soapenv:Header>
       <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
          <wsse:UsernameToken>
-            <wsse:Username>usuario_api</wsse:Username>
-            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">senha_segura</wsse:Password>
+            <wsse:Username>api_user</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">secure_password</wsse:Password>
          </wsse:UsernameToken>
       </wsse:Security>
    </soapenv:Header>
    <soapenv:Body>
-      <web:ConsultarSaldoRequest>
-         <web:NumeroConta>123456-7</web:NumeroConta>
-      </web:ConsultarSaldoRequest>
+      <web:GetBalanceRequest>
+         <web:AccountNumber>123456-7</web:AccountNumber>
+      </web:GetBalanceRequest>
    </soapenv:Body>
 </soapenv:Envelope>
 ```
@@ -59,7 +59,7 @@ Errors during processing must return the standardized `<soapenv:Fault>` structur
    <soapenv:Body>
       <soapenv:Fault>
          <faultcode>soapenv:Client</faultcode>
-         <faultstring>Número de conta inválido ou não encontrado</faultstring>
+          <faultstring>Invalid or not found account number</faultstring>
          <faultactor>http://services.empresa.com/banking</faultactor>
          <detail>
             <err:ErrorDetail xmlns:err="http://services.empresa.com/errors">

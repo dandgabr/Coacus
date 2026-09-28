@@ -17,10 +17,10 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
 - **Item 6**: Use the editor to interrogate the type system (hover, quick info, definition) — understanding the inferred type avoids errors before they exist.
 - **Item 7**: Think of types as **sets of values**:
   ```typescript
-  type A = string;          // conjunto infinito de strings
-  type B = "left" | "right"; // conjunto de 2 valores
-  type C = never;            // conjunto vazio (⊥)
-  // Subtipo = subconjunto; assignable = ∈ conjunto
+  type A = string;          // infinite set of strings
+  type B = "left" | "right"; // set of 2 values
+  type C = never;            // empty set (⊥)
+  // Subtype = subset; assignable = ∈ set
   ```
   `never` is empty, `unknown` is the universal set, `string` is never assignable to `"left" | "right"`, but the reverse is.
 - **Item 8**: Distinguish **type space** from **value space** — the same symbol can exist in both (`type Foo` + `const Foo`); `typeof` means different things in each space.
@@ -29,8 +29,8 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
 - **Item 11**: Distinguish **excess property checking** (only on object literals!) from normal structural type checking.
 - **Item 12**: Apply types to the **whole function expression** rather than to each parameter:
   ```typescript
-  const diceRoll: Record<number, number> = {}; // contexto para a variável
-  fetchAll("users", (users: User[]) => {}); // ❌ anote o alvo, não o callback
+  const diceRoll: Record<number, number> = {}; // context for the variable
+  fetchAll("users", (users: User[]) => {}); // ❌ annotate the target, not the callback
   // ✅ type FetchAll = (table: string, cb: (rows: unknown[]) => void) => void
   ```
 - **Item 13**: Know the differences between `type` and `interface` (see the table in the Handbook reference); heuristic: `interface` until you need `type` features.
@@ -50,7 +50,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
   ```typescript
   interface UserInfo { id: string; name: string; }
   function getUser(id: string): UserInfo { ... }  // ✅
-  function getUserName(user: { id: string; name: string }) { ... } // ❌ duplicado
+  function getUserName(user: { id: string; name: string }) { ... } // ❌ duplicate
   ```
 - **Item 24**: Understand the use of **context** in inference (contextual typing on callbacks/literals).
 - **Item 25**: Understand **evolving types** (`let x = []` evolves from `any[]` as it is used).
@@ -62,13 +62,13 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
 
 - **Item 29**: Prefer types that **always represent valid states** — the type design should make the inconsistent state impossible:
   ```typescript
-  // ❌ Estado inválido representável: loaded mas sem dados, loading E erro
+  // ❌ Representable invalid state: loaded but without data, loading AND error
   interface State {
-    pageError?: string;         // separados, coerentes entre si
+    pageError?: string;         // separate, coherent among themselves
     loading: boolean;
     page?: PageContent;
   }
-  // ✅ União de estados fechada:
+  // ✅ Closed union of states:
   type PageState =
     | { state: "loading" }
     | { state: "error"; error: string }
@@ -82,7 +82,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
   ```typescript
   // ❌ interface Layer { type: "file"|"database"; layout: LayoutSpec; path?: string; db?: string }
   // ✅
-  type Layer = FileLayer | DatabaseLayer; // cada variante com seus campos
+  type Layer = FileLayer | DatabaseLayer; // each variant with its own fields
   ```
 - **Item 35**: Prefer more precise alternatives to `string` (literal unions, branded, template literal types).
 - **Item 36**: Use a distinct type for special values (e.g., `-1` meaning "not found" → `type NotFoundSentinel = -1` or a `T | null` return).
@@ -105,10 +105,10 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
 - **Item 44**: Prefer more precise variants of `any` (`any[]` instead of `any`; `unknown` on input; partially typed functions to fully free ones).
 - **Item 45**: **Hide unsafe assertions inside well-typed functions** — the inconsistency stays contained in a single testable point:
   ```typescript
-  // ❌ espalhado: JSON.parse(...) as User
+  // ❌ spread: JSON.parse(...) as User
   // ✅
   function parseUser(json: string): User {
-    return JSON.parse(json); // any contido aqui, retorno seguro
+    return JSON.parse(json); // any contained here, safe return
   }
   ```
   (Ideally validate at runtime before this point.)
@@ -129,7 +129,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
 - **Item 51**: Avoid **unnecessary type parameters** — do not add a generic the caller has to spell out; let inference do its job.
 - **Item 52**: Prefer **conditional types** to overload signatures — a condition in the type system replaces chains of overloads:
   ```typescript
-  // Em vez de 3 overloads de getElementById, use conditional:
+  // Instead of 3 getElementById overloads, use conditional:
   type ElemById<Tag extends string> = Tag extends keyof HTMLElementTagNameMap
     ? HTMLElementTagNameMap[Tag]
     : HTMLElement;
@@ -156,7 +156,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
       case "circle": return Math.PI * shape.radius ** 2;
       case "square": return shape.sideLength ** 2;
       default: {
-        const _exhaustive: never = shape; // erro se entrar "triangle"
+        const _exhaustive: never = shape; // error if "triangle" enters
         return _exhaustive;
       }
     }
@@ -180,7 +180,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
   type UserId = Brand<string, "UserId">;
   type OrderId = Brand<string, "OrderId">;
   declare function fetchUser(id: UserId): Promise<User>;
-  fetchUser(orderId); // ❌ erro — exatamente o que se quer
+  fetchUser(orderId); // ❌ error — exactly what is wanted
   ```
 
 ## Chapter 8 — Type Declarations and @types (Items 65–71)
@@ -202,7 +202,7 @@ An organized summary of *Effective TypeScript: 83 Specific Ways to Improve Your 
       currentUser?: User;
     }
   }
-  // `req.currentUser` agora é tipado em todo o projeto
+  // `req.currentUser` is now typed throughout the project
   ```
 
 ## Chapter 9 — Writing and Running Your Code (Items 72–78)

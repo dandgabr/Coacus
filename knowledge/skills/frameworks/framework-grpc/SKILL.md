@@ -26,10 +26,10 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/empresa/billing/v1;billingv1";
 
 service PaymentService {
-  // RPC Unário
+  // Unary RPC
   rpc ProcessPayment (ProcessPaymentRequest) returns (ProcessPaymentResponse);
   
-  // RPC de Streaming de Servidor
+  // Server Streaming RPC
   rpc StreamTransactions (StreamTransactionsRequest) returns (stream TransactionEvent);
 }
 
@@ -88,14 +88,14 @@ Avoid using only raw gRPC codes (`codes.Internal`, `codes.InvalidArgument`). Ret
 ```json
 {
   "code": 3,
-  "message": "Argumentos inválidos fornecidos para a transação",
+  "message": "Invalid arguments provided for the transaction",
   "details": [
     {
       "@type": "type.googleapis.com/google.rpc.BadRequest",
       "field_violations": [
         {
           "field": "amount_cents",
-          "description": "O valor deve ser maior que zero"
+          "description": "The value must be greater than zero"
         }
       ]
     }

@@ -15,21 +15,21 @@ Modern cloud mapping consolidates APIs from multiple providers into unified quer
 
 ```mermaid
 flowchart TD
-    subgraph CloudProviders["Provedores de Nuvem & On-Premise"]
+    subgraph CloudProviders["Cloud Providers & On-Premise"]
         AWS["AWS (IAM, EC2, S3, RDS, VPC)"]
         AZURE["Azure (Resource Groups, VMs, VNets, Entra ID)"]
         GCP["GCP (Projects, GKE, Cloud SQL, IAM)"]
         K8S["Kubernetes Clusters"]
     end
 
-    subgraph CollectionEngines["Mecanismos de Mapeamento & Coleta"]
+    subgraph CollectionEngines["Mapping & Collection Mechanisms"]
         CARTOGRAPHY["Cartography (Lyft) -> Neo4j Graph"]
         STEAMPIPE["Steampipe (SQL Engine via Postgres FDW)"]
         RESOTO["Resoto / Fix Inventory (Asset Graph & Metrics)"]
         CLOUDMAPPER["CloudMapper (Duo Labs / Visual VPC Maps)"]
     end
 
-    subgraph NativeCloudAssetAPIs["APIs Nativas de Inventário"]
+    subgraph NativeCloudAssetAPIs["Native Inventory APIs"]
         ARG["Azure Resource Graph (KQL)"]
         AWS_SSM["AWS Systems Manager Explorer"]
         GCP_CAI["GCP Cloud Asset Inventory"]
@@ -39,7 +39,7 @@ flowchart TD
     CloudProviders --> NativeCloudAssetAPIs
 
     CARTOGRAPHY --> NEO4J[("Neo4j Graph Database")]
-    STEAMPIPE --> SQL_QUERIES["Consultas SQL / Relatórios de Conformidade"]
+    STEAMPIPE --> SQL_QUERIES["SQL Queries / Compliance Reports"]
     ARG --> AZURE_PORTAL["Workbooks & Dashboards"]
 ```
 
@@ -66,11 +66,11 @@ RETURN i.id, i.publicdnsname, sg.id, role.name
 - **Concept**: A CLI utility and SQL server that exposes cloud APIs and software tools as PostgreSQL relational tables through Foreign Data Wrappers (FDW). It lets you run direct SQL queries, joins across providers, and CIS compliance checks.
 - **Multi-Cloud SQL Queries**:
 ```bash
-# Iniciar console interativo
+# Start interactive console
 steampipe query
 ```
 ```sql
--- Identificar todos os buckets S3 públicos na AWS e containers Blob no Azure
+-- Identify all public S3 buckets in AWS and Blob containers in Azure
 SELECT
   'AWS' AS provider,
   name AS asset_name,
@@ -128,7 +128,7 @@ Resources
 ### 7. GCP Cloud Asset Inventory
 - **Concept**: Google Cloud's native inventory service that keeps a five-week history of resource metadata and IAM policies, enabling real-time searches and continuous export to BigQuery.
 ```bash
-# Buscar todas as instâncias Compute Engine ativas em uma organização GCP
+# Search for all active Compute Engine instances in a GCP organization
 gcloud asset search-all-resources \
   --scope='organizations/123456789012' \
   --asset-types='compute.googleapis.com/Instance' \

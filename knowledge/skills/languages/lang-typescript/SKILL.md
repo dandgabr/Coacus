@@ -59,17 +59,17 @@ While working under this skill, apply the following coding standards strictly:
 
 ### Avoid the use of `any` — prefer generics or `unknown`
 ```typescript
-// ❌ Ruim: Perda total de tipagem e segurança
+// ❌ Bad: Total loss of typing and safety
 function processData(data: any) {
   return data.name.toUpperCase();
 }
 
-//  Bom: Uso de tipos específicos ou Generics
+//  Good: Use of specific types or Generics
 function processData<T extends { name: string }>(data: T): string {
   return data.name.toUpperCase();
 }
 
-//  Bom: Entrada arbitrária com contrato explícito antes do uso
+//  Good: Arbitrary input with an explicit contract before use
 function parseJson(input: string): unknown {
   return JSON.parse(input);
 }
@@ -92,7 +92,7 @@ function getArea(shape: Shape): number {
     case "triangle":
       return (shape.sideLength ** 2) / 2;
     default: {
-      // Erro de compilação se um novo membro entrar na união sem case
+      // Compilation error if a new member enters the union without a case
       const _exhaustiveCheck: never = shape;
       return _exhaustiveCheck;
     }
@@ -107,7 +107,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
 }
 
 const zoo: (Fish | Bird)[] = getZoo();
-const fishes: Fish[] = zoo.filter(isFish); // narrowing preservado no filtro
+const fishes: Fish[] = zoo.filter(isFish); // narrowing preserved in the filter
 ```
 
 ---
@@ -149,35 +149,35 @@ type Album =
   | { format: "digital"; downloadUrl: string }
   | { format: "physical"; shippingAddress: string };
 
-// 1) Discriminant / disjoint union (melhor desenho possível)
+// 1) Discriminant / disjoint union (best possible design)
 function refund(album: Album): string {
-  if (album.format === "digital") return album.downloadUrl;  // narrowed: variante digital
-  return album.shippingAddress;                              // narrowed: variante physical
+  if (album.format === "digital") return album.downloadUrl;  // narrowed: digital variant
+  return album.shippingAddress;                              // narrowed: physical variant
 }
 
-// 2) typeof (primitivos) — cuidado com typeof null === "object"
+// 2) typeof (primitives) — beware of typeof null === "object"
 function parse(input: string | number) {
   if (typeof input === "string") return input.trim();
   return input.toFixed(2);
 }
 
-// 3) Operador in — existência de propriedade
+// 3) in operator — property existence
 function hasDownload(album: Album) {
   return "downloadUrl" in album;
 }
 
-// 4) Truthiness/nullish (atenção aos falsy: 0, "", NaN, null, undefined)
+// 4) Truthiness/nullish (watch out for falsy values: 0, "", NaN, null, undefined)
 function name(user: string | null) {
   return user?.toUpperCase() ?? "anonymous";
 }
 
-// 5) Exhaustiveness com never: o compilador acusa variante faltante
+// 5) Exhaustiveness with never: the compiler flags a missing variant
 function label(album: Album): string {
   switch (album.format) {
     case "digital":  return "download";
     case "physical": return "shipping";
     default: {
-      const _exhaustive: never = album; // erro se entrar novo formato sem case
+      const _exhaustive: never = album; // error if a new format enters without a case
       return _exhaustive;
     }
   }

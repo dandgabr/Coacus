@@ -8,29 +8,29 @@ section .data
     msg_len equ $ - msg
     newline db 0x0A
 
-    ; Tabelas na seção de dados (direct-offset addressing)
+    ; Tables in the data section (direct-offset addressing)
     byte_table  db 14, 15, 22, 45
     word_table  dw 134, 345, 564, 123
 
 section .bss
-    ; Buffers estáticos zero-filled (reservados, não inicializados)
+    ; Static zero-filled buffers (reserved, not initialized)
     out_buf resb 16
 
 section .text
     global _start
 
 _start:
-    ; --- Direct-offset addressing: acessa elementos por índice ---
-    movzx   r8, byte [byte_table + 2]   ; 3º elemento (22)
-    movzx   r9, word [word_table + 3*2] ; 4º elemento (123)
+    ; --- Direct-offset addressing: accesses elements by index ---
+    movzx   r8, byte [byte_table + 2]   ; 3rd element (22)
+    movzx   r9, word [word_table + 3*2] ; 4th element (123)
 
-    ; --- Indirect addressing: base register percorre o array ---
-    lea     rbx, [byte_table]           ; effective address em RBX
-    mov     rcx, 4                      ; contagem (count register)
+    ; --- Indirect addressing: base register walks the array ---
+    lea     rbx, [byte_table]           ; effective address in RBX
+    mov     rcx, 4                      ; count (count register)
 .fill_loop:
-    mov     al, [rbx]                   ; lê o elemento corrente
-    ; (processamento do valor iria aqui)
-    add     rbx, 1                      ; avança para o próximo byte
+    mov     al, [rbx]                   ; reads the current element
+    ; (value processing would go here)
+    add     rbx, 1                      ; advances to the next byte
     dec     rcx
     jnz     .fill_loop                  ; loop while CX != 0 (flags)
 

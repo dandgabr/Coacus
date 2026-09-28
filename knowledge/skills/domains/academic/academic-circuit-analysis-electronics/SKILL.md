@@ -62,11 +62,11 @@ Differential equation: $\frac{d^2 x}{dt^2} + 2\zeta\omega_0 \frac{dx}{dt} + \ome
 
 ```mermaid
 flowchart LR
-    subgraph OpAmp["Amplificador de Instrumentação (INA - 3 Op-Amps)"]
-        IN1["V1 (+)"] --> OP1["Op-Amp 1 (Buffer/Ganho Diferencial)"]
-        IN2["V2 (-)"] --> OP2["Op-Amp 2 (Buffer/Ganho Diferencial)"]
-        OP1 & OP2 --> RG["Resistor de Ajuste de Ganho RG"]
-        OP1 & OP2 --> OP3["Op-Amp 3 (Estágio Subtrator Diferencial)"]
+    subgraph OpAmp["Instrumentation Amplifier (INA - 3 Op-Amps)"]
+        IN1["V1 (+)"] --> OP1["Op-Amp 1 (Buffer/Differential Gain)"]
+        IN2["V2 (-)"] --> OP2["Op-Amp 2 (Buffer/Differential Gain)"]
+        OP1 & OP2 --> RG["Gain Adjustment Resistor RG"]
+        OP1 & OP2 --> OP3["Op-Amp 3 (Differential Subtractor Stage)"]
         OP3 --> VOUT["Vout = (1 + 2R1/RG) * (R3/R2) * (V1 - V2)"]
     end
 ```

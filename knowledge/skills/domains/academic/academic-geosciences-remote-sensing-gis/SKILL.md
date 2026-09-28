@@ -13,10 +13,10 @@ This skill establishes the engineering of geospatial data processing, the physic
 
 ```mermaid
 flowchart LR
-    A["Radiação Solar Incidente"] --> B["Superfície Terrestre (Solo, Vegetação, Água)"]
-    B -->|Refletância Espectral| C["Sensores Orbitais (Sentinel-2 MSI / Landsat-8 OLI)"]
-    C --> D["Pré-Processamento (Correção Atmosférica DOS1 / Sen2Cor / TOA para BOA)"]
-    D --> E["Cálculo de Índices Biofísicos & Classificação Supervisionada"]
+    A["Incident Solar Radiation"] --> B["Terrestrial Surface (Soil, Vegetation, Water)"]
+    B -->|Spectral Reflectance| C["Orbital Sensors (Sentinel-2 MSI / Landsat-8 OLI)"]
+    C --> D["Pre-Processing (DOS1 Atmospheric Correction / Sen2Cor / TOA to BOA)"]
+    D --> E["Biophysical Index Calculation & Supervised Classification"]
 ```
 
 ### 1.1 Spectral Signatures and Normalized Difference Biophysical Indices
@@ -45,7 +45,7 @@ flowchart LR
 
 ### 2.2 Geospatial Analysis with PostGIS and GeoPandas
 ```sql
--- Exemplo: Consulta espacial com buffer e interseção em PostGIS
+-- Example: Spatial query with buffer and intersection in PostGIS
 SELECT 
     l.id_imovel,
     ST_Area(ST_Intersection(l.geom, a.geom)) / 10000.0 AS area_sobreposta_ha

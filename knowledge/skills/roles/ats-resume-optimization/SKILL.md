@@ -17,12 +17,12 @@ The ATS converts the file into raw text through OCR or a semantic parser before 
    - Never use tables, multi-column grids, floating text boxes, or sidebars.
    - Text placed inside text boxes is frequently ignored by the parser.
 2. **Universal, Standardized Headings**:
-   - Use exact terms: `Resumo Profissional` (or `Professional Summary`), `Experiência Profissional` (`Work Experience`), `Formação Acadêmica` (`Education`), `Habilidades Técnicas` (`Technical Skills`).
+   - Use exact terms: `Professional Summary`, `Work Experience`, `Education`, `Technical Skills` (or their equivalents in the resume language).
    - Avoid creative terms such as "What drives me" or "My journey".
 3. **Contact Data Formatting**:
    - Put name, email, phone, LinkedIn, and city/country in the main upper body of the document (never in Word/PDF footers or headers).
 4. **Uniform Date Format**:
-   - Use a consistent format across all positions: `MM/AAAA - MM/AAAA` (e.g., `03/2022 - Atual`).
+   - Use a consistent format across all positions: `MM/YYYY - MM/YYYY` (e.g., `03/2022 - Present`).
 
 ---
 

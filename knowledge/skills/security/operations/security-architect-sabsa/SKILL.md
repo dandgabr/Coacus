@@ -27,27 +27,27 @@ You must steer architecture projects following the 4 phases of the **SABSA Lifec
 
 ```
 +-----------------------------------------------------------------------------------+
-| 1. STRATEGY & PLANNING (Estratégia e Planejamento)                                |
-|    - Identificação de drivers comerciais, riscos e requisitos regulatórios.      |
+| 1. STRATEGY & PLANNING                                                            |
+|    - Identification of business drivers, risks, and regulatory requirements.      |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 2. DESIGN (Arquitetura e Projeto)                                                 |
-|    - Elaboração das Camadas Conceitual, Lógica, Física e de Componentes.         |
-|    - Definição do Perfil de Atributos de Negócio (BAP) e Zonas de Confiança.     |
+| 2. DESIGN (Architecture and Design)                                               |
+|    - Elaboration of the Conceptual, Logical, Physical, and Component Layers.      |
+|    - Definition of the Business Attribute Profile (BAP) and Trust Zones.          |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 3. IMPLEMENT (Construção e Implantação)                                           |
-|    - Engenharia de software segura, IaC, esteira DevSecOps e testes de invasão.   |
+| 3. IMPLEMENT (Construction and Deployment)                                        |
+|    - Secure software engineering, IaC, DevSecOps pipeline, and penetration tests. |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 4. MANAGE & MEASURE (Gestão, Operação e Medição)                                  |
-|    - Monitoramento contínuo (SIEM/SOC), gestão de incidentes, SLAs, KPIs e KRIs.  |
+| 4. MANAGE & MEASURE (Management, Operation, and Measurement)                      |
+|    - Continuous monitoring (SIEM/SOC), incident management, SLAs, KPIs, and KRIs. |
 +-----------------------------------------------------------------------------------+
 ```
 
@@ -62,38 +62,38 @@ You must analyze the system through the lens of the 6 layers of the SABSA archit
 
 ```
 +-----------------------------------------------------------------------------------+
-| 1. CAMADA CONTEXTUAL (Visão do Negócio) - Alinhada ao TOGAF ADM Fase A            |
-|    - O que o negócio quer atingir? Objetivos, riscos e limites do negócio.        |
+| 1. CONTEXTUAL LAYER (Business View) - Aligned with TOGAF ADM Phase A              |
+|    - What does the business want to achieve? Business objectives, risks and limits.|
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 2. CAMADA CONCEITUAL (Visão do Arquiteto) - Alinhada ao NIST CSF (Govern/Identify) |
-|    - Conceitos de segurança e Perfil de Atributos de Negócio (BAP).               |
+| 2. CONCEPTUAL LAYER (Architect's View) - Aligned with NIST CSF (Govern/Identify)  |
+|    - Security concepts and Business Attribute Profile (BAP).                      |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 3. CAMADA LÓGICA (Visão do Designer) - Alinhada ao NIST SP 800-207 Zero Trust      |
-|    - Políticas de segurança, Zonas de Confiança, fluxos e criptografia lógica.    |
+| 3. LOGICAL LAYER (Designer's View) - Aligned with NIST SP 800-207 Zero Trust       |
+|    - Security policies, Trust Zones, flows, and logical cryptography.             |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 4. CAMADA FÍSICA (Visão do Construtor) - Alinhada a CIS Benchmarks & IaC          |
-|    - Seleção de tecnologias concretas: Firewalls, WAF, Provedores IAM, DBs, TLS.  |
+| 4. PHYSICAL LAYER (Builder's View) - Aligned with CIS Benchmarks & IaC            |
+|    - Selection of concrete technologies: Firewalls, WAF, IAM Providers, DBs, TLS. |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 5. CAMADA DE COMPONENTE (Visão do Especialista) - Alinhada ao OWASP ASVS           |
-|    - Padrões de implementação, APIs, Drivers de Criptografia, Configurações OS.   |
+| 5. COMPONENT LAYER (Specialist's View) - Aligned with OWASP ASVS                   |
+|    - Implementation standards, APIs, Cryptography Drivers, OS Configurations.     |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| 6. CAMADA OPERACIONAL (Visão do Gestor de Serviços) - Alinhada ao NIST SP 800-61  |
-|    - Monitoramento contínuo, resposta a incidentes, auditorias e conformidade.    |
+| 6. OPERATIONAL LAYER (Service Manager's View) - Aligned with NIST SP 800-61      |
+|    - Continuous monitoring, incident response, audits, and compliance.            |
 +-----------------------------------------------------------------------------------+
 ```
 

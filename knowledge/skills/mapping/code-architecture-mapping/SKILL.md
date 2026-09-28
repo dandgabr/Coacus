@@ -15,7 +15,7 @@ Code mapping extracts the relational model of types, functions, packages, and mo
 
 ```mermaid
 flowchart TD
-    subgraph SourceCode["Código-Fonte & Bytecode"]
+    subgraph SourceCode["Source Code & Bytecode"]
         JAVA["Java (.java / .class / .jar)"]
         DOTNET[".NET (.cs / .dll)"]
         PY["Python (.py / AST)"]
@@ -23,7 +23,7 @@ flowchart TD
         GO["Go (.go / go.mod)"]
     end
 
-    subgraph Analyzers["Analisadores Especializados por Linguagem"]
+    subgraph Analyzers["Language-Specific Analyzers"]
         ARCHUNIT["ArchUnit & jQAssistant (Java)"]
         NDEPEND["NDepend & Roslyn (C# / .NET)"]
         PYREVERSE["Pyreverse & Pyan3 (Python)"]
@@ -31,16 +31,16 @@ flowchart TD
         GO_CALLVIS["Go Callvis & godepgraph (Go)"]
     end
 
-    subgraph MultiLang["Engenharia Multilinguagem & Hotspots"]
+    subgraph MultiLang["Multilingual Engineering & Hotspots"]
         CODESCENE["CodeScene (Behavioral & Technical Debt)"]
         SONARQUBE["SonarQube (Clean Architecture & Rules)"]
         SOURCETRAIL["Sourcetrail & SciTools Understand (Cross-Index)"]
     end
 
-    subgraph Outputs["Artefatos Gerados"]
-        DSM["Matriz de Dependências (DSM)"]
-        RULES["Testes de Arquitetura em CI/CD"]
-        DIAGRAMS["Grafos DOT / PlantUML / JSON"]
+    subgraph Outputs["Generated Artifacts"]
+        DSM["Dependency Structure Matrix (DSM)"]
+        RULES["Architecture Tests in CI/CD"]
+        DIAGRAMS["DOT / PlantUML / JSON Graphs"]
     end
 
     JAVA --> ARCHUNIT
@@ -98,7 +98,7 @@ public class ArchitectureTest {
 1. **NDepend**: A deep static analysis tool for the .NET ecosystem with support for the **CQLinq** (Code Query LINQ) query language.
    - **Example CQLinq Rule**:
 ```csharp
-// Identificar métodos com alto acoplamento e complexidade ciclomática elevada
+// Identify methods with high coupling and elevated cyclomatic complexity
 warnif count > 0 
 from m in JustMyCode.Methods 
 where m.CyclomaticComplexity > 15 && m.CouplingMethods > 20
@@ -112,8 +112,8 @@ select new { m, m.CyclomaticComplexity, m.CouplingMethods }
 ### C. Python
 1. **Pyreverse**: A module integrated into `pylint` that parses the AST of Python projects and produces class and package diagrams in PlantUML and Graphviz DOT formats.
 ```bash
-# Gerar diagrama de classes e pacotes do projeto
-pyreverse -o png -p MeuProjeto ./src/meu_modulo
+# Generate the project class and package diagram
+pyreverse -o png -p MyProject ./src/my_module
 ```
 2. **Pyan3**: A Python 3 utility for AST analysis and generation of static Call Graphs of methods and functions.
 ```bash
@@ -127,15 +127,15 @@ dot -Tsvg callgraph.dot -o callgraph.svg
 ### D. JavaScript & TypeScript
 1. **Dependency Cruiser**: The industry standard for dependency validation in monorepos and Node.js/TypeScript projects.
 ```bash
-# Validar regras arquiteturais definidas no arquivo .dependency-cruiser.js
+# Validate the architectural rules defined in the .dependency-cruiser.js file
 npx depcruise --config .dependency-cruiser.js src
 
-# Gerar diagrama visual SVG de dependências entre módulos
+# Generate an SVG visual diagram of dependencies between modules
 npx depcruise src --include-only "^src" --output-type dot | dot -Tsvg > dependency-graph.svg
 ```
 2. **Madge**: Creates visual dependency graphs of CommonJS, AMD, and ES6 modules, listing files with circular dependencies.
 ```bash
-# Encontrar ciclos de dependência
+# Find dependency cycles
 npx madge --circular ./src
 ```
 3. **Nx Graph**: A native visualizer of project and library topology in NX monorepos.
@@ -150,7 +150,7 @@ go-callvis -group pkg,type -focus main ./...
 ```
 2. **godepgraph & GoGraph**: Generators of Go package import diagrams in Graphviz DOT format.
 ```bash
-godepgraph -s github.com/empresa/meu-repo | dot -Tpng -o godeps.png
+godepgraph -s github.com/empresa/my-repo | dot -Tpng -o godeps.png
 ```
 
 ---

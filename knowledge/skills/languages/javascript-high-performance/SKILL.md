@@ -154,8 +154,8 @@ for (let i = 0; i < data.length; i++) {
 ```javascript
 const view = new Int32Array(1_000_000);
 // ... populate ...
-worker.postMessage(view, [view.buffer]); // transfere, não copia
-// ⚠️ view agora está neutered/detached no remetente
+worker.postMessage(view, [view.buffer]); // transfers, does not copy
+// ⚠️ view is now neutered/detached on the sender
 ```
 
 ### Fragment for batch DOM insertion
@@ -164,7 +164,7 @@ const frag = document.createDocumentFragment();
 for (const item of items) {
   frag.appendChild(createRow(item));
 }
-container.appendChild(frag); // um único reflow/layout
+container.appendChild(frag); // a single reflow/layout
 ```
 
 ### Simple LRU/TTL Cache

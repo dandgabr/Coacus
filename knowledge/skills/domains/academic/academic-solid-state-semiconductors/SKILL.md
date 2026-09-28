@@ -13,9 +13,9 @@ This skill establishes the quantum foundations of crystalline condensed matter, 
 
 ```mermaid
 flowchart LR
-    A["Rede Direta no Espaço Real (a1, a2, a3)"] -->|Transformada de Fourier Espacial| B["Rede Recíproca (b1, b2, b3)"]
-    B --> C["Primeira Zona de Brillouin (Célula de Wigner-Seitz Recíproca)"]
-    C --> D["Condição de Difração de Bragg / Laue: Δk = G"]
+    A["Direct Lattice in Real Space (a1, a2, a3)"] -->|Spatial Fourier Transform| B["Reciprocal Lattice (b1, b2, b3)"]
+    B --> C["First Brillouin Zone (Reciprocal Wigner-Seitz Cell)"]
+    C --> D["Bragg / Laue Diffraction Condition: Δk = G"]
 ```
 
 ### 1.1 Reciprocal Lattice Vectors and Bragg's Law

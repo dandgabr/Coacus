@@ -114,3 +114,59 @@ class TestSkillWarnings(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestFenceLanguageGate(unittest.TestCase):
+    """Code fences carry diagrams and comments; PT there is a blocking error.
+
+    The prose sweep intentionally drops fences, so a separate gate (F6b) keeps
+    contamination in ASCII diagrams, code comments and string literals out.
+    """
+
+    def setUp(self) -> None:
+        from engine.validators import language
+
+        self.language = language
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name) / "repo"
+
+    def test_fence_with_portuguese_fails(self) -> None:
+        write_skill(
+            self.root,
+            "roles",
+            "pt-fence",
+            body="## Diagram\n\n```\n# Configuração do agente\n```\n",
+        )
+        errors = self.language.fence_errors(self.root)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("code fence", errors[0])
+
+    def test_prose_only_portuguese_is_not_a_fence_error(self) -> None:
+        write_skill(
+            self.root,
+            "roles",
+            "pt-prose",
+            body="Atua como especialista em seguranca.\n",
+        )
+        self.assertEqual(self.language.fence_errors(self.root), [])
+
+    def test_english_fence_passes(self) -> None:
+        write_skill(
+            self.root,
+            "roles",
+            "en-fence",
+            body="## Diagram\n\n```\n[ Data input ]\n```\n",
+        )
+        self.assertEqual(self.language.fence_errors(self.root), [])
+
+    def test_fence_exempt_file_is_skipped(self) -> None:
+        write_skill(self.root, "domains", "linguistic-pt-br", body="x")
+        nested = self.root / "knowledge/skills/domains/linguistics" / "linguistic-pt-br"
+        nested.mkdir(parents=True)
+        (nested / "SKILL.md").write_text(
+            "---\nname: linguistic-pt-br\ndescription: >-\n  Teaches PT-BR.\n---\n\n"
+            "# linguistic-pt-br\n\n```\n[ Configuração ]\n```\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(self.language.fence_errors(self.root), [])

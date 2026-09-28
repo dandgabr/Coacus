@@ -15,26 +15,26 @@ Network mapping combines statistical flow telemetry (NetFlow/IPFIX), real-time b
 
 ```mermaid
 flowchart TD
-    subgraph TrafficSources["Fontes de Tráfego"]
-        SPAN["Port Mirror / TAP de Rede"]
-        NETFLOW["Roteadores / Switches (NetFlow v9 / IPFIX)"]
-        HOST["Hosts Locais / Interfaces de Rede"]
+    subgraph TrafficSources["Traffic Sources"]
+        SPAN["Network Port Mirror / TAP"]
+        NETFLOW["Routers / Switches (NetFlow v9 / IPFIX)"]
+        HOST["Local Hosts / Network Interfaces"]
     end
 
-    subgraph PassiveInspection["Análise Passiva & DPI"]
+    subgraph PassiveInspection["Passive Analysis & DPI"]
         ZEEK["Zeek Network Security Monitor"]
         NTOPNG["ntopng (L7 Topologies & Host Maps)"]
         ARKIME["Arkime (Full Packet Indexing)"]
-        P0F["p0f (OS Fingerprinting Passivo)"]
+        P0F["p0f (Passive OS Fingerprinting)"]
         RITA["RITA (Beaconing & C2 Graph Analysis)"]
     end
 
-    subgraph ActiveDiscovery["Descoberta Ativa & Recon"]
+    subgraph ActiveDiscovery["Active Discovery & Recon"]
         NMAP["Nmap / RustScan / Masscan / Naabu"]
         AMASS["OWASP Amass (DNS & ASN Mapping)"]
     end
 
-    subgraph IngestionFlow["Consolidação & Análise"]
+    subgraph IngestionFlow["Consolidation & Analysis"]
         ELASTIFLOW["ElastiFlow / pmacct (IPFIX/sFlow Ingest)"]
         MALCOLM["Malcolm Suite (Zeek + Arkime + OpenSearch)"]
     end
@@ -56,10 +56,10 @@ flowchart TD
 - **Concept**: A security monitoring and application-layer protocol analysis engine (DNS, HTTP, SSL/TLS, SSH, SMB, DHCP, Modbus). It generates structured per-protocol logs and correlates connections through a unique connection identifier (`uid`).
 - **PCAP analysis and log generation command**:
 ```bash
-# Executar análise de captura e extrair metadados estruturados
+# Run capture analysis and extract structured metadata
 zeek -r capture.pcap local "Site::local_nets += { 192.168.0.0/16, 10.0.0.0/8 }"
 
-# Filtrar conexões HTTP de longa duração e serviços mapeados
+# Filter long-lived HTTP connections and mapped services
 zeek-cut id.orig_h id.orig_p id.resp_h id.resp_p service proto orig_bytes resp_bytes < conn.log
 ```
 
@@ -76,12 +76,12 @@ ntopng -i eth0 --local-networks "192.168.1.0/24,10.10.0.0/16" -F "es;flow;http:/
 #### 4. Wireshark & TShark & tcpdump
 - **tcpdump**: Lightweight command-line capture and filtering using BPF (Berkeley Packet Filters).
 ```bash
-# Capturar tráfego SYN e RST entre sub-redes para mapeamento de conexões
+# Capture SYN and RST traffic between subnets for connection mapping
 tcpdump -nn -i eth0 'tcp[tcpflags] & (tcp-syn|tcp-rst) != 0' -w syn_flows.pcap
 ```
 - **tshark**: The Wireshark CLI interface for dissecting and extracting structured fields.
 ```bash
-# Mapear pares IP, portas e SNI TLS passivamente
+# Passively map IP pairs, ports, and TLS SNI
 tshark -r capture.pcap -Y "tls.handshake.extensions_server_name" -T fields -e ip.src -e ip.dst -e tls.handshake.extensions_server_name
 ```
 
@@ -111,7 +111,7 @@ rita show-beacons dataset_prod
 #### 1. Nmap (Network Mapper)
 - **Fast scanning of services, versions, and network topology**:
 ```bash
-# Mapear sub-rede com resolução de serviços, scripts NSE seguros e traceroute
+# Map subnet with service resolution, safe NSE scripts, and traceroute
 nmap -sS -sV -O --traceroute -p- --min-rate 1000 -T4 192.168.1.0/24 -oA network_map_subnet
 ```
 
@@ -132,7 +132,7 @@ naabu -list targets.txt -c 50 -rate 1000 -json -o open_ports.json
 #### 3. OWASP Amass
 - **Attack Surface and DNS/ASN Topology Mapping**: Maps relationships among domains, IP addresses, ASN blocks, SSL certificates, and WHOIS using open sources and active DNS enumeration techniques.
 ```bash
-amass enum -d empresa.com -active -brute -asn 12345 -json amass_topology.json
+amass enum -d example.com -active -brute -asn 12345 -json amass_topology.json
 amass viz -d3 -json amass_topology.json
 ```
 

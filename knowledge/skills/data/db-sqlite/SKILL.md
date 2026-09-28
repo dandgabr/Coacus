@@ -17,22 +17,22 @@ Unlike client-server databases, SQLite operates as a database engine embedded in
 By default, SQLite operates in Rollback Journal mode (which blocks reads during writes). To enable reads concurrent with writes, you must turn on **WAL** mode:
 
 ```sql
--- Ativar modo Write-Ahead Logging (persistido no arquivo da base)
+-- Enable Write-Ahead Logging mode (persisted in the database file)
 PRAGMA journal_mode = WAL;
 
--- Sincronização segura para WAL (desempenho 10x superior sem perda de consistência)
+-- Safe synchronization for WAL (10x performance without losing consistency)
 PRAGMA synchronous = NORMAL;
 
--- Manter tabela temporária em memória RAM
+-- Keep temporary tables in RAM
 PRAGMA temp_store = MEMORY;
 
--- Aumentar tamanho do cache de memória (ex: 64MB = 16000 páginas de 4KB)
+-- Increase the memory cache size (e.g., 64MB = 16000 pages of 4KB)
 PRAGMA cache_size = -64000;
 
--- Definir tempo limite de espera para evitar SQLITE_BUSY em escritas concorrentes
+-- Set a wait timeout to avoid SQLITE_BUSY on concurrent writes
 PRAGMA busy_timeout = 5000;
 
--- Habilitar verificação de chaves estrangeiras
+-- Enable foreign key enforcement
 PRAGMA foreign_keys = ON;
 ```
 
@@ -76,7 +76,7 @@ CREATE TABLE user_settings (
     data TEXT CHECK (json_valid(data))
 );
 
--- Extraindo valores formatados
+-- Extracting formatted values
 SELECT json_extract(data, '$.theme') AS theme FROM user_settings;
 ```
 
@@ -88,7 +88,7 @@ CREATE VIRTUAL TABLE documents_fts USING fts5(
     tokenize = 'porter ascii'
 );
 
--- Consulta por frase ou prefixo com ordenação por relevância (bm25)
+-- Phrase or prefix query ordered by relevance (bm25)
 SELECT title, bm25(documents_fts) AS rank 
 FROM documents_fts 
 WHERE documents_fts MATCH 'sqlite AND performance*' 

@@ -27,9 +27,9 @@ $$W_{i \to f} = \frac{2\pi}{\hbar} |\langle f | \hat{V} | i \rangle|^2 \rho(E_f)
 ## 🌐 2. Qubits, the Bloch Sphere, and Universal Quantum Gates
 
 ```
-                 |0⟩ (Polo Norte)
+                 |0⟩ (North Pole)
                    ▲
-                   │     / (vetor de estado |ψ⟩ = cos(θ/2)|0⟩ + e^(iφ)sin(θ/2)|1⟩)
+                   │     / (state vector |ψ⟩ = cos(θ/2)|0⟩ + e^(iφ)sin(θ/2)|1⟩)
                    │    /
                    │   /
                    │  /
@@ -39,7 +39,7 @@ $$W_{i \to f} = \frac{2\pi}{\hbar} |\langle f | \hat{V} | i \rangle|^2 \rho(E_f)
                  / │
                 /  │
                ▼   ▼
-              X   |1⟩ (Polo Sul)
+              X   |1⟩ (South Pole)
 ```
 
 - **Qubit**: $|\psi\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle$.
@@ -55,19 +55,19 @@ $$W_{i \to f} = \frac{2\pi}{\hbar} |\langle f | \hat{V} | i \rangle|^2 \rho(E_f)
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 
-# Circuito Quântico de Entrelaçamento Máximo (Bell State)
+# Maximum-Entanglement Quantum Circuit (Bell State)
 qc = QuantumCircuit(2, 2)
-qc.h(0)          # Superposição no Qubit 0
-qc.cx(0, 1)      # Entrelaçamento controlado (Q0 -> Q1)
+qc.h(0)          # Superposition on Qubit 0
+qc.cx(0, 1)      # Controlled entanglement (Q0 -> Q1)
 qc.measure([0, 1], [0, 1])
 
-# Execução em simulador quântico
+# Execution on a quantum simulator
 simulator = AerSimulator()
 compiled_qc = transpile(qc, simulator)
 job = simulator.run(compiled_qc, shots=2048)
 counts = job.result().get_counts(qc)
-print("Distribuição das Medições:", counts)
-# Saída esperada: ~50% '00' e ~50% '11'
+print("Measurement Distribution:", counts)
+# Expected output: ~50% '00' and ~50% '11'
 ```
 
 ---

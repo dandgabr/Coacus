@@ -64,7 +64,7 @@ Add tactile texture that breaks the sterility of the digital canvas without hurt
 ```css
 /* styles/craft-textures.css */
 
-/* Camada de granulação com Perlin Noise SVG sem requisição de rede */
+/* Grain layer with Perlin Noise SVG with no network request */
 .craft-grain-overlay {
   position: relative;
 }
@@ -93,21 +93,21 @@ Springs calibrated with mathematical rigor for firm, elegant movement with no te
 // lib/animation/springs.ts
 
 export const springPhysics = {
-  // Mola para modais, dropdowns e abas (alta firmeza e sem oscilação)
+  // Spring for modals, dropdowns and tabs (high firmness and no oscillation)
   interfaceSnappy: {
     type: "spring" as const,
     stiffness: 420,
     damping: 34,
     mass: 0.8
   },
-  // Mola para revelação sequencial de cards (suave, fluida)
+  // Spring for sequential reveal of cards (soft, fluid)
   contentGentle: {
     type: "spring" as const,
     stiffness: 280,
     damping: 26,
     mass: 1.0
   },
-  // Mola tátil para micro-estados e botões
+  // Tactile spring for micro-states and buttons
   microPress: {
     type: "spring" as const,
     stiffness: 550,
@@ -132,7 +132,7 @@ interface TactileCardProps {
 }
 
 export function TactileCard({ level = 1, children, className = "" }: TactileCardProps) {
-  // Surface ladder: luminância crescente conforme o nível de elevação
+  // Surface ladder: luminance increasing with the elevation level
   const levelStyles = {
     1: "bg-[#0c0d0e] border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)]",
     2: "bg-[#141618] border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.16)]",

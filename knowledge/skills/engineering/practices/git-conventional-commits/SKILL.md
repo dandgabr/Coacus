@@ -12,11 +12,11 @@ This skill establishes the rigorous standard for authoring commit messages and m
 ## 📜 1. Canonical Message Structure
 
 ```text
-<tipo>[escopo opcional]: <descrição concisa no imperativo>
+<type>[optional scope]: <concise description in the imperative>
 
-[corpo opcional detalhado explicando a motivação e contexto do 'porquê']
+[optional detailed body explaining the motivation and the context of the 'why']
 
-[rodapé(s) opcional(is) para breaking changes e links de issue/PR]
+[optional footer(s) for breaking changes and issue/PR links]
 ```
 
 ---

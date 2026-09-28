@@ -15,23 +15,23 @@ The C4 Model organizes software-system visualization into four hierarchical leve
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Nível 1: Diagrama de Contexto de Sistema (System Context)  │
-│  (Pessoas e Sistemas de Software ao redor do ecossistema)   │
+│  Level 1: System Context Diagram                            │
+│  (People and Software Systems around the ecosystem)         │
 └──────────────────────────────┬──────────────────────────────┘
                                │ Zoom In
 ┌──────────────────────────────▼──────────────────────────────┐
-│  Nível 2: Diagrama de Contêineres (Containers)              │
-│  (Aplicações, Bancos de Dados, Microserviços, Gateways)     │
+│  Level 2: Container Diagram (Containers)                    │
+│  (Applications, Databases, Microservices, Gateways)         │
 └──────────────────────────────┬──────────────────────────────┘
                                │ Zoom In
 ┌──────────────────────────────▼──────────────────────────────┐
-│  Nível 3: Diagrama de Componentes (Components)              │
-│  (Controladores, Serviços, Repositórios, Módulos internos)  │
+│  Level 3: Component Diagram (Components)                    │
+│  (Controllers, Services, Repositories, Internal Modules)    │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ Zoom In (Opcional)
+                               │ Zoom In (Optional)
 ┌──────────────────────────────▼──────────────────────────────┐
-│  Nível 4: Diagrama de Código (Code / Classes)               │
-│  (Diagramas de Classes UML, AST, Padrões de Projeto GoF)    │
+│  Level 4: Code Diagram (Code / Classes)                     │
+│  (UML Class Diagrams, AST, GoF Design Patterns)             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -46,7 +46,7 @@ The C4 Model organizes software-system visualization into four hierarchical leve
   - **People (Users/Personas)**: Human actors who interact directly with the system.
   - **Software System (Focus)**: The system being designed or documented.
   - **External Software Systems**: Payment providers, corporate authentication (SSO), SaaS services, government APIs.
-  - **Relationships**: Directional, with a clear description of purpose and high-level protocol (for example, `Envia requisições de pagamento via HTTPS/JSON`).
+  - **Relationships**: Directional, with a clear description of purpose and high-level protocol (for example, `Sends payment requests via HTTPS/JSON`).
 
 ### 2. Level 2: Containers (Runtime Containers)
 - **Container Definition**: Any separately executable or deployable unit that stores data or runs code (for example, a React SPA, a Spring/Node backend API, a Go worker, a PostgreSQL database, a RabbitMQ/Kafka queue, or an S3 bucket).
@@ -73,51 +73,51 @@ The C4 Model organizes software-system visualization into four hierarchical leve
 ### Example: Context Diagram (Level 1) in Mermaid.js C4
 ```mermaid
 C4Context
-    title Diagrama de Contexto - Plataforma de Pagamentos Digitais
+    title Context Diagram - Digital Payments Platform
 
-    Person(customer, "Cliente Final", "Usuário que realiza compras e pagamentos via aplicativo.")
-    Person(admin, "Operador Financeiro", "Analista interno de conciliação e compliance.")
+    Person(customer, "End Customer", "User who makes purchases and payments via the app.")
+    Person(admin, "Financial Operator", "Internal reconciliation and compliance analyst.")
 
-    System(payment_sys, "Payment Gateway System", "Processa transações financeiras, Pix, cartões e conciliação bancária.")
+    System(payment_sys, "Payment Gateway System", "Processes financial transactions, Pix, cards and bank reconciliation.")
 
-    System_Ext(bank_core, "Banco Central / SPI", "Sistema de Pagamentos Instantâneos do BACEN.")
-    System_Ext(anti_fraud, "Serviço Antifraude", "Motor de análise comportamental de risco em tempo real.")
-    System_Ext(notify_service, "Push / SMS Provider", "Serviço externo de entrega de notificações.")
+    System_Ext(bank_core, "Banco Central / SPI", "BACEN's Instant Payment System.")
+    System_Ext(anti_fraud, "Anti-Fraud Service", "Real-time behavioral risk analysis engine.")
+    System_Ext(notify_service, "Push / SMS Provider", "External notification delivery service.")
 
-    Rel(customer, payment_sys, "Inicia transações e consulta saldos", "HTTPS / JSON API")
-    Rel(admin, payment_sys, "Audita conciliação e autoriza estornos", "HTTPS / Web GUI")
-    Rel(payment_sys, anti_fraud, "Consulta score de risco de transação", "gRPC / mTLS")
-    Rel(payment_sys, bank_core, "Liquida transações Pix via DICT/SPI", "ISO 20022 / mTLS")
-    Rel(payment_sys, notify_service, "Dispara alertas de confirmação", "REST / HTTPS")
+    Rel(customer, payment_sys, "Initiates transactions and queries balances", "HTTPS / JSON API")
+    Rel(admin, payment_sys, "Audits reconciliation and authorizes refunds", "HTTPS / Web GUI")
+    Rel(payment_sys, anti_fraud, "Queries transaction risk score", "gRPC / mTLS")
+    Rel(payment_sys, bank_core, "Settles Pix transactions via DICT/SPI", "ISO 20022 / mTLS")
+    Rel(payment_sys, notify_service, "Triggers confirmation alerts", "REST / HTTPS")
 ```
 
 ### Example: Container Diagram (Level 2) in Mermaid.js C4
 ```mermaid
 C4Container
-    title Diagrama de Contêineres - Payment Gateway System
+    title Container Diagram - Payment Gateway System
 
-    Person(customer, "Cliente Final", "Usuário do aplicativo móvel.")
+    Person(customer, "End Customer", "Mobile app user.")
 
     Container_Boundary(c1, "Payment Gateway System") {
-        Container(mobile_app, "Mobile App", "Flutter / iOS & Android", "Interface para pagamentos e transferências.")
-        Container(api_gw, "API Gateway & WAF", "Kong Gateway / Envoy", "Roteamento, rate limiting e terminação TLS.")
-        Container(auth_svc, "Auth Service", "Go / JWT & OAuth 2.0", "Autenticação e validação de tokens MFA.")
-        Container(trans_svc, "Transaction Engine", "Java Spring Boot / Kotlin", "Processamento idempotente de transações.")
-        Container(ledger_db, "Ledger Database", "PostgreSQL 16", "Armazenamento imutável de lançamentos contábeis.")
-        Container(msg_broker, "Event Bus", "Apache Kafka", "Streaming de eventos de transação para conciliação.")
-        Container(cache_store, "Idempotency Cache", "Redis Cluster", "Controle de duplicação e rate limits.")
+        Container(mobile_app, "Mobile App", "Flutter / iOS & Android", "Interface for payments and transfers.")
+        Container(api_gw, "API Gateway & WAF", "Kong Gateway / Envoy", "Routing, rate limiting and TLS termination.")
+        Container(auth_svc, "Auth Service", "Go / JWT & OAuth 2.0", "Authentication and MFA token validation.")
+        Container(trans_svc, "Transaction Engine", "Java Spring Boot / Kotlin", "Idempotent transaction processing.")
+        Container(ledger_db, "Ledger Database", "PostgreSQL 16", "Immutable storage of accounting entries.")
+        Container(msg_broker, "Event Bus", "Apache Kafka", "Streaming of transaction events for reconciliation.")
+        Container(cache_store, "Idempotency Cache", "Redis Cluster", "Duplicate control and rate limits.")
     }
 
-    System_Ext(bank_core, "Banco Central / SPI", "Rede do Sistema Financeiro Nacional.")
+    System_Ext(bank_core, "Banco Central / SPI", "National Financial System Network.")
 
-    Rel(customer, mobile_app, "Utiliza")
-    Rel(mobile_app, api_gw, "Requisições de pagamento", "JSON / HTTPS")
-    Rel(api_gw, auth_svc, "Valida credenciais", "gRPC")
-    Rel(api_gw, trans_svc, "Encaminha operações autorizadas", "gRPC")
-    Rel(trans_svc, cache_store, "Verifica chave de idempotência", "Redis Protocol / RESP")
-    Rel(trans_svc, ledger_db, "Grava registros contábeis ACID", "SQL / TCP")
-    Rel(trans_svc, msg_broker, "Publica evento 'TransactionCreated'", "Kafka Protocol")
-    Rel(trans_svc, bank_core, "Liquidação instantânea", "ISO 20022 / mTLS")
+    Rel(customer, mobile_app, "Uses")
+    Rel(mobile_app, api_gw, "Payment requests", "JSON / HTTPS")
+    Rel(api_gw, auth_svc, "Validates credentials", "gRPC")
+    Rel(api_gw, trans_svc, "Forwards authorized operations", "gRPC")
+    Rel(trans_svc, cache_store, "Checks idempotency key", "Redis Protocol / RESP")
+    Rel(trans_svc, ledger_db, "Writes ACID accounting records", "SQL / TCP")
+    Rel(trans_svc, msg_broker, "Publishes event 'TransactionCreated'", "Kafka Protocol")
+    Rel(trans_svc, bank_core, "Instant settlement", "ISO 20022 / mTLS")
 ```
 
 ---
@@ -127,7 +127,7 @@ C4Container
 1. **Clearly Identified Elements**:
    - Every element has a `Name`, `Type/Role`, `Primary Technology` (for Levels 2 and 3), and a `Clear Statement of Purpose`.
 2. **Explicit Relationships**:
-   - Every connection line must carry a present-tense verb (for example, `Consulta`, `Grava`, `Publica evento`) and the transport protocol (`HTTPS`, `gRPC`, `AMQP`, `SQL/TCP`).
+   - Every connection line must carry a present-tense verb (for example, `Queries`, `Writes`, `Publishes event`) and the transport protocol (`HTTPS`, `gRPC`, `AMQP`, `SQL/TCP`).
 3. **System Focus and Boundaries**:
    - Use boundary delimiters (`System_Boundary`, `Container_Boundary`) to separate clearly what belongs to the system scope from what is external.
 4. **Alignment with Documentation**:

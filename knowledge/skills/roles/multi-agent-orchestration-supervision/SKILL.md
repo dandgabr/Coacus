@@ -47,10 +47,10 @@ When an agent shows drift, the supervisor applies a 3-level response scale:
 ### Level 1: Guidance Intervention (Nudge & Realignment)
 - **Corrective Message**: Issue a direct correction command citing the original intent.
   ```text
-  [ALERTA DE DESVIO] Sua última ação divergiu do objetivo inicial.
-  Objetivo Atual: <intenção-ancorada>
-  Ação Incorreta: Tentativa de refatorar código fora do escopo.
-  Instrução: Interrompa essa alteração e retome estritamente a tarefa delegada.
+  [DRIFT ALERT] Your last action diverged from the initial objective.
+  Current Objective: <anchored-intent>
+  Incorrect Action: Attempt to refactor code outside the scope.
+  Instruction: Stop this change and strictly resume the delegated task.
   ```
 
 ### Level 2: State Containment and Rollback (Quarantine & Rollback)
@@ -70,12 +70,12 @@ When an agent shows drift, the supervisor applies a 3-level response scale:
 When communicating with delegated subagents, the supervisor requires structured telemetry sent via the **TOON** protocol:
 
 ```text
-@FROM: <subagente>
+@FROM: <subagent>
 @TO: orchestrator
 @STATUS: <OK | BLOCKED | DRIFT_DETECTED | DONE>
-@CTX: <id-tarefa-ancorada>
-@PROGRESS: <resumo-do-avanço-realizado>
-@NEXT_ACTION: <próxima-chamada-pretendida>
+@CTX: <anchored-task-id>
+@PROGRESS: <summary-of-progress-made>
+@NEXT_ACTION: <next-intended-call>
 ```
 
 If a subagent fails to respond to the supervisor in a timely manner or emits actions that diverge from the `@CTX`, the termination process is triggered preventively.

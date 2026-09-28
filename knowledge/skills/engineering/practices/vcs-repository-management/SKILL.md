@@ -24,7 +24,7 @@ Git is a content-addressable filesystem. All information is stored in the object
     tree                          tree
       ▼                             ▼
    [Tree T2]                    [Tree T1]
-   ├── blob B1 (modificado)     ├── blob B1 (versão inicial)
+   ├── blob B1 (modified)       ├── blob B1 (initial version)
    └── tree Sub                 └── blob B2
         └── blob B3
 ```
@@ -41,10 +41,10 @@ Git initially stores objects as loose objects (compressed via zlib). When the vo
 - **Packfile Index (`.idx`)**: A hash table mapping SHA to exact offsets inside the `.pack`, enabling $O(1)$ lookup.
 - **Maintenance Commands**:
   ```bash
-  # Verificação de integridade estrutural e objetos órfãos
+  # Structural integrity check and orphaned objects
   git fsck --full --strict
   
-  # Repacotamento agressivo com compactação máxima
+  # Aggressive repacking with maximum compression
   git gc --aggressive --prune=now
   git repack -a -d -f --depth=250 --window=250
   ```
@@ -56,7 +56,7 @@ Git initially stores objects as loose objects (compressed via zlib). When the vo
 ### 2.1 Interactive Rebase and History Cleanup
 Refines commits before sharing them with the team, ensuring atomic and descriptive commits:
 ```bash
-# Iniciar rebase interativo dos últimos 5 commits
+# Start an interactive rebase of the last 5 commits
 git rebase -i HEAD~5
 ```
 **Interactive Rebase Commands**:
@@ -70,41 +70,41 @@ git rebase -i HEAD~5
 ### 2.2 The Reflog (Reference Log) and Disaster Recovery
 `git reflog` tracks all branch-pointer and `HEAD` updates over the last 90 days (by default):
 ```bash
-# Inspecionar histórico de movimentações da HEAD
+# Inspect the movement history of HEAD
 git reflog show HEAD
 
-# Restaurar commit acidentalmente deletado via reset hard
+# Restore a commit accidentally deleted via hard reset
 git reset --hard HEAD@{2}
 
-# Resgatar branch deletada a partir do SHA identificado no reflog
-git checkout -b branch-restaurada e4a81c2
+# Recover a deleted branch from the SHA identified in the reflog
+git checkout -b restored-branch e4a81c2
 ```
 
 ### 2.3 Automated Binary Search Debugging (`git bisect`)
 Locates the exact commit that introduced a regression through an $O(\log n)$ binary search over history:
 ```bash
-# Iniciar sessão de bisect
+# Start a bisect session
 git bisect start
-git bisect bad HEAD              # Versão atual está com defeito
-git bisect good v2.4.0           # Versão v2.4.0 estava íntegra
+git bisect bad HEAD              # Current version is broken
+git bisect good v2.4.0           # Version v2.4.0 was intact
 
-# Execução 100% automatizada com script de teste de saída (exit 0 = good, exit != 0 = bad)
+# Fully automated execution with an exit-code test script (exit 0 = good, exit != 0 = bad)
 git bisect run pytest tests/unit/test_payment.py
 ```
 
 ### 2.4 Forensic Purge with `git-filter-repo`
 A modern, safe replacement that is orders of magnitude faster than the obsolete `git filter-branch`:
 ```bash
-# Instalação
+# Installation
 pip install git-filter-repo
 
-# 1. Purgar arquivo sensível (.env ou chave privada) de TODO o histórico
+# 1. Purge a sensitive file (.env or private key) from the ENTIRE history
 git-filter-repo --invert-paths --path secrets.env --path id_rsa
 
-# 2. Purgar arquivos maiores que 50MB que entraram indevidamente no histórico
+# 2. Purge files larger than 50MB that wrongly entered the history
 git-filter-repo --strip-blobs-bigger-than 50M
 
-# 3. Reescrever histórico alterando e-mails ou nomes de autores
+# 3. Rewrite history by changing author e-mails or names
 git-filter-repo --mailmap my-mailmap.txt
 ```
 
@@ -115,13 +115,13 @@ git-filter-repo --mailmap my-mailmap.txt
 ### 3.1 Multiple Working Trees with `git worktree`
 Switches context or runs long tests without needing `git stash` or re-cloning the repository:
 ```bash
-# Criar uma worktree isolada para hotfix em diretório paralelo
+# Create an isolated worktree for a hotfix in a parallel directory
 git worktree add ../hotfix-auth-service hotfix/login-bug
 
-# Listar worktrees ativas
+# List active worktrees
 git worktree list
 
-# Remover worktree concluída
+# Remove a finished worktree
 git worktree remove ../hotfix-auth-service
 git worktree prune
 ```
@@ -129,13 +129,13 @@ git worktree prune
 ### 3.2 Shallow Clones and `sparse-checkout` for Giant Monorepos
 For repositories of tens of gigabytes, avoid downloading the full history and trees:
 ```bash
-# Clone sem blobs (baixa apenas a árvore e histórico de commits; blobs baixados sob demanda)
+# Blobless clone (downloads only the tree and commit history; blobs fetched on demand)
 git clone --filter=blob:none https://github.com/org/monorepo.git
 
-# Clone raso com profundidade limitada
+# Shallow clone with limited depth
 git clone --depth=1 --no-single-branch https://github.com/org/monorepo.git
 
-# Sparse-checkout em modo cone (baixa apenas pastas selecionadas)
+# Sparse-checkout in cone mode (downloads only the selected folders)
 git sparse-checkout init --cone
 git sparse-checkout set services/payment services/auth shared/libs
 ```
@@ -143,14 +143,14 @@ git sparse-checkout set services/payment services/auth shared/libs
 ### 3.3 Git LFS (Large File Storage)
 Keeps text pointers in Git and large binary files (videos, ML models, datasets) on dedicated storage servers:
 ```bash
-# Inicializar LFS no repositório
+# Initialize LFS in the repository
 git lfs install
 
-# Rastrear extensões de binários
+# Track binary extensions
 git lfs track "*.onnx" "*.zip" "*.tar.gz" "*.mp4"
 git add .gitattributes
 
-# Validar arquivos gerenciados pelo LFS
+# Validate files managed by LFS
 git lfs ls-files
 ```
 
@@ -171,12 +171,12 @@ Unlike Git (where every clone holds the entire history), SVN operates on a centr
 
 ### 4.2 Canonical SVN Directory Convention
 ```text
-meu-projeto/
-├── trunk/            # Linha principal de desenvolvimento contínuo (HEAD)
-├── branches/         # Bifurcações temporárias para features, manutenções ou releases
+my-project/
+├── trunk/            # Main line of continuous development (HEAD)
+├── branches/         # Temporary forks for features, maintenance, or releases
 │   ├── feature-pix/
 │   └── release-2.0/
-└── tags/             # Cópias estáticas e congeladas de releases específicos (ex: v1.0.0)
+└── tags/             # Static, frozen copies of specific releases (e.g., v1.0.0)
 ```
 In SVN, branches and tags are **cheap copies** (copy-on-write copies) created by the `svn copy` command.
 
@@ -190,19 +190,19 @@ Versioned metadata attached to files and directories:
 
 ### 4.4 SVN Repository Administration (`svnadmin`)
 ```bash
-# Criar novo repositório com backend FSFS
+# Create a new repository with the FSFS backend
 svnadmin create /var/svn/repos/financeiro --fs-type fsfs
 
-# Realizar backup completo (dump stream)
+# Perform a full backup (dump stream)
 svnadmin dump /var/svn/repos/financeiro > backup_financeiro.dump
 
-# Restaurar ou carregar histórico em repositório novo
+# Restore or load history into a new repository
 svnadmin load /var/svn/repos/novo_financeiro < backup_financeiro.dump
 
-# Verificação de integridade do banco FSFS
+# Integrity check of the FSFS database
 svnadmin verify /var/svn/repos/financeiro
 
-# Sincronização e espelhamento contínuo entre servidores
+# Continuous synchronization and mirroring between servers
 svnsync initialize https://svn-mirror.local/repos/financeiro https://svn-master.local/repos/financeiro
 svnsync sync https://svn-mirror.local/repos/financeiro
 ```
@@ -212,12 +212,12 @@ Scripts executed on the server, triggered by commit events and transactional con
 - **`pre-commit`**: Runs inside a transaction before confirmation. It can abort the commit by returning status code != 0 and emitting an error message on `stderr`.
   ```bash
   #!/bin/bash
-  # Validação de mensagem de commit não vazia
+  # Validation of a non-empty commit message
   REPOS="$1"
   TXN="$2"
   LOGMSG=$(svnlook log -t "$TXN" "$REPOS")
   if [ -z "$LOGMSG" ]; then
-      echo "ERRO: Commits sem mensagem explicativa são proibidos." >&2
+      echo "ERROR: Commits without an explanatory message are prohibited." >&2
       exit 1
   fi
   ```
@@ -246,16 +246,16 @@ Scripts executed on the server, triggered by commit events and transactional con
 ### 6.1 Bidirectional Bridge with `git-svn`
 Lets you use Git's local flexibility on codebases centralized in SVN:
 ```bash
-# Clonar repositório SVN com layout padrão (trunk, branches, tags)
+# Clone an SVN repository with the standard layout (trunk, branches, tags)
 git svn clone --stdlayout --authors-file=authors.txt http://svn.empresa.com/repos/app app-git
 
-# Atualizar base local com novos commits do SVN (rebase limpo)
+# Update the local base with new SVN commits (clean rebase)
 git svn rebase
 
-# Desenvolver commits locais normalmente no Git
-git commit -m "feat: implementa nova rota de pagamentos"
+# Develop local commits normally in Git
+git commit -m "feat: implements new payment route"
 
-# Publicar commits locais de volta para o repositório SVN
+# Publish local commits back to the SVN repository
 git svn dcommit
 ```
 
@@ -264,30 +264,30 @@ Canonical procedure for migrating the complete history without losing lineage, b
 
 #### Step 1: Extract and Map SVN Authors to Git
 ```bash
-# Extrair todos os autores únicos do histórico do SVN
+# Extract all unique authors from the SVN history
 svn log -q http://svn.empresa.com/repos/app | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2}' | sort -u > svn-authors.txt
 
-# Mapear para o formato: svnuser = Nome Completo <email@empresa.com>
+# Map to the format: svnuser = Full Name <email@empresa.com>
 sed -i 's/^\(.*\)$/\1 = \1 <\1@empresa.com>/' svn-authors.txt
 ```
 
 #### Step 2: Clone via `git-svn`
 ```bash
-git svn clone --stdlayout --authors-file=svn-authors.txt http://svn.empresa.com/repos/app app-migrado
+git svn clone --stdlayout --authors-file=svn-authors.txt http://svn.empresa.com/repos/app app-migrated
 ```
 
 #### Step 3: Convert SVN Remote Branches and Tags to Local Git References
 ```bash
 cd app-migrado
 
-# Converter tags remotas em tags reais anotadas do Git
+# Convert remote tags into real annotated Git tags
 for tag in $(git branch -r | grep 'tags/'); do
     tag_name=$(echo $tag | sed 's/.*tags\///')
-    git tag -a -m "Convertido do SVN tag: $tag_name" "$tag_name" "$tag"
+    git tag -a -m "Converted from SVN tag: $tag_name" "$tag_name" "$tag"
     git branch -r -d "$tag"
 done
 
-# Converter branches remotas em branches locais rastreáveis
+# Convert remote branches into trackable local branches
 for branch in $(git branch -r | grep -v 'trunk' | grep -v 'tags/'); do
     branch_name=$(echo $branch | sed 's/.*///')
     git branch "$branch_name" "$branch"
@@ -299,7 +299,7 @@ done
 ```bash
 git svn show-ignore > .gitignore
 git add .gitignore
-git commit -m "chore: migra propriedades svn:ignore para .gitignore"
+git commit -m "chore: migrates svn:ignore properties to .gitignore"
 ```
 
 #### Step 5: Link to the New Git Remote and Publish
@@ -324,13 +324,13 @@ git push --tags origin
 ### 7.2 Cryptographic Commit and Tag Signing (GPG & SSH)
 Guarantees non-repudiation and prevents committer identity forgery:
 ```bash
-# Configurar assinatura de commits com chave SSH moderna
+# Configure commit signing with a modern SSH key
 git config --global user.signingkey "~/.ssh/id_ed25519.pub"
 git config --global gpg.format ssh
 git config --global commit.gpgsign true
 git config --global tag.gpgsign true
 
-# Validar assinatura de commits
+# Validate commit signatures
 git log --show-signature -n 5
 ```
 
@@ -338,7 +338,7 @@ git log --show-signature -n 5
 - Configure pull request policies: minimum approvals, required passing CI status checks, and a ban on forced pushes (`force-push`).
 - Map mandatory reviewers per domain in `.github/CODEOWNERS`:
   ```text
-  # Regras de revisão por path
+  # Review rules by path
   *                   @org/core-team
   /services/billing/  @org/billing-engineers
   /infra/             @org/devops-architects

@@ -13,19 +13,19 @@ This skill establishes patterns for designing and operating systems oriented tow
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ Fontes Operacionais (OLTP: Postgres, MySQL, APIs, IoT)     │
+│ Operational Sources (OLTP: Postgres, MySQL, APIs, IoT)     │
 └──────────────────────────────┬──────────────────────────────┘
                                │ CDC (Debezium) / Event Producer
 ┌──────────────────────────────▼──────────────────────────────┐
-│ Log de Eventos Distribuído (Apache Kafka / Apache Pulsar)   │
+│ Distributed Event Log (Apache Kafka / Apache Pulsar)        │
 └──────────────────────────────┬──────────────────────────────┘
                                │
             ┌──────────────────┴──────────────────┐
             │                                     │
 ┌───────────▼───────────┐             ┌───────────▼───────────┐
-│ Processador Stateful  │             │ Streaming OLAP DB     │
+│ Stateful Processor    │             │ Streaming OLAP DB     │
 │ (Apache Flink)        │             │ (Apache Pinot /       │
-│ (Janelas, Agregações) │             │  ClickHouse)          │
+│ (Windows, Aggregation)│             │  ClickHouse)          │
 └───────────────────────┘             └───────────┬───────────┘
                                                   │
                                       ┌───────────▼───────────┐

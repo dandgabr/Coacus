@@ -79,9 +79,9 @@ int main() {
         .transform([](double val) { return val * 100.0; });
 
     if (result.has_value()) {
-        std::println("[+] Sucesso! Resultado calculado: {:.2f}", result.value());
+        std::println("[+] Success! Calculated result: {:.2f}", result.value());
     } else {
-        std::println(stderr, "[-] Erro no cálculo matemático.");
+        std::println(stderr, "[-] Error in the mathematical calculation.");
     }
     return 0;
 }
@@ -95,7 +95,7 @@ int main() {
 #include <concepts>
 #include <compare>
 
-// Definição de conceito em C++20
+// Concept definition in C++20
 template <typename T>
 concept Numeric = std::integral<T> || std::floating_point<T>;
 
@@ -103,7 +103,7 @@ struct Item {
     std::string name;
     double price;
 
-    // Operador de comparação espaçonave C++20
+    // C++20 spaceship comparison operator
     auto operator<=>(const Item&) const = default;
 };
 
@@ -119,12 +119,12 @@ T calculate_sum(const std::vector<T>& values) {
 int main() {
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    // Filtro e transformação com C++20 Ranges
+    // Filter and transformation with C++20 Ranges
     auto even_squares = numbers 
         | std::views::filter([](int n) { return n % 2 == 0; })
         | std::views::transform([](int n) { return n * n; });
 
-    std::cout << "[+] Quadrados pares: ";
+    std::cout << "[+] Even squares: ";
     for (int val : even_squares) {
         std::cout << val << " ";
     }
@@ -143,15 +143,15 @@ class DatabaseConnection {
 public:
     explicit DatabaseConnection(std::string conn_str) 
         : connection_string_(std::move(conn_str)) {
-        std::cout << "[+] Conexão aberta: " << connection_string_ << "\n";
+        std::cout << "[+] Connection opened: " << connection_string_ << "\n";
     }
 
     ~DatabaseConnection() {
-        std::cout << "[-] Conexão fechada automaticamente por RAII.\n";
+        std::cout << "[-] Connection closed automatically by RAII.\n";
     }
 
     void execute_query(std::string_view query) const {
-        std::cout << "    Executando: " << query << "\n";
+        std::cout << "    Executing: " << query << "\n";
     }
 
 private:
@@ -159,11 +159,11 @@ private:
 };
 
 int main() {
-    // Alocação segura sem chamar 'new'
+    // Safe allocation without calling 'new'
     auto db = std::make_unique<DatabaseConnection>("Server=localhost;Port=5432;");
     db->execute_query("SELECT * FROM users;");
     
-    // Conexão desalocada automaticamente no término do escopo
+    // Connection automatically deallocated at the end of the scope
     return 0;
 }
 ```
@@ -176,14 +176,14 @@ int main() {
 cmake_minimum_required(VERSION 3.26)
 project(cpp23_modern_project CXX)
 
-# Impoe o padrão C++23 (ISO/IEC 14882:2024)
+# Imposes the C++23 standard (ISO/IEC 14882:2024)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(app_main src/main.cpp)
 
-# Bateria estrita de compilação e flags de segurança
+# Strict compilation battery and security flags
 if (MSVC)
     target_compile_options(app_main PRIVATE /W4 /WX /permissive-)
 else()

@@ -29,30 +29,30 @@ When writing or refactoring Markdown documents, apply the following rules strict
 - **Native GFM Alerts / Callouts**: Use the official typed blockquote syntax to highlight crucial information:
   ```markdown
   > [!NOTE]
-  > Informações contextuais e explicações úteis.
+  > Contextual information and useful explanations.
 
   > [!TIP]
-  > Dicas de otimização, boas práticas e sugestões.
+  > Optimization tips, best practices and suggestions.
 
   > [!IMPORTANT]
-  > Requisitos essenciais e avisos indispensáveis.
+  > Essential requirements and indispensable warnings.
 
   > [!WARNING]
-  > Alterações que podem quebrar funcionalidade ou avisos de atenção.
+  > Changes that may break functionality or warning notices.
 
   > [!CAUTION]
-  > Riscos elevados de perda de dados ou ações destrutivas.
+  > High risks of data loss or destructive actions.
   ```
 
 - **Aligned and Formatted Tables**:
   - Always include the separator row with alignment specification (`:---` for left, `:---:` for center, `---:` for right).
   - Keep uniform visual spacing in columns using aligned `|` pipes to make the raw source easier to read.
   ```markdown
-  | Recurso | Suportado | Complexidade | Observação |
+  | Feature | Supported | Complexity | Observation |
   | :--- | :---: | ---: | :--- |
-  | CommonMark | Sim | Baixa | Padrão base |
-  | GFM | Sim | Média | Suporta tabelas e alertas |
-  | MDX | Sim | Alta | Componentes React |
+  | CommonMark | Yes | Low | Base standard |
+  | GFM | Yes | Medium | Supports tables and alerts |
+  | MDX | Yes | High | React components |
   ```
 
 - **Task Lists**:
@@ -81,8 +81,8 @@ When writing or refactoring Markdown documents, apply the following rules strict
 - **Mermaid Diagrams**: Integrate flowcharts, sequence diagrams, charts, and mind maps using the `mermaid` identifier:
   ```mermaid
   flowchart LR
-      A[Entrada Markdown] --> B[Parser GFM / MDX]
-      B --> C[Renderização HTML/UI]
+      A[Markdown Input] --> B[GFM / MDX Parser]
+      B --> C[HTML/UI Rendering]
   ```
 - **Math Equations (KaTeX / MathJax)**:
   - Inline: `$E = mc^2$`
@@ -99,9 +99,9 @@ When writing or refactoring Markdown documents, apply the following rules strict
 - **YAML Frontmatter**: Place it at the top of the file, delimited by `---`:
   ```yaml
   ---
-  title: "Guia Completo de Markdown"
-  description: "Manual de referência rápida e avançada para marcação em Markdown."
-  author: "Equipe de Engenharia"
+  title: "Complete Markdown Guide"
+  description: "Quick and advanced reference manual for Markdown markup."
+  author: "Engineering Team"
   date: "2026-08-06"
   tags: ["markdown", "gfm", "mdx", "docs"]
   ---
@@ -112,10 +112,10 @@ When writing or refactoring Markdown documents, apply the following rules strict
   import { Button, Alert } from '@/components/ui';
 
   <Alert type="success">
-    Componente React renderizado via MDX!
+    React component rendered via MDX!
   </Alert>
 
-  <Button onClick={() => alert("Clicado!")}>Ação</Button>
+  <Button onClick={() => alert("Clicked!")}>Action</Button>
   ```
 
 ---

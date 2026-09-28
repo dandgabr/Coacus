@@ -25,9 +25,9 @@ While working under this skill, apply the following patterns strictly:
   try {
       [System.IO.File]::ReadAllText($filePath)
   } catch [System.IO.FileNotFoundException] {
-      Write-Error "Arquivo não encontrado: $filePath"
+      Write-Error "File not found: $filePath"
   } catch {
-      Write-Error "Erro inesperado: $_"
+      Write-Error "Unexpected error: $_"
   }
   ```
 
@@ -71,13 +71,13 @@ function Get-SystemServiceReport {
     )
 
     begin {
-        Write-Verbose "Iniciando relatório de serviços..."
+        Write-Verbose "Starting service report..."
         $results = [System.Collections.Generic.List[PSCustomObject]]::new()
     }
 
     process {
         foreach ($name in $ServiceName) {
-            Write-Verbose "Processando serviço: $name"
+            Write-Verbose "Processing service: $name"
             try {
                 $service = Get-Service -Name $name -ErrorAction Stop
                 
@@ -91,20 +91,20 @@ function Get-SystemServiceReport {
                     })
                 }
             } catch [Microsoft.PowerShell.Commands.ServiceCommandException] {
-                Write-Warning "Serviço não encontrado: $name"
+                Write-Warning "Service not found: $name"
             } catch {
-                Write-Error "Erro ao consultar o serviço $name: $_"
+                Write-Error "Error while querying service $name: $_"
             }
         }
     }
 
     end {
-        Write-Verbose "Relatório concluído com $($results.Count) item(ns)."
+        Write-Verbose "Report completed with $($results.Count) item(s)."
         return $results
     }
 }
 
-# Exemplo de Uso via Pipeline:
+# Pipeline Usage Example:
 # @('wuauserv', 'Spooler', 'NonExistentService') | Get-SystemServiceReport -StatusFilter Running -Verbose
 ```
 
@@ -125,11 +125,11 @@ function Invoke-MaintenanceTask {
     )
 
     if (-not (Test-Path -Path $TargetDirectory -PathType Container)) {
-        throw [System.IO.DirectoryNotFoundException]::new("O diretório de destino não existe: $TargetDirectory")
+        throw [System.IO.DirectoryNotFoundException]::new("The target directory does not exist: $TargetDirectory")
     }
 
     $cutoffDate = (Get-Date).AddDays(-$DaysOld)
-    Write-Verbose "Limpando arquivos anteriores a $cutoffDate em $TargetDirectory"
+    Write-Verbose "Cleaning files older than $cutoffDate in $TargetDirectory"
 
     $filesToRemove = Get-ChildItem -Path $TargetDirectory -File -Recurse | 
         Where-Object { $_.LastWriteTime -lt $cutoffDate }
@@ -139,9 +139,9 @@ function Invoke-MaintenanceTask {
         try {
             Remove-Item -Path $file.FullName -Force -ErrorAction Stop
             $removedCount++
-            Write-Verbose "Arquivo removido: $($file.FullName)"
+            Write-Verbose "File removed: $($file.FullName)"
         } catch {
-            Write-Warning "Falha ao remover $($file.FullName): $_"
+            Write-Warning "Failed to remove $($file.FullName): $_"
         }
     }
 

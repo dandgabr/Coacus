@@ -596,9 +596,26 @@ slugs are not prose.
 Returns WARNINGS (non-blocking during import) — it becomes a hard gate once the
 corpus is translated.
 
+#### `def fence_hits(text: str) -> list[tuple[int, str]]`
+
+Non-English markers inside fenced code blocks (diagrams, comments, strings).
+
+``_prose_only`` deliberately drops fences, so contamination in an ASCII
+diagram, a code comment or a string literal used to pass the gate. This
+sweep closes that gap; ``FENCE_EXEMPT`` lists the files whose fences
+legitimately quote Portuguese.
+
 #### `def validate(root: Path) -> list[str]`
 
 Return a list of warning strings (empty = English-clean).
+
+#### `def fence_errors(root: Path) -> list[str]`
+
+Non-English content inside code fences (english-only).
+
+Blocking: after the F6 translation the corpus is English-clean, so a fence
+that carries Portuguese means a regression the reviewer must fix. Runs in
+``source_errors`` (generate pre-flight) and ``validate``.
 
 ### `engine/validators/mcps.py`
 

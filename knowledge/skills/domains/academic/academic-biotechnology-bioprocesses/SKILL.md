@@ -38,19 +38,19 @@ $$q_p = \alpha \mu + \beta \implies \frac{dP}{dt} = \alpha \frac{dX}{dt} + \beta
 ## ⚗️ 2. Bioreactor Typology, Hydrodynamics, and Sizing
 
 ```
-Classificação de Biorreatores Industriais:
-├── Tanque Agitado Mecanicamente (STR - Stirred Tank Reactor):
-│   ├── Impelidores Rushton (fluxo radial - alta dispersão de gás)
-│   ├── Impelidores Hidrofólio/Pitch-Blade (fluxo axial - baixo cisalhamento)
-│   └── Defletores (baffles) para supressão de vórtices
-├── Pneumáticos (Pneumatically Agitated):
-│   ├── Airlift (com circulação interna por tubo concêntrico ou externa)
-│   └── Coluna de Bolhas (Bubble Column)
-├── Leito Fixo e Leito Fluidizado: Células e enzimas imobilizadas
-└── Biorreatores Descartáveis (Single-Use Bioreactors - SUBs):
-    ├── Bolsas poliméricas multicamadas (Bags de PE/EVOH)
-    ├── Biorreatores de ondas (Wave/Rocking Bioreactors)
-    └── Biorreatores agitados de uso único (STR descartável até 2.000 L)
+Classification of Industrial Bioreactors:
+├── Mechanically Stirred Tank (STR - Stirred Tank Reactor):
+│   ├── Rushton Impellers (radial flow - high gas dispersion)
+│   ├── Hydrofoil/Pitch-Blade Impellers (axial flow - low shear)
+│   └── Baffles for vortex suppression
+├── Pneumatically Agitated:
+│   ├── Airlift (with internal circulation via a concentric tube, or external)
+│   └── Bubble Column
+├── Fixed Bed and Fluidized Bed: Immobilized cells and enzymes
+└── Single-Use Bioreactors (SUBs):
+    ├── Multilayer polymeric bags (PE/EVOH Bags)
+    ├── Wave/Rocking Bioreactors
+    └── Single-use stirred bioreactors (disposable STR up to 2,000 L)
 ```
 
 ### 2.1 Volumetric Oxygen Transfer Coefficient ($k_L a$)
@@ -77,16 +77,16 @@ where $\frac{P_g}{V}$ is the power dissipated per unit volume under aeration ($W
 
 ```mermaid
 flowchart TD
-    A["Caldo Fermentado Bruto"] --> B["1. Separação Sólido-Líquido (Centrifugação Contínua / Microfiltração Tangencial TFF)"]
-    B --> C{"Produto Intracelular?"}
-    C -- Sim --> D["Rompimento Celular (Homogeneizador de Alta Pressão / Moinho de Pérolas)"]
-    C -- Não --> E["2. Concentração Primária (Ultrafiltração com Membranas UF 10-100 kDa)"]
+    A["Raw Fermented Broth"] --> B["1. Solid-Liquid Separation (Continuous Centrifugation / Tangential Microfiltration TFF)"]
+    B --> C{"Intracellular Product?"}
+    C -- Yes --> D["Cell Disruption (High-Pressure Homogenizer / Bead Mill)"]
+    C -- No --> E["2. Primary Concentration (Ultrafiltration with 10-100 kDa UF Membranes)"]
     D --> E
-    E --> F["3. Captura e Purificação Cromatográfica"]
-    F --> G["Cromatografia de Afinidade (ex: Proteína A para mAbs)"]
-    G --> H["Cromatografia de Troca Iônica (IEX - Q/SP Sepharose)"]
-    H --> I["Cromatografia de Interação Hidrofóbica (HIC) / Exclusão Molecular (SEC)"]
-    I --> J["4. Polimento e Formulação Final (Nanofiltração Viral + Liofilização / Secagem Spray Dryer)"]
+    E --> F["3. Chromatographic Capture and Purification"]
+    F --> G["Affinity Chromatography (e.g., Protein A for mAbs)"]
+    G --> H["Ion-Exchange Chromatography (IEX - Q/SP Sepharose)"]
+    H --> I["Hydrophobic Interaction Chromatography (HIC) / Size Exclusion (SEC)"]
+    I --> J["4. Polishing and Final Formulation (Viral Nanofiltration + Lyophilization / Spray Dryer Drying)"]
 ```
 
 ### 3.1 Tangential Flow Filtration (TFF) Theory

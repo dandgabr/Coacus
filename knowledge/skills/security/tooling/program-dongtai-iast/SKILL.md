@@ -23,28 +23,28 @@ DongTai IAST uses a **Passive IAST** approach, in which instrumentation agents i
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                      ARQUITETURA DONGTAI IAST                          │
+│                       DONGTAI IAST ARCHITECTURE                        │
 └────────────────────────────────────────────────────────────────────────┘
-  [ TESTES DE QA / TRÁFEGO REAL ] (Playwright, Cypress, Postman, JMeter)
-                 │ (Requisições HTTP normais de funcionalidade)
+  [ QA TESTS / REAL TRAFFIC ] (Playwright, Cypress, Postman, JMeter)
+                 │ (Normal functional HTTP requests)
                  ▼
-  [ AMBIENTE INSTRUMENTADO (Aplicação Java, Python, Go, PHP, Node.js) ]
+  [ INSTRUMENTED ENVIRONMENT (Java, Python, Go, PHP, Node.js Application) ]
   ┌────────────────────────────────────────────────────────────────────┐
-  │ AGENTE DONGTAI (dongtai-agent.jar / dongtai-agent-python)          │
+  │ DONGTAI AGENT (dongtai-agent.jar / dongtai-agent-python)           │
   │                                                                    │
-  │  1. Ingestão de Requisição ──► SOURCE (Etiqueta dados como sujos)  │
-  │  2. Métodos Internos       ──► PROPAGATOR (Rastreia contaminação)  │
-  │  3. Sanitizadores          ──► FILTER (Verifica se neutralizou)    │
-  │  4. Chamadas Críticas      ──► SINK (Detecta violação de segurança)│
+  │  1. Request Ingestion     ──► SOURCE (Tags data as tainted)        │
+  │  2. Internal Methods      ──► PROPAGATOR (Tracks contamination)    │
+  │  3. Sanitizers            ──► FILTER (Checks if neutralized)       │
+  │  4. Critical Calls        ──► SINK (Detects security violation)    │
   └─────────────────────────────────┬──────────────────────────────────┘
-                                    │ (Relato assíncrono via OpenAPI)
+                                    │ (Asynchronous report via OpenAPI)
                                     ▼
-  [ DONGTAI SERVER ] (Orquestrador & Motor de Análise)
+  [ DONGTAI SERVER ] (Orchestrator & Analysis Engine)
   ┌────────────────────────────────────────────────────────────────────┐
-  │  - DongTai OpenAPI Gateway: Recebe telemetria e batimentos dos nós │
-  │  - DongTai Engine: Analisa os grafos de contaminação e stack trace │
-  │  - DongTai Web UI: Dashboard de gestão de vulnerabilidades e regras│
-  │  - Armazenamento: MySQL + Redis                                    │
+  │  - DongTai OpenAPI Gateway: Receives telemetry and node heartbeats │
+  │  - DongTai Engine: Analyzes the contamination graphs and stack trace│
+  │  - DongTai Web UI: Vulnerability and rule management dashboard     │
+  │  - Storage: MySQL + Redis                                          │
   └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -57,11 +57,11 @@ The DongTai Server is deployed centrally using Docker containers.
 ### 1. Cloning and Initialization:
 
 ```bash
-# Clonar o repositório oficial do DongTai
+# Clone the official DongTai repository
 git clone https://github.com/HXSecurity/DongTai.git
 cd DongTai
 
-# Subir a infraestrutura completa do servidor
+# Bring up the complete server infrastructure
 docker-compose -f docker-compose.yml up -d
 ```
 
@@ -81,14 +81,14 @@ docker-compose -f docker-compose.yml up -d
 The DongTai Java agent is composed of three internal modules (`dongtai-agent.jar`, `dongtai-core.jar`, and `dongtai-spy.jar`).
 
 ```bash
-# Baixar o agente Java compilado
+# Download the compiled Java agent
 curl -X GET "http://dongtai-server:8888/openapi/api/v1/agent/download?url=http://dongtai-server:8888/openapi&language=java" \
      -H "Authorization: Token ${DONGTAI_TOKEN}" -o dongtai-agent.jar
 
-# Executar a aplicação Java com o agente acoplado
+# Run the Java application with the agent attached
 java -javaagent:/opt/dongtai/dongtai-agent.jar \
      -Ddongtai.server.url=http://dongtai-server:8888/openapi \
-     -Ddongtai.server.token=SEU_TOKEN_AQUI \
+     -Ddongtai.server.token=YOUR_TOKEN_HERE \
      -Ddongtai.app.name=EcommerceBackend \
      -Ddongtai.app.version=v1.2.0 \
      -Ddongtai.app.create=true \
@@ -100,16 +100,16 @@ java -javaagent:/opt/dongtai/dongtai-agent.jar \
 The Python agent uses dynamic *monkey patching* to intercept methods in the CPython runtime.
 
 ```bash
-# Instalar o pacote do agente via pip
+# Install the agent package via pip
 pip install dongtai-agent-python
 
-# Definir variáveis de ambiente para inicialização automática
+# Set environment variables for automatic initialization
 export DONGTAI_IAST_SERVER_URL="http://dongtai-server:8888/openapi"
-export DONGTAI_IAST_SERVER_TOKEN="SEU_TOKEN_AQUI"
+export DONGTAI_IAST_SERVER_TOKEN="YOUR_TOKEN_HERE"
 export DONGTAI_IAST_PROJECT_NAME="FinanceAPI"
 export DONGTAI_IAST_PROJECT_VERSION="v2.0.0"
 
-# Inicializar aplicação Django / Flask
+# Initialize the Django / Flask application
 python manage.py runserver 0.0.0.0:8000
 ```
 
@@ -118,7 +118,7 @@ python manage.py runserver 0.0.0.0:8000
 The Go agent performs dynamic rewriting of function addresses and symbol hooking at runtime:
 
 ```bash
-# Integrar o pacote dongtai-agent-go no arquivo main.go
+# Integrate the dongtai-agent-go package into the main.go file
 import _ "github.com/HXSecurity/dongtai-agent-go"
 ```
 
@@ -130,12 +130,12 @@ DongTai classifies methods into four categories within its rule engine:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                   TIPOS DE NÓS NO GRAFO DE TAINT                       │
+│                     NODE TYPES IN THE TAINT GRAPH                      │
 └────────────────────────────────────────────────────────────────────────┘
-  1. SOURCE: Entrada de dados (Ex: javax.servlet.ServletRequest.getParameter)
-  2. PROPAGATOR: Concatenação (Ex: java.lang.StringBuilder.append)
-  3. FILTER: Validação (Ex: org.apache.commons.lang3.StringEscapeUtils.escapeHtml4)
-  4. SINK: Consumo perigoso (Ex: java.sql.Statement.execute, java.lang.Runtime.exec)
+  1. SOURCE: Data entry (e.g., javax.servlet.ServletRequest.getParameter)
+  2. PROPAGATOR: Concatenation (e.g., java.lang.StringBuilder.append)
+  3. FILTER: Validation (e.g., org.apache.commons.lang3.StringEscapeUtils.escapeHtml4)
+  4. SINK: Dangerous consumption (e.g., java.sql.Statement.execute, java.lang.Runtime.exec)
 ```
 
 ### Example of a Sink Rule Structure in DongTai:
@@ -156,23 +156,23 @@ The great benefit of DongTai IAST is its ability to turn the existing QA test su
 
 ```
 ┌────────────────────────┐
-│ 1. Build da Aplicação  │
+│ 1. Application Build   │
 └───────────┬────────────┘
             ▼
 ┌────────────────────────┐
-│ 2. Start em Staging    │ ──► (Inicia a aplicação com dongtai-agent acoplado)
+│ 2. Start in Staging    │ ──► (Starts the application with dongtai-agent attached)
 └───────────┬────────────┘
             ▼
 ┌────────────────────────┐
-│ 3. Execução de QA E2E  │ ──► (Roda Playwright / Cypress / Newman / Selenium)
+│ 3. E2E QA Execution    │ ──► (Runs Playwright / Cypress / Newman / Selenium)
 └───────────┬────────────┘
             ▼
 ┌────────────────────────┐
-│ 4. Quality Gate Check  │ ──► (Consulta API do DongTai Server: Há vulnerabilidades?)
+│ 4. Quality Gate Check  │ ──► (Queries the DongTai Server API: Are there vulnerabilities?)
 └───────────┬────────────┘
             ▼
 ┌────────────────────────┐
-│ 5. Aprova ou Bloqueia  │
+│ 5. Approve or Block    │
 └────────────────────────┘
 ```
 
@@ -183,20 +183,20 @@ The great benefit of DongTai IAST is its ability to turn the existing QA test su
 set -euo pipefail
 
 DONGTAI_URL="http://dongtai-server:8888/openapi"
-TOKEN="SEU_TOKEN_AQUI"
+TOKEN="YOUR_TOKEN_HERE"
 PROJECT_NAME="EcommerceBackend"
 
-# Consultar total de vulnerabilidades críticas ou altas no projeto
+# Query the total number of critical or high vulnerabilities in the project
 FINDINGS=$(curl -s -X GET "${DONGTAI_URL}/api/v1/vulns?project_name=${PROJECT_NAME}&level=1,2" \
      -H "Authorization: Token ${TOKEN}" | jq '.data | length')
 
-echo "Total de vulnerabilidades graves encontradas no IAST: ${FINDINGS}"
+echo "Total serious vulnerabilities found by IAST: ${FINDINGS}"
 
 if [ "${FINDINGS}" -gt 0 ]; then
-    echo "❌ Quality Gate FALHOU: O DongTai identificou vulnerabilidades críticas em tempo de execução."
+    echo "❌ Quality Gate FAILED: DongTai identified critical vulnerabilities at runtime."
     exit 1
 else
-    echo "✅ Quality Gate APROVADO: Nenhuma vulnerabilidade crítica ativa detectada."
+    echo "✅ Quality Gate PASSED: No active critical vulnerabilities detected."
 fi
 ```
 

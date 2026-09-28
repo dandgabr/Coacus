@@ -15,28 +15,28 @@ Modern infrastructure management relies on the concept of **Infrastructure as Co
 
 ```mermaid
 flowchart TD
-    subgraph SOT["Source of Truth Central (NetBox / Device42 / Ralph)"]
-        IPAM["IPAM (VRFs, Prefixos, Endereços IP, VLANs)"]
-        DCIM["DCIM (Sites, Racks, Dispositivos, Interfaces, Cabos)"]
-        CIRCUITS["Circuitos & Provedores WAN"]
-        VMS["Virtualização (Clusters, Hypervisors, VMs)"]
+    subgraph SOT["Central Source of Truth (NetBox / Device42 / Ralph)"]
+        IPAM["IPAM (VRFs, Prefixes, IP Addresses, VLANs)"]
+        DCIM["DCIM (Sites, Racks, Devices, Interfaces, Cables)"]
+        CIRCUITS["Circuits & WAN Providers"]
+        VMS["Virtualization (Clusters, Hypervisors, VMs)"]
     end
 
-    subgraph AutoDiscovery["Descoberta Ativa & SNMP"]
+    subgraph AutoDiscovery["Active Discovery & SNMP"]
         NETDISCO["Netdisco (SNMP L2/L3 Discovery)"]
         OPENNMS["OpenNMS (Topology & Fault Monitoring)"]
         GLPI_AGENT["GLPI Agent / FusionInventory (Hardware/OS Agent)"]
     end
 
-    subgraph ITSM_CMDB["ITSM & Gestão de Serviços"]
+    subgraph ITSM_CMDB["ITSM & Service Management"]
         GLPI["GLPI (IT Asset Management & Helpdesk)"]
         ITOP["iTop (ITIL CMDB & Service Management)"]
         RACKTABLES["RackTables (Datacenter Asset Catalog)"]
     end
 
-    subgraph Automation["Automação de Rede & Provisionamento"]
+    subgraph Automation["Network Automation & Provisioning"]
         ANSIBLE["Ansible / Terraform Dynamic Inventories"]
-        CI_CD["Pipelines de Configuração de Switches"]
+        CI_CD["Switch Configuration Pipelines"]
     end
 
     AutoDiscovery -->|"Sync / Import"| SOT
@@ -59,16 +59,16 @@ nb = pynetbox.api(
     token="${NETBOX_TOKEN}"
 )
 
-# Criar prefixo de sub-rede e alocar primeiro IP disponível
+# Create a subnet prefix and allocate the first available IP
 prefix = nb.ipam.prefixes.get(prefix="10.20.0.0/24")
 available_ips = prefix.available_ips.list()
-print(f"Próximo IP livre: {available_ips[0]['address']}")
+print(f"Next free IP: {available_ips[0]['address']}")
 
-# Consultar topologia de interfaces conectadas a um switch
+# Query the topology of interfaces connected to a switch
 device = nb.dcim.devices.get(name="sw-core-01")
 for interface in nb.dcim.interfaces.filter(device_id=device.id):
     if interface.cable:
-        print(f"Interface {interface.name} conectada a {interface.connected_endpoint}")
+        print(f"Interface {interface.name} connected to {interface.connected_endpoint}")
 ```
 
 ### 2. OpenNMS (Enterprise-Grade Network Management)
@@ -78,7 +78,7 @@ for interface in nb.dcim.interfaces.filter(device_id=device.id):
 - **Concept**: A Perl and SNMP-based utility that automatically discovers all interconnected network devices via CDP/LLDP, mapping which MAC and IP address is connected to each switch port in real time.
 - **Netdisco CLI Queries**:
 ```bash
-# Localizar porta e switch físico de um endereço MAC/IP específico
+# Locate the port and physical switch for a specific MAC/IP address
 netdisco-do location -d 192.168.1.50
 netdisco-do macsuck -d sw-access-floor2.corp.local
 ```

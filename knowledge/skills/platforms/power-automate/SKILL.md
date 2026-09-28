@@ -29,17 +29,17 @@ This skill guides the artificial intelligence to act as a **Microsoft Power Auto
 Essential expressions for data, string, and date manipulation and logical control:
 
 ```text
-// Manipulação de Objetos e Arrays
-body('Obter_detalhes_do_item')?['Title']
-coalesce(items('Apply_to_each')?['Email'], 'sem-email@empresa.com')
-length(outputs('Obter_itens')?['body/value'])
+// Object and Array Manipulation
+body('Get_item_details')?['Title']
+coalesce(items('Apply_to_each')?['Email'], 'no-email@empresa.com')
+length(outputs('Get_items')?['body/value'])
 
-// Manipulação de Strings e JSON
-json(variables('stringJson'))
+// String and JSON Manipulation
+json(variables('jsonString'))
 concat('ID-', triggerOutputs()?['body/id'], '-', formatDateTime(utcNow(), 'yyyyMMdd'))
-split(variables('listaEmails'), ';')
+split(variables('emailList'), ';')
 
-// Manipulação de Datas e Tempo
+// Date and Time Manipulation
 addDays(utcNow(), 30, 'yyyy-MM-ddTHH:mm:ssZ')
 ticks(utcNow())
 convertTimeZone(triggerOutputs()?['body/created'], 'UTC', 'E. South America Standard Time')

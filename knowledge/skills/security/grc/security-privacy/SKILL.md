@@ -70,16 +70,16 @@ from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
-# 1. Detecção de PII em texto livre
+# 1. PII detection in free text
 analyzer = AnalyzerEngine()
 text = "O paciente João Silva, CPF 123.456.789-00, reside em São Paulo, email joao@email.com"
 results = analyzer.analyze(text=text, language="pt", entities=["PERSON", "EMAIL_ADDRESS", "CPF"])
 
-# 2. Desidentificação e Mascaramento
+# 2. De-identification and Masking
 anonymizer = AnonymizerEngine()
 operators = {
     "CPF": OperatorConfig("mask", {"type": "mask", "masking_char": "*", "chars_to_mask": 8, "from_end": True}),
-    "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "<EMAIL_ANONIMIZADO>"}),
+    "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "<ANONYMIZED_EMAIL>"}),
     "PERSON": OperatorConfig("hash", {"hash_type": "sha256"})
 }
 

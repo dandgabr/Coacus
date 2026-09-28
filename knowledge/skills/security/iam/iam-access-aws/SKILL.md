@@ -32,8 +32,8 @@ This skill guides the AI to act as an **AWS IAM (Identity and Access Management)
       "Principal": "*",
       "Action": "s3:*",
       "Resource": [
-        "arn:aws:s3:::bucket-dados-sensiveis",
-        "arn:aws:s3:::bucket-dados-sensiveis/*"
+        "arn:aws:s3:::bucket-sensitive-data",
+        "arn:aws:s3:::bucket-sensitive-data/*"
       ],
       "Condition": {
         "Bool": {
@@ -116,13 +116,13 @@ This skill guides the AI to act as an **AWS IAM (Identity and Access Management)
   - Analysis of the latest actions used by an IAM role to reduce unused permissions (*Role Sizing / Least Privilege*).
 - **CLI Troubleshooting Tools**:
   ```bash
-  # Simular avaliação de políticas para uma ação específica
+  # Simulate policy evaluation for a specific action
   aws iam simulate-principal-policy \
     --policy-source-arn arn:aws:iam::123456789012:role/DevRole \
     --action-names s3:GetObject \
-    --resource-arns arn:aws:s3:::meu-bucket/objeto.txt
+    --resource-arns arn:aws:s3:::my-bucket/object.txt
 
-  # Inspecionar credenciais ativas da sessão
+  # Inspect the session's active credentials
   aws sts get-caller-identity
   ```
 

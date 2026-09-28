@@ -12,10 +12,10 @@ This skill establishes the principles of computer architecture, microprocessor d
 ## 💻 1. Classic 5-Stage Pipeline (IF, ID, EX, MEM, WB)
 
 ```
-[ IF: Busca de Instrução ] ──> [ ID: Decodificação & Registradores ]
-                            ──> [ EX: Execução na ULA / Cálculo de Branch ]
-                            ──> [ MEM: Acesso à Memória de Dados ]
-                            ──> [ WB: Escrita de Retorno no Registrador ]
+[ IF: Instruction Fetch ] ──> [ ID: Decode & Registers ]
+                            ──> [ EX: Execution in the ALU / Branch Calculation ]
+                            ──> [ MEM: Data Memory Access ]
+                            ──> [ WB: Write-Back to the Register ]
 ```
 
 ### 1.1 Hazard Resolution
@@ -52,7 +52,7 @@ K_SEM_DEFINE(data_ready_sem, 0, 1);
 void sensor_worker(void *p1, void *p2, void *p3) {
     while (1) {
         k_sem_take(&data_ready_sem, K_FOREVER);
-        printk("Processando telemetria determinística no Zephyr RTOS\n");
+        printk("Processing deterministic telemetry in Zephyr RTOS\n");
         k_msleep(100);
     }
 }

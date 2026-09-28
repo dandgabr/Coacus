@@ -15,8 +15,8 @@ This skill guides the artificial intelligence to act as a **Markmap Specialist**
 
 ```mermaid
 flowchart LR
-    subgraph Input["Markdown Estruturado"]
-        MD["Títulos (#, ##, ###)\nListas Aninhadas (- / *)\nFórmulas KaTeX\nBlocos de Código"]
+    subgraph Input["Structured Markdown"]
+        MD["Headings (#, ##, ###)\nNested Lists (- / *)\nKaTeX Formulas\nCode Blocks"]
     end
 
     subgraph CoreEngine["Transform & View Engine"]
@@ -24,9 +24,9 @@ flowchart LR
         VIEW["@markmap/view & D3.js (Interactive SVG)"]
     end
 
-    subgraph Outputs["Exportações & Ambientes"]
-        HTML["HTML Autônomo Interativo"]
-        SVG["Gráficos Vetoriais SVG"]
+    subgraph Outputs["Exports & Environments"]
+        HTML["Standalone Interactive HTML"]
+        SVG["SVG Vector Graphics"]
         CLI["markmap-cli (--watch / --open)"]
     end
 
@@ -40,13 +40,13 @@ flowchart LR
 The `markmap-cli` package turns Markdown files into interactive presentations instantly:
 
 ```bash
-# Gerar mapa mental HTML interativo autônomo
+# Generate a standalone interactive HTML mind map
 npx markmap-cli mindmap.md -o mindmap.html
 
-# Abrir automaticamente no navegador com servidor de desenvolvimento local
+# Open automatically in the browser with a local development server
 npx markmap-cli mindmap.md --open
 
-# Modo Live-Reload durante a edição da documentação
+# Live-Reload mode while editing the documentation
 npx markmap-cli mindmap.md --watch
 ```
 
@@ -68,9 +68,9 @@ markmap:
   pan: true
 ---
 
-# Sistema de Pagamentos Corporativo
+# Corporate Payment System
 
-## Arquitetura de Microsserviços
+## Microservices Architecture
 - **Order Service**
   - REST API `POST /orders`
   - Event Publisher (Kafka)
@@ -79,41 +79,41 @@ markmap:
   - Idempotency Controller
 - **Notification Service**
   - Webhooks
-  - Templates de E-mail
+  - E-mail Templates
 
-## Banco de Dados & Armazenamento
+## Database & Storage
 - PostgreSQL
   - *Read Replicas*
-  - Conexões via PgBouncer
+  - Connections via PgBouncer
 - Redis Cache
   - Rate Limiting
   - Session Tokens
 
-## Segurança & Conformidade
+## Security & Compliance
 - PCI-DSS v4.0
-- Tokenização de Dados de Cartão
+- Card Data Tokenization
 - TLS 1.3 End-to-End
 ```
 
 ### B. Integration with Math Formulas (KaTeX / LaTeX)
 Markmap supports inline and block math equations:
 ```markdown
-# Algoritmos de Machine Learning
-## Regressão Linear
-- Função de Custo: $J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2$
-- Gradiente Descendente: $\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)$
+# Machine Learning Algorithms
+## Linear Regression
+- Cost Function: $J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2$
+- Gradient Descent: $\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)$
 ```
 
 ### C. Styling Nodes with HTML and Badges
 Rich visual formatting can be embedded in individual nodes:
 ```markdown
-# 🚀 Roadmap de Engenharia
+# 🚀 Engineering Roadmap
 ## Backend <span class="badge" style="background:#28a745;color:#fff;padding:2px 6px;border-radius:4px;">Q1</span>
-- Migração para Go 1.24
-- Adoção de gRPC para comunicação interna
+- Migration to Go 1.24
+- Adoption of gRPC for internal communication
 ## Frontend <span class="badge" style="background:#007bff;color:#fff;padding:2px 6px;border-radius:4px;">Q2</span>
-- Upgrade para React 19
-- Otimização de Core Web Vitals
+- Upgrade to React 19
+- Core Web Vitals Optimization
 ```
 
 ---

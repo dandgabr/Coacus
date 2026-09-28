@@ -42,29 +42,29 @@ To perform an effective Security Code Review, the AI must inspect the code under
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                   REPRESENTAÇÕES DE CÓDIGO NO SAST                     │
+│                   CODE REPRESENTATIONS IN SAST                         │
 └────────────────────────────────────────────────────────────────────────┘
   1. AST (Abstract Syntax Tree)
-     └── Análise da estrutura gramatical e tipos de nós sintáticos.
+     └── Analysis of grammatical structure and syntactic node types.
   2. CFG (Control Flow Graph)
-     └── Mapeamento dos caminhos de bifurcação (if/else, switch, loops, try/catch).
+     └── Mapping of branching paths (if/else, switch, loops, try/catch).
   3. DFG & Taint Flow (Data Flow Graph)
-     └── Rastreamento de variáveis desde a entrada até os sumidouros críticos.
+     └── Tracing of variables from input to critical sinks.
 ```
 
 ### The Formal Taint Analysis Model:
 
 ```
-[ Source ] (Entrada Não Confiável / Request Body / Params / Headers)
+[ Source ] (Untrusted Input / Request Body / Params / Headers)
     │
     ▼
-[ Propagator ] (Concatenação, Cast, Formatação, Atribuição)
+[ Propagator ] (Concatenation, Cast, Formatting, Assignment)
     │
     ▼
-[ Sanitizer / Guardrail ] (Validação de Lista Branca, Parameter Binding, Escapamento)
+[ Sanitizer / Guardrail ] (Allow-List Validation, Parameter Binding, Escaping)
     │
     ▼
-[ Sink ] (Execução de Operação Sensível: DB, OS Shell, Arquivo, Deserialização)
+[ Sink ] (Execution of Sensitive Operation: DB, OS Shell, File, Deserialization)
 ```
 
 1. **Source**: Identify every point where external, untrusted data enters the application (e.g., `req.params`, `req.body`, `request.getHeader()`, CLI parameters, cookies, uploaded files).
@@ -127,7 +127,7 @@ rules:
     mode: taint
     languages:
       - python
-    message: "Possível SQL Injection detectado: entrada não confiável flui para cursor.execute sem parametrização."
+    message: "Possible SQL Injection detected: untrusted input flows to cursor.execute without parameterization."
     severity: ERROR
     metadata:
       cwe: "CWE-89"

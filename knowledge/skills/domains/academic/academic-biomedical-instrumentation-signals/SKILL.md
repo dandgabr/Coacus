@@ -22,14 +22,14 @@ $$V_{out} = \left( 1 + \frac{2 R_1}{R_{gain}} \right) \left( \frac{R_3}{R_2} \ri
 
 ```mermaid
 graph LR
-    Body[Eletrodos Ag/AgCl no Paciente] --> Prot[Proteção contra Desfibrilação]
-    Prot --> INA[Amplificador de Instrumentação INA]
-    INA --> Filt[Filtro Passa-Banda Butterworth 0.05-150 Hz]
-    Filt --> Notch[Filtro Notch 60 Hz]
-    Notch --> Iso[Barreira de Isolamento Galvânico]
-    Iso --> ADC[ADC 24-bits Delta-Sigma]
-    INA -.->|Tensão de Modo Comum| RLD[Circuito Right Leg Drive Inversor]
-    RLD -.->|Realimentação Negativa 60 Hz| Body
+    Body[Ag/AgCl Electrodes on Patient] --> Prot[Defibrillation Protection]
+    Prot --> INA[INA Instrumentation Amplifier]
+    INA --> Filt[Butterworth Band-Pass Filter 0.05-150 Hz]
+    Filt --> Notch[60 Hz Notch Filter]
+    Notch --> Iso[Galvanic Isolation Barrier]
+    Iso --> ADC[24-bit Delta-Sigma ADC]
+    INA -.->|Common-Mode Voltage| RLD[Inverting Right Leg Drive Circuit]
+    RLD -.->|60 Hz Negative Feedback| Body
 ```
 
 ---

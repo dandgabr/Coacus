@@ -15,23 +15,23 @@ Graph modeling turns isolated information silos into a navigable relational mesh
 
 ```mermaid
 flowchart TD
-    subgraph IngestionSources["Ingestão de Dados Heterogêneos"]
-        CODE_DATA["Código & AST (jQAssistant)"]
-        CLOUD_DATA["Nuvem & Infra (Cartography)"]
-        AD_DATA["Identidades & Permissões (BloodHound / SharpHound)"]
-        CTI_DATA["Ameaças & TTPs MITRE (OpenCTI / Attack Flow)"]
+    subgraph IngestionSources["Heterogeneous Data Ingestion"]
+        CODE_DATA["Code & AST (jQAssistant)"]
+        CLOUD_DATA["Cloud & Infra (Cartography)"]
+        AD_DATA["Identities & Permissions (BloodHound / SharpHound)"]
+        CTI_DATA["Threats & MITRE TTPs (OpenCTI / Attack Flow)"]
     end
 
-    subgraph GraphEngines["Motores de Banco de Dados em Grafo"]
+    subgraph GraphEngines["Graph Database Engines"]
         NEO4J[("Neo4j (LPG & Cypher Engine)")]
         ARANGODB[("ArangoDB (Multi-Model & AQL)")]
         JANUSGRAPH[("JanusGraph (Distributed Apache TinkerPop)")]
     end
 
-    subgraph Analytics["Consultas de Alto Impacto"]
-        ATTACK_PATHS["Caminhos Críticos de Ataque (Shortest Path)"]
-        BLAST_RADIUS["Raio de Explosão de Mudanças (Blast Radius)"]
-        CIRCULAR_DEPS["Dependências Circulares & Violações"]
+    subgraph Analytics["High-Impact Queries"]
+        ATTACK_PATHS["Critical Attack Paths (Shortest Path)"]
+        BLAST_RADIUS["Change Blast Radius"]
+        CIRCULAR_DEPS["Circular Dependencies & Violations"]
     end
 
     IngestionSources --> GraphEngines
@@ -46,7 +46,7 @@ flowchart TD
 - **Concept**: The most widely used native graph-oriented database in the world. It models nodes (*Nodes*), labels (*Labels*), relationships (*Relationships*), and key-value properties (*Properties*).
 - **Cypher Query: Blast Radius Mapping of a Domain Class**:
 ```cypher
-// Identificar todos os métodos, classes e endpoints afetados pela alteração de UserEntity
+// Identify every method, class, and endpoint affected by a change to UserEntity
 MATCH path = (e:Entity {name: 'UserEntity'})<-[:DEPENDS_ON*1..4]-(caller)
 RETURN path, count(caller) AS total_affected_nodes
 ORDER BY length(path) ASC;
@@ -62,7 +62,7 @@ ORDER BY length(path) ASC;
 - **Concept**: An architectural quality control framework that analyzes Java, Maven, JPA, Git, and Docker projects, writing the complete structure into Neo4j and validating corporate rules via Cypher.
 - **Example Cypher Rule in `jqassistant-rules.xml`**:
 ```cypher
-// Bloquear acesso direto de Controllers aos Repositories
+// Block direct access from Controllers to Repositories
 MATCH (c:Type)-[:DECLARES]->(m:Method)-[:CALLS]->(rMethod:Method)<-[:DECLARES]-(r:Type)
 WHERE c:Controller AND r:Repository
 CREATE (c)-[:VIOLATES_LAYER]->(r)

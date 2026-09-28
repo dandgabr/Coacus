@@ -16,15 +16,15 @@ This skill establishes the standards and practices for Linux operating-system en
 │                          systemd (PID 1)                    │
 ├──────────────┬──────────────┬──────────────┬────────────────┤
 │   .service   │   .socket    │    .timer    │     .mount     │
-│ (Daemons e   │ (Ativação    │ (Agendamento │ (Pontos de     │
-│  Processos)  │  por Rede)   │  preciso)    │  Montagem)     │
+│ (Daemons and │ (Network     │ (Precise     │ (Mount         │
+│ Processes)   │ Activation)  │ Scheduling)  │ Points)        │
 └──────────────┴──────────────┴──────────────┴────────────────┘
 ```
 
 ### Anatomy of a Secure Service (`/etc/systemd/system/myapp.service`)
 ```ini
 [Unit]
-Description=Plataforma de Microsserviço de Alta Disponibilidade
+Description=High-Availability Microservice Platform
 After=network.target postgresql.service
 Requires=postgresql.service
 
@@ -35,7 +35,7 @@ ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 
-# Hardening e Isolamento de Segurança
+# Hardening and Security Isolation
 User=appuser
 Group=appgroup
 NoNewPrivileges=true

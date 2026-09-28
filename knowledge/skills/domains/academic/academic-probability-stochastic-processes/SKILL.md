@@ -20,10 +20,10 @@ This skill establishes the formal mechanistic and probabilistic foundations unde
 
 ### 1.2 Modes of Stochastic Convergence and Borel-Cantelli Lemmas
 ```
-Hierarquia de Modos de Convergência:
-  Convergência em Lp (p ≥ 1) ──┐
+Hierarchy of Modes of Convergence:
+  Convergence in Lp (p ≥ 1) ──┐
                                ▼
-  Convergência Quase Certa (q.c. / a.s.) ──> Convergência em Probabilidade (P) ──> Convergência em Distribuição (d)
+  Almost Sure Convergence (a.s.) ──> Convergence in Probability (P) ──> Convergence in Distribution (d)
 ```
 
 - **First Borel-Cantelli Lemma**: If $\sum_{n=1}^\infty P(A_n) < \infty$, then $P(\limsup_{n \to \infty} A_n) = 0$.

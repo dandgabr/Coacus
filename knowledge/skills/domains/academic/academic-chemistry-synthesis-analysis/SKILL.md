@@ -12,24 +12,24 @@ This skill establishes the rigorous theoretical foundations, organic and inorgan
 ## ⚗️ 1. Advanced Organic Mechanisms and Retrosynthesis
 
 ```
-Reatividade e Mecanismos Centrais em Química Orgânica:
-├── Substituições e Eliminações Alifáticas:
-│   ├── SN2: Ataque dorsal estereoespecífico com inversão de Walden, solventes polares apróticos
-│   ├── SN1: Intermediário carbocátion planar com racemização, rearranjos de Wagner-Meerwein
-│   └── E2 / E1: Regra de Zaitsev (alceno mais estável) vs Regra de Hofmann (impedimento estéreo)
-├── Substituição Eletrofílica Aromática (SEAr):
-│   ├── Complexo de Wheland / Íon Arenônio
-│   ├── Ativadores orto/para-dirigentes (efeito mesomérico +M: -OH, -NH2, -OCH3)
-│   └── Desativadores meta-dirigentes (efeito indutivo/mesomérico -I/-M: -NO2, -CN, -COR)
-├── Química de Enolatos e Condensações Carbonílicas:
-│   ├── Condensação Aldólica e Desidratação crotônica
-│   ├── Condensação de Claisen e Dieckmann (ésteres)
-│   └── Adição 1,4-Conjugada de Michael e Anelação de Robinson
-└── Acoplamentos Cruzados Catalisados por Metais de Transição (Paládio [Pd(0)/Pd(II)]):
-    ├── Ciclo Catalítico: Adição Oxidativa → Transmetalação → Isomerização cis-trans → Eliminação Redutiva
-    ├── Reação de Suzuki-Miyaura: Ar-X + Ar'-B(OH)2 em meio básico
-    ├── Reação de Heck: Ar-X + Alceno na presença de amina terciária
-    └── Reação de Sonogashira: Ar-X + Alcino terminal com cocatalisador de Cu(I)
+Reactivity and Central Mechanisms in Organic Chemistry:
+├── Aliphatic Substitutions and Eliminations:
+│   ├── SN2: Stereospecific backside attack with Walden inversion, polar aprotic solvents
+│   ├── SN1: Planar carbocation intermediate with racemization, Wagner-Meerwein rearrangements
+│   └── E2 / E1: Zaitsev's Rule (more stable alkene) vs Hofmann's Rule (steric hindrance)
+├── Electrophilic Aromatic Substitution (SEAr):
+│   ├── Wheland Complex / Arenium Ion
+│   ├── ortho/para-directing activators (mesomeric effect +M: -OH, -NH2, -OCH3)
+│   └── meta-directing deactivators (inductive/mesomeric effect -I/-M: -NO2, -CN, -COR)
+├── Enolate Chemistry and Carbonyl Condensations:
+│   ├── Aldol Condensation and crotonic dehydration
+│   ├── Claisen and Dieckmann Condensation (esters)
+│   └── Michael 1,4-Conjugate Addition and Robinson Annulation
+└── Transition-Metal-Catalyzed Cross-Couplings (Palladium [Pd(0)/Pd(II)]):
+    ├── Catalytic Cycle: Oxidative Addition → Transmetalation → cis-trans Isomerization → Reductive Elimination
+    ├── Suzuki-Miyaura Reaction: Ar-X + Ar'-B(OH)2 in basic medium
+    ├── Heck Reaction: Ar-X + Alkene in the presence of tertiary amine
+    └── Sonogashira Reaction: Ar-X + terminal Alkyne with Cu(I) cocatalyst
 ```
 
 ---
@@ -47,7 +47,7 @@ The splitting of $d$ orbitals under ligand field symmetry:
 ### 2.2 The 18-Electron Rule in Organometallic Complexes
 The thermodynamic stability of transition-metal organometallic complexes rests on filling their 9 valence orbitals (one $s$, three $p$, five $d$):
 
-$$N_{valencia} = N_{metal} + \sum n_{ligands} - q_{complex} = 18$$
+$$N_{valence} = N_{metal} + \sum n_{ligands} - q_{complex} = 18$$
 
 ---
 
@@ -74,22 +74,22 @@ $$\log_{10}(P^{sat}) = A - \frac{B}{T + C}$$
 
 ```mermaid
 flowchart LR
-    subgraph Amostra
-        A[Mistura Complexa / Produto de Síntese]
+    subgraph Sample
+        A[Complex Mixture / Synthesis Product]
     end
-    subgraph Separacao
-        B[HPLC / UHPLC Fase Reversa C18]
-        C[GC-MS com Ionização por Impacto Eletrônico EI]
+    subgraph Separation
+        B[Reversed-Phase C18 HPLC / UHPLC]
+        C[GC-MS with Electron Impact Ionization EI]
     end
-    subgraph Quantificacao
-        D[Espectrofotometria UV-Vis Beer-Lambert]
-        E[Espectrometria de Absorção Atômica AAS / ICP-OES]
-        F[Métodos Potenciométricos ISE / Voltametria]
+    subgraph Quantification
+        D[UV-Vis Spectrophotometry Beer-Lambert]
+        E[Atomic Absorption Spectrometry AAS / ICP-OES]
+        F[Potentiometric Methods ISE / Voltammetry]
     end
-    subgraph Estrutura
-        G[RMN 1D 1H/13C + 2D COSY, HSQC, HMBC]
-        H[Espectroscopia FTIR - Estiramentos Funcionais]
-        I[Espectrometria de Massas de Alta Resolução HRMS]
+    subgraph Structure
+        G[NMR 1D 1H/13C + 2D COSY, HSQC, HMBC]
+        H[FTIR Spectroscopy - Functional Stretches]
+        I[High-Resolution Mass Spectrometry HRMS]
     end
     A --> B & C
     B & C --> D & E & F

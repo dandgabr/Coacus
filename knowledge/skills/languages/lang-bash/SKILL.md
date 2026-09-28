@@ -46,7 +46,7 @@ While working under this skill, apply the following patterns strictly:
 - **Portable Shebang**: Use `#!/usr/bin/env bash` instead of fixed paths such as `#!/bin/bash`.
 - **Validate External Binaries**: Before invoking utilities such as `jq`, `curl`, or `docker`, check that they exist in `PATH`:
   ```bash
-  command -v jq >/dev/null 2>&1 || { echo "Erro: 'jq' é necessário mas não está instalado." >&2; exit 1; }
+  command -v jq >/dev/null 2>&1 || { echo "Error: 'jq' is required but is not installed." >&2; exit 1; }
   ```
 - **ShellCheck Compliance**: Write clean code in line with ShellCheck's static analysis rules.
 
@@ -61,11 +61,11 @@ While working under this skill, apply the following patterns strictly:
 set -euo pipefail
 IFS=$'\n\t'
 
-# Configurações e Globais
+# Settings and Globals
 readonly SCRIPT_NAME="$(basename "$0")"
 readonly TMP_DIR="$(mktemp -d -t "${SCRIPT_NAME}.XXXXXX")"
 
-# Função de Limpeza (Executada automaticamente no EXIT)
+# Cleanup Function (Executed automatically on EXIT)
 cleanup() {
     local exit_code=$?
     if [[ -d "$TMP_DIR" ]]; then
@@ -75,7 +75,7 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-# Funções de Logging (Direcionadas para stderr)
+# Logging Functions (Directed to stderr)
 log_info() {
     printf '[INFO] %s\n' "$*" >&2
 }
@@ -86,16 +86,16 @@ log_error() {
 
 usage() {
     cat <<EOF
-Uso: ${SCRIPT_NAME} [OPÇÕES] -i <input_file>
+Usage: ${SCRIPT_NAME} [OPTIONS] -i <input_file>
 
-Opções:
-  -i, --input FILE    Caminho do arquivo de entrada (obrigatório)
-  -o, --output FILE   Caminho do arquivo de saída (opcional)
-  -h, --help          Exibe esta ajuda
+Options:
+  -i, --input FILE    Path to the input file (required)
+  -o, --output FILE   Path to the output file (optional)
+  -h, --help          Displays this help
 EOF
 }
 
-# Parsing de Argumentos
+# Argument Parsing
 parse_args() {
     local input_file=""
     local output_file=""
@@ -115,7 +115,7 @@ parse_args() {
                 exit 0
                 ;;
             *)
-                log_error "Opção desconhecida: $1"
+                log_error "Unknown option: $1"
                 usage
                 exit 1
                 ;;
@@ -123,7 +123,7 @@ parse_args() {
     done
 
     if [[ -z "$input_file" ]]; then
-        log_error "O parâmetro --input é obrigatório."
+        log_error "The --input parameter is required."
         usage
         exit 1
     fi
@@ -131,7 +131,7 @@ parse_args() {
     echo "$input_file" "$output_file"
 }
 
-# Função Principal
+# Main Function
 main() {
     local input_file=""
     local output_file=""
@@ -139,16 +139,16 @@ main() {
     read -r input_file output_file <<< "$(parse_args "$@")"
 
     if [[ ! -f "$input_file" ]]; then
-        log_error "Arquivo de entrada não encontrado: $input_file"
+        log_error "Input file not found: $input_file"
         exit 1
     fi
 
-    log_info "Processando o arquivo: $input_file"
+    log_info "Processing the file: $input_file"
     local temp_output="${TMP_DIR}/processed.txt"
 
-    # Exemplo de processamento seguro linha a linha
+    # Example of safe line-by-line processing
     while IFS= read -r line || [[ -n "$line" ]]; do
-        # Processa apenas linhas não vazias e que não são comentários
+        # Processes only non-empty lines that are not comments
         if [[ -n "$line" && ! "$line" =~ ^[[:space:]]*# ]]; then
             printf 'PROCESSED: %s\n' "$line" >> "$temp_output"
         fi
@@ -156,7 +156,7 @@ main() {
 
     if [[ -n "$output_file" ]]; then
         mv "$temp_output" "$output_file"
-        log_info "Resultado salvo em: $output_file"
+        log_info "Result saved to: $output_file"
     else
         cat "$temp_output"
     fi
@@ -171,12 +171,12 @@ main "$@"
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Garante dependências antes da execução
+# Ensures dependencies before execution
 check_dependencies() {
     local dep
     for dep in jq curl; do
         if ! command -v "$dep" >/dev/null 2>&1; then
-            printf '[ERROR] Dependência ausente: %s\n' "$dep" >&2
+            printf '[ERROR] Missing dependency: %s\n' "$dep" >&2
             return 1
         fi
     done
@@ -185,7 +185,7 @@ check_dependencies() {
 fetch_github_user() {
     local username="${1:-}"
     if [[ -z "$username" ]]; then
-        printf '[ERROR] Usuário não informado.\n' >&2
+        printf '[ERROR] Username not provided.\n' >&2
         return 1
     fi
 

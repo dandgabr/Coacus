@@ -9,9 +9,9 @@ This guide consolidates integration architectures and system-level testing based
 Traditional integration maps the functional decomposition hierarchy (module tree).
 
 ```
-         [ Módulo Raiz ]
+         [ Root Module ]
           /           \
-     [ Módulo A ]   [ Módulo B ]
+     [ Module A ]   [ Module B ]
       /        \          \
   [ Mod A1 ]  [ Mod A2 ] [ Mod B1 ]
 ```
@@ -45,11 +45,11 @@ An **MM-Path (Method-to-Method Path)** models the interleaved execution of code 
 An MM-Path is a sequence of decision paths (DD-Paths) that cross method/module boundaries through function invocations and returns.
 
 ```
-Módulo A                   Módulo B                   Módulo C
+Module A                   Module B                   Module C
 ┌──────────┐              ┌──────────┐              ┌──────────┐
-│ DD-Path 1│──(chama B)──►│ DD-Path 1│──(chama C)──►│ DD-Path 1│
+│ DD-Path 1│──(calls B)──►│ DD-Path 1│──(calls C)──►│ DD-Path 1│
 │          │              │          │              │          │
-│ DD-Path 2│◄─(retorna)───│ DD-Path 2│◄─(retorna)───│ DD-Path 2│
+│ DD-Path 2│◄─(returns)───│ DD-Path 2│◄─(returns)───│ DD-Path 2│
 └──────────┘              └──────────┘              └──────────┘
 ```
 

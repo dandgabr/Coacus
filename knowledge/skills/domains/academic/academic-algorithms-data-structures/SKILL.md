@@ -13,11 +13,11 @@ This skill establishes the mathematical foundations, formal limits of computabil
 
 ```mermaid
 graph TD
-    subgraph HC["Hierarquia de Linguagens de Chomsky"]
-        T0["Tipo 0: Recursivamente Enumeráveis (Máquinas de Turing Irrestritas)<br/>Gramáticas: α → β"]
-        T1["Tipo 1: Sensíveis ao Contexto (Autômatos Linearmente Limitados LBA)<br/>Gramáticas: αAβ → αγβ (|γ| ≥ |A|)"]
-        T2["Tipo 2: Livres de Contexto (Autômatos com Pilha PDA)<br/>Gramáticas: A → γ (Forma Normal de Chomsky / Algoritmo CYK)"]
-        T3["Tipo 3: Linguagens Regulares (Autômatos Finitos DFA / NFA)<br/>Gramáticas Regulares: A → aB ou A → a"]
+    subgraph HC["Chomsky Hierarchy of Languages"]
+        T0["Type 0: Recursively Enumerable (Unrestricted Turing Machines)<br/>Grammars: α → β"]
+        T1["Type 1: Context-Sensitive (Linear Bounded Automata LBA)<br/>Grammars: αAβ → αγβ (|γ| ≥ |A|)"]
+        T2["Type 2: Context-Free (Pushdown Automata PDA)<br/>Grammars: A → γ (Chomsky Normal Form / CYK Algorithm)"]
+        T3["Type 3: Regular Languages (Finite Automata DFA / NFA)<br/>Regular Grammars: A → aB or A → a"]
     end
     T3 --> T2 --> T1 --> T0
 ```
@@ -36,11 +36,11 @@ graph TD
 
 ```mermaid
 graph TD
-    subgraph CC["Classes de Complexidade"]
-        P["P (Tempo Polinomial Determinístico: O(n^k))"]
-        NP["NP (Tempo Polinomial Verificável / Não-Determinístico)"]
-        NPC["NP-Completo (SAT, 3-SAT, Clique, Vertex Cover, TSP, Knapsack)"]
-        PSPACE["PSPACE (Espaço Polinomial: Teorema de Savitch PSPACE = NPSPACE)"]
+    subgraph CC["Complexity Classes"]
+        P["P (Deterministic Polynomial Time: O(n^k))"]
+        NP["NP (Verifiable / Non-Deterministic Polynomial Time)"]
+        NPC["NP-Complete (SAT, 3-SAT, Clique, Vertex Cover, TSP, Knapsack)"]
+        PSPACE["PSPACE (Polynomial Space: Savitch's Theorem PSPACE = NPSPACE)"]
     end
     P --> NP
     NPC --> NP
@@ -89,7 +89,7 @@ def a_star(
     successors: Callable[[T], List[Tuple[T, float]]],
     heuristic: Callable[[T], float]
 ) -> Optional[List[T]]:
-    """Algoritmo de Busca Heurística A* com Heurística Admissível e Consistente."""
+    """A* Heuristic Search Algorithm with Admissible and Consistent Heuristic."""
     frontier: List[Tuple[float, float, T]] = []
     heapq.heappush(frontier, (heuristic(initial), 0.0, initial))
     came_from: Dict[T, Optional[T]] = {initial: None}

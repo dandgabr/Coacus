@@ -40,25 +40,25 @@ This skill consolidates guidelines and research drawn from the following sources
 ┌───────────────────────────────────────────────────────────────────────────────────┐
 │              OWASP Machine Learning Security Top 10 (CV Pipeline)                 │
 ├───────────────────────────────────────┬───────────────────────────────────────────┤
-│ Vulnerabilidade OWASP ML              │ Controles Arquiteturais e Mitigações      │
+│ OWASP ML Vulnerability                │ Architectural Controls and Mitigations    │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
 │ ML01: Input Manipulating Attacks      │ Adversarial Training (TRADES/PGD),        │
-│ (FGSM, PGD, Patch Attacks)            │ VisionInputSanitizer, Feature Squeezing. │
+│ (FGSM, PGD, Patch Attacks)            │ VisionInputSanitizer, Feature Squeezing.  │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ ML02: Data Poisoning Attacks          │ Detecção de triggers por Neural Cleanse,  │
-│ (Clean-Label & Trojan Backdoors)      │ análise de entropia STRIP, DBSCAN.        │
+│ ML02: Data Poisoning Attacks          │ Trigger detection via Neural Cleanse,     │
+│ (Clean-Label & Trojan Backdoors)      │ STRIP entropy analysis, DBSCAN.           │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ ML03: Model Inversion Attacks         │ Differential Privacy (DP-SGD) no treino,  │
-│ (Reconstrução de faces a partir de V) │ difusão controlada de probabilidades.    │
+│ ML03: Model Inversion Attacks         │ Differential Privacy (DP-SGD) in training,│
+│ (Face reconstruction from V)          │ controlled probability diffusion.         │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ ML04: Membership Inference Attacks    │ Regularização L2/Dropout no modelo,       │
-│ (Identificação de imagens no dataset) │ mascaramento de vetores de confiança.     │
+│ ML04: Membership Inference Attacks    │ L2/Dropout regularization in the model,   │
+│ (Image identification in the dataset) │ masking of confidence vectors.            │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ ML05: Model Theft / Extraction        │ Limitador de consultas (rate limiting),   │
-│ (Treino de modelo espelho por API)    │ adição de ruído a log-probabilidades.     │
+│ ML05: Model Theft / Extraction        │ Query limiter (rate limiting),            │
+│ (Mirror model training via API)       │ addition of noise to log-probabilities.   │
 ├───────────────────────────────────────┼───────────────────────────────────────────┤
-│ ML06: AI Supply Chain Attacks         │ Carregamento exclusivo de `.safetensors`, │
-│ (Modelos Pickle maliciosos de CV)     │ assinaturas Cosign para pesos pré-treinados│
+│ ML06: AI Supply Chain Attacks         │ Exclusive loading of `.safetensors`,      │
+│ (Malicious Pickle CV Models)          │ Cosign signatures for pre-trained weights │
 └───────────────────────────────────────┴───────────────────────────────────────────┘
 ```
 
@@ -95,28 +95,28 @@ import torchvision.transforms as T
 from safetensors.torch import load_file
 
 class VisionInputSanitizer(nn.Module):
-    """Camada defensiva de sanitização de imagens contra ataques adversariais (OWASP ML01)."""
+    """Defensive image sanitization layer against adversarial attacks (OWASP ML01)."""
     def __init__(self, bit_depth: int = 4, blur_kernel_size: int = 3):
         super().__init__()
         self.bit_depth = bit_depth
         self.blur = T.GaussianBlur(kernel_size=blur_kernel_size, sigma=(0.1, 2.0))
 
     def quantize_bits(self, x: torch.Tensor) -> torch.Tensor:
-        """Reduz a profundidade de bits dos pixels da imagem."""
+        """Reduces the bit depth of the image pixels."""
         max_val = (2 ** self.bit_depth) - 1
         return torch.round(x * max_val) / max_val
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # 1. Quantização de bits (destrói ruído adversarial de baixa intensidade)
+        # 1. Bit quantization (destroys low-intensity adversarial noise)
         x_quantized = self.quantize_bits(x)
-        # 2. Suavização gaussiana leve (elimina gradientes pontuais)
+        # 2. Mild Gaussian smoothing (eliminates punctual gradients)
         x_sanitized = self.blur(x_quantized)
         return x_sanitized
 
 def load_secure_vision_model(weights_path: str, model: nn.Module):
-    """Carrega modelos visuais imunes a RCE em conformidade com OWASP ML06."""
+    """Loads vision models immune to RCE in compliance with OWASP ML06."""
     if not weights_path.endswith(".safetensors"):
-        raise ValueError("ERRO DE SEGURANÇA: Apenas arquivos .safetensors são permitidos para evitar execução remota de código via Pickle.")
+        raise ValueError("SECURITY ERROR: Only .safetensors files are allowed to prevent remote code execution via Pickle.")
     state_dict = load_file(weights_path)
     model.load_state_dict(state_dict)
     return model

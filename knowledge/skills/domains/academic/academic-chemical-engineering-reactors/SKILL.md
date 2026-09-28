@@ -13,10 +13,10 @@ This skill establishes the rigorous differential and integral balances of mass, 
 
 ```mermaid
 flowchart LR
-    A["Balanço Molar Geral:<br/>F_j0 - F_j + ∫ r_j dV = dN_j/dt"] --> B["Batelada (Batch):<br/>t = N_A0 ∫ dX/(-r_A V)"]
-    A --> C["CSTR (Mistura Perfeita):<br/>V = F_A0 X / (-r_A)"]
-    A --> D["PFR (Pistão Tubular):<br/>V = F_A0 ∫ dX/(-r_A)"]
-    A --> E["PBR (Leito Catalítico):<br/>W = F_A0 ∫ dX/(-r_A')"]
+    A["General Molar Balance:<br/>F_j0 - F_j + ∫ r_j dV = dN_j/dt"] --> B["Batch:<br/>t = N_A0 ∫ dX/(-r_A V)"]
+    A --> C["CSTR (Perfect Mixing):<br/>V = F_A0 X / (-r_A)"]
+    A --> D["PFR (Tubular Plug Flow):<br/>V = F_A0 ∫ dX/(-r_A)"]
+    A --> E["PBR (Catalytic Bed):<br/>W = F_A0 ∫ dX/(-r_A')"]
 ```
 
 | Reactor | Operation Type | Differential Design Equation | Integrated Equation |

@@ -17,16 +17,16 @@ Runtime discovery operates through two complementary approaches:
 
 ```mermaid
 flowchart LR
-    subgraph Client["Cliente / Gateway"]
+    subgraph Client["Client / Gateway"]
         GW["API Gateway"]
     end
 
-    subgraph ServiceA["Serviço A (Order Service)"]
+    subgraph ServiceA["Service A (Order Service)"]
         A_APP["App Runtime"]
         A_OTEL["OTel SDK / OBI (eBPF)"]
     end
 
-    subgraph ServiceB["Serviço B (Payment Service)"]
+    subgraph ServiceB["Service B (Payment Service)"]
         B_APP["App Runtime"]
         B_OTEL["OTel SDK / OBI"]
     end
@@ -111,7 +111,7 @@ helm install caretta groundcover/caretta --namespace caretta --create-namespace
 - **Concept**: An end-to-end distributed tracing system that enables analysis of the critical path (*Critical Path Analysis*), correlation of p95/p99 latency, and visualization of direct dependency graphs between services.
 - **Generating the Jaeger Dependency Graph**:
 ```bash
-# Processar dependências históricas a partir do armazenamento (Elasticsearch/OpenSearch/Cassandra)
+# Process historical dependencies from storage (Elasticsearch/OpenSearch/Cassandra)
 java -jar jaeger-spark-dependencies.jar
 ```
 

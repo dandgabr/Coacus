@@ -92,17 +92,17 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 	idStr := r.PathValue("id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
 	if err != nil {
-		http.Error(w, "ID inválido", http.StatusBadRequest)
+		http.Error(w, "invalid ID", http.StatusBadRequest)
 		return
 	}
 
 	user, err := h.service.FindByID(r.Context(), id)
 	if err != nil {
 		if errors.Is(err, ErrNotFound) {
-			http.Error(w, "Usuário não encontrado", http.StatusNotFound)
+			http.Error(w, "user not found", http.StatusNotFound)
 			return
 		}
-		http.Error(w, "Erro interno de processamento", http.StatusInternalServerError)
+		http.Error(w, "internal processing error", http.StatusInternalServerError)
 		return
 	}
 
@@ -137,13 +137,13 @@ func ProcessJobs(ctx context.Context, jobs []Job, numWorkers int) {
 			for {
 				select {
 				case <-ctx.Done():
-					fmt.Printf("Worker %d interrompido pelo contexto\n", workerID)
+					fmt.Printf("Worker %d interrupted by context\n", workerID)
 					return
 				case job, ok := <-jobChan:
 					if !ok {
 						return
 					}
-					fmt.Printf("Worker %d processando job %d: %s\n", workerID, job.ID, job.Data)
+					fmt.Printf("Worker %d processing job %d: %s\n", workerID, job.ID, job.Data)
 				}
 			}
 		}(i)
@@ -174,18 +174,18 @@ func TestDivide(t *testing.T) {
 		want        float64
 		wantErr     bool
 	}{
-		{name: "divisão exata", a: 10, b: 2, want: 5, wantErr: false},
-		{name: "divisão por zero", a: 10, b: 0, want: 0, wantErr: true},
+		{name: "exact division", a: 10, b: 2, want: 5, wantErr: false},
+		{name: "division by zero", a: 10, b: 0, want: 0, wantErr: true},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := calc.Divide(tt.a, tt.b)
 			if (err != nil) != tt.wantErr {
-				t.Fatalf("Divide(%f, %f) erro inesperado = %v, wantErr %v", tt.a, tt.b, err, tt.wantErr)
+				t.Fatalf("Divide(%f, %f) unexpected error = %v, wantErr %v", tt.a, tt.b, err, tt.wantErr)
 			}
 			if got != tt.want {
-				t.Errorf("Divide(%f, %f) = %f, esperava %f", tt.a, tt.b, got, tt.want)
+				t.Errorf("Divide(%f, %f) = %f, expected %f", tt.a, tt.b, got, tt.want)
 			}
 		})
 	}

@@ -13,15 +13,15 @@ This skill establishes the guidelines for designing, deploying, and operating **
 
 ```
                        ┌─────────────────────────┐
-                       │  Nó Mestre / Head Node  │
+                       │   Head / Master Node    │
                        │   (Slurm Controller)    │
                        └────────────┬────────────┘
                                     │
            ┌────────────────────────┴────────────────────────┐
-   [ Rede de Gerenciamento 10GbE ]           [ Rede InfiniBand / RDMA 200Gbps ]
+   [ 10GbE Management Network ]               [ InfiniBand / RDMA 200Gbps Network ]
            │                                                 │
  ┌─────────▼─────────┐                             ┌─────────▼─────────┐
- │ Storage Paralelo  │                             │  Nós de Computo   │
+ │ Parallel Storage  │                             │  Compute Nodes    │
  │ (Lustre / CephFS) │                             │ (CPUs + GPUs H100)│
  └───────────────────┘                             └───────────────────┘
 ```

@@ -38,11 +38,11 @@ When working under this skill, carry out your duties based on the following prac
 - write criteria in **Given / When / Then** format to unify the language between business, development, and testing.
   - *Example*:
     ```gherkin
-    Critério de Aceitação 1: Adicionar item ao carrinho
-      Dado que o usuário está na página do produto "Smartphone"
-      Quando ele clica no botão "Adicionar ao Carrinho"
-      Então o contador do carrinho no cabeçalho deve ser incrementado para "1"
-      E uma notificação de sucesso deve ser exibida ao usuário.
+    Acceptance Criterion 1: Add item to cart
+      Given that the user is on the "Smartphone" product page
+      When they click the "Add to Cart" button
+      Then the cart counter in the header should be incremented to "1"
+      And a success notification should be displayed to the user.
     ```
 
 ---

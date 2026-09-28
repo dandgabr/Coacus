@@ -15,24 +15,24 @@ Declarative text-based modeling enables versioning in Git, continuous integratio
 
 ```mermaid
 flowchart LR
-    subgraph Code["Código-Fonte & Esquemas"]
+    subgraph Code["Source Code & Schemas"]
         SRC["Classes, Interfaces, Enums & Structs"]
         DOCS["Docstrings & Javadoc / Doxygen"]
     end
 
-    subgraph Generators["Mecanismos de Extração & Parse"]
+    subgraph Generators["Extraction & Parse Mechanisms"]
         DOXYGEN["Doxygen + Graphviz (dot)"]
-        UMLGRAPH["UMLGraph (Doclet Java)"]
+        UMLGRAPH["UMLGraph (Java Doclet)"]
         PYREVERSE["Pyreverse (Python AST)"]
     end
 
-    subgraph Formats["Formatos Declarativos"]
+    subgraph Formats["Declarative Formats"]
         PLANTUML["PlantUML (.puml)"]
         MERMAID["Mermaid.js (.mermaid)"]
         GRAPHVIZ["Graphviz (.dot)"]
     end
 
-    subgraph EnterpriseTools["Ferramentas CASE / IDEs"]
+    subgraph EnterpriseTools["CASE Tools / IDEs"]
         VP["Visual Paradigm / StarUML / ObjectAid"]
     end
 
@@ -115,7 +115,7 @@ GENERATE_HTML          = YES
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Cliente Web
+    actor User as Web Client
     participant GW as API Gateway
     participant Order as OrderService
     participant Pay as PaymentService
@@ -126,12 +126,12 @@ sequenceDiagram
     Order->>DB: INSERT INTO orders
     DB-->>Order: order_id: 1042
     Order->>Pay: authorize(order_id, amount)
-    alt Sucesso no Pagamento
+    alt Payment Success
         Pay-->>Order: 200 OK (TransactionID)
         Order->>DB: UPDATE orders SET status='PAID'
         Order-->>GW: OrderCreated (Success)
         GW-->>User: 201 Created
-    else Falha no Pagamento
+    else Payment Failure
         Pay-->>Order: 402 Payment Required
         Order->>DB: UPDATE orders SET status='FAILED'
         Order-->>GW: PaymentError

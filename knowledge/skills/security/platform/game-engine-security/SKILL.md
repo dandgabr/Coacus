@@ -64,10 +64,10 @@ public struct ObfuscatedInt
 - **Strict RPC Validation**:
 
 ```cpp
-// Validação server-side obrigatória em RPCs
+// Mandatory server-side validation in RPCs
 bool AGameCharacter::ServerFireWeapon_Validate(FVector AimDirection)
 {
-    // Rejeitar se a direção for NaN ou além do campo de visão possível
+    // Reject if the direction is NaN or beyond the possible field of view
     return !AimDirection.ContainsNaN() && FVector::DotProduct(GetActorForwardVector(), AimDirection) > -0.2f;
 }
 ```
@@ -80,7 +80,7 @@ bool AGameCharacter::ServerFireWeapon_Validate(FVector AimDirection)
 
 - Build export templates from the Godot source using SCons with an embedded AES key:
   ```bash
-  scons platform=windows target=template_release script_encryption_key="MINHA_CHAVE_HEX_256_BITS"
+  scons platform=windows target=template_release script_encryption_key="MY_256_BIT_HEX_KEY"
   ```
 - Change the magic bytes and header structure of the package file in `core/io/file_access_pack.cpp` to neutralize automated unpacking tools such as GDRETools.
 
@@ -94,9 +94,9 @@ bool AGameCharacter::ServerFireWeapon_Validate(FVector AimDirection)
 
 ```mermaid
 graph TD
-    Client[Cliente do Jogo] -->|1. Ações / Entradas de Controle| Server[Servidor Autoritativo]
-    Server -->|2. Validação Físico-Lógica| AntiCheatEngine[Motor Anti-Cheat & Heurística]
-    AntiCheatEngine -->|Score de Anomalia| DecisionEngine{Ação?}
-    DecisionEngine -->|Inconsistência Severa| KickBan[Kick / Silent Flag / Ban]
-    DecisionEngine -->|Dentro do Threshold| WorldState[Atualiza Estado do Mundo Replicado]
+    Client[Game Client] -->|1. Actions / Control Inputs| Server[Authoritative Server]
+    Server -->|2. Physical-Logical Validation| AntiCheatEngine[Anti-Cheat Engine & Heuristics]
+    AntiCheatEngine -->|Anomaly Score| DecisionEngine{Action?}
+    DecisionEngine -->|Severe Inconsistency| KickBan[Kick / Silent Flag / Ban]
+    DecisionEngine -->|Within Threshold| WorldState[Updates Replicated World State]
 ```

@@ -16,7 +16,7 @@ This skill establishes the unified engineering methodology for modeling, hardwar
 // SystemVerilog IEEE 1800-2017
 module counter_8bit (
     input  logic       clk,
-    input  logic       rst_n,   // Reset assíncrono ativo em nível baixo (low-active)
+    input  logic       rst_n,   // Low-active asynchronous reset (low-active)
     input  logic       enable,
     output logic [7:0] count
 );
@@ -51,7 +51,7 @@ architecture Behavioral of fsm_moore is
     signal current_state, next_state : state_type;
 begin
 
-    -- Processo Sequencial de Transição de Estado
+    -- Sequential State Transition Process
     process(clk, rst_n)
     begin
         if rst_n = '0' then
@@ -61,7 +61,7 @@ begin
         end if;
     end process;
 
-    -- Lógica Combinacional de Próximo Estado e Saída
+    -- Combinational Next-State and Output Logic
     process(current_state, din)
     begin
         case current_state is
@@ -87,7 +87,7 @@ end architecture Behavioral;
 To avoid race conditions and metastability in clocked registers with period $T_{clk} = 1/f_{clk}$:
 
 ```
-Flip-Flop 1 (Lauch) ──[t_cq]──> [ Lógica Combinacional t_comb ] ──> [t_setup/t_hold]──> Flip-Flop 2 (Capture)
+Flip-Flop 1 (Launch) ──[t_cq]──> [ Combinational Logic t_comb ] ──> [t_setup/t_hold]──> Flip-Flop 2 (Capture)
       │                                                                                        │
       └──────────────────────────[ Clock Skew t_skew ]─────────────────────────────────────────┘
 ```

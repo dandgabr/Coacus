@@ -27,11 +27,11 @@ This skill guides the artificial intelligence to act as a **Senior Specialist in
 # Fallback global
 * @org-core-team
 
-# Infraestrutura e CI/CD
+# Infrastructure and CI/CD
 .github/workflows/ @org-devops-team
 terraform/ @org-devops-team
 
-# Backend e Segurança
+# Backend and Security
 src/backend/ @org-backend-leads
 src/backend/auth/ @org-security-team
 ```
@@ -145,16 +145,16 @@ jobs:
 ## 💻 4. Automation with the GitHub CLI (`gh`)
 
 ```bash
-# Autenticação e status
+# Authentication and status
 gh auth status
 gh repo view --json name,description,defaultBranchRef
 
-# Gerenciamento de Pull Requests
-gh pr create --title "feat: novo endpoint de pagamentos" --body "Implementa RFC 10008" --reviewer "org-core-team"
+# Pull Request management
+gh pr create --title "feat: new payments endpoint" --body "Implements RFC 10008" --reviewer "org-core-team"
 gh pr review 123 --approve --body "LGTM!"
 gh pr merge 123 --squash --delete-branch
 
-# Disparo e inspeção de Workflows
+# Triggering and inspecting Workflows
 gh workflow run ci.yml --ref main -f environment=staging
 gh run list --workflow=ci.yml --limit 5
 gh run watch

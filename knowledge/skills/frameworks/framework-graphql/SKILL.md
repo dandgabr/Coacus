@@ -23,7 +23,7 @@ This skill guides the AI to act as a specialist in the design, architecture, and
 
 ```graphql
 """
-Representa a conta de um usuário no sistema.
+Represents a user account in the system.
 """
 type User implements Node {
   id: ID!
@@ -35,7 +35,7 @@ type User implements Node {
 }
 
 """
-Padrão de Interface Node para identificação única global (padrão Relay).
+Node interface pattern for globally unique identification (Relay pattern).
 """
 interface Node {
   id: ID!
@@ -48,7 +48,7 @@ enum UserRole {
 }
 
 """
-Entrada de dados para criação de novo usuário.
+Data input for creating a new user.
 """
 input CreateUserInput {
   name: String!
@@ -67,7 +67,7 @@ type UserError {
 }
 
 """
-Diretivas nativas e customizadas para alterar comportamentos de execução e validação.
+Native and custom directives to change execution and validation behaviors.
 """
 directive @auth(requires: UserRole = ADMIN) on FIELD_DEFINITION | OBJECT
 ```
@@ -150,7 +150,7 @@ Avoid firing multiple SQL/HTTP queries for associated collections by batching an
 ```typescript
 import DataLoader from 'dataloader';
 
-// Resolver delegando a busca para DataLoader no contexto por requisição
+// Resolver delegating the lookup to DataLoader in the per-request context
 export const resolvers = {
   User: {
     orders: (parent, args, context) => {
@@ -159,12 +159,12 @@ export const resolvers = {
   },
 };
 
-// Instanciação do DataLoader no context da requisição
+// DataLoader instantiation in the request context
 export function createLoaders(dbConnection) {
   return {
     ordersByUserId: new DataLoader(async (userIds: readonly string[]) => {
       const orders = await dbConnection.findOrdersByUserIds(userIds);
-      // Mapeia os resultados garantindo a mesma ordem das chaves solicitadas
+      // Maps the results while preserving the same order as the requested keys
       return userIds.map(id => orders.filter(order => order.userId === id));
     }),
   };
@@ -210,7 +210,7 @@ The GraphQL specification defines a strict JSON response format made up of `data
   },
   "errors": [
     {
-      "message": "Acesso negado para visualização deste recurso",
+      "message": "Access denied for viewing this resource",
       "locations": [
         {
           "line": 3,

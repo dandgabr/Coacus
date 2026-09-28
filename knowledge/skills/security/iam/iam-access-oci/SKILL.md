@@ -49,7 +49,7 @@ Every policy in OCI follows the strict syntax:
 Allow <subject> to <verb> <resource-type> in <location> where <conditions>
 ```
 
-- **Subject**: `group <NomeDoGrupo>`, `dynamic-group <NomeDoGrupoDinamico>`, or `any-user`.
+- **Subject**: `group <GroupName>`, `dynamic-group <DynamicGroupName>`, or `any-user`.
 - **Verb**:
   - `inspect`: Ability to list resources without viewing confidential data or metadata.
   - `read`: Includes `inspect` + ability to view resource metadata and content.
@@ -59,10 +59,10 @@ Allow <subject> to <verb> <resource-type> in <location> where <conditions>
 ### Example Corporate OCI Policy
 
 ```text
-// Permitir que administradores de banco de dados gerenciem instâncias autônomas no compartimento de produção
+// Allow database administrators to manage autonomous instances in the production compartment
 Allow group DBA_Admins to manage autonomous-database-family in compartment Production:Prod_Databases
 
-// Permitir que desenvolvedores leiam logs no compartimento de desenvolvimento apenas de IPs internos
+// Allow developers to read logs in the development compartment only from internal IPs
 Allow group Developers to read log-groups in compartment Development where request.network.sourceIP = '10.200.0.0/16'
 ```
 
@@ -84,10 +84,10 @@ Allow group Developers to read log-groups in compartment Development where reque
 - **Dynamic Groups**:
   - Grouping of infrastructure resources (such as Compute instances or Functions) based on *Matching Rules*:
 ```text
-// Regra: Selecionar todas as instâncias Compute que estejam no compartimento 'Production'
+// Rule: Select all Compute instances that are in the 'Production' compartment
 All {instance.compartment.id = 'ocid1.compartment.oc1..exampleuniqueID'}
 
-// Regra: Selecionar instâncias com a tag 'Environment = Prod'
+// Rule: Select instances with the tag 'Environment = Prod'
 All {resource.type = 'instance', resource.tag.Operations.Environment = 'Prod'}
 ```
 - **Instance Principals**: Allows a Compute instance to make authenticated API calls to OCI services without writing API keys or credentials to the VM disk.

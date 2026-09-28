@@ -25,22 +25,22 @@ OWASP Dependency-Check collects evidence about the project's dependencies (Vendo
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│               FLUXO DE ANÁLISE DO OWASP DEPENDENCY-CHECK               │
+│                  OWASP DEPENDENCY-CHECK ANALYSIS FLOW                  │
 └────────────────────────────────────────────────────────────────────────┘
-  [ 1. Coleta de Evidências ]
-         │  (Analisa JARs, package.json, pom.xml, go.mod, arquivos binários)
+  [ 1. Evidence Collection ]
+         │  (Analyzes JARs, package.json, pom.xml, go.mod, binary files)
          ▼
-  [ 2. Mapeamento de CPE ]
-         │  (Gera identificadores: cpe:2.3:a:apache:log4j:2.14.1:*:*:*:*:*:*:*)
+  [ 2. CPE Mapping ]
+         │  (Generates identifiers: cpe:2.3:a:apache:log4j:2.14.1:*:*:*:*:*:*:*)
          ▼
-  [ 3. Consulta NVD API v2 & Cache Local ]
-         │  (Verifica banco de dados H2 local ou PostgreSQL centralizado)
+  [ 3. NVD API v2 Query & Local Cache ]
+         │  (Checks the local H2 database or a centralized PostgreSQL)
          ▼
-  [ 4. Aplicação de Supressões (suppressions.xml) ]
-         │  (Descarta falsos positivos e vulnerabilidades com mitigação aceita)
+  [ 4. Suppression Application (suppressions.xml) ]
+         │  (Discards false positives and vulnerabilities with accepted mitigation)
          ▼
-  [ 5. Avaliação de Quality Gate (failBuildOnCVSS) ]
-            (Falha a compilação caso CVSS >= Limiar definido)
+  [ 5. Quality Gate Evaluation (failBuildOnCVSS) ]
+             (Fails the build when CVSS >= the defined threshold)
 ```
 
 ---
@@ -50,17 +50,17 @@ OWASP Dependency-Check collects evidence about the project's dependencies (Vendo
 ### 1. Command Line (CLI)
 
 ```bash
-# Execução básica com exportação em múltiplos formatos (HTML, JSON, SARIF)
+# Basic execution with export in multiple formats (HTML, JSON, SARIF)
 dependency-check.sh \
     --project "EcommerceApp" \
     --scan "./src" \
     --scan "./lib" \
     --out "./reports" \
     --format "ALL" \
-    --nvdApiKey "SEU_NVD_API_KEY" \
+    --nvdApiKey "YOUR_NVD_API_KEY" \
     --failOnCVSS 7.0
 
-# Execução utilizando arquivo de supressão de falsos positivos
+# Execution using a false-positive suppression file
 dependency-check.sh \
     --project "EcommerceApp" \
     --scan "./target" \
@@ -81,18 +81,18 @@ Add the `dependency-check-maven` plugin in the `<build><plugins>` block:
     <artifactId>dependency-check-maven</artifactId>
     <version>10.0.3</version>
     <configuration>
-        <!-- Chave de API NVD v2 obrigatória para evitar rate-limits -->
+        <!-- NVD v2 API key required to avoid rate-limits -->
         <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
         
-        <!-- Arquivo de supressão de falsos positivos -->
+        <!-- False-positive suppression file -->
         <suppressionFiles>
             <suppressionFile>${project.basedir}/config/dependency-check-suppressions.xml</suppressionFile>
         </suppressionFiles>
         
-        <!-- Falhar a compilação do Maven se houver vulnerabilidade High/Critical -->
+        <!-- Fail the Maven build if there is a High/Critical vulnerability -->
         <failBuildOnCVSS>7.0</failBuildOnCVSS>
         
-        <!-- Formatos de saída gerados -->
+        <!-- Generated output formats -->
         <formats>
             <format>HTML</format>
             <format>JSON</format>
@@ -112,10 +112,10 @@ Add the `dependency-check-maven` plugin in the `<build><plugins>` block:
 #### Execution Commands in Maven:
 
 ```bash
-# Executar a verificação avulsa
+# Run a one-off check
 mvn org.owasp:dependency-check-maven:check
 
-# Executar apenas a atualização do banco de dados NVD em cache
+# Run only the cached NVD database update
 mvn org.owasp:dependency-check-maven:update-only
 ```
 
@@ -183,30 +183,30 @@ The suppression file lets you ignore CVEs that do not affect the application (fo
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.4.xsd">
 
-    <!-- 1. Supressão de falso positivo por CPE incorreto -->
+    <!-- 1. False-positive suppression due to an incorrect CPE -->
     <suppress>
         <notes><![CDATA[
-            Falso positivo: O componente interno 'auth-module' foi incorretamente 
-            identificado como o produto legado Apache Auth.
+            False positive: The internal component 'auth-module' was incorrectly 
+            identified as the legacy Apache Auth product.
         ]]></notes>
         <packageUrl regex="true">^pkg:maven/com\.empresa/auth-module@.*$</packageUrl>
         <cpe>cpe:/a:apache:auth</cpe>
     </suppress>
 
-    <!-- 2. Supressão de CVE específica com data de expiração (Until) -->
+    <!-- 2. Specific CVE suppression with an expiry date (Until) -->
     <suppress until="2026-12-31Z">
         <notes><![CDATA[
-            CVE-2022-1471 no SnakeYaml: Avaliada pelo time de AppSec. A aplicação não 
-            utiliza deserialização genérica não confiável. Mitigação aceita até a migração v2.0.
+            CVE-2022-1471 in SnakeYaml: Assessed by the AppSec team. The application does not 
+            use untrusted generic deserialization. Mitigation accepted until the v2.0 migration.
         ]]></notes>
         <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
         <vulnerabilityName>CVE-2022-1471</vulnerabilityName>
     </suppress>
 
-    <!-- 3. Supressão por hash SHA-1 de arquivo binário específico -->
+    <!-- 3. Suppression by SHA-1 hash of a specific binary file -->
     <suppress>
         <notes><![CDATA[
-            Supressão para binário de testes interno legado.
+            Suppression for a legacy internal test binary.
         ]]></notes>
         <sha1>66734244CE86857018B023A8C56AE0635C56B6A1</sha1>
         <cve>CVE-2020-99999</cve>

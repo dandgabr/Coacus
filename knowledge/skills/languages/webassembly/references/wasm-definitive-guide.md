@@ -62,16 +62,16 @@ wasm-objdump -x hellodebug.wasm
 ```
 
 ```bash
-wasmtime hello.wat   # WASI hosts executam .wat diretamente
+wasmtime hello.wat   # WASI hosts run .wat directly
 wasmer  hello.wat
 ```
 
 - **Capability-based security**: the module does not receive direct access to file handles/sockets — it receives *opaque, unforgeable handles* ("preopened file descriptors"). Without the capability, the libc call fails:
 
 ```bash
-# falha: sem capability de escrita no diretório atual
+# fails: no write capability on the current directory
 wasmtime target/wasm32-wasi/release/hello-fs.wasm
-# funciona: concede o diretório como preopen
+# works: grants the directory as a preopen
 wasmtime --dir=. target/wasm32-wasi/release/hello-fs.wasm
 wasmer  --dir=. target/wasm32-wasi/release/hello-fs.wasm
 ```
@@ -111,10 +111,10 @@ A "good host" must: (1) **load and validate** the wasm binary; (2) **expose expo
 - The `Module` object in the generated JS is the interface between the two worlds. Flags cited in the book:
 
 ```bash
-emcc hello.c -o hello.js                            # roda main() ao carregar
-emcc hello.c -o hello.js -s INVOKE_RUN=0            # não executa main() automaticamente
+emcc hello.c -o hello.js                            # runs main() on load
+emcc hello.c -o hello.js -s INVOKE_RUN=0            # does not run main() automatically
 emcc hello.c -o hello.js -s INVOKE_RUN=0 \
-  -s EXTRA_EXPORTED_RUNTIME_METHODS="['callMain']"  # expõe Module.callMain()
+  -s EXTRA_EXPORTED_RUNTIME_METHODS="['callMain']"  # exposes Module.callMain()
 emcc with-glue.c -O3 -s WASM=1 -s USE_SDL=2 -s MODULARIZE=1 -o custom-loading.js
 ```
 

@@ -13,13 +13,13 @@ This skill establishes the complete architecture of pipelines that translate hig
 
 ```mermaid
 flowchart LR
-    A["Código Fonte"] --> B["Análise Léxica (Scanner / Flex)"]
-    B -->|Tokens| C["Análise Sintática (Parser / Bison)"]
-    C -->|AST| D["Análise Semântica (Type Checker)"]
-    D -->|Decorated AST| E["Geração de Código Intermediário"]
-    E -->|LLVM IR / SSA| F["Otimizador de Código (LLVM Opt Passes)"]
-    F -->|Otimizado IR| G["Alocação de Registradores & Geração de Código"]
-    G --> H["Código Objeto / Assembly Nativo (x86_64 / ARM / RISC-V)"]
+    A["Source Code"] --> B["Lexical Analysis (Scanner / Flex)"]
+    B -->|Tokens| C["Syntax Analysis (Parser / Bison)"]
+    C -->|AST| D["Semantic Analysis (Type Checker)"]
+    D -->|Decorated AST| E["Intermediate Code Generation"]
+    E -->|LLVM IR / SSA| F["Code Optimizer (LLVM Opt Passes)"]
+    F -->|Optimized IR| G["Register Allocation & Code Generation"]
+    G --> H["Object Code / Native Assembly (x86_64 / ARM / RISC-V)"]
 ```
 
 ---
@@ -71,7 +71,7 @@ In SSA form, each variable is assigned exactly once, and $\phi$ functions (*phi-
   $$DF^+(Def(v))$$
 
 ```llvm
-; Representação LLVM IR em SSA canônico
+; LLVM IR representation in canonical SSA
 define i32 @fatorial(i32 %n) {
 entry:
   %cmp = icmp sle i32 %n, 1

@@ -94,7 +94,7 @@ function getArea(shape: Shape): number {
 - **Exhaustiveness checking** with `never`:
   ```typescript
   default: {
-    const _exhaustiveCheck: never = shape; // erro de compilação se sobrar caso
+    const _exhaustiveCheck: never = shape; // compile error if a case remains
     return _exhaustiveCheck;
   }
   ```

@@ -28,7 +28,7 @@ This skill establishes the engineering guidelines and standards for developing a
 import { calculateOrderTotal } from './calculator';
 
 describe('calculateOrderTotal', () => {
-  it('deve calcular o total com desconto e frete corretamente', () => {
+  it('should calculate the total with discount and shipping correctly', () => {
     const items = [{ price: 100, quantity: 2 }, { price: 50, quantity: 1 }];
     const discount = 20;
     const shipping = 15;
@@ -37,9 +37,9 @@ describe('calculateOrderTotal', () => {
     expect(result).toBe(245); // (200 + 50) - 20 + 15
   });
 
-  it('deve lançar erro para quantidade negativa', () => {
+  it('should throw an error for negative quantity', () => {
     const invalidItems = [{ price: 100, quantity: -1 }];
-    expect(() => calculateOrderTotal(invalidItems, 0, 0)).toThrow('Quantidade inválida');
+    expect(() => calculateOrderTotal(invalidItems, 0, 0)).toThrow('Invalid quantity');
   });
 });
 ```
@@ -61,7 +61,7 @@ describe('UserService', () => {
     userService = new UserService(mockRepo);
   });
 
-  it('deve retornar usuário quando encontrado no repositório', async () => {
+  it('should return the user when found in the repository', async () => {
     mockRepo.findById.mockResolvedValue({ id: 'u1', name: 'Alice' });
     const user = await userService.getUser('u1');
     
@@ -94,10 +94,10 @@ describe('PaymentService (Mocha + Chai + Sinon)', () => {
   });
 
   afterEach(() => {
-    sandbox.restore(); // Restaura todos os stubs e spies
+    sandbox.restore(); // Restores all stubs and spies
   });
 
-  it('deve processar o pagamento e registrar transação', async () => {
+  it('should process the payment and record the transaction', async () => {
     const stub = sandbox.stub(gatewayMock, 'charge').resolves({ status: 'SUCCESS', id: 'tx-999' });
 
     const result = await paymentService.processPayment({ amount: 100 });
@@ -117,7 +117,7 @@ describe('PaymentService (Mocha + Chai + Sinon)', () => {
 ```typescript
 jest.useFakeTimers();
 
-it('deve executar callback após debounce de 300ms', () => {
+it('should execute the callback after a 300ms debounce', () => {
   const callback = jest.fn();
   const debounced = debounce(callback, 300);
 

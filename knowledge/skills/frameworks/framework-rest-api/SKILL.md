@@ -39,14 +39,14 @@ This skill provides the canonical guidelines for **HTTP Protocol (HTTP/1.1, HTTP
 > paths:
 >   /v1/history:
 >     query:
->       summary: Busca complexa de gastos
+>       summary: Complex expense search
 >       requestBody:
 >         content:
 >           application/json:
 >             schema: { $ref: '#/components/schemas/HistoryQuery' }
 >       responses:
 >         '200':
->           description: Resultados
+>           description: Results
 > ```
 > For arbitrary methods not covered by the fixed fields, use `additionalOperations`
 > (key = uppercase HTTP method, e.g., `LINK`). Older tools/generators
@@ -80,11 +80,11 @@ sequenceDiagram
     participant Worker as Background Worker
     participant State as State DB
 
-    Client->>API: POST /v1/reports:generate (Filtros)
-    API->>State: Cria registro da operação (Status: RUNNING)
+    Client->>API: POST /v1/reports:generate (Filters)
+    API->>State: Creates the operation record (Status: RUNNING)
     API-->>Client: 202 Accepted { "name": "operations/rep-998", "done": false }
     
-    Worker->>State: Executa e finaliza (Status: SUCCESS, resultUrl)
+    Worker->>State: Executes and finalizes (Status: SUCCESS, resultUrl)
     
     Client->>API: GET /v1/operations/rep-998
     API-->>Client: 200 OK { "done": true, "response": { "downloadUrl": "https://..." } }
@@ -101,15 +101,15 @@ sequenceDiagram
 Use `Content-Type: application/problem+json`:
 ```json
 {
-  "type": "https://api.dominio.com/errors/insufficient-funds",
-  "title": "Saldo insuficiente para transferência",
+  "type": "https://api.example.com/errors/insufficient-funds",
+  "title": "Insufficient balance for transfer",
   "status": 422,
-  "detail": "A conta 1029 possui R$ 50,00 disponíveis, mas a operação exigiu R$ 120,00.",
+  "detail": "Account 1029 has R$ 50.00 available, but the operation required R$ 120.00.",
   "instance": "/v1/accounts/1029/transfers/tx-4432",
   "invalid_params": [
     {
       "name": "amount",
-      "reason": "O montante excede o limite disponível"
+      "reason": "The amount exceeds the available limit"
     }
   ]
 }

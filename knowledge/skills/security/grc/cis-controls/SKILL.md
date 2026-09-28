@@ -51,23 +51,23 @@ Application of the 153 Safeguards must be prioritized according to the organizat
 
 ```
 +-----------------------------------------------------------------------------------+
-| IG1: Higiene Cibernética Básica (Basic Cyber Hygiene - 56 Safeguards)             |
-| - Essencial para TODAS as organizações. Foco em mitigar ataques não direcionados.  |
-| - Exemplos: Autenticação MFA para acessos remotos (6.3), inventários básicos (1.1).|
+| IG1: Basic Cyber Hygiene (56 Safeguards)                                          |
+| - Essential for ALL organizations. Focus on mitigating non-targeted attacks.       |
+| - Examples: MFA authentication for remote access (6.3), basic inventories (1.1).   |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| IG2: Salvaguardas Corporativas (Enterprise Safeguards - +74 Safeguards = 130)     |
-| - Organizações que gerenciam infraestruturas complexas ou conformidades técnicas.  |
-| - Exemplos: SIEM centralizado (8.11), varreduras automatizadas de vuln. (7.5).   |
+| IG2: Enterprise Safeguards (+74 Safeguards = 130)                                 |
+| - Organizations that manage complex infrastructures or technical compliance.       |
+| - Examples: centralized SIEM (8.11), automated vuln. scans (7.5).                  |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| IG3: Proteção Avançada (Advanced Protection - +23 Safeguards = 153 Total)         |
-| - Organizações visadas por Ameaças Avançadas Persistentes (APTs) ou dados críticos|
-| - Exemplos: Microsegmentação dinâmica (12.4), testes de invasão Red Team (18.5).  |
+| IG3: Advanced Protection (+23 Safeguards = 153 Total)                             |
+| - Organizations targeted by Advanced Persistent Threats (APTs) or critical data.   |
+| - Examples: dynamic microsegmentation (12.4), Red Team penetration tests (18.5).   |
 +-----------------------------------------------------------------------------------+
 ```
 

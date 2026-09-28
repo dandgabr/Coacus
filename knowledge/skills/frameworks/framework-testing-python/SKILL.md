@@ -14,7 +14,7 @@ This skill establishes the engineering standards and methodologies for developin
 | Aspect | Pytest | Unittest (Standard Library) |
 | :--- | :--- | :--- |
 | **Style / Paradigm** | Functional with fixtures and native asserts | Object-oriented, deriving from `unittest.TestCase` |
-| **Asserts** | `assert expressao` (with rich AST rewriting) | `self.assertEqual()`, `self.assertRaises()`, etc. |
+| **Asserts** | `assert expression` (with rich AST rewriting) | `self.assertEqual()`, `self.assertRaises()`, etc. |
 | **Injection / Setup** | Scoped modular fixtures (`function`, `module`, `session`) | Static life cycle `setUp()`, `tearDown()`, `setUpClass()` |
 | **Parameterization** | `@pytest.mark.parametrize` (formal and declarative) | `self.subTest()` inside loops |
 | **Dependencies** | Requires `pytest` (`pip install pytest`) | Zero external dependencies (built into Python) |
@@ -29,17 +29,17 @@ This skill establishes the engineering standards and methodologies for developin
 import pytest
 from my_app.services import validate_withdrawal
 
-# Domínio válido de saque: [10.0, 5000.0]
+# Valid withdrawal domain: [10.0, 5000.0]
 @pytest.mark.parametrize("amount, balance, is_blocked, expected_status, raises_exc", [
-    # BVA: Limites da variável amount
-    (9.99, 1000.0, False, None, True),          # min- (Inválido robusto)
+    # BVA: Boundaries of the amount variable
+    (9.99, 1000.0, False, None, True),          # min- (Robust invalid)
     (10.0, 1000.0, False, "APPROVED", False),    # min
     (10.01, 1000.0, False, "APPROVED", False),   # min+
     (500.0, 1000.0, False, "APPROVED", False),   # nom
     (4999.99, 6000.0, False, "APPROVED", False), # max-
     (5000.0, 6000.0, False, "APPROVED", False),  # max
-    (5000.01, 6000.0, False, None, True),        # max+ (Inválido robusto)
-    # Tabela de Decisão: Condições de Saldo e Bloqueio
+    (5000.01, 6000.0, False, None, True),        # max+ (Robust invalid)
+    # Decision Table: Balance and Blocking Conditions
     (100.0, 50.0, False, "INSUFFICIENT_FUNDS", False),
     (100.0, 1000.0, True, "CARD_BLOCKED", False),
 ])
@@ -117,7 +117,7 @@ import pytest
 from my_app.gateways import PaymentProcessor
 
 def test_payment_with_patch(mocker):
-    # Usando pytest-mock ou unittest.mock nativo
+    # Using pytest-mock or native unittest.mock
     with patch("my_app.gateways.requests.post") as mock_post:
         mock_post.return_value.status_code = 200
         mock_post.return_value.json.return_value = {"status": "PAID", "tx_id": "tx-123"}
@@ -135,13 +135,13 @@ def test_payment_with_patch(mocker):
 ## 🧬 5. Mutation Testing (mutmut) and Coverage (pytest-cov)
 
 - **Mutation Score Measurement**:
-  $$MS = \frac{\text{Mutantes Mortos (Killed)}}{\text{Total de Mutantes Gerados}} \times 100\%$$
+  $$MS = \frac{\text{Killed Mutants}}{\text{Total Mutants Generated}} \times 100\%$$
 - **Execution Commands**:
   ```bash
-  # Cobertura com branch coverage
+  # Coverage with branch coverage
   pytest --cov=my_app --cov-branch --cov-report=html --cov-fail-under=90
 
-  # Teste de mutação
+  # Mutation testing
   mutmut run --paths-to-mutate my_app/
   mutmut results
   ```

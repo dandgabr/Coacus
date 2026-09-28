@@ -100,17 +100,17 @@ The evolution of edge security replaces the traditional "Castle-and-Moat" archit
 
 ```
 +-----------------------------------------------------------------------------------+
-| CONVERGÊNCIA SASE (Secure Access Service Edge)                                    |
-| SD-WAN / Conectividade Edge  +  SSE (Security Service Edge)                       |
+| SASE CONVERGENCE (Secure Access Service Edge)                                     |
+| SD-WAN / Edge Connectivity  +  SSE (Security Service Edge)                        |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-| COMPONENTES DO SSE (Security Service Edge)                                        |
-| 1. ZTNA (Zero Trust Network Access): Acesso granular por aplicação (SDP).         |
-| 2. SWG (Secure Web Gateway): Inspeção TLS, filtragem de URL, Sandbox, anti-malware.|
-| 3. CASB (Cloud Access Security Broker): Visibilidade Shadow IT e DLP em SaaS.     |
-| 4. FWaaS (Firewall as a Service): Inspeção L3-L7 unificada na borda global.       |
+| SSE COMPONENTS (Security Service Edge)                                            |
+| 1. ZTNA (Zero Trust Network Access): Granular per-application access (SDP).       |
+| 2. SWG (Secure Web Gateway): TLS inspection, URL filtering, Sandbox, anti-malware.|
+| 3. CASB (Cloud Access Security Broker): Shadow IT visibility and DLP on SaaS.     |
+| 4. FWaaS (Firewall as a Service): Unified L3-L7 inspection at the global edge.    |
 +-----------------------------------------------------------------------------------+
 ```
 

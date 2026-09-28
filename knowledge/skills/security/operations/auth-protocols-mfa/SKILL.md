@@ -98,26 +98,26 @@ NIST SP 800-63-4 (final, supersedes SP 800-63-3) classifies authentication facto
 
 ```
 +-----------------------------------------------------------------------------------+
-| HIERARQUIA DE FORÇA E RESISTÊNCIA DE MFA (NIST AAL1 a AAL3)                       |
+|MFA STRENGTH AND RESISTANCE HIERARCHY (NIST AAL1 to AAL3)                          |
 +-----------------------------------------------------------------------------------+
-| NÍVEL 3 (AAL3) - RESISTENTE A PHISHING (Phishing-Resistant MFA)                    |
-| - FIDO2 / WebAuthn / Passkeys (Hardware Security Keys e Platform Authenticators)  |
-| - Certificados de Cliente mTLS (Smartcards PKCS#11, YubiKey PIV)                 |
-+-----------------------------------------------------------------------------------+
-                                         ^
-                                         |
-+-----------------------------------------------------------------------------------+
-| NÍVEL 2 (AAL2) - MFA CONVENCIONAL SEGURO                                         |
-| - TOTP / HOTP via Aplicativo Autenticador (RFC 6238 / RFC 4226 - Google Auth/Authy)|
-| - Push Notifications com Correspondência de Número (Number Matching)             |
+|LEVEL 3 (AAL3) - PHISHING-RESISTANT (Phishing-Resistant MFA)                       |
+|- FIDO2 / WebAuthn / Passkeys (Hardware Security Keys and Platform Authenticators) |
+|- mTLS Client Certificates (PKCS#11 Smartcards, YubiKey PIV)                       |
 +-----------------------------------------------------------------------------------+
                                          ^
                                          |
 +-----------------------------------------------------------------------------------+
-| FATORES FRACOS / DEPRECIADOS (VULNERÁVEIS A AITM E SIM SWAPPING)                  |
-| - SMS OTP / Chamada de Voz (Vulnerável a SIM Swap e ataques SS7)                  |
-| - Push Notification Simples sem contexto (Vulnerável a MFA Fatigue Bombing)       |
-| - Links de Autenticação por E-mail / Perguntas Secretas                           |
+|LEVEL 2 (AAL2) - SECURE CONVENTIONAL MFA                                           |
+|- TOTP / HOTP via Authenticator App (RFC 6238 / RFC 4226 - Google Auth/Authy)      |
+|- Push Notifications with Number Matching                                          |
++-----------------------------------------------------------------------------------+
+                                         ^
+                                         |
++-----------------------------------------------------------------------------------+
+|WEAK / DEPRECATED FACTORS (VULNERABLE TO AITM AND SIM SWAPPING)                    |
+|- SMS OTP / Voice Call (Vulnerable to SIM Swap and SS7 attacks)                    |
+|- Simple Push Notification without context (Vulnerable to MFA Fatigue Bombing)     |
+|- E-mail Authentication Links / Secret Questions                                   |
 +-----------------------------------------------------------------------------------+
 ```
 
