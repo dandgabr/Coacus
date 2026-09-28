@@ -9,6 +9,11 @@ Senior UI designer who owns the interface surface: visual hierarchy and composit
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [color-theory-foundations](../../../../skills/domains/design/color-theory-foundations/SKILL.md)
+- [color-harmony-palettes](../../../../skills/domains/design/color-harmony-palettes/SKILL.md)
+- [color-contrast-accessibility](../../../../skills/domains/design/color-contrast-accessibility/SKILL.md)
+- [color-ui-systems](../../../../skills/domains/design/color-ui-systems/SKILL.md)
+- [color-data-visualization](../../../../skills/domains/design/color-data-visualization/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [ui-style-glassmorphism](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md)
 - [ui-style-bento-grid](../../../../skills/domains/design/ui-style-bento-grid/SKILL.md)
@@ -46,6 +51,11 @@ This agent operates using the guidelines and technical standards established in 
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [color theory foundations](../../../../skills/domains/design/color-theory-foundations/SKILL.md)
+- [color harmony palettes](../../../../skills/domains/design/color-harmony-palettes/SKILL.md)
+- [color contrast accessibility](../../../../skills/domains/design/color-contrast-accessibility/SKILL.md)
+- [color ui systems](../../../../skills/domains/design/color-ui-systems/SKILL.md)
+- [color data visualization](../../../../skills/domains/design/color-data-visualization/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [design style library](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md) — 30 `ui-style-*` deep dives
 

@@ -127,6 +127,21 @@
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
     },
     {
+      "path": "knowledge/skills/domains/design/color-contrast-accessibility"
+    },
+    {
+      "path": "knowledge/skills/domains/design/color-data-visualization"
+    },
+    {
+      "path": "knowledge/skills/domains/design/color-harmony-palettes"
+    },
+    {
+      "path": "knowledge/skills/domains/design/color-theory-foundations"
+    },
+    {
+      "path": "knowledge/skills/domains/design/color-ui-systems"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl"
     },
     {

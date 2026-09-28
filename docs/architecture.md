@@ -17,7 +17,7 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 332 skills.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 337 skills.
 - `knowledge/agents/<category>/<agent>/agent.source.md` — 78 agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).

@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 347 skill(s) · 78 agent(s) · 1 MCP(s)
+**Totals:** 352 skill(s) · 78 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -133,6 +133,11 @@
 | academic-thermodynamics-statistical-physics | [knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md](../knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md) |
 | data-science-advanced-math | [knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md](../knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md) |
 | quantum-computing-algorithms | [knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md](../knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md) |
+| color-contrast-accessibility | [knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md](../knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md) |
+| color-data-visualization | [knowledge/skills/domains/design/color-data-visualization/SKILL.md](../knowledge/skills/domains/design/color-data-visualization/SKILL.md) |
+| color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
+| color-theory-foundations | [knowledge/skills/domains/design/color-theory-foundations/SKILL.md](../knowledge/skills/domains/design/color-theory-foundations/SKILL.md) |
+| color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
 | ui-style-ai-native-generative-ui | [knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md) |

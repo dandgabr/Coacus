@@ -12,6 +12,11 @@ skills:
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
+  - knowledge/skills/domains/design/color-theory-foundations/SKILL.md
+  - knowledge/skills/domains/design/color-harmony-palettes/SKILL.md
+  - knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md
+  - knowledge/skills/domains/design/color-ui-systems/SKILL.md
+  - knowledge/skills/domains/design/color-data-visualization/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md
   - knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md
@@ -54,6 +59,11 @@ This agent operates using the guidelines and technical standards established in 
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [color theory foundations](knowledge/skills/domains/design/color-theory-foundations/SKILL.md)
+- [color harmony palettes](knowledge/skills/domains/design/color-harmony-palettes/SKILL.md)
+- [color contrast accessibility](knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md)
+- [color ui systems](knowledge/skills/domains/design/color-ui-systems/SKILL.md)
+- [color data visualization](knowledge/skills/domains/design/color-data-visualization/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [design style library](knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md) — 30 `ui-style-*` deep dives
 

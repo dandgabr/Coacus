@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 78,
-    "skills": 347,
+    "skills": 352,
     "mcps": 1
   },
   "agents": [
@@ -643,6 +643,26 @@
     {
       "name": "quantum-computing-algorithms",
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
+    },
+    {
+      "name": "color-contrast-accessibility",
+      "path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md"
+    },
+    {
+      "name": "color-data-visualization",
+      "path": "knowledge/skills/domains/design/color-data-visualization/SKILL.md"
+    },
+    {
+      "name": "color-harmony-palettes",
+      "path": "knowledge/skills/domains/design/color-harmony-palettes/SKILL.md"
+    },
+    {
+      "name": "color-theory-foundations",
+      "path": "knowledge/skills/domains/design/color-theory-foundations/SKILL.md"
+    },
+    {
+      "name": "color-ui-systems",
+      "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md"
     },
     {
       "name": "ui-style-3d-immersive-webgl",

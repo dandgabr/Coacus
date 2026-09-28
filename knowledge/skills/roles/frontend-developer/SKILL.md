@@ -246,3 +246,15 @@ One canonical skill per style — visual DNA, motion, CSS techniques, accessibil
 - [swiss web minimalism](../../domains/design/ui-style-swiss-web-minimalism/SKILL.md)
 - [web brutalism](../../domains/design/ui-style-web-brutalism/SKILL.md)
 - [y2k revival](../../domains/design/ui-style-y2k-revival/SKILL.md)
+
+---
+
+## 🌈 7. Color Theory Library
+
+Five companion skills cover color end to end — science, palettes, contrast, tokens and data viz:
+
+- [color theory foundations](../../domains/design/color-theory-foundations/SKILL.md)
+- [color harmony palettes](../../domains/design/color-harmony-palettes/SKILL.md)
+- [color contrast accessibility](../../domains/design/color-contrast-accessibility/SKILL.md)
+- [color ui systems](../../domains/design/color-ui-systems/SKILL.md)
+- [color data visualization](../../domains/design/color-data-visualization/SKILL.md)
