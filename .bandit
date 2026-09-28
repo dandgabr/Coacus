@@ -1,0 +1,13 @@
+# Bandit configuration for the Coacus engine and CLIs.
+#
+# The listed call sites execute repository-owned, fixed commands (for example
+# `git -C <repo> rev-parse HEAD`, a harness CLI resolved from a trusted
+# mapping, or a caller-supplied reranker command invoked with `shell=False` and
+# an argv list). None pass attacker-controlled shell input, so the generic
+# B404/B603/B607 hints add noise without a real finding. B108 is fixed in code
+# by using `tempfile.gettempdir()` instead of a hard-coded `/tmp`.
+
+skips:
+  - B404
+  - B603
+  - B607

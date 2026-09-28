@@ -47,6 +47,10 @@ jobs:
           # level: # optional, default is UNDEFINED
           # Report only issues of a given confidence level or higher. Can be LOW, MEDIUM or HIGH. Default is UNDEFINED (everything)
           # confidence: # optional, default is UNDEFINED
+          # Skip the generic subprocess hints (B404/B603/B607) for the
+          # repository-owned, shell=False call sites documented in .bandit;
+          # the actionable B108 finding is fixed in code instead.
+          skips: B404,B603,B607
           # comma-separated list of paths (glob patterns supported) to exclude from scan (note that these are in addition to the excluded paths provided in the config file) (default: .svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.eggs,*.egg)
           # excluded_paths: # optional, default is DEFAULT
           # comma-separated list of test IDs to skip
