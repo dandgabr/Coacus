@@ -1,11 +1,17 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 74,
-    "skills": 308,
+    "agents": 76,
+    "skills": 315,
     "mcps": 1
   },
   "agents": [
+    {
+      "name": "ai-product-manager",
+      "category": "specialized-domains",
+      "description": "Senior AI product manager who frames AI products as data products: dual lifecycle management, ML problem-class framing, opportunity discovery and prioritization, model selection under governance constraints, shadow/A-B/ canary deployment strategy, AI UX trust obligations, bias and privacy governance, and metrics discipline. Applies AI product management, product ownership, evaluation and responsible-AI practices.",
+      "source": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md"
+    },
     {
       "name": "ai-security-specialist",
       "category": "cybersecurity",
@@ -113,6 +119,12 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Container and Kubernetes Security, covering CIS Kubernetes Benchmark conformance, Pod Security and admission control, RBAC, runtime security and container escapes, image supply chain and offensive Kubernetes attack paths.",
       "source": "knowledge/agents/cybersecurity/container-security-specialist/agent.source.md"
+    },
+    {
+      "name": "conversational-ai-engineer",
+      "category": "data-cloud-devops",
+      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+      "source": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md"
     },
     {
       "name": "cpp-systems-engineer",
@@ -489,8 +501,16 @@
       "path": "knowledge/skills/data/high-performance-java-persistence/SKILL.md"
     },
     {
+      "name": "human-in-the-loop-ml",
+      "path": "knowledge/skills/data/human-in-the-loop-ml/SKILL.md"
+    },
+    {
       "name": "jpa-hibernate-performance",
       "path": "knowledge/skills/data/jpa-hibernate-performance/SKILL.md"
+    },
+    {
+      "name": "mlops-platform-engineering",
+      "path": "knowledge/skills/data/mlops-platform-engineering/SKILL.md"
     },
     {
       "name": "power-bi",
@@ -617,8 +637,16 @@
       "path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md"
     },
     {
+      "name": "ai-drug-discovery",
+      "path": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md"
+    },
+    {
       "name": "ai-llm-engineering-rag",
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md"
+    },
+    {
+      "name": "ai-model-evaluation",
+      "path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md"
     },
     {
       "name": "applied-ai-automation",
@@ -635,6 +663,10 @@
     {
       "name": "computer-vision-deep-learning",
       "path": "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md"
+    },
+    {
+      "name": "conversational-ai-chatbots",
+      "path": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md"
     },
     {
       "name": "edtech-andragogy",
@@ -717,6 +749,10 @@
       "path": "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
     },
     {
+      "name": "code-review-practices",
+      "path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md"
+    },
+    {
       "name": "distributed-systems",
       "path": "knowledge/skills/engineering/practices/distributed-systems/SKILL.md"
     },
@@ -767,6 +803,10 @@
     {
       "name": "version-freshness",
       "path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md"
+    },
+    {
+      "name": "web-accessibility-wcag",
+      "path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md"
     },
     {
       "name": "framework-criterion",

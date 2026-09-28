@@ -71,6 +71,21 @@ exp.as_list()   # local prediction + intercept + signed per-feature weights
 
 ---
 
+## 🔬 Explanation Method Atlas (Thampi)
+
+- **Inherently interpretable models:** linear/logistic coefficients as effect sizes (unstable under correlated features), traceable decision trees (overfit-prone), and **GAMs** as the sweet spot — the target as a sum of per-feature smooth splines; per-feature effect curves are the explanation artifact.
+- **Partial dependence plots:** average model output while sweeping one feature; **untrustworthy when the swept feature correlates with marginalized features** — forcing values creates impossible synthetic records and extrapolated junk. Feature-interaction PDPs extend this to pairs.
+- **LIME internals:** perturbed dataset sampled from feature statistics → black-box predictions → locality-weighted linear surrogate; kernel width is a sensitivity knob; image variants perturb superpixels.
+- **SHAP internals:** cooperative-game framing; coalitions are keep/resample masks; the weighting kernel emphasizes extreme coalitions; Shapley attributions carry stronger guarantees and unify additive methods. **Anchors** return high-precision if-then sufficiency rules.
+- **Saliency for CNNs:** vanilla/guided backpropagation, SmoothGrad, integrated gradients; **Grad-CAM** gradient-weights the final convolutional feature map for a class-discriminative heatmap (guided Grad-CAM adds resolution). Choose gradient methods for fine localization, Grad-CAM for discriminative regions, LIME for model-agnostic image explanations.
+- **Network dissection:** probe hidden units against an independently labeled concept dataset and quantify alignment by intersection-over-union — compares learned concept detectors across training tasks; needs dense concept labels.
+- **Embedding inspection:** similarity search, PCA and t-SNE over embedding spaces — validate that a 2-D projection preserves high-dimensional structure before narrating clusters.
+- **Fairness formalization:** per-group confusion-matrix quantities under competing definitions — demographic parity (equal positive rates), equality of opportunity (equal true-positive rates), equalized odds (equal TPR and FPR); no single definition suffices. Bias enters via proxy features and via learned representations; dropping protected attributes is insufficient.
+- **Counterfactual explanations:** minimal feasible feature changes that flip the decision, framed as bi-objective optimization (reach the desired outcome while staying close to the input); diverse counterfactual sets aid recourse.
+- **Datasheets for datasets:** standardized documentation of provenance, composition, collection process and intended uses — the transparency artifact handed to stakeholders.
+
+---
+
 ## ⚠️ Pitfalls
 
 - **Explaining a proxy, not the truth**: SHAP/LIME approximate the model, so a plausible explanation can be wrong.

@@ -118,6 +118,20 @@ The *LLM Engineer's Handbook* frames LLM work as a production system, not a note
 
 ---
 
+## 🏗️ 7. Production LLM Engineering (Bouchard & Waniel; Brousseau & Sharp)
+
+- **Decision ladder:** prompting for cheap task shaping → RAG for up-to-date external knowledge → fine-tuning last, for structure/tone/format and domain behavior; the techniques **stack** (prompt + RAG + fine-tune) rather than compete. Weak fine-tune signal: needs large high-quality labeled data and does not absorb fast-changing knowledge.
+- **Efficient fine-tuning:** LoRA freezes pretrained weights and trains low-rank attention adapters on consumer GPUs; **QLoRA** backpropagates through a 4-bit quantized base (NF4 dtype, double quantization, paged optimizers) to tune very large models at a fraction of memory. Instruction tuning and SFT supply the demonstration data; RLHF/DPO/RLAIF align beyond one-shot SFT.
+- **Prompting that works:** few-shot with chain-of-thought for reasoning; structured output schemas in the system message; anti-patterns — vague open-ended templates, chained prompts without output-format constraints, instructions that withhold detail.
+- **RAG internals:** chunk on separators with overlap to fit token budgets; query construction translates natural language into vector search plus structured filters; query transformations and expansion improve recall. Retrieval accuracy — not the LLM — is the usual weak link; baseline chunking and embedding choice separately before judging the pipeline.
+- **RAG evaluation set:** correctness against references, faithfulness to retrieved context, context relevancy, guideline adherence and embedding semantic similarity; high faithfulness does not imply high relevance.
+- **Serving economics:** quantization ladder FP32 → BF16/FP16 → INT8 → selective 4-bit (BF16 preserves the FP32 exponent range near-losslessly); compilation through intermediate representations with kernel selection and tensor fusion; **adaptive batching** (pool until size or timer fires) trades latency for throughput; target near-real-time token latencies measured against human reading speed.
+- **Agents:** LLM reasoning core + tools + memory + orchestration; action agents for single steps, plan-and-execute for multi-step work. Memory options — buffer (context-limit failures), summarization (latency, detail loss), structured retrieval over stored history (recommended despite setup cost). Named pitfalls: tools ignored or hallucinated, unvalidated inputs crashing tools, tool descriptions eating the context budget, wrong-tool selection.
+- **Prompt-injection mitigations:** delimiters and clear instruction hierarchies, input classifiers, character sanitization, output filtering and monitoring, parameterized templates (placeholders, never concatenation), and secrets kept outside the prompt path.
+- **Operational posture:** self-critique chains to catch constraint violations before the user sees output; trace and monitor runs (LangSmith-class tooling); record deployment latency budgets and treat streaming as a first-class service concern.
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - [vector-databases](../../../data/vector-databases/SKILL.md): embeddings, ANN indexes, hybrid vector+keyword retrieval and pgvector.

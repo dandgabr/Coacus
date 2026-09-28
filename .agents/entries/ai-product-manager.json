@@ -1,0 +1,8 @@
+{
+  "name": "ai-product-manager",
+  "description": "Senior AI product manager who frames AI products as data products: dual lifecycle management, ML problem-class framing, opportunity discovery and prioritization, model selection under governance constraints, shadow/A-B/ canary deployment strategy, AI UX trust obligations, bias and privacy governance, and metrics discipline. Applies AI product management, product ownership, evaluation and responsible-AI practices.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/ai-product-manager/dist",
+  "fingerprint": "dd8ddfd4df88fb66"
+}

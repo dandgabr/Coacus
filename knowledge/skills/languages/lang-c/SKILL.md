@@ -187,6 +187,17 @@ endif()
 - **Use-After-Free & Double Free (CWE-416 / CWE-415)**: Always null out pointers immediately after freeing them (`free(ptr); ptr = NULL;`) to mitigate dangling pointers.
 - **Format Strings (CWE-134)**: Never pass user input directly as the format string of printing functions (use `printf("%s", input)` instead of `printf(input)`).
 
+---
+
+## 📐 Data Representation Cost Model (Hyde)
+
+- **Alignment:** CISC machines allow unaligned access slowly; RISC machines often forbid it; compilers pad activation records — declare double-word → word → byte locals in that order to get alignment without padding waste. Record layout mirrors declaration order, so field ordering changes struct size.
+- **Arrays:** row- vs column-major layout determines the access formula; `base + i*size` becomes a cheap scaled-index address when the element size is a power of two — prefer naturally sized elements in hot loops. Bounds checking is an optional runtime cost; non-integer index types get translated or hashed.
+- **Strings:** format taxonomy — zero-terminated (minimal storage, O(n) length), length-prefixed, and descriptor records (length + capacity + pointer); the format choice drives the cost of every string operation. Reference counting serves shared strings.
+- **Pointers:** usually a raw address, but alternative implementations exist; double indirection costs one extra load per access — invisible in source, visible in assembly. A simple allocator shows heap overhead and fragmentation: allocation strategy matters.
+- **Functions and frames:** activation records hold parameters, return address, saved frame pointer and locals; recursion costs one frame per activation (memory and stack-overflow risk); leaf functions can skip frame setup; pass-by-value copies (cheap for scalars, terrible for large aggregates), pass-by-reference passes a pointer but dereferences on every access.
+- **Machine-shape awareness:** the instruction set determines which expression forms compile well; structure case labels for jump-table emission; respect sequence points — undefined evaluation order is a correctness trap, not a tuning hint. Verify every micro-optimization by diffing compiler output.
+
 ## 🔗 Integration with Other Skills
 
 - To compile C++23 components and interoperate with C, see [lang-cpp](../lang-cpp/SKILL.md).

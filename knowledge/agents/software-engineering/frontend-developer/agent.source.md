@@ -13,6 +13,7 @@ skills:
   - knowledge/skills/languages/lang-typescript/SKILL.md
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
+  - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
 ---
 
@@ -35,6 +36,7 @@ This agent operates using the guidelines and technical standards established in 
 
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
+- [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [framework-react](knowledge/skills/frameworks/framework-react/SKILL.md)
 - [framework-vue](knowledge/skills/frameworks/framework-vue/SKILL.md)
 - [lang-typescript](knowledge/skills/languages/lang-typescript/SKILL.md)

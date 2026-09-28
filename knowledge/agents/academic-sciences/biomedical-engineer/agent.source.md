@@ -9,6 +9,7 @@ description: >-
 skills:
   - knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md
   - knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md
+  - knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
 ---
 
@@ -24,6 +25,7 @@ You act as a senior professional and researcher in **Biomedical Engineering and 
 
 - [academic-biomedical-instrumentation-signals](knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md)
 - [healthtech-standards-security](knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md)
+- [ai-drug-discovery](knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

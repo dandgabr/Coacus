@@ -61,3 +61,15 @@ This skill establishes the standards and guidelines for strategic information se
 │ 8. Secure Software Supply Chain (SBOM, Proveniência SLSA)   │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🧮 Crypto and Password Mechanisms (Spraul)
+
+Mechanism-level grounding for the domain concepts above:
+
+- **Cipher primitives:** transposition (reorder) and substitution (replace), parameterized by a key; attacker toolbox — brute force, guessed known plaintexts (cribs), frequency analysis on key reuse; key expansion derives a long round-key schedule from a short memorable key.
+- **AES anatomy:** 128-bit keys expand into round keys; plaintext splits into byte grids processed by rounds of byte transposition, S-box substitution and key-dependent mixing; block chaining with a random starting value makes identical plaintext blocks produce different ciphertext, defeating frequency analysis; diffusion and avalanche properties make every ciphertext byte depend on all plaintext bytes. Known weaknesses concentrate in implementations (timing attacks), not the algorithm.
+- **Password storage arms race:** store hashes, not plaintexts → dictionary attacks → precomputed tables → hash chains → salts and key-stretching defeat precomputation; rate-limit online guessing. Good hashes are deterministic, well distributed, one-way and avalanche-like; signatures authenticate by encrypting a hash.
+- **Public-key bootstrap:** symmetric crypto cannot start a conversation between strangers; RSA-style public-key methods derive a public encryption exponent and a private decryption exponent from a composite modulus whose factorization the attacker lacks.
+- **TLS-style handshake mechanics:** negotiate ciphers, verify a certificate chain against trusted roots, exchange a secret encrypted under the server's public key, derive session keys (encryption key, chaining value, integrity key) from the secret plus both parties' randoms — the secret never crosses the wire; hash-then-encrypt (keyed hashing) defeats man-in-the-middle tampering.

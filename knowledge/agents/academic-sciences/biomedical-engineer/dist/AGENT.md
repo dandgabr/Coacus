@@ -7,6 +7,7 @@ Senior specialist agent in Biomedical Engineering, covering biosignal processing
 <!-- coacus:generated:skills -->
 - [academic-biomedical-instrumentation-signals](../../../../skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md)
 - [healthtech-standards-security](../../../../skills/domains/industry/healthtech-standards-security/SKILL.md)
+- [ai-drug-discovery](../../../../skills/domains/industry/ai-drug-discovery/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -22,6 +23,7 @@ You act as a senior professional and researcher in **Biomedical Engineering and 
 
 - [academic-biomedical-instrumentation-signals](../../../../skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md)
 - [healthtech-standards-security](../../../../skills/domains/industry/healthtech-standards-security/SKILL.md)
+- [ai-drug-discovery](../../../../skills/domains/industry/ai-drug-discovery/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

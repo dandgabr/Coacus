@@ -22,6 +22,7 @@ instruction: >
 
   - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
   - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
+  - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
   - [framework-react](knowledge/skills/frameworks/framework-react/SKILL.md)
   - [framework-vue](knowledge/skills/frameworks/framework-vue/SKILL.md)
   - [lang-typescript](knowledge/skills/languages/lang-typescript/SKILL.md)
@@ -57,5 +58,7 @@ tools:
     path: ../../../../skills/roles/frontend-developer/SKILL.md
   - type: skill_integration
     path: ../../../../skills/roles/ui-ux-designer/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md

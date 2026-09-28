@@ -7,7 +7,7 @@
       "source_path": "agents/academic-sciences/biomedical-engineer/AGENT.md",
       "source_sha256": "f735cb2367129c710e1621601ecf8f22ed44bb6c8a5aa0ea824e79958c018264",
       "target_path": "knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md",
-      "target_sha256": "32e17bdc4762c58dd453c597c3f3ff3a84d286a47601fcddb45b6b8b2ff70310",
+      "target_sha256": "20e96504d2adfaeac1e101c61f4c84bd147a9668d4f1996114e2c1fe204d3a54",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -517,7 +517,7 @@
       "source_path": "agents/data-cloud-devops/data-ai-engineer/AGENT.md",
       "source_sha256": "bfd0b5d3af2fdb9e6661240c1f6b7638505d44b6cfcc1c76199b589a53f71aeb",
       "target_path": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
-      "target_sha256": "0f9d9e7342087741d4a9e7647d52916dee7d6772963b5c59ef941e8f8e34e7cc",
+      "target_sha256": "25813b99993b2771e5fe07d7b6d2a7cd7e610ce0548b0d71056f05ab6b412be0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -707,7 +707,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "0c597e6c8067719b99c584cdd5ddc91642df3efad8874748fc7eb1370b52a965",
+      "target_sha256": "863bc232046d3e229f3d5d398cc637b8200101df81ee3eb89eac533bf0785302",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -843,7 +843,7 @@
       "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
       "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
       "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "ddf806c98ddbb1baf2dd6e477ea1a27029f2a9bdac5eedacf14d8e29492828b3",
+      "target_sha256": "198b055c1b8de32071d75e44eb1c51d3c0635e74777d6f8ae0873502470906bf",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2257,7 +2257,7 @@
       "source_path": "skills/domains/academic-compilers-language-processors/SKILL.md",
       "source_sha256": "493b1859cf00e93ca64d71fcd0d0458da36e53dab37606d3ede3df56e9cab5f5",
       "target_path": "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md",
-      "target_sha256": "48d3efba3c75debefed7e69d86fe6ab22578aec23ac932d22d24eae092b5da20",
+      "target_sha256": "9c2441429dd492f1587a7617139d9a59a703217c93b085981844ab13c0b0ae9a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2896,7 +2896,7 @@
       "source_path": "skills/domains/academic-microprocessors-embedded-systems/SKILL.md",
       "source_sha256": "78427e039b8575795d2043e88156c86aa5d16ade74ccf18e9267afb5e1084fd0",
       "target_path": "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
-      "target_sha256": "61795ed7f007f1bf56b0dde108beead56a7665d4464263f6bf84020a0ed1afc2",
+      "target_sha256": "030b8e5b3f9a47057b2f307086384b55f294774bb9e10eca72aeaa61e8d84b08",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3464,7 +3464,7 @@
       "source_path": "skills/domains/ai-llm-engineering-rag/SKILL.md",
       "source_sha256": "734a5cdf76463a1e5ab6e85d7eac74dc8d4f82c0f1ef28ecc8d5ff156e31bb3f",
       "target_path": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
-      "target_sha256": "34b0be3403182a877d887a989ac2487f6e6479a68da0dc19ce43a15dec3297ff",
+      "target_sha256": "8e3021a1c139be0ea81f15ec53271d835dd16f8814565045b496d8931e7d8a2e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3675,9 +3675,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/domains/financial-transaction-processing/SKILL.md",
-      "source_sha256": "2813bd5b1f0809ddc1d1ce7d755ef9c6cbd8312fcf37719890149a52504cd073",
+      "source_sha256": "8fce9c377ca24f920f5b36f9fc45b6a606f4e878e7b08e00773b5e3a7fcebe31",
       "target_path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
-      "target_sha256": "2813bd5b1f0809ddc1d1ce7d755ef9c6cbd8312fcf37719890149a52504cd073",
+      "target_sha256": "8fce9c377ca24f920f5b36f9fc45b6a606f4e878e7b08e00773b5e3a7fcebe31",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6071,7 +6071,7 @@
       "source_path": "skills/framework/framework-testing/SKILL.md",
       "source_sha256": "653bdbda2bd05b44662d2f3d961947bef309efe8afd83b680da98af3fa3a768e",
       "target_path": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "target_sha256": "7f3f36e793ec7d296ea7c3fb36c63061642cfc12a0668952853e7634975fca7a",
+      "target_sha256": "0b81fda3854ca5001347acc9450ea4fea5254540a369d84cbf60b6ea9eb7b2d2",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -7284,7 +7284,7 @@
       "source_path": "skills/languages/lang-c/SKILL.md",
       "source_sha256": "e9dc72d6b0a9510b6fecc68983d948418f7f2c89766f4cf7b5f1a77bfcf58d4d",
       "target_path": "knowledge/skills/languages/lang-c/SKILL.md",
-      "target_sha256": "f085bc855404aa4e1aaaa6812be16e24b28b24114438391fd863284a0089b6cf",
+      "target_sha256": "63e09c86b42b8b29c3b9cf3d0991892de36e26514e959d4ab5e0e3c132c3c21b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11195,7 +11195,7 @@
       "source_path": "skills/roles/product-owner/SKILL.md",
       "source_sha256": "dccd408d35991c56c49e166fd9da041990f239afbb00afa78aa3448868b30c8c",
       "target_path": "knowledge/skills/roles/product-owner/SKILL.md",
-      "target_sha256": "e75f30a9d9318f7eaf4eac40468c4726ceb5c5dcbf077a50871e81a67782e58b",
+      "target_sha256": "e21be98cd9243ad06638101552294afd3a59f9a960382c4944084a4b51938e70",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -12991,7 +12991,7 @@
       "source_path": "skills/security/grc-compliance/isc2-cissp-csslp-standards/SKILL.md",
       "source_sha256": "2a47a93ee5ae054f01f5fee30e3ee3fdb2879672c35755c0d6cdfbf78186e275",
       "target_path": "knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md",
-      "target_sha256": "5b1ace869e11075dc18fbce3b95ae662678b230faf1908ac259c92e107f8f0a3",
+      "target_sha256": "beb3569b2ede1a3eff7a28f2a1c577d61d75a771069cb87f7bf184ad0ecef6bd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18049,9 +18049,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
-      "source_sha256": "c5de7c7edf36666002de8da6c0c16a7f0a235a24ece1a5dd26923c90b4509fbb",
+      "source_sha256": "79a3f363eb3cf007908eec891297a0ca82063bc1beab5f83431b8afba30a7ab6",
       "target_path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
-      "target_sha256": "c5de7c7edf36666002de8da6c0c16a7f0a235a24ece1a5dd26923c90b4509fbb",
+      "target_sha256": "79a3f363eb3cf007908eec891297a0ca82063bc1beab5f83431b8afba30a7ab6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18064,9 +18064,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
-      "source_sha256": "b4947b5084b002e3f3079679e4cc53ac64ff92c98d2fc28c41f9bd2c4396ee54",
+      "source_sha256": "304103cc1eee83d0c9cc19a0b67be7842a0d6863b7024453fe260aeebb74a420",
       "target_path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
-      "target_sha256": "b4947b5084b002e3f3079679e4cc53ac64ff92c98d2fc28c41f9bd2c4396ee54",
+      "target_sha256": "304103cc1eee83d0c9cc19a0b67be7842a0d6863b7024453fe260aeebb74a420",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18094,9 +18094,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
-      "source_sha256": "40637aa9b07bd71659c372eecb5283a859b40da1e14f00fb516973a43b4843f7",
+      "source_sha256": "a35fd47d953c1443f609cd2e12e86003a9ebd482ea67e87f65166fa438a16ef6",
       "target_path": "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
-      "target_sha256": "40637aa9b07bd71659c372eecb5283a859b40da1e14f00fb516973a43b4843f7",
+      "target_sha256": "a35fd47d953c1443f609cd2e12e86003a9ebd482ea67e87f65166fa438a16ef6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18199,9 +18199,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "source_sha256": "9210a852f7a80995404022708bd7db192e7b53ce5eb84f5d328a2e38b1150259",
+      "source_sha256": "2f2e9b703c54276496bc217bfd937f4c68b9ba2a24e02f48e46e278529b57ea6",
       "target_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "target_sha256": "9210a852f7a80995404022708bd7db192e7b53ce5eb84f5d328a2e38b1150259",
+      "target_sha256": "2f2e9b703c54276496bc217bfd937f4c68b9ba2a24e02f48e46e278529b57ea6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18224,6 +18224,141 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-27T05:32:24Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+      "source_sha256": "9312abe8e00fe53f1dbe1a072666472931155baedc81b02cfba080edd31edd97",
+      "target_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+      "target_sha256": "9312abe8e00fe53f1dbe1a072666472931155baedc81b02cfba080edd31edd97",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
+      "source_sha256": "0a8696f91636c85722bb4d42721a2ab526e11e40fa01da4225a0cb2ea303e33c",
+      "target_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
+      "target_sha256": "0a8696f91636c85722bb4d42721a2ab526e11e40fa01da4225a0cb2ea303e33c",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
+      "source_sha256": "b298c674a65cc9fced12ca220da9371aea7e21f0758794e5c6f07eb2c9c2ddd2",
+      "target_path": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
+      "target_sha256": "b298c674a65cc9fced12ca220da9371aea7e21f0758794e5c6f07eb2c9c2ddd2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
+      "source_sha256": "33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572",
+      "target_path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
+      "target_sha256": "33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "source_sha256": "b7e439a7cf25ee151cea481dc8805704fff995d091ec054ec64af176d3edc7af",
+      "target_path": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "target_sha256": "b7e439a7cf25ee151cea481dc8805704fff995d091ec054ec64af176d3edc7af",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
+      "source_sha256": "b85dbbfd3cd112197c14db3fa9637cd0dd24ecbf37b386e07dcc027bfb4d9aa0",
+      "target_path": "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
+      "target_sha256": "b85dbbfd3cd112197c14db3fa9637cd0dd24ecbf37b386e07dcc027bfb4d9aa0",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/human-in-the-loop-ml/SKILL.md",
+      "source_sha256": "fd3990ca447c8f5668d0deda73e9cb391258820f692ba8b468112295627f6e29",
+      "target_path": "knowledge/skills/data/human-in-the-loop-ml/SKILL.md",
+      "target_sha256": "fd3990ca447c8f5668d0deda73e9cb391258820f692ba8b468112295627f6e29",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
+      "source_sha256": "7060ae56c323804fa622e2e4a9fd7d854df51d1c3adcdfbbf453482ce0dae05a",
+      "target_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
+      "target_sha256": "7060ae56c323804fa622e2e4a9fd7d854df51d1c3adcdfbbf453482ce0dae05a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
+      "source_sha256": "dd8ddfd4df88fb665271caf2abbc1abdb71f1f97ca7e45032c21ae66a9f88607",
+      "target_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
+      "target_sha256": "dd8ddfd4df88fb665271caf2abbc1abdb71f1f97ca7e45032c21ae66a9f88607",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T11:46:15Z"
     }
   ]
 }

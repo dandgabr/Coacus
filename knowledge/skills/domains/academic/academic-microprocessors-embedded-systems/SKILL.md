@@ -155,3 +155,18 @@ Enter Standby by setting `PWR->CR |= PDRS`, `SCB->SCR |= (1U<<2)` (SLEEPDEEP) an
 
 ### Pitfalls
 Enable the clock before register access; keep `.isr_vector_tbl` first with a correct `_estack`; watch integer widths and treat `data_mem_size` as a **byte** count; avoid non-determinism (generic allocators, exception unwinding); handle endianness, alignment/padding and early-revision errata explicitly; debounce inputs, feed watchdogs and monitor heartbeats.
+
+---
+
+## 🖥️ 7. Computer Architecture Foundations (Arroz, Monteiro & Oliveira)
+
+- **Logic synthesis:** canonical sum-of-products / product-of-sums forms; NAND/NOR functional completeness; minimization via Karnaugh maps (visual, few variables) versus Quine–McCluskey (tabular, scalable, handles don't-cares). Real gates have propagation delay, hazards and timing budgets; table-driven logic (ROM/PLA/PAL) implements functions directly.
+- **Arithmetic:** ripple vs carry-lookahead/carry-select adders (area traded for carry delay); two's complement with sign extension and overflow detection; IEEE-754 floating point and fixed-point emulation limits.
+- **Sequential design methodology:** state diagram → state minimization → state assignment → next-state logic with D/JK flip-flops; Mealy versus Moore; setup/hold windows bound maximum clock frequency. Control-unit spectrum: discrete-gate FSM → counter-based sequencer → microprogrammed control (flexibility at a speed cost).
+- **Datapath/control separation** is the core architectural pattern: register files, ALU (arithmetic + logic + shifter + flags), bus/mux interconnect, and a control table mapping opcodes to control signals.
+- **Memory hierarchy:** the locality principle (temporal + spatial) makes small-fast-cache + large-slow-DRAM behave like one large-fast memory. Cache design has four degrees of freedom: mapping (direct-mapped, fully associative, N-way set-associative compromise), block size (spatial locality), replacement policy (temporal locality), and write policy (write-through vs write-back with dirty bits).
+- **Virtual memory:** multi-level page tables, dirty/reference bits, TLB caching of translations — and a real coupling between VM translation and physical caches.
+- **I/O ladder:** programmed polling → interrupt-driven (polled vs vectored) → DMA (cycle stealing, burst transfers) → I/O processors; each rung frees CPU cycles at more hardware cost. Memory-mapped vs separate port addressing; strobing vs full handshakes; asynchronous serial framing.
+- **Instruction encoding is an information budget:** flexible addressing modes balloon instruction width and fetch bandwidth; operand restrictions compress code. The ISA surface covers operand kinds, addressing modes, jumps, calls and interrupts.
+- **Pipelining (P4 model):** fetch → decode/operand-fetch → execute → write-back; split instruction/data caches kill structural hazards. **Hazard taxonomy:** structural (duplicate resources), data (RAW — solved by forwarding/bypass multiplexers rather than stalls), control (branches — stalls, then prediction with a jump-target cache; speculative work must be suppressible until confirmation).
+- **Beyond single pipelines:** superpipelining multiplies hazard exposure; superscalar issues multiple instructions per cycle (needs dynamic scheduling and elaborate forwarding); VLIW pushes conflict resolution into the compiler. Performance accounting: CPI × clock period × instruction count — measure on real programs; hardware complexity grows faster than benefit at high clock rates.

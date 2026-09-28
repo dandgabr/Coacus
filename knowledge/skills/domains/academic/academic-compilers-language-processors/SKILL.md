@@ -109,3 +109,16 @@ exit:
   1. **Simplify**: Remove nodes with degree $< K$ and push them onto a stack.
   2. **Spill**: If all nodes have degree $\ge K$, choose a spill candidate based on memory cost / loop nesting.
   3. **Select**: Pop the nodes and assign physical registers of a compatible color with no collisions with neighbors.
+
+---
+
+## 🧮 7. Thinking Low-Level: HLL Constructs to Machine Code (Hyde)
+
+- **Thesis:** write high-level code by mentally simulating the assembly it will produce, and verify by reading compiler output — never trust marketing claims about optimizer quality. After any "optimization" edit, regenerate compiler output and diff it; measure the machine code.
+- **Compiler pipeline:** lexical scan → parse (AST) → intermediate code → optimization → code generation; interpreters, compilers and JITs move translation cost to different times and open different optimization windows. Optimization is NP-complete, so production optimizers are heuristic and budgeted; JITs must optimize in milliseconds, which is why ahead-of-time languages typically peak higher.
+- **Basic blocks + data-flow analysis** let the compiler prove value ranges, constant states, liveness and deadness — ambiguity in the source bounds what the analysis can conclude.
+- **Optimization catalog:** constant folding/propagation, dead-code elimination, common-subexpression elimination, strength reduction (shift/AND for multiply/divide/modulo), induction-variable elimination, loop-invariant code motion. Know the optimization flags: most compilers optimize nothing by default; flags trade speed, space and target CPU.
+- **Binding time is the real constant question:** language-definition, compile, link, load or run time; manifest constants cost nothing at runtime.
+- **Object files and layout:** sections, relocation records, symbol tables; section alignment causes internal fragmentation — a space vs load-efficiency trade-off. Tooling: assembly output, dumpbin/objdump, javap/ILDasm for bytecode, and before/after assembly diffing as the micro-benchmark method.
+- **Representation cost model:** declare wider locals before narrower ones to get alignment without padding waste; power-of-two element sizes make scaled-index array access nearly free; string format choice (zero-terminated vs length-prefixed vs descriptor) drives the cost of every string operation; virtual dispatch adds a vtable pointer per object and an indirect call per method.
+- **Semantics that are not optimizations:** short-circuit versus complete boolean evaluation changes correctness (null-guard idioms break under complete evaluation) and skips side effects; switch statement structure (dense case ranges) determines whether the compiler can emit a jump table; undefined evaluation order is a correctness trap.

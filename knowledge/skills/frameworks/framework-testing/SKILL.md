@@ -170,6 +170,17 @@ describe('calculateDiscount - BVA & Decision Table Tests', () => {
 
 ---
 
+## 🤖 LLM-Assisted Testing (Winteringham)
+
+- **Area-of-effect model:** the tester's judgment sits at the center; LLM abilities (generation, transformation, translation) extend reach. Every tool output loops back to a human — over-reliance shrinks effective coverage, and automation bias (trusting output because a tool produced it) is the named hazard.
+- **Risk triad for LLM use:** hallucinations, data provenance (can you trust output origins), data privacy (what you send to third-party APIs). Standing posture: healthy skepticism.
+- **Prompt principles for testers:** separate instructions from data with delimiters; request structured output and switch formats on demand; give the model a bail-out phrase to suppress guessed answers; use few-shot examples; instruct explicit step-by-step reasoning. Maintain a versioned library of reusable prompts.
+- **Where LLMs fit:** test data generation under explicit rules; risk and test-idea suggestions (never the sole arbiter); code snippets for automation parts; format transformation (text→SQL, language-to-language with verification); summarizing exploratory notes into reports; natural-language breakdowns of unfamiliar code for risk analysis.
+- **LLM-assisted TDD:** start with a prompt that generates clarifying questions about the story (what/where/why/when/who/how filtered through chosen quality characteristics); triage answers, then run small red-green-refactor loops with an IDE copilot per increment. Generated ambiguity questions force design decisions before code exists.
+- **Planning and charters:** pair planning prompts with testing heuristics and quality-characteristic lists; convert risks into charters ("explore X with Y to discover Z"); use LLMs during sessions for code understanding, session data and bug investigation, then summarize notes afterwards.
+- **Context customization decision:** RAG (near-zero learning curve, cheap to start, token costs grow, weak control) versus fine-tuning (steep curve, real costs, slow, strong control); combine only when the compounded debugging burden is acceptable.
+- **AI test agents:** goal-driven, perceptive, autonomous, adaptive — implemented via function calling where the model selects and sequences tool calls; build incrementally from a dummy agent and watch reliability and scope control.
+
 ## 🔗 Integration with Other Skills
 - [qa-engineer](../../roles/qa-engineer/SKILL.md): Quality planning and orchestration and defect reports.
 - [framework-pytest](../framework-testing-python/SKILL.md): Test automation in Python with fixtures and formal parameterized tests.

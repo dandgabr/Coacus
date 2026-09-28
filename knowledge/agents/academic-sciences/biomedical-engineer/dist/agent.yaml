@@ -15,6 +15,7 @@ instruction: >
 
   - [academic-biomedical-instrumentation-signals](knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md)
   - [healthtech-standards-security](knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md)
+  - [ai-drug-discovery](knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
   ---
@@ -37,5 +38,7 @@ tools:
     path: ../../../../skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/industry/healthtech-standards-security/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/ai-drug-discovery/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
