@@ -1,0 +1,8 @@
+{
+  "name": "enterprise-architect",
+  "description": "Lead Enterprise Architecture agent that orchestrates the whole architecture function: sets architecture principles, the target state across the four EA domains, the governance gates and the arbitration between the specialist architects (business, solution, data, application, technology, network and security). Use when defining enterprise standards, running an architecture review board, producing target-state roadmaps, or reconciling conflicting domain decisions.",
+  "category": "architecture",
+  "source": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
+  "dist": "knowledge/agents/architecture/enterprise-architect/dist",
+  "fingerprint": "3e2c66f256e70ce2"
+}

@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 352 skill(s) · 78 agent(s) · 1 MCP(s)
+**Totals:** 353 skill(s) · 79 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -40,6 +40,7 @@
 | electrical-power-engineer | academic-sciences | [knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md](../knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md) |
 | embedded-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md) |
 | endpoint-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md) |
+| enterprise-architect | architecture | [knowledge/agents/architecture/enterprise-architect/agent.source.md](../knowledge/agents/architecture/enterprise-architect/agent.source.md) |
 | frontend-developer | software-engineering | [knowledge/agents/software-engineering/frontend-developer/agent.source.md](../knowledge/agents/software-engineering/frontend-developer/agent.source.md) |
 | fullstack-developer | software-engineering | [knowledge/agents/software-engineering/fullstack-developer/agent.source.md](../knowledge/agents/software-engineering/fullstack-developer/agent.source.md) |
 | game-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/game-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/game-security-specialist/agent.source.md) |
@@ -91,6 +92,7 @@
 
 | Skill | Path |
 |---|---|
+| enterprise-architect | [knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md](../knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md) |
 | data-intensive-systems | [knowledge/skills/data/data-intensive-systems/SKILL.md](../knowledge/skills/data/data-intensive-systems/SKILL.md) |
 | data-mesh-governance | [knowledge/skills/data/data-mesh-governance/SKILL.md](../knowledge/skills/data/data-mesh-governance/SKILL.md) |
 | data-science-workflow | [knowledge/skills/data/data-science-workflow/SKILL.md](../knowledge/skills/data/data-science-workflow/SKILL.md) |

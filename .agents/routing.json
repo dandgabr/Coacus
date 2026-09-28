@@ -872,6 +872,42 @@
       ]
     },
     {
+      "name": "enterprise-architect",
+      "category": "architecture",
+      "description": "Lead Enterprise Architecture agent that orchestrates the whole architecture function: sets architecture principles, the target state across the four EA domains, the governance gates and the arbitration between the specialist architects (business, solution, data, application, technology, network and security). Use when defining enterprise standards, running an architecture review board, producing target-state roadmaps, or reconciling conflicting domain decisions.",
+      "skills": [
+        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
+        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
+        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
+        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
+        "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
+        "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md",
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
+        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
+        "knowledge/skills/roles/software-architect/SKILL.md"
+      ],
+      "triggers": [
+        "arb",
+        "archimate",
+        "architecture governance",
+        "architecture review board",
+        "arquiteto corporativo",
+        "arquitetura corporativa",
+        "arquitetura empresarial",
+        "enterprise architect",
+        "enterprise architecture",
+        "estado alvo",
+        "governan\u00e7a de arquitetura",
+        "iso 42010",
+        "roadmap de arquitetura",
+        "target state",
+        "togaf"
+      ]
+    },
+    {
       "name": "frontend-developer",
       "category": "software-engineering",
       "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",

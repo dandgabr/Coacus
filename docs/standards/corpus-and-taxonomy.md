@@ -19,9 +19,18 @@ The manifest declares: `source_repos`, `exclude_import_from`, `category_map`,
 
 ### Taxonomy
 
-The corpus is normalized into TEN top-level categories under `knowledge/skills/`:
-`data`, `domains`, `engineering`, `frameworks`, `infrastructure`, `languages`,
-`mapping`, `platforms`, `roles`, `security`.
+The corpus is normalized into ELEVEN top-level categories under `knowledge/skills/`:
+`architecture`, `data`, `domains`, `engineering`, `frameworks`, `infrastructure`,
+`languages`, `mapping`, `platforms`, `roles`, `security`.
+
+`architecture` carries the architect disciplines by FAMILY rather than by scope
+variant, with subcategories that mirror the layers: `enterprise/` (enterprise,
+business, solution, domain architects), `domains/` (data, application,
+technology, integration, API, AI/ML architects) and `delivery/` (network,
+platform, systems, IAM architects). Only FIRST-CLASS roles — those with an
+independent body of knowledge, standard or certification — are added; a title
+that is merely a scope variant or a job-market label is a referenced skill, not
+a new one.
 
 - Per-skill overrides exist where a source subcategory is too coarse (for example
   `pentest-cloud-aws-azure-gcp` → `security/offensive`).

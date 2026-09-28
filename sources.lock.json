@@ -18944,6 +18944,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-28T13:29:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
+      "source_sha256": "3e2c66f256e70ce2c0499f71feb9556e00ab0f4effddb39fd20dff0b31695716",
+      "target_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
+      "target_sha256": "3e2c66f256e70ce2c0499f71feb9556e00ab0f4effddb39fd20dff0b31695716",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:48:20Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+      "source_sha256": "7ef88eaf35a4ce105a39eb2903aac1e06b3a2304f850ac2e6ea867fcd9764140",
+      "target_path": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
+      "target_sha256": "7ef88eaf35a4ce105a39eb2903aac1e06b3a2304f850ac2e6ea867fcd9764140",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T14:48:20Z"
     }
   ]
 }
