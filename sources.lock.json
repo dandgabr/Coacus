@@ -707,7 +707,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "3e51bad6d0a2f87968060247306ef2db97588d0f81ed322ad7c848aefdea6780",
+      "target_sha256": "bf8bb1fb0a0455f30abdc784e92de5c00da52078ca03100b6a86b0de0a1e8cb0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -843,7 +843,7 @@
       "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
       "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
       "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "5658ae0ed1b4f56aff83ca02d1217239a9741ae8f9096cd659d28aa3384418a8",
+      "target_sha256": "781017aaa8b9545e1de1d373c4b230d96788fd25587d3d805724708836ea9654",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10821,7 +10821,7 @@
       "source_path": "skills/roles/frontend-developer/SKILL.md",
       "source_sha256": "8c668ea5b9d7219f63fa9d7de4d89af1b01c81aea854fb970f9c5942b0180b03",
       "target_path": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "target_sha256": "fac6679cbe7b36fc9ee468a6b21228d35107fb98dd0c8391fe14a1a5901b1b8f",
+      "target_sha256": "3a288c180254c8d76f0d7cc4d457a3a71d55484bcdd03f0c624d2f52b67a8b95",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11566,7 +11566,7 @@
       "source_path": "skills/roles/ui-ux-designer/SKILL.md",
       "source_sha256": "f059a3eaf6a72ab2a7c65d079647f9fb6a94e8f3c35e522a086953b9956d72ff",
       "target_path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "target_sha256": "cb3af74d1c61c879503ca9d881a9774b9ba1bb25c6f51d17b5aa91a709f95fab",
+      "target_sha256": "e52089859210d24ba84d549d88d4c8d1db0ac9b20a89991316269d6c4c5e6946",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18809,6 +18809,66 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-28T12:44:17Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/roles/ui-designer/SKILL.md",
+      "source_sha256": "77680501706e0b93024e406dd006ec3b91176595a6608f66528a963fcf5750d8",
+      "target_path": "knowledge/skills/roles/ui-designer/SKILL.md",
+      "target_sha256": "77680501706e0b93024e406dd006ec3b91176595a6608f66528a963fcf5750d8",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:11:43Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/roles/ux-designer/SKILL.md",
+      "source_sha256": "38076b5cadd05df08f4fd81a3874652a1bc5babec9d9a0f6f183a7b14f9cb8cc",
+      "target_path": "knowledge/skills/roles/ux-designer/SKILL.md",
+      "target_sha256": "38076b5cadd05df08f4fd81a3874652a1bc5babec9d9a0f6f183a7b14f9cb8cc",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:11:43Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
+      "source_sha256": "681eac0e93376b979bab26b44ea146e52dbfdd4126913999d56e5d66e72ab458",
+      "target_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
+      "target_sha256": "681eac0e93376b979bab26b44ea146e52dbfdd4126913999d56e5d66e72ab458",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:11:43Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
+      "source_sha256": "77707a266b27fbfa33a7e94db1160b5c42c5afb311d150d1a049ecd3742eecab",
+      "target_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
+      "target_sha256": "77707a266b27fbfa33a7e94db1160b5c42c5afb311d150d1a049ecd3742eecab",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-09-28T13:11:43Z"
     }
   ]
 }

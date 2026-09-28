@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 76,
-    "skills": 345,
+    "agents": 78,
+    "skills": 347,
     "mcps": 1
   },
   "agents": [
@@ -445,10 +445,22 @@
       "source": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md"
     },
     {
+      "name": "ui-designer",
+      "category": "software-engineering",
+      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+      "source": "knowledge/agents/software-engineering/ui-designer/agent.source.md"
+    },
+    {
       "name": "ui-ux-designer",
       "category": "software-engineering",
       "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
       "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md"
+    },
+    {
+      "name": "ux-designer",
+      "category": "software-engineering",
+      "description": "Senior UX designer who owns the experience end to end: discovery and research method selection, information architecture, flows and journey maps, usability evaluation with heuristics and metrics (SUS, HEART), and ethical design governance. Applies the full UX discipline from ISO 9241-210 framing to deceptive-pattern review.",
+      "source": "knowledge/agents/software-engineering/ux-designer/agent.source.md"
     },
     {
       "name": "vcs-repository-specialist",
@@ -1269,8 +1281,16 @@
       "path": "knowledge/skills/roles/software-architect/SKILL.md"
     },
     {
+      "name": "ui-designer",
+      "path": "knowledge/skills/roles/ui-designer/SKILL.md"
+    },
+    {
       "name": "ui-ux-designer",
       "path": "knowledge/skills/roles/ui-ux-designer/SKILL.md"
+    },
+    {
+      "name": "ux-designer",
+      "path": "knowledge/skills/roles/ux-designer/SKILL.md"
     },
     {
       "name": "web-search-specialist",

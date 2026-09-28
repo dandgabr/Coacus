@@ -1,6 +1,6 @@
 ---
 name: "ui-ux-designer"
-description: "Acts as a senior UI/UX Designer and Art Director, mastering 24 visual styles (historical, modern, and anti-AI), information architecture, user research, bespoke design systems, high-impact typography, and the Anti-AI Slop Manifesto."
+description: "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the 30-style visual library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists."
 ---
 
 # 🎨 AI Skill: UI/UX Designer & Senior Art Director

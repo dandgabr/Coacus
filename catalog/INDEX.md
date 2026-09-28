@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 345 skill(s) · 76 agent(s) · 1 MCP(s)
+**Totals:** 347 skill(s) · 78 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -81,7 +81,9 @@
 | telecom-engineer | academic-sciences | [knowledge/agents/academic-sciences/telecom-engineer/agent.source.md](../knowledge/agents/academic-sciences/telecom-engineer/agent.source.md) |
 | telecom-voice-specialist | academic-sciences | [knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md](../knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md) |
 | threat-intelligence-specialist | cybersecurity | [knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md](../knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md) |
+| ui-designer | software-engineering | [knowledge/agents/software-engineering/ui-designer/agent.source.md](../knowledge/agents/software-engineering/ui-designer/agent.source.md) |
 | ui-ux-designer | software-engineering | [knowledge/agents/software-engineering/ui-ux-designer/agent.source.md](../knowledge/agents/software-engineering/ui-ux-designer/agent.source.md) |
+| ux-designer | software-engineering | [knowledge/agents/software-engineering/ux-designer/agent.source.md](../knowledge/agents/software-engineering/ux-designer/agent.source.md) |
 | vcs-repository-specialist | software-engineering | [knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md](../knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md) |
 | web-researcher | research-discovery | [knowledge/agents/research-discovery/web-researcher/agent.source.md](../knowledge/agents/research-discovery/web-researcher/agent.source.md) |
 
@@ -290,7 +292,9 @@
 | qa-engineer | [knowledge/skills/roles/qa-engineer/SKILL.md](../knowledge/skills/roles/qa-engineer/SKILL.md) |
 | scrum-master | [knowledge/skills/roles/scrum-master/SKILL.md](../knowledge/skills/roles/scrum-master/SKILL.md) |
 | software-architect | [knowledge/skills/roles/software-architect/SKILL.md](../knowledge/skills/roles/software-architect/SKILL.md) |
+| ui-designer | [knowledge/skills/roles/ui-designer/SKILL.md](../knowledge/skills/roles/ui-designer/SKILL.md) |
 | ui-ux-designer | [knowledge/skills/roles/ui-ux-designer/SKILL.md](../knowledge/skills/roles/ui-ux-designer/SKILL.md) |
+| ux-designer | [knowledge/skills/roles/ux-designer/SKILL.md](../knowledge/skills/roles/ux-designer/SKILL.md) |
 | web-search-specialist | [knowledge/skills/roles/web-search-specialist/SKILL.md](../knowledge/skills/roles/web-search-specialist/SKILL.md) |
 | ai-adversarial-ml-security | [knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md](../knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md) |
 | ai-agentic-security | [knowledge/skills/security/ai/ai-agentic-security/SKILL.md](../knowledge/skills/security/ai/ai-agentic-security/SKILL.md) |

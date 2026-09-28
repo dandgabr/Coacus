@@ -202,7 +202,13 @@
       "path": "knowledge/agents/software-engineering/software-engineer"
     },
     {
+      "path": "knowledge/agents/software-engineering/ui-designer"
+    },
+    {
       "path": "knowledge/agents/software-engineering/ui-ux-designer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/ux-designer"
     },
     {
       "path": "knowledge/agents/software-engineering/vcs-repository-specialist"

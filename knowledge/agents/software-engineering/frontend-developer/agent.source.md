@@ -13,6 +13,7 @@ skills:
   - knowledge/skills/languages/lang-typescript/SKILL.md
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
+  - knowledge/skills/roles/ui-designer/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md
   - knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md

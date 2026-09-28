@@ -89,6 +89,8 @@ tools:
   - type: skill_integration
     path: ../../../../skills/roles/ui-ux-designer/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/roles/ui-designer/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md

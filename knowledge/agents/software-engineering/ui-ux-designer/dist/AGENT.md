@@ -9,6 +9,8 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [product-owner](../../../../skills/roles/product-owner/SKILL.md)
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
+- [ux-designer](../../../../skills/roles/ux-designer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [ui-style-3d-immersive-webgl](../../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
@@ -46,7 +48,7 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 
 ## 🎯 Description and Purpose
 
-Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
+Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
 
 ---
 
@@ -62,6 +64,8 @@ When acting, you must strictly follow the guidelines of the main ui-ux-designer 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
+- [ux-designer](../../../../skills/roles/ux-designer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [3d-immersive-webgl](../../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)

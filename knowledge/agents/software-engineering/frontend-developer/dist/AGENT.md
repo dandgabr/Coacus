@@ -11,6 +11,7 @@ Senior specialist agent in Frontend Engineering and Design Engineering, masterin
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [ui-style-3d-immersive-webgl](../../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
 - [ui-style-acid-anti-design](../../../../skills/domains/design/ui-style-acid-anti-design/SKILL.md)
