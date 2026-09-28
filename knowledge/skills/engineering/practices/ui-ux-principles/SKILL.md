@@ -76,6 +76,32 @@ Reject "the model is the interface"; a bare chat box lowers the barrier to **mis
 
 ---
 
+## 🧠 AI-Native UX Patterns (Nudelman; Pilot)
+
+- **Use-case selection heuristic:** any project premised on "AI will tell domain experts how to do their job" is a red flag; reframe as which question, answered by AI, makes the expert's decision better. The best AI is augmented intelligence.
+- **Copilot layout framework:** task importance scales screen real estate — side panel (page-local, never obscures), large overlay (almost always worst: close/reload cycles), or full page (an AI-first alternative experience with its own navigation). SaaS copilots need stateful multi-conversation sessions, proprietary-data grounding, and simple hub-and-spokes IA (landing → session list → chat terminal).
+- **Seven LLM interaction patterns:** restating the interpreted query, auto-complete, talk-back, initial suggestions, next-steps continuation, regeneration tweaks (the opposite workflow), and guardrails.
+- **Value Matrix:** multiply each confusion-matrix outcome (TP/TN/FP/FN) by its dollar benefit or cost and by the human cost side; select models by real-world ROI, not data-science metrics. Conservative and recall-optimized models each win under different cost assumptions.
+- **Anomaly UIs:** separate anomaly from alert; occurrence timers gate alerting; dynamic thresholds suit seasonal metrics and static thresholds suit compliance or hard-limit metrics; always preview history before saving threshold changes and keep a manual override.
+- **Agentic UX:** supervisor-agent loops need flexible, multi-stage workflows where humans accept or reject suggested observations; recall-optimized "aggressive" agents attempt costly or consent-requiring actions — design explicit approval flows and cost awareness.
+- **New UCD process:** iterate UI + AI + data simultaneously; the "spike" is a rough proof of concept answering "does the model produce the desired outcome?"; modern Wizard-of-Oz testing pairs a design shell with live spiked AI output. Treat developers as handoff customers; AI products are trained, not programmed — never done.
+- **Shift-left prototyping (Pilot):** when making is cheap, prototypes become thinking tools — learn by making, match fidelity to the learning goal, avoid premature visual polish; treat every AI output as a hypothesis to validate with humans; prompting is a design brief (user, goal, constraints, success criteria).
+
+---
+
+## 🗂️ Information Architecture Classics (Morville & Rosenfeld)
+
+- IA is the structural design of shared information environments through four interlocking systems: **organization, labeling, navigation and search**.
+- **Organization schemes:** exact (alphabetical, chronological, geographical) versus ambiguous (topic, task, audience, metaphor) — ambiguous is harder yet more valuable because users rarely know what they want; it demands user testing and maintenance.
+- **Structures:** hierarchy/taxonomy as default; database model (metadata + controlled vocabulary) for homogeneous chunks; hypertext layered for nonlinear relations; social classification as a supplement.
+- **Labeling consistency:** across style, presentation, syntax, granularity, comprehensiveness and audience register; language ambiguity is irreducible, so narrow scope and test.
+- **Navigation:** embedded (global, local, contextual) plus supplemental (site maps, indexes); provide you-are-here cues and respect browser navigation.
+- **Search:** zones (by audience, topic, content type) reduce apples-and-oranges results; index content components, not boilerplate; sorting serves decision tasks and ranking serves learning tasks; show result counts and never overload the first screen.
+- **Faceted classification:** facets (topic, product, type, audience, geography, price) enable faceted search, faceted sorting and guided navigation — multiple simultaneous paths to the same content on an enduring metadata foundation; controlled vocabularies follow ANSI-NISO thesaurus standards.
+- **Research loop:** context, content and users overlap; start with business context — ignoring business realities is as dangerous as ignoring users. The value case: lower cost of finding, of finding wrong information, and of not finding at all.
+
+---
+
 ## ⚠️ Pitfalls
 
 - Forcing users to think; inconsistent terminology or placement (doubles think time).

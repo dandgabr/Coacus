@@ -22,6 +22,7 @@ instruction: >
 
   - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
   - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
+  - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
   - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
   - [product-owner](knowledge/skills/roles/product-owner/SKILL.md)
@@ -54,5 +55,7 @@ tools:
     path: ../../../../skills/roles/ui-ux-designer/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/ui-ux-principles/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/security-privacy/SKILL.md

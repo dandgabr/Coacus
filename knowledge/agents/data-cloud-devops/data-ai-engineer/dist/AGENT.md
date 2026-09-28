@@ -18,6 +18,9 @@ Senior specialist agent in Data Engineering, Big Data and Artificial Intelligenc
 - [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)
 - [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
 - [ai-application-engineering](../../../../skills/domains/industry/ai-application-engineering/SKILL.md)
+- [ai-model-evaluation](../../../../skills/domains/industry/ai-model-evaluation/SKILL.md)
+- [mlops-platform-engineering](../../../../skills/data/mlops-platform-engineering/SKILL.md)
+- [human-in-the-loop-ml](../../../../skills/data/human-in-the-loop-ml/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.
@@ -42,6 +45,9 @@ You act as a senior professional and researcher in **Data and Artificial Intelli
 - [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)
 - [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
 - [ai-application-engineering](../../../../skills/domains/industry/ai-application-engineering/SKILL.md)
+- [ai-model-evaluation](../../../../skills/domains/industry/ai-model-evaluation/SKILL.md)
+- [mlops-platform-engineering](../../../../skills/data/mlops-platform-engineering/SKILL.md)
+- [human-in-the-loop-ml](../../../../skills/data/human-in-the-loop-ml/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---

@@ -120,6 +120,20 @@ Idempotency-Key: ${IDEMPOTENCY_KEY}
 
 ---
 
+## 🏦 5. ACH Processing and Sanctions Screening (Kardell & Brouwer)
+
+- **ACH domain model:** originator → originating depository financial institution → ACH operator (central bank or clearing house) → receiving depository financial institution; the Nacha specification owns the format; routing transit numbers identify banks and trace numbers (originator routing plus an ascending sequence) exist for reconciliation and regulatory traceability.
+- **File structure is fixed-width and hierarchical:** 94-character records — file header, repeated batches of batch header, entry details, optional addenda records, batch control, and a file trailer; record order and control totals are part of validity.
+- **Parser design decisions:** accumulate an error list instead of fail-fast (testability and batch visibility); decide validate-before-parse versus parse-then-validate explicitly; name functions honestly when a "parser" starts validating; handle addenda look-ahead within streaming constraints.
+- **Rejection taxonomy:** file rejection (wrong record length), batch rejection (non-ascending trace numbers), entry rejection (addenda flag inconsistent with the following record); detect before posting wherever possible — posted transactions require reversals.
+- **Exception model in operations terms:** error = processing cannot continue; exception = business condition blocking the file (format, invalid data, risk rules); warning = notify and continue (control-total mismatch). Every check needs documented recovery steps — undocumented checks get disabled during incidents. Corrections require an audit trail and originator notification.
+- **Persistence principles:** enforce referential integrity with constraints (eliminates cleanup jobs and integrity crashes); store the file hash for identity; keep unparsed raw records beside parsed records for audit and reprocessing.
+- **Sanctions screening:** scan entry names and counterparties against sanctions lists at onboarding and in periodic sweeps; upgrade exact and wildcard matching with phonetic and edit-distance functions so deliberately misspelled names still hit; weigh fuzzy-match recall against false-positive review cost and plan rescan scaling as lists grow.
+- **Audit log as a control:** capture timestamp, user, request, URL, user agent and IP (CIDR-queryable type) through middleware; logs without a monitor and alert strategy are useless; baseline normal behavior so incident responders do not chase stale errors.
+- **GenAI-assisted workflow posture:** generate → run tests → read the code → refine → commit only what passes; nondeterministic output is a draft to be validated by test suites that enumerate each record type, never an oracle; keep customer PII, credentials and proprietary logic out of prompts.
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - For adapting the environment to credit card security standards and CDE scope, consult the [pci-dss-compliance](../../../security/grc/pci-dss-compliance/SKILL.md) skill.

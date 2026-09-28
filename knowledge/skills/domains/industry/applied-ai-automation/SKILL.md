@@ -92,6 +92,18 @@ new_value = (1 − α)·Q[s,a] + α·(reward + γ·max(Q[next_state]))
 
 ---
 
+## 📋 Personal Automation Workflows (Sarkar)
+
+- **Task audit before automation:** map recurring activities, then score each on time consumed versus cognitive uniqueness; the sweet spot is high time × low uniqueness (email triage, meeting follow-ups, status reports). Relationship building and strategy stay manual — the relationship is the point.
+- **Universal task loop:** gather inputs → write prompt → review output → refine with follow-up → use the result; imperfect input is acceptable, prompts are conversations not commands, and the human is the editor.
+- **Email workflow:** classify unread mail (act now / act later / inform only) with a one-line intent each → batch-draft replies from those intents (draft quality tracks intent specificity; constrain length and register) → review drafts on accuracy, tone and completeness → approve and send; hold anything sensitive for manual editing. A short voice guide with real sent-email examples outperforms abstract style rules.
+- **Meeting lifecycle:** automated pre-briefs from calendar; consented transcription; a post-meeting packet of decisions (with who decided), action items (owner/deadline/context), open questions and a short executive summary — distributed to attendees and the tracker after a five-minute review gate for misattributed ownership and sensitive content.
+- **Research workflow:** define the question with scope and output format → gather (web for current facts, internal documents for context, deep research for multi-source investigations) → structure the brief → verify. Filter trivial queries with the "would one search answer this?" test; attach confidence levels per finding; counter hallucination hot spots (unsourced statistics, plausible-but-fake URLs, stale facts, softened nuance) with cite-or-omit prompts.
+- **Reusable assets:** repurpose one source artifact across audiences via style templates; extract tasks from meetings and mail into the tracker; build a queryable research folder that future prompts consult first.
+- **Skills mechanism:** a skill is a short plain-language instruction file (purpose, triggers, step-by-step method) plus templates that the assistant always consults — prompts are scribbled notes, a skill is the instruction written once. Stagger integration approvals and keep every send and task creation behind explicit human approval.
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - For the data-science workflow and cloud MLOps, see [data-science-workflow](../../../data/data-science-workflow/SKILL.md).

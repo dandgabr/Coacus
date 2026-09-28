@@ -11,6 +11,7 @@ Senior specialist agent in Frontend Engineering and Design Engineering, masterin
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -33,6 +34,7 @@ This agent operates using the guidelines and technical standards established in 
 
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
+- [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [framework-react](../../../../skills/frameworks/framework-react/SKILL.md)
 - [framework-vue](../../../../skills/frameworks/framework-vue/SKILL.md)
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)

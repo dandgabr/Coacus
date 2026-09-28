@@ -28,7 +28,13 @@
       "path": "knowledge/skills/data/high-performance-java-persistence"
     },
     {
+      "path": "knowledge/skills/data/human-in-the-loop-ml"
+    },
+    {
       "path": "knowledge/skills/data/jpa-hibernate-performance"
+    },
+    {
+      "path": "knowledge/skills/data/mlops-platform-engineering"
     },
     {
       "path": "knowledge/skills/data/power-bi"
@@ -124,7 +130,13 @@
       "path": "knowledge/skills/domains/industry/ai-application-engineering"
     },
     {
+      "path": "knowledge/skills/domains/industry/ai-drug-discovery"
+    },
+    {
       "path": "knowledge/skills/domains/industry/ai-llm-engineering-rag"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/ai-model-evaluation"
     },
     {
       "path": "knowledge/skills/domains/industry/applied-ai-automation"
@@ -137,6 +149,9 @@
     },
     {
       "path": "knowledge/skills/domains/industry/computer-vision-deep-learning"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/conversational-ai-chatbots"
     },
     {
       "path": "knowledge/skills/domains/industry/edtech-andragogy"
@@ -199,6 +214,9 @@
       "path": "knowledge/skills/engineering/practices/clean-code-reusability"
     },
     {
+      "path": "knowledge/skills/engineering/practices/code-review-practices"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/distributed-systems"
     },
     {
@@ -236,6 +254,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/version-freshness"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/web-accessibility-wcag"
     },
     {
       "path": "knowledge/skills/frameworks/framework-criterion"

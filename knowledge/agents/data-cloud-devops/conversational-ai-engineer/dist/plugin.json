@@ -1,0 +1,6 @@
+{
+  "name": "conversational-ai-engineer",
+  "version": "0.1.0",
+  "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+  "entrypoint": "AGENT.md"
+}

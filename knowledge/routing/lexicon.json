@@ -6,7 +6,7 @@
       "ia",
       "ai security",
       "llm security",
-      "seguran\u00e7a de ia",
+      "segurança de ia",
       "prompt injection",
       "red team de ia",
       "modelo de ia",
@@ -24,7 +24,7 @@
     "automotive-security-specialist": [
       "automotivo",
       "automotive",
-      "ve\u00edculo",
+      "veículo",
       "vehicle",
       "iso 21434",
       "can bus",
@@ -35,7 +35,7 @@
       "backend",
       "back-end",
       "api",
-      "servi\u00e7o",
+      "serviço",
       "service",
       "rest",
       "grpc",
@@ -44,13 +44,13 @@
       "server"
     ],
     "biomedical-engineer": [
-      "biom\u00e9dica",
+      "biomédica",
       "biomedical",
       "ecg",
       "eeg",
-      "sinais fisiol\u00f3gicos",
+      "sinais fisiológicos",
       "biosignal",
-      "instrumenta\u00e7\u00e3o m\u00e9dica",
+      "instrumentação médica",
       "dicom"
     ],
     "biotechnologist": [
@@ -60,14 +60,14 @@
       "bioprocess",
       "biorreator",
       "bioreactor",
-      "fermenta\u00e7\u00e3o",
+      "fermentação",
       "upstream",
       "downstream"
     ],
     "career-coach-job-hunter": [
       "carreira",
       "career",
-      "curr\u00edculo",
+      "currículo",
       "resume",
       "cv",
       "vaga",
@@ -78,12 +78,12 @@
       "linkedin"
     ],
     "chemical-engineer": [
-      "qu\u00edmica",
+      "química",
       "chemical",
       "reator",
       "reactor",
-      "processo qu\u00edmico",
-      "termodin\u00e2mica",
+      "processo químico",
+      "termodinâmica",
       "hplc",
       "gc-ms"
     ],
@@ -95,7 +95,7 @@
       "concrete",
       "solo",
       "geotecnia",
-      "funda\u00e7\u00e3o",
+      "fundação",
       "foundation",
       "estrutura"
     ],
@@ -113,14 +113,14 @@
       "finops"
     ],
     "cloud-security-specialist": [
-      "seguran\u00e7a de nuvem",
+      "segurança de nuvem",
       "cloud security",
       "cnapp",
       "cspm",
       "postura de nuvem",
       "cloud posture",
-      "seguran\u00e7a aws",
-      "seguran\u00e7a azure"
+      "segurança aws",
+      "segurança azure"
     ],
     "cloudflare-specialist": [
       "cloudflare",
@@ -133,22 +133,22 @@
       "pages"
     ],
     "code-explorer": [
-      "explorar c\u00f3digo",
+      "explorar código",
       "explore code",
-      "entender o c\u00f3digo",
+      "entender o código",
       "understand code",
-      "mapear reposit\u00f3rio",
-      "buscar no c\u00f3digo",
+      "mapear repositório",
+      "buscar no código",
       "codebase"
     ],
     "code-mapping-specialist": [
       "mapeamento",
       "mapping",
       "call graph",
-      "depend\u00eancias",
+      "dependências",
       "dependency graph",
       "topologia",
-      "arquitetura de c\u00f3digo",
+      "arquitetura de código",
       "uml"
     ],
     "code-optimizer": [
@@ -157,7 +157,7 @@
       "desempenho",
       "gargalo",
       "latency",
-      "lat\u00eancia",
+      "latência",
       "lentidao",
       "optimize",
       "otimizacao",
@@ -186,13 +186,13 @@
       "data structure",
       "compilador",
       "compiler",
-      "aut\u00f4mato"
+      "autômato"
     ],
     "container-security-specialist": [
-      "seguran\u00e7a de container",
+      "segurança de container",
       "container security",
       "kubernetes security",
-      "seguran\u00e7a k8s",
+      "segurança k8s",
       "docker security",
       "pod security",
       "escape de container"
@@ -202,7 +202,7 @@
       "cryptography",
       "cripto",
       "pqc",
-      "p\u00f3s-qu\u00e2ntica",
+      "pós-quântica",
       "post-quantum",
       "pki",
       "certificado",
@@ -237,10 +237,10 @@
       "privacy",
       "lgpd",
       "gdpr",
-      "prote\u00e7\u00e3o de dados",
+      "proteção de dados",
       "data protection",
       "dlp",
-      "classifica\u00e7\u00e3o de dados",
+      "classificação de dados",
       "anonymization",
       "dsr"
     ],
@@ -257,7 +257,7 @@
       "sqlite",
       "consulta",
       "query",
-      "\u00edndice",
+      "índice",
       "index"
     ],
     "devops-engineer": [
@@ -273,11 +273,11 @@
       "gitops"
     ],
     "documenter": [
-      "documenta\u00e7\u00e3o",
+      "documentação",
       "documentation",
       "documentar",
       "document",
-      "di\u00e1taxis",
+      "diátaxis",
       "readme",
       "diagrama",
       "mermaid",
@@ -286,11 +286,11 @@
     "electrical-power-engineer": [
       "energia",
       "power",
-      "el\u00e9trica",
+      "elétrica",
       "electrical",
-      "rede el\u00e9trica",
+      "rede elétrica",
       "power grid",
-      "subesta\u00e7\u00e3o",
+      "subestação",
       "transformador",
       "inversor",
       "nbr 5410"
@@ -315,7 +315,7 @@
       "hardening",
       "sysmon",
       "application control",
-      "seguran\u00e7a de endpoint",
+      "segurança de endpoint",
       "patch management",
       "macos security"
     ],
@@ -337,7 +337,7 @@
       "fullstack",
       "full-stack",
       "full stack",
-      "aplica\u00e7\u00e3o web",
+      "aplicação web",
       "web app",
       "end-to-end",
       "ponta a ponta"
@@ -360,15 +360,15 @@
       "multietapa",
       "multi-step",
       "varias tarefas",
-      "v\u00e1rias tarefas"
+      "várias tarefas"
     ],
     "geoscientist": [
-      "geoci\u00eancias",
+      "geociências",
       "geoscience",
       "gis",
       "sensoriamento remoto",
       "remote sensing",
-      "sat\u00e9lite",
+      "satélite",
       "satellite",
       "geoprocessamento",
       "ndvi",
@@ -382,7 +382,7 @@
       "dependabot",
       "ghas",
       "pull request",
-      "reposit\u00f3rio github",
+      "repositório github",
       "gh cli"
     ],
     "grc-security-specialist": [
@@ -418,7 +418,7 @@
       "identity",
       "acesso",
       "access",
-      "autentica\u00e7\u00e3o",
+      "autenticação",
       "authentication",
       "sso",
       "oauth",
@@ -428,7 +428,7 @@
       "active directory"
     ],
     "information-systems-specialist": [
-      "sistemas de informa\u00e7\u00e3o",
+      "sistemas de informação",
       "information systems",
       "erp",
       "crm",
@@ -436,7 +436,7 @@
       "itil",
       "cobit",
       "business intelligence",
-      "processo de neg\u00f3cio"
+      "processo de negócio"
     ],
     "java-enterprise-architect": [
       "java",
@@ -455,27 +455,27 @@
       "copywriting",
       "en-us",
       "espanhol",
-      "gram\u00e1tica",
+      "gramática",
       "ingles",
       "linguistic",
-      "lingu\u00edstica",
+      "linguística",
       "portugues",
       "proofread",
       "pt-br",
-      "reda\u00e7\u00e3o",
+      "redação",
       "relatorio",
       "revisao",
       "revisar",
-      "revis\u00e3o de texto",
+      "revisão de texto",
       "texto",
-      "tradu\u00e7\u00e3o",
+      "tradução",
       "translation"
     ],
     "malware-analyst": [
       "malware",
-      "an\u00e1lise de malware",
+      "análise de malware",
       "malware analysis",
-      "v\u00edrus",
+      "vírus",
       "ransomware",
       "trojan",
       "yara",
@@ -483,33 +483,33 @@
       "reverse engineering de malware"
     ],
     "mathematician": [
-      "matem\u00e1tica",
+      "matemática",
       "math",
-      "c\u00e1lculo",
+      "cálculo",
       "calculus",
-      "\u00e1lgebra",
+      "álgebra",
       "algebra",
       "probabilidade",
       "probability",
-      "estat\u00edstica",
-      "equa\u00e7\u00e3o diferencial",
-      "otimiza\u00e7\u00e3o"
+      "estatística",
+      "equação diferencial",
+      "otimização"
     ],
     "mechanical-engineer": [
-      "mec\u00e2nica",
+      "mecânica",
       "mechanical",
       "fluido",
       "fluid",
       "cfd",
-      "transfer\u00eancia de calor",
+      "transferência de calor",
       "heat transfer",
-      "resist\u00eancia dos materiais",
+      "resistência dos materiais",
       "navier-stokes"
     ],
     "mechatronics-engineer": [
-      "mecatr\u00f4nica",
+      "mecatrônica",
       "mechatronics",
-      "rob\u00f3tica",
+      "robótica",
       "robotics",
       "ros 2",
       "controle",
@@ -521,11 +521,11 @@
       "scada"
     ],
     "medical-device-security-specialist": [
-      "dispositivo m\u00e9dico",
+      "dispositivo médico",
       "medical device",
       "fda",
-      "sbom m\u00e9dico",
-      "sa\u00fade security",
+      "sbom médico",
+      "saúde security",
       "iec 81001",
       "patient safety"
     ],
@@ -534,7 +534,7 @@
       "celular",
       "android",
       "ios",
-      "app m\u00f3vel",
+      "app móvel",
       "mobile app",
       "masvs",
       "mastg",
@@ -545,7 +545,7 @@
     "moodle-specialist": [
       "moodle",
       "lms",
-      "educa\u00e7\u00e3o",
+      "educação",
       "education",
       "ava",
       "ead",
@@ -562,7 +562,7 @@
       "multi-agent",
       "subagentes",
       "subagents",
-      "governan\u00e7a de agentes"
+      "governança de agentes"
     ],
     "network-security-specialist": [
       "rede",
@@ -571,11 +571,11 @@
       "ids",
       "ips",
       "ndr",
-      "seguran\u00e7a de rede",
+      "segurança de rede",
       "network security",
       "vpn",
       "dns security",
-      "microsegmenta\u00e7\u00e3o",
+      "microsegmentação",
       "ztna",
       "sase"
     ],
@@ -584,7 +584,7 @@
       "ics",
       "scada",
       "plc",
-      "automa\u00e7\u00e3o industrial",
+      "automação industrial",
       "industrial control",
       "purdue",
       "iec 62443",
@@ -594,39 +594,39 @@
     "pentester-agent": [
       "pentest",
       "penetration test",
-      "teste de intrus\u00e3o",
+      "teste de intrusão",
       "ethical hacking",
-      "hacking \u00e9tico",
+      "hacking ético",
       "bug bounty",
-      "explora\u00e7\u00e3o",
+      "exploração",
       "exploit",
       "owasp"
     ],
     "physical-engineer": [
-      "f\u00edsica aplicada",
+      "física aplicada",
       "physical engineering",
       "nanotecnologia",
       "nanotechnology",
       "semicondutor",
       "semiconductor",
       "nanomaterial",
-      "microfabrica\u00e7\u00e3o"
+      "microfabricação"
     ],
     "physicist": [
-      "f\u00edsica",
+      "física",
       "physics",
-      "mec\u00e2nica cl\u00e1ssica",
+      "mecânica clássica",
       "relatividade",
       "relativity",
       "eletromagnetismo",
       "electromagnetism",
-      "termodin\u00e2mica",
-      "estat\u00edstica f\u00edsica"
+      "termodinâmica",
+      "estatística física"
     ],
     "project-reviewer": [
       "auditar",
-      "auditoria de c\u00f3digo",
-      "boas pr\u00e1ticas",
+      "auditoria de código",
+      "boas práticas",
       "code audit",
       "code review",
       "conformidade de codigo",
@@ -634,7 +634,7 @@
       "revisao",
       "revisar arquitetura",
       "revisar codigo",
-      "revis\u00e3o de projeto"
+      "revisão de projeto"
     ],
     "qa-testing-specialist": [
       "qa",
@@ -643,7 +643,7 @@
       "testing",
       "qualidade",
       "quality",
-      "automa\u00e7\u00e3o de testes",
+      "automação de testes",
       "test automation",
       "bdd",
       "tdd",
@@ -651,9 +651,9 @@
       "fuzzing"
     ],
     "quantum-computing-specialist": [
-      "qu\u00e2ntica",
+      "quântica",
       "quantum",
-      "computa\u00e7\u00e3o qu\u00e2ntica",
+      "computação quântica",
       "quantum computing",
       "qiskit",
       "cirq",
@@ -670,28 +670,28 @@
       "decompilar",
       "decompile",
       "ghidra",
-      "debug de bin\u00e1rio",
+      "debug de binário",
       "frida"
     ],
     "scientific-researcher": [
-      "pesquisa cient\u00edfica",
+      "pesquisa científica",
       "scientific research",
-      "revis\u00e3o sistem\u00e1tica",
+      "revisão sistemática",
       "systematic review",
       "prisma",
       "artigo",
       "paper",
       "literatura",
       "literature",
-      "acad\u00eamico",
+      "acadêmico",
       "academic"
     ],
     "security-architect": [
       "ameaca",
-      "arquitetura de seguran\u00e7a",
-      "modelagem de amea\u00e7as",
+      "arquitetura de segurança",
+      "modelagem de ameaças",
       "parecer",
-      "parecer t\u00e9cnico",
+      "parecer técnico",
       "pasta",
       "revisao de seguranca",
       "risco de arquitetura",
@@ -703,7 +703,7 @@
       "zero trust architecture"
     ],
     "security-specialist": [
-      "seguran\u00e7a",
+      "segurança",
       "security",
       "appsec",
       "sast",
@@ -718,7 +718,7 @@
     "self": [
       "clone",
       "delegar a si",
-      "subagente pr\u00f3prio",
+      "subagente próprio",
       "fork",
       "contexto isolado",
       "self subagent"
@@ -728,7 +728,7 @@
       "create skill",
       "skill",
       "skill.md",
-      "cat\u00e1logo de skills",
+      "catálogo de skills",
       "catalogar skill",
       "pdf para markdown"
     ],
@@ -742,7 +742,7 @@
       "siem",
       "soar",
       "threat hunting",
-      "detec\u00e7\u00e3o",
+      "detecção",
       "detection"
     ],
     "software-architect": [
@@ -751,9 +751,9 @@
       "ddd",
       "solid",
       "design pattern",
-      "padr\u00e3o de projeto",
+      "padrão de projeto",
       "clean architecture",
-      "microservi\u00e7os",
+      "microserviços",
       "microservices",
       "adr"
     ],
@@ -764,21 +764,21 @@
       "requirements",
       "arquitetura limpa",
       "clean architecture",
-      "refatora\u00e7\u00e3o",
+      "refatoração",
       "refactoring"
     ],
     "telecom-engineer": [
       "telecom",
-      "telecomunica\u00e7\u00f5es",
+      "telecomunicações",
       "telecommunications",
       "5g",
       "ofdm",
-      "fibra \u00f3ptica",
+      "fibra óptica",
       "optical fiber",
       "antena",
       "antenna",
-      "sat\u00e9lite",
-      "modula\u00e7\u00e3o"
+      "satélite",
+      "modulação"
     ],
     "telecom-voice-specialist": [
       "voz",
@@ -800,11 +800,11 @@
       "att&ck",
       "cti",
       "intel",
-      "intelig\u00eancia de amea\u00e7as",
+      "inteligência de ameaças",
       "ioc",
       "misp",
       "mitre attack",
-      "osint de amea\u00e7as",
+      "osint de ameaças",
       "stix",
       "taxii",
       "threat",
@@ -846,7 +846,7 @@
       "dorks",
       "fonte",
       "source",
-      "not\u00edcia",
+      "notícia",
       "news"
     ],
     "cpp-systems-engineer": [
@@ -926,6 +926,43 @@
       "shap",
       "lime",
       "jupyter notebook"
+    ],
+    "conversational-ai-engineer": [
+      "conversational ai",
+      "ia conversacional",
+      "chatbot",
+      "chatbots",
+      "bot conversacional",
+      "virtual assistant",
+      "assistente virtual",
+      "intencao",
+      "intent",
+      "nlu",
+      "dialog flow",
+      "fluxo de dialogo",
+      "handoff",
+      "transferencia para humano",
+      "faq bot",
+      "atendimento automatizado",
+      "customer service bot"
+    ],
+    "ai-product-manager": [
+      "ai product",
+      "produto de ia",
+      "ai product manager",
+      "product discovery",
+      "descoberta de produto",
+      "ai roadmap",
+      "mvp de ia",
+      "ai governance",
+      "governanca de ia",
+      "north star metric",
+      "priorizacao de produto",
+      "ai strategy",
+      "estrategia de ia",
+      "shadow deployment",
+      "canary",
+      "a/b test"
     ]
   }
 }

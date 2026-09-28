@@ -25,6 +25,9 @@ instruction: >
   - [computer-vision-deep-learning](knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md)
   - [explainable-ai](knowledge/skills/domains/industry/explainable-ai/SKILL.md)
   - [ai-application-engineering](knowledge/skills/domains/industry/ai-application-engineering/SKILL.md)
+  - [ai-model-evaluation](knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md)
+  - [mlops-platform-engineering](knowledge/skills/data/mlops-platform-engineering/SKILL.md)
+  - [human-in-the-loop-ml](knowledge/skills/data/human-in-the-loop-ml/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 
   ---
@@ -69,3 +72,9 @@ tools:
     path: ../../../../skills/domains/industry/explainable-ai/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/industry/ai-application-engineering/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/ai-model-evaluation/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/mlops-platform-engineering/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/human-in-the-loop-ml/SKILL.md

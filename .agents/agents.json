@@ -136,6 +136,9 @@
       "path": "knowledge/agents/data-cloud-devops/cloudflare-specialist"
     },
     {
+      "path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer"
+    },
+    {
       "path": "knowledge/agents/data-cloud-devops/data-ai-engineer"
     },
     {
@@ -203,6 +206,9 @@
     },
     {
       "path": "knowledge/agents/software-engineering/vcs-repository-specialist"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/ai-product-manager"
     },
     {
       "path": "knowledge/agents/specialized-domains/career-coach-job-hunter"

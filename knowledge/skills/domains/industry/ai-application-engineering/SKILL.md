@@ -107,6 +107,18 @@ chain.invoke({...})
 
 ---
 
+## 💼 GenAI Application Playbook (Bahree; Brousseau & Sharp)
+
+- **Reference stack:** treat the AI-enabled app as Software-2.0 architecture — AI infrastructure, foundation models (hosted/fine-tuned/own, including small models), an orchestration layer (grounding via RAG, plugin execution, response filtering, meta-prompts), UX, and AI safety as a cross-cutting layer.
+- **Deployment choice:** managed APIs are the fastest path; cloud for scale (mind vendor lock-in, egress and privacy), on-premises for control, hybrid for sensitive data with burst-to-cloud; containers, serverless for spiky loads and API gateways are the enablers.
+- **Production checklist:** model complexity and resource planning; data quality, lineage and freshness monitoring; continuous validation; redundancy, failover and disaster recovery; regulatory compliance (GDPR/HIPAA/PCI-DSS class: consent, breach response, audits, privacy by design); cost management; legacy integration; human-in-the-loop for critical decisions; bias, fairness and transparency checks.
+- **Cost engineering:** token-metered pricing scales with user behavior — price a representative query per model tier before launch; tiered routing (cheap classifier routes to mid or premium models) cuts cost sharply at the price of router-accuracy monitoring; self-hosting break-evens arrive only at high sustained volume.
+- **Evaluation wiring:** standard metrics for the task (ROUGE-class for summarization; embedding-based scores for semantics), evaluation on the target use cases, continuous benchmarking in the development loop, and recorded criteria/methods/results for transparency; feed outcomes back into model, data and eval iterations.
+- **Retriever choice:** sparse lexical retrieval (fast, keyword-exact, cheap) versus dense embeddings (semantic, synonym-aware, training-hungry) — decide by query nature, domain specificity and resources; hybrid retrieval hedges.
+- **Conversational context management:** trim stale turns as topics shift; larger histories can hurt relevance and blow the window.
+
+---
+
 ## 🔗 Integration with Other Skills
 
 - For MLOps/LLMOps pipelines and deployment, see [ai-llm-engineering-rag](../ai-llm-engineering-rag/SKILL.md).

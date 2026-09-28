@@ -2,6 +2,39 @@
   "schema": 1,
   "entries": [
     {
+      "name": "ai-product-manager",
+      "category": "specialized-domains",
+      "description": "Senior AI product manager who frames AI products as data products: dual lifecycle management, ML problem-class framing, opportunity discovery and prioritization, model selection under governance constraints, shadow/A-B/ canary deployment strategy, AI UX trust obligations, bias and privacy governance, and metrics discipline. Applies AI product management, product ownership, evaluation and responsible-AI practices.",
+      "skills": [
+        "knowledge/skills/roles/product-owner/SKILL.md",
+        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+        "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
+        "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
+        "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+        "knowledge/skills/security/ai/ai-governance-assurance/SKILL.md",
+        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+      ],
+      "triggers": [
+        "a/b test",
+        "ai governance",
+        "ai product",
+        "ai product manager",
+        "ai roadmap",
+        "ai strategy",
+        "canary",
+        "descoberta de produto",
+        "estrategia de ia",
+        "governanca de ia",
+        "mvp de ia",
+        "north star metric",
+        "priorizacao de produto",
+        "product discovery",
+        "produto de ia",
+        "shadow deployment"
+      ]
+    },
+    {
       "name": "ai-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
@@ -108,6 +141,7 @@
       "skills": [
         "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
         "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md",
+        "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -447,6 +481,40 @@
       ]
     },
     {
+      "name": "conversational-ai-engineer",
+      "category": "data-cloud-devops",
+      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+      "skills": [
+        "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
+        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
+        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+        "knowledge/skills/data/vector-databases/SKILL.md",
+        "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
+        "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "assistente virtual",
+        "atendimento automatizado",
+        "bot conversacional",
+        "chatbot",
+        "chatbots",
+        "conversational ai",
+        "customer service bot",
+        "dialog flow",
+        "faq bot",
+        "fluxo de dialogo",
+        "handoff",
+        "ia conversacional",
+        "intencao",
+        "intent",
+        "nlu",
+        "transferencia para humano",
+        "virtual assistant"
+      ]
+    },
+    {
       "name": "cpp-systems-engineer",
       "category": "software-engineering",
       "description": "Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 14882 standard (C++17/20/23), STL and ranges, memory management and RAII, template metaprogramming and concepts, GPU/CUDA acceleration, low-latency and lock-free programming, and C++ design patterns. Designs high-performance, memory-safe C++ libraries and applications and diagnoses performance and lifetime defects.",
@@ -533,7 +601,10 @@
         "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
         "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
         "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
-        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md"
+        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+        "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
+        "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
+        "knowledge/skills/data/human-in-the-loop-ml/SKILL.md"
       ],
       "triggers": [
         "airflow",
@@ -811,6 +882,7 @@
         "knowledge/skills/languages/lang-typescript/SKILL.md",
         "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
       ],
       "triggers": [
@@ -1919,6 +1991,7 @@
         "knowledge/skills/roles/product-owner/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
         "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/security/grc/security-privacy/SKILL.md"
       ],
       "triggers": [
