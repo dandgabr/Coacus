@@ -48,7 +48,8 @@ How knowledge becomes runnable in a specific harness.
 How work proceeds inside a Coacus repository.
 
 - `methodology/workflows/<skill>/SKILL.md` — 15 process skills: 14 imported
-  from Superpowers (namespaced `superpowers-*`) plus the native entry workflow
+  from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
+  — flat handoff names, `docs/temp/` artifacts) plus the native entry workflow
   `using-coacus`.
 - `methodology/bootstrap/session-start.canonical.md` — the single wrapper body
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`

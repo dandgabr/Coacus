@@ -3,6 +3,13 @@ name: superpowers-verification-before-completion
 description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Verification Before Completion
 
 ## Overview

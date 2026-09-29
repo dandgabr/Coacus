@@ -6,12 +6,18 @@ recording provenance in `sources.lock.json` (provenance) and leaving content in
 its original language with `transform: [..., "pending-translation"]` (english-only:
 PT-BR imports are translated in tracked batches).
 
-    python3 scripts/coacus_import.py plan   [--source skills|superpowers|agents]
-    python3 scripts/coacus_import.py apply  [--source ...]
+    python3 scripts/coacus_import.py plan      [--source skills|superpowers|agents]
+    python3 scripts/coacus_import.py apply     [--source ...]
+    python3 scripts/coacus_import.py normalize
 
 `plan` writes nothing and prints the actions; `apply` performs the copy and
 updates `sources.lock.json`. The import is idempotent: re-running refreshes the
 target and the provenance entry (dedup keyed on source repo/commit/path).
+
+`normalize` adapts an already-imported corpus in place — it needs no source
+checkout. It rewrites the imported Superpowers workflows to Coacus conventions
+(namespace refs, output paths, attribution) and records the change in
+`sources.lock.json`; `apply` runs the same pass after copying.
 """
 
 from __future__ import annotations
@@ -35,6 +41,43 @@ from engine import provenance  # noqa: E402
 from engine.frontmatter import parse  # noqa: E402
 
 MANIFEST = ROOT / "templates/import/import-manifest.json"
+
+# Provenance transform tag for the Coacus adaptation of an imported workflow.
+ADAPTED_TAG = "adapted:coacus-workflows"
+# Marker that makes the attribution footer insertion idempotent.
+_ATTRIBUTION_MARK = "Coacus adaptation of a Superpowers workflow"
+# Upstream colon namespace (`superpowers:test-driven-development`) -> flat name.
+# The lookbehind leaves a URL path (`host/superpowers:x`) untouched.
+_COLON_NAMESPACE = re.compile(r"(?<![\w/])superpowers:(?=[a-z0-9])")
+# Upstream output root (`docs/superpowers/`), with or without a trailing segment.
+_UPSTREAM_OUTPUT = re.compile(r"docs/superpowers(?![A-Za-z0-9_])")
+# Sibling workflow dirs addressed by their bare upstream name (links, code spans,
+# mermaid labels and shell/JS paths alike; trailing slash optional).
+_BARE_SIBLING = re.compile(
+    r"\.\./(brainstorming|writing-plans|executing-plans|"
+    r"subagent-driven-development|test-driven-development|systematic-debugging|"
+    r"requesting-code-review|receiving-code-review|verification-before-completion|"
+    r"using-git-worktrees|finishing-a-development-branch|writing-skills|"
+    r"dispatching-parallel-agents|diagnosing-superpowers)(?![\w-])"
+)
+# `using-superpowers` is not imported; its reference points at the local mappings.
+_USING_SUPERPOWERS = re.compile(r"\.\./using-superpowers/references/")
+# The brainstorming skill names upstream implementation skills it must not invoke.
+_FRONTEND_PROHIBITION = re.compile(
+    r"never[^.]*?\b(?:frontend-design|mcp-builder)\b[^.]*?implementation skill"
+)
+# A phrase the markdown-link fixup left duplicated in writing-skills.
+_DUPLICATED_PHRASE = re.compile(
+    r"(the per-harness tool mappings under references/) or \1"
+)
+# The attribution block already present in a SKILL.md (replaced, never skipped).
+_FOOTER_BLOCK = re.compile(
+    r"<!--\nCoacus adaptation of a Superpowers workflow.*?-->\n?", re.DOTALL
+)
+# Text extensions the pass may rewrite (imported shell and JS/TS included).
+_TEXT_SUFFIXES = frozenset(
+    {".md", ".sh", ".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx", ".txt", ".dot", ".html"}
+)
 
 
 def _workspace() -> Path:
@@ -374,6 +417,155 @@ def _workflow_renames(root: Path) -> dict[str, str]:
     return renames
 
 
+def _superpowers_commit(root: Path) -> str:
+    """The recorded upstream commit for the Superpowers import, for attribution."""
+    for entry in provenance.load(root).get("entries", []):
+        if isinstance(entry, dict) and entry.get("source_repo") == "superpowers":
+            return str(entry.get("source_commit", "unknown"))
+    return "unknown"
+
+
+def _workflow_files(root: Path) -> list[Path]:
+    """Every text file under the imported Superpowers workflow directories.
+
+    Includes the extensionless helper scripts (`task-start`, `review-package`, …)
+    alongside the Markdown, shell and JS/TS assets.
+    """
+    base = root / "methodology" / "workflows"
+    if not base.is_dir():
+        return []
+    return sorted(
+        p
+        for p in base.glob("superpowers-*/**/*")
+        if p.is_file() and (p.suffix in _TEXT_SUFFIXES or p.suffix == "")
+    )
+
+
+def _attribution_footer(commit: str) -> str:
+    """The visible attribution + conventions pointer stamped into each SKILL.md."""
+    return (
+        "<!--\n"
+        "Coacus adaptation of a Superpowers workflow (MIT).\n"
+        f"Upstream: https://github.com/obra/superpowers @ {commit}\n"
+        "Process artifacts are written under docs/temp/.\n"
+        "Conventions: ../using-coacus/references/coacus-process-conventions.md\n"
+        "-->"
+    )
+
+
+def _adapt_workflow_text(text: str) -> str:
+    """Rewrite upstream namespace refs, output paths and dangling references.
+
+    Pure text in, pure text out: the flat installed names replace the upstream
+    colon namespace, plan/spec output moves under `docs/temp/`, sibling workflow
+    paths are prefixed, and references to skills that do not exist in this
+    corpus are repaired.
+    """
+    text = _USING_SUPERPOWERS.sub("../using-coacus/references/", text)
+    text = _BARE_SIBLING.sub(r"../superpowers-\1", text)
+    text = _COLON_NAMESPACE.sub("superpowers-", text)
+    text = _UPSTREAM_OUTPUT.sub("docs/temp", text)
+    text = text.replace(
+        "elements-of-style:writing-clearly-and-concisely", "linguistic-en-us"
+    )
+    text = _FRONTEND_PROHIBITION.sub("never an implementation skill", text)
+    text = _DUPLICATED_PHRASE.sub(r"\1", text)
+    text = text.replace(
+        "skills/brainstorming/visual-companion.md", "visual-companion.md"
+    )
+    return text
+
+
+def _attach_attribution(text: str, footer: str) -> str:
+    """Replace an existing attribution footer, or insert it after the frontmatter.
+
+    Replacing rather than skipping keeps the footer honest when a re-import
+    records a new upstream commit.
+    """
+    if _FOOTER_BLOCK.search(text):
+        result = _FOOTER_BLOCK.sub(footer + "\n", text, count=1)
+    else:
+        lines = text.split("\n")
+        insert_at = 0
+        if lines and lines[0].strip() == "---":
+            for index in range(1, len(lines)):
+                if lines[index].strip() == "---":
+                    insert_at = index + 1
+                    break
+        head = "\n".join(lines[:insert_at]).rstrip("\n")
+        tail = "\n".join(lines[insert_at:]).lstrip("\n")
+        prefix = f"{head}\n\n" if head else ""
+        result = f"{prefix}{footer}\n\n{tail}"
+    return result if result.endswith("\n") else result + "\n"
+
+
+def _normalize_workflow_files(root: Path, commit: str | None = None) -> list[str]:
+    """Adapt the imported Superpowers workflow files to Coacus conventions.
+
+    Idempotent text pass over `methodology/workflows/superpowers-*` (Markdown,
+    shell and JS/TS assets): it rewrites the upstream ``superpowers:`` colon
+    namespace to the flat installed names, redirects plan/spec output to
+    ``docs/temp/``, resolves bare sibling workflow paths, repairs dangling
+    external references, and stamps a visible attribution footer on each
+    ``SKILL.md``. ``commit`` overrides the upstream SHA used in the footer (the
+    ``apply`` path passes the freshly imported one). Returns the
+    repository-relative paths it changed (empty when the corpus is adapted).
+    """
+    footer = _attribution_footer(commit or _superpowers_commit(root))
+    changed: list[str] = []
+    for path in _workflow_files(root):
+        text = path.read_text(encoding="utf-8")
+        adapted = _adapt_workflow_text(text)
+        if path.name == "SKILL.md":
+            adapted = _attach_attribution(adapted, footer)
+        if adapted != text:
+            path.write_text(adapted, encoding="utf-8")
+            changed.append(path.relative_to(root).as_posix())
+    return changed
+
+
+def _tag_adapted(root: Path, lock: dict, changed: list[str]) -> int:
+    """Tag and re-hash the lock entries for the adapted targets.
+
+    Lock-wide, not run-scoped: a target that was adapted in an earlier run still
+    gets its tag and hash corrected. Returns the number of entries modified.
+    """
+    by_target = {
+        entry.get("target_path"): entry
+        for entry in lock.get("entries", [])
+        if isinstance(entry, dict)
+    }
+    modified = 0
+    for rel in changed:
+        entry = by_target.get(rel)
+        if entry is None:
+            continue
+        transform = entry.setdefault("transform", [])
+        if ADAPTED_TAG not in transform:
+            transform.append(ADAPTED_TAG)
+            modified += 1
+        digest = _sha256(root / rel)
+        if entry.get("target_sha256") != digest:
+            entry["target_sha256"] = digest
+            modified += 1
+    return modified
+
+
+def _run_normalize() -> int:
+    """Adapt the existing corpus in place and record it in `sources.lock.json`.
+
+    Needs no source checkout: it is the surface for applying the adaptation to a
+    corpus that was imported earlier. Idempotent — a second run changes nothing.
+    """
+    changed = _normalize_workflow_files(ROOT)
+    lock = provenance.load(ROOT)
+    modified = _tag_adapted(ROOT, lock, changed)
+    if changed or modified:
+        provenance.write(ROOT, lock)
+    print(json.dumps({"normalized": len(changed), "files": changed}, indent=2))
+    return 0
+
+
 def _wrap_description(text: str, width: int = 70) -> list[str]:
     """Wrap a description on word boundaries (never mid-word)."""
     import textwrap
@@ -578,11 +770,16 @@ def _relabel_licenses(lock: dict, manifest: dict) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Parse arguments and run the ``plan`` or ``apply`` import action."""
+    """Parse arguments and run the ``plan``, ``apply`` or ``normalize`` action."""
     parser = argparse.ArgumentParser(prog="coacus-import", description=__doc__)
-    parser.add_argument("action", choices=["plan", "apply"])
+    parser.add_argument("action", choices=["plan", "apply", "normalize"])
     parser.add_argument("--source", choices=["skills", "superpowers", "agents"], default=None)
     args = parser.parse_args(argv)
+
+    if args.action == "normalize":
+        if args.source not in (None, "superpowers"):
+            parser.error("normalize applies only to the superpowers workflows")
+        return _run_normalize()
 
     manifest = _load_manifest()
     actions: list[dict] = []
@@ -627,6 +824,12 @@ def main(argv: list[str] | None = None) -> int:
     lock["entries"] = [e for e in lock.get("entries", []) if e["target_path"] not in targets]
     lock["entries"].extend(entries)
     lock["entries"].sort(key=lambda e: e["target_path"])
+    # Adapt the imported workflows to Coacus conventions. The pass walks the
+    # whole superpowers corpus, so tagging is lock-wide and the footer carries
+    # this run's upstream commit.
+    if args.source in (None, "superpowers"):
+        commit = _source_commit(_source_dir(manifest, "superpowers"))
+        _tag_adapted(ROOT, lock, _normalize_workflow_files(ROOT, commit=commit))
     relabeled = _relabel_licenses(lock, manifest)
     provenance.write(ROOT, lock)
     print(json.dumps({

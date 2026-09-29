@@ -3,6 +3,13 @@ name: superpowers-test-driven-development
 description: Use when implementing any feature or bugfix, before writing implementation code
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Test-Driven Development (TDD)
 
 ## Overview

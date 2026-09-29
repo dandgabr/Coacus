@@ -53,6 +53,17 @@ Every canonical artifact has one source. Work moves through:
 Never edit generated output (`catalog/`, `.agents/`, any `dist/`) by hand —
 change the source and regenerate.
 
+## Process workflows
+
+The 14 process workflows under `methodology/workflows/superpowers-*` —
+brainstorming, writing plans, executing plans, test-driven development,
+systematic debugging, code review, worktrees, verification and the rest — are
+imported from Superpowers (MIT) and adapted to Coacus. Their handoffs resolve to
+the flat workflow names, and they write their spec and plan artifacts under
+`docs/temp/`. The conventions — artifact locations, the local gate, the review
+flow, and how to reach the local skill corpus — live in
+`methodology/workflows/using-coacus/references/coacus-process-conventions.md`.
+
 ## Coordination
 
 Cap concurrent work at the repository's governor limit and hand off between

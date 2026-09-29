@@ -144,6 +144,10 @@ produced 1163 entries (1096 from `skills`, 67 from `superpowers`); 370 carry the
 whose content is still non-English carry `pending-translation` until the
 translation pass clears it.
 
+The adapted Superpowers workflows additionally carry the
+`adapted:coacus-workflows` transform once the Coacus adaptation has run (see
+[Coacus adaptation of the workflows](#coacus-adaptation-of-the-workflows)).
+
 > The F6 run produced 1163 entries. A later prune removed the components coupled
 > to a specific MCP server (`ai-memory` skills + `ai-memory-specialist`, and
 > `autodoc-code-explorer`), lowering the lock to 1136 entries. Those sources are
@@ -170,6 +174,37 @@ governance.
 The warning remains non-blocking until completeness verification. F7/F8 close
 the gap; `engine/validators/completeness.py` reconciles the source repositories,
 the lock file and the catalog to prove nothing was left behind.
+
+## Coacus adaptation of the workflows
+
+The imported Superpowers workflows are adapted to Coacus conventions, because
+the upstream collection assumes its own namespace and output layout:
+
+- **Flat namespace.** Upstream addresses its siblings as `superpowers:<name>`;
+  the Coacus flat namespace installs them as `superpowers-<name>`. Every colon
+  reference is rewritten to the flat name, so a handoff resolves to a skill that
+  exists.
+- **Artifact location.** Plan and spec output is redirected from the upstream
+  `docs/superpowers/` default to `docs/temp/`
+  ([plan-artifacts](standards/plan-artifacts.md)).
+- **External references.** A reference to a skill that does not exist here is
+  repaired or generalized — for example `elements-of-style:…` becomes the local
+  `linguistic-en-us`.
+- **Sibling paths.** Bare sibling workflow paths (`../subagent-driven-development/…`),
+  in prose, diagrams and the workflow's own shell and JS helpers, are prefixed so
+  they resolve in the flat namespace.
+- **Attribution.** Each adapted `SKILL.md` carries a footer naming the upstream
+  project, commit and license; `THIRD-PARTY-NOTICES.md` carries the license text,
+  and every file keeps its `sources.lock.json` entry.
+
+The pass is pure text and idempotent. `apply` runs it after copying; the
+`normalize` action runs it against an already-imported corpus (no source
+checkout needed) and records the change as the `adapted:coacus-workflows`
+transform on the affected entries.
+
+```bash
+python3 scripts/coacus_import.py normalize
+```
 
 ## Running the import
 

@@ -816,12 +816,18 @@ recording provenance in `sources.lock.json` (provenance) and leaving content in
 its original language with `transform: [..., "pending-translation"]` (english-only:
 PT-BR imports are translated in tracked batches).
 
-    python3 scripts/coacus_import.py plan   [--source skills|superpowers|agents]
-    python3 scripts/coacus_import.py apply  [--source ...]
+    python3 scripts/coacus_import.py plan      [--source skills|superpowers|agents]
+    python3 scripts/coacus_import.py apply     [--source ...]
+    python3 scripts/coacus_import.py normalize
 
 `plan` writes nothing and prints the actions; `apply` performs the copy and
 updates `sources.lock.json`. The import is idempotent: re-running refreshes the
 target and the provenance entry (dedup keyed on source repo/commit/path).
+
+`normalize` adapts an already-imported corpus in place — it needs no source
+checkout. It rewrites the imported Superpowers workflows to Coacus conventions
+(namespace refs, output paths, attribution) and records the change in
+`sources.lock.json`; `apply` runs the same pass after copying.
 
 #### `def plan_skills(manifest: dict) -> list[dict]`
 
@@ -845,7 +851,7 @@ Execute the planned actions and return the recorded provenance entries.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
-Parse arguments and run the ``plan`` or ``apply`` import action.
+Parse arguments and run the ``plan``, ``apply`` or ``normalize`` action.
 
 ### `scripts/coacus_install.py`
 

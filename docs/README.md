@@ -13,6 +13,7 @@ Index of the repository's documentation. Each file has one job.
 | [`roadmap.md`](roadmap.md) | Phase history F0–F8 and what each phase delivered. |
 | [`reference/python-api.md`](reference/python-api.md) | GENERATED Python API reference from source docstrings. Do not edit. |
 | [`standards/`](standards/) | The normative standards (English). Read the relevant one before changing that area. |
+| Process artifacts (`temp/`) | Ephemeral design specs and implementation plans written by the process workflows; ignored by version control ([`standards/plan-artifacts.md`](standards/plan-artifacts.md)). |
 
 Repository-wide rules for agents live in [`../AGENTS.md`](../AGENTS.md). The
 contribution contract lives in [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
