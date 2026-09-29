@@ -15478,10 +15478,11 @@
       "source_path": "skills/brainstorming/SKILL.md",
       "source_sha256": "a32d2255354775aa124855aa7100cf276bea096fff4ebb3a0edf57be216e6c72",
       "target_path": "methodology/workflows/superpowers-brainstorming/SKILL.md",
-      "target_sha256": "3a068c034c22ca65755f7756eb800e60fafe82318edc54888ed341fae077be67",
+      "target_sha256": "37ecea69391ec9ed60d524c56863d08e58f050f04965b5c119fc721e1f34b64d",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15562,10 +15563,11 @@
       "source_path": "skills/brainstorming/spec-document-reviewer-prompt.md",
       "source_sha256": "95a0a195de9d984be2fffa95bab16fc8c563bc296a9cfc5e9c29cb3ece0d7457",
       "target_path": "methodology/workflows/superpowers-brainstorming/spec-document-reviewer-prompt.md",
-      "target_sha256": "95a0a195de9d984be2fffa95bab16fc8c563bc296a9cfc5e9c29cb3ece0d7457",
+      "target_sha256": "34cd634e570ff904f841459f790c51dcfa496019e3ef7995ebcc3375ec3072cf",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15590,10 +15592,11 @@
       "source_path": "skills/diagnosing-superpowers/SKILL.md",
       "source_sha256": "5a652f8132cc901eb5ca61f89157839f87a2f20aed037fc7a2b51051bc37cd19",
       "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md",
-      "target_sha256": "57c20a18990ed1a3d02acaab974d9f36edfd4533ee8ef69f244e145e9d4b6cfe",
+      "target_sha256": "5a188eeb197d11c18d5b12faed96ba09cbd999cc9c8dac04a074866a0e3e043a",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15870,10 +15873,11 @@
       "source_path": "skills/dispatching-parallel-agents/SKILL.md",
       "source_sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c",
       "target_path": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md",
-      "target_sha256": "a1cb74dcd5f8e6a6eab143265dd2804d95769a97720cab72f48a4aecd71cdb41",
+      "target_sha256": "172263971a7d2281e0c458f1535e3c5daa3f819bb604fc761566dd6d6c9edb7e",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15884,10 +15888,11 @@
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
       "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "befb582461c004399d705794702f046023cb2ccb2d8f560917479f306aa200e9",
+      "target_sha256": "e73ddd7ba8340c2c9d45b96743e09ac4e23106f9a32c08f6ef3984e5d253212d",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15898,10 +15903,11 @@
       "source_path": "skills/executing-plans/scripts/task-done",
       "source_sha256": "f704dc216e0602f95c601b9ee1113c9a55cc1c5f6e4d149dddfba0fd3ad1c314",
       "target_path": "methodology/workflows/superpowers-executing-plans/scripts/task-done",
-      "target_sha256": "f704dc216e0602f95c601b9ee1113c9a55cc1c5f6e4d149dddfba0fd3ad1c314",
+      "target_sha256": "ecdf7008113efa8e9156a1e1823392e86405e13235af9a5d13f159c0f5824ef8",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15912,10 +15918,11 @@
       "source_path": "skills/executing-plans/scripts/task-start",
       "source_sha256": "f833693c8fce3700fc9f841562d80f8015cd40f652c168a3405ac3e46947a1fe",
       "target_path": "methodology/workflows/superpowers-executing-plans/scripts/task-start",
-      "target_sha256": "f833693c8fce3700fc9f841562d80f8015cd40f652c168a3405ac3e46947a1fe",
+      "target_sha256": "50fc39e169777b13ce4f3984bf963823ea6b1ee038cd6413075596539ae1249a",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15926,10 +15933,11 @@
       "source_path": "skills/finishing-a-development-branch/SKILL.md",
       "source_sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65",
       "target_path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "target_sha256": "55fee5d67d503591d2ad702b29b744bb52a7046608bde4bf886009865f7b0801",
+      "target_sha256": "d3d812a75f87caf05413087b1e4e3957c3e263ee2a08cfdd696903a3723f3631",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15940,10 +15948,11 @@
       "source_path": "skills/receiving-code-review/SKILL.md",
       "source_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438",
       "target_path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md",
-      "target_sha256": "f43b3dfe321820272705dd60f1ea6a1ade25001fb7df464725ae98f68e3c1ec5",
+      "target_sha256": "fe78039e9e838f07ecb75dabfbfa134e964cf7efc3e584ea156c932d137de210",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15954,10 +15963,11 @@
       "source_path": "skills/requesting-code-review/SKILL.md",
       "source_sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
       "target_path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "target_sha256": "24df9ece0b23cc5ef4e18ca80518a40dfa5d2e729ee3fd6066a55960a9016445",
+      "target_sha256": "d89cdcdab4b3c814787fa89f1b262286fb3ca2f3ff8ecc2030e7efe243dd827c",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15982,10 +15992,11 @@
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
       "target_path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "target_sha256": "f5095f722201c3bbcea32b7af85c36373a54d2517ca1e8faf7d6a154c3841e9d",
+      "target_sha256": "3c26db48849bf914a8c59f331943f71c82589d0e2cc2c0ebaefdf0dbfee98971",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16094,10 +16105,11 @@
       "source_path": "skills/systematic-debugging/SKILL.md",
       "source_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
       "target_path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "target_sha256": "7117cea301c2eb3a712b786d543fc0928a6e183dbb5a2c890db7fddf98de1d82",
+      "target_sha256": "0e063c24af3cef96c3cba668fef8359c75d422b9668d3601795ed17ea18d3a65",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16234,10 +16246,11 @@
       "source_path": "skills/test-driven-development/SKILL.md",
       "source_sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
       "target_path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "target_sha256": "6f11491f05e540775f4ad1d18eacd62f39edb2176d884ec0fdd258c7125547ec",
+      "target_sha256": "f7df0c9730417481f6b19623a41b92d253007cd1bed8b09811a91a92ce956f20",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16248,10 +16261,11 @@
       "source_path": "skills/test-driven-development/writing-good-tests.md",
       "source_sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
       "target_path": "methodology/workflows/superpowers-test-driven-development/writing-good-tests.md",
-      "target_sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
+      "target_sha256": "171e33297437bf7057713856978fb0ccd8ffb666c78cafe675e60d1c0df1bfee",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16262,10 +16276,11 @@
       "source_path": "skills/using-git-worktrees/SKILL.md",
       "source_sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd",
       "target_path": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md",
-      "target_sha256": "4ad5a981e615ca6d738e0ac3301a8f8a53e664bf10bd222c8ac895439111fec4",
+      "target_sha256": "866df54785aecb539d6fdbd265f89e0987f55bd43c6c92cb4f577fcb071d5270",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16276,10 +16291,11 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "9ea2d27b834b2ba208ff7c5409d28cf5d2f95675ea419261aa57b2dbdf51321c",
+      "target_sha256": "b29d79f5da6f9f66159e83c1f92aa5d2e0787389031d075fa473732cb24a8111",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16290,10 +16306,11 @@
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
       "target_path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "target_sha256": "aee7677cf1bbb3bd9748b6c9828d9568d8bd4ad26458c4b7b0a4d920ac97163e",
+      "target_sha256": "911a983604e908a2f496f8bef4451e32f1be7c45aa4d913e0478d1a8f0df245a",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16318,10 +16335,11 @@
       "source_path": "skills/writing-skills/SKILL.md",
       "source_sha256": "bbdfe742f853562e643a3d40d64476359d47881e39cef80a189283fa26d11ab9",
       "target_path": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "target_sha256": "64d3457ac051d016bcddb49956010e2e9497f0ca664b4976c8abe642667717b8",
+      "target_sha256": "415d87d3fff1d89612ca5b59386b1cc1c49c56ebd2628e2d39d229b6054d8e5b",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16388,10 +16406,11 @@
       "source_path": "skills/writing-skills/render-graphs.js",
       "source_sha256": "c7f412cc629461c4d10287e668731874c0497707023e3e3f74a5355eb2cee196",
       "target_path": "methodology/workflows/superpowers-writing-skills/render-graphs.js",
-      "target_sha256": "c7f412cc629461c4d10287e668731874c0497707023e3e3f74a5355eb2cee196",
+      "target_sha256": "eb4ff3c711dc6716cd93a6c0a29d678d9609d71359ef1a5c5aa8207096876f34",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -16402,10 +16421,11 @@
       "source_path": "skills/writing-skills/testing-skills-with-subagents.md",
       "source_sha256": "c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade",
       "target_path": "methodology/workflows/superpowers-writing-skills/testing-skills-with-subagents.md",
-      "target_sha256": "c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade",
+      "target_sha256": "4f57b13b90af336ae7fe435d7455892f30db336641b23fb415393e352e6aeb06",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:coacus-workflows"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -17869,9 +17889,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "4d24c32128f4592edcec78e2d9b617f48384ae307001e66c9f0db78e6a523059",
+      "source_sha256": "0597ead74c8bfff3354f3522c6cc9acd2cee6a420cc16a9e6703b6dbe442e1de",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "4d24c32128f4592edcec78e2d9b617f48384ae307001e66c9f0db78e6a523059",
+      "target_sha256": "0597ead74c8bfff3354f3522c6cc9acd2cee6a420cc16a9e6703b6dbe442e1de",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

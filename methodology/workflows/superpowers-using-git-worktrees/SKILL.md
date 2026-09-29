@@ -3,6 +3,13 @@ name: superpowers-using-git-worktrees
 description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Using Git Worktrees
 
 ## Overview

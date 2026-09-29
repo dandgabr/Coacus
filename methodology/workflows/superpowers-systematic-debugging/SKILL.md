@@ -3,6 +3,13 @@ name: superpowers-systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Systematic Debugging
 
 ## Overview
@@ -174,7 +181,7 @@ You MUST complete each phase before proceeding to the next.
    - Automated test if possible
    - One-off test script if no framework
    - MUST have before fixing
-   - Use the `superpowers:test-driven-development` skill for writing proper failing tests
+   - Use the `superpowers-test-driven-development` skill for writing proper failing tests
 
 2. **Implement Single Fix**
    - Address the root cause identified
@@ -186,7 +193,7 @@ You MUST complete each phase before proceeding to the next.
    - Test passes now?
    - No other tests broken?
    - Issue actually resolved?
-   - Use the `superpowers:verification-before-completion` skill before claiming success
+   - Use the `superpowers-verification-before-completion` skill before claiming success
 
 4. **If Fix Doesn't Work**
    - STOP

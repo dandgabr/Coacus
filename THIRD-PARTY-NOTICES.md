@@ -16,6 +16,11 @@ from the Superpowers workflow collection by Jesse Vincent
 `5bf4e78011075bcfc0dc295f0724994cd123ee71`. They are redistributed under the MIT
 License, reproduced in full below.
 
+The workflows are adapted for Coacus: their handoffs use the flat
+`superpowers-<name>` skill names, their plan and spec output is redirected to
+`docs/temp/`, and each adapted `SKILL.md` carries an attribution footer. The MIT
+terms are unchanged.
+
 ```text
 MIT License
 

@@ -3,6 +3,13 @@ name: superpowers-executing-plans
 description: Use when executing an implementation plan in the current session as the implementer yourself — your human partner chose inline execution, or no subagent tool is available
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Executing Plans
 
 Execute the plan yourself, task by task, in this session: no implementer
@@ -44,20 +51,20 @@ those, stop and ask.
 
 ## When to Use
 
-- You have a plan from superpowers:writing-plans and your human partner
+- You have a plan from superpowers-writing-plans and your human partner
   chose inline execution at the handoff.
 - Your harness has no subagent tool (see the per-platform references in
-  `../using-superpowers/references/`). Never fabricate a dispatch; run
+  `../using-coacus/references/`). Never fabricate a dispatch; run
   the plan here.
 - Tasks are mostly independent — the same precondition as
-  superpowers:subagent-driven-development.
+  superpowers-subagent-driven-development.
 
 A fully specified plan makes inline execution transcription plus testing:
 it runs well on a mid-tier session model, and the one place the most
 capable model earns its cost is the final review, which this skill
 dispatches separately. Tell your human partner so when they choose inline.
 
-Prefer superpowers:subagent-driven-development when your human partner
+Prefer superpowers-subagent-driven-development when your human partner
 wants a review gate on every task, or when the plan is long enough that
 its later tasks would run on a compacted context. Inline execution over a
 long plan still works — the ledger is what makes it recoverable — but the
@@ -85,7 +92,7 @@ digraph process {
     "Final whole-branch review (fresh reviewer if you have one)" [shape=box];
     "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger" [shape=box];
     "Final review clean: delete this plan's workspace" [shape=box];
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use superpowers-finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Setup: worktree, workspace + ledger, read plan + spec, pre-flight scan" -> "task-start: brief + BASE; read the brief";
     "task-start: brief + BASE; read the brief" -> "Work the steps in order: TDD, run every verification, read every output";
@@ -101,14 +108,14 @@ digraph process {
     "More tasks remain?" -> "Final whole-branch review (fresh reviewer if you have one)" [label="no"];
     "Final whole-branch review (fresh reviewer if you have one)" -> "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger";
     "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger" -> "Final review clean: delete this plan's workspace";
-    "Final review clean: delete this plan's workspace" -> "Use superpowers:finishing-a-development-branch";
+    "Final review clean: delete this plan's workspace" -> "Use superpowers-finishing-a-development-branch";
 }
 ```
 
 ## Setup
 
 Ensure the work happens in an isolated workspace: use
-superpowers:using-git-worktrees to create one or verify the existing one.
+superpowers-using-git-worktrees to create one or verify the existing one.
 Never start implementation on a main/master branch without your human
 partner's explicit consent.
 
@@ -118,12 +125,12 @@ failure as a controller re-dispatching them, paid for in your own context.
 Track progress in a ledger file, not only in todos. Harness todos are a
 live view; the ledger is the record.
 
-The workspace and ledger are shared with superpowers:subagent-driven-development
+The workspace and ledger are shared with superpowers-subagent-driven-development
 — same directory, same format — so a plan can change executors mid-flight
 and the new one resumes from the same ledger.
 
 - Each plan owns a workspace: at skill start, run
-  `../subagent-driven-development/scripts/sdd-workspace PLAN_FILE` — it
+  `../superpowers-subagent-driven-development/scripts/sdd-workspace PLAN_FILE` — it
   prints the plan's git-ignored directory
   (`<repo-root>/.superpowers/sdd/<plan-basename>/`), home to every
   artifact for THIS plan: ledger, briefs, review packages. Another plan's
@@ -146,7 +153,7 @@ authority the plan argues from, and conflicts inside the plan resolve
 against it. A plan with no reachable spec gets a ledger note saying so —
 rulings made without one are provisional.
 
-**REQUIRED SUB-SKILL:** load superpowers:test-driven-development now,
+**REQUIRED SUB-SKILL:** load superpowers-test-driven-development now,
 before Task 1. It governs every step of every task below; a plan whose
 steps already say "write the failing test first" does not exempt you
 from reading it.
@@ -183,7 +190,7 @@ never in a call of its own.
 ### 2. Work the steps
 
 The plan's steps are already in RED-GREEN order; follow them in that
-order under superpowers:test-driven-development, loaded at setup. A test
+order under superpowers-test-driven-development, loaded at setup. A test
 step's code is written first and run first. Watching it fail is a step,
 not a formality — a test that passes before the implementation exists is
 a finding about the test.
@@ -192,7 +199,7 @@ Every step that runs a command has an `Expected:` line. Run the command,
 read its output, and compare. Three outcomes:
 
 - **Matches.** Next step.
-- **The code is wrong.** Use superpowers:systematic-debugging. Find the
+- **The code is wrong.** Use superpowers-systematic-debugging. Find the
   cause; never patch the symptom to make the step's output match.
 - **The plan is wrong** — a step contradicts the spec, an interface from an
   earlier task doesn't match what this task consumes, a command that
@@ -216,7 +223,7 @@ in this session — not inferred from the diff looking right:
 - Every `Expected:` line in the brief was compared against real output.
 - Every deviation from the brief has a `Ruling:` line in the ledger.
 
-**REQUIRED SUB-SKILL:** superpowers:verification-before-completion governs
+**REQUIRED SUB-SKILL:** superpowers-verification-before-completion governs
 the claim. If any item is missing, the task is not complete: finish it.
 
 ### 4. Complete the task
@@ -233,13 +240,13 @@ mark the todo complete and take the next task.
 
 ## Final Review
 
-Run `../subagent-driven-development/scripts/review-package PLAN_FILE MERGE_BASE HEAD`
+Run `../superpowers-subagent-driven-development/scripts/review-package PLAN_FILE MERGE_BASE HEAD`
 (MERGE_BASE = the commit the branch started from, e.g.
 `git merge-base main HEAD`) and review from the file it prints.
 
 **With a subagent tool:** dispatch the reviewer on the most capable
 available model — the whole-branch review is a judgment task — using
-superpowers:requesting-code-review's
+superpowers-requesting-code-review's
 [code-reviewer.md](../superpowers-requesting-code-review/code-reviewer.md), with the
 package path, the plan and spec paths, the plan's Review Focus section
 verbatim if it has one (the input classes and failure modes the plan's
@@ -301,7 +308,7 @@ When the final review is clean and its fixes are committed, delete this
 plan's workspace directory — the git history is the record now. Sibling
 directories belong to other plans; leave them alone.
 
-Use superpowers:finishing-a-development-branch.
+Use superpowers-finishing-a-development-branch.
 
 ## Common Rationalizations
 
@@ -326,8 +333,8 @@ Use superpowers:finishing-a-development-branch.
 You: I'm using the executing-plans skill to implement this plan inline.
 
 [Setup: worktree verified]
-[Read plan once: docs/superpowers/plans/feature-plan.md; spec read]
-[Resolve workspace: sdd-workspace docs/superpowers/plans/feature-plan.md — no ledger inside, fresh start]
+[Read plan once: docs/temp/plans/feature-plan.md; spec read]
+[Resolve workspace: sdd-workspace docs/temp/plans/feature-plan.md — no ledger inside, fresh start]
 [Pre-flight scan: 2 shared-interface rows, 4 self-consistency rows, clean; written to ledger]
 [Create todos for all tasks]
 
@@ -369,5 +376,5 @@ Deferred minors:
 
 [Delete this plan's workspace — the record now lives in git]
 
-Using superpowers:finishing-a-development-branch.
+Using superpowers-finishing-a-development-branch.
 ```

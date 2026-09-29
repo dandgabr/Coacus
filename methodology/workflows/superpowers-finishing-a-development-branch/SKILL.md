@@ -3,6 +3,13 @@ name: superpowers-finishing-a-development-branch
 description: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work
 ---
 
+<!--
+Coacus adaptation of a Superpowers workflow (MIT).
+Upstream: https://github.com/obra/superpowers @ 5bf4e78011075bcfc0dc295f0724994cd123ee71
+Process artifacts are written under docs/temp/.
+Conventions: ../using-coacus/references/coacus-process-conventions.md
+-->
+
 # Finishing a Development Branch
 
 ## Overview
