@@ -26,6 +26,30 @@
     ]
   },
   "detection": ["COMMANDCODE_PROJECT_DIR"],
+  "lifecycle": {
+    "schema": 1,
+    "supported": true,
+    "in_process": false,
+    "config": { "container": "hooks", "merge": "settings", "hooks_file": "harnesses/command-code/bootstrap/guardrail-hooks.json" },
+    "composition": "composable",
+    "ordering": "coacus-last",
+    "events": {
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": false, "effect": "permissionDecision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://commandcode.ai/docs/hooks" },
+      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "cap": 3, "evidence": "documented", "resolved": "2026-09-30", "source": "https://commandcode.ai/docs/hooks" },
+      "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://commandcode.ai/docs/hooks" },
+      "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "decision", "derived": true, "from": "tool.post", "evidence": "documented", "resolved": "2026-09-30", "source": "https://commandcode.ai/docs/hooks" },
+      "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://commandcode.ai/docs/hooks" }
+    },
+    "gaps": [
+      { "event": "session.start", "status": "never-blocks", "reason": "SessionStart is non-blocking by design on Command Code" },
+      { "event": "session.end", "status": "unsupported", "reason": "no SessionEnd hook" },
+      { "event": "subagent.start", "status": "unsupported", "reason": "the agent tool cannot be intercepted by a hook" },
+      { "event": "tool.pre", "status": "plan-mode-skip", "reason": "hooks are skipped entirely in plan mode" }
+    ]
+  },
+  "plugins": [
+    { "path": "harnesses/command-code/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+  ],
   "tool_mapping": {
     "create or update todos": "todo_write",
     "dispatch a subagent": "agent",

@@ -64,9 +64,43 @@ def discover_skills(root: Path) -> list[Path]:
     return found
 
 
+# Directories that may legitimately contain a stray SKILL.md as test/fixture or
+# shipped example content, and are not part of the skill corpus.
+STRAY_SKILL_EXEMPT = ("templates/", "docs/", "tests/", "evals/", "verticals/", "examples/")
+
+
+def _stray_skills(root: Path) -> list[Path]:
+    """Every ``SKILL.md`` outside the known skill roots.
+
+    A skill outside ``knowledge/skills`` and ``methodology/workflows`` is never
+    discovered by the catalog, the discovery manifests or the installer, so it is
+    an unregistered, never-installed skill a reader would wrongly believe exists
+    (I1). Exempt fixture/example trees are skipped.
+    """
+    known = {p.resolve() for p in discover_skills(root)}
+    stray: list[Path] = []
+    for base in (root / "knowledge", root / "methodology"):
+        if not base.is_dir():
+            continue
+        for source in sorted(base.rglob("SKILL.md")):
+            if source.resolve() in known:
+                continue
+            rel = source.relative_to(root).as_posix()
+            if "/dist/" in f"/{rel}" or rel.startswith(STRAY_SKILL_EXEMPT):
+                continue
+            stray.append(source)
+    return stray
+
+
 def validate(root: Path) -> list[str]:
     """Return a list of error strings; empty list means valid."""
     errors: list[str] = []
+    for stray in _stray_skills(root):
+        rel = stray.relative_to(root).as_posix()
+        errors.append(
+            f"{rel}: SKILL.md outside a known skill root "
+            f"({', '.join(SKILL_ROOTS)}) — it is never registered or installed (I1)"
+        )
     discovered = discover_skills(root)
     skill_dirs = {source.parent for source in discovered}
     seen: set[str] = set()

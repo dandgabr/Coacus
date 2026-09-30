@@ -890,5 +890,145 @@ class TestCommandCode(unittest.TestCase):
         )
 
 
+class TestGuardrailInstall(unittest.TestCase):
+    """The guardrail staging and the capability refusal (lifecycle-guardrails)."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = make_repo(Path(self._tmp.name))
+        self.config = Path(self._tmp.name) / "config"
+
+    def _enable_deny_policy(self, can_block: bool) -> None:
+        policies = self.root / "methodology/lifecycle/policies"
+        policies.mkdir(parents=True, exist_ok=True)
+        (policies / "test.policy.json").write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "enabled": True,
+                    "policies": [
+                        {
+                            "id": "p1",
+                            "event": "tool.pre",
+                            "decision": "deny",
+                            "action": {"verb": "read", "resource": "**/.env"},
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        (self.root / "harnesses/opencode/harness.json").write_text(
+            json.dumps(
+                {
+                    "name": "opencode",
+                    "lifecycle": {
+                        "supported": True,
+                        "events": {"tool.pre": {"support": "gate", "can_block": can_block}},
+                    },
+                    "plugins": [{"path": "x", "kind": "guardrail"}],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+    def test_refuses_deny_on_non_blocking_harness(self) -> None:
+        self._enable_deny_policy(can_block=False)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=True)
+        self.assertIn("error", result)
+        self.assertTrue(result["refusals"])
+        # Nothing is written on a refusal.
+        self.assertFalse((self.config / "plugins").exists())
+
+    def test_allow_advisory_records_the_downgrade(self) -> None:
+        self._enable_deny_policy(can_block=False)
+        result = coacus_install.install(
+            "opencode", self.root, self.config, dry_run=True, allow_advisory=True
+        )
+        self.assertNotIn("error", result)
+
+    def test_enforceable_deny_installs(self) -> None:
+        self._enable_deny_policy(can_block=True)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=True)
+        self.assertNotIn("error", result)
+
+
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestHarnessDetection(unittest.TestCase):
+    """D13: never install into a harness that is not present on this machine."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        # A non-default config dir so the presence gate (which only guards the
+        # real default location) does not apply unless we opt in.
+        self.config = self.tmp / "config"
+
+    def test_harness_present_reads_env_and_bins(self) -> None:
+        import os
+        from unittest import mock
+
+        with mock.patch.dict(os.environ, {"CLAUDE_PLUGIN_ROOT": "/x"}, clear=False):
+            self.assertTrue(coacus_install.harness_present("claude-code"))
+        with mock.patch.dict(os.environ, {}, clear=True):
+            with mock.patch("shutil.which", return_value=None):
+                self.assertFalse(coacus_install.harness_present("claude-code"))
+            with mock.patch("shutil.which", return_value="/usr/bin/cursor"):
+                self.assertTrue(coacus_install.harness_present("cursor"))
+
+    def test_unknown_harness_is_not_blocked(self) -> None:
+        self.assertTrue(coacus_install.harness_present("no-such-harness"))
+
+    def test_default_target_of_absent_harness_is_skipped(self) -> None:
+        # Point the "default" dir at an absent harness and confirm the install
+        # refuses to populate it without --force.
+        from unittest import mock
+
+        home = self.tmp / "home"
+        with mock.patch.object(coacus_install, "_home", return_value=home):
+            with mock.patch("shutil.which", return_value=None):
+                target = coacus_install.default_config_dir("claude-code", home)
+                result = coacus_install.install(
+                    "claude-code", self.root, target, dry_run=False
+                )
+        self.assertTrue(result.get("skipped"))
+        self.assertFalse(target.exists())
+
+    def test_force_overrides_the_presence_gate(self) -> None:
+        from unittest import mock
+
+        home = self.tmp / "home"
+        with mock.patch.object(coacus_install, "_home", return_value=home):
+            with mock.patch("shutil.which", return_value=None):
+                target = coacus_install.default_config_dir("claude-code", home)
+                result = coacus_install.install(
+                    "claude-code", self.root, target, dry_run=True, force=True
+                )
+        self.assertNotIn("error", result)
+        self.assertFalse(result.get("skipped", False))
+
+
+class TestUninstallPrunesDirs(unittest.TestCase):
+    """Uninstall removes the empty directories a skill tree left behind."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        self.config = self.tmp / "config"
+
+    def test_uninstall_removes_empty_skill_dirs(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        skill_dir = self.config / "skills" / "using-coacus"
+        self.assertTrue(skill_dir.is_dir())
+        coacus_install.uninstall("opencode", self.root, self.config, dry_run=False)
+        self.assertFalse(skill_dir.exists())
+        # The config root itself is preserved.
+        self.assertTrue(self.config.is_dir())

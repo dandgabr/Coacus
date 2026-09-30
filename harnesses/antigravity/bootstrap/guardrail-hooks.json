@@ -1,0 +1,10 @@
+{
+  "coacus-guard": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "\"__COACUS_ROOT__/harnesses/antigravity/bootstrap/coacus-guard.sh\""
+      }
+    ]
+  }
+}

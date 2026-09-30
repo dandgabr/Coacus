@@ -6,7 +6,7 @@ OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-deterministic%20suite-brightgreen.svg)](docs/usage.md)
-[![Status: F0–F8 complete](https://img.shields.io/badge/status-F0%E2%80%93F8%20complete-brightgreen.svg)](docs/roadmap.md)
+[![Status: F0–F10 complete](https://img.shields.io/badge/status-F0%E2%80%93F10%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
 
@@ -141,6 +141,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | `engine/generators/docstrings.py` | Source docstrings → `docs/reference/python-api.md`. |
 | `engine/validators/` | Source and artifact contracts: agents, skills, mcps, hygiene, evals, language, discovery, completeness. |
 | `engine/governor/ledger.py` | Disk ledger (`flock`) bounding concurrent subagents. |
+| `engine/guardrail/evaluate.py` | PAER policy evaluator used by the guardrail runtime. |
+| `engine/improve/` | The opt-in, fail-open self-improvement pipeline (never applies). |
+| `engine/generators/plugins.py` | `kind`-keyed plugin registry (governor gate, guardrails). |
+| `engine/generators/guardrails.py` | Renders a canonical policy into native hooks per harness. |
+| `engine/generators/lifecycle.py` | Renders the harness capability matrix. |
+| `engine/generators/outputs.py` | Cross-generator path uniqueness (one producer per path). |
 | `engine/toon.py` | Validator for TOON handoff payloads. |
 | `engine/dispatcher/` | `@register_converter` registry for ingestion formats. |
 | `engine/provenance.py` | Schema and existence checks for `sources.lock.json`. |
@@ -148,7 +154,9 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 ### Scripts, tests and evals
 
 Seven CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
-`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`, `coacus_route.py`. The `tests/` tree
+`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`, `coacus_route.py`, plus
+`coacus_guard.py` (the guardrail runtime) and `coacus_improve.py` (the opt-in
+self-improvement proposal CLI). The `tests/` tree
 holds a deterministic stdlib `unittest` suite (measure it with
 `python3 -m unittest discover -s tests`). `evals/` holds six behavior
 scenarios behind a static gate and an opt-in live runner
@@ -224,6 +232,10 @@ python3 scripts/coacus_governor.py status    # running/paused/max/slots_free
 python3 scripts/coacus_eval.py validate      # static scenario gate
 python3 scripts/coacus_vertical.py formats   # registered ingestion formats
 python3 scripts/coacus_import.py plan        # dry-run corpus import actions
+
+python3 scripts/coacus_guard.py --harness claude-code --event tool.pre < payload.json  # evaluate a policy
+python3 scripts/coacus_improve.py status     # episodic source availability (opt-in)
+python3 scripts/coacus_improve.py run --transcript session.jsonl   # propose improvements (never applies)
 ```
 
 Exit codes and governor semantics: [`docs/usage.md`](docs/usage.md).
@@ -275,10 +287,13 @@ read the relevant one before changing that area of the repository.
 | [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its eleven-category taxonomy. |
 | [routing](docs/standards/routing.md) | Agents are selected through a generated index, in a manual or an automated mode. |
 | [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from Context7 or the publisher, never recalled; the most recent definition wins. |
+| [lifecycle-guardrails](docs/standards/lifecycle-guardrails.md) | The PAER guardrail model, per-harness capability data and the native render. |
+| [decision-records](docs/standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
+| [self-improvement-loop](docs/standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
 
 ## Status
 
-Phases **F0–F8 complete**; the repository is finished.
+Phases **F0–F10 complete**; the repository is finished.
 
 | Phase | Scope |
 |---|---|
@@ -291,6 +306,8 @@ Phases **F0–F8 complete**; the repository is finished.
 | **F6** | Corpus import: import, translate and organize the full corpus into the ten-category taxonomy. |
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract. |
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
+| **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
+| **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
 
 The framework ships the imported corpus (351 skills, 92 agents, 15 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
@@ -313,11 +330,12 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/install.md`](docs/install.md) | Per-harness installation tutorials. |
 | [`docs/tutorials/`](docs/tutorials/) | Guided walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
-| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F8 and what each phase delivered. |
+| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 18 normative standards. Read before changing that area. |
+| [`docs/standards/`](docs/standards/) | The 22 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
+| [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |
 | [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |
 | [`AGENTS.md`](AGENTS.md) | Routing and single-scan rules for any agent in this repository. |
 | [`evals/README.md`](evals/README.md) | Behavior-eval tiers, scenario schema and the live runner. |

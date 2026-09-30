@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 from engine.validators import agents as agent_validator
 from engine.validators import hygiene
@@ -246,3 +248,27 @@ class TestAgentValidatorAdditional(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestHygieneAgentBodyD2(unittest.TestCase):
+    """I2: D2 tool names must be rejected in canonical agent bodies too."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name) / "repo"
+        agent = self.root / "knowledge/agents/roles/sample-agent"
+        agent.mkdir(parents=True)
+        (agent / "agent.source.md").write_text(
+            "---\nname: sample-agent\ndescription: >-\n  Sample.\n---\n\n# sample\n",
+            encoding="utf-8",
+        )
+
+    def test_tool_name_in_agent_body_is_rejected(self) -> None:
+        source = self.root / "knowledge/agents/roles/sample-agent/agent.source.md"
+        source.write_text(
+            source.read_text(encoding="utf-8") + "\nUse WebFetch to read the page.\n",
+            encoding="utf-8",
+        )
+        errors = hygiene.validate(self.root)
+        self.assertTrue(any("WebFetch" in e and "D2" in e for e in errors))

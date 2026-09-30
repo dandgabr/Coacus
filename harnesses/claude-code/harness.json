@@ -28,6 +28,33 @@
     ]
   },
   "detection": ["CLAUDE_PLUGIN_ROOT"],
+  "lifecycle": {
+    "schema": 1,
+    "supported": true,
+    "in_process": false,
+    "config": {
+      "container": "hooks",
+      "merge": "merge",
+      "hooks_file": "harnesses/claude-code/bootstrap/guardrail-hooks.json"
+    },
+    "composition": "composable",
+    "ordering": "coacus-last",
+    "events": {
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": true, "effect": "permissionDecision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "prompt.submit": { "support": "gate", "can_block": true, "can_ask": true, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "session.end": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "advisory", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "context.precompact": { "support": "lifecycle", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "subagent.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "derived": false, "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "subagent.stop": { "support": "lifecycle", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" }
+    }
+  },
+  "plugins": [
+    { "path": "harnesses/claude-code/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+  ],
   "tool_mapping": {
     "create or update todos": "TodoWrite",
     "dispatch a subagent": "Task",

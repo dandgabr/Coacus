@@ -65,16 +65,26 @@ and uninstalls are exact.
 
 ```bash
 python3 scripts/coacus_install.py opencode      # one harness
-python3 scripts/coacus_install.py all           # opencode, claude-code, antigravity, codex, cursor
+python3 scripts/coacus_install.py all           # every harness detected on this machine
 python3 scripts/coacus_install.py opencode --dry-run
 python3 scripts/coacus_install.py opencode --uninstall
 python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
+python3 scripts/coacus_install.py claude-code --force # install despite no detection
 ```
 
 `--verify` is read-only: it re-derives the plan from the manifest, reports
 canonical component counts (skills, agents, hooks), the install root and any
 missing/drifted file, and exits non-zero on mismatch. Use it to answer "is it
 installed and current?" instead of counting directories by hand.
+
+**Detection gate.** The installer never populates a harness that is not present
+on this machine. It detects presence by the harness's own environment variable or
+its executable on `PATH` (never by the mere existence of the config directory,
+which Coacus itself may have created). With `<harness|all>`, an undetected
+harness is SKIPPED with a `skipped: true` record; `--force` overrides the gate to
+provision ahead of the harness's own installation. An explicit `--config-dir`
+bypasses the gate (it is an intentional non-default target). `--verify` reports
+`harness_present` alongside `ok`.
 
 Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as

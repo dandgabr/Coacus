@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "description": "Canonical lifecycle-event taxonomy for guardrails (PAER: Policy over Action, Event binding, Rendering effect). An event answers WHEN a policy is consulted; the ACTION answers WHAT is being done. Event class decides decision semantics: a 'gate' event can carry allow/deny/ask; an 'observe' event is advisory only and can never deny; a 'lifecycle' event drives injection or the self-improvement loop.",
+  "events": [
+    { "id": "tool.pre", "class": "gate", "phase": "pre", "derived": false, "title": "Before a tool executes" },
+    { "id": "prompt.submit", "class": "gate", "phase": "pre", "derived": false, "title": "Before a user prompt is accepted" },
+    { "id": "turn.stop", "class": "gate", "phase": "post", "derived": false, "title": "When the agent tries to end its turn" },
+    { "id": "tool.post", "class": "observe", "phase": "post", "derived": false, "title": "After a tool returns" },
+    { "id": "tool.failure", "class": "observe", "phase": "post", "derived": true, "from": "tool.post", "title": "After a tool returns an error" },
+    { "id": "session.start", "class": "lifecycle", "phase": "pre", "derived": false, "title": "Session begins" },
+    { "id": "session.end", "class": "lifecycle", "phase": "post", "derived": false, "title": "Session ends" },
+    { "id": "context.precompact", "class": "lifecycle", "phase": "pre", "derived": false, "title": "Before context compaction" },
+    { "id": "subagent.start", "class": "lifecycle", "phase": "pre", "derived": true, "from": "tool.pre", "title": "A subagent is spawned" },
+    { "id": "subagent.stop", "class": "lifecycle", "phase": "post", "derived": true, "from": "tool.post", "title": "A subagent finishes" }
+  ]
+}

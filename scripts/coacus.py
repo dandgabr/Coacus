@@ -29,7 +29,9 @@ from engine.generators import (  # noqa: E402
     catalog,
     discovery,
     docstrings,
+    lifecycle,
     mcp_configs,
+    outputs,
     routing,
 )
 from engine.validators import agents as agent_validator  # noqa: E402
@@ -38,6 +40,7 @@ from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import docs as docs_validator  # noqa: E402
 from engine.validators import evals as eval_validator  # noqa: E402
 from engine.validators import freshness as freshness_validator  # noqa: E402
+from engine.validators import harnesses as harness_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
 from engine.validators import language as language_validator  # noqa: E402
 from engine.validators import mcps as mcp_validator  # noqa: E402
@@ -51,11 +54,25 @@ def source_errors(root: Path) -> list[str]:
         agent_validator.validate(root)
         + skill_validator.validate(root)
         + mcp_validator.validate(root)
+        + harness_validator.validate(root)
         + hygiene.validate(root)
         + eval_validator.validate(root)
         + freshness_validator.validate(root)
         + routing_validator.validate_sources(root)
         + language_validator.fence_errors(root)
+    )
+
+
+def _rendered(root: Path) -> dict[str, str]:
+    """Union of every generator's output, rejecting duplicate paths (single-source)."""
+    return outputs.union(
+        [
+            ("agent_manifests", agent_manifests.expected_outputs(root)),
+            ("mcp_configs", mcp_configs.expected_outputs(root)),
+            ("bootstrap", bootstrap.expected_outputs(root)),
+            ("discovery", discovery._expected(root)),
+            ("routing", routing._expected(root)),
+        ]
     )
 
 
@@ -93,7 +110,7 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         + discovery.write_all(root)
         + routing.write_all(root)
     )
-    written_paths = catalog.write(root) + [docstrings.write(root)]
+    written_paths = catalog.write(root) + [docstrings.write(root), lifecycle.write(root)]
     from datetime import datetime, timezone  # noqa: E402
 
     authored = provenance.sync_authoring(
@@ -126,6 +143,7 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         + routing.check(root)
         + catalog.check(root)
         + docstrings.check(root)
+        + lifecycle.check(root)
     )
     if drift:
         print("DRIFT detected — run: python3 scripts/coacus.py generate")

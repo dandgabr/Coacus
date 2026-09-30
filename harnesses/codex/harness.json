@@ -29,6 +29,34 @@
   },
   "detection": ["CODEX_HOME"],
   "live_cli": ["codex", "exec"],
+  "lifecycle": {
+    "schema": 1,
+    "supported": true,
+    "in_process": false,
+    "trust_gate": true,
+    "config": { "container": "hooks", "merge": "merge", "hooks_file": "harnesses/codex/bootstrap/guardrail-hooks.json" },
+    "composition": "composable",
+    "ordering": "coacus-last",
+    "events": {
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": false, "effect": "permissionDecision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "prompt.submit": { "support": "gate", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "derived": true, "from": "tool.post", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "session.end": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "advisory", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "context.precompact": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "observe", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "subagent.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "subagent.stop": { "support": "lifecycle", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" }
+    },
+    "gaps": [
+      { "event": "session.end", "status": "advisory", "reason": "SessionEnd is advisory on Codex; it cannot block" },
+      { "event": "tool.pre", "status": "trust-gate", "reason": "Codex refuses to run an untrusted hook until the operator approves it" }
+    ]
+  },
+  "plugins": [
+    { "path": "harnesses/codex/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+  ],
   "tool_mapping": {
     "create or update todos": "update_plan",
     "dispatch a subagent": "spawn_agent",

@@ -179,7 +179,8 @@ def validate(root: Path) -> list[str]:
         "orchestration-governance", "toon-protocol", "session-start-bootstrap",
         "single-source", "testing", "knowledge-ingestion", "secrets-portability",
         "provenance", "corpus-and-taxonomy", "version-freshness", "routing",
-        "plan-artifacts",
+        "plan-artifacts", "lifecycle-guardrails", "decision-records",
+        "self-improvement-loop",
     )
     standards_dir = root / "docs" / "standards"
     for name in standards:

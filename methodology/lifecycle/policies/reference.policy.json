@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "enabled": false,
+  "description": "REFERENCE guardrail policy — DISABLED. Demonstrates the PAER policy shape: a policy constrains an ACTION and binds to a gate event. Copy a policy into an enabled file to activate it; this file is never loaded.",
+  "policies": [
+    {
+      "id": "no-secret-reads",
+      "title": "Block reads of secret-shaped paths",
+      "action": { "verb": "read", "resource": "**/.env" },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Reading secret-shaped files (.env) is blocked by policy no-secret-reads."
+    },
+    {
+      "id": "no-force-push",
+      "title": "Block forced pushes to a remote",
+      "action": { "verb": "exec", "resource": "git push*--force*" },
+      "decision": "ask",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "A forced push rewrites remote history; confirm before proceeding."
+    }
+  ]
+}

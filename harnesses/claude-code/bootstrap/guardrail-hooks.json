@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__COACUS_ROOT__/harnesses/claude-code/bootstrap/coacus-guard.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

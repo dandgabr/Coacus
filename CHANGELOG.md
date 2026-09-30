@@ -5,6 +5,49 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — F9/F10: lifecycle guardrails and self-improvement loop
+
+### Added
+
+- **F9 — Portable lifecycle guardrails (PAER).** One policy authored once,
+  rendered natively per harness:
+  - Canonical data: `methodology/lifecycle/{events.json,actions.schema.json,records.schema.json}`
+    and `methodology/lifecycle/policies/` (empty and disabled by default).
+  - `engine/generators/plugins.py` — a `kind`-keyed plugin registry extracted from
+    `bootstrap.py` (a hooks-only harness is now representable).
+  - `engine/generators/guardrails.py` + `engine/generators/lifecycle.py` (generated
+    capability matrix) + `engine/generators/outputs.py` (cross-generator path
+    uniqueness).
+  - `engine/guardrail/` + `scripts/coacus_guard.py` — the runtime evaluator.
+  - `engine/validators/harnesses.py` — the harness-manifest schema validator.
+  - Installer: per-ENTRY-id hook ownership, container-aware merge, and
+    refuse-to-install for a `deny` the harness cannot block (`--allow-advisory`
+    records the downgrade).
+  - Standards `lifecycle-guardrails` and `decision-records`; ADRs 0001–0004 and
+    0006.
+- **F10 — Self-improvement loop (proposer-only).** `engine/improve/` plus a thin
+  `scripts/coacus_improve.py`: pluggable episodic sources (`transcript` default,
+  `ai-memory` optional), typed consolidation, retrieval-first routing, a
+  verification ladder, taint labeling, and a runtime ledger. It never applies.
+  Standard `self-improvement-loop`; ADR 0005.
+- New standards count is machine-reconciled (`engine/validators/docs.py`).
+
+### Changed
+
+- `engine/generators/bootstrap.py` is now a facade over `plugins.py`; guardrail
+  artifacts are disjoint from the bootstrap `hooks.json` (one producer per path).
+- `tests/test_idempotency.py` covers the bootstrap, discovery and routing
+  generators, not just agent manifests and the catalog.
+
+### Security
+
+- Guardrails default to an empty, disabled policy set; the reference policy is
+  disabled (ADR 0006).
+- Failure is split: a decision failure denies, a mechanism failure allows with an
+  advisory (ADR 0002).
+- The improvement loop has no apply path and no import path to the policy loader
+  (ADR 0005), asserted by test.
+
 ## [Unreleased] — Skill source is not an app write target
 
 ### Added

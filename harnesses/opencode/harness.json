@@ -18,10 +18,43 @@
     "opencode",
     "run"
   ],
+  "lifecycle": {
+    "schema": 1,
+    "supported": true,
+    "in_process": true,
+    "config": {
+      "container": null,
+      "merge": "plugin",
+      "hooks_file": null
+    },
+    "composition": "composable",
+    "ordering": "coacus-last",
+    "events": {
+      "tool.pre": {
+        "support": "gate",
+        "can_block": true,
+        "can_ask": false,
+        "effect": "throw",
+        "evidence": "documented",
+        "resolved": "2026-09-30",
+        "source": "https://opencode.ai/docs/plugins"
+      },
+      "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "metadata", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
+      "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "transform", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
+      "context.precompact": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "context", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
+      "session.end": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
+      "turn.stop": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
+      "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" }
+    }
+  },
   "plugins": [
     {
       "path": "harnesses/opencode/bootstrap/governor-gate.js",
       "kind": "governor-gate"
+    },
+    {
+      "path": "harnesses/opencode/bootstrap/coacus-guardrails.js",
+      "kind": "guardrail"
     }
   ],
   "tool_mapping": {

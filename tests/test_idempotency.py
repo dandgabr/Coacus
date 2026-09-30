@@ -7,15 +7,25 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from engine.generators import agent_manifests, catalog
+from engine.generators import agent_manifests, bootstrap, catalog, discovery, routing
 
 from tests.support import make_repo
 
 
 def snapshot(root: Path) -> dict[str, str]:
-    """Content hash of every generated file in the repo."""
+    """Content hash of every generated file in the repo.
+
+    Covers agent manifests, the bootstrap/guardrail render, the discovery and
+    routing indexes, and the catalog — the union that must stay byte-idempotent
+    (generated-artifacts). ``sources.lock.json`` and the proposal ledger are a
+    different artifact class (committed-not-generated) and are deliberately absent.
+    """
     hashes: dict[str, str] = {}
-    for rel in agent_manifests.expected_outputs(root):
+    expected = dict(agent_manifests.expected_outputs(root))
+    expected.update(bootstrap.expected_outputs(root))
+    expected.update(discovery._expected(root))
+    expected.update(routing._expected(root))
+    for rel in expected:
         path = root / rel
         if path.is_file():
             hashes[rel] = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -32,9 +42,15 @@ class TestIdempotency(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = make_repo(Path(tmp))
             agent_manifests.write_all(root)
+            bootstrap.write_all(root)
+            discovery.write_all(root)
+            routing.write_all(root)
             catalog.write(root)
             first = snapshot(root)
             agent_manifests.write_all(root)
+            bootstrap.write_all(root)
+            discovery.write_all(root)
+            routing.write_all(root)
             catalog.write(root)
             second = snapshot(root)
             self.assertEqual(first, second)
@@ -44,6 +60,9 @@ class TestIdempotency(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = make_repo(Path(tmp))
             agent_manifests.write_all(root)
+            bootstrap.write_all(root)
+            discovery.write_all(root)
+            routing.write_all(root)
             catalog.write(root)
             for rel, digest in snapshot(root).items():  # noqa: B007
                 path = root / rel
