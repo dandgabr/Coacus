@@ -171,6 +171,23 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
+## Agent Roster
+
+After the tasks are defined and before the Execution Handoff, run the roster
+step once per task and let your human partner choose the executing agents.
+Follow `../using-coacus/references/coacus-process-conventions.md` → "Select
+agents for a task (roster)":
+
+1. Route each task's own text with
+   `python3 scripts/coacus_route.py "<task text>" --top 5`.
+2. Present the candidates as a numbered list, one block per task, so the user
+   can answer once for the whole plan (`1,3` for that task; `all`).
+3. Validate the choices with `python3 scripts/coacus_route.py --agents a,b,c`.
+4. Hold the roster — task → chosen agents — in this session only. Do NOT write
+   it into the plan document.
+
+The roster is session state, not plan content. The plan file stays as written.
+
 ## Execution Handoff
 
 After saving and self-reviewing the plan, link it for your human partner
@@ -191,6 +208,9 @@ them to review the plan and choose an execution method before implementation.
 **When an execution method has already been supplied:**
 
 **"Plan complete and saved to `docs/temp/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
+
+The agent roster for each task is held in this session; tell me if you want to
+change any choice before execution.
 
 **If Subagent-driven chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers-subagent-driven-development

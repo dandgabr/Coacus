@@ -16306,7 +16306,7 @@
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
       "target_path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "target_sha256": "911a983604e908a2f496f8bef4451e32f1be7c45aa4d913e0478d1a8f0df245a",
+      "target_sha256": "7cca6d173883323c0c50b338b56a6bbb019a8a2f71dedd8e693492474ba94796",
       "origin_license": "MIT",
       "transform": [
         "imported",
