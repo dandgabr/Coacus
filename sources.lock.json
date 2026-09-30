@@ -15992,7 +15992,7 @@
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
       "target_path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "target_sha256": "3c26db48849bf914a8c59f331943f71c82589d0e2cc2c0ebaefdf0dbfee98971",
+      "target_sha256": "23b50ce9466dd76e86438924e8cabf379a32480688cfa77a2cf4f1b257dd0d60",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16005,9 +16005,9 @@
       "source_repo": "superpowers",
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/implementer-prompt.md",
-      "source_sha256": "81dd9d5a3fb0b09b96b5829f03b9796842f3199ef7591d1ba1c2db2a515f64d0",
+      "source_sha256": "41a5af89105840667b27ca72974875145780ef2ae2cc60422f552516921609c9",
       "target_path": "methodology/workflows/superpowers-subagent-driven-development/implementer-prompt.md",
-      "target_sha256": "81dd9d5a3fb0b09b96b5829f03b9796842f3199ef7591d1ba1c2db2a515f64d0",
+      "target_sha256": "41a5af89105840667b27ca72974875145780ef2ae2cc60422f552516921609c9",
       "origin_license": "MIT",
       "transform": [
         "imported"
