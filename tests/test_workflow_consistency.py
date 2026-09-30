@@ -51,6 +51,14 @@ class TestRoutingStandard(unittest.TestCase):
     def test_routing_allows_the_planning_roster(self) -> None:
         self.assertIn("roster", read(ROUTING_STD).lower())
 
+    def test_routing_keeps_the_orchestrator_as_a_caller(self) -> None:
+        self.assertIn("by the orchestrator", read(ROUTING_STD).lower())
+
+
+class TestShipClaimsAreTrue(unittest.TestCase):
+    def test_conventions_does_not_overclaim_a_verify_skip(self) -> None:
+        self.assertNotIn("undetected harness is skipped", read(CONVENTIONS).lower())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -60,8 +60,12 @@ After the local gate is green, two steps complete the change:
   python3 scripts/coacus_install.py all --verify
   ```
 
-  Quote the `--verify` output (canonical component counts, install root, drift);
-  it exits non-zero on mismatch. An undetected harness is skipped, not failed.
+  Quote the `--verify` output (canonical component counts, install root, drift).
+  `--verify` exits non-zero on drift AND on a harness with no manifest, so a
+  harness absent from this machine is reported as `harness_present: false` and
+  still fails the run; read the per-harness records rather than the exit code
+  alone. Run `--verify` for the harnesses you actually installed when you want a
+  clean exit.
 
 ## Reach the local corpus
 
