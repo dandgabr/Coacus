@@ -13,7 +13,8 @@ generated index, never by guessing a name or re-scanning the tree.
 
 - **Mode M — manual.** The user names the agents. `coacus_route.py --list` browses
   the index; `coacus_route.py --agents a,b` validates an explicit selection. An
-  unknown name is an ERROR with close suggestions, never a silent drop.
+  unknown name is an ERROR — with close suggestions when one exists — never a
+  silent drop.
 - **Mode A — automated curation.** `coacus_route.py "<prompt>"` ranks the agents
   for the prompt and prints the best candidates. The ranking is lexical and
   deterministic (``engine/router.py``): curated trigger terms weigh most, then the

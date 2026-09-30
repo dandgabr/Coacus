@@ -46,11 +46,14 @@ After the local gate is green, two steps complete the change:
 
   ```bash
   git push -u origin <branch>
-  gh pr create --fill
+  gh pr create --title "<type>(<scope>): <summary>" \
+    --body "<what changed; how it was verified; the regenerated diffs>"
   ```
 
-  The PR body must carry the regenerated diffs (`catalog/`, `dist/`,
-  `harnesses/*/bootstrap/`, `sources.lock.json`) alongside the source change.
+  The PR body must carry the regenerated diffs (`catalog/`,
+  `knowledge/**/dist/`, `harnesses/*/bootstrap/`, `sources.lock.json`) alongside
+  the source change. `--fill` is not enough: it derives the body from the commit
+  messages and cannot state the diff set or the verification commands.
 
 - **Reinstall locally.** Refresh the artifacts in the harnesses present on this
   machine, then verify them:
@@ -106,7 +109,9 @@ workflow may call the router automatically.
    python3 scripts/coacus_route.py --agents <name1>,<name2>
    ```
 
-   An unknown name exits non-zero with suggestions. Resolve it; never guess.
+   An unknown name exits non-zero. When a close match exists it also prints
+   suggestions; a bare trigger alias resolves to its agent. Read the output and
+   correct the name — never guess.
 6. Hold the validated roster in session memory, keyed by task. The roster is
    NEVER written to the plan or to any tracked or generated file.
 

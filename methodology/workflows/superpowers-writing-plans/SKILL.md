@@ -203,14 +203,15 @@ them to review the plan and choose an execution method before implementation.
 - **Subagent-driven** - A fresh subagent implements each task and a fresh reviewer checks it before the next one starts, then a whole-branch review at the end. Most thorough; costs a fresh context per task and per review.
 - **Native** - I implement every task myself in this session, the way this harness runs work, then one fresh reviewer on the most capable model checks the whole branch. Cheapest and fastest; no independent review until the end. Runs well with a mid-tier session model, since the plan carries the design.
 
-**For this plan I recommend <one of the two>, because <one sentence from the plan: how much the tasks depend on each other's interfaces, how many there are, what a shipped mistake would cost>. Does the plan capture what you want, and which approach should we use?"**
+**Agent roster: <task N> → <agent(s)>; <task M> → <agent(s)>. Tell me if you want to change any choice. For this plan I recommend <one of the two>, because <one sentence from the plan: how much the tasks depend on each other's interfaces, how many there are, what a shipped mistake would cost>. Does the plan capture what you want, and which approach should we use?"**
 
 **When an execution method has already been supplied:**
 
-**"Plan complete and saved to `docs/temp/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
+**"Plan complete and saved to `docs/temp/plans/<filename>.md`. Please review the plan. Does it capture what you want?**
 
-The agent roster for each task is held in this session; tell me if you want to
-change any choice before execution.
+**Agent roster: <task N> → <agent(s)>; <task M> → <agent(s)>. Tell me if you want to change any choice."**
+
+The roster is session state, not plan content: name it in this message, never write it into the plan file.
 
 **If Subagent-driven chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers-subagent-driven-development

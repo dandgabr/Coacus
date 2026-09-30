@@ -59,6 +59,24 @@ class TestShipClaimsAreTrue(unittest.TestCase):
     def test_conventions_does_not_overclaim_a_verify_skip(self) -> None:
         self.assertNotIn("undetected harness is skipped", read(CONVENTIONS).lower())
 
+    def test_conventions_does_not_overclaim_suggestions(self) -> None:
+        # `--agents` only prints suggestions when a close match exists.
+        self.assertNotIn("exits non-zero with suggestions", read(CONVENTIONS).lower())
+
+    def test_pr_command_carries_an_explicit_body(self) -> None:
+        # --fill pulls the body from commits and cannot carry the diffs the doc requires.
+        self.assertNotIn("gh pr create --fill", read(CONVENTIONS))
+
+    def test_generated_diff_paths_are_nested(self) -> None:
+        # There is no root `dist/`; the generated trees live under knowledge/**/dist/.
+        self.assertIn("knowledge/**/dist/", read(CONVENTIONS))
+
+
+class TestHandoffNamesTheRoster(unittest.TestCase):
+    def test_writing_plans_handoff_names_the_roster(self) -> None:
+        # The handoff message itself must name the roster, not merely reference it.
+        self.assertIn("Agent roster:", read(WRITING_PLANS))
+
 
 if __name__ == "__main__":
     unittest.main()
