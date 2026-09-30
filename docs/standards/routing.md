@@ -46,10 +46,15 @@ reranker's job, not the lexical scorer's.
 
 ### User-invoked only
 
-Routing never injects candidates into a conversation automatically. Selection
-happens when the user or the orchestrator explicitly calls
-`scripts/coacus_route.py` or names the agents; nothing observes the prompts or
-spends context on unsolicited suggestions.
+Routing never observes ambient prompts or spends context on unsolicited
+suggestions. Selection happens on an explicit call to
+`scripts/coacus_route.py` or when the user names the agents.
+
+One automated caller is sanctioned: the planning workflow's roster step, which
+routes the plan's OWN task text and MUST present the candidates for human
+selection — it proposes, it never auto-selects. See
+`../../methodology/workflows/using-coacus/references/coacus-process-conventions.md`
+→ "Select agents for a task (roster)".
 
 ## Rationale
 
