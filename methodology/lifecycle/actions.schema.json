@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "description": "Canonical ACTION vocabulary — the portability-maximal layer of PAER. A policy constrains an action (verb + resource); the event is only a binding. Verbs are stable; the resource grammar is per-verb.",
+  "verbs": [
+    { "id": "exec", "resource": "command pattern", "title": "Run a command or process" },
+    { "id": "read", "resource": "path glob (repo-relative; absolute only with a declared root)", "title": "Read a file or resource" },
+    { "id": "write", "resource": "path glob", "title": "Create, edit or delete a file" },
+    { "id": "network", "resource": "host or scheme+host", "title": "Reach the network" },
+    { "id": "spawn", "resource": "subagent name pattern", "title": "Spawn a subagent" },
+    { "id": "delegate", "resource": "handoff payload shape", "title": "Hand a task off (TOON payload)" }
+  ],
+  "excluded": [
+    { "id": "invoke_skill", "reason": "consulting a skill is a discipline, not a security action" }
+  ]
+}

@@ -158,3 +158,19 @@ Only these changes belong in `engine/`: a new representation target for an
 existing artifact, a new validation class, a new bootstrap shape, or a new
 runtime gate. Treat each as a deliberate core change, add tests under `tests/`,
 and record the decision as a new standard in `docs/standards/` before merging.
+
+## Adding a harness lifecycle block or guardrail
+
+A harness gains lifecycle capability through DATA, not code. Add a `lifecycle`
+block to `harnesses/<h>/harness.json` with a per-event capability object
+(`support`, `can_block`, `can_ask`, `effect`, `evidence`, `resolved`, `source`)
+and declare `gaps` as explicit data. Add a `plugins[]` entry with
+`"kind": "guardrail"` to have `engine/generators/guardrails.py` render the native
+artifact; `engine/validators/harnesses.py` validates the block against
+`methodology/lifecycle/events.json` and the registered plugin kinds.
+
+Guardrail policies are authored once in `methodology/lifecycle/policies/*.policy.json`
+and are ACTIVE only when the file declares `"enabled": true` (D2: empty default).
+A new plugin `kind` is a new registration in `engine/generators/plugins.py`; a new
+shape is an engine change. Never write a harness's native hook by hand — it is
+generated and drift-checked.

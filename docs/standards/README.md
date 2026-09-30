@@ -24,6 +24,9 @@ validator that enforces it. The rule is what governs the repository.
 | [`provenance.md`](provenance.md) | The `sources.lock.json` schema, dedup key and drift key. |
 | [`corpus-and-taxonomy.md`](corpus-and-taxonomy.md) | The data-driven import manifest, the ten-category taxonomy and the dedup gate. |
 | [`plan-artifacts.md`](plan-artifacts.md) | The gitignored `docs/temp/` home for ephemeral process artifacts (specs, plans, scratch). |
+| [`lifecycle-guardrails.md`](lifecycle-guardrails.md) | The PAER guardrail model: action/policy/event/effect, capability data and the render. |
+| [`decision-records.md`](decision-records.md) | Committed MADR architecture decision records under `docs/decisions/`. |
+| [`self-improvement-loop.md`](self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
 
 The documentation index is [`../README.md`](../README.md). Repository-wide rules
 for agents live in [`../../AGENTS.md`](../../AGENTS.md); the contribution contract

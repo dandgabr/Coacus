@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": "\"__COACUS_ROOT__/harnesses/cursor/bootstrap/coacus-guard.sh\""
+      }
+    ]
+  }
+}

@@ -124,7 +124,9 @@ def validate(root: Path) -> list[str]:
             if "/dist/" in f"/{rel}":
                 continue  # derived content is checked by drift, not hygiene
             is_text = path.suffix == ".md"
-            is_data = path.suffix in (".json", ".yaml", ".yml") and rel.startswith("templates/")
+            is_data = path.suffix in (".json", ".yaml", ".yml") and (
+                rel.startswith("templates/") or rel.startswith("methodology/lifecycle/")
+            )
             if not (is_text or is_data):
                 continue
             text = path.read_text(encoding="utf-8", errors="replace")

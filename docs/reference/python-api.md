@@ -95,6 +95,10 @@ Shapes:
   that declares it. Antigravity rules are capped at 12,000 characters.
 - native-discovery: nothing rendered (the harness surfaces skills natively).
 
+Plugin artifacts (the governor gate, guardrails) are rendered by
+``engine/generators/plugins.py`` and are reachable even when a harness does not
+support a bootstrap, so a hooks-only harness is representable (D8).
+
 Rendered artifacts are committed and drift-checked (generated-artifacts); no timestamps.
 
 #### `def discover_harnesses(root: Path) -> list[Path]`
@@ -108,6 +112,10 @@ Parse a ``harness.json``; a malformed file raises a readable ValueError.
 #### `def render(harness: dict, root: Path) -> dict[str, str]`
 
 Compute rendered files for one harness (repo-relative path -> content).
+
+Bootstrap artifacts are rendered only when the harness declares bootstrap
+support; plugin artifacts (governor gate, guardrails) are ALWAYS rendered,
+so a hooks-only harness is representable (D8).
 
 #### `def expected_outputs(root: Path) -> dict[str, str]`
 
@@ -188,6 +196,53 @@ Write the generated API reference to disk and return its path.
 
 Drift check for the generated API reference (generated-artifacts).
 
+### `engine/generators/guardrails.py`
+
+Render the canonical guardrail policy layer into each harness's native hook.
+
+This is the 'Rendering effect' layer of PAER. Policies are authored once
+(``methodology/lifecycle/policies/*.policy.json``); the runtime evaluator is
+``scripts/coacus_guard.py``; this generator emits, per harness, the native hook
+that calls the evaluator at the bound event.
+
+One producer per path (outputs): guardrail artifacts are DISJOINT from the
+bootstrap ``hooks.json`` — they live in ``coacus-guard.*`` and
+``guardrail-hooks.json`` so no two generators write the same file. The installer
+merges the fragment into the user hook config.
+
+Capability gating (D3): where a harness cannot block, deny policies are rendered
+as advisory and the capability matrix records it; where an event has no native
+home, the binding is simply absent. Enforcement claims are never fabricated here.
+
+#### `def render(harness: dict, root: Path) -> dict[str, str]`
+
+Render guardrail artifacts for a harness declaring a ``guardrail`` plugin.
+
+### `engine/generators/lifecycle.py`
+
+Generate the harness lifecycle/capability matrix (F9.3).
+
+Writes ``docs/reference/lifecycle-matrix.md`` from every ``harness.json``
+``lifecycle`` block, joining the canonical event taxonomy
+(``methodology/lifecycle/events.json``) with each harness's declared capability.
+
+Every cell carries its EVIDENCE CLASS and resolved anchor — a generated boolean
+would launder an unverified vendor claim into apparent authority, which the
+version-freshness rule forbids. The output is timestamp-free and drift-checked
+like every other generated artifact (generated-artifacts).
+
+#### `def build(root: Path) -> str`
+
+Render the capability matrix as Markdown.
+
+#### `def write(root: Path) -> Path`
+
+Write the matrix to disk and return its path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the generated matrix (generated-artifacts).
+
 ### `engine/generators/mcp_configs.py`
 
 Generate per-MCP harness declarations from a single canonical source (D4).
@@ -222,6 +277,77 @@ Materialize all generated MCP files. Returns repo-relative paths.
 #### `def check(root: Path) -> list[str]`
 
 Drift check: expected vs disk, plus orphan detection (generated-artifacts).
+
+### `engine/generators/outputs.py`
+
+Cross-generator output uniqueness (single-source, generated-artifacts).
+
+Every generated repo-relative path has exactly ONE producer. Before this module,
+each generator merged its own outputs with ``dict.update`` and the facade
+concatenated the generators, so two generators writing the same path silently
+clobbered each other (last-wins) and ``check`` compared against the wrong bytes.
+
+``union`` turns that silent overwrite into a build error. It is called by
+``scripts/coacus.py`` across ALL generators, because a module cannot see a
+sibling module's paths (D3: disk is the truth; generation is the contract).
+
+#### `class OutputCollision`
+
+Two producers emitted the same repo-relative path.
+
+
+#### `def union(named_outputs: list[tuple[str, dict[str, str]]]) -> dict[str, str]`
+
+Merge ``[(producer, {path: content})]`` rejecting any duplicate path.
+
+Raises ``OutputCollision`` naming both producers so the fix is obvious:
+the two generators must agree on one owner, or write disjoint paths.
+
+### `engine/generators/plugins.py`
+
+Per-harness plugin renderers, dispatched by a data-driven kind registry (D8).
+
+Before this module the plugin seam lived inside ``bootstrap.py`` and was keyed by
+harness NAME with Python-literal bodies, and it was unreachable whenever
+``bootstrap.supported`` was false. That made a peer lifecycle layer (guardrails)
+impossible: a harness with hooks but no bootstrap could not be rendered.
+
+This module owns the algorithm; ``harness.json`` owns the facts:
+
+- ``plugins[]`` entries declare ``kind`` and an output ``path``.
+- ``_REGISTRY`` maps a ``kind`` to a renderer.
+- An unknown kind renders nothing (a deliberate, test-pinned contract: routing is
+  user-invoked only, so a declared ``router-hook`` must not silently render).
+
+``guardrails`` registers its kind on import; a new kind is a new registration
+(OCP: data changes when new data arrives, the engine changes when a new CONCEPT
+arrives).
+
+#### `def register(kind: str, renderer) -> None`
+
+Register a renderer for a plugin kind (idempotent overwrite).
+
+#### `def registered_kinds() -> list[str]`
+
+Known plugin kinds, sorted (for validators and tests).
+
+#### `def native_context_json(native_key: str, event_name: str, text: str) -> str`
+
+Build a single-key native JSON context payload.
+
+Supports a nested key (``hookSpecificOutput.additionalContext``, which needs
+``hookEventName``) and a flat key (``additional_context``). The emitted
+object carries exactly one native context key (session-start-bootstrap).
+``event_name`` is parameterised so a guardrail bound to ``PreToolUse`` does
+not inherit the bootstrap's ``SessionStart`` literal.
+
+#### `def render_plugins(harness: dict, root: Path) -> dict[str, str]`
+
+Render every declared plugin for a harness, by kind.
+
+Renders regardless of whether the harness supports a bootstrap, so a
+hooks-only harness is representable. Unknown kinds render nothing
+(test-pinned: a declared router-hook must stay inert).
 
 ### `engine/generators/routing.py`
 
@@ -281,6 +407,44 @@ A file-backed slot ledger guarded by ``fcntl.flock``.
 - `def clear_paused(self, caller: str | None=None) -> None` — Drop PAUSED rows for ``caller``, or for every caller when ``None``.
 - `def status(self) -> dict` — Reap stale leases and return the current running/paused/slots snapshot.
 - `def reset(self) -> None` — Clear every record, returning the ledger to an idle state.
+
+### `engine/guardrail/evaluate.py`
+
+Evaluate PAER guardrail policies against a canonical action.
+
+PAER = Policy over Action, Event binding, Rendering effect. This module is the
+harness-agnostic core: a policy constrains an ACTION (`verb` + `resource`); the
+event only decides WHEN the policy runs and whether a decision may bind.
+
+Design notes (D4):
+- Failure domains are split. `on_decision_failure` is the result when the
+  evaluator ran but could not decide; `on_mechanism_failure` is the result when
+  the guardrail process itself failed. A broken hook must not deny every call.
+- `ask` on a harness/scope without a human channel degrades via
+  `on_ask_unavailable` (never a global default).
+
+The evaluator is deliberately small, deterministic and stdlib-only. It matches
+resource patterns with `fnmatch` for read/write, and substring globs for the
+other verbs.
+
+#### `def load_events(root: Path) -> dict[str, dict]`
+
+Load the canonical event taxonomy as ``{event_id: event}``.
+
+#### `def load_policies(root: Path) -> list[dict]`
+
+Load every ACTIVE policy from ``methodology/lifecycle/policies/*.json``.
+
+A file is active only when it declares ``"enabled": true``. The shipped
+default set is empty and the reference file is disabled, so installing
+Coacus never changes a session's behaviour without an explicit opt-in (D2).
+
+#### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
+
+Evaluate policies against one action; return the most restrictive decision.
+
+Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
+An event with no matching policy yields ``allow``.
 
 ### `engine/provenance.py`
 
@@ -565,6 +729,24 @@ standard's explicit "could not resolve" state, with a reason) or
 ``UNRESOLVED`` (a gate error). Never fails: it is the audit surface for "how
 old is the corpus", not a gate.
 
+### `engine/validators/harnesses.py`
+
+Harness-manifest validator (F9.1).
+
+Before this validator, ``harness.json`` was only checked for a ``name`` key, so a
+misspelled lifecycle capability or an event id absent from the canonical
+taxonomy degraded the render silently. This validator makes those errors loud:
+it validates the ``bootstrap`` block, the ``plugins[].kind`` values against the
+engine's registered kinds, and the ``lifecycle`` block against the canonical
+event taxonomy (``methodology/lifecycle/events.json``).
+
+It also validates the authoring template (``harnesses/_template``), which
+``discover_harnesses`` deliberately skips.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of harness-manifest errors (empty = clean).
+
 ### `engine/validators/hygiene.py`
 
 Repository hygiene validators (D2 anti-tools, D12 paths/secrets).
@@ -807,6 +989,35 @@ cap stayed saturated past the timeout.
 
 Parse arguments and run the requested governor action.
 
+### `scripts/coacus_guard.py`
+
+Coacus guardrail runtime: evaluate PAER policies for one lifecycle event.
+
+The generated native hooks (shape A shell scripts, shape B JS plugins) call this
+CLI with the harness name and the bound event; the harness pipe the trigger
+payload on stdin. The CLI:
+
+1. reads the payload,
+2. maps the tool call to a canonical ACTION (verb + resource),
+3. evaluates the active policies (``engine.guardrail.evaluate``),
+4. emits the harness-native effect JSON.
+
+Failure semantics (D4): a decision the evaluator could not make is governed by
+the matched policy's ``on_decision_failure``; a failure of this process itself
+(no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
+allow) plus an advisory, so a broken guardrail cannot brick a session.
+
+Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
+no exit code; Claude's exit-2 path is reserved for the explicit deny render).
+
+#### `def run(harness: str, event: str, payload_text: str, root: Path) -> str`
+
+Evaluate one event and return the native effect JSON (never raises).
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Parse args, evaluate, print the native effect JSON, exit 0.
+
 ### `scripts/coacus_import.py`
 
 Coacus corpus importer (F6).
@@ -852,6 +1063,30 @@ Execute the planned actions and return the recorded provenance entries.
 #### `def main(argv: list[str] | None=None) -> int`
 
 Parse arguments and run the ``plan``, ``apply`` or ``normalize`` action.
+
+### `scripts/coacus_improve.py`
+
+Coacus self-improvement CLI (thin dispatch over ``engine.improve``).
+
+OPT-IN and fail-open (P2): the loop does nothing unless invoked here, and it
+never touches the deterministic build contract (``generate``/``check``). In v1 it
+only PROPOSES; promotion is a human PR.
+
+Usage:
+    python3 scripts/coacus_improve.py run --transcript <path.jsonl> [--source transcript]
+    python3 scripts/coacus_improve.py status
+
+#### `def cmd_run(args: argparse.Namespace) -> int`
+
+Run the improvement pipeline once and print the summary.
+
+#### `def cmd_status(args: argparse.Namespace) -> int`
+
+Report the availability of each episodic source on this machine.
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Parse arguments and dispatch to the selected subcommand.
 
 ### `scripts/coacus_install.py`
 
@@ -942,7 +1177,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 
@@ -951,6 +1186,10 @@ containment-checked first, so an install never writes outside the allowed
 roots (see ``_assert_contained``). For ``command-code`` the user rules
 (``<config>/AGENTS.md``) are written only when absent and are not part of the
 manifest — a pre-existing memory file is left untouched.
+
+Enforcement is refused, not degraded (D3): a ``deny`` policy the harness
+cannot block aborts the install unless ``allow_advisory`` records the
+downgrade explicitly.
 
 #### `def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]`
 

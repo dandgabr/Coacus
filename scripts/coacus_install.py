@@ -425,14 +425,27 @@ def _substitute_json(text: str, placeholder: str, value: str) -> str:
     return json.dumps(walk(json.loads(text)), indent=2) + "\n"
 
 
+def _hook_owner_markers(root: Path, harness: str) -> set[str]:
+    """Substrings identifying Coacus-owned hook entries in a shared hooks.json.
+
+    A SET, not one marker: the installer now owns two kinds of hook entry (the
+    SessionStart bootstrap and the guardrail). One marker would let a re-install
+    of one subsystem delete the other's entry, and ``--uninstall`` would leave a
+    stale guardrail behind.
+    """
+    base = f"{root.as_posix()}/harnesses/{harness}/bootstrap"
+    return {f"{base}/session-start.sh", f"{base}/coacus-guard.sh", f"{base}/coacus-guardrails.js"}
+
+
+def _entry_owned(entry: object, markers: set[str]) -> bool:
+    """True if a hook entry references any Coacus script (by our markers)."""
+    blob = json.dumps(entry)
+    return any(marker in blob for marker in markers)
+
+
 def _hook_owner_marker(root: Path, harness: str) -> str:
-    """Substring identifying a Coacus-owned hook entry in a shared hooks.json."""
+    """Back-compat single marker (the bootstrap script) for legacy callers."""
     return f"{root.as_posix()}/harnesses/{harness}/bootstrap/session-start.sh"
-
-
-def _entry_owned(entry: object, marker: str) -> bool:
-    """True if a hook entry references the Coacus script (by our marker)."""
-    return marker in json.dumps(entry)
 
 
 def _load_existing_json(path: Path) -> dict:
@@ -446,23 +459,24 @@ def _load_existing_json(path: Path) -> dict:
     return data if isinstance(data, dict) else {}
 
 
-def _merge_hooks(existing: dict, fragment: dict, marker: str) -> dict:
+def _merge_hooks(existing: dict, fragment: dict, markers: set[str]) -> dict:
     """Merge our hook entries into the user's hooks.json, preserving theirs.
 
-    For each event we drop any prior Coacus entry (identified by ``marker``) and
-    append ours. Every other key and event is left untouched, so installing does
-    not rewrite a harness config file wholesale.
+    For each event we drop any prior Coacus entry (identified by ANY marker in
+    ``markers``) and append ours. Every other key and event is left untouched, so
+    installing does not rewrite a harness config file wholesale, and a re-install
+    of one Coacus subsystem does not clobber the other.
     """
     merged = dict(existing) if isinstance(existing, dict) else {}
     merged_hooks = dict(merged.get("hooks", {})) if isinstance(merged.get("hooks"), dict) else {}
     for event, entries in (fragment.get("hooks") or {}).items():
-        kept = [e for e in merged_hooks.get(event, []) if not _entry_owned(e, marker)]
+        kept = [e for e in merged_hooks.get(event, []) if not _entry_owned(e, markers)]
         merged_hooks[event] = kept + list(entries)
     merged["hooks"] = merged_hooks
     return merged
 
 
-def _strip_hooks(existing: dict, marker: str) -> dict | None:
+def _strip_hooks(existing: dict, markers: set[str]) -> dict | None:
     """Remove Coacus hook entries from the user's hooks.json.
 
     Returns the trimmed document, or None when nothing but Coacus remained (the
@@ -475,7 +489,7 @@ def _strip_hooks(existing: dict, marker: str) -> dict | None:
         if not isinstance(entries, list):
             hooks[event] = entries
             continue
-        kept = [e for e in entries if not _entry_owned(e, marker)]
+        kept = [e for e in entries if not _entry_owned(e, markers)]
         if kept:
             hooks[event] = kept
     trimmed = {k: v for k, v in existing.items() if k != "hooks"}
@@ -484,6 +498,91 @@ def _strip_hooks(existing: dict, marker: str) -> dict | None:
     else:
         trimmed.pop("hooks", None)
     return trimmed or None
+
+
+def _guardrail_artifacts(
+    root: Path, harness: str, config_dir: Path
+) -> tuple[list[tuple[Path, FileContent]], dict | None]:
+    """Stage the guardrail script/plugin and return a hook fragment to merge.
+
+    Returns ``(files, fragment)`` where ``fragment`` is the container-shaped hook
+    config to merge into the user's file, or None for an in-process harness
+    (opencode) whose guard is a plugin. A harness with no guardrail plugin or an
+    unsupported lifecycle stages nothing.
+    """
+    manifest = root / "harnesses" / harness / "harness.json"
+    if not manifest.is_file():
+        return [], None
+    try:
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return [], None
+    if not any(p.get("kind") == "guardrail" for p in data.get("plugins", [])):
+        return [], None
+    if not data.get("lifecycle", {}).get("supported"):
+        return [], None
+    subst = lambda text: text.replace("__COACUS_ROOT__", root.as_posix())  # noqa: E731
+
+    files: list[tuple[Path, FileContent]] = []
+    if harness == "opencode":
+        src = root / "harnesses/opencode/bootstrap/coacus-guardrails.js"
+        if src.is_file():
+            files.append((config_dir / "plugins" / "coacus-guardrails.js", subst(src.read_text(encoding="utf-8"))))
+        return files, None
+
+    guard = root / f"harnesses/{harness}/bootstrap/coacus-guard.sh"
+    frag_path = root / f"harnesses/{harness}/bootstrap/guardrail-hooks.json"
+    if guard.is_file():
+        files.append((config_dir / "coacus" / "coacus-guard.sh", subst(guard.read_text(encoding="utf-8"))))
+    fragment = None
+    if frag_path.is_file():
+        text = subst(frag_path.read_text(encoding="utf-8"))
+        # Point the fragment's command at the installed script location.
+        text = text.replace(
+            f"__COACUS_ROOT__/harnesses/{harness}/bootstrap/coacus-guard.sh",
+            (config_dir / "coacus" / "coacus-guard.sh").as_posix(),
+        )
+        try:
+            fragment = json.loads(text)
+        except json.JSONDecodeError:
+            fragment = None
+    return files, fragment
+
+
+def _refuse_unenforceable(root: Path, harness: str) -> list[str]:
+    """Return reasons the guardrail policy cannot be enforced on this harness.
+
+    A ``deny`` policy bound to an event the harness cannot block would install as
+    advisory while looking successful. Enforcement is refused, not degraded (D3).
+    """
+    policy_dir = root / "methodology" / "lifecycle" / "policies"
+    if not policy_dir.is_dir():
+        return []
+    manifest = root / "harnesses" / harness / "harness.json"
+    try:
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    lifecycle = data.get("lifecycle", {})
+    reasons: list[str] = []
+    for path in sorted(policy_dir.glob("*.policy.json")):
+        try:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if doc.get("enabled") is not True:
+            continue
+        for policy in doc.get("policies", []):
+            if policy.get("decision") != "deny":
+                continue
+            event = str(policy.get("event", "tool.pre"))
+            cap = (lifecycle.get("events", {}) or {}).get(event)
+            if not cap or not cap.get("can_block"):
+                reasons.append(
+                    f"policy {policy.get('id')!r} denies {event!r} but {harness} "
+                    f"cannot block it (can_block=false)"
+                )
+    return reasons
 
 
 def _mcp_servers(root: Path) -> dict[str, dict]:
@@ -609,6 +708,8 @@ def _plan_opencode(
         )
     plan += _plan_skills(root, config_dir / "skills", only, skills)
     plan += _plan_agents_opencode(root, config_dir / "agent", only, agents)
+    guard_files, _ = _guardrail_artifacts(root, "opencode", config_dir)
+    plan += guard_files
     return plan
 
 
@@ -640,13 +741,19 @@ def _plan_claude(
         )
     )
     # hooks.json commands "${CLAUDE_PLUGIN_ROOT}/bootstrap/session-start.sh",
-    # so the script MUST land under bootstrap/ (not hooks/).
-    plan.append(
-        (
-            plugin / "hooks" / "hooks.json",
-            (root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8"),
-        )
+    # so the script MUST land under bootstrap/ (not hooks/). The guardrail
+    # fragment merges into the SAME plugin hooks.json.
+    hooks_path = plugin / "hooks" / "hooks.json"
+    bootstrap_fragment = json.loads(
+        (root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8")
     )
+    guard_files, guard_fragment = _guardrail_artifacts(root, "claude-code", config_dir)
+    plan += guard_files
+    markers = _hook_owner_markers(root, "claude-code")
+    merged = _merge_hooks(bootstrap_fragment, {}, markers)
+    if guard_fragment:
+        merged = _merge_hooks(merged, guard_fragment, markers)
+    plan.append((hooks_path, json.dumps(merged, indent=2) + "\n"))
     plan.append(
         (
             plugin / "bootstrap" / "session-start.sh",
@@ -688,7 +795,17 @@ def _plan_antigravity(
                 ),
             )
         )
-        plan.append((plugin / "hooks.json", _antigravity_hooks_json(plugin)))
+    # Merge the governor wiring and the guardrail fragment into ONE plugin
+    # hooks.json (the file the harness reads), keyed by hook-set name.
+    hooks_doc = (
+        json.loads(_antigravity_hooks_json(plugin)) if hook.is_file() else {}
+    )
+    guard_files, guard_fragment = _guardrail_artifacts(root, "antigravity", config_dir)
+    plan += guard_files
+    if guard_fragment:
+        hooks_doc.update(guard_fragment)
+    if hooks_doc:
+        plan.append((plugin / "hooks.json", json.dumps(hooks_doc, indent=2) + "\n"))
     return plan
 
 
@@ -746,10 +863,16 @@ def _plan_codex(
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
     fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
     existing = _load_existing_json(config_dir / "hooks.json")
+    guard_files, guard_fragment = _guardrail_artifacts(root, "codex", config_dir)
+    plan += guard_files
+    markers = _hook_owner_markers(root, "codex")
+    merged = _merge_hooks(existing, fragment, markers)
+    if guard_fragment:
+        merged = _merge_hooks(merged, guard_fragment, markers)
     plan.append(
         (
             config_dir / "hooks.json",
-            json.dumps(_merge_hooks(existing, fragment, _hook_owner_marker(root, "codex")), indent=2) + "\n",
+            json.dumps(merged, indent=2) + "\n",
         )
     )
     return plan
@@ -777,10 +900,16 @@ def _plan_cursor(
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
     fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
     existing = _load_existing_json(config_dir / "hooks.json")
+    guard_files, guard_fragment = _guardrail_artifacts(root, "cursor", config_dir)
+    plan += guard_files
+    markers = _hook_owner_markers(root, "cursor")
+    merged = _merge_hooks(existing, fragment, markers)
+    if guard_fragment:
+        merged = _merge_hooks(merged, guard_fragment, markers)
     plan.append(
         (
             config_dir / "hooks.json",
-            json.dumps(_merge_hooks(existing, fragment, _hook_owner_marker(root, "cursor")), indent=2) + "\n",
+            json.dumps(merged, indent=2) + "\n",
         )
     )
     return plan
@@ -818,14 +947,16 @@ def _plan_command_code(
     hooks = (root / "harnesses/command-code/bootstrap/hooks.json").read_text(encoding="utf-8")
     fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
     existing = _load_existing_json(config_dir / COMMAND_CODE_HOOKS_FILE)
+    guard_files, guard_fragment = _guardrail_artifacts(root, "command-code", config_dir)
+    plan += guard_files
+    markers = _hook_owner_markers(root, "command-code")
+    merged = _merge_hooks(existing, fragment, markers)
+    if guard_fragment:
+        merged = _merge_hooks(merged, guard_fragment, markers)
     plan.append(
         (
             config_dir / COMMAND_CODE_HOOKS_FILE,
-            json.dumps(
-                _merge_hooks(existing, fragment, _hook_owner_marker(root, "command-code")),
-                indent=2,
-            )
-            + "\n",
+            json.dumps(merged, indent=2) + "\n",
         )
     )
     servers = _mcp_servers(root)
@@ -898,6 +1029,7 @@ def install(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    allow_advisory: bool = False,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -906,7 +1038,19 @@ def install(
     roots (see ``_assert_contained``). For ``command-code`` the user rules
     (``<config>/AGENTS.md``) are written only when absent and are not part of the
     manifest — a pre-existing memory file is left untouched.
+
+    Enforcement is refused, not degraded (D3): a ``deny`` policy the harness
+    cannot block aborts the install unless ``allow_advisory`` records the
+    downgrade explicitly.
     """
+    refusals = _refuse_unenforceable(root, harness)
+    if refusals and not allow_advisory:
+        return {
+            "harness": harness,
+            "error": "guardrail enforcement refused; use --allow-advisory to downgrade",
+            "refusals": refusals,
+            "files": [],
+        }
     files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
     rules_target = config_dir / COMMAND_CODE_RULES_FILE
@@ -955,6 +1099,7 @@ def install(
         "files": written,
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
+        "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
     }
 
 
@@ -970,7 +1115,9 @@ def _classify(target: Path) -> str:
         return "skill"
     if name == "agent.md" or parent in ("agent", "agents"):
         return "agent"
-    if name in ("hooks.json", "settings.json", "governor-hook.sh", "coacus-governor.js"):
+    if name in ("hooks.json", "settings.json", "guardrail-hooks.json",
+                "governor-hook.sh", "coacus-guard.sh", "coacus-guardrails.js",
+                "coacus-governor.js"):
         return "hook"
     return "other"
 
@@ -1013,7 +1160,7 @@ def _installed_state(
     differ. Every other file is compared verbatim.
     """
     hooks_path = _merged_config_path(harness, config_dir)
-    marker = _hook_owner_marker(root, harness)
+    markers = _hook_owner_markers(root, harness)
     mcp_path = _merged_mcp_path(harness, config_dir)
     mcp_names = set(_mcp_servers(root)) if mcp_path else set()
     missing: list[str] = []
@@ -1023,7 +1170,8 @@ def _installed_state(
             missing.append(target.as_posix())
             continue
         if target == hooks_path:
-            if marker not in json.dumps(_load_existing_json(target)):
+            blob = json.dumps(_load_existing_json(target))
+            if not any(marker in blob for marker in markers):
                 drift.append(target.as_posix())
             continue
         if mcp_path is not None and target == mcp_path:
@@ -1163,9 +1311,9 @@ def uninstall(
     planned: list[str] = []
     skipped: list[str] = []
     hooks_path = _merged_config_path(harness, config_dir)
-    marker = _hook_owner_marker(root, harness)
+    markers = _hook_owner_markers(root, harness)
     existing_hooks = _load_existing_json(hooks_path) if hooks_path.is_file() else {}
-    had_hooks_entry = marker in json.dumps(existing_hooks)
+    had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
     mcp_path = _merged_mcp_path(harness, config_dir)
     mcp_names = set(_mcp_servers(root)) if mcp_path else set()
     mcp_existing = (
@@ -1185,7 +1333,7 @@ def uninstall(
         if not dry_run and target == hooks_path and had_hooks_entry:
             # hooks.json / settings.json is a user file we merged into; strip only
             # our entries and never delete the user's other keys.
-            trimmed = _strip_hooks(_load_existing_json(hooks_path), marker)
+            trimmed = _strip_hooks(_load_existing_json(hooks_path), markers)
             if trimmed is None:
                 target.unlink()
             else:
@@ -1268,6 +1416,12 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         action="store_true",
         help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
     )
+    parser.add_argument(
+        "--allow-advisory",
+        dest="allow_advisory",
+        action="store_true",
+        help="record a guardrail downgrade instead of refusing to install an unenforceable deny",
+    )
     args = parser.parse_args(argv)
 
     only = _split_filter(args.only)
@@ -1329,10 +1483,12 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             results.append(uninstall(harness, root or ROOT, config_dir, dry_run=args.dry_run))
         else:
             results.append(
-                install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents)
+                install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
+                        allow_advisory=args.allow_advisory)
             )
     print(json.dumps(results, indent=2))
-    return 0
+    exit_code = 0 if all(not r.get("error") for r in results) else 1
+    return exit_code
 
 
 if __name__ == "__main__":

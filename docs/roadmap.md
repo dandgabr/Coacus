@@ -92,3 +92,28 @@ the generated catalog and the agent skill references — recognising intentional
 renames (`name_dir_fixes`) and merges (`agent_merges`). Run it with
 `python3 scripts/coacus.py completeness` (also run in CI). Current result:
 `completeness OK: nothing left behind`.
+
+### F9 — Portable lifecycle guardrails (done)
+
+The PAER layer: policies over abstract actions, bound to lifecycle events and
+rendered natively per harness. Added the canonical lifecycle data
+(`methodology/lifecycle/{events,actions.schema,records.schema}.json` plus the
+policy directory), the plugin registry (`engine/generators/plugins.py`) extracted
+from `bootstrap.py`, the guardrail generator, the runtime evaluator
+(`scripts/coacus_guard.py`), the generated capability matrix
+(`docs/reference/lifecycle-matrix.md`), the harness-manifest validator, and the
+installer's per-entry-id, container-aware, refuse-to-install contract.
+Decisions: [ADR 0001](decisions/0001-guardrail-model-action-vs-event.md)…
+[ADR 0004](decisions/0004-hook-composition-and-ordering.md),
+[ADR 0006](decisions/0006-default-policy-posture.md). Standard:
+[`lifecycle-guardrails`](standards/lifecycle-guardrails.md).
+
+### F10 — Self-improvement loop (done, proposer-only)
+
+The opt-in, fail-open end-of-session loop in `engine/improve/`: pluggable
+episodic sources (`transcript` default, `ai-memory` optional), consolidation into
+typed candidates, retrieval-first routing, a deterministic verification ladder,
+taint labeling and independent evidence, and a runtime ledger plus reviewable
+staging. It never applies: promotion is a human PR. Decisions:
+[ADR 0005](decisions/0005-part-b-boundary-and-one-way-interface.md). Standard:
+[`self-improvement-loop`](standards/self-improvement-loop.md).

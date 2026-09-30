@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "enabled": false,
+  "description": "Default guardrail policy set. EMPTY and DISABLED by design (D2): the framework ships the guardrail CAPABILITY with no active policy, so installing Coacus never changes a session's behaviour without an explicit opt-in. 'Fail-closed' applies to evaluating the policies that exist, not to inventing policies. Add policy files under this directory (or pass --policy at install) to activate enforcement.",
+  "policies": []
+}

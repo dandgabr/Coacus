@@ -10,8 +10,28 @@
   },
   "detection": ["GEMINI_DIR", "ANTIGRAVITY"],
   "live_cli": ["agy", "--print"],
+  "lifecycle": {
+    "schema": 1,
+    "supported": true,
+    "in_process": false,
+    "config": { "container": "coacus-guard", "merge": "plugin", "hooks_file": "harnesses/antigravity/bootstrap/guardrail-hooks.json" },
+    "composition": "composable",
+    "ordering": "coacus-last",
+    "events": {
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": true, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://antigravity.google/docs/hooks" },
+      "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "none", "evidence": "documented", "resolved": "2026-09-30", "source": "https://antigravity.google/docs/hooks" },
+      "session.start": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://antigravity.google/docs/hooks" },
+      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://antigravity.google/docs/hooks" }
+    },
+    "gaps": [
+      { "event": "session.start", "status": "unsupported", "reason": "Antigravity has no SessionStart event; only an always_on rule" },
+      { "event": "session.end", "status": "unsupported", "reason": "no session-end event" },
+      { "event": "subagent.start", "status": "emulate", "reason": "only via PreToolUse on the spawn tool" }
+    ]
+  },
   "plugins": [
-    { "path": "harnesses/antigravity/bootstrap/governor-hook.sh", "kind": "governor-gate" }
+    { "path": "harnesses/antigravity/bootstrap/governor-hook.sh", "kind": "governor-gate" },
+    { "path": "harnesses/antigravity/bootstrap/coacus-guard.sh", "kind": "guardrail" }
   ],
   "tool_mapping": {
     "create or update todos": "manage_task (task artifact)",

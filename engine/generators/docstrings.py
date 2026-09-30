@@ -14,6 +14,10 @@ from pathlib import Path
 
 DOCS_PATH = "docs/reference/python-api.md"
 SCAN_DIRS = ("engine", "scripts", "verticals")
+# The self-improvement subsystem is optional and never part of the deterministic
+# build contract; keeping it out of the committed API reference avoids coupling an
+# inert component to a drift-checked surface (self-improvement-loop).
+SCAN_EXCLUDE = ("engine/improve/",)
 
 
 def _iter_modules(root: Path) -> list[Path]:
@@ -22,7 +26,13 @@ def _iter_modules(root: Path) -> list[Path]:
         base = root / top
         if base.is_dir():
             modules.extend(sorted(base.rglob("*.py")))
-    return [m for m in modules if "__pycache__" not in m.parts and m.name != "__init__.py"]
+    return [
+        m
+        for m in modules
+        if "__pycache__" not in m.parts
+        and m.name != "__init__.py"
+        and not m.relative_to(root).as_posix().startswith(SCAN_EXCLUDE)
+    ]
 
 
 def _signature(node: ast.AST) -> str:

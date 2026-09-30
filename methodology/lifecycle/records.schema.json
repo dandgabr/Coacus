@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "description": "Canonical lifecycle RECORD — the Part A / Part B interface contract. Part A (guardrails) emits records; Part B (self-improvement) reads them. There is exactly one record vocabulary; Part B must never define a second one.",
+  "record": {
+    "event": "<canonical event id from events.json>",
+    "action": { "verb": "<verb from actions.schema.json>", "resource": "<normalized target>" },
+    "decision": "allow | deny | ask | note",
+    "policy_id": "<policy id or null>",
+    "harness": "<harness name>",
+    "outcome": "allowed | denied | asked | observed | injected",
+    "evidence": "documented | verified-local | probe-verified | unverified"
+  },
+  "invariants": [
+    "decision 'deny' is only valid on a gate-class event",
+    "an observe-class event reports decision 'note' and can never deny",
+    "the event id MUST exist in events.json",
+    "the action verb MUST exist in actions.schema.json"
+  ]
+}

@@ -35,7 +35,8 @@ ROW = re.compile(r"^\|\s*(Skills|Agents|Workflows|MCPs|Catalog|Provenance)\s*\|\
 COUNT_TOKEN = re.compile(
     r"\b(\d+)\s+"
     r"(catalog skill entries?|skill entries?|repo skills?|knowledge skills?|"
-    r"process workflows?|provenance entries?|agents?|MCPs?|workflows?|skills?)\b"
+    r"process workflows?|provenance entries?|normative standards?|standards?|"
+    r"agents?|MCPs?|workflows?|skills?)\b"
 )
 TOKEN_KEY = {
     "catalog skill entries": "catalog",
@@ -52,6 +53,10 @@ TOKEN_KEY = {
     "process workflow": "workflows",
     "workflows": "workflows",
     "workflow": "workflows",
+    "normative standards": "standards",
+    "normative standard": "standards",
+    "standards": "standards",
+    "standard": "standards",
     "agents": "agents",
     "agent": "agents",
     "MCPs": "mcps",
@@ -94,6 +99,9 @@ def _measured(root: Path) -> dict[str, int]:
     workflows = len(list((root / "methodology" / "workflows").rglob("SKILL.md")))
     knowledge_skills = max(int(catalog.get("skills", 0)) - workflows, 0)
     lock = _load(root / LOCK)
+    standards = len(
+        [p for p in (root / "docs" / "standards").glob("*.md") if p.name != "README.md"]
+    )
     return {
         "Skills": knowledge_skills,
         "Agents": int(catalog.get("agents", 0)),
@@ -101,6 +109,7 @@ def _measured(root: Path) -> dict[str, int]:
         "MCPs": int(catalog.get("mcps", 0)),
         "Catalog": int(catalog.get("skills", 0)),
         "Provenance": len(lock.get("entries", [])),
+        "Standards": standards,
     }
 
 
@@ -161,6 +170,7 @@ def _prose_errors(root: Path, measured: dict[str, int]) -> list[str]:
                     "agents": "Agents",
                     "mcps": "MCPs",
                     "provenance": "Provenance",
+                    "standards": "Standards",
                 }.get(key or "")
                 if label is None:
                     continue

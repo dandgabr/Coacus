@@ -10,8 +10,10 @@ Index of the repository's documentation. Each file has one job.
 | [`install.md`](install.md) | Per-harness installation of the rendered artifacts. |
 | [`tutorials/`](tutorials/) | Step-by-step, verified walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`migration.md`](migration.md) | The F6 corpus import: source repos, taxonomy mapping, dedup, provenance, translation. |
-| [`roadmap.md`](roadmap.md) | Phase history F0–F8 and what each phase delivered. |
+| [`roadmap.md`](roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`reference/python-api.md`](reference/python-api.md) | GENERATED Python API reference from source docstrings. Do not edit. |
+| [`reference/lifecycle-matrix.md`](reference/lifecycle-matrix.md) | GENERATED harness lifecycle capability matrix (one evidence class per cell). Do not edit. |
+| [`decisions/`](decisions/) | Committed Architecture Decision Records (MADR) for structural choices. |
 | [`standards/`](standards/) | The normative standards (English). Read the relevant one before changing that area. |
 | Process artifacts (`temp/`) | Ephemeral design specs and implementation plans written by the process workflows; ignored by version control ([`standards/plan-artifacts.md`](standards/plan-artifacts.md)). |
 

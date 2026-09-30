@@ -195,6 +195,42 @@ provenance and prunes orphaned generated output. Re-running is idempotent: the
 dedup key is `(source_repo, source_commit, source_path)`. See
 [`migration.md`](migration.md).
 
+## Guardrails (PAER)
+
+Policies are authored once in `methodology/lifecycle/policies/*.policy.json` and
+are active only when the file declares `"enabled": true` (the default set is empty
+and disabled — [ADR 0006](decisions/0006-default-policy-posture.md)). A harness's
+capability to enforce each event is data in `harness.json.lifecycle`; the matrix in
+`docs/reference/lifecycle-matrix.md` is generated from it.
+
+```bash
+# Evaluate one event against the active policies (native effect JSON on stdout):
+echo '{"tool":"read","tool_input":{"filePath":"repo/.env"}}' \
+  | python3 scripts/coacus_guard.py --harness claude-code --event tool.pre
+
+# Install refuses a deny the harness cannot block; --allow-advisory records the downgrade:
+python3 scripts/coacus_install.py claude-code
+python3 scripts/coacus_install.py claude-code --allow-advisory
+```
+
+See [`lifecycle-guardrails`](standards/lifecycle-guardrails.md). The generated
+hook shell scripts are executed directly by `tests/test_guardrail_scripts.py`.
+
+## Self-improvement (opt-in)
+
+The end-of-session loop is opt-in and fail-open; it PROPOSES and never applies
+([ADR 0005](decisions/0005-part-b-boundary-and-one-way-interface.md)). It is never
+called from `generate`/`check`/CI.
+
+```bash
+python3 scripts/coacus_improve.py status           # episodic source availability
+python3 scripts/coacus_improve.py run --transcript session.jsonl
+```
+
+The `transcript` source is the portable default; `ai-memory` is optional and its
+absence by configuration is a safe no-op. See
+[`self-improvement-loop`](standards/self-improvement-loop.md).
+
 ## Full local gate
 
 The same sequence CI runs:

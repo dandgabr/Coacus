@@ -890,5 +890,69 @@ class TestCommandCode(unittest.TestCase):
         )
 
 
+class TestGuardrailInstall(unittest.TestCase):
+    """The guardrail staging and the capability refusal (lifecycle-guardrails)."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = make_repo(Path(self._tmp.name))
+        self.config = Path(self._tmp.name) / "config"
+
+    def _enable_deny_policy(self, can_block: bool) -> None:
+        policies = self.root / "methodology/lifecycle/policies"
+        policies.mkdir(parents=True, exist_ok=True)
+        (policies / "test.policy.json").write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "enabled": True,
+                    "policies": [
+                        {
+                            "id": "p1",
+                            "event": "tool.pre",
+                            "decision": "deny",
+                            "action": {"verb": "read", "resource": "**/.env"},
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        (self.root / "harnesses/opencode/harness.json").write_text(
+            json.dumps(
+                {
+                    "name": "opencode",
+                    "lifecycle": {
+                        "supported": True,
+                        "events": {"tool.pre": {"support": "gate", "can_block": can_block}},
+                    },
+                    "plugins": [{"path": "x", "kind": "guardrail"}],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+    def test_refuses_deny_on_non_blocking_harness(self) -> None:
+        self._enable_deny_policy(can_block=False)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=True)
+        self.assertIn("error", result)
+        self.assertTrue(result["refusals"])
+        # Nothing is written on a refusal.
+        self.assertFalse((self.config / "plugins").exists())
+
+    def test_allow_advisory_records_the_downgrade(self) -> None:
+        self._enable_deny_policy(can_block=False)
+        result = coacus_install.install(
+            "opencode", self.root, self.config, dry_run=True, allow_advisory=True
+        )
+        self.assertNotIn("error", result)
+
+    def test_enforceable_deny_installs(self) -> None:
+        self._enable_deny_policy(can_block=True)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=True)
+        self.assertNotIn("error", result)
+
+
 if __name__ == "__main__":
     unittest.main()

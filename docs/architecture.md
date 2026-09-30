@@ -33,15 +33,37 @@ harness's `tool_mapping`.
 How knowledge becomes runnable in a specific harness.
 
 - `harnesses/<h>/harness.json` is **data**: bootstrap shape, output paths,
-  detection env vars, tool mapping, tool denylist, install method. A new harness
-  is a new data file; a new bootstrap shape is an engine change
-  ([session-start-bootstrap](standards/session-start-bootstrap.md)).
+  detection env vars, tool mapping, tool denylist, install method, and the
+  `lifecycle` capability block (per-event `support`/`can_block`/`can_ask`/`effect`
+  plus declared `gaps`). A new harness is a new data file; a new bootstrap shape
+  is an engine change ([session-start-bootstrap](standards/session-start-bootstrap.md),
+  [lifecycle-guardrails](standards/lifecycle-guardrails.md)).
 - `engine/` is the **closed core**. Generators render artifacts, validators
-  enforce contracts, and the governor, dispatcher, TOON validator and provenance
-  manifest are the remaining runtime pieces. The engine changes only when a new
-  *concept* arrives (new representation target, new validation class, new
-  bootstrap shape) — the open-closed point.
+  enforce contracts, and the governor, dispatcher, TOON validator, guardrail
+  evaluator and provenance manifest are the remaining runtime pieces. The engine
+  changes only when a new *concept* arrives (new representation target, new
+  validation class, new bootstrap shape) — the open-closed point.
 - `scripts/` is the thin CLI over the engine. It contains no business logic.
+
+### 2b. Guardrails and the improvement loop
+
+Two subsystems sit on top of the adaptation layer, both opt-in:
+
+- **Guardrails** ([lifecycle-guardrails](standards/lifecycle-guardrails.md)) use
+  PAER — *Policy over Action, Event binding, Rendering effect*. A policy is
+  authored once over an abstract action (`exec`/`read`/`write`/`network`/`spawn`/
+  `delegate` + resource) and bound to a lifecycle event; `engine/generators/guardrails.py`
+  renders the harness-native artifact and `scripts/coacus_guard.py` evaluates it at
+  runtime. The capability matrix (`docs/reference/lifecycle-matrix.md`) is
+  GENERATED from `harness.json` with an evidence class per cell. The default
+  policy set is **empty and disabled**: installing Coacus changes no behaviour
+  without an explicit opt-in.
+- **Self-improvement** ([self-improvement-loop](standards/self-improvement-loop.md))
+  is an opt-in, fail-open loop that reads a finished session, compresses it into
+  typed candidates, routes and verifies them, and stages a **proposal** — it never
+  applies. `engine/improve/` holds the logic; `scripts/coacus_improve.py` is the
+  thin CLI. Episodic sources are pluggable (`transcript` default, `ai-memory`
+  optional).
 
 ### 3. Methodology layer — `methodology/`
 
@@ -55,6 +77,9 @@ How work proceeds inside a Coacus repository.
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`
   slots. The entry body comes from `using-coacus/SKILL.md`, so the bootstrap and
   the skill cannot diverge ([session-start-bootstrap](standards/session-start-bootstrap.md)).
+- `methodology/lifecycle/` — the canonical lifecycle data: `events.json` (event
+  taxonomy), `actions.schema.json` (action vocabulary), `records.schema.json`
+  (the Part A/Part B record contract) and `policies/` (guardrail policies).
 
 ## The engine
 
@@ -63,10 +88,16 @@ How work proceeds inside a Coacus repository.
 | `engine/frontmatter.py` | Tolerant YAML-subset parser for canonical sources (stdlib only, [testing](standards/testing.md)). |
 | `engine/generators/agent_manifests.py` | `agent.source.md` → `dist/AGENT.md`, `agent.yaml`, `agent.json`, `plugin.json`, `.agents/entries/<name>.json` ([agent-manifests](standards/agent-manifests.md)). |
 | `engine/generators/mcp_configs.py` | `MCP.md` frontmatter → `dist/mcp.json`, `dist/mcp_config.json` ([mcp-definition](standards/mcp-definition.md)). |
-| `engine/generators/bootstrap.py` | Canonical wrapper + entry body → one native bootstrap artifact per harness ([session-start-bootstrap](standards/session-start-bootstrap.md)). |
+| `engine/generators/bootstrap.py` | Canonical wrapper + entry body → one native bootstrap artifact per harness; a facade over `plugins.py` ([session-start-bootstrap](standards/session-start-bootstrap.md)). |
+| `engine/generators/plugins.py` | `kind`-keyed plugin registry (governor gate, guardrails); renders regardless of bootstrap support. |
+| `engine/generators/guardrails.py` | Renders a canonical PAER policy into each harness's native hook ([lifecycle-guardrails](standards/lifecycle-guardrails.md)). |
+| `engine/generators/lifecycle.py` | Renders the harness capability matrix with a per-cell evidence class. |
+| `engine/generators/outputs.py` | Cross-generator path uniqueness: one producer per generated path. |
 | `engine/generators/catalog.py` | Disk → `catalog/catalog.json` + `catalog/INDEX.md`; timestamp-free and byte-idempotent ([generated-artifacts](standards/generated-artifacts.md)). |
 | `engine/generators/discovery.py` | Disk → `.agents/{skills,mcps,agents}.json` for single-scan discovery ([discovery](standards/discovery.md)). |
-| `engine/validators/` | Source and artifact contracts: `agents`, `skills`, `mcps`, `hygiene`, `evals`, `language`, `discovery`, `completeness`. |
+| `engine/guardrail/evaluate.py` | The PAER runtime evaluator used by `scripts/coacus_guard.py`. |
+| `engine/improve/` | The opt-in, fail-open self-improvement pipeline; never applies ([self-improvement-loop](standards/self-improvement-loop.md)). |
+| `engine/validators/` | Source and artifact contracts: `agents`, `skills`, `mcps`, `harnesses`, `hygiene`, `evals`, `language`, `discovery`, `completeness`. |
 | `engine/governor/ledger.py` | Disk ledger (`flock`) bounding concurrent subagents and parking rate-limited callers ([orchestration-governance](standards/orchestration-governance.md)). |
 | `engine/toon.py` | Validator for TOON handoff payloads ([toon-protocol](standards/toon-protocol.md)). |
 | `engine/dispatcher/` | `@register_converter` registry for ingestion formats; handlers register themselves ([knowledge-ingestion](standards/knowledge-ingestion.md)). |
@@ -115,19 +146,21 @@ flowchart TD
   subgraph META["Methodology — methodology/"]
     WF["workflows/**/SKILL.md"]
     BODY["bootstrap/session-start.canonical.md"]
+    LIFE["lifecycle/{events,actions,policies}"]
   end
 
   subgraph ADAPT["Adaptation — harnesses/ + engine/ + scripts/"]
-    HJ["harnesses/<h>/harness.json<br/>(data)"]
+    HJ["harnesses/<h>/harness.json<br/>(data + lifecycle)"]
     GEN["engine/generators"]
     VAL["engine/validators"]
   end
 
   subgraph OUT["Generated and committed"]
     DIST["agents/**/dist/*"]
-    BC["harnesses/<h>/bootstrap/*"]
+    BC["harnesses/<h>/bootstrap/* (bootstrap + guardrail)"]
     CAT["catalog/{catalog.json,INDEX.md}"]
     DSC[".agents/{skills,mcps,agents}.json + entries/"]
+    MAT["docs/reference/lifecycle-matrix.md"]
     LOCK["sources.lock.json<br/>(provenance, root)"]
   end
 
@@ -135,6 +168,8 @@ flowchart TD
     GOV["engine/governor/ledger.py"]
     TOON["engine/toon.py"]
     DISP["engine/dispatcher"]
+    GRD["scripts/coacus_guard.py + engine/guardrail/"]
+    IMP["scripts/coacus_improve.py + engine/improve/"]
   end
 
   SK --> GEN
@@ -142,15 +177,19 @@ flowchart TD
   MC --> GEN
   WF --> GEN
   BODY --> GEN
+  LIFE --> GEN
   HJ --> GEN
   GEN --> DIST
   GEN --> BC
   GEN --> CAT
   GEN --> DSC
+  GEN --> MAT
   VAL -->|"gates generate"| GEN
   LOCK -->|"target-existence check"| VAL
   DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex | cursor | command-code"]
   BC --> HARN
+  GRD -.->|"evaluates policies on hooks"| HARN
+  IMP -.->|"proposes (never applies)"| LIFE
   GOV -.->|"bounds subagents"| HARN
   TOON -.->|"validates handoffs"| HARN
   DISP -->|"ingests documents"| VERT["verticals/architecture_si"]
@@ -161,17 +200,17 @@ flowchart TD
 ```text
 Coacus/
 ├── knowledge/            # canonical WHAT: skills/, agents/, mcps/, rules/
-├── methodology/          # canonical HOW: workflows/, bootstrap/
+├── methodology/          # canonical HOW: workflows/, bootstrap/, lifecycle/
 ├── verticals/            # domain applications: architecture_si (ingest → analyze)
-├── harnesses/            # per-harness adapters (harness.json + rendered bootstrap/)
+├── harnesses/            # per-harness adapters (harness.json + rendered bootstrap/ + guardrails)
 ├── templates/            # single source of templates (authoring/, domains/, import/)
-├── engine/               # closed core: generators, validators, governor, dispatcher, toon, provenance
-├── scripts/              # thin CLIs: coacus, install, governor, eval, import, vertical
+├── engine/               # closed core: generators, validators, governor, dispatcher, toon, provenance, guardrail, improve
+├── scripts/              # thin CLIs: coacus, install, governor, eval, import, vertical, guard, improve
 ├── catalog/              # GENERATED index (catalog.json, INDEX.md)
 ├── .agents/              # GENERATED discovery manifests
 ├── tests/                # deterministic infrastructure tests (stdlib unittest)
 ├── evals/                # LLM behavior evals (static gate + opt-in live runner)
-├── docs/                 # this documentation + standards/
+├── docs/                 # this documentation + standards/ + decisions/
 ├── sources.lock.json     # provenance for imported artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```
@@ -210,3 +249,9 @@ Coacus/
 | [provenance](standards/provenance.md) | Provenance manifest at the repository root. |
 | [session-start-bootstrap](standards/session-start-bootstrap.md) | Bootstrap rendered from one canonical body. |
 | [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and 10-category taxonomy. |
+| [version-freshness](standards/version-freshness.md) | Versions are resolved in-session, never recalled. |
+| [routing](standards/routing.md) | Agent selection through a generated index. |
+| [plan-artifacts](standards/plan-artifacts.md) | The gitignored `docs/temp/` home for ephemeral artifacts. |
+| [lifecycle-guardrails](standards/lifecycle-guardrails.md) | The PAER guardrail model and per-harness capability data. |
+| [decision-records](standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
+| [self-improvement-loop](standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop. |
