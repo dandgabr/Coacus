@@ -267,6 +267,10 @@ and fix-round diffs need it.
   (5) the report-file path and report contract. Exact values (numbers,
   magic strings, signatures, test cases) appear only in the brief. Never
   make a subagent read the whole plan file.
+- **Chosen agent:** if the plan session produced a roster
+  (`superpowers-writing-plans` → Agent Roster), dispatch the agent chosen for
+  this task and name it in the brief. With no roster, keep the current generic
+  implementer. The roster is session state; never write it into the plan.
 - **Report file:** name the implementer's report file after the brief
   (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
   the dispatch prompt. The implementer writes the full report there and
