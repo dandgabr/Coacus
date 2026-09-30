@@ -52,6 +52,40 @@ process skill should consult it rather than improvise:
   design and domain skills, planning cites the standards that constrain the
   change, and test-driven development uses the local gate above.
 
+## Select agents for a task (roster)
+
+When a task or a plan is prepared, route its own text to the agent corpus and let
+the user pick who executes. This is the roster step; it is the one place a
+workflow may call the router automatically.
+
+1. Compose the routing prompt from the task's own text: its title, its
+   deliverable and the interfaces it produces.
+2. Rank the agents for that text:
+
+   ```bash
+   python3 scripts/coacus_route.py "<task text>" --top 5
+   ```
+
+   Add `--max-slots` when a concurrency cap is in play. Each row is
+   `score <TAB> name <TAB> category <TAB> matched`.
+3. Present a NUMBERED list, one row per candidate, carrying the agent name,
+   category, score and `matched` terms. Showing `matched` matters: a lexical
+   false positive (a word matched in another sense) is visible and can be
+   rejected instead of trusted.
+4. The user answers in the conversation: `1,3`, `all`, or agent names.
+5. Validate the choice before relying on it:
+
+   ```bash
+   python3 scripts/coacus_route.py --agents <name1>,<name2>
+   ```
+
+   An unknown name exits non-zero with suggestions. Resolve it; never guess.
+6. Hold the validated roster in session memory, keyed by task. The roster is
+   NEVER written to the plan or to any tracked or generated file.
+
+Select agents per task. The step proposes and validates; it never spawns.
+Concurrency stays the governor's job (`docs/standards/orchestration-governance.md`).
+
 ## Namespace mapping
 
 Upstream Superpowers addresses its siblings with a colon namespace. The Coacus

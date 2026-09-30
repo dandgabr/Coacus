@@ -1,0 +1,56 @@
+"""Consistency tests: the workflow docs must describe the roster and ship steps."""
+
+from __future__ import annotations
+
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+CONVENTIONS = (
+    ROOT / "methodology/workflows/using-coacus/references/coacus-process-conventions.md"
+)
+WRITING_PLANS = ROOT / "methodology/workflows/superpowers-writing-plans/SKILL.md"
+SUBAGENT = (
+    ROOT / "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
+)
+FINISHING = (
+    ROOT / "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
+)
+ROUTING_STD = ROOT / "docs/standards/routing.md"
+
+
+def read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+class TestRosterStep(unittest.TestCase):
+    def test_conventions_document_the_roster_step(self) -> None:
+        text = read(CONVENTIONS)
+        self.assertIn("numbered", text.lower())
+        self.assertIn("coacus_route.py", text)
+
+    def test_writing_plans_runs_the_roster(self) -> None:
+        self.assertIn("roster", read(WRITING_PLANS).lower())
+
+    def test_subagent_development_consumes_the_roster(self) -> None:
+        self.assertIn("roster", read(SUBAGENT).lower())
+
+
+class TestShipSteps(unittest.TestCase):
+    def test_conventions_document_push_and_reinstall(self) -> None:
+        text = read(CONVENTIONS)
+        self.assertIn("gh pr create", text)
+        self.assertIn("coacus_install.py", text)
+        self.assertIn("--verify", text)
+
+    def test_finishing_references_the_ship_steps(self) -> None:
+        self.assertIn("coacus_install.py", read(FINISHING))
+
+
+class TestRoutingStandard(unittest.TestCase):
+    def test_routing_allows_the_planning_roster(self) -> None:
+        self.assertIn("roster", read(ROUTING_STD).lower())
+
+
+if __name__ == "__main__":
+    unittest.main()
