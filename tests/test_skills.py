@@ -170,3 +170,32 @@ class TestFenceLanguageGate(unittest.TestCase):
             encoding="utf-8",
         )
         self.assertEqual(self.language.fence_errors(self.root), [])
+
+
+class TestStraySkillGuard(unittest.TestCase):
+    """I1: a SKILL.md outside the known roots is never registered or installed."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name) / "repo"
+
+    def test_stray_skill_outside_roots_is_rejected(self) -> None:
+        write_skill(self.root, "roles", "sample-skill")  # a valid one
+        stray = self.root / "knowledge/rules/stray"
+        stray.mkdir(parents=True)
+        (stray / "SKILL.md").write_text(
+            "---\nname: stray\ndescription: >-\n  Stray.\n---\n\n# stray\n",
+            encoding="utf-8",
+        )
+        errors = skills.validate(self.root)
+        self.assertTrue(any("outside a known skill root" in e for e in errors))
+
+    def test_workflow_root_is_not_stray(self) -> None:
+        workflow = self.root / "methodology/workflows/using-coacus"
+        workflow.mkdir(parents=True)
+        (workflow / "SKILL.md").write_text(
+            "---\nname: using-coacus\ndescription: >-\n  Entry.\n---\n\n# using-coacus\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(skills.validate(self.root), [])

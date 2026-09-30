@@ -2,7 +2,8 @@
 
 **Status:** normative
 **Scope:** `catalog/`, `.agents/`, every `dist/` folder,
-`harnesses/<h>/bootstrap/`, and `docs/reference/python-api.md`.
+`harnesses/<h>/bootstrap/`, `docs/reference/python-api.md`, and
+`docs/reference/lifecycle-matrix.md`.
 
 ## Catalog is generated from disk
 
@@ -50,10 +51,12 @@ files under comparison. There is no CI auto-commit. Contributors must run
 |---|---|---|
 | `agents/**/dist/{AGENT.md,agent.yaml,agent.json,plugin.json}` | `engine/generators/agent_manifests.py` | `check` + `engine/validators/agents.py` |
 | `knowledge/mcps/**/dist/{mcp.json,mcp_config.json}` | `engine/generators/mcp_configs.py` | `check` + `engine/validators/mcps.py` |
-| `harnesses/<h>/bootstrap/*` | `engine/generators/bootstrap.py` | `check` |
+| `harnesses/<h>/bootstrap/*` | `engine/generators/bootstrap.py` + `engine/generators/plugins.py` + `engine/generators/guardrails.py` | `check` |
 | `catalog/{catalog.json,INDEX.md}` | `engine/generators/catalog.py` | `check` + `completeness` |
 | `.agents/{skills,mcps,agents}.json` + `.agents/entries/<name>.json` | `engine/generators/discovery.py` and `agent_manifests.py` | `check` + `engine/validators/discovery.py` |
+| `.agents/routing.json` | `engine/generators/routing.py` | `check` + `engine/validators/routing.py` |
 | `docs/reference/python-api.md` | `engine/generators/docstrings.py` | `check` |
+| `docs/reference/lifecycle-matrix.md` | `engine/generators/lifecycle.py` | `check` + `engine/validators/harnesses.py` |
 
 `python3 scripts/coacus.py generate` gates on SOURCE errors before writing:
 invalid canonical sources never produce committed artifacts. It writes the
@@ -74,8 +77,8 @@ regeneration can be compared byte-for-byte.
 ## Enforcement
 
 - `python3 scripts/coacus.py check` runs every generator's `check()`
-  (`agent_manifests`, `mcp_configs`, `bootstrap`, `discovery`, `catalog`,
-  `docstrings`).
+  (`agent_manifests`, `mcp_configs`, `bootstrap`, `discovery`, `routing`,
+  `catalog`, `docstrings`, `lifecycle`).
 - `python3 scripts/coacus.py completeness` reconciles catalog counts, lock
   targets and orphan skills (`engine/validators/completeness.py`).
 - `python3 scripts/coacus.py validate` reconciles the README corpus table against

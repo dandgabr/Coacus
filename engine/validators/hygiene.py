@@ -62,6 +62,7 @@ BUILTIN_TOOL_NAMES = [
 # exempt (the sanctioned home for tool mappings).
 ANTI_TOOL_ROOTS = (
     "knowledge/skills",
+    "knowledge/agents",
     "methodology/workflows",
     "methodology/bootstrap",
     "templates/authoring",

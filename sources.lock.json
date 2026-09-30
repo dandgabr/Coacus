@@ -311,9 +311,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
-      "source_sha256": "b81af38edca3a05686745b93e5eefc61607c5cd548d55910fcf8555bc8b4b0f5",
+      "source_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "b81af38edca3a05686745b93e5eefc61607c5cd548d55910fcf8555bc8b4b0f5",
+      "target_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

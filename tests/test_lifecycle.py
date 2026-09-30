@@ -95,6 +95,28 @@ class TestHarnessValidator(unittest.TestCase):
             errors = harness_validator.validate(root)
             self.assertTrue(any("can_ask" in e for e in errors))
 
+    def test_missing_tool_mapping_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "harnesses/h").mkdir(parents=True)
+            (root / "harnesses/h/harness.json").write_text(
+                json.dumps({"name": "h", "bootstrap": {"supported": False}}),
+                encoding="utf-8",
+            )
+            errors = harness_validator.validate(root)
+            self.assertTrue(any("tool_mapping" in e for e in errors))
+
+    def test_template_harness_is_exempt_from_tool_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "harnesses/_template").mkdir(parents=True)
+            (root / "harnesses/_template/harness.json").write_text(
+                json.dumps({"name": "_template", "bootstrap": {"supported": False}}),
+                encoding="utf-8",
+            )
+            errors = harness_validator.validate(root)
+            self.assertFalse(any("tool_mapping" in e for e in errors))
+
     def test_real_manifests_are_valid(self) -> None:
         self.assertEqual(harness_validator.validate(REPO), [])
 

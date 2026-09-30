@@ -59,6 +59,16 @@ def validate(root: Path) -> list[str]:
             errors.append(f"{rel}: missing 'name'")
             continue
 
+        # A real harness (not the authoring template) must declare a tool_mapping;
+        # without it the bootstrap renders an empty tool vocabulary in silence (I3).
+        if data["name"] != "_template":
+            mapping = data.get("tool_mapping")
+            if not isinstance(mapping, dict) or not mapping:
+                errors.append(
+                    f"{rel}: missing or empty 'tool_mapping' "
+                    f"(the bootstrap would render no tool vocabulary)"
+                )
+
         for plugin in data.get("plugins", []) or []:
             kind = str(plugin.get("kind", ""))
             if kind and kind not in known_kinds:
