@@ -130,6 +130,11 @@ tooling — its CLI if one is available, or the creation URL most forges
 print when you push — following the repo's PR template and conventions if
 present, and report the URL to your human partner.
 
+This is the "Push and open the PR" step of
+`../using-coacus/references/coacus-process-conventions.md`; run its
+"Reinstall locally" step (`python3 scripts/coacus_install.py <harness> --verify`)
+once the change is merged into a branch the harnesses consume.
+
 Keep the worktree — your human partner iterates on PR feedback there.
 
 ### Option 3: Keep As-Is

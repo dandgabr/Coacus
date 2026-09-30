@@ -15933,7 +15933,7 @@
       "source_path": "skills/finishing-a-development-branch/SKILL.md",
       "source_sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65",
       "target_path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "target_sha256": "d3d812a75f87caf05413087b1e4e3957c3e263ee2a08cfdd696903a3723f3631",
+      "target_sha256": "f382c817fa49df80d38ac4a8f736eb948e6abf3d665a7e3e54f0beadfa279d8a",
       "origin_license": "MIT",
       "transform": [
         "imported",

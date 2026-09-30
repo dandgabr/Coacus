@@ -40,6 +40,29 @@ no drift. CI runs `validate` → `check` → `completeness` → tests and never
   them.
 - The pull request carries the generated diff; the repository squashes on merge.
 
+After the local gate is green, two steps complete the change:
+
+- **Push and open the PR.** Push the branch and create the pull request:
+
+  ```bash
+  git push -u origin <branch>
+  gh pr create --fill
+  ```
+
+  The PR body must carry the regenerated diffs (`catalog/`, `dist/`,
+  `harnesses/*/bootstrap/`, `sources.lock.json`) alongside the source change.
+
+- **Reinstall locally.** Refresh the artifacts in the harnesses present on this
+  machine, then verify them:
+
+  ```bash
+  python3 scripts/coacus_install.py all
+  python3 scripts/coacus_install.py all --verify
+  ```
+
+  Quote the `--verify` output (canonical component counts, install root, drift);
+  it exits non-zero on mismatch. An undetected harness is skipped, not failed.
+
 ## Reach the local corpus
 
 The process workflows are the method; the local corpus is the knowledge. Every
