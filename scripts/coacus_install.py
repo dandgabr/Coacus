@@ -295,6 +295,18 @@ def _is_within(path: Path, root: Path) -> bool:
     return True
 
 
+def _yaml_scalar(text: str) -> str:
+    """Render ``text`` as a YAML scalar safe for arbitrary content.
+
+    A plain (unquoted) scalar is only valid while it contains no indicator
+    characters: a description such as ``frames ... data products: dual`` breaks
+    the mapping at the internal ``": "``. Emit a double-quoted JSON string
+    instead — JSON string syntax is a valid subset of YAML double-quoted
+    scalars, so the value round-trips whatever it contains.
+    """
+    return json.dumps(text)
+
+
 def _render_agent_opencode(source: Path, root: Path) -> str:
     """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
     meta = _agent_meta(source)
@@ -304,7 +316,7 @@ def _render_agent_opencode(source: Path, root: Path) -> str:
         rel = source.as_posix()
     return (
         "---\n"
-        f"description: {meta['description']}\n"
+        f"description: {_yaml_scalar(str(meta['description']))}\n"
         "mode: subagent\n"
         "---\n\n"
         f"<!-- Generated from {rel} (Coacus) -->\n\n"
@@ -326,7 +338,7 @@ def _render_agent_named(source: Path) -> str:
     return (
         "---\n"
         f"name: {meta['name']}\n"
-        f"description: {meta['description']}\n"
+        f"description: {_yaml_scalar(str(meta['description']))}\n"
         "---\n\n"
         f"{body}\n"
     )
@@ -405,7 +417,7 @@ def _render_agent_command_code(source: Path) -> str:
     return (
         "---\n"
         f"name: {meta['name']}\n"
-        f"description: {meta['description']}\n"
+        f"description: {_yaml_scalar(str(meta['description']))}\n"
         'tools: "*"\n'
         "---\n\n"
         f"{body}\n"
