@@ -1144,6 +1144,15 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
 
 Return the default config directory for ``harness`` under ``home``.
 
+#### `def harness_present(harness: str, home: Path | None=None) -> bool`
+
+True when ``harness`` appears installed on this machine.
+
+Detection is by the harness's own environment variable or its executable on
+PATH — never by the mere existence of the config directory, which Coacus
+itself may have created. This is what prevents installing into an absent
+harness.
+
 #### `def discover_skills(root: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[Path]`
 
 All skill directories (the parent of a SKILL.md) in the repository.
@@ -1177,7 +1186,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 
@@ -1190,6 +1199,10 @@ manifest — a pre-existing memory file is left untouched.
 Enforcement is refused, not degraded (D3): a ``deny`` policy the harness
 cannot block aborts the install unless ``allow_advisory`` records the
 downgrade explicitly.
+
+Detection is a gate (D13): a harness that is not present on this machine is
+SKIPPED, never populated — unless ``force`` is set to provision ahead of the
+harness's own installation.
 
 #### `def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]`
 

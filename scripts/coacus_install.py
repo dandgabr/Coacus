@@ -56,6 +56,7 @@ import argparse
 import fnmatch
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -85,6 +86,39 @@ def default_config_dir(harness: str, home: Path) -> Path:
         "cursor": home / ".cursor",
         "command-code": home / ".commandcode",
     }[harness]
+
+
+# Per-harness detection facts: the environment variables the harness sets and/or
+# the executables it installs. A harness is "present" when any of them resolves.
+# This is the DATA half; `harness_present` is the consumer. Without this guard the
+# installer writes a full corpus into a config dir for a harness that is not
+# installed (the bug this closes).
+HARNESS_DETECTION: dict[str, dict[str, list[str]]] = {
+    "opencode": {"env": ["OPENCODE_CONFIG_DIR", "OPENCODE"], "bins": ["opencode"]},
+    "claude-code": {"env": ["CLAUDE_PLUGIN_ROOT"], "bins": ["claude"]},
+    "antigravity": {"env": ["GEMINI_DIR", "ANTIGRAVITY"], "bins": ["agy", "antigravity"]},
+    "codex": {"env": ["CODEX_HOME"], "bins": ["codex"]},
+    "cursor": {"env": ["CURSOR_TRACE_ID", "CURSOR_PLUGIN_ROOT"], "bins": ["cursor", "cursor-agent"]},
+    "command-code": {"env": ["COMMANDCODE_PROJECT_DIR"], "bins": ["command-code", "cmd"]},
+}
+
+
+def harness_present(harness: str, home: Path | None = None) -> bool:
+    """True when ``harness`` appears installed on this machine.
+
+    Detection is by the harness's own environment variable or its executable on
+    PATH — never by the mere existence of the config directory, which Coacus
+    itself may have created. This is what prevents installing into an absent
+    harness.
+    """
+    import os
+
+    facts = HARNESS_DETECTION.get(harness)
+    if facts is None:
+        return True  # unknown harness: do not block a custom adapter
+    if any(os.environ.get(var) for var in facts.get("env", [])):
+        return True
+    return any(shutil.which(binary) for binary in facts.get("bins", []))
 
 
 def _split_filter(value: str | None) -> list[str]:
@@ -1021,6 +1055,18 @@ def plan(
     return []
 
 
+def _is_default_target(harness: str, config_dir: Path) -> bool:
+    """True when ``config_dir`` is the harness's real default config location.
+
+    An explicit ``--config-dir`` (or a test target) is an intentional choice and
+    bypasses the presence gate; the default location does not.
+    """
+    try:
+        return config_dir.resolve() == default_config_dir(harness, _home()).resolve()
+    except OSError:
+        return config_dir == default_config_dir(harness, _home())
+
+
 def install(
     harness: str,
     root: Path,
@@ -1030,6 +1076,7 @@ def install(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
     allow_advisory: bool = False,
+    force: bool = False,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1042,7 +1089,19 @@ def install(
     Enforcement is refused, not degraded (D3): a ``deny`` policy the harness
     cannot block aborts the install unless ``allow_advisory`` records the
     downgrade explicitly.
+
+    Detection is a gate (D13): a harness that is not present on this machine is
+    SKIPPED, never populated — unless ``force`` is set to provision ahead of the
+    harness's own installation.
     """
+    if not force and _is_default_target(harness, config_dir) and not harness_present(harness):
+        return {
+            "harness": harness,
+            "skipped": True,
+            "reason": "harness not detected on this machine (use --force to override)",
+            "config_dir": config_dir.as_posix(),
+            "files": [],
+        }
     refusals = _refuse_unenforceable(root, harness)
     if refusals and not allow_advisory:
         return {
@@ -1198,6 +1257,7 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
         "harness": harness,
         "manifest": manifest.as_posix(),
         "installed": manifest.is_file(),
+        "harness_present": harness_present(harness),
         "ok": False,
     }
     if not manifest.is_file():
@@ -1362,17 +1422,25 @@ def uninstall(
 def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
     """Remove now-empty directories created for ``paths``, deepest first.
 
-    Every ancestor of a recorded file up to (but excluding) an allowed root is a
-    candidate. Only empty directories are removed, and never a root itself, so
-    unrelated user directories and the harness config dir are left untouched.
+    Every ancestor of a recorded file that lies STRICTLY BELOW an allowed root is
+    a candidate (the root itself is never removed). Only empty directories are
+    removed, so unrelated user directories and anything still holding a file are
+    left untouched.
+
+    The earlier stop condition treated the config dir as the boundary, but a
+    skill lives several levels below it (``<config>/skills/<skill>/``), so every
+    ancestor was already "within the root" and nothing was ever pruned — leaving
+    empty companion directories behind on uninstall.
     """
     candidates: set[Path] = set()
     for raw in paths:
         parent = Path(raw).parent
-        while not any(_is_within(parent, r) or parent == r for r in roots):
+        while parent != parent.parent:
+            if any(parent == r for r in roots):
+                break  # never remove an allowed root itself
+            if not any(_is_within(parent, r) for r in roots):
+                break  # outside every root: stop
             candidates.add(parent)
-            if parent.parent == parent:
-                break
             parent = parent.parent
     for directory in sorted(candidates, key=lambda p: len(p.parts), reverse=True):
         try:
@@ -1421,6 +1489,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         dest="allow_advisory",
         action="store_true",
         help="record a guardrail downgrade instead of refusing to install an unenforceable deny",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="install even when the harness is not detected on this machine (provision ahead of it)",
     )
     args = parser.parse_args(argv)
 
@@ -1484,7 +1557,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         else:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
-                        allow_advisory=args.allow_advisory)
+                        allow_advisory=args.allow_advisory, force=args.force)
             )
     print(json.dumps(results, indent=2))
     exit_code = 0 if all(not r.get("error") for r in results) else 1
