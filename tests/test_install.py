@@ -890,6 +890,48 @@ class TestCommandCode(unittest.TestCase):
         )
 
 
+class TestAgentDescriptionQuoting(unittest.TestCase):
+    """A description carrying ``": "`` must not break the emitted frontmatter.
+
+    An unquoted plain scalar ends the mapping at the internal colon, so a
+    description such as "frames ... data products: dual" made the harness YAML
+    parser reject the whole agent file at install time.
+    """
+
+    DESCRIPTION = "Frames products as data products: discovery, prioritization."
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = Path(self._tmp.name)
+        agent = self.root / "knowledge/agents/roles/sample-agent"
+        agent.mkdir(parents=True)
+        self.source = agent / coacus_install.AGENT_SOURCE_NAME
+        self.source.write_text(
+            "---\nname: sample-agent\ndescription: >-\n  "
+            f"{self.DESCRIPTION}\n---\n\nbody\n",
+            encoding="utf-8",
+        )
+
+    def _description(self, rendered: str) -> str:
+        line = next(
+            raw for raw in rendered.splitlines() if raw.startswith("description: ")
+        )
+        return json.loads(line[len("description: ") :])
+
+    def test_command_code_quotes_description(self) -> None:
+        rendered = coacus_install._render_agent_command_code(self.source)
+        self.assertEqual(self._description(rendered), self.DESCRIPTION)
+
+    def test_named_quotes_description(self) -> None:
+        rendered = coacus_install._render_agent_named(self.source)
+        self.assertEqual(self._description(rendered), self.DESCRIPTION)
+
+    def test_opencode_quotes_description(self) -> None:
+        rendered = coacus_install._render_agent_opencode(self.source, self.root)
+        self.assertEqual(self._description(rendered), self.DESCRIPTION)
+
+
 class TestGuardrailInstall(unittest.TestCase):
     """The guardrail staging and the capability refusal (lifecycle-guardrails)."""
 
