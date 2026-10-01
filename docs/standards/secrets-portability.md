@@ -28,6 +28,12 @@ means a concrete user's home (`/home/<user>`, `/Users/<user>`, `/root`), the
 author's conversion workspace under `/tmp/opencode`, a Windows user profile
 (`C:\Users\<user>`), or a `file://` URL. Use repository-relative paths.
 
+Furthermore, OS portability is mandatory: all framework logic, hooks, generators,
+and workflow scripts MUST be authored in Python 3.10+ using only standard library
+modules. Platform-specific shell scripts (`.sh`, `.bash`, `.ps1`, `.bat`) must
+never be used for internal framework operations or runtime hooks. The only
+exception is the pair of root host bootstrappers (`install.sh` and `install.ps1`).
+
 The rules apply to the prose and configuration the framework ships. Fenced code
 blocks are exempt: illustrative snippets may legitimately show example paths and
 token-shaped values.

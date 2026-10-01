@@ -181,6 +181,21 @@ Per-harness tutorials, vendor facts and the evidence class behind each claim:
 
 ## Install
 
+### 🌟 1-Click Universal Bootstrap (Recommended)
+
+Quickly verify/install Python (3.10+), create an isolated virtual environment (`.venv`),
+render artifacts, and install Coacus into all detected harnesses:
+
+```bash
+# Linux / macOS
+./install.sh [harness|all]
+
+# Windows (PowerShell)
+.\install.ps1 [harness|all]
+```
+
+### Manual Install
+
 ```bash
 python3 scripts/coacus.py generate          # render every artifact first
 python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | command-code | all

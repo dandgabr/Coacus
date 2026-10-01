@@ -552,7 +552,7 @@ function maybeOpenBrowser() {
 // ========== Activity Tracking ==========
 
 // Idle timeout: shut down after this long with no activity. Default 4 hours;
-// override with BRAINSTORM_IDLE_TIMEOUT_MS (start-server.sh: --idle-timeout-minutes).
+// override with BRAINSTORM_IDLE_TIMEOUT_MS (start_server.py: --idle-timeout-minutes).
 const IDLE_TIMEOUT_MS = (() => {
   const ms = Number(process.env.BRAINSTORM_IDLE_TIMEOUT_MS);
   return Number.isFinite(ms) && ms > 0 ? ms : 4 * 60 * 60 * 1000;

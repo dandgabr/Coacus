@@ -72,7 +72,8 @@ class Ledger:
         self.path = self.dir / "ledger"
         self.lock_path = self.dir / "ledger.lock"
         self.dir.mkdir(parents=True, exist_ok=True)
-        os.chmod(self.dir, 0o700)
+        if os.name != "nt":
+            os.chmod(self.dir, 0o700)
         self.lock_path.touch(exist_ok=True)
 
     # -- locking ---------------------------------------------------------
