@@ -989,6 +989,21 @@ cap stayed saturated past the timeout.
 
 Parse arguments and run the requested governor action.
 
+### `scripts/coacus_governor_hook.py`
+
+Coacus governor hook for Antigravity (cross-platform, stdlib only).
+
+Bridges Antigravity lifecycle hooks to the shared Coacus governor.
+The payload on stdin is protojson camelCase:
+toolCall.name, conversationId, stepIdx, error.
+  - pretool : acquire a slot before a subagent spawn.
+  - posttool: release the slot, or mark PAUSED on a rate-limit (429).
+  - preinv  : inject the concurrency budget + retry contract.
+
+#### `def main() -> int`
+
+Execute governor hook actions based on CLI mode and stdin protojson.
+
 ### `scripts/coacus_guard.py`
 
 Coacus guardrail runtime: evaluate PAER policies for one lifecycle event.
@@ -1249,6 +1264,18 @@ proposal at the governor's free slots so a caller cannot over-subscribe.
 #### `def main(argv: list[str] | None=None) -> int`
 
 Parse arguments and dispatch to the selected routing mode.
+
+### `scripts/coacus_session_start.py`
+
+SessionStart bootstrap runner for Shape A harnesses (cross-platform, stdlib only).
+
+Emits the exact single-key native JSON payload:
+- additionalContext (for Claude Code, Codex, Command Code)
+- additional_context (for Cursor)
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Emit the single-key native JSON SessionStart payload.
 
 ### `scripts/coacus_vertical.py`
 

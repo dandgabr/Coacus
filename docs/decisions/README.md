@@ -12,3 +12,4 @@ the repository. The convention is normative in
 | [0004](0004-hook-composition-and-ordering.md) | Hook composition and ordering | accepted |
 | [0005](0005-part-b-boundary-and-one-way-interface.md) | Self-improvement boundary and one-way interface | accepted |
 | [0006](0006-default-policy-posture.md) | Default guardrail policy posture | accepted |
+| [0007](0007-cross-platform-os-independence.md) | Cross-Platform OS Independence and Python-Exclusive Scripting | accepted |

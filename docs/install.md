@@ -22,11 +22,35 @@ evidence class. Do not treat them as equally authoritative.
 | **[verified locally]** | Confirmed by running the command in this repository. |
 | **[unverified]** | Observed empirically or inferred; not confirmed by vendor docs. Treat as likely to change. |
 
-## Prerequisites
+## Prerequisites & 1-Click Universal Install
 
-- Python 3.14 (the CI target). The core tooling uses the standard library only.
-- The harness CLI you intend to install into, unless you only want a dry run.
+- Python 3.10+ (Python 3.14 is the CI target). The core tooling uses the standard library only.
 - Run every command from the repository root.
+
+### 🌟 1-Click Universal Bootstrap (Recommended)
+
+To automatically verify Python, install it if missing, create an isolated `.venv`,
+render all artifacts, and install Coacus into all detected harnesses:
+
+**Linux / macOS:**
+```bash
+./install.sh [harness|all]
+```
+
+**Windows (PowerShell):**
+```powershell
+.\install.ps1 [harness|all]
+```
+
+Both entrypoint scripts handle environment detection, virtual environment setup,
+artifact generation (`scripts/coacus.py generate`), and verified installation
+(`scripts/coacus_install.py all --verify`) in a single step.
+
+---
+
+### Manual Setup (Step-by-Step)
+
+If you prefer to run the steps manually:
 
 ### Recommended MCP dependency
 

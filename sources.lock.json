@@ -15519,9 +15519,9 @@
       "source_repo": "superpowers",
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/scripts/server.cjs",
-      "source_sha256": "0bda4232af130b0ef1bf667e8d38dcbd905375a27297053f97574f5e501a3897",
+      "source_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
       "target_path": "methodology/workflows/superpowers-brainstorming/scripts/server.cjs",
-      "target_sha256": "0bda4232af130b0ef1bf667e8d38dcbd905375a27297053f97574f5e501a3897",
+      "target_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15576,9 +15576,9 @@
       "source_repo": "superpowers",
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/visual-companion.md",
-      "source_sha256": "6ffcb038b53254bd31debaa15e12dcd4ff24bd63d690e0b644ac6396701cf2e2",
+      "source_sha256": "be3d22f6bcea6ed2464d1cd1457dd245da79cf1a598fdc7f8554c046507fe011",
       "target_path": "methodology/workflows/superpowers-brainstorming/visual-companion.md",
-      "target_sha256": "6ffcb038b53254bd31debaa15e12dcd4ff24bd63d690e0b644ac6396701cf2e2",
+      "target_sha256": "be3d22f6bcea6ed2464d1cd1457dd245da79cf1a598fdc7f8554c046507fe011",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -16174,9 +16174,9 @@
       "source_repo": "superpowers",
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/root-cause-tracing.md",
-      "source_sha256": "75b933b6a8c40bdb2031b10f21654395b56ec6ab6bc7b018c18d3fe57aeb7fb8",
+      "source_sha256": "8f2932a9c8cf517588d69699a5d847d674ca0c4e5031d5478f855e2487d9472d",
       "target_path": "methodology/workflows/superpowers-systematic-debugging/root-cause-tracing.md",
-      "target_sha256": "75b933b6a8c40bdb2031b10f21654395b56ec6ab6bc7b018c18d3fe57aeb7fb8",
+      "target_sha256": "8f2932a9c8cf517588d69699a5d847d674ca0c4e5031d5478f855e2487d9472d",
       "origin_license": "MIT",
       "transform": [
         "imported"

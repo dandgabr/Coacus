@@ -1,8 +1,20 @@
 # Usage
 
 Every command below was verified against the scripts in `scripts/`. Run them
-from the repository root. Python 3.14 is the CI target; the stdlib is the only
-dependency for the core tooling.
+from the repository root. Python 3.10+ is supported (Python 3.14 is the CI target);
+the stdlib is the only dependency for the core tooling.
+
+## 🌟 1-Click Universal Bootstrap (Recommended)
+
+Bootstrap Python, the virtual environment, artifact generation, and verified installation:
+
+```bash
+# Linux / macOS
+./install.sh [harness|all]
+
+# Windows (PowerShell)
+.\install.ps1 [harness|all]
+```
 
 ## Build and verify
 

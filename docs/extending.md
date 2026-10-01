@@ -30,7 +30,9 @@ does not.
    trigger-oriented `description`.
 3. Prescribe actions only — no harness tool names. Put tool mappings in
    `references/<harness>-tools.md` beside the skill. Put examples in
-   `examples/`, runnable helpers in `scripts/`.
+   `examples/`, runnable helpers in `scripts/`. **All helpers and tooling MUST be
+   authored in Python 3.10+ (stdlib only)**; shell scripts (`.sh`, `.ps1`, `.bat`)
+   are strictly prohibited to preserve cross-platform OS independence.
 4. Keep paths relative and secrets as `{env:VAR}` ([secrets-portability](standards/secrets-portability.md)).
 
 Validator contract (`engine/validators/skills.py`): frontmatter parses; `name`

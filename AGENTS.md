@@ -50,6 +50,12 @@ re-scan directories per turn (D5). If indexes look stale, run
    — Context7 for libraries/frameworks, the publisher for standards — and pin the
    resolved version with its source and date. An unresolved pin is marked
    `unverified`, never presented as current.
+9. **Scripts are Python-only, never shell (cross-platform-os-independence).**
+   All tooling, automation, hooks, generators and workflow helpers MUST be
+   authored in portable Python 3.10+ (standard library only, zero external runtime
+   dependencies). Never author `.sh`, `.bash`, `.cmd`, or `.ps1` scripts for
+   framework operations (the sole exception being root `install.sh` and
+   `install.ps1` for initial host Python/venv bootstrap).
 
 Enforcement status: skills, agents, MCP, hygiene, discovery and language
 validators run in `generate` pre-flight and `validate`; `completeness` (F8)
