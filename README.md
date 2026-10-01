@@ -126,7 +126,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Workflows | 15 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
 | Catalog | 370 skill entries | 355 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1339 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Provenance | 1336 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
