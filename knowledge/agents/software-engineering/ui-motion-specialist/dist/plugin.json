@@ -1,0 +1,6 @@
+{
+  "name": "ui-motion-specialist",
+  "version": "0.1.0",
+  "description": "Specialist agent in UI motion engineering, physics-based micro-interactions, dynamic pointer tracking, tactile hover/active states, and guided product onboarding tours. Implements spring dynamics, spotlight cursor shaders, Driver.js walkthrough architectures, and 60/120fps hardware-composited motion adhering strictly to WCAG prefers-reduced-motion standards.",
+  "entrypoint": "AGENT.md"
+}

@@ -9,6 +9,8 @@ description: >-
   conformance to ship pixel-faithful, token-driven interfaces.
 skills:
   - knowledge/skills/roles/ui-designer/SKILL.md
+  - knowledge/skills/domains/design/ui-hero-sections/SKILL.md
+  - knowledge/skills/domains/design/ui-motion-interaction/SKILL.md
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
@@ -56,6 +58,8 @@ When acting, follow the associated skills: ui-designer for the craft canon, the 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [ui-designer](knowledge/skills/roles/ui-designer/SKILL.md)
+- [ui-hero-sections](knowledge/skills/domains/design/ui-hero-sections/SKILL.md)
+- [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)

@@ -114,5 +114,6 @@ The UX discipline: all aspects of the end-user's interaction with a company, its
 
 - For the surface craft this discipline feeds, see [ui-designer](../ui-designer/SKILL.md).
 - For the orchestrating generalist role, see [ui-ux-designer](../ui-ux-designer/SKILL.md).
+- For contextual onboarding, progressive disclosure, and product tours, see [ui-onboarding-tours](../../domains/design/ui-onboarding-tours/SKILL.md).
 - For research synthesis discipline, see [ai-model-evaluation](../../domains/industry/ai-model-evaluation/SKILL.md) and [human-in-the-loop-ml](../../data/human-in-the-loop-ml/SKILL.md).
 - For conformance depth, see [web-accessibility-wcag](../../engineering/practices/web-accessibility-wcag/SKILL.md).

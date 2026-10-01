@@ -13,6 +13,10 @@ skills:
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
   - knowledge/skills/roles/ui-designer/SKILL.md
   - knowledge/skills/roles/ux-designer/SKILL.md
+  - knowledge/skills/domains/design/ui-hero-sections/SKILL.md
+  - knowledge/skills/domains/design/ui-motion-interaction/SKILL.md
+  - knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md
+  - knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md
   - knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md
@@ -68,6 +72,10 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-ux-designer](knowledge/skills/roles/ui-ux-designer/SKILL.md)
 - [ui-designer](knowledge/skills/roles/ui-designer/SKILL.md)
 - [ux-designer](knowledge/skills/roles/ux-designer/SKILL.md)
+- [ui-hero-sections](knowledge/skills/domains/design/ui-hero-sections/SKILL.md)
+- [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-onboarding-tours](knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md)
+- [ui-gpu-graphics-web](knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [3d-immersive-webgl](knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
