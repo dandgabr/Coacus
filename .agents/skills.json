@@ -184,6 +184,15 @@
       "path": "knowledge/skills/domains/design/color-ui-systems"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-hero-sections"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-motion-interaction"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-onboarding-tours"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl"
     },
     {
@@ -392,6 +401,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web"
     },
     {
       "path": "knowledge/skills/engineering/practices/ui-ux-principles"

@@ -843,7 +843,7 @@
       "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
       "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
       "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "781017aaa8b9545e1de1d373c4b230d96788fd25587d3d805724708836ea9654",
+      "target_sha256": "17c6e87fce63404f062c07124bdc066a222c9d38b784d10de3265b2ece97a4f9",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18834,9 +18834,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "source_sha256": "41fd555a28b98dd064307a568ae3010743ae51c6a0bc3c6f9fc2066836d5e764",
+      "source_sha256": "a7f30b0d9920dd8c182960c6685b9b28fcf5bbec7ef0227eae19b4cf7fae4d33",
       "target_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "target_sha256": "41fd555a28b98dd064307a568ae3010743ae51c6a0bc3c6f9fc2066836d5e764",
+      "target_sha256": "a7f30b0d9920dd8c182960c6685b9b28fcf5bbec7ef0227eae19b4cf7fae4d33",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18849,9 +18849,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "source_sha256": "38076b5cadd05df08f4fd81a3874652a1bc5babec9d9a0f6f183a7b14f9cb8cc",
+      "source_sha256": "18c7b6f323f5fc45c49498b913f65655570f9a41abed24220e344c7901204cc0",
       "target_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "target_sha256": "38076b5cadd05df08f4fd81a3874652a1bc5babec9d9a0f6f183a7b14f9cb8cc",
+      "target_sha256": "18c7b6f323f5fc45c49498b913f65655570f9a41abed24220e344c7901204cc0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18864,9 +18864,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "source_sha256": "6dbed7d2e93888d88d52a55abd934278cd5c2c43bd6e759f6d486ab3eb5b0322",
+      "source_sha256": "8724465406a7f441f769bdbf8f6ae41a6ad66d05012d99b1190c6b648e728c17",
       "target_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "target_sha256": "6dbed7d2e93888d88d52a55abd934278cd5c2c43bd6e759f6d486ab3eb5b0322",
+      "target_sha256": "8724465406a7f441f769bdbf8f6ae41a6ad66d05012d99b1190c6b648e728c17",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19384,6 +19384,96 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-09-28T14:54:13Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
+      "source_sha256": "869a6f37c63a404206f9a3323105b985f87001b6f5411c960c8533ad4152b2bb",
+      "target_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
+      "target_sha256": "869a6f37c63a404206f9a3323105b985f87001b6f5411c960c8533ad4152b2bb",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
+      "source_sha256": "fd2307a398386676476daf30c5620a1a24323c4d0d69ee64d3bc1980bcb5138a",
+      "target_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
+      "target_sha256": "fd2307a398386676476daf30c5620a1a24323c4d0d69ee64d3bc1980bcb5138a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
+      "source_sha256": "052d98c7ee5a8a9b37ede8e70bfc92dfcafccea87593861294159cdf9ff1f4ea",
+      "target_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
+      "target_sha256": "052d98c7ee5a8a9b37ede8e70bfc92dfcafccea87593861294159cdf9ff1f4ea",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
+      "source_sha256": "949a9c4ed690317e1c7835c8fc473838b415d779e45b27982a3c5dd0175f50cc",
+      "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
+      "target_sha256": "949a9c4ed690317e1c7835c8fc473838b415d779e45b27982a3c5dd0175f50cc",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
+      "source_sha256": "ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a",
+      "target_path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
+      "target_sha256": "ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
+      "source_sha256": "281139ee0baf56578628ac2d0b065d62e351c3d8da52c212e212ce041dfc8aff",
+      "target_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
+      "target_sha256": "281139ee0baf56578628ac2d0b065d62e351c3d8da52c212e212ce041dfc8aff",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-01T19:48:21Z"
     }
   ]
 }

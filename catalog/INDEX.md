@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 366 skill(s) · 92 agent(s) · 1 MCP(s)
+**Totals:** 370 skill(s) · 94 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -18,6 +18,7 @@
 | backend-developer | software-engineering | [knowledge/agents/software-engineering/backend-developer/agent.source.md](../knowledge/agents/software-engineering/backend-developer/agent.source.md) |
 | biomedical-engineer | academic-sciences | [knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md](../knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md) |
 | biotechnologist | academic-sciences | [knowledge/agents/academic-sciences/biotechnologist/agent.source.md](../knowledge/agents/academic-sciences/biotechnologist/agent.source.md) |
+| browser-graphics-specialist | software-engineering | [knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md](../knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md) |
 | business-architect | architecture | [knowledge/agents/architecture/business-architect/agent.source.md](../knowledge/agents/architecture/business-architect/agent.source.md) |
 | career-coach-job-hunter | specialized-domains | [knowledge/agents/specialized-domains/career-coach-job-hunter/agent.source.md](../knowledge/agents/specialized-domains/career-coach-job-hunter/agent.source.md) |
 | chemical-engineer | academic-sciences | [knowledge/agents/academic-sciences/chemical-engineer/agent.source.md](../knowledge/agents/academic-sciences/chemical-engineer/agent.source.md) |
@@ -96,6 +97,7 @@
 | telecom-voice-specialist | academic-sciences | [knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md](../knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md) |
 | threat-intelligence-specialist | cybersecurity | [knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md](../knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md) |
 | ui-designer | software-engineering | [knowledge/agents/software-engineering/ui-designer/agent.source.md](../knowledge/agents/software-engineering/ui-designer/agent.source.md) |
+| ui-motion-specialist | software-engineering | [knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
 | ui-ux-designer | software-engineering | [knowledge/agents/software-engineering/ui-ux-designer/agent.source.md](../knowledge/agents/software-engineering/ui-ux-designer/agent.source.md) |
 | ux-designer | software-engineering | [knowledge/agents/software-engineering/ux-designer/agent.source.md](../knowledge/agents/software-engineering/ux-designer/agent.source.md) |
 | vcs-repository-specialist | software-engineering | [knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md](../knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md) |
@@ -166,6 +168,9 @@
 | color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
 | color-theory-foundations | [knowledge/skills/domains/design/color-theory-foundations/SKILL.md](../knowledge/skills/domains/design/color-theory-foundations/SKILL.md) |
 | color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
+| ui-hero-sections | [knowledge/skills/domains/design/ui-hero-sections/SKILL.md](../knowledge/skills/domains/design/ui-hero-sections/SKILL.md) |
+| ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
+| ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
 | ui-style-ai-native-generative-ui | [knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md) |
@@ -236,6 +241,7 @@
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
+| ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |

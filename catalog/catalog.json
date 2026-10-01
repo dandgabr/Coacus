@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 92,
-    "skills": 366,
+    "agents": 94,
+    "skills": 370,
     "mcps": 1
   },
   "agents": [
@@ -65,6 +65,12 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
       "source": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md"
+    },
+    {
+      "name": "browser-graphics-specialist",
+      "category": "software-engineering",
+      "description": "Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines (WebGPU, WebGL2, Canvas 2D). Implements interactive visualizations, compute shaders (WGSL/GLSL), particle systems, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks.",
+      "source": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md"
     },
     {
       "name": "business-architect",
@@ -535,6 +541,12 @@
       "source": "knowledge/agents/software-engineering/ui-designer/agent.source.md"
     },
     {
+      "name": "ui-motion-specialist",
+      "category": "software-engineering",
+      "description": "Specialist agent in UI motion engineering, physics-based micro-interactions, dynamic pointer tracking, tactile hover/active states, and guided product onboarding tours. Implements spring dynamics, spotlight cursor shaders, Driver.js walkthrough architectures, and 60/120fps hardware-composited motion adhering strictly to WCAG prefers-reduced-motion standards.",
+      "source": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md"
+    },
+    {
       "name": "ui-ux-designer",
       "category": "software-engineering",
       "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
@@ -803,6 +815,18 @@
     {
       "name": "color-ui-systems",
       "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md"
+    },
+    {
+      "name": "ui-hero-sections",
+      "path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md"
+    },
+    {
+      "name": "ui-motion-interaction",
+      "path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md"
+    },
+    {
+      "name": "ui-onboarding-tours",
+      "path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
@@ -1083,6 +1107,10 @@
     {
       "name": "system-design-scalability",
       "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "ui-gpu-graphics-web",
+      "path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md"
     },
     {
       "name": "ui-ux-principles",

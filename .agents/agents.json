@@ -211,6 +211,9 @@
       "path": "knowledge/agents/software-engineering/backend-developer"
     },
     {
+      "path": "knowledge/agents/software-engineering/browser-graphics-specialist"
+    },
+    {
       "path": "knowledge/agents/software-engineering/code-optimizer"
     },
     {
@@ -245,6 +248,9 @@
     },
     {
       "path": "knowledge/agents/software-engineering/ui-designer"
+    },
+    {
+      "path": "knowledge/agents/software-engineering/ui-motion-specialist"
     },
     {
       "path": "knowledge/agents/software-engineering/ui-ux-designer"

@@ -1,0 +1,6 @@
+{
+  "name": "browser-graphics-specialist",
+  "version": "0.1.0",
+  "description": "Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines (WebGPU, WebGL2, Canvas 2D). Implements interactive visualizations, compute shaders (WGSL/GLSL), particle systems, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks.",
+  "entrypoint": "AGENT.md"
+}

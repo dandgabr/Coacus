@@ -6,6 +6,8 @@ Senior UI designer who owns the interface surface: visual hierarchy and composit
 
 <!-- coacus:generated:skills -->
 - [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
+- [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
+- [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
@@ -48,6 +50,8 @@ When acting, follow the associated skills: ui-designer for the craft canon, the 
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
+- [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
+- [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
