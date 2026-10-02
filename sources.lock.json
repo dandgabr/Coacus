@@ -15860,7 +15860,7 @@
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
       "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "57b0cadaaa5bb8d649a1375ca22e26441a93d23caa72ea10d21e24e3cac7c76e",
+      "target_sha256": "6937a9fcd06fca012ae821ee7ca1922948f2b7856c4a38eefcfc02f333880d42",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15966,7 +15966,7 @@
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
       "target_path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "target_sha256": "72791ed38b9009b893db17b019c095caadbc775a6d7bbc31d73646f9b4ebeb6a",
+      "target_sha256": "b36b48e4576323aabc808571cb4540845421036de064c42f471bfb437af21a13",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16084,7 +16084,7 @@
       "source_path": "skills/systematic-debugging/SKILL.md",
       "source_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
       "target_path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "target_sha256": "0e063c24af3cef96c3cba668fef8359c75d422b9668d3601795ed17ea18d3a65",
+      "target_sha256": "7ab5c88306b1609962ba5343609b497fb276dffb988dc64ca4f6eeedc7b9a1b0",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16256,7 +16256,7 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "b29d79f5da6f9f66159e83c1f92aa5d2e0787389031d075fa473732cb24a8111",
+      "target_sha256": "a54b6bf9421ffd7a52190272a20fc0fb2d75198c09dfd1ec57f8ed1321d83d98",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -17854,9 +17854,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "0597ead74c8bfff3354f3522c6cc9acd2cee6a420cc16a9e6703b6dbe442e1de",
+      "source_sha256": "0c97ec38cc8ee8e8d7d84a4922dd96ecd8e9e9f5cc437c6090068f39e86e6a2b",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "0597ead74c8bfff3354f3522c6cc9acd2cee6a420cc16a9e6703b6dbe442e1de",
+      "target_sha256": "0c97ec38cc8ee8e8d7d84a4922dd96ecd8e9e9f5cc437c6090068f39e86e6a2b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

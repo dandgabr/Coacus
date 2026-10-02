@@ -53,6 +53,9 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| A version, path or tool is X | Its manifest/registry entry in the resolved tree, **named** | Recalling it; a wildcard glob that matched a sibling; a lock you assumed |
+| A feature or entry is absent | The exact **error or `Result`**, printed | A count or summary line — several different causes produce the same one |
+| The artifact says Y | The artifact **at the path in force** | Another checkout, a generated mirror, a cached rendering |
 
 ## Red Flags - STOP
 
@@ -77,6 +80,10 @@ Skip any step = lying, not verifying
 | "I'm tired" | Exhaustion ≠ excuse |
 | "Partial check is enough" | Partial proves nothing |
 | "Different words so rule doesn't apply" | Spirit over letter |
+| "It returned 0, so it isn't there" | Absent, unreachable, out of scope and locked all return 0. Print the **`Result`** and read it. |
+| "I read the manifest" | *Which* manifest? `ls …/foo-*` also matches `foo-bar`. Name the file every number came from. |
+| "The spec says so" | Which **copy** — the one in force, a stale checkout, or a generated mirror? |
+| "The output shows no such field" | You read a rendering. Ask for the field by name before concluding it is missing. |
 
 ## Key Patterns
 

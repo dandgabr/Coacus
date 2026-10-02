@@ -84,6 +84,27 @@ only when a command produced it in this session.
   exact path.
 - State a number you did not measure as "unverified", or do not state it.
 - If a listing is truncated or errored, say so — do not fill the gap.
+- **Name the file every number came from.** A wildcard glob can match a sibling
+  (`ls -d …/time-*` also matches `time-macros`), so a value read from the wrong
+  manifest is indistinguishable from a measurement until someone re-reads it
+  another way.
+- **To distinguish causes, print the `Result`, not a count.** One summary line —
+  `0 entries`, `not found` — is produced by several different causes at once
+  (absent, unreachable, out of scope, locked, different store). Reading the first
+  plausible cause as the only one turns a summary into four wrong conclusions.
+
+## Secrets — read with consent, never printed
+
+- Credential stores are read **only with the human's authorisation**, and read for
+  **metadata**: key names, types, lengths. Never a value.
+- A tool that prints secret *contents* by design is not a way to inspect a store.
+  Extract into a variable inside a command the human runs, and discard the output.
+- When a store prints a secret beside its metadata, **filter the secret line out by
+  name** rather than by trusting the format.
+- Any script that prints a captured body, or that a human will run against a
+  credential, **redacts first and proves the redaction** — against a synthetic
+  payload carrying an address, a UUID and a token — before anyone runs it for real.
+- Never print the credential in an error, an assertion, a `Debug`, or a log line.
 
 ## Freshness — resolve, do not recall
 

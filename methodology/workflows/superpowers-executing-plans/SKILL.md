@@ -207,6 +207,13 @@ read its output, and compare. Three outcomes:
   it as `Task <N>: Ruling: <finding> — <what you decided and why>`, and
   continue. The ruling is carried, not remembered: later tasks that touch
   the same interface read it from the ledger.
+- **The blob is stale, and it will not compile.** Code in a plan is a snapshot
+  of what the plan *intended*, not of the codebase as it now stands. A task that
+  changed an interface leaves every later blob that consumes it stale. **The
+  compiler is the authority**: when a blob and the current schema disagree, the
+  definition moved and the reference did not — fix the reference in code *and*
+  send the correction back into the plan, because the next reader transcribes
+  the blob you left behind.
 
 Commit as the plan's commit steps say. A task that spans several commits
 is fine; BASE is what the review range is cut from, never `HEAD~1`.
@@ -326,6 +333,8 @@ Use superpowers-finishing-a-development-branch.
 | "The reviewer said Minor, so it's Minor" | The label graded the spec's silence. Grade what the person gets. Re-grade, then gate. |
 | "The fix is obvious, no need for a failing test first" | The failing test is the only proof the finding was real and is now gone. Without it you have a diff and a hope. |
 | "I'll fix the minors too while I'm in there" | Every minor you fix is a test, a fix, and a suite run your partner did not ask for. Ledger them; your partner decides. |
+| "The blob is in the plan, so it compiles" | Plans drift. A blob written against an older schema still reads as authoritative and still fails to build. Compile it. |
+| "The plan changed while I was working" | Then its *references* to what changed are stale too. Grep for the symbol, not just for the step. |
 
 ## Example Workflow
 
