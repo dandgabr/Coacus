@@ -2,7 +2,7 @@
 """SessionStart bootstrap runner for Shape A harnesses (cross-platform, stdlib only).
 
 Emits the exact single-key native JSON payload:
-- additionalContext (for Claude Code, Codex, Command Code)
+- hookSpecificOutput.additionalContext (for Claude Code, Codex, Command Code)
 - additional_context (for Cursor)
 """
 
@@ -16,14 +16,23 @@ from pathlib import Path
 def main(argv: list[str] | None = None) -> int:
     """Emit the single-key native JSON SessionStart payload."""
     args = argv if argv is not None else sys.argv[1:]
-    # Either pass json path directly or emit piped payload
     if args:
         payload_path = Path(args[0])
         if payload_path.is_file():
-            sys.stdout.write(payload_path.read_text(encoding="utf-8"))
+            root = Path(__file__).resolve().parents[1].as_posix()
+            def resolve(value):
+                if isinstance(value, str):
+                    return value.replace("__COACUS_ROOT__", root)
+                if isinstance(value, dict):
+                    return {key: resolve(item) for key, item in value.items()}
+                if isinstance(value, list):
+                    return [resolve(item) for item in value]
+                return value
+            payload = json.loads(payload_path.read_text(encoding="utf-8"))
+            sys.stdout.write(json.dumps(resolve(payload)) + "\n")
             return 0
 
-    print("Usage: python3 session_start.py <path_to_payload.json>")
+    print("Usage: python coacus_session_start.py <path_to_payload.json>", file=sys.stderr)
     return 1
 
 

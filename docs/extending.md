@@ -99,7 +99,7 @@ list of upper-case names.
 Copy `harnesses/_template/harness.json` to `harnesses/<name>/harness.json` and
 fill in the data. A harness manifest declares:
 
-- `bootstrap.supported` and `bootstrap.shape` — `A` (shell hook), `B`
+- `bootstrap.supported` and `bootstrap.shape` — `A` (Python hook), `B`
   (in-process), `C` (instructions file) or `native-discovery` (nothing rendered).
 - `bootstrap.outputs` — the paths the generator writes and their formats.
 - `bootstrap.native_key` / `bootstrap.forbidden_keys` — for shape A, the one

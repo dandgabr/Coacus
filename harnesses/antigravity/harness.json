@@ -30,8 +30,8 @@
     ]
   },
   "plugins": [
-    { "path": "harnesses/antigravity/bootstrap/governor-hook.sh", "kind": "governor-gate" },
-    { "path": "harnesses/antigravity/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+    { "path": "scripts/coacus_governor_hook.py", "kind": "governor-gate" },
+    { "path": "harnesses/antigravity/bootstrap/guardrail-hooks.json", "kind": "guardrail" }
   ],
   "tool_mapping": {
     "create or update todos": "manage_task (task artifact)",

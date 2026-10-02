@@ -3,7 +3,7 @@
   "hooks": {
     "preToolUse": [
       {
-        "command": "\"__COACUS_ROOT__/harnesses/cursor/bootstrap/coacus-guard.sh\""
+        "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_guard.py\" --harness cursor --event tool.pre --root \"__COACUS_ROOT__\""
       }
     ]
   }

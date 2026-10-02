@@ -76,7 +76,7 @@ _FOOTER_BLOCK = re.compile(
 )
 # Text extensions the pass may rewrite (imported shell and JS/TS included).
 _TEXT_SUFFIXES = frozenset(
-    {".md", ".sh", ".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx", ".txt", ".dot", ".html"}
+    {".md", ".py", ".sh", ".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx", ".txt", ".dot", ".html"}
 )
 
 
@@ -473,6 +473,11 @@ def _adapt_workflow_text(text: str) -> str:
     text = text.replace(
         "skills/brainstorming/visual-companion.md", "visual-companion.md"
     )
+    text = re.sub(
+        r"(?<![\w/])((?:\.\./superpowers-[\w-]+/)?scripts/"
+        r"(?:task-start|task-done|task-brief|review-package|sdd-workspace))(?![\w.-])",
+        r"python3 \1.py", text,
+    )
     return text
 
 
@@ -686,9 +691,29 @@ def _namespace_workflow_name(target: Path) -> None:
     skill_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _preserved_python(manifest: dict, actions: list[dict]) -> dict[Path, dict]:
+    """Preflight and snapshot reviewed conversions before any import mutation."""
+    converted = {}
+    for entry in provenance.load(ROOT).get("entries", []):
+        if "converted:python" not in entry.get("transform", []):
+            continue
+        target_file = ROOT / entry["target_path"]
+        for action in actions:
+            if action["action"] != "import-workflow" or not target_file.is_relative_to(action["target"]):
+                continue
+            source_file = _source_dir(manifest, entry["source_repo"]) / entry["source_path"]
+            if not source_file.is_file() or _sha256(source_file) != entry["source_sha256"]:
+                raise ValueError(f"Python conversion requires review of changed upstream source: {entry['source_path']}")
+            if not source_file.is_relative_to(action["source"]):
+                raise ValueError(f"Python conversion requires review of source mapping: {entry['source_path']}")
+            converted[target_file] = {"source": source_file, "content": target_file.read_bytes()}
+    return converted
+
+
 def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
     """Execute the planned actions and return the recorded provenance entries."""
     entries: list[dict] = []
+    converted = _preserved_python(manifest, actions)
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     skills_commit = _source_commit(_source_dir(manifest, "skills"))
     super_commit = _source_commit(_source_dir(manifest, "superpowers"))
@@ -729,11 +754,19 @@ def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(source, target)
+        for file, saved in converted.items():
+            if file.is_relative_to(target):
+                legacy = target / saved["source"].relative_to(source)
+                legacy.unlink()
+                file.parent.mkdir(parents=True, exist_ok=True)
+                file.write_bytes(saved["content"])
         if action["action"] == "import-workflow":
             _namespace_workflow_name(target)
         for file in _iter_skill_files(target):
-            source_file = source / file.relative_to(target)
+            source_file = converted[file]["source"] if file in converted else source / file.relative_to(target)
             transform = _import_transform(file, [])
+            if file in converted:
+                transform.append("converted:python")
             if action.get("renamed"):
                 transform.append("renamed:dir")
             entries.append({

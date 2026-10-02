@@ -8,7 +8,8 @@
 
 import { execFileSync } from 'node:child_process';
 
-const COACUS_ROOT = '__COACUS_ROOT__';
+const COACUS_ROOT = "__COACUS_ROOT__";
+const PYTHON = "__COACUS_PYTHON__";
 const GOVERNOR = COACUS_ROOT + '/scripts/coacus_governor.py';
 const MAX_TOTAL = String(process.env.ORCH_MAX_CONCURRENT ?? 5);
 const MAX_CALLS = 3;
@@ -30,7 +31,7 @@ const held = new Map();
 const gov = (action, caller, timeout = '5', orchestrator = 'no') => {
   try {
     return execFileSync(
-      'python3',
+      PYTHON,
       [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 70000 },
     ).trim();

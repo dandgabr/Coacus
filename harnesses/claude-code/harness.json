@@ -5,7 +5,7 @@
     "shape": "A",
     "native_key": "hookSpecificOutput.additionalContext",
     "forbidden_keys": ["additional_context"],
-    "command": "\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\"",
+    "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_PLUGIN_ROOT__/bootstrap/session-start.json\"",
     "hooks_config": {
       "hooks": {
         "SessionStart": [
@@ -14,7 +14,7 @@
             "hooks": [
               {
                 "type": "command",
-                "command": "\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\"",
+                "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_PLUGIN_ROOT__/bootstrap/session-start.json\"",
                 "async": false
               }
             ]
@@ -23,7 +23,7 @@
       }
     },
     "outputs": [
-      { "path": "harnesses/claude-code/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/claude-code/bootstrap/session-start.json", "format": "json" },
       { "path": "harnesses/claude-code/bootstrap/hooks.json", "format": "json" }
     ]
   },
@@ -53,7 +53,7 @@
     }
   },
   "plugins": [
-    { "path": "harnesses/claude-code/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+    { "path": "harnesses/claude-code/bootstrap/guardrail-hooks.json", "kind": "guardrail" }
   ],
   "tool_mapping": {
     "create or update todos": "TodoWrite",

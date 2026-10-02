@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
+            "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.json\"",
             "additionalContextLimit": 7000
           }
         ]
