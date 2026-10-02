@@ -5,7 +5,7 @@
     "shape": "A",
     "native_key": "hookSpecificOutput.additionalContext",
     "forbidden_keys": ["additional_context"],
-    "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
+    "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.json\"",
     "hooks_config": {
       "hooks": {
         "SessionStart": [
@@ -14,7 +14,7 @@
             "hooks": [
               {
                 "type": "command",
-                "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
+                "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.json\"",
                 "additionalContextLimit": 7000
               }
             ]
@@ -23,7 +23,7 @@
       }
     },
     "outputs": [
-      { "path": "harnesses/codex/bootstrap/session-start.sh", "format": "sh" },
+      { "path": "harnesses/codex/bootstrap/session-start.json", "format": "json" },
       { "path": "harnesses/codex/bootstrap/hooks.json", "format": "json" }
     ]
   },
@@ -55,7 +55,7 @@
     ]
   },
   "plugins": [
-    { "path": "harnesses/codex/bootstrap/coacus-guard.sh", "kind": "guardrail" }
+    { "path": "harnesses/codex/bootstrap/guardrail-hooks.json", "kind": "guardrail" }
   ],
   "tool_mapping": {
     "create or update todos": "update_plan",

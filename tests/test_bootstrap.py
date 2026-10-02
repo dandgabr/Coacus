@@ -80,7 +80,7 @@ class TestBootstrapRender(unittest.TestCase):
     def test_only_codex_bootstrap_routes_to_on_demand_skill_search(self) -> None:
         root = Path(__file__).resolve().parents[1]
         outputs = bootstrap.expected_outputs(root)
-        codex = outputs["harnesses/codex/bootstrap/session-start.sh"]
+        codex = outputs["harnesses/codex/bootstrap/session-start.json"]
         opencode = outputs["harnesses/opencode/bootstrap/coacus.js"]
         self.assertIn("coacus_skill_search.py search", codex)
         self.assertIn("__COACUS_ROOT__", codex)
@@ -163,7 +163,7 @@ class TestBootstrapRender(unittest.TestCase):
                     "native_key": "hookSpecificOutput.additionalContext",
                     "forbidden_keys": ["additional_context"],
                     "outputs": [
-                        {"path": "harnesses/claude-code/bootstrap/session-start.sh", "format": "sh"},
+                        {"path": "harnesses/claude-code/bootstrap/session-start.json", "format": "json"},
                         {"path": "harnesses/claude-code/bootstrap/hooks.json", "format": "json"},
                     ],
                 },
@@ -171,9 +171,8 @@ class TestBootstrapRender(unittest.TestCase):
             },
         )
         outputs = bootstrap.expected_outputs(self.root)
-        script = outputs["harnesses/claude-code/bootstrap/session-start.sh"]
-        self.assertNotIn("additional_context", script)
-        self.assertIn("hookSpecificOutput", script)
+        payload = json.loads(outputs["harnesses/claude-code/bootstrap/session-start.json"])
+        self.assertEqual(set(payload), {"hookSpecificOutput"})
         hooks = json.loads(outputs["harnesses/claude-code/bootstrap/hooks.json"])
         self.assertIn("SessionStart", hooks["hooks"])
 
@@ -189,7 +188,7 @@ class TestBootstrapRender(unittest.TestCase):
                     "native_key": "additional_context",
                     "forbidden_keys": ["additional_context"],
                     "outputs": [
-                        {"path": "harnesses/claude-code/bootstrap/session-start.sh", "format": "sh"},
+                        {"path": "harnesses/claude-code/bootstrap/session-start.json", "format": "json"},
                     ],
                 },
                 "tool_mapping": {},

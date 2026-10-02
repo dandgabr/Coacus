@@ -17,8 +17,12 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from itertools import chain
 
 SCAN_ROOTS = ("knowledge", "methodology", "verticals", "harnesses", "templates")
+SCRIPT_ROOTS = SCAN_ROOTS + ("engine", "scripts", ".github")
+SHELL_SUFFIXES = {".sh", ".bash", ".zsh", ".fish", ".ksh", ".ps1", ".cmd", ".bat"}
+SHELL_SHEBANG = re.compile(rb"^#![^\n]*\b(?:sh|bash|zsh|fish|ksh|csh|dash|pwsh|powershell)\b")
 
 # Absolute paths: a POSIX path with >=2 segments (root + component), or a
 # known single-segment system root, or a Windows drive / home expansion.
@@ -113,6 +117,19 @@ def _prose_lines(text: str) -> list[tuple[int, str]]:
 def validate(root: Path) -> list[str]:
     """Return a list of error strings; empty list means clean."""
     errors: list[str] = []
+    scripts = chain(root.iterdir(), *(root.joinpath(top).rglob("*") for top in SCRIPT_ROOTS))
+    for path in scripts:
+        if not path.is_file():
+            continue
+        rel = path.relative_to(root).as_posix()
+        if rel in ("install.sh", "install.ps1") or "__pycache__" in path.parts:
+            continue
+        if path.suffix in SHELL_SUFFIXES:
+            errors.append(f"{rel}: operational shell script (D12)")
+        else:
+            with path.open("rb") as stream:
+                if SHELL_SHEBANG.search(stream.read(128)):
+                    errors.append(f"{rel}: shell shebang (D12)")
     tool_reference = _tool_reference(root)
     for top in SCAN_ROOTS:
         base = root / top

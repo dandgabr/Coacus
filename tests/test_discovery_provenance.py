@@ -231,6 +231,17 @@ class TestProvenanceDrift(unittest.TestCase):
         after = (self.root / provenance.LOCK_PATH).read_text(encoding="utf-8")
         self.assertEqual(before, after)
 
+    def test_refresh_keeps_source_hash_when_conversion_starts_from_equal_hashes(self) -> None:
+        rel = "methodology/workflows/example/scripts/helper.py"
+        digest = self._write_target(rel, "print('portable')\n")
+        entry = self._entry(rel, "0" * 64)
+        entry["transform"] = ["imported", "converted:python"]
+        provenance.write(self.root, {"schema": 1, "entries": [entry]})
+        provenance.refresh_targets(self.root)
+        entry = provenance.load(self.root)["entries"][0]
+        self.assertEqual(entry["source_sha256"], "0" * 64)
+        self.assertEqual(entry["target_sha256"], digest)
+
 
 if __name__ == "__main__":
     unittest.main()

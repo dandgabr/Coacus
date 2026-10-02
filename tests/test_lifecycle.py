@@ -128,12 +128,12 @@ class TestGuardrailRender(unittest.TestCase):
                 "name": "claude-code",
                 "lifecycle": {"supported": True},
                 "plugins": [
-                    {"path": "harnesses/claude-code/bootstrap/coacus-guard.sh", "kind": "guardrail"}
+                    {"path": "harnesses/claude-code/bootstrap/guardrail-hooks.json", "kind": "guardrail"}
                 ],
             },
             REPO,
         )
-        self.assertIn("harnesses/claude-code/bootstrap/coacus-guard.sh", outputs)
+        self.assertIn("harnesses/claude-code/bootstrap/guardrail-hooks.json", outputs)
         self.assertIn("guardrail-hooks.json", " ".join(outputs))
 
     def test_unknown_kind_renders_nothing(self) -> None:

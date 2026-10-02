@@ -76,7 +76,7 @@ Three layers, plus one closed engine:
   bootstrap wrapper body ([session-start-bootstrap](docs/standards/session-start-bootstrap.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
   file: bootstrap shape, output paths, tool mapping, install method. Shapes: `A`
-  shell hook, `B` in-process, `C` instructions file.
+  Python hook, `B` in-process, `C` instructions file.
 - **`engine/`** — the closed core. Generators, validators, the governor, the
   dispatcher, the TOON validator and the provenance checker. The engine changes
   only when a new concept arrives, not when new data does.
@@ -170,11 +170,11 @@ each one gets exactly one rendered bootstrap in its own native format.
 | Harness | Shape | Bootstrap mechanism | Install |
 |---|---|---|---|
 | **opencode** | B — in-process plugin | `config` + `experimental.chat.messages.transform` hooks inject the bootstrap in-process; a second plugin enforces the governor gate | `python3 scripts/coacus_install.py opencode` |
-| **claude-code** | A — shell hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py claude-code` |
+| **claude-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py claude-code` |
 | **antigravity** | C — rule file | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | `python3 scripts/coacus_install.py antigravity` |
-| **codex** | A — shell hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py codex` |
-| **cursor** | A — shell hook | `sessionStart` → top-level `additional_context` | `python3 scripts/coacus_install.py cursor` |
-| **command-code** | A — shell hook | `SessionStart` → `hookSpecificOutput.additionalContext`, merged into `settings.json` | `python3 scripts/coacus_install.py command-code` |
+| **codex** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py codex` |
+| **cursor** | A — Python hook | `sessionStart` → top-level `additional_context` | `python3 scripts/coacus_install.py cursor` |
+| **command-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext`, merged into `settings.json` | `python3 scripts/coacus_install.py command-code` |
 
 Per-harness tutorials, vendor facts and the evidence class behind each claim:
 [`docs/install.md`](docs/install.md).

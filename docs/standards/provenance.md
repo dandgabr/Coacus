@@ -38,6 +38,15 @@ Optional: `aliases` — searchable alternate names created by import-time rename
   REPLACES the entry for a target, so import is idempotent.
 - Drift key: `target_sha256`.
 
+### Portable workflow conversions
+
+An imported workflow helper converted to Python keeps the upstream `source_path`
+and `source_sha256`, records the `.py` target, and adds `converted:python` to
+`transform`. Reimports preserve that reviewed Python implementation while the
+upstream source hash matches. A changed or missing upstream source stops the
+import before copying any action; review and update the conversion before
+advancing its source hash. The text normalizer uses the Python helper commands.
+
 ### Location
 
 `sources.lock.json` MUST stay outside the generated surface. It carries
@@ -60,7 +69,8 @@ generated artifacts.
   whose recorded hash no longer matches disk is an error.
 - `python3 scripts/coacus.py refresh` recomputes `target_sha256` from disk for
   every drifted entry (and advances `source_sha256` too when the entry is
-  in-place, `source_sha256 == target_sha256`). Use it after editing an imported
+  in-place, `source_sha256 == target_sha256`, with no `converted:` or `adapted:`
+  transform). Use it after editing an imported
   file without re-running the importer; the importer's `apply` remains the
   canonical path for a fresh import.
 - `engine/validators/completeness.py` (via

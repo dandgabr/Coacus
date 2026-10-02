@@ -5,7 +5,8 @@
 
 import { execFileSync } from 'node:child_process';
 
-const COACUS_ROOT = '__COACUS_ROOT__';
+const COACUS_ROOT = "__COACUS_ROOT__";
+const PYTHON = "__COACUS_PYTHON__";
 const GUARD = COACUS_ROOT + '/scripts/coacus_guard.py';
 
 /**
@@ -18,7 +19,7 @@ export const CoacusGuardrails = async () => ({
     const payload = JSON.stringify({ tool: input.tool, tool_input: output.args });
     let effect = '{}';
     try {
-      effect = execFileSync('python3', [GUARD, '--harness', 'opencode', '--event', 'tool.pre',
+      effect = execFileSync(PYTHON, [GUARD, '--harness', 'opencode', '--event', 'tool.pre',
         '--root', COACUS_ROOT], { input: payload, encoding: 'utf8', timeout: 5000,
         stdio: ['pipe', 'pipe', 'ignore'] }).trim();
     } catch { return; }
