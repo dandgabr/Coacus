@@ -1201,7 +1201,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact') -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 
@@ -1276,6 +1276,31 @@ Emits the exact single-key native JSON payload:
 #### `def main(argv: list[str] | None=None) -> int`
 
 Emit the single-key native JSON SessionStart payload.
+
+### `scripts/coacus_skill_search.py`
+
+Find a canonical Coacus skill without loading every skill into model context.
+
+#### `class Skill`
+
+One validated skill entry from the canonical catalog.
+
+
+#### `def load_skills(root: Path) -> list[Skill]`
+
+Read and validate the generated index and its canonical skill paths.
+
+#### `def search(root: Path, query: str, top: int=10) -> list[Skill]`
+
+Rank matching skills; prefer full-query and name matches.
+
+#### `def show(root: Path, name: str) -> Skill`
+
+Resolve an exact canonical skill name, rejecting ambiguity.
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Run the search or exact-name command and return a CLI status code.
 
 ### `scripts/coacus_vertical.py`
 

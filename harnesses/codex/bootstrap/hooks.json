@@ -7,7 +7,7 @@
           {
             "type": "command",
             "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
-            "additionalContextLimit": 5000
+            "additionalContextLimit": 7000
           }
         ]
       }

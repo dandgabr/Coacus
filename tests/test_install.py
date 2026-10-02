@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import json
 import tempfile
+import tomllib
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import coacus_install
 
@@ -61,6 +63,9 @@ def make_repo(tmp: Path) -> Path:
                 }
             }
         (base / "hooks.json").write_text(json.dumps(fragment), encoding="utf-8")
+    (root / "harnesses/codex/skills-profile.json").write_text(
+        json.dumps({"visible": ["using-coacus"]}), encoding="utf-8"
+    )
     anti = root / "harnesses/antigravity/bootstrap"
     anti.mkdir(parents=True)
     (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
@@ -176,6 +181,102 @@ class TestInstaller(unittest.TestCase):
         hooks = (self.config / "hooks.json").read_text(encoding="utf-8")
         self.assertNotIn("__COACUS_ROOT__", hooks)
         self.assertIn(self.root.as_posix(), hooks)
+
+    def test_codex_staged_bootstrap_resolves_skill_search_root(self) -> None:
+        script = self.root / "harnesses/codex/bootstrap/session-start.sh"
+        script.write_text("search __COACUS_ROOT__/scripts/coacus_skill_search.py\n")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        staged = (self.config / "coacus/session-start.sh").read_text()
+        self.assertIn(self.root.as_posix(), staged)
+        self.assertNotIn("__COACUS_ROOT__", staged)
+
+    def test_codex_compact_disables_non_profile_skills_by_manifest_path(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        config = tomllib.loads((self.config / "config.toml").read_text())
+        overrides = {item["path"]: item["enabled"] for item in config["skills"]["config"]}
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        entry = self.config.parent / ".agents/skills/using-coacus/SKILL.md"
+        self.assertEqual(overrides[hidden.as_posix()], False)
+        self.assertNotIn(entry.as_posix(), overrides)
+        self.assertEqual(result["codex_skill_profile"], "compact")
+        self.assertTrue(hidden.is_file())
+
+    def test_codex_profile_switch_preserves_unrelated_config(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        original = '[mcp_servers.example]\nurl = "https://example.test/mcp"\n\n'
+        (self.config / "config.toml").write_text(original)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        compact = (self.config / "config.toml").read_text()
+        self.assertTrue(compact.startswith(original))
+        coacus_install.install(
+            "codex", self.root, self.config, dry_run=False, codex_skill_profile="full"
+        )
+        self.assertEqual((self.config / "config.toml").read_text(), original)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual((self.config / "config.toml").read_text(), compact)
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual((self.config / "config.toml").read_text(), original)
+
+    def test_codex_respects_user_skill_override_and_reports_conflict(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        (self.config / "config.toml").write_text(user)
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+        self.assertEqual(result["codex_skill_conflicts"], [hidden.as_posix()])
+
+    def test_codex_user_disabled_override_is_not_a_conflict(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = false\n'
+        (self.config / "config.toml").write_text(user)
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual(result["codex_skill_conflicts"], [])
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+
+    def test_codex_profile_works_without_python_311_tomllib(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        (self.config / "config.toml").write_text(user)
+        with patch.object(coacus_install, "tomllib", None):
+            result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual(result["codex_skill_conflicts"], [hidden.as_posix()])
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+
+    def test_codex_preserves_user_tables_appended_after_managed_block(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        path = self.config / "config.toml"
+        tail = '[mcp_servers.later]\nurl = "https://later.test/mcp"\n'
+        path.write_text(path.read_text() + tail)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertIn(tail, path.read_text())
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(path.read_text(), tail)
+
+    def test_codex_malformed_config_aborts_before_any_install_write(self) -> None:
+        self.config.mkdir()
+        (self.config / "config.toml").write_text("broken = [")
+        with self.assertRaisesRegex(ValueError, "Codex config"):
+            coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertFalse((self.config.parent / ".agents/skills/using-coacus/SKILL.md").exists())
+
+    def test_codex_verify_detects_profile_drift(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertTrue(coacus_install.verify("codex", self.root, self.config)["ok"])
+        path = self.config / "config.toml"
+        path.write_text(path.read_text().replace("enabled = false", "enabled = true"))
+        report = coacus_install.verify("codex", self.root, self.config)
+        self.assertFalse(report["ok"])
+        self.assertTrue(report["codex_config_drifted"])
 
     def test_claude_code_stages_hook_plugin_and_skills(self) -> None:
         for name in ("hooks.json", "session-start.sh"):

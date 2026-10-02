@@ -117,8 +117,9 @@ Skill sources installed everywhere are `methodology/workflows/**` and
 ### Partial installs
 
 A harness that indexes every skill pays, at session start, for every skill
-description it must load — Codex, for example, shortens descriptions when the
-corpus overflows its skills context budget. Install only what a session needs:
+description it must load. The Codex installer now keeps the full Coacus corpus
+on disk but enables a compact native profile by default. Use these filters when
+you want to copy only part of the corpus to a harness:
 
 ```bash
 python3 scripts/coacus_install.py codex --only security,engineering
@@ -324,14 +325,19 @@ directory.
 
 ## codex
 
-**Goal:** a `SessionStart` hook injects the bootstrap, and Codex discovers the
-Coacus skills natively.
+**Goal:** a `SessionStart` hook injects the bootstrap, while a compact native
+skill profile leaves room in the Codex startup catalog.
 
 **How it works.** Codex supports both halves of the adapter. It scans
 `.agents/skills` for skills, and its hooks framework runs a `SessionStart` hook
 that emits `hookSpecificOutput.additionalContext` — the same native key Claude
 Code uses. The adapter renders `harnesses/codex/bootstrap/session-start.sh` and
-the matching `hooks.json`.
+the matching `hooks.json`. All Coacus skills remain installed under
+`$HOME/.agents/skills`; the installer adds a marked `[[skills.config]]` block
+to `~/.codex/config.toml` that disables native discovery for skills outside
+`harnesses/codex/skills-profile.json`. The Codex bootstrap points to
+`scripts/coacus_skill_search.py` so an agent can locate and read any other
+canonical skill when needed.
 
 **Vendor facts**
 
@@ -343,7 +349,14 @@ the matching `hooks.json`.
   `config.toml`, or a plugin-bundled `hooks/hooks.json`. **[documented]**
 - The Coacus skill install and hook install both complete against a temporary
   config directory. **[verified locally]**
-- `[[skills.config]]` enables skills explicitly. **[documented]**
+- `[[skills.config]]` enables or disables local skills without deleting them.
+  The official skill guide shows an absolute path to `SKILL.md`; this path form
+  produced `enabled: false` in a local `codex-cli 0.155.1` app-server probe.
+  The config reference calls it a folder path, but that form left the fixture
+  skill enabled in the same probe. **[documented + verified locally]**
+- `skills.max_context_tokens` defaults to 2% of the model context and may be
+  raised, with an explicit cap of 10,000 tokens. This is not enough to assume
+  the entire corpus will be visible. **[documented]**
 
 Codex is supported via its SessionStart hook. There is no known gap.
 
@@ -351,7 +364,17 @@ Codex is supported via its SessionStart hook. There is no known gap.
 
 ```bash
 python3 scripts/coacus_install.py codex
+python3 scripts/coacus_install.py codex --codex-skill-profile full  # opt into legacy full visibility
+python3 scripts/coacus_skill_search.py search database migration
+python3 scripts/coacus_skill_search.py show db-postgresql
 ```
+
+The compact profile is Codex-only. `--skills` still controls which files are
+copied; it does not change the native visibility profile. The installer
+preserves user-owned `config.toml` settings and MCP entries, and `--uninstall`
+removes only its marked profile block. Restart Codex after changing the
+profile. Other skills from repositories, plugins, the user or the system can
+still consume the startup catalog budget.
 
 The script installs skills to `$HOME/.agents/skills/` — the root Codex actually
 scans, beside `~/.codex/`, not inside it — and the hook to `~/.codex/hooks.json`

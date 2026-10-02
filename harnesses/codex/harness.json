@@ -15,7 +15,7 @@
               {
                 "type": "command",
                 "command": "bash \"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.sh\"",
-                "additionalContextLimit": 5000
+                "additionalContextLimit": 7000
               }
             ]
           }
@@ -65,7 +65,8 @@
     "create, edit, or delete files": "apply_patch",
     "run shell commands": "shell",
     "search files": "grep / glob",
-    "fetch a URL": "web_search"
+    "fetch a URL": "web_search",
+    "find a Coacus skill outside the visible list": "shell: python3 __COACUS_ROOT__/scripts/coacus_skill_search.py search <words>; read the returned SKILL.md"
   },
   "tool_denylist": ["update_plan", "spawn_agent", "apply_patch"],
   "install": {

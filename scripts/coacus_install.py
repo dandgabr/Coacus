@@ -53,12 +53,20 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
 from __future__ import annotations
 
 import argparse
+import ast
 import fnmatch
 import json
+import os
 import re
 import shutil
 import sys
+import tempfile
 from pathlib import Path
+
+try:  # tomllib entered the standard library in Python 3.11.
+    import tomllib
+except ModuleNotFoundError:  # Keep the Coacus Python 3.10 floor.
+    tomllib = None  # type: ignore[assignment]
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -70,6 +78,144 @@ NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
 # A planned file's content: text normally, bytes for a binary companion.
 FileContent = str | bytes
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
+CODEX_PROFILE_START = "# BEGIN COACUS CODEX SKILL PROFILE"
+CODEX_PROFILE_END = "# END COACUS CODEX SKILL PROFILE"
+
+
+def _codex_profile_visible(root: Path) -> set[str]:
+    """Load the small Codex-native allowlist, checking canonical identities."""
+    path = root / "harnesses/codex/skills-profile.json"
+    try:
+        names = json.loads(path.read_text(encoding="utf-8"))["visible"]
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise ValueError(f"invalid Codex skill profile: {exc}") from exc
+    if not isinstance(names, list) or not names or any(not isinstance(n, str) for n in names):
+        raise ValueError("invalid Codex skill profile: visible must be a nonempty name list")
+    if len(set(names)) != len(names):
+        raise ValueError("invalid Codex skill profile: duplicate visible name")
+    available = [skill.name for skill in discover_skills(root)]
+    if len(set(available)) != len(available) or not set(names) <= set(available):
+        raise ValueError("invalid Codex skill profile: names missing or ambiguous")
+    return set(names)
+
+
+def _strip_codex_profile(text: str) -> tuple[str, str]:
+    """Remove only Coacus's marked TOML block; preserve the user's bytes."""
+    start_token = "\n" + CODEX_PROFILE_START + "\n"
+    start = text.find(start_token)
+    end_token = CODEX_PROFILE_END + "\n"
+    if start < 0:
+        if CODEX_PROFILE_START in text or CODEX_PROFILE_END in text:
+            raise ValueError("Codex config has a damaged Coacus profile block")
+        return text, ""
+    end = text.find(end_token, start)
+    if end < 0 or text.find(start_token, start + 1) >= 0:
+        raise ValueError("Codex config has a damaged Coacus profile block")
+    return text[:start] + text[end + len(end_token) :], text[start : end + len(end_token)]
+
+
+def _codex_user_skill_entries(text: str) -> list[dict[str, object]]:
+    """Read user skill overrides, with a small Python 3.10 fallback scanner."""
+    if tomllib is not None:
+        try:
+            parsed = tomllib.loads(text)
+        except tomllib.TOMLDecodeError as exc:
+            raise ValueError(f"Codex config is invalid TOML: {exc}") from exc
+        skills_table = parsed.get("skills", {})
+        if not isinstance(skills_table, dict):
+            raise ValueError("Codex config skills must be a table")
+        entries = skills_table.get("config", [])
+        if not isinstance(entries, list):
+            raise ValueError("Codex config skills.config must be an array")
+        return entries
+
+    # Python 3.10 has no standard TOML parser. Read only the array entries this
+    # installer must preserve; leave all other config bytes untouched for Codex.
+    entries: list[dict[str, object]] = []
+    in_skill = False
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if line == "[[skills.config]]":
+            entries.append({})
+            in_skill = True
+            continue
+        if line.startswith("[") and line.endswith("]"):
+            in_skill = False
+            continue
+        if not in_skill or "=" not in line:
+            continue
+        key, value = (part.strip() for part in line.split("=", 1))
+        if key == "path":
+            try:
+                path = ast.literal_eval(value)
+            except (SyntaxError, ValueError) as exc:
+                raise ValueError("Codex config has an invalid skills.config path") from exc
+            if not isinstance(path, str):
+                raise ValueError("Codex config has a non-string skills.config path")
+            entries[-1]["path"] = path
+        elif key == "enabled":
+            if value not in ("true", "false"):
+                raise ValueError("Codex config has an invalid skills.config enabled value")
+            entries[-1]["enabled"] = value == "true"
+    return entries
+
+
+def _codex_config_update(
+    root: Path, config_dir: Path, profile: str
+) -> tuple[str, str, list[str], bool]:
+    """Return new TOML, owned block, user conflicts and whether file existed."""
+    if profile not in ("compact", "full"):
+        raise ValueError(f"unknown Codex skill profile: {profile}")
+    config_path = config_dir / "config.toml"
+    existed = config_path.is_file()
+    current = config_path.read_text(encoding="utf-8") if existed else ""
+    base, _ = _strip_codex_profile(current)
+    user_entries = _codex_user_skill_entries(base)
+    user_paths: dict[str, bool] = {}
+    for item in user_entries:
+        if isinstance(item, dict) and isinstance(item.get("path"), str):
+            key = item["path"]
+            user_paths[key] = user_paths.get(key, False) or bool(item.get("enabled", True))
+    visible = _codex_profile_visible(root) if profile == "compact" else set()
+    block_lines = ["", CODEX_PROFILE_START]
+    conflicts: list[str] = []
+    if profile == "compact":
+        for source in discover_skills(root):
+            if source.name in visible:
+                continue
+            installed = (config_dir.parent / ".agents" / "skills" / source.name / "SKILL.md").resolve()
+            key = installed.as_posix()
+            if key in user_paths:
+                if user_paths[key]:
+                    conflicts.append(key)
+                continue
+            block_lines.extend(("[[skills.config]]", f"path = {json.dumps(key)}", "enabled = false", ""))
+    block = "\n".join(block_lines + [CODEX_PROFILE_END, ""]) if len(block_lines) > 2 else ""
+    updated = base + block
+    if tomllib is not None:
+        try:
+            tomllib.loads(updated)
+        except tomllib.TOMLDecodeError as exc:
+            raise ValueError(f"Codex config profile would be invalid TOML: {exc}") from exc
+    return updated, block, conflicts, existed
+
+
+def _write_codex_config(config_dir: Path, text: str, existed: bool) -> None:
+    """Atomically update Codex config, preserving existing file permissions."""
+    target = config_dir / "config.toml"
+    if not text and not existed:
+        return
+    target.parent.mkdir(parents=True, exist_ok=True)
+    mode = target.stat().st_mode & 0o777 if target.exists() else 0o600
+    fd, temporary = tempfile.mkstemp(prefix=".config.toml.", dir=target.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            stream.write(text)
+        os.chmod(temporary, mode)
+        os.replace(temporary, target)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def _home() -> Path:
@@ -905,6 +1051,7 @@ def _plan_codex(
     # Codex agent roles live in $CODEX_HOME/agents/*.toml.
     plan += _plan_agents_codex(root, config_dir / "agents", only, agents)
     script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
+    script = script.replace("__COACUS_ROOT__", root.as_posix())
     plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
     fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
@@ -1089,6 +1236,7 @@ def install(
     agents: list[str] | None = None,
     allow_advisory: bool = False,
     force: bool = False,
+    codex_skill_profile: str = "compact",
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1124,6 +1272,11 @@ def install(
         }
     files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
+    codex_update = (
+        _codex_config_update(root, config_dir, codex_skill_profile)
+        if harness == "codex"
+        else None
+    )
     rules_target = config_dir / COMMAND_CODE_RULES_FILE
     rules_source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
     rules_pending = (
@@ -1140,6 +1293,7 @@ def install(
             "only": only or [],
             "skills": skills or [],
             "agents": agents or [],
+            **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
         }
     written: list[str] = []
     for target, content in files:
@@ -1149,6 +1303,9 @@ def install(
         else:
             target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
+    if codex_update is not None:
+        updated_config, owned_block, conflicts, config_existed = codex_update
+        _write_codex_config(config_dir, updated_config, config_existed)
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -1159,6 +1316,15 @@ def install(
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
+                **(
+                    {
+                        "codex_skill_profile": codex_skill_profile,
+                        "codex_profile_block": owned_block,
+                        "codex_config_existed": config_existed,
+                    }
+                    if codex_update is not None
+                    else {}
+                ),
             },
             indent=2,
         )
@@ -1171,6 +1337,11 @@ def install(
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
+        **(
+            {"codex_skill_profile": codex_skill_profile,
+             "codex_skill_conflicts": conflicts}
+            if codex_update is not None else {}
+        ),
     }
 
 
@@ -1302,6 +1473,26 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
         }
     )
     result["ok"] = not missing and not drift and recorded == planned
+    if harness == "codex":
+        profile = data.get("codex_skill_profile", "legacy-full")
+        result["codex_skill_profile"] = profile
+        result["codex_config_drifted"] = False
+        result["codex_skill_conflicts"] = []
+        if profile != "legacy-full":
+            try:
+                config_path = config_dir / "config.toml"
+                current = config_path.read_text(encoding="utf-8") if config_path.is_file() else ""
+                _, actual_block = _strip_codex_profile(current)
+                _, expected_block, conflicts, _ = _codex_config_update(root, config_dir, profile)
+                result["codex_skill_conflicts"] = conflicts
+                result["codex_config_drifted"] = (
+                    actual_block != expected_block
+                    or actual_block != data.get("codex_profile_block", "")
+                )
+            except (OSError, ValueError) as exc:
+                result["codex_config_drifted"] = True
+                result["codex_config_error"] = str(exc)
+            result["ok"] = result["ok"] and not result["codex_config_drifted"]
     return result
 
 
@@ -1379,6 +1570,14 @@ def uninstall(
         return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
+    if harness == "codex" and not dry_run and "codex_skill_profile" in data:
+        config_path = config_dir / "config.toml"
+        if config_path.is_file():
+            base, _ = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
+            if not base and not data.get("codex_config_existed", True):
+                config_path.unlink()
+            else:
+                _write_codex_config(config_dir, base, True)
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
@@ -1486,6 +1685,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="comma-separated agent name globs to install (e.g. 'qa-*,*-architect')",
     )
     parser.add_argument(
+        "--codex-skill-profile",
+        choices=["compact", "full"],
+        help="Codex native skill visibility (default: compact; full restores legacy behavior)",
+    )
+    parser.add_argument(
         "--list",
         dest="list_",
         action="store_true",
@@ -1546,6 +1750,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         if args.harness == "all"
         else [args.harness]
     )
+    if args.codex_skill_profile and "codex" not in harnesses:
+        parser.error("--codex-skill-profile applies only to codex or all")
     if args.verify:
         results = []
         ok = True
@@ -1569,7 +1775,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         else:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
-                        allow_advisory=args.allow_advisory, force=args.force)
+                        allow_advisory=args.allow_advisory, force=args.force,
+                        codex_skill_profile=args.codex_skill_profile or "compact")
             )
     print(json.dumps(results, indent=2))
     exit_code = 0 if all(not r.get("error") for r in results) else 1
