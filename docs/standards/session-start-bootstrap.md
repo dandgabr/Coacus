@@ -47,6 +47,19 @@ from the entry skill would create two hand-maintained copies that drift.
 
 A new harness is a new data file. A new shape is an engine change.
 
+### Python hook activation
+
+Shape A renders a native JSON payload and a hook command template. Installation
+resolves the repository and interpreter placeholders and quotes the command for
+the host. `scripts/coacus_session_start.py` reads the payload and resolves
+repository placeholders inside its JSON values before emitting native context.
+Generated payloads remain independent of an individual checkout path.
+
+The installed hook requires the recorded interpreter and repository to remain
+available. Reinstall after moving either, and verify with the installation's
+interpreter. The native OpenCode plugin remains JavaScript where required by
+the vendor API; its lifecycle evaluator and governor calls invoke Python.
+
 ### Anti-double-injection
 
 - Shape A emits exactly ONE native JSON key (the `native_key` declared in

@@ -232,6 +232,9 @@ If you catch yourself thinking:
 - Proposing solutions before tracing data flow
 - **"One more fix attempt" (when already tried 2+)**
 - **Each fix reveals new problem in different place**
+- **"The probe returned 0, so the thing is absent"** — several causes return that same summary
+- **"The output doesn't show that field"** — a rendering is not a measurement
+- **Concluding from the first plausible cause** because it fits the summary you were given
 
 **ALL of these mean: STOP. Return to Phase 1.**
 
@@ -260,6 +263,10 @@ If you catch yourself thinking:
 | "Reference too long, I'll adapt the pattern" | Partial understanding guarantees bugs. Read it completely. |
 | "I see the problem, let me fix it" | Seeing symptoms ≠ understanding root cause. |
 | "One more fix attempt" (after 2+ failures) | 3+ failures = architectural problem. Question pattern, don't fix again. |
+| "The probe says 0, so it's absent" | Absent, unreachable, out of scope and locked all report 0. **Print the `Result`, not a count** — a summary that several causes share is not a diagnosis. |
+| "The output has no such field" | You read a *rendering*. An incomplete view is indistinguishable from an absence; ask for the field by name. |
+| "I measured it" | Measured **what file**? A wildcard glob can match a sibling — reading `time-macros`'s manifest and reporting it as `time`'s. Name the source of every number. |
+| "The summary is enough to act on" | Acting on a summary is how four different causes became four wrong conclusions in a row. |
 
 ## Quick Reference
 

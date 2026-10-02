@@ -510,6 +510,8 @@ Use superpowers-finishing-a-development-branch.
 | "Reviews slow the loop down" | The loop without reviews is just unverified churn. Reviews are the loop's brakes and steering. |
 | "Ledger bookkeeping is overhead" | The ledger is what survives compaction. Controllers without one have re-dispatched entire completed task sequences. |
 | "The implementer spawned its own reviewer — free extra assurance" | It's a duplicate seat reviewing the same diff; the task review is the gate. A worker-spawned reviewer is a defect to flag, not rigor. |
+| "The subagent read the artifact" | Which **path**, under which allowlist? A subagent can run with a narrower readable tree than yours and audit a stale checkout or a generated mirror that looks authoritative. Name the exact path in the dispatch — and have it say which file it read. |
+| "The subagent found nothing wrong" | "Nothing found" and "could not reach the file" read identically in a report. Require the evidence it read, not the verdict it reached. |
 
 ## Example Workflow
 

@@ -117,3 +117,13 @@ taint labeling and independent evidence, and a runtime ledger plus reviewable
 staging. It never applies: promotion is a human PR. Decisions:
 [ADR 0005](decisions/0005-part-b-boundary-and-one-way-interface.md). Standard:
 [`self-improvement-loop`](standards/self-improvement-loop.md).
+
+### Post-F10 — Python tooling portability and Codex catalog (done)
+
+Completed the Python hook migration, converted imported workflow helpers,
+preserved provenance through reimports, added portable CI and corrected
+installer verification and Windows command/path handling. Codex keeps a compact
+native profile and locates the full canonical corpus on demand. PRs #60/#61 were
+integrated into `main`; local installations were refreshed and authorized shell
+residues in caches/histories were removed while preserving third-party plugins.
+See the [implementation and verification record](reports/2026-10-02-python-only-migration.md).

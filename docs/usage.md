@@ -43,6 +43,23 @@ training-memory pin from entering the corpus. A provenance target whose recorded
 hash no longer matches disk is also an error: the lock must not lie about the
 corpus ([provenance](standards/provenance.md)).
 
+### Evidence in process workflows
+
+The process skills require a claim to name the exact manifest or artifact copy
+that supplied its evidence. A summary such as `0 entries` does not distinguish
+absence from an unreachable, locked or differently scoped store; read the exact
+error or result before concluding that something is absent. Delegated reviews
+identify the path the worker read and carry its evidence back to the caller.
+
+Plan snippets describe intent at the time of writing. After an interface
+changes, check the current definition and correct later references in both code
+and the plan. The compiler or repository validation gate checks those references.
+
+Credential metadata inspection requires the user's authorization. Read key
+names, types or lengths without exposing values. Redact captured output before
+printing it and test that redaction with synthetic data. The entry skill carries
+these rules into generated harness bootstraps.
+
 ### Repair drifted provenance
 
 ```bash
@@ -98,6 +115,7 @@ Rendered artifacts are committed; installing them is a separate, explicit step.
 ```bash
 python3 scripts/coacus_install.py opencode
 python3 scripts/coacus_install.py all
+python3 scripts/coacus_install.py all --verify-after-install # install, then verify detected harnesses
 python3 scripts/coacus_install.py opencode --dry-run     # preview targets
 python3 scripts/coacus_install.py opencode --uninstall   # remove a previous install
 python3 scripts/coacus_install.py opencode --config-dir /tmp/oc  # test location
@@ -110,12 +128,57 @@ python3 scripts/coacus_install.py antigravity --verify   # read-only: counts + d
 
 Run `generate` first. The installer writes a `coacus-install.json` manifest next
 to each target, so re-runs are idempotent and `--uninstall` removes exactly what
-was installed. Six harnesses install (`opencode`, `claude-code`, `antigravity`,
-`codex`, `cursor`, `command-code`) — skills and agents — or `all` for every one of
-them. `--only` filters by category (top-level or nested segment; `workflows` for
+was installed. Supported adapters are `opencode`, `claude-code`, `antigravity`,
+`codex`, `cursor` and `command-code`; `all` installs those detected on the host.
+`--only` filters by category (top-level or nested segment; `workflows` for
 the process collection) across **both** skills and agents; `--skills` and
 `--agents` narrow one tree each by name glob. All are comma-separated and
 AND-ed.
+
+`--verify` is read-only; `--verify-after-install` performs installation first.
+An `all --verify` run also checks absent installations and fails when a manifest
+is missing. To verify an existing installation, select its harness and use the
+interpreter that installed it. The root bootstrap scripts use the project venv:
+`.venv/bin/python` on Linux/macOS and `.venv\Scripts\python.exe` on Windows.
+
+Operational hooks call Python directly. SessionStart reads generated JSON and
+resolves repository placeholders before emitting native context. OpenCode uses
+JavaScript for the vendor plugin interface and delegates runtime evaluation and
+governor operations to Python. Only root `install.sh` and `install.ps1` remain
+as host bootstrap scripts. See the
+[upgrade procedure](install.md#upgrading-a-legacy-shell-installation).
+
+### Workflow helpers
+
+Run helpers from the target project's checkout and invoke them through their
+resolved workflow skill paths. The helper paths below are relative to each
+skill directory; resolve `PLAN_FILE` relative to the project checkout, and use
+`TASK_NUMBER` to identify its numbered task. Test commands are an argument list
+after `--`; the helper does not interpret shell pipelines or variable expansion.
+
+| Workflow | Python helper | Purpose |
+|---|---|---|
+| `superpowers-subagent-driven-development` | `scripts/sdd-workspace.py PLAN_FILE` | Resolve a plan-specific workspace. |
+| `superpowers-subagent-driven-development` | `scripts/task-brief.py PLAN_FILE TASK_NUMBER [OUTFILE]` | Extract a task brief. |
+| `superpowers-subagent-driven-development` | `scripts/review-package.py PLAN_FILE BASE HEAD [OUTFILE]` | Package a nonempty descendant commit range. |
+| `superpowers-executing-plans` | `scripts/task-start.py PLAN_FILE TASK_NUMBER` | Print the brief path and review base. |
+| `superpowers-executing-plans` | `scripts/task-done.py PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]` | Record completion only after successful tests. |
+
+Prefix each resolved helper path with the Python interpreter command. The original test output
+is retained in the task log; its displayed summary tolerates undecodable bytes
+and redirected output using a native Windows encoding.
+Workspace and commit-review operations require the Git CLI on PATH.
+
+### Secret scan
+
+```bash
+python3 scripts/coacus_secrets.py
+```
+
+The runner downloads the host's pinned scanner binary, checks its publisher
+checksum, extracts only the executable, and scans the checkout with redacted
+matches. The download requires network access. The tooling uses the standard
+library; the scanner is an external executable supplied by its publisher.
 
 `command-code` differs from the hook harnesses: it merges its `SessionStart`
 entry into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in
