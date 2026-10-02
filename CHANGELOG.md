@@ -5,6 +5,16 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Codex installer migration fixes
+
+### Fixed
+
+- Reinstallation retires legacy Coacus shell hooks from earlier checkout paths
+  while preserving unrelated user hooks.
+- Codex interface tables inserted inside the managed skill-profile markers are
+  preserved during reinstallation and uninstall, and no longer cause false
+  profile drift reports.
+
 ## [Unreleased] — Process measurement and evidence lessons
 
 ### Changed

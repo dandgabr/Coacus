@@ -102,7 +102,12 @@ def _codex_profile_visible(root: Path) -> set[str]:
 
 
 def _strip_codex_profile(text: str) -> tuple[str, str]:
-    """Remove only Coacus's marked TOML block; preserve the user's bytes."""
+    """Remove the skill profile, preserving user tables inside its markers.
+
+    Codex can insert UI tables before the closing comment. Only the leading
+    skill tables belong to Coacus; retain the entire suffix from the first
+    other table without scanning its values (which may be multiline strings).
+    """
     start_token = "\n" + CODEX_PROFILE_START + "\n"
     start = text.find(start_token)
     end_token = CODEX_PROFILE_END + "\n"
@@ -113,7 +118,48 @@ def _strip_codex_profile(text: str) -> tuple[str, str]:
     end = text.find(end_token, start)
     if end < 0 or text.find(start_token, start + 1) >= 0:
         raise ValueError("Codex config has a damaged Coacus profile block")
+    body_start = start + len(start_token)
+    offset = body_start
+    for line in text[body_start:end].splitlines(keepends=True):
+        stripped = line.strip()
+        if stripped.startswith("[") and not re.fullmatch(r"\[\[skills\.config\]\]\s*(?:#.*)?", stripped):
+            # Treat all subsequent bytes as user-owned, including any skill
+            # overrides they contain. The updater already respects overrides.
+            return (
+                text[:start] + "\n" + text[offset:end] + text[end + len(end_token) :],
+                text[start:offset] + end_token,
+            )
+        offset += len(line)
     return text[:start] + text[end + len(end_token) :], text[start : end + len(end_token)]
+
+
+def _toml_statement_lines(text: str):
+    """Yield lines starting outside multiline strings for the fallback scanner."""
+    quote = ""
+    for line in text.splitlines():
+        is_statement = not quote
+        pos = 0
+        while pos < len(line):
+            if quote:
+                if quote.startswith('"') and line[pos] == "\\":
+                    pos += 2
+                elif line.startswith(quote, pos):
+                    pos += len(quote)
+                    quote = ""
+                else:
+                    pos += 1
+            elif line[pos] == "#":
+                break
+            elif line[pos] in "\"'":
+                quote = line[pos] * (3 if line.startswith(line[pos] * 3, pos) else 1)
+                pos += len(quote)
+            else:
+                pos += 1
+        # Single-line strings do not carry lexical state into the next line.
+        if len(quote) == 1:
+            quote = ""
+        if is_statement:
+            yield line
 
 
 def _codex_user_skill_entries(text: str) -> list[dict[str, object]]:
@@ -135,7 +181,7 @@ def _codex_user_skill_entries(text: str) -> list[dict[str, object]]:
     # installer must preserve; leave all other config bytes untouched for Codex.
     entries: list[dict[str, object]] = []
     in_skill = False
-    for raw_line in text.splitlines():
+    for raw_line in _toml_statement_lines(text):
         line = raw_line.strip()
         if line == "[[skills.config]]":
             entries.append({})
@@ -633,6 +679,10 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     base = f"{root.as_posix()}/harnesses/{harness}/bootstrap"
     return {
         f"{base}/session-start.sh", f"{base}/coacus-guard.sh",
+        # Legacy wrappers may refer to a retired checkout. Their harness
+        # namespace identifies ownership independently of that checkout root.
+        f"/harnesses/{harness}/bootstrap/session-start.sh",
+        f"/harnesses/{harness}/bootstrap/coacus-guard.sh",
         f"{base}/session-start.json", f"{base}/coacus-guardrails.js",
         "/scripts/coacus_session_start.py",
         "/coacus/coacus-guard.sh", "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
@@ -706,7 +756,18 @@ def _entry_owned(entry: object, markers: set[str]) -> bool:
                 blob += " ".join(decoded)
         except (ValueError, UnicodeDecodeError):
             continue
-    return any(marker in blob for marker in markers)
+    for marker in markers:
+        if marker not in blob:
+            continue
+        if marker.startswith("/harnesses/") and marker.endswith("/session-start.sh"):
+            # This generic filename also exists in other products. A retired
+            # checkout must retain a Coacus-named path component as evidence.
+            owner = r'/[^/"\\]*\bcoacus\b[^/"\\]*' + re.escape(marker)
+            if re.search(owner, blob, flags=re.IGNORECASE):
+                return True
+        else:
+            return True
+    return False
 
 
 def _hook_owner_marker(root: Path, harness: str) -> str:
