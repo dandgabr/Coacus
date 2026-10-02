@@ -1359,8 +1359,9 @@ def install(
     allowed = [directory.resolve() for directory in _allowed_roots(config_dir)]
     for old in previous_files:
         target = Path(old)
-        replacement = old + ".py" in planned
-        if ((target.name in retired or replacement) and old not in planned
+        canonical = target.as_posix()
+        replacement = canonical + ".py" in planned
+        if ((target.name in retired or replacement) and canonical not in planned
                 and any(_is_within(target.resolve(), directory) for directory in allowed)
                 and target.is_file()):
             target.unlink()
