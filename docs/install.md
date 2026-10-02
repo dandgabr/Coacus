@@ -44,7 +44,7 @@ render all artifacts, and install Coacus into all detected harnesses:
 
 Both entrypoint scripts handle environment detection, virtual environment setup,
 artifact generation (`scripts/coacus.py generate`), and verified installation
-(`scripts/coacus_install.py all --verify`) in a single step.
+(`scripts/coacus_install.py all --verify-after-install`) in a single step.
 
 ---
 
@@ -101,6 +101,12 @@ shell so repository paths containing `&`, `%` or `!` arrive unchanged. A Windows
 interpreter path containing `%` or `!` is rejected before installation; choose a
 venv path without those characters.
 
+Use the same interpreter to install and verify: installed hook commands contain
+its path. For a bootstrap-managed installation, run
+`.venv/bin/python scripts/coacus_install.py <harness> --verify` on Linux/macOS or
+`.venv\Scripts\python.exe scripts\coacus_install.py <harness> --verify` on Windows.
+Verifying with another interpreter can report command drift.
+
 Reinstalling retires the legacy hook wrappers and extensionless workflow helpers
 recorded in the previous Coacus manifest. Files outside that ownership record
 are preserved. Workflow helpers are now invoked as `python3 scripts/<name>.py`
@@ -109,6 +115,7 @@ are preserved. Workflow helpers are now invoked as `python3 scripts/<name>.py`
 ```bash
 python3 scripts/coacus_install.py opencode      # one harness
 python3 scripts/coacus_install.py all           # every harness detected on this machine
+python3 scripts/coacus_install.py all --verify-after-install # install and verify detected harnesses
 python3 scripts/coacus_install.py opencode --dry-run
 python3 scripts/coacus_install.py opencode --uninstall
 python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
@@ -129,9 +136,40 @@ provision ahead of the harness's own installation. An explicit `--config-dir`
 bypasses the gate (it is an intentional non-default target). `--verify` reports
 `harness_present` alongside `ok`.
 
+`all --verify` checks every adapter, including those with no local installation;
+it exits non-zero if any manifest is absent. Use `<harness> --verify` for each
+installed harness, or `all --verify-after-install` to install detected harnesses
+and verify them while skipping undetected ones. Reapply the recorded filters and
+Codex skill profile when refreshing a customized installation.
+
 Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as
 `<skill>/SKILL.md` plus its companions (`references/`, `examples/`, `scripts/`).
+
+### Upgrading a legacy shell installation
+
+1. Synchronize the checkout and render its artifacts with the project interpreter.
+2. Reinstall each existing harness with the `--only`, `--skills` and `--agents`
+   selections recorded in its manifest; preserve `--codex-skill-profile` for
+   Codex installations as well.
+3. Run `<harness> --verify` with that interpreter. Check `ok: true`, empty
+   `missing` and `drifted` arrays, and an empty `extra_in_manifest` array.
+4. Start a new harness session to exercise the updated bootstrap.
+
+The installer removes manifest-owned `session-start.sh`, `coacus-guard.sh` and
+`governor-hook.sh` wrappers and extensionless helpers replaced by `.py` files.
+It normalizes manifest path separators when retiring legacy helpers on Windows
+and skips Python bytecode and `__pycache__` directories when copying skill trees.
+
+Removal outside the manifest is a separate operation. Inventory `.sh` files in
+Coacus directories, caches and histories before deleting them. Native harness
+snapshots and scripts bundled with third-party plugins belong to their
+respective applications; preserve plugin scripts unless their removal is
+explicitly requested. Cleaning historical files does not change the installer
+manifest or suppress future snapshots created by the harness.
+
+The completed migration and its evidence are recorded in
+[`reports/2026-10-02-python-only-migration.md`](reports/2026-10-02-python-only-migration.md).
 
 ### Partial installs
 

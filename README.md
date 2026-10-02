@@ -199,6 +199,7 @@ render artifacts, and install Coacus into all detected harnesses:
 ```bash
 python3 scripts/coacus.py generate          # render every artifact first
 python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | command-code | all
+python3 scripts/coacus_install.py all --verify-after-install # install and verify detected harnesses
 python3 scripts/coacus_install.py opencode --dry-run   # preview targets
 python3 scripts/coacus_install.py codex --only security,engineering   # partial install
 python3 scripts/coacus_install.py codex --agents 'qa-*'   # filter agents only
@@ -216,8 +217,9 @@ skills budget.
 
 ### Dependencies
 
-- **Required:** [Python 3.14](https://www.python.org/) (the CI target). The core
-  tooling uses the standard library only.
+- **Required:** [Python 3.10+](https://www.python.org/). The core tooling uses the
+  standard library only; the CI matrix checks the minimum supported release and
+  the main CI target declared in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 - **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
   keyless (`https://mcp.context7.com/mcp`), and declared under
   [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies

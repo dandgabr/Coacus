@@ -34,6 +34,11 @@ modules. Platform-specific shell scripts (`.sh`, `.bash`, `.ps1`, `.bat`) must
 never be used for internal framework operations or runtime hooks. The only
 exception is the pair of root host bootstrappers (`install.sh` and `install.ps1`).
 
+OpenCode's vendor-required in-process JavaScript adapters bridge its plugin API
+to Python tooling. They are generated native integration artifacts and must
+not reintroduce shell wrappers. See
+[ADR 0007](../decisions/0007-cross-platform-os-independence.md).
+
 The rules apply to the prose and configuration the framework ships. Fenced code
 blocks are exempt: illustrative snippets may legitimately show example paths and
 token-shaped values.

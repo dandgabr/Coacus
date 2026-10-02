@@ -5,6 +5,55 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Process measurement and evidence lessons
+
+### Changed
+
+- `superpowers-verification-before-completion` requires claims to name the
+  resolved manifest, exact error/result and artifact copy in force.
+- `superpowers-systematic-debugging` distinguishes absence from unreachable,
+  locked or out-of-scope results and requires the measured file to be identified.
+- `superpowers-executing-plans` treats plan code as a snapshot of intent and
+  returns interface corrections to later plan references.
+- `superpowers-subagent-driven-development` requires the delegated artifact path
+  and evidence that the worker actually read it.
+- `using-coacus` carries these measurement rules and requires consent for
+  credential metadata inspection, redaction before output and synthetic checks
+  of redaction behavior.
+- Generated harness bootstraps and the provenance lock carry the updated entry
+  skill and workflow sources. These changes are proposed in
+  [PR #62](https://github.com/dandgabr/Coacus/pull/62).
+
+## [Unreleased] — Python tooling portability and Codex catalog
+
+### Added
+
+- Portable Python workflow helpers, a checksum-verified Python secret-scan
+  runner, and Linux/macOS/Windows hook-contract CI at the supported Python floor.
+- A compact Codex native skill profile and on-demand canonical skill search.
+- A [dated implementation and verification record](docs/reports/2026-10-02-python-only-migration.md)
+  covering PRs #60/#61, integration into `main`, local reinstallation and the
+  authorized removal of historical shell files while preserving plugins.
+
+### Changed
+
+- Generated hook wrappers use JSON payloads and direct Python entrypoints.
+  OpenCode's vendor plugin adapters invoke Python through native JavaScript.
+- The installer pins its interpreter, handles host command quoting, retires
+  manifest-owned legacy scripts and excludes Python bytecode caches.
+- Workflow imports preserve reviewed Python conversions and upstream provenance;
+  changed upstream helpers require review before reimport.
+
+### Fixed
+
+- Host bootstraps install before verification and propagate failures.
+- Windows shell expansion, native child-output encoding and legacy manifest
+  separators are covered by regression checks.
+- SessionStart resolves the Codex skill-search repository path inside JSON.
+- The Antigravity Python governor hook uses the supported ledger timeout option.
+- Verification checks all expected Coacus hook entries; provenance refresh keeps
+  the source identities of converted and adapted artifacts.
+
 ## [Unreleased] — F9/F10: lifecycle guardrails and self-improvement loop
 
 ### Added
@@ -75,7 +124,8 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
   plus installer support in `scripts/coacus_install.py`. It mirrors skills to the
   shared `~/.agents/skills/` tree, writes agents to
   `~/.commandcode/agents/<name>.md` with `tools: "*"`, stages the bootstrap script
-  at `~/.commandcode/coacus/session-start.sh`, **merges** the `SessionStart` entry
+  as a Python hook (the original shell wrapper was retired by the migration
+  above), **merges** the `SessionStart` entry
   into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in a
   `hooks.json`), **merges** `context7` into `~/.commandcode/mcp.json`, and writes
   the Coacus user rules to `~/.commandcode/AGENTS.md` only when that file does not
