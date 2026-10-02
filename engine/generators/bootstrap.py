@@ -6,7 +6,7 @@ expects, driven by data in `harnesses/<h>/harness.json` (OCP: a new harness is a
 new data file; a new shape is an engine change).
 
 Shapes:
-- A (hook): a POSIX shell script that emits ONE native JSON field, plus the
+- A (hook): a JSON payload emitted by the Python session-start runner, plus the
   harness hook config. Claude Code and Codex read
   ``hookSpecificOutput.additionalContext``; Cursor reads the top-level
   ``additional_context``. The native key and the hook config come from
@@ -107,29 +107,15 @@ def _native_json(harness: dict, text: str, event_name: str = "SessionStart") -> 
     return plugins.native_context_json(native_key, event_name, text)
 
 
-def _render_hook_script(harness: dict, text: str) -> str:
-    native_json = _native_json(harness, text)
-    return (
-        "#!/usr/bin/env bash\n"
-        f"# SessionStart bootstrap for {harness['name']} (generated — do not edit).\n"
-        "# Emits exactly ONE native JSON field; the forbidden alias is never\n"
-        "# emitted (some harnesses read both fields without dedup — session-start-bootstrap).\n"
-        "set -euo pipefail\n"
-        "cat <<'COACUS_EOF'\n"
-        f"{native_json}\n"
-        "COACUS_EOF\n"
-    )
-
-
 def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
-    """Shape A emits a shell script plus the harness hook config JSON.
+    """Shape A emits a native payload plus the harness hook config JSON.
 
     The hook config location, command template and matcher come from
     ``harness.json`` so Claude Code and Codex share the shape while Cursor uses
     its own ``sessionStart`` config.
     """
     bootstrap = harness["bootstrap"]
-    script = _render_hook_script(harness, text)
+    payload = _native_json(harness, text) + "\n"
     hooks = bootstrap.get("hooks_config")
     hooks_json = (
         json.dumps(hooks, indent=2) + "\n"
@@ -145,7 +131,7 @@ def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
                                     "type": "command",
                                     "command": bootstrap.get(
                                         "command",
-                                        '"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh"',
+                                        '__COACUS_PYTHON__ "__COACUS_ROOT__/scripts/coacus_session_start.py" "__COACUS_PLUGIN_ROOT__/bootstrap/session-start.json"',
                                     ),
                                     "async": False,
                                 }
@@ -160,7 +146,7 @@ def _render_shape_a(harness: dict, text: str) -> dict[str, str]:
     )
     rendered: dict[str, str] = {}
     for out in bootstrap.get("outputs", []):
-        rendered[out["path"]] = hooks_json if out["format"] == "json" else script
+        rendered[out["path"]] = hooks_json if out["path"].endswith("/hooks.json") else payload
     return rendered
 
 
@@ -180,7 +166,7 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
         "// from the repo root: the harness discovers the installed skills tree\n"
         "// natively, so registering the repo root would bypass a partial install.\n"
         "\n"
-        "const COACUS_ROOT = '__COACUS_ROOT__';\n"
+        'const COACUS_ROOT = "__COACUS_ROOT__";\n'
         "const BOOTSTRAP = " + json.dumps(text) + ";\n"
         "const GUARD = 'EXTREMELY_IMPORTANT';\n"
         "\n"

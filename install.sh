@@ -67,7 +67,7 @@ echo "Rendering Coacus artifacts..."
 
 # 5. Run installation into target harness(es)
 echo "Installing Coacus into harness: $TARGET_HARNESS..."
-"$VENV_PY" scripts/coacus_install.py "$TARGET_HARNESS" --verify
+"$VENV_PY" scripts/coacus_install.py "$TARGET_HARNESS" --verify-after-install
 
 echo "===================================================="
 echo "✔ Coacus installation and verification completed successfully!"

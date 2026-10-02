@@ -71,7 +71,7 @@ def main() -> int:
         tool = _get_nested(payload, "toolCall.name") or ""
         if tool in ("invoke_subagent", "manage_subagents", "task") and ledger:
             try:
-                ledger.acquire(_slot_id(payload), orchestrator=False, timeout_seconds=30)
+                ledger.acquire(_slot_id(payload), orchestrator=False, timeout=30)
             except Exception:
                 pass
         sys.stdout.write("{}\n")

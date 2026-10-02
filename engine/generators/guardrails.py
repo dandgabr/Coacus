@@ -20,28 +20,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-SHELL_HARNESSES = ("claude-code", "codex", "cursor", "command-code")
 EVALUATOR = "scripts/coacus_guard.py"
-
-
-def _guard_script(harness: str) -> str:
-    """A POSIX wrapper that pipes the trigger payload to the evaluator.
-
-    On any internal failure it emits no opinion and exits 0; the evaluator owns
-    the fail-open/deny semantics (D4) so the wrapper never becomes a second,
-    divergent decision point.
-    """
-    return (
-        "#!/usr/bin/env bash\n"
-        f"# Coacus guardrail hook for {harness} (generated — do not edit).\n"
-        "# Calls the PAER evaluator and prints its native effect JSON.\n"
-        "set -euo pipefail\n"
-        'COACUS_ROOT="__COACUS_ROOT__"\n'
-        'PAYLOAD="$(cat)"\n'
-        f'printf "%s" "$PAYLOAD" | python3 "$COACUS_ROOT/{EVALUATOR}" '
-        f'--harness {harness} --event tool.pre --root "$COACUS_ROOT" 2>/dev/null '
-        "|| echo '{}'\n"
-    )
 
 
 def _hook_fragment(harness: str) -> str:
@@ -51,7 +30,10 @@ def _hook_fragment(harness: str) -> str:
     name. The fragment is merged by the installer (never written wholesale into a
     user config).
     """
-    command = f'"__COACUS_ROOT__/harnesses/{harness}/bootstrap/coacus-guard.sh"'
+    command = (
+        f'__COACUS_PYTHON__ "__COACUS_ROOT__/{EVALUATOR}" '
+        f'--harness {harness} --event tool.pre --root "__COACUS_ROOT__"'
+    )
     if harness == "cursor":
         return json.dumps(
             {"version": 1, "hooks": {"preToolUse": [{"command": command}]}},
@@ -75,7 +57,7 @@ def _hook_fragment(harness: str) -> str:
 
 
 def _opencode_plugin() -> str:
-    """OpenCode has no shell hooks: a JS plugin that shells to the evaluator.
+    """OpenCode requires an in-process JS plugin that executes the Python evaluator.
 
     Blocking is a thrown error (OpenCode's only deny mechanism). On an evaluator
     failure the plugin stays silent, so a broken guard cannot brick the session.
@@ -88,7 +70,8 @@ def _opencode_plugin() -> str:
         "\n"
         "import { execFileSync } from 'node:child_process';\n"
         "\n"
-        "const COACUS_ROOT = '__COACUS_ROOT__';\n"
+        'const COACUS_ROOT = "__COACUS_ROOT__";\n'
+        'const PYTHON = "__COACUS_PYTHON__";\n'
         "const GUARD = COACUS_ROOT + '/scripts/coacus_guard.py';\n"
         "\n"
         "/**\n"
@@ -101,7 +84,7 @@ def _opencode_plugin() -> str:
         "    const payload = JSON.stringify({ tool: input.tool, tool_input: output.args });\n"
         "    let effect = '{}';\n"
         "    try {\n"
-        "      effect = execFileSync('python3', [GUARD, '--harness', 'opencode', '--event', 'tool.pre',\n"
+        "      effect = execFileSync(PYTHON, [GUARD, '--harness', 'opencode', '--event', 'tool.pre',\n"
         "        '--root', COACUS_ROOT], { input: payload, encoding: 'utf8', timeout: 5000,\n"
         "        stdio: ['pipe', 'pipe', 'ignore'] }).trim();\n"
         "    } catch { return; }\n"
@@ -131,6 +114,5 @@ def render(harness: dict, root: Path) -> dict[str, str]:
     if name == "opencode":
         rendered[f"{base}/coacus-guardrails.js"] = _opencode_plugin()
     else:
-        rendered[f"{base}/coacus-guard.sh"] = _guard_script(name)
         rendered[f"{base}/guardrail-hooks.json"] = _hook_fragment(name)
     return rendered

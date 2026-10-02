@@ -35,7 +35,7 @@ from the entry skill would create two hand-maintained copies that drift.
 
 `harnesses/<h>/harness.json` is data and drives the render:
 
-- `bootstrap.shape` — one of `A` (shell hook), `B` (in-process), `C`
+- `bootstrap.shape` — one of `A` (Python hook), `B` (in-process), `C`
   (instructions-file/rule), `native-discovery` (nothing rendered).
 - `bootstrap.outputs` — path and format per output.
 - `bootstrap.native_key` and `bootstrap.forbidden_keys` — the one native field to

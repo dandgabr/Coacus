@@ -72,15 +72,18 @@ $VenvPy = Join-Path $VenvDir "Scripts\python.exe"
 if (-not (Test-Path $VenvPy)) {
     Write-Host "Creating virtual environment at $VenvDir..." -ForegroundColor Cyan
     & $PythonBin -m venv $VenvDir
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 # 4. Generate all Coacus artifacts
 Write-Host "Rendering Coacus artifacts..." -ForegroundColor Cyan
 & $VenvPy "scripts/coacus.py" generate
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # 5. Run installation into target harness(es)
 Write-Host "Installing Coacus into harness: $TargetHarness..." -ForegroundColor Cyan
-& $VenvPy "scripts/coacus_install.py" $TargetHarness --verify
+& $VenvPy "scripts/coacus_install.py" $TargetHarness --verify-after-install
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "====================================================" -ForegroundColor Green
 Write-Host "✔ Coacus installation and verification completed successfully!" -ForegroundColor Green

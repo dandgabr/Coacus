@@ -3,7 +3,7 @@
     "PreToolUse": [
       {
         "type": "command",
-        "command": "\"__COACUS_ROOT__/harnesses/antigravity/bootstrap/coacus-guard.sh\""
+        "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_guard.py\" --harness antigravity --event tool.pre --root \"__COACUS_ROOT__\""
       }
     ]
   }

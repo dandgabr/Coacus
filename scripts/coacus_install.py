@@ -14,7 +14,7 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
-              script at bootstrap/session-start.sh (matching hooks.json).
+              JSON payload at bootstrap/session-start.json (matching hooks.json).
 - antigravity plugin (manifest + rule + skills + agents) ->
               <config_dir>/config/plugins/coacus/; activation is by directory,
               so no registry edit is needed.
@@ -53,12 +53,22 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
 from __future__ import annotations
 
 import argparse
+import ast
+import base64
 import fnmatch
 import json
+import os
 import re
+import shlex
 import shutil
 import sys
+import tempfile
 from pathlib import Path
+
+try:  # tomllib entered the standard library in Python 3.11.
+    import tomllib
+except ModuleNotFoundError:  # Keep the Coacus Python 3.10 floor.
+    tomllib = None  # type: ignore[assignment]
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -70,6 +80,144 @@ NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
 # A planned file's content: text normally, bytes for a binary companion.
 FileContent = str | bytes
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
+CODEX_PROFILE_START = "# BEGIN COACUS CODEX SKILL PROFILE"
+CODEX_PROFILE_END = "# END COACUS CODEX SKILL PROFILE"
+
+
+def _codex_profile_visible(root: Path) -> set[str]:
+    """Load the small Codex-native allowlist, checking canonical identities."""
+    path = root / "harnesses/codex/skills-profile.json"
+    try:
+        names = json.loads(path.read_text(encoding="utf-8"))["visible"]
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise ValueError(f"invalid Codex skill profile: {exc}") from exc
+    if not isinstance(names, list) or not names or any(not isinstance(n, str) for n in names):
+        raise ValueError("invalid Codex skill profile: visible must be a nonempty name list")
+    if len(set(names)) != len(names):
+        raise ValueError("invalid Codex skill profile: duplicate visible name")
+    available = [skill.name for skill in discover_skills(root)]
+    if len(set(available)) != len(available) or not set(names) <= set(available):
+        raise ValueError("invalid Codex skill profile: names missing or ambiguous")
+    return set(names)
+
+
+def _strip_codex_profile(text: str) -> tuple[str, str]:
+    """Remove only Coacus's marked TOML block; preserve the user's bytes."""
+    start_token = "\n" + CODEX_PROFILE_START + "\n"
+    start = text.find(start_token)
+    end_token = CODEX_PROFILE_END + "\n"
+    if start < 0:
+        if CODEX_PROFILE_START in text or CODEX_PROFILE_END in text:
+            raise ValueError("Codex config has a damaged Coacus profile block")
+        return text, ""
+    end = text.find(end_token, start)
+    if end < 0 or text.find(start_token, start + 1) >= 0:
+        raise ValueError("Codex config has a damaged Coacus profile block")
+    return text[:start] + text[end + len(end_token) :], text[start : end + len(end_token)]
+
+
+def _codex_user_skill_entries(text: str) -> list[dict[str, object]]:
+    """Read user skill overrides, with a small Python 3.10 fallback scanner."""
+    if tomllib is not None:
+        try:
+            parsed = tomllib.loads(text)
+        except tomllib.TOMLDecodeError as exc:
+            raise ValueError(f"Codex config is invalid TOML: {exc}") from exc
+        skills_table = parsed.get("skills", {})
+        if not isinstance(skills_table, dict):
+            raise ValueError("Codex config skills must be a table")
+        entries = skills_table.get("config", [])
+        if not isinstance(entries, list):
+            raise ValueError("Codex config skills.config must be an array")
+        return entries
+
+    # Python 3.10 has no standard TOML parser. Read only the array entries this
+    # installer must preserve; leave all other config bytes untouched for Codex.
+    entries: list[dict[str, object]] = []
+    in_skill = False
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if line == "[[skills.config]]":
+            entries.append({})
+            in_skill = True
+            continue
+        if line.startswith("[") and line.endswith("]"):
+            in_skill = False
+            continue
+        if not in_skill or "=" not in line:
+            continue
+        key, value = (part.strip() for part in line.split("=", 1))
+        if key == "path":
+            try:
+                path = ast.literal_eval(value)
+            except (SyntaxError, ValueError) as exc:
+                raise ValueError("Codex config has an invalid skills.config path") from exc
+            if not isinstance(path, str):
+                raise ValueError("Codex config has a non-string skills.config path")
+            entries[-1]["path"] = path
+        elif key == "enabled":
+            if value not in ("true", "false"):
+                raise ValueError("Codex config has an invalid skills.config enabled value")
+            entries[-1]["enabled"] = value == "true"
+    return entries
+
+
+def _codex_config_update(
+    root: Path, config_dir: Path, profile: str
+) -> tuple[str, str, list[str], bool]:
+    """Return new TOML, owned block, user conflicts and whether file existed."""
+    if profile not in ("compact", "full"):
+        raise ValueError(f"unknown Codex skill profile: {profile}")
+    config_path = config_dir / "config.toml"
+    existed = config_path.is_file()
+    current = config_path.read_text(encoding="utf-8") if existed else ""
+    base, _ = _strip_codex_profile(current)
+    user_entries = _codex_user_skill_entries(base)
+    user_paths: dict[str, bool] = {}
+    for item in user_entries:
+        if isinstance(item, dict) and isinstance(item.get("path"), str):
+            key = item["path"]
+            user_paths[key] = user_paths.get(key, False) or bool(item.get("enabled", True))
+    visible = _codex_profile_visible(root) if profile == "compact" else set()
+    block_lines = ["", CODEX_PROFILE_START]
+    conflicts: list[str] = []
+    if profile == "compact":
+        for source in discover_skills(root):
+            if source.name in visible:
+                continue
+            installed = (config_dir.parent / ".agents" / "skills" / source.name / "SKILL.md").resolve()
+            key = installed.as_posix()
+            if key in user_paths:
+                if user_paths[key]:
+                    conflicts.append(key)
+                continue
+            block_lines.extend(("[[skills.config]]", f"path = {json.dumps(key)}", "enabled = false", ""))
+    block = "\n".join(block_lines + [CODEX_PROFILE_END, ""]) if len(block_lines) > 2 else ""
+    updated = base + block
+    if tomllib is not None:
+        try:
+            tomllib.loads(updated)
+        except tomllib.TOMLDecodeError as exc:
+            raise ValueError(f"Codex config profile would be invalid TOML: {exc}") from exc
+    return updated, block, conflicts, existed
+
+
+def _write_codex_config(config_dir: Path, text: str, existed: bool) -> None:
+    """Atomically update Codex config, preserving existing file permissions."""
+    target = config_dir / "config.toml"
+    if not text and not existed:
+        return
+    target.parent.mkdir(parents=True, exist_ok=True)
+    mode = target.stat().st_mode & 0o777 if target.exists() else 0o600
+    fd, temporary = tempfile.mkstemp(prefix=".config.toml.", dir=target.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            stream.write(text)
+        os.chmod(temporary, mode)
+        os.replace(temporary, target)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def _home() -> Path:
@@ -449,7 +597,10 @@ def _skill_files(skill_dir: Path) -> list[Path]:
     at an arbitrary file outside the repository.
     """
     return sorted(
-        p for p in skill_dir.rglob("*") if p.is_file() and not p.is_symlink()
+        p for p in skill_dir.rglob("*")
+        if p.is_file() and not p.is_symlink()
+        and "__pycache__" not in p.relative_to(skill_dir).parts
+        and p.suffix not in {".pyc", ".pyo"}
     )
 
 
@@ -480,18 +631,87 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     stale guardrail behind.
     """
     base = f"{root.as_posix()}/harnesses/{harness}/bootstrap"
-    return {f"{base}/session-start.sh", f"{base}/coacus-guard.sh", f"{base}/coacus-guardrails.js"}
+    return {
+        f"{base}/session-start.sh", f"{base}/coacus-guard.sh",
+        f"{base}/session-start.json", f"{base}/coacus-guardrails.js",
+        "/scripts/coacus_session_start.py",
+        "/coacus/coacus-guard.sh", "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
+        f"--harness {harness} --event tool.pre",
+    }
+
+
+def _command(argv: list[str]) -> str:
+    """Quote arguments for the host's command parser, including the interpreter."""
+    if os.name != "nt":
+        return shlex.join(argv)
+    # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
+    # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
+    interpreter = argv[0]
+    if any(char in interpreter for char in '%!"\r\n'):
+        raise ValueError("Windows hook interpreter path contains unsupported shell expansion characters")
+    encoded = base64.b64encode(json.dumps(argv[1:]).encode("utf-8")).decode("ascii")
+    shim = ("import base64,json,runpy,sys;"
+            f"sys.argv=json.loads(base64.b64decode('{encoded}'));"
+            "runpy.run_path(sys.argv[0],run_name='__main__')")
+    return f'"{interpreter}" -c "{shim}"'
+
+
+def _hook_substitute(text: str, root: Path, plugin: Path | None = None) -> str:
+    """Resolve templates as arguments before quoting the installed command."""
+    replacements = {
+        "__COACUS_ROOT__": root.as_posix(),
+        "__COACUS_PYTHON__": sys.executable,
+    }
+    if plugin is not None:
+        replacements["__COACUS_PLUGIN_ROOT__"] = plugin.as_posix()
+        # Existing plugin manifests used POSIX variable expansion.
+        replacements["${CLAUDE_PLUGIN_ROOT:-.}"] = plugin.as_posix()
+
+    def replace(value: str) -> str:
+        for key, replacement in replacements.items():
+            value = value.replace(key, replacement)
+        return value
+
+    def walk(value, key: str = ""):
+        if isinstance(value, dict):
+            return {k: walk(v, k) for k, v in value.items()}
+        if isinstance(value, list):
+            return [walk(v) for v in value]
+        if isinstance(value, str):
+            if key == "command":
+                return _command([replace(arg) for arg in shlex.split(value)])
+            return replace(value)
+        return value
+
+    return json.dumps(walk(json.loads(text)), indent=2) + "\n"
+
+
+def _plugin_substitute(text: str, root: Path) -> str:
+    """Embed paths as JavaScript string literals without shell interpolation."""
+    for placeholder, value in (("__COACUS_ROOT__", root.as_posix()),
+                               ("__COACUS_PYTHON__", sys.executable)):
+        text = text.replace(json.dumps(placeholder), json.dumps(value))
+        text = text.replace("'" + placeholder + "'", json.dumps(value))
+        text = text.replace(placeholder, value)
+    return text
 
 
 def _entry_owned(entry: object, markers: set[str]) -> bool:
     """True if a hook entry references any Coacus script (by our markers)."""
     blob = json.dumps(entry)
+    for encoded in re.findall(r"b64decode\('([A-Za-z0-9+/=]+)'\)", blob):
+        try:
+            decoded = json.loads(base64.b64decode(encoded, validate=True))
+            if isinstance(decoded, list) and all(isinstance(arg, str) for arg in decoded):
+                blob += " ".join(decoded)
+        except (ValueError, UnicodeDecodeError):
+            continue
     return any(marker in blob for marker in markers)
 
 
 def _hook_owner_marker(root: Path, harness: str) -> str:
-    """Back-compat single marker (the bootstrap script) for legacy callers."""
-    return f"{root.as_posix()}/harnesses/{harness}/bootstrap/session-start.sh"
+    """Back-compat single marker for legacy callers."""
+    return f"{root.as_posix()}/harnesses/{harness}/bootstrap/session-start.json"
 
 
 def _load_existing_json(path: Path) -> dict:
@@ -567,27 +787,19 @@ def _guardrail_artifacts(
         return [], None
     if not data.get("lifecycle", {}).get("supported"):
         return [], None
-    subst = lambda text: text.replace("__COACUS_ROOT__", root.as_posix())  # noqa: E731
+    subst = lambda text: _hook_substitute(text, root)  # noqa: E731
 
     files: list[tuple[Path, FileContent]] = []
     if harness == "opencode":
         src = root / "harnesses/opencode/bootstrap/coacus-guardrails.js"
         if src.is_file():
-            files.append((config_dir / "plugins" / "coacus-guardrails.js", subst(src.read_text(encoding="utf-8"))))
+            files.append((config_dir / "plugins" / "coacus-guardrails.js", _plugin_substitute(src.read_text(encoding="utf-8"), root)))
         return files, None
 
-    guard = root / f"harnesses/{harness}/bootstrap/coacus-guard.sh"
     frag_path = root / f"harnesses/{harness}/bootstrap/guardrail-hooks.json"
-    if guard.is_file():
-        files.append((config_dir / "coacus" / "coacus-guard.sh", subst(guard.read_text(encoding="utf-8"))))
     fragment = None
     if frag_path.is_file():
         text = subst(frag_path.read_text(encoding="utf-8"))
-        # Point the fragment's command at the installed script location.
-        text = text.replace(
-            f"__COACUS_ROOT__/harnesses/{harness}/bootstrap/coacus-guard.sh",
-            (config_dir / "coacus" / "coacus-guard.sh").as_posix(),
-        )
         try:
             fragment = json.loads(text)
         except json.JSONDecodeError:
@@ -738,18 +950,14 @@ def _plan_opencode(
 ) -> list[tuple[Path, FileContent]]:
     """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
-    content = source.read_text(encoding="utf-8").replace(
-        "__COACUS_ROOT__", root.as_posix()
-    )
+    content = _plugin_substitute(source.read_text(encoding="utf-8"), root)
     plan: list[tuple[Path, FileContent]] = [(config_dir / "plugins" / "coacus.js", content)]
     gate = root / "harnesses/opencode/bootstrap/governor-gate.js"
     if gate.is_file():
         plan.append(
             (
                 config_dir / "plugins" / "coacus-governor.js",
-                gate.read_text(encoding="utf-8").replace(
-                    "__COACUS_ROOT__", root.as_posix()
-                ),
+                _plugin_substitute(gate.read_text(encoding="utf-8"), root),
             )
         )
     plan += _plan_skills(root, config_dir / "skills", only, skills)
@@ -786,12 +994,11 @@ def _plan_claude(
             + "\n",
         )
     )
-    # hooks.json commands "${CLAUDE_PLUGIN_ROOT}/bootstrap/session-start.sh",
-    # so the script MUST land under bootstrap/ (not hooks/). The guardrail
+    # hooks.json reads the payload from the staged bootstrap directory. The guardrail
     # fragment merges into the SAME plugin hooks.json.
     hooks_path = plugin / "hooks" / "hooks.json"
     bootstrap_fragment = json.loads(
-        (root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8")
+        _hook_substitute((root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8"), root, plugin)
     )
     guard_files, guard_fragment = _guardrail_artifacts(root, "claude-code", config_dir)
     plan += guard_files
@@ -802,8 +1009,8 @@ def _plan_claude(
     plan.append((hooks_path, json.dumps(merged, indent=2) + "\n"))
     plan.append(
         (
-            plugin / "bootstrap" / "session-start.sh",
-            (root / "harnesses/claude-code/bootstrap/session-start.sh").read_text(
+            plugin / "bootstrap" / "session-start.json",
+            (root / "harnesses/claude-code/bootstrap/session-start.json").read_text(
                 encoding="utf-8"
             ),
         )
@@ -830,22 +1037,9 @@ def _plan_antigravity(
     for name in ("plugin.json", "coacus-rule.md"):
         source = root / "harnesses/antigravity/bootstrap" / name
         plan.append((plugin / name, source.read_text(encoding="utf-8")))
-    # Governor hook (governance-executable) + its plugin hooks.json root file.
-    hook = root / "harnesses/antigravity/bootstrap/governor-hook.sh"
-    if hook.is_file():
-        plan.append(
-            (
-                plugin / "governor-hook.sh",
-                hook.read_text(encoding="utf-8").replace(
-                    "__COACUS_ROOT__", root.as_posix()
-                ),
-            )
-        )
     # Merge the governor wiring and the guardrail fragment into ONE plugin
     # hooks.json (the file the harness reads), keyed by hook-set name.
-    hooks_doc = (
-        json.loads(_antigravity_hooks_json(plugin)) if hook.is_file() else {}
-    )
+    hooks_doc = json.loads(_antigravity_hooks_json(root))
     guard_files, guard_fragment = _guardrail_artifacts(root, "antigravity", config_dir)
     plan += guard_files
     if guard_fragment:
@@ -855,9 +1049,9 @@ def _plan_antigravity(
     return plan
 
 
-def _antigravity_hooks_json(plugin_dir: Path) -> str:
+def _antigravity_hooks_json(root: Path) -> str:
     """Antigravity plugin hooks.json wiring the governor hook to lifecycle events."""
-    command = f"{plugin_dir.as_posix()}/governor-hook.sh"
+    argv = [sys.executable, (root / "scripts/coacus_governor_hook.py").as_posix()]
     matcher = "invoke_subagent|manage_subagents|task"
     return (
         json.dumps(
@@ -866,17 +1060,17 @@ def _antigravity_hooks_json(plugin_dir: Path) -> str:
                     "PreToolUse": [
                         {
                             "matcher": matcher,
-                            "hooks": [{"type": "command", "command": f"{command} pretool"}],
+                            "hooks": [{"type": "command", "command": _command(argv + ["pretool"])}],
                         }
                     ],
                     "PostToolUse": [
                         {
                             "matcher": matcher,
-                            "hooks": [{"type": "command", "command": f"{command} posttool"}],
+                            "hooks": [{"type": "command", "command": _command(argv + ["posttool"])}],
                         }
                     ],
                     "PreInvocation": [
-                        {"type": "command", "command": f"{command} preinv"}
+                        {"type": "command", "command": _command(argv + ["preinv"])}
                     ],
                 }
             },
@@ -896,18 +1090,16 @@ def _plan_codex(
     """Skills to the documented scan root + the SessionStart hook.
 
     Codex scans ``.agents/skills`` (not ``~/.codex/skills``), and its hooks load
-    from ``~/.codex/hooks.json``. The hook command needs an absolute script
-    path, so we stage the script beside the hook and substitute the repo root.
+    from ``~/.codex/hooks.json``. The hook invokes the Python runner and generated
+    payload in the repository; the runner resolves paths in the emitted context.
     """
     plan: list[tuple[Path, FileContent]] = []
     # Codex scans $HOME/.agents/skills, not $config_dir/.codex/skills.
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     # Codex agent roles live in $CODEX_HOME/agents/*.toml.
     plan += _plan_agents_codex(root, config_dir / "agents", only, agents)
-    script = (root / "harnesses/codex/bootstrap/session-start.sh").read_text(encoding="utf-8")
-    plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    fragment = json.loads(_hook_substitute(hooks, root))
     existing = _load_existing_json(config_dir / "hooks.json")
     guard_files, guard_fragment = _guardrail_artifacts(root, "codex", config_dir)
     plan += guard_files
@@ -941,10 +1133,8 @@ def _plan_cursor(
     plan: list[tuple[Path, FileContent]] = []
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     plan += _plan_agents_named(root, config_dir / "agents", only, agents)
-    script = (root / "harnesses/cursor/bootstrap/session-start.sh").read_text(encoding="utf-8")
-    plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    fragment = json.loads(_hook_substitute(hooks, root))
     existing = _load_existing_json(config_dir / "hooks.json")
     guard_files, guard_fragment = _guardrail_artifacts(root, "cursor", config_dir)
     plan += guard_files
@@ -986,12 +1176,8 @@ def _plan_command_code(
     plan: list[tuple[Path, FileContent]] = []
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     plan += _plan_agents_command_code(root, config_dir / "agents", only, agents)
-    script = (root / "harnesses/command-code/bootstrap/session-start.sh").read_text(
-        encoding="utf-8"
-    )
-    plan.append((config_dir / "coacus" / "session-start.sh", script))
     hooks = (root / "harnesses/command-code/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_substitute_json(hooks, "__COACUS_ROOT__", root.as_posix()))
+    fragment = json.loads(_hook_substitute(hooks, root))
     existing = _load_existing_json(config_dir / COMMAND_CODE_HOOKS_FILE)
     guard_files, guard_fragment = _guardrail_artifacts(root, "command-code", config_dir)
     plan += guard_files
@@ -1089,6 +1275,7 @@ def install(
     agents: list[str] | None = None,
     allow_advisory: bool = False,
     force: bool = False,
+    codex_skill_profile: str = "compact",
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1124,6 +1311,18 @@ def install(
         }
     files = plan(harness, root, config_dir, only, skills, agents)
     _assert_contained(files, config_dir)
+    codex_update = (
+        _codex_config_update(root, config_dir, codex_skill_profile)
+        if harness == "codex"
+        else None
+    )
+    previous_manifest = config_dir / MANIFEST_NAME
+    previous_files: list[str] = []
+    if previous_manifest.is_file():
+        try:
+            previous_files = _parse_manifest(previous_manifest).get("files", [])
+        except ValueError:
+            pass
     rules_target = config_dir / COMMAND_CODE_RULES_FILE
     rules_source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
     rules_pending = (
@@ -1140,6 +1339,7 @@ def install(
             "only": only or [],
             "skills": skills or [],
             "agents": agents or [],
+            **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
         }
     written: list[str] = []
     for target, content in files:
@@ -1149,6 +1349,22 @@ def install(
         else:
             target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
+    if codex_update is not None:
+        updated_config, owned_block, conflicts, config_existed = codex_update
+        _write_codex_config(config_dir, updated_config, config_existed)
+    # A manifest proves ownership of these legacy wrappers. Remove only files
+    # retired by this migration, never a similarly named unowned user file.
+    planned = set(written)
+    retired = {"session-start.sh", "coacus-guard.sh", "governor-hook.sh"}
+    allowed = [directory.resolve() for directory in _allowed_roots(config_dir)]
+    for old in previous_files:
+        target = Path(old)
+        canonical = target.as_posix()
+        replacement = canonical + ".py" in planned
+        if ((target.name in retired or replacement) and canonical not in planned
+                and any(_is_within(target.resolve(), directory) for directory in allowed)
+                and target.is_file()):
+            target.unlink()
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -1159,6 +1375,15 @@ def install(
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
+                **(
+                    {
+                        "codex_skill_profile": codex_skill_profile,
+                        "codex_profile_block": owned_block,
+                        "codex_config_existed": config_existed,
+                    }
+                    if codex_update is not None
+                    else {}
+                ),
             },
             indent=2,
         )
@@ -1171,6 +1396,11 @@ def install(
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
+        **(
+            {"codex_skill_profile": codex_skill_profile,
+             "codex_skill_conflicts": conflicts}
+            if codex_update is not None else {}
+        ),
     }
 
 
@@ -1187,7 +1417,7 @@ def _classify(target: Path) -> str:
     if name == "agent.md" or parent in ("agent", "agents"):
         return "agent"
     if name in ("hooks.json", "settings.json", "guardrail-hooks.json",
-                "governor-hook.sh", "coacus-guard.sh", "coacus-guardrails.js",
+                "coacus-guardrails.js",
                 "coacus-governor.js"):
         return "hook"
     return "other"
@@ -1241,8 +1471,15 @@ def _installed_state(
             missing.append(target.as_posix())
             continue
         if target == hooks_path:
-            blob = json.dumps(_load_existing_json(target))
-            if not any(marker in blob for marker in markers):
+            expected_hooks = json.loads(content).get("hooks", {})
+            actual_hooks = _load_existing_json(target).get("hooks", {})
+            expected_entries = [
+                (event, entry) for event, entries in expected_hooks.items()
+                for entry in entries if _entry_owned(entry, markers)
+            ]
+            if not expected_entries or any(
+                entry not in actual_hooks.get(event, []) for event, entry in expected_entries
+            ):
                 drift.append(target.as_posix())
             continue
         if mcp_path is not None and target == mcp_path:
@@ -1302,6 +1539,26 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
         }
     )
     result["ok"] = not missing and not drift and recorded == planned
+    if harness == "codex":
+        profile = data.get("codex_skill_profile", "legacy-full")
+        result["codex_skill_profile"] = profile
+        result["codex_config_drifted"] = False
+        result["codex_skill_conflicts"] = []
+        if profile != "legacy-full":
+            try:
+                config_path = config_dir / "config.toml"
+                current = config_path.read_text(encoding="utf-8") if config_path.is_file() else ""
+                _, actual_block = _strip_codex_profile(current)
+                _, expected_block, conflicts, _ = _codex_config_update(root, config_dir, profile)
+                result["codex_skill_conflicts"] = conflicts
+                result["codex_config_drifted"] = (
+                    actual_block != expected_block
+                    or actual_block != data.get("codex_profile_block", "")
+                )
+            except (OSError, ValueError) as exc:
+                result["codex_config_drifted"] = True
+                result["codex_config_error"] = str(exc)
+            result["ok"] = result["ok"] and not result["codex_config_drifted"]
     return result
 
 
@@ -1379,6 +1636,14 @@ def uninstall(
         return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
+    if harness == "codex" and not dry_run and "codex_skill_profile" in data:
+        config_path = config_dir / "config.toml"
+        if config_path.is_file():
+            base, _ = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
+            if not base and not data.get("codex_config_existed", True):
+                config_path.unlink()
+            else:
+                _write_codex_config(config_dir, base, True)
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
@@ -1486,6 +1751,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="comma-separated agent name globs to install (e.g. 'qa-*,*-architect')",
     )
     parser.add_argument(
+        "--codex-skill-profile",
+        choices=["compact", "full"],
+        help="Codex native skill visibility (default: compact; full restores legacy behavior)",
+    )
+    parser.add_argument(
         "--list",
         dest="list_",
         action="store_true",
@@ -1495,6 +1765,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         "--verify",
         action="store_true",
         help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
+    )
+    parser.add_argument(
+        "--verify-after-install", action="store_true",
+        help="install, then verify each installed harness (skip undetected harnesses)",
     )
     parser.add_argument(
         "--allow-advisory",
@@ -1508,6 +1782,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="install even when the harness is not detected on this machine (provision ahead of it)",
     )
     args = parser.parse_args(argv)
+    if args.verify_after_install and (args.verify or args.uninstall or args.dry_run or args.list_):
+        parser.error("--verify-after-install requires a real installation")
 
     only = _split_filter(args.only)
     skills = _split_filter(args.skills)
@@ -1546,6 +1822,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         if args.harness == "all"
         else [args.harness]
     )
+    if args.codex_skill_profile and "codex" not in harnesses:
+        parser.error("--codex-skill-profile applies only to codex or all")
     if args.verify:
         results = []
         ok = True
@@ -1569,8 +1847,19 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         else:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
-                        allow_advisory=args.allow_advisory, force=args.force)
+                        allow_advisory=args.allow_advisory, force=args.force,
+                        codex_skill_profile=args.codex_skill_profile or "compact")
             )
+    if args.verify_after_install:
+        for result in results:
+            if result.get("skipped") or result.get("error"):
+                continue
+            harness = str(result["harness"])
+            config_dir = Path(args.config_dir) if args.config_dir else default_config_dir(harness, _home())
+            report = verify(harness, root or ROOT, config_dir)
+            result["verification"] = report
+            if not report.get("ok"):
+                result["error"] = "post-install verification failed"
     print(json.dumps(results, indent=2))
     exit_code = 0 if all(not r.get("error") for r in results) else 1
     return exit_code

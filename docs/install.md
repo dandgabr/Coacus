@@ -87,6 +87,25 @@ Two routes exist:
 The script writes a `coacus-install.json` manifest beside each target so re-runs
 and uninstalls are exact.
 
+Operational hooks invoke portable Python directly. The installer records the
+interpreter running the installation and quotes command arguments for the host
+OS, including repository paths containing spaces. Keep that interpreter and the
+repository available; reinstall after moving either. OpenCode retains the native
+JavaScript adapters required by its plugin API; those adapters call Python.
+Only root `install.sh` and `install.ps1` bootstrap host Python and the venv.
+They generate artifacts, then run the Python installer with
+`--verify-after-install`, verifying each installed harness while skipping those
+not detected on the host. `--verify` by itself remains read-only.
+On Windows, hook argument payloads are encoded before passing through the command
+shell so repository paths containing `&`, `%` or `!` arrive unchanged. A Windows
+interpreter path containing `%` or `!` is rejected before installation; choose a
+venv path without those characters.
+
+Reinstalling retires the legacy hook wrappers and extensionless workflow helpers
+recorded in the previous Coacus manifest. Files outside that ownership record
+are preserved. Workflow helpers are now invoked as `python3 scripts/<name>.py`
+(use `python` on Windows when that is the interpreter command).
+
 ```bash
 python3 scripts/coacus_install.py opencode      # one harness
 python3 scripts/coacus_install.py all           # every harness detected on this machine
@@ -117,8 +136,9 @@ Skill sources installed everywhere are `methodology/workflows/**` and
 ### Partial installs
 
 A harness that indexes every skill pays, at session start, for every skill
-description it must load — Codex, for example, shortens descriptions when the
-corpus overflows its skills context budget. Install only what a session needs:
+description it must load. The Codex installer now keeps the full Coacus corpus
+on disk but enables a compact native profile by default. Use these filters when
+you want to copy only part of the corpus to a harness:
 
 ```bash
 python3 scripts/coacus_install.py codex --only security,engineering
@@ -215,8 +235,8 @@ A session with the bootstrap answers with a string from the entry skill
 Claude Code reads.
 
 **How it works.** Claude Code has no in-process plugin API like OpenCode. Instead
-the harness exposes a `SessionStart` hook that emits JSON. Coacus ships a shell
-script that prints exactly one native field —
+the harness exposes a `SessionStart` hook that emits JSON. Coacus invokes a Python
+runner that prints exactly one native field —
 `hookSpecificOutput.additionalContext` — and never the forbidden alias
 `additional_context`; Claude Code reads both without deduplication, so emitting
 both injects the body twice ([session-start-bootstrap](standards/session-start-bootstrap.md)).
@@ -235,8 +255,8 @@ both injects the body twice ([session-start-bootstrap](standards/session-start-b
 - The `SessionStart` hook and `hookSpecificOutput.additionalContext` are the
   documented injection mechanism. **[documented]**
 - The installer's staging path `~/.claude/plugins/coacus/` is **not** an
-  official plugin location. It is a manual helper: the script places the script
-  and hook manifest where the hook's relative `bootstrap/session-start.sh` path
+  official plugin location. It is a manual helper: the installer places the JSON payload
+  and hook manifest where the hook's relative `bootstrap/session-start.json` path
   resolves, so you can test the hook without publishing a marketplace.
   **[unverified]**
 
@@ -249,7 +269,7 @@ python3 scripts/coacus_install.py claude-code
 This mirrors the skills to `~/.claude/skills/<skill>/`, the agents to
 `~/.claude/agents/<name>.md`, and stages the hook plugin at
 `~/.claude/plugins/coacus/` with `.claude-plugin/plugin.json`,
-`hooks/hooks.json` and `bootstrap/session-start.sh`. Treat that staging as a
+`hooks/hooks.json` and `bootstrap/session-start.json`. Treat that staging as a
 local helper. For a durable install across machines, publish the repository as a
 Claude Code plugin and install it through the marketplace path, which is the
 supported route. **[documented]**
@@ -258,8 +278,7 @@ supported route. **[documented]**
 
 ```bash
 python3 -c "import json; json.load(open('harnesses/claude-code/bootstrap/hooks.json'))"
-bash -n harnesses/claude-code/bootstrap/session-start.sh
-bash harnesses/claude-code/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
+python3 scripts/coacus_session_start.py harnesses/claude-code/bootstrap/session-start.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
 ```
 
 The last command must print `['additionalContext', 'hookEventName']` — one
@@ -324,14 +343,19 @@ directory.
 
 ## codex
 
-**Goal:** a `SessionStart` hook injects the bootstrap, and Codex discovers the
-Coacus skills natively.
+**Goal:** a `SessionStart` hook injects the bootstrap, while a compact native
+skill profile leaves room in the Codex startup catalog.
 
 **How it works.** Codex supports both halves of the adapter. It scans
 `.agents/skills` for skills, and its hooks framework runs a `SessionStart` hook
 that emits `hookSpecificOutput.additionalContext` — the same native key Claude
-Code uses. The adapter renders `harnesses/codex/bootstrap/session-start.sh` and
-the matching `hooks.json`.
+Code uses. The adapter renders `harnesses/codex/bootstrap/session-start.json` and
+the matching `hooks.json`. All Coacus skills remain installed under
+`$HOME/.agents/skills`; the installer adds a marked `[[skills.config]]` block
+to `~/.codex/config.toml` that disables native discovery for skills outside
+`harnesses/codex/skills-profile.json`. The Codex bootstrap points to
+`scripts/coacus_skill_search.py` so an agent can locate and read any other
+canonical skill when needed.
 
 **Vendor facts**
 
@@ -343,7 +367,14 @@ the matching `hooks.json`.
   `config.toml`, or a plugin-bundled `hooks/hooks.json`. **[documented]**
 - The Coacus skill install and hook install both complete against a temporary
   config directory. **[verified locally]**
-- `[[skills.config]]` enables skills explicitly. **[documented]**
+- `[[skills.config]]` enables or disables local skills without deleting them.
+  The official skill guide shows an absolute path to `SKILL.md`; this path form
+  produced `enabled: false` in a local `codex-cli 0.155.1` app-server probe.
+  The config reference calls it a folder path, but that form left the fixture
+  skill enabled in the same probe. **[documented + verified locally]**
+- `skills.max_context_tokens` defaults to 2% of the model context and may be
+  raised, with an explicit cap of 10,000 tokens. This is not enough to assume
+  the entire corpus will be visible. **[documented]**
 
 Codex is supported via its SessionStart hook. There is no known gap.
 
@@ -351,12 +382,22 @@ Codex is supported via its SessionStart hook. There is no known gap.
 
 ```bash
 python3 scripts/coacus_install.py codex
+python3 scripts/coacus_install.py codex --codex-skill-profile full  # opt into legacy full visibility
+python3 scripts/coacus_skill_search.py search database migration
+python3 scripts/coacus_skill_search.py show db-postgresql
 ```
+
+The compact profile is Codex-only. `--skills` still controls which files are
+copied; it does not change the native visibility profile. The installer
+preserves user-owned `config.toml` settings and MCP entries, and `--uninstall`
+removes only its marked profile block. Restart Codex after changing the
+profile. Other skills from repositories, plugins, the user or the system can
+still consume the startup catalog budget.
 
 The script installs skills to `$HOME/.agents/skills/` — the root Codex actually
 scans, beside `~/.codex/`, not inside it — and the hook to `~/.codex/hooks.json`
 with `__COACUS_ROOT__` substituted for this repository's path. The bootstrap
-script is staged at `~/.codex/coacus/session-start.sh`. An existing
+payload remains in `harnesses/codex/bootstrap/session-start.json`. An existing
 `~/.codex/hooks.json` is **merged**, not overwritten: Coacus adds its
 `SessionStart` entry and leaves every other key and event intact. `--uninstall`
 strips only that entry (the file is removed when nothing else remains).
@@ -365,8 +406,7 @@ strips only that entry (the file is removed when nothing else remains).
 
 ```bash
 python3 -c "import json; json.load(open('harnesses/codex/bootstrap/hooks.json'))"
-bash -n harnesses/codex/bootstrap/session-start.sh
-bash harnesses/codex/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
+python3 scripts/coacus_session_start.py harnesses/codex/bootstrap/session-start.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
 ```
 
 The last command must print `['additionalContext', 'hookEventName']`. No flat
@@ -381,7 +421,7 @@ Coacus skills from its scan roots.
 session. The handler is fire-and-forget and prints the snake_case top-level key
 `additional_context` — **not** `additionalContext`, and **not** a nested
 `hookSpecificOutput`. The adapter renders
-`harnesses/cursor/bootstrap/session-start.sh` and the matching `hooks.json`.
+`harnesses/cursor/bootstrap/session-start.json` and the matching `hooks.json`.
 
 **Vendor facts**
 
@@ -416,8 +456,8 @@ python3 scripts/coacus_install.py cursor
 
 The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root — the
 agents to `~/.cursor/agents/<name>.md`, and the hook to `~/.cursor/hooks.json`
-with `__COACUS_ROOT__` substituted. The bootstrap script is staged at
-`~/.cursor/coacus/session-start.sh`. An existing `~/.cursor/hooks.json` is
+with `__COACUS_ROOT__` substituted. The hook reads the generated JSON payload
+directly from this repository. An existing `~/.cursor/hooks.json` is
 merged, not overwritten; `--uninstall` strips only the Coacus entry. For a
 project install, copy the same artifacts into `<project>/.cursor/` by hand.
 
@@ -425,11 +465,10 @@ project install, copy the same artifacts into `<project>/.cursor/` by hand.
 
 ```bash
 python3 -c "import json; json.load(open('harnesses/cursor/bootstrap/hooks.json'))"
-bash -n harnesses/cursor/bootstrap/session-start.sh
-bash harnesses/cursor/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print('additional_context' in d)"
+python3 scripts/coacus_session_start.py harnesses/cursor/bootstrap/session-start.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('additional_context' in d)"
 ```
 
-The last command must print `True`. The script must not emit
+The last command must print `True`. The hook must not emit
 `additionalContext` or `hookSpecificOutput`.
 
 ## command-code
@@ -440,7 +479,7 @@ Coacus skills and agents natively, and context7 is registered.
 **How it works.** Command Code has no in-process plugin API. It runs a
 `SessionStart` hook that emits JSON and reads a single native key,
 `hookSpecificOutput.additionalContext` — the same key Claude Code and Codex use.
-The adapter renders `harnesses/command-code/bootstrap/session-start.sh` and a
+The adapter renders `harnesses/command-code/bootstrap/session-start.json` and a
 `hooks.json` **fragment**. Command Code keeps its hooks in
 `~/.commandcode/settings.json` (key `hooks`), so unlike the other hook harnesses
 this adapter **merges** its `SessionStart` entry into `settings.json` rather than
@@ -487,8 +526,8 @@ python3 scripts/coacus_install.py command-code
 
 The script mirrors the skills to `~/.agents/skills/` (a Command Code user scan
 root, shared with Codex and Cursor), writes agents to
-`~/.commandcode/agents/<name>.md` with `tools: "*"`, stages the bootstrap script
-at `~/.commandcode/coacus/session-start.sh`, **merges** the `SessionStart` entry
+`~/.commandcode/agents/<name>.md` with `tools: "*"`, uses the generated JSON
+payload in the repository, **merges** the `SessionStart` entry
 into `~/.commandcode/settings.json`, **merges** `context7` into
 `~/.commandcode/mcp.json`, and writes the Coacus user rules to
 `~/.commandcode/AGENTS.md` — only when that file does not already exist, since it
@@ -501,8 +540,7 @@ CI):
 
 ```bash
 python3 -c "import json; json.load(open('harnesses/command-code/bootstrap/hooks.json'))"
-bash -n harnesses/command-code/bootstrap/session-start.sh
-bash harnesses/command-code/bootstrap/session-start.sh | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
+python3 scripts/coacus_session_start.py harnesses/command-code/bootstrap/session-start.json | python3 -c "import json,sys; d=json.load(sys.stdin); print(sorted(d['hookSpecificOutput']))"
 ```
 
 The last command must print `['additionalContext', 'hookEventName']`. No flat
@@ -521,11 +559,11 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
 | **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
-| **claude-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
+| **claude-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
 | **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
-| **codex** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
-| **cursor** | A (shell hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
-| **command-code** | A (shell hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
+| **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
+| **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
+| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
 
 ### Verifying
 
@@ -535,14 +573,14 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 | Source and artifact contracts | `python3 scripts/coacus.py validate` |
 | Antigravity plugin | `agy plugin validate <staged-dir>` |
 | Claude Code hook parses | `python3 -c "import json; json.load(open('harnesses/claude-code/bootstrap/hooks.json'))"` |
-| Claude Code script syntax | `bash -n harnesses/claude-code/bootstrap/session-start.sh` |
+| Claude Code payload parses | `python3 -m json.tool harnesses/claude-code/bootstrap/session-start.json` |
 | Codex hook parses | `python3 -c "import json; json.load(open('harnesses/codex/bootstrap/hooks.json'))"` |
-| Codex script syntax | `bash -n harnesses/codex/bootstrap/session-start.sh` |
+| Codex payload parses | `python3 -m json.tool harnesses/codex/bootstrap/session-start.json` |
 | Cursor hook parses | `python3 -c "import json; json.load(open('harnesses/cursor/bootstrap/hooks.json'))"` |
-| Cursor emits `additional_context` | `bash harnesses/cursor/bootstrap/session-start.sh \| python3 -c "import json,sys; print('additional_context' in json.load(sys.stdin))"` |
+| Cursor emits `additional_context` | `python3 scripts/coacus_session_start.py harnesses/cursor/bootstrap/session-start.json \| python3 -c "import json,sys; print('additional_context' in json.load(sys.stdin))"` |
 | Command Code hook parses | `python3 -c "import json; json.load(open('harnesses/command-code/bootstrap/hooks.json'))"` |
-| Command Code script syntax | `bash -n harnesses/command-code/bootstrap/session-start.sh` |
-| Command Code emit key | `bash harnesses/command-code/bootstrap/session-start.sh \| python3 -c "import json,sys; print(sorted(json.load(sys.stdin)['hookSpecificOutput']))"` |
+| Command Code payload parses | `python3 -m json.tool harnesses/command-code/bootstrap/session-start.json` |
+| Command Code emit key | `python3 scripts/coacus_session_start.py harnesses/command-code/bootstrap/session-start.json \| python3 -c "import json,sys; print(sorted(json.load(sys.stdin)['hookSpecificOutput']))"` |
 
 The live test for any harness is behavioral: a fresh session with the bootstrap
 must produce a string that exists only in `using-coacus` — the red-flag thought

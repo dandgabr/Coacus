@@ -177,7 +177,7 @@ def refresh_targets(root: Path) -> list[str]:
     For an in-place entry (``source_sha256 == target_sha256``, the imported or
     authored convention where the target IS the content) the source hash is
     advanced alongside it, preserving the equality. For a transformed entry
-    (``source_sha256 != target_sha256``) only the target hash moves: the source
+    (a ``converted:``/``adapted:`` tag or unequal hashes) only the target hash moves: the source
     hash describes the upstream file, which is not verifiable from here and must
     not be fabricated.
 
@@ -200,7 +200,9 @@ def refresh_targets(root: Path) -> list[str]:
         digest = _sha256(target)
         if not recorded or recorded == digest:
             continue
-        if entry.get("source_sha256") == recorded:
+        transforms = entry.get("transform", [])
+        adapted = any(str(tag).startswith(("converted:", "adapted:")) for tag in transforms)
+        if entry.get("source_sha256") == recorded and not adapted:
             entry["source_sha256"] = digest
         entry["target_sha256"] = digest
         refreshed.append(str(target_path))

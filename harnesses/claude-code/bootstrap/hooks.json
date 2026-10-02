@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\"",
+            "command": "__COACUS_PYTHON__ \"__COACUS_ROOT__/scripts/coacus_session_start.py\" \"__COACUS_PLUGIN_ROOT__/bootstrap/session-start.json\"",
             "async": false
           }
         ]

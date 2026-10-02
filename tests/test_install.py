@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import json
 import tempfile
+import tomllib
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import coacus_install
 
@@ -36,15 +38,14 @@ def make_repo(tmp: Path) -> Path:
     for harness in ("claude-code", "codex", "cursor", "command-code"):
         base = root / f"harnesses/{harness}/bootstrap"
         base.mkdir(parents=True)
-        (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
+        (base / "session-start.json").write_text('{"hookSpecificOutput": {}}\n', encoding="utf-8")
         if harness == "cursor":
             fragment = {
                 "version": 1,
                 "hooks": {
                     "sessionStart": [
                         {
-                            "command": "__COACUS_ROOT__/harnesses/"
-                            "cursor/bootstrap/session-start.sh"
+                            "command": "__COACUS_PYTHON__ __COACUS_ROOT__/scripts/coacus_session_start.py __COACUS_ROOT__/harnesses/cursor/bootstrap/session-start.json"
                         }
                     ]
                 },
@@ -54,13 +55,16 @@ def make_repo(tmp: Path) -> Path:
                 "hooks": {
                     "SessionStart": [
                         {
-                            "command": "__COACUS_ROOT__/harnesses/"
-                            f"{harness}/bootstrap/session-start.sh"
+                            "command": "__COACUS_PYTHON__ __COACUS_ROOT__/scripts/coacus_session_start.py __COACUS_ROOT__/harnesses/"
+                            f"{harness}/bootstrap/session-start.json"
                         }
                     ]
                 }
             }
         (base / "hooks.json").write_text(json.dumps(fragment), encoding="utf-8")
+    (root / "harnesses/codex/skills-profile.json").write_text(
+        json.dumps({"visible": ["using-coacus"]}), encoding="utf-8"
+    )
     anti = root / "harnesses/antigravity/bootstrap"
     anti.mkdir(parents=True)
     (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
@@ -159,14 +163,14 @@ class TestInstaller(unittest.TestCase):
         self.assertFalse((self.config / "config/plugins.json").exists())
 
     def test_codex_installs_skills_and_hook(self) -> None:
-        for name in ("hooks.json", "session-start.sh"):
+        for name in ("hooks.json", "session-start.json"):
             target = self.root / "harnesses/codex/bootstrap" / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(
                 '{"hooks":{"SessionStart":[{"hooks":[{"command":'
-                '"bash \\"__COACUS_ROOT__/x.sh\\""}]}]}}\n'
+                '"__COACUS_PYTHON__ \\"__COACUS_ROOT__/scripts/coacus_session_start.py\\" \\"__COACUS_ROOT__/harnesses/codex/bootstrap/session-start.json\\""}]}]}}\n'
                 if name == "hooks.json"
-                else "#!/usr/bin/env bash\necho ok\n",
+                else '{"hookSpecificOutput": {}}\n',
                 encoding="utf-8",
             )
         coacus_install.install("codex", self.root, self.config, dry_run=False)
@@ -177,31 +181,127 @@ class TestInstaller(unittest.TestCase):
         self.assertNotIn("__COACUS_ROOT__", hooks)
         self.assertIn(self.root.as_posix(), hooks)
 
+    def test_codex_bootstrap_resolves_skill_search_root(self) -> None:
+        from scripts import coacus_session_start
+        from unittest.mock import patch
+        payload = self.root / "harnesses/codex/bootstrap/session-start.json"
+        payload.write_text(json.dumps({"hookSpecificOutput": {"additionalContext": "search __COACUS_ROOT__/scripts/coacus_skill_search.py"}}))
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        with patch.object(coacus_session_start, "__file__", str(self.root / "scripts/coacus_session_start.py")), redirect_stdout(StringIO()) as output:
+            self.assertEqual(coacus_session_start.main([str(payload)]), 0)
+        context = json.loads(output.getvalue())["hookSpecificOutput"]["additionalContext"]
+        self.assertIn(self.root.as_posix(), context)
+        self.assertNotIn("__COACUS_ROOT__", context)
+
+    def test_codex_compact_disables_non_profile_skills_by_manifest_path(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        config = tomllib.loads((self.config / "config.toml").read_text())
+        overrides = {item["path"]: item["enabled"] for item in config["skills"]["config"]}
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        entry = self.config.parent / ".agents/skills/using-coacus/SKILL.md"
+        self.assertEqual(overrides[hidden.as_posix()], False)
+        self.assertNotIn(entry.as_posix(), overrides)
+        self.assertEqual(result["codex_skill_profile"], "compact")
+        self.assertTrue(hidden.is_file())
+
+    def test_codex_profile_switch_preserves_unrelated_config(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        original = '[mcp_servers.example]\nurl = "https://example.test/mcp"\n\n'
+        (self.config / "config.toml").write_text(original)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        compact = (self.config / "config.toml").read_text()
+        self.assertTrue(compact.startswith(original))
+        coacus_install.install(
+            "codex", self.root, self.config, dry_run=False, codex_skill_profile="full"
+        )
+        self.assertEqual((self.config / "config.toml").read_text(), original)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual((self.config / "config.toml").read_text(), compact)
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual((self.config / "config.toml").read_text(), original)
+
+    def test_codex_respects_user_skill_override_and_reports_conflict(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        (self.config / "config.toml").write_text(user)
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+        self.assertEqual(result["codex_skill_conflicts"], [hidden.as_posix()])
+
+    def test_codex_user_disabled_override_is_not_a_conflict(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = false\n'
+        (self.config / "config.toml").write_text(user)
+        result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual(result["codex_skill_conflicts"], [])
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+
+    def test_codex_profile_works_without_python_311_tomllib(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        self.config.mkdir()
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        (self.config / "config.toml").write_text(user)
+        with patch.object(coacus_install, "tomllib", None):
+            result = coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual(result["codex_skill_conflicts"], [hidden.as_posix()])
+        self.assertEqual((self.config / "config.toml").read_text(), user)
+
+    def test_codex_preserves_user_tables_appended_after_managed_block(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        path = self.config / "config.toml"
+        tail = '[mcp_servers.later]\nurl = "https://later.test/mcp"\n'
+        path.write_text(path.read_text() + tail)
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertIn(tail, path.read_text())
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(path.read_text(), tail)
+
+    def test_codex_malformed_config_aborts_before_any_install_write(self) -> None:
+        self.config.mkdir()
+        (self.config / "config.toml").write_text("broken = [")
+        with self.assertRaisesRegex(ValueError, "Codex config"):
+            coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertFalse((self.config.parent / ".agents/skills/using-coacus/SKILL.md").exists())
+
+    def test_codex_verify_detects_profile_drift(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertTrue(coacus_install.verify("codex", self.root, self.config)["ok"])
+        path = self.config / "config.toml"
+        path.write_text(path.read_text().replace("enabled = false", "enabled = true"))
+        report = coacus_install.verify("codex", self.root, self.config)
+        self.assertFalse(report["ok"])
+        self.assertTrue(report["codex_config_drifted"])
+
     def test_claude_code_stages_hook_plugin_and_skills(self) -> None:
-        for name in ("hooks.json", "session-start.sh"):
+        for name in ("hooks.json", "session-start.json"):
             target = self.root / "harnesses/claude-code/bootstrap" / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(
                 '{"hooks":{"SessionStart":[{"hooks":[{"command":'
-                '"\\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh\\""}]}]}}\n'
+                '"__COACUS_PYTHON__ \\"__COACUS_ROOT__/scripts/coacus_session_start.py\\" \\"${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.json\\""}]}]}}\n'
                 if name == "hooks.json"
-                else "#!/usr/bin/env bash\necho ok\n",
+                else '{"hookSpecificOutput": {}}\n',
                 encoding="utf-8",
             )
         coacus_install.install("claude-code", self.root, self.config, dry_run=False)
         self.assertTrue((self.config / "skills/using-coacus/SKILL.md").is_file())
         plugin = self.config / "plugins/coacus"
         self.assertTrue((plugin / ".claude-plugin/plugin.json").is_file())
-        # the script must land where hooks.json resolves it
-        self.assertTrue((plugin / "bootstrap/session-start.sh").is_file())
+        # the payload must land where hooks.json resolves it
+        self.assertTrue((plugin / "bootstrap/session-start.json").is_file())
         command = json.loads((plugin / "hooks/hooks.json").read_text())["hooks"][
             "SessionStart"
         ][0]["hooks"][0]["command"]
-        resolved = (
-            command.replace("${CLAUDE_PLUGIN_ROOT:-.}", plugin.as_posix())
-            .strip('"')
-        )
-        self.assertTrue(Path(resolved).is_file(), resolved)
+        self.assertIn(str(plugin / "bootstrap/session-start.json"), command.replace("${CLAUDE_PLUGIN_ROOT:-.}", plugin.as_posix()))
 
     def test_skills_install_includes_references(self) -> None:
         reference = self.root / "methodology/workflows/using-coacus/references"
@@ -266,8 +366,8 @@ class TestInstaller(unittest.TestCase):
         for harness in ("codex", "cursor"):
             base = root / f"harnesses/{harness}/bootstrap"
             base.mkdir(parents=True, exist_ok=True)
-            (base / "session-start.sh").write_text("#!/bin/sh\n", encoding="utf-8")
-            command = f"__COACUS_ROOT__/harnesses/{harness}/bootstrap/session-start.sh"
+            (base / "session-start.json").write_text('{"hookSpecificOutput": {}}\n', encoding="utf-8")
+            command = f"__COACUS_PYTHON__ __COACUS_ROOT__/scripts/coacus_session_start.py __COACUS_ROOT__/harnesses/{harness}/bootstrap/session-start.json"
             event = "sessionStart" if harness == "cursor" else "SessionStart"
             (base / "hooks.json").write_text(
                 json.dumps({"hooks": {event: [{"command": command}]}}), encoding="utf-8"
@@ -675,7 +775,7 @@ class TestVerify(unittest.TestCase):
             (Path("/c/agent/backend-developer.md"), ""),
             (Path("/c/agents/toml-agent.toml"), ""),
             (Path("/c/plugins/coacus/agents/antigravity-agent/agent.md"), ""),
-            (Path("/c/plugins/coacus/governor-hook.sh"), ""),
+            (Path("/c/plugins/coacus/guardrail-hooks.json"), ""),
             (Path("/c/plugins/coacus/hooks.json"), ""),
         ]
         counts = coacus_install._component_counts(files)
@@ -814,7 +914,7 @@ class TestCommandCode(unittest.TestCase):
             any(marker in json.dumps(e) for e in settings["hooks"]["SessionStart"])
         )
         self.assertNotIn("__COACUS_ROOT__", json.dumps(settings))
-        self.assertTrue((self.config / "coacus/session-start.sh").is_file())
+        self.assertIn("coacus_session_start.py", (self.config / "settings.json").read_text())
         mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
         self.assertEqual(mcp["mcpServers"]["context7"]["url"], "https://mcp.context7.com/mcp")
 
@@ -1074,3 +1174,24 @@ class TestUninstallPrunesDirs(unittest.TestCase):
         self.assertFalse(skill_dir.exists())
         # The config root itself is preserved.
         self.assertTrue(self.config.is_dir())
+
+
+class TestInstallAndVerify(unittest.TestCase):
+    def test_install_is_performed_before_verification(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(Path(tmp))
+            target = Path(tmp) / "config"
+            with redirect_stdout(StringIO()) as output:
+                status = coacus_install.main(["opencode", "--config-dir", str(target), "--verify-after-install"], root)
+            self.assertEqual(status, 0)
+            self.assertTrue(json.loads(output.getvalue())[0]["verification"]["ok"])
+            self.assertTrue((target / coacus_install.MANIFEST_NAME).is_file())
+
+    def test_absent_harness_is_skipped_without_verifying_nonexistent_install(self) -> None:
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(Path(tmp))
+            with patch.object(coacus_install, "harness_present", return_value=False), patch.object(coacus_install, "_home", return_value=Path(tmp)/"home"), redirect_stdout(StringIO()) as output:
+                status = coacus_install.main(["claude-code", "--verify-after-install"], root)
+            self.assertEqual(status, 0)
+            self.assertTrue(json.loads(output.getvalue())[0]["skipped"])

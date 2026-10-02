@@ -53,6 +53,8 @@ build before merge does.
   `credential-assignment`) and reports them as errors during
   `python3 scripts/coacus.py validate`. The `{workspace}` token is allowed in
   import data.
+- The same validator rejects operational shell file extensions and extensionless
+  shell shebangs in framework source, including generated hook directories.
 - `engine/validators/evals.py` applies the same path and secret patterns to every
   scenario string.
 - `engine/toon.py` rejects secret-like literals in TOON payload fields.

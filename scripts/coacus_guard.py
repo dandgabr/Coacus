@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Coacus guardrail runtime: evaluate PAER policies for one lifecycle event.
 
-The generated native hooks (shape A shell scripts, shape B JS plugins) call this
+The generated native hooks (shape A Python commands, shape B JS plugins) call this
 CLI with the harness name and the bound event; the harness pipe the trigger
 payload on stdin. The CLI:
 
