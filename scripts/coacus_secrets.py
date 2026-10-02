@@ -66,7 +66,8 @@ def main(argv: list[str] | None = None) -> int:
     url = f"https://github.com/gitleaks/gitleaks/releases/download/v{VERSION}/gitleaks_{VERSION}_{system}_{arch}.{extension}"
     with tempfile.TemporaryDirectory(prefix="coacus-secrets-") as tmp:
         target = Path(tmp) / ("gitleaks.exe" if system == "windows" else "gitleaks")
-        with urllib.request.urlopen(url, timeout=60) as response:
+        # URL is the fixed HTTPS publisher release; archive integrity is pinned.
+        with urllib.request.urlopen(url, timeout=60) as response:  # nosec B310
             install_binary(response.read(), checksum, target)
         # Scan the checked-out state that squash-merge ships; redact all matches.
         return subprocess.run(

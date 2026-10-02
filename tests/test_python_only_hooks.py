@@ -82,7 +82,8 @@ class TestPythonOnlyHooks(unittest.TestCase):
             coacus_install.install("claude-code", root, config, dry_run=False)
             doc = json.loads((config / "plugins/coacus/hooks/hooks.json").read_text())
             command = doc["hooks"]["SessionStart"][0]["hooks"][0]["command"]
-            result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+            # Exercise the harness shell contract with our generated fixture command.
+            result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)  # nosec B602
             self.assertEqual(set(json.loads(result.stdout)), {"hookSpecificOutput"})
 
     def test_reinstall_retires_manifest_owned_wrappers_and_workflow_helpers(self) -> None:
