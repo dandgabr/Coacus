@@ -281,6 +281,76 @@ class TestInstaller(unittest.TestCase):
         self.assertFalse(report["ok"])
         self.assertTrue(report["codex_config_drifted"])
 
+    def test_codex_preserves_tui_tables_inside_profile_on_reinstall(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        path = self.config / "config.toml"
+        tui = '[tui]\nscreen_reader_detection_done = true\n\n[tui.model_availability_nux]\n"example-model" = 1\n\n'
+        path.write_text(path.read_text().replace(coacus_install.CODEX_PROFILE_END, tui + coacus_install.CODEX_PROFILE_END))
+        before = tomllib.loads(path.read_text())
+        self.assertTrue(coacus_install.verify("codex", self.root, self.config)["ok"])
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertEqual(tomllib.loads(path.read_text()), before)
+        self.assertTrue(coacus_install.verify("codex", self.root, self.config)["ok"])
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(tomllib.loads(path.read_text()), {"tui": before["tui"]})
+
+    def test_codex_preserves_embedded_user_tables_without_tomllib(self) -> None:
+        add_skill(self.root, "knowledge/skills/security/security-review")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        path = self.config / "config.toml"
+        hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
+        user = ('[mcp_servers.later]\nurl = "https://later.test/mcp"\nnotes = """\n'
+                f'[[skills.config]]\npath = "{hidden.as_posix()}"\nenabled = false\n'
+                '"""\n\n')
+        path.write_text(path.read_text().replace(coacus_install.CODEX_PROFILE_END, user + coacus_install.CODEX_PROFILE_END))
+        before = tomllib.loads(path.read_text())
+        with patch.object(coacus_install, "tomllib", None):
+            coacus_install.install("codex", self.root, self.config, dry_run=False)
+            self.assertEqual(tomllib.loads(path.read_text()), before)
+            coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(tomllib.loads(path.read_text()), {"mcp_servers": before["mcp_servers"]})
+
+    def test_codex_migrates_shell_hooks_from_another_root(self) -> None:
+        bootstrap = self.root / "harnesses/codex/bootstrap"
+        (bootstrap.parent / "harness.json").write_text(json.dumps({
+            "plugins": [{"kind": "guardrail"}], "lifecycle": {"supported": True}
+        }))
+        (bootstrap / "guardrail-hooks.json").write_text(json.dumps({"hooks": {"PreToolUse": [{
+            "hooks": [{"type": "command", "command": "__COACUS_PYTHON__ __COACUS_ROOT__/scripts/coacus_guard.py --harness codex --event tool.pre"}]
+        }]}}))
+        self.config.mkdir()
+        old_root = self.tmp / "old-coacus"
+        user = {"hooks": [{"type": "command", "command": "python /user/session-start.sh"}]}
+        existing = {"mySetting": 42, "hooks": {}}
+        for event, script in (("SessionStart", "session-start.sh"), ("PreToolUse", "coacus-guard.sh")):
+            command = f'bash "{old_root}/harnesses/codex/bootstrap/{script}"'
+            existing["hooks"][event] = [{"hooks": [{"type": "command", "command": command}]}, user]
+        path = self.config / "hooks.json"
+        path.write_text(json.dumps(existing))
+        for _ in range(2):
+            coacus_install.install("codex", self.root, self.config, dry_run=False)
+            installed = json.loads(path.read_text())
+            self.assertNotIn(old_root.as_posix(), json.dumps(installed))
+            self.assertEqual(installed["mySetting"], 42)
+            for event in ("SessionStart", "PreToolUse"):
+                self.assertEqual(len(installed["hooks"][event]), 2)
+                self.assertIn(user, installed["hooks"][event])
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(json.loads(path.read_text()), {"mySetting": 42, "hooks": {
+            "SessionStart": [user], "PreToolUse": [user]
+        }})
+
+    def test_codex_preserves_other_products_bootstrap_hook(self) -> None:
+        self.config.mkdir()
+        user = {"hooks": [{"type": "command", "command": "bash /other-product/harnesses/codex/bootstrap/session-start.sh"}]}
+        path = self.config / "hooks.json"
+        path.write_text(json.dumps({"hooks": {"SessionStart": [user]}}))
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        self.assertIn(user, json.loads(path.read_text())["hooks"]["SessionStart"])
+        coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(json.loads(path.read_text()), {"hooks": {"SessionStart": [user]}})
+
     def test_claude_code_stages_hook_plugin_and_skills(self) -> None:
         for name in ("hooks.json", "session-start.json"):
             target = self.root / "harnesses/claude-code/bootstrap" / name
