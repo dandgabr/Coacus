@@ -15922,7 +15922,7 @@
       "source_path": "skills/receiving-code-review/SKILL.md",
       "source_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438",
       "target_path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md",
-      "target_sha256": "fe78039e9e838f07ecb75dabfbfa134e964cf7efc3e584ea156c932d137de210",
+      "target_sha256": "bc7382c4b516ca97cffba343c1d2a29ae573b1a34f1e39fd894765536dbca96a",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15937,7 +15937,7 @@
       "source_path": "skills/requesting-code-review/SKILL.md",
       "source_sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
       "target_path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "target_sha256": "d89cdcdab4b3c814787fa89f1b262286fb3ca2f3ff8ecc2030e7efe243dd827c",
+      "target_sha256": "943f01a9df4b16a191d41f76a9c7c17bbb3cbc6ce7594d12ee63133216a2e515",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16211,7 +16211,7 @@
       "source_path": "skills/test-driven-development/SKILL.md",
       "source_sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
       "target_path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "target_sha256": "f7df0c9730417481f6b19623a41b92d253007cd1bed8b09811a91a92ce956f20",
+      "target_sha256": "8de73e9043db51b5c9eb44e813289e59a967e5554889c8aff3c1137584b522aa",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16256,7 +16256,7 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "a54b6bf9421ffd7a52190272a20fc0fb2d75198c09dfd1ec57f8ed1321d83d98",
+      "target_sha256": "5ab0f74f5181020350fc0f36735f1c6a22d72bfce054a0379d49b3ced2e26346",
       "origin_license": "MIT",
       "transform": [
         "imported",

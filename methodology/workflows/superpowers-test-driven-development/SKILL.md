@@ -242,6 +242,22 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
 | "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
 | "Existing code has no tests" | You're improving it. Add tests for existing code. |
 
+## A rejection needs a positive control
+
+An assertion that a value was **not** applied passes for the wrong reason — and keeps
+passing — when the path reverts unconditionally. Pair every one of them:
+
+- For each "it was rejected", a case where the same kind of change **must** apply,
+  silently. Otherwise a function that always refuses is indistinguishable from a
+  validator, and the suite is green the whole time.
+- **Inject where no other gate can cover for the grammar.** Feeding
+  `url(http://evil/x.png)` into `fill` proves nothing about the grammar: the contrast
+  gate rejects that value anyway, so the grammar's presence and its absence produce
+  the same observable result. Fed into `bw` — a token no measured pair touches — the
+  rejection can only be the grammar's.
+- **Assert the reason, not only the absence.** `token == "bw"` plus a message naming
+  the grammar; "a warning exists" is satisfied by any warning at all.
+
 ## Red Flags - STOP and Start Over
 
 - Code before test
