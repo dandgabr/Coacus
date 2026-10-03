@@ -32,6 +32,38 @@ python3 -m unittest discover -s tests
 no drift. CI runs `validate` → `check` → `completeness` → tests and never
 `generate`, so a drift failure means regenerate locally and commit the result.
 
+## Measure the environment before a command
+
+The gate above, and every command a skill or a workflow presents, rest on an
+environment nobody has checked. Probe it first — these are read-only, so they stay
+in the autonomous tier:
+
+```bash
+grep -E '^ID=' /etc/os-release         # the distribution, and so the package family
+rpm -q <pkg> | dpkg -s <pkg>           # is it installed
+pkg-config --modversion <module>       # is its development metadata installed
+command -v <tool> && <tool> --version  # is the tool there, and which version
+```
+
+- **Name the family, not one member.** Where a command must be given, it is given
+  per family (`dnf`, `apt`, `brew`, `winget`) with the probe that selects among
+  them — or marked as specific to one family, to be adapted.
+- **A measured value carries the machine it came from.** A version, a path or a
+  package list written into a document says that it was measured, and where. A value
+  brought from memory is marked `unverified` and never presented as current — the
+  rule `version-freshness` applies to upstream pins, extended to the machine.
+- **A runtime is not its development metadata.** `pkg-config --exists` failing while
+  the package manager reports the library installed is the signature of a missing
+  `-devel` / `-dev` package, not of a missing library. An instruction that says
+  "install the library" when the compiler wants the headers sends the agent to the
+  wrong fix.
+
+The cost of skipping this was measured: a plan repeated
+`sudo apt install libwebkit2gtk-4.1-dev …` across several turns on a **Fedora 44**
+machine — no apt, no package list, no source at all — where the runtime libraries
+were already installed and only the `-devel` halves were missing. One
+`grep /etc/os-release` would have replaced the whole detour.
+
 ## Ship through review
 
 - Branch from `main`; never commit structural change straight onto `main`.
