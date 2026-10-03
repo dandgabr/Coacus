@@ -117,6 +117,28 @@ Skip any step = lying, not verifying
 ❌ Trust agent report
 ```
 
+## A published number is a claim until code reproduces it
+
+Before declaring the work done, recompute the numbers the artifact publishes — a
+document, a README, a spec — and compare at the document's own precision.
+
+- **A tolerance wider than the document's rounding is not a check.** Comparing at two
+  decimals with `< 0.02` is 50–200× the smallest real edit: a colour drifting by one
+  channel step went unnoticed because the tolerance, not the implementation, was
+  doing the work. Use the document's precision (±0.005 at two decimals); when it
+  cannot be beaten because the document itself is rounded, say so.
+- **A test's name is not its assertion.** A test named
+  `contrast_is_computed_so_a_copied_dark_block_fails` did not test that: a light
+  palette is legible, so the copied block passed every contrast assertion, and only
+  the `assert_ne!` beside it noticed. Read the assertions, not the titles.
+- **A value brought from memory is not a measurement — including the environment.**
+  Probe it; see "Measure the environment before a command" in the process
+  conventions.
+
+Anchor at least one assertion outside the artifact's own snapshot. Forty-eight
+published ratios reproduced to ±0.005 prove the code agrees with the document, and
+not that either is right; `contrast("#000000", "#ffffff") == 21` anchors the formula.
+
 ## When To Apply
 
 **ALWAYS before:**

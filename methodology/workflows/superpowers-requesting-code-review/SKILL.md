@@ -79,6 +79,24 @@ You: [Fix progress indicators]
 [Continue to Task 3]
 ```
 
+## Two lenses, and one of them mutates
+
+Ask for review in **two independent lenses**, in parallel, with the same output
+contract (`Strengths` / `Issues` by severity with the exact input that proves each /
+`Recommendations` / a one-line verdict):
+
+- a **domain** lens — security, UX, data — asking what the surface does to the person
+  who meets it;
+- a **QA** lens that replays single-edit mutants of the implementation against the
+  assertions already written and reports which of them **fail to die**. The mutation
+  score is the finding: "6 of 12 killed" names the six weak assertions, which is more
+  actionable than "add more tests".
+
+State the contract in the prompt — read-only, no subagents, findings ordered by
+severity with the input that proves each — or the review returns adjectives. Where
+both lenses report the same defect independently, that is the strongest signal
+available; a defect only one lens reports is a judgment call.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

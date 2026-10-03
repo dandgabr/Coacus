@@ -168,6 +168,19 @@ If you pushed back and were wrong:
 
 State the correction factually and move on.
 
+## A finding is a claim
+
+A reviewer's output is evidence about the reviewer as much as about the code.
+
+- **Reproduce the finding before accepting it**, and say when it does not hold.
+- **Correct your own findings the same way.** A grep showed four `apt-get` blocks in
+  a skill and it was recorded as "a platform assumption shipped in the corpus"; the
+  surrounding code shows they sit inside a declared Ubuntu image build, where `apt`
+  is correct and a probe would be nonsense. The finding was wrong, not the code. A
+  grep is a lead, not a conclusion.
+- Keep the **"not fixed, and why"** list. An overstated close is worse than an
+  admitted gap: it removes the next reader's chance to disagree.
+
 ## Common Mistakes
 
 | Mistake | Fix |
