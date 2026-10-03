@@ -10679,7 +10679,7 @@
       "source_path": "skills/roles/devops-engineer/SKILL.md",
       "source_sha256": "c8d5ee237f3c9b6a8309ad00096dfa9cf90eff5f2a4ceb3c5acfcc6acb0b33e8",
       "target_path": "knowledge/skills/roles/devops-engineer/SKILL.md",
-      "target_sha256": "500b0a5b95f2d7eb7b8348e5dc592c0eafd5f34b702d2b1c80dfc09873437292",
+      "target_sha256": "1ab0769b307c7d6e24a6f9be57df223ec0303a8877a2eab085818d5594bf0a62",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

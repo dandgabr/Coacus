@@ -335,6 +335,8 @@ Vagrant.configure("2") do |config|
     # Bootstrap with shell provisioner
     app.vm.provision "shell", inline: <<-SHELL
       export DEBIAN_FRONTEND=noninteractive
+      # Ubuntu-family guest (the box is Ubuntu): `apt`, right here. Not
+      # copy-pasteable to another family — manager and package names both differ.
       apt-get update && apt-get install -y curl ufw git
       ufw allow 80/tcp
     SHELL
@@ -357,6 +359,8 @@ Vagrant.configure("2") do |config|
     end
 
     db.vm.provision "shell", inline: <<-SHELL
+      # Ubuntu-family guest (the box is Ubuntu): `apt`, right here. Not
+      # copy-pasteable to another family — manager and package names both differ.
       apt-get update && apt-get install -y postgresql postgresql-contrib
       systemctl enable --now postgresql
     SHELL
@@ -605,6 +609,8 @@ build {
     inline = [
       "export DEBIAN_FRONTEND=noninteractive",
       "sudo apt-get update && sudo apt-get upgrade -y",
+      # Ubuntu-family image (source.amazon-ebs.ubuntu_golden): `apt`, right here.
+      # Another family needs its own manager and its own package names.
       "sudo apt-get install -y fail2ban auditd awscli jq curl unattended-upgrades",
       "sudo systemctl enable fail2ban auditd"
     ]
