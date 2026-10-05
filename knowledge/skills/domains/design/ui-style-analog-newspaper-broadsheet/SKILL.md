@@ -5,7 +5,7 @@ description: "Provides the broadsheet newspaper and letterpress print UI style: 
 
 # UI Style: Broadsheet Newspaper & Letterpress
 
-Translates the authoritative, multi-column format of classical daily broadsheet newspapers and letterpress printing into modern digital interfaces. Characterized by strict multi-column vertical rules, ornate drop caps, headline decks, and authentic ink-on-paper textures.
+Translates the authoritative, multi-column format of classical daily broadsheet newspapers (*The New York Times*, *The Times*, *Neue Zürcher Zeitung*) and letterpress printing into modern digital interfaces. Characterized by strict multi-column vertical rules, ornate drop caps, headline decks, and authentic ink-on-paper textures. Synthesized from verified research; see Sources.
 
 ---
 
@@ -13,34 +13,49 @@ Translates the authoritative, multi-column format of classical daily broadsheet 
 
 - Longform investigative journalism, literary journals, historical archives, legal gazettes, and editorial publications.
 - Conveying timeless journalistic credibility, literary depth, and historical authenticity.
+- Presenting longform narrative prose in a layout calibrated for deep, scholarly reading.
+
+---
+
+## 🕰️ Definition and Timeline
+
+- **Origins:** Originates in 17th-century European broadsheets, formalized in the 19th-century mechanized rotary press era, and adapted to digital screens by pioneers of web typography (Khoi Vinh, *The New York Times* digital design team).
+- **Philosophy:** Typographic hierarchy as the guarantor of truth. Organizing vast volumes of complex news through disciplined vertical column rules, calibrated type scales, and authoritative serif fonts.
+- **Difference from neighbors:** Unlike [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), which is glossy, minimal, and high-fashion oriented, Broadsheet is ink-dense, multi-column, headline-deck structured, and journal-authoritative.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Palette:** Yellowed newsprint paper (`#F5F2EB`), archival printer's ink black (`#1C1B1A`), faded lead gray (`#595652`), and vintage red headline ink (`#A82C2C`).
-- **Type:** Classical editorial serif families (Playfair Display, Merriweather, Georgia, Newsreader) with dramatic drop-caps.
-- **Layout:** Strict 3 to 6-column text flows separated by 1px solid hairline rules, centered headline decks, and publication datelines.
+- **Palette:** Yellowed newsprint paper (`#F5F2EB`), archival printer's ink black (`#1C1B1A`), lead gray metadata (`#595652`), and vintage red headline deck ink (`#A82C2C`).
+- **Type:** Classical editorial serif families (Newsreader, Playfair Display, Merriweather, Georgia) with dramatic 4-line drop-caps and centered all-caps deck headers.
+- **Grid & Layout:** Strict 3 to 6-column text flows separated by 1px solid vertical hairline rules (`column-rule: 1px solid #D4CEBE`), datelines, and article index boxes.
+- **Details:** Woodblock and etching engravings, double horizontal section dividing rules (thick-over-thin), and volume numbering.
+
+---
+
+## 🖱️ Interaction and Motion
+
+- Minimal, dignified transitions: link hover triggers subtle archival red color shifts or fine underline reveals.
+- Zero decorative bouncing or parallax distractions: motion is strictly functional.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-.broadsheet-article {
-  background: #f5f2eb;
-  color: #1c1b1a;
-  font-family: 'Newsreader', serif;
-  column-count: 3;
-  column-gap: 2rem;
-  column-rule: 1px solid #d4cebe;
-}
-.drop-cap {
-  float: left;
-  font-size: 4rem;
-  line-height: 0.8;
-  padding-right: 8px;
-  font-weight: 700;
+#stage[data-style="analog-newspaper-broadsheet"] {
+  --bg: #f5f2eb;
+  --surface: #ffffff;
+  --fg: #1c1b1a;
+  --muted: #595652;
+  --accent: #a82c2c;
+  --accent-fg: #f5f2eb;
+  --border: #1c1b1a;
+  --radius: 0;
+  --font-body: 'Newsreader', 'Georgia', serif;
+  --font-display: 'Newsreader', 'Playfair Display', serif;
+  background-color: var(--bg);
 }
 ```
 
@@ -48,5 +63,26 @@ Translates the authoritative, multi-column format of classical daily broadsheet 
 
 ## ♿ Accessibility
 
-- Multi-column CSS layouts (`column-count`) must be handled carefully on mobile viewports: use CSS media queries to collapse columns to single column on viewports under 768px.
-- High contrast (> 10:1) between archival ink and newsprint background guarantees easy reading.
+- **Responsive multi-column:** Multi-column text (`column-count`) must automatically collapse into a single column on mobile screens under 768px to prevent horizontal scrolling.
+- **Optimal contrast:** Archival printer's ink on newsprint paper delivers superior contrast (> 12:1), guaranteeing effortless longform reading.
+
+---
+
+## ✅ When to Use / ❌ When to Avoid
+
+- **Use:** Investigative journalism, literary reviews, historical gazettes, legal archives, and longform essays.
+- **Avoid:** Fast-paced gaming sites, SaaS admin consoles, and colorful youth lifestyle brands.
+
+---
+
+## 📚 Sources
+
+- Allen Hutt, *The Changing Newspaper: Typographic Trends in Britain and America*, Gordon Fraser, 1973.
+- Mario Garcia, *Pure Design: 79 Simple Solutions for Magazine and Newspaper Design*, 2002.
+- Society for News Design (SND), *Annual Best of News Design*, 2020–2023.
+
+---
+
+## 🔗 Integration with Other Skills
+
+- Sibling editorial styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-anti-hero-typography](../ui-style-anti-hero-typography/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
