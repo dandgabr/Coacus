@@ -89,3 +89,4 @@ Ambient multi-color backgrounds — large soft color fields blending like light 
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md).
+- Related -punk styles: [ui-style-lunarpunk](../ui-style-lunarpunk/SKILL.md).

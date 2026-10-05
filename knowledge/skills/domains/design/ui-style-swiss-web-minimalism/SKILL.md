@@ -80,3 +80,4 @@ The International Typographic Style translated to the web: mathematical grids, n
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-expressive-variable-typography](../ui-style-expressive-variable-typography/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+- Newer sibling styles: [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-de-stijl](../ui-style-de-stijl/SKILL.md).

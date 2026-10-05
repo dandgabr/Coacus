@@ -75,3 +75,4 @@ Small, single-purpose feedback moments around one user action — the style defi
 
 - Sibling styles: [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md).
 - For interaction fundamentals, see [ui-ux-principles](../../../engineering/practices/ui-ux-principles/SKILL.md).
+- Newer sibling styles: [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md).

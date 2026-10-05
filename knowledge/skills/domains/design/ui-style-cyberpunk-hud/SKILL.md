@@ -88,3 +88,5 @@ Web adaptation of cinematic FUI ("fantasy user interfaces"): near-black canvases
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md).
+- Newer sibling styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md).
+- Related -punk styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).

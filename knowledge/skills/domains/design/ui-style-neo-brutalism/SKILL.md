@@ -76,6 +76,11 @@ Graphic bluntness as a UI system: high contrast, blocky layouts, thick borders a
 - **Caution:** e-commerce (brand pages yes, checkout no), editorial mastheads, dashboards (token accents only).
 - **Avoid:** banking, healthcare, government — trust plus mandatory accessibility.
 
+
+### Sticker-block variant
+
+- Cream backgrounds, pastel blocks, thick borders and hard offset shadows with sticker or emoji accents; a softened neo-brutalist dialect common in creator and SaaS landing pages. Keep borders at 3:1 non-text contrast and shadows clear of focus rings.
+
 ---
 
 ## ⚠️ Pitfalls
@@ -100,3 +105,4 @@ Graphic bluntness as a UI system: high contrast, blocky layouts, thick borders a
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - Sibling styles: [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
+- Newer sibling styles: [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md).

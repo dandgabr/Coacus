@@ -81,3 +81,4 @@ UI retaining ornamental cues from real-world objects — leather-stitched calend
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).
+- Related -punk styles: [ui-style-steampunk](../ui-style-steampunk/SKILL.md).

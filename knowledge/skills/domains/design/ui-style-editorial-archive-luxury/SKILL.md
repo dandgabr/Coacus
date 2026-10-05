@@ -80,3 +80,5 @@ Fashion-magazine aesthetics on the web: serif display type, muted neutrals, asym
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
+- Newer sibling styles: [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-art-deco](../ui-style-art-deco/SKILL.md).
+- Related -punk styles: [ui-style-gothicpunk](../ui-style-gothicpunk/SKILL.md).

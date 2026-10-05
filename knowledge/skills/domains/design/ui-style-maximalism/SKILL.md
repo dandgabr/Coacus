@@ -57,6 +57,11 @@ description: "Provides the maximalism web design style (2019-present): deliberat
 - **Use:** youth lifestyle/fashion, entertainment, festivals, food & beverage, creator brands — where joy and identity signal is the conversion mechanism.
 - **Avoid:** fintech, healthcare, enterprise dashboards, government, text-heavy reference products.
 
+
+### Dopamine design (variant)
+
+- Dopamine design is a 2023-2025 trend label for saturated, joyful palettes and playful shapes; it is maximalism's color-forward subset rather than a separate style. Keep contrast pairs at WCAG AA and cap simultaneous accent colors. Source: Figma, web design trends resource — https://www.figma.com/resource-library/web-design-trends/ (`unverified`: trend-report claim).
+
 ---
 
 ## ⚠️ Pitfalls
@@ -79,3 +84,4 @@ description: "Provides the maximalism web design style (2019-present): deliberat
 
 - Sibling styles: [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
 - For contrast discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
+- Newer sibling styles: [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-memphis](../ui-style-memphis/SKILL.md).

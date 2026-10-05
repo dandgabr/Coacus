@@ -79,3 +79,4 @@ Minimalist flat-color UI — simple elements, strong typography, no gloss or 3D 
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-metro-modern-ui](../ui-style-metro-modern-ui/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
+- Newer sibling styles: [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md), [ui-style-mid-century-modern](../ui-style-mid-century-modern/SKILL.md).

@@ -1,8 +1,8 @@
 {
   "name": "ui-ux-designer",
-  "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
+  "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
   "dist": "knowledge/agents/software-engineering/ui-ux-designer/dist",
-  "fingerprint": "17c6e87fce63404f"
+  "fingerprint": "2c88432d6587a075"
 }

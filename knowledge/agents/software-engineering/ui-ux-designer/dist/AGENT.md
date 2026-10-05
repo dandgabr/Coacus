@@ -1,6 +1,6 @@
 # Generic example via a CLI harness:
 
-Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
+Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
 
 ## Skills
 
@@ -47,12 +47,44 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 - [ui-style-swiss-web-minimalism](../../../../skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
 - [ui-style-web-brutalism](../../../../skills/domains/design/ui-style-web-brutalism/SKILL.md)
 - [ui-style-y2k-revival](../../../../skills/domains/design/ui-style-y2k-revival/SKILL.md)
+- [ui-style-art-deco](../../../../skills/domains/design/ui-style-art-deco/SKILL.md)
+- [ui-style-art-nouveau-arts-crafts](../../../../skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md)
+- [ui-style-bauhaus](../../../../skills/domains/design/ui-style-bauhaus/SKILL.md)
+- [ui-style-broken-grid](../../../../skills/domains/design/ui-style-broken-grid/SKILL.md)
+- [ui-style-calm-quiet-ui](../../../../skills/domains/design/ui-style-calm-quiet-ui/SKILL.md)
+- [ui-style-collage-scrapbook](../../../../skills/domains/design/ui-style-collage-scrapbook/SKILL.md)
+- [ui-style-de-stijl](../../../../skills/domains/design/ui-style-de-stijl/SKILL.md)
+- [ui-style-glitch](../../../../skills/domains/design/ui-style-glitch/SKILL.md)
+- [ui-style-grain-noise-texture](../../../../skills/domains/design/ui-style-grain-noise-texture/SKILL.md)
+- [ui-style-hand-drawn-sketch](../../../../skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md)
+- [ui-style-indie-web-revival](../../../../skills/domains/design/ui-style-indie-web-revival/SKILL.md)
+- [ui-style-isometric](../../../../skills/domains/design/ui-style-isometric/SKILL.md)
+- [ui-style-linear-saas](../../../../skills/domains/design/ui-style-linear-saas/SKILL.md)
+- [ui-style-memphis](../../../../skills/domains/design/ui-style-memphis/SKILL.md)
+- [ui-style-mid-century-modern](../../../../skills/domains/design/ui-style-mid-century-modern/SKILL.md)
+- [ui-style-retro-computing-pixel](../../../../skills/domains/design/ui-style-retro-computing-pixel/SKILL.md)
+- [ui-style-retro-futurism-atompunk](../../../../skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md)
+- [ui-style-risograph-zine](../../../../skills/domains/design/ui-style-risograph-zine/SKILL.md)
+- [ui-style-tactile-brutalism](../../../../skills/domains/design/ui-style-tactile-brutalism/SKILL.md)
+- [ui-style-terminal-tui](../../../../skills/domains/design/ui-style-terminal-tui/SKILL.md)
+- [ui-style-vaporwave-synthwave](../../../../skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md)
+- [ui-style-atompunk](../../../../skills/domains/design/ui-style-atompunk/SKILL.md)
+- [ui-style-biopunk](../../../../skills/domains/design/ui-style-biopunk/SKILL.md)
+- [ui-style-clockpunk](../../../../skills/domains/design/ui-style-clockpunk/SKILL.md)
+- [ui-style-cyberpunk](../../../../skills/domains/design/ui-style-cyberpunk/SKILL.md)
+- [ui-style-dieselpunk](../../../../skills/domains/design/ui-style-dieselpunk/SKILL.md)
+- [ui-style-gothicpunk](../../../../skills/domains/design/ui-style-gothicpunk/SKILL.md)
+- [ui-style-lunarpunk](../../../../skills/domains/design/ui-style-lunarpunk/SKILL.md)
+- [ui-style-nanopunk](../../../../skills/domains/design/ui-style-nanopunk/SKILL.md)
+- [ui-style-sandalpunk](../../../../skills/domains/design/ui-style-sandalpunk/SKILL.md)
+- [ui-style-solarpunk](../../../../skills/domains/design/ui-style-solarpunk/SKILL.md)
+- [ui-style-steampunk](../../../../skills/domains/design/ui-style-steampunk/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
 
-Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
+Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
 
 ---
 
@@ -106,6 +138,38 @@ This agent operates using the guidelines and technical standards established in 
 - [swiss-web-minimalism](../../../../skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
 - [web-brutalism](../../../../skills/domains/design/ui-style-web-brutalism/SKILL.md)
 - [y2k-revival](../../../../skills/domains/design/ui-style-y2k-revival/SKILL.md)
+- [art-deco](../../../../skills/domains/design/ui-style-art-deco/SKILL.md)
+- [art-nouveau-arts-crafts](../../../../skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md)
+- [bauhaus](../../../../skills/domains/design/ui-style-bauhaus/SKILL.md)
+- [broken-grid](../../../../skills/domains/design/ui-style-broken-grid/SKILL.md)
+- [calm-quiet-ui](../../../../skills/domains/design/ui-style-calm-quiet-ui/SKILL.md)
+- [collage-scrapbook](../../../../skills/domains/design/ui-style-collage-scrapbook/SKILL.md)
+- [de-stijl](../../../../skills/domains/design/ui-style-de-stijl/SKILL.md)
+- [glitch](../../../../skills/domains/design/ui-style-glitch/SKILL.md)
+- [grain-noise-texture](../../../../skills/domains/design/ui-style-grain-noise-texture/SKILL.md)
+- [hand-drawn-sketch](../../../../skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md)
+- [indie-web-revival](../../../../skills/domains/design/ui-style-indie-web-revival/SKILL.md)
+- [isometric](../../../../skills/domains/design/ui-style-isometric/SKILL.md)
+- [linear-saas](../../../../skills/domains/design/ui-style-linear-saas/SKILL.md)
+- [memphis](../../../../skills/domains/design/ui-style-memphis/SKILL.md)
+- [mid-century-modern](../../../../skills/domains/design/ui-style-mid-century-modern/SKILL.md)
+- [retro-computing-pixel](../../../../skills/domains/design/ui-style-retro-computing-pixel/SKILL.md)
+- [retro-futurism-atompunk](../../../../skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md)
+- [risograph-zine](../../../../skills/domains/design/ui-style-risograph-zine/SKILL.md)
+- [tactile-brutalism](../../../../skills/domains/design/ui-style-tactile-brutalism/SKILL.md)
+- [terminal-tui](../../../../skills/domains/design/ui-style-terminal-tui/SKILL.md)
+- [vaporwave-synthwave](../../../../skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md)
+- [atompunk](../../../../skills/domains/design/ui-style-atompunk/SKILL.md)
+- [biopunk](../../../../skills/domains/design/ui-style-biopunk/SKILL.md)
+- [clockpunk](../../../../skills/domains/design/ui-style-clockpunk/SKILL.md)
+- [cyberpunk](../../../../skills/domains/design/ui-style-cyberpunk/SKILL.md)
+- [dieselpunk](../../../../skills/domains/design/ui-style-dieselpunk/SKILL.md)
+- [gothicpunk](../../../../skills/domains/design/ui-style-gothicpunk/SKILL.md)
+- [lunarpunk](../../../../skills/domains/design/ui-style-lunarpunk/SKILL.md)
+- [nanopunk](../../../../skills/domains/design/ui-style-nanopunk/SKILL.md)
+- [sandalpunk](../../../../skills/domains/design/ui-style-sandalpunk/SKILL.md)
+- [solarpunk](../../../../skills/domains/design/ui-style-solarpunk/SKILL.md)
+- [steampunk](../../../../skills/domains/design/ui-style-steampunk/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [product-owner](../../../../skills/roles/product-owner/SKILL.md)

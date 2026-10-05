@@ -90,3 +90,5 @@ Dark-native interface design — products designed dark from the start rather th
 
 - Sibling styles: [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md).
 - For theming tokens, see [frontend-developer](../../../roles/frontend-developer/SKILL.md).
+- Newer sibling styles: [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md), [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md).
+- Related -punk styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-lunarpunk](../ui-style-lunarpunk/SKILL.md).

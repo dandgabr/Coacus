@@ -1,6 +1,6 @@
-# 📚 Canonical Encyclopedia of the 24 Page Design Styles
+# 📚 Canonical Encyclopedia of the Core Page Design Styles
 
-This document is the complete canonical reference for the art direction, history, formal attributes, design tokens, and practical applications of the 24 page design styles.
+This document is the complete canonical reference for the art direction, history, formal attributes, design tokens, and practical applications of the core page design styles.
 
 ---
 
@@ -253,3 +253,50 @@ This document is the complete canonical reference for the art direction, history
   - Deformed, liquefied (*liquid chrome*), stretched typography.
   - Chaotic digital collages in overlapping layers with no containment in boxes.
   - A mix of medieval Gothic fonts (Blackletter) with mono fonts and esoteric symbols.
+
+---
+
+## 🧩 Family 5: Extended Styles
+
+Each style below has a dedicated deep-dive skill in the design style library.
+
+- **Terminal TUI** — Monospace grids, box-drawing frames, phosphor palettes, keyboard-first use. See [ui-style-terminal-tui](../../../domains/design/ui-style-terminal-tui/SKILL.md).
+- **Tactile Brutalism** — Hairline borders and engineered precision for B2B and DevTools. See [ui-style-tactile-brutalism](../../../domains/design/ui-style-tactile-brutalism/SKILL.md).
+- **Retro Computing / Pixel** — 8/16-bit pixel art, bitmap fonts, limited palettes, dithering. See [ui-style-retro-computing-pixel](../../../domains/design/ui-style-retro-computing-pixel/SKILL.md).
+- **Linear-style SaaS** — Dark-first panels, low-alpha 1px borders, radial glows. See [ui-style-linear-saas](../../../domains/design/ui-style-linear-saas/SKILL.md).
+- **Glitch** — Signal-corruption effects with layered offsets and clip-path slices. See [ui-style-glitch](../../../domains/design/ui-style-glitch/SKILL.md).
+- **Grain and Noise Texture** — SVG noise layers that warm flat color and dither gradient banding. See [ui-style-grain-noise-texture](../../../domains/design/ui-style-grain-noise-texture/SKILL.md).
+- **Broken Grid** — Deliberate overlap and offset on a CSS Grid with a sane reading order. See [ui-style-broken-grid](../../../domains/design/ui-style-broken-grid/SKILL.md).
+- **Hand-Drawn Sketch** — Wobbly outlines, scribbled underlines and handwriting type. See [ui-style-hand-drawn-sketch](../../../domains/design/ui-style-hand-drawn-sketch/SKILL.md).
+- **Collage and Scrapbook** — Layered cutouts, tape, torn edges and stickers. See [ui-style-collage-scrapbook](../../../domains/design/ui-style-collage-scrapbook/SKILL.md).
+- **Risograph and Zine** — Spot-color overprint, misregistration and halftone. See [ui-style-risograph-zine](../../../domains/design/ui-style-risograph-zine/SKILL.md).
+- **Vaporwave and Synthwave** — Nostalgic neon horizons and pastel retro-internet imagery. See [ui-style-vaporwave-synthwave](../../../domains/design/ui-style-vaporwave-synthwave/SKILL.md).
+- **Calm / Quiet UI** — Reduced stimulation, soft contrast and explanatory motion. See [ui-style-calm-quiet-ui](../../../domains/design/ui-style-calm-quiet-ui/SKILL.md).
+- **Bauhaus** — Primary colors and geometric primitives, function first. See [ui-style-bauhaus](../../../domains/design/ui-style-bauhaus/SKILL.md).
+- **De Stijl** — Primaries, black grid lines and asymmetric balance. See [ui-style-de-stijl](../../../domains/design/ui-style-de-stijl/SKILL.md).
+- **Art Deco** — Symmetry, metallic accents and sunburst motifs. See [ui-style-art-deco](../../../domains/design/ui-style-art-deco/SKILL.md).
+- **Art Nouveau and Arts & Crafts** — Whiplash curves, organic ornament and craft heritage. See [ui-style-art-nouveau-arts-crafts](../../../domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md).
+- **Memphis** — Confetti patterns, squiggles and clashing color. See [ui-style-memphis](../../../domains/design/ui-style-memphis/SKILL.md).
+- **Retro-Futurism / Atompunk** — Googie starbursts and Space Age optimism. See [ui-style-retro-futurism-atompunk](../../../domains/design/ui-style-retro-futurism-atompunk/SKILL.md).
+- **Indie Web Revival** — Neocities-era personal sites, webrings and system fonts. See [ui-style-indie-web-revival](../../../domains/design/ui-style-indie-web-revival/SKILL.md).
+- **Mid-Century Modern** — Flat geometry in atomic orange, turquoise and olive. See [ui-style-mid-century-modern](../../../domains/design/ui-style-mid-century-modern/SKILL.md).
+- **Isometric** — Axonometric UI and illustration with parallel lines. See [ui-style-isometric](../../../domains/design/ui-style-isometric/SKILL.md).
+
+Glass-material evolutions (Liquid Glass, visionOS) are covered inside [ui-style-glassmorphism](../../../domains/design/ui-style-glassmorphism/SKILL.md); dopamine design inside [ui-style-maximalism](../../../domains/design/ui-style-maximalism/SKILL.md).
+
+### The -punk Family
+
+Speculative-fiction aesthetics translated into UI and UX patterns:
+
+- **Steampunk** — Victorian brass, gears and craft ornament as UI metaphor. See [ui-style-steampunk](../../../domains/design/ui-style-steampunk/SKILL.md).
+- **Clockpunk** — Renaissance clockwork, parchment and da Vincian mechanics. See [ui-style-clockpunk](../../../domains/design/ui-style-clockpunk/SKILL.md).
+- **Dieselpunk** — Interwar and WWII industrial design, Art Deco and Streamline variants. See [ui-style-dieselpunk](../../../domains/design/ui-style-dieselpunk/SKILL.md).
+- **Atompunk** — 1945-1969 Atomic and Space Age optimism. See [ui-style-atompunk](../../../domains/design/ui-style-atompunk/SKILL.md).
+- **Sandalpunk** — Bronze and Iron Age empires with advanced technology. See [ui-style-sandalpunk](../../../domains/design/ui-style-sandalpunk/SKILL.md).
+- **Gothicpunk** — Dark urban gothic with supernatural undertones. See [ui-style-gothicpunk](../../../domains/design/ui-style-gothicpunk/SKILL.md).
+- **Solarpunk** — Optimistic, sustainable, community-driven futures. See [ui-style-solarpunk](../../../domains/design/ui-style-solarpunk/SKILL.md).
+- **Lunarpunk** — Nocturnal, privacy-minded counterpart to solarpunk. See [ui-style-lunarpunk](../../../domains/design/ui-style-lunarpunk/SKILL.md).
+- **Biopunk** — Biotechnology, DIY biology and open science. See [ui-style-biopunk](../../../domains/design/ui-style-biopunk/SKILL.md).
+- **Cyberpunk** — Neon-noir dystopian street-level technology. See [ui-style-cyberpunk](../../../domains/design/ui-style-cyberpunk/SKILL.md).
+- **Nanopunk** — Nanotechnology futures with no single canonical look. See [ui-style-nanopunk](../../../domains/design/ui-style-nanopunk/SKILL.md).
+

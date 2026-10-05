@@ -42,7 +42,7 @@ instruction: >
   - [color ui systems](knowledge/skills/domains/design/color-ui-systems/SKILL.md)
   - [color data visualization](knowledge/skills/domains/design/color-data-visualization/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
-  - [design style library](knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md) — 30 `ui-style-*` deep dives
+  - [design style library](knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md) — one `ui-style-*` deep dive per style
 
   ---
 

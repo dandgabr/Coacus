@@ -202,10 +202,31 @@
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-art-deco"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-atompunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-bento-grid"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-biopunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-broken-grid"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-card-based-ui"
@@ -214,10 +235,25 @@
       "path": "knowledge/skills/domains/design/ui-style-claymorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-clockpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-cyberpunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-cyberpunk-hud"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-dark-mode-first"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-de-stijl"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dieselpunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury"
@@ -235,10 +271,34 @@
       "path": "knowledge/skills/domains/design/ui-style-glassmorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-glitch"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-gothicpunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-gradient-duotone"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-indie-web-revival"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-isometric"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-kinetic-typography"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-linear-saas"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-lunarpunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-material-you"
@@ -247,10 +307,19 @@
       "path": "knowledge/skills/domains/design/ui-style-maximalism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-memphis"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-micro-interactions"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-mid-century-modern"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-nanopunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-neo-brutalism"
@@ -268,13 +337,40 @@
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing-pixel"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-retro-futurism-atompunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-risograph-zine"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-sandalpunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-scrollytelling"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-skeuomorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-solarpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-steampunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-tactile-brutalism"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-terminal-tui"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave-synthwave"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-web-brutalism"

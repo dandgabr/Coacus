@@ -50,6 +50,38 @@ skills:
   - knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md
+  - knowledge/skills/domains/design/ui-style-art-deco/SKILL.md
+  - knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md
+  - knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md
+  - knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md
+  - knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md
+  - knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md
+  - knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md
+  - knowledge/skills/domains/design/ui-style-glitch/SKILL.md
+  - knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md
+  - knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md
+  - knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md
+  - knowledge/skills/domains/design/ui-style-isometric/SKILL.md
+  - knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md
+  - knowledge/skills/domains/design/ui-style-memphis/SKILL.md
+  - knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md
+  - knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
+  - knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md
+  - knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md
+  - knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md
+  - knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-atompunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-biopunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-steampunk/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
 ---
 
@@ -108,6 +140,38 @@ This agent operates using the guidelines and technical standards established in 
 - [swiss-web-minimalism](knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
 - [web-brutalism](knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md)
 - [y2k-revival](knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md)
+- [art-deco](knowledge/skills/domains/design/ui-style-art-deco/SKILL.md)
+- [art-nouveau-arts-crafts](knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md)
+- [bauhaus](knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md)
+- [broken-grid](knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md)
+- [calm-quiet-ui](knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md)
+- [collage-scrapbook](knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md)
+- [de-stijl](knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md)
+- [glitch](knowledge/skills/domains/design/ui-style-glitch/SKILL.md)
+- [grain-noise-texture](knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md)
+- [hand-drawn-sketch](knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md)
+- [indie-web-revival](knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md)
+- [isometric](knowledge/skills/domains/design/ui-style-isometric/SKILL.md)
+- [linear-saas](knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md)
+- [memphis](knowledge/skills/domains/design/ui-style-memphis/SKILL.md)
+- [mid-century-modern](knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md)
+- [retro-computing-pixel](knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md)
+- [retro-futurism-atompunk](knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md)
+- [risograph-zine](knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md)
+- [tactile-brutalism](knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md)
+- [terminal-tui](knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md)
+- [vaporwave-synthwave](knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md)
+- [atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)
+- [biopunk](knowledge/skills/domains/design/ui-style-biopunk/SKILL.md)
+- [clockpunk](knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md)
+- [cyberpunk](knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md)
+- [dieselpunk](knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md)
+- [gothicpunk](knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md)
+- [lunarpunk](knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md)
+- [nanopunk](knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md)
+- [sandalpunk](knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md)
+- [solarpunk](knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md)
+- [steampunk](knowledge/skills/domains/design/ui-style-steampunk/SKILL.md)
 - [framework-react](knowledge/skills/frameworks/framework-react/SKILL.md)
 - [framework-vue](knowledge/skills/frameworks/framework-vue/SKILL.md)
 - [lang-typescript](knowledge/skills/languages/lang-typescript/SKILL.md)

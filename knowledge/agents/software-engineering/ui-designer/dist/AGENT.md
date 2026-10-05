@@ -61,7 +61,7 @@ This agent operates using the guidelines and technical standards established in 
 - [color ui systems](../../../../skills/domains/design/color-ui-systems/SKILL.md)
 - [color data visualization](../../../../skills/domains/design/color-data-visualization/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
-- [design style library](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md) — 30 `ui-style-*` deep dives
+- [design style library](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md) — one `ui-style-*` deep dive per style
 
 ---
 
