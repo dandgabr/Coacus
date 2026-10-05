@@ -24,7 +24,7 @@ Technology and style of roughly 1918-1950s, pushed further: diesel engines, zepp
 - **Decopunk variant:** a sleek, shiny subset on Art Deco and Streamline Moderne, "shinier than dieselpunk" with chrome and curves (Wikipedia, "-punk"; the Dieselpunk page also names Decopunk/Coalpunk, 1920s-1950s). Streamline Moderne, 1930s-1940s, adds curves, long horizontal lines, porthole windows and chrome (Wikipedia, "Streamline Moderne").
 - **Oilpunk variant:** worlds powered by oil and combustion, theorized by Thorsten Botz-Bornstein on his Kuwait Oilpunk website (Wikipedia, "-punk"; the site itself was not checked, so details are `unverified`). Treat it as a petro-cultural lens: oil slicks, desert and Gulf modernity, pipelines.
 - **Ethos:** "punk" as grit and defiance against a glossy official future, or as nostalgia for confident machine-age modernism.
-- **Versus neighbors:** [ui-style-art-deco](../ui-style-art-deco/SKILL.md) is the clean decorative style alone; dieselpunk adds grease, noir and militarized machinery. [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md) covers 1945-1965 Space Age optimism; dieselpunk precedes it and is grittier. [ui-style-atompunk](../ui-style-atompunk/SKILL.md) is its successor era.
+- **Versus neighbors:** [ui-style-art-deco](../ui-style-art-deco/SKILL.md) is the clean decorative style alone; dieselpunk adds grease, noir and militarized machinery. [ui-style-atompunk](../ui-style-atompunk/SKILL.md) covers 1945-1965 Space Age optimism; dieselpunk precedes it and is grittier. [ui-style-atompunk](../ui-style-atompunk/SKILL.md) is its successor era.
 
 ---
 
@@ -118,4 +118,4 @@ body { background: var(--oil); color: var(--paper); font-family: "Oswald", sans-
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-art-deco](../ui-style-art-deco/SKILL.md), [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md).
+- Neighbors: [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-art-deco](../ui-style-art-deco/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md).

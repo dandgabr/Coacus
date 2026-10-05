@@ -22,7 +22,7 @@ A darker, introspective branch of solarpunk: sustainable, green futures seen at 
 - Wikipedia: "a subgenre of solarpunk with a darker aesthetic" leaning toward fantasy, with night settings (often bioluminescence and purple), spirituality or the occult, green cities, sustainable technologies and a more introspective side of solarpunk utopias.
 - Chronology: the earliest dated source read is a March 3, 2022 community article presenting lunarpunk as solarpunk's nocturnal counterpart; the term's coinage date and originator are `unverified` (the page does not state them).
 - Two strands: (1) the aesthetic/fiction strand above (night, cycles, mystery); (2) a crypto-privacy strand, descended from cypherpunk, centered on encryption, opacity and zero-knowledge proofs against surveillance. State which strand a project follows.
-- Versus [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md): same ecological optimism, inverted light. Versus [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) and [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md): lunarpunk is not neon-noir dystopia; its darkness is restful and communal. Versus [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md): that skill is a theming system; this adds genre iconography and ethos.
+- Versus [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md): same ecological optimism, inverted light. Versus [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) and [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md): lunarpunk is not neon-noir dystopia; its darkness is restful and communal. Versus [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md): that skill is a theming system; this adds genre iconography and ethos.
 
 ---
 

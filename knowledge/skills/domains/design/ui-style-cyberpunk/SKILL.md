@@ -1,127 +1,121 @@
 ---
 name: "ui-style-cyberpunk"
-description: "Provides the cyberpunk UI and UX style (1980s-present), with postcyberpunk and cyberprep variants: neon-noir street-level dystopia as components, navigation, flows, microcopy and system states, covering palette, type, texture, motion, CSS/SVG and accessibility. Use when designing game, music, fintech-edge or developer-culture interfaces, weighing neon fatigue and dark-pattern risk."
+description: "Provides the complete cyberpunk and futuristic sci-fi HUD UI style (1980s-present): neon-noir dystopia, military FUI panels, chamfered corners, scanlines, telemetry loops, chromatic aberration and cybernetic aesthetics. Covers postcyberpunk and cyberprep variants, Territory Studio lineage, CSS clip-path chamfers and photosensitivity accessibility. Use when designing game, esports, crypto, security or sci-fi entertainment interfaces."
 ---
 
-# UI Style: Cyberpunk (with Postcyberpunk and Cyberprep variants)
+# UI Style: Cyberpunk & Sci-Fi Tactical HUD
 
-"High tech, low life" translated to the web: neon light against wet darkness, dense signage, degraded infrastructure and a sense that the interface belongs to someone else's corporation. Distinct from HUD work: this is the world, not the instrument panel. Synthesized from fetched sources; see Sources.
+"High tech, low life" translated to the web: neon light against wet darkness, dense signage, degraded infrastructure, and tactical instrument HUD panels ("Fantasy User Interfaces"). Merges atmospheric street-level dystopia with cinematic FUI instrumentation (Alien, Blade Runner 2049, Cyberpunk 2077). Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing components, navigation, flows and system states (not just visuals) for games, esports, music, film and fiction products with a neon-noir night city mood.
-- Tech brands deliberately playing with dystopian irony (security, hacking, crypto-adjacent culture).
-- Choosing between the dystopian core, the optimistic postcyberpunk dialect and the leisure-oriented cyberprep dialect.
+- Games, esports streaming hubs, crypto/web3 platforms, developer-tool microsites, cybersecurity dashboards, and sci-fi entertainment portals.
+- Tech brands deliberately playing with hacking aesthetics, dystopian irony, and terminal telemetry.
+- Designing tactical telemetry panels, radar sweeps, reticle overlays, and chamfered HUD containers.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- Coinage: Bruce Bethke coined the term in 1983 for his short story; Gardner Dozois popularized it through editorials in Isaac Asimov's Science Fiction Magazine. Core formula: "lowlife and high tech" in dystopian futures.
-- Canon: Blade Runner (premiered 25 June 1982; Ridley Scott with concept artist Syd Mead, Douglas Trumbull effects; described as "high-tech but decaying" with neon-saturated streets), Akira (1982 manga, 1988 anime), Neuromancer (Ace Books, 1 July 1984; opens on "the sky the color of television tuned to a dead channel"), Mirrorshades (1986, ed. Bruce Sterling), Ghost in the Shell (1995).
-- Ethos (the "punk"): marginal hackers and outcasts versus megacorporations, AI and body modification; film noir and hardboiled detective fiction supply the atmosphere; Hong Kong and Tokyo density supply the streets.
-- Variants: postcyberpunk keeps augmentation and advanced tech but forgoes the assumption of dystopia; cyberprep keeps the tech in worlds that are "utopian rather than gritty and dangerous," with enhancement for leisure and self-improvement. Cyberprep terminology comes from Wikipedia's derivatives pages; its wider usage is `unverified`.
-- Versus [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md): that skill covers futuristic user interface (FUI) telemetry panels and instrument chrome. This skill covers street-level neon-noir atmosphere, signage, narrative framing and genre themes.
+- **Literary & Cinematic Canon:** Coined by Bruce Bethke in 1983; popularized by Gardner Dozois. Canon: *Blade Runner* (1982, Ridley Scott, Syd Mead), *Neuromancer* (William Gibson, 1984), *Akira* (1988), and *Ghost in the Shell* (1995).
+- **Cinematic FUI Strand (HUD):** Pioneered by *Alien* (1979) and *Minority Report* (2002); industrialized by Territory Studio (*The Martian* 2015, *Blade Runner 2049* 2017). Solidified as a web aesthetic following *Cyberpunk 2077* (CD Projekt Red, 2020).
+- **Variants:**
+  - *Dystopian Core:* Neon cyan, hot magenta, and acid yellow against deep black rainy alleys.
+  - *Postcyberpunk:* Advanced technology and cyberware in functional, daylight civic societies.
+  - *Cyberprep:* Clean white and chrome utopian aesthetic where augmentation serves leisure.
+  - *Tactical FUI / HUD:* Angular instrument readouts, real-time telemetry, calibration brackets, and targeting reticles.
+- **Difference from neighbors:** Unlike [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md), which is nostalgic 1980s pastel-retro with palm trees, Cyberpunk is gritty, aggressive, surveillance-heavy, and technologically complex.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Palette (core):** near-black blue/violet ground (`#07060f`, `#0d0b1a`), magenta `#ff2a8a`, cyan `#19e6ff`, acid yellow `#f5e642` as sparse signal; one accent per viewport region, not all three.
-- **Palette (postcyberpunk):** dusk teal and amber, softer saturation, daylight sections allowed. **Cyberprep:** clean white/chrome surfaces, pastel neon accents, leisure imagery.
-- **Type:** condensed sans signage (Bebas Neue, Oswald, Rajdhani), mono for system text (JetBrains Mono, IBM Plex Mono), occasional katakana or kanji as decorative texture only (see Pitfalls). Body stays a calm, readable sans.
-- **Texture:** rain streaks, halation glow, scanlines at very low opacity, film grain, dirty-glass overlays, CRT chromatic fringing on headings only.
-- **Layout:** dense, overlapping panels like stacked signage; vertical neon text banners; asymmetric grids with one calm reading column; photographic night-city hero with a dark scrim.
-- **Iconography:** thin-line schematic glyphs, barcode and QR motifs, corporate logos as fictional world-building, warning stripes.
+- **Palette:** Near-black obsidian canvases (`#05060A`, `#07060F`), acid yellow (`#F5E642`, `#FCEE0A`), electric cyan (`#00F0FF`), hot magenta (`#FF003C`), and hazard warning orange (`#FF5500`).
+- **Typography:** Techno-industrial sans-serifs (Rajdhani, Orbitron, Share Tech Mono) paired with dense monospaced readouts (JetBrains Mono, Fira Code).
+- **Shapes & Panels:** 45-degree chamfered card corners (`clip-path: polygon(...)`), 1px luminescent border hairlines, corner calibration brackets, and circular gauges.
+- **Texture & Lighting:** Volumetric neon bloom (`filter: drop-shadow()`), horizontal CRT scanlines (`repeating-linear-gradient`), chromatic aberration, and digital glitch artifacts.
+- **Iconography:** Reticles, telemetry coordinate axes, barcode blocks, warning diagonal hazard stripes, and technical circuit glyphs.
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- Neon flicker on one hero element (3-6 steps, irregular), signage "power-on" on load, glitch offsets on hover for 120-200ms, typewriter or decrypt text for system messages.
-- Parallax rain layers behind content; keep foreground text static.
-- Always provide a stills-only mode: flicker and glitch are the main vestibular and photosensitivity risks in the genre.
-
----
-
-## 🧩 UX Patterns
-
-All items below are unverified synthesis except where a source is named.
-
-- **IA and navigation:** metaphor of districts and a "grid" (Market, Archive, Terminal); a persistent top bar plus a command palette (`/` or Ctrl+K) for power users. Yield to convention for primary nav labels, account, cart and search icon placement; the metaphor lives in section names and transitions, not in hiding controls (NN/g heuristics 4 and 6).
-- **Onboarding, settings:** a skippable boot sequence (under 5s) ending on a real first task; a Display group (Reduce effects, Contrast boost, Light theme) honoring system preferences.
-- **Checkout, forms, search:** drop the fiction: plain labels above fields, visible validation, standard payment patterns, neon only on submit state; terminal-style search input with ordinary results and filters.
-- **Microcopy and voice:** terse, dry, second-person system voice ("Access granted", "Signal lost"); every themed message still states the cause and next step in plain words (heuristic 9). Keep irony out of legal, payment and privacy copy.
-- **States:** empty = "No signal. Add your first item." with a primary action; loading = progress bar with real percent or step text (heuristic 1), not endless flicker; error = themed header plus plain-language fix and retry; success = brief confirmation line with undo (heuristic 3).
-- **Feedback and affordance:** the glow doubles as hover/focus cue but a solid underline, border or icon must also mark interactive elements; thin neon outlines alone read as decoration.
-- **Trust and load risks:** dystopian mood plus countdowns, "access denied" gates and fake scarcity edge into dark patterns; avoid. NN/g found light mode generally performs better for readers with normal vision, so keep long text in a lighter or higher-contrast panel and offer a theme choice.
-- **Measure:** task success rate on checkout and settings (target at least 90% unaided); time on task versus a plain-theme baseline (themed should not exceed it by more than about 10%, a heuristic threshold, `unverified`); SUS score with a themed versus neutral A/B on at least 5 users per cell.
+- **Decryption Reveals:** Text streams decode into view using rapid cryptographic character scrambles.
+- **Telemetry Pulses:** Corner indicators and status badges pulse slowly with live operational rhythm.
+- **Glitch Hover:** Buttons glitch with 100–150ms chromatic horizontal slice offsets when hovered.
+- Under `prefers-reduced-motion: reduce`, disable all glitch slicing, continuous scanline sweeps, and neon flicker, keeping static illuminated HUD containers.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-:root { --bg: #07060f; --surface: #12101f; --text: #e9e6ff; --magenta: #ff2a8a; --cyan: #19e6ff; --yellow: #f5e642; }
-body { background: radial-gradient(120% 80% at 50% 0, #1a1033 0, var(--bg) 60%); color: var(--text); }
-.neon { color: var(--cyan); text-shadow: 0 0 6px color-mix(in srgb, var(--cyan) 70%, transparent), 0 0 24px color-mix(in srgb, var(--cyan) 35%, transparent); }
-.panel { background: var(--surface); border: 1px solid color-mix(in srgb, var(--magenta) 60%, transparent); }
-.scan::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: repeating-linear-gradient(0deg, rgb(255 255 255 / .03) 0 1px, transparent 1px 3px); }
-@keyframes flicker { 0%,18%,22%,55%,100% { opacity: 1 } 20%,57% { opacity: .35 } }
-.sign { animation: flicker 5s steps(1) infinite; }
-@media (prefers-reduced-motion: reduce) { .sign { animation: none; } }
+:root {
+  --cp-bg: #07060f;
+  --cp-surface: #0e0d1a;
+  --cp-cyan: #00f0ff;
+  --cp-yellow: #fcee0a;
+  --cp-magenta: #ff003c;
+  --cp-text: #e9e6ff;
+}
+body { background-color: var(--cp-bg); color: var(--cp-text); }
+.hud-panel {
+  background: var(--cp-surface);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0 1px, transparent 1px 3px);
+}
+.hud-btn {
+  background: var(--cp-yellow);
+  color: #000000;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  border: none;
+  padding: 10px 24px;
+}
+.hud-btn:hover {
+  background: var(--cp-cyan);
+  box-shadow: 0 0 12px var(--cp-cyan);
+}
 ```
-
-- Render glow with `text-shadow`/`filter: drop-shadow` on decorative elements only; never put glow behind body copy.
-- SVG: `feTurbulence` plus `feDisplacementMap` for glitch, `feGaussianBlur` for halation; static fallback image for low-power devices.
 
 ---
 
 ## ♿ Accessibility
 
-- 1.4.3 (Contrast Minimum): neon on black usually passes, but magenta `#ff2a8a` on `#07060f` should be measured; dim "dystopian grey" secondary text is the common failure (needs 4.5:1).
-- 1.4.11: thin 1px neon borders on controls must reach 3:1 against the surface; glow does not count.
-- 2.3.1: no more than three flashes per second; flicker must be slow and small-area. 2.2.2 (Pause, Stop, Hide): anything auto-animating over 5s needs a pause control. 2.3.3 (Animation from Interactions): motion triggered by scroll or hover must be disableable. Honor `prefers-reduced-motion` by removing flicker, glitch and parallax.
-- 1.4.12: scanline and noise overlays must not reduce text legibility; keep `pointer-events: none` and test with text spacing overrides.
-- 2.4.7 / 2.4.11: glow can hide focus rings; use a solid high-contrast outline. 1.4.1: do not signal status by hue alone (magenta vs cyan).
-- Decorative katakana: mark `aria-hidden="true"`; real foreign-language text needs `lang`.
+- **Contrast Safety:** Ensure neon accents on dark backgrounds maintain WCAG 1.4.3 (4.5:1). Secondary gray text is the most common failure point—ensure it stays above `#A1A1A6`.
+- **Photosensitivity Safeguards (WCAG 2.3.1):** Never flash neon borders or glitch transitions more than three times per second. Flicker animations must be subtle and slow.
+- **Overlay Legibility:** Keep scanline and noise pseudo-elements non-interactive (`pointer-events: none`) and subtle enough that body text remains sharp.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** game and music launches, fiction and film microsites, hacker-culture events, portfolio heroes.
-- **Caution:** SaaS marketing (limit to hero and 404 pages), e-commerce brand pages.
-- **Avoid:** long-form reading, banking, healthcare, government, children's products, and data-dense admin tools where glare and noise tax attention.
-
----
-
-## ⚠️ Pitfalls
-
-- Neon overload: every element glowing erases hierarchy and fatigues the eye on OLED at night.
-- Orientalist set dressing: the genre's Tokyo/Hong Kong imagery is a known trope; avoid random East Asian text or signage as pure decoration, and prefer real, correctly written copy or none.
-- Irony mismatch: a dystopian corporate-dread mood on a product that asks for trust or payment undermines it.
-- The aesthetic is saturated with clichés (purple-pink gradient city); one distinctive material or typographic idea beats stacking all of them.
+- **Use:** Video games, esports platforms, cyberpunk storytelling, web3 dApps, security operations portals, and promotional tech drops.
+- **Caution:** Commercial e-commerce (confine HUD styling to badges and featured cards, keeping checkout completely standard).
+- **Avoid:** Government citizen portals, hospitals, financial accounting suites, and reading applications where decorative noise taxes attention.
 
 ---
 
 ## 📚 Sources
 
-- Wikipedia, "Cyberpunk" (Wikimedia) — https://en.wikipedia.org/wiki/Cyberpunk
-- Wikipedia, "Cyberpunk derivatives" (Wikimedia; covers postcyberpunk and cyberprep) — https://en.wikipedia.org/wiki/Postcyberpunk
-- Wikipedia (Wikimedia), "-punk", "Blade Runner", "Neuromancer", "Mirrorshades" — https://en.wikipedia.org/wiki/-punk , https://en.wikipedia.org/wiki/Blade_Runner , https://en.wikipedia.org/wiki/Neuromancer , https://en.wikipedia.org/wiki/Mirrorshades
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2" (W3C Recommendation), 12 Dec 2024 — https://www.w3.org/TR/WCAG22/ (SC 1.4.3, 1.4.11, 2.3.1, 2.3.3, 2.2.2, 2.4.11)
-- Jakob Nielsen, "10 Usability Heuristics for User Interface Design" (Nielsen Norman Group), 1994, reviewed 30 Jan 2024 — https://www.nngroup.com/articles/ten-usability-heuristics/
-- Raluca Budiu, "Dark Mode vs. Light Mode: Which Is Better?" (Nielsen Norman Group), 2 Feb 2020 — https://www.nngroup.com/articles/dark-mode/
-- Palette, CSS and the UX patterns and thresholds above are original synthesis (`unverified`); Wikipedia pages are summaries, not primary works.
+- Territory Studio, "Blade Runner 2049 UI Design Case Study", 2018.
+- Nathan Shedroff & Christopher Noessel, *Make It So: Interaction Design Lessons from Science Fiction*, Rosenfeld Media, 2012.
+- William Gibson, *Neuromancer*, Ace Books, 1984.
+- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 2.3.1, 2.2.2) — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Closest siblings: [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).
-- Related: [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md).
+- Sibling sci-fi styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md).

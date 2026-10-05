@@ -27,7 +27,7 @@ skills:
   - knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md
   - knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md
   - knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md
-  - knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md
+  - knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md
   - knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md
   - knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md
@@ -42,10 +42,9 @@ skills:
   - knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md
   - knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md
-  - knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md
+  - knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md
   - knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md
   - knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md
-  - knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md
   - knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md
   - knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md
@@ -66,15 +65,13 @@ skills:
   - knowledge/skills/domains/design/ui-style-memphis/SKILL.md
   - knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md
   - knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
-  - knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-atompunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md
-  - knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md
+  - knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md
   - knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md
   - knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md
-  - knowledge/skills/domains/design/ui-style-atompunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-biopunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md
-  - knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md
@@ -117,7 +114,7 @@ This agent operates using the guidelines and technical standards established in 
 - [bento-grid](knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md)
 - [card-based-ui](knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md)
 - [claymorphism](knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md)
-- [cyberpunk-hud](knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md)
+- [cyberpunk-hud](knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md)
 - [dark-mode-first](knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md)
 - [editorial-archive-luxury](knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md)
 - [expressive-variable-typography](knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md)
@@ -132,7 +129,7 @@ This agent operates using the guidelines and technical standards established in 
 - [micro-interactions](knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md)
 - [neo-brutalism](knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md)
 - [neumorphism](knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md)
-- [one-page-long-scroll](knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md)
+- [one-page-long-scroll](knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md)
 - [organic-biophilic](knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md)
 - [parallax-scrolling](knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md)
 - [scrollytelling](knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md)
@@ -156,9 +153,9 @@ This agent operates using the guidelines and technical standards established in 
 - [memphis](knowledge/skills/domains/design/ui-style-memphis/SKILL.md)
 - [mid-century-modern](knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md)
 - [retro-computing-pixel](knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md)
-- [retro-futurism-atompunk](knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md)
+- [retro-futurism-atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)
 - [risograph-zine](knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md)
-- [tactile-brutalism](knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md)
+- [tactile-brutalism](knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md)
 - [terminal-tui](knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md)
 - [vaporwave-synthwave](knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md)
 - [atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)

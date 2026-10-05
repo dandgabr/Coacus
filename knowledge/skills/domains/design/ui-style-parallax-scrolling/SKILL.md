@@ -79,4 +79,4 @@ Background layers move slower than foreground, creating 2.5D depth purely throug
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-one-page-long-scroll](../ui-style-one-page-long-scroll/SKILL.md).
+- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).

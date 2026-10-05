@@ -21,7 +21,7 @@ One family, two palettes. Vaporwave is the ironic, pastel, 1990s-corporate-inter
 
 - **Vaporwave:** an internet microgenre of the early 2010s, an ironic offshoot of chillwave; blueprint works are Daniel Lopatin's *Chuck Person's Eccojams Vol. 1* (2010), James Ferraro's *Far Side Virtual* (2011) and Macintosh Plus's *Floral Shoppe* (2011). Visuals mix 1990s web design, glitch art, anime, Greco-Roman busts, Memphis shapes and early 3D renders.
 - **Synthwave:** emerged in the mid-to-late 2000s, fed by *Grand Theft Auto: Vice City* (2002) nostalgia, *Blade Runner* (1982), Carpenter, Vangelis and Jarre scores; *Drive* (2011, Kavinsky's "Nightcall") brought it mainstream. Two visual strands: retrowave (80s album covers) and outrun (after Sega's 1986 *Out Run*).
-- **Difference from neighbors:** [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md) recreates optimistic 2000s product gloss; [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md) is dystopian and data-dense. Vaporwave/synthwave is nostalgic and scenic: horizons, suns, grids, statues, not instrument panels.
+- **Difference from neighbors:** [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md) recreates optimistic 2000s product gloss; [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) is dystopian and data-dense. Vaporwave/synthwave is nostalgic and scenic: horizons, suns, grids, statues, not instrument panels.
 
 ---
 
@@ -108,5 +108,5 @@ body { background: linear-gradient(#140a2e 55%, #3a0d5c); color: var(--ink); }
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md).
+- Sibling styles: [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md).
 - Related -punk styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).

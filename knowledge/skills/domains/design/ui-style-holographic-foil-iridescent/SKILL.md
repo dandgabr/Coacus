@@ -86,4 +86,4 @@ Recreates the shimmering optical effect of security holograms, trading card foil
 
 ## 🔗 Integration with Other Skills
 
-- Sibling material styles: [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-spatial-vision-os](../ui-style-spatial-vision-os/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md).
+- Sibling material styles: [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md).

@@ -21,7 +21,7 @@ A retrofuture subgenre capturing the aesthetic of late 1970s through early 1980s
 
 - **Era:** Late 1970s to mid-1980s (roughly 1977 to 1986). The transition period from discrete electronics and analog magnetic tape to the first generation of microcomputers.
 - **Key aesthetic landmarks:** Ron Cobb's industrial Ron Cobb Semiotic Standard design for *Alien* (1979); Syd Mead's vehicle and console designs for *Blade Runner* (1982); the microchip boom (Commodore PET, Apple II, IBM 5150).
-- **Difference from neighbors:** Unlike [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), which is neon-slick, ultra-dense, and holographic, Cassette Futurism is chunky, beige, analog, and mechanical. Unlike [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), which is pure flat text, Cassette Futurism emphasizes the physical industrial enclosure around the screen.
+- **Difference from neighbors:** Unlike [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), which is neon-slick, ultra-dense, and holographic, Cassette Futurism is chunky, beige, analog, and mechanical. Unlike [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), which is pure flat text, Cassette Futurism emphasizes the physical industrial enclosure around the screen.
 
 ---
 

@@ -1,87 +1,106 @@
 ---
 name: "ui-style-expressive-variable-typography"
-description: "Provides the expressive variable typography / big-type minimalism style (2016-present): one variable font file used aggressively with optical sizing, weight/width animation and fluid clamp() scales, covering the OpenType 1.8 origin, axis rules, instancing/subsetting, reflow-safe animation and contrast traps. Use when building type-led design systems or animating variable-font axes."
+description: "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites."
 ---
 
-# UI Style: Expressive Variable Typography / Big-Type Minimalism
+# UI Style: Expressive Variable Typography & Monumental Anti-Hero
 
-One font file, continuous axes — used aggressively: giant optical-sized display cuts, weight/width animation, fluid `clamp()` scales on vast whitespace. Origin: OpenType Font Variations in OpenType 1.8 (announced September 14, 2016 by Microsoft, Apple, Adobe and Google; evolution of 1990s TrueType GX). Merged with Swiss-revival big-type minimalism from 2018. Synthesized from verified research; see Sources.
+A radical celebration of typographic supremacy: one variable font file operating across continuous axes, blown up to monumental, colossal proportions (`clamp(3.5rem, 10vw, 8rem)`). Implements the "anti-hero" philosophy: completely eliminating decorative 3D renders, stock photos, and meaningless illustrations, allowing razor-sharp letterforms to act as monumental architectural sculptures. Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Building type-led design systems with one-file variable families.
-- Animating variable axes safely (which axes avoid reflow).
-- Setting fluid type scales with `clamp()`.
+- Architectural archives, independent type foundries, high-end design agencies, fashion lookbooks, and luxury literary journals.
+- Designing statement websites that refuse to look like generic SaaS templates.
+- Building type-led design systems that extract a complete voice spectrum from a single variable font family.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- OpenType 1.8 (Sept 14, 2016) — four-vendor consortium; browser support consolidated 2017–2018 (Safari 11, Chrome 62+, Firefox 62); Google Fonts went variable-first ~2019; Utopia.fyi's `clamp()` calculator (~2020) completed the fluid toolkit. Canonical faces: Fraunces (Undercase Type, 2020), Inter (Rasmus Andersson), Roboto Flex (2022).
+- **OpenType 1.8 Foundation:** Announced on September 14, 2016 by Adobe, Apple, Google, and Microsoft. Allowed a single font file to interpolate continuously across weight, width, optical size, and slant.
+- **The "Anti-Hero" Editorial Turn:** Evolved in the late 2010s and early 2020s (Koto, Dinamo, Klim, Pentagram). Reacted against generic SaaS heroes cluttered with cartoon 3D illustrations. Premise: when typography is masterful, the letterforms themselves command complete visual authority.
+- **Difference from neighbors:** Unlike [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), which keeps type polite, neutral, and bounded, Expressive Variable Typography scales headlines to edge-to-edge monumental scale (`font-size: 8vw+`). Unlike [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), which focuses on motion and loops, this style focuses on static architectural gravity and pristine glyph proportions.
 
 ---
 
 ## 🎨 Visual DNA
 
-- Monochrome palettes; huge `opsz` display cuts with tight tracking; body text at optical-size-compensated readability; weight ramps (300→900) as hierarchy instead of separate families; grid discipline and vast whitespace; occasional axis-as-decoration (animated grade/width on hover).
+- **Typography Scale:** Colossal display scales (`font-size: clamp(3.5rem, 9vw, 8.5rem)`), ultra-tight leading (`0.85` to `0.92`), and negative tracking (`-0.03em` to `-0.05em`).
+- **Color Palette:** Restrained and academic: warm charcoal ink (`#141414`), plaster white (`#FBFBF9`), stone gray, with singular editorial ink accents (terracotta `#C8643B`, cobalt `#0D47A1`, or vermilion `#D92525`).
+- **Layout & Structure:** Edge-to-edge word lockups, staggered baselines, generous negative breathing space, and architectural grid alignment.
+- **Borders & Framing:** 1px hairline dividers, precise technical column marks, and zero drop shadows.
+- **Zero Image Distraction:** Complete absence of stock photography or decorative illustrations; glyphs are the heroes.
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- Hover: `wght`/`wdth` interpolation 200–400 ms; scroll-linked grade/weight morphs — the **grade axis is reflow-free** (MDN: GRAD doesn't change layout, making it safe to animate); `opsz` auto-follows font-size; variable-weight "breathing" marquee headlines; axis-morph as the page-load identity moment.
+- **Axis Hover Interpolation:** Hovering a headline gently shifts optical size or weight (`font-variation-settings: "wght" 700 -> 900` over 300ms ease-out).
+- **Reflow-Safe Animation:** The `GRAD` (grade) axis shifts text density on hover without changing physical character widths, preventing layout shift.
+- **Kinetic Baseline Drift:** Subtle baseline or tracking expansion on scroll or focus.
+- Under `prefers-reduced-motion: reduce`, disable all dynamic axis morphs, maintaining static architectural letterforms.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-@font-face {
-  font-family: "Fraunces";
-  src: url("fraunces.woff2") format("woff2");
-  font-weight: 125 950;
-  font-stretch: 75% 125%;
+:root {
+  --anti-bg: #fbfbf9;
+  --anti-fg: #141414;
+  --anti-border: #141414;
 }
-h1 { font-optical-sizing: auto; font-weight: 640; }
+body { background: var(--anti-bg); color: var(--anti-fg); }
+.anti-hero-title {
+  font-family: 'Fraunces', 'Inter', sans-serif;
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-optical-sizing: auto;
+  margin: 0;
+}
+.variable-interactive {
+  transition: font-weight 0.25s ease-out;
+}
+.variable-interactive:hover {
+  font-weight: 950;
+}
 ```
 
-- Prefer high-level properties (`font-weight`, `font-stretch`, `font-optical-sizing: auto`) over `font-variation-settings`, which is lower-level and must redeclare all axes (MDN rule).
-- Feature-scope with `@supports (font-variation-settings: "wdth" 115)`; instance/subset with `fonttools varLib.instancer`; inspect axes at wakamaifondue.com; catalog at v-fonts.com; `font-synthesis: none` stops faux-bold.
+- Always prefer high-level CSS properties (`font-weight`, `font-stretch`, `font-optical-sizing`) over raw `font-variation-settings`, which overrides other axes unless all are redeclared.
+- Utilize fluid typography with `clamp()` to guarantee headlines scale fluidly across mobile and desktop without viewport overflow.
 
 ---
 
-## ♿ Accessibility and Performance
+## ♿ Accessibility
 
-- One variable file ≈ the size of 2–4 static weights but replaces a whole family — measure, and instance away unused axes (each active axis costs rendering); `font-display` strategy keeps CLS < 0.1; axis changes trigger glyph re-rasterization — cheaper than layout but not free at 60 fps; `opsz: auto` is a legibility *win* for small text.
-- The minimalism trap: low-contrast gray body text fails WCAG 4.5:1.
+- **Semantic Hierarchy:** Regardless of visual font size, maintain strict semantic HTML `<h1>` through `<h6>` heading order.
+- **Contrast Integrity:** Reject low-contrast gray body text. Ensure primary text on plaster white maintains at least 12:1 contrast ratio.
+- **Zoom & Reflow:** Verify that monumental text scales properly up to 200% zoom (WCAG 1.4.4 and 1.4.10) without clipping words horizontally.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** brand sites, editorial, portfolios, design systems wanting one-file families with many voices.
-- **Avoid:** dense app UIs with tiny glyphs and strict latency budgets; exotic static cuts not on the axes; strict font-licensing contexts.
-
----
-
-## ⚠️ Pitfalls
-
-- "Helvetica 900 everywhere" homogenization; over-animating multiple axes (jank + motion sickness); using `font-variation-settings` for registered axes breaks font matching; unsubset character sets; gray-on-white contrast regressions.
+- **Use:** Architectural studios, independent type foundries, art gallery monographs, fashion editorials, and design agency manifestos.
+- **Avoid:** Feature-dense web software dashboards, data tables, and high-frequency transaction checkout funnels.
 
 ---
 
 ## 📚 Sources
 
-- Peter Constable, "OpenType Font Variations overview", Microsoft Typography — https://learn.microsoft.com/en-us/typography/opentype/spec/otvaroverview
-- MDN, "Variable fonts guide" — https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide
-- Google Fonts Knowledge, "Introducing variable fonts" — https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts
+- Peter Constable, "OpenType Font Variations Overview", Microsoft Typography, 2016.
+- Robert Bringhurst, *The Elements of Typographic Style*, Hartley & Marks, 1992/2012.
+- Klim Type Foundry, *On Type Design and Scale*, 2021.
 - Wakamai Fondue, Roel Nieskens / Pixelambacht — https://wakamaifondue.com/
-- V-Fonts.com catalog, Nick Sherman — https://v-fonts.com/
+- W3C, *Web Content Accessibility Guidelines 2.2* — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+- Sibling typography styles: [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).

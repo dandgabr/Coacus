@@ -107,5 +107,5 @@ h1 { font-family: "Poiret One", serif; letter-spacing: .18em; text-transform: up
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-art-nouveau-arts-crafts](../ui-style-art-nouveau-arts-crafts/SKILL.md), [ui-style-mid-century-modern](../ui-style-mid-century-modern/SKILL.md), [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md).
+- Sibling styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-art-nouveau-arts-crafts](../ui-style-art-nouveau-arts-crafts/SKILL.md), [ui-style-mid-century-modern](../ui-style-mid-century-modern/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md).
 - Related -punk styles: [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md).

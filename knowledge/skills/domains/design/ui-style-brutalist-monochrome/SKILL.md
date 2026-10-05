@@ -1,89 +1,86 @@
 ---
 name: "ui-style-brutalist-monochrome"
-description: "Provides the pure monochrome brutalism UI style: strict black-and-white palette (zero gray), architectural typography hierarchy, razor-sharp hairline borders, high-density structural grids and uncompromising structural clarity. Use when building severe editorial, architectural or minimalist tech interfaces."
+description: "Provides the pure monochrome and tactile brutalism UI style: strict black-and-white binary palette, architectural typography, razor-sharp hairline borders, exposed structural grids, mono metadata and engineered precision. Covers New Brutalism lineage, Geist Design System hairline token grammar, keyboard-first feedback and WCAG AAA contrast. Use when building severe editorial, developer tools or engineered B2B platforms."
 ---
 
-# UI Style: Brutalist Monochrome
+# UI Style: Brutalist Monochrome & Tactile Brutalism
 
-A disciplined distillation of architectural brutalism and Swiss typography into a zero-gray visual system. Strictly black (`#000000`) and white (`#FFFFFF`), relying purely on scale contrast, hairline rule weight, and spatial tension for information hierarchy. Synthesized from verified research; see Sources.
+A rigorous fusion of architectural brutalism, Swiss typographic discipline, and engineered minimalism: a zero-gray binary contrast system combined with razor-sharp hairline borders and exposed structural scaffolding. Honest structure shown with mathematical precision. Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Architectural archives, luxury fashion indices, intellectual publications, photography portfolios, and software tools emphasizing raw clarity.
-- When colors are deliberately removed to focus 100% of user attention on structure, craftsmanship, and typographical nuance.
-- Crafting austere, no-nonsense developer tools or high-end design agency portfolios.
+- High-end architectural archives, photography portfolios, developer platforms, and infrastructure monitoring tools.
+- Building B2B SaaS, developer APIs, and data products that demand an instrument-panel feel without neo-brutalist cartoonishness.
+- Systems where borders and structural grids—rather than drop shadows or background blurs—establish hierarchy.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
 - **Lineage:** Derives from architectural New Brutalism (Reyner Banham, 1955; Alison and Peter Smithson), post-punk zine aesthetics (1977–1982), and the radical 1-bit Macintosh UI (Susan Kare, 1984).
-- **Web evolution:** Emerged as a reaction against pastel SaaS templates and decorative micro-gradients in the mid-2010s, codified by brutalist design archives (Pascal Deville, 2014) and contemporary editorial powerhouses (Balenciaga web direction, Söhne type showcases).
-- **Difference from neighbors:** Unlike [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), which uses thick cartoon shadows and saturated yellows and pinks, Brutalist Monochrome strictly bans decorative color. Unlike [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), which uses generous breathing margins and functional red accents, Brutalist Monochrome operates with structural density, full-bleed border grids, and uncompromising black-white polarity.
+- **Engineered Minimalism / Tactile Strand:** Refined by modern developer platforms (Vercel's Geist Design System, Linear, Stripe Press). Emphasizes hairline rules (`1px` or `0.5px` on Retina), mono labels, corner ticks, and snap-quick feedback.
+- **Difference from neighbors:** Unlike [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), which uses 3px black borders, hard drop shadows, and bright pop colors, Brutalist Monochrome strictly rejects decorative color and thick shadows. Unlike [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), it explicitly displays its structural scaffolding (indices, hairline rules, crosshairs) as primary ornamentation.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Palette:** Strictly binary: pure `#000000` and pure `#FFFFFF`. No grays, no tinting, no ambient blur, and no alpha transparencies.
-- **Type:** High-precision neo-grotesque sans-serif (Inter, Univers, Helvetica Neue, Söhne) paired with stark monospaced indices (Space Mono, JetBrains Mono). Massive typographic scale contrasts (e.g. 72px headlines against 11px uppercase labels).
-- **Borders & Dividers:** 1px or 2px solid hairline black/white borders, full-width grid dividing lines, and zero border-radius (`border-radius: 0px`).
-- **Imagery:** Inverted monochromatic bitmap images, 1-bit dithered portraits, high-contrast black-and-white documentary photography, and sharp geometric vector glyphs.
-- **Depth:** Zero drop shadows or elevation blur. Depth is represented purely by inverse video hover states (black-on-white flipping to white-on-black).
+- **Palette:** Strictly binary or high-contrast stepped monochrome: pitch black (`#000000`, `#080A0A`) and pure white (`#FFFFFF`, `#FAFAF9`), with occasional hairline zinc lines (`#C9C8C4`). Zero decorative pastel hues.
+- **Typography:** High-precision grotesques (Inter, Geist Sans, Univers, Söhne) paired with stark monospaced metadata and captions (Geist Mono, Space Mono, JetBrains Mono).
+- **Structure & Borders:** 1px hairline borders, exposed grid columns, dashed rules, corner ticks (`+`), and section coordinates (`01 / OVERVIEW`).
+- **Shapes:** Sharp corners (`border-radius: 0px` to `2px`).
+- **Depth:** Zero drop shadows or blurred elevations. Depth is communicated strictly via inverted states (black-on-white flipping to white-on-black) and stepped surface luminance.
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- Instantaneous color inversion: hovering a card or button inverts the foreground and background instantly (`0.05s` or immediate transition).
-- Rigid geometry: zero easing curves, zero playful bouncing, zero skeletal shimmering loaders. Loading states use classic ASCII spinners or solid black progress fills.
-- Cursor: custom crosshair or inverted block cursor reinforcing technical precision.
+- **Instant Inversion:** Hovering buttons or cards inverts foreground and background instantaneously (80–120ms or immediate transition).
+- **Snap Feedback:** Zero playful spring or wobble; state feedback is mechanical and immediate.
+- **Keyboard Affordance:** Keyboard shortcuts displayed inline as mono badges (`[⌘K]`, `[Tab]`).
+- Under `prefers-reduced-motion: reduce`, ensure instantaneous transitions with zero layout shift.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-#stage[data-style="brutalist-monochrome"] {
-  --bg: #000000;
-  --surface: #000000;
-  --surface-2: #111111;
-  --fg: #ffffff;
-  --muted: #cccccc;
-  --accent: #ffffff;
-  --accent-fg: #000000;
-  --border: #ffffff;
-  --radius: 0px;
-  --shadow: none;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-display: 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  background-color: #000000;
-  color: #ffffff;
+:root {
+  --mono-bg: #000000;
+  --mono-surface: #000000;
+  --mono-fg: #ffffff;
+  --mono-border: #ffffff;
+  --mono-line: rgba(255, 255, 255, 0.2);
+  --mono-font: 'Inter', system-ui, sans-serif;
+  --mono-code: 'Space Mono', monospace;
 }
-
-#stage[data-style="brutalist-monochrome"] .card {
-  background: #000000;
-  border: 1px solid #ffffff;
+body { background: var(--mono-bg); color: var(--mono-fg); font-family: var(--mono-font); }
+.mono-card {
+  background: var(--mono-surface);
+  border: 1px solid var(--mono-border);
   border-radius: 0;
-  box-shadow: none;
+  padding: 1.5rem;
 }
-
-#stage[data-style="brutalist-monochrome"] .btn-primary {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 0;
+.mono-btn {
+  background: var(--mono-fg);
+  color: var(--mono-bg);
+  border: 1px solid var(--mono-border);
+  font-family: var(--mono-code);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
+  cursor: pointer;
 }
-
-#stage[data-style="brutalist-monochrome"] .btn-primary:hover {
-  background: #000000;
-  color: #ffffff;
+.mono-btn:hover {
+  background: var(--mono-bg);
+  color: var(--mono-fg);
+}
+.mono-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
 }
 ```
 
@@ -91,38 +88,29 @@ A disciplined distillation of architectural brutalism and Swiss typography into 
 
 ## ♿ Accessibility
 
-- **Optimal contrast:** Pure black-on-white provides the maximum possible contrast ratio (21:1), easily satisfying WCAG AAA standards.
-- **Focus visibility:** Focus rings must use double outlines (e.g. 2px white ring followed by 2px black offset) to remain visible against both dark and light inverted surfaces.
-- **Information density:** Ensure line-height (`1.5`) and paragraph spacing prevent dense blocks of monospaced text from causing reading fatigue.
+- **Optimal Contrast Ratio:** Pure black on white achieves the maximum contrast ratio (21:1), easily exceeding WCAG AAA standards.
+- **Hairline Control Contrast (WCAG 1.4.11):** While decorative guidelines may be subtle, interactive form fields and button borders must maintain at least 3:1 contrast against the surface.
+- **Focus Indicators:** Ensure focus outlines remain distinctly visible against both dark and inverted light states using high-contrast offset rings.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** High-end architectural monographs, contemporary art portals, avant-garde fashion lookbooks, developer CLI dashboards, and independent type foundries.
-- **Caution:** Broad consumer marketplaces where color coding is essential for category recognition.
-- **Avoid:** Children's educational software, healthcare applications requiring warm reassurance, and playful casual mobile games.
-
----
-
-## ⚠️ Pitfalls
-
-- Introducing accidental gray tones (`#888888`), which dilutes the purity and uncompromising power of the monochrome contract.
-- Inadequate spacing between inverted blocks, causing visual vibration along adjoining high-contrast borders.
-- Relying on color alone to indicate error states: errors must be explicitly labeled with distinct glyphs (`[ERROR]`, `[!]`) and double borders.
+- **Use:** High-end architectural monographs, developer platforms, observability consoles, independent type foundries, and avant-garde fashion lookbooks.
+- **Avoid:** Early childhood educational software, consumer wellness apps, and casual mobile games requiring warm color reassurance.
 
 ---
 
 ## 📚 Sources
 
 - Reyner Banham, "The New Brutalism", *Architectural Review*, 1955.
-- Pascal Deville, *Brutalist Websites Archive*, 2014–2022 — https://brutalistwebsites.com
+- Vercel, "Geist Design System: Borders and Typography", 2023 — https://vercel.com/geist
 - Susan Kare, *Macintosh 1-bit User Interface Iconography*, Apple Computer, 1984.
-- W3C, *WCAG 2.2 Contrast Standards (AAA)*, 2023.
+- Pascal Deville, *Brutalist Websites Archive*, 2014–2022.
+- W3C, *Web Content Accessibility Guidelines 2.2 (AAA Standards)* — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- Sibling minimal styles: [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md).
-- Typography mastery: [ui-style-anti-hero-typography](../ui-style-anti-hero-typography/SKILL.md).
+- Sibling minimal styles: [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md).

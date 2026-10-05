@@ -105,4 +105,4 @@ Graphic bluntness as a UI system: high contrast, blocky layouts, thick borders a
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - Sibling styles: [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
-- Newer sibling styles: [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md).
+- Newer sibling styles: [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md).

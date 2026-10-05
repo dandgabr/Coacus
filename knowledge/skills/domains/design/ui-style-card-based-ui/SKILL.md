@@ -77,4 +77,4 @@ Self-contained content containers — "content and actions about a single subjec
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-one-page-long-scroll](../ui-style-one-page-long-scroll/SKILL.md).
+- Sibling styles: [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).

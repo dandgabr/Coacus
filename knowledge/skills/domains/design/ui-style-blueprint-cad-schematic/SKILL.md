@@ -21,7 +21,7 @@ Derived from traditional cyanotype architectural blueprints (John Herschel, 1842
 
 - **Origins:** Invented in 1842 via the cyanotype contact printing process; dominated architectural and engineering drafting for over a century until computerized CAD drafting emerged in the 1980s.
 - **Philosophy:** The aesthetics of unvarnished technical truth. Showing the measurements, guidelines, tolerances, and hidden coordinates that make a structure stand.
-- **Difference from neighbors:** Unlike [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), which is pure text on a CRT, Blueprint is graphical, vector-drawn, dimension-annotated, and architectural. Unlike [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), which is aggressive, weaponized, and neon, Blueprint is calm, methodical, and constructive.
+- **Difference from neighbors:** Unlike [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), which is pure text on a CRT, Blueprint is graphical, vector-drawn, dimension-annotated, and architectural. Unlike [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), which is aggressive, weaponized, and neon, Blueprint is calm, methodical, and constructive.
 
 ---
 
@@ -89,4 +89,4 @@ Derived from traditional cyanotype architectural blueprints (John Herschel, 1842
 
 ## 🔗 Integration with Other Skills
 
-- Sibling technical styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md), [ui-style-brutalist-data-dense](../ui-style-brutalist-data-dense/SKILL.md).
+- Sibling technical styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md), [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md).

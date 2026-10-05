@@ -23,7 +23,7 @@ Postwar modernism adapted for screens: simplicity, function and material honesty
 - Traits: clean simple lines and lack of embellishment; honest materials; open plans with large windows; indoor-outdoor integration; function equal to form; post-and-beam structure.
 - Materials: glass, brick, wood beams, ceramics, metals; tone restrained so form and material dominate.
 - Distinction from [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md): Swiss is grid-and-type driven and cool; MCM is warmer, uses wood tones and organic curves.
-- Distinction from [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md): no space-age iconography; Distinction from [ui-style-flat-design](../ui-style-flat-design/SKILL.md): material warmth and illustrative restraint rather than system-driven flatness.
+- Distinction from [ui-style-atompunk](../ui-style-atompunk/SKILL.md): no space-age iconography; Distinction from [ui-style-flat-design](../ui-style-flat-design/SKILL.md): material warmth and illustrative restraint rather than system-driven flatness.
 
 ---
 
@@ -99,5 +99,5 @@ h1, h2 { font-family: "Josefin Sans", "Futura", sans-serif; letter-spacing: .02e
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-retro-futurism-atompunk](../ui-style-retro-futurism-atompunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).
+- Neighbors: [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).
 - Related -punk styles: [ui-style-atompunk](../ui-style-atompunk/SKILL.md).

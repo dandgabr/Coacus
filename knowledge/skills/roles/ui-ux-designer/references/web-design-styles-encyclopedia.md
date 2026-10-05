@@ -105,14 +105,14 @@ This document is the complete canonical reference for the art direction, history
   - Blinking block cursor at the end of the active line.
 * **Typography**: Rigorous monospaced fonts (JetBrains Mono, Fira Code, IBM Plex Mono).
 
-### 9. Classic Web Brutalism / Raw HTML
-* **Origin**: The 1990s web and the digital brutalism of the 2010s.
-* **Philosophy**: The truth of web materials: hypertext and links in their raw state, without pretending to be paper or a magazine.
+### 9. Classic Web Brutalism & Data-Dense
+* **Origin**: The 1990s web, digital brutalism of the 2010s, and high-frequency Bloomberg consoles.
+* **Philosophy**: The raw truth of web materials: unadorned HTML, links, and high-density tabular data throughput without decorative friction.
 * **Formal Attributes**:
-  - Standard HTML tags rendered without decorative CSS classes.
+  - Standard HTML tags rendered without superfluous CSS decoration.
   - Native underlined blue hyperlinks (`#0000EE`) and visited purple (`#551A8B`).
-  - Native tables with 1px black borders and no complex internal spacing.
-* **Typography**: Native Times New Roman across the pure HTML heading scale (`<h1>` to `<h6>`).
+  - Native tables with hairline borders, zero margin waste, and inline sparklines.
+* **Typography**: System monospaced or Times New Roman fonts across standard HTML hierarchies.
 
 ### 10. Y2K Futurism (1998–2003)
 * **Origin**: Turn-of-the-millennium culture, rave, and dot-com bubble optimism.
@@ -131,13 +131,13 @@ This document is the complete canonical reference for the art direction, history
   - Three-dimensional orbs with a bubble effect, photographic bokeh, and lens flare.
 * **Typography**: Clean, polished humanist fonts (Segoe UI, Frutiger, Myriad Pro).
 
-### 12. Classic Skeuomorphism (2007–2012)
-* **Origin**: Apple iOS 1 through 6 and OS X Mavericks.
-* **Philosophy**: Easing the touchscreen learning curve through tactile metaphors of everyday objects.
+### 12. Skeuomorphism (Classic, Modern Hybrid & Aqua)
+* **Origin**: Apple iOS 1 through 6, Mac OS X Aqua, and modern precision audio/instrument design.
+* **Philosophy**: Immediate affordance through tactile metaphors of everyday physical objects (wood, leather, milled aluminum dials, water-drop buttons).
 * **Formal Attributes**:
-  - Faithful imitation of real textures: stitched leather, walnut wood, linen paper, and green billiard-table felt.
-  - Chunky plastic buttons with three-stop gradients, bevels, and multi-layered drop shadows.
-* **Typography**: Helvetica Neue with inner shadows and embossed bevels.
+  - Physical material simulations: stitched leather, felt, brushed aluminum, and knurled dials.
+  - Dimensional bevels, top-down lighting angles, and debossed letterpress text shadows.
+* **Typography**: Helvetica Neue / SF Pro with inner shadows and embossed bevels.
 
 ---
 
@@ -172,21 +172,21 @@ This document is the complete canonical reference for the art direction, history
   border-radius: 16px;
   ```
 
-### 16. Glassmorphism (2020–2023)
-* **Origin**: macOS Big Sur and Windows 11 Fluent Design.
-* **Philosophy**: Spatial depth and hierarchy through layers of semi-transparent frosted glass.
+### 16. Glassmorphism & VisionOS Spatial Elevation (2020–Present)
+* **Origin**: macOS Big Sur, Windows 11 Fluent, and Apple visionOS.
+* **Philosophy**: Spatial depth and optical hierarchy through layers of frosted glass, specular border light tracking, and environmental luminescence.
 * **Formal Attributes**:
-  - `backdrop-filter: blur(16px)` with a semi-transparent background `rgba(255, 255, 255, 0.1)`.
-  - A 1px border with a translucent gradient simulating the glint on the edge of cut glass.
-  - Vividly colored background elements to emphasize the blur.
+  - `backdrop-filter: blur(24px to 40px) saturate(180%)` with semi-transparent white/obsidian layers.
+  - Calibrated 1px specular highlight border simulating physical overhead lighting.
+  - Deep 3D z-axis elevation and gaze/cursor responsive illumination.
 
-### 17. Claymorphism (2021–2023)
-* **Origin**: Friendly 3D web and playful design.
-* **Philosophy**: Tactile coziness and warmth through cute, friendly modeled-clay shapes.
+### 17. Claymorphism & Plasticine Stop-Motion (2021–Present)
+* **Origin**: Playful 3D web (Spline) and clay animation cinema (Aardman, Will Vinton).
+* **Philosophy**: Tactile coziness, human craftsmanship, and warm modeled-clay volumes.
 * **Formal Attributes**:
-  - Very rounded corners (`rounded-3xl` or `rounded-full`).
-  - A soft inner shadow at the top to give a sense of inflation, and a diffuse outer shadow with a colored tint.
-  - Sweet pastel colors.
+  - Generously rounded corners (`border-radius: 32px` to `48px`) with bowed edge midpoints.
+  - Dual opposing inner shadows creating an inflated dome volume + soft ambient drop shadow.
+  - Earthy plasticine and pastel candy colors, with optional 12fps stepped stop-motion animation.
 
 ---
 
@@ -200,15 +200,13 @@ This document is the complete canonical reference for the art direction, history
   - Contained rounded corners (8px to 16px) and subtle low-opacity borders.
   - Each cell tells a visual micro-narrative with dedicated graphics.
 
-### 19. Tactile Brutalism & Engineered Minimalism
-* **Origin**: Linear, Stripe Press, Vercel.
-* **Philosophy**: Software architecture treated as high-precision craftsmanship.
+### 19. Brutalist Monochrome & Engineered Minimalism
+* **Origin**: Architectural New Brutalism, Susan Kare 1-bit Mac, Vercel Geist, Linear.
+* **Philosophy**: Software architecture treated as high-precision engineering; uncompromising binary contrast.
 * **Formal Attributes**:
-  - Near-black background (`#080A0A`).
-  - 1px semi-transparent *hairline borders* (`rgba(255, 255, 255, 0.06)`).
-  - Elevation through *surface ladders* (subtle luminance instead of heavy shadows).
-  - Technical micro-typography at 10px–11px mono uppercase with expanded tracking.
-  - *Single-accent* philosophy (a single vibrant accent color used with extreme moderation).
+  - Strict black-and-white binary palette (`#000000` and `#FFFFFF`, zero gray).
+  - 1px hairline rules, exposed grid scaffolding, coordinate tags, and corner ticks (`+`).
+  - Technical micro-typography and instant hover color inversion.
 
 ### 20. Neo-Brutalism / Nu-Brutalism
 * **Origin**: Figma, Gumroad, Retool, Substack.
@@ -219,32 +217,30 @@ This document is the complete canonical reference for the art direction, history
   - Ultra-saturated colors in high contrast.
   - Buttons that physically sink on hover/active (`transform: translate(2px, 2px)` with a reduced shadow).
 
-### 21. Editorial / Archive Luxury
-* **Origin**: Kinfolk, Readymag, independent fashion magazines, Stripe Press.
-* **Philosophy**: The slowness and prestige of print publishing transposed to the digital experience.
+### 21. Editorial / Archive Luxury & Horizontal Gallery
+* **Origin**: Kinfolk, Readymag, independent fashion magazines, Stripe Press, museum exhibition curation.
+* **Philosophy**: The slowness, prestige, and literary pacing of print publishing and museum curatorial archives.
 * **Formal Attributes**:
-  - Generous asymmetric margins that let the content breathe.
-  - Numbered footnotes, imposing drop caps, and Roman numerals.
-  - Monumental display serifs (*Instrument Serif*, *Fraunces*, *Editorial New*) paired with a neutral sans-serif.
-  - Large-scale authorial photography with custom art direction.
+  - Generous asymmetric margins, numbered footnotes, and oldstyle numerals.
+  - Monumental display serifs (*Instrument Serif*, *Fraunces*, *PP Editorial New*) paired with neutral sans-serifs.
+  - Archival tones (bone, linen, taupe, charcoal) with optional continuous horizontal ribbon galleries.
 
-### 22. Organic / Solarpunk / Biophilic Design
-* **Origin**: Contemporary ecological and regenerative design movements.
-* **Philosophy**: The digital as a reflection of nature's organic patterns and biological calm.
+### 22. Solarpunk (Ecological, Pastoral & Biomorphic)
+* **Origin**: Regenerative climate movements, William Morris Arts & Crafts, and parametric biomimicry.
+* **Philosophy**: Technological progress in symbiotic harmony with natural ecosystems, community agency, and biological growth.
 * **Formal Attributes**:
-  - Fluid shapes with organic curves, no sharp straight corners.
-  - Botanical color palettes: moss greens, terracotta, earthy mustard, raw off-white (`#F9F8F6`).
-  - Subtle imperfect textures: recycled paper, linen, and light wood.
-  - Slow, gentle microinteractions that reduce cognitive anxiety.
+  - Sunlit gold, leaf greens, warm terracotta, oatmeal linen, and fertile loam.
+  - Organic asymmetric cards, Voronoi cell partitions, and vine-like growth transitions.
+  - Low-data, low-energy performance budgets paired with verifiable sustainability claims.
 
-### 23. Cyberpunk / Dark Sci-Fi HUD
-* **Origin**: Fictional science-fiction interfaces (FUI), games such as Cyberpunk 2077.
-* **Philosophy**: The aesthetic of futuristic high technology and the surveillance of advanced systems.
+### 23. Cyberpunk & Sci-Fi Tactical HUD
+* **Origin**: Fictional sci-fi interfaces (FUI), Territory Studio (*Blade Runner 2049*), *Cyberpunk 2077*.
+* **Philosophy**: Neon-noir street-level dystopia combined with high-tech military instrument telemetry.
 * **Formal Attributes**:
-  - Absolute black background (`#000000`).
-  - Military HUD details: 45-degree chamfered corners, calibration reticles at the card vertices.
-  - Acidic neon colors at extremely high contrast: electric cyan (`#00F0FF`) and magenta (`#FF003C`).
-  - Telemetry lines and monospaced elements with system data.
+  - Absolute black background (`#000000`, `#07060F`).
+  - Military HUD details: 45-degree chamfered corners, targeting reticles, calibration brackets, and telemetry streams.
+  - Acidic neon accents: electric cyan (`#00F0FF`), hot magenta (`#FF003C`), and hazard yellow (`#FCEE0A`).
+  - Subtle scanlines and chromatic glitch slicing.
 
 ### 24. Acid Graphics / Deconstructivist Anti-Design
 * **Origin**: 1990s rave culture revisited by the post-internet avant-garde (David Carson, digital underground).
@@ -261,14 +257,13 @@ This document is the complete canonical reference for the art direction, history
 Each style below has a dedicated deep-dive skill in the design style library.
 
 - **Terminal TUI** — Monospace grids, box-drawing frames, phosphor palettes, keyboard-first use. See [ui-style-terminal-tui](../../../domains/design/ui-style-terminal-tui/SKILL.md).
-- **Tactile Brutalism** — Hairline borders and engineered precision for B2B and DevTools. See [ui-style-tactile-brutalism](../../../domains/design/ui-style-tactile-brutalism/SKILL.md).
 - **Retro Computing / Pixel** — 8/16-bit pixel art, bitmap fonts, limited palettes, dithering. See [ui-style-retro-computing-pixel](../../../domains/design/ui-style-retro-computing-pixel/SKILL.md).
 - **Linear-style SaaS** — Dark-first panels, low-alpha 1px borders, radial glows. See [ui-style-linear-saas](../../../domains/design/ui-style-linear-saas/SKILL.md).
 - **Glitch** — Signal-corruption effects with layered offsets and clip-path slices. See [ui-style-glitch](../../../domains/design/ui-style-glitch/SKILL.md).
 - **Grain and Noise Texture** — SVG noise layers that warm flat color and dither gradient banding. See [ui-style-grain-noise-texture](../../../domains/design/ui-style-grain-noise-texture/SKILL.md).
 - **Broken Grid** — Deliberate overlap and offset on a CSS Grid with a sane reading order. See [ui-style-broken-grid](../../../domains/design/ui-style-broken-grid/SKILL.md).
 - **Hand-Drawn Sketch** — Wobbly outlines, scribbled underlines and handwriting type. See [ui-style-hand-drawn-sketch](../../../domains/design/ui-style-hand-drawn-sketch/SKILL.md).
-- **Collage and Scrapbook** — Layered cutouts, tape, torn edges and stickers. See [ui-style-collage-scrapbook](../../../domains/design/ui-style-collage-scrapbook/SKILL.md).
+- **Collage, Scrapbook & Dadaist Photomontage** — Layered cutouts, tape, torn edges, stamps and ransom-note anti-art typography. See [ui-style-collage-scrapbook](../../../domains/design/ui-style-collage-scrapbook/SKILL.md).
 - **Risograph and Zine** — Spot-color overprint, misregistration and halftone. See [ui-style-risograph-zine](../../../domains/design/ui-style-risograph-zine/SKILL.md).
 - **Vaporwave and Synthwave** — Nostalgic neon horizons and pastel retro-internet imagery. See [ui-style-vaporwave-synthwave](../../../domains/design/ui-style-vaporwave-synthwave/SKILL.md).
 - **Calm / Quiet UI** — Reduced stimulation, soft contrast and explanatory motion. See [ui-style-calm-quiet-ui](../../../domains/design/ui-style-calm-quiet-ui/SKILL.md).
@@ -277,12 +272,35 @@ Each style below has a dedicated deep-dive skill in the design style library.
 - **Art Deco** — Symmetry, metallic accents and sunburst motifs. See [ui-style-art-deco](../../../domains/design/ui-style-art-deco/SKILL.md).
 - **Art Nouveau and Arts & Crafts** — Whiplash curves, organic ornament and craft heritage. See [ui-style-art-nouveau-arts-crafts](../../../domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md).
 - **Memphis** — Confetti patterns, squiggles and clashing color. See [ui-style-memphis](../../../domains/design/ui-style-memphis/SKILL.md).
-- **Retro-Futurism / Atompunk** — Googie starbursts and Space Age optimism. See [ui-style-retro-futurism-atompunk](../../../domains/design/ui-style-retro-futurism-atompunk/SKILL.md).
+- **Atompunk & Space-Age Retro-Futurism** — Googie starbursts, boomerangs, orbit components and atomic optimism. See [ui-style-atompunk](../../../domains/design/ui-style-atompunk/SKILL.md).
 - **Indie Web Revival** — Neocities-era personal sites, webrings and system fonts. See [ui-style-indie-web-revival](../../../domains/design/ui-style-indie-web-revival/SKILL.md).
 - **Mid-Century Modern** — Flat geometry in atomic orange, turquoise and olive. See [ui-style-mid-century-modern](../../../domains/design/ui-style-mid-century-modern/SKILL.md).
 - **Isometric** — Axonometric UI and illustration with parallel lines. See [ui-style-isometric](../../../domains/design/ui-style-isometric/SKILL.md).
-
-Glass-material evolutions (Liquid Glass, visionOS) are covered inside [ui-style-glassmorphism](../../../domains/design/ui-style-glassmorphism/SKILL.md); dopamine design inside [ui-style-maximalism](../../../domains/design/ui-style-maximalism/SKILL.md).
+- **Card-based UI** — Modular cards, scannable content chunks and structured collections. See [ui-style-card-based-ui](../../../domains/design/ui-style-card-based-ui/SKILL.md).
+- **Split-Screen Dualism** — 50/50 dual vertical canvases, complementary color polarity and synchronized scroll. See [ui-style-split-screen-dualism](../../../domains/design/ui-style-split-screen-dualism/SKILL.md).
+- **Blueprint & CAD Technical Schematic** — Architectural cyanotype blueprints, crosshairs, dimension ticks and drafting grids. See [ui-style-blueprint-cad-schematic](../../../domains/design/ui-style-blueprint-cad-schematic/SKILL.md).
+- **Fluid Liquid & Metaball Morph** — Viscous blob physics, SVG goo filters and jelly transitions. See [ui-style-fluid-liquid-morph](../../../domains/design/ui-style-fluid-liquid-morph/SKILL.md).
+- **Holographic Foil & Iridescent Chrome** — Dynamic rainbow refraction angles, pearlescent shimmer and metallic specular flares. See [ui-style-holographic-foil-iridescent](../../../domains/design/ui-style-holographic-foil-iridescent/SKILL.md).
+- **Weirdcore & Liminal Dreamcore** — Surreal liminal photography, low-res JPG artifacts, unsettling dreamlike typography and lo-fi nostalgia. See [ui-style-weirdcore-dreamcore](../../../domains/design/ui-style-weirdcore-dreamcore/SKILL.md).
+- **Kawaii Pastel & Soft Aesthetic** — Pillowy marshmallow rounded shapes, soothing pastel candies and friendly sticker microcopy. See [ui-style-kawaii-pastel-soft](../../../domains/design/ui-style-kawaii-pastel-soft/SKILL.md).
+- **Broadsheet Newspaper & Letterpress** — Classical multi-column newspaper layouts, ornate drop-caps, hairline rules and yellowed newsprint. See [ui-style-analog-newspaper-broadsheet](../../../domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md).
+- **Constructivism & Agitprop Graphic** — Stark 45° diagonals, scarlet/black/cream palettes and geometric photomontage. See [ui-style-constructivism-propaganda](../../../domains/design/ui-style-constructivism-propaganda/SKILL.md).
+- **1960s Psychedelic & Liquid Light** — Vibrating optical colors, kaleidoscopic symmetry and melting liquid lettering. See [ui-style-psychedelic-60s](../../../domains/design/ui-style-psychedelic-60s/SKILL.md).
+- **Pop Art & Ben-Day Halftone** — Oversized comic dot screens, bold black ink outlines, primary CMYK inks and comic callouts. See [ui-style-pop-art-halftone](../../../domains/design/ui-style-pop-art-halftone/SKILL.md).
+- **Cassette Futurism & Analog Sci-Fi** — 1970s-80s phosphor CRT displays, mechanical keys, magnetic tape data and industrial beige casings. See [ui-style-cassette-futurism](../../../domains/design/ui-style-cassette-futurism/SKILL.md).
+- **Silkpunk & Organic Engineering** — East Asian classical antiquity, bamboo and copper structural lines, sumi-e ink washes and origami geometry. See [ui-style-silkpunk](../../../domains/design/ui-style-silkpunk/SKILL.md).
+- **Dungeon Synth & Dark Fantasy Medieval** — Ancient crypt stones, tarnished gold, woodcut engravings and archaic gothic typography. See [ui-style-dungeon-synth-dark-fantasy](../../../domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md).
+- **Scrollytelling & Narrative Scroll** — Scroll-sequenced stories, pinned scenes, stepped annotations and one-page continuous flows. See [ui-style-scrollytelling](../../../domains/design/ui-style-scrollytelling/SKILL.md).
+- **Kinetic Typography & Marquee Ticker** — Dynamic text in motion, masked per-glyph reveals, variable-font morphs and infinite loop ribbons. See [ui-style-kinetic-typography](../../../domains/design/ui-style-kinetic-typography/SKILL.md).
+- **Expressive Variable Typography & Monumental Anti-Hero** — Extreme typographic scale filling the entire viewport, zero stock imagery, glyph architecture. See [ui-style-expressive-variable-typography](../../../domains/design/ui-style-expressive-variable-typography/SKILL.md).
+- **Parallax Scrolling** — Layered vertical depth revealing spatial perspective on scroll. See [ui-style-parallax-scrolling](../../../domains/design/ui-style-parallax-scrolling/SKILL.md).
+- **3D Immersive / WebGL** — Interactive 3D scene canvas and real-time graphics. See [ui-style-3d-immersive-webgl](../../../domains/design/ui-style-3d-immersive-webgl/SKILL.md).
+- **AI-Native / Generative UI** — Intent-driven dynamic interface composition. See [ui-style-ai-native-generative-ui](../../../domains/design/ui-style-ai-native-generative-ui/SKILL.md).
+- **Organic / Biophilic** — Calm nature-inspired forms, earthy tones and biological curves. See [ui-style-organic-biophilic](../../../domains/design/ui-style-organic-biophilic/SKILL.md).
+- **Micro-Interactions** — Deliberate animation feedback loops for states and controls. See [ui-style-micro-interactions](../../../domains/design/ui-style-micro-interactions/SKILL.md).
+- **Gradient & Duotone** — Two-tone color maps, high-energy duotones and vivid blending. See [ui-style-gradient-duotone](../../../domains/design/ui-style-gradient-duotone/SKILL.md).
+- **Aurora / Mesh Gradient** — Organic, shifting multi-point blur meshes and ambient lighting. See [ui-style-aurora-mesh-gradient](../../../domains/design/ui-style-aurora-mesh-gradient/SKILL.md).
+- **Dark Mode First** — Deep obsidian surfaces engineered for low-light immersion. See [ui-style-dark-mode-first](../../../domains/design/ui-style-dark-mode-first/SKILL.md).
 
 ### The -punk Family
 
@@ -299,32 +317,3 @@ Speculative-fiction aesthetics translated into UI and UX patterns:
 - **Biopunk** — Biotechnology, DIY biology and open science. See [ui-style-biopunk](../../../domains/design/ui-style-biopunk/SKILL.md).
 - **Cyberpunk** — Neon-noir dystopian street-level technology. See [ui-style-cyberpunk](../../../domains/design/ui-style-cyberpunk/SKILL.md).
 - **Nanopunk** — Nanotechnology futures with no single canonical look. See [ui-style-nanopunk](../../../domains/design/ui-style-nanopunk/SKILL.md).
-
-
-### Contemporary Extensions & Emerging Paradigms
-
-- **Constructivism & Agitprop Graphic** — Stark 45° diagonals, scarlet/black/cream palettes and geometric photomontage. See [ui-style-constructivism-propaganda](../../../domains/design/ui-style-constructivism-propaganda/SKILL.md).
-- **1960s Psychedelic & Liquid Light** — Vibrating optical colors, kaleidoscopic symmetry and melting liquid lettering. See [ui-style-psychedelic-60s](../../../domains/design/ui-style-psychedelic-60s/SKILL.md).
-- **Dadaism & Anti-Art Montage** — Anarchic typography, ransom-note letterforms, newsprint and misaligned collage. See [ui-style-dadaism-montage](../../../domains/design/ui-style-dadaism-montage/SKILL.md).
-- **Pop Art & Ben-Day Halftone** — Oversized comic dot screens, bold black ink outlines, primary CMYK inks and comic callouts. See [ui-style-pop-art-halftone](../../../domains/design/ui-style-pop-art-halftone/SKILL.md).
-- **Brutalist Monochrome** — Severe black-and-white zero-gray binary contrast, architectural lines and typographic discipline. See [ui-style-brutalist-monochrome](../../../domains/design/ui-style-brutalist-monochrome/SKILL.md).
-- **Cassette Futurism & Analog Sci-Fi** — 1970s-80s phosphor CRT displays, mechanical keys, magnetic tape data and industrial beige casings. See [ui-style-cassette-futurism](../../../domains/design/ui-style-cassette-futurism/SKILL.md).
-- **Naturecore & Digital Cottagecore** — Woven linen textures, botanical watercolor elements, warm terracotta and quiet earth tones. See [ui-style-solarpunk-naturecore](../../../domains/design/ui-style-solarpunk-naturecore/SKILL.md).
-- **Silkpunk & Organic Engineering** — East Asian classical antiquity, bamboo and copper structural lines, sumi-e ink washes and origami geometry. See [ui-style-silkpunk](../../../domains/design/ui-style-silkpunk/SKILL.md).
-- **Dungeon Synth & Dark Fantasy Medieval** — Ancient crypt stones, tarnished gold, woodcut engravings and archaic gothic typography. See [ui-style-dungeon-synth-dark-fantasy](../../../domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md).
-- **Biomorphic & Generative Growth** — Voronoi cells, Fibonacci spiral layouts, chlorophyll and solar gradients, organic responsive curves. See [ui-style-solarpunk-biomorphic](../../../domains/design/ui-style-solarpunk-biomorphic/SKILL.md).
-- **Spatial UI & VisionOS Elevation** — Multi-layered 3D spatial glass, dynamic specular border highlights, depth refraction and gaze hover. See [ui-style-spatial-vision-os](../../../domains/design/ui-style-spatial-vision-os/SKILL.md).
-- **Kinetic Marquee & High-Density Ticker** — Continuous animated ribbons, stock exchange telemetry density and relentless informational velocity. See [ui-style-kinetic-marquee-ticker](../../../domains/design/ui-style-kinetic-marquee-ticker/SKILL.md).
-- **Type-Driven Minimal & Monumental Anti-Hero** — Extreme typographic scale filling the entire viewport, zero stock imagery, glyph architecture. See [ui-style-anti-hero-typography](../../../domains/design/ui-style-anti-hero-typography/SKILL.md).
-- **Skeuomorphic-Neomorphic Hybrid (Soft Depth)** — Milled metal rotary dials, calibrated bevels, inner glass refraction and refined tactile affordances. See [ui-style-skeuomorphic-neomorphic-hybrid](../../../domains/design/ui-style-skeuomorphic-neomorphic-hybrid/SKILL.md).
-- **Y2K Cyber Aqua & iMac Gloss** — Translucent candy plastics, liquid water-drop buttons, brushed aluminum and early-2000s cyber optimism. See [ui-style-skeuomorphic-y2k-cyber](../../../domains/design/ui-style-skeuomorphic-y2k-cyber/SKILL.md).
-- **Fluid Liquid & Metaball Morph** — Viscous blob physics, SVG goo filters, elastic jelly transitions and cohesive fluid joining. See [ui-style-fluid-liquid-morph](../../../domains/design/ui-style-fluid-liquid-morph/SKILL.md).
-- **Split-Screen Dualism & Asymmetric Polarity** — 50/50 dual vertical canvases, complementary color duality and synchronized scroll choreography. See [ui-style-split-screen-dualism](../../../domains/design/ui-style-split-screen-dualism/SKILL.md).
-- **Blueprint & CAD Technical Schematic** — Architectural cyanotype blueprints, CAD crosshairs, dimension tick marks and technical drafting grids. See [ui-style-blueprint-cad-schematic](../../../domains/design/ui-style-blueprint-cad-schematic/SKILL.md).
-- **Horizontal Gallery & Editorial Ribbon** — Lateral cinematic navigation, continuous filmstrip pacing and museum gallery curatorial rhythm. See [ui-style-editorial-horizontal-scroll](../../../domains/design/ui-style-editorial-horizontal-scroll/SKILL.md).
-- **Holographic Foil & Iridescent Chrome** — Dynamic rainbow refraction angles, pearlescent shimmer and metallic specular flares. See [ui-style-holographic-foil-iridescent](../../../domains/design/ui-style-holographic-foil-iridescent/SKILL.md).
-- **Weirdcore & Liminal Dreamcore** — Surreal liminal photography, low-res JPG artifacts, unsettling dreamlike typography and nostalgic lo-fi. See [ui-style-weirdcore-dreamcore](../../../domains/design/ui-style-weirdcore-dreamcore/SKILL.md).
-- **Kawaii Pastel & Soft Aesthetic** — Pillowy marshmallow rounded shapes, soothing pastel candies and friendly sticker microcopy. See [ui-style-kawaii-pastel-soft](../../../domains/design/ui-style-kawaii-pastel-soft/SKILL.md).
-- **Brutalist Data-Dense & Terminal Console** — Zero-padding tabular matrices, inline sparklines and mission-critical financial NOC density. See [ui-style-brutalist-data-dense](../../../domains/design/ui-style-brutalist-data-dense/SKILL.md).
-- **Clay Stop-Motion & Plasticine** — Tactile fingerprint imperfections, 3D molded volumes and stepped 12fps handcrafted animations. See [ui-style-clay-stop-motion](../../../domains/design/ui-style-clay-stop-motion/SKILL.md).
-- **Broadsheet Newspaper & Letterpress** — Classical multi-column newspaper layouts, ornate drop-caps, hairline rules and yellowed newsprint. See [ui-style-analog-newspaper-broadsheet](../../../domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md).

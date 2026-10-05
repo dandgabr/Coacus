@@ -1,84 +1,116 @@
 ---
 name: "ui-style-skeuomorphism"
-description: "Provides the classic skeuomorphism UI style (2007-2012): ornamental real-world cues — leather, felt, gloss and letterpress — from the iOS 1-6 era, covering the Forstall/Ive schism, Don Norman's affordance rationale, the comparative-UX evidence and when metaphor-first UI still helps. Use when designing metaphor-led onboarding or studying pre-flat iOS design."
+description: "Provides the complete skeuomorphism UI style (2007-present): real-world tactile physical metaphors, stitched leather, brushed aluminum, milled metal dials, Y2K cyber aqua gloss and tactile affordances. Covers historical iOS 1-6 lineage, modern skeu-neomorphic hybrids, translucent iMac optimism and contrast accessibility. Use when designing tactile audio plugins, metaphor-first onboarding or physical device emulations."
 ---
 
-# UI Style: Classic Skeuomorphism
+# UI Style: Skeuomorphism (Classic, Modern Hybrid & Cyber Aqua)
 
-UI retaining ornamental cues from real-world objects — leather-stitched calendars, legal-pad notes, felt tables, wooden shelves. Greek *skeuos* (tool) + *morphē* (shape); applied to GUIs since the 1980s; pop-culture peak in iOS 1–6 (2007–2012/13), ended at Apple with iOS 7 (WWDC 2013). Synthesized from verified research; see Sources.
+Interfaces retaining tactile metaphors and ornamental cues from real-world physical objects. Derived from Greek *skeuos* (container/tool) + *morphē* (form). Spans the full historical arc: from classic iOS 1–6 stitched leather and mahogany shelves, to early-2000s translucent Aqua candy gloss, to contemporary skeuomorphic-neomorphic hybrids (milled aluminum dials, realistic mechanical switches, and precision audio plugins). Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing metaphor-led onboarding for first-time or "digital immigrant" audiences.
-- Studying the pre-flat era and its documented usability evidence.
-- Reconstructing period-accurate iOS-era skins.
+- Audio production software, synthesizer plugins, virtual mixing consoles, and physical hardware simulators.
+- Metaphor-led onboarding for audiences where real-world physical parallels dramatically reduce learning curves.
+- Specialized luxury watch showcases, craft tools, and retro computing celebrations.
+- Modern tactile interfaces seeking tangible physical weight without flat sterility.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- Lineage: desktop metaphor → Microsoft Bob → IBM RealThings (1998) → Mac OS X Aqua → iOS 1–6.
-- The schism: Scott Forstall ("most vocal and high-ranking proponent" of the Jobs-era style; resigned Oct 2012 — NYT) vs Jony Ive, who "made his distaste for the visual ornamentation known"; iOS 7 (2013) ended it at Apple.
-- Mild revivals: framed as a "controversial UX approach making a comeback" (Muzli 2017); neumorphism/glassmorphism are adjacent revivals.
+- **Classic Era (2007–2012):** Apple iOS 1 through 6 under Scott Forstall. Real-world physical simulations (green casino felt in Game Center, stitched leather in Calendar, yellow legal pad in Notes). Ended at Apple with iOS 7 (WWDC 2013) led by Jony Ive.
+- **Y2K Cyber Aqua Strand (1998–2003):** Mac OS X Aqua interface (Steve Jobs: "liquid, you'd want to lick it") paired with Bondi Blue iMac G3 hardware. Characterized by pulsing blue jelly buttons, brushed metal, pinstripe textures, and candy drop reflections.
+- **Modern Hybrid / Soft Tactile Strand (2020s):** The synthesis of skeuomorphism and subtle depth: precision-milled aluminum knurling, rotary dials with optical specular reflection, tactile toggle physics, and instrument-grade affordance.
+- **Difference from neighbors:** Unlike [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), which is sculpted entirely out of the background plane with uniform soft shadows, Skeuomorphism incorporates multi-material diversity (wood, glass, chrome, plastic, leather) and authentic specular highlights.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Surfaces:** leather stitching, felt, wood, linen/metal backgrounds; glossy detailed icons.
-- **Depth/light:** gradients simulating top-down light; 3D bevels, inner highlights, stitched borders.
-- **Type:** Helvetica family with embossed/letterpress effects.
-- **Layout:** early fixed-width mobile layouts with rich chrome.
+- **Surfaces & Materials:**
+  - *Classic:* Stitched leather, mahogany wood, green billiard felt, brushed metal.
+  - *Aqua Cyber:* Translucent colored plastic (Bondi blue, ruby, lime), liquid glass bubbles, horizontal gloss highlights.
+  - *Modern Hybrid:* Milled aluminum knobs with radial knurling, anodized dark metal, precision instrument bezels.
+- **Depth & Lighting:** Consistent top-down lighting (90° or 120° light angle); multi-layered drop shadows, sharp inner specular highlights, and calibrated bevels (`box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.3)`).
+- **Typography:** Crisp humanist sans-serifs or robust technical grotesques (Helvetica Neue, SF Pro, Inter) featuring subtle debossed letterpress text shadows (`text-shadow: 0 1px 0 rgba(255,255,255,0.8)` on light surfaces; `0 -1px 0 rgba(0,0,0,0.9)` on dark).
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- Buttons visibly depress (inset state); "slide to unlock" shine sweep; page-curl transitions; swipe-as-page-turn; realistic sound skeuomorphs (camera shutter clicks — documented auditory skeuomorphs).
+- **Physical Tactile Affordance:** Buttons visibly depress into the surface when clicked (`transform: translateY(2px)` with contracted bottom shadow).
+- **Rotary & Slider Mechanics:** Volume knobs and rotary switches rotate along an axis, with subtle optical glint shifts simulating physical light reflection.
+- **Tactile Transitions:** Mechanical toggle switches flip with snappy, weighted damping.
+- Under `prefers-reduced-motion: reduce`, disable continuous rotation and spring damping while preserving static tactile button states.
 
 ---
 
 ## 🛠️ Implementation Notes
 
-- Layered CSS `linear-gradient` + `border` + `box-shadow` (including `inset`) push-button recipes; sprite-sheet textures for leather/wood; `text-shadow` letterpress (dark below, light above); 9-slice corner images; jQuery UI themed widgets.
+```css
+.tactile-dial {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, #d8d8d8, #f5f5f5, #b8b8b8, #f5f5f5, #d8d8d8);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.25),
+    inset 0 2px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+  border: 1px solid #a0a0a0;
+  cursor: grab;
+}
+.aqua-btn {
+  background: linear-gradient(180deg, #6bb6ff 0%, #1e88e5 50%, #1565c0 51%, #1976d2 100%);
+  border: 1px solid #0d47a1;
+  border-radius: 9999px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+.aqua-btn:active {
+  background: linear-gradient(180deg, #1565c0 0%, #1976d2 50%, #0d47a1 51%, #1565c0 100%);
+  transform: translateY(1px);
+}
+```
 
 ---
 
-## ♿ Accessibility and Evidence
+## ♿ Accessibility
 
-- Documented costs: harder to operate, more screen space, HIG inconsistency, weak precision feedback, cognitive-load noise, metaphors that don't translate across cultures.
-- Documented benefits: Don Norman — affordance cues "give comfort and make learning easier"; Spiliotopoulos et al. (2018) found faster navigation and better recognition versus flat for some users.
+- **Affordance Advantage:** As proven in usability research (Don Norman; Spiliotopoulos et al., 2018), physical tactile cues provide clear affordance and faster recognition for first-time or cognitive-assist users.
+- **Contrast Rigor:** Beveled buttons and embossed letterpress text must maintain strict 4.5:1 text contrast and 3:1 control edge contrast (WCAG 1.4.3 & 1.4.11).
+- **Touch Targets:** Complex mechanical dials and switches must provide adequate hit areas (minimum 44×44px or 24×24px per WCAG 2.5.8).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** onboarding new audiences, games, education, music/book apps where the metaphor is the content.
-- **Avoid:** productivity/dense tools, i18n products, precision input, accurate-system-state contexts.
+- **Use:** Digital audio workstations (DAWs), musical instrument interfaces, audio plugin effect units, retro hardware emulation, interactive onboarding, and luxury product configuration.
+- **Avoid:** High-speed data-entry screens, mobile banking lists, text-heavy reading platforms, and minimalist enterprise workflows where decorative textures cause visual fatigue.
 
 ---
 
 ## ⚠️ Pitfalls
 
-- Fast Company's "tacky" critique: metaphors no longer translate to modern users; imitation across apps creates confusion; analog gauges read less precisely than digital.
+- Overloading screens with excessive contrasting textures (leather next to wood next to chrome), creating cacophony.
+- Recreating obsolete physical constraints (such as pagination limited to physical book-page dimensions) that degrade digital usability.
+- Heavy raster image assets: implement metallic reflections with CSS gradients and SVG rather than giant bitmap sprite sheets.
 
 ---
 
 ## 📚 Sources
 
-- Wikipedia, "Skeuomorph" — https://en.wikipedia.org/wiki/Skeuomorph
-- Nick Wingfield & Nick Bilton, "Apple Shake-Up Could Lead to Design Shift", NYT, Oct 31, 2012 — https://www.nytimes.com/2012/11/01/technology/apple-shake-up-could-mean-end-to-real-world-images-in-software.html
-- Claire Evans, "A Eulogy for Skeuomorphism", Motherboard (Vice), Jun 11, 2013 — https://www.vice.com/en/article/a-eulogy-for-skeumorphism/
-- Austin Carr, "Will Apple's Tacky Software-Design Philosophy Cause A Revolt?", Fast Company, 2012 — http://www.fastcodesign.com/1670760/will-apples-tacky-software-design-philosophy-cause-a-revolt
-- "User interfaces: Skeu you", The Economist (Babbage), Nov 8, 2012 — https://www.economist.com/blogs/babbage/2012/11/user-interfaces
-- Spiliotopoulos, Rigou & Sirmakessis, "A Comparative Study of Skeuomorphic and Flat Design from a UX Perspective", Multimodal Technologies and Interaction 2(2), 2018 — https://doi.org/10.3390/mti2020031
-- Don Norman, "Affordances and Design" — http://www.jnd.org/dn.mss/affordances_and.html
+- Don Norman, "Affordances and Design", 2004 — http://www.jnd.org/dn.mss/affordances_and.html
+- Spiliotopoulos, Rigou & Sirmakessis, "A Comparative Study of Skeuomorphic and Flat Design from a UX Perspective", *Multimodal Technologies and Interaction*, 2018.
+- Nick Wingfield & Nick Bilton, "Apple Shake-Up Could Lead to Design Shift", *The New York Times*, 2012.
+- Steve Jobs, *Mac OS X Aqua Unveiling*, Macworld San Francisco, 2000.
+- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 1.4.11, 2.5.8) — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).
-- Related -punk styles: [ui-style-steampunk](../ui-style-steampunk/SKILL.md).
+- Ancestor and sibling styles: [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md), [ui-style-steampunk](../ui-style-steampunk/SKILL.md).

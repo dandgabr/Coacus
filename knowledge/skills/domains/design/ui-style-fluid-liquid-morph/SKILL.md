@@ -21,7 +21,7 @@ An interactive, physics-driven aesthetic treating interface elements as viscous 
 
 - **Origins:** Originates in computer graphics metaball modeling (Jim Blinn, 1982), popularized on the web through SVG filter techniques (Lucas Bebber, 2015) and modern spring animation engines (Framer Motion).
 - **Philosophy:** Breaking digital box rigidity. Transforming rigid geometric UI components into organic, fluid substances with surface tension and cohesive bonding.
-- **Difference from neighbors:** Unlike [ui-style-psychedelic-60s](../ui-style-psychedelic-60s/SKILL.md), which is retro-illustrative and typography-focused, Fluid Liquid Morph is algorithmic, physics-based, interactive, and modern. Unlike [ui-style-solarpunk-biomorphic](../ui-style-solarpunk-biomorphic/SKILL.md), which uses Voronoi tessellations, Fluid Liquid uses continuous viscous merging.
+- **Difference from neighbors:** Unlike [ui-style-psychedelic-60s](../ui-style-psychedelic-60s/SKILL.md), which is retro-illustrative and typography-focused, Fluid Liquid Morph is algorithmic, physics-based, interactive, and modern. Unlike [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), which uses Voronoi tessellations, Fluid Liquid uses continuous viscous merging.
 
 ---
 
