@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 94,
-    "skills": 370,
+    "skills": 402,
     "mcps": 1
   },
   "agents": [
@@ -549,7 +549,7 @@
     {
       "name": "ui-ux-designer",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
+      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
       "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md"
     },
     {
@@ -841,12 +841,40 @@
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md"
     },
     {
+      "name": "ui-style-art-deco",
+      "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md"
+    },
+    {
+      "name": "ui-style-art-nouveau-arts-crafts",
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md"
+    },
+    {
+      "name": "ui-style-atompunk",
+      "path": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md"
+    },
+    {
       "name": "ui-style-aurora-mesh-gradient",
       "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md"
     },
     {
+      "name": "ui-style-bauhaus",
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md"
+    },
+    {
       "name": "ui-style-bento-grid",
       "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md"
+    },
+    {
+      "name": "ui-style-biopunk",
+      "path": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-broken-grid",
+      "path": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md"
+    },
+    {
+      "name": "ui-style-calm-quiet-ui",
+      "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md"
     },
     {
       "name": "ui-style-card-based-ui",
@@ -857,12 +885,32 @@
       "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md"
     },
     {
+      "name": "ui-style-clockpunk",
+      "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-collage-scrapbook",
+      "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md"
+    },
+    {
+      "name": "ui-style-cyberpunk",
+      "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md"
+    },
+    {
       "name": "ui-style-cyberpunk-hud",
       "path": "knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md"
     },
     {
       "name": "ui-style-dark-mode-first",
       "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md"
+    },
+    {
+      "name": "ui-style-de-stijl",
+      "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md"
+    },
+    {
+      "name": "ui-style-dieselpunk",
+      "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md"
     },
     {
       "name": "ui-style-editorial-archive-luxury",
@@ -885,12 +933,44 @@
       "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md"
     },
     {
+      "name": "ui-style-glitch",
+      "path": "knowledge/skills/domains/design/ui-style-glitch/SKILL.md"
+    },
+    {
+      "name": "ui-style-gothicpunk",
+      "path": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md"
+    },
+    {
       "name": "ui-style-gradient-duotone",
       "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md"
     },
     {
+      "name": "ui-style-grain-noise-texture",
+      "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md"
+    },
+    {
+      "name": "ui-style-hand-drawn-sketch",
+      "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md"
+    },
+    {
+      "name": "ui-style-indie-web-revival",
+      "path": "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md"
+    },
+    {
+      "name": "ui-style-isometric",
+      "path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md"
+    },
+    {
       "name": "ui-style-kinetic-typography",
       "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md"
+    },
+    {
+      "name": "ui-style-linear-saas",
+      "path": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md"
+    },
+    {
+      "name": "ui-style-lunarpunk",
+      "path": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md"
     },
     {
       "name": "ui-style-material-you",
@@ -901,12 +981,24 @@
       "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md"
     },
     {
+      "name": "ui-style-memphis",
+      "path": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md"
+    },
+    {
       "name": "ui-style-metro-modern-ui",
       "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md"
     },
     {
       "name": "ui-style-micro-interactions",
       "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md"
+    },
+    {
+      "name": "ui-style-mid-century-modern",
+      "path": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md"
+    },
+    {
+      "name": "ui-style-nanopunk",
+      "path": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md"
     },
     {
       "name": "ui-style-neo-brutalism",
@@ -929,6 +1021,22 @@
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md"
     },
     {
+      "name": "ui-style-retro-computing-pixel",
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md"
+    },
+    {
+      "name": "ui-style-retro-futurism-atompunk",
+      "path": "knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-risograph-zine",
+      "path": "knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md"
+    },
+    {
+      "name": "ui-style-sandalpunk",
+      "path": "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md"
+    },
+    {
       "name": "ui-style-scrollytelling",
       "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md"
     },
@@ -937,8 +1045,28 @@
       "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md"
     },
     {
+      "name": "ui-style-solarpunk",
+      "path": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-steampunk",
+      "path": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md"
+    },
+    {
       "name": "ui-style-swiss-web-minimalism",
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-tactile-brutalism",
+      "path": "knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-terminal-tui",
+      "path": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md"
+    },
+    {
+      "name": "ui-style-vaporwave-synthwave",
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md"
     },
     {
       "name": "ui-style-web-brutalism",

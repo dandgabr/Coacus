@@ -115,5 +115,5 @@ Five companion skills cover color end to end:
 - For the orchestrating generalist role, see [ui-ux-designer](../ui-ux-designer/SKILL.md).
 - For above-the-fold conversion and hero section typologies, see [ui-hero-sections](../../domains/design/ui-hero-sections/SKILL.md).
 - For tactile motion, spring physics, and hover dynamics, see [ui-motion-interaction](../../domains/design/ui-motion-interaction/SKILL.md).
-- For the style vocabulary, see the [design style library](../../domains/design/ui-style-glassmorphism/SKILL.md) (30 `ui-style-*` skills).
+- For the style vocabulary, see the [design style library](../../domains/design/ui-style-glassmorphism/SKILL.md) (one `ui-style-*` skill per style).
 - For accessibility conformance, see [web-accessibility-wcag](../../engineering/practices/web-accessibility-wcag/SKILL.md).

@@ -82,3 +82,4 @@ Multi-stop vivid gradients and two-tone brand imagery — the 2014–2019 consum
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
+- Newer sibling styles: [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md).

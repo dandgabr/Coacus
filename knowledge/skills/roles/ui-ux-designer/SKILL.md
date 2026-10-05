@@ -1,6 +1,6 @@
 ---
 name: "ui-ux-designer"
-description: "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the 30-style visual library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists."
+description: "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the style library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists."
 ---
 
 # 🎨 AI Skill: UI/UX Designer & Senior Art Director
@@ -33,13 +33,13 @@ When conceiving interfaces, it is **STRICTLY FORBIDDEN** to fall into the follow
 
 ---
 
-## 🏛️ 2. Taxonomy of the 24 Page Design Styles
+## 🏛️ 2. Taxonomy of the Page Design Styles
 
 The designer must consciously select the project's visual language from the encyclopedic catalog of styles (detailed in [references/web-design-styles-encyclopedia.md](references/web-design-styles-encyclopedia.md); per-style deep dives with bibliographies live in the [design style library](../../domains/design/ui-style-glassmorphism/SKILL.md) — one `ui-style-*` skill each):
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                      CATALOG OF THE 24 PAGE DESIGN STYLES                      │
+│                      CATALOG OF THE CORE PAGE DESIGN STYLES                    │
 ├───────────────────────────────┬────────────────────────────────────────────────────────┤
 │ 1. Historical Movements       │ • Bauhaus (1919) • Swiss Style (1950s) • De Stijl      │
 │    and Avant-Gardes           │ • Art Déco (1925) • Art Nouveau (1890) • Memphis (80s) │
@@ -56,6 +56,8 @@ The designer must consciously select the project's visual language from the ency
 │                               │ • Cyberpunk HUD • Acid Graphics / Anti-Design          │
 └───────────────────────────────┴────────────────────────────────────────────────────────┘
 ```
+
+The box above lists the core canon. The design style library extends it with further `ui-style-*` skills (for example Terminal TUI, Risograph/Zine, Vaporwave/Synthwave, Calm UI, Broken Grid, Grain and Noise Texture); browse `knowledge/skills/domains/design/` rather than relying on a fixed count.
 
 ### Quick Style Decision Matrix:
 | Scenario / Product Type | Recommended Style | Execution Guideline |

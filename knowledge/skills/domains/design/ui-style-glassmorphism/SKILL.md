@@ -73,6 +73,12 @@ Frosted-glass surfaces — translucent panels blurring the content behind them, 
 - **Use:** ephemeral layers (modals, nav bars, mini-players) over controlled backgrounds; brand moments.
 - **Avoid:** body-text containers, data-dense UI, user-controlled backgrounds, light-mode enterprise tools.
 
+
+### Liquid Glass and visionOS (extension)
+
+- Apple's Liquid Glass (WWDC 2025, iOS/macOS 26) evolves translucency into adaptive layers with lensing and specular highlights; visionOS uses a system glass material with depth and ornaments. Both are OS materials, not CSS standards.
+- Web approximation: `backdrop-filter` plus SVG displacement or specular overlays; always provide an opaque fallback and honor `prefers-reduced-transparency`. Source: Apple, WWDC25 session 219 "Meet Liquid Glass" — https://developer.apple.com/videos/play/wwdc2025/219/ (`unverified`: web recipes are approximations).
+
 ---
 
 ## ⚠️ Pitfalls

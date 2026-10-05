@@ -82,3 +82,4 @@ Deliberately raw, "un-designed" websites exposing default HTML — visible docum
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
+- Newer sibling styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-indie-web-revival](../ui-style-indie-web-revival/SKILL.md).
