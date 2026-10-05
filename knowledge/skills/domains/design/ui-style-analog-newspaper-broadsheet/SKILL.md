@@ -85,4 +85,4 @@ Translates the authoritative, multi-column format of classical daily broadsheet 
 
 ## 🔗 Integration with Other Skills
 
-- Sibling editorial styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-anti-hero-typography](../ui-style-anti-hero-typography/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
+- Sibling editorial styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-expressive-variable-typography](../ui-style-expressive-variable-typography/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).

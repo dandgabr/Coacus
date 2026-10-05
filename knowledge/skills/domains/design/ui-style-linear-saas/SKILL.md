@@ -21,7 +21,7 @@ The dominant look of 2020s product-led SaaS: calm, dark-first, neutral surfaces,
 
 - Linear published its UI redesign (part II) on March 28, 2024: LCH color space for theme generation, themes reduced from 98 variables to three (base, accent, contrast), Inter Display for headings with Inter for body, more contrast, less chroma for a "more neutral and timeless appearance"; a six-week project.
 - The look then spread across startup sites (dark hero, soft radial glow, bento cards).
-- Difference from [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md): that skill is theming strategy; this is a full visual language. Versus [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md) and [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md): glow here is subtle and structural, not decorative spectacle. Versus [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md): softer radii, atmospheric light, less exposed scaffolding.
+- Difference from [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md): that skill is theming strategy; this is a full visual language. Versus [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md) and [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md): glow here is subtle and structural, not decorative spectacle. Versus [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md): softer radii, atmospheric light, less exposed scaffolding.
 
 ---
 
@@ -110,4 +110,4 @@ The dominant look of 2020s product-led SaaS: calm, dark-first, neutral surfaces,
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md), [ui-style-tactile-brutalism](../ui-style-tactile-brutalism/SKILL.md).
+- Sibling styles: [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md), [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md).

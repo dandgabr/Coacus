@@ -1,81 +1,117 @@
 ---
 name: "ui-style-scrollytelling"
-description: "Provides the scrollytelling / narrative scroll style (2012-present): scroll-sequenced stories from NYT Snow Fall to native CSS scroll-driven animations, covering pin/scrub/stepped patterns, ScrollTrigger and scrollama tooling, the scroll-driven animations API, performance rules and reduced-motion cuts. Use when building data stories, explainers or product narratives sequenced by scroll."
+description: "Provides the scrollytelling, narrative scroll and one-page continuous scroll UI style (2012-present): scroll-sequenced stories, pinned scenes, stepped annotations and unified narrative long-scroll pages. Covers NYT Snow Fall origins, CSS animation-timeline scroll()/view(), ScrollTrigger/scrollama tooling, single-page anchor navigation and reduced-motion fallbacks. Use when building investigative data stories, product explainers or continuous one-page narrative sites."
 ---
 
-# UI Style: Scrollytelling (Narrative Scroll)
+# UI Style: Scrollytelling & One-Page Continuous Scroll
 
-Scroll position sequences a narrative: full-bleed media, pinned scenes, stepped annotations. Origin: NYT "Snow Fall" (John Branch, December 20, 2012; 2013 Pulitzer); industrialized by The Pudding (2017); standardized by native CSS scroll-driven animations (Chrome 115, July 2023). Synthesized from verified research; see Sources.
+Scroll position orchestrating a unified narrative experience: full-bleed background media, pinned scenes, stepped annotations, and seamless single-page continuous flow. Originates with NYT "Snow Fall" (2012) and single-page landing site architecture, standardized by native CSS scroll-driven animations (`animation-timeline: view()`). Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Building investigative/data narratives, explainers, annual reports.
-- Converting a product story with genuine sequence into scroll steps.
-- Choosing between GSAP ScrollTrigger, scrollama and native CSS animation timelines.
+- Investigative journalism, data narratives, product explainers, annual reports, and cinematic landing pages.
+- Converting complex multi-step stories or single-page portfolios into sequenced scroll chapters.
+- Implementing sticky-pinned presentation decks or scroll-scrubbed interactive demos.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- "Snow Fall" (Dec 20, 2012) — original URL now dead; archived. Follow-ups: "A Game of Shark and Minnow" (2013); The Pudding founded 2017; term "scrollytelling" commonly attributed to Brian Boyer (NPR Visuals) [unverified attribution].
-- Tooling eras: ScrollMagic (2014) → GSAP ScrollTrigger (2019) → scrollama (IntersectionObserver, 2017+) → **CSS `animation-timeline: scroll()/view()`** (Chrome/Edge 115+; Safari 26+; Firefox in preview).
+- **Origins:** NYT "Snow Fall" (John Branch, December 2012; Pulitzer Prize 2013) demonstrated the power of scroll position driving multi-media narrative flow. Industrialized by *The Pudding* (Russell Goldenberg, 2017) with the `scrollama` library.
+- **One-Page Long Scroll Architecture:** The single-page portfolio and campaign site paradigm (2010s–present) that unifies navigation, storytelling, and conversion into an uninterrupted vertical journey with smooth anchor jumps (`scroll-behavior: smooth`).
+- **Tooling Evolution:** ScrollMagic (2014) -> GSAP ScrollTrigger (2019) -> native CSS Scroll-Driven Animations API (Chrome 115+, Safari 26+).
+- **Difference from neighbors:** Unlike [ui-style-parallax-scrolling](../ui-style-parallax-scrolling/SKILL.md), which is primarily a decorative background depth effect, Scrollytelling is fundamentally *narrative*: scroll position directly reveals content, shifts scenes, and communicates information sequentially.
 
 ---
 
 ## 🎨 Visual DNA
 
-- Full-viewport media backdrops; sticky canvas with overlaid text cards; editorial serif display + neutral sans body; stepped scene rhythm (1→2→3); generous vertical whitespace; progress indicators; cinematic aspect ratios.
+- **Layout Structure:** Full-viewport media canvases (`min-height: 100vh`), sticky background containers (`position: sticky; top: 0;`), and overlaid text narrative cards.
+- **Typography:** Refined editorial serifs (Instrument Serif, Fraunces) paired with neutral sans-serif body text (Inter, Roboto).
+- **Progress Trackers:** Persistent vertical or horizontal progress bars, chapter dots, and current-section indicators.
+- **Cinematic Rhythm:** Deliberate pacing, generous vertical whitespace, and seamless transitions between chapter milestones.
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- **Pin:** element fixed between scroll positions; **scrub:** animation progress tied 1:1 to scroll (or smoothed, `scrub: 1`); stepped scenes fire at IntersectionObserver thresholds; parallax layers at different rates; horizontal sections driven by vertical scroll (`containerAnimation`); velocity-aware effects.
+- **Pin & Scrub:** Elements lock in place (`position: sticky`) while scroll progress scrubs a visual state (0% to 100%).
+- **Step Transitions:** Stepped annotations fade and slide in when crossing viewport thresholds (`IntersectionObserver`).
+- **Zero Scroll-Jacking Rule:** Never hijack the browser's native scrollwheel physics or momentum (violates user control and triggers motion sickness).
+- Under `prefers-reduced-motion: reduce`, disable all pinned scrub animations, displaying all content sequentially in standard static flow.
 
 ---
 
 ## 🛠️ Implementation Notes
 
-- Zero-JS baseline: `position: sticky` + opacity/transform-only animation.
-- Native CSS: `animation-timeline: view(); animation-range: entry 0% entry 100%;` — runs off the main thread; JS `ScrollTimeline`/`ViewTimeline` via WAAPI; demo suite at scroll-driven-animations.style.
-- GSAP ScrollTrigger for pin/scrub/snap (`anticipatePin`, matchMedia-responsive); scrollama for stepwise charts.
-- Rules: animate only `transform`/`opacity`; lazy-load below-fold media; hero video risks LCP — provide a poster; CLS < 0.1; **never hijack scroll** (ScrollTrigger docs position themselves as "no scroll-jacking").
+```css
+:root {
+  --story-bg: #0f1115;
+  --story-fg: #f0f2f5;
+  --story-accent: #2e6ff2;
+}
+body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smooth; }
+.scene-container {
+  position: relative;
+  min-height: 300vh;
+}
+.sticky-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-card {
+  position: relative;
+  margin: 80vh auto;
+  max-width: 520px;
+  background: rgba(15, 17, 21, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  body { scroll-behavior: auto; }
+  .scene-container { min-height: auto; }
+  .sticky-stage { position: relative; height: auto; }
+  .story-card { margin: 2rem auto; }
+}
+```
+
+- Prefer native CSS `animation-timeline: view()` where supported; fall back gracefully to `IntersectionObserver`.
+- Ensure all narrative chapters are directly accessible via standard keyboard navigation (Tab and Page Down) and anchor links.
 
 ---
 
-## ♿ Accessibility and Performance
+## ♿ Accessibility
 
-- Provide a reduced-motion cut: skip scrub, show final states (`prefers-reduced-motion`, Baseline Jan 2020).
-- Ensure all content is keyboard-reachable — stepped reveals hidden from non-scroll input are a common failure.
+- **Keyboard Reachability:** Never conceal information that can only be unlocked via mousewheel events. Keyboard users must be able to step through every scene.
+- **Reduced Motion Alternatives:** Respect `prefers-reduced-motion: reduce` by laying out scenes sequentially without sticky pins or scrubbing.
+- **Scroll Contrast:** Ensure overlaid narrative text cards have sufficient background opacity to meet WCAG 1.4.3 (4.5:1 ratio) regardless of underlying media.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** stories with genuine sequence; data narratives; annual reports.
-- **Avoid:** shallow marketing padding 3 sentences across 10 viewports; pages with interstitial ads; anything users must search within.
-
----
-
-## ⚠️ Pitfalls
-
-- Post-Snow-Fall "style over substance" imitation; scroll-jacking backlash; graphics rot when libraries age; readers losing their place.
+- **Use:** Product launch walkthroughs, data investigations, annual company reports, and story-driven creative agency portfolios.
+- **Avoid:** Search engines, e-commerce product catalogs, documentation references, and administrative data entry.
 
 ---
 
 ## 📚 Sources
 
-- John Branch, "Snow Fall: The Avalanche at Tunnel Creek", NYT, Dec 20, 2012 — https://www.nytimes.com/newsgraphics/2012/12/30/snow-fall/ (original URL now 404; Internet Archive copy)
-- Bramus, "Animate elements on scroll with Scroll-driven animations", Chrome for Developers, 2023 — https://developer.chrome.com/docs/css-ui/scroll-driven-animations
-- GSAP ScrollTrigger docs (v3.15) — https://gsap.com/docs/v3/Plugins/ScrollTrigger/
-- MDN, "`prefers-reduced-motion`" — https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
-- MDN, "Intersection Observer API" — https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-- Russell Goldenberg, scrollama, The Pudding, 2017 — https://github.com/russellsamora/scrollama
+- John Branch, "Snow Fall: The Avalanche at Tunnel Creek", *The New York Times*, 2012.
+- Bramus, "Scroll-driven Animations", Chrome Developer Documentation, 2023.
+- Russell Goldenberg, *Scrollama*, The Pudding, 2017 — https://github.com/russellsamora/scrollama
+- W3C, *Web Content Accessibility Guidelines 2.2* — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-parallax-scrolling](../ui-style-parallax-scrolling/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-one-page-long-scroll](../ui-style-one-page-long-scroll/SKILL.md).
+- Sibling narrative and motion styles: [ui-style-parallax-scrolling](../ui-style-parallax-scrolling/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).

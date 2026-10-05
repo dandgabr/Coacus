@@ -1,115 +1,106 @@
 ---
 name: "ui-style-collage-scrapbook"
-description: "Provides the collage / scrapbook UI style (art lineage 1912-present, web revival 2010s-present): cut-out photos, torn paper edges, tape, stickers and layered mixed media, covering photomontage history, clip-path cut-outs, drop-shadow layering, rotation rules and reading-order safety. Use when designing expressive, personal, mixed-media surfaces such as portfolios, zines, music and culture sites."
+description: "Provides the collage, scrapbook and Dadaist photomontage UI style (1912-present): cut-out photographic fragments, torn paper deckles, masking tape, rubber postmarks, ransom-note mixed typography and layered mixed media. Covers Braque/Picasso papier collé, Cabaret Voltaire Dada anti-art, CSS clip-path torn edges and accessibility. Use when designing expressive, subversive, punk, artistic or handcrafted scrapbook surfaces."
 ---
 
-# UI Style: Collage and Scrapbook
+# UI Style: Collage, Scrapbook & Dadaist Photomontage
 
-Interfaces assembled from cut, pasted and overlapped fragments: photo cut-outs, torn paper, tape, stamps, stickers and handwritten notes. Meaning comes from juxtaposition, and the surface reads as handmade and personal. Synthesized from verified research; see Sources.
+Interfaces assembled from cut, pasted, overlapped, and juxtaposed physical fragments: cut-out photographs, torn paper edges, adhesive masking tape, rubber postmarks, stamps, and mixed "ransom-note" typography. Spans the arc from early modernist paper collage (Picasso & Braque, 1912) and Dadaist anti-art protest (Hannah Höch, John Heartfield, 1916) to contemporary personal scrapbooks and subversive cultural zines. Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Portfolios, culture, music, fashion and event sites that want a handmade, mixed-media voice.
-- Landing pages built around cut-out imagery and sticker-like accents.
-- Translating physical scrapbook, zine or photomontage material to the screen.
+- Portfolios, underground culture zines, music labels, fashion lookbooks, and avant-garde art showcases.
+- Subversive platforms breaking clean corporate grid conformity through deliberate anti-harmony and tactile grit.
+- Translating physical mixed-media art, scrapbooking, or photomontage into interactive digital formats.
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- 1912: Braque and Picasso introduce papier collé; Picasso's *Still Life with Chair Caning* pastes oilcloth onto canvas (Wikipedia, Collage).
-- 1916-1919: Heartfield and Grosz claim to have invented photomontage in 1916; Hannah Höch's 1919 Dada work is the canonical example; Heartfield later made 240 anti-Nazi photomontages for AIZ (1930-1938).
-- Web revival follows the cut-and-paste aesthetic of 2010s editorial and music design (`unverified` for specific sites).
-- Distinct from [ui-style-maximalism](../ui-style-maximalism/SKILL.md): collage is about physical cut-out layering and visible edges, not abundance in general. Distinct from [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md): mixed media, not a single pen voice. Closer to [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md) in spirit but without the print-process constraint.
+- **Modernist Origins (1912):** Braque and Picasso introduced *papier collé*; Picasso's *Still Life with Chair Caning* (1912) pasted oilcloth onto fine art canvas, initiating modern collage.
+- **Dadaist Photomontage (1916–1924):** Founded at Cabaret Voltaire (Zurich) amidst WWI. Hannah Höch and John Heartfield invented political photomontage, juxtaposing newspaper clippings, mechanical parts, and ransom-note letterforms to challenge institutional complacency.
+- **Contemporary Digital Revival:** Web revival through 2010s zine cultures, post-punk aesthetics, and scrapbooking communities seeking tactile humanity.
+- **Difference from neighbors:** Unlike [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), which is neon, digital, and 1990s rave-inspired, Collage is analog, physical, paper-based, and tactile. Unlike [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), it is not restricted to spot-color print passes.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Cut-outs:** subjects isolated from photos with rough, white-bordered or torn edges.
-- **Layering:** overlap with stacked shadows; paper stock variety (newsprint, kraft, graph paper, tape).
-- **Rotation:** each fragment tilted -6 to +6 degrees; no two the same.
-- **Color:** limited base (paper tones) with spot colors; halftone or duotone photos for unity.
-- **Type:** mix of cut-out letters, typewriter, and marker; keep one readable body face.
-- **Ornament:** tape strips, paper clips, stamps, stars, scribbled arrows.
+- **Cut-Out Imagery:** Photographic subjects isolated with rough, torn, or white-bordered scissors edges.
+- **Paper & Stock Variety:** Layered paper backgrounds (aged newsprint `#E8E6E1`, kraft cardboard, graph paper, ledger sheets).
+- **Typography:** Anarchic typographic pairings (the ransom-note effect: pairing Didot serifs, gothic blackletter, monospaced typewriter fonts, and bold grotesques in single titles).
+- **Torn Edges & Tape:** Adhesive masking tape strips, paperclips, postal stamps, and torn paper deckles (`clip-path: polygon(...)`).
+- **Controlled Tilts:** Every container is slightly tilted (`transform: rotate(-1.5deg)` to `+2deg`), simulating papers laid casually on a desk.
+- **Depth:** Layered physical drop shadows (`box-shadow: 6px 6px 0 rgba(0,0,0,0.25)`).
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- Hover lifts a piece (translate -4px, scale 1.02, shadow deepens) and straightens the rotation slightly; 150-250ms.
-- Optional drag-to-rearrange for playful boards; always offer a non-drag alternative.
-- Stop-motion feel: step-timed entrance at 6-12 fps for a few hero items only.
-- Under `prefers-reduced-motion: reduce`, remove drift, stop-motion and parallax; keep static compositions.
+- **Tactile Paper Lift:** Hovering a fragment lifts it slightly (`transform: translateY(-4px) rotate(0deg)`), easing the tilt as if lifted by hand.
+- **Jitter & Stop-Motion:** Step-timed entrances (10–12 fps) for hero stickers and stamps.
+- Under `prefers-reduced-motion: reduce`, disable all random rotational wiggles and stop-motion shifts, keeping static overlapping arrangements.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-.scrap {
-  background: #f4efe4; padding: .75rem; transform: rotate(var(--tilt, -2deg));
-  filter: drop-shadow(2px 4px 0 rgb(0 0 0 / .25));
+:root {
+  --scrap-bg: #e8e6e1;
+  --scrap-paper: #f4efe4;
+  --scrap-ink: #1a1a1a;
+  --scrap-accent: #b82020;
 }
-.torn {
-  clip-path: polygon(0 3%, 6% 0, 14% 4%, 25% 1%, 40% 4%, 60% 0, 78% 3%, 92% 0, 100% 3%,
-                     100% 97%, 92% 100%, 75% 96%, 55% 100%, 35% 97%, 15% 100%, 0 96%);
+body { background: var(--scrap-bg); color: var(--scrap-ink); }
+.scrap-card {
+  background: var(--scrap-paper);
+  padding: 1.5rem;
+  transform: rotate(-1.5deg);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
-.scrap:hover, .scrap:focus-visible { transform: rotate(0) translateY(-4px); }
-.scrap img { mix-blend-mode: multiply; }
-@media (prefers-reduced-motion: reduce) { .scrap { transition: none; } }
+.scrap-card:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow: 8px 12px 0 rgba(0, 0, 0, 0.25);
+}
+.torn-edge {
+  clip-path: polygon(0 2%, 5% 0, 15% 3%, 28% 1%, 42% 3%, 60% 0, 78% 2%, 92% 0, 100% 2%,
+                     100% 98%, 90% 100%, 75% 97%, 55% 100%, 35% 97%, 15% 100%, 0 97%);
+}
 ```
 
-- Use `filter: drop-shadow()` rather than `box-shadow` so shadows follow the clipped (alpha) shape.
-- `clip-path: polygon()` gives torn edges; keep focus outlines on an unclipped wrapper, since clipping can cut them.
-- Cut out subjects ahead of time as transparent WebP/PNG; avoid runtime masking of large photos.
-- Lay out with CSS Grid placement or a few absolutely positioned decorative layers; keep content in DOM reading order.
+- Implement ransom-note headings using semantic HTML spans with distinct font classes, ensuring screen readers parse the heading smoothly as a continuous sentence.
+- Use `filter: drop-shadow()` rather than `box-shadow` on clipped items so the shadow wraps around the irregular alpha edges.
 
 ---
 
 ## ♿ Accessibility
 
-- 1.4.3 Contrast (Minimum) and 1.4.11 Non-text Contrast: text on patterned paper needs a flat plate; check each overlap area.
-- 1.3.2 Meaningful Sequence and 2.4.3 Focus Order: visual shuffling must not reorder content semantically.
-- 2.4.7 Focus Visible and 2.4.11 Focus Not Obscured: clipped or overlapped pieces must keep a visible, unobscured focus indicator.
-- 1.4.10 Reflow and 1.4.4 Resize Text: rotated blocks must not clip text at 200% zoom or 320px width.
-- Decorative tape, stickers and stamps: empty `alt` or `aria-hidden`; informative cut-outs get real alternatives.
-- Honor `prefers-reduced-motion`; avoid drag as the only interaction (2.5.7 Dragging Movements).
+- **Reading Order (WCAG 1.3.2):** Visual shuffling and overlapping positions must strictly preserve logical DOM reading order.
+- **Focus Visibility:** Rotated and clipped containers must not clip the browser focus ring (WCAG 2.4.7).
+- **Contrast Integrity:** Ensure ransom-note text fragments maintain at least 4.5:1 contrast against their paper backgrounds.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** portfolios, music and culture sites, editorial features, campaigns, personal blogs.
-- **Caution:** commerce (brand shell yes, product detail no), long text pages.
-- **Avoid:** forms, dashboards, regulated or trust-critical flows; anywhere clutter harms task completion.
-
----
-
-## ⚠️ Pitfalls
-
-- Everything rotated and shadowed equally: hierarchy disappears.
-- Heavy raster cut-outs bloat page weight; compress and size responsively.
-- Clipped edges cut off focus rings and text on zoom.
-- Digital "tape and stickers" clichés read as template; vary materials and source imagery.
-- Copyright: cut-out imagery needs cleared sources.
+- **Use:** Artist portfolios, indie record labels, creative publishing, exhibition microsites, and counterculture commentary.
+- **Avoid:** Online banking, medical diagnosis portals, legal documentation, and enterprise administrative tools.
 
 ---
 
 ## 📚 Sources
 
-- Wikipedia, "Collage" (Wikimedia) — https://en.wikipedia.org/wiki/Collage
-- Wikipedia, "Photomontage" (Wikimedia) — https://en.wikipedia.org/wiki/Photomontage
-- MDN Web Docs, "clip-path" (Mozilla) — https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path
-- MDN Web Docs, "drop-shadow()" (Mozilla) — https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow
-- MDN Web Docs, "mix-blend-mode" (Mozilla) — https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2", Recommendation 12 Dec 2024 — https://www.w3.org/TR/WCAG22/
+- Tristan Tzara, *Dada Manifesto*, 1918.
+- Hannah Höch, *Photomontages and Collages*, 1919–1934.
+- Dawn Ades, *Photomontage*, Thames & Hudson, 1986.
+- W3C, *Web Content Accessibility Guidelines 2.2* — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md).
+- Sibling expressive styles: [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-constructivism-propaganda](../ui-style-constructivism-propaganda/SKILL.md).

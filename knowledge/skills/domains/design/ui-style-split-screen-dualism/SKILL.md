@@ -85,4 +85,4 @@ Dividing the viewport vertically into two distinct, communicating halves (often 
 
 ## 🔗 Integration with Other Skills
 
-- Sibling layout styles: [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-one-page-long-scroll](../ui-style-one-page-long-scroll/SKILL.md).
+- Sibling layout styles: [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).

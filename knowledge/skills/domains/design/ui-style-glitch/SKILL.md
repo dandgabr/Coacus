@@ -22,7 +22,7 @@ Error as ornament: channel separation, displaced slices, scanline tears, compres
 - Glitch art is an art movement that uses digital or analog errors for aesthetic purposes; the term emerged in the mid-1990s from experimental electronic music, then VJs and visual artists. JODI's net.art broke website layouts early; methods include databending, datamoshing (removing I-frames from compressed video), misalignment, hardware failure and compression distortion. The first GLI.TC/H conference was held in Chicago in 2010.
 - Rosa Menkman's "Glitch Studies Manifesto" (2009/2010) frames noise and artifacts as material and critique of "noiseless" media.
 - Web craft: Chris Coyier's CSS-Tricks "Glitch Effect on Text / Images / SVG" (Sep 8, 2014) stacks pseudo-element copies with clipped, animated offsets.
-- Difference from [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md): cyberpunk is a futuristic HUD genre; glitch is a technique and attitude (corruption) usable in any genre. Versus [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md): glitch simulates malfunction; acid is chaotic composition without that fiction. Versus [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md): glitch type is broken, not choreographed.
+- Difference from [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md): cyberpunk is a futuristic HUD genre; glitch is a technique and attitude (corruption) usable in any genre. Versus [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md): glitch simulates malfunction; acid is chaotic composition without that fiction. Versus [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md): glitch type is broken, not choreographed.
 
 ---
 
@@ -110,4 +110,4 @@ Error as ornament: channel separation, displaced slices, scanline tears, compres
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md).
+- Sibling styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md).

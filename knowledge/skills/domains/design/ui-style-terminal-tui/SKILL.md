@@ -22,7 +22,7 @@ Interface as a grid of character cells: one monospace font, box-drawing frames, 
 - A TUI is an early form of human-computer interaction from before bitmapped displays and GUIs; it often uses box-drawing characters for structure and persists in terminal emulators today.
 - Lineage: ECMA-48 (1976) and ANSI X3.64 (1979) escape codes; DEC VT100 (1978) spread them; the IBM PC's CP437 supplied box-drawing glyphs; Norton Commander, WordPerfect and Lotus 1-2-3 defined the DOS-era look; curses/ncurses carried it across Unix.
 - Modern wave: Ratatui (Rust, immediate-mode rendering) and similar libraries; web pages emulate it for developer audiences.
-- Difference from neighbors: [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md) is sci-fi spectacle (glow, scanlines, HUD chrome); terminal/TUI is functional and cell-quantized, with no glow required. [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md) celebrates bitmap graphics and GUI nostalgia; this style is text-first.
+- Difference from neighbors: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) is sci-fi spectacle (glow, scanlines, HUD chrome); terminal/TUI is functional and cell-quantized, with no glow required. [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md) celebrates bitmap graphics and GUI nostalgia; this style is text-first.
 
 ---
 
@@ -111,4 +111,4 @@ body { background: var(--bg); color: var(--fg);
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).
+- Sibling styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).

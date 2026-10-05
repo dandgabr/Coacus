@@ -123,5 +123,5 @@ body { background: var(--bg); color: var(--ink); font-family: "Space Grotesk", s
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Closest siblings: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md).
+- Closest siblings: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).
 - Related: [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md).

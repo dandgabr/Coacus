@@ -82,5 +82,5 @@ The retrofuturist look of 1998–2003 — chrome type, blobjects, translucent je
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md), [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md).
+- Sibling styles: [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md).
 - Newer sibling styles: [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md).

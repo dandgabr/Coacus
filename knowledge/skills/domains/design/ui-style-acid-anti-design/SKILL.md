@@ -79,5 +79,5 @@ Deconstructivist anti-design fusing Y2K graphics, glitch/static, AI-generated im
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-cyberpunk-hud](../ui-style-cyberpunk-hud/SKILL.md).
+- Sibling styles: [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).
 - Newer sibling styles: [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).

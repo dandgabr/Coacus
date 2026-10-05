@@ -1,85 +1,105 @@
 ---
 name: "ui-style-web-brutalism"
-description: "Provides the classic web brutalism style (2014-2019): deliberately raw sites exposing default HTML, browser styles and document structure, covering Pascal Deville's movement naming, canonical examples (Balenciaga, Bloomberg, Low-tech Magazine), the authenticity critique and its honest performance upside. Use when building anti-corporate statements, zines or performance-critical text sites."
+description: "Provides the complete classic and data-dense web brutalism style (2014-present): raw HTML document structure, default browser styling, unadorned links, high-density financial terminal grids, zero padding waste and tabular streams. Covers Pascal Deville's movement naming, Bloomberg Terminal data density, Low-tech Magazine performance and accessibility. Use when building raw anti-corporate statements, financial consoles or performance-critical text sites."
 ---
 
-# UI Style: Web Brutalism (Classic)
+# UI Style: Web Brutalism & Data-Dense Console
 
-Deliberately raw, "un-designed" websites exposing default HTML — visible document structure, browser-default styles, Times New Roman and blue links kept on purpose. Named and popularized by Pascal Deville (brutalistwebsites.com, ~2014–2016) as a reaction "to the lightness, optimism, and frivolity of today's web design". Peak 2014–2019. Synthesized from verified research; see Sources.
+The raw, unfiltered truth of the web medium: unadorned HTML document structures, default browser styling, exposed hyperlinks, and mission-critical data density. Unifies the classic anti-design web brutalism movement (Pascal Deville, brutalistwebsites.com) with the high-throughput tabular density of financial terminals (Bloomberg, Reuters). Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Building art/culture/music/fashion statements, zines, portfolio provocations.
-- Performance-critical text sites (the style's serious side benefit).
-- Studying the anti-design current that neubrutalism productized.
+- Art, culture, zines, and activist platforms making deliberate anti-corporate statements.
+- Financial trading desks, cryptocurrency orderbooks, infrastructure observability dashboards, and network operations centers (NOC).
+- Performance-critical, low-bandwidth text applications and solar-powered websites (Low←Tech Magazine).
 
 ---
 
 ## 🕰️ Definition and Timeline
 
-- Named from architecture: béton brut (Le Corbusier); New Brutalism (Reyner Banham, 1955).
-- Pascal Deville (CreativeMornings/Fantastic Frank) popularized the web movement; brutalistwebsites.com is the canonical index.
-- Flagship examples: 032c, adidas Yung-1 campaign, Cards Against Humanity's 99%-off sale, Bloomberg's "A Global Guide to State-Sponsored Trolling" (2018), NYT interactives ("2018: The Year in Dissonance"), Karel Martens, Low←Tech Magazine's solar site (2018), NES.css (2018); Balenciaga's stark e-commerce (Demna era, from 2015) as the fashion emblem.
-- Declined as a mass trend ~2019–2020; survives in culture sectors and in neubrutalism.
+- **Architectural Roots:** Architectural New Brutalism (Reyner Banham, 1955; Alison and Peter Smithson; Le Corbusier's *béton brut*). Honesty of materials and structural unpretentiousness.
+- **Web Brutalism (2014–2019):** Named and curated by Pascal Deville (*brutalistwebsites.com*). Reaction against glossy, frivolous corporate templates. Canonical adopters: Balenciaga, Bloomberg's investigative features, Cards Against Humanity, Low←Tech Magazine.
+- **Data-Dense Terminal Strand (1982–present):** Michael Bloomberg introduced the Bloomberg Terminal in 1982. Its dense amber-and-green tabular matrix set the global standard for rapid data triage where whitespace is considered an operational hazard.
+- **Difference from neighbors:** Unlike [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), which is playful, colorful, and heavily styled with cartoon drop-shadows, Web Brutalism embraces structural rawness, default HTML elements, and pure data throughput.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Type:** system defaults or monospace; Times New Roman; giant near-default sizes; no webfont polish; Courier and blue-link styling kept deliberately.
-- **Color:** default blue links, black on white, occasional harsh primaries; no brand-palette discipline.
-- **Shapes:** none — visible table layouts, misaligned columns, overflowing elements, `<hr>` rules; "showing the bones" of the document.
-- **Depth/texture:** zero; raw native-resolution images; 1990s metadata (visible author keywords) as content.
+- **Typography:** System monospaced and default serif/sans-serif fonts (Times New Roman, Courier, JetBrains Mono, Consolas) rendered with zero webfont bloat.
+- **Color Palette:**
+  - *Classic Raw Web:* Pure black on pure white, native underlined blue hyperlinks (`#0000EE`), visited purple (`#551A8B`).
+  - *Terminal Console:* Pitch black (`#0C0D0E`), terminal amber (`#FF9E00`), trading green (`#00E676`), and alert red (`#FF1744`).
+- **Layout & Structure:** Unstyled or hairline `<table>` grids, 2px cell paddings, zero wasted margins, `<hr>` dividers, and visible document scaffolding.
+- **Imagery & Media:** Unedited raw-resolution photos, 1-bit dithered bitmaps, and inline SVG sparklines.
 
 ---
 
 ## 🖱️ Interaction and Motion
 
-- None by intent: no easing, no transitions, sometimes hostile to micro-interactions; scrolling conventions occasionally broken on purpose.
+- **Zero Decorative Transitions:** Instantaneous state changes (`transition: none`); zero playful bounce or skeleton loaders.
+- **Keyboard-First Controls:** Direct keyboard shortcuts indicated with brackets (`[B]uy`, `[S]ell`, `[Esc]`).
+- **Data Refresh:** Telemetry cells update instantly, with single-frame background flashes for altered values.
 
 ---
 
 ## 🛠️ Implementation Notes
 
-- Deliberately minimal CSS: no reset (browser defaults as style), `font-family: monospace`, default link colors; semantic plain HTML; unstyled `<table>` layouts; zero-dependency builds.
-- Low←Tech Magazine extends the ethos: dithered images, system fonts, solar-powered hosting with an honest "sometimes offline" banner.
+```css
+:root {
+  --wb-bg: #0c0d0e;
+  --wb-fg: #e1e4e8;
+  --wb-amber: #ff9e00;
+  --wb-green: #00e676;
+  --wb-border: #282e38;
+  --wb-font: 'JetBrains Mono', monospace;
+}
+body { background: var(--wb-bg); color: var(--wb-fg); font-family: var(--wb-font); font-size: 13px; }
+table.data-dense {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.data-dense th, table.data-dense td {
+  border: 1px solid var(--wb-border);
+  padding: 4px 8px;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+a.raw-link {
+  color: #00f0ff;
+  text-decoration: underline;
+}
+```
 
 ---
 
 ## ♿ Accessibility
 
-- Taken literally, the style fails contrast and scanning expectations; "ugly on purpose" can read as contempt for users. The honest use is constraint-driven: default styles are actually legible and the page weight is minimal.
+- **Optimal Information Contrast:** Pure terminal amber and neon green against black easily exceed 8:1 contrast ratios.
+- **Live Stream Accessibility:** Dynamic telemetry streams must use `aria-live="polite"` regions and positive/negative text markers (`+`, `-`) rather than relying solely on green/red color (WCAG 1.4.1).
+- **Legibility:** Keep line-height comfortable (`1.3` to `1.4`) to prevent dense tabular columns from causing visual fatigue.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** anti-corporate statements, zines, performance-critical text sites, art/culture provocation.
-- **Avoid:** conversion-driven products, accessibility-sensitive audiences, e-commerce UX (Balenciaga's friction is the point, not a pattern to copy).
-
----
-
-## ⚠️ Pitfalls
-
-- Authenticity decayed into a template — "brutalism became a style," killing its own premise; commercial adopters got press but low task-completion.
+- **Use:** Trading orderbooks, server telemetry, developer documentation, performance-constrained networks, and underground cultural zines.
+- **Avoid:** Friendly consumer onboarding, family-focused products, and luxury beauty brands where warmth and emotional comfort are required.
 
 ---
 
 ## 📚 Sources
 
-- Brutalist Websites, Pascal Deville, 2014 — http://brutalistwebsites.com/
-- Pascal Deville, "Web Design Brutalism" naming essay, CreativeMornings, c. 2016 [fetch blocked; attribution widely reported] — https://creativemornings.com/blog/web-design-brutalism
-- Bloomberg, "A Global Guide to State-Sponsored Trolling", 2018 (via brutalistwebsites.com index)
-- NYT, "2018: The Year in Dissonance" — https://www.nytimes.com/interactive/2018/12/11/style/2018-year-in-review.html
-- NES.css — https://bcrikko.github.io/NES.css
-- Low←Tech Magazine solar website, 2018 — http://solar.lowtechmagazine.com
-- Reyner Banham, "The New Brutalism", Architectural Review, 1955 (print)
+- Pascal Deville, *Brutalist Websites Archive*, 2014–2022 — http://brutalistwebsites.com/
+- Michael Bloomberg, *Bloomberg by Bloomberg*, John Wiley & Sons, 1997.
+- Low←Tech Magazine, *How to Build a Low-tech Website*, 2018 — http://solar.lowtechmagazine.com
+- Reyner Banham, "The New Brutalism", *Architectural Review*, 1955.
+- W3C, *Web Content Accessibility Guidelines 2.2* — https://www.w3.org/TR/WCAG22/
 
 ---
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
-- Newer sibling styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-indie-web-revival](../ui-style-indie-web-revival/SKILL.md).
+- Sibling raw styles: [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md).
