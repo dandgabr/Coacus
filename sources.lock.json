@@ -19924,9 +19924,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
-      "source_sha256": "83b132fafef23c6be5ab60dec67fa181eb65e9186d6f974644e1f69ea4bd594f",
+      "source_sha256": "bada3b8435988be28fe01f3a19f8ab95353b7e9e654ad27a432094e93764e1d9",
       "target_path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
-      "target_sha256": "83b132fafef23c6be5ab60dec67fa181eb65e9186d6f974644e1f69ea4bd594f",
+      "target_sha256": "bada3b8435988be28fe01f3a19f8ab95353b7e9e654ad27a432094e93764e1d9",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19939,9 +19939,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-anti-hero-typography/SKILL.md",
-      "source_sha256": "5a7f37628b597ee0eebbce0f746be079411753b30325c20923e0e3daaa921b20",
+      "source_sha256": "2a37ca2444789da35b2eb129f821c09b41c9b36fdde5e19369530e0f3adf746b",
       "target_path": "knowledge/skills/domains/design/ui-style-anti-hero-typography/SKILL.md",
-      "target_sha256": "5a7f37628b597ee0eebbce0f746be079411753b30325c20923e0e3daaa921b20",
+      "target_sha256": "2a37ca2444789da35b2eb129f821c09b41c9b36fdde5e19369530e0f3adf746b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19954,9 +19954,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
-      "source_sha256": "40532b48cb30a9f1bf71c21d5f13894a74902ae0b0c35cdb102e3744d76b5f11",
+      "source_sha256": "8070454032b60738c40125abf65b0860e98abf316ddc31883ad19618947a48db",
       "target_path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
-      "target_sha256": "40532b48cb30a9f1bf71c21d5f13894a74902ae0b0c35cdb102e3744d76b5f11",
+      "target_sha256": "8070454032b60738c40125abf65b0860e98abf316ddc31883ad19618947a48db",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19969,9 +19969,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-brutalist-data-dense/SKILL.md",
-      "source_sha256": "6a3d6524e2679807ea070506e22856cf8e0df0b0201ed92d25ec193fd7c0dd44",
+      "source_sha256": "ba95a7c2aeeeefd56d85f23a760c64a18e2b23a6fd8fc56f146778535a7b7a9c",
       "target_path": "knowledge/skills/domains/design/ui-style-brutalist-data-dense/SKILL.md",
-      "target_sha256": "6a3d6524e2679807ea070506e22856cf8e0df0b0201ed92d25ec193fd7c0dd44",
+      "target_sha256": "ba95a7c2aeeeefd56d85f23a760c64a18e2b23a6fd8fc56f146778535a7b7a9c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19984,9 +19984,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-      "source_sha256": "78efec7863500070c59ab73bef2c680af423973c03b671ed06c223e7a3f4cafa",
+      "source_sha256": "8fb4d06b6141102c6c631ed85c02db1c767baefb7649b2f5ecf80a2c1021ac4e",
       "target_path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-      "target_sha256": "78efec7863500070c59ab73bef2c680af423973c03b671ed06c223e7a3f4cafa",
+      "target_sha256": "8fb4d06b6141102c6c631ed85c02db1c767baefb7649b2f5ecf80a2c1021ac4e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19999,9 +19999,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
-      "source_sha256": "345fee8860379ec3104179f3ca3542ec5a09a49e2c222ec4b06900b6becae1d8",
+      "source_sha256": "6b3eb5c554e1bb29cf830986bb96b97e5540220cbcd0eb15534092f2000fc6d1",
       "target_path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
-      "target_sha256": "345fee8860379ec3104179f3ca3542ec5a09a49e2c222ec4b06900b6becae1d8",
+      "target_sha256": "6b3eb5c554e1bb29cf830986bb96b97e5540220cbcd0eb15534092f2000fc6d1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20014,9 +20014,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-clay-stop-motion/SKILL.md",
-      "source_sha256": "abbf06803f1ee51d66a8da5799b41c6c998e83002ba253772121842a9b290d5f",
+      "source_sha256": "10a98a236a579454b72494314b1b0eb8e492de0be6bff91e71d4fd5b5fcc3f91",
       "target_path": "knowledge/skills/domains/design/ui-style-clay-stop-motion/SKILL.md",
-      "target_sha256": "abbf06803f1ee51d66a8da5799b41c6c998e83002ba253772121842a9b290d5f",
+      "target_sha256": "10a98a236a579454b72494314b1b0eb8e492de0be6bff91e71d4fd5b5fcc3f91",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20029,9 +20029,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md",
-      "source_sha256": "8872c0c153718f09dc1d0fc34cb8e123c0fcdfde347d3e83b7f4ffadd2054343",
+      "source_sha256": "4190d764318561e7d43de8a2d042093fdb27672fa8b7bfb478181cff9128f121",
       "target_path": "knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md",
-      "target_sha256": "8872c0c153718f09dc1d0fc34cb8e123c0fcdfde347d3e83b7f4ffadd2054343",
+      "target_sha256": "4190d764318561e7d43de8a2d042093fdb27672fa8b7bfb478181cff9128f121",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20044,9 +20044,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-dadaism-montage/SKILL.md",
-      "source_sha256": "19d157b0d1252da42a87c758445a5a8ca9761c63e933380cb747bbf9d4c0e887",
+      "source_sha256": "a23a52b58e1055c73731b623bada0f8094e42576e24d8f7e3e77770fb9dffce9",
       "target_path": "knowledge/skills/domains/design/ui-style-dadaism-montage/SKILL.md",
-      "target_sha256": "19d157b0d1252da42a87c758445a5a8ca9761c63e933380cb747bbf9d4c0e887",
+      "target_sha256": "a23a52b58e1055c73731b623bada0f8094e42576e24d8f7e3e77770fb9dffce9",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20059,9 +20059,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md",
-      "source_sha256": "d3317c260c481558a766ae506d3fd253396c4007021a7b9d42d23399bd0033c3",
+      "source_sha256": "d656b504a3ae2382ebcf594966651b81151db9edc008509f2fb130a2174bd24c",
       "target_path": "knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md",
-      "target_sha256": "d3317c260c481558a766ae506d3fd253396c4007021a7b9d42d23399bd0033c3",
+      "target_sha256": "d656b504a3ae2382ebcf594966651b81151db9edc008509f2fb130a2174bd24c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20074,9 +20074,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-editorial-horizontal-scroll/SKILL.md",
-      "source_sha256": "74b8d34d2bf311213d8333ead85a896c86ac76696ea4bfa5b6a4545368ff8a03",
+      "source_sha256": "0fc70acb39a4e438c53831105630e3c83f11240774b4c8d2c12b8b5f642970f1",
       "target_path": "knowledge/skills/domains/design/ui-style-editorial-horizontal-scroll/SKILL.md",
-      "target_sha256": "74b8d34d2bf311213d8333ead85a896c86ac76696ea4bfa5b6a4545368ff8a03",
+      "target_sha256": "0fc70acb39a4e438c53831105630e3c83f11240774b4c8d2c12b8b5f642970f1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20089,9 +20089,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
-      "source_sha256": "04f1f51cfdca1d0d3cd5f8051d787db1222962fe08d2f2084125feeb737885ee",
+      "source_sha256": "d8569e2979e64aa568f94fc584fcf9bf8e3668d5ee1408b26cf67473fb195edd",
       "target_path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
-      "target_sha256": "04f1f51cfdca1d0d3cd5f8051d787db1222962fe08d2f2084125feeb737885ee",
+      "target_sha256": "d8569e2979e64aa568f94fc584fcf9bf8e3668d5ee1408b26cf67473fb195edd",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20104,9 +20104,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
-      "source_sha256": "c3027ae96f93db5d40bb6c88f46d35366211ec8ac94bff9866c542eb1d0d1414",
+      "source_sha256": "fbd1f32d05992ad4f5d77aa8bcc3a548e86bb1dc369011fa65c82de45a80fed1",
       "target_path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
-      "target_sha256": "c3027ae96f93db5d40bb6c88f46d35366211ec8ac94bff9866c542eb1d0d1414",
+      "target_sha256": "fbd1f32d05992ad4f5d77aa8bcc3a548e86bb1dc369011fa65c82de45a80fed1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20119,9 +20119,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
-      "source_sha256": "c6e4ba5fd382c04eb017e8ab4998dcdf55393945f04e65ae83d680be024da75c",
+      "source_sha256": "2c11edbb234ad75c55cec39de4e34a78923d35b57ecdb661beaea8746c596c47",
       "target_path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
-      "target_sha256": "c6e4ba5fd382c04eb017e8ab4998dcdf55393945f04e65ae83d680be024da75c",
+      "target_sha256": "2c11edbb234ad75c55cec39de4e34a78923d35b57ecdb661beaea8746c596c47",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20134,9 +20134,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-kinetic-marquee-ticker/SKILL.md",
-      "source_sha256": "d1114708549b166f78e94e279939709df5587e48ca02c503c887b1f322d36cab",
+      "source_sha256": "8d274f2774238ce45de567a181e50077ae3ba2780cca03e6d9e8acbf94084cb0",
       "target_path": "knowledge/skills/domains/design/ui-style-kinetic-marquee-ticker/SKILL.md",
-      "target_sha256": "d1114708549b166f78e94e279939709df5587e48ca02c503c887b1f322d36cab",
+      "target_sha256": "8d274f2774238ce45de567a181e50077ae3ba2780cca03e6d9e8acbf94084cb0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20149,9 +20149,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
-      "source_sha256": "e71e487192a4eb460383fca00bd0b5dca4ec57109a4f9fc185fbce1dd55a773a",
+      "source_sha256": "1a5df17d4336d0a6a53c61a9cad8070fff8a78ba7acb3e8d8da9fbfae4666753",
       "target_path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
-      "target_sha256": "e71e487192a4eb460383fca00bd0b5dca4ec57109a4f9fc185fbce1dd55a773a",
+      "target_sha256": "1a5df17d4336d0a6a53c61a9cad8070fff8a78ba7acb3e8d8da9fbfae4666753",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20164,9 +20164,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
-      "source_sha256": "c9231894692ca8cf7769be4012d7888481550691f167a7e9731fa6f5108d475f",
+      "source_sha256": "dc8322c71112bf34e6d8ecabf33554726b8a7eea19f1428cd6a6605011b54865",
       "target_path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
-      "target_sha256": "c9231894692ca8cf7769be4012d7888481550691f167a7e9731fa6f5108d475f",
+      "target_sha256": "dc8322c71112bf34e6d8ecabf33554726b8a7eea19f1428cd6a6605011b54865",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20179,9 +20179,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
-      "source_sha256": "c32ae3445a6325572644a069ffdf83c1002feef644dab230a279600a5474925b",
+      "source_sha256": "6d9066847e1078077fee447bc1bd130884475b041f9d502b90d20e26e5853775",
       "target_path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
-      "target_sha256": "c32ae3445a6325572644a069ffdf83c1002feef644dab230a279600a5474925b",
+      "target_sha256": "6d9066847e1078077fee447bc1bd130884475b041f9d502b90d20e26e5853775",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20194,9 +20194,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-skeuomorphic-neomorphic-hybrid/SKILL.md",
-      "source_sha256": "89f2940e354bf1d62ae60bbcade84261d642c5062ea8384d28d91524c08030db",
+      "source_sha256": "5d496a7b6bb01b982620b0527b3869dfd8e3f3cd1dc7d5602214fb88c954acdf",
       "target_path": "knowledge/skills/domains/design/ui-style-skeuomorphic-neomorphic-hybrid/SKILL.md",
-      "target_sha256": "89f2940e354bf1d62ae60bbcade84261d642c5062ea8384d28d91524c08030db",
+      "target_sha256": "5d496a7b6bb01b982620b0527b3869dfd8e3f3cd1dc7d5602214fb88c954acdf",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20209,9 +20209,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-skeuomorphic-y2k-cyber/SKILL.md",
-      "source_sha256": "effda27164c3318ba5a72c617f4522eed71265d252f065940b00871cd52ed944",
+      "source_sha256": "eb3e9c2c4d951cec0c855603295c415d404a91e40551a6908d14f5d3bccc1533",
       "target_path": "knowledge/skills/domains/design/ui-style-skeuomorphic-y2k-cyber/SKILL.md",
-      "target_sha256": "effda27164c3318ba5a72c617f4522eed71265d252f065940b00871cd52ed944",
+      "target_sha256": "eb3e9c2c4d951cec0c855603295c415d404a91e40551a6908d14f5d3bccc1533",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20224,9 +20224,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-solarpunk-biomorphic/SKILL.md",
-      "source_sha256": "64b127aaecfea6fc2eb0840b483201e3edebb10e201dd1c80432faef8456e863",
+      "source_sha256": "341a2209fd0e50c7326767770943b7c36493c9256fca975223ffd26b3a1e6bc0",
       "target_path": "knowledge/skills/domains/design/ui-style-solarpunk-biomorphic/SKILL.md",
-      "target_sha256": "64b127aaecfea6fc2eb0840b483201e3edebb10e201dd1c80432faef8456e863",
+      "target_sha256": "341a2209fd0e50c7326767770943b7c36493c9256fca975223ffd26b3a1e6bc0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20239,9 +20239,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-solarpunk-naturecore/SKILL.md",
-      "source_sha256": "f13e58ebe92efee2ea0bd0eaa91d7e59a1ea71b924ab86b93d72a014e209ed45",
+      "source_sha256": "7a8aa4f00e6779bfafe2a499a36431bdd7350ad1b82c52a80340957b809a57ae",
       "target_path": "knowledge/skills/domains/design/ui-style-solarpunk-naturecore/SKILL.md",
-      "target_sha256": "f13e58ebe92efee2ea0bd0eaa91d7e59a1ea71b924ab86b93d72a014e209ed45",
+      "target_sha256": "7a8aa4f00e6779bfafe2a499a36431bdd7350ad1b82c52a80340957b809a57ae",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20254,9 +20254,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-spatial-vision-os/SKILL.md",
-      "source_sha256": "2fbd4ece1e4931a92068ddf34b396ba394a1b6a6e472e49002ed9ec65461eec7",
+      "source_sha256": "5d2d96fbacaeb25c33c96e87218179ac3ceb8c6e9861f1523474b41d41555a6f",
       "target_path": "knowledge/skills/domains/design/ui-style-spatial-vision-os/SKILL.md",
-      "target_sha256": "2fbd4ece1e4931a92068ddf34b396ba394a1b6a6e472e49002ed9ec65461eec7",
+      "target_sha256": "5d2d96fbacaeb25c33c96e87218179ac3ceb8c6e9861f1523474b41d41555a6f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20269,9 +20269,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
-      "source_sha256": "c3bc336113637d5521ddcb1b769ea7557db4d1fd9a9e96275db7c373b9c5ddc4",
+      "source_sha256": "1da0fb7fac6d652d30cfea1a5098a47ea2c06bea4f62d4630a9014848c4e9bf1",
       "target_path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
-      "target_sha256": "c3bc336113637d5521ddcb1b769ea7557db4d1fd9a9e96275db7c373b9c5ddc4",
+      "target_sha256": "1da0fb7fac6d652d30cfea1a5098a47ea2c06bea4f62d4630a9014848c4e9bf1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20284,9 +20284,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md",
-      "source_sha256": "079c71357cbc8550ac5e4269f7dfeeef2e270d3177d900890520768048487dc3",
+      "source_sha256": "7832daaa74a450181e8d050fb33a167a45a7a8ed8c1e0f0dbdac520c45eab8d7",
       "target_path": "knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md",
-      "target_sha256": "079c71357cbc8550ac5e4269f7dfeeef2e270d3177d900890520768048487dc3",
+      "target_sha256": "7832daaa74a450181e8d050fb33a167a45a7a8ed8c1e0f0dbdac520c45eab8d7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

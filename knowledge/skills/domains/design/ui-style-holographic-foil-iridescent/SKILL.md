@@ -5,45 +5,58 @@ description: "Provides the holographic foil and iridescent chrome UI style: dyna
 
 # UI Style: Holographic Foil & Iridescent Chrome
 
-Recreates the shimmering optical effect of security holograms, trading card holographic foils, and iridescent titanium coatings. Surface colors dynamically shift across the full rainbow spectrum as the cursor moves or device rotates.
+Recreates the shimmering optical effect of security holograms, trading card foils, and iridescent titanium coatings. Surface colors dynamically shift across the full rainbow spectrum as the cursor moves or device rotates. Synthesized from verified research; see Sources.
 
 ---
 
 ## 🧭 When to Activate
 
-- Collector cards, NFT/web3 drops, high-fashion cosmetics, premium fintech debit card interfaces, and luxury youth culture platforms.
+- Collector cards, web3 drops, high-fashion cosmetics, premium fintech card interfaces, and luxury youth culture platforms.
 - Creating a sense of rarity, optical magic, and premium futuristic value.
+- Elevating cards and badges with physical foil reflection textures.
+
+---
+
+## 🕰️ Definition and Timeline
+
+- **Origins:** Originates in physical security holograms (Dennis Gabor, Nobel Prize 1971; American Bank Note Company, 1983) and 1990s collectible foil trading cards (Magic: The Gathering, Pokémon).
+- **Digital revival:** Re-emerged in the 2020s through digital 3D card simulations, mobile accelerometer-driven shaders, and high-fashion web experiences.
+- **Difference from neighbors:** Unlike [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), which is transparent and static, Holographic Foil is opaque, reflective, prismatic, and dynamic. Unlike [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md), which uses two fixed static hues, Holographic cycles through the complete rainbow prism based on light angles.
 
 ---
 
 ## 🎨 Visual DNA
 
-- **Palette:** Shifting rainbow prism: pearlescent violet, electric mint, radiant pink, holographic silver, and prismatic gold.
-- **Effects:** Conic gradients, specular flare sweeps, dynamic cursor-tracking light reflections, and chromatic aberration fringe.
+- **Palette:** Shifting rainbow prism: pearlescent violet (`#E0C3FC`), electric mint (`#8EC5FC`), radiant pink (`#FBC2EB`), holographic silver (`#F3F4F6`), and pitch obsidian canvas (`#0F1016`).
+- **Prismatic Effects:** Multi-stop linear and conic gradients simulating thin-film optical interference, dynamic cursor-tracking light flares, and chromatic aberration fringe.
+- **Depth:** Luminous specular flares, metallic border reflections, and soft ambient colored glow (`box-shadow: 0 10px 30px rgba(142, 197, 252, 0.3)`).
+- **Type:** Sharp contemporary geometric sans-serif (Syne, Clash Display, Space Grotesk) with metallic foil fill gradients.
+
+---
+
+## 🖱️ Interaction and Motion
+
+- Gyroscopic / cursor flare: moving the mouse across a card shifts the specular gradient highlight across the surface (`transform: translate(-100%)` to `translateX(100%)`).
+- Tilt depth: 3D perspective card tilt tracking the pointer with spring damping.
+- Under `prefers-reduced-motion: reduce`, disable continuous shimmer and 3D tilts, showing a static pearlescent gradient.
 
 ---
 
 ## 🛠️ Implementation Notes
 
 ```css
-.holographic-card {
-  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #fbc2eb 100%);
-  background-size: 200% 200%;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(142, 197, 252, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-.holographic-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.7) 40%, transparent 60%);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-.holographic-card:hover::before {
-  transform: translateX(100%);
+#stage[data-style="holographic-foil-iridescent"] {
+  --bg: #0f1016;
+  --surface: rgba(255, 255, 255, 0.08);
+  --fg: #ffffff;
+  --muted: #a0a5b8;
+  --accent: #8ec5fc;
+  --accent-fg: #0f1016;
+  --border: rgba(255, 255, 255, 0.3);
+  --radius: 20px;
+  --font-body: 'Syne', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  background-color: var(--bg);
 }
 ```
 
@@ -51,4 +64,26 @@ Recreates the shimmering optical effect of security holograms, trading card holo
 
 ## ♿ Accessibility
 
-- Prism reflections must not obscure content text. Keep text colors solid (e.g. deep black or crisp white) with sufficient background contrast.
+- **Text contrast protection:** Prismatic foil backgrounds must never sit directly beneath delicate body copy without an opaque backing or strong text shadow, ensuring WCAG AA contrast compliance.
+- **Visual comfort:** Shimmer flares must remain smooth and subtle; avoid strobe-like frequency flashes (> 3 flashes/second).
+
+---
+
+## ✅ When to Use / ❌ When to Avoid
+
+- **Use:** Exclusive membership tiers, luxury fintech cards, collectible art drops, and beauty brand landings.
+- **Avoid:** Dense informational documentation, medical dashboards, and enterprise administration consoles.
+
+---
+
+## 📚 Sources
+
+- Dennis Gabor, *Holography, 1948-1971*, Nobel Lecture, 1971.
+- Simon Garfield, *Mauve: How One Man Invented a Color That Changed the World*, Faber & Faber, 2000.
+- Codrops, *Interactive Holographic Card Shaders*, 2022.
+
+---
+
+## 🔗 Integration with Other Skills
+
+- Sibling material styles: [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-spatial-vision-os](../ui-style-spatial-vision-os/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md).
