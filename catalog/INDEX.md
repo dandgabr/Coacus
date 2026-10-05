@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 402 skill(s) · 94 agent(s) · 1 MCP(s)
+**Totals:** 427 skill(s) · 94 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -174,6 +174,8 @@
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
 | ui-style-ai-native-generative-ui | [knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md) |
+| ui-style-analog-newspaper-broadsheet | [knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md](../knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md) |
+| ui-style-anti-hero-typography | [knowledge/skills/domains/design/ui-style-anti-hero-typography/SKILL.md](../knowledge/skills/domains/design/ui-style-anti-hero-typography/SKILL.md) |
 | ui-style-art-deco | [knowledge/skills/domains/design/ui-style-art-deco/SKILL.md](../knowledge/skills/domains/design/ui-style-art-deco/SKILL.md) |
 | ui-style-art-nouveau-arts-crafts | [knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md](../knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md) |
 | ui-style-atompunk | [knowledge/skills/domains/design/ui-style-atompunk/SKILL.md](../knowledge/skills/domains/design/ui-style-atompunk/SKILL.md) |
@@ -181,20 +183,30 @@
 | ui-style-bauhaus | [knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md](../knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md) |
 | ui-style-bento-grid | [knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md](../knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md) |
 | ui-style-biopunk | [knowledge/skills/domains/design/ui-style-biopunk/SKILL.md](../knowledge/skills/domains/design/ui-style-biopunk/SKILL.md) |
+| ui-style-blueprint-cad-schematic | [knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md](../knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md) |
 | ui-style-broken-grid | [knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md](../knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md) |
+| ui-style-brutalist-data-dense | [knowledge/skills/domains/design/ui-style-brutalist-data-dense/SKILL.md](../knowledge/skills/domains/design/ui-style-brutalist-data-dense/SKILL.md) |
+| ui-style-brutalist-monochrome | [knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md](../knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md) |
 | ui-style-calm-quiet-ui | [knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md) |
 | ui-style-card-based-ui | [knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md) |
+| ui-style-cassette-futurism | [knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md](../knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md) |
+| ui-style-clay-stop-motion | [knowledge/skills/domains/design/ui-style-clay-stop-motion/SKILL.md](../knowledge/skills/domains/design/ui-style-clay-stop-motion/SKILL.md) |
 | ui-style-claymorphism | [knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md) |
 | ui-style-clockpunk | [knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md) |
 | ui-style-collage-scrapbook | [knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md](../knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md) |
+| ui-style-constructivism-propaganda | [knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md](../knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md) |
 | ui-style-cyberpunk | [knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md) |
 | ui-style-cyberpunk-hud | [knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md](../knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md) |
+| ui-style-dadaism-montage | [knowledge/skills/domains/design/ui-style-dadaism-montage/SKILL.md](../knowledge/skills/domains/design/ui-style-dadaism-montage/SKILL.md) |
 | ui-style-dark-mode-first | [knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md](../knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md) |
 | ui-style-de-stijl | [knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md](../knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md) |
 | ui-style-dieselpunk | [knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md) |
+| ui-style-dungeon-synth-dark-fantasy | [knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md](../knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md) |
 | ui-style-editorial-archive-luxury | [knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md](../knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md) |
+| ui-style-editorial-horizontal-scroll | [knowledge/skills/domains/design/ui-style-editorial-horizontal-scroll/SKILL.md](../knowledge/skills/domains/design/ui-style-editorial-horizontal-scroll/SKILL.md) |
 | ui-style-expressive-variable-typography | [knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md](../knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md) |
 | ui-style-flat-design | [knowledge/skills/domains/design/ui-style-flat-design/SKILL.md](../knowledge/skills/domains/design/ui-style-flat-design/SKILL.md) |
+| ui-style-fluid-liquid-morph | [knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md](../knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md) |
 | ui-style-frutiger-aero | [knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md](../knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md) |
 | ui-style-glassmorphism | [knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md) |
 | ui-style-glitch | [knowledge/skills/domains/design/ui-style-glitch/SKILL.md](../knowledge/skills/domains/design/ui-style-glitch/SKILL.md) |
@@ -202,8 +214,11 @@
 | ui-style-gradient-duotone | [knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md](../knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md) |
 | ui-style-grain-noise-texture | [knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md](../knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md) |
 | ui-style-hand-drawn-sketch | [knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md](../knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md) |
+| ui-style-holographic-foil-iridescent | [knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md](../knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md) |
 | ui-style-indie-web-revival | [knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md](../knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md) |
 | ui-style-isometric | [knowledge/skills/domains/design/ui-style-isometric/SKILL.md](../knowledge/skills/domains/design/ui-style-isometric/SKILL.md) |
+| ui-style-kawaii-pastel-soft | [knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md](../knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md) |
+| ui-style-kinetic-marquee-ticker | [knowledge/skills/domains/design/ui-style-kinetic-marquee-ticker/SKILL.md](../knowledge/skills/domains/design/ui-style-kinetic-marquee-ticker/SKILL.md) |
 | ui-style-kinetic-typography | [knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md](../knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md) |
 | ui-style-linear-saas | [knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md](../knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md) |
 | ui-style-lunarpunk | [knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md) |
@@ -219,19 +234,29 @@
 | ui-style-one-page-long-scroll | [knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md](../knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md) |
 | ui-style-organic-biophilic | [knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md](../knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md) |
 | ui-style-parallax-scrolling | [knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md](../knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md) |
+| ui-style-pop-art-halftone | [knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md](../knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md) |
+| ui-style-psychedelic-60s | [knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md](../knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md) |
 | ui-style-retro-computing-pixel | [knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md](../knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md) |
 | ui-style-retro-futurism-atompunk | [knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md](../knowledge/skills/domains/design/ui-style-retro-futurism-atompunk/SKILL.md) |
 | ui-style-risograph-zine | [knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md](../knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md) |
 | ui-style-sandalpunk | [knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md) |
 | ui-style-scrollytelling | [knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md](../knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md) |
+| ui-style-silkpunk | [knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md) |
+| ui-style-skeuomorphic-neomorphic-hybrid | [knowledge/skills/domains/design/ui-style-skeuomorphic-neomorphic-hybrid/SKILL.md](../knowledge/skills/domains/design/ui-style-skeuomorphic-neomorphic-hybrid/SKILL.md) |
+| ui-style-skeuomorphic-y2k-cyber | [knowledge/skills/domains/design/ui-style-skeuomorphic-y2k-cyber/SKILL.md](../knowledge/skills/domains/design/ui-style-skeuomorphic-y2k-cyber/SKILL.md) |
 | ui-style-skeuomorphism | [knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md) |
 | ui-style-solarpunk | [knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md) |
+| ui-style-solarpunk-biomorphic | [knowledge/skills/domains/design/ui-style-solarpunk-biomorphic/SKILL.md](../knowledge/skills/domains/design/ui-style-solarpunk-biomorphic/SKILL.md) |
+| ui-style-solarpunk-naturecore | [knowledge/skills/domains/design/ui-style-solarpunk-naturecore/SKILL.md](../knowledge/skills/domains/design/ui-style-solarpunk-naturecore/SKILL.md) |
+| ui-style-spatial-vision-os | [knowledge/skills/domains/design/ui-style-spatial-vision-os/SKILL.md](../knowledge/skills/domains/design/ui-style-spatial-vision-os/SKILL.md) |
+| ui-style-split-screen-dualism | [knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md](../knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md) |
 | ui-style-steampunk | [knowledge/skills/domains/design/ui-style-steampunk/SKILL.md](../knowledge/skills/domains/design/ui-style-steampunk/SKILL.md) |
 | ui-style-swiss-web-minimalism | [knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md](../knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md) |
 | ui-style-tactile-brutalism | [knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md](../knowledge/skills/domains/design/ui-style-tactile-brutalism/SKILL.md) |
 | ui-style-terminal-tui | [knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md](../knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md) |
 | ui-style-vaporwave-synthwave | [knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md](../knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md) |
 | ui-style-web-brutalism | [knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md](../knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md) |
+| ui-style-weirdcore-dreamcore | [knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md](../knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md) |
 | ui-style-y2k-revival | [knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md](../knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md) |
 | ai-application-engineering | [knowledge/skills/domains/industry/ai-application-engineering/SKILL.md](../knowledge/skills/domains/industry/ai-application-engineering/SKILL.md) |
 | ai-drug-discovery | [knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md](../knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md) |
