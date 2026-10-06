@@ -184,6 +184,12 @@
       "path": "knowledge/skills/domains/design/color-ui-systems"
     },
     {
+      "path": "knowledge/skills/domains/design/game-2d-scene-composition"
+    },
+    {
+      "path": "knowledge/skills/domains/design/game-sprite-design"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-hero-sections"
     },
     {
@@ -443,6 +449,12 @@
     },
     {
       "path": "knowledge/skills/domains/industry/financial-transaction-processing"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/game-animation-qa-motion"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/game-asset-pipeline"
     },
     {
       "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security"

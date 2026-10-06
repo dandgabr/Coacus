@@ -1252,6 +1252,53 @@
       ]
     },
     {
+      "name": "game-art-director",
+      "category": "specialized-domains",
+      "description": "Audits 2D game character rosters, proportional consistency, mass conservation, handedness asymmetry, and animation motion continuity. Use when reviewing, governing, or approving 2D game visual assets and animation cycles.",
+      "skills": [
+        "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
+        "knowledge/skills/domains/design/game-sprite-design/SKILL.md"
+      ],
+      "triggers": [
+        "art director",
+        "auditoria de animacao",
+        "consistencia de sprites",
+        "diretor de arte",
+        "game art director",
+        "handedness audit",
+        "lineup review",
+        "motion qa",
+        "revisao de personagens",
+        "roster review",
+        "seam pop"
+      ]
+    },
+    {
+      "name": "game-asset-pipeline-engineer",
+      "category": "specialized-domains",
+      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+      "skills": [
+        "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
+        "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md"
+      ],
+      "triggers": [
+        "aseprite export",
+        "asset pipeline",
+        "atlas packing",
+        "chroma key extraction",
+        "extracao de sprite",
+        "flame atlas",
+        "gerador de sprite sheet",
+        "loop repair",
+        "phaser atlas",
+        "pixel unfake",
+        "rife interpolation",
+        "soft alpha",
+        "sprite pipeline",
+        "sprite sheet packing"
+      ]
+    },
+    {
       "name": "game-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
@@ -1273,6 +1320,28 @@
         "jogo",
         "unity security",
         "unreal security"
+      ]
+    },
+    {
+      "name": "game-sprite-artist",
+      "category": "specialized-domains",
+      "description": "Designs and illustrates consistent 2D game characters, animation frames, and combat poses using anatomical mannequins and head-count proportions. Use when creating, sketching, or detailing 2D game sprites and character lineups.",
+      "skills": [
+        "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md"
+      ],
+      "triggers": [
+        "2d sprite",
+        "animacao 2d",
+        "desenhar sprite",
+        "desenho de sprite",
+        "fighting game sprite",
+        "game sprite",
+        "model sheet",
+        "pixel art character",
+        "platformer sprite",
+        "pose de combate",
+        "sprite artist"
       ]
     },
     {

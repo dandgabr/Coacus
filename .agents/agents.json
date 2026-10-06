@@ -271,6 +271,15 @@
       "path": "knowledge/agents/specialized-domains/embedded-systems-specialist"
     },
     {
+      "path": "knowledge/agents/specialized-domains/game-art-director"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer"
+    },
+    {
+      "path": "knowledge/agents/specialized-domains/game-sprite-artist"
+    },
+    {
       "path": "knowledge/agents/specialized-domains/information-systems-specialist"
     },
     {

@@ -1229,6 +1229,48 @@
       "source",
       "notícia",
       "news"
+    ],
+    "game-sprite-artist": [
+      "game sprite",
+      "sprite artist",
+      "2d sprite",
+      "pixel art character",
+      "animacao 2d",
+      "desenho de sprite",
+      "model sheet",
+      "pose de combate",
+      "fighting game sprite",
+      "platformer sprite",
+      "desenhar sprite"
+    ],
+    "game-asset-pipeline-engineer": [
+      "sprite pipeline",
+      "asset pipeline",
+      "sprite sheet packing",
+      "atlas packing",
+      "chroma key extraction",
+      "soft alpha",
+      "pixel unfake",
+      "loop repair",
+      "rife interpolation",
+      "aseprite export",
+      "phaser atlas",
+      "flame atlas",
+      "extracao de sprite",
+      "gerador de sprite sheet"
+    ],
+    "game-art-director": [
+      "art director",
+      "game art director",
+      "diretor de arte",
+      "roster review",
+      "lineup review",
+      "motion qa",
+      "seam pop",
+      "handedness audit",
+      "auditoria de animacao",
+      "consistencia de sprites",
+      "revisao de personagens"
     ]
   }
 }
