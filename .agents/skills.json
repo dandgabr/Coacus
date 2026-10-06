@@ -541,6 +541,9 @@
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism"
     },
     {
+      "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
     },
     {

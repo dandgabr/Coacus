@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 417 skill(s) · 97 agent(s) · 1 MCP(s)
+**Totals:** 418 skill(s) · 97 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -290,6 +290,7 @@
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
+| repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |

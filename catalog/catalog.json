@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 97,
-    "skills": 417,
+    "skills": 418,
     "mcps": 1
   },
   "agents": [
@@ -1309,6 +1309,10 @@
     {
       "name": "python-performance-parallelism",
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md"
+    },
+    {
+      "name": "repository-artifact-hygiene",
+      "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md"
     },
     {
       "name": "system-design-scalability",

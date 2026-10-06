@@ -20189,6 +20189,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-06T11:40:39Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
+      "source_sha256": "4cc200d8ebfd90fe9ac18c57e7c001d98b81ac42e7d79cb3e689b32ae7d61e40",
+      "target_path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
+      "target_sha256": "4cc200d8ebfd90fe9ac18c57e7c001d98b81ac42e7d79cb3e689b32ae7d61e40",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T11:41:33Z"
     }
   ]
 }
