@@ -568,7 +568,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "7d7486ba43538f6268dbf2abd6bafde9549e09006bddffc508eac9945c08d282",
+      "target_sha256": "030327996de4c86bf0e040f59f5b3a662b46f337d717a24c2a9d94b7e87e177e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16256,7 +16256,7 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "5ab0f74f5181020350fc0f36735f1c6a22d72bfce054a0379d49b3ced2e26346",
+      "target_sha256": "6ffbb8213b505496ce49def12c7db68f376fd6e03b0ade0fe3521c2fe38f2f0b",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -17854,9 +17854,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "0c97ec38cc8ee8e8d7d84a4922dd96ecd8e9e9f5cc437c6090068f39e86e6a2b",
+      "source_sha256": "3d363a880bfe40f5b890d0e98a2e7e9d4fa2a84b6d45d87d5b67c63da35b38a2",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "0c97ec38cc8ee8e8d7d84a4922dd96ecd8e9e9f5cc437c6090068f39e86e6a2b",
+      "target_sha256": "3d363a880bfe40f5b890d0e98a2e7e9d4fa2a84b6d45d87d5b67c63da35b38a2",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20174,6 +20174,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md",
+      "source_sha256": "3fef0c9df41d7197819087fcc14b2dc531e7632c6a9055a90811d71faec4119a",
+      "target_path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md",
+      "target_sha256": "3fef0c9df41d7197819087fcc14b2dc531e7632c6a9055a90811d71faec4119a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T11:40:39Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
+      "source_sha256": "4cc200d8ebfd90fe9ac18c57e7c001d98b81ac42e7d79cb3e689b32ae7d61e40",
+      "target_path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
+      "target_sha256": "4cc200d8ebfd90fe9ac18c57e7c001d98b81ac42e7d79cb3e689b32ae7d61e40",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T11:41:33Z"
     }
   ]
 }

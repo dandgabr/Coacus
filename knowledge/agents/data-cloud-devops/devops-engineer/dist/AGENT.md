@@ -5,6 +5,8 @@ DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-co
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [desktop-app-distribution](../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md)
+- [repository-artifact-hygiene](../../../../skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
 - [program-github-actions](../../../../skills/platforms/program-github-actions/SKILL.md)
 - [devops-engineer](../../../../skills/roles/devops-engineer/SKILL.md)
@@ -39,6 +41,8 @@ This agent operates using the guidelines and technical standards established in 
 - [program-owasp-dependency-check](../../../../skills/security/tooling/program-owasp-dependency-check/SKILL.md)
 - [devsecops-engineer](../../../../skills/security/operations/devsecops-engineer/SKILL.md)
 - [cis-controls](../../../../skills/security/grc/cis-controls/SKILL.md)
+- [desktop-app-distribution](../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md)
+- [repository-artifact-hygiene](../../../../skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
 
 ---
 

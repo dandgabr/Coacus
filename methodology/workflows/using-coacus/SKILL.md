@@ -105,6 +105,10 @@ only when a command produced it in this session.
   credential, **redacts first and proves the redaction** — against a synthetic
   payload carrying an address, a UUID and a token — before anyone runs it for real.
 - Never print the credential in an error, an assertion, a `Debug`, or a log line.
+- **Untracked tool state is a candidate store.** A dev harness's session directory
+  can hold a live token or key it created and never intended to persist; treat a
+  cleanup that removes that state as a security improvement, and inspect it by
+  metadata, never by value.
 
 ## Freshness — resolve, do not recall
 

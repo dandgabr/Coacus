@@ -27,6 +27,8 @@ instruction: >
   - [program-owasp-dependency-check](knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md)
   - [devsecops-engineer](knowledge/skills/security/operations/devsecops-engineer/SKILL.md)
   - [cis-controls](knowledge/skills/security/grc/cis-controls/SKILL.md)
+  - [desktop-app-distribution](knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md)
+  - [repository-artifact-hygiene](knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
 
   ---
 
@@ -45,6 +47,10 @@ instruction: >
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/repository-artifact-hygiene/SKILL.md
   - type: skill_integration
     path: ../../../../skills/infrastructure/program-containers/SKILL.md
   - type: skill_integration

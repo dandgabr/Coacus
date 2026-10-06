@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 416 skill(s) · 97 agent(s) · 1 MCP(s)
+**Totals:** 418 skill(s) · 97 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -280,6 +280,7 @@
 | clean-architecture | [knowledge/skills/engineering/practices/clean-architecture/SKILL.md](../knowledge/skills/engineering/practices/clean-architecture/SKILL.md) |
 | clean-code-reusability | [knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md](../knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md) |
 | code-review-practices | [knowledge/skills/engineering/practices/code-review-practices/SKILL.md](../knowledge/skills/engineering/practices/code-review-practices/SKILL.md) |
+| desktop-app-distribution | [knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md](../knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md) |
 | distributed-systems | [knowledge/skills/engineering/practices/distributed-systems/SKILL.md](../knowledge/skills/engineering/practices/distributed-systems/SKILL.md) |
 | documentation-designer | [knowledge/skills/engineering/practices/documentation-designer/SKILL.md](../knowledge/skills/engineering/practices/documentation-designer/SKILL.md) |
 | empirical-software-design | [knowledge/skills/engineering/practices/empirical-software-design/SKILL.md](../knowledge/skills/engineering/practices/empirical-software-design/SKILL.md) |
@@ -289,6 +290,7 @@
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
+| repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |

@@ -511,6 +511,9 @@
       "path": "knowledge/skills/engineering/practices/code-review-practices"
     },
     {
+      "path": "knowledge/skills/engineering/practices/desktop-app-distribution"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/distributed-systems"
     },
     {
@@ -536,6 +539,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene"
     },
     {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
