@@ -9,6 +9,8 @@ description: >-
   with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP
   Dependency-Check SCA).
 skills:
+  - knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md
+  - knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md
   - knowledge/skills/infrastructure/program-containers/SKILL.md
   - knowledge/skills/platforms/program-github-actions/SKILL.md
   - knowledge/skills/roles/devops-engineer/SKILL.md
@@ -43,6 +45,8 @@ This agent operates using the guidelines and technical standards established in 
 - [program-owasp-dependency-check](knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md)
 - [devsecops-engineer](knowledge/skills/security/operations/devsecops-engineer/SKILL.md)
 - [cis-controls](knowledge/skills/security/grc/cis-controls/SKILL.md)
+- [desktop-app-distribution](knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md)
+- [repository-artifact-hygiene](knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
 
 ---
 

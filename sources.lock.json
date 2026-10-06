@@ -568,7 +568,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "7d7486ba43538f6268dbf2abd6bafde9549e09006bddffc508eac9945c08d282",
+      "target_sha256": "030327996de4c86bf0e040f59f5b3a662b46f337d717a24c2a9d94b7e87e177e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
