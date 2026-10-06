@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 416 skill(s) · 97 agent(s) · 1 MCP(s)
+**Totals:** 417 skill(s) · 97 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -280,6 +280,7 @@
 | clean-architecture | [knowledge/skills/engineering/practices/clean-architecture/SKILL.md](../knowledge/skills/engineering/practices/clean-architecture/SKILL.md) |
 | clean-code-reusability | [knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md](../knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md) |
 | code-review-practices | [knowledge/skills/engineering/practices/code-review-practices/SKILL.md](../knowledge/skills/engineering/practices/code-review-practices/SKILL.md) |
+| desktop-app-distribution | [knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md](../knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md) |
 | distributed-systems | [knowledge/skills/engineering/practices/distributed-systems/SKILL.md](../knowledge/skills/engineering/practices/distributed-systems/SKILL.md) |
 | documentation-designer | [knowledge/skills/engineering/practices/documentation-designer/SKILL.md](../knowledge/skills/engineering/practices/documentation-designer/SKILL.md) |
 | empirical-software-design | [knowledge/skills/engineering/practices/empirical-software-design/SKILL.md](../knowledge/skills/engineering/practices/empirical-software-design/SKILL.md) |

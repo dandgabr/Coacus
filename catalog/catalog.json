@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 97,
-    "skills": 416,
+    "skills": 417,
     "mcps": 1
   },
   "agents": [
@@ -1269,6 +1269,10 @@
     {
       "name": "code-review-practices",
       "path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md"
+    },
+    {
+      "name": "desktop-app-distribution",
+      "path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md"
     },
     {
       "name": "distributed-systems",

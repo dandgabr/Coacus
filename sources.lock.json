@@ -20174,6 +20174,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md",
+      "source_sha256": "3fef0c9df41d7197819087fcc14b2dc531e7632c6a9055a90811d71faec4119a",
+      "target_path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md",
+      "target_sha256": "3fef0c9df41d7197819087fcc14b2dc531e7632c6a9055a90811d71faec4119a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T11:40:39Z"
     }
   ]
 }
