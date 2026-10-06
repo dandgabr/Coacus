@@ -1,0 +1,8 @@
+{
+  "name": "game-sprite-artist",
+  "description": "Designs and illustrates consistent 2D game characters, animation frames, and combat poses using anatomical mannequins and head-count proportions. Use when creating, sketching, or detailing 2D game sprites and character lineups.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/game-sprite-artist/dist",
+  "fingerprint": "dbc75192e79626b5"
+}

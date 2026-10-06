@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 412 skill(s) · 94 agent(s) · 1 MCP(s)
+**Totals:** 416 skill(s) · 97 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -50,7 +50,10 @@
 | enterprise-architect | architecture | [knowledge/agents/architecture/enterprise-architect/agent.source.md](../knowledge/agents/architecture/enterprise-architect/agent.source.md) |
 | frontend-developer | software-engineering | [knowledge/agents/software-engineering/frontend-developer/agent.source.md](../knowledge/agents/software-engineering/frontend-developer/agent.source.md) |
 | fullstack-developer | software-engineering | [knowledge/agents/software-engineering/fullstack-developer/agent.source.md](../knowledge/agents/software-engineering/fullstack-developer/agent.source.md) |
+| game-art-director | specialized-domains | [knowledge/agents/specialized-domains/game-art-director/agent.source.md](../knowledge/agents/specialized-domains/game-art-director/agent.source.md) |
+| game-asset-pipeline-engineer | specialized-domains | [knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md](../knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md) |
 | game-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/game-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/game-security-specialist/agent.source.md) |
+| game-sprite-artist | specialized-domains | [knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md](../knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md) |
 | general | core-orchestration | [knowledge/agents/core-orchestration/general/agent.source.md](../knowledge/agents/core-orchestration/general/agent.source.md) |
 | geoscientist | academic-sciences | [knowledge/agents/academic-sciences/geoscientist/agent.source.md](../knowledge/agents/academic-sciences/geoscientist/agent.source.md) |
 | github-specialist | software-engineering | [knowledge/agents/software-engineering/github-specialist/agent.source.md](../knowledge/agents/software-engineering/github-specialist/agent.source.md) |
@@ -168,6 +171,8 @@
 | color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
 | color-theory-foundations | [knowledge/skills/domains/design/color-theory-foundations/SKILL.md](../knowledge/skills/domains/design/color-theory-foundations/SKILL.md) |
 | color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
+| game-2d-scene-composition | [knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md](../knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md) |
+| game-sprite-design | [knowledge/skills/domains/design/game-sprite-design/SKILL.md](../knowledge/skills/domains/design/game-sprite-design/SKILL.md) |
 | ui-hero-sections | [knowledge/skills/domains/design/ui-hero-sections/SKILL.md](../knowledge/skills/domains/design/ui-hero-sections/SKILL.md) |
 | ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
 | ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |
@@ -255,6 +260,8 @@
 | edtech-andragogy | [knowledge/skills/domains/industry/edtech-andragogy/SKILL.md](../knowledge/skills/domains/industry/edtech-andragogy/SKILL.md) |
 | explainable-ai | [knowledge/skills/domains/industry/explainable-ai/SKILL.md](../knowledge/skills/domains/industry/explainable-ai/SKILL.md) |
 | financial-transaction-processing | [knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md](../knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) |
+| game-animation-qa-motion | [knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md](../knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md) |
+| game-asset-pipeline | [knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md](../knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md) |
 | hardware-hacking-embedded-security | [knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md](../knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md) |
 | healthtech-standards-security | [knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md](../knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md) |
 | medical-device-cybersecurity | [knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md) |

@@ -20069,6 +20069,111 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-05T11:38:59Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
+      "source_sha256": "1586a0166ab3fcd7d50baa5a2a9c20e2db8bc13d580837e88cce394661749247",
+      "target_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
+      "target_sha256": "1586a0166ab3fcd7d50baa5a2a9c20e2db8bc13d580837e88cce394661749247",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md",
+      "source_sha256": "a54803d158b61980be22e8832a2e6a87dceb50d86b5ff52b57575d849469bdf9",
+      "target_path": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md",
+      "target_sha256": "a54803d158b61980be22e8832a2e6a87dceb50d86b5ff52b57575d849469bdf9",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md",
+      "source_sha256": "dbc75192e79626b573341c570b286edc12af53ecfda2e09014525105aa16651a",
+      "target_path": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md",
+      "target_sha256": "dbc75192e79626b573341c570b286edc12af53ecfda2e09014525105aa16651a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
+      "source_sha256": "0666b846ccb2de448bd78db861100cc8b070a382638de93cf74cf06e7c9b95b4",
+      "target_path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
+      "target_sha256": "0666b846ccb2de448bd78db861100cc8b070a382638de93cf74cf06e7c9b95b4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
+      "source_sha256": "bda9d414d0ffed39cc78947d8dd234003a6b30f4c562db0d1fc1e238e18b406a",
+      "target_path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
+      "target_sha256": "bda9d414d0ffed39cc78947d8dd234003a6b30f4c562db0d1fc1e238e18b406a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
+      "source_sha256": "857b00ceace2bec5663155eb8b0adbf373483bcebfe188fefa3d72a42976e5a9",
+      "target_path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
+      "target_sha256": "857b00ceace2bec5663155eb8b0adbf373483bcebfe188fefa3d72a42976e5a9",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
+      "source_sha256": "3d5b0b1bdff4d4828139c970da5bd78221c36e2427c7faf73da788c2c03b2d6d",
+      "target_path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
+      "target_sha256": "3d5b0b1bdff4d4828139c970da5bd78221c36e2427c7faf73da788c2c03b2d6d",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-06T02:52:57Z"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 94,
-    "skills": 412,
+    "agents": 97,
+    "skills": 416,
     "mcps": 1
   },
   "agents": [
@@ -259,10 +259,28 @@
       "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md"
     },
     {
+      "name": "game-art-director",
+      "category": "specialized-domains",
+      "description": "Audits 2D game character rosters, proportional consistency, mass conservation, handedness asymmetry, and animation motion continuity. Use when reviewing, governing, or approving 2D game visual assets and animation cycles.",
+      "source": "knowledge/agents/specialized-domains/game-art-director/agent.source.md"
+    },
+    {
+      "name": "game-asset-pipeline-engineer",
+      "category": "specialized-domains",
+      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+      "source": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md"
+    },
+    {
       "name": "game-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
       "source": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md"
+    },
+    {
+      "name": "game-sprite-artist",
+      "category": "specialized-domains",
+      "description": "Designs and illustrates consistent 2D game characters, animation frames, and combat poses using anatomical mannequins and head-count proportions. Use when creating, sketching, or detailing 2D game sprites and character lineups.",
+      "source": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md"
     },
     {
       "name": "general",
@@ -817,6 +835,14 @@
       "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md"
     },
     {
+      "name": "game-2d-scene-composition",
+      "path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md"
+    },
+    {
+      "name": "game-sprite-design",
+      "path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md"
+    },
+    {
       "name": "ui-hero-sections",
       "path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md"
     },
@@ -1163,6 +1189,14 @@
     {
       "name": "financial-transaction-processing",
       "path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md"
+    },
+    {
+      "name": "game-animation-qa-motion",
+      "path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md"
+    },
+    {
+      "name": "game-asset-pipeline",
+      "path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md"
     },
     {
       "name": "hardware-hacking-embedded-security",
