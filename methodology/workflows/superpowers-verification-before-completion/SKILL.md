@@ -139,6 +139,24 @@ Anchor at least one assertion outside the artifact's own snapshot. Forty-eight
 published ratios reproduced to ±0.005 prove the code agrees with the document, and
 not that either is right; `contrast("#000000", "#ffffff") == 21` anchors the formula.
 
+## A downloaded artifact and an applied effect are also claims
+
+The same rule extends past the artifact's own prose to what you fetched and what
+you configured.
+
+- **A downloaded binary is a claim until its provenance is checked.** Confirm the
+  checkout and the release tag are the same commit (compare the peeled tag with
+  the current commit), and take the project's signed artifact with its signature.
+  Without that, the binary is a build nobody can trace back to source.
+- **A configuration file that parses is not proof the system applied it.** A value
+  written to disk can be inert: the OS did not read it, the daemon did not load
+  it, the service never started. Verify the effect **where it lands** — the
+  platform's own validator for a file, the session bus for a registered surface,
+  the process table for a single instance — not the file that states the intent.
+- **Read the state the platform actually holds, not the one you meant to set.** A
+  switch that reads its own saved value reports what the user chose, not what the
+  OS will do; a control the user cleared outside the app must read as off.
+
 ## When To Apply
 
 **ALWAYS before:**

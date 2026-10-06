@@ -64,6 +64,25 @@ machine — no apt, no package list, no source at all — where the runtime libr
 were already installed and only the `-devel` halves were missing. One
 `grep /etc/os-release` would have replaced the whole detour.
 
+## Working material is not the committed tree
+
+Curation is part of the work, not a later chore. Before a session's artifacts
+accumulate in the tree, classify every file as source, committed generated output,
+working material or local state, and keep the last two out of the commit.
+
+- Process documents — specs, plans, scratch — live under `docs/temp/`, which is
+  ignored. A durable conclusion is promoted into a committed document or a
+  standard; the working copy stays where it is.
+- Untracked local state is regenerable or ephemeral. It is also a place a **live
+  secret** can hide: a dev harness's session directory may hold a token, a port
+  file or a server key created during a session and never meant to persist.
+  Deleting such state is a security improvement, and it is inspected by metadata,
+  never by printing a value.
+- Removing a file orphans whatever pointed at it. Search the whole tree for each
+  removed path and repair the reference — rewrite it to the document that now
+  holds the rationale, or remove the sentence that needed it.
+- The `repository-artifact-hygiene` skill carries the full procedure.
+
 ## Ship through review
 
 - Branch from `main`; never commit structural change straight onto `main`.
