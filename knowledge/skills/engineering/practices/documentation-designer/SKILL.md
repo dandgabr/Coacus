@@ -211,11 +211,30 @@ flowchart LR
 
 ---
 
-## 🔗 6. Integration with Other Skills
+## 🚀 6. High-Impact GitHub README Engineering & Repository Front-Doors
+
+A repository's `README.md` is its front-door and conversion engine. Leading open-source projects (React, Vue, Fastify, Tailwind CSS, uv, Ripgrep) follow rigorous standards:
+
+1. **Time-to-Value Under 60s**: The reader must know what the project is in 5s, see it working above the fold in 15s, and run it via copy-paste in 60s.
+2. **Visual Proof Above the Fold**: Include a product snapshot, UI demo, or terminal recording (SVG/GIF) before the fold.
+3. **Diátaxis Indexing**: The README acts as an index into the 4 Diátaxis quadrants:
+   - **Tutorials**: Links to Getting Started guides.
+   - **How-To**: Quickstart snippet directly in the README.
+   - **Reference**: Table of CLI options, configuration keys, or API links.
+   - **Explanation**: Architecture overview and Mermaid diagrams.
+4. **Anti-AI Tone**: Never use fluff (*"In an ever-evolving world"*, *"A comprehensive paradigm"*). Be direct: *"Fastify is a web framework focused on speed and low overhead"*.
+5. **Curated Badges & Theme Safety**: Keep badges under 6 (CI, Version, License). Ensure graphics render cleanly on both light and dark GitHub themes using `<picture>` or transparent SVGs.
+
+> For complete templates, archetypes (Libraries, CLIs, Fullstack Apps), and markdown patterns, see [`references/github-readme-engineering-guide.md`](./references/github-readme-engineering-guide.md).
+
+---
+
+## 🔗 7. Integration with Other Skills
 
 - **Under [software-architect](../../../roles/software-architect/SKILL.md)**: Applies Diátaxis to ADRs (Architecture Decision Records) and uses the C4 Model to structure system views.
 - **Under [clean-code-reusability](../clean-code-reusability/SKILL.md)**: Ensures clarity and precision in inline documentation (docstrings, JSDoc, GoDoc) while avoiding obvious prolixity.
 - **Under [ui-ux-designer](../../../roles/ui-ux-designer/SKILL.md)**: Documents design tokens, design systems, and screen flows in a way both designers and engineers can understand.
 - **Under [frontend-developer](../../../roles/frontend-developer/SKILL.md)**: Documents component contracts and accessibility specifications (WCAG 2.2).
 
-> For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md).
+> For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md). For GitHub README engineering and templates, see [`references/github-readme-engineering-guide.md`](./references/github-readme-engineering-guide.md).
+
