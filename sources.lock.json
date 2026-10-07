@@ -690,7 +690,7 @@
       "source_path": "agents/software-engineering/documenter/AGENT.md",
       "source_sha256": "eac2de60990f318ddcbccb52425c8cb8a80edb70c336d7f51d94f7ee889c2bf8",
       "target_path": "knowledge/agents/software-engineering/documenter/agent.source.md",
-      "target_sha256": "7a3e4c054568749b5b8c923905de5df764d2be9b5f9109da0d341ca7b1653504",
+      "target_sha256": "8ad2d6f827eeac8b301237fdd2bc17625f6db37489ce8fae83e78530e92e43b6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4744,7 +4744,7 @@
       "source_path": "skills/engineering-practices/documentation-designer/SKILL.md",
       "source_sha256": "993f43e958ba9459281ccb66b6882c38c4f1f3249d38910b6680bcf1ca880123",
       "target_path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "target_sha256": "993f43e958ba9459281ccb66b6882c38c4f1f3249d38910b6680bcf1ca880123",
+      "target_sha256": "d190db49d9f7a0eb9a707e7bdabe98fdbbf90d0f305b6bc82a0c5934407dc645",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
