@@ -20449,9 +20449,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "source_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "source_sha256": "b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e",
       "target_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "target_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "target_sha256": "b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

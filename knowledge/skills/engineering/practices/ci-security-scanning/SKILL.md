@@ -84,6 +84,12 @@ workflow and document where the setting lives.
   annotation in the exact form the scanner reads (free text after the rule code can turn
   the annotation into a different, wrong one).
 - Verify the fix with a test that tries the dangerous input and sees it refused.
+- Inspect findings in tests as well as runtime code. An address substring assertion
+  proves presence, not a fixed destination or permitted host. When that is the
+  intended guarantee, compare the complete expected constant or parsed destination
+  and test hostile prefixes/suffixes where input is accepted. Inspect the production
+  opener separately; neither a test-file location nor a fixed runtime constant is
+  enough evidence to dismiss the alert.
 
 ## 6. The first run on the real branch is a test too
 
@@ -93,3 +99,10 @@ machine). After pushing, wait for **every** workflow to finish, read each failur
 reproduce it from a fresh clone of the pushed commit, fix the cause and push again. Then
 confirm the remote branch holds the commit you think it does before saying the change is
 ready.
+
+Successful language analysis/upload jobs do not establish a clean security result.
+An aggregate alert check can still fail. Read its annotations, rule, path and data
+flow; distinguish a runtime defect, a weak security assertion and an inapplicable
+query. Fix the appropriate boundary or justify a narrow suppression with evidence,
+then verify the alert result for the actual candidate commit rather than counting
+green analysis jobs.

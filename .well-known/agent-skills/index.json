@@ -447,7 +447,7 @@
       "description": "Provides practice for adding free security scanning to a GitHub repository: secrets over the whole history, code scanning, a scanner for each language the repository holds and an audit of the workflows themselves. Use when adding or repairing CI scanning, pinning actions, choosing between CodeQL's default and advanced setup, or deciding whether to suppress a scanner finding or change the code.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "digest": "sha256:5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4"
+      "digest": "sha256:b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e"
     },
     {
       "name": "ciem-cloud-entitlements",
