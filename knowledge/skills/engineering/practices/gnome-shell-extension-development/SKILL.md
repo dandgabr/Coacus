@@ -5,7 +5,7 @@ description: >-
   GJS: the layer split that keeps logic testable, the gates that catch what unit
   tests cannot import, verifying shell APIs against a live throwaway shell, the
   extension lifecycle (including the lock screen and suspend), notifications,
-  settings and the preferences window. Use when building or reviewing a GNOME
+  account connectors, native theme effects, packaging and the preferences window. Use when building or reviewing a GNOME
   Shell extension, its preferences window or its notifications.
 tags:
   - gnome-shell
@@ -22,9 +22,10 @@ in an application: a module that fails to load disables the extension, a leaked
 object survives it, and the platform decides things (the lock screen, Do Not
 Disturb) that no setting of yours can override. This skill is the practice that
 kept one extension honest through notifications, a preferences window and a
-first-use flow. The facts it relies on were verified on a live shell; they are in
-[the verified notes](references/gnome-shell-50-notes.md), with the version and the
-date, and must be re-verified for another shell version.
+first-use flow. Version-specific API facts live in
+[the verified notes](references/gnome-shell-50-notes.md); account, rendering and
+delivery practices have their own evidence-linked references below. Re-verify
+native API names and behavior on another Shell version.
 
 ## 1. Split by process and by layer
 
@@ -143,3 +144,20 @@ evaluation scope lacks the toolkit, a fresh shell opens a welcome dialog, a virt
 pointer that starts in the corner triggers the hot corner, an icon needs a size,
 and one preferences page can be shown alone with a small harness and an in-memory
 settings backend.
+
+## 9. Accounts, visual effects and delivery
+
+Read the relevant reference before changing these boundaries:
+
+- [Accounts and API reporting](references/accounts-and-api-reporting.md): distinguish
+  a saved connector from an authenticated account; preserve identity through
+  deletion, delayed credential operations and monetary reporting.
+- [Native layout and theme effects](references/native-layout-and-effects.md): keep
+  decorations outside reading layout, describe theme defaults rather than supported
+  overrides, and verify materials and numeric stability on rendered frames.
+- [Verification and release](references/verification-and-release.md): reject false
+  native evaluation results, isolate tests from the desktop, audit the actual ZIP,
+  and distinguish installed files from code already loaded in the session.
+
+These are reusable practices derived from a shipped extension, not permission to
+read real credentials, publish a release or restart the user's desktop.

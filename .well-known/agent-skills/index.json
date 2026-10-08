@@ -447,7 +447,7 @@
       "description": "Provides practice for adding free security scanning to a GitHub repository: secrets over the whole history, code scanning, a scanner for each language the repository holds and an audit of the workflows themselves. Use when adding or repairing CI scanning, pinning actions, choosing between CodeQL's default and advanced setup, or deciding whether to suppress a scanner finding or change the code.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "digest": "sha256:5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4"
+      "digest": "sha256:b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e"
     },
     {
       "name": "ciem-cloud-entitlements",
@@ -1242,10 +1242,10 @@
     },
     {
       "name": "gnome-shell-extension-development",
-      "description": "Provides practice for writing, checking and shipping a GNOME Shell extension in GJS: the layer split that keeps logic testable, the gates that catch what unit tests cannot import, verifying shell APIs against a live throwaway shell, the extension lifecycle (including the lock screen and suspend), notifications, settings and the preferences window. Use when building or reviewing a GNOME Shell extension, its preferences window or its notifications.",
+      "description": "Provides practice for writing, checking and shipping a GNOME Shell extension in GJS: the layer split that keeps logic testable, the gates that catch what unit tests cannot import, verifying shell APIs against a live throwaway shell, the extension lifecycle (including the lock screen and suspend), notifications, account connectors, native theme effects, packaging and the preferences window. Use when building or reviewing a GNOME Shell extension, its preferences window or its notifications.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-      "digest": "sha256:8293aa3d17872abaabfc24e6e085585478de0e11a17aa88cf98eefc04a9f902d"
+      "digest": "sha256:29064d73dfee3f6d730f200326416b7242579929fbded3aafde83b4b74ef5852"
     },
     {
       "name": "gpu-programming-cuda",

@@ -20449,9 +20449,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "source_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "source_sha256": "b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e",
       "target_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
-      "target_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "target_sha256": "b0c163baffc7c1171c4a8aa9f2beab87f47248219fd9d3b12e19ca2e3587504e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20464,9 +20464,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-      "source_sha256": "552c2dbfde3c48521b0fb353aa1eda77be38080cfde8ed86c4849c67bf14c3e2",
+      "source_sha256": "b59f05f1efc2e09f5abd1aadf4b9cede6b70ec403337a18d6b880f6f6e0dd1a2",
       "target_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-      "target_sha256": "552c2dbfde3c48521b0fb353aa1eda77be38080cfde8ed86c4849c67bf14c3e2",
+      "target_sha256": "b59f05f1efc2e09f5abd1aadf4b9cede6b70ec403337a18d6b880f6f6e0dd1a2",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

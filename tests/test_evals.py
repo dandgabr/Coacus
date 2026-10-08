@@ -201,7 +201,14 @@ class TestEvalRunnerHelpers(unittest.TestCase):
     def test_seeded_scenarios_are_valid(self) -> None:
         root = Path(coacus_eval.ROOT)
         self.assertEqual(evals.validate(root), [])
-        self.assertEqual(len(evals.discover(root)), 9)
+        seeded = {
+            'artifact-lifecycle', 'bootstrap-activation', 'brainstorm-before-build',
+            'evidence-before-claims', 'expected-first-selection',
+            'governance-cap-and-toon', 'skill-first-discipline', 'tool-budget',
+            'unavailable-honesty',
+        }
+        discovered = {path.parent.name for path in evals.discover(root)}
+        self.assertFalse(seeded - discovered, f'Missing seeded scenarios: {seeded - discovered}')
 
 
 if __name__ == "__main__":

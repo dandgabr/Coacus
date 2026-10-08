@@ -5,6 +5,25 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — GNOME connector, effects and delivery lessons
+
+### Changed
+
+- GNOME extension guidance routes account identity and deletion, monetary API
+  reporting, native layout/materials and installed-runtime verification into
+  evidence-linked references.
+- Theme guidance distinguishes default backgrounds from supported overrides and
+  native rendering from browser previews; release guidance rejects false or
+  unfinished evaluation results and checks the installed archive and uploaded assets.
+- Security-scanning guidance distinguishes successful analysis jobs from aggregate
+  alert status and addresses incomplete URL assertions in tests.
+
+### Added
+
+- Read-only behavioral scenarios for native delivery evidence and connector/theme
+  contracts, with semantic rubrics distinct from their lightweight output checks.
+- A [consolidation and verification record](docs/reports/2026-10-08-gnome-quota-delivery-learnings.md).
+
 ## [Unreleased] — Codex installer migration fixes
 
 ### Fixed
