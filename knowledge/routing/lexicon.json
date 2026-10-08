@@ -475,7 +475,20 @@
       "limpar repositorio",
       "development artifacts",
       "artefatos de desenvolvimento",
-      "repository artifacts"
+      "repository artifacts",
+      "ci security scanning",
+      "security scanning",
+      "varredura de segurança no ci",
+      "varredura de segurança",
+      "secret scanning",
+      "varredura de segredos",
+      "codeql",
+      "gitleaks",
+      "zizmor",
+      "pin actions",
+      "fixar versões de actions",
+      "dependabot",
+      "workflow hardening"
     ],
     "documenter": [
       "documentação",
@@ -1077,7 +1090,15 @@
       "arquitetura limpa",
       "clean architecture",
       "refatoração",
-      "refactoring"
+      "refactoring",
+      "gnome shell",
+      "gnome shell extension",
+      "extensão do gnome",
+      "extensao gnome",
+      "gjs",
+      "libadwaita",
+      "gnome extension",
+      "extensão gnome shell"
     ],
     "solution-architect": [
       "arquiteto de solução",

@@ -443,6 +443,13 @@
       "digest": "sha256:7ac425f75ad709b4292f4c518543570d76badef6a9375da508285e91e4fc1508"
     },
     {
+      "name": "ci-security-scanning",
+      "description": "Provides practice for adding free security scanning to a GitHub repository: secrets over the whole history, code scanning, a scanner for each language the repository holds and an audit of the workflows themselves. Use when adding or repairing CI scanning, pinning actions, choosing between CodeQL's default and advanced setup, or deciding whether to suppress a scanner finding or change the code.",
+      "type": "skill-md",
+      "url": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
+      "digest": "sha256:5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4"
+    },
+    {
       "name": "ciem-cloud-entitlements",
       "description": "Acts as a Cloud Infrastructure Entitlement Management specialist covering effective-permission and identity-rightsizing analysis, unused-entitlement remediation, cross-account trust analysis and least-privilege enforcement across AWS, Azure, GCP and OCI.",
       "type": "skill-md",
@@ -874,7 +881,7 @@
       "description": "Acts as a specialist in Technical Documentation Engineering, Human Anti-AI Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture, and Visual Diagram Modeling with Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "digest": "sha256:08957b4684add5fb8a009937ce6a6adeb1ddf8ec516026c7db40150e7b475eff"
+      "digest": "sha256:26bb84219ebdcb5c51cfc55d567e33cd070684febcf9ce17332423f2baaa4a37"
     },
     {
       "name": "domain-architect",
@@ -1232,6 +1239,13 @@
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
       "digest": "sha256:88f7eddb05c3e046290eff151fb7f28a14dc1307aa6d860ba9f5e4412686c13f"
+    },
+    {
+      "name": "gnome-shell-extension-development",
+      "description": "Provides practice for writing, checking and shipping a GNOME Shell extension in GJS: the layer split that keeps logic testable, the gates that catch what unit tests cannot import, verifying shell APIs against a live throwaway shell, the extension lifecycle (including the lock screen and suspend), notifications, settings and the preferences window. Use when building or reviewing a GNOME Shell extension, its preferences window or its notifications.",
+      "type": "archive",
+      "url": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
+      "digest": "sha256:8293aa3d17872abaabfc24e6e085585478de0e11a17aa88cf98eefc04a9f902d"
     },
     {
       "name": "gpu-programming-cuda",
@@ -2246,7 +2260,7 @@
       "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
       "type": "archive",
       "url": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "digest": "sha256:02da71ba0cd5bb2739c1fdeb367691c8d063df3e133c130c85573dc577f8d522"
+      "digest": "sha256:e7c1aadd342c71b6a494e85d5984f0a6249ea163b3af7b03cf68ea02fe79c719"
     },
     {
       "name": "superpowers-subagent-driven-development",
@@ -2267,7 +2281,7 @@
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
       "type": "archive",
       "url": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "digest": "sha256:bc596790fd0b2967a855aa29b7ca5c3761530e8910e69911e050cd3526efe842"
+      "digest": "sha256:ac97d3636f258d4233d8e5721d0fc9519afbe26b64360f977f6eb160602fb4bd"
     },
     {
       "name": "superpowers-using-git-worktrees",
@@ -2281,7 +2295,7 @@
       "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
       "type": "skill-md",
       "url": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "digest": "sha256:6ffbb8213b505496ce49def12c7db68f376fd6e03b0ade0fe3521c2fe38f2f0b"
+      "digest": "sha256:bc350182fb0492ff01b249beb6481abfe33447d91f134ecb61d9b57becf82abc"
     },
     {
       "name": "superpowers-writing-plans",
@@ -2953,7 +2967,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:2607a3bb88c773523312e8c3233e91de5fdc5f74f5f75a4d7da3c2cb8e27ccf1"
+      "digest": "sha256:d6dc5dca5b644750b3e53cd4209c4a4e5247c53316928636ad8200c99500a58b"
     },
     {
       "name": "ux-designer",

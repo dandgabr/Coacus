@@ -7,6 +7,7 @@ Senior specialist agent in Software Engineering, covering formal requirements en
 <!-- coacus:generated:skills -->
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [gnome-shell-extension-development](../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 - [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 - [framework-rest-api](../../../../skills/frameworks/framework-rest-api/SKILL.md)
 - [framework-testing](../../../../skills/frameworks/framework-testing/SKILL.md)
@@ -48,6 +49,7 @@ When implementing code, invoke the matching language skill (lang-typescript, lan
 - [lang-c](../../../../skills/languages/lang-c/SKILL.md)
 - [lang-cpp](../../../../skills/languages/lang-cpp/SKILL.md)
 - [lang-bash](../../../../skills/languages/lang-bash/SKILL.md)
+- [gnome-shell-extension-development](../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
 ---
 

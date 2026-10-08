@@ -258,6 +258,24 @@ passing — when the path reverts unconditionally. Pair every one of them:
 - **Assert the reason, not only the absence.** `token == "bw"` plus a message naming
   the grammar; "a warning exists" is satisfied by any warning at all.
 
+## A green first run is a hypothesis: mutate
+
+Tests that pass the first time may be asserting nothing. Before trusting them, break the
+implementation on purpose and see them fail.
+
+- Make **single-edit mutants** of each rule (invert a comparison, drop a guard, remove a
+  cancel call) one at a time, run the focused tests, record killed or survived, and
+  restore the file each time.
+- **A survivor names a missing test.** Reading a value above the threshold for the first
+  time and again a minute later survived: nothing exercised the second reading. Add the
+  case, then check the mutant dies.
+- **Cover the security rules first**: a value that must not be written without the
+  user's answer, two operations that must not run at once, a resource that must be
+  released when the window closes. Each deserves a mutant.
+- Keep the dependencies of the code under test **injected** (the clock, the store, the
+  system calls), so a fake can settle the outcome. A controller that owns the state and
+  a thin view over it is testable; a closure inside a widget is not.
+
 ## Red Flags - STOP and Start Over
 
 - Code before test

@@ -229,6 +229,29 @@ A repository's `README.md` is its front-door and conversion engine. Leading open
 
 ---
 
+## 🔍 6.1. Reviewing a documentation set
+
+Review documentation with **two independent lenses** and a mechanical check, then apply
+every finding:
+
+- **Structure and pattern** (the Diátaxis fit, the length of the front door, duplication,
+  facts that contradict the code). Verify each factual claim against the code: a count, a
+  default, a file name, a diagram's edges (compute the real imports instead of drawing
+  what you remember), a table that is missing rows.
+- **Language** (vague words that have a number elsewhere, stacked sentences, one term per
+  concept, one mood per list, abbreviations defined at first use). Ask for a glossary and
+  adopt it.
+- **A script checks what a person misses**: every relative link and anchor resolves, and
+  every repository path the text mentions exists. It found a link that broke when text
+  moved between files.
+- **A decision record reads as the current decision**, with one status vocabulary;
+  history lives in commits and pull requests. Move reference material (a format, a list
+  of pitfalls) out of the front door into its own file, and state each fact once and
+  link to it.
+- Add what a new contributor needs and no one wrote down: how a change is made here, and
+  how to add the common thing (a setting: schema, its classification, the build, the
+  control, the test, the table row).
+
 ## 🔗 7. Integration with Other Skills
 
 - **Under [software-architect](../../../roles/software-architect/SKILL.md)**: Applies Diátaxis to ADRs (Architecture Decision Records) and uses the C4 Model to structure system views.

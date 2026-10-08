@@ -157,6 +157,48 @@ you configured.
   switch that reads its own saved value reports what the user chose, not what the
   OS will do; a control the user cleared outside the app must read as off.
 
+## A gate that has never failed is a hypothesis
+
+A check you have just added, or a test that passed on its first run, proves little
+until you have seen it fail.
+
+- **Seed a defect and watch the gate fail**, then restore the file and confirm the diff
+  is empty. A syntax check, a "does it load" check and a drift check each need one
+  seeded failure (a name declared twice, a name that does not exist, a generated file
+  edited by hand). The check that enables the extension in a real runtime caught an
+  undefined name that the syntax check could not.
+- **Mutate what you wrote** (see the test-driven development workflow): break each rule
+  on purpose, one edit at a time, and list which mutants the tests failed to kill.
+- **A module the tests cannot import needs an execution gate.** When the interface layer
+  needs its host to load, no unit test sees it: the only evidence is to run it in the
+  host.
+
+## A change is delivered when the remote holds it
+
+"Pushed" is a claim until you compare heads.
+
+- After a push, compare the branch head on the remote with your local head, and say
+  the commit in the report. Never pipe a push into a filter that truncates its output:
+  a refusal was hidden that way and two commits missed a merge that had already been
+  approved.
+- A push that fails on the platform's side (a server error) is retried, and the result
+  verified the same way, not assumed.
+- When the generated inputs of a test (a compiled schema, a catalog, a lock file) are
+  not committed, rebuild them before the tests: a stale build fails for a thing the code
+  has never heard of.
+
+## Reproduce the other machine
+
+A gate that passes on your machine can fail in CI because the two machines differ.
+
+- **Reproduce CI from a fresh clone of the pushed commit** and compare, before guessing.
+  A digest taken over compressed bytes drifted between a machine with one deflate
+  implementation and a runner with another: the bytes of a compressed stream are not a
+  property of the content.
+- Do not let an output depend on the compressor, the locale, a timestamp, the order of a
+  directory listing or a file the version control ignores. Build the artifact from
+  stored (uncompressed) or sorted, normalized inputs, and pin one known value in a test.
+
 ## When To Apply
 
 **ALWAYS before:**
