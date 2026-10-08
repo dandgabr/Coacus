@@ -201,7 +201,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
     def test_seeded_scenarios_are_valid(self) -> None:
         root = Path(coacus_eval.ROOT)
         self.assertEqual(evals.validate(root), [])
-        self.assertEqual(len(evals.discover(root)), 6)
+        self.assertEqual(len(evals.discover(root)), 9)
 
 
 if __name__ == "__main__":

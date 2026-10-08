@@ -48,6 +48,26 @@ carries each cell's evidence class; a bare boolean is forbidden.
   `can_block` on that harness; `--allow-advisory` records the downgrade.
 - A `deny` whose event has no native home is refused, not silently dropped.
 
+### Advisory content rules
+
+Beyond action policies, the guardrail layer evaluates ADVISORY CONTENT RULES:
+`field x operator x pattern`, all conditions AND-combined, authored under
+`methodology/lifecycle/patterns/*.json`. A match produces an advisory, never a
+deny — an observe binding can only surface. Rule ids are FROZEN and append-only:
+`engine/guardrail/rules.py` records the required ids and
+`engine/validators/guardrails.py` fails the build when one disappears. A rule with
+no condition can never match; a non-compiling pattern does not match and is a lint
+error. Every rule carries its mitigation, not just the alert.
+
+### Defense ladder and suppression
+
+Layer defenses: a deterministic pattern, then a single-turn review, then a
+cross-file review; each layer is independently switchable. A deferred review may
+run in the background and wake the agent with findings rather than block the turn.
+Provide an inline-suppression convention (a reviewed / safe-because comment) so a
+false positive is silenced without disabling the layer. When layered rule files
+concatenate under a size cap, drop the tail first so user-wide rules survive.
+
 ## Rationale
 
 Event names are the least portable axis; the policy is the most portable. Inverting
@@ -66,5 +86,8 @@ silence.
   fails on drift.
 - `scripts/coacus_guard.py` evaluates policies at runtime; the generated hooks
   call it and never re-implement a decision.
+- `engine/guardrail/rules.py` evaluates the advisory content catalogue;
+  `engine/validators/guardrails.py` (via `validate`) checks it is well-formed and
+  append-only.
 - `tests/test_lifecycle.py` covers the render contract, the matrix and the
   validator; `tests/test_guardrail_scripts.py` executes the rendered hook.

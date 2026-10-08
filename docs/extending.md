@@ -42,6 +42,13 @@ globally unique across both skill roots (one flat namespace); placement depth is
 no nested `SKILL.md`; every local Markdown link resolves. Oversized
 descriptions and non-English markers are warnings, not errors.
 
+Quality contract (`engine/validators/skill_quality.py`): `name` ≤ 64 chars and a
+balanced code fence are ERRORS; a body over the word budget and a
+description-register problem are warnings. The register, progressive-disclosure
+and invocation rules are in [skill-authoring](standards/skill-authoring.md).
+After adding a skill, run `coacus validate`, then hand it to the `skill-auditor`
+agent for a severity-ranked review before publishing.
+
 ## Add a workflow (process skill)
 
 Same contract as a skill, but the path is

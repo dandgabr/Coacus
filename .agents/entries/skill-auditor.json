@@ -1,0 +1,8 @@
+{
+  "name": "skill-auditor",
+  "description": "Audits an existing skill against the authoring contract and returns a severity-ranked report. Use when reviewing or grading a SKILL.md, when a skill fails validation, or when improving trigger quality, progressive disclosure and token budget before a skill ships.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/skill-auditor/dist",
+  "fingerprint": "d5f90d4b0afc95d2"
+}

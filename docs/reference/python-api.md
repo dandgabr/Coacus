@@ -174,6 +174,37 @@ Materialize ``.agents/{skills,mcps,agents}.json``; return written paths.
 
 Drift check for the consolidated discovery manifests (generated-artifacts).
 
+### `engine/generators/discovery_index.py`
+
+Generate the Agent Skills discovery index.
+
+Writes ``.well-known/agent-skills/index.json``: a versioned index of every
+published skill, each with a ``type`` and a content ``digest`` a client can verify
+before use. A skill whose directory holds only ``SKILL.md`` is ``skill-md``; a
+skill with any extra file is ``archive`` (a deterministic tar.gz built in memory,
+never written to the tree — the index is committed and drift-checked, the
+artifacts are release-only).
+
+Determinism is the contract (generated-artifacts): the archive uses fixed
+metadata and no timestamp, so two builds are byte-identical and ``check`` can
+prove it. A skill marked ``internal: true`` in frontmatter is excluded.
+
+#### `def is_internal(meta: dict) -> bool`
+
+True when frontmatter declares ``metadata.internal: true``.
+
+#### `def build(root: Path) -> dict`
+
+Build the discovery index structure from disk.
+
+#### `def write(root: Path) -> list[Path]`
+
+Write the discovery index; return the written path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the discovery index (generated-artifacts).
+
 ### `engine/generators/docstrings.py`
 
 Generate a Python API reference from module/function/class docstrings (F7).
@@ -195,6 +226,26 @@ Write the generated API reference to disk and return its path.
 #### `def check(root: Path) -> list[str]`
 
 Drift check for the generated API reference (generated-artifacts).
+
+### `engine/generators/groups.py`
+
+Generate catalog/groups.json — a grouping manifest by top-level category.
+
+Skills share one flat name namespace but live under a category directory.
+This manifest groups them for directory-style browsing without changing the flat
+catalog. It is derived from disk, byte-idempotent and drift-checked.
+
+#### `def build(root: Path) -> dict`
+
+Build the grouping manifest from disk.
+
+#### `def write(root: Path) -> list[Path]`
+
+Write the grouping manifest; return the written path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the grouping manifest (generated-artifacts).
 
 ### `engine/generators/guardrails.py`
 
@@ -445,6 +496,43 @@ Evaluate policies against one action; return the most restrictive decision.
 
 Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
 An event with no matching policy yields ``allow``.
+
+### `engine/guardrail/rules.py`
+
+Declarative content rules for the guardrail layer (PAER observe extension).
+
+A rule is ``field x operator x pattern``, with all conditions AND-combined,
+evaluated against a payload mapping. A match produces an ADVISORY — this layer
+never denies (an observe binding can only surface, never block). Rules are pure
+data in ``methodology/lifecycle/patterns/``; this module is the stdlib-only
+evaluator and the lint that keeps the data honest.
+
+Registry hygiene: rule ids are FROZEN and append-only. ``FROZEN_RULE_IDS`` records
+the ids that must exist; adding a rule means a new id, never a renumber, so an
+id that disappears is a build error rather than a silent shift.
+
+Failure is fail-open and visible: a bad regex yields a lint error, and at runtime
+a non-compiling pattern simply does not match.
+
+#### `def load_catalogue(root: Path) -> dict | None`
+
+Load the security-pattern catalogue; ``None`` when the file is missing.
+
+#### `def matches(rule: dict, payload: dict) -> bool`
+
+True when every field condition of the rule matches the payload.
+
+#### `def evaluate(payload: dict, catalogue: dict) -> list[dict]`
+
+Return the matching rules as advisory records (id, rule, severity, reminder).
+
+#### `def lint_errors(catalogue: dict) -> list[str]`
+
+Structural errors in the catalogue (blocking).
+
+#### `def lint_warnings(catalogue: dict) -> list[str]`
+
+Non-blocking findings: a pattern too broad to carry signal.
 
 ### `engine/provenance.py`
 
@@ -729,6 +817,22 @@ standard's explicit "could not resolve" state, with a reason) or
 ``UNRESOLVED`` (a gate error). Never fails: it is the audit surface for "how
 old is the corpus", not a gate.
 
+### `engine/validators/guardrails.py`
+
+Validate the advisory security-pattern catalogue (lifecycle-guardrails).
+
+The catalogue is DATA; this validator keeps it well-formed and append-only:
+unique positive integer ids, known fields and operators, compiling regexes, a
+reminder (the mitigation) on every rule, and every frozen id still present.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return catalogue errors; empty means valid (or absent — see below).
+
+#### `def warnings(root: Path) -> list[str]`
+
+Return non-blocking findings; empty means clean.
+
 ### `engine/validators/harnesses.py`
 
 Harness-manifest validator (F9.1).
@@ -845,6 +949,35 @@ Runs in ``artifact_errors`` (after generation / on ``validate``).
 
 Full contract: curated lexicon (source) plus the generated index (artifact).
 
+### `engine/validators/skill_quality.py`
+
+Skill-quality lint beyond the structural contract (skill-authoring).
+
+The structural validator (:mod:`engine.validators.skills`) checks placement,
+naming and link resolution. This module checks the authoring-quality contract
+that has signal on this corpus:
+
+- ERRORS (safe on the current corpus, catch a regression):
+  - ``name`` longer than the Agent Skills limit (64 chars);
+  - an unbalanced code fence (a ``` block that is never closed).
+- WARNINGS (non-blocking):
+  - a body over the word budget — depth belongs in ``references/``;
+  - a ``description`` that opens with an instruction-to-reader instead of a
+    third-person trigger description.
+
+The resource-pointer and duplication disciplines are GUIDANCE in
+``docs/standards/skill-authoring.md``, not checks: the corpus links reference
+directories by name rather than every file, so a per-file pointer check would
+fire on hundreds of valid skills and carry no signal.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return blocking quality errors; empty means clean.
+
+#### `def warnings(root: Path) -> list[str]`
+
+Return non-blocking quality findings; empty means clean.
+
 ### `engine/validators/skills.py`
 
 Validate canonical skill sources (D2/skill-authoring, corpus import contract).
@@ -875,6 +1008,44 @@ Non-blocking findings (language, description size).
 The language check inspects PROSE only: fenced code blocks are skipped, so
 illustrative samples that quote upstream docs (SQL comments, config values)
 do not count as untranslated text. This mirrors the hygiene scan.
+
+### `engine/verify/ledger.py`
+
+Tri-state, fail-closed completion ledger (evidence standard).
+
+A ledger records one status per claim and derives one overall status. The rule is
+fail-closed: ``fail``, ``unknown``, ``unsupported``, ``truncated`` and ``skipped``
+NEVER aggregate to ``pass``. A ``pass`` claim must cite at least one piece of
+evidence — a missing id injects an ``unknown``, it does not round up.
+
+#### `def build(records: list[dict]) -> dict`
+
+Build a ledger from claim records; derive the overall status fail-closed.
+
+#### `def validate(ledger: dict) -> list[str]`
+
+Return ledger errors; empty means well-formed and self-consistent.
+
+### `engine/verify/unknowns.py`
+
+Revisioned residual-unknown registry (evidence standard).
+
+An unknown is not a TODO: it is a record of what is not yet known, which evidence
+supports and contradicts it, what class of evidence would settle it, and how many
+probes are recommended. Every update is a new revision, and a resolved-verified
+unknown must cite evidence — absence is never a pass.
+
+#### `def build(question: str, severity: str='medium', required_authority: str='') -> dict`
+
+Create a new, open unknown at revision 1.
+
+#### `def update(entry: dict, expected_revision: int) -> dict`
+
+Return a new revision, or raise when ``expected_revision`` is stale.
+
+#### `def validate(entry: dict) -> list[str]`
+
+Return registry-entry errors; empty means well-formed.
 
 ### `scripts/coacus.py`
 
@@ -917,6 +1088,10 @@ Reconcile the corpus against its sources; fail if anything is unreconciled.
 #### `def cmd_refresh(_args: argparse.Namespace | None=None, root: Path | None=None) -> int`
 
 Re-hash drifted provenance targets; fail if the manifest stays inconsistent.
+
+#### `def cmd_verify_ledger(args: argparse.Namespace) -> int`
+
+Validate a completion ledger JSON file (evidence standard, fail-closed).
 
 #### `def cmd_freshness(args: argparse.Namespace, root: Path | None=None) -> int`
 

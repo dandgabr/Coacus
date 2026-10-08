@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 97,
-    "skills": 418,
+    "agents": 98,
+    "skills": 433,
     "mcps": 1
   },
   "agents": [
@@ -491,6 +491,12 @@
       "category": "core-orchestration",
       "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
       "source": "knowledge/agents/core-orchestration/self/agent.source.md"
+    },
+    {
+      "name": "skill-auditor",
+      "category": "specialized-domains",
+      "description": "Audits an existing skill against the authoring contract and returns a severity-ranked report. Use when reviewing or grading a SKILL.md, when a skill fails validation, or when improving trigger quality, progressive disclosure and token budget before a skill ships.",
+      "source": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md"
     },
     {
       "name": "skill-creator",
@@ -1299,6 +1305,10 @@
       "path": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md"
     },
     {
+      "name": "guardrail-authoring",
+      "path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md"
+    },
+    {
       "name": "latency-engineering",
       "path": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md"
     },
@@ -1313,6 +1323,10 @@
     {
       "name": "repository-artifact-hygiene",
       "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md"
+    },
+    {
+      "name": "review-findings-pipeline",
+      "path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md"
     },
     {
       "name": "system-design-scalability",
@@ -1337,6 +1351,10 @@
     {
       "name": "web-accessibility-wcag",
       "path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md"
+    },
+    {
+      "name": "writing-for-agents",
+      "path": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md"
     },
     {
       "name": "framework-criterion",
@@ -2203,6 +2221,42 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
     },
     {
+      "name": "diagnosing-bugs",
+      "path": "methodology/workflows/diagnosing-bugs/SKILL.md"
+    },
+    {
+      "name": "domain-modeling",
+      "path": "methodology/workflows/domain-modeling/SKILL.md"
+    },
+    {
+      "name": "grill-me",
+      "path": "methodology/workflows/grill-me/SKILL.md"
+    },
+    {
+      "name": "grill-with-docs",
+      "path": "methodology/workflows/grill-with-docs/SKILL.md"
+    },
+    {
+      "name": "grilling",
+      "path": "methodology/workflows/grilling/SKILL.md"
+    },
+    {
+      "name": "handoff",
+      "path": "methodology/workflows/handoff/SKILL.md"
+    },
+    {
+      "name": "implement-spec",
+      "path": "methodology/workflows/implement-spec/SKILL.md"
+    },
+    {
+      "name": "phase-boundaries",
+      "path": "methodology/workflows/phase-boundaries/SKILL.md"
+    },
+    {
+      "name": "retro",
+      "path": "methodology/workflows/retro/SKILL.md"
+    },
+    {
       "name": "superpowers-brainstorming",
       "path": "methodology/workflows/superpowers-brainstorming/SKILL.md"
     },
@@ -2257,6 +2311,18 @@
     {
       "name": "superpowers-writing-skills",
       "path": "methodology/workflows/superpowers-writing-skills/SKILL.md"
+    },
+    {
+      "name": "to-spec",
+      "path": "methodology/workflows/to-spec/SKILL.md"
+    },
+    {
+      "name": "to-tickets",
+      "path": "methodology/workflows/to-tickets/SKILL.md"
+    },
+    {
+      "name": "two-axis-code-review",
+      "path": "methodology/workflows/two-axis-code-review/SKILL.md"
     },
     {
       "name": "using-coacus",

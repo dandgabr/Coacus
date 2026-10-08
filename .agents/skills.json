@@ -532,6 +532,9 @@
       "path": "knowledge/skills/engineering/practices/git-conventional-commits"
     },
     {
+      "path": "knowledge/skills/engineering/practices/guardrail-authoring"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/latency-engineering"
     },
     {
@@ -542,6 +545,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/review-findings-pipeline"
     },
     {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
@@ -560,6 +566,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/web-accessibility-wcag"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/writing-for-agents"
     },
     {
       "path": "knowledge/skills/frameworks/framework-criterion"
@@ -1210,6 +1219,33 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign"
     },
     {
+      "path": "methodology/workflows/diagnosing-bugs"
+    },
+    {
+      "path": "methodology/workflows/domain-modeling"
+    },
+    {
+      "path": "methodology/workflows/grill-me"
+    },
+    {
+      "path": "methodology/workflows/grill-with-docs"
+    },
+    {
+      "path": "methodology/workflows/grilling"
+    },
+    {
+      "path": "methodology/workflows/handoff"
+    },
+    {
+      "path": "methodology/workflows/implement-spec"
+    },
+    {
+      "path": "methodology/workflows/phase-boundaries"
+    },
+    {
+      "path": "methodology/workflows/retro"
+    },
+    {
       "path": "methodology/workflows/superpowers-brainstorming"
     },
     {
@@ -1250,6 +1286,15 @@
     },
     {
       "path": "methodology/workflows/superpowers-writing-skills"
+    },
+    {
+      "path": "methodology/workflows/to-spec"
+    },
+    {
+      "path": "methodology/workflows/to-tickets"
+    },
+    {
+      "path": "methodology/workflows/two-axis-code-review"
     },
     {
       "path": "methodology/workflows/using-coacus"

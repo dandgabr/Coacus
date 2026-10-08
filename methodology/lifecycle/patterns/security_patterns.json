@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "description": "Advisory security-sink catalogue. Each entry is a declarative rule over a payload FIELD (field x operator x pattern, AND-combined) that the guardrail runtime may evaluate to surface a risk. It is DATA, not policy: a match produces an advisory, never a deny. Rule ids are FROZEN — append new entries with a new id, never renumber. Every reminder carries the MITIGATION, not just the alert.",
+  "fields": ["command", "content", "new_text", "file_path", "user_prompt"],
+  "patterns": [
+    {
+      "id": 1,
+      "rule": "unsafe-deserialization-pickle",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "(?<![A-Za-z0-9_.])(pickle\\.load|pickle\\.loads|Unpickler)\\s*\\(",
+      "severity": "high",
+      "reminder": "Untrusted pickle deserialization executes arbitrary code. Prefer a data-only format (JSON, MessagePack); if pickle is unavoidable, load only from a trusted, integrity-checked source."
+    },
+    {
+      "id": 2,
+      "rule": "shell-command-injection-os-system",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "(?<![A-Za-z0-9_.])os\\.system\\s*\\(",
+      "severity": "high",
+      "reminder": "os.system runs the argument through a shell. Prefer an argument-vector call (subprocess with a list) so untrusted input cannot inject a command."
+    },
+    {
+      "id": 3,
+      "rule": "subprocess-shell-true",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "subprocess\\.[A-Za-z_]+\\([^)]*shell\\s*=\\s*True",
+      "severity": "high",
+      "reminder": "shell=True hands the string to a shell. Pass an argument list and drop shell=True unless the command is a fixed, non-interpolated string."
+    },
+    {
+      "id": 4,
+      "rule": "tls-verify-disabled",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "(verify\\s*=\\s*False|VERIFY_SSL\\s*=\\s*(?:False|0)|\"insecure\"\\s*:\\s*true)",
+      "severity": "high",
+      "reminder": "Disabling certificate verification permits a man-in-the-middle. Fix the trust store or pin the certificate instead of turning verification off."
+    },
+    {
+      "id": 5,
+      "rule": "weak-cipher-ecb",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "AES\\.MODE_ECB|modes\\.ECB|Cipher\\.getInstance\\([^)]*ECB",
+      "severity": "high",
+      "reminder": "ECB leaks structure: equal plaintext blocks produce equal ciphertext blocks. Use an authenticated mode (GCM or ChaCha20-Poly1305)."
+    },
+    {
+      "id": 6,
+      "rule": "unsafe-yaml-load",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "yaml\\.load\\s*\\((?![^)\\n]{0,80}\\bSafe)",
+      "severity": "medium",
+      "reminder": "yaml.load without a safe loader can construct arbitrary objects. Use yaml.safe_load, or pass SafeLoader explicitly. Multi-line calls may not match — this is a known limitation."
+    },
+    {
+      "id": 7,
+      "rule": "installer-piped-to-shell",
+      "field": "command",
+      "operator": "regex_match",
+      "pattern": "(curl|wget)\\b[^|\\n]*\\|\\s*(ba)?sh\\b",
+      "severity": "high",
+      "reminder": "Piping a download straight into a shell executes unverified remote code. Download, verify a checksum or signature, then run the local file."
+    },
+    {
+      "id": 8,
+      "rule": "github-actions-script-injection",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "\\$\\{\\{\\s*github\\.(event\\.(issue|pull_request|comment|review)|head_ref)",
+      "severity": "high",
+      "reminder": "Interpolating attacker-controlled GitHub context into a run step is script injection. Pass the value through an env var and quote it, or use a safer action."
+    },
+    {
+      "id": 9,
+      "rule": "weak-password-hash",
+      "field": "content",
+      "operator": "regex_match",
+      "pattern": "hashlib\\.(md5|sha1)\\s*\\([^)]*password|MessageDigest\\.getInstance\\(\\s*\"(MD5|SHA-?1)\"",
+      "severity": "medium",
+      "reminder": "MD5 and SHA-1 are not password hashes: they are fast and unsalted. Use a memory-hard scheme (bcrypt, scrypt, Argon2) for passwords."
+    },
+    {
+      "id": 10,
+      "rule": "disabled-security-control",
+      "field": "content",
+      "operator": "contains",
+      "pattern": "csrf_exempt",
+      "severity": "medium",
+      "reminder": "Exempting a view from CSRF protection removes a defense against forged requests. Confirm the endpoint is token-authenticated and not state-changing, and add an inline justification comment."
+    }
+  ]
+}
