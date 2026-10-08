@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+import gzip
+import hashlib
 import tempfile
 import unittest
+import zlib
 from pathlib import Path
+from unittest import mock
 
 from engine.generators import discovery_index, groups
 
@@ -46,6 +50,39 @@ class TestDiscoveryIndex(unittest.TestCase):
             discovery_index.build(self.root)["skills"],
             discovery_index.build(self.root)["skills"],
         )
+
+    def test_gzip_is_valid_and_depends_only_on_the_input(self) -> None:
+        for size in (0, 1, 65535, 65536, 200_000):
+            data = bytes(i % 251 for i in range(size))
+            stream = discovery_index.deterministic_gzip(data)
+            self.assertEqual(gzip.decompress(stream), data, size)
+            self.assertEqual(stream, discovery_index.deterministic_gzip(data), size)
+        # A fixed value, so a different machine (or a different zlib) cannot drift unnoticed.
+        self.assertEqual(
+            hashlib.sha256(discovery_index.deterministic_gzip(b"abc")).hexdigest(),
+            "f31b3021082ff798b6d0b88824263adf13c8b2d7a2c6b16fd256619ab7d08da9",
+        )
+
+    def test_the_digest_does_not_use_a_compressor(self) -> None:
+        # The bytes of a deflate stream differ between zlib and zlib-ng; the digest must not
+        # depend on either, so a build that cannot compress at all still gives the same digest.
+        directory = write_skill(self.root, "bundle")
+        (directory / "references").mkdir()
+        (directory / "references" / "notes.md").write_text("notes\n", encoding="utf-8")
+        expected = discovery_index.build(self.root)["skills"][0]["digest"]
+        refuse = mock.Mock(side_effect=AssertionError("a compressor was used"))
+        with mock.patch.object(zlib, "compressobj", refuse), mock.patch.object(gzip, "compress", refuse):
+            self.assertEqual(discovery_index.build(self.root)["skills"][0]["digest"], expected)
+
+    def test_tool_leftovers_are_not_part_of_a_skill(self) -> None:
+        directory = write_skill(self.root, "clean")
+        before = discovery_index.build(self.root)["skills"][0]
+        (directory / "__pycache__").mkdir()
+        (directory / "__pycache__" / "helper.cpython-314.pyc").write_bytes(b"\x00\x01")
+        (directory / ".DS_Store").write_bytes(b"x")
+        after = discovery_index.build(self.root)["skills"][0]
+        self.assertEqual(after, before)
+        self.assertEqual(after["type"], "skill-md")
 
     def test_internal_skill_is_excluded(self) -> None:
         write_skill(self.root, "public-skill")

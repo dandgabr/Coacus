@@ -6,168 +6,168 @@
       "description": "Specializes in Abstract Algebra, Field and Galois Theory, Advanced Linear Algebra, and Differential Geometry building on Algebra (Serge Lang), Abstract Algebra (Dummit & Foote), Algebra, Topology, Differential Calculus, and Optimization Theory for CS and ML (Jean Gallier, Jocelyn Quaintance), and Differential Geometry of Curves and Surfaces (do Carmo). Covers Group Theory (Normal Subgroups, Noether Isomorphism Theorems, Sylow Theorems), Ring and Ideal Theory (PIDs, UFDs, Euclidean Domains), Field Theory and Galois Theory (Algebraic Extensions, Finite Galois Fields GF(p^n), Automorphisms, Abel-Ruffini Solvability by Radicals), Hilbert Spaces and Quadratic Forms, the Spectral Theorem and Jordan Decomposition, Differential Geometry of Curves and Surfaces (Frenet-Serret Frame, First and Second Fundamental Forms, Gaussian Curvature, Gauss-Bonnet Theorem), Differentiable Manifolds, and the General Stokes Theorem.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-abstract-algebra-geometry/SKILL.md",
-      "digest": "sha256:3d8d217a76def3c5cdc9aefb2aab42f887e6503d7f1fd9762f0970ff427ae2a6"
+      "digest": "sha256:ced75ea2af02a7a00f97fa1307e657a64500df536f015fec3458420f5a6ace30"
     },
     {
       "name": "academic-algorithms-data-structures",
       "description": "Specializes in Advanced Algorithms, Data Structures, and Computation Theory building on CLRS, Sipser, Knuth, and Kopec. Covers Asymptotic Complexity (Big-O, Master Theorem, Akra-Bazzi), Balanced Trees and Spatial Indexing (AVL, Red-Black, B/B+ Trees, Segment Trees, Fenwick Trees, DSU with Union-by-Rank and Path Compression), Graph Algorithms (Dijkstra, A*, Bellman-Ford, Floyd-Warshall, Tarjan Strongly Connected Components, Kruskal/Prim Minimum Spanning Tree, Dinic/Edmonds-Karp Max Flow), Dynamic Programming and Combinatorial Optimization, the Chomsky Hierarchy, Finite Automata (DFA, NFA, Subset Construction, Pumping Lemmas), Pushdown Automata (PDA, Chomsky Normal Form, CYK Algorithm), Turing Machines, Decidability and Reducibility (Halting Problem via Cantor Diagonalization, Rice's Theorem), and Complexity Theory (P, NP, co-NP, NP-Complete via Cook-Levin, Karp Reductions, PSPACE).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md",
-      "digest": "sha256:65a94916a002c09d2ff13475b225a57a6c0911adb716eabd947d70638e82dd41"
+      "digest": "sha256:a8b21233e4601836b5cede79440b3d18cd4b62a2ef3810b373b767dee59219a7"
     },
     {
       "name": "academic-biomedical-instrumentation-signals",
       "description": "Specializes in Biomedical Engineering, Medical Instrumentation, Physiological Signals, and Diagnostic Imaging building on John G. Webster (Medical Instrumentation Application and Design) and Jerrold T. Bushberg (The Essential Physics of Medical Imaging). Covers biopotential electrodes (Ag/AgCl), instrumentation amplifiers (INA) with high CMRR, the Right Leg Drive (RLD) circuit, physiological signals (ECG, EEG, EMG), galvanic isolation, and electrical safety standards (IEC 60601-1), medical imaging physics (X-ray, Computed Tomography CT with the Radon Transform and Filtered Backprojection, Nuclear Magnetic Resonance MRI with Bloch Equations and k-space, Doppler Ultrasound, Nuclear Medicine PET/SPECT), and interoperability with DICOM and HL7/FHIR.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
-      "digest": "sha256:526d116f55eee3ccaf2d23fdb49371a7858c6417bd875d3df5e529b6124d22b3"
+      "digest": "sha256:aa66900bdc86361dd0b5a549ebc572a47bd78bbc864bc23a00e31abc328b527f"
     },
     {
       "name": "academic-biotechnology-bioprocesses",
       "description": "Specializes in Biotechnology, Bioprocess Engineering, Industrial Bioreactors, and Recombinant DNA Technology building on Bioprocess Engineering Principles (Pauline M. Doran), Bioprocess Engineering (Shuler, Kargi, DeLisle), and Biotecnologia Industrial (Schmidell et al.). Covers Kinetic Modeling of Cell Growth (Monod, Luedeking-Piret), Hydrodynamics and Mass/Energy Balances in Bioreactors (STR, Airlift, Bubble Column, Single-Use SUBs), Volumetric Oxygen Transfer Coefficient (kLa), Downstream Purification Operations (Tangential Flow Filtration TFF, Affinity/IEX/HIC Chromatography, Lyophilization), Enzymology (Michaelis-Menten, Eadie-Hofstee), Therapeutic Product and Monoclonal Antibody (mAb) Technology, GLP (Good Laboratory Practice / NIT-DICLA-035), Biosafety (NB-1 to NB-4, CTNBio/ANVISA), and Biological Effluent Treatment.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
-      "digest": "sha256:e9ce7367879032733434298ab839d9bf2bd6b088b6e020a59f8910e5116856a4"
+      "digest": "sha256:e86b4b30fdd55cfdfb414711eae49acf7c593394daca86724766cf87e39879ad"
     },
     {
       "name": "academic-calculus-differential-equations",
       "description": "Specializes in Differential and Integral Calculus (I to IV), Ordinary Differential Equations (ODEs), Partial Differential Equations (PDEs), Vector Calculus, and Numerical Methods building on Algebra, Topology, Differential Calculus, and Optimization Theory for CS and ML (Jean Gallier, Jocelyn Quaintance), Numerical Algorithms (Justin Solomon), Stewart, and Boyce-DiPrima. Covers Vector Calculus (Gradient, Divergence, Curl, Green's, Stokes', and Gauss Divergence Theorems), Linear and Nonlinear ODEs (Integrating Factor, Variation of Parameters, Laplace Transforms), Classic PDEs (Heat, Wave, and Laplace/Poisson Equations, Fourier Series, Separation of Variables), and Numerical Methods (Euler, RK4, Symplectic Verlet/Leapfrog Integrators, Finite Difference Method FDM, and Finite Element Method FEM).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-calculus-differential-equations/SKILL.md",
-      "digest": "sha256:d1713032b086d793a9f0c9af867079a602d693e025d91a10b67dbbbd5b88707b"
+      "digest": "sha256:55856ba44f7b0a3be4962f9202ccd99f334cf57c4494c43ada29fac59aec72f5"
     },
     {
       "name": "academic-chemical-engineering-reactors",
       "description": "Specializes in Chemical Engineering, Reactors, Transport Phenomena, and CFD building on H. Scott Fogler (Elements of Chemical Reaction Engineering), R. Byron Bird, Warren E. Stewart & Edwin N. Lightfoot (Transport Phenomena), and John D. Anderson (Computational Fluid Dynamics). Covers Molar and Energy Balances in Batch, CSTR, PFR, and Catalytic PBR, Heterogeneous Catalysis (Langmuir-Hinshelwood, Thiele Modulus, Effectiveness Factor \u03b7), Non-Isothermal Reactors and Multiple Steady States, Vapor-Liquid Equilibrium (VLE with NRTL/UNIQUAC and McCabe-Thiele), Fluid Mechanics (Navier-Stokes Equations for Laminar and Turbulent Flow), Heat Transfer (Fourier Conduction, Convection, Stefan-Boltzmann Radiation), Mass Transfer (Fick's Laws and Diffusive Convection), Boundary Layer Theory, and Computational Fluid Dynamics (Finite Volume Method FVM and SIMPLE Algorithm).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
-      "digest": "sha256:31276c63032a1e4714bc3aea02b3fcc2e01081753fdb73c04c8b946006d2eb6d"
+      "digest": "sha256:9cef009825811db5d750eb9c35f66295bb4cb78a75e3e326e3eaf03fd39cfb16"
     },
     {
       "name": "academic-chemistry-synthesis-analysis",
       "description": "Specializes in Fundamental and Applied Chemistry, Organic/Inorganic Synthesis, Physical Chemistry, and Instrumental Analysis building on Clayden, Miessler, Atkins, and Skoog. Covers Solution Thermodynamics and Phase Equilibrium (Antoine Equation, Azeotropic and Ternary Diagrams), Electrochemistry and Conductometry (Debye-H\u00fcckel-Onsager), Chemical Kinetics and Transition State Theory, Coordination and Organometallic Chemistry (Crystal/Ligand Field Theory, Jahn-Teller Effect, 18-Electron Rule, Palladium Suzuki/Heck/Sonogashira Couplings), Advanced Organic Mechanisms (SEAr, SN1/SN2, E1/E2, Enolates, Retrosynthesis), Analytical Chemistry and Instrumental Methods (EDTA Complexometry, UV-Vis, AAS, ICP-OES, HPLC, GC-MS, 1D/2D 1H/13C COSY/HSQC/HMBC NMR, FTIR, MS), Chemical Metrology (ISO/IEC 17025:2017), GHS (ABNT NBR 14725), and CFQ/CRQ Legislation (Law 2,800/1956).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
-      "digest": "sha256:b4d278a15e4d64dc3e8e3ec0a9e556bff3aa4b9e87b573ea5f13841e5dd406f4"
+      "digest": "sha256:763da599e036c48fcc86e3aad83064b1eb4e3e1fa247b9051de9704ac2805fb4"
     },
     {
       "name": "academic-circuit-analysis-electronics",
       "description": "Specializes in Electrical Circuit Analysis, Analog Electronics, and Microelectronics building on Introductory Circuit Analysis (Boylestad), Fundamentals of Electric Circuits (Alexander, Sadiku), and Microelectronic Circuits (Sedra, Smith). Covers Kirchhoff's Laws (KCL/KVL), Network Theorems (Th\u00e9venin, Norton, Superposition, Maximum Power Transfer), First- and Second-Order RLC Transients, AC Phasor Analysis and the Power Triangle (Active, Reactive, Apparent, and Power Factor Correction), Semiconductor Devices (Diodes, Zener, BJT Transistors, and MOSFETs with Hybrid-\u03c0 Small-Signal Models), Multi-Stage Amplifiers (Common Source, Common Emitter, Cascode, and Differential Pair), Linear/Non-Linear Operational Amplifiers, and Sallen-Key Active Filters (Butterworth and Chebyshev).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
-      "digest": "sha256:5a760b47b2cd3935bd1668090308222a0cfa1007769383b219c65c334a45b517"
+      "digest": "sha256:4b3b59398ae60af0ecba1a3ac3f544538a42ab91486a90c53f3eae22783725df"
     },
     {
       "name": "academic-classical-mechanics-relativity",
       "description": "Specializes in Advanced Classical Mechanics, Analytical Dynamics, Chaos Theory, and Special and General Relativity building on Classical Mechanics (Herbert Goldstein), Mechanics (Landau & Lifshitz), Gravitation (Misner, Thorne, Wheeler), and Spacetime and Geometry (Sean Carroll). Covers Lagrangian and Hamiltonian Formalisms (Euler-Lagrange, Legendre Transform, Poisson Brackets, Canonical Transformations, Hamilton-Jacobi, and Noether's Theorem), Three-Dimensional Rigid Body Dynamics (Inertia Tensor, Euler Angles, Euler Equations of Motion), Small Oscillation Theory and Normal Modes, Deterministic Chaos Theory (Lyapunov Exponents, Poincar\u00e9 Sections, Strange Attractors), Covariant Special Relativity (Minkowski Four-Vectors, Electromagnetic Tensor F\u03bc\u03bd), and General Relativity (Geodesics, Riemann Curvature Tensor, Einstein Field Equations, and Schwarzschild Metric).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md",
-      "digest": "sha256:9348dc10c91bdfe3388ca1e9fb8101ad1fcd0be7779a4cdc05732542252af5f0"
+      "digest": "sha256:5a2ca42de62e46443642efe2f236cbc77644bfa3cf239cbba3d24140890d14e6"
     },
     {
       "name": "academic-compilers-language-processors",
       "description": "Specializes in Compiler Engineering, Language Processors, and Code Optimization building on Compilers Principles, Techniques, and Tools (Dragon Book - Aho, Lam, Sethi, Ullman) and Engineering a Compiler (Cooper, Torczon). Covers Lexical Analysis (Flex/Lex, DFAs, Thompson/Subset Construction), Syntax Analysis (Bison/Yacc, Context-Free Grammars, LL(k), LR(0), SLR(1), LR(1), and LALR(1) Parsers), Semantic Analysis (Symbol Tables with Lexical Scoping, Type Checking, and Hindley-Milner Type Inference), Intermediate Representation (Three-Address Code, Static Single Assignment - SSA with the Cytron Algorithm, Dominance Frontiers, and Phi-nodes), Code Optimization (Loop Invariant Code Motion LICM, Common Subexpression Elimination CSE, Dead Code Elimination DCE, Constant Folding/Propagation), Graph-Coloring Register Allocation (Chaitin-Briggs), and LLVM IR Infrastructure.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md",
-      "digest": "sha256:f87eef29d1736a77946d88d97567fb488bb2b34f13881b8059a5bbd89125f13b"
+      "digest": "sha256:99d774e94ffb958dad07c27891ebcfff4fbe0365149ff5a37c4433ac4d0d30f4"
     },
     {
       "name": "academic-computer-graphics-image-processing",
       "description": "Senior specialist in Computer Graphics, Computer Vision, Digital Image Processing, and Digital Compositing building on Mathematics for Computer Graphics (John Vince), Computer Vision Metrics (Scott Krig), Mastering Computer Vision with PyTorch 2.0 (M. Arshad Siddiqui), The Art and Science of Digital Compositing (Ron Brinkmann), Numerical Algorithms (Justin Solomon), and Digital Image Processing (Gonzalez, Woods). Covers 3D Geometric Transformations, Quaternions and SLERP, Projective Geometry, Parametric Curves and Surfaces (B\u00e9zier, B-Splines, NURBS), Illumination Models (Phong, PBR Cook-Torrance BRDF/BSSRDF), Ray Tracing, Feature Detector and Descriptor Taxonomy (SIFT, ORB, FAST, BRISK), Deep Learning with PyTorch 2.0 (YOLO, Mask R-CNN, UNet, ViT, TorchDynamo), Digital Compositing Algebra (Porter-Duff, Alpha Premultiplication, ACES/Linear Color Spaces), and Geometric Numerical Methods (Laplace-Beltrami, ICP, Physical Simulation).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md",
-      "digest": "sha256:03b0be70422dd6719f3760869b7ae60a055e2a4ac1a088e6847ba36845efc204"
+      "digest": "sha256:174886710c3e80beb932f4d9712bcfed29aec421e65442e8af110de7475f0943"
     },
     {
       "name": "academic-control-systems-theory",
       "description": "Specializes in Classical and Modern Control Theory, Industrial Robotics, and Automation building on Katsuhiko Ogata (Modern Control Engineering), John J. Craig (Introduction to Robotics Mechanics and Control), and the IEC 61131-3 standard. Covers Root Locus, Bode/Nyquist Diagrams, PID with Anti-windup, State Space, Kalman Controllability and Observability, the Linear Quadratic Regulator (LQR with the Riccati ARE), Luenberger Observers, ZOH Discretization in the Z-Plane, Deadbeat Control, Model Predictive Control (MPC), the Kalman Filter, Forward/Inverse Kinematics (Denavit-Hartenberg), the Robotic Jacobian, Lagrange-Euler Dynamics, ROS 2, SLAM, and PLC Automation (Structured Text ST, Ladder LD, SCADA, Modbus, Profinet, OPC-UA).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-control-systems-theory/SKILL.md",
-      "digest": "sha256:9cc3787718c4c03be955da5f137735b030d87f686911513438ae4cb3864b2c37"
+      "digest": "sha256:bde22af23b97ba977c02d1372e69e821dcf55a361af4e00c5ca54cda21f322f0"
     },
     {
       "name": "academic-digital-communications-signals",
       "description": "Specializes in Digital Communications, Information Theory, Optical Networks, Radio Frequency, and Wireless Systems building on John G. Proakis (Digital Communications), Gerd Keiser (Optical Fiber Communications), Andrea Goldsmith, and Simon Haykin. Covers the Nyquist-Shannon Sampling Theorem, Shannon-Hartley Channel Capacity, passband modulations (ASK, FSK, PSK, QAM, OFDM), error-correcting codes (Hamming, Reed-Solomon, Convolutional, LDPC, Turbo Codes), adaptive equalization and DSP, optical fiber propagation (single-mode, chromatic dispersion/PMD, attenuation, EDFA amplifiers, WDM/DWDM), antenna theory and S-parameters (S11, VSWR), the Friis transmission equation, satellite links (LEO, MEO, GEO), and 4G LTE / 5G NR cellular networks (Massive MIMO, Beamforming, Open RAN).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
-      "digest": "sha256:0437a7a86bee17e818e82bc17c38e8069e8eaed375edd305faea6120504a8a3e"
+      "digest": "sha256:5acfd3588b379238603bc01c08b99667b50251f65ba1d27af468f6c5c6b0f50e"
     },
     {
       "name": "academic-digital-systems-vlsi",
       "description": "Specializes in Digital Systems, Logic Synthesis, Hardware Description (Verilog, SystemVerilog, VHDL), and VLSI/CMOS Integrated Circuit Design building on Morris Mano (Digital Design), Weste & Harris (CMOS VLSI Design), Blaine Readler, and Douglas Perry. Covers RTL synthesis, finite state machines (Moore/Mealy FSM), simulation testbenches, Static Timing Analysis (STA - Setup/Hold times, Clock Skew, Jitter), the Elmore RC model, CMOS layout, DRC/LVS rules, FPGA mapping (AMD Xilinx Vivado, Intel Altera Quartus), and Design for Testability (DFT - Scan Chains, BIST).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md",
-      "digest": "sha256:b1ddb9c8d86d2958adc71133142b83145beea98b0eabae91a3366cdfc1a155e8"
+      "digest": "sha256:ec14b4aa50dd7886d46fdf00302c0f8cece7d96267e3efa78d76c2b8c5ea33d7"
     },
     {
       "name": "academic-electrical-power-energy-systems",
       "description": "Specializes in Electric Power Systems (EPS), Energy Generation, Transmission and Distribution, Rotating Electrical Machines, and Power Electronics building on Power System Analysis (Grainger, Stevenson), Electric Machinery (Fitzgerald, Kingsley), Power Electronics (Rashid), and ABNT/IEEE/IEC standards. Covers Admittance/Impedance Matrices (Ybus, Zbus), Power Flow (Newton-Raphson, Fast Decoupled), Symmetrical and Asymmetrical Short-Circuit Calculation (Fortescue Symmetrical Components), Digital Power System Protection (ANSI 50/51, 21, 87 Functions and IEC 61850), Synchronous and Induction Machines, Power Transformers, Low/Medium Voltage Electrical Installations (ABNT NBR 5410 and NBR 14039), Power Electronics and Three-Phase Inverters (SVPWM, SiC/GaN Converters), Smart Grids (Microgrids, BESS Storage), and Multiphysics/Electromagnetic Simulation (OpenDSS, FEMM).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
-      "digest": "sha256:1042fd21a1c8982a47c54e169c6b13037a0e046370a8f402591cacebc8d30e0a"
+      "digest": "sha256:c6303d1aa7ac41fb1d182fe1e87dcef4cebb86b42e4bb1fd72ad582ced7db5c3"
     },
     {
       "name": "academic-electromagnetism-electrodynamics",
       "description": "Specializes in Classical Electromagnetism and Advanced Electrodynamics building on Introduction to Electrodynamics (David J. Griffiths) and Classical Electrodynamics (John David Jackson). Covers Maxwell's Differential and Integral Equations, Lorenz and Coulomb Gauges, Retarded and Li\u00e9nard-Wiechert Potentials, Electromagnetic Radiation Theory and the Larmor Formula, Wave Propagation in Material Media and Conductors (Skin Effect and Kramers-Kronig Relations), Waveguide Theory (TE, TM, and TEM Modes), and the Four-Dimensional Covariant Formulation of Electromagnetism.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md",
-      "digest": "sha256:f4f9a7c21d3b81b0b6ed18854849fd2d11a9bad6cc2248cb0b688e9205539f67"
+      "digest": "sha256:38fc2646a01dfd8a319c8b7c92ea83b7d4dd35d8b4ab18aba4b034b0735131c2"
     },
     {
       "name": "academic-enterprise-information-systems",
       "description": "Specializes in Enterprise Information Systems and IT Governance building on Management Information Systems (Laudon, Laudon) and Business Process Management (Dumas et al.). Covers Business Process Modeling (BPMN 2.0), Integrated Management Systems (ERP, CRM, SCM), Governance and Strategic Alignment (ITIL 4, COBIT 2019), Business Intelligence (BI), Process Mining, and Operational Risk Management.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md",
-      "digest": "sha256:9b5bddb8e675a54e7170671dc99d91e1e51b16a0196f4850adb3cf4ee867ab19"
+      "digest": "sha256:fe486401b95029eff8a6cfeaf0f236f54a7f8bf02514d8be20fdbd9f6fe4039c"
     },
     {
       "name": "academic-geosciences-remote-sensing-gis",
       "description": "Specializes in Geosciences, Remote Sensing, Geoprocessing (GIS), Cartography, and Land-Use Planning building on Remote Sensing and Image Interpretation (Lillesand, Kiefer, Chipman), Geographic Information Systems and Science (Longley et al.), and Decifrando a Terra (Teixeira et al.). Covers Satellite Image Spectrometry (Sentinel-2, Landsat-8/9, CBERS-4A), Spectral Indices (NDVI, NDWI, NBR, EVI), Land Use and Land Cover Classification (Random Forest, Google Earth Engine), Digital Elevation Modeling (DEM/SRTM, Topographic Wetness Index TWI, Watershed Delineation), Spatial Analysis in GIS and Geospatial Databases (QGIS, PostGIS, GDAL/GeoPandas), Geodesy and Surveying (GNSS RTK, UTM Projections, SIRGAS2000 Datum), Thematic Cartography (Bertin's Visual Variables), Pedology (SiBCS), Hazard Geomorphology (CPRM/IPT Landslides), and Territorial/Environmental Legislation (CAR/SICAR, EIA/RIMA, City Statute and Master Plans).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
-      "digest": "sha256:45bd92488a45e75b6a43e4aed63b5eced34d14de2435fdbd0bfec5daf5c4dc9e"
+      "digest": "sha256:17bd6f87e3708342d1e160472e846bf88bc8f48274187cf8e0604b38d58b1624"
     },
     {
       "name": "academic-microprocessors-embedded-systems",
       "description": "Specializes in Microprocessor Architecture, Embedded Systems, RTOS, and Embedded Linux building on Patterson & Hennessy (Computer Organization and Design), Rodolfo Giometti (Yocto Project), and Andrew Eliasz (Zephyr RTOS). Covers ARM Cortex-M/A/R microcontrollers, RISC-V (RV32I/RV64G), Assembly, 5-stage pipelines with Data Forwarding and Branch Prediction, L1/L2/L3 cache hierarchies, buses (UART, SPI, I2C, CAN, USB), DMA, FreeRTOS, Zephyr RTOS, the Yocto Project (BitBake, .bb recipes, meta-layers), Device Trees, and U-Boot bootloaders.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
-      "digest": "sha256:f87b825fc4ebb04ad1f842587dd30c57f6ff7eedfcc22cd678dfc9445fc7bd12"
+      "digest": "sha256:86914d089af82c7dec92a11bfd60d3b0fd05f18976177edcab22889e0d4ee21c"
     },
     {
       "name": "academic-probability-stochastic-processes",
       "description": "Specializes in Axiomatic Probability, Measure Theory, and Stochastic Processes building on Probability and Random Processes (Grimmett, Stirzaker), Probability: Theory and Examples (Rick Durrett), and Stochastic Differential Equations (Bernt \u00d8ksendal). Covers Probability Spaces (Kolmogorov, \u03c3-algebras, Lebesgue-Stieltjes Measure, Conditional Expectation as Projection in L2), Modes of Convergence (Almost Sure, in Probability, in Lp, in Distribution, Borel-Cantelli Lemmas, and Slutsky's Theorem), Discrete- and Continuous-Time Markov Chains (Chapman-Kolmogorov Differential Equations, Generator Matrix Q, Stationary Distributions), Martingale Theory (Doob's Optional Stopping Theorem), the Poisson Process and Queueing Theory (M/M/1, Little's Law), and Brownian Motion / It\u00f4 Stochastic Calculus (It\u00f4's Lemma and SDEs).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-probability-stochastic-processes/SKILL.md",
-      "digest": "sha256:6362783d4b431a1464bd75a75818950a88215c80c9d4b55837098880c5d0d7f2"
+      "digest": "sha256:467cd964067acb027098ca1133f413d866cb1502fc0a8e4fee8c2b877289c517"
     },
     {
       "name": "academic-scientific-research",
       "description": "Specializes in Scientific Research Methodology, Systematic Literature Review (PRISMA 2020), PICO/PECO Structuring, PRESS Appraisal, Searching Indexed Databases (PubMed/MeSH, arXiv, IEEE Xplore, Semantic Scholar, Scopus, SciELO), and Citation Networks.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
-      "digest": "sha256:04daeaa143f80d33fe52b3c7588e71f0fb40cbd6b4f67cf5b908fd75b5e03641"
+      "digest": "sha256:56ee388fc4bd7968e3bf8271b83c31b3e3b251551b68845760f6ab9d508a328b"
     },
     {
       "name": "academic-solid-state-semiconductors",
       "description": "Specializes in Solid State Physics, Semiconductor Devices, Nanomaterials, and Microfabrication building on Charles Kittel (Introduction to Solid State Physics), Donald Neamen (Semiconductor Physics and Devices), Charles P. Poole & Frank J. Owens (Introduction to Nanotechnology), and Marc Madou (Fundamentals of Microfabrication). Covers Bravais Crystal Lattices and the Reciprocal Lattice (Bragg/Laue Diffraction, Brillouin Zones), Lattice Dynamics and Phonons (Debye and Einstein Models), Electronic Band Theory (Bloch's Theorem, Effective Mass, Direct and Indirect Gap), Carrier Statistics and Transport (Drift, Diffusion, Mass Action Law, Hall Effect), P-N Junction and Heterostructure Physics, Quantum Confinement Effects (Quantum Dots - Brus Model, Graphene, Carbon Nanotubes), Cleanroom Microfabrication Processes (UV/EUV Photolithography, CVD/ALD Deposition, RIE Plasma Etching), and Advanced Microscopy Characterization (XRD, SEM, TEM, AFM).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md",
-      "digest": "sha256:0385a021289b67c0f76b21ea793f6478ea0764dc0f5bf5e7df65324a1821e78b"
+      "digest": "sha256:8486c1ad2b41367e6b4d5e9c842b93e4d21b02d54233236bc303f140b6a1d54a"
     },
     {
       "name": "academic-structural-analysis-solid-mechanics",
       "description": "Specializes in Solid Mechanics, Matrix Structural Analysis, Finite Element Analysis (FEA), Soil Mechanics, and Geotechnical Engineering building on James M. Gere & Barry J. Goodno (Mechanics of Materials), Aslam Kassimali (Matrix Analysis of Structures), and Braja M. Das (Principles of Geotechnical Engineering). Covers Plane Stress and Strain State (Mohr's Circle, Von Mises and Tresca Yield Criteria), Bending, Shear, and Torsion in Beams, Euler Column Buckling, the Direct Stiffness Method, Finite Element Formulation, Terzaghi's Principle of Effective Stress, Soil Classification (USCS, AASHTO), Permeability and Darcy's Law, Terzaghi's One-Dimensional Consolidation Theory, the Mohr-Coulomb Failure Criterion, Earth Pressure (Rankine/Coulomb), and Bearing Capacity of Shallow and Deep Foundations (Meyerhof, Terzaghi, Hansen).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md",
-      "digest": "sha256:c16e96769e375c0481a90500dd61f4513ed8acaab7253ffa112ed4a527704eaa"
+      "digest": "sha256:519a7de56aaabdb8f614ed469574ba5b66859e8ba99b70e44ae225670d8daa83"
     },
     {
       "name": "academic-thermodynamics-statistical-physics",
       "description": "Specializes in Classical Thermodynamics, Statistical Physics, and Phase Transitions building on Statistical Mechanics (R. K. Pathria, Paul D. Beale), Thermodynamics and an Introduction to Thermostatistics (Herbert B. Callen), and Statistical Physics (Landau & Lifshitz). Covers the Postulates and Laws of Thermodynamics, Thermodynamic Potentials and Maxwell Relations, Statistical Ensembles (Microcanonical, Canonical, and Grand Canonical with Partition Functions), Quantum Statistics (Maxwell-Boltzmann, Fermi-Dirac with Degenerate Electron Gas/Fermi Energy, and Bose-Einstein with Bose-Einstein Condensation BEC and Planck Radiation), First- and Second-Order Phase Transitions, and the Ising Model.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
-      "digest": "sha256:cdfc49ea745538506f0bfc229143ae3a14da3cd12c5ba78cb1d6f504a0a90f14"
+      "digest": "sha256:0e8972afa7ae50b3e5db0db74fa8310a9499b6ed1a0748006d4ea0572fcf9368"
     },
     {
       "name": "active-directory-attack-paths",
@@ -202,7 +202,7 @@
       "description": "Acts as a Specialist in Computer Vision (CV) Security, covering mitigation of adversarial attacks (FGSM, PGD, Patch Attacks), image data poisoning, visual backdoors, sensor spoofing, deepfake detection, and alignment with the OWASP Machine Learning Security Top 10.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md",
-      "digest": "sha256:f345f789659220b26f5d9f33ff8341fcd3a8334d880b5ea2e606eb4686bfc5a7"
+      "digest": "sha256:00ce2f97b68d42e11bbcef74dafc7473d49b58f2aac4d98fcb3d1407f80e8622"
     },
     {
       "name": "ai-drug-discovery",
@@ -230,14 +230,14 @@
       "description": "Specializes in Large Language Model (LLM) Application Engineering, Advanced RAG Pipelines, Fine-Tuning, and Autonomous Agents building on Hands-On Large Language Models (Jay Alammar) and Building Large Language Models. Covers Transformer Architecture (Scaled Dot-Product Attention, RoPE, KV-Cache), Advanced RAG Pipelines (Hybrid Dense/Sparse BM25 Search + Reciprocal Rank Fusion RRF, Cross-Encoder Re-Ranking, HyDE, GraphRAG), Efficient Fine-Tuning (PEFT, LoRA, QLoRA, 4-bit NF4/GGUF Quantization), Alignment (DPO, RLHF), LLM Agent Patterns (ReAct, Function Calling, Reflection Loops), and Evaluation with RAGAS (Faithfulness, Context Precision/Recall).",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
-      "digest": "sha256:85f735c2634de22ea80adf9ec4ff704d52ead2d09f2941d8c710f554ac49c591"
+      "digest": "sha256:aa9eb9d1762cf42f103667b5d4bd9900c205e50fbfe24ff2b4443d376813d9cb"
     },
     {
       "name": "ai-llm-slm-security",
       "description": "Acts as a Specialist in Security, Governance, Red Teaming, Weight Auditing, and Pentesting of AI Models (LLMs, SLMs, and Predictive Models). Covers mitigation and exploitation of Prompt Injection (direct and indirect), Jailbreaking, data poisoning, model inversion, RAG security, agentic tool abuse, digital weight auditing (safetensors vs pickle exploits with picklescan, trust_remote_code inspection), bias/toxicity evaluation (StereoSet, AdvBench), and full compliance with the OWASP GenAI LLM Top 10 (2026) and the OWASP Machine Learning Security Top 10.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
-      "digest": "sha256:2f38ee6ab9eefdf4e9f7aee54d797c99be5c1eed477f3d8541649cdfb1007434"
+      "digest": "sha256:5110f755d174ed01a709d73dc030fcd889031bdd18a6cd720410445f6370e85a"
     },
     {
       "name": "ai-ml-architect",
@@ -258,14 +258,14 @@
       "description": "Acts as a Specialist in Voice Processing, Speech (STT/ASR), and Voice Synthesis (TTS) Security, covering the HAVOC model for voice-controlled devices, inaudible ultrasonic attacks, voice deepfakes, voice biometrics defense, and alignment with OWASP ML Top 10 and OWASP API Security.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md",
-      "digest": "sha256:52149d8cda42457f05e92a38b5919f6d3a9741f3f547dada541369b6cd92f7d5"
+      "digest": "sha256:8cf7135d4d2d97766b3f25d9f14dda9d7bfbfbe548279641c3c646b5b07e519f"
     },
     {
       "name": "antigravity-guide",
       "description": "Complete guide and canonical reference for Google Antigravity (AGY), covering the Antigravity CLI (agy), Antigravity 2.0 Desktop, IDE, Python SDK, slash commands, keybindings, and the Customization System (Skills, Rules, Plugins, Hooks, Sidecars, and MCP Servers). Use this skill when asked to explain, configure, or customize the Antigravity ecosystem.",
       "type": "archive",
       "url": "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-      "digest": "sha256:0515cf3e12a8275d6a7b6618d813c80e442f51b6b599be3503f7f362a1d8bfb9"
+      "digest": "sha256:6871eaae88ff53d65fcf0744c186600577c76febc9b5416d3bc70a23e124f940"
     },
     {
       "name": "api-architect",
@@ -293,14 +293,14 @@
       "description": "Provides expertise in API and Service Mesh discovery, inventory, and mapping using OpenAPI/Swagger, Redoc, Spotify Backstage, Kong Gateway, Apache APISIX, Gravitee, WSO2 API Manager, Google Service Weaver, and Kiali.",
       "type": "archive",
       "url": "knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md",
-      "digest": "sha256:87e383ef0b30d0ffb8ec4d9a70424c495e89eb2d0ccd15fb18e3eebc42b50b05"
+      "digest": "sha256:f8884c8360317800f51b1ccad07d93c0c7496ea395aad847df2f2331ad7ab8b7"
     },
     {
       "name": "app-dependency-discovery",
       "description": "Provides expertise in application discovery, distributed tracing, service maps, and kernel/eBPF telemetry using OpenTelemetry (OBI), Caretta, Jaeger, Zipkin, Apache SkyWalking, SigNoz, and Grafana Tempo.",
       "type": "archive",
       "url": "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
-      "digest": "sha256:495d367d3ef345ba1b2e36680f2e0988bf522a96a1cabeeee6ad580746c2aa8f"
+      "digest": "sha256:c58b1ad2d412b1cc1c83744399099aa84b7c08a87cc6f803e064512895877658"
     },
     {
       "name": "application-architect",
@@ -321,21 +321,21 @@
       "description": "Acts as an Application Security (AppSec) Specialist based on OWASP ASVS v5.0.0 integrated with NIST SSDF, CWE, and CERT Secure Coding, applying secure coding controls in design and implementation.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
-      "digest": "sha256:2c3c3058f062c3a231564a6cfa7402da7f6729377962360dd896ce5f42a40e8c"
+      "digest": "sha256:bfa99a8e658f6c65bb5fd4374658e9fedf04f8df9c69d93ee097e09dfcff53e8"
     },
     {
       "name": "appsec-owasp-masvs",
       "description": "Acts as a Mobile Application Security (Mobile AppSec) Specialist based on OWASP MASVS v2.1.0 and MASTG v2 (Android and iOS), covering secure storage, mobile cryptography, network protection, platform/WebView security, reverse engineering, resilience and the MASWE weakness taxonomy.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/appsec-owasp-masvs/SKILL.md",
-      "digest": "sha256:fbee54ee51a2587875fc1dd1c40a23a1c82bad6855d2232926e58370f708ade2"
+      "digest": "sha256:1aa7d1c4277a37c81a9cc9ea729de3db46fa1008534c32cdf67157ce821e1311"
     },
     {
       "name": "arch-bce-pattern",
       "description": "Acts as a specialist in the Boundary-Control-Entity architectural pattern (BCE / ECB, Ivar Jacobson). Defines a clean separation between external interfaces (Boundary), business logic (Control), and domain entities (Entity), with strategies for incremental legacy-code migration.",
       "type": "archive",
       "url": "knowledge/skills/engineering/patterns/arch-bce-pattern/SKILL.md",
-      "digest": "sha256:337a163acef4d3aab9806b9a8162f51be6ae34037be438f3080c51186fcfdc00"
+      "digest": "sha256:3b28c37376964ee2fc6fa38732ca31e3177b1ebdb48f05a09d1de6246f64994b"
     },
     {
       "name": "architecture-ddd",
@@ -349,21 +349,21 @@
       "description": "Guides the technical documentation of software systems and architectures with the C4 Model, Mermaid-structured diagrams, Architectural Decision Record management (ADRs in MADR 3.0 format), and traceability matrices that link requirements, decisions, and components.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
-      "digest": "sha256:d3d95f3f6f59b3f53197f35a83b2d11b373abe16de2c9eb9aa6278d006295ba0"
+      "digest": "sha256:eb6fc72d3bd607f6bbccd511f748a503cc346b895be69fb7c33abbe67f95f21a"
     },
     {
       "name": "ats-resume-optimization",
       "description": "Specialist in Resume Engineering and Optimization for ATS (Applicant Tracking Systems). Masters single-column parsing, keyword semantic density, acronyms, XYZ-formula impact metrics, and job-description compatibility auditing.",
       "type": "archive",
       "url": "knowledge/skills/roles/ats-resume-optimization/SKILL.md",
-      "digest": "sha256:03e79e2e6f90509300b06f023719eaf28488b0b9c2f34669df64ead82c81411d"
+      "digest": "sha256:6d4cd29254193941bd2d6f891e0d47526343512c10c8c9c46aa67c3029aff125"
     },
     {
       "name": "auth-protocols-mfa",
       "description": "Acts as a specialist in authentication and authorization protocols (RADIUS, TACACS+, Kerberos, OAuth 2.0/2.1, OpenID Connect, SAML 2.0, SCIM 2.0, WebAuthn/FIDO2, LDAP, EAP, JWT) and Multi-Factor Authentication architecture (MFA, Passkeys, TOTP, Phishing-Resistant MFA, and Adaptive Access), aligned with RFC 9700 and NIST SP 800-63-4.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md",
-      "digest": "sha256:1c16f494f4e485f1b0b8f23cd2ecd68f4e4f6ab985d3f0de75ce1a614b3d0812"
+      "digest": "sha256:b91170bd1a45422c39783748f18ef9b31b16fd5b50dbeb0e9c42214e2b2ae48c"
     },
     {
       "name": "automotive-cybersecurity",
@@ -377,14 +377,14 @@
       "description": "Acts as a senior Backend Developer, designing robust APIs, integrating efficient databases, applying safe concurrency, optimizing performance, and creating robust integration tests.",
       "type": "archive",
       "url": "knowledge/skills/roles/backend-developer/SKILL.md",
-      "digest": "sha256:64ce6ed005ad96c2eab981a9804b4c65c0f11c7613bf5fbe395cfcac88fedd58"
+      "digest": "sha256:44825fd6dc69d96b80620eeb55b8fa475259990cdf16e11c9c58ff1c98ee549d"
     },
     {
       "name": "binary-app-reverse-mapping",
       "description": "Provides expertise in binary reverse engineering, executable decompilation, and low-level control mapping across C/C++, Java, Android, .NET, and Assembly using Ghidra, Radare2, Cutter, JADX, ILSpy, dnSpyEx, Doxygen, and Understand.",
       "type": "archive",
       "url": "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
-      "digest": "sha256:2a9957e8156fbaaa023969a7afc91fd4b0a228cf78b75974c4b846a1d0b83b3e"
+      "digest": "sha256:58cb4d989678e5e653f2875a842d507b06fa2e324d8e6adcc1c93f9b3e6b944e"
     },
     {
       "name": "binary-symbolic-execution-fuzzing",
@@ -398,7 +398,7 @@
       "description": "Acts as a specialist in Blockchain, Cryptocurrencies, Smart Contracts (Solidity, Rust, EVM, Solana), DeFi, Tokenization (ERC-20, ERC-721, ERC-1155), UTXO/Account Architecture, Layer 2 (ZK/Optimistic Rollups), and Web3 Security/Auditing.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md",
-      "digest": "sha256:3dac19288720130bc5438c09e748403f109ef33df293273dee3eb45a85370347"
+      "digest": "sha256:aafc4c7012dbacae48edb536c8129af89b7f5120299025cc61df1915e106978d"
     },
     {
       "name": "browser-harness",
@@ -412,7 +412,7 @@
       "description": "Acts as a Specialist in Bug Bounty and Large-Scale Vulnerability Hunting methodologies based on Bug Bounty Bootcamp (Vickie Li). Covers active/passive subdomain reconnaissance, hidden asset discovery, distributed port scanning, parameter fuzzing automation, logic flaw exploitation, and structuring professional impact reports (PoC, CVSS v3.1/v4.0, remediation).",
       "type": "archive",
       "url": "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md",
-      "digest": "sha256:99679ad63aa3b76b418501cd8a3d64c8f218009e8c59ea10105d3890cc4f869c"
+      "digest": "sha256:1a3faac1eb6f8364b72b8a671753fd6d12072ad97a890e29f8eeed9818528a26"
     },
     {
       "name": "business-architect",
@@ -433,14 +433,14 @@
       "description": "Acts as a specialist in modeling and documenting software architecture with the C4 Model (Context, Containers, Components, Code) created by Simon Brown, integrated with PlantUML, Structurizr DSL, and Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-      "digest": "sha256:c844aad203dd49a9315fb7fea22785cc6c8652bb37b9954ef47e3a60fd46fa28"
+      "digest": "sha256:9caff42c34c51c93b1d45581e78420dc4b2ae9ee58c3c53ae49e9d8e94a08ebd"
     },
     {
       "name": "career-profile-optimization",
       "description": "Specialist in Professional Profile Optimization (LinkedIn, Upwork, GitHub). Masters LinkedIn Recruiter search algorithms, high-conversion headline formulation, Upwork proposal engineering (two-first-lines rule, JSS management), and GitHub portfolio curation.",
       "type": "archive",
       "url": "knowledge/skills/roles/career-profile-optimization/SKILL.md",
-      "digest": "sha256:26213c257ae201ebb3ee90948c8a392de9e855a2f53303f9db513762f9f69df3"
+      "digest": "sha256:7ac425f75ad709b4292f4c518543570d76badef6a9375da508285e91e4fc1508"
     },
     {
       "name": "ciem-cloud-entitlements",
@@ -454,7 +454,7 @@
       "description": "Acts as a specialist in CIS Critical Security Controls v8/v8.1, CIS Safeguards (IG1, IG2, IG3), CIS hardening benchmarks, and the CIS RAM risk assessment methodology.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/cis-controls/SKILL.md",
-      "digest": "sha256:92bf90208b20f2e8440e9c5773a2d0792370d333bee9c5475f0e3ef52d2e3b05"
+      "digest": "sha256:22863a90d4b647f33d7c622a0caefee2e97ab65f43e37f199413fb0301b61a8e"
     },
     {
       "name": "clean-architecture",
@@ -468,28 +468,28 @@
       "description": "Ensures clean, readable, redundancy-free code through the active reuse of existing components, documented according to the best practices of the technology in use.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-      "digest": "sha256:c7eaa6bfe9cc3c76ee1d919f9948bf772ea3dafadaae97b927f245d253c54d66"
+      "digest": "sha256:93b240cdee505c4e2a9f0097a74aadbdd00adde09e6b27af3bac61ab2bec32ed"
     },
     {
       "name": "cloud-aws",
       "description": "Acts as a specialist in architecture, engineering, and operations on Amazon Web Services (AWS), covering the Well-Architected Framework, Compute (EC2, EKS, Lambda), Storage (S3, EBS, EFS), Databases (Aurora, DynamoDB), Networking (VPC, Transit Gateway, CloudFront), IaC (Terraform, CDK), and FinOps.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-aws/SKILL.md",
-      "digest": "sha256:7141a0272184f075c5e1d9b5928afd0f8ef67ef2c771b00eb21f18da17e97e2d"
+      "digest": "sha256:d6c8371a206e99a5e7217b293ebe48ac32644238f5cd8b4c277b7ae7642094c8"
     },
     {
       "name": "cloud-azure",
       "description": "Acts as a specialist in architecture, engineering, and operations on Microsoft Azure, covering the Cloud Adoption Framework, the Well-Architected Framework, Compute (VMs, AKS, App Services, Azure Functions), Storage (Blob, Files, Disks), Databases (Azure SQL, Cosmos DB), Networking (VNet, ExpressRoute, Front Door), IaC (Terraform, Bicep), and FinOps.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-azure/SKILL.md",
-      "digest": "sha256:1b68b8b256703ef62efd7fdd4b2c533359d2f34383cd36ff07ce14b28a167f18"
+      "digest": "sha256:a814151936bbb73aa4972d82a91dcd5592cb6a7f80c3f0a35bae40d270c07116"
     },
     {
       "name": "cloud-cloudflare",
       "description": "Acts as a specialist on the Cloudflare platform, covering the new unified cf CLI, Wrangler v3/v4, C3 (create-cloudflare), private tunnels with cloudflared, Edge Compute (Workers, Pages, Durable Objects, Workers AI), edge storage (D1, R2, KV, Vectorize, Hyperdrive, Queues), security (WAF Managed Rulesets, Turnstile, Rate Limiting, SSL/TLS), and Cloudflare Zero Trust architecture.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md",
-      "digest": "sha256:c5ccd410da71315e2891fc60a9ef8ccdefd1015ddd7f80150d019d5087ef78b1"
+      "digest": "sha256:cddab5a16be9150a0eed89bb3463c9d8f29b7ecf9a8235f43f8b25479ba6d16c"
     },
     {
       "name": "cloud-detection-response",
@@ -503,21 +503,21 @@
       "description": "Acts as a specialist in architecture, engineering, and operations on Google Cloud Platform (GCP), covering the Google Cloud Architecture Framework, Compute (Compute Engine, GKE, Cloud Run), Storage (GCS, Persistent Disk), Databases (Cloud SQL, Spanner, BigQuery), Networking (Global VPC, Cloud Armor), IaC (Terraform), and FinOps.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-gcp/SKILL.md",
-      "digest": "sha256:2662a3791a833c5738741e22691fbf6abc0e859deabf4868808e34f891ca4f37"
+      "digest": "sha256:ed99a3d8145d25641da4cec16894f3d9143e0ee1bb30bfaec0f75de4b97cd61e"
     },
     {
       "name": "cloud-infrastructure-architect",
       "description": "Acts as a Multi-Cloud Architecture and Engineering Specialist (AWS, Azure, GCP, OCI), covering the Well-Architected Framework, FinOps, and secure IaC automation.",
       "type": "archive",
       "url": "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
-      "digest": "sha256:5f85d68983b35d2d65fa3f6ed5c6940c1ad449a4575cfbbb16bfe5c57816ba89"
+      "digest": "sha256:960adee296c55bc9020cddfd45ec24b0444f04e51815407f208e8ad0c8d6d745"
     },
     {
       "name": "cloud-oci",
       "description": "Acts as a specialist in architecture, engineering, and operations on Oracle Cloud Infrastructure (OCI), covering the OCI Architecture Center, Compute (Bare Metal, VMs, OKE), Storage (Block Volumes, Object Storage), Databases (Autonomous Database, Exadata, MySQL HeatWave), Networking (VCN, DRG, FastConnect), IaC (Terraform, Resource Manager), and FinOps.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-oci/SKILL.md",
-      "digest": "sha256:151b98bfa8090e8ea48447989e02271392e39884c08469233fc66e7e369d54f1"
+      "digest": "sha256:2a10043596017f483b5ee67b3ece09fffaaf6f68f83c2a850eefe7225d4d9eed"
     },
     {
       "name": "cloud-secrets-management",
@@ -538,7 +538,7 @@
       "description": "Provides expertise in cloud resource mapping, hybrid environments, and multi-cloud asset graphs using Cartography, CloudMapper, Resoto, Steampipe, Azure Resource Graph, AWS Systems Manager Explorer, and GCP Asset Inventory.",
       "type": "archive",
       "url": "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
-      "digest": "sha256:6a626d21f6167a6eb04f8a42f2bf972eff9b8ccd1614a5afa828d6cacbec690a"
+      "digest": "sha256:4147754cdc7868b6e90cb53356ce7f7cb9bc50d04343afee373f6cbdff448ab5"
     },
     {
       "name": "cloud-workload-identity-federation",
@@ -552,21 +552,21 @@
       "description": "Provides expertise in source code mapping, software architecture, AST analysis, and class dependencies across Java, .NET, Python, TypeScript, Go, and multilingual codebases (Structure101, Sonargraph, ArchUnit, jQAssistant, NDepend, Roslyn, Pyreverse, Dependency Cruiser, Madge, Nx Graph, Go Callvis, CodeScene, SonarQube, Sourcetrail, Understand).",
       "type": "archive",
       "url": "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
-      "digest": "sha256:fd6c7d3152a73d021cbec20694d0a4ebb9fd6412493b1dd4c8cfa1c97f6c2823"
+      "digest": "sha256:9bf7a17d3b1f5e399b6104987de5c54a7b6d277de31b11584494efd240c20e9e"
     },
     {
       "name": "code-mapping-specialist",
       "description": "Acts as a Senior Specialist in End-to-End Mapping of Applications, Code, Flows, Infrastructure, Kubernetes, Cloud, and Dependency Graphs, correlating low-level calls, AST, architectural diagrams, and network/cloud topologies.",
       "type": "archive",
       "url": "knowledge/skills/roles/code-mapping-specialist/SKILL.md",
-      "digest": "sha256:0d387877204746f9e237e6612b3178bba85bb26d3554f5e086389e8ac0df8069"
+      "digest": "sha256:681c9bf41fe6979222a8c976965230d541aec82debccf848acbcedc0b41593af"
     },
     {
       "name": "code-optimizer",
       "description": "Acts as a senior Code and Architecture Optimization Engineer, orchestrating profiling, bottleneck analysis, economical refactoring (Tidy First), and performance optimization (CPU, memory, latency, concurrency) following the hierarchy algorithm \u2192 structure \u2192 runtime \u2192 parallelism \u2192 hardware.",
       "type": "archive",
       "url": "knowledge/skills/roles/code-optimizer/SKILL.md",
-      "digest": "sha256:e140462e079f3d019326eb413a625b0348dc716cecea08d52462759299d26c84"
+      "digest": "sha256:33e665a0faf660bdfbeba40ae699e891f3ab51cf384f78794415f4f5b9629ad1"
     },
     {
       "name": "code-review-practices",
@@ -671,14 +671,14 @@
       "description": "Acts as a senior specialist in Cryptographic Engineering, Post-Quantum Cryptography (PQC FIPS 203/204/205), Public Key Infrastructure (PKI X.509v3), Key Management (DEK/KEK, Envelope Encryption, KMS/HSM), Digital Signatures (CAdES, XAdES, PAdES, JAdES, eIDAS, ICP-Brasil), Encryption at Rest (FDE, XTS-AES, TDE), Advanced Cryptography (Homomorphic FHE, FPE, ZKP, MPC/Threshold FROST), and Secure Transport Protocols (TLS 1.3, ECH, mTLS, QUIC, WireGuard, IPsec).",
       "type": "archive",
       "url": "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md",
-      "digest": "sha256:369cbfef51209a54c6cd20e4d3639c3b936dc20dc2bf766aeb77a149fca94547"
+      "digest": "sha256:022e769ad5ae6836cd81f6200a26b5d54c8e4fbbed6291808f32b47ee626600d"
     },
     {
       "name": "csa-cloud-security",
       "description": "Acts as a specialist in cloud architecture and auditing based on the Cloud Security Alliance (CSA), including the Cloud Controls Matrix (CCM v4.1), CAIQ v4.1, STAR Framework (Levels 1, 2, and 3), CSA Security Guidance v5, CSA Top Threats 2026, and cloud Zero Trust.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/csa-cloud-security/SKILL.md",
-      "digest": "sha256:1ee220287536b4de202dc8a9e634ce3b15efac4c1006cefe78b48d1ab6cd07bf"
+      "digest": "sha256:e34669ec239b2cb66c939647625df550cf90ccb896e55d9abb2cccb15033d025"
     },
     {
       "name": "cti-mitre-attack",
@@ -706,7 +706,7 @@
       "description": "Acts as a Specialist in Dynamic Application Security Testing (DAST), covering black-box/gray-box scans, route crawling (traditional crawling and headless SPA crawling through Playwright/Selenium), parameter injection and fuzzing, authentication (OAuth 2.0, JWT, session cookies), out-of-band asynchronous testing (OAST with Interactsh/BOAST), and DAST automation in CI/CD pipelines.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/dast-application-testing/SKILL.md",
-      "digest": "sha256:ce6ce7312443f95baa7d511547446342949f96fef3c3ce120aa67c09280d258b"
+      "digest": "sha256:f3936ade3ab1cc901fe1b02a0c3dc532e632d17d113afb4c128fee45794b713c"
     },
     {
       "name": "data-architect",
@@ -727,21 +727,21 @@
       "description": "Specializes in Data-Intensive Systems (Reliability, Scalability, and Maintainability) based on Designing Data-Intensive Applications, 2nd Edition (Martin Kleppmann & Chris Riccomini). Covers data models and query languages, storage engines (LSM-Tree, B-Tree, column stores), encoding and schema evolution, replication, partitioning/sharding, ACID transactions and isolation (snapshot isolation, SSI serializability), consistency and consensus (Raft, linearizable consensus), batch and stream processing (log-structured, CDC, exactly-once), stream-system philosophy, and data ethics.",
       "type": "archive",
       "url": "knowledge/skills/data/data-intensive-systems/SKILL.md",
-      "digest": "sha256:6c96c76f73c245e024c2b89c37b02fbd8f497e321ac2e3f99c13d11a213e7e45"
+      "digest": "sha256:b8c0ed6f3ac40635b6aa04dec02bcb7b73532c671acf1d0495dbfd769e6c2416"
     },
     {
       "name": "data-mesh-governance",
       "description": "Specializes in Data Mesh Architecture, Data Products, and Federated Governance based on Implementing Data Mesh (Jean-Georges Perrin) and The Enterprise Data Catalog (Ole Olesen-Bagneux). Covers the 4 Data Mesh principles (Domain Ownership, Data as a Product, Self-Serve Data Platform, Federated Computational Governance), Data Contracts (OpenDataContract), data lineage, and enterprise catalogs.",
       "type": "archive",
       "url": "knowledge/skills/data/data-mesh-governance/SKILL.md",
-      "digest": "sha256:0d92c57b8f2ca916877320d6dde784e1f1baf793f40293fb56de5ec159c2761c"
+      "digest": "sha256:f8a6f9585c11d0503b0af7e8e69a2686db7c3b9f5b362b89ea770a7c6113e708"
     },
     {
       "name": "data-science-advanced-math",
       "description": "Specializes in Advanced Mathematics, Linear Algebra, Topology, Differential Calculus, and Optimization for Machine Learning and Data Science building on Algebra, Topology, Differential Calculus, and Optimization Theory for CS and ML (Jean Gallier, Jocelyn Quaintance), Numerical Algorithms (Justin Solomon), and Essential Math for Data Science (Thomas Nield). Covers Linear Algebra and Matrix Factorizations (SVD, Cholesky, QR, Moore-Penrose, Eigenvalues), Tensor Calculus and Backpropagation (Jacobians, Hessians, Multivariable Taylor), Convex Optimization and Duality (KKT Conditions, Lagrange Multipliers), First- and Second-Order Numerical Optimizers (SGD, AdamW, Newton-Raphson, BFGS, L-BFGS, Levenberg-Marquardt), Large-Scale Linear Systems (Conjugate Gradient, GMRES), Manifold Topology (Isomap, t-SNE, UMAP), and Bayesian Inference/Regularization (MLE, MAP, Lasso, Ridge, Elastic Net).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
-      "digest": "sha256:6a9b2a1bf0bc45cd1910682608757ebdc0e5f9085905f908372d9777bd3fc45c"
+      "digest": "sha256:c7c2e2f9cebfcad3af2547a3aabee33ccf2f94525d84232e65c83f7ee26a46b9"
     },
     {
       "name": "data-science-workflow",
@@ -755,42 +755,42 @@
       "description": "Provides administration and engineering patterns for MariaDB based on the official documentation (mariadb.com/docs). Covers storage engines (InnoDB, Aria, ColumnStore, MyRocks), InnoDB Buffer Pool tuning, Galera Cluster, MariaDB MaxScale, Mariabackup, and EXPLAIN FORMAT=JSON optimization.",
       "type": "archive",
       "url": "knowledge/skills/data/db-mariadb/SKILL.md",
-      "digest": "sha256:ca6d33f59909274ceb8127dbfbfba145e869725eb929816dc337e1e72d170560"
+      "digest": "sha256:c0eaea95749b7c8fec6cf5d262e435073854eef596bf18312fbf3b74b19cb45b"
     },
     {
       "name": "db-mongodb",
       "description": "Provides administration and engineering patterns for MongoDB based on the official documentation in Portuguese (mongodb.com/pt-br/docs). Covers document modeling (Embedding vs Referencing), the WiredTiger engine, Read/Write Concern, indexes (Compound, Multikey, Text, TTL, 2dsphere), the Aggregation Framework, and Sharded Clusters.",
       "type": "archive",
       "url": "knowledge/skills/data/db-mongodb/SKILL.md",
-      "digest": "sha256:67efa745adc745f4f4b3bf3f7890929fa7c2f6bcd2335cabc6d6dbd5acc3f496"
+      "digest": "sha256:0868e706cebcde3a5cfa75db70f84c646f8d4edd460e724892869e7e316aa39c"
     },
     {
       "name": "db-postgresql",
       "description": "Provides administration and engineering patterns for PostgreSQL based on the official documentation (postgresql.org/docs). Covers MVCC architecture, Autovacuum tuning, advanced types (JSONB, PostGIS), index strategy (B-Tree, GIN, GiST, BRIN), EXPLAIN ANALYZE BUFFERS analysis, replication, and PgBouncer.",
       "type": "archive",
       "url": "knowledge/skills/data/db-postgresql/SKILL.md",
-      "digest": "sha256:818b978886084de7463d5a2e2b931dd0c1cce6bb8e7a28cf284e40a8b8c2c0b9"
+      "digest": "sha256:b51916bf4d0057ba9eb9e37754a9d8552e53f952ac5ce79545b80ca602898bfd"
     },
     {
       "name": "db-schema-reverse-mapping",
       "description": "Provides expertise in database mapping, schema reverse engineering (ERD), I/O dependency analysis, and query profiling using SchemaSpy, DbSchema, DBeaver, pgModeler, ERBuilder, SQL Power Architect, pgBadger, Percona PMM, and SSDT.",
       "type": "archive",
       "url": "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md",
-      "digest": "sha256:ef73e9cb7fc11602e548c1da7b9201c734dfb35a26b14256b850883f3d597351"
+      "digest": "sha256:28be16b5b7a24ebcc88888b61c9dd0a73740701a353e667852ff8f13287c0faf"
     },
     {
       "name": "db-sqlite",
       "description": "Provides engineering and optimization patterns for SQLite based on the official documentation (sqlite.org/docs.html). Covers serverless architecture, WAL mode (Write-Ahead Logging), performance pragmas, covering and partial indexes, FTS5, JSON1, and the WITHOUT ROWID extension.",
       "type": "archive",
       "url": "knowledge/skills/data/db-sqlite/SKILL.md",
-      "digest": "sha256:22dcec39b561a9cf551e2e84674ca5ec560945715c25da9c80703d7d477af303"
+      "digest": "sha256:213741894eee52768c264a2f9eb9f6e004d8fc4e7affa626756c38ecd9dd3beb"
     },
     {
       "name": "dba-database-administrator",
       "description": "Provides software engineering and database administration (DBA) standards for SQL and NoSQL systems. Covers data modeling, indexing strategies, query optimization (EXPLAIN), concurrency control (ACID/BASE), replication, high availability, backups (PITR), TLS-secured connections by default, and security in PostgreSQL, MariaDB, SQLite, and MongoDB.",
       "type": "archive",
       "url": "knowledge/skills/roles/dba-database-administrator/SKILL.md",
-      "digest": "sha256:b5e0832652de103f1237fd297a3a734110099908e2951e151a855d268f51be79"
+      "digest": "sha256:df18d8cc3b634b8778e57e45bff128e1f1ac841cde85f05e40d524d8fbc33519"
     },
     {
       "name": "desktop-app-distribution",
@@ -818,14 +818,14 @@
       "description": "Definitive, practical guide to DevOps and Platform Engineering covering CI/CD, Terraform, Ansible, Vagrant, Kubernetes, Virtual Machines, Backstage IDP, GitOps, Observability, and Golden Paths.",
       "type": "archive",
       "url": "knowledge/skills/roles/devops-engineer/SKILL.md",
-      "digest": "sha256:1d500ec473f50a40ea0f0b3d6a2e0983a650823d1b15058142ccdd59baf1dbc0"
+      "digest": "sha256:ba1ed88a7c1f915959d554dfeada0d08d4f19599dd02ba2f8bce2cef1441b698"
     },
     {
       "name": "devsecops-engineer",
       "description": "Acts as a DevSecOps Engineer, automating security checks in the CI/CD pipeline (SAST, DAST, SCA), managing secrets securely, and ensuring security in Cloud and Containers.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
-      "digest": "sha256:0de4426febf6e063522d81b3a4650e0273d569cb848ca095c6ed33155c7f3fe4"
+      "digest": "sha256:ae89f350683c60751295ba9722aa3b3150a126dcc251a946500c98885fbd925e"
     },
     {
       "name": "dfir-forensics",
@@ -874,7 +874,7 @@
       "description": "Acts as a specialist in Technical Documentation Engineering, Human Anti-AI Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture, and Visual Diagram Modeling with Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "digest": "sha256:855c784f234428683b54e7dbad4be5f18578b7de491b990981491256cd87c071"
+      "digest": "sha256:08957b4684add5fb8a009937ce6a6adeb1ddf8ec516026c7db40150e7b475eff"
     },
     {
       "name": "domain-architect",
@@ -888,49 +888,49 @@
       "description": "Use when a project's running language is fuzzy or drifting, to build and sharpen GLOSSARY.md and record durable decisions as ADRs while working.",
       "type": "archive",
       "url": "methodology/workflows/domain-modeling/SKILL.md",
-      "digest": "sha256:66892349b451abdee4bd94344c4fbcaac336619c01dddf65df44f6825a52aa21"
+      "digest": "sha256:2e45ac1f9eaa94fa52c9e6a0ffffc574061b74f96f5d618c45e70cb365a1cc56"
     },
     {
       "name": "dp-behavioral-patterns",
       "description": "Acts as a specialist in GoF Behavioral Design Patterns, based on Design Patterns (Gang of Four) and Refactoring to Patterns. Covers Chain of Responsibility, Command, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, and Visitor, organizing algorithms, control flows, and delegation of responsibilities between objects.",
       "type": "archive",
       "url": "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md",
-      "digest": "sha256:4fa6ff4ea89e9a9e4bbd8cac744073dfb456f31c6b933b32ce2870643e41b9da"
+      "digest": "sha256:b6b07f59f46a2b9e9a86616b7e299e1acfb604a8b0c879088f301cb99cdb8561"
     },
     {
       "name": "dp-creational-patterns",
       "description": "Acts as a specialist in GoF Creational Design Patterns, based on Design Patterns (Gang of Four) and Refactoring to Patterns. Covers Factory Method, Abstract Factory, Builder, Prototype, and Singleton, abstracting the object-instantiation process, decoupling clients from concrete classes, and promoting flexibility and reuse.",
       "type": "archive",
       "url": "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md",
-      "digest": "sha256:a0e5fcc9acfc7669031c4b606bce3cdba2f1f6af67e94f6ef67c2dad5210319d"
+      "digest": "sha256:2aa60840800f5dd3ae96f0e84c210148514c6a639342926a81efd22e455ceddf"
     },
     {
       "name": "dp-structural-patterns",
       "description": "Acts as a specialist in GoF Structural Design Patterns, based on Design Patterns (Gang of Four) and Refactoring to Patterns. Covers Adapter, Bridge, Composite, Decorator, Facade, Flyweight, and Proxy, explaining how to compose classes and objects into larger, more flexible structures while keeping coupling low.",
       "type": "archive",
       "url": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
-      "digest": "sha256:c4f09ee2f59178e2e6925e2dea669114506acdea066b60b4de324c7d15ed69cb"
+      "digest": "sha256:23c6a5d5d5763a4f579c5bc660db8ec551585e8f3bf7644491de09af437f6333"
     },
     {
       "name": "edr-evasion-endpoint-security",
       "description": "Acts as a Specialist in Endpoint Defense Architecture (EDR/XDR) and evasion/detection mechanisms based on Evading EDR (Matt Hand). Covers telemetry sources (kernel callbacks, ETW, AMSI, API hooking in ntdll), stack inspection techniques (call stack spoofing, synthetic frames), direct/indirect system calls, and defensive hardening of EDR agents.",
       "type": "archive",
       "url": "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
-      "digest": "sha256:d9818f7d27d1a9b560a4486d652f161ce46d39866d383d4238ff779754f341f9"
+      "digest": "sha256:153d435f80518c3c638abf1985a127797cfb11801d64e2fc949a2d8389cd76a2"
     },
     {
       "name": "edtech-andragogy",
       "description": "Acts as a specialist in Educational Technology (EdTech) and adult learning methodologies (Andragogy), mastering instructional design, gamification, and interoperability standards (SCORM, LTI, xAPI).",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md",
-      "digest": "sha256:c51c7547d096ec789c3857aa2ea6a0ce634201cd7353d165bfc77db7762f77e5"
+      "digest": "sha256:573edc1d15d666e76630ae605e50ce339d5962cdb15e1932c90e99e949955d8e"
     },
     {
       "name": "empirical-software-design",
       "description": "Acts as a specialist in Empirical Software Design and incremental Tidy First-style refactoring (Kent Beck). Covers structure vs. behavior (tidying separate from change), the economics of design (real options, cost of change), coupling and cohesion, the tidyings repertoire (guard clauses, extract variable/function, inline, join/break, moving features), and the decision of When to Tidy (Now? Never? Later?).",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
-      "digest": "sha256:59dd2864c63ae8a1666ccb5a29b82afc793e4ae1024e0301ddf6fd590b3b856a"
+      "digest": "sha256:2fc2125de88f03489e5ddbf117ec50bc7e347483b9c348591de9d6d15f7bedde"
     },
     {
       "name": "endpoint-application-control",
@@ -958,7 +958,7 @@
       "description": "Acts as the Enterprise Architect orchestrating the whole architecture function: sets architecture principles, the target-state across all domains, the governance gates and the arbitration between specialist architects (business, solution, data, application, technology, network, security). Use when defining enterprise standards, running an architecture review board, producing target-state roadmaps, or reconciling conflicting domain decisions.",
       "type": "archive",
       "url": "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
-      "digest": "sha256:2970034ea289543385a11e3a8f18a68021e31b0fbd659d7c03d5f808f83a86df"
+      "digest": "sha256:d8b68146249dd0eb5041d428978eec65771f6e7a344f8dcd5982d7265254e669"
     },
     {
       "name": "enterprise-it-governance-cobit-itil",
@@ -986,7 +986,7 @@
       "description": "Provides expertise in execution flow analysis, control paths, and static and dynamic Call Graph generation using Go Callvis, Pyan3, Code2Flow, Doxygen, CodeScene, NDepend, Sourcetrail, Understand, OpenTelemetry, and Jaeger.",
       "type": "archive",
       "url": "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md",
-      "digest": "sha256:f791062317665454bc1920091f479fd4c1ac27c74695cef0d7a016563d1806e9"
+      "digest": "sha256:8748b5e74e758d30d2352a3fde08c50687fd003e586122fe033645883e4af8e5"
     },
     {
       "name": "explainable-ai",
@@ -1007,7 +1007,7 @@
       "description": "Acts as an agent specialized in rapid codebase exploration, pattern search, structure understanding, and answering questions about existing code.",
       "type": "archive",
       "url": "knowledge/skills/roles/explore/SKILL.md",
-      "digest": "sha256:82314cbad4663763e09a563280fedc4105750e6bdb984a4acf361a7d88b0d45a"
+      "digest": "sha256:31ab5b28d2907cad1ae7849ea57284eaee9c7ec99e5ad75f25f286677808cafd"
     },
     {
       "name": "fedramp-cmmc-cloud-gov-assurance",
@@ -1021,7 +1021,7 @@
       "description": "Acts as a specialist in financial transaction processing and payment systems in Brazil (Pix, SPI, DICT, SPB, Boleto, CIP/N\u00faclea) and abroad (ISO 20022, SWIFT, FedNow, SEPA, Acquiring, Gateways, Anti-Fraud, Reconciliation, and Idempotency).",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
-      "digest": "sha256:cd6e1d42bcb2d27f9b1fc825d82131cc3d29a1d7b072ba8b6ab38f9a302f8941"
+      "digest": "sha256:599539eabbe0f840201f7bd8d3cf4f873aaa524085618591d6383fe4f84aa944"
     },
     {
       "name": "firmware-uefi-implant-analysis",
@@ -1042,28 +1042,28 @@
       "description": "Acts as a specialist in unit testing for the C language using Criterion, covering Test macros, cr_assert/cr_expect, life cycles (.init/.fini), signal and crash testing, stdout/stderr capture, and CMake integration.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-criterion/SKILL.md",
-      "digest": "sha256:91d491b0f7eeacca6d123777f70f21bd0661558bf72f5f85a8fca0891d448186"
+      "digest": "sha256:dfa79c10c7c53793539fcea9eb0acb6486d1899fa45bd3e3aff779be69d3c10e"
     },
     {
       "name": "framework-graphql",
       "description": "Provides API engineering and design patterns based on the official GraphQL specification (GraphQL Foundation). Covers Schema Definition Language (SDL), operation types (Query, Mutation, Subscription), resolvers, DataLoader for N+1 prevention, response and error format, introspection, directives, Relay Cursor Connections, and query security.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-graphql/SKILL.md",
-      "digest": "sha256:a7a97c9aa9ee08dca11c8ff41fc3047aff53e0f35d8ff89b6c1345d696ca4578"
+      "digest": "sha256:803be32b1bf977fb18ae1ca61974308d02bf0dce2077b758ef24f05a7d6e24e5"
     },
     {
       "name": "framework-grpc",
       "description": "Provides engineering patterns for gRPC and Protocol Buffers (proto3). Covers unary and streaming RPCs (Server, Client, Bidirectional), .proto file definitions, HTTP/2 transport, interceptors (middlewares), rich google.rpc.Status error handling, and gRPC-Web.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-grpc/SKILL.md",
-      "digest": "sha256:b163653ca5a631e4e7ca0d70a37cb7bd8c8ff4956eec3ed28216e85d2ce39363"
+      "digest": "sha256:423f5b5c8383f0e4360cf30c0f86f905342f1b279d179a53b4faa7875c860431"
     },
     {
       "name": "framework-microprofile-jakarta",
       "description": "Provides corporate patterns and conventions for Java servers and microservices based on Eclipse MicroProfile 6.x+ and Jakarta EE 10/11+ (JAX-RS, CDI, JSON-P/B, Config, Fault Tolerance, Health/Metrics).",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md",
-      "digest": "sha256:69a3ef1487374435d001adb7d81e555b1f7e4a8af28c7bb2f1f59874b7ac5cea"
+      "digest": "sha256:545c537a923d5a301ae80d7d613e4887ce4d7158145c16893b24561447f3d15b"
     },
     {
       "name": "framework-qt6",
@@ -1077,77 +1077,77 @@
       "description": "Provides Cloud-Native development patterns with Quarkus, GraalVM Native Image, and polyglot NoSQL persistence using Eclipse JNoSQL, Jakarta NoSQL, and Jakarta Data.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md",
-      "digest": "sha256:60e415dbc50403808f43e20bca60c1bf9e8302d3f34d0ee8ed2c7f101bac9e24"
+      "digest": "sha256:64a82382c1fb0e4a2dbe151955c0538ef630b8f2f9d18560e8141b78d5b470c3"
     },
     {
       "name": "framework-react",
       "description": "Provides engineering and architecture patterns for the React library (React 18+ / React 19) and its ecosystem. Covers functional components, advanced Hooks, Server Components (RSC), state management (Context, Zustand, TanStack Query), routing, performance optimization, and testing.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-react/SKILL.md",
-      "digest": "sha256:5c682ca2897e484f116c610b652215f37b63f05310639fb9f45710d48d2e46e2"
+      "digest": "sha256:bbead40cfbd5ce0fd69e785a0dd202bcd8dfc1f3ae09aea410bc14b8663fcd17"
     },
     {
       "name": "framework-rest-api",
       "description": "Specialist in HTTP architecture, RESTful API design, and advanced contract patterns (OpenAPI 3.2, RFC 9110/9112/9113/9114, RFC 10008, and RFC 7807). Covers the full semantics of verbs (GET, QUERY, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), status codes, content negotiation, security headers (CSP, HSTS), CORS, caching (ETag, Cache-Control), long-running operations (LRO), deterministic cursor-based pagination, batch mutations, idempotency keys, and evolutionary API governance.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-      "digest": "sha256:1969fca95ba6ad349233681217663a38637866e10a1e3a13ee706a65d6d16bae"
+      "digest": "sha256:af7db7a4c19abb005e00973f2df4f1cfe99d46f4d85fb615d106dc8294c5e135"
     },
     {
       "name": "framework-soap",
       "description": "Provides engineering and integration patterns for web services based on the W3C SOAP 1.1/1.2 and WSDL 1.1/2.0 standards. Covers the XML Envelope structure, message security with WS-Security (WSS), digital signatures (XML-Signature), XSD validation, and enterprise integration.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-soap/SKILL.md",
-      "digest": "sha256:3c74ecceebeebd9dfec501cb662e75d135acc6dbe05e59348054881058b1e9ac"
+      "digest": "sha256:de637d23d612a7c9e9b8a2b04def5356ea592a3aa4e984014e73f09bbef5ac75"
     },
     {
       "name": "framework-spring-boot",
       "description": "Provides engineering and architecture patterns for enterprise applications with Spring Boot 3.x+, covering Spring MVC REST, constructor dependency injection, immutable DTOs (Records), Virtual Threads (Loom), validation, Spring Data JPA, and testing with Testcontainers.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-spring-boot/SKILL.md",
-      "digest": "sha256:08fbf4dc4e7c81978f0c5f2c5eebcb481be4772f84ab60b37393f767058338fc"
+      "digest": "sha256:d8bba8c81e117cc96097e72f79576ef064129c12701dc66d12292dc9394194f5"
     },
     {
       "name": "framework-testing",
       "description": "Specialist in Software Testing Engineering. Broad command of Black-Box techniques (BVA, Equivalence Partitioning, Decision Tables, FSM, Pairwise), White-Box techniques (CFG, McCabe, MC/DC, Data Flow/du-paths, Program Slicing), Mutation Testing, Integration (Call Graph, MM-Paths), TDD, and ISTQB Test Management.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "digest": "sha256:fa4b69e987bba4f7dbd3532d3e3add01d6631dc5463befcc69df103209d28320"
+      "digest": "sha256:e83bb6103e341566fcec6a615319605216c1352575f1ace628be31e99e13033c"
     },
     {
       "name": "framework-testing-javascript",
       "description": "Acts as a Specialist in Automated Testing and QA Engineering in the JavaScript and TypeScript ecosystem (Node.js, React, Vue, NestJS). Covers the all-in-one Jest framework and the modular Mocha architecture with Chai and Sinon.js, mastering Spies, Stubs, Mocks, BDD/TDD assertions, Snapshots, Fake Timers, asynchronous testing, and code coverage with Istanbul/c8.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md",
-      "digest": "sha256:45048bfc62801d2e7e9f550e3a82008700a4eb58879d4baeac09d4489f162039"
+      "digest": "sha256:1c83bdccadabb920f5d12f1603b4d99e2c4ada0d4aa7e69ef1ce443ef0f33798"
     },
     {
       "name": "framework-testing-python",
       "description": "Acts as a Specialist in Automated Testing and QA Engineering in Python, covering the Pytest ecosystem and the native Unittest framework. Masters modular Fixtures, conftest.py, formal parameterization (BVA/Equivalence Partitioning), subTests, Property-Based Testing (Hypothesis), Mocks (unittest.mock, @patch, MagicMock, pytest-mock), Mutation Testing (mutmut), asynchronous tests (pytest-asyncio), and coverage analysis (pytest-cov).",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "digest": "sha256:696a3802aeb2ac58db78e42b0db52bcf14558d02b115b470c4abadfc9924b3d6"
+      "digest": "sha256:2ed7ae6dc7755f4cd3e9bca0166453c8f2b4656301cffdb5e2e9a6e7a6c8c713"
     },
     {
       "name": "framework-vue",
       "description": "Provides modular, high-performance development patterns using the Vue 3 ecosystem, covering the Composition API, TypeScript, Pinia, Vue Router, and reactivity optimizations.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-vue/SKILL.md",
-      "digest": "sha256:fcb010cbe71c92096f308e9661a8036f83a6d31b70f46f9156905eafe301c3cf"
+      "digest": "sha256:6f3de7795d89dfa16b6f4abc83b5b65a08f67776966b27704ded612055bbbe33"
     },
     {
       "name": "frontend-developer",
       "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Framer Motion (spring physics), Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:4e804bf9c591218788d2d15d782fde7cc947b0f64d119837cd46637663c7bd2b"
+      "digest": "sha256:f22acfdd70c995cee39edd5df1234df8edda57ce5c9f8077eacf328a4ab0cbef"
     },
     {
       "name": "fullstack-developer",
       "description": "Acts as a Full Stack Developer specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue), and databases (DBA) while ensuring clean, secure code.",
       "type": "archive",
       "url": "knowledge/skills/roles/fullstack-developer/SKILL.md",
-      "digest": "sha256:8fff9647535b90b19c2ebb7762cb5a2ebea9ac98f2f4e8c9b9db0bc66d6ba24a"
+      "digest": "sha256:1e8725396e9e864610de039e987ab1c9dd8c55d98e872685b358482a5200d49e"
     },
     {
       "name": "functional-concurrent-programming",
@@ -1161,14 +1161,14 @@
       "description": "Provides patterns and mathematical models for 2D game scene composition, multi-plane parallax layering, directional projected shadows, contact anchors, and repeating background tile quilting. Use when composing, laying out, or lighting 2D game levels and cinematic scene environments.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
-      "digest": "sha256:c8dd526291dba1527f19f1c31b219728c1ad73f28a883055cbcbd6d0474ebb00"
+      "digest": "sha256:3912364c40fb7c44eb212ca7626811b148c92c7e6b4ac953fbfa4c9369676ee7"
     },
     {
       "name": "game-animation-qa-motion",
       "description": "Provides rigorous quality assurance methodologies for 2D game animations, verifying motion continuity, physical arcs, handedness asymmetry preservation, stride synchronization, and seam pop elimination. Use when auditing, inspecting, or testing 2D character animation loops and gameplay sprite sheets.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
-      "digest": "sha256:eda815ed2d817d2719ffaf4fb0206b45f927e62bdc362891bc4f88b8e28d7ae1"
+      "digest": "sha256:f5b8c73200339c98bb8a495fd6104d8d928f98eb16ce8eafeb3cbc0e2eff5d75"
     },
     {
       "name": "game-anticheat-engineering",
@@ -1182,7 +1182,7 @@
       "description": "Provides automated 2D sprite processing, soft-alpha unmixing, pixel art lattice recovery, RIFE frame interpolation, atlas packing, and engine manifest exports. Use when automating, extracting, assembling, or integrating 2D game sprite sheets with engines such as Phaser, Flame, Godot, or Unity.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
-      "digest": "sha256:4684cf9ced0e70b0a051a42959028b76b11f2ffa3565517c3b473ec4ef657b0b"
+      "digest": "sha256:ddf6c905e01520f82d507c0934e6d789897456d94b3c14f79060e57cab48c722"
     },
     {
       "name": "game-economy-fraud-security",
@@ -1196,7 +1196,7 @@
       "description": "Acts as a Specialist in Security, Reverse Engineering, and Anti-Cheat in Game Engines (Unity, Unreal Engine, and Godot). Covers C#/IL2CPP code protection and global-metadata.dat metadata, encryption and secure packaging (.pak, .pck, asset bundles), network replication security and server-authoritative RPCs, memory editing mitigation (Cheat Engine, GameGuardian), obfuscation, package integrity, and anti-cheat driver integration (EAC, BattlEye, Vanguard).",
       "type": "archive",
       "url": "knowledge/skills/security/platform/game-engine-security/SKILL.md",
-      "digest": "sha256:30989e2bc0e77198d8285434a9447db847745f2812d927423f2cff5a23e42ec5"
+      "digest": "sha256:30a6cde7a61c447409f44c56ccabaa408fd90275ae31fe7c2b9b9185335f992c"
     },
     {
       "name": "game-network-authority-security",
@@ -1210,28 +1210,28 @@
       "description": "Provides end-to-end design patterns, anatomical mannequin modeling, head-count proportions, multi-genre pose libraries, and hitbox alignment for consistent 2D game sprites and animation frames. Use when generating, illustrating, or refining 2D game characters and visual gameplay assets.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
-      "digest": "sha256:6a77b792d345ad17bdee282b162c3aa72c9856703d58da303f6cf9aa8f766b53"
+      "digest": "sha256:8c846da56546fde8983e5264af3ca6e77be87329b815bffc9911743d4b3390ab"
     },
     {
       "name": "gemini-enterprise",
       "description": "Acts as a specialist in Google Gemini Enterprise, covering integration with Google Workspace, Gemini Code Assist Enterprise, Vertex AI Search & Agents, data governance, corporate privacy, extensions, and customization.",
       "type": "archive",
       "url": "knowledge/skills/platforms/gemini-enterprise/SKILL.md",
-      "digest": "sha256:60bba08b311a12cd9dfcd88408ff82f20d60d02d1f04c5c4b1903b63b9bec642"
+      "digest": "sha256:4057f866930d2cf5efda6785682317f70814cf04474bf1e0f59e0f97a714cc20"
     },
     {
       "name": "general",
       "description": "Acts as a general-purpose agent for complex research and multi-step task execution, integrating multiple skills as needed.",
       "type": "archive",
       "url": "knowledge/skills/roles/general/SKILL.md",
-      "digest": "sha256:eca268e4b088c0e5bcd38ddd88e269b25af87cb9d790380fb2489182ba76ee90"
+      "digest": "sha256:adaaa3814f541b60f6fcd5b8622b74da66b0d6d6468cd192bad2715f3d8edbec"
     },
     {
       "name": "git-conventional-commits",
       "description": "Standardizes atomic commit authoring and version-control history with the Conventional Commits v1.0.0 specification (feat, fix, refactor, perf, test, docs, breaking changes), driven by git-diff inspection.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
-      "digest": "sha256:0be6615c5348f5c446216e90f92e10f5c83cb379a0501027c53b17980c699f7e"
+      "digest": "sha256:88f7eddb05c3e046290eff151fb7f28a14dc1307aa6d860ba9f5e4412686c13f"
     },
     {
       "name": "gpu-programming-cuda",
@@ -1245,7 +1245,7 @@
       "description": "Provides expertise in Knowledge Graph modeling, dependency relationships, property graph engineering, and attack/security surface mapping using Neo4j, Cartography, jQAssistant, BloodHound, ArangoDB, JanusGraph, Attack Flow, and OpenCTI.",
       "type": "archive",
       "url": "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
-      "digest": "sha256:420ecbfe6cadfa0a007ea1b24e38ed7ef24d0d8417ba3a37d45c672e13079b4f"
+      "digest": "sha256:02c2a36bd9e0681e104d34295fcdebeb66cd84459bdff0b8497d75e7461f2a1c"
     },
     {
       "name": "grc-automation-oscal",
@@ -1294,14 +1294,14 @@
       "description": "Specializes in Hardware, IoT, and Embedded Systems Security Auditing building on The Hardware Hacking Handbook (Jasper van Woudenberg) and The IoT Hacker's Handbook (Aditya Gupta). Covers physical bus identification (UART, JTAG, SWD, I2C, SPI), firmware extraction and dumping (Flash chips, eMMC, NAND), fault injection attacks (Fault Injection/Clock & Voltage Glitching), side-channel attacks (Side-Channel DPA/CPA), and Secure Boot bypass.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
-      "digest": "sha256:e7cbd500b0bd5ac6a9ca791cbdd36541ee2e1214f74dd82254eb02d1ff291826"
+      "digest": "sha256:37fc5cb1f03e3919ecc9a12dbc9c75970c55b3f66772c8f65df5de03957343ad"
     },
     {
       "name": "healthtech-standards-security",
       "description": "Acts as a specialist in healthcare technologies, interoperability standards, and security (Health Tech), covering HL7 (v2, v3, CDA), FHIR (R4/R5, SMART on FHIR), DICOM & DICOMweb, OMOP CDM, medical terminologies (SNOMED CT, LOINC, RxNorm, ICD-10/11), and HIPAA/LGPD/GDPR compliance.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md",
-      "digest": "sha256:8a6be26f18c20bf3acca9d42c2fc44697312ca4220e76fb4952c78dea8b52526"
+      "digest": "sha256:2720051eee12980e2232d5093c27abf3ce5e33f90ed73fce7879ba7a6ed0f7bf"
     },
     {
       "name": "high-performance-java-persistence",
@@ -1315,7 +1315,7 @@
       "description": "Provides architecture, engineering, and operations patterns for HPC (High Performance Computing) clusters and supercomputers based on Supercomputers for Linux SysAdmins (Sergey Zhumatiy). Covers workload managers (Slurm Workload Manager), low-latency interconnects (InfiniBand/RDMA), parallelism libraries (OpenMPI, MPICH), parallel file systems (Lustre, GPFS, Ceph), and GPU-accelerated computing.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md",
-      "digest": "sha256:d558fdb628e540b6c47879f544b4826a7fcca2ddf81af4502f9a9a623e9252b9"
+      "digest": "sha256:1eb12923b1a7f45bcf7e804616b82a161c15bebdb6a94a9a012bfe0e62476db0"
     },
     {
       "name": "human-in-the-loop-ml",
@@ -1336,42 +1336,42 @@
       "description": "Acts as a specialist in AWS IAM and access control, covering IAM Policies (JSON), Permission Boundaries, SCPs (AWS Organizations), AWS IAM Identity Center, STS, ABAC, KMS Key Policies, and Access Analyzer.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-aws/SKILL.md",
-      "digest": "sha256:65da212b697a965cb5963ee590a94df539def192a2d7d3580158bd0aca9e941b"
+      "digest": "sha256:3407a2e561537bff450a69b96dc908f4b19e5b176a7e65a0fbb716a7437ef52b"
     },
     {
       "name": "iam-access-azure",
       "description": "Acts as a specialist in Microsoft Entra ID (Azure AD) and Azure IAM, covering Azure RBAC, custom roles, PIM (Privileged Identity Management), Conditional Access, Managed Identities, ABAC, and Entra ID Governance.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-azure/SKILL.md",
-      "digest": "sha256:57000dec2c76d8ec3a937ef58208cf7bbda66e39115379bfe09afde1d3834976"
+      "digest": "sha256:7db923c33a7af8aef065306d39dd2b111ace4d7484a35cb3bd2566399b34f997"
     },
     {
       "name": "iam-access-gcp",
       "description": "Acts as a specialist in GCP IAM (Google Cloud Access Management), covering resource hierarchy, predefined/custom roles, service account impersonation, Workload Identity Federation, VPC Service Controls, and IAM Recommender.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-gcp/SKILL.md",
-      "digest": "sha256:86c2409114f89d399a0fdc15740c5758947d49e5539a4d3290f36088a6828581"
+      "digest": "sha256:00f60458e312149a7b2a6f7ced91aee5f68a28ae76263a92fb1a974455f24790"
     },
     {
       "name": "iam-access-management",
       "description": "Acts as a specialist in IAM (Identity and Access Management) and access management, covering Active Directory, Windows, Linux, AWS, Azure, GCP, and OCI, and adaptable to ERPs and SaaS such as SAP, Salesforce, Okta, and ServiceNow.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-management/SKILL.md",
-      "digest": "sha256:492ca9035b08b94f1d41af260e255b464213561a85624ba0e1e48e6166dcc25b"
+      "digest": "sha256:6dfc6d00b72afea0eb92d7f30b5f709444e49d57bf2d97f647ca7f11863d54be"
     },
     {
       "name": "iam-access-oci",
       "description": "Acts as a specialist in OCI IAM (Oracle Cloud Infrastructure Access Management), covering OCI policy syntax, compartments, identity domains, dynamic groups, instance principals, and sign-on policies.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-oci/SKILL.md",
-      "digest": "sha256:d80b5b4a45984caf36a99efcdf82a9f76435b1b369275d760e4dd67ec828284b"
+      "digest": "sha256:5577d137a1ebf617c3d2746f380cfe6659b445115516d9de4a8c8779863cd17a"
     },
     {
       "name": "iam-access-power-platform",
       "description": "Acts as a specialist in IAM (Identity and Access Management) for Microsoft Power Platform, Power Apps, and Dataverse, covering Security Roles, Privileges, Business Units, Teams (Owner/Access/Group), Column-Level Security, Hierarchy Security, DLP Policies, Environment Roles, Managed Environments, and ALM Security.",
       "type": "archive",
       "url": "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md",
-      "digest": "sha256:a0810d9095c69605c41ac425809a0b2d5ad05d1c20b252cb9eee0baad5f3d2ba"
+      "digest": "sha256:c2fece45d52b2f4ef3000678e5eaf2ae0d751f9d88b1631167014a1f30ef20d5"
     },
     {
       "name": "iam-architect",
@@ -1385,7 +1385,7 @@
       "description": "Acts as a Specialist in Interactive Application Security Testing (IAST), covering the hybrid runtime-agent architecture combined with automated test traffic (Active IAST through a DAST crawler vs. Passive IAST through QA/CI suites such as Playwright, Cypress, JUnit, Pytest). Dynamic runtime taint propagation in memory, stack trace capture and exact vulnerable source line numbers, false-positive elimination, and continuous correlation with SAST and DAST.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
-      "digest": "sha256:f55f65dc494bda5254e921a8f05b509df353ce3f76db06b1d73fc2a4ec638078"
+      "digest": "sha256:b4d14ca5cf73914d4efa0a5b6e6a559e4c5cb6eb3b26e9576c3fdbd0db916573"
     },
     {
       "name": "identity-governance-iga",
@@ -1413,7 +1413,7 @@
       "description": "Provides expertise in IT infrastructure inventory, network asset mapping, IP Address Management (IPAM), Data Center Infrastructure Management (DCIM), and Configuration Management Database (CMDB) using NetBox, OpenNMS, Netdisco, Ralph, GLPI, iTop, Device42, and RackTables.",
       "type": "archive",
       "url": "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
-      "digest": "sha256:dd8b0a885d40398086dfa63a5140818ad7e8983e018d435610d9c13d4109d925"
+      "digest": "sha256:9e82c7c47633ea921c59a1a89a69531f02187b4066454f66680cc1616e6b20c0"
     },
     {
       "name": "integration-architect",
@@ -1427,14 +1427,14 @@
       "description": "Acts as a Specialist in Information Security Governance and Secure Software Lifecycle based on the (ISC)\u00b2 CISSP and CSSLP Common Bodies of Knowledge (CBK) (Mano Paul). Covers the 8 CISSP domains (Risk Management, Asset Security, Security Engineering, Communication/Network, IAM, Assessment/Testing, Operations, Software Development Security) and the 8 CSSLP phases.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md",
-      "digest": "sha256:ca66fbf0da19520cd68db520943d52184c8513932d1c372362b1cc60feca92d6"
+      "digest": "sha256:7abdfc51807ec3f9b2784fe6f45f634dc380d5ef930760c5fbfd6b3a7092e2c7"
     },
     {
       "name": "iso-27000-series",
       "description": "Acts as a specialist auditor and ISMS/PIMS architect specialized in the entire ISO/IEC 27000 family, including ISO/IEC 27001:2022, 27002:2022, 27005, 27017, 27018, 27032, 27035, 27036, and ISO/IEC 27701.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/iso-27000-series/SKILL.md",
-      "digest": "sha256:a25daf5ea0e17c3e26a91bc7d1f375f6d61b49bfb6a3b002641d64bff001e4dd"
+      "digest": "sha256:9adbf4f0b30dedfd3d63992b850afb94b4bd51ce3ce1ecf2046cd480a0c7f12e"
     },
     {
       "name": "itdr-identity-threat-detection",
@@ -1448,28 +1448,28 @@
       "description": "Specialist in JavaScript Performance based on Hands-On JavaScript High Performance (Justin Scherer). Covers profiling and observability with DevTools tools (Chrome Performance/Memory/Rendering tabs, jsPerf, and correct benchmarking), immutability versus mutability trade-offs (Redux, Immutable.js, RAII, lazy evaluation, tail-call, and currying), modern vanilla JavaScript (Collections, Proxies, Typed Arrays, DOM APIs, Fetch/Promises), Svelte as a framework compiled to vanilla, Node.js without a DOM (fs, net, http, streams, and non-blocking I/O), message passing (pipes, sockets, TCP/UDP, HTTP/2, QUIC), data formats alternative to JSON (MessagePack, schema-based Protocol Buffers), Web Workers (dedicated/shared, transferrables, SharedArrayBuffer), Service Workers (offline cache), build and deploy with Rollup/CircleCI, and WebAssembly in the browser.",
       "type": "archive",
       "url": "knowledge/skills/languages/javascript-high-performance/SKILL.md",
-      "digest": "sha256:f94bf447c7a8e7072a4e69aece937d89cbfa083395ec7ddaba6826f444e2ae24"
+      "digest": "sha256:7e145d5feb41dde54962e36e952aa0097d3904d4e219caf32825253d454be2b8"
     },
     {
       "name": "job-hunting-sourcing",
       "description": "Specialist in Active Job Mining and Strategic Job Search. Masters Google Dorks for direct ATS portals (Greenhouse, Lever, Workday, Ashby), boolean operators for location and seniority, and direct outreach techniques to hiring managers.",
       "type": "archive",
       "url": "knowledge/skills/roles/job-hunting-sourcing/SKILL.md",
-      "digest": "sha256:8386aa8603b5ab09fda809f823898ebe51902de61c0c1b04b58a688f551efdf4"
+      "digest": "sha256:d408735a6cc77bdd87059cae7ca5c2563613e76632254d83bb6a98632a74a223"
     },
     {
       "name": "jpa-hibernate-performance",
       "description": "Specializes in Java Persistence performance (JPA/Hibernate) based on High-Performance Java Persistence (Vlad Mihalcea). Covers JDBC batching, the N+1 query problem and fetch strategies (JOIN FETCH, EntityGraph), FlushOperationQueue and ActionQueue, dirty checking, first- and second-level caching (read-through/nonstrict-read-write), optimistic and pessimistic locking, efficient pagination (keyset vs OFFSET), transactions and isolation, and per-database SQL tuning (EXPLAIN, execution plans).",
       "type": "archive",
       "url": "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
-      "digest": "sha256:e8e858049bfb40eef698208e209e0619ef63eee59571b1fc304dfe037425fd12"
+      "digest": "sha256:499d32311545e46ecbc23f6c06931a889c47f92ce86fc28b5f2f6831a0dbdabd"
     },
     {
       "name": "k8s-container-mapping",
       "description": "Provides expertise in topology mapping, Pod-to-Pod network flows, eBPF observability, and real-time security for Kubernetes and Containers (Cilium, Hubble, Kiali, Kubeshark, Pixie, Inspektor Gadget, Parca, Tetragon, Falco, Tracee).",
       "type": "archive",
       "url": "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
-      "digest": "sha256:4b0a94da1051daeb10985e4a8660f4b19211f7dc3470619bcebd8206c0a4bf9b"
+      "digest": "sha256:b7281c7133af0246d2c2b92b56ab3d7c884795c1803e0f86a3518ac08f55aaaa"
     },
     {
       "name": "kubernetes-attack-paths",
@@ -1490,147 +1490,147 @@
       "description": "Provides software engineering and programming patterns in x86_64 Assembly (Linux POSIX and Windows x64) based on The Assembly Language Reimagined (John Schwartzman) and Assembly Programming Language For Beginners (Panchtilak, Kavishankar). Covers Intel and AT&T syntax, general-purpose and SIMD registers (AVX/SSE), direct system calls (syscalls), the System V AMD64 ABI, stack manipulation, CPU flags, addressing modes, string instructions, procedures/recursion/macros, and low-level optimization.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
-      "digest": "sha256:7165c57785be0f50d19db8adc6244f0d1bff959d498c73538ef4aebeb4bfb004"
+      "digest": "sha256:10710fd7cbc81545ad577c2a076dae381ef50fef0ebe7fa6ed6704a9b5513737"
     },
     {
       "name": "lang-bash",
       "description": "Provides software engineering patterns in Bash/Shell Scripting. Covers strict and safe execution (set -euo pipefail), defensive variable and quoting handling, modular functions, dependency checks, file handling/redirection, and integration with ShellCheck and portability best practices.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-bash/SKILL.md",
-      "digest": "sha256:29a4ad7a3a645ecae98b583a51134751f3b79f58e57cf69c42b32e73dec6d451"
+      "digest": "sha256:bbb0c791a91a0adb637eac4a0452c3680e3585134b7fe89f70ba6ffdf3cec19e"
     },
     {
       "name": "lang-c",
       "description": "Provides software engineering patterns in modern C based on the international standard ISO/IEC 9899 (focusing on C23 - ISO/IEC 9899:2024, C17, C11, and C99) and the official references at en.cppreference.com/w/c, covering keywords (nullptr, bool, constexpr), attributes ([[nodiscard]], [[deprecated]]), safe math (<stdckdint.h>), bit operations (<stdbit.h>), memory debugging, and CMake.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-c/SKILL.md",
-      "digest": "sha256:e658e2f8c77924e0e902855942909e97dba9c22a3f7164e2cea140f5412b6de0"
+      "digest": "sha256:bacce6fdb932fe6986e3ccf4d8c1890e793ca3bf6618e641ea2a8e8291f4259d"
     },
     {
       "name": "lang-cpp",
       "description": "Provides software engineering patterns in modern C++ based on the international standard ISO/IEC 14882 (focusing on C++23 - ISO/IEC 14882:2024, C++20, C++17, and C++14) and the documentation at en.cppreference.com, covering RAII, Smart Pointers, Concepts, Modules, Coroutines, std::expected, std::print, Ranges, CMake, and the C++ Core Guidelines.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-cpp/SKILL.md",
-      "digest": "sha256:774f7a1c2e64d5e23975fc9936962439e4877467bc33906f23d3b1d7bc965651"
+      "digest": "sha256:d7d9308b8b755c8eb511eac45695ffc911eeb0e15fdfbb1629bd04d03c07ffdb"
     },
     {
       "name": "lang-csharp",
       "description": "Provides software engineering patterns in modern C# (C# 12/13/14, .NET 8/10 LTS) based on the official documentation (learn.microsoft.com/en-us/dotnet/csharp) and C# 2026 Enterprise Mastery (Victor Mihailov). Covers records and primary constructors, pattern matching, Span<T>/memory-efficient code, async/await and Task, LINQ and collections, pragmatic SOLID, tactical DDD, performance (GC, allocation tracing, pooling), observability, and modern cloud-native API patterns with Minimal APIs.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-csharp/SKILL.md",
-      "digest": "sha256:9cbb37d0e19f52db945ac3337ca661060a6e7d6778dfeeff4a2360266f03010c"
+      "digest": "sha256:7f0f2278a5fc7f4c295d3362e5d62452e95f58e15a97d2b40efd28f1a4e59080"
     },
     {
       "name": "lang-go",
       "description": "Provides software engineering patterns in Go (Golang) based on the official documentation (go.dev/doc), Effective Go, the Go Memory Model, and concurrency best practices (goroutines, channels, context), error handling, generics, modules, and testing.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-go/SKILL.md",
-      "digest": "sha256:58bf961ef1f1e4558cb929b1b5f6b65a72e46d32931627cb5e44e3e537efd1f2"
+      "digest": "sha256:a448a18f3887d7cd20a51359f41a9041719de9d6ee0951441947344e292d988f"
     },
     {
       "name": "lang-java",
       "description": "Provides software engineering patterns in modern Java (Java 17/21/25 LTS) based on the official documentation (docs.oracle.com/en/java), Java Concurrency in Practice (Goetz), and JVM best practices. Covers lambdas/Streams, Records and sealed classes, Virtual Threads (Project Loom), safe concurrency (Executor framework, immutability, happens-before, CompletableFuture), Collections, Pattern Matching, JCTools/Agrona, and JVM tuning (G1/ZGC, JIT).",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-java/SKILL.md",
-      "digest": "sha256:e514f3c5e26f3d8a9ce64a2a8c489cb0c494675ad27555b152a1cddb656add2e"
+      "digest": "sha256:11ccf1b72cd99bdbb13bffdd3f4567eb7ebed2bf1101018866722447b22dec76"
     },
     {
       "name": "lang-latex",
       "description": "Provides engineering and academic/scientific typography patterns in LaTeX (LaTeX2e and LuaLaTeX/XeLaTeX). Covers modular multilevel document structuring, bibliography management with BibLaTeX/Biber, illustrations with TikZ, rigorous mathematical formatting (amsmath/mathtools), custom commands (newcommand/ProvideDocumentCommand), and prevention of common compilation errors.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-latex/SKILL.md",
-      "digest": "sha256:ad18d125b43279380330c93543425619f05bfdb5571091812774923d2baa9966"
+      "digest": "sha256:fdd7efa8e67a7b5476a3d17f79168ce351372d49e86e09254f47987c928f1995"
     },
     {
       "name": "lang-lua",
       "description": "Provides software engineering patterns in Lua. Covers the use of local variables, efficient table manipulation, metamethods/metatables, closures, cooperative concurrency with coroutines, performance optimization, and C/C++ integration through the native API or the LuaJIT FFI.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-lua/SKILL.md",
-      "digest": "sha256:7f2b7a90d5b2f2ad051c86e010d7f3b51b24a11f368bacf1bd7ab758d5169942"
+      "digest": "sha256:340b47ff19f30116fd8c8756092f00405ea4b39e6d347d06bb63c545a9926d60"
     },
     {
       "name": "lang-markdown",
       "description": "Provides complete guidelines for authoring, engineering, and formatting in Markdown (CommonMark, GitHub Flavored Markdown - GFM, and MDX). Covers hierarchical document structuring, advanced code and table formatting, visual elements (GFM alerts, Mermaid diagrams), LaTeX math equations, linting standards (MarkdownLint), technical documentation (READMEs, ADRs, Changelogs), and JSX/MDX integration.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-markdown/SKILL.md",
-      "digest": "sha256:85d8b3d88800ea1e985abe87eba54c85e6333785dbf5c76bd5088b6b8244e78f"
+      "digest": "sha256:43b577de0f6e604360a9bbfafd935afca802998289c8686d9555fa03cbdda7a4"
     },
     {
       "name": "lang-perl",
       "description": "Provides software engineering patterns in modern Perl (Perl 5.30+). Covers strict use of pragmas (use strict; use warnings; use utf8;), subroutines with signatures, modern Object Orientation (Moo/MooX or Perl 5.38+ builtin class), defensive regular expressions, safe file handling with lexically scoped filehandles, and CPAN best practices.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-perl/SKILL.md",
-      "digest": "sha256:7ddcc6f3d40702d380acf43388dc733d8b8fc9cbb4486864c4afaf856bdea1e4"
+      "digest": "sha256:159d038f10edbdee44a9dbccf93d89196b1dd8cd36f6888a5d34bdbc2ff82add"
     },
     {
       "name": "lang-powershell",
       "description": "Provides software engineering patterns in PowerShell (Windows PowerShell 5.1 and PowerShell 7+ Core). Covers automation, object pipeline management, modularization (script modules/manifests), defensive error handling (Try/Catch/Finally, ErrorActionPreference), strong typing, PSCustomObject, and security best practices (ExecutionPolicy, remoting, and credentials).",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-powershell/SKILL.md",
-      "digest": "sha256:729b9f5eeeb03ecf1f983874edb662e7a9be7fa464b61cd7b3a60760dd629fff"
+      "digest": "sha256:6ecc0f46a07776186d1093e793132986d1125d7041f307ea840e657c6afb1124"
     },
     {
       "name": "lang-python",
       "description": "Provides software engineering patterns in Python 3 based on the official documentation (docs.python.org/pt-br/3), covering the Zen of Python (PEP 20), the style guide (PEP 8), the Data Model (__dunder__), Pattern Matching (PEP 634), Advanced Typing (PEP 484/695), Asyncio, the Standard Library, and modern frameworks.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-python/SKILL.md",
-      "digest": "sha256:81e5e20c3fded73c2e5c0fc400c2b5ea473e228375e9abdb678262e46e240272"
+      "digest": "sha256:ae8f8ebd03349f583c1edb70c9e0d2f62d7c9d37e94433e4ca026844b4005210"
     },
     {
       "name": "lang-rust",
       "description": "Provides software engineering patterns in Rust based on the official documentation (doc.rust-lang.org), the Brazilian Portuguese translation 'A Linguagem de Programa\u00e7\u00e3o Rust' (rust-br.github.io/rust-book-pt-br), 'The Rust Programming Language 3rd Edition' (Klabnik, Nichols, Krycho), and 'Programming Rust 2nd Edition' (Blandy, Orendorff, Tindall), covering Ownership, Borrowing, Lifetimes, Structs, Enums and exhaustive Pattern Matching, Modules and Crates, Collections (Vec/String/HashMap), error handling (Result/Option/thiserror), Generics and Traits, zero-cost Closures and Iterators, Smart Pointers (Box/Rc/Arc/RefCell/Mutex), Concurrency (threads, channels, Send/Sync), Async (Tokio), Testing (cargo test), Cargo Workspaces and Profiles, Unsafe Rust/Nomicon, and FFI.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-rust/SKILL.md",
-      "digest": "sha256:161b70dc193e0b255923933dac0eacec20e825bb969e55e3255134514faf324a"
+      "digest": "sha256:5367ac2368a1eca1366f8e9cb021db103368ac3edcb5ae31471f70b966c16490"
     },
     {
       "name": "lang-typescript",
       "description": "Provides secure and robust software engineering patterns using TypeScript based on the official TypeScript Handbook documentation (typescriptlang.org), Effective TypeScript 2nd Edition (Dan Vanderkam), and Total TypeScript Essentials (Matt Pocock), covering primitive and advanced types, narrowing and type guards, discriminated unions with exhaustiveness checking, generics with constraints, type manipulation (keyof, conditional, mapped, template literal types), utility types, strict compiler safety, and defensive data mapping.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-typescript/SKILL.md",
-      "digest": "sha256:8eec929b5ff255d5518b93cd4e242908130e54b194f085334d1c5172f6140000"
+      "digest": "sha256:6fd48bc3754a7bc41f9472a762bb5e9749685f507c739ad135f5ca807f25194e"
     },
     {
       "name": "lang-typst",
       "description": "Provides engineering and modern digital typography patterns using Typst. Covers markup syntax, custom functions, creating reusable templates, show/set rules, advanced math, tables, page layout, and bibliography via Hayagriva/BibTeX.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-typst/SKILL.md",
-      "digest": "sha256:c7dc993ed8abaf8cc2dc853dccab1d556014d74695f59d520deeb63a03c9a17c"
+      "digest": "sha256:a8c2e9d14ee11bb2a228c994beddc7f547b5ab2fc3519011765279d9b4f30240"
     },
     {
       "name": "latency-engineering",
       "description": "Acts as a specialist in Latency Engineering and delay optimization in software systems, based on the work Latency: Reduce delay in software systems (Pekka Enberg). Covers the Laws of Latency (Little, Amdahl, queuing theory), tail latency (p99/p99.9) and Coordinated Omission, low-latency architectures (sharding, replication, consistency, RPC), hardware optimization (CPU, cache hierarchy, NUMA, kernel bypass), and elimination of unnecessary work (lazy loading, caching, batching, precomputation).",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md",
-      "digest": "sha256:bbc9cc412090755b7ff4da0e790c619a45840a9ee91102de3a3107fd3877d8b8"
+      "digest": "sha256:55729d834b4b74c672eb046c5a9f509b3ff82db763b721b82cf6dccddb63fab3"
     },
     {
       "name": "linguistic-en-us",
       "description": "Specialist in American English (EN-US) linguistic editing and technical copyediting, adhering to the Chicago Manual of Style, eliminating AI idiolect, resolving syntax ambiguities, and ensuring clear human communication.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md",
-      "digest": "sha256:e06f6f43163d8015d7a446a2c27d880d4cb63a136eaecacc4ca77cacc6c245b6"
+      "digest": "sha256:442dbd8c7f6ef39016e3f0603e8019188ec905e92156b7c0fada4ad2a96e2fd6"
     },
     {
       "name": "linguistic-es-latam",
       "description": "Specializes in editing and writing Neutral Latin American Spanish (ES-LATAM), focused on technical clarity, RAE/ASALE norms, syntactic disambiguation, opening punctuation marks (\u00bf?, \u00a1!), diacritical accents, and eradication of AI clich\u00e9s.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "digest": "sha256:71f7758f5b51b264b84d96cb6f206691e03e739a71b1269d8e12eec5e13f7b0d"
+      "digest": "sha256:50f0fd2741cf5c389868214be2a809319e22d1589f453680f13322c5ca707e69"
     },
     {
       "name": "linguistic-pt-br",
       "description": "Specializes in editing and writing Brazilian Portuguese (PT-BR), focused on technical clarity, semantic precision, contemporary standard usage, elimination of ambiguities, eradication of AI tics, and adaptation to a human audience.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "digest": "sha256:8acc1bcb64c127749fc6060508e8b809b049095936d22d602ac3a27d97be8911"
+      "digest": "sha256:8791a1149e7ada2b24495b458291c346b7979dc6afa72877a6b6eee7a10d3827"
     },
     {
       "name": "linux-kernel-systemd-internals",
       "description": "Provides patterns for Linux kernel architecture, the systemd init subsystem, and advanced server administration based on systemd for Linux SysAdmins (David Both) and Understanding Linux Kernel Development. Covers unit management (.service, .socket, .timer, .mount), cgroups v2, journald, namespaces, kernel networking (Netfilter, eBPF, sockets), and sysctl performance tuning.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md",
-      "digest": "sha256:2153da1161f48f85c56374898c1588a95dd303aa9276645bda01a62cf57c90b9"
+      "digest": "sha256:f19fb4326631248494472df44e99ea295a261a0ef6d8f7b23c7d338de5f2df43"
     },
     {
       "name": "llvm-compiler-infrastructure",
@@ -1658,7 +1658,7 @@
       "description": "Acts as a Specialist in Static and Dynamic Multiplatform Malware Analysis for Windows (PE), Linux (ELF), Android (APK/DEX/ARM), and macOS (Mach-O) based on The Android Malware Handbook (Qian Han) and The Art of Mac Malware (Patrick Wardle). Covers deobfuscation, decompilation, sandbox behavioral analysis, IoC extraction, YARA rules, and detection signing.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/malware-analysis-multios/SKILL.md",
-      "digest": "sha256:198831c2122c4005806c639889cd93c4534089a1a534dd734c2c756385e1558b"
+      "digest": "sha256:958c1903b679fe776b6b606b2782700831e78dbcd0a96cb26eccd1397273dd12"
     },
     {
       "name": "malware-unpacking-obfuscation",
@@ -1686,7 +1686,7 @@
       "description": "Acts as a specialist in memory manipulation and low-level security, covering dynamic allocation, pointer management, vulnerabilities (buffer overflows, UAF, double free), offensive techniques (heap grooming, ROP), and modern mitigations (MTE, CFI, ASan).",
       "type": "archive",
       "url": "knowledge/skills/security/platform/memory-manipulation/SKILL.md",
-      "digest": "sha256:4935c08bcbcb53fa191503e398e478b13425fd45fb52eb33dadb2019ba62a78e"
+      "digest": "sha256:dd773fff0426b9420dae628775cb629ff27c9e50c7ee8a8939895b7822dea30a"
     },
     {
       "name": "mlops-platform-engineering",
@@ -1721,14 +1721,14 @@
       "description": "Specialist in Orchestration, Supervision, and Governance of Multi-Agent Systems. Focused on anchoring initial objectives, continuously detecting scope drift (Agent Drift and Role Drift), proactive intervention (Self-Correction), gradual containment, and applying kill-switch/safe termination to non-compliant agents.",
       "type": "archive",
       "url": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "digest": "sha256:b97c587afc163f36878702d46ced4e95da4b3f4504117937fed0ddcacc1d8a9c"
+      "digest": "sha256:9e65f610e0302a4ac42ad07ce559e935985337a2566ccb94fd5a09900ecc0b64"
     },
     {
       "name": "mutation-fuzzing-testing",
       "description": "Specialist in Mutation Testing, Fuzzing Engineering, and Requirement Conformance Analysis. Masters systematic injection of synthetic faults, Mutation Score measurement, coverage-guided fuzzing (AFL++, libFuzzer, Atheris, Hypothesis), Test Gap Analysis, and metamorphic oracles.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
-      "digest": "sha256:c2c4effc75c06cfd2e3acf40a6fbf43dc10845d50169dd9331c0619179b6de72"
+      "digest": "sha256:aaa4ab2ca390b5609faf95b6ab043dfa7c657d7b1caec706715f3f01fe7a1286"
     },
     {
       "name": "network-architect",
@@ -1742,14 +1742,14 @@
       "description": "Provides expertise in network flow analysis, Deep Packet Inspection (DPI), East-West/North-South traffic mapping, and active/passive asset discovery (Zeek, ntopng, Arkime, Wireshark, tcpdump, pmacct, ElastiFlow, NetworkMiner, p0f, RITA, Malcolm, Nmap, RustScan, Masscan, Naabu, Amass).",
       "type": "archive",
       "url": "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
-      "digest": "sha256:31500ef78ddc36fc18c1cb63df84bb3cd9f657e5c3207c9e24981d3a20ca1dea"
+      "digest": "sha256:df61f24325fb506aeeaf54c21a7e89e3e41e18195ad18896bd2d14bdf26b7d43"
     },
     {
       "name": "network-security-onprem-cloud",
       "description": "Acts as a specialist in network security architecture, engineering, and operations across On-Premise, Hybrid, and Multicloud environments (AWS, Azure, GCP, OCI), covering NGFW, microsegmentation, SASE/SSE, ZTNA, IDS/IPS, SD-WAN, WAF, and DDoS mitigation.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
-      "digest": "sha256:8d2714c0f4bcc3f0faef1663c57bf149794d76611d8a7ed87f2a329dfaf3e89e"
+      "digest": "sha256:fc0b8b3811743ccd6b40edcd29c08b34e7e46e0a536256b1ecd1652a3b49025e"
     },
     {
       "name": "network-segmentation-microsegmentation",
@@ -1770,14 +1770,14 @@
       "description": "Acts as a specialist in NIST frameworks and special publications (National Institute of Standards and Technology), including NIST CSF v2.0, SP 800-53 Rev. 5, SP 800-63-3/4, SP 800-30/37 (RMF), SP 800-207 (Zero Trust), and SP 800-171/172.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md",
-      "digest": "sha256:09d892cdbb94162845ab68eb0267fd3d0cb89396486faa528ec21b250a99c7c9"
+      "digest": "sha256:473c37dcc5c63597bc7c93418de7a7f35e37defca55abd72bf468ab290f13d62"
     },
     {
       "name": "observability-correlation",
       "description": "Provides expertise in observability, telemetry correlation (Metrics, Logs, Traces), and dependency dashboards using Grafana, Prometheus, Loki, OpenSearch, Elastic Stack (ELK), and VictoriaMetrics.",
       "type": "archive",
       "url": "knowledge/skills/mapping/observability-correlation/SKILL.md",
-      "digest": "sha256:7de8d949b3b220e99acaf48e079c4d5714317368d95050e453543768cb5109a4"
+      "digest": "sha256:288b7eec0d46dc469415081bee71985c7b33bae1f30b9715c2648127be363a21"
     },
     {
       "name": "os-hardening-baselines",
@@ -1812,42 +1812,42 @@
       "description": "Acts as a specialist in PCI DSS v4.0.1 compliance (Payment Card Industry Data Security Standard), covering CHD/SAD protection, tokenization, CDE scope, network segmentation, cryptography, payment HSMs, QSA, SAQ, and security controls.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/pci-dss-compliance/SKILL.md",
-      "digest": "sha256:34893073f3a96f84189db3b19be0ae6ab06b76d1b0251d367a1ce6ffb3688b9f"
+      "digest": "sha256:63ad0d93b61bfe906cf102635eba9eab2ae98fbf919ad2794f2125aeb0217389"
     },
     {
       "name": "pentest-cloud-aws-azure-gcp",
       "description": "Acts as a Pentester and Red Teamer specialized in Cloud Environments (AWS, Azure, and GCP), covering reconnaissance of exposed assets, lateral movement in containers/K8s, IAM/policy exploitation, attacks on managed services (S3, Blob, Key Vault, Metadata Service v1/v2), and adversary simulation.",
       "type": "archive",
       "url": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md",
-      "digest": "sha256:0dbae834d2448c54481a7f747fbb9554af7630afa348bfc00db21ca2c9e38684"
+      "digest": "sha256:508707aec4061756785c992323aacd7fd60aea34cf09c00bd72281e44245b13b"
     },
     {
       "name": "pentest-scripter-python-bash-go",
       "description": "Acts as an Offensive Developer and Scripter (Red Team Scripter), using Python, Bash, Go, and PowerShell to automate security testing, without including direct code snippets but referencing the corresponding language skills.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/pentest-scripter-python-bash-go/SKILL.md",
-      "digest": "sha256:02b2367c5eb01992430681a15e07f64ab46fa2343966b177325daddebe412c26"
+      "digest": "sha256:c847a82896df7a10b0f7c8d3d89c0e5f6226bd748f1fbd90af037b920a9e3cd9"
     },
     {
       "name": "pentest-web-application-modern",
       "description": "Acts as an Ethical Pentester specialized in Modern Web Applications (REST/GraphQL APIs, SPAs, WebSockets, HTTP/2, and Serverless), covering exploitation of Host Header Injection, HTTP Response Splitting, Insecure Deserialization, WAF bypass, Web Shells, and privilege escalation.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/pentest-web-application-modern/SKILL.md",
-      "digest": "sha256:23a4b4bad5b8085617442d5cb131d0e10d00a34c4f82f39a0f207ed75fdf440d"
+      "digest": "sha256:1f47a63c35daa64d3eea77106af17ee771ed3464af3efd41bcc3492d81ba37ff"
     },
     {
       "name": "pentester-owasp-api-security-2023",
       "description": "Acts as an Ethical Pentester specialized in the OWASP API Security Top 10 2023, structuring audits of REST, GraphQL, and SOAP APIs and microservices.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/pentester-owasp-api-security-2023/SKILL.md",
-      "digest": "sha256:4aeeaa781637c04f705a32abaf77cc732c4b03824eed38cdcb6da1f6f6ad52bc"
+      "digest": "sha256:072930ae942eeb81068e17179eac2b8a5bc2a7724e61833d4335eb72bb252074"
     },
     {
       "name": "pentester-owasp-wstg",
       "description": "Acts as a Senior Ethical Pentester and Penetration Testing Specialist structuring audits under the OWASP WSTG v4.2 framework and correlating them with MITRE ATT&CK techniques.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md",
-      "digest": "sha256:af5346c6ef74a8b289a79ba20a9c5b3859a2ea69b179d82adf69ee302d931aaa"
+      "digest": "sha256:c8dc575f034d4a4130e719d0fda6140ad935e09b9c697521a8af11db40c964b5"
     },
     {
       "name": "phase-boundaries",
@@ -1868,14 +1868,14 @@
       "description": "Acts as a specialist in Microsoft Power Automate, covering Cloud Flows (Automated, Instant, Scheduled), Desktop Flows (RPA), Process Mining, AI Builder, custom connectors, and governance/DLP architecture.",
       "type": "archive",
       "url": "knowledge/skills/platforms/power-automate/SKILL.md",
-      "digest": "sha256:a3668b855cfc816fba1a6417ab345e2d4550496e5f2341b3d139599fd24bf674"
+      "digest": "sha256:f8b208da2debbf17726d0aedecbeba8a61afc54a63b5d49f737fac5bc5a46330"
     },
     {
       "name": "power-bi",
       "description": "Acts as a specialist in Microsoft Power BI and Microsoft Fabric, covering dimensional modeling (Star Schema), advanced DAX, Power Query (M), RLS/OLS, Dataflows/Datamarts, and performance optimization.",
       "type": "archive",
       "url": "knowledge/skills/data/power-bi/SKILL.md",
-      "digest": "sha256:be6749c2fb27b4cd39bff945db0ef0d41f92b90a42f711c09c05770ef3fa7671"
+      "digest": "sha256:0bb27d28a8d6a2c1c6842f4331a9656107f537b67418870e53aa5134ffc17403"
     },
     {
       "name": "privacy-enhancing-technologies",
@@ -1889,77 +1889,77 @@
       "description": "Acts as a Product Owner (PO), refining user stories with BDD acceptance criteria (Cucumber), managing the Product Backlog, and prioritizing deliveries with a focus on business value (ROI).",
       "type": "archive",
       "url": "knowledge/skills/roles/product-owner/SKILL.md",
-      "digest": "sha256:9f13f7b9cba898b38821955a5255c62a88bf483f55069bd409bfbbebefb58c2f"
+      "digest": "sha256:c995af6effa28813dfcf52baa2d48c64789e24dd40d7c29db1a9e0e4715a1f22"
     },
     {
       "name": "program-cheat-engine",
       "description": "Provides expertise in developing Auto Assembler and Lua scripts for Cheat Engine 7.5 and 7.7. Covers code injection patterns, memory manipulation, and script conversion and compatibility techniques between versions 7.5 and 7.7.",
       "type": "archive",
       "url": "knowledge/skills/mapping/program-cheat-engine/SKILL.md",
-      "digest": "sha256:372a26444d18c22b4a8d26e25feff27901ea01ea3bcbe26e824484bf6680618a"
+      "digest": "sha256:81dc2b57feb79b720e3ebdfcb19266e241f0769cdda60a3b2f982efc95aced83"
     },
     {
       "name": "program-containers",
       "description": "Specialist in container technologies and ecosystems (local and cloud), with mastery of OCI standards, Docker, Podman, CRI-O, Buildah, Kubernetes, secure registries, hardening, and managed cloud orchestration.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/program-containers/SKILL.md",
-      "digest": "sha256:78cb0fcc837ca158697e4ca2c4ce31444b39e5cdd2fd2168b14d200b9fe3ed8b"
+      "digest": "sha256:1954a98f0183824cc4855956de0f5cd5db1221b1f1cee2f24e625918d22ba40b"
     },
     {
       "name": "program-dongtai-iast",
       "description": "Provides definitive guidance and engineering standards for DongTai IAST (github.com/HXSecurity/DongTai), covering the open-source passive Interactive Application Security Testing framework, DongTai Server deployment with Docker Compose, agent installation (Java, Python, Go, PHP, Node.js), Taint Tracking rules (Sources, Propagators, Sanitizers, Sinks), and integration with QA test suites in CI/CD.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md",
-      "digest": "sha256:c7ac8f7b3b91a21f3e26de0df41aec15a5be8e8036c7d5d7084df8b390ed3041"
+      "digest": "sha256:dbf85c9c848e97301c5031ca5bd4f0660eeebdf48e3fa15c459145298160bc42"
     },
     {
       "name": "program-github-actions",
       "description": "Specialist in the GitHub Platform, GitHub Actions, and CI/CD. Covers repository governance, protection rules (Rulesets), CODEOWNERS, Pull Request flows, automation with the GitHub CLI (gh), security with GHAS (Dependabot, CodeQL, Secret Scanning), GitHub Packages (ghcr.io), GitHub Codespaces, and complete YAML workflow engineering (reusable workflows, composite actions, matrix strategies, concurrency, protected environments, OIDC authentication, and caching).",
       "type": "archive",
       "url": "knowledge/skills/platforms/program-github-actions/SKILL.md",
-      "digest": "sha256:177d999348b7f2ed5b7585e86f346d402f3256df76daf33af61cd8abfa7204a1"
+      "digest": "sha256:27c3fd31b58e2bbfdcb3258a7a4e0d0bf4dd36060b35f4a5e9f7538fa47d6f34"
     },
     {
       "name": "program-markmap",
       "description": "Specialist in interactive mind-map visualization from Markdown using Markmap (markmap-cli, markmap-lib, markmap-view, KaTeX, autoloader, and SVG/HTML export).",
       "type": "archive",
       "url": "knowledge/skills/platforms/program-markmap/SKILL.md",
-      "digest": "sha256:1e1471cc13817c93729a16a201fd373da3ff4ebf9e349411214378a18a91c660"
+      "digest": "sha256:6a241cf660e7a7171a483cff7fe678466e2986d7e0ffcf90076a98bae41421d2"
     },
     {
       "name": "program-moodle",
       "description": "Acts as a senior specialist in Moodle LMS, covering plugin development and lifecycle (Frankenstyle), core APIs (DB, Form, Page, Output), XMLDB modeling and database tuning, theme design (Mustache/SCSS), large-scale infrastructure (OPcache, MUC Redis/Memcached), and security.",
       "type": "archive",
       "url": "knowledge/skills/platforms/program-moodle/SKILL.md",
-      "digest": "sha256:9042b235252ad0796bb47228a1e09b28c481b085da5b99f216d95c4c4ae6a63e"
+      "digest": "sha256:192236b8473f605527215a7ac403ab3074969b865ceba4a710180cbce7937962"
     },
     {
       "name": "program-opengrep",
       "description": "Provides definitive guidance and engineering standards for Opengrep (opengrep.dev), covering the open-source static code analysis (SAST) engine, complete YAML rule syntax, syntactic and semantic patterns, advanced Taint Analysis mode, CLI, rule testing, CI/CD integration with SARIF export, and secure code governance.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-opengrep/SKILL.md",
-      "digest": "sha256:f88ecc7dff028c452429cd60535cc8d80ce9be72571aff3668f2aa4d9464b0ea"
+      "digest": "sha256:1119db21b95efa23c9db839b0333647ebac1c9af11aa64cb129d33811e076d1e"
     },
     {
       "name": "program-openrasp",
       "description": "Provides definitive guidance and engineering standards for Baidu OpenRASP (github.com/baidu/openrasp), covering the open-source Runtime Application Self-Protection (RASP) framework, Java and PHP agent installation, the OpenRASP Cloud panel, JavaScript (V8 engine) detection plugin development, SQLi, RCE, SSRF, and deserialization interception, and SOC/SIEM integration.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
-      "digest": "sha256:7ebd5f67372b7ec6341c7b6ddabc9dccd8c4cbf17a5e38bd005f3e1ab1ef5b21"
+      "digest": "sha256:2aa268cc595fb7592f715678ce615fac032b142f47341568bb04246131d0423b"
     },
     {
       "name": "program-owasp-dependency-check",
       "description": "Provides definitive guidance and engineering standards for OWASP Dependency-Check (owasp.org/www-project-dependency-check), covering Software Composition Analysis (SCA), CLI, Maven and Gradle plugins, GitHub Actions, integration with the NVD API v2, centralized CVE database, complete suppressions.xml syntax, CPE hints, and CVSS-based Quality Gates.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
-      "digest": "sha256:e5d7f362814c6dc5ce991e1356b70a72bf5c4059285620e70da03c139526faa1"
+      "digest": "sha256:520c1cdce8e13b84f22a2b5a9610b0534558519ae9575d394ba413ca9d9c6b7e"
     },
     {
       "name": "program-owasp-zap",
       "description": "Provides definitive guidance and engineering standards for OWASP ZAP (zaproxy.org), covering the dynamic web application and API security scanner (DAST), the ZAP Automation Framework (AF plans in YAML), Docker-packaged scans (zap-baseline, zap-full-scan, zap-api-scan), the Ajax Spider for SPAs, advanced authentication, the REST API, and CI/CD integration.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
-      "digest": "sha256:1b867244739e4ee913cb33bc32b7d78f23520fa204c381a128ac1b7030119c1e"
+      "digest": "sha256:d5dccededf01831563094d1de69a2fa8cfd5562311c77ba70a7de8c33e3ffa0d"
     },
     {
       "name": "program-sbom-tooling",
@@ -1980,14 +1980,14 @@
       "description": "Provides expertise in low-level debugging on Windows using WinDbg, CDB, and dbgeng.dll. Covers memory dump analysis, call stack inspection, crash evaluation (!analyze -v), and debugging script automation.",
       "type": "archive",
       "url": "knowledge/skills/mapping/program-windbg/SKILL.md",
-      "digest": "sha256:bd17247f986eaf7260e27dba891d2df205e946e8899e66b129fdba5b90fbc84b"
+      "digest": "sha256:a2295d4269f2aad580aed3bd8b5036f827590b4f8acc1d6cc4f880763cadefeb"
     },
     {
       "name": "project-reviewer",
       "description": "Acts as a specialist Project Reviewer, auditing and standardizing business rules, defining the distribution of responsibilities across Database, Backend, and Frontend, and ensuring adherence to software architecture and security best practices.",
       "type": "archive",
       "url": "knowledge/skills/roles/project-reviewer/SKILL.md",
-      "digest": "sha256:c0e7807589ef8d7d33166bca8e73386d7e11e21e35c3aa5e7c31acf07e722a55"
+      "digest": "sha256:2f69a17ad3d28cbe9ea004a2adf1e402e62073ae488d8a6a11c07b1bf0d637e5"
     },
     {
       "name": "python-data-science",
@@ -2001,14 +2001,14 @@
       "description": "Acts as a specialist in Python optimization, high performance, and parallelism, based on High Performance Python 2nd Edition (Gorelick & Ozsvald), Fast Python (Tiago Ant\u00e3o), and Parallel and High Performance Programming with Python 2nd Edition (Fabio Nelli). Covers profiling (cProfile, line_profiler, py-spy, scalene), CPU and memory optimization, vectorized NumPy/pandas, multiprocessing vs. threads vs. asyncio (GIL/free-threading), Cython/Numba, GPUs (CUDA/RAPIDS), Dask/Ray/PySpark, and distributed parallelism on cloud/serverless.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md",
-      "digest": "sha256:ddfeb06a4c85ba57f99de4762806a5f19f6d270dab6a8d07561f2165272a32d6"
+      "digest": "sha256:63ee2f43e4a686bb0fff91b0ac24a006c423ae3f8f4818f73dfc5030454c904c"
     },
     {
       "name": "qa-engineer",
       "description": "Acts as a Senior QA (Quality Assurance) Engineer, mastering risk-based strategies (RBT), formal test design techniques (ISTQB, BVA, Decision Tables, MC/DC), multi-framework test automation, effectiveness measurement (DRE, Mutation Score), and defect management.",
       "type": "archive",
       "url": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "digest": "sha256:e9a791988325b46e9d0b9c2397ea591b9e6d6ef52401792d7cfc7ced72d46b37"
+      "digest": "sha256:5e167f24b205b3d158e059e6b20bc12f9bff8bc128d2d24e7e53fc7095f53221"
     },
     {
       "name": "quantitative-risk-fair",
@@ -2022,21 +2022,21 @@
       "description": "Specializes in Advanced Quantum Mechanics, Theoretical Physics, Quantum Circuits, and Quantum Algorithms building on J. J. Sakurai (Modern Quantum Mechanics), Claude Cohen-Tannoudji (Quantum Mechanics), and Michael A. Nielsen & Isaac L. Chuang (Quantum Computation and Quantum Information). Covers the Dirac Formalism in Hilbert Space, the Quantum Harmonic Oscillator via Ladder Operators, Angular Momentum and Spin 1/2 (Pauli Matrices, Clebsch-Gordan Coefficients), Perturbation Theory and Fermi's Golden Rule, Qubit Fundamentals and the Bloch Sphere, Universal Quantum Gates (Hadamard, Pauli-X/Y/Z, Phase-S/T, CNOT, Toffoli), Quantum Entanglement (Bell States, GHZ), the Quantum Fourier Transform (QFT), Shor's Algorithm (Polynomial Factorization), Grover's Algorithm (Quadratic-Speedup Search), the Variational Quantum Eigensolver (VQE for Quantum Chemistry), and Practical Implementation with Qiskit (IBM) and Cirq (Google).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
-      "digest": "sha256:dffc04fcd3bd9830857973e3f37992e7db37bfa50e09f358f4608a7d321cde04"
+      "digest": "sha256:63452220eae315f5b12a6123442f9f2648ac9134ea66161991ab6f4e8f3e526d"
     },
     {
       "name": "rasp-runtime-protection",
       "description": "Acts as a Specialist in Runtime Application Self-Protection (RASP), covering bytecode instrumentation (Java Virtual Machine Tool Interface / Java Agent, .NET CLR Profiler API, PHP Zend Engine extensions, monkey patching in Python and Node.js, and eBPF probes in Go), contextual monitoring of calls to critical sinks (SQL drivers, subprocess execution, file I/O, object deserialization, network/SSRF connections), block mode vs. log mode policies, fail-safe behavior, and minimization of performance overhead.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md",
-      "digest": "sha256:abb056a4efaa220257162088ca8483a493b7b7aef7f31eb5e837f13e030c969b"
+      "digest": "sha256:02e22a7f5ed2f980c9e8a5dc6fc0e9e7541799667efe14043d418103cb5127ed"
     },
     {
       "name": "realtime-streaming-event-driven",
       "description": "Specializes in Real-Time Streaming Architectures, Batch-Stream Unification, and Streaming Databases based on Streaming Databases (Hubert Dulay) and Building Real-Time Analytics Systems (Mark Needham). Covers Apache Kafka, Apache Pinot, Apache Flink, ClickHouse, Change Data Capture (CDC via Debezium), and real-time OLAP queries with sub-second latency.",
       "type": "archive",
       "url": "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
-      "digest": "sha256:0ff4baaf34194341f9213845ff9d773b549139e801112accfcdcc69105b25a2e"
+      "digest": "sha256:ede73b1fd558d48ba3b27dc8bd3c580067c45dfe172a740656fbf506167da255"
     },
     {
       "name": "red-team-infrastructure",
@@ -2071,21 +2071,21 @@
       "description": "Acts as a Specialist in Static Application Security Testing (SAST) and Security Code Review, identifying vulnerabilities in source code, applying static verification rules, AST, CFG, interprocedural taint analysis, remediating flaws (Injection, XSS, CSRF, Insecure Deserialization, Broken Access Control), and establishing automated and manual review standards.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
-      "digest": "sha256:9fc20439f9ae6ba6fe16ebb83f2248e91c9f311e97b847b256027717fb9258cb"
+      "digest": "sha256:85af5d7e0fa4275907aa8e3ed37caebaa606894a2f60d64bb7fefce7e98627f2"
     },
     {
       "name": "scrum-master",
       "description": "Acts as a Scrum Master and Agile Coach, facilitating agile ceremonies (Planning, Review, Retrospective, Dailies), removing impediments, managing conflicts, and monitoring productivity metrics (Velocity, Burndown).",
       "type": "archive",
       "url": "knowledge/skills/roles/scrum-master/SKILL.md",
-      "digest": "sha256:23804ef837b0887e4341a66ce9b274e629b3c605ba48f2e7878160cf1ca5297a"
+      "digest": "sha256:0571734f489d1329892fab89f6086ddfc4df33d2d887848085d4534d490d47b7"
     },
     {
       "name": "secops-incident-responder",
       "description": "Acts as a SecOps and Incident Response Analyst, structuring attack response playbooks (NIST SP 800-61), operational monitoring (SIEM), hardening of production environments, and Disaster Recovery plans.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
-      "digest": "sha256:7d06ef1f056c63535da192e13430e89af60668e27edeb0fb4ed540f333eb378b"
+      "digest": "sha256:401474dc6881a4d9874fbcae2d5c1a11f7170644f6532133b1fc54e399d2064a"
     },
     {
       "name": "secrets-management-vault",
@@ -2113,7 +2113,7 @@
       "description": "Acts as a Systems Security Architect using the SABSA framework (Sherwood Applied Business Security Architecture) aligned with TOGAF, NIST CSF, ISO 27001, and Zero Trust, executing the SABSA 6x6 Matrix, Business Attribute Profiles (BAP), Trust Domains, and the SABSA Lifecycle (Strategy, Design, Implement, Manage & Measure).",
       "type": "archive",
       "url": "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
-      "digest": "sha256:8505b73aff46ffdc9ac83c63223ba6053af023506c8da07be5d51a566f2fffe5"
+      "digest": "sha256:4e3a5178057e8686c836c962d485935edde3ce8e76497eaeed0b9f39d598f2aa"
     },
     {
       "name": "security-architecture-patterns",
@@ -2127,35 +2127,35 @@
       "description": "Acts as a Security Champion for the engineering team, spreading secure practices, triaging risks, and delegating demands to specialized security skills when necessary.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/security-champions/SKILL.md",
-      "digest": "sha256:a16425ec7b9817f0ac74cf433b31c6176dd224a70fed81889ecbb2d77841c377"
+      "digest": "sha256:2ff1cc461cae59acfea148d3827256bb1f5ea14fcc4ed76eedb700a85965fb3c"
     },
     {
       "name": "security-grc-compliance",
       "description": "Acts as a Governance, Risk, and Compliance (GRC) Analyst, structuring security policies, aligning frameworks (ISO 27001, PCI-DSS, LGPD/GDPR), and measuring security effectiveness with organizational metrics.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-      "digest": "sha256:5cc13419939582055d99c697758e6375376c3bd874e55695586aa67ec5875fe9"
+      "digest": "sha256:aa77174cf40122171798e706a8b997182fb988e4d4e6b9d87de4773d9f2f4cec"
     },
     {
       "name": "security-manager-samm",
       "description": "Acts as a Security Manager using the OWASP SAMM framework aligned with BSIMM and CIS Controls to govern, assess, and raise the security maturity of the SDLC, managing rules and creating new skills.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-manager-samm/SKILL.md",
-      "digest": "sha256:7f7b58c335f01ba0969348c952bbd6f2d833f393030713976c66dbc2274a169f"
+      "digest": "sha256:f17a841df48e6095f5b60b1e53c4386c4b83c1a0c0ba0023d07324d43d02bea5"
     },
     {
       "name": "security-privacy",
       "description": "Acts as a Data Privacy, PII Governance, and De-identification/Anonymization Engineering Specialist. Covers compliance with LGPD, GDPR, HIPAA, ISO/IEC 27701:2025, and the NIST Privacy Framework, the 7 principles of Privacy by Design, formal mathematical de-identification models (k-anonymity, l-diversity, t-closeness, epsilon-DP differential privacy with Laplace/Gauss noise), tokenization vs masking vs pseudonymization, Privacy-Enhancing Technologies (FHE, SMPC, TEE, federated learning, DP-SGD), DSR (Data Subject Request) automation, cross-border transfers, breach notification, and anonymization pipelines with Microsoft Presidio and Faker.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-privacy/SKILL.md",
-      "digest": "sha256:9331421c83713454e937f460e3bd30e7db0db228c0cd76a216dc6a7c793cda96"
+      "digest": "sha256:3d612bf898655b47f91c540b1ea8aa9afd5eff8fca1e731953e67d32ff400b5f"
     },
     {
       "name": "security-technical-opinion",
       "description": "Provides a guide and procedure for autonomously drafting Information Security Technical Opinions, architecture risk assessments, integrations, and third parties (TPRM). Supports dynamic selection of Threat Modeling methodologies (STRIDE, PASTA, LINDDUN, VAST, DREAD), control auditing based on OWASP ASVS (V1 to V17), normative severity classification P0 to P3 (SLAs of 7d, 30d, and 30-180d), and structuring the action plan into 3 time waves.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/security-technical-opinion/SKILL.md",
-      "digest": "sha256:fdb784a6b115c304937ea70bf497f11148f778b5df20ef175ae2cb35d07e0d05"
+      "digest": "sha256:07d2c013eebaee039d7e240e4acc4c527cba4071dcfccaf7ddae15decfd1fda8"
     },
     {
       "name": "serverless-security",
@@ -2183,14 +2183,14 @@
       "description": "Acts as a Software Architect applying low-level engineering, SOLID principles, DDD, system topology decisions, testability, and Design Pattern orchestration.",
       "type": "archive",
       "url": "knowledge/skills/roles/software-architect/SKILL.md",
-      "digest": "sha256:63f63dbf211081f8a56a948fee18975e3944850052012c68e2646577661542ca"
+      "digest": "sha256:38776c6934b8fa67c833e687ac2fde09a083fa16e70a00640ee6d041753679b2"
     },
     {
       "name": "software-supply-chain-security",
       "description": "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.7.2 / ECMA-424 and SPDX v3.0.1), VEX, SLSA v1.2 provenance (Build and Source tracks), cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting, dependency confusion and protestware.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
-      "digest": "sha256:9d4f6e759fb24238efd599189f2504ed76c40b52d95ab655dc1e18add8960caa"
+      "digest": "sha256:9b0bb1a2373a03bed6e3c198b41ab4ae364b76805e63af0d3df9a49246161297"
     },
     {
       "name": "solution-architect",
@@ -2204,14 +2204,14 @@
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "type": "archive",
       "url": "methodology/workflows/superpowers-brainstorming/SKILL.md",
-      "digest": "sha256:c0ff370afc1a9bd66cd5d5a2eefb7787e432ce9ff90078f32721f78258fb1818"
+      "digest": "sha256:292145f842f4de52860dfa6b2e1a25541285af0da0b4061528459821cae94780"
     },
     {
       "name": "superpowers-diagnosing-superpowers",
       "description": "Use when a superpowers session went wrong and your human partner wants to know why \u2014 repeated work, ignored plans, stumbles, poor results, a skill that didn't fire, \"it took too long\", \"why is it so expensive\", \"what is it doing\" \u2014 or wants to build a bug report for the superpowers maintainers, for the current session or a past one identified by id or path, on any harness.",
       "type": "archive",
       "url": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md",
-      "digest": "sha256:9c42d907efd3193b66a84576a5ddb2af49c4a5335347f6336add5bc10ca0a837"
+      "digest": "sha256:d8c6342e3c0ceca4bbefedf59ef9fc6febeba0584733edc2f5454851c0e7f4e5"
     },
     {
       "name": "superpowers-dispatching-parallel-agents",
@@ -2225,7 +2225,7 @@
       "description": "Use when executing an implementation plan in the current session as the implementer yourself \u2014 your human partner chose inline execution, or no subagent tool is available",
       "type": "archive",
       "url": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "digest": "sha256:72abfc824d2a9df7455aefb93190c21e7bcfede53e1452e946a964ff75e36d56"
+      "digest": "sha256:f32bd945f82ba4c879469313f03a10475654d9d7c2c7c6e6cbe87a0406e6ce86"
     },
     {
       "name": "superpowers-finishing-a-development-branch",
@@ -2246,28 +2246,28 @@
       "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
       "type": "archive",
       "url": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "digest": "sha256:9be5267f1693fe62c6810af8306cadd7bbc2dad82b423760d79adae2d5f7cced"
+      "digest": "sha256:02da71ba0cd5bb2739c1fdeb367691c8d063df3e133c130c85573dc577f8d522"
     },
     {
       "name": "superpowers-subagent-driven-development",
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
       "url": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "digest": "sha256:efb80bd6427c63c45c4e02140c9f08d9ac759eb4e5c74296a49033366e3132cc"
+      "digest": "sha256:7326c5626a5940535204b43b77116c427dffc800e0d1bf07ff6a9e638296ae7e"
     },
     {
       "name": "superpowers-systematic-debugging",
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
       "type": "archive",
       "url": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "digest": "sha256:6cc62f5f5a18ac625dc3324bbbf3e5231fd7df2d8cbcebf87bdc2304faa890d2"
+      "digest": "sha256:bc40be5e9cb4459dc66eb33a4287753301ba7a212637f7fd762f75c4169b765f"
     },
     {
       "name": "superpowers-test-driven-development",
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
       "type": "archive",
       "url": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "digest": "sha256:ef3b1424fb326026d280bffe713487b43c2cee46e81216f7e11397c820c7e2b3"
+      "digest": "sha256:bc596790fd0b2967a855aa29b7ca5c3761530e8910e69911e050cd3526efe842"
     },
     {
       "name": "superpowers-using-git-worktrees",
@@ -2288,14 +2288,14 @@
       "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
       "type": "archive",
       "url": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "digest": "sha256:ce84e9ba615725fe5b031b99566263da8a6be4a77c8ac4fe56d384ad3b4c9307"
+      "digest": "sha256:ac75830f5cffe4dd2e67ad19e7c233f080e82d4d619977ed05ea1ea226abd7d1"
     },
     {
       "name": "superpowers-writing-skills",
       "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
       "type": "archive",
       "url": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "digest": "sha256:7e9fe91fd96f18f99cfd3d7b22087ab50d0aafb34df3741c2bdcd68e970882ef"
+      "digest": "sha256:1c52681d39a9becaacc4cca20c198b9f1d2a15bfccc5bfd1ec8d1114caab87c9"
     },
     {
       "name": "supply-chain-threat-modeling",
@@ -2309,7 +2309,7 @@
       "description": "Acts as a specialist in System Design, large-scale systems engineering, and highly available distributed architectures. Covers sharding, partitioning, replication, eventual consistency (CAP/PACELC), distributed caching, load balancing, rate limiting, circuit breakers, and resilience.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
-      "digest": "sha256:6c77209465182e31e5e701ae77a9f65b644633db39473ac37e81c5d390c1d7aa"
+      "digest": "sha256:bde3536e2a190300297cb3b706fbb264d133942b6da554e9ea28e486917d21c7"
     },
     {
       "name": "systems-architect",
@@ -2330,7 +2330,7 @@
       "description": "Provides architecture, engineering, and security standards in telephony and voice networks. Covers VoIP protocols (SIP, SDP, RTP, SRTP), Session Border Controllers (SBC), legacy networks (PSTN, E1/T1, ISDN, SS7), WebRTC, audio codecs (G.711, G.729, Opus), Softswitches (Kamailio, OpenSIPS, FreeSWITCH, Asterisk), QoS (DSCP EF), STIR/SHAKEN, and telephony fraud prevention.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md",
-      "digest": "sha256:a7a2197ca524bb822057e602cfc6a0e518c218ee569a6c34b06a17f15d378674"
+      "digest": "sha256:a76a7520d9a1d2e9af2db07bd12795e1df848504aec85c1dc54092afe852d30a"
     },
     {
       "name": "third-party-risk-management",
@@ -2351,7 +2351,7 @@
       "description": "Acts as a Threat Modeling Specialist, using frameworks such as STRIDE, PASTA, and LINDDUN to anticipate attacks, identify risks, and specify security requirements.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/threat-modeler/SKILL.md",
-      "digest": "sha256:2f71ed5fd8788c785b9214261876a737250e9d1b51002ce4d56ce4610dcb7083"
+      "digest": "sha256:3afbc245e546b1f5cfc4dd9b8ca7fe4c6633dabf732d7f200a617269c2be4564"
     },
     {
       "name": "to-spec",
@@ -2925,7 +2925,7 @@
       "description": "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the style library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists.",
       "type": "archive",
       "url": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "digest": "sha256:fac85d3d746334028e56238aa81e74f7a44ffb575105aeef43435f0bc31bc029"
+      "digest": "sha256:0bc3d5d9db92ac0ffa3ac0c0831c1cd914108c342e90a2e3d3dd65e549ea8c64"
     },
     {
       "name": "ui-ux-principles",
@@ -2939,7 +2939,7 @@
       "description": "Provides expertise in reverse engineering code into UML diagrams, software topologies, and visual models using PlantUML, UMLGraph, ObjectAid, Visual Paradigm, StarUML, Doxygen, Graphviz, and Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
-      "digest": "sha256:935c31a50d7ddde557b9a982cd9daa1f0b11000df9e651e8add4c1cc7589fede"
+      "digest": "sha256:add5da1612abcd2ff05c80386486b40021311ecf5ed9f11f42dd74a0d4a1dd12"
     },
     {
       "name": "untrusted-content-security",
@@ -2953,7 +2953,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:1f562cb2778135c8a415cb03faf5e9e4f9f80d20ecae39b0139dc8dbfe7cb7da"
+      "digest": "sha256:2607a3bb88c773523312e8c3233e91de5fdc5f74f5f75a4d7da3c2cb8e27ccf1"
     },
     {
       "name": "ux-designer",
@@ -2967,7 +2967,7 @@
       "description": "Acts as a specialist in Version Control Systems (VCS) and advanced repository management. Masters low-level Git (DAG, objects, reflog, worktrees, sparse-checkout, LFS, submodules, bisect, filter-repo), Subversion/SVN (FSFS architecture, trunk/branches/tags, svn:mergeinfo, svn:externals, svnadmin, hooks), Mercurial (Hg), branching strategies (Trunk-based, GitFlow), migration of legacy repositories to Git, and monorepo scalability (Scalar).",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "digest": "sha256:c672323c281b4da0aa8a80321c2ec3e65711667a678d7d86523c9de7f7b9fc64"
+      "digest": "sha256:bb655cdec09de92803a927e423ea0a24c01cbab88978a33b7c2229a75d415820"
     },
     {
       "name": "vector-databases",
@@ -3002,21 +3002,21 @@
       "description": "Specialist in Advanced Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo, Mojeek). Masters boolean operators, Google Dorks, structural filters (site, filetype, intitle, inurl), temporal search, disambiguation strategies, and fact/primary-source verification.",
       "type": "archive",
       "url": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "digest": "sha256:917392145a3fd67fc936af4d268a70e85a013088dbe2dedd36e704b145bbaca6"
+      "digest": "sha256:6ad3f5da8c50515c71e232e4aea6cb3e2bc2b537977b25e40e794b4670de2c6d"
     },
     {
       "name": "webassembly",
       "description": "Specialist in WebAssembly (Wasm) based on the official MDN Web Docs documentation (developer.mozilla.org/pt-BR/docs/WebAssembly), complemented by WebAssembly: The Definitive Guide (Brian Sletten), Programming WebAssembly with Rust (Kevin Hoffman), and Learn WebAssembly (Mike Rourke). Covers concepts (Module, Instance, Memory, Table, multiplicity), the JavaScript WebAssembly API (instantiateStreaming, compileStreaming, Global, Tag/Exception, JSPI with Suspending/promising), compilation from C/C++ (Emscripten), Rust (wasm-pack), and AssemblyScript, the .wat/WABT text format, SIMD, types (i32/i64/f32/v128/funcref/externref), IndexedDB caching, execution in Workers, shared memory (SharedArrayBuffer/Atomics), dynamic linking, and security/sandboxing.",
       "type": "archive",
       "url": "knowledge/skills/languages/webassembly/SKILL.md",
-      "digest": "sha256:3d2d58be885d66cb68587f97bf3822da4e2d924db3679f746cbe37290333a1ee"
+      "digest": "sha256:cd4dbc753ffadc92410045db253fdae8037bc49e3a7a970b6214b71f90ef9720"
     },
     {
       "name": "windows-internals-security",
       "description": "Acts as a Specialist in Windows internal architecture and security engineering based on Windows Security Internals (James Forshaw) and Windows Internals Part 2 (Mark Russinovich). Covers Security Tokens, Access Control (DACL/SACL, SIDs, privileges), Security Reference Monitor (SRM), IPC (ALPC, RPC, named pipes), LSASS, Kerberos/NTLM, and authentication through PowerShell.",
       "type": "archive",
       "url": "knowledge/skills/security/platform/windows-internals-security/SKILL.md",
-      "digest": "sha256:095d5bb58d176dfa9dfc80e7c3e55afa91233b878903a63068d523f7373f1fe5"
+      "digest": "sha256:f1b55b49b55794520a3f9b9500be91cd1abf5770fc449e492d653485503b023e"
     },
     {
       "name": "writing-for-agents",
@@ -3030,7 +3030,7 @@
       "description": "Acts as a specialist in Zero Trust Network Architecture and Engineering based on NIST SP 800-207/207A and the work of Razi Rais, Christina Morillo, and Evan Gilman. Covers the Never Trust Always Verify tenets, Policy Engine/Administrator/Enforcement Point, CISA Zero Trust Maturity Model v2.0, network microsegmentation, continuous authentication, strong workload identity (SPIFFE/SPIRE and IETF WIMSE), ZTNA (Zero Trust Network Access), Policy-as-Code, and end-to-end mTLS encryption.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
-      "digest": "sha256:be17368eb1037748db29e915fc9d487f9755abfd4601a3b420e3961df7aeade9"
+      "digest": "sha256:3632bd694a4e7cdfd72370720f902e7ba9351bb9ed5a82803d91a1f6bdedd4dc"
     }
   ]
 }

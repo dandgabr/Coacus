@@ -187,11 +187,24 @@ artifacts are release-only).
 
 Determinism is the contract (generated-artifacts): the archive uses fixed
 metadata and no timestamp, so two builds are byte-identical and ``check`` can
-prove it. A skill marked ``internal: true`` in frontmatter is excluded.
+prove it. That must hold on every machine, and a compressed stream does not: the
+bytes of a deflate stream depend on the zlib implementation (zlib and zlib-ng
+produce different output for the same input), so a digest taken over compressed
+bytes drifts between a developer machine and CI. The gzip container is therefore
+written by hand with *stored* (uncompressed) blocks, which depend on nothing but
+the input. A skill marked ``internal: true`` in frontmatter is excluded.
 
 #### `def is_internal(meta: dict) -> bool`
 
 True when frontmatter declares ``metadata.internal: true``.
+
+#### `def deterministic_gzip(data: bytes) -> bytes`
+
+A valid gzip stream that depends only on ``data``.
+
+The deflate blocks are *stored* (not compressed), written by hand, so no zlib
+implementation can change the bytes. The header carries no timestamp and an
+unknown OS, the trailer is the CRC-32 and the length.
 
 #### `def build(root: Path) -> dict`
 

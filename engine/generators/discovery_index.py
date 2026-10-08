@@ -9,21 +9,30 @@ artifacts are release-only).
 
 Determinism is the contract (generated-artifacts): the archive uses fixed
 metadata and no timestamp, so two builds are byte-identical and ``check`` can
-prove it. A skill marked ``internal: true`` in frontmatter is excluded.
+prove it. That must hold on every machine, and a compressed stream does not: the
+bytes of a deflate stream depend on the zlib implementation (zlib and zlib-ng
+produce different output for the same input), so a digest taken over compressed
+bytes drifts between a developer machine and CI. The gzip container is therefore
+written by hand with *stored* (uncompressed) blocks, which depend on nothing but
+the input. A skill marked ``internal: true`` in frontmatter is excluded.
 """
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import io
 import json
 import tarfile
+import zlib
 from pathlib import Path
 
 from engine.frontmatter import FrontmatterError, parse
 
 INDEX_PATH = ".well-known/agent-skills/index.json"
+# Files a tool leaves beside a skill: never part of it, and different on every machine.
+_IGNORED_PARTS = ("__pycache__", ".pytest_cache", ".ruff_cache")
+_IGNORED_NAMES = (".DS_Store", "Thumbs.db")
+_STORED_BLOCK = 0xFFFF
 SCHEMA = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
 
 
@@ -42,12 +51,20 @@ def is_internal(meta: dict) -> bool:
     return isinstance(metadata, dict) and str(metadata.get("internal", "")).lower() == "true"
 
 
-def _artifact_type(skill_dir: Path) -> str:
-    extras = [
+def _skill_files(skill_dir: Path) -> list[Path]:
+    """The files that belong to a skill, in a stable order, without tool leftovers."""
+    return sorted(
         p
         for p in skill_dir.rglob("*")
-        if p.is_file() and p.name != "SKILL.md"
-    ]
+        if p.is_file()
+        and p.name not in _IGNORED_NAMES
+        and p.suffix != ".pyc"
+        and not any(part in _IGNORED_PARTS for part in p.relative_to(skill_dir).parts)
+    )
+
+
+def _artifact_type(skill_dir: Path) -> str:
+    extras = [p for p in _skill_files(skill_dir) if p.name != "SKILL.md"]
     return "archive" if extras else "skill-md"
 
 
@@ -55,13 +72,36 @@ def _digest_skill_md(path: Path) -> str:
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def deterministic_gzip(data: bytes) -> bytes:
+    """A valid gzip stream that depends only on ``data``.
+
+    The deflate blocks are *stored* (not compressed), written by hand, so no zlib
+    implementation can change the bytes. The header carries no timestamp and an
+    unknown OS, the trailer is the CRC-32 and the length.
+    """
+    header = b"\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff"
+    if not data:
+        blocks = [b"\x01\x00\x00\xff\xff"]
+    else:
+        blocks = []
+        for start in range(0, len(data), _STORED_BLOCK):
+            chunk = data[start : start + _STORED_BLOCK]
+            final = start + _STORED_BLOCK >= len(data)
+            blocks.append(
+                bytes([1 if final else 0])
+                + len(chunk).to_bytes(2, "little")
+                + (len(chunk) ^ 0xFFFF).to_bytes(2, "little")
+                + chunk
+            )
+    trailer = zlib.crc32(data).to_bytes(4, "little") + (len(data) & 0xFFFFFFFF).to_bytes(4, "little")
+    return header + b"".join(blocks) + trailer
+
+
 def _digest_archive(skill_dir: Path) -> str:
     """SHA-256 of a deterministic tar.gz of the skill directory."""
     buffer = io.BytesIO()
     with tarfile.open(fileobj=buffer, mode="w") as tar:
-        for path in sorted(skill_dir.rglob("*")):
-            if not path.is_file():
-                continue
+        for path in _skill_files(skill_dir):
             info = tar.gettarinfo(str(path), arcname=path.relative_to(skill_dir).as_posix())
             info.mtime = 0
             info.uid = info.gid = 0
@@ -69,7 +109,7 @@ def _digest_archive(skill_dir: Path) -> str:
             info.mode = 0o644
             with path.open("rb") as handle:
                 tar.addfile(info, handle)
-    compressed = gzip.compress(buffer.getvalue(), mtime=0)
+    compressed = deterministic_gzip(buffer.getvalue())
     return "sha256:" + hashlib.sha256(compressed).hexdigest()
 
 
