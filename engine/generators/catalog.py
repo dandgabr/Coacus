@@ -10,8 +10,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from engine.frontmatter import parse
+from engine.frontmatter import FrontmatterError, parse
 from engine.generators.agent_manifests import discover_sources
+from engine.generators.discovery_index import is_internal
 
 CATALOG_PATH = "catalog/catalog.json"
 INDEX_PATH = "catalog/INDEX.md"
@@ -39,10 +40,15 @@ def build(root: Path) -> dict:
         skill_paths += sorted(skills_dir.rglob("SKILL.md"))
     if workflow_dir.is_dir():
         skill_paths += sorted(workflow_dir.rglob("SKILL.md"))
-    skills = [
-        {"name": path.parent.name, "path": path.relative_to(root).as_posix()}
-        for path in skill_paths
-    ]
+    skills = []
+    for path in skill_paths:
+        try:
+            meta = parse(path.read_text(encoding="utf-8")).meta
+        except FrontmatterError:
+            meta = {}
+        if is_internal(meta):
+            continue
+        skills.append({"name": path.parent.name, "path": path.relative_to(root).as_posix()})
 
     mcps_dir = root / "knowledge" / "mcps"
     mcps = [

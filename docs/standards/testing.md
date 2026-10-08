@@ -35,6 +35,14 @@ Scenarios live at `evals/scenarios/<id>/scenario.json`. The static schema checks
 a known target harness, checks that every check is well-formed, and rejects any
 scenario string carrying a secret or an absolute path.
 
+### Behavioral depth
+
+How deeply a test exercises a behavior is a property of the test, not of its
+location: a test's path or suite name does not establish its behavioral depth. The
+vocabulary — module, composition, boundary, connector-boundary, acceptance,
+conformance, evaluation — names the depth a test aims at, so a shallow test is
+never mistaken for an end-to-end one.
+
 ## Rationale
 
 Structural regressions — schemas, generators, idempotency, dedup — are caught

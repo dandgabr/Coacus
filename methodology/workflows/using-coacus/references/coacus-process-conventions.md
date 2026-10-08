@@ -200,6 +200,17 @@ the `using-coacus` skill replaces it.
 | `superpowers-dispatching-parallel-agents` | fan out independent work |
 | `superpowers-writing-skills` | author and pressure-test a new skill |
 | `superpowers-diagnosing-superpowers` | diagnose the workflow collection itself |
+| `grilling` | interview the user in frontier rounds until the design tree is resolved |
+| `grill-me` / `grill-with-docs` | the grilling interview, plain or with documents |
+| `handoff` | compact a session for the next agent |
+| `domain-modeling` | build and sharpen the glossary; record ADRs sparingly |
+| `diagnosing-bugs` | build a tight feedback loop before any hypothesis |
+| `to-spec` | synthesize a spec and confirm the test seams |
+| `to-tickets` | vertical tracer-bullet tickets with blocking edges |
+| `implement-spec` | parallel implementers over the ready frontier |
+| `two-axis-code-review` | isolated Standards and Spec review |
+| `retro` | turn a session into environment improvements |
+| `phase-boundaries` | decide continue / clear / handoff / subagent / compact |
 
 ## Attribution
 

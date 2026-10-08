@@ -28,7 +28,9 @@ from engine.generators import (  # noqa: E402
     bootstrap,
     catalog,
     discovery,
+    discovery_index,
     docstrings,
+    groups,
     lifecycle,
     mcp_configs,
     outputs,
@@ -40,11 +42,13 @@ from engine.validators import discovery as discovery_validator  # noqa: E402
 from engine.validators import docs as docs_validator  # noqa: E402
 from engine.validators import evals as eval_validator  # noqa: E402
 from engine.validators import freshness as freshness_validator  # noqa: E402
+from engine.validators import guardrails as guardrail_validator  # noqa: E402
 from engine.validators import harnesses as harness_validator  # noqa: E402
 from engine.validators import hygiene  # noqa: E402
 from engine.validators import language as language_validator  # noqa: E402
 from engine.validators import mcps as mcp_validator  # noqa: E402
 from engine.validators import routing as routing_validator  # noqa: E402
+from engine.validators import skill_quality as skill_quality_validator  # noqa: E402
 from engine.validators import skills as skill_validator  # noqa: E402
 
 
@@ -53,8 +57,10 @@ def source_errors(root: Path) -> list[str]:
     return (
         agent_validator.validate(root)
         + skill_validator.validate(root)
+        + skill_quality_validator.validate(root)
         + mcp_validator.validate(root)
         + harness_validator.validate(root)
+        + guardrail_validator.validate(root)
         + hygiene.validate(root)
         + eval_validator.validate(root)
         + freshness_validator.validate(root)
@@ -87,7 +93,12 @@ def artifact_errors(root: Path) -> list[str]:
 
 
 def _warnings(root: Path) -> list[str]:
-    return skill_validator.warnings(root) + language_validator.validate(root)
+    return (
+        skill_validator.warnings(root)
+        + skill_quality_validator.warnings(root)
+        + guardrail_validator.warnings(root)
+        + language_validator.validate(root)
+    )
 
 
 def _print(items: list[str], label: str) -> None:
@@ -110,7 +121,12 @@ def cmd_generate(_args: argparse.Namespace | None = None, root: Path | None = No
         + discovery.write_all(root)
         + routing.write_all(root)
     )
-    written_paths = catalog.write(root) + [docstrings.write(root), lifecycle.write(root)]
+    written_paths = (
+        catalog.write(root)
+        + [docstrings.write(root), lifecycle.write(root)]
+        + discovery_index.write(root)
+        + groups.write(root)
+    )
     from datetime import datetime, timezone  # noqa: E402
 
     authored = provenance.sync_authoring(
@@ -144,6 +160,8 @@ def cmd_check(_args: argparse.Namespace | None = None, root: Path | None = None)
         + catalog.check(root)
         + docstrings.check(root)
         + lifecycle.check(root)
+        + discovery_index.check(root)
+        + groups.check(root)
     )
     if drift:
         print("DRIFT detected — run: python3 scripts/coacus.py generate")
@@ -199,6 +217,30 @@ def cmd_refresh(_args: argparse.Namespace | None = None, root: Path | None = Non
     return 0
 
 
+def cmd_verify_ledger(args: argparse.Namespace) -> int:
+    """Validate a completion ledger JSON file (evidence standard, fail-closed)."""
+    import json  # noqa: E402
+
+    from engine.verify import ledger as ledger_module  # noqa: E402
+
+    path = Path(args.path)
+    if not path.is_file():
+        print(f"not found: {path}")
+        return 1
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        print(f"invalid JSON: {exc}")
+        return 1
+    errors = ledger_module.validate(data)
+    if errors:
+        print(f"{len(errors)} ledger error(s):")
+        _print(errors, "error")
+        return 1
+    print(f"ledger OK: overall={data.get('overall')}")
+    return 0
+
+
 def cmd_freshness(args: argparse.Namespace, root: Path | None = None) -> int:
     """Read-only, offline inventory of moving version pins (version-freshness)."""
     root = root or ROOT
@@ -238,6 +280,8 @@ def main(argv: list[str] | None = None) -> int:
     fresh.add_argument("--references", action="store_true", help="also scan references/ assets")
     toon = sub.add_parser("toon", help="validate a TOON handoff payload file")
     toon.add_argument("path", help="path to a file containing a TOON payload")
+    ledger = sub.add_parser("verify-ledger", help="validate a completion ledger JSON file")
+    ledger.add_argument("path", help="path to a ledger JSON file")
     args = parser.parse_args(argv)
     if args.command == "generate":
         return cmd_generate(args)
@@ -251,6 +295,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_freshness(args)
     if args.command == "toon":
         return cmd_toon(args)
+    if args.command == "verify-ledger":
+        return cmd_verify_ledger(args)
     return cmd_validate(args)
 
 

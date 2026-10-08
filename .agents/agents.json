@@ -289,6 +289,9 @@
       "path": "knowledge/agents/specialized-domains/moodle-specialist"
     },
     {
+      "path": "knowledge/agents/specialized-domains/skill-auditor"
+    },
+    {
       "path": "knowledge/agents/specialized-domains/skill-creator"
     }
   ]

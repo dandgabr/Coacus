@@ -26,6 +26,8 @@ You write test cases (pressure scenarios with subagents), watch them fail (basel
 
 **Official guidance:** For Anthropic's official skill authoring best practices, see anthropic-best-practices.md. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.
 
+**Companion references (this directory):** [writing-for-agents.md](references/writing-for-agents.md) carries the pointer, hierarchy, completion-criteria, leading-word and pruning discipline; [invocation-model.md](references/invocation-model.md) carries the user-invoked vs model-invoked model, the invariant and the carve-out.
+
 ## What is a Skill?
 
 A **skill** is a reference guide for proven techniques, patterns, or tools. Skills help future agents find and apply effective approaches.
@@ -143,6 +145,20 @@ What goes wrong + fixes
 Concrete results
 ```
 
+
+## Writing for agents
+
+A skill is a document an agent reaches by a pointer and runs. Two companion
+references carry the discipline the SDO rules below assume:
+
+- [writing-for-agents.md](references/writing-for-agents.md) — the pointer's
+  wording decides reach; the information hierarchy; completion criteria (clarity
+  and demand); leading words; the negation anti-pattern; pruning no-ops, caches
+  and sediment.
+- [invocation-model.md](references/invocation-model.md) — user-invoked vs
+  model-invoked, the invariant, the carve-out, and the rules for a composite skill.
+
+Read them before writing a body; they explain why the SDO rules are what they are.
 
 ## Skill Discovery Optimization (SDO)
 

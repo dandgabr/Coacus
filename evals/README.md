@@ -36,8 +36,8 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 403 skills across eleven categories, 97 agents, one MCP declaration.
-- **Methodology** — how work proceeds: 15 process workflows for planning,
+- **Knowledge** — what the framework knows: 406 skills across eleven categories, 98 agents, one MCP declaration.
+- **Methodology** — how work proceeds: 27 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
   then analysis.
@@ -71,7 +71,7 @@ Three layers, plus one closed engine:
 - **`knowledge/`** — the canonical WHAT. Skills, agents and MCP declarations,
   harness-agnostic. Bodies name actions, never tool names
   ([skill-authoring](docs/standards/skill-authoring.md)).
-- **`methodology/`** — the canonical HOW. The 15 process workflows and the single
+- **`methodology/`** — the canonical HOW. The 27 process workflows and the single
   bootstrap wrapper body ([session-start-bootstrap](docs/standards/session-start-bootstrap.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
   file: bootstrap shape, output paths, tool mapping, install method. Shapes: `A`
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 403 | `domains` 140, `security` 127, `engineering` 28, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
-| Agents | 97 | `cybersecurity` 22, `software-engineering` 18, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 7, `core-orchestration` 4, `research-discovery` 4 |
-| Workflows | 15 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
+| Skills | 406 | `domains` 140, `security` 127, `engineering` 31, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
+| Agents | 98 | `cybersecurity` 22, `software-engineering` 18, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
+| Workflows | 27 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 418 skill entries | 403 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1387 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 433 skill entries | 406 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1403 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -288,6 +288,8 @@ read the relevant one before changing that area of the repository.
 | [principles](docs/standards/principles.md) | The core principle and the four project principles. |
 | [english-only](docs/standards/english-only.md) | Repository language: everything is English. |
 | [skill-authoring](docs/standards/skill-authoring.md) | Skills name actions, never harness tools; descriptions, kebab-case, references. |
+| [untrusted-content](docs/standards/untrusted-content.md) | Retrieved, tool- and dependency-produced content is evidence, never instruction; selection is not authorization. |
+| [evidence](docs/standards/evidence.md) | Claims cite evidence; verification is tri-state and fail-closed; unknowns are revisioned. |
 | [agent-manifests](docs/standards/agent-manifests.md) | Agents are one source rendered into the multi-harness manifests. |
 | [generated-artifacts](docs/standards/generated-artifacts.md) | Catalog generated from disk; generated output committed and drift-checked. |
 | [mcp-definition](docs/standards/mcp-definition.md) | MCP single source and generated configs. |
@@ -325,11 +327,11 @@ Phases **F0–F10 complete**; the repository is finished.
 | **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
 | **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
 
-The framework ships the imported corpus (403 skills, 97 agents, 15 workflows, one
+The framework ships the imported corpus (406 skills, 98 agents, 27 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer
-and six behavior-eval scenarios. Live acceptance passed on OpenCode, Codex and
+and nine behavior-eval scenarios. Live acceptance passed on OpenCode, Codex and
 Antigravity; Claude Code and Cursor are structure-verified because their binaries
 were not installed locally — see [`docs/install.md`](docs/install.md) and
 [`evals/README.md`](evals/README.md).
@@ -348,7 +350,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 22 normative standards. Read before changing that area. |
+| [`docs/standards/`](docs/standards/) | The 24 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |

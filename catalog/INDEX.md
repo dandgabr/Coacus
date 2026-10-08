@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 418 skill(s) · 97 agent(s) · 1 MCP(s)
+**Totals:** 433 skill(s) · 98 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -89,6 +89,7 @@
 | security-architect | cybersecurity | [knowledge/agents/cybersecurity/security-architect/agent.source.md](../knowledge/agents/cybersecurity/security-architect/agent.source.md) |
 | security-specialist | cybersecurity | [knowledge/agents/cybersecurity/security-specialist/agent.source.md](../knowledge/agents/cybersecurity/security-specialist/agent.source.md) |
 | self | core-orchestration | [knowledge/agents/core-orchestration/self/agent.source.md](../knowledge/agents/core-orchestration/self/agent.source.md) |
+| skill-auditor | specialized-domains | [knowledge/agents/specialized-domains/skill-auditor/agent.source.md](../knowledge/agents/specialized-domains/skill-auditor/agent.source.md) |
 | skill-creator | specialized-domains | [knowledge/agents/specialized-domains/skill-creator/agent.source.md](../knowledge/agents/specialized-domains/skill-creator/agent.source.md) |
 | soc-dfir-specialist | cybersecurity | [knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md](../knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md) |
 | software-architect | software-engineering | [knowledge/agents/software-engineering/software-architect/agent.source.md](../knowledge/agents/software-engineering/software-architect/agent.source.md) |
@@ -287,16 +288,19 @@
 | flow-architectures | [knowledge/skills/engineering/practices/flow-architectures/SKILL.md](../knowledge/skills/engineering/practices/flow-architectures/SKILL.md) |
 | functional-concurrent-programming | [knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md](../knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md) |
 | git-conventional-commits | [knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md](../knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md) |
+| guardrail-authoring | [knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md](../knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) |
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
 | repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
+| review-findings-pipeline | [knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md](../knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
 | web-accessibility-wcag | [knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md](../knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md) |
+| writing-for-agents | [knowledge/skills/engineering/practices/writing-for-agents/SKILL.md](../knowledge/skills/engineering/practices/writing-for-agents/SKILL.md) |
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
 | framework-grpc | [knowledge/skills/frameworks/framework-grpc/SKILL.md](../knowledge/skills/frameworks/framework-grpc/SKILL.md) |
@@ -513,6 +517,15 @@
 | program-owasp-zap | [knowledge/skills/security/tooling/program-owasp-zap/SKILL.md](../knowledge/skills/security/tooling/program-owasp-zap/SKILL.md) |
 | program-sbom-tooling | [knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md](../knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md) |
 | program-sigstore-cosign | [knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md](../knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md) |
+| diagnosing-bugs | [methodology/workflows/diagnosing-bugs/SKILL.md](../methodology/workflows/diagnosing-bugs/SKILL.md) |
+| domain-modeling | [methodology/workflows/domain-modeling/SKILL.md](../methodology/workflows/domain-modeling/SKILL.md) |
+| grill-me | [methodology/workflows/grill-me/SKILL.md](../methodology/workflows/grill-me/SKILL.md) |
+| grill-with-docs | [methodology/workflows/grill-with-docs/SKILL.md](../methodology/workflows/grill-with-docs/SKILL.md) |
+| grilling | [methodology/workflows/grilling/SKILL.md](../methodology/workflows/grilling/SKILL.md) |
+| handoff | [methodology/workflows/handoff/SKILL.md](../methodology/workflows/handoff/SKILL.md) |
+| implement-spec | [methodology/workflows/implement-spec/SKILL.md](../methodology/workflows/implement-spec/SKILL.md) |
+| phase-boundaries | [methodology/workflows/phase-boundaries/SKILL.md](../methodology/workflows/phase-boundaries/SKILL.md) |
+| retro | [methodology/workflows/retro/SKILL.md](../methodology/workflows/retro/SKILL.md) |
 | superpowers-brainstorming | [methodology/workflows/superpowers-brainstorming/SKILL.md](../methodology/workflows/superpowers-brainstorming/SKILL.md) |
 | superpowers-diagnosing-superpowers | [methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md](../methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md) |
 | superpowers-dispatching-parallel-agents | [methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md](../methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md) |
@@ -527,6 +540,9 @@
 | superpowers-verification-before-completion | [methodology/workflows/superpowers-verification-before-completion/SKILL.md](../methodology/workflows/superpowers-verification-before-completion/SKILL.md) |
 | superpowers-writing-plans | [methodology/workflows/superpowers-writing-plans/SKILL.md](../methodology/workflows/superpowers-writing-plans/SKILL.md) |
 | superpowers-writing-skills | [methodology/workflows/superpowers-writing-skills/SKILL.md](../methodology/workflows/superpowers-writing-skills/SKILL.md) |
+| to-spec | [methodology/workflows/to-spec/SKILL.md](../methodology/workflows/to-spec/SKILL.md) |
+| to-tickets | [methodology/workflows/to-tickets/SKILL.md](../methodology/workflows/to-tickets/SKILL.md) |
+| two-axis-code-review | [methodology/workflows/two-axis-code-review/SKILL.md](../methodology/workflows/two-axis-code-review/SKILL.md) |
 | using-coacus | [methodology/workflows/using-coacus/SKILL.md](../methodology/workflows/using-coacus/SKILL.md) |
 
 ## MCPs

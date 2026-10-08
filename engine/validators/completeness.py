@@ -174,7 +174,8 @@ def validate(root: Path) -> list[str]:
 
     # --- the normative standards are present ------------------------------
     standards = (
-        "principles", "english-only", "skill-authoring", "agent-manifests",
+        "principles", "english-only", "skill-authoring", "untrusted-content",
+        "evidence", "agent-manifests",
         "generated-artifacts", "mcp-definition", "discovery",
         "orchestration-governance", "toon-protocol", "session-start-bootstrap",
         "single-source", "testing", "knowledge-ingestion", "secrets-portability",

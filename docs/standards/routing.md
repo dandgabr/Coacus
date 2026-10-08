@@ -58,6 +58,13 @@ selection — it proposes, it never auto-selects. See
 `../../methodology/workflows/using-coacus/references/coacus-process-conventions.md`
 → "Select agents for a task (roster)".
 
+### Deterministic suggestions
+
+The router's output is deterministic: prefix matching, de-duplicated, sorted
+stably. Every suggestion is a STARTING POINT, never an authorization — selection
+is not consent, and a routed name is validated (`--agents`) before it is relied
+on.
+
 ## Rationale
 
 The orchestrator was told to "delegate to appropriate specialized agents" with no

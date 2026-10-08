@@ -44,6 +44,28 @@ beneath another skill directory are forbidden.
 - Local markdown links MUST resolve. Broken relative links fail validation.
 - Reference assets (`references/`, `examples/`) are exempt from the anti-tool
   rule: that is their sanctioned purpose.
+- **Register.** A skill body is imperative; a skill `description` is third person;
+  an agent instruction body is second person. Do not mix them.
+- **Progressive disclosure.** Material that only some branches reach belongs in
+  `references/`; name a resource so an agent knows it exists. A resource nobody is
+  told about does not exist. This is guidance, not a per-file check: the corpus
+  points at resource directories, and a per-file rule would fire on hundreds of
+  valid skills with no signal.
+- **One meaning, one place.** Do not repeat a passage between the body and a
+  reference, and do not fragment one concept across many sections.
+- **Budget.** `description` ≤ 1024 chars (the discovery surface); keep the body
+  lean and move depth to a reference. `name` ≤ 64 chars (Agent Skills spec).
+- **Well-formed fences.** A fenced code block MUST be closed; an unbalanced fence
+  swallows everything after it.
+
+### Invocation
+
+Whether a skill is reached by the human (user-invoked) or the model
+(model-invoked), the reach of a router skill and the carve-out for a human-only
+prerequisite are documented in
+[`superpowers-writing-skills`](../../methodology/workflows/superpowers-writing-skills/references/invocation-model.md).
+Invocation policy is DATA in the canonical source and is rendered per harness; the
+body never names a skill-invocation tool.
 
 ### App-owned sources
 
@@ -73,6 +95,9 @@ gets a thin adapter.
   frontmatter parsing, kebab-case name equal to the directory, required
   description, global slug uniqueness, correct placement depth, no nested
   `SKILL.md`, and resolution of local links.
+- `engine/validators/skill_quality.py` checks the name length limit and balanced
+  code fences as errors, and reports the body word budget and a
+  description-register warning.
 - `engine/validators/hygiene.py` enforces the tool-name denylist over canonical
   skill bodies, authoring templates, the bootstrap wrapper and workflow skills.
   The denylist is the union of a built-in seed and every
