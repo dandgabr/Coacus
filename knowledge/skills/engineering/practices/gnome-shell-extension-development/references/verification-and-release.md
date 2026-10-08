@@ -54,6 +54,31 @@ instructions accurate for the published asset. After upload, download the public
 assets and check the downloaded archive against the published checksum and tag.
 A locally generated archive does not prove uploaded content or publication.
 
+## Preserve persistent identity across product updates
+
+A public product rename need not migrate the extension UUID, schema ID, settings
+paths or credential namespaces. Classify those as persistent compatibility
+identities before replacing strings. Explain retained names in installation and
+configuration documentation; distinguish GSettings preferences, public client
+configuration and credential storage rather than pointing every setting at JSON.
+
+For an ordinary update, replace the installed package without uninstalling it,
+resetting settings or deleting connectors. In a private fixture, seed non-default
+connector IDs, ordering, visibility and dimensions; verify upgrade, reinstall and
+code-only rollback preserve them. Probe the credential-coordination gate as well
+as extension activity: `ACTIVE` can coexist with blocked account admission.
+
+Before an authorized installation into the person's session, record settings and
+registry digests plus relevant configuration/custom-theme metadata. Compare them
+after installing the downloaded, checksum-verified published ZIP. Do not inspect
+credential values to prove an update preserved accounts.
+
+If only a historical release asset's public filename changes, preserve its bytes,
+archive digest, source commit and original build timestamp. Update the manifest's
+archive name, checksum entries and installation instructions, then download and
+verify the renamed assets. Rebuilding from a later naming commit would silently
+change the historical artifact's identity.
+
 ## Installed files are not necessarily loaded code
 
 An existing desktop can retain old extension modules and metadata after new files
@@ -78,8 +103,13 @@ Read-only version and file-digest checks need no credential inspection.
 
 ## Evidence and limits
 
-Practices were validated in the [v0.1 release](https://github.com/dandgabr/gnome-ai-quota/releases/tag/v0.1)
-on 2026-10-08. The [source commit](https://github.com/dandgabr/gnome-ai-quota/tree/223edf5fa9b6df886144e754ffd4955bed08a048)
+Practices were validated in the [v0.1 release](https://github.com/dandgabr/elfvision/releases/tag/v0.1)
+on 2026-10-08. The [source commit](https://github.com/dandgabr/elfvision/tree/223edf5fa9b6df886144e754ffd4955bed08a048)
 and release build manifest identify the delivered artifact. Synthetic integration,
 unit tests and private installed-package loading do not establish real provider
 login, human screen-reader acceptance or every physical GPU configuration.
+
+Later [upgrade-preservation probes](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/tools/upgrade-preservation-check.py)
+and the [v0.2.2 release](https://github.com/dandgabr/elfvision/releases/tag/v0.2.2),
+observed on 2026-10-08, exercise non-default presentation state and account
+admission after session turnover. These checks do not prove real provider login.

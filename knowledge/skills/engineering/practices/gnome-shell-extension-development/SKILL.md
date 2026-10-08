@@ -1,12 +1,10 @@
 ---
 name: gnome-shell-extension-development
 description: >-
-  Provides practice for writing, checking and shipping a GNOME Shell extension in
-  GJS: the layer split that keeps logic testable, the gates that catch what unit
-  tests cannot import, verifying shell APIs against a live throwaway shell, the
-  extension lifecycle (including the lock screen and suspend), notifications,
-  account connectors, native theme effects, packaging and the preferences window. Use when building or reviewing a GNOME
-  Shell extension, its preferences window or its notifications.
+  Applies when building, reviewing or shipping a GNOME Shell extension in GJS,
+  including GTK/libadwaita preferences, account connectors, notifications, native
+  popup effects, stale controls, session coordination failures, package updates
+  or installed-versus-loaded code mismatches.
 tags:
   - gnome-shell
   - gjs
@@ -17,15 +15,11 @@ tags:
 
 # GNOME Shell extension development
 
-An extension runs inside the desktop's own process, so a mistake costs more than
-in an application: a module that fails to load disables the extension, a leaked
-object survives it, and the platform decides things (the lock screen, Do Not
-Disturb) that no setting of yours can override. This skill is the practice that
-kept one extension honest through notifications, a preferences window and a
-first-use flow. Version-specific API facts live in
-[the verified notes](references/gnome-shell-50-notes.md); account, rendering and
-delivery practices have their own evidence-linked references below. Re-verify
-native API names and behavior on another Shell version.
+Treat the desktop process as the failure boundary: verify module loading, reclaim
+owned resources and respect platform lock-screen and Do Not Disturb behavior.
+Consult [the verified notes](references/gnome-shell-50-notes.md) for version-specific
+API facts and re-verify native names and behavior on another Shell version. Read
+the branch-specific account, rendering and delivery references below when relevant.
 
 ## 1. Split by process and by layer
 
@@ -151,7 +145,10 @@ Read the relevant reference before changing these boundaries:
 
 - [Accounts and API reporting](references/accounts-and-api-reporting.md): distinguish
   a saved connector from an authenticated account; preserve identity through
-  deletion, delayed credential operations and monetary reporting.
+  deletion, delayed credential operations, session turnover and monetary reporting.
+- [Native preferences lifecycle](references/native-preferences-lifecycle.md): bind
+  subscriptions to navigation lifetime and verify both stored settings and visible
+  controls after user actions, including actual signal disconnection.
 - [Native layout and theme effects](references/native-layout-and-effects.md): keep
   decorations outside reading layout, describe theme defaults rather than supported
   overrides, and verify materials and numeric stability on rendered frames.
