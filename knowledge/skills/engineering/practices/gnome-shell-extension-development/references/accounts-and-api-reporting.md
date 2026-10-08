@@ -50,11 +50,53 @@ cannot still write.
 The store must provide a cross-process atomic read/check/write transaction and
 exclusive ownership for an issued external credential mutation. Plain settings
 read/modify/write and a process-local mutex do not establish these guarantees.
-The [example coordination store](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/lib/services/disconnectStore.js)
-and [state machine](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/lib/core/disconnect.js)
+The [example coordination store](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/lib/services/disconnectStore.js)
+and [state machine](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/lib/core/disconnect.js)
 illustrate a concrete implementation; inspect its transaction and crash-recovery
 assumptions before reusing it. Another coordination primitive is suitable if it
 provides equivalent fencing, ownership and persistence guarantees.
+
+## Recover transport ownership without erasing durable fences
+
+A session-bus identity is not a boot identity. Logout/login on the same boot can
+replace the D-Bus GUID; a boot-specific pin to the old GUID then rejects healthy
+accounts before credential lookup. Treat an empty popup plus preserved account
+rows as a reason to inspect coordination admission, not proof that credentials
+were lost. Clearing settings or deleting coordination metadata destroys evidence.
+
+A mutex on one session bus does not serialize another bus using the same state
+directory. Acquire a shared authority before replacing a stale session pin. In
+the observed Linux implementation, a permanent private regular lock file carries
+a kernel lock over each metadata transaction. Reject unsafe file types and keep
+the lock inode stable: replacing or unlinking it permits callers to lock different
+files under the same name. Preserve epoch, transaction and issued credential
+leases when recovering the transport pin; an orphaned external mutation stays
+fenced under the state machine's recovery policy.
+
+When a short helper obtains a Linux file lock, keep its open-file description
+owned by the parent for the whole transaction. The helper inherits a duplicate of
+the parent's retained descriptor; closing the helper does not end exclusion while
+that descriptor remains open. Release launcher-owned duplicates promptly and close
+the retained stream in every completion/failure path. See
+[flock semantics](https://man7.org/linux/man-pages/man2/flock.2.html) and
+[descriptor transfer](https://docs.gtk.org/gio/method.SubprocessLauncher.take_fd.html).
+Declare the deployed helper dependency and verify its availability rather than
+assuming it exists on every desktop or filesystem.
+
+Keep a compatible legacy mutex where needed. Before stale-session takeover,
+check recorded participants, lease owners and transaction coordinator separately,
+using boot, PID and process start identity. An unregistered old client paused on a
+still-running different bus may ignore the new kernel lock; recorded-owner checks
+cannot establish safety for that mixed-version race. The observed migration is
+scoped to completed session turnover, not arbitrary concurrent old versions.
+
+Test two independent private buses sharing state, live owners in each category
+alone, clean turnover, callback errors, helper exit, holder death, acquisition
+timeout, unsafe lock files and unchanged lock inode. Compare complete metadata
+before/after recovery, including epoch. A fixture with both a live participant and
+a live lease can mask omission of either check. Kill isolated single-edit mutants
+of each owner check and metadata preservation. See the
+[session-recovery evidence](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/docs/temp/session-coordination-recovery.md).
 
 ## Prove the state transition
 
@@ -98,8 +140,8 @@ request do not become the default-branch forms until merged.
 
 ## Evidence and limits
 
-Derived from the [shipped provider contract](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/providers.md),
-[credential-race record](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-credential-race-fixes.md)
-and [connector regression](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-connector-refresh-theme-defaults.md),
+Derived from the [shipped provider contract](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/providers.md),
+[credential-race record](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-credential-race-fixes.md)
+and [connector regression](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-connector-refresh-theme-defaults.md),
 recorded on 2026-10-08. These synthetic and boundary tests do not establish real
 provider authentication or future API compatibility.

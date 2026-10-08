@@ -2,7 +2,7 @@
 
 Use this reference for popup geometry, monetary text, materials and decorative
 animation. The examples were observed in GNOME Shell 50.5 on 2026-10-08; recheck
-native APIs on another runtime. See the [layout evidence](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-native-theme-layout.md).
+native APIs on another runtime. See the [layout evidence](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-native-theme-layout.md).
 
 ## Keep decorations out of reading geometry
 
@@ -27,6 +27,17 @@ radii and clip boundaries must be tested together, including first/last cards.
 Keep summary, section heading and footer background rules explicit; inherited
 opaque styles can cut rectangles through an otherwise translucent background.
 
+Separate a compact shadow paint budget from scrollbar clearance. Both belong in
+the viewport calculation; transparency must not select a much larger card gutter.
+Measure the same foreground inset in every material/effect mode rather than
+compensating for a faulty decoration stack with theme-specific padding.
+
+When offering popup dimensions, define them as logical whole-popup dimensions,
+including footer and chrome, and clamp the rendered result to the current monitor
+work area. Preserve the requested settings when a small monitor limits rendering.
+Keep connector display order and visibility independent of polling, alerts and
+top-bar ranking, with separate Live and Demo presentation settings.
+
 ## Stable text is more than a width measurement
 
 Keep numeric foreground actors and glyph state stable across card expansion;
@@ -41,6 +52,13 @@ attributes and rendered bounds; a CSS declaration does not prove the requested
 numeric feature reached the glyph layout. Compare frames and actual pixels for
 jitter, truncation and clipping. A legible dark palette does not establish that its
 light variant retains contrast or the theme's visual character.
+
+Research each style's light and dark reading surfaces before choosing palettes.
+Give similar themes at least two distinguishing cues beyond accent color, such as
+typography, geometry or texture. Inspect both variants with default and missing
+fonts and with decoration disabled. Resolve the installed native font family and
+inspect effective Pango attributes; a browser-style fallback string alone does
+not prove which native face rendered.
 
 ## Describe defaults, compatibility and current state separately
 
@@ -94,7 +112,25 @@ perceptible material or visual acceptance. Keep screenshots and performance
 records tied to source digests. A later actor/layout change invalidates prior
 frame evidence for the changed path.
 
-See the [default-indicator correction](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-connector-refresh-theme-defaults.md)
-and [material diagnosis](https://github.com/dandgabr/gnome-ai-quota/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-theme-material-diagnosis.md).
+Check contrast against the range of decoration colors behind text, not a single
+sampled background. Derive summary/footer protection from measured reading bounds
+so it follows font and allocation changes. If replacing a full-surface cached
+drawing with cropped reading-region areas, compare actual Cairo pixels for exact
+equivalence and overlapping-region handling, then measure real actor/resource
+counts. Altering accounting does not demonstrate fewer allocated resources.
+
+Keep a failed performance baseline and the unchanged acceptance budget alongside
+the final result. Headless CPU submission time and GPU-finish wall time under
+forced redraw are different measurements; neither establishes pure GPU time,
+end-to-end display cadence or physical high-refresh compatibility.
+
+These additional geometry, style and measurement practices come from the
+[popup/theme evolution review](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/docs/temp/reviews/2026-10-08-popup-theme-evolution.md)
+and [individual style research](https://github.com/dandgabr/elfvision/blob/93b17f5192290e10de834125061735f3b9e3a270/docs/temp/theme-evolution-research.md),
+observed on 2026-10-08. Use the linked records for measured results rather than
+treating one renderer's sample counts or timings as universal limits.
+
+See the [default-indicator correction](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-connector-refresh-theme-defaults.md)
+and [material diagnosis](https://github.com/dandgabr/elfvision/blob/223edf5fa9b6df886144e754ffd4955bed08a048/docs/temp/reviews/2026-10-08-theme-material-diagnosis.md).
 The diagnosis includes a rejected baseline: use its final dispositions, not its
 historical palette/capability table as a current renderer specification.

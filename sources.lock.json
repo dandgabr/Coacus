@@ -20464,9 +20464,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-      "source_sha256": "b59f05f1efc2e09f5abd1aadf4b9cede6b70ec403337a18d6b880f6f6e0dd1a2",
+      "source_sha256": "8425472a2a24b4f7b636c075e310d40955a1d738bccf581f9c0941da1889d25b",
       "target_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-      "target_sha256": "b59f05f1efc2e09f5abd1aadf4b9cede6b70ec403337a18d6b880f6f6e0dd1a2",
+      "target_sha256": "8425472a2a24b4f7b636c075e310d40955a1d738bccf581f9c0941da1889d25b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
