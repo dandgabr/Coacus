@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 433 skill(s) · 98 agent(s) · 1 MCP(s)
+**Totals:** 435 skill(s) · 98 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -278,6 +278,7 @@
 | architecture-ddd | [knowledge/skills/engineering/practices/architecture-ddd/SKILL.md](../knowledge/skills/engineering/practices/architecture-ddd/SKILL.md) |
 | architecture-documentation | [knowledge/skills/engineering/practices/architecture-documentation/SKILL.md](../knowledge/skills/engineering/practices/architecture-documentation/SKILL.md) |
 | c4-model-architecture | [knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md](../knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md) |
+| ci-security-scanning | [knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md](../knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md) |
 | clean-architecture | [knowledge/skills/engineering/practices/clean-architecture/SKILL.md](../knowledge/skills/engineering/practices/clean-architecture/SKILL.md) |
 | clean-code-reusability | [knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md](../knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md) |
 | code-review-practices | [knowledge/skills/engineering/practices/code-review-practices/SKILL.md](../knowledge/skills/engineering/practices/code-review-practices/SKILL.md) |
@@ -288,6 +289,7 @@
 | flow-architectures | [knowledge/skills/engineering/practices/flow-architectures/SKILL.md](../knowledge/skills/engineering/practices/flow-architectures/SKILL.md) |
 | functional-concurrent-programming | [knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md](../knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md) |
 | git-conventional-commits | [knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md](../knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md) |
+| gnome-shell-extension-development | [knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md](../knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md) |
 | guardrail-authoring | [knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md](../knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) |
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |

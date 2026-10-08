@@ -97,6 +97,28 @@ severity with the input that proves each — or the review returns adjectives. W
 both lenses report the same defect independently, that is the strongest signal
 available; a defect only one lens reports is a judgment call.
 
+## Consult before building, then review after
+
+For a part that decides user experience, security or structure, hold a **design
+consultation before any code**, and a review after each piece.
+
+- Brief read-only consultants (interface, experience, frontend, security) in parallel
+  with the same material: the decisions already taken, the constraints, and the
+  questions you want answered. Ask for ranked decisions with a one-line rationale and
+  the open questions for the owner.
+- **Wait for every report before consolidating.** Reports that agree independently are
+  the strongest signal; where they disagree, choose, and record the reason in the
+  decision record. Decide the open questions yourself when an earlier decision already
+  answers them; ask the owner only for what the record does not settle.
+- **Read what each reviewer says it did not read.** A report that admits it skipped
+  files is evidence about those files only; check the skipped ones, and verify its
+  factual claims against the code before accepting them.
+- Reviews found defects that no test would have: a setting that did nothing (the
+  platform already decided it), a promise in a dialog that the code could not keep, an
+  alert that could fire for a provider the user had removed, a combo row that undid a
+  reset. Apply every finding that survives reproduction, and write down what was not
+  applied and why.
+
 ## Common Rationalizations
 
 | Excuse | Reality |

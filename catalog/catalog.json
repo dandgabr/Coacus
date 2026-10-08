@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 98,
-    "skills": 433,
+    "skills": 435,
     "mcps": 1
   },
   "agents": [
@@ -1265,6 +1265,10 @@
       "path": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md"
     },
     {
+      "name": "ci-security-scanning",
+      "path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md"
+    },
+    {
       "name": "clean-architecture",
       "path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md"
     },
@@ -1303,6 +1307,10 @@
     {
       "name": "git-conventional-commits",
       "path": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md"
+    },
+    {
+      "name": "gnome-shell-extension-development",
+      "path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md"
     },
     {
       "name": "guardrail-authoring",
