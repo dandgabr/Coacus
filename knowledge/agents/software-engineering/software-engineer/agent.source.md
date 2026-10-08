@@ -9,6 +9,7 @@ description: >-
 skills:
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
+  - knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md
   - knowledge/skills/engineering/practices/system-design-scalability/SKILL.md
   - knowledge/skills/frameworks/framework-rest-api/SKILL.md
   - knowledge/skills/frameworks/framework-testing/SKILL.md
@@ -50,6 +51,7 @@ When implementing code, invoke the matching language skill (lang-typescript, lan
 - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
 - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
 - [lang-bash](knowledge/skills/languages/lang-bash/SKILL.md)
+- [gnome-shell-extension-development](knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
 ---
 

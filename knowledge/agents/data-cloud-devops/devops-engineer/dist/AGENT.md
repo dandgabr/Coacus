@@ -5,6 +5,7 @@ DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-co
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [ci-security-scanning](../../../../skills/engineering/practices/ci-security-scanning/SKILL.md)
 - [desktop-app-distribution](../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md)
 - [repository-artifact-hygiene](../../../../skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
@@ -43,6 +44,7 @@ This agent operates using the guidelines and technical standards established in 
 - [cis-controls](../../../../skills/security/grc/cis-controls/SKILL.md)
 - [desktop-app-distribution](../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md)
 - [repository-artifact-hygiene](../../../../skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
+- [ci-security-scanning](../../../../skills/engineering/practices/ci-security-scanning/SKILL.md)
 
 ---
 

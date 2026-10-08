@@ -568,7 +568,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "030327996de4c86bf0e040f59f5b3a662b46f337d717a24c2a9d94b7e87e177e",
+      "target_sha256": "da83d2dc28fce37a04ad76dca19dbe63b014a30b4dd946a7f6bcbe7425e10637",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -741,7 +741,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "413a8977f1dc469583cda6248b22e6b9740e324378c76aaf84e11c4cb8885a45",
+      "target_sha256": "d46d768880bac97c4a5b879fd2d32115eb4abfbde639b8c84c4154761d31140e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -826,7 +826,7 @@
       "source_path": "agents/software-engineering/software-engineer/AGENT.md",
       "source_sha256": "94974db977861878bf6b7bc659e00326678ec3af4f1102d9d50cb5830a5e79af",
       "target_path": "knowledge/agents/software-engineering/software-engineer/agent.source.md",
-      "target_sha256": "ca9f6f5c752e2311ce389d4da4015452c9bf92e655d9624d16071bfdb371a3b7",
+      "target_sha256": "c27b0bdeb25636327fd4c43e2d2aeabcafaa232ae85a2edcffe655a5f8a0e0ab",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4744,7 +4744,7 @@
       "source_path": "skills/engineering-practices/documentation-designer/SKILL.md",
       "source_sha256": "993f43e958ba9459281ccb66b6882c38c4f1f3249d38910b6680bcf1ca880123",
       "target_path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "target_sha256": "d190db49d9f7a0eb9a707e7bdabe98fdbbf90d0f305b6bc82a0c5934407dc645",
+      "target_sha256": "9f64578b69f4c77119b5c63fff977c421bd7bef729ee44e56fc8aed898e07c3e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15937,7 +15937,7 @@
       "source_path": "skills/requesting-code-review/SKILL.md",
       "source_sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
       "target_path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "target_sha256": "943f01a9df4b16a191d41f76a9c7c17bbb3cbc6ce7594d12ee63133216a2e515",
+      "target_sha256": "38fe435b4a09f8c41908426d9baa2ad37598be9497729ba813c018bfaa56a39c",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16211,7 +16211,7 @@
       "source_path": "skills/test-driven-development/SKILL.md",
       "source_sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
       "target_path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "target_sha256": "8de73e9043db51b5c9eb44e813289e59a967e5554889c8aff3c1137584b522aa",
+      "target_sha256": "78f07f64b15541a2b2e761eeaea7c612966be968bb82b077275f01c173c7225c",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16256,7 +16256,7 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "6ffbb8213b505496ce49def12c7db68f376fd6e03b0ade0fe3521c2fe38f2f0b",
+      "target_sha256": "bc350182fb0492ff01b249beb6481abfe33447d91f134ecb61d9b57becf82abc",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -20444,6 +20444,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-08T00:10:41Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
+      "source_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "target_path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
+      "target_sha256": "5c42ea4123df2831355b1ee588b52627192090c16513c7995d2d6bd6089a38c4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-08T00:21:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
+      "source_sha256": "552c2dbfde3c48521b0fb353aa1eda77be38080cfde8ed86c4849c67bf14c3e2",
+      "target_path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
+      "target_sha256": "552c2dbfde3c48521b0fb353aa1eda77be38080cfde8ed86c4849c67bf14c3e2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-08T00:21:38Z"
     }
   ]
 }

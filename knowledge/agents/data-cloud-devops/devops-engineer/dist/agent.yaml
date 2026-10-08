@@ -29,6 +29,7 @@ instruction: >
   - [cis-controls](knowledge/skills/security/grc/cis-controls/SKILL.md)
   - [desktop-app-distribution](knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md)
   - [repository-artifact-hygiene](knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md)
+  - [ci-security-scanning](knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md)
 
   ---
 
@@ -47,6 +48,8 @@ instruction: >
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/ci-security-scanning/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/desktop-app-distribution/SKILL.md
   - type: skill_integration
