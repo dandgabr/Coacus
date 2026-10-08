@@ -6,6 +6,7 @@ description: >-
   GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with
   the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.
 skills:
+  - knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md
   - knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md
@@ -60,6 +61,7 @@ This agent operates using the guidelines and technical standards established in 
 - [git-conventional-commits](knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [devops-engineer](knowledge/skills/roles/devops-engineer/SKILL.md)
+- [ci-security-scanning](knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md)
 
 ---
 

@@ -32,6 +32,15 @@ python3 -m unittest discover -s tests
 no drift. CI runs `validate` → `check` → `completeness` → tests and never
 `generate`, so a drift failure means regenerate locally and commit the result.
 
+## Reproduce the other machine
+
+The gate above passes on the machine that ran it. CI does not: a check that is green
+here can drift there when the two environments differ. When CI disagrees with the local
+gate, clone the pushed commit into a clean directory and run the failing step there
+before changing anything; the difference is usually the environment (a compressor, a
+locale, an ignored file), not the code. An artifact whose bytes depend on any of these
+cannot be drift-checked: build it from normalized inputs and pin one known value.
+
 ## Measure the environment before a command
 
 The gate above, and every command a skill or a workflow presents, rest on an
@@ -82,6 +91,25 @@ working material or local state, and keep the last two out of the commit.
   removed path and repair the reference — rewrite it to the document that now
   holds the rationale, or remove the sentence that needed it.
 - The `repository-artifact-hygiene` skill carries the full procedure.
+
+## Work that is not yours
+
+When the tree holds uncommitted work you did not write (another agent's, or the owner's
+in another tool), do not edit, stash or regenerate in place.
+
+- Make a separate worktree on a new branch from the committed head and load a snapshot
+  there: the tracked diff as a patch, and the untracked files copied. The original tree
+  stays exactly as it was.
+- Validate the snapshot as a stranger would: regenerate, refresh the provenance lock,
+  run every gate and the whole suite. Work that was written ahead of its generated
+  artifacts fails the count and drift checks until they are regenerated; that is its
+  normal state, not a defect.
+- Check what the work claims against what it contains: licenses and attribution (measure
+  the longest verbatim overlap with a source it says it paraphrased), the cost of any
+  pattern it runs on every call, and what its commands can write.
+- Open a pull request, let CI judge it, and read the failures: CI found a determinism
+  defect in an artifact that every local check had accepted. After it merges, tell the
+  owner that the uncommitted copy is redundant; never delete it for them.
 
 ## Ship through review
 

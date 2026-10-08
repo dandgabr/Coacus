@@ -29,6 +29,7 @@ instruction: >
   - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
   - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
   - [lang-bash](knowledge/skills/languages/lang-bash/SKILL.md)
+  - [gnome-shell-extension-development](knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
   ---
 
@@ -50,6 +51,8 @@ tools:
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/system-design-scalability/SKILL.md
   - type: skill_integration

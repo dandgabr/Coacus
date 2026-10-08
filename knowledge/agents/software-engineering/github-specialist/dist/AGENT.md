@@ -5,6 +5,7 @@ Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Secu
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [ci-security-scanning](../../../../skills/engineering/practices/ci-security-scanning/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [git-conventional-commits](../../../../skills/engineering/practices/git-conventional-commits/SKILL.md)
 - [vcs-repository-management](../../../../skills/engineering/practices/vcs-repository-management/SKILL.md)
@@ -59,6 +60,7 @@ This agent operates using the guidelines and technical standards established in 
 - [git-conventional-commits](../../../../skills/engineering/practices/git-conventional-commits/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [devops-engineer](../../../../skills/roles/devops-engineer/SKILL.md)
+- [ci-security-scanning](../../../../skills/engineering/practices/ci-security-scanning/SKILL.md)
 
 ---
 
