@@ -350,6 +350,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
+| [`docs/reference/desktop-extension-practices.md`](docs/reference/desktop-extension-practices.md) | Find GNOME preferences, connector recovery, native theme, and update-preservation practices by task. |
 | [`docs/standards/`](docs/standards/) | The 24 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |

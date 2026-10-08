@@ -49,6 +49,24 @@ and invocation rules are in [skill-authoring](standards/skill-authoring.md).
 After adding a skill, run `coacus validate`, then hand it to the `skill-auditor`
 agent for a severity-ranked review before publishing.
 
+## Update a skill and its references
+
+1. Locate the canonical entry with `python3 scripts/coacus_skill_search.py show
+   <skill-name>`. Edit that source and its disclosed reference files; keep new
+   branch-specific depth outside the entry body.
+2. Link each new reference from the skill so a reader can discover it. Record
+   evidence with a pinned source and explicit limitations. Promote durable
+   conclusions into `docs/reports/`; keep working plans in ignored `docs/temp/`.
+3. Run `python3 scripts/coacus.py refresh` to reconcile provenance after source
+   edits, then run `generate`, `validate`, `check`, `completeness`, and the
+   deterministic suite shown above.
+4. Review the source and generated diff together. Catalog entries describe skills,
+   not every reference file, so a reference-only edit may leave the catalog bytes
+   unchanged. Never manufacture a catalog change by editing its generated files.
+5. Commit the sources and changed generated artifacts. Installations are a separate
+   step: follow [the installation guide](install.md) and verify the selected
+   harness after installing. Regeneration alone does not update a copied install.
+
 ## Add a workflow (process skill)
 
 Same contract as a skill, but the path is
