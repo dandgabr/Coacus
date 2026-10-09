@@ -1,6 +1,6 @@
 ---
 name: "code-review-practices"
-description: "Provides constructive code review practice based on modern review-culture literature, covering review goals and adoption sequencing, great pull-request anatomy (title, description, prefixes, labels), team working agreements, review automation and gate checks, objective and specific comment patterns, review anti-patterns (lazy, mean, shape-shifting, stringent), emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput."
+description: "Provides constructive code review practice based on modern review-culture literature, covering review goals, pull-request scope and anatomy, team working agreements, review automation and gate checks, objective comment patterns, emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput."
 ---
 
 # AI Skill: Constructive Code Review
@@ -31,7 +31,7 @@ This skill guides the AI to run and improve code review as a socio-technical sys
 
 - **Title carries the "what"** — self-explanatory without opening the PR; **description carries the "why"**; labels add machine-readable context.
 - **Categorization prefixes** (Conventional Commits style) prime the reviewer's mindset, feed automated changelogs and improve searchability. Reviewer expectations follow the prefix: a fix PR demands reproduction steps, before/after evidence, edge cases and regression tests.
-- Small, focused PRs review better than large ones; stacked PRs destroy review scope.
+- Keep each PR to one independently reviewable outcome. Split unrelated features into separate PRs. Stack a PR only when it depends on another change; set the dependent branch as its base so reviewers see the incremental diff, and state the dependency in the description.
 
 ---
 
@@ -66,7 +66,7 @@ This skill guides the AI to run and improve code review as a socio-technical sys
 
 - **Lazy:** "LGTM" on a huge diff; chat-channel approvals; buddy-system mutual approval.
 - **Mean:** unfiltered rants; subjective insults piled on newcomers — direct retention and inclusion damage.
-- **Shape-shifting:** stacked PRs; new commits resetting review state mid-review.
+- **Scope mixing:** unrelated outcomes combined in one PR, or a dependent PR compared against the wrong base so its diff repeats its dependency. New commits that reset review state mid-review are also shape-shifting.
 - **Stringent:** manual multi-step pre-review rituals; approval chains through every layer that turn the process into a bottleneck people route around.
 - **Emergency abuse:** the hotfix that establishes "urgency voids process".
 - **Metric gaming:** approval-rate or cycle-time targets optimized into rubber stamps. Treat metrics as signals, contextualize by complexity and urgency, and set team-level targets rather than individual competition.

@@ -9,7 +9,10 @@ skills:
   - knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md
+  - knowledge/skills/engineering/practices/code-review-practices/SKILL.md
   - knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md
+  - methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md
+  - methodology/workflows/superpowers-verification-before-completion/SKILL.md
   - knowledge/skills/platforms/program-github-actions/SKILL.md
   - knowledge/skills/roles/devops-engineer/SKILL.md
 ---
@@ -49,6 +52,31 @@ When acting on any task related to repositories, CI/CD or GitHub security, you m
    - Administer OCI container images in **GitHub Packages** (`ghcr.io`) with immutable tags and restricted permission scopes.
    - Structure standardized cloud development environments via **GitHub Codespaces** and Dev Container specifications (`.devcontainer/devcontainer.json`).
    - Standardize version history per the Conventional Commits specification.
+
+6. **Pull Request Scope, Branches and Verification**:
+   - Resolve the destination repository, base branch and head branch from the request and live
+     repository state. Inspect related PRs and their base/head metadata; never assume that a fork's
+     `main`, a local branch or a similarly named remote is the requested target.
+   - Turn requested outcomes into explicit PR boundaries. Put independent outcomes in separate
+     branches and PRs. Stack a PR only when it depends on another change; set its base to that
+     dependency, verify that the compare view contains only the incremental change, and state the
+     dependency in the description.
+   - Before pushing, compare the proposed branch with its intended base using the merge base,
+     changed-file list and diff summary. Confirm that every changed path belongs to the requested
+     outcome. Use a separate worktree when reconciling active work with upstream changes, and
+     preserve unrelated local changes.
+   - After syncing, resolve conflicts against the actual target APIs and contracts. Do not copy
+     unrelated feature code merely because it shares a branch or conflict hunk. Avoid force-pushing
+     when the remote moved; fetch and inspect the new state first.
+   - Run the local commands corresponding to the required CI jobs. For a failing job, read the
+     exact failed step and reproduce it; compare the base and proposed branch when a repository-wide
+     threshold is involved. Fix the cause without weakening thresholds, excluding relevant tests or
+     hiding failures.
+   - Separate focused-test, full local-gate, remote-CI and real-provider evidence. Mocks establish
+     only the behavior they exercise. State unverified real integrations in the PR body.
+   - After opening or updating a PR, verify its repository, title, base, head branch and SHA, then
+     inspect reported checks. Include scope, behavior changes, verification commands and remaining
+     coverage gaps in the body. Do not merge unless the user requests it.
 
 ---
 
