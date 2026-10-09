@@ -741,7 +741,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "d46d768880bac97c4a5b879fd2d32115eb4abfbde639b8c84c4154761d31140e",
+      "target_sha256": "2116ff71483feffda464914bf4f0fe77dcd7999caa218bb73935378a12e14f99",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18229,9 +18229,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "source_sha256": "0a8696f91636c85722bb4d42721a2ab526e11e40fa01da4225a0cb2ea303e33c",
+      "source_sha256": "dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165",
       "target_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "target_sha256": "0a8696f91636c85722bb4d42721a2ab526e11e40fa01da4225a0cb2ea303e33c",
+      "target_sha256": "dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

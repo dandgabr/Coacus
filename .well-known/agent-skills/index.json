@@ -577,10 +577,10 @@
     },
     {
       "name": "code-review-practices",
-      "description": "Provides constructive code review practice based on modern review-culture literature, covering review goals and adoption sequencing, great pull-request anatomy (title, description, prefixes, labels), team working agreements, review automation and gate checks, objective and specific comment patterns, review anti-patterns (lazy, mean, shape-shifting, stringent), emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput.",
+      "description": "Provides constructive code review practice based on modern review-culture literature, covering review goals, pull-request scope and anatomy, team working agreements, review automation and gate checks, objective comment patterns, emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "digest": "sha256:0a8696f91636c85722bb4d42721a2ab526e11e40fa01da4225a0cb2ea303e33c"
+      "digest": "sha256:dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165"
     },
     {
       "name": "color-contrast-accessibility",
