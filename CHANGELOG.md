@@ -5,6 +5,19 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Elfvision lifecycle and discovery lessons
+
+### Changed
+
+- GNOME extension references cover observable preferences actions, signal cleanup,
+  session-turnover recovery, account-preserving updates, and native theme geometry.
+- The skill's discovery description names stale controls, coordination failures
+  and installed-versus-loaded mismatches.
+- README and documentation indexes link the desktop-extension reference map;
+  usage and contribution guidance describe skill discovery and reference updates.
+- The durable [Elfvision learning report](docs/reports/2026-10-08-elfvision-learning-consolidation.md)
+  moved from process scratch into the committed reports directory.
+
 ## [Unreleased] — GNOME connector, effects and delivery lessons
 
 ### Changed

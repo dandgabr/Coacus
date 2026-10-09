@@ -14,6 +14,8 @@ Index of the repository's documentation. Each file has one job.
 | [`roadmap.md`](roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`reference/python-api.md`](reference/python-api.md) | GENERATED Python API reference from source docstrings. Do not edit. |
 | [`reference/lifecycle-matrix.md`](reference/lifecycle-matrix.md) | GENERATED harness lifecycle capability matrix (one evidence class per cell). Do not edit. |
+| [`reference/desktop-extension-practices.md`](reference/desktop-extension-practices.md) | Task-based pointers to GNOME preferences, accounts, themes, and update-preservation guidance. |
+| [`reports/2026-10-08-elfvision-learning-consolidation.md`](reports/2026-10-08-elfvision-learning-consolidation.md) | Source evidence, behavioral evaluation, and limits of the Elfvision learning transfer. |
 | [`decisions/`](decisions/) | Committed Architecture Decision Records (MADR) for structural choices. |
 | [`standards/`](standards/) | The normative standards (English). Read the relevant one before changing that area. |
 | Process artifacts (`temp/`) | Ephemeral design specs and implementation plans written by the process workflows; ignored by version control ([`standards/plan-artifacts.md`](standards/plan-artifacts.md)). |

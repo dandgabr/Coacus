@@ -82,6 +82,20 @@ The command is offline and deterministic: it lists every moving release pin with
 the network. Resolution itself follows the
 [version-freshness](standards/version-freshness.md) standard.
 
+### Find a canonical skill
+
+Search the generated skill catalog or resolve a known entry by its exact name:
+
+```text
+python3 scripts/coacus_skill_search.py search "session coordination" --top 3
+python3 scripts/coacus_skill_search.py show gnome-shell-extension-development
+```
+
+Search matches canonical names and descriptions; it does not search reference
+contents. Read the selected skill and follow its pointers for branch-specific
+guidance. The [desktop extension reference map](reference/desktop-extension-practices.md)
+provides task-based entry points for preferences, accounts, themes, and updates.
+
 ### Select agents (routing)
 
 ```bash
