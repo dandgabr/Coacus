@@ -436,6 +436,13 @@
       "digest": "sha256:9caff42c34c51c93b1d45581e78420dc4b2ae9ee58c3c53ae49e9d8e94a08ebd"
     },
     {
+      "name": "canvas-spatial-whiteboarding",
+      "description": "Provides methodologies and spatial design frameworks for infinite canvas whiteboarding, visual research, exploratory mapping, and strategic analysis. Covers spatial information architecture, 2x2 competitive positioning matrices, customer journey maps, service blueprints, affinity clustering, wireframe decision trees, and collaborative multiplayer board hygiene. Use when researching competitors, mapping user workflows, conducting design sprints, synthesizing requirements, or structuring unstructured discovery onto a visual canvas.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md",
+      "digest": "sha256:7fa6ae6863f66759e87cd9f5ff87831dd92dd7e39a3a1704b3c767cf17d8bad0"
+    },
+    {
       "name": "career-profile-optimization",
       "description": "Specialist in Professional Profile Optimization (LinkedIn, Upwork, GitHub). Masters LinkedIn Recruiter search algorithms, high-conversion headline formulation, Upwork proposal engineering (two-first-lines rule, JSS management), and GitHub portfolio curation.",
       "type": "archive",
@@ -2396,6 +2403,20 @@
       "digest": "sha256:639d38aa10df946dd172274c112ed3b9523f85c1c9a178846020f95cbc333923"
     },
     {
+      "name": "ui-app-layout-architectures",
+      "description": "Provides structural interface patterns for modern Web App Shells and Mobile application layouts. Covers navigation topologies (collapsible sidebars, nav rails, top navigation, bottom bar tab bars), multi-pane patterns (Master-Detail, Split-View, Inspector Drawers), responsive density transitions, viewport budgeting, safe-area mobile insets (env(safe-area-inset-*)), and touch ergonomics. Use when designing web application shells, desktop software, mobile apps, or multi-panel productivity suites.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
+      "digest": "sha256:4771868dac50458b38e6c71af5aacd69e8f56f60e9119ae061d217bcbe687cd0"
+    },
+    {
+      "name": "ui-data-tables-dashboards",
+      "description": "Provides design engineering patterns for complex data tables, dense data displays, and analytical dashboard architectures. Covers data density modes (compact, default, comfy), tabular numeral typography, column pinning (frozen headers/columns), multi-column sorting and filtering, batch actions, skeleton loading states, empty states, and inline micro-visualizations (sparklines, trend indicators). Use when designing B2B dashboards, financial consoles, analytics portals, or data-heavy administration views.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
+      "digest": "sha256:d72e778370cd025e7843f510d61366ec6cfc20f72e000e11e7731260a8ab9329"
+    },
+    {
       "name": "ui-designer",
       "description": "Provides the UI design discipline craft (interface/visual design separated from UX): visual hierarchy and composition, 8pt spacing systems, type scales and legibility, semantic color tokens, component state design, design tokens (DTCG), dark mode and touch-target standards, art-direction-to-handoff process and UI evaluation checklists. Use when designing high-fidelity interfaces, building design systems, or reviewing visual craft.",
       "type": "skill-md",
@@ -2429,6 +2450,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
       "digest": "sha256:ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a"
+    },
+    {
+      "name": "ui-presentation-slides",
+      "description": "Provides design engineering patterns for high-impact presentation slides, technical pitch decks, and executive briefings. Covers 16:9 canvas geometry, the Assertion-Evidence framework (Alley, 2003), typographic scale budgets for distance legibility, visual storytelling layouts (split comparison, metric hero, timeline progressions, system architecture breakdowns), high-contrast data visualization, and cognitive load minimization. Use when designing presentation decks, slide decks, pitch decks, keynote visuals, or board summaries.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md",
+      "digest": "sha256:be288badf0df21fbe9d82a12e13055b3362786f7eca5e08d397ef28e74644e24"
     },
     {
       "name": "ui-style-3d-immersive-webgl",

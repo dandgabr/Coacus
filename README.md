@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 408 skills across eleven categories, 98 agents, one MCP declaration.
+- **Knowledge** — what the framework knows: 412 skills across eleven categories, 98 agents, one MCP declaration.
 - **Methodology** — how work proceeds: 27 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 408 | `domains` 140, `security` 127, `engineering` 31, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
+| Skills | 412 | `domains` 140, `security` 127, `engineering` 31, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
 | Agents | 98 | `cybersecurity` 22, `software-engineering` 18, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 27 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 435 skill entries | 408 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1405 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 439 skill entries | 412 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1409 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -327,7 +327,7 @@ Phases **F0–F10 complete**; the repository is finished.
 | **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
 | **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
 
-The framework ships the imported corpus (408 skills, 98 agents, 27 workflows, one
+The framework ships the imported corpus (412 skills, 98 agents, 27 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer

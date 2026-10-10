@@ -20474,6 +20474,66 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-08T00:21:38Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md",
+      "source_sha256": "7fa6ae6863f66759e87cd9f5ff87831dd92dd7e39a3a1704b3c767cf17d8bad0",
+      "target_path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md",
+      "target_sha256": "7fa6ae6863f66759e87cd9f5ff87831dd92dd7e39a3a1704b3c767cf17d8bad0",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-10T17:03:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
+      "source_sha256": "4771868dac50458b38e6c71af5aacd69e8f56f60e9119ae061d217bcbe687cd0",
+      "target_path": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
+      "target_sha256": "4771868dac50458b38e6c71af5aacd69e8f56f60e9119ae061d217bcbe687cd0",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-10T17:03:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
+      "source_sha256": "d72e778370cd025e7843f510d61366ec6cfc20f72e000e11e7731260a8ab9329",
+      "target_path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
+      "target_sha256": "d72e778370cd025e7843f510d61366ec6cfc20f72e000e11e7731260a8ab9329",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-10T17:03:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md",
+      "source_sha256": "be288badf0df21fbe9d82a12e13055b3362786f7eca5e08d397ef28e74644e24",
+      "target_path": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md",
+      "target_sha256": "be288badf0df21fbe9d82a12e13055b3362786f7eca5e08d397ef28e74644e24",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-10T17:03:51Z"
     }
   ]
 }

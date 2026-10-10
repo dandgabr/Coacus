@@ -169,6 +169,9 @@
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
     },
     {
+      "path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding"
+    },
+    {
       "path": "knowledge/skills/domains/design/color-contrast-accessibility"
     },
     {
@@ -190,6 +193,12 @@
       "path": "knowledge/skills/domains/design/game-sprite-design"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-app-layout-architectures"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-data-tables-dashboards"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-hero-sections"
     },
     {
@@ -197,6 +206,9 @@
     },
     {
       "path": "knowledge/skills/domains/design/ui-onboarding-tours"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-presentation-slides"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl"
