@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 98,
-    "skills": 435,
+    "skills": 439,
     "mcps": 1
   },
   "agents": [
@@ -821,6 +821,10 @@
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
     },
     {
+      "name": "canvas-spatial-whiteboarding",
+      "path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md"
+    },
+    {
       "name": "color-contrast-accessibility",
       "path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md"
     },
@@ -849,6 +853,14 @@
       "path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md"
     },
     {
+      "name": "ui-app-layout-architectures",
+      "path": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md"
+    },
+    {
+      "name": "ui-data-tables-dashboards",
+      "path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md"
+    },
+    {
       "name": "ui-hero-sections",
       "path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md"
     },
@@ -859,6 +871,10 @@
     {
       "name": "ui-onboarding-tours",
       "path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md"
+    },
+    {
+      "name": "ui-presentation-slides",
+      "path": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md"
     },
     {
       "name": "ui-style-3d-immersive-webgl",

@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 435 skill(s) · 98 agent(s) · 1 MCP(s)
+**Totals:** 439 skill(s) · 98 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -167,6 +167,7 @@
 | academic-thermodynamics-statistical-physics | [knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md](../knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md) |
 | data-science-advanced-math | [knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md](../knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md) |
 | quantum-computing-algorithms | [knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md](../knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md) |
+| canvas-spatial-whiteboarding | [knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md](../knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md) |
 | color-contrast-accessibility | [knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md](../knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md) |
 | color-data-visualization | [knowledge/skills/domains/design/color-data-visualization/SKILL.md](../knowledge/skills/domains/design/color-data-visualization/SKILL.md) |
 | color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
@@ -174,9 +175,12 @@
 | color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
 | game-2d-scene-composition | [knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md](../knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md) |
 | game-sprite-design | [knowledge/skills/domains/design/game-sprite-design/SKILL.md](../knowledge/skills/domains/design/game-sprite-design/SKILL.md) |
+| ui-app-layout-architectures | [knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md](../knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md) |
+| ui-data-tables-dashboards | [knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md](../knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md) |
 | ui-hero-sections | [knowledge/skills/domains/design/ui-hero-sections/SKILL.md](../knowledge/skills/domains/design/ui-hero-sections/SKILL.md) |
 | ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
 | ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |
+| ui-presentation-slides | [knowledge/skills/domains/design/ui-presentation-slides/SKILL.md](../knowledge/skills/domains/design/ui-presentation-slides/SKILL.md) |
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
 | ui-style-ai-native-generative-ui | [knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md) |
