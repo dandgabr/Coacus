@@ -16,13 +16,19 @@ from engine.dispatcher import register_converter
 from verticals.architecture_si.pipelines.ingest.handlers import _common as common
 
 try:  # pragma: no cover - environment dependent
+    import pymupdf4llm
+    HAVE_PYMUPDF4LLM = True
+except ImportError:  # pragma: no cover
+    HAVE_PYMUPDF4LLM = False
+
+try:  # pragma: no cover - environment dependent
     import fitz  # PyMuPDF
     HAVE_FITZ = True
 except ImportError:  # pragma: no cover
     HAVE_FITZ = False
 
 HAVE_PYPDF = False
-if not HAVE_FITZ:  # pragma: no cover
+if not HAVE_PYMUPDF4LLM and not HAVE_FITZ:  # pragma: no cover
     try:
         import pypdf
         HAVE_PYPDF = True
@@ -124,20 +130,30 @@ def convert_pdf_with_pypdf(pdf_path: str, output_path: Optional[str] = None) -> 
     return common.write_markdown(clean_text("\n".join(md_lines)), output_path, pdf_path)
 
 
+def convert_pdf_with_pymupdf4llm(pdf_path: str, output_path: Optional[str] = None) -> str:
+    """Convert a PDF to structured Markdown using pymupdf4llm."""
+    if output_path is None:
+        output_path = str(Path(pdf_path).with_suffix(".md"))
+    md_text = pymupdf4llm.to_markdown(str(pdf_path))
+    return common.write_markdown(clean_text(md_text), output_path, pdf_path)
+
+
 def convert_pdf_to_markdown(
     pdf_path: str, output_path: Optional[str] = None, **kwargs: Any
 ) -> str:
-    """Convert a PDF to Markdown, selecting PyMuPDF or pypdf by availability."""
+    """Convert a PDF to Markdown, selecting pymupdf4llm, PyMuPDF or pypdf by availability."""
     if not Path(pdf_path).exists():
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
+    if HAVE_PYMUPDF4LLM and not kwargs.get("toc_only"):
+        return convert_pdf_with_pymupdf4llm(pdf_path, output_path)
     if HAVE_FITZ:
         return convert_pdf_with_fitz(pdf_path, output_path, **kwargs)
     if HAVE_PYPDF:
         return convert_pdf_with_pypdf(pdf_path, output_path)
-    raise RuntimeError("No PDF library available: pip install PyMuPDF or pip install pypdf")
+    raise RuntimeError("No PDF library available: pip install pymupdf4llm, PyMuPDF, or pypdf")
 
 
 @register_converter(".pdf")
-def handle_pdf(input_path: str, output_path: str | None = None) -> str:
+def handle_pdf(input_path: str, output_path: str | None = None, **options: Any) -> str:
     """Convert a PDF to Markdown and return the written path."""
-    return convert_pdf_to_markdown(input_path, output_path)
+    return convert_pdf_to_markdown(input_path, output_path, **options)

@@ -1615,11 +1615,15 @@ interface parity with the upstream converter.
 
 Convert a PDF to Markdown using pypdf (plain per-page text extraction).
 
+#### `def convert_pdf_with_pymupdf4llm(pdf_path: str, output_path: Optional[str]=None) -> str`
+
+Convert a PDF to structured Markdown using pymupdf4llm.
+
 #### `def convert_pdf_to_markdown(pdf_path: str, output_path: Optional[str]=None, **kwargs: Any) -> str`
 
-Convert a PDF to Markdown, selecting PyMuPDF or pypdf by availability.
+Convert a PDF to Markdown, selecting pymupdf4llm, PyMuPDF or pypdf by availability.
 
-#### `def handle_pdf(input_path: str, output_path: str | None=None) -> str`
+#### `def handle_pdf(input_path: str, output_path: str | None=None, **options: Any) -> str`
 
 Convert a PDF to Markdown and return the written path.
 
