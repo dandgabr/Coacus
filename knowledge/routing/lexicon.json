@@ -1325,6 +1325,30 @@
       "auditoria de animacao",
       "consistencia de sprites",
       "revisao de personagens"
+    ],
+    "agentic-ai-architect": [
+      "agentic ai",
+      "agente autonomo",
+      "autonomous agent",
+      "multi-agent systems",
+      "sistemas multiagente",
+      "agentic architecture",
+      "arquiteto de agentes",
+      "multimodal ai",
+      "langgraph",
+      "agent cognitive loop"
+    ],
+    "incident-response-commander": [
+      "incident response",
+      "resposta a incidentes",
+      "blue team",
+      "picerl",
+      "incident commander",
+      "forensics triage",
+      "triage de seguranca",
+      "containment",
+      "live host triage",
+      "rfc 3227"
     ]
   }
 }

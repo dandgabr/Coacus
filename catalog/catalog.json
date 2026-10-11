@@ -1,11 +1,17 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 98,
-    "skills": 439,
+    "agents": 100,
+    "skills": 446,
     "mcps": 1
   },
   "agents": [
+    {
+      "name": "agentic-ai-architect",
+      "category": "data-cloud-devops",
+      "description": "Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection (hierarchical, blackboard, peer consensus), agent cognitive loops (ReAct, OODA, reflection), long-term vector/graph memory hierarchies, tool execution sandboxing, and Kubernetes runtime scaling with vLLM and KubeRay.",
+      "source": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md"
+    },
     {
       "name": "ai-ml-architect",
       "category": "architecture",
@@ -323,6 +329,12 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
       "source": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md"
+    },
+    {
+      "name": "incident-response-commander",
+      "category": "cybersecurity",
+      "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
+      "source": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md"
     },
     {
       "name": "information-systems-specialist",
@@ -1181,6 +1193,10 @@
       "path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md"
     },
     {
+      "name": "ai-multimodal-agentic-systems",
+      "path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md"
+    },
+    {
       "name": "applied-ai-automation",
       "path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md"
     },
@@ -1393,6 +1409,10 @@
       "path": "knowledge/skills/frameworks/framework-grpc/SKILL.md"
     },
     {
+      "name": "framework-langchain",
+      "path": "knowledge/skills/frameworks/framework-langchain/SKILL.md"
+    },
+    {
       "name": "framework-microprofile-jakarta",
       "path": "knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md"
     },
@@ -1415,6 +1435,10 @@
     {
       "name": "framework-soap",
       "path": "knowledge/skills/frameworks/framework-soap/SKILL.md"
+    },
+    {
+      "name": "framework-spring-ai",
+      "path": "knowledge/skills/frameworks/framework-spring-ai/SKILL.md"
     },
     {
       "name": "framework-spring-boot",
@@ -1463,6 +1487,10 @@
     {
       "name": "hpc-supercomputing-clusters",
       "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md"
+    },
+    {
+      "name": "k8s-genai-workloads",
+      "path": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md"
     },
     {
       "name": "linux-kernel-systemd-internals",
@@ -2017,6 +2045,10 @@
       "path": "knowledge/skills/security/iam/identity-governance-iga/SKILL.md"
     },
     {
+      "name": "identity-security-software-development",
+      "path": "knowledge/skills/security/iam/identity-security-software-development/SKILL.md"
+    },
+    {
       "name": "machine-identity-spiffe-workload",
       "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md"
     },
@@ -2065,6 +2097,10 @@
       "path": "knowledge/skills/security/operations/container-runtime-security/SKILL.md"
     },
     {
+      "name": "cybersecurity-ops-bash",
+      "path": "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md"
+    },
+    {
       "name": "detection-engineering",
       "path": "knowledge/skills/security/operations/detection-engineering/SKILL.md"
     },
@@ -2095,6 +2131,10 @@
     {
       "name": "ids-ips-ndr-engineering",
       "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md"
+    },
+    {
+      "name": "incident-response-blue-team",
+      "path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md"
     },
     {
       "name": "itdr-identity-threat-detection",

@@ -439,6 +439,9 @@
       "path": "knowledge/skills/domains/industry/ai-model-evaluation"
     },
     {
+      "path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems"
+    },
+    {
       "path": "knowledge/skills/domains/industry/applied-ai-automation"
     },
     {
@@ -598,6 +601,9 @@
       "path": "knowledge/skills/frameworks/framework-grpc"
     },
     {
+      "path": "knowledge/skills/frameworks/framework-langchain"
+    },
+    {
       "path": "knowledge/skills/frameworks/framework-microprofile-jakarta"
     },
     {
@@ -614,6 +620,9 @@
     },
     {
       "path": "knowledge/skills/frameworks/framework-soap"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-spring-ai"
     },
     {
       "path": "knowledge/skills/frameworks/framework-spring-boot"
@@ -650,6 +659,9 @@
     },
     {
       "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/k8s-genai-workloads"
     },
     {
       "path": "knowledge/skills/infrastructure/linux-kernel-systemd-internals"
@@ -1066,6 +1078,9 @@
       "path": "knowledge/skills/security/iam/identity-governance-iga"
     },
     {
+      "path": "knowledge/skills/security/iam/identity-security-software-development"
+    },
+    {
       "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload"
     },
     {
@@ -1102,6 +1117,9 @@
       "path": "knowledge/skills/security/operations/container-runtime-security"
     },
     {
+      "path": "knowledge/skills/security/operations/cybersecurity-ops-bash"
+    },
+    {
       "path": "knowledge/skills/security/operations/detection-engineering"
     },
     {
@@ -1124,6 +1142,9 @@
     },
     {
       "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/operations/incident-response-blue-team"
     },
     {
       "path": "knowledge/skills/security/operations/itdr-identity-threat-detection"

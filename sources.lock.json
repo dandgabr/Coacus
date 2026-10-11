@@ -20534,6 +20534,141 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-10T17:03:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md",
+      "source_sha256": "5369d8d94b241e09bf85e2559527fce20d38106ca51998df393582420556cea8",
+      "target_path": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md",
+      "target_sha256": "5369d8d94b241e09bf85e2559527fce20d38106ca51998df393582420556cea8",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
+      "source_sha256": "6a3bb4b6fd72db252b5e2691c76757f3814b7d0dce721162d17cb219da372828",
+      "target_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
+      "target_sha256": "6a3bb4b6fd72db252b5e2691c76757f3814b7d0dce721162d17cb219da372828",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md",
+      "source_sha256": "68fd515fa4e7901c6745c6c23ddaf2d317fb82d89baf8f2af48d320bc02be981",
+      "target_path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md",
+      "target_sha256": "68fd515fa4e7901c6745c6c23ddaf2d317fb82d89baf8f2af48d320bc02be981",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/frameworks/framework-langchain/SKILL.md",
+      "source_sha256": "b6a1e708a49bd72ec0cfb4a3a2db4115b6778a91ddc3593b6a21ea65109c811f",
+      "target_path": "knowledge/skills/frameworks/framework-langchain/SKILL.md",
+      "target_sha256": "b6a1e708a49bd72ec0cfb4a3a2db4115b6778a91ddc3593b6a21ea65109c811f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/frameworks/framework-spring-ai/SKILL.md",
+      "source_sha256": "fee7db9e3228ccc1f460ce069fb3339194e467e23aa76b6b3713300bccb44a79",
+      "target_path": "knowledge/skills/frameworks/framework-spring-ai/SKILL.md",
+      "target_sha256": "fee7db9e3228ccc1f460ce069fb3339194e467e23aa76b6b3713300bccb44a79",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
+      "source_sha256": "8d218563f2d5c883d7336ceddc0384a16327b497b0c3306c5426f06192e491a5",
+      "target_path": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
+      "target_sha256": "8d218563f2d5c883d7336ceddc0384a16327b497b0c3306c5426f06192e491a5",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/iam/identity-security-software-development/SKILL.md",
+      "source_sha256": "ff869ccbd814db07880b9914213d3b8af07a2b541ed419625756cca96b7bd6f2",
+      "target_path": "knowledge/skills/security/iam/identity-security-software-development/SKILL.md",
+      "target_sha256": "ff869ccbd814db07880b9914213d3b8af07a2b541ed419625756cca96b7bd6f2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md",
+      "source_sha256": "a7a7cea8a363a0a07dbb5ef1e8af4289d22f7f8b54445c225e21428a4f24df15",
+      "target_path": "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md",
+      "target_sha256": "a7a7cea8a363a0a07dbb5ef1e8af4289d22f7f8b54445c225e21428a4f24df15",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
+      "source_sha256": "e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04",
+      "target_path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
+      "target_sha256": "e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-11T20:45:51Z"
     }
   ]
 }

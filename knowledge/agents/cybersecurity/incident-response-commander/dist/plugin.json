@@ -1,0 +1,6 @@
+{
+  "name": "incident-response-commander",
+  "version": "0.1.0",
+  "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
+  "entrypoint": "AGENT.md"
+}

@@ -2,12 +2,13 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 439 skill(s) · 98 agent(s) · 1 MCP(s)
+**Totals:** 446 skill(s) · 100 agent(s) · 1 MCP(s)
 
 ## Agents
 
 | Agent | Category | Source |
 |---|---|---|
+| agentic-ai-architect | data-cloud-devops | [knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md](../knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md) |
 | ai-ml-architect | architecture | [knowledge/agents/architecture/ai-ml-architect/agent.source.md](../knowledge/agents/architecture/ai-ml-architect/agent.source.md) |
 | ai-product-manager | specialized-domains | [knowledge/agents/specialized-domains/ai-product-manager/agent.source.md](../knowledge/agents/specialized-domains/ai-product-manager/agent.source.md) |
 | ai-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md) |
@@ -61,6 +62,7 @@
 | hardware-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md) |
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
+| incident-response-commander | cybersecurity | [knowledge/agents/cybersecurity/incident-response-commander/agent.source.md](../knowledge/agents/cybersecurity/incident-response-commander/agent.source.md) |
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
 | integration-architect | architecture | [knowledge/agents/architecture/integration-architect/agent.source.md](../knowledge/agents/architecture/integration-architect/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |
@@ -257,6 +259,7 @@
 | ai-drug-discovery | [knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md](../knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md) |
 | ai-llm-engineering-rag | [knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md](../knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md) |
 | ai-model-evaluation | [knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md](../knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md) |
+| ai-multimodal-agentic-systems | [knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md](../knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md) |
 | applied-ai-automation | [knowledge/skills/domains/industry/applied-ai-automation/SKILL.md](../knowledge/skills/domains/industry/applied-ai-automation/SKILL.md) |
 | automotive-cybersecurity | [knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md) |
 | blockchain-cryptocurrency | [knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md](../knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) |
@@ -310,12 +313,14 @@
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
 | framework-grpc | [knowledge/skills/frameworks/framework-grpc/SKILL.md](../knowledge/skills/frameworks/framework-grpc/SKILL.md) |
+| framework-langchain | [knowledge/skills/frameworks/framework-langchain/SKILL.md](../knowledge/skills/frameworks/framework-langchain/SKILL.md) |
 | framework-microprofile-jakarta | [knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md](../knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md) |
 | framework-qt6 | [knowledge/skills/frameworks/framework-qt6/SKILL.md](../knowledge/skills/frameworks/framework-qt6/SKILL.md) |
 | framework-quarkus-jnosql | [knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md](../knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md) |
 | framework-react | [knowledge/skills/frameworks/framework-react/SKILL.md](../knowledge/skills/frameworks/framework-react/SKILL.md) |
 | framework-rest-api | [knowledge/skills/frameworks/framework-rest-api/SKILL.md](../knowledge/skills/frameworks/framework-rest-api/SKILL.md) |
 | framework-soap | [knowledge/skills/frameworks/framework-soap/SKILL.md](../knowledge/skills/frameworks/framework-soap/SKILL.md) |
+| framework-spring-ai | [knowledge/skills/frameworks/framework-spring-ai/SKILL.md](../knowledge/skills/frameworks/framework-spring-ai/SKILL.md) |
 | framework-spring-boot | [knowledge/skills/frameworks/framework-spring-boot/SKILL.md](../knowledge/skills/frameworks/framework-spring-boot/SKILL.md) |
 | framework-testing | [knowledge/skills/frameworks/framework-testing/SKILL.md](../knowledge/skills/frameworks/framework-testing/SKILL.md) |
 | framework-testing-javascript | [knowledge/skills/frameworks/framework-testing-javascript/SKILL.md](../knowledge/skills/frameworks/framework-testing-javascript/SKILL.md) |
@@ -328,6 +333,7 @@
 | cloud-gcp | [knowledge/skills/infrastructure/cloud-gcp/SKILL.md](../knowledge/skills/infrastructure/cloud-gcp/SKILL.md) |
 | cloud-oci | [knowledge/skills/infrastructure/cloud-oci/SKILL.md](../knowledge/skills/infrastructure/cloud-oci/SKILL.md) |
 | hpc-supercomputing-clusters | [knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md](../knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md) |
+| k8s-genai-workloads | [knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md](../knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md) |
 | linux-kernel-systemd-internals | [knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md](../knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md) |
 | program-containers | [knowledge/skills/infrastructure/program-containers/SKILL.md](../knowledge/skills/infrastructure/program-containers/SKILL.md) |
 | zero-trust-architecture-engineering | [knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md](../knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md) |
@@ -466,6 +472,7 @@
 | iam-access-oci | [knowledge/skills/security/iam/iam-access-oci/SKILL.md](../knowledge/skills/security/iam/iam-access-oci/SKILL.md) |
 | iam-access-power-platform | [knowledge/skills/security/iam/iam-access-power-platform/SKILL.md](../knowledge/skills/security/iam/iam-access-power-platform/SKILL.md) |
 | identity-governance-iga | [knowledge/skills/security/iam/identity-governance-iga/SKILL.md](../knowledge/skills/security/iam/identity-governance-iga/SKILL.md) |
+| identity-security-software-development | [knowledge/skills/security/iam/identity-security-software-development/SKILL.md](../knowledge/skills/security/iam/identity-security-software-development/SKILL.md) |
 | machine-identity-spiffe-workload | [knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md](../knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md) |
 | pam-privileged-access-management | [knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md](../knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md) |
 | secrets-management-vault | [knowledge/skills/security/iam/secrets-management-vault/SKILL.md](../knowledge/skills/security/iam/secrets-management-vault/SKILL.md) |
@@ -478,6 +485,7 @@
 | red-team-infrastructure | [knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md](../knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md) |
 | auth-protocols-mfa | [knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md](../knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md) |
 | container-runtime-security | [knowledge/skills/security/operations/container-runtime-security/SKILL.md](../knowledge/skills/security/operations/container-runtime-security/SKILL.md) |
+| cybersecurity-ops-bash | [knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md](../knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md) |
 | detection-engineering | [knowledge/skills/security/operations/detection-engineering/SKILL.md](../knowledge/skills/security/operations/detection-engineering/SKILL.md) |
 | detection-engineering-yara-sigma | [knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md](../knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md) |
 | devsecops-engineer | [knowledge/skills/security/operations/devsecops-engineer/SKILL.md](../knowledge/skills/security/operations/devsecops-engineer/SKILL.md) |
@@ -486,6 +494,7 @@
 | endpoint-detection-engineering | [knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md](../knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md) |
 | endpoint-forensics | [knowledge/skills/security/operations/endpoint-forensics/SKILL.md](../knowledge/skills/security/operations/endpoint-forensics/SKILL.md) |
 | ids-ips-ndr-engineering | [knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md](../knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md) |
+| incident-response-blue-team | [knowledge/skills/security/operations/incident-response-blue-team/SKILL.md](../knowledge/skills/security/operations/incident-response-blue-team/SKILL.md) |
 | itdr-identity-threat-detection | [knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md](../knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md) |
 | kubernetes-security-posture | [knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md](../knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md) |
 | mobile-enterprise-mdm | [knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md](../knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md) |

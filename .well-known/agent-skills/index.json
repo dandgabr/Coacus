@@ -254,6 +254,13 @@
       "digest": "sha256:33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572"
     },
     {
+      "name": "ai-multimodal-agentic-systems",
+      "description": "Architectural and engineering patterns for multimodal generative AI and autonomous agent ecosystems, drawn from Building Multimodal Generative AI and Agentic Applications (Indrajit Kar), Practical Approach to Agentic AI, and AI Agents Unleashed. Covers cross-attention vision-language models, audio/video ingestion pipelines, multi-agent collaboration topologies (hierarchical, peer-to-peer, blackboard), autonomous planning loops, memory hierarchies, and multimodal tool execution.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md",
+      "digest": "sha256:68fd515fa4e7901c6745c6c23ddaf2d317fb82d89baf8f2af48d320bc02be981"
+    },
+    {
       "name": "ai-voice-stt-tts-security",
       "description": "Acts as a Specialist in Voice Processing, Speech (STT/ASR), and Voice Synthesis (TTS) Security, covering the HAVOC model for voice-controlled devices, inaudible ultrasonic attacks, voice deepfakes, voice biometrics defense, and alignment with OWASP ML Top 10 and OWASP API Security.",
       "type": "archive",
@@ -716,6 +723,13 @@
       "digest": "sha256:b2b35fe45b9a42a8d23f65622a3c991419ed35bb5c350e23059e6e889127ddeb"
     },
     {
+      "name": "cybersecurity-ops-bash",
+      "description": "Techniques and command-line automation for defensive and offensive security operations using POSIX bash, based on Troncone & Albing's Cybersecurity Ops with bash. Covers defensive log parsing, automated integrity monitoring, network reconnaissance with native sockets, memory/process analysis, baseline drift detection, and lightweight security telemetry pipelines.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md",
+      "digest": "sha256:a7a7cea8a363a0a07dbb5ef1e8af4289d22f7f8b54445c225e21428a4f24df15"
+    },
+    {
       "name": "dast-application-testing",
       "description": "Acts as a Specialist in Dynamic Application Security Testing (DAST), covering black-box/gray-box scans, route crawling (traditional crawling and headless SPA crawling through Playwright/Selenium), parameter injection and fuzzing, authentication (OAuth 2.0, JWT, session cookies), out-of-band asynchronous testing (OAST with Interactsh/BOAST), and DAST automation in CI/CD pipelines.",
       "type": "archive",
@@ -1073,6 +1087,13 @@
       "digest": "sha256:423f5b5c8383f0e4360cf30c0f86f905342f1b279d179a53b4faa7875c860431"
     },
     {
+      "name": "framework-langchain",
+      "description": "Patterns and practices for building production LLM applications using LangChain and LangGraph, synthesized from Learning LangChain, Generative AI with LangChain, and LangChain for Life Sciences and Healthcare. Covers LCEL (LangChain Expression Language), runnable interfaces, stateful multi-agent graphs, memory systems, document loaders, vector retrievers, and self-correcting RAG loops.",
+      "type": "skill-md",
+      "url": "knowledge/skills/frameworks/framework-langchain/SKILL.md",
+      "digest": "sha256:b6a1e708a49bd72ec0cfb4a3a2db4115b6778a91ddc3593b6a21ea65109c811f"
+    },
+    {
       "name": "framework-microprofile-jakarta",
       "description": "Provides corporate patterns and conventions for Java servers and microservices based on Eclipse MicroProfile 6.x+ and Jakarta EE 10/11+ (JAX-RS, CDI, JSON-P/B, Config, Fault Tolerance, Health/Metrics).",
       "type": "archive",
@@ -1113,6 +1134,13 @@
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-soap/SKILL.md",
       "digest": "sha256:de637d23d612a7c9e9b8a2b04def5356ea592a3aa4e984014e73f09bbef5ac75"
+    },
+    {
+      "name": "framework-spring-ai",
+      "description": "Architectural and implementation patterns for enterprise generative AI using Spring AI, based on John Blum's Building Intelligent Applications with Spring AI. Covers ModelClient abstractions (ChatClient, ImageClient, AudioClient, EmbeddingClient), VectorStore integrations (PgVector, Redis, Milvus, Chroma), prompt templates, structured output converters, function calling, tool orchestration, and enterprise RAG pipelines.",
+      "type": "skill-md",
+      "url": "knowledge/skills/frameworks/framework-spring-ai/SKILL.md",
+      "digest": "sha256:fee7db9e3228ccc1f460ce069fb3339194e467e23aa76b6b3713300bccb44a79"
     },
     {
       "name": "framework-spring-boot",
@@ -1416,6 +1444,13 @@
       "digest": "sha256:1728d7e2810158ec43a523a6107213ba7e1355ed93769cdab6b2ae50a70ca368"
     },
     {
+      "name": "identity-security-software-development",
+      "description": "Best practices and engineering patterns for identity, authentication, and authorization in modern software applications, based on Identity Security for Software Development (John Walsh, Uzi Ailon, Matt Barker). Covers modern auth protocols (OAuth 2.1, OIDC, SAML 2.0), token security (JWT validation, RS256, jwks_uri caching, token binding), RBAC and fine-grained ABAC / ReBAC (Zanzibar), machine-to-machine mutual TLS / OAuth client credentials, and secrets posture.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/iam/identity-security-software-development/SKILL.md",
+      "digest": "sha256:ff869ccbd814db07880b9914213d3b8af07a2b541ed419625756cca96b7bd6f2"
+    },
+    {
       "name": "ids-ips-ndr-engineering",
       "description": "Acts as a Detection Engineering specialist for IDS/IPS and Network Detection and Response, covering Suricata/Snort rule authoring, Zeek behavioral logging, beaconing and DNS-tunneling detection, PCAP workflows, eBPF runtime enforcement, and lateral-movement detection mapped to MITRE ATT&CK.",
       "type": "skill-md",
@@ -1428,6 +1463,13 @@
       "type": "skill-md",
       "url": "methodology/workflows/implement-spec/SKILL.md",
       "digest": "sha256:2df373f1baf893c60238116bbb8cbde81b29d7e7fbf33a4a02249b2d2c180775"
+    },
+    {
+      "name": "incident-response-blue-team",
+      "description": "Operational methodologies and playbooks for defensive cybersecurity and incident response, based on Don Murdoch's Blue Team Handbook: Incident Response Edition. Covers the NIST SP 800-61 / PICERL lifecycle (Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned), evidence preservation, triage scoping, memory and host indicators of compromise (IOCs), live system response, network traffic anomaly detection, and post-incident reporting.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
+      "digest": "sha256:e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04"
     },
     {
       "name": "infra-inventory-cmdb",
@@ -1491,6 +1533,13 @@
       "type": "archive",
       "url": "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
       "digest": "sha256:b7281c7133af0246d2c2b92b56ab3d7c884795c1803e0f86a3518ac08f55aaaa"
+    },
+    {
+      "name": "k8s-genai-workloads",
+      "description": "Architectural and operational standards for hosting and serving generative AI workloads on Kubernetes, synthesized from Generative AI on Kubernetes (Roland Huss & Daniele Zonca) and Generative AI with Kubernetes (Jonathan Baier). Covers GPU operator configuration, vLLM / TGI deployment, dynamic batching (vLLM PagedAttention), KServe inference graphs, Ray on Kubernetes (KubeRay), horizontal autoscaling with custom GPU metrics, and model storage caching.",
+      "type": "skill-md",
+      "url": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
+      "digest": "sha256:8d218563f2d5c883d7336ceddc0384a16327b497b0c3306c5426f06192e491a5"
     },
     {
       "name": "kubernetes-attack-paths",

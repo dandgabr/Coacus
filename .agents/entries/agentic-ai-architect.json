@@ -1,0 +1,8 @@
+{
+  "name": "agentic-ai-architect",
+  "description": "Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection (hierarchical, blackboard, peer consensus), agent cognitive loops (ReAct, OODA, reflection), long-term vector/graph memory hierarchies, tool execution sandboxing, and Kubernetes runtime scaling with vLLM and KubeRay.",
+  "category": "data-cloud-devops",
+  "source": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
+  "dist": "knowledge/agents/data-cloud-devops/agentic-ai-architect/dist",
+  "fingerprint": "6a3bb4b6fd72db25"
+}

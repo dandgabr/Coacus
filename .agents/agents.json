@@ -139,6 +139,9 @@
       "path": "knowledge/agents/cybersecurity/iam-specialist"
     },
     {
+      "path": "knowledge/agents/cybersecurity/incident-response-commander"
+    },
+    {
       "path": "knowledge/agents/cybersecurity/malware-analyst"
     },
     {
@@ -170,6 +173,9 @@
     },
     {
       "path": "knowledge/agents/cybersecurity/threat-intelligence-specialist"
+    },
+    {
+      "path": "knowledge/agents/data-cloud-devops/agentic-ai-architect"
     },
     {
       "path": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect"

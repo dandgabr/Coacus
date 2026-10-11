@@ -2,6 +2,30 @@
   "schema": 1,
   "entries": [
     {
+      "name": "agentic-ai-architect",
+      "category": "data-cloud-devops",
+      "description": "Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection (hierarchical, blackboard, peer consensus), agent cognitive loops (ReAct, OODA, reflection), long-term vector/graph memory hierarchies, tool execution sandboxing, and Kubernetes runtime scaling with vLLM and KubeRay.",
+      "skills": [
+        "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md",
+        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
+        "knowledge/skills/frameworks/framework-langchain/SKILL.md",
+        "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
+        "knowledge/skills/security/ai/ai-agentic-security/SKILL.md"
+      ],
+      "triggers": [
+        "agent cognitive loop",
+        "agente autonomo",
+        "agentic ai",
+        "agentic architecture",
+        "arquiteto de agentes",
+        "autonomous agent",
+        "langgraph",
+        "multi-agent systems",
+        "multimodal ai",
+        "sistemas multiagente"
+      ]
+    },
+    {
       "name": "ai-ml-architect",
       "category": "architecture",
       "description": "AI/ML Architecture agent that owns the end-to-end architecture of machine learning and generative AI systems \u2014 data and feature pipelines, training, serving, monitoring, MLOps/GenAIOps and responsible-AI governance. Use when designing ML or GenAI platforms, defining MLOps pipelines, or governing AI risk.",
@@ -1578,6 +1602,30 @@
         "pam",
         "sso",
         "zero trust"
+      ]
+    },
+    {
+      "name": "incident-response-commander",
+      "category": "cybersecurity",
+      "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
+      "skills": [
+        "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
+        "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md",
+        "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
+        "knowledge/skills/security/operations/dfir-forensics/SKILL.md",
+        "knowledge/skills/security/operations/threat-hunting/SKILL.md"
+      ],
+      "triggers": [
+        "blue team",
+        "containment",
+        "forensics triage",
+        "incident commander",
+        "incident response",
+        "live host triage",
+        "picerl",
+        "resposta a incidentes",
+        "rfc 3227",
+        "triage de seguranca"
       ]
     },
     {

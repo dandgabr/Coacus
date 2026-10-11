@@ -1,0 +1,6 @@
+{
+  "name": "agentic-ai-architect",
+  "version": "0.1.0",
+  "description": "Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection (hierarchical, blackboard, peer consensus), agent cognitive loops (ReAct, OODA, reflection), long-term vector/graph memory hierarchies, tool execution sandboxing, and Kubernetes runtime scaling with vLLM and KubeRay.",
+  "entrypoint": "AGENT.md"
+}
