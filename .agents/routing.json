@@ -1617,10 +1617,11 @@
       ],
       "triggers": [
         "blue team",
+        "comando de incidente",
         "containment",
         "forensics triage",
+        "incident command",
         "incident commander",
-        "incident response",
         "live host triage",
         "picerl",
         "resposta a incidentes",

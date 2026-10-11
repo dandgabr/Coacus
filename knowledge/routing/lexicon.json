@@ -1339,7 +1339,7 @@
       "agent cognitive loop"
     ],
     "incident-response-commander": [
-      "incident response",
+      "incident command",
       "resposta a incidentes",
       "blue team",
       "picerl",
@@ -1348,7 +1348,8 @@
       "triage de seguranca",
       "containment",
       "live host triage",
-      "rfc 3227"
+      "rfc 3227",
+      "comando de incidente"
     ]
   }
 }
