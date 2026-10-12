@@ -11,7 +11,9 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
               <config_dir>/skills/ and agents under <config_dir>/agent/.
-- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path;
+              real files land once in the shared ~/.agents/skills tree and a
+              symlink per skill is placed here, unless --skills-mode copy)
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               JSON payload at bootstrap/session-start.json (matching hooks.json).
@@ -63,6 +65,7 @@ import shlex
 import shutil
 import sys
 import tempfile
+from dataclasses import dataclass
 from pathlib import Path
 
 try:  # tomllib entered the standard library in Python 3.11.
@@ -77,8 +80,22 @@ if str(ROOT) not in sys.path:
 MANIFEST_NAME = "coacus-install.json"
 NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
 
-# A planned file's content: text normally, bytes for a binary companion.
-FileContent = str | bytes
+@dataclass(frozen=True)
+class Symlink:
+    """An installed path that is a symbolic link to ``target`` (absolute).
+
+    A harness that scans its OWN skill home (Claude Code's ``~/.claude/skills``)
+    but shares the canonical ``~/.agents/skills`` tree gets a symlink per skill
+    instead of a second real copy. Single source of truth, and Orca's skill list
+    (which scans both homes) collapses the duplicate to one entry.
+    """
+
+    target: str
+
+
+# A planned file's content: text normally, bytes for a binary companion, or a
+# symlink to an absolute target.
+FileContent = str | bytes | Symlink
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
 CODEX_PROFILE_START = "# BEGIN COACUS CODEX SKILL PROFILE"
 CODEX_PROFILE_END = "# END COACUS CODEX SKILL PROFILE"
@@ -987,6 +1004,90 @@ def _plan_skills(
     return plan
 
 
+def _plan_skills_links(
+    root: Path,
+    link_dir: Path,
+    canonical_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, FileContent]]:
+    """Symlink each selected skill from ``link_dir`` to the canonical copy.
+
+    The real skill files are installed once under ``canonical_dir`` (the shared
+    ``~/.agents/skills`` tree). A harness with its OWN skill home receives a
+    symlink per skill here, so there is a single source of truth.
+    """
+    plan: list[tuple[Path, FileContent]] = []
+    for skill in discover_skills(root, only=only, skills=skills):
+        plan.append(
+            (link_dir / skill.name, Symlink((canonical_dir / skill.name).as_posix()))
+        )
+    return plan
+
+
+def _install_symlink(target: Path, destination: str) -> None:
+    """Create ``target`` as a symlink to ``destination``, replacing a stale copy.
+
+    A prior (copy-mode) install may have left a real skill directory in the way;
+    it is removed so the link can take its place. Only a planned skill path is
+    ever passed here, and containment was checked before writing.
+    """
+    if target.is_symlink() or target.exists():
+        if target.is_dir() and not target.is_symlink():
+            shutil.rmtree(target)
+        else:
+            target.unlink()
+    os.symlink(destination, target)
+
+
+# Harnesses that write the canonical shared skills tree (directly or via links).
+CANONICAL_SKILLS_WRITERS = frozenset({"codex", "cursor", "command-code", "claude-code"})
+
+
+def _canonical_skills_dir(config_dir: Path) -> Path:
+    """The shared ``~/.agents/skills`` tree that holds the single real copy."""
+    return config_dir.parent / ".agents" / "skills"
+
+
+def _walk_chmod(path: Path, writable: bool) -> None:
+    """Best-effort add/remove write bits on a tree, never following symlinks.
+
+    Read-only skill directories make a consumer's own delete/update fail (it
+    cannot empty a directory it cannot write), while this installer restores
+    write access just before it needs to rewrite them.
+    """
+    if not path.exists():
+        return
+    targets = [path, *(p for p in path.rglob("*") if not p.is_symlink())] if path.is_dir() else [path]
+    for item in targets:
+        if item.is_symlink():
+            continue
+        try:
+            mode = item.lstat().st_mode & 0o777
+            new_mode = (mode | 0o222) if writable else (mode & ~0o222)
+            if new_mode != mode:
+                os.chmod(item, new_mode)
+        except OSError:
+            pass
+
+
+def _lock_canonical_skills(files: list[tuple[Path, FileContent]], config_dir: Path) -> None:
+    """Mark the canonical Coacus skill directories read-only after an install."""
+    canonical = _canonical_skills_dir(config_dir)
+    try:
+        canonical_resolved = canonical.resolve()
+    except OSError:
+        return
+    for target, content in files:
+        if isinstance(content, Symlink) or target.name != "SKILL.md":
+            continue
+        try:
+            if target.parent.resolve().is_relative_to(canonical_resolved):
+                _walk_chmod(target.parent, writable=False)
+        except OSError:
+            pass
+
+
 def _read_source(path: Path) -> FileContent:
     """Text for a UTF-8 file, raw bytes for a binary companion (e.g. an image)."""
     try:
@@ -1034,9 +1135,23 @@ def _plan_claude(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    skills_mode: str = "link",
 ) -> list[tuple[Path, FileContent]]:
-    """Skills + subagents + a hook plugin whose script matches hooks.json."""
-    plan = _plan_skills(root, config_dir / "skills", only, skills)
+    """Skills + subagents + a hook plugin whose script matches hooks.json.
+
+    ``skills_mode="link"`` (default) installs the real skill files once under the
+    shared ``~/.agents/skills`` tree and symlinks them into ``~/.claude/skills``,
+    so a consumer that scans both homes (Orca's skill list) sees a single copy.
+    ``"copy"`` restores the previous per-harness copies.
+    """
+    if skills_mode == "link":
+        canonical_skills = config_dir.parent / ".agents" / "skills"
+        plan = _plan_skills(root, canonical_skills, only, skills)
+        plan += _plan_skills_links(
+            root, config_dir / "skills", canonical_skills, only, skills
+        )
+    else:
+        plan = _plan_skills(root, config_dir / "skills", only, skills)
     # Claude Code subagents load from ~/.claude/agents/<name>.md.
     plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     plugin = config_dir / "plugins" / "coacus"
@@ -1292,6 +1407,7 @@ def plan(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    skills_mode: str = "link",
 ) -> list[tuple[Path, FileContent]]:
     """Compute the files to install for ``harness`` under the given filters.
 
@@ -1302,7 +1418,7 @@ def plan(
     if harness == "opencode":
         return _plan_opencode(root, config_dir, only, skills, agents)
     if harness == "claude-code":
-        return _plan_claude(root, config_dir, only, skills, agents)
+        return _plan_claude(root, config_dir, only, skills, agents, skills_mode)
     if harness == "antigravity":
         return _plan_antigravity(root, config_dir, only, skills, agents)
     if harness == "codex":
@@ -1337,6 +1453,8 @@ def install(
     allow_advisory: bool = False,
     force: bool = False,
     codex_skill_profile: str = "compact",
+    skills_mode: str = "link",
+    lock_skills: bool | None = None,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1370,8 +1488,12 @@ def install(
             "refusals": refusals,
             "files": [],
         }
-    files = plan(harness, root, config_dir, only, skills, agents)
+    files = plan(harness, root, config_dir, only, skills, agents, skills_mode)
     _assert_contained(files, config_dir)
+    if lock_skills is None:
+        # Default: protect the shared tree only at a harness's real install
+        # location, never an explicit custom target (tests, staging).
+        lock_skills = _is_default_target(harness, config_dir)
     codex_update = (
         _codex_config_update(root, config_dir, codex_skill_profile)
         if harness == "codex"
@@ -1402,14 +1524,22 @@ def install(
             "agents": agents or [],
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
         }
+    if harness in CANONICAL_SKILLS_WRITERS:
+        # A prior install may have left the shared tree read-only (see
+        # _lock_canonical_skills); restore write access before rewriting it.
+        _walk_chmod(_canonical_skills_dir(config_dir), writable=True)
     written: list[str] = []
     for target, content in files:
         target.parent.mkdir(parents=True, exist_ok=True)
-        if isinstance(content, bytes):
+        if isinstance(content, Symlink):
+            _install_symlink(target, content.target)
+        elif isinstance(content, bytes):
             target.write_bytes(content)
         else:
             target.write_text(content, encoding="utf-8")
         written.append(target.as_posix())
+    if lock_skills and harness in CANONICAL_SKILLS_WRITERS:
+        _lock_canonical_skills(files, config_dir)
     if codex_update is not None:
         updated_config, owned_block, conflicts, config_existed = codex_update
         _write_codex_config(config_dir, updated_config, config_existed)
@@ -1436,6 +1566,7 @@ def install(
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
+                "skills_mode": skills_mode,
                 **(
                     {
                         "codex_skill_profile": codex_skill_profile,
@@ -1498,11 +1629,16 @@ def _agent_key(target: Path) -> str:
 
 
 def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
-    """Distinct skills/agents plus hook/other file counts, from a plan."""
-    skills = {t.parent.as_posix() for t, _ in files if t.name == "SKILL.md"}
-    agents = {_agent_key(t) for t, _ in files if _classify(t) == "agent"}
-    hooks = [t for t, _ in files if _classify(t) == "hook"]
-    other = [t for t, _ in files if _classify(t) == "other"]
+    """Distinct skills/agents plus hook/other file counts, from a plan.
+
+    Symlink entries are excluded: they point at a canonical copy already counted
+    once, so including them would double-count every shared skill.
+    """
+    real = [(t, c) for t, c in files if not isinstance(c, Symlink)]
+    skills = {t.parent.as_posix() for t, _ in real if t.name == "SKILL.md"}
+    agents = {_agent_key(t) for t, _ in real if _classify(t) == "agent"}
+    hooks = [t for t, _ in real if _classify(t) == "hook"]
+    other = [t for t, _ in real if _classify(t) == "other"]
     return {
         "skills": len(skills),
         "agents": len(agents),
@@ -1528,6 +1664,10 @@ def _installed_state(
     missing: list[str] = []
     drift: list[str] = []
     for target, content in files:
+        if isinstance(content, Symlink):
+            if not target.is_symlink() or os.readlink(target) != content.target:
+                drift.append(target.as_posix())
+            continue
         if not target.is_file():
             missing.append(target.as_posix())
             continue
@@ -1581,7 +1721,9 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
-    files = plan(harness, root, config_dir, only, skills, agents)
+    files = plan(
+        harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link")
+    )
     missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
     planned = {t.as_posix() for t, _ in files}
@@ -1697,6 +1839,9 @@ def uninstall(
         return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
+    if not dry_run and harness in CANONICAL_SKILLS_WRITERS:
+        # Restore write access so the shared tree can be emptied on uninstall.
+        _walk_chmod(_canonical_skills_dir(config_dir), writable=True)
     if harness == "codex" and not dry_run and "codex_skill_profile" in data:
         config_path = config_dir / "config.toml"
         if config_path.is_file():
@@ -1727,6 +1872,13 @@ def uninstall(
             continue
         if path in shared:
             skipped.append(path)
+            continue
+        if target.is_symlink():
+            # A linked skill lives once in the canonical tree; removing our link
+            # here leaves the real copy (claimed by the shared tree) intact.
+            if not dry_run:
+                target.unlink()
+            planned.append(path)
             continue
         if not dry_run and target == hooks_path and had_hooks_entry:
             # hooks.json / settings.json is a user file we merged into; strip only
@@ -1815,6 +1967,27 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         "--codex-skill-profile",
         choices=["compact", "full"],
         help="Codex native skill visibility (default: compact; full restores legacy behavior)",
+    )
+    parser.add_argument(
+        "--skills-mode",
+        choices=["link", "copy"],
+        default=None,
+        help="Skills strategy for harnesses with their own skill home (default: link — "
+        "install once in ~/.agents/skills and symlink; copy restores per-harness copies)",
+    )
+    parser.add_argument(
+        "--lock-skills",
+        dest="lock_skills",
+        action="store_true",
+        default=None,
+        help="force the shared ~/.agents/skills tree read-only after install (default: "
+        "on at a harness's real install location, off for --config-dir)",
+    )
+    parser.add_argument(
+        "--no-lock-skills",
+        dest="lock_skills",
+        action="store_false",
+        help="leave the shared ~/.agents/skills tree writable after install",
     )
     parser.add_argument(
         "--list",
@@ -1909,7 +2082,9 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
                         allow_advisory=args.allow_advisory, force=args.force,
-                        codex_skill_profile=args.codex_skill_profile or "compact")
+                        codex_skill_profile=args.codex_skill_profile or "compact",
+                        skills_mode=args.skills_mode or "link",
+                        lock_skills=args.lock_skills)
             )
     if args.verify_after_install:
         for result in results:

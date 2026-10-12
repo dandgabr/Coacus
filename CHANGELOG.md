@@ -5,6 +5,22 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Shared skills tree (single source of truth)
+
+### Changed
+
+- The installer places real skill files once in the shared `~/.agents/skills` tree
+  and wires a harness that scans its **own** skill home (Claude Code's
+  `~/.claude/skills`) with a symlink per skill, so a consumer that scans several
+  homes at once (Orca's Skills page reads Claude, Codex, Agent Skills and OMP)
+  shows each skill once instead of a duplicate. Adds `--skills-mode {link,copy}`
+  (`link` is the default for `claude-code`; `copy` restores the previous
+  per-harness copies). Uninstall removes only the link, never the shared target.
+- At a harness's real install location the shared `~/.agents/skills` tree is left
+  read-only after install (default; `--no-lock-skills` opts out), so a consumer's
+  own delete/update of a Coacus skill fails instead of silently rewriting it. The
+  next install restores write access before rewriting; `--config-dir` is never locked.
+
 ## [Unreleased] — Elfvision lifecycle and discovery lessons
 
 ### Changed

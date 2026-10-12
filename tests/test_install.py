@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import tomllib
 import unittest
@@ -372,6 +373,45 @@ class TestInstaller(unittest.TestCase):
             "SessionStart"
         ][0]["hooks"][0]["command"]
         self.assertIn(str(plugin / "bootstrap/session-start.json"), command.replace("${CLAUDE_PLUGIN_ROOT:-.}", plugin.as_posix()))
+
+    def test_claude_code_links_skills_into_shared_tree(self) -> None:
+        # Default skills_mode="link": the real skill files live once under the
+        # shared <config_dir>.parent/.agents/skills tree, and ~/.claude/skills
+        # holds a symlink per skill (single source of truth).
+        coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        canonical = self.config.parent / ".agents" / "skills" / "using-coacus"
+        link = self.config / "skills" / "using-coacus"
+        self.assertTrue((canonical / "SKILL.md").is_file())
+        self.assertFalse(canonical.is_symlink())
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(Path(os.readlink(link)), canonical)
+        self.assertTrue(coacus_install.verify("claude-code", self.root, self.config)["ok"])
+
+    def test_claude_code_copy_mode_keeps_real_directories(self) -> None:
+        coacus_install.install(
+            "claude-code", self.root, self.config, dry_run=False, skills_mode="copy"
+        )
+        skill = self.config / "skills" / "using-coacus"
+        self.assertTrue(skill.is_dir())
+        self.assertFalse(skill.is_symlink())
+        self.assertTrue((skill / "SKILL.md").is_file())
+
+    def test_claude_code_uninstall_removes_links_not_targets(self) -> None:
+        coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        result = coacus_install.uninstall("claude-code", self.root, self.config)
+        self.assertEqual(result["skipped"], [])
+        self.assertFalse((self.config / "skills" / "using-coacus").exists())
+
+    def test_lock_skills_makes_shared_tree_read_only_and_reinstall_unlocks(self) -> None:
+        coacus_install.install(
+            "claude-code", self.root, self.config, dry_run=False, lock_skills=True
+        )
+        canonical = self.config.parent / ".agents" / "skills" / "using-coacus"
+        self.assertFalse(canonical.stat().st_mode & 0o222)
+        self.assertFalse((canonical / "SKILL.md").stat().st_mode & 0o222)
+        # a later install must restore write access before rewriting the tree
+        coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        self.assertTrue(canonical.stat().st_mode & 0o200)
 
     def test_skills_install_includes_references(self) -> None:
         reference = self.root / "methodology/workflows/using-coacus/references"

@@ -1305,7 +1305,9 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
               <config_dir>/skills/ and agents under <config_dir>/agent/.
-- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path;
+              real files land once in the shared ~/.agents/skills tree and a
+              symlink per skill is placed here, unless --skills-mode copy)
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               JSON payload at bootstrap/session-start.json (matching hooks.json).
@@ -1342,6 +1344,16 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
     python3 scripts/coacus_install.py codex --skills 'lang-python,framework-*'
     python3 scripts/coacus_install.py codex --agents 'qa-*,*-architect'
     python3 scripts/coacus_install.py codex --list
+
+#### `class Symlink`
+
+An installed path that is a symbolic link to ``target`` (absolute).
+
+A harness that scans its OWN skill home (Claude Code's ``~/.claude/skills``)
+but shares the canonical ``~/.agents/skills`` tree gets a symlink per skill
+instead of a second real copy. Single source of truth, and Orca's skill list
+(which scans both homes) collapses the duplicate to one entry.
+
 
 #### `def default_config_dir(harness: str, home: Path) -> Path`
 
@@ -1381,7 +1393,7 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
-#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, FileContent]]`
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, skills_mode: str='link') -> list[tuple[Path, FileContent]]`
 
 Compute the files to install for ``harness`` under the given filters.
 
@@ -1389,7 +1401,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact') -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 

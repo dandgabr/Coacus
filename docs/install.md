@@ -146,6 +146,21 @@ Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as
 `<skill>/SKILL.md` plus its companions (`references/`, `examples/`, `scripts/`).
 
+A harness that scans its **own** skill home (Claude Code's `~/.claude/skills`)
+installs the real files once under the shared `~/.agents/skills` tree and places a
+symlink per skill in its own home (`--skills-mode link`, the default). A single
+physical copy is the source of truth, and a consumer that scans several skill homes
+at once — Orca's Skills page reads Claude, Codex, Agent Skills and OMP — shows each
+skill once instead of a duplicate. Pass `--skills-mode copy` to restore the previous
+per-harness copies. Harnesses that already scan `~/.agents/skills` directly (Codex,
+Cursor, Command Code) are unaffected.
+
+At a harness's **real** install location the shared tree is left read-only
+(`--lock-skills`, the default; `--no-lock-skills` opts out), so a consumer's own
+delete or update of a Coacus skill fails rather than silently rewriting the corpus.
+The next install restores write access before rewriting. An explicit `--config-dir`
+(a test or staging target) is never locked.
+
 ### Upgrading a legacy shell installation
 
 1. Synchronize the checkout and render its artifacts with the project interpreter.
