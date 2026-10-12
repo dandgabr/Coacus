@@ -9791,20 +9791,6 @@
     {
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/programs/browser-harness/SKILL.md",
-      "source_sha256": "2155ce650490e214734b2ea2f3b23f9dd12addedd0382e048a8e9d805ab507a7",
-      "target_path": "knowledge/skills/platforms/browser-harness/SKILL.md",
-      "target_sha256": "2155ce650490e214734b2ea2f3b23f9dd12addedd0382e048a8e9d805ab507a7",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/gemini-enterprise/SKILL.md",
       "source_sha256": "d59f8aa4561a33c0b2f5eea2687d7af285acd39ab32e9f0f5a620ffd015c7a5d",
       "target_path": "knowledge/skills/platforms/gemini-enterprise/SKILL.md",

@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 100,
-    "skills": 446,
+    "skills": 445,
     "mcps": 1
   },
   "agents": [
@@ -1647,10 +1647,6 @@
     {
       "name": "antigravity-guide",
       "path": "knowledge/skills/platforms/antigravity-guide/SKILL.md"
-    },
-    {
-      "name": "browser-harness",
-      "path": "knowledge/skills/platforms/browser-harness/SKILL.md"
     },
     {
       "name": "gemini-enterprise",

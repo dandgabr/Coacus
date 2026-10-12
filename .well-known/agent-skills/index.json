@@ -408,13 +408,6 @@
       "digest": "sha256:aafc4c7012dbacae48edb536c8129af89b7f5120299025cc61df1915e106978d"
     },
     {
-      "name": "browser-harness",
-      "description": "Control a real browser via CDP: clicking, typing, navigation, logged-in sessions, JS-rendered or bot-protected pages. Not for plain HTTP fetches of public content - use curl for those.",
-      "type": "skill-md",
-      "url": "knowledge/skills/platforms/browser-harness/SKILL.md",
-      "digest": "sha256:2155ce650490e214734b2ea2f3b23f9dd12addedd0382e048a8e9d805ab507a7"
-    },
-    {
       "name": "bug-bounty-methodology",
       "description": "Acts as a Specialist in Bug Bounty and Large-Scale Vulnerability Hunting methodologies based on Bug Bounty Bootcamp (Vickie Li). Covers active/passive subdomain reconnaissance, hidden asset discovery, distributed port scanning, parameter fuzzing automation, logic flaw exploitation, and structuring professional impact reports (PoC, CVSS v3.1/v4.0, remediation).",
       "type": "archive",
