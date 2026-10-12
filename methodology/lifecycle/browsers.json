@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "description": "Catalogue of web browsers the installer can detect on a machine. The installer asks (or auto-selects) which browsers an agent may drive (a primary and an optional fallback) and renders a deny policy for every other known browser, so an agent never launches or reads the profile of a browser the user did not hand over. Data only: add a browser by adding an entry.",
+  "preference": ["chromium", "chrome-for-testing", "google-chrome", "microsoft-edge", "vivaldi", "brave", "opera", "firefox"],
+  "browsers": [
+    {
+      "id": "chromium",
+      "name": "Chromium",
+      "binaries": ["chromium", "chromium-browser"],
+      "paths": ["/usr/lib64/chromium-browser/chromium-browser", "/usr/lib/chromium/chromium", "/usr/lib/chromium-browser/chromium-browser"],
+      "flatpak": ["org.chromium.Chromium"],
+      "profiles": [".config/chromium", ".var/app/org.chromium.Chromium"]
+    },
+    {
+      "id": "chrome-for-testing",
+      "name": "Chrome for Testing",
+      "binaries": ["chrome-for-testing"],
+      "paths": [],
+      "flatpak": [],
+      "profiles": []
+    },
+    {
+      "id": "google-chrome",
+      "name": "Google Chrome",
+      "binaries": ["google-chrome", "google-chrome-stable", "google-chrome-beta", "google-chrome-unstable", "chrome"],
+      "paths": ["/opt/google/chrome/chrome", "/opt/google/chrome/google-chrome"],
+      "flatpak": ["com.google.Chrome"],
+      "profiles": [".config/google-chrome", ".config/google-chrome-beta", ".var/app/com.google.Chrome"]
+    },
+    {
+      "id": "microsoft-edge",
+      "name": "Microsoft Edge",
+      "binaries": ["microsoft-edge", "microsoft-edge-stable", "microsoft-edge-beta", "microsoft-edge-dev"],
+      "paths": ["/opt/microsoft/msedge/msedge"],
+      "flatpak": ["com.microsoft.Edge"],
+      "profiles": [".config/microsoft-edge", ".var/app/com.microsoft.Edge"]
+    },
+    {
+      "id": "vivaldi",
+      "name": "Vivaldi",
+      "binaries": ["vivaldi", "vivaldi-stable"],
+      "paths": ["/opt/vivaldi/vivaldi"],
+      "flatpak": ["com.vivaldi.Vivaldi"],
+      "profiles": [".config/vivaldi"]
+    },
+    {
+      "id": "brave",
+      "name": "Brave",
+      "binaries": ["brave", "brave-browser", "brave-browser-stable"],
+      "paths": ["/opt/brave.com/brave/brave", "/opt/brave.com/brave/brave-browser"],
+      "flatpak": ["com.brave.Browser"],
+      "profiles": [".config/BraveSoftware", ".var/app/com.brave.Browser"]
+    },
+    {
+      "id": "opera",
+      "name": "Opera",
+      "binaries": ["opera", "opera-stable"],
+      "paths": [],
+      "flatpak": ["com.opera.Opera"],
+      "profiles": [".config/opera"]
+    },
+    {
+      "id": "firefox",
+      "name": "Firefox",
+      "binaries": ["firefox", "firefox-esr"],
+      "paths": ["/usr/lib64/firefox/firefox", "/usr/lib/firefox/firefox"],
+      "flatpak": ["org.mozilla.firefox"],
+      "profiles": [".mozilla/firefox", ".var/app/org.mozilla.firefox"]
+    }
+  ]
+}

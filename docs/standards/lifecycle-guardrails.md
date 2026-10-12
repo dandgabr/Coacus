@@ -68,6 +68,24 @@ Provide an inline-suppression convention (a reviewed / safe-because comment) so 
 false positive is silenced without disabling the layer. When layered rule files
 concatenate under a size cap, drop the tail first so user-wide rules survive.
 
+### Machine-local policies and command matching
+
+Some policies depend on the machine, not on the project. They are GENERATED at
+install time into the user policy directory (`engine/guardrail/evaluate.py:
+user_policy_dir`) and loaded by the runtime guard next to the repository policies;
+the repository never carries them (no machine-specific paths, D2 opt-in). The
+browser policy is the reference case: the installer detects the browsers present
+(`methodology/lifecycle/browsers.json`), the user selects a primary and an
+optional fallback, and `engine/guardrail/browsers.py` renders a `deny` policy for
+every other known browser (launch, and read/write of its profile).
+
+An `exec` policy may declare `"match": "command"` and a list of `resource`
+patterns. The patterns are compared with the executable names the command would
+run (`engine/guardrail/evaluate.py:command_candidates`: wrappers, `sh -c`,
+`$(...)`, symlinks resolved), never with arguments, so a mention of a name inside
+`grep`, `git commit -m` or a path does not fire. Matching is best-effort (shell is
+Turing complete); it narrows accidents, it is not a sandbox.
+
 ## Rationale
 
 Event names are the least portable axis; the policy is the most portable. Inverting

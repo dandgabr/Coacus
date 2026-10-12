@@ -5,6 +5,25 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Browser selection policy
+
+### Added
+
+- Install-time browser policy: the installer detects installed browsers
+  (`methodology/lifecycle/browsers.json`), lets the user choose a primary and an
+  optional fallback, and generates a machine-local deny policy for every other
+  known browser (launch and profile read/write). Opt-in (`--browser-policy
+  auto|prompt|off`, `--browser-primary`, `--browser-fallback`,
+  `--browser-policy-dir`); prompts on an interactive terminal, off otherwise.
+- `exec` policies may use `"match": "command"` with a `resource` pattern list to
+  match executable names instead of the whole command string.
+- The runtime guard also loads machine-local policies from the user policy
+  directory (`COACUS_POLICY_DIR`, `$XDG_CONFIG_HOME/coacus/policies`).
+
+### Removed
+
+- The imported `browser-harness` skill: Coacus does not ship or own that tool.
+
 ## [Unreleased] — Dynamic per-harness concurrency governor
 
 ### Changed

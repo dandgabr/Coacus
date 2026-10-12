@@ -486,6 +486,78 @@ A file-backed slot ledger guarded by ``fcntl.flock``.
 - `def status(self) -> dict` — Reap stale leases and return the current running/paused/slots snapshot.
 - `def reset(self) -> None` — Clear every record, returning the ledger to an idle state.
 
+### `engine/guardrail/browsers.py`
+
+Browser detection and selection for the agent browser policy.
+
+At install time Coacus can detect which web browsers exist on the machine, let
+the user pick which ones an agent may drive (a primary and an optional
+fallback) and render a deny policy for every other known browser. The policy is
+machine-local data (``user_policy_dir``), never committed to the repository.
+
+The module is stdlib-only and side-effect free except for the explicit
+``write_policy`` / ``remove_policy`` helpers. Detection takes its probes as
+parameters so tests never depend on the developer's machine.
+
+#### `def load_catalog(root: Path) -> dict`
+
+Load the browser catalogue (``methodology/lifecycle/browsers.json``).
+
+#### `def flatpak_apps() -> set[str]`
+
+Installed Flatpak application ids (empty when Flatpak is absent or fails).
+
+#### `def detect(catalog: dict, which: Callable[[str], str | None]=shutil.which, exists: Callable[[str], bool]=os.path.exists, flatpak: set[str] | None=None) -> list[dict]`
+
+Return the catalogue browsers present on this machine, in catalogue order.
+
+A browser counts as installed when one of its binary names resolves on
+``PATH``, one of its well-known absolute paths exists, or its Flatpak
+application id is installed. Each result is ``{"id", "name", "binary"}``
+where ``binary`` is the first probe that matched (for display).
+
+#### `def choose(catalog: dict, detected: list[dict], primary: str | None=None, fallback: str | None=None) -> dict`
+
+Pick the primary and optional fallback browser.
+
+Without ``primary`` the first detected browser in the catalogue's
+``preference`` order wins and there is no fallback. An explicit choice must be
+a detected browser and the fallback must differ from the primary; violations
+raise ``ValueError`` so the installer can stop before writing anything.
+
+#### `def build_policy(catalog: dict, selection: dict) -> dict`
+
+Render the machine-local policy document for a selection.
+
+Every catalogue browser that is neither the primary nor the fallback gets
+three ``deny`` policies: launching it (``exec`` matched against executable
+names, so a mere mention does not fire), and reading or writing its profile
+directories. Allowed browsers get no policy: the rule is "agents drive only
+the browsers the user selected".
+
+#### `def write_policy(directory: Path, document: dict) -> Path`
+
+Write the generated policy document into ``directory`` and return its path.
+
+#### `def remove_policy(directory: Path) -> bool`
+
+Delete the generated policy; return True when a file was removed.
+
+Only a file this installer generated (``generated.by``) is removed, so a
+hand-written ``browser.policy.json`` is never destroyed.
+
+#### `def read_selection(directory: Path) -> dict | None`
+
+Return the recorded selection of a generated policy, or ``None``.
+
+#### `def prompt_selection(catalog: dict, detected: list[dict], ask: Callable[[str], str]=input, say: Callable[[str], None]=print) -> dict | None`
+
+Interactively choose the primary and fallback; ``None`` means "skip".
+
+Lists the detected browsers, proposes the catalogue's preferred one as the
+default primary and offers "no fallback" as the default fallback. An empty
+answer accepts the default; ``skip`` leaves the policy off.
+
 ### `engine/guardrail/evaluate.py`
 
 Evaluate PAER guardrail policies against a canonical action.
@@ -503,19 +575,43 @@ Design notes (D4):
 
 The evaluator is deliberately small, deterministic and stdlib-only. It matches
 resource patterns with `fnmatch` for read/write, and substring globs for the
-other verbs.
+other verbs. An `exec` policy may opt into ``"match": "command"`` to compare its
+patterns with the executable names a shell string would run, rather than the
+whole string (see :func:`command_candidates`).
 
 #### `def load_events(root: Path) -> dict[str, dict]`
 
 Load the canonical event taxonomy as ``{event_id: event}``.
 
-#### `def load_policies(root: Path) -> list[dict]`
+#### `def user_policy_dir(env: dict | None=None, home: Path | None=None) -> Path`
+
+Directory of machine-local policy files generated at install time.
+
+``COACUS_POLICY_DIR`` overrides; otherwise ``$XDG_CONFIG_HOME/coacus/policies``
+or ``~/.config/coacus/policies``. These files are per-machine choices (for
+example the browsers an agent may drive) and never belong in the repository.
+
+#### `def load_policies(root: Path, include_user: bool=False, user_dir: Path | None=None) -> list[dict]`
 
 Load every ACTIVE policy from ``methodology/lifecycle/policies/*.json``.
 
 A file is active only when it declares ``"enabled": true``. The shipped
 default set is empty and the reference file is disabled, so installing
 Coacus never changes a session's behaviour without an explicit opt-in (D2).
+
+With ``include_user`` the machine-local policies generated at install time
+(see :func:`user_policy_dir`) are appended. The runtime guard sets it; unit
+tests leave it off so they never depend on the developer's home directory.
+
+#### `def command_candidates(command: str, _depth: int=0) -> list[str]`
+
+Executable names a shell string would run (best-effort, never raises).
+
+Walks every simple command, skips env assignments, looks through known
+launch wrappers (``env``, ``nohup``, ``sudo``, ``timeout``...), recurses into
+``sh -c`` / ``bash -lc`` strings and ``$(...)`` / backticks, and resolves
+symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
+``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
 
 #### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
 
@@ -1415,7 +1511,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None) -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None, extra_policy_docs: list[dict] | None=None) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 
@@ -1454,6 +1550,16 @@ install. Files still claimed by another harness's manifest (the shared
 ``.agents/skills`` tree) are skipped, so uninstalling Codex does not break
 Cursor. A path recorded by a doctored manifest but outside the allowed roots
 is skipped, so the manifest cannot delete arbitrary files.
+
+#### `def browser_policy_step(root: Path, mode: str, policy_dir: Path, primary: str | None=None, fallback: str | None=None, dry_run: bool=False, ask=input, say=print) -> dict[str, object]`
+
+Detect installed browsers, choose primary/fallback and write the policy.
+
+``mode`` is ``off`` (do nothing), ``auto`` (preference order, no fallback),
+``prompt`` (interactive) or ``select`` (explicit ``primary``/``fallback``).
+The generated policy is machine-local (D2: opt-in, never changes behaviour
+unasked) and is returned alongside a summary so the installer can check it
+can be enforced on each harness before writing anything.
 
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 

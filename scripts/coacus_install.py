@@ -885,14 +885,25 @@ def _guardrail_artifacts(
     return files, fragment
 
 
-def _refuse_unenforceable(root: Path, harness: str) -> list[str]:
+def _refuse_unenforceable(
+    root: Path, harness: str, extra_docs: list[dict] | None = None
+) -> list[str]:
     """Return reasons the guardrail policy cannot be enforced on this harness.
 
     A ``deny`` policy bound to an event the harness cannot block would install as
     advisory while looking successful. Enforcement is refused, not degraded (D3).
+    ``extra_docs`` are policy documents generated during this run (the browser
+    policy) that are not on disk under the repository yet.
     """
     policy_dir = root / "methodology" / "lifecycle" / "policies"
-    if not policy_dir.is_dir():
+    docs: list[dict] = list(extra_docs or [])
+    if policy_dir.is_dir():
+        for path in sorted(policy_dir.glob("*.policy.json")):
+            try:
+                docs.append(json.loads(path.read_text(encoding="utf-8")))
+            except (OSError, json.JSONDecodeError):
+                continue
+    if not docs:
         return []
     manifest = root / "harnesses" / harness / "harness.json"
     try:
@@ -901,11 +912,7 @@ def _refuse_unenforceable(root: Path, harness: str) -> list[str]:
         return []
     lifecycle = data.get("lifecycle", {})
     reasons: list[str] = []
-    for path in sorted(policy_dir.glob("*.policy.json")):
-        try:
-            doc = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
+    for doc in docs:
         if doc.get("enabled") is not True:
             continue
         for policy in doc.get("policies", []):
@@ -1455,6 +1462,7 @@ def install(
     codex_skill_profile: str = "compact",
     skills_mode: str = "link",
     lock_skills: bool | None = None,
+    extra_policy_docs: list[dict] | None = None,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1480,7 +1488,7 @@ def install(
             "config_dir": config_dir.as_posix(),
             "files": [],
         }
-    refusals = _refuse_unenforceable(root, harness)
+    refusals = _refuse_unenforceable(root, harness, extra_policy_docs)
     if refusals and not allow_advisory:
         return {
             "harness": harness,
@@ -1939,6 +1947,69 @@ def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
             pass  # not empty or already gone
 
 
+def _browser_policy_dir(config_dir_arg: str | None, explicit: str | None) -> Path:
+    """Where the generated browser policy lives.
+
+    An explicit ``--browser-policy-dir`` wins; a custom ``--config-dir`` (staging,
+    tests) keeps the policy beside it instead of touching the real user config;
+    otherwise the runtime guard's user policy directory is used.
+    """
+    from engine.guardrail import evaluate
+
+    if explicit:
+        return Path(explicit).expanduser()
+    if config_dir_arg:
+        return Path(config_dir_arg) / "coacus-policies"
+    return evaluate.user_policy_dir()
+
+
+def browser_policy_step(
+    root: Path,
+    mode: str,
+    policy_dir: Path,
+    primary: str | None = None,
+    fallback: str | None = None,
+    dry_run: bool = False,
+    ask=input,
+    say=print,
+) -> dict[str, object]:
+    """Detect installed browsers, choose primary/fallback and write the policy.
+
+    ``mode`` is ``off`` (do nothing), ``auto`` (preference order, no fallback),
+    ``prompt`` (interactive) or ``select`` (explicit ``primary``/``fallback``).
+    The generated policy is machine-local (D2: opt-in, never changes behaviour
+    unasked) and is returned alongside a summary so the installer can check it
+    can be enforced on each harness before writing anything.
+    """
+    from engine.guardrail import browsers
+
+    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix()}
+    if mode == "off":
+        return summary
+    catalog = browsers.load_catalog(root)
+    detected = browsers.detect(catalog)
+    summary["detected"] = [entry["id"] for entry in detected]
+    try:
+        if mode == "prompt":
+            selection = browsers.prompt_selection(catalog, detected, ask=ask, say=say)
+            if selection is None:
+                summary["status"] = "skipped"
+                return summary
+        else:
+            selection = browsers.choose(catalog, detected, primary=primary, fallback=fallback)
+    except ValueError as exc:
+        summary.update(status="error", error=str(exc))
+        return summary
+    document = browsers.build_policy(catalog, selection)
+    summary.update(selection=selection, policies=len(document["policies"]), document=document)
+    if dry_run:
+        summary["status"] = "dry-run"
+        return summary
+    summary["policy_file"] = browsers.write_policy(policy_dir, document).as_posix()
+    summary["status"] = "written"
+    return summary
+
+
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     """Parse arguments and run install, uninstall, verify or list."""
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
@@ -2015,6 +2086,26 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         action="store_true",
         help="install even when the harness is not detected on this machine (provision ahead of it)",
     )
+    parser.add_argument(
+        "--browser-policy",
+        choices=["off", "auto", "prompt"],
+        default=None,
+        help="detect installed browsers and restrict agents to the ones you select "
+        "(default: prompt on an interactive terminal, off otherwise; auto picks by "
+        "catalogue preference)",
+    )
+    parser.add_argument(
+        "--browser-primary",
+        help="browser id agents may drive (see methodology/lifecycle/browsers.json); implies a policy",
+    )
+    parser.add_argument(
+        "--browser-fallback",
+        help="optional second browser id agents may drive if the primary is unavailable",
+    )
+    parser.add_argument(
+        "--browser-policy-dir",
+        help="directory for the generated browser policy (default: the user policy directory)",
+    )
     args = parser.parse_args(argv)
     if args.verify_after_install and (args.verify or args.uninstall or args.dry_run or args.list_):
         parser.error("--verify-after-install requires a real installation")
@@ -2068,8 +2159,43 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             report = verify(harness, root or ROOT, config_dir)
             results.append(report)
             ok = ok and bool(report.get("ok"))
+        if results:
+            from engine.guardrail import browsers
+
+            # Opt-in feature: absence is informational, never a verification failure.
+            results[0]["browser_policy"] = {
+                "selection": browsers.read_selection(
+                    _browser_policy_dir(args.config_dir, args.browser_policy_dir)
+                )
+            }
         print(json.dumps(results, indent=2))
         return 0 if ok else 1
+
+    policy_dir = _browser_policy_dir(args.config_dir, args.browser_policy_dir)
+    browser: dict[str, object] = {"mode": "off", "status": "off"}
+    extra_docs: list[dict] | None = None
+    if not args.uninstall:
+        if args.browser_primary or args.browser_fallback:
+            browser_mode = "select"
+        elif args.browser_policy:
+            browser_mode = args.browser_policy
+        elif sys.stdin.isatty() and sys.stdout.isatty() and not args.dry_run:
+            browser_mode = "prompt"
+        else:
+            browser_mode = "off"
+        browser = browser_policy_step(
+            root or ROOT, browser_mode, policy_dir,
+            primary=args.browser_primary, fallback=args.browser_fallback,
+            dry_run=args.dry_run,
+        )
+        if browser.get("status") == "error":
+            print(json.dumps([{"harness": args.harness, "error": browser.get("error"),
+                               "browser_policy": {k: v for k, v in browser.items() if k != "document"}}],
+                             indent=2))
+            return 2
+        document = browser.get("document")
+        extra_docs = [document] if isinstance(document, dict) else None
+        browser = {k: v for k, v in browser.items() if k != "document"}
 
     results = []
     for harness in harnesses:
@@ -2084,8 +2210,16 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                         allow_advisory=args.allow_advisory, force=args.force,
                         codex_skill_profile=args.codex_skill_profile or "compact",
                         skills_mode=args.skills_mode or "link",
-                        lock_skills=args.lock_skills)
+                        lock_skills=args.lock_skills,
+                        extra_policy_docs=extra_docs)
             )
+    if args.uninstall and args.harness == "all" and not args.dry_run:
+        from engine.guardrail import browsers
+
+        # The policy is machine-wide: only a full uninstall removes it.
+        browser = {"mode": "off", "status": "removed" if browsers.remove_policy(policy_dir) else "absent"}
+    if results:
+        results[0]["browser_policy"] = browser
     if args.verify_after_install:
         for result in results:
             if result.get("skipped") or result.get("error"):

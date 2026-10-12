@@ -104,7 +104,7 @@ def run(harness: str, event: str, payload_text: str, root: Path) -> str:
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
         verb, resource = _action(payload)
-        policies = guard.load_policies(root)
+        policies = guard.load_policies(root, include_user=True)
         result = guard.evaluate(policies, verb, resource) if verb else {
             "decision": "allow", "policy_id": None, "message": ""
         }
