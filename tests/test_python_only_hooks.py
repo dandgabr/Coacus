@@ -123,7 +123,7 @@ class TestPythonOnlyHooks(unittest.TestCase):
             env = dict(os.environ, GOVERNOR_STATE_DIR=str(state), ORCH_MAX_CONCURRENT="3")
             result = subprocess.run([shutil.which("node"), "--input-type=module", "-e", code], env=env, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual(Ledger(state, max_total=3).status()["running"], 1)
+            self.assertEqual(Ledger(state, scope="opencode", max_total=3).status()["running"], 1)
 
 
 if __name__ == "__main__":

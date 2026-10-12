@@ -25,10 +25,101 @@ import uuid
 from contextlib import contextmanager
 from pathlib import Path
 
-DEFAULT_MAX_TOTAL = 5
+DEFAULT_MAX_TOTAL = 6
 POLL_SECONDS = 0.2
 DEFAULT_LEASE_SECONDS = 900
 CALLER_RE = re.compile(r"^[A-Za-z0-9._:-]+$")
+
+HARNESS_CONCURRENCY_MAP: dict[str, int] = {
+    "ollama": 2,
+    "command-code": 4,
+    "cursor": 5,
+    "opencode": 5,
+    "antigravity": 6,
+    "claude-code": 8,
+    "codex": 10,
+}
+
+MODEL_CONCURRENCY_MAP: dict[str, int] = {
+    "flash": 8,
+    "pro": 5,
+    "haiku": 10,
+    "sonnet": 8,
+    "opus": 4,
+    "mini": 10,
+}
+
+
+def resolve_concurrency_cap(
+    scope: str = "global",
+    model: str | None = None,
+    explicit_max: int | None = None,
+) -> int:
+    """Resolve the concurrency cap dynamically following precedence rules:
+
+    1. Explicit max_total parameter if supplied.
+    2. Model-specific environment variable (COACUS_MAX_<MODEL>).
+    3. Harness-specific environment variable (COACUS_MAX_<SCOPE>).
+    4. Harness-native environment variable (e.g. CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY, OLLAMA_NUM_PARALLEL).
+    5. Model canonical mapping if model is known.
+    6. Harness canonical mapping if scope is known in HARNESS_CONCURRENCY_MAP.
+    7. Global override ORCH_MAX_CONCURRENT if set in environment.
+    8. Default fallback for other/unlisted harnesses: 6.
+    """
+    if explicit_max is not None:
+        return max(int(explicit_max), 1)
+
+    norm_scope = (scope or "global").strip().lower()
+    norm_model = (model or "").strip().lower() if model else ""
+
+    # 2. Model-specific env var (e.g. COACUS_MAX_FLASH=8)
+    if norm_model:
+        model_env = f"COACUS_MAX_{norm_model.upper().replace('-', '_')}"
+        if model_env in os.environ:
+            try:
+                return max(int(os.environ[model_env]), 1)
+            except ValueError:
+                pass
+
+    # 3. Scope/Harness-specific env var (e.g. COACUS_MAX_ANTIGRAVITY=6, COACUS_MAX_CODEX=10)
+    scope_env = f"COACUS_MAX_{norm_scope.upper().replace('-', '_')}"
+    if scope_env in os.environ:
+        try:
+            return max(int(os.environ[scope_env]), 1)
+        except ValueError:
+            pass
+
+    # 4. Harness-native environment variables
+    if norm_scope in ("claude", "claude-code") and "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY" in os.environ:
+        try:
+            return max(int(os.environ["CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY"]), 1)
+        except ValueError:
+            pass
+    if norm_scope == "ollama" and "OLLAMA_NUM_PARALLEL" in os.environ:
+        try:
+            return max(int(os.environ["OLLAMA_NUM_PARALLEL"]), 1)
+        except ValueError:
+            pass
+
+    # 5. Model canonical mapping
+    if norm_model:
+        for key, cap in MODEL_CONCURRENCY_MAP.items():
+            if key in norm_model:
+                return cap
+
+    # 6. Harness canonical mapping
+    if norm_scope in HARNESS_CONCURRENCY_MAP:
+        return HARNESS_CONCURRENCY_MAP[norm_scope]
+
+    # 7. Legacy ORCH_MAX_CONCURRENT
+    if "ORCH_MAX_CONCURRENT" in os.environ:
+        try:
+            return max(int(os.environ["ORCH_MAX_CONCURRENT"]), 1)
+        except ValueError:
+            pass
+
+    # 8. Default fallback for others
+    return DEFAULT_MAX_TOTAL
 
 
 def state_dir() -> Path:
@@ -40,12 +131,8 @@ def state_dir() -> Path:
     return Path(runtime) / "coacus-governor"
 
 
-def _env_max_total() -> int:
-    raw = os.environ.get("ORCH_MAX_CONCURRENT", str(DEFAULT_MAX_TOTAL))
-    try:
-        return max(int(raw), 1)
-    except ValueError:
-        return DEFAULT_MAX_TOTAL
+def _env_max_total(scope: str = "global", model: str | None = None) -> int:
+    return resolve_concurrency_cap(scope=scope, model=model)
 
 
 def _lease_seconds() -> int:
@@ -64,13 +151,22 @@ class Ledger:
         directory: Path | None = None,
         max_total: int | None = None,
         lease_seconds: int = DEFAULT_LEASE_SECONDS,
+        scope: str = "global",
+        model: str | None = None,
     ):
         """Open the ledger, creating its directory with owner-only permissions."""
+        self.scope = (scope or "global").strip().lower()
+        self.model = model
         self.dir = Path(directory) if directory else state_dir()
-        self.requested_max = int(max_total) if max_total is not None else _env_max_total()
+        self.requested_max = (
+            int(max_total)
+            if max_total is not None
+            else resolve_concurrency_cap(self.scope, self.model)
+        )
         self.lease_seconds = int(lease_seconds) if lease_seconds else _lease_seconds()
-        self.path = self.dir / "ledger"
-        self.lock_path = self.dir / "ledger.lock"
+        file_suffix = "" if self.scope == "global" else f"-{self.scope}"
+        self.path = self.dir / f"ledger{file_suffix}"
+        self.lock_path = self.dir / f"ledger{file_suffix}.lock"
         self.dir.mkdir(parents=True, exist_ok=True)
         if os.name != "nt":
             os.chmod(self.dir, 0o700)
@@ -123,9 +219,20 @@ class Ledger:
                     pass
             else:
                 records.append(line)
-        # A caller may never RAISE the cap; a lower request still governs.
-        max_total = min(max_total, self.requested_max)
+        # If an explicit higher max was requested by this instance or environment,
+        # it updates the persisted cap authoritatively.
+        if self.requested_max != DEFAULT_MAX_TOTAL and self.requested_max > max_total:
+            max_total = self.requested_max
         return max_total, records
+
+    def set_max(self, new_max: int) -> int:
+        """Authoritatively set a new maximum concurrency cap in the ledger."""
+        cap = max(int(new_max), 1)
+        with self._locked():
+            _, records = self._read()
+            self._write(cap, records)
+            self.requested_max = cap
+            return cap
 
     def _write(self, max_total: int, records: list[str]) -> None:
         lines = [f"MAX {max_total}", *records]

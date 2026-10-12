@@ -32,7 +32,7 @@ const gov = (action, caller, timeout = '5', orchestrator = 'no') => {
   try {
     return execFileSync(
       PYTHON,
-      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL],
+      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode'],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 70000 },
     ).trim();
   } catch { return ''; }

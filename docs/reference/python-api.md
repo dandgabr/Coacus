@@ -456,6 +456,19 @@ prefix-based. The cap is persisted so no caller can raise it. Stale RUNNING
 rows (dead PID or older than the lease) are reaped before capacity is judged,
 so a crashed holder cannot leak a slot forever.
 
+#### `def resolve_concurrency_cap(scope: str='global', model: str | None=None, explicit_max: int | None=None) -> int`
+
+Resolve the concurrency cap dynamically following precedence rules:
+
+1. Explicit max_total parameter if supplied.
+2. Model-specific environment variable (COACUS_MAX_<MODEL>).
+3. Harness-specific environment variable (COACUS_MAX_<SCOPE>).
+4. Harness-native environment variable (e.g. CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY, OLLAMA_NUM_PARALLEL).
+5. Model canonical mapping if model is known.
+6. Harness canonical mapping if scope is known in HARNESS_CONCURRENCY_MAP.
+7. Global override ORCH_MAX_CONCURRENT if set in environment.
+8. Default fallback for other/unlisted harnesses: 6.
+
 #### `def state_dir() -> Path`
 
 The governor's state directory (``GOVERNOR_STATE_DIR`` or a runtime default).
@@ -464,6 +477,7 @@ The governor's state directory (``GOVERNOR_STATE_DIR`` or a runtime default).
 
 A file-backed slot ledger guarded by ``fcntl.flock``.
 
+- `def set_max(self, new_max: int) -> int` — Authoritatively set a new maximum concurrency cap in the ledger.
 - `def acquire(self, caller: str, orchestrator: bool=False, timeout: float=30.0) -> str | None` — Reserve a slot. Returns the token, or None if the cap stayed full.
 - `def release(self, caller: str) -> None` — Release the slot held by ``caller`` (a no-op if it holds none).
 - `def fail(self, caller: str, attempts: int=1) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.

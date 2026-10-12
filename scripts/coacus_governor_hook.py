@@ -58,13 +58,15 @@ def _slot_id(payload: dict) -> str:
 def main() -> int:
     """Execute governor hook actions based on CLI mode and stdin protojson."""
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
-    max_total = int(os.environ.get("ORCH_MAX_CONCURRENT", "5"))
 
     try:
-        from engine.governor.ledger import Ledger
-        ledger = Ledger(max_total=max_total)
+        from engine.governor.ledger import Ledger, resolve_concurrency_cap
+        scope = "antigravity"
+        max_total = resolve_concurrency_cap(scope=scope)
+        ledger = Ledger(scope=scope, max_total=max_total)
     except Exception:
         ledger = None
+        max_total = 6
 
     if mode == "pretool":
         payload = _read_stdin_json()

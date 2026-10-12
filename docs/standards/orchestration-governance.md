@@ -14,18 +14,21 @@ is prohibited.
 The concurrency governor is a disk ledger guarded by `flock`
 (`engine/governor/ledger.py`). It MUST be consulted before dispatching a subagent.
 
-- The concurrency cap defaults to 5, the orchestrator INCLUDED.
-- The cap is persisted in the ledger. A later caller MAY only LOWER it, never
-  raise it.
+- Concurrency is managed per harness/provider scope (`ledger-{scope}`) without a
+  shared global bottleneck. An exhausted local model (e.g. Ollama cap = 2) does not
+  starve cloud harnesses (Antigravity cap = 6, Claude Code cap = 8, Codex cap = 10).
+- For unlisted or custom harnesses/providers, the default fallback cap is 6.
+- The cap is dynamically configurable via environment variables (`COACUS_MAX_<SCOPE>`,
+  `COACUS_MAX_<MODEL>`, `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY`, `OLLAMA_NUM_PARALLEL`,
+  `ORCH_MAX_CONCURRENT`) or authoritatively updated via `coacus_governor.py set-max <n> [--scope <scope>]`.
 - A caller parks as PAUSED on a 429 rate-limit and reports the backoff hint the
   orchestrator uses to retry (2s → 60s).
 - Because the acquiring CLI process is short-lived, slots are released by the
   harness adapter after the task, and on the next turn as a safety net. A crashed
   holder is reclaimed by a lease TTL (`GOVERNOR_LEASE_SECONDS`).
-- The cap may be overridden by `ORCH_MAX_CONCURRENT`.
 
 The command surface is `scripts/coacus_governor.py`:
-`acquire`, `release`, `fail`, `paused`, `status`, `health`, `reset`.
+`acquire`, `release`, `fail`, `paused`, `status`, `health`, `reset`, `set-max`.
 
 ### The orchestrator
 

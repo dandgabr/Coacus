@@ -27,7 +27,7 @@ class TestGovernorHook(unittest.TestCase):
                     input=json.dumps(payload), text=True, capture_output=True, env=env, check=True,
                 )
                 return json.loads(result.stdout)
-            ledger = Ledger(Path(tmp), max_total=3)
+            ledger = Ledger(Path(tmp), scope="antigravity", max_total=3)
             self.assertEqual(run("pretool"), {})
             self.assertEqual(ledger.status()["running"], 1)
             self.assertEqual(run("posttool"), {})

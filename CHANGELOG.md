@@ -5,6 +5,21 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Dynamic per-harness concurrency governor
+
+### Changed
+
+- Concurrency governor (`engine/governor/ledger.py` and `scripts/coacus_governor.py`):
+  Eliminated single shared global cap bottleneck; partitioned disk ledgers into
+  isolated scopes (`ledger-{scope}`). Default caps map to documented limits
+  (Ollama = 2, Command Code = 4, Cursor = 5, OpenCode = 5, Antigravity = 6,
+  Claude Code = 8, Codex = 10, and unlisted/others = 6).
+- Added authoritative `set-max <n> [--scope <scope>]` command to allow dynamic
+  elevation of persisted caps without destroying the ledger.
+- Added hierarchical precedence resolution for model and harness environment
+  variables (`COACUS_MAX_<MODEL>`, `COACUS_MAX_<SCOPE>`,
+  `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY`, `OLLAMA_NUM_PARALLEL`, and `ORCH_MAX_CONCURRENT`).
+
 ## [Unreleased] — Shared skills tree (single source of truth)
 
 ### Changed

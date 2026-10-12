@@ -95,7 +95,7 @@ def _opencode_governor_gate() -> str:
         "  try {\n"
         "    return execFileSync(\n"
         "      PYTHON,\n"
-        "      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL],\n"
+        "      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode'],\n"
         "      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 70000 },\n"
         "    ).trim();\n"
         "  } catch { return ''; }\n"

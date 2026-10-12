@@ -33,15 +33,22 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus-governor", description=__doc__)
     parser.add_argument(
         "action",
-        choices=["acquire", "release", "fail", "paused", "status", "health", "reset"],
+        choices=["acquire", "release", "fail", "paused", "status", "health", "reset", "set-max"],
     )
     parser.add_argument("caller", nargs="?", default="")
     parser.add_argument("orchestrator", nargs="?", default="no")
     parser.add_argument("timeout", nargs="?", type=float, default=30.0)
     parser.add_argument("max_total", nargs="?", type=int, default=None)
+    parser.add_argument("--scope", default="global", help="Harness or provider scope (default: global)")
+    parser.add_argument("--model", default=None, help="Active model name (e.g. flash, pro, sonnet)")
     args = parser.parse_args(argv)
 
-    ledger = Ledger(max_total=args.max_total)
+    ledger = Ledger(scope=args.scope, model=args.model, max_total=args.max_total)
+    if args.action == "set-max":
+        val = args.max_total if args.max_total is not None else (int(args.caller) if args.caller.isdigit() else 6)
+        new_cap = ledger.set_max(val)
+        print(f"scope={ledger.scope} max={new_cap}")
+        return 0
     if args.action == "acquire":
         token = ledger.acquire(
             args.caller or "unknown",
