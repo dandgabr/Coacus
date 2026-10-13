@@ -192,6 +192,22 @@ class TestGuardUsesUserPolicy(unittest.TestCase):
                 self.assertEqual(coacus_guard.run("claude-code", "tool.pre", allowed, REPO), "{}")
 
 
+class TestGuardArgvCommand(unittest.TestCase):
+    def test_argv_list_is_rendered_as_one_shell_string(self) -> None:
+        verb, resource = coacus_guard._action(
+            {"tool_name": "Bash", "tool_input": {"command": ["bash", "-lc", "brave-browser --x"]}}
+        )
+        self.assertEqual(verb, "exec")
+        self.assertEqual(resource, "bash -lc 'brave-browser --x'")
+        self.assertIn("brave-browser", evaluate.command_candidates(resource))
+
+    def test_string_command_is_unchanged(self) -> None:
+        verb, resource = coacus_guard._action(
+            {"tool_name": "Bash", "tool_input": {"command": "ls -la"}}
+        )
+        self.assertEqual((verb, resource), ("exec", "ls -la"))
+
+
 class TestInstallerStep(unittest.TestCase):
     def run_main(self, argv: list[str]) -> tuple[int, list[dict]]:
         out = StringIO()

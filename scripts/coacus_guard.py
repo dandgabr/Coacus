@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shlex
 import sys
 from pathlib import Path
 
@@ -41,9 +42,15 @@ SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subage
 
 
 def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
-    """First present, non-empty string value among ``keys``."""
+    """First present, non-empty string value among ``keys``.
+
+    An argv list (some harnesses pass ``["bash", "-lc", "cmd"]``) is rendered as
+    one shell string so ``exec`` policies see the real command, not a Python repr.
+    """
     for key in keys:
         value = mapping.get(key)
+        if isinstance(value, (list, tuple)) and value:
+            return shlex.join(str(part) for part in value)
         if value is not None and str(value).strip():
             return str(value)
     return default
