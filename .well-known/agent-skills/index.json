@@ -1049,7 +1049,7 @@
       "description": "Acts as a Firmware and UEFI Implant specialist covering SPI flash and UEFI module analysis, bootkit and pre-OS persistence (LoJax, MoonBounce, BlackLotus-class), firmware SBOM and integrity verification, and recovery of a compromised boot chain.",
       "type": "skill-md",
       "url": "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-      "digest": "sha256:1280a287fa3036adef436cab1ec68c492b487335ea7be617e67e7369bfb386f0"
+      "digest": "sha256:158bee980d8820c6a2b0b7d42f2dea8e2c2f7f03bb98db98824eec4b1f8ebcf4"
     },
     {
       "name": "flow-architectures",
@@ -1479,6 +1479,13 @@
       "digest": "sha256:4d3022dd6d15294a1b03dc764d0dd212466f12d472e565a4ed0f8a732fa079db"
     },
     {
+      "name": "iot-untrusted-device-isolation",
+      "description": "Provides a defensive playbook to isolate untrusted consumer/IoT devices (IP cameras, printers, appliances, embedded appliances) on a dedicated network segment behind an asymmetric access policy. Use when segmenting an untrusted device, deploying it on a separate VLAN/SSID, or hardening an unpatchable IoT device that cannot be trusted on the user LAN.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
+      "digest": "sha256:99d38c0a40841dab9c41acbd6c68c88bebbe810a74b547e7dc27283a8a4f5ed9"
+    },
+    {
       "name": "isc2-cissp-csslp-standards",
       "description": "Acts as a Specialist in Information Security Governance and Secure Software Lifecycle based on the (ISC)\u00b2 CISSP and CSSLP Common Bodies of Knowledge (CBK) (Mano Paul). Covers the 8 CISSP domains (Risk Management, Asset Security, Security Engineering, Communication/Network, IAM, Assessment/Testing, Operations, Software Development Security) and the 8 CSSLP phases.",
       "type": "archive",
@@ -1812,14 +1819,14 @@
       "description": "Acts as a specialist in network security architecture, engineering, and operations across On-Premise, Hybrid, and Multicloud environments (AWS, Azure, GCP, OCI), covering NGFW, microsegmentation, SASE/SSE, ZTNA, IDS/IPS, SD-WAN, WAF, and DDoS mitigation.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
-      "digest": "sha256:fc0b8b3811743ccd6b40edcd29c08b34e7e46e0a536256b1ecd1652a3b49025e"
+      "digest": "sha256:d0b263f9158668672a323cde240483046d01d6c75c0f74e6b1369d9ce6df0975"
     },
     {
       "name": "network-segmentation-microsegmentation",
       "description": "Acts as a Network Segmentation specialist covering macro-segmentation (VLAN, VRF, firewall zones), microsegmentation (host, identity and label based), overlay networks (VXLAN), Kubernetes NetworkPolicy and the zero-trust policy tiers of NIST SP 800-207A.",
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-      "digest": "sha256:5398a28b9c3da71c3e131280b8f21227116a50baffaeedc47d82148a0f678462"
+      "digest": "sha256:4bcedcc50bc46fd706c6aca4ed96d96b988fee98d3d51cbab9db46514c0ab13f"
     },
     {
       "name": "nis2-cra-compliance",
@@ -3121,7 +3128,7 @@
       "description": "Acts as a specialist in Zero Trust Network Architecture and Engineering based on NIST SP 800-207/207A and the work of Razi Rais, Christina Morillo, and Evan Gilman. Covers the Never Trust Always Verify tenets, Policy Engine/Administrator/Enforcement Point, CISA Zero Trust Maturity Model v2.0, network microsegmentation, continuous authentication, strong workload identity (SPIFFE/SPIRE and IETF WIMSE), ZTNA (Zero Trust Network Access), Policy-as-Code, and end-to-end mTLS encryption.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
-      "digest": "sha256:3632bd694a4e7cdfd72370720f902e7ba9351bb9ed5a82803d91a1f6bdedd4dc"
+      "digest": "sha256:842f9a2159b2a303dd45ba4d4d2fb21b4af1740ba14b1c2ceb78ffba71c1c64c"
     }
   ]
 }

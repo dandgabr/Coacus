@@ -1710,6 +1710,36 @@
       ]
     },
     {
+      "name": "iot-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Consumer/Embedded IoT Security, covering device fingerprinting, backdoor-shaped findings (default credentials, unauthenticated management protocols, vendor maintenance daemons), network isolation of untrusted devices, device-side hardening, firmware updates and cloud/P2P egress.",
+      "skills": [
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
+        "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
+        "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
+        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
+        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
+        "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
+      ],
+      "triggers": [
+        "backdoor de dispositivo",
+        "camera ip",
+        "casa inteligente",
+        "c\u00e2mera ip",
+        "c\u00e2meras ip",
+        "dispositivo iot",
+        "dispositivos iot",
+        "firmware de dispositivo",
+        "impressora",
+        "impressoras",
+        "iot",
+        "onvif",
+        "rtsp",
+        "smart home"
+      ]
+    },
+    {
       "name": "java-enterprise-architect",
       "category": "software-engineering",
       "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
@@ -2038,6 +2068,7 @@
         "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
         "knowledge/skills/security/operations/dns-security-protective-dns/SKILL.md",
         "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md",
+        "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
         "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
         "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
       ],

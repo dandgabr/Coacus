@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 446 skill(s) · 101 agent(s) · 1 MCP(s)
+**Totals:** 447 skill(s) · 102 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -66,6 +66,7 @@
 | incident-response-commander | cybersecurity | [knowledge/agents/cybersecurity/incident-response-commander/agent.source.md](../knowledge/agents/cybersecurity/incident-response-commander/agent.source.md) |
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
 | integration-architect | architecture | [knowledge/agents/architecture/integration-architect/agent.source.md](../knowledge/agents/architecture/integration-architect/agent.source.md) |
+| iot-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |
 | linguistic-specialist | specialized-domains | [knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md](../knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md) |
 | llvm-compiler-engineer | academic-sciences | [knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md](../knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md) |
@@ -496,6 +497,7 @@
 | endpoint-forensics | [knowledge/skills/security/operations/endpoint-forensics/SKILL.md](../knowledge/skills/security/operations/endpoint-forensics/SKILL.md) |
 | ids-ips-ndr-engineering | [knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md](../knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md) |
 | incident-response-blue-team | [knowledge/skills/security/operations/incident-response-blue-team/SKILL.md](../knowledge/skills/security/operations/incident-response-blue-team/SKILL.md) |
+| iot-untrusted-device-isolation | [knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md](../knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md) |
 | itdr-identity-threat-detection | [knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md](../knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md) |
 | kubernetes-security-posture | [knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md](../knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md) |
 | mobile-enterprise-mdm | [knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md](../knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md) |

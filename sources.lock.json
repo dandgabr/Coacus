@@ -6938,9 +6938,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/cloud-infra/zero-trust-architecture-engineering/SKILL.md",
-      "source_sha256": "6b8f42842e15f888c51ca41d588bf95d9952914291b94c0c1952229284d2156b",
+      "source_sha256": "5cf97e90ae4a31e8e1295ac8a6b622195fd18f3bd565f55023b1b84bc75949c1",
       "target_path": "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
-      "target_sha256": "6b8f42842e15f888c51ca41d588bf95d9952914291b94c0c1952229284d2156b",
+      "target_sha256": "5cf97e90ae4a31e8e1295ac8a6b622195fd18f3bd565f55023b1b84bc75949c1",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -14297,7 +14297,7 @@
       "source_path": "skills/security/grc-compliance/network-security-onprem-cloud/SKILL.md",
       "source_sha256": "8daa5c03b7d399ebcac29942280a63756dcc6631a5ec00e5bef41b650f972a04",
       "target_path": "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
-      "target_sha256": "902d78fdd2547bd359bf3c66fac8ab798e504d55ef41a32f6567a078b082e1b3",
+      "target_sha256": "296dc52db6881fe2aad4355bcaf43cc301aefd298031fdbfb1f9e1f2e3f7c050",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17285,9 +17285,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-      "source_sha256": "5398a28b9c3da71c3e131280b8f21227116a50baffaeedc47d82148a0f678462",
+      "source_sha256": "4bcedcc50bc46fd706c6aca4ed96d96b988fee98d3d51cbab9db46514c0ab13f",
       "target_path": "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-      "target_sha256": "5398a28b9c3da71c3e131280b8f21227116a50baffaeedc47d82148a0f678462",
+      "target_sha256": "4bcedcc50bc46fd706c6aca4ed96d96b988fee98d3d51cbab9db46514c0ab13f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17420,9 +17420,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-      "source_sha256": "1280a287fa3036adef436cab1ec68c492b487335ea7be617e67e7369bfb386f0",
+      "source_sha256": "158bee980d8820c6a2b0b7d42f2dea8e2c2f7f03bb98db98824eec4b1f8ebcf4",
       "target_path": "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-      "target_sha256": "1280a287fa3036adef436cab1ec68c492b487335ea7be617e67e7369bfb386f0",
+      "target_sha256": "158bee980d8820c6a2b0b7d42f2dea8e2c2f7f03bb98db98824eec4b1f8ebcf4",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17735,9 +17735,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "source_sha256": "4404f2e88be07b5024837c147b03d5f38b507ee41c1514f18e012e6c04697d0a",
+      "source_sha256": "251bded214763971da011ed847eef3bacc6679f317615c0611c360eaa0fc0303",
       "target_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "target_sha256": "4404f2e88be07b5024837c147b03d5f38b507ee41c1514f18e012e6c04697d0a",
+      "target_sha256": "251bded214763971da011ed847eef3bacc6679f317615c0611c360eaa0fc0303",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20685,6 +20685,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-13T04:06:09Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md",
+      "source_sha256": "31bc868c97f6405990bdd875d148b70b106f5f7f233beed68593c336ac69d23f",
+      "target_path": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md",
+      "target_sha256": "31bc868c97f6405990bdd875d148b70b106f5f7f233beed68593c336ac69d23f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-13T13:35:19Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
+      "source_sha256": "99d38c0a40841dab9c41acbd6c68c88bebbe810a74b547e7dc27283a8a4f5ed9",
+      "target_path": "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
+      "target_sha256": "99d38c0a40841dab9c41acbd6c68c88bebbe810a74b547e7dc27283a8a4f5ed9",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-13T13:35:19Z"
     }
   ]
 }

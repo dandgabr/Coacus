@@ -1147,6 +1147,9 @@
       "path": "knowledge/skills/security/operations/incident-response-blue-team"
     },
     {
+      "path": "knowledge/skills/security/operations/iot-untrusted-device-isolation"
+    },
+    {
       "path": "knowledge/skills/security/operations/itdr-identity-threat-detection"
     },
     {

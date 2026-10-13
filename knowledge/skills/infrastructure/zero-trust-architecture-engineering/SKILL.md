@@ -84,6 +84,36 @@ The federal reference organizes maturity across **5 pillars** (Identity, Devices
 
 ---
 
+## 🤖 7. Zero Trust for Untrusted/IoT Devices
+
+Devices that cannot assert identity or be patched are treated as the lowest trust
+tier — reachable, but never a trust source.
+
+- **Location is not trust**: NIST SP 800-207 reframes segmentation — zero trust
+  "focuses on protecting resources, not network segments, as the network location is
+  no longer seen as the prime component to the security posture." Keep the segment,
+  drop the trust it used to confer.
+- **Identity-tier over network-tier**: NIST SP 800-207A moves east-west control "from
+  security controls based on segmentation and isolation using network parameters to
+  identities." For untrusted devices with no identity, the **network-tier** policy is
+  the fallback enforcement tier — defense in depth, not the primary control.
+- **Asymmetric containment**: allow the owner to reach the device, deny the device to
+  *initiate* into higher-trust zones; a stateful enforcement point keeps replies
+  flowing. Default-deny is the baseline; a "permit" is explicit and justified.
+- **Assume breach, then verify**: treat "a network viewed as compromised"
+  (CISA ZTMM v2.0). Prove the deny with a test issued from the untrusted segment,
+  not by inference — a rule that exists is not a rule that denies (patch of the
+  ACSC's "segment and segregate" principle and IEC 62443-3-3 SR 3.3).
+- **Boundary administration ordering**: a boundary is void if administered from the
+  less-trusted side — manage an OT/IoT boundary only from a network of equal or
+  higher posture.
+- **Egress is a trust channel**: allowing a device to reach its vendor cloud is
+  trusting that vendor's PKI and update pipeline; decide egress separately from LAN
+  isolation.
+
+See the [iot-untrusted-device-isolation](../../security/operations/iot-untrusted-device-isolation/SKILL.md)
+skill for the concrete playbook.
+
 ## 🔗 Integration with Other Skills
 
 - To enrich policy decisions with adversary behavior mapping, see the [threat-modeler](../../security/operations/threat-modeler/SKILL.md) skill.

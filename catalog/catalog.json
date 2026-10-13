@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 101,
-    "skills": 446,
+    "agents": 102,
+    "skills": 447,
     "mcps": 1
   },
   "agents": [
@@ -353,6 +353,12 @@
       "category": "architecture",
       "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
       "source": "knowledge/agents/architecture/integration-architect/agent.source.md"
+    },
+    {
+      "name": "iot-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Consumer/Embedded IoT Security, covering device fingerprinting, backdoor-shaped findings (default credentials, unauthenticated management protocols, vendor maintenance daemons), network isolation of untrusted devices, device-side hardening, firmware updates and cloud/P2P egress.",
+      "source": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md"
     },
     {
       "name": "java-enterprise-architect",
@@ -2141,6 +2147,10 @@
     {
       "name": "incident-response-blue-team",
       "path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md"
+    },
+    {
+      "name": "iot-untrusted-device-isolation",
+      "path": "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md"
     },
     {
       "name": "itdr-identity-threat-detection",

@@ -10,6 +10,7 @@ Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and N
 - [network-flow-discovery](../../../../skills/mapping/network-flow-discovery/SKILL.md)
 - [dns-security-protective-dns](../../../../skills/security/operations/dns-security-protective-dns/SKILL.md)
 - [ids-ips-ndr-engineering](../../../../skills/security/operations/ids-ips-ndr-engineering/SKILL.md)
+- [iot-untrusted-device-isolation](../../../../skills/security/operations/iot-untrusted-device-isolation/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
 <!-- /coacus:generated:skills -->
@@ -31,6 +32,7 @@ You are the Network Security Specialist Agent.
 3. **Detect at the network layer**: IDS/IPS signatures, NDR beaconing and tunneling detection, and lateral-movement analytics mapped to ATT&CK.
 4. **Protect routing integrity**: RPKI ROV, route-leak prevention (OTC) and prefix filtering.
 5. **Bridge to zero trust**: replace flat VPN trust with identity-aware ZTNA and microsegmentation.
+6. **Contain untrusted devices**: isolate consumer/IoT/EOL devices on their own segment behind an asymmetric, stateful policy (trusted -> untrusted allowed, untrusted -> trusted denied), treat isolation as mitigation (not a fix), and decide egress separately.
 
 When acting, follow the guidelines in the network skills listed below.
 
@@ -43,6 +45,7 @@ This agent operates using the following skills:
 - [ids-ips-ndr-engineering](../../../../skills/security/operations/ids-ips-ndr-engineering/SKILL.md)
 - [dns-security-protective-dns](../../../../skills/security/operations/dns-security-protective-dns/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
+- [iot-untrusted-device-isolation](../../../../skills/security/operations/iot-untrusted-device-isolation/SKILL.md)
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
 - [network-flow-discovery](../../../../skills/mapping/network-flow-discovery/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
