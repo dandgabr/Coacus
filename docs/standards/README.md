@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 418 skills across eleven categories, 100 agents, one MCP declaration.
+- **Knowledge** — what the framework knows: 419 skills across eleven categories, 101 agents, one MCP declaration.
 - **Methodology** — how work proceeds: 27 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 419 | `domains` 140, `security` 127, `engineering` 31, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
-| Agents | 100 | `cybersecurity` 22, `software-engineering` 18, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
+| Skills | 419 | `domains` 140, `security` 127, `engineering` 32, `roles` 23, `languages` 20, `data` 16, `frameworks` 15, `mapping` 15, `architecture` 14, `infrastructure` 9, `platforms` 6 |
+| Agents | 101 | `cybersecurity` 22, `software-engineering` 19, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 27 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
 | MCPs | 1 | `context7` |
-| Catalog | 445 skill entries | 418 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1418 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 446 skill entries | 419 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1419 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Engine (stdlib only, zero runtime dependencies)
 
@@ -308,6 +308,7 @@ read the relevant one before changing that area of the repository.
 | [lifecycle-guardrails](docs/standards/lifecycle-guardrails.md) | The PAER guardrail model, per-harness capability data and the native render. |
 | [decision-records](docs/standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
 | [self-improvement-loop](docs/standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
+| [product-and-design-truth](docs/standards/product-and-design-truth.md) | Separation of durable business/product truth from visual systems and surface modes. |
 
 ## Status
 
@@ -327,7 +328,7 @@ Phases **F0–F10 complete**; the repository is finished.
 | **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
 | **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
 
-The framework ships the imported corpus (418 skills, 100 agents, 27 workflows, one
+The framework ships the imported corpus (419 skills, 101 agents, 27 workflows, one
 MCP), fully translated to English, with a generated catalog and discovery,
 multi-harness agent manifests, MCP single-source generation, a per-harness
 SessionStart bootstrap, the governor and TOON validator, a per-harness installer
@@ -350,7 +351,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
 | [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 24 normative standards. Read before changing that area. |
+| [`docs/standards/`](docs/standards/) | The 25 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |

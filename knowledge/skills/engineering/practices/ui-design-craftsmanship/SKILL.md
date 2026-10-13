@@ -1,0 +1,116 @@
+---
+name: "ui-design-craftsmanship"
+description: "Mastery in professional UI/UX craftsmanship, purposeful design direction, heuristic critique, and eliminating generic AI design anti-patterns."
+---
+
+# UI Design Craftsmanship
+
+This skill equips coding agents with human-grade design discipline, ergonomic precision, and visual taste, eradicating generic "AI slop" and elevating frontend implementations into publication-grade, tactile, and accessible software.
+
+---
+
+## 🧭 Foundational Pillars
+
+### 1. The Separation of Truth
+- **`PRODUCT.md`**: Captures durable product truth (audience, core problem, operating constraints, voice, factual evidence). Never mix business requirements with visual styling choices.
+- **`DESIGN.md`**: Captures visual system authority (tokens in `oklch()`, font scale ratios, surface treatments, spacing grids, elevation recipes).
+
+### 2. The 4 Surface Modes
+Every interface surface MUST declare its visitor mode:
+- **`Persuade`**: (Landing pages, marketing, pricing). Design is the product. High contrast, sharp editorial typography, deliberate visual anchors.
+- **`Operate`**: (Dashboards, editors, admin tools, data tables). Task completion outranks expression. High information density, predictable scannability, rock-solid keyboard navigation.
+- **`Read`**: (Documentation, guides, long-form articles). Optimal measure (45-75 characters per line), typographic rhythm, distraction-free legibility.
+- **`Experience`**: (Portfolios, interactive showcases, creative tools). The UI recedes; the user's focus is dedicated entirely to the central artifact.
+
+---
+
+## 🛠️ The 24 Intentional Design Directives
+
+When directing or refining interfaces, apply these specific actions:
+
+| Category | Action | Objective |
+| :--- | :--- | :--- |
+| **Build** | `shape` | Plan layout hierarchy, user flows, and state architecture before writing CSS/code. |
+| **Build** | `init` | Inspect context and record durable product facts into `PRODUCT.md`. |
+| **Build** | `document` | Extract and formalize existing CSS/Tailwind variables into `DESIGN.md`. |
+| **Build** | `extract` | Pull repeated component patterns and tokens into reusable design system primitives. |
+| **Evaluate** | `critique` | Conduct a UX design critique scoring visual hierarchy, alignment, rhythm, and clarity. |
+| **Evaluate** | `audit` | Run technical verification: WCAG 2.2 AA contrast, responsive breakpoints, layout shifts. |
+| **Refine** | `polish` | Final quality pass: alignment, micro-spacings, hover/focus rings, and border hairlines. |
+| **Refine** | `bolder` | Inject character into timid, bland layouts: amplify scale contrast, tighten typography. |
+| **Refine** | `quieter` | Tone down aggressive, over-saturated layouts: reduce competing visual noise. |
+| **Refine** | `distill` | Strip away decorative fluff, redundant cards, and non-functional containers. |
+| **Refine** | `harden` | Implement empty states, loading skeletons, error boundaries, and text overflows. |
+| **Refine** | `onboard` | Design guided first-run paths, progressive disclosure, and empty-state incentives. |
+| **Enhance** | `animate` | Add purposeful motion (<200ms) honoring spring physics and `prefers-reduced-motion`. |
+| **Enhance** | `colorize` | Introduce intentional, semantic color accents into sterile monochrome layouts. |
+| **Enhance** | `typeset` | Establish a mathematical type scale (1.25 or 1.333) with calibrated line-heights. |
+| **Enhance** | `layout` | Fix visual rhythm, enforce multi-tier spacing grids (4px/8px), and ensure section breathing. |
+| **Enhance** | `delight` | Add subtle, memorable tactile micro-interactions (magnetic hovers, tactile clicks). |
+| **Enhance** | `overdrive` | Implement technically extraordinary effects (shaders, dynamic canvas, physics). |
+| **Fix** | `clarify` | Rewrite ambiguous UX copy, microcopy, form field labels, and validation errors. |
+| **Fix** | `adapt` | Adapt layout seamlessly for extreme screen sizes, mobile viewports, and touch targets. |
+| **Fix** | `optimize` | Eliminate jank, layout recalculations, uncompressed visual assets, and CLS. |
+
+---
+
+## 🔬 The 5 Heuristic Self-Tests
+
+Before completing any frontend delivery, run these 5 deterministic mental audits:
+
+1. **The Squint Test (Focal Clarity)**:
+   - Defocus your eyes. Is the primary call-to-action or focal point immediately unmistakable? If three elements compete for primary attention, demote two.
+2. **The Border Strip Test (Typographic Hierarchy)**:
+   - Mentally remove all borders, card backgrounds, and dividing lines. Does the layout still hold together logically solely through typography and whitespace? If not, the typography is too weak.
+3. **The Color Budget Test (Chromatic Discipline)**:
+   - Does the interface use more than one brand accent color for interactive actions? Chromatic saturation must be reserved for meaningful status cues (success, error, warning). The chrome belongs to tinted neutrals.
+4. **The Target Ergonomics Test (Hit Areas & Thumb Zones)**:
+   - Are all interactive touch targets at least 44x44px? Is critical action density calibrated to prevent accidental clicks?
+5. **The Motion Budget Test (Accessibility & Restraint)**:
+   - Does every CSS transition or animation complete in under 200ms? Are cartoonish bounce curves eliminated? Is `@media (prefers-reduced-motion)` strictly implemented?
+
+---
+
+## 🚫 AI Slop Blacklist & Prescribed Antidotes
+
+| Generic AI Tell ("Slop") | Root Cause | Prescribed Craft Antidote |
+| :--- | :--- | :--- |
+| **Icon in a rounded pastel box** | Habit of placing an icon tile above every card title | Place the icon inline with text or eliminate it. Rely on strong typographic titles. |
+| **Single italic serif word** | Inserting an italic serif word in a sans-serif headline | Commit to a single typeface family or establish a coherent editorial contrast across the entire header. |
+| **Hero eyebrow pill badge** | Formulaic pill with sparkles/emojis above hero | Replace with a crisp, uppercase tracking kicker or eliminate the redundant badge entirely. |
+| **Gray text on colored fill** | `text-gray-400` on `bg-blue-600` or `bg-slate-900` | Always pair saturated fills with pure white or high-contrast tinted light ink (`oklch(95% ...)`). |
+| **Nested card syndrome** | Card inside card inside card with heavy borders | Eliminate internal cards. Differentiate groupings using subtle background tint shifts or spacing. |
+| **Vague, oversized shadows** | `shadow-2xl` spreading artificial black smudge | Use layered multi-stop shadows (`0 1px 2px rgba(...)`, `0 4px 12px rgba(...)`) with low opacity. |
+| **Monotonous spacing** | `p-6` and `gap-4` used across every container | Use differentiated spacing scale: 8px tight, 16px medium, 32px-48px between major visual zones. |
+| **Default font inertia** | Using Inter/Arial/Roboto for every brief | Select typefaces matching the brand voice (e.g. Plus Jakarta Sans, Geist, Instrument Serif, Outfit). |
+
+---
+
+## 🎨 Surface & Token Craft Recipes
+
+### 1. Tinted Neutrals (Never Pure Black)
+```css
+/* Bad */
+background-color: #000000;
+color: #888888;
+
+/* Good: OKLCH Warm Dark Lacquer */
+--surface-ground: oklch(12% 0.008 95);
+--surface-panel:  oklch(16% 0.010 95);
+--text-primary:   oklch(94% 0.004 95);
+--text-muted:     oklch(70% 0.008 95);
+```
+
+### 2. Discrete Hairline Borders
+```css
+/* Tactile 1px border with subtle transparency */
+border: 1px solid oklch(94% 0.004 95 / 0.08);
+```
+
+### 3. Layered Multi-Stop Shadows
+```css
+/* Refined depth rather than blurry smudges */
+box-shadow: 
+  0 1px 2px oklch(0% 0 0 / 0.12),
+  0 4px 12px oklch(0% 0 0 / 0.08);
+```

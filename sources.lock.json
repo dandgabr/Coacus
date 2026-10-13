@@ -20655,6 +20655,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-11T20:45:51Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
+      "source_sha256": "2e91b6c662ade8d3667c3b1585b8bd47a594545c14db06152e4cddfcf53230da",
+      "target_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
+      "target_sha256": "2e91b6c662ade8d3667c3b1585b8bd47a594545c14db06152e4cddfcf53230da",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-13T04:06:09Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+      "source_sha256": "ca24133fa9f037979d46a954ab2a7b3e792a6b62148f428eba7f539f2c586d04",
+      "target_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+      "target_sha256": "ca24133fa9f037979d46a954ab2a7b3e792a6b62148f428eba7f539f2c586d04",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-13T04:06:09Z"
     }
   ]
 }

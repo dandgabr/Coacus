@@ -2459,6 +2459,13 @@
       "digest": "sha256:d72e778370cd025e7843f510d61366ec6cfc20f72e000e11e7731260a8ab9329"
     },
     {
+      "name": "ui-design-craftsmanship",
+      "description": "Mastery in professional UI/UX craftsmanship, purposeful design direction, heuristic critique, and eliminating generic AI design anti-patterns.",
+      "type": "skill-md",
+      "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+      "digest": "sha256:ca24133fa9f037979d46a954ab2a7b3e792a6b62148f428eba7f539f2c586d04"
+    },
+    {
       "name": "ui-designer",
       "description": "Provides the UI design discipline craft (interface/visual design separated from UX): visual hierarchy and composition, 8pt spacing systems, type scales and legibility, semantic color tokens, component state design, design tokens (DTCG), dark mode and touch-target standards, art-direction-to-handoff process and UI evaluation checklists. Use when designing high-fidelity interfaces, building design systems, or reviewing visual craft.",
       "type": "skill-md",

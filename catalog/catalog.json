@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 100,
-    "skills": 445,
+    "agents": 101,
+    "skills": 446,
     "mcps": 1
   },
   "agents": [
@@ -209,6 +209,12 @@
       "category": "data-cloud-devops",
       "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
       "source": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md"
+    },
+    {
+      "name": "design-qa-specialist",
+      "category": "software-engineering",
+      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+      "source": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md"
     },
     {
       "name": "devops-engineer",
@@ -1371,6 +1377,10 @@
     {
       "name": "system-design-scalability",
       "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "ui-design-craftsmanship",
+      "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md"
     },
     {
       "name": "ui-gpu-graphics-web",

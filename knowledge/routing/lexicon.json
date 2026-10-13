@@ -490,6 +490,21 @@
       "dependabot",
       "workflow hardening"
     ],
+    "design-qa-specialist": [
+      "design qa",
+      "design audit",
+      "ui audit",
+      "design critique",
+      "ui critique",
+      "auditoria de design",
+      "anti-ai-slop",
+      "ui craftsmanship",
+      "visual polish",
+      "heurística de design",
+      "design heuristic",
+      "squint test",
+      "border strip test"
+    ],
     "documenter": [
       "documentação",
       "documentation",

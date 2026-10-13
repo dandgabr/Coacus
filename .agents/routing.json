@@ -950,6 +950,34 @@
       ]
     },
     {
+      "name": "design-qa-specialist",
+      "category": "software-engineering",
+      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+      "skills": [
+        "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+        "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
+        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+        "knowledge/skills/roles/frontend-developer/SKILL.md"
+      ],
+      "triggers": [
+        "anti-ai-slop",
+        "auditoria de design",
+        "border strip test",
+        "design audit",
+        "design critique",
+        "design heuristic",
+        "design qa",
+        "heur\u00edstica de design",
+        "squint test",
+        "ui audit",
+        "ui craftsmanship",
+        "ui critique",
+        "visual polish"
+      ]
+    },
+    {
       "name": "devops-engineer",
       "category": "data-cloud-devops",
       "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",

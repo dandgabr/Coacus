@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 445 skill(s) · 100 agent(s) · 1 MCP(s)
+**Totals:** 446 skill(s) · 101 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -42,6 +42,7 @@
 | data-scientist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-scientist/agent.source.md](../knowledge/agents/data-cloud-devops/data-scientist/agent.source.md) |
 | data-security-privacy-specialist | cybersecurity | [knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md](../knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md) |
 | dba-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md) |
+| design-qa-specialist | software-engineering | [knowledge/agents/software-engineering/design-qa-specialist/agent.source.md](../knowledge/agents/software-engineering/design-qa-specialist/agent.source.md) |
 | devops-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md) |
 | documenter | software-engineering | [knowledge/agents/software-engineering/documenter/agent.source.md](../knowledge/agents/software-engineering/documenter/agent.source.md) |
 | domain-architect | architecture | [knowledge/agents/architecture/domain-architect/agent.source.md](../knowledge/agents/architecture/domain-architect/agent.source.md) |
@@ -304,6 +305,7 @@
 | repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
 | review-findings-pipeline | [knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md](../knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
+| ui-design-craftsmanship | [knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md](../knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
