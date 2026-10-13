@@ -76,7 +76,11 @@ def main() -> int:
                 ledger.acquire(_slot_id(payload), orchestrator=False, timeout=30)
             except Exception:
                 pass
-        sys.stdout.write("{}\n")
+        # Antigravity requires an explicit `decision` on PreToolUse: an empty
+        # object is read as a denial ("tool call denied by pre-tool hook:" with an
+        # empty reason). This hook only accounts for a slot, so it must answer
+        # `allow`, never `{}`.
+        sys.stdout.write('{"decision": "allow"}\n')
         return 0
 
     if mode == "posttool":

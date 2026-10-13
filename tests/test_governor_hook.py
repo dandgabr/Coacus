@@ -28,7 +28,9 @@ class TestGovernorHook(unittest.TestCase):
                 )
                 return json.loads(result.stdout)
             ledger = Ledger(Path(tmp), scope="antigravity", max_total=3)
-            self.assertEqual(run("pretool"), {})
+            # Antigravity reads a decision-less PreToolUse result as a denial, so
+            # the governor must answer `allow`, never `{}`.
+            self.assertEqual(run("pretool"), {"decision": "allow"})
             self.assertEqual(ledger.status()["running"], 1)
             self.assertEqual(run("posttool"), {})
             self.assertEqual(ledger.status()["running"], 0)

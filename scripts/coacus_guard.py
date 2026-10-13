@@ -77,6 +77,20 @@ def _action(payload: dict) -> tuple[str, str]:
     return "", ""
 
 
+def _allow(harness: str) -> str:
+    """Render the 'permit, no opinion' effect for a harness.
+
+    On most harnesses an empty object means "no opinion" and the tool proceeds.
+    Antigravity is the exception: its PreToolUse contract makes ``decision``
+    REQUIRED, and an object without it is read as a denial ("tool call denied by
+    pre-tool hook:" with an empty reason). So Coacus must answer ``allow``
+    explicitly there, otherwise an unopinionated guard blocks every tool call.
+    """
+    if harness == "antigravity":
+        return json.dumps({"decision": "allow"})
+    return "{}"
+
+
 def _native(harness: str, decision: str, message: str) -> str:
     """Render the harness-native effect JSON.
 
@@ -84,7 +98,7 @@ def _native(harness: str, decision: str, message: str) -> str:
     harness with no deny render yields ``{}`` (no opinion).
     """
     if decision == "allow":
-        return "{}"
+        return _allow(harness)
     if harness in ("claude-code", "codex", "command-code"):
         return json.dumps(
             {
@@ -124,7 +138,7 @@ def run(harness: str, event: str, payload_text: str, root: Path) -> str:
             decision = "allow"
         return _native(harness, decision, message)
     except Exception:  # mechanism failure (D4): allow + advisory, never brick.
-        return "{}"
+        return _allow(harness)
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -39,6 +39,11 @@ carries each cell's evidence class; a bare boolean is forbidden.
   not decide) defaults to `deny`; `on_mechanism_failure` (the guardrail process
   itself failed) defaults to `allow` plus an advisory. A broken hook MUST NOT
   deny every call.
+- Where a harness requires an explicit decision in order to permit (Antigravity
+  reads a decision-less `PreToolUse` result as a deny), the `allow` render is the
+  harness-native permit and the fail-open path emits it too — `{}` is only a
+  no-opinion permit on harnesses whose contract does not make `decision`
+  mandatory.
 
 ### Installation
 

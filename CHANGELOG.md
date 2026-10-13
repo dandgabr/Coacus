@@ -5,6 +5,20 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Antigravity hooks never deny by omission
+
+### Fixed
+
+- Antigravity: the `coacus-guard` and `coacus-governor` PreToolUse hooks returned
+  an empty object (`{}`) to permit. Antigravity's contract makes `decision`
+  required on that event and reads a decision-less result as a denial
+  (`tool call denied by pre-tool hook:` with an empty reason), so an
+  unopinionated hook blocked every tool call. Both now answer an explicit
+  `{"decision": "allow"}`, including the guard's mechanism-failure path so the
+  fail-open guarantee holds on the one harness where `{}` is a deny.
+- Antigravity: the rendered `coacus-guard` hook now uses the documented
+  `matcher`/`hooks` grouping for tool events instead of a flat handler.
+
 ## [Unreleased] — Browser selection policy
 
 ### Added

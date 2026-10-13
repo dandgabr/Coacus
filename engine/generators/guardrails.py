@@ -40,8 +40,20 @@ def _hook_fragment(harness: str) -> str:
             indent=2,
         ) + "\n"
     if harness == "antigravity":
+        # Antigravity keys PreToolUse by matcher group (a flat handler is the
+        # shape of PreInvocation/Stop, not a tool event); ``"*"`` matches every
+        # tool, so the guard still sees them all.
         return json.dumps(
-            {"coacus-guard": {"PreToolUse": [{"type": "command", "command": command}]}},
+            {
+                "coacus-guard": {
+                    "PreToolUse": [
+                        {
+                            "matcher": "*",
+                            "hooks": [{"type": "command", "command": command}],
+                        }
+                    ]
+                }
+            },
             indent=2,
         ) + "\n"
     return json.dumps(
