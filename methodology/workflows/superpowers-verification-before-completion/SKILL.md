@@ -56,6 +56,7 @@ Skip any step = lying, not verifying
 | A version, path or tool is X | Its manifest/registry entry in the resolved tree, **named** | Recalling it; a wildcard glob that matched a sibling; a lock you assumed |
 | A feature or entry is absent | The exact **error or `Result`**, printed | A count or summary line — several different causes produce the same one |
 | The artifact says Y | The artifact **at the path in force** | Another checkout, a generated mirror, a cached rendering |
+| A failure is not caused by my change | The **same check on the base revision**, with its generated inputs rebuilt | "It looks unrelated"; a failure seen once in a noisy run |
 
 ## Red Flags - STOP
 
@@ -186,6 +187,18 @@ until you have seen it fail.
 - When the generated inputs of a test (a compiled schema, a catalog, a lock file) are
   not committed, rebuild them before the tests: a stale build fails for a thing the code
   has never heard of.
+
+## Measure the baseline before attributing a failure
+
+A failing check is neither yours nor not yours until it has run against the code
+without your change.
+
+- Run the failing check on the base revision (a stash or a clean checkout of the base)
+  and report what **already failed** separately from what your change broke. Do not fix
+  the old failure silently inside the change, and do not excuse a new one as old.
+- Rebuild the generated inputs after any switch of revision or stash. A stale compiled
+  schema or catalog failed tests for a key the code had never heard of, and that false
+  failure looks exactly like a regression.
 
 ## Reproduce the other machine
 

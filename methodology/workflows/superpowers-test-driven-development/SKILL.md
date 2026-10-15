@@ -258,6 +258,19 @@ passing — when the path reverts unconditionally. Pair every one of them:
 - **Assert the reason, not only the absence.** `token == "bw"` plus a message naming
   the grammar; "a warning exists" is satisfied by any warning at all.
 
+## Pin the environment, and keep old data readable
+
+- **A test states every environment input it reads.** Locale, time zone, clock, working
+  directory and the order of a listing are inputs: pass them in, or fix them in the
+  test. A currency check that was green on one machine and red on another differed
+  only by the locale of the account running it; that is a defect of the test, and
+  running the suite once under a different locale finds the whole class.
+- **Data that was saved outlives the code that wrote it.** When a change removes a
+  value, a provider, an option or a field, the reader of the stored form must drop or
+  migrate the legacy value rather than reject the whole record, and a test feeds it a
+  saved value of the old shape. Without that test, a user's stored list is the first
+  place the removal fails.
+
 ## A green first run is a hypothesis: mutate
 
 Tests that pass the first time may be asserting nothing. Before trusting them, break the

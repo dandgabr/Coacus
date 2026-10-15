@@ -32,6 +32,13 @@ python3 -m unittest discover -s tests
 no drift. CI runs `validate` → `check` → `completeness` → tests and never
 `generate`, so a drift failure means regenerate locally and commit the result.
 
+**The local gate is what CI runs, linter included.** Read the CI workflow and run each
+step it runs, with the project's declared development tools installed first (the
+package manager's lockfile install, not a global guess). A step that could not run is
+not a step that passed: say so in the pull request instead of leaving it implied. A
+linter that was missing locally let an unused parameter reach CI, which a one-line
+local run would have caught.
+
 ## Reproduce the other machine
 
 The gate above passes on the machine that ran it. CI does not: a check that is green
@@ -90,6 +97,10 @@ working material or local state, and keep the last two out of the commit.
 - Removing a file orphans whatever pointed at it. Search the whole tree for each
   removed path and repair the reference — rewrite it to the document that now
   holds the rationale, or remove the sentence that needed it.
+- Removing a concept orphans more than files: parameters that only it used, branches
+  it made reachable, fixtures, texts, and identifiers other people already saved.
+  Search the whole tree for its name, then run the linter, which names the parameters
+  and imports nothing else points at any more.
 - The `repository-artifact-hygiene` skill carries the full procedure.
 
 ## Work that is not yours
