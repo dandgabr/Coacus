@@ -109,6 +109,9 @@ Reject "the model is the interface"; a bare chat box lowers the barrier to **mis
 - Relying on subtle cues (make them ~2× more prominent); over-simplifying into uselessness.
 - Unverified AI output presented as authoritative; false-precision confidence.
 - Ignoring accessibility, motion sensitivity and universal usability.
+- Letting a display preference change what is alerted or ranked: choosing which window
+  or metric a surface shows must not change warning state, ordering or notifications,
+  or a user hides an alarm by tidying the view.
 
 ---
 

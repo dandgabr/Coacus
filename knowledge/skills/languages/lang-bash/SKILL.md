@@ -50,6 +50,13 @@ While working under this skill, apply the following patterns strictly:
   ```
 - **ShellCheck Compliance**: Write clean code in line with ShellCheck's static analysis rules.
 
+### 6. Process Control
+- **Never stop a process by matching its command line from inside a shell whose own
+  command line contains the pattern.** `pkill -f <text>` and `pgrep -f <text>` match the
+  invoking shell too, and it dies with exit status 144 (or the match list silently
+  includes it). Take the PID from the launch (`$!`, a pidfile) or from a match that
+  excludes `$$`, check it with `ps -p`, then signal that PID.
+
 ---
 
 ## 🧰 Recommended Code Patterns

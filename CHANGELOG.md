@@ -5,6 +5,22 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Session learnings: gate parity and baselines
+
+### Added
+
+- Process conventions: the local gate is what CI runs, linter included, with the
+  declared development tools installed; removing a concept orphans parameters,
+  branches, fixtures and saved identifiers, not only files.
+- Test-driven development: tests pin the environment inputs they read, and a reader of
+  stored data keeps legacy values readable, proven by a test with an old saved value.
+- Verification before completion: measure the baseline on the base revision before
+  attributing a failure, and rebuild generated inputs after switching revisions.
+- `lang-bash`: process control by PID, never by a command-line match from a shell that
+  contains the pattern.
+- `ui-design-craftsmanship`: icon and asset set constraints live in a structural test.
+- `ui-ux-principles`: a display preference must not change alerting or ranking.
+
 ## [Unreleased] — Antigravity hooks never deny by omission
 
 ### Fixed

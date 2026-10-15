@@ -1567,7 +1567,7 @@
       "description": "Provides software engineering patterns in Bash/Shell Scripting. Covers strict and safe execution (set -euo pipefail), defensive variable and quoting handling, modular functions, dependency checks, file handling/redirection, and integration with ShellCheck and portability best practices.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-bash/SKILL.md",
-      "digest": "sha256:bbb0c791a91a0adb637eac4a0452c3680e3585134b7fe89f70ba6ffdf3cec19e"
+      "digest": "sha256:e90a67f79104135dbe5635cb1ff3857d2fc40fa6aab808f2189b3b42e02135a8"
     },
     {
       "name": "lang-c",
@@ -2337,7 +2337,7 @@
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
       "type": "archive",
       "url": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "digest": "sha256:ac97d3636f258d4233d8e5721d0fc9519afbe26b64360f977f6eb160602fb4bd"
+      "digest": "sha256:76330e3efcc767c6759bb55e4b425ec3c2454bce8abf99cdbf161a4f8615b70f"
     },
     {
       "name": "superpowers-using-git-worktrees",
@@ -2351,7 +2351,7 @@
       "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
       "type": "skill-md",
       "url": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "digest": "sha256:bc350182fb0492ff01b249beb6481abfe33447d91f134ecb61d9b57becf82abc"
+      "digest": "sha256:9a8fd6ec7e109f416e1f1a9512dcbaa50eb9e9ad4f3ef7508e9ad8cc82289d57"
     },
     {
       "name": "superpowers-writing-plans",
@@ -2470,7 +2470,7 @@
       "description": "Mastery in professional UI/UX craftsmanship, purposeful design direction, heuristic critique, and eliminating generic AI design anti-patterns.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:ca24133fa9f037979d46a954ab2a7b3e792a6b62148f428eba7f539f2c586d04"
+      "digest": "sha256:0497aa38382e7d9be64058f4d66a78ef83e255d70c22b99b3f83e733e4b3053f"
     },
     {
       "name": "ui-designer",
@@ -3030,7 +3030,7 @@
       "description": "Provides expert patterns for user-interface and interaction design based on Designing the User Interface (Shneiderman & Plaisant), Don't Make Me Think (Krug), Laws of UX (Yablonski), and Designing AI Interfaces (Macfadyen). Covers the eight golden rules, interaction styles, information visualization, usability testing, scanning and navigation, applied UX laws (Fitts, Hick, Jakob, Miller, Peak-End, Doherty), the Hook Model, and human-AI interaction with autonomy, trust and shared control.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "digest": "sha256:02e5f864efcf9bf75e80bad3c762672dd1c6bc7c0b24092781bb85d9ac52f411"
+      "digest": "sha256:bde4e9d151e9bd5e125f01c509d5b1d27d3f7f0ad6261eadac7472ab400b6e8b"
     },
     {
       "name": "uml-diagram-generation",
@@ -3051,7 +3051,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:d6dc5dca5b644750b3e53cd4209c4a4e5247c53316928636ad8200c99500a58b"
+      "digest": "sha256:9c4ac1c53a049e5e1945276195b5871d492e03e4545f20959d9eea6ff4ce63e8"
     },
     {
       "name": "ux-designer",
