@@ -18500,9 +18500,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-      "source_sha256": "efad0b381b3bcdaf9e4a65621a55a2f4075dfe4e160e93d893c3fd13d8968c63",
+      "source_sha256": "638493f0ea8da9294e355aef0e634a56ef91605694d54808ea5d2419ca25c308",
       "target_path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-      "target_sha256": "efad0b381b3bcdaf9e4a65621a55a2f4075dfe4e160e93d893c3fd13d8968c63",
+      "target_sha256": "638493f0ea8da9294e355aef0e634a56ef91605694d54808ea5d2419ca25c308",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

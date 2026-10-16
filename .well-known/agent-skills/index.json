@@ -2726,10 +2726,10 @@
     },
     {
       "name": "ui-style-frutiger-aero",
-      "description": "Provides the Frutiger Aero / Web 2.0 Gloss style (2004-2013): glossy nature-tech UI with glass translucency, bokeh and aqua blues, covering the Vista/7 Aero lineage, CARI's retroactive naming, CSS reconstruction, the 2023-24 revival and why it fails as a working interface. Use when designing nostalgia campaigns or studying the pre-flat gloss era.",
-      "type": "skill-md",
+      "description": "Provides the Frutiger Aero and Web 2.0 Gloss UI style (2004-2013): glossy skeuomorphic nature-tech interfaces, 50% specular splits, glass translucency, design tokens, pure CSS components, and WCAG 2.2 accessibility. Use when designing retro-optimistic marketing campaigns, casual games, media players, or analyzing pre-flat glossy ergonomics.",
+      "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-      "digest": "sha256:efad0b381b3bcdaf9e4a65621a55a2f4075dfe4e160e93d893c3fd13d8968c63"
+      "digest": "sha256:562a3ff8fe4522f108ca851e7a97f9b72b4bf62a76012df75ce1f2df284f233c"
     },
     {
       "name": "ui-style-glassmorphism",
