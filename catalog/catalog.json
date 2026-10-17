@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 102,
-    "skills": 447,
+    "skills": 457,
     "mcps": 1
   },
   "agents": [
@@ -909,6 +909,10 @@
       "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md"
     },
     {
+      "name": "ui-style-agitprop-poster",
+      "path": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md"
+    },
+    {
       "name": "ui-style-ai-native-generative-ui",
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md"
     },
@@ -921,8 +925,12 @@
       "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md"
     },
     {
-      "name": "ui-style-art-nouveau-arts-crafts",
-      "path": "knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md"
+      "name": "ui-style-art-nouveau",
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md"
+    },
+    {
+      "name": "ui-style-arts-and-crafts",
+      "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md"
     },
     {
       "name": "ui-style-atompunk",
@@ -981,12 +989,16 @@
       "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md"
     },
     {
-      "name": "ui-style-constructivism-propaganda",
-      "path": "knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md"
+      "name": "ui-style-constructivism",
+      "path": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md"
     },
     {
       "name": "ui-style-cyberpunk",
       "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-dark-fantasy",
+      "path": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md"
     },
     {
       "name": "ui-style-dark-mode-first",
@@ -1001,8 +1013,16 @@
       "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md"
     },
     {
-      "name": "ui-style-dungeon-synth-dark-fantasy",
-      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md"
+      "name": "ui-style-dracula",
+      "path": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md"
+    },
+    {
+      "name": "ui-style-dreamcore",
+      "path": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md"
+    },
+    {
+      "name": "ui-style-dungeon-synth",
+      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md"
     },
     {
       "name": "ui-style-editorial-archive-luxury",
@@ -1113,12 +1133,20 @@
       "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md"
     },
     {
+      "name": "ui-style-nordic",
+      "path": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md"
+    },
+    {
       "name": "ui-style-organic-biophilic",
       "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md"
     },
     {
       "name": "ui-style-parallax-scrolling",
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md"
+    },
+    {
+      "name": "ui-style-pixel-art",
+      "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md"
     },
     {
       "name": "ui-style-pop-art-halftone",
@@ -1129,12 +1157,12 @@
       "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md"
     },
     {
-      "name": "ui-style-retro-computing-pixel",
-      "path": "knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md"
+      "name": "ui-style-retro-computing",
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md"
     },
     {
-      "name": "ui-style-risograph-zine",
-      "path": "knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md"
+      "name": "ui-style-risograph",
+      "path": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md"
     },
     {
       "name": "ui-style-sandalpunk",
@@ -1169,24 +1197,36 @@
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md"
     },
     {
+      "name": "ui-style-synthwave",
+      "path": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md"
+    },
+    {
       "name": "ui-style-terminal-tui",
       "path": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md"
     },
     {
-      "name": "ui-style-vaporwave-synthwave",
-      "path": "knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md"
+      "name": "ui-style-vaporwave",
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md"
     },
     {
       "name": "ui-style-web-brutalism",
       "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md"
     },
     {
-      "name": "ui-style-weirdcore-dreamcore",
-      "path": "knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md"
+      "name": "ui-style-weirdcore",
+      "path": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md"
+    },
+    {
+      "name": "ui-style-windows-xp",
+      "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md"
     },
     {
       "name": "ui-style-y2k-revival",
       "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md"
+    },
+    {
+      "name": "ui-style-zine-independent",
+      "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md"
     },
     {
       "name": "ai-application-engineering",

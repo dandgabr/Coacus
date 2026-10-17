@@ -2523,10 +2523,17 @@
     },
     {
       "name": "ui-style-acid-anti-design",
-      "description": "Provides the acid graphics / deconstructivist anti-design style (2020-present): toxic palettes, blackletter-chrome type collisions, glitch and broken grids from club-flyer culture, covering David Rudnick lineage, CSS reconstruction, accessibility regressions by design and audience fit. Use when designing rave, hyperpop, streetwear or gen-Z culture surfaces where transgression is the product.",
+      "description": "Provides the canonical Acid Graphics & Deconstructivist Anti-Design UI style (2020-present): deconstructivist underground rave culture, David Rudnick typography collisions, liquid chrome lettering, toxic neon palettes (venom green, sulfur yellow, hot magenta on pitch black), intentional grid fracturing, and blend-mode difference inversions. Use when designing music festival portals, hyperpop releases, streetwear drops, or Gen-Z counterculture experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
-      "digest": "sha256:7715e1100f78cfde7d0792a0e583e01d919b3108762c930388fd9763f3b62931"
+      "digest": "sha256:4eb0d2562b01014374f9683381bc220d82e44ee2fc46ef839237c1b65f3efea5"
+    },
+    {
+      "name": "ui-style-agitprop-poster",
+      "description": "Provides the authentic Agitprop Poster UI style (1920s-1940s revolutionary street poster graphic design): high-contrast heraldic rays, heroic woodblock stencil typography, bold diagonal banner ribbons, stark scarlet-ochre-black palette, and urgent public agitation slogans. Use when designing high-impact protest journalism, political campaign hubs, grassroots activist portals, or assertive community rallying features.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
+      "digest": "sha256:f052220c1178c71cb1ac16bdd53145f59c4fefb154f15f3dd67ac0e8c1b688bd"
     },
     {
       "name": "ui-style-ai-native-generative-ui",
@@ -2540,133 +2547,147 @@
       "description": "Provides the broadsheet newspaper and letterpress print UI style: multi-column editorial grid, ornamental drop-caps, hairline column rules, woodblock illustrations and authentic newsprint texture. Use when designing longform journalism, literary presses or historical archives.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
-      "digest": "sha256:3866bff88d9c65a85f1b2ed0a1bac45a2caa2a02dd162bc5460bcb33903b7b54"
+      "digest": "sha256:24b894ae1bcd98dc8fecbcd5cd6ebc2fd5b67ea3caaa23e6433c1aa1dd5dc411"
     },
     {
       "name": "ui-style-art-deco",
       "description": "Provides the Art Deco UI style (1910s-1930s lineage, revived for the web): symmetrical geometric ornament, sunbursts, chevrons and stepped forms in gold, black and jewel tones, covering tokens, line-art and SVG pattern construction, high-contrast display type, ceremonial motion and contrast pitfalls of metallic palettes. Use when designing luxury, hospitality, cinema, jazz-age or premium brand surfaces that need glamour with structure.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
-      "digest": "sha256:017856e7a149f73a7c7ffcf9d87d85c179d89a504dbe01565136faf42983145c"
+      "digest": "sha256:dbe2309c6d90dbeadbbc9c02c06869e504ba58137c3fe5957cfbf455226e14ee"
     },
     {
-      "name": "ui-style-art-nouveau-arts-crafts",
-      "description": "Provides the Art Nouveau and Arts and Crafts revival UI style (c.1880s-1914 lineage, web revival 2020s): whiplash curves, botanical ornament, hand-lettered display type, muted earthy palettes and craft-honest surfaces, covering SVG path ornament, frames, type pairing, motion and WCAG contrast handling. Use when designing botanical, artisanal, heritage or tea-and-books brands that need ornamental warmth without looking like generic floral clip art.",
+      "name": "ui-style-art-nouveau",
+      "description": "Provides the authentic Art Nouveau UI style (1890\u20131910): organic whiplash curves, sinuous botanical tendrils, Alphonse Mucha illustrations, Hector Guimard cast iron metro entrances, Louis Comfort Tiffany stained glass, and muted jewel tones. Use when designing artistic luxury brands, botanical portfolios, theatrical applications, cultural heritage sites, or organic decorative web experiences.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md",
-      "digest": "sha256:331827943f2678995cef64528bbdd2964bc929071a808b4f50ff60f494701683"
+      "url": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+      "digest": "sha256:5fe79ee41f8a8aa82426bf01bbfcb75a24920f8111b158fab0c6b462fad39ab2"
+    },
+    {
+      "name": "ui-style-arts-and-crafts",
+      "description": "Provides the authentic Arts & Crafts UI style (1880\u20131920): British craft revival led by William Morris, Kelmscott Press typographic borders, woodblock printing textures, handcrafted honesty of materials, medieval guild motifs, and rich earthy plant dyes. Use when designing artisanal heritage brands, handcrafted goods e-commerce, book arts, traditional guild institutions, or rustic editorial platforms.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
+      "digest": "sha256:cc926a79c90f3dcec11fb5eba02f5b96bcc8f420fa130578cf9b04fc68edd151"
     },
     {
       "name": "ui-style-atompunk",
-      "description": "Provides the atompunk and space-age retro-futurism UI style (1945-1969): atomic-age optimism with Cold War undertones, Googie boomerangs and starbursts, Populuxe pastels, rounded rocket-age type, cantilevered layouts and orbit components. Use when designing retro-space, diner, science-museum, game or nostalgic brand interfaces and their flows.",
+      "description": "Provides the authentic Atompunk & Cold War Nuclear Age UI style (1945\u20131965): Raygun Gothic futurism, riveted heavy naval steel chassis, bakelite knobs, convex CRT monitors with P1 green and P3 amber phosphor, nixie tubes, analog galvanometers, radiation fallout shelters, and Geiger counter telemetry. Use when designing authentic retro-futuristic sci-fi, defense telemetry, complex data cockpits, or Fallout-inspired terminal interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
-      "digest": "sha256:a41f545fb0cb522e6481f04562818beeb61fc320699113605f58c9584684eda8"
+      "digest": "sha256:48cf28601390cc28bc279407c65812e7d69b154ae8ebff9de5bb3390b913a1fd"
     },
     {
       "name": "ui-style-aurora-mesh-gradient",
-      "description": "Provides the aurora / mesh gradient UI style (2018-present): ambient multi-color blurred backgrounds with grain, covering the pure-CSS radial-gradient mesh recipe, Stripe minigl lineage, SVG feTurbulence grain, contrast scrims and motion gating. Use when designing atmospheric hero backgrounds or implementing banding-free gradient fields.",
+      "description": "Provides the canonical Aurora / Mesh Gradient UI style (2018-present): ambient multi-color blurred gradient fields, pure-CSS radial mesh recipes, Stripe WebGL minigl canvas lineage, SVG feTurbulence grain anti-banding, contrast scrim architecture, and vestibular motion gating. Use when designing atmospheric hero backgrounds, landing page splash headers, or high-aesthetic devtool marketing experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
-      "digest": "sha256:9a3b1f504f555d0c2c50dfb28c3e3cc994906cc25cde86fe421e5fd641c8a9b9"
+      "digest": "sha256:6ee0af882d70898398bf94510b432a48f8e54caaf288b29081e8da8745511576"
     },
     {
       "name": "ui-style-bauhaus",
       "description": "Provides the Bauhaus UI style (1919-1933 lineage, revived for the web): form follows function, circle-square-triangle geometry, primary color with black, geometric sans typography and functional asymmetric layout, covering the school's timeline, tokens, grid and type rules, and how it differs from De Stijl and Swiss style. Use when designing geometric, educational, cultural or design-led brands that want modernist clarity with warmth.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
-      "digest": "sha256:a1cde00c2f5315c556594be65ffab99bfe535daf8ae0cf43f4bb275ec26a9f9d"
+      "digest": "sha256:e0db739b543f8cad8a56c51abf1963bf9fd2c5dc654151451fd0bcaa4cdeaab5"
     },
     {
       "name": "ui-style-bento-grid",
       "description": "Provides the bento grid UI style (2022-present): compartmentalized bento-box layouts of asymmetric rounded tiles with hierarchy expressed by span rather than shadow, covering the CSS grid recipe, Apple keynote lineage, motion patterns, DOM-order accessibility risks and appropriate page types. Use when designing feature overviews, marketing pages or portfolio grids in the Apple bento grammar.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
-      "digest": "sha256:fdb8c6523e35eb109144125d8d2d003e49de5431ecbd1fed3b369cbec88821c4"
+      "digest": "sha256:e181b2bdb24032fce9e85f8e3061e76a550d39040c84be36831c77a58346c937"
     },
     {
       "name": "ui-style-biopunk",
-      "description": "Provides the biopunk UI and UX style (1988-present): synthetic-biology science fiction and DIY-bio culture as specimen-lab visuals, lab-notebook information architecture, protocol and data-entry flows, provenance cues and ethical microcopy, covering palette, type, components and accessibility. Use when designing biotech, citizen-science, open-lab or health-data interfaces.",
+      "description": "Provides the canonical Biopunk & Synthetic Biology UI style (1988-present): biological sci-fi and DIY-bio culture featuring dark sterile laboratory slate, fluorescent GFP bioluminescence, cellular membrane optics, DNA sequence ribbons, gel electrophoresis progress meters, and ethical lab telemetry. Use when designing synthetic biology platforms, genomics tools, citizen science labs, or genetic sci-fi entertainment portals.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
-      "digest": "sha256:1b97be46e55d9316105158bf1d807a584f3f3683a30755086c6de68a6351c3e2"
+      "digest": "sha256:24c802a33039f9d77266afefb37448dc7b8e95aacb6f372ad3235008c4bf549a"
     },
     {
       "name": "ui-style-blueprint-cad-schematic",
       "description": "Provides the architectural blueprint and CAD schematic UI style: engineering cyan lines, coordinate crosshairs, dimension tick marks, monospaced drafting notes and technical grid backing. Use when building engineering tools, architecture portfolios or technical hardware docs.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
-      "digest": "sha256:724d03454ab7cdffa6611e9048bed20a115a8fd238a62ed650bede3cbc933e0d"
+      "digest": "sha256:9c7e4088fbf3904e20e83d1f35965d021c0bf09ee41bef16947c8edf6c7dbd97"
     },
     {
       "name": "ui-style-broken-grid",
-      "description": "Provides the broken grid / controlled asymmetry UI style (1980s print lineage, web 2010s-present): a visible underlying grid deliberately violated by overlap, offset and bleed, covering CSS Grid line-based overlap, layering, rhythm rules, reading-order safety and reflow. Use when designing editorial or portfolio layouts that need tension and movement without losing structure or accessibility.",
+      "description": "Provides the canonical Broken Grid & Controlled Asymmetry UI style (1980s print lineage, web 2010s-present): deliberate disruption of an underlying 12-column grid through intentional overlap, offset layering, scale contrasts, and bleed margins. Covers CSS Grid line-based overlapping techniques, DOM reading-order safety, responsive reflow collapsing, and WCAG 2.2 accessibility. Use when designing high-fashion editorial layouts, creative agency portfolios, or architectural monographs.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
-      "digest": "sha256:f203906fad4bf39555c93e3b095585ea17cf99be073c3cadd247057291943660"
+      "digest": "sha256:170c1f56869dc7d62d39c254f3ba7fb820121c61642966bb9067478cdcad4250"
     },
     {
       "name": "ui-style-brutalist-monochrome",
-      "description": "Provides the pure monochrome and tactile brutalism UI style: strict black-and-white binary palette, architectural typography, razor-sharp hairline borders, exposed structural grids, mono metadata and engineered precision. Covers New Brutalism lineage, Geist Design System hairline token grammar, keyboard-first feedback and WCAG AAA contrast. Use when building severe editorial, developer tools or engineered B2B platforms.",
+      "description": "Provides the canonical Brutalist Monochrome & Tactile Brutalism UI style: strict black-and-white binary contrast system, architectural grotesque typography, razor-sharp 1px hairline borders, exposed structural scaffolding, corner registration crosshairs (+), monospaced indices, and instant inverted hover feedback. Use when designing severe architectural archives, developer infrastructure consoles, independent type foundries, or high-precision B2B platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-      "digest": "sha256:5e098b6deca1710bbced067d1fca73a3596a3a42dec5620a04efbf8b3836b016"
+      "digest": "sha256:f3017f09a4bb7940ba47dc0de5a1195333a950e9d8ca8c85463cade4a53ee8fa"
     },
     {
       "name": "ui-style-calm-quiet-ui",
       "description": "Provides the calm / quiet UI style (1995-present): low-stimulation interfaces built on calm technology, covering peripheral attention, muted palettes, generous whitespace, restrained motion, notification discipline and sensory-friendly defaults. Use when designing wellbeing, focus, reading, journaling or any product where reducing cognitive and sensory load is the brief.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
-      "digest": "sha256:6df8ab8f9be83fafe9368eee58f7980de114dfa7848cd7f64e9e5f6f537101d0"
+      "digest": "sha256:c602a179b9ee1ee49d9758268e7ad8bc713c92f922d8ad562401fa223e7d5f75"
     },
     {
       "name": "ui-style-card-based-ui",
       "description": "Provides the card-based UI style (2013-present): self-contained content containers in grids and masonry, covering Material's card anatomy, Bootstrap 4 standardization, masonry techniques, container transforms and the density and reading-order pitfalls. Use when designing feeds, commerce grids, dashboards or any card-component system.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
-      "digest": "sha256:b5698fd4ee54ef4f893a69272110bfb8ff503716aaa79cf033fa08b936419ebe"
+      "digest": "sha256:652fda6beb78a9b296668f9055b7679c8ffaff310ad1a113fb2c52da548bf583"
     },
     {
       "name": "ui-style-cassette-futurism",
-      "description": "Provides the cassette futurism and analog sci-fi UI style (1975-1985 retrofuture): phosphor CRT monitors, mechanical rocker switches, magnetic tape data reels, caution-striped bezels and industrial beige equipment. Use when designing retro sci-fi games, audio software or nostalgic hardware emulators.",
+      "description": "Provides the authentic Cassette Futurism UI style (1975-1985 analog sci-fi and industrial microcomputing): curved phosphor CRT monitors, mechanical rocker switches, GaAs red LED segment displays, Ron Cobb semiotic hazard striping, magnetic tape reel indicators, and heavy beige polycarbonate chassis. Use when designing retro sci-fi space mission consoles, audio synthesizer interfaces, hardware diagnostics, or laboratory instrument emulators.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
-      "digest": "sha256:49d029e225a1df680527b63f6a24a63643d8faaed871e5e124c011e03f1f3586"
+      "digest": "sha256:1c071c2e5bafb44d7d714efab898a8794f18a71b9996069ba85367ffd74ea468"
     },
     {
       "name": "ui-style-claymorphism",
-      "description": "Provides the claymorphism and plasticine stop-motion UI style (2021-present): inflated 3D pastel shapes with dual inner shadows, handmade tactile fingerprint textures, stepped frame-rate animations, organic rounded contours and cozy warmth. Use when designing playful inflated UI, education apps, creative craft brands or clay-style marketing assets.",
+      "description": "Provides the canonical Claymorphism & Stop-Motion 3D UI style (2021-present): inflated, tactile modeling clay surfaces, pillowy rounded containers, dual inner shadows simulating curved 3D volume, pastel-vibrant palettes, and playful plasticine charm. Covers inner shadow mathematics, tactile hover squish physics, design tokens, and WCAG 2.2 accessibility. Use when designing children's educational apps, gamified dashboards, crypto/NFT playful interfaces, or friendly mobile products.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
-      "digest": "sha256:d25a084e5152ae301ce44fe4a2b847cf599aecd912d608314ec01e6c6be166f8"
+      "digest": "sha256:dde303e175618a0d5b014185169b211c643303bf460896daaae491b9f1ffea9b"
     },
     {
       "name": "ui-style-clockpunk",
-      "description": "Provides the clockpunk UI and UX style: Renaissance clockwork retrofuturism of gears, orreries, astronomical dials and parchment drawings, covering components, annotated-diagram navigation, flows, microcopy, states, drafting type and gear-train motion. Use when designing museum, education, watchmaking, craft or puzzle products that want a mechanical-precision interface and usable flows.",
+      "description": "Provides the canonical Clockpunk & Renaissance Horology UI style: Early Modern (16th-18th century) retrofuturism of mainsprings, escapements, astronomical orreries, Leonardo da Vinci codex marginalia, iron-gall ink on laid parchment, and interlocking gear ratios. Use when designing museum archives, horology portals, astronomy calculators, educational explainers, or puzzle interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
-      "digest": "sha256:786a7bf477e4c7ffa1879b7b94b020bc31cf23ef9bc75797185ba2e34929b7be"
+      "digest": "sha256:1a3fd488117ccae69be6afa400404294ff855197634499d6250905b6cd35f330"
     },
     {
       "name": "ui-style-collage-scrapbook",
       "description": "Provides the collage, scrapbook and Dadaist photomontage UI style (1912-present): cut-out photographic fragments, torn paper deckles, masking tape, rubber postmarks, ransom-note mixed typography and layered mixed media. Covers Braque/Picasso papier coll\u00e9, Cabaret Voltaire Dada anti-art, CSS clip-path torn edges and accessibility. Use when designing expressive, subversive, punk, artistic or handcrafted scrapbook surfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
-      "digest": "sha256:874cbd22f38c1a0940fb6a133cb180da2c752b6c8f7c391a0aa71e235136403e"
+      "digest": "sha256:f361eb7a72102c39175618aa58d65f3ccb5ab594844a2668e64129cc0f25d987"
     },
     {
-      "name": "ui-style-constructivism-propaganda",
-      "description": "Provides the constructivist and agitprop poster UI style (1919-1930s): aggressive 45-degree diagonal axes, heavy black-and-scarlet geometric primitives, photomontage frames, industrial baseline typography and dynamic structural tension. Use when designing high-impact editorial, cultural manifesto or avant-garde campaign web interfaces.",
+      "name": "ui-style-constructivism",
+      "description": "Provides the authentic Constructivism UI style (1919-1930s Soviet avant-garde): pure geometric primitives, dynamic 45-degree diagonal axes, stark scarlet-and-black contrast, load-bearing industrial typography, and photomontage engineering. Use when designing bold editorial manifests, architectural exhibition portals, avant-garde cultural features, or high-impact activist platforms.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-constructivism-propaganda/SKILL.md",
-      "digest": "sha256:4190d764318561e7d43de8a2d042093fdb27672fa8b7bfb478181cff9128f121"
+      "url": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
+      "digest": "sha256:d1b06f22c547ce53eb69c14874080e4851e27101295ecb0c71efd4bd9e4234f5"
     },
     {
       "name": "ui-style-cyberpunk",
-      "description": "Provides the complete cyberpunk and futuristic sci-fi HUD UI style (1980s-present): neon-noir dystopia, military FUI panels, chamfered corners, scanlines, telemetry loops, chromatic aberration and cybernetic aesthetics. Covers postcyberpunk and cyberprep variants, Territory Studio lineage, CSS clip-path chamfers and photosensitivity accessibility. Use when designing game, esports, crypto, security or sci-fi entertainment interfaces.",
+      "description": "Provides the canonical Cyberpunk & Sci-Fi Tactical HUD UI style (1980s-present): high-tech low-life neon-noir dystopia fused with Territory Studio cinematic tactical instrumentation (FUI), 45-degree chamfered polygon cards, horizontal CRT scanlines, cryptographic decoding reveals, electric cyan, acid yellow, and telemetry coordinate reticles. Use when designing game cockpits, esports streaming platforms, cybersecurity dashboards, web3 developer tools, or sci-fi entertainment portals.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
-      "digest": "sha256:02a2c89b4ad483fe563edaf69390996c6ec0c9a4a914fe485bb8f1f6217fa686"
+      "digest": "sha256:20a009c79a225054470120ed668b3e04ae2a7d72dbd1b40f4086860076ce0980"
+    },
+    {
+      "name": "ui-style-dark-fantasy",
+      "description": "Provides the authentic Dark Fantasy & Grimdark UI style: gothic cathedral architecture, Albrecht D\u00fcrer copperplate engravings, rusted wrought iron, damp castle stone, charred illuminated manuscripts, antique gold gilding, and blood-tinted glass. Use when designing epic dark RPG interfaces, grimdark gaming websites, dark fantasy lore archives, or gothic literary experiences.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
+      "digest": "sha256:4f68a6135531c8645aaa2a993b42868bb7cfd760bb03d879dd96d531d759bda5"
     },
     {
       "name": "ui-style-dark-mode-first",
@@ -2680,42 +2701,56 @@
       "description": "Provides the De Stijl / Neoplasticism UI style (1917-1931 lineage, revived for the web): orthogonal black grid lines, flat primary-color planes on white and asymmetric balance, covering Mondrian's neoplastic rules, the 1923 diagonal schism, grid-as-composition CSS, and differences from Bauhaus and Swiss style. Use when designing rigorous grid-based compositions, color-block layouts, portfolios or editorial pages that treat the layout itself as the artwork.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
-      "digest": "sha256:7cee0abec863510c66f9ca593fb077075ce5aa1584b6611704f9b6e608abc8d6"
+      "digest": "sha256:cd4ccb40e20f8511584b5894f01884d913006334d83b9425bc2c079807e7050c"
     },
     {
       "name": "ui-style-dieselpunk",
-      "description": "Provides the dieselpunk UI and UX style (2001-present), with decopunk and oilpunk variants: interwar-to-1950s retrofuturism of Art Deco, Streamline Moderne, noir and poster graphics, covering components, dossier-style navigation, flows, microcopy, states, condensed type and motion. Use when designing game, film, automotive or heritage-industrial interfaces, avoiding real propaganda imagery.",
+      "description": "Provides the canonical Dieselpunk & Interwar Machine Age UI style (1918\u20131950s): Art Deco geometry, Streamline Moderne curves, heavy naval armor plates, diesel soot, combustion engines, noir shadowplay, military dossiers, and bold condensed typography. Use when designing alternate-history games, aviation or racing hubs, speakeasy noir experiences, or heavy industrial brand platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
-      "digest": "sha256:088f14c50d5bde0f2b1c07e96133675898409bd6baa7b4c3a75bd8914fe7cba4"
+      "digest": "sha256:247ce968f6e8200e957efe10c4c0ab93e7a2238b24a8fae30c7067f81286b4ad"
     },
     {
-      "name": "ui-style-dungeon-synth-dark-fantasy",
-      "description": "Provides the dungeon synth and dark fantasy medieval UI style: weathered stone textures, illuminated manuscript borders, tarnished gold, woodcut engravings and archaic atmospheric typography. Use when designing tabletop RPG, dark fantasy gaming or ambient music platforms.",
+      "name": "ui-style-dracula",
+      "description": "Provides the official Dracula Theme UI style created by Zeno Rocha: iconic dark palette with high-contrast pastel accents (Dracula Purple, Pink, Cyan, Green, Orange, and Yellow) over deep obsidian backgrounds. Features WCAG 2.2 AA calibrated comment tokens (#96a7dd), satin dark surfaces, and syntax highlighting ergonomics. Use when designing developer tools, code editors, dashboards, terminal interfaces, or dark-mode first applications.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy/SKILL.md",
-      "digest": "sha256:d656b504a3ae2382ebcf594966651b81151db9edc008509f2fb130a2174bd24c"
+      "url": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
+      "digest": "sha256:723d416ba33dc81f77b4ded8cb2f1e49b5c97fa671eec498a87e38ba036c14b4"
+    },
+    {
+      "name": "ui-style-dreamcore",
+      "description": "Provides the authentic Dreamcore UI style (surreal internet escapism): ethereal daytime liminal spaces, peaceful cotton cloud skies, gentle faded pastel palettes, soft optical bloom, and sweet childhood nostalgia. Use when designing meditative digital spaces, surreal creative writing portfolios, ambient music hubs, or dreamy narrative applications.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
+      "digest": "sha256:a17ac86e15fb74a7149fb53df46e95bd4c5f4273171b65a9df918bb0738f1102"
+    },
+    {
+      "name": "ui-style-dungeon-synth",
+      "description": "Provides the authentic Dungeon Synth UI style (lo-fi medieval ambient microgenre of the 1990s): subterranean stone crypts, early 80s/90s consumer keyboard synthesizers (Casio, Yamaha), monochrome black-ink woodcut illustrations, moss green and stone grey palettes, and DIY black metal cassette fanzines. Use when designing indie game interfaces, atmospheric music players, tabletop RPG tools, and underground medieval fantasy archives.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
+      "digest": "sha256:4b62a72130b6c8509be02234e8ebbe5c8cff8c2923b81d0ec0c27171781d3cfa"
     },
     {
       "name": "ui-style-editorial-archive-luxury",
       "description": "Provides the editorial, archive luxury and horizontal gallery UI style (2020-present): fashion-magazine art direction, monumental serif display type, muted neutral tones, asymmetric grids, horizontal museum-style panoramic ribbons and inertia scrolling. Covers quiet-luxury convergence, PP Editorial New typography, Lenis smooth scroll, lateral filmstrip pacing and accessibility. Use when designing luxury, hospitality, culture magazines or gallery portfolio archives.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
-      "digest": "sha256:e2e2aefeb6061cd8504c7999da1ac89ff2fc201a6eda2431d0a3a80c72cfb885"
+      "digest": "sha256:fa76c5dbff61f3a716b52921dd4c246f69b1e56fe33747b8e6c572424723bf1f"
     },
     {
       "name": "ui-style-expressive-variable-typography",
       "description": "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "digest": "sha256:133e76aba7c81e0da3d098c9cf114604243f3770c5c66ee4ce0b6770957743e3"
+      "digest": "sha256:a2e05c704cc4ec488eeba8e34c768bf879ff78e68420593262f8ae44e47adfb1"
     },
     {
       "name": "ui-style-flat-design",
       "description": "Provides the flat design 1.0 style (2012-2015): minimalist flat-color UI that reacted against skeuomorphism, covering the iOS 7 rupture, Bootstrap 3 and Material milestones, the signifier crisis documented by NN/g (22% slower flat UI) and flat 2.0's corrective depth. Use when designing minimal UI or teaching the flat-design usability lessons.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
-      "digest": "sha256:74170d182e7a00b39c1e32e40b00bf2d6348a2b05b1a88d3f9798c12ecf56b81"
+      "digest": "sha256:9dc4fd4f57e337db4749970b7be6765573da1307b019f29d0b6e52fb4a266b03"
     },
     {
       "name": "ui-style-fluid-liquid-morph",
@@ -2733,66 +2768,66 @@
     },
     {
       "name": "ui-style-glassmorphism",
-      "description": "Provides the complete glassmorphism and visionOS spatial computing UI style (2020-present): frosted translucent panels with backdrop blur, hairline specular borders, 3D z-axis elevation, gaze/hover illumination and depth refraction. Covers OS lineage from Windows Aero and iOS 7 to macOS Big Sur and Apple visionOS, backdrop-root pitfalls and contrast strategy. Use when designing overlays, spatial web, XR dashboards or next-generation glassmorphic interfaces.",
+      "description": "Provides the canonical Glassmorphism & Spatial UI style (2020-present): multi-layered frosted glass surfaces, backdrop-filter optical blur, 1px specular white border highlights, subtle drop shadows, and spatial depth inspired by macOS Big Sur and visionOS. Covers contrast remediation, layered scrim fallbacks, design tokens, and WCAG 2.2 compliance. Use when designing premium fintech dashboards, spatial computing interfaces, or modern operating system shells.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "digest": "sha256:5523d207018ddea6c3682a9f0c801b1e5b5704006ebc2df27a7b2c70864f3945"
+      "digest": "sha256:e3e97d61290328a3024fb7d54ead266d29d2726714f3dcb1eea5c5cc6bdd30d9"
     },
     {
       "name": "ui-style-glitch",
       "description": "Provides the glitch UI style (mid-1990s-present): deliberate digital error as aesthetic, covering RGB channel splits, clipped slice displacement, datamosh and compression artifacts, CSS pseudo-element glitch text and photosensitivity-safe motion. Use when designing music, art, gaming, cyber or experimental surfaces that stage corruption, or when auditing glitch effects for seizure and legibility risk.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
-      "digest": "sha256:fff243311d00fccf800bd4092a5f35e6c2bacd367d79d190a2b3aa651e641f50"
+      "digest": "sha256:d7aee3c83362bef4699d74969c14d9eae38418561d0e38515700e1d3ac49fffe"
     },
     {
       "name": "ui-style-gothicpunk",
-      "description": "Provides the gothicpunk (gothic-punk) UI and UX style (1991 onward): decadent modern-gothic nihilism from Vampire: The Masquerade, covering components, cathedral-plan navigation and flows, state microcopy, blackletter and serif type, blood-red on near-black palettes and restrained motion. Use when designing horror, dark-fantasy, goth-music or noir interfaces, with careful use of occult imagery.",
+      "description": "Provides the canonical Gothicpunk & Modern Gothic UI style (1991 onward): decadent dark-fantasy noir originating from Vampire: The Masquerade, featuring pointed lancet arches, stained-glass chiaroscuro, tarnished gold leaf, blood crimson accents, aged bone typography, and urban post-punk nihilism. Use when designing tabletop RPG interfaces, dark fantasy games, goth music platforms, or horror narrative worlds.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
-      "digest": "sha256:67ae1912335ff066616f30961d52bdaa415aeccf320084b17377e64ba7f3dfa0"
+      "digest": "sha256:eb30149999a7d0fc233032ae98b58ba7ce9356b042c21ff591df46c35e3dfd24"
     },
     {
       "name": "ui-style-gradient-duotone",
       "description": "Provides the rich gradient and duotone era (2014-2019): multi-stop vivid gradients and two-tone brand photography from Instagram, Spotify and Stripe, covering the 2016 Instagram rebrand, mix-blend-mode duotone recipes, background-clip text contrast rules and the era's dating risk. Use when building vibrant consumer brand systems or era-accurate gradient work.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
-      "digest": "sha256:f17be3a9ad6fd02ded356e80e537ae9ae27f4fa6a31dd972056527f3c16abbdc"
+      "digest": "sha256:edff30da66a432dae52560d38dd5f02a8db09657840fa1959744d54326ba96d3"
     },
     {
       "name": "ui-style-grain-noise-texture",
       "description": "Provides the grain / noise texture UI style (2020s revival of a film-era look): a fine stochastic overlay that breaks digital flatness, covering SVG feTurbulence noise, grainy gradients, blend-mode layering, performance budgets and contrast safety. Use when adding tactile, analog warmth to flat or gradient surfaces without hurting legibility or rendering cost.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
-      "digest": "sha256:024470ddc59faca7e9f68ed6584068cf581c11038ba3b5e84b19e28dc3df0ab4"
+      "digest": "sha256:b133aa090be3adb681b0aba6bf7fdf5bf0e04408d042103943ebeb95c359a6ca"
     },
     {
       "name": "ui-style-hand-drawn-sketch",
       "description": "Provides the hand-drawn / sketch UI style (2010s-present): wobbly strokes, hachure fills, doodle icons and marker typography that signal drafts and humanity, covering Rough.js, SVG filter wobble, stroke-dash techniques, tool precedents like Excalidraw and legibility limits. Use when designing whiteboard-like tools, playful brand surfaces or low-fidelity-feeling interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
-      "digest": "sha256:1cf35e63793a90b6b1ef2d9605294bd85df2d8e8b11ccc8820bfdc7645abd248"
+      "digest": "sha256:9046a6ef327ae0d0dc9ed06c42936b668515fc8de6fb957a4e7c3fee6e4bf927"
     },
     {
       "name": "ui-style-holographic-foil-iridescent",
-      "description": "Provides the holographic foil and iridescent chrome UI style: dynamic rainbow refraction angles, pearlescent shimmer, metallic specular highlights and shifting prism gradients. Use when designing collector drops, luxury cosmetics or futuristic fintech cards.",
+      "description": "Provides the canonical Holographic Foil & Iridescent Chrome UI style: optical thin-film interference simulation, dynamic rainbow diffraction angles, pearlescent shimmer, metallic specular flares, and shifting prismatic gradients. Use when designing exclusive membership tiers, collectible digital asset drops, luxury cosmetics platforms, or futuristic fintech card interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
-      "digest": "sha256:14c18b9a36d4b798aec83aaf89827c2fa04537f436163becd0154817cb5ed6f4"
+      "digest": "sha256:6df9b775d72aeec087cad37c41078df7ab19f7d515515013e6a050c4385f710d"
     },
     {
       "name": "ui-style-indie-web-revival",
       "description": "Provides the indie web revival UI style (2013-present): personal, hand-built static sites in the spirit of GeoCities, Neocities and the IndieWeb, with webrings, 88x31 buttons, guestbooks, system fonts and owner-controlled expression, covering structure, semantics, performance and WCAG handling. Use when designing personal, community or zine-like sites that value ownership, quirk and lightweight HTML over polished SaaS templates.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
-      "digest": "sha256:12f86afb316ddecd854a88500a5367042545f418cebb551c694bf6a851d739f9"
+      "digest": "sha256:7aa560455f4c5d009c45735f4507b6585ca8ed91e4ddc763aa05a174a94f5f11"
     },
     {
       "name": "ui-style-isometric",
       "description": "Provides the isometric illustration and UI technique (engineering drawing origins, video games from 1981, web revival 2010s-present): equal-foreshortening 30-degree axes, 2:1 dimetric pixel art, CSS transform and SVG construction, covering geometry, shading, layout, motion and WCAG handling. Use when designing explainer illustrations, product diagrams, isometric dashboards or game-like scenes without needing a WebGL renderer.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-      "digest": "sha256:8a371f5a275fafb9bb79fd500ea36993b77f79c97e2aaa501807999746888da8"
+      "digest": "sha256:c9687f75fb543d07e70735d3a829beae7577d925ff58ec4e0ed0bcb44699e568"
     },
     {
       "name": "ui-style-kawaii-pastel-soft",
@@ -2813,42 +2848,42 @@
       "description": "Provides the Linear-style SaaS UI style (2019-present): dark-first, low-chroma neutrals, perceptually uniform theming, tight Inter typography, subtle borders and keyboard-driven density, covering LCH-based theme generation, three-variable theming, soft glow accents and speed as aesthetic. Use when designing modern B2B SaaS product UI and marketing pages that signal craft, focus and performance.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
-      "digest": "sha256:6c3686018a960748e80bb1658c1dd8bb9b579f23c66ae8e3aa113980ae5db148"
+      "digest": "sha256:41cbbec459d58e013e7198dbceb41b3d1cab6458f2f01b11f1dfb0d86d1a26cc"
     },
     {
       "name": "ui-style-lunarpunk",
-      "description": "Provides the lunarpunk UI and UX style (circulating by 2022): solarpunk's nocturnal sibling pairing night settings, bioluminescent glow and violet palettes with calm night-first flows, consent and privacy patterns and restful microcopy, covering palette, components and dark-mode contrast. Use when designing privacy-first, wellness, night-mode or community-safety products.",
+      "description": "Provides the canonical Lunarpunk & Nocturnal Cryptographic UI style (2022-present): solarpunk's nocturnal sibling combining bioluminescent forest flora, lunar phase cycles, midnight violet grounds, zero-knowledge privacy veils, and cryptographic defense. Use when designing privacy-first platforms, cryptographic tools, nighttime meditation apps, or nocturnal ecological worldbuilding experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
-      "digest": "sha256:9b62238348bc6e9345df8f8cb2b32e8ad95f7473a02d7f32e9b16b3a15d07dcf"
+      "digest": "sha256:f935011994a30f0df983f9a3edeb0862f4b76d83962d4963dcf4ed861e0eb191"
     },
     {
       "name": "ui-style-material-you",
       "description": "Provides Material Design 3 / Material You (2021-present): Google's dynamic-color design system with HCT tonal palettes, shape and type tokens, tonal elevation and expressive motion, covering the token architecture, material-color-utilities engine, web theming strategy and the dynamic-color trade-offs. Use when implementing M3 theming on the web or in Flutter, or evaluating dynamic color for a product.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
-      "digest": "sha256:9ac746aa432f9949c0244eaa12969c043f2a668f83f52f3cb414b36e5b58cc79"
+      "digest": "sha256:7306b387da20ba209daf3f54d43beacf85d7db1c6b3554d74b8df982aa1c2f37"
     },
     {
       "name": "ui-style-maximalism",
-      "description": "Provides the maximalism web design style (2019-present): deliberate abundance of color, pattern, type and layered collage against minimalist restraint, covering visual DNA, layering CSS techniques, motion density, the clutter-versus-maximalism distinction and accessibility taxes. Use when designing expressive youth, entertainment or culture brands and auditing their accessibility debt.",
+      "description": "Provides the canonical Maximalism & Dopamine Design UI style (2019-present): deliberate visual abundance, clashing saturated palettes, layered pattern collages, oversized kinetic typography, and playful multi-layered depth rejecting minimalist austerity. Covers collage CSS layering techniques, Dopamine design variants, focal hierarchy discipline, and WCAG 2.2 accessibility remediation. Use when designing expressive youth lifestyle brands, entertainment portals, food & beverage showcases, or creator platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
-      "digest": "sha256:765f1b9a6730956403a813a961583de4625321c2826720bde644f56b9df5e017"
+      "digest": "sha256:5e6941b8804800ad1b35ed288272abcc5812c052300d18fb1a8cb725f93503b7"
     },
     {
       "name": "ui-style-memphis",
       "description": "Provides the Memphis Design UI style (1980-1987 origin, recurring revival): clashing pastel and primary palettes, squiggles, terrazzo and plastic-laminate patterns, asymmetric geometry and playful rule-breaking, covering tokens, pattern layers, shape kits and WCAG-safe color handling. Use when designing youthful, irreverent brand, campaign or education surfaces that need postmodern playfulness rather than modernist restraint.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
-      "digest": "sha256:39c96f9b8905b3b2ea035ff97a7ad78786b2a051250c5f4c623114caab870d22"
+      "digest": "sha256:2ab0cd439fb8dd6e24c8c6613755d35b5fb2f3a87c6b57b2aaf1d466a8ef258f"
     },
     {
       "name": "ui-style-metro-modern-ui",
       "description": "Provides the Metro / Microsoft Design Language style (2010-2015): typography-first flat design with content-before-chrome, live tiles and motion as a first-class principle, covering the Zune-to-Windows-8 lineage, Segoe type identity, Nielsen's Windows 8 usability verdict and CSS reconstruction. Use when designing typography-led dashboards or studying flat design's true origin.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
-      "digest": "sha256:b8ba38b0b2fb203f363502645d00dfdc684ef5ed8af6df6a08af892a246a04dc"
+      "digest": "sha256:aee5feb4f6a742e8343a8103262dc52d1d970c1efebbdf1bf637fd4592fa9f6c"
     },
     {
       "name": "ui-style-micro-interactions",
@@ -2862,35 +2897,42 @@
       "description": "Provides the mid-century modern UI style (1945-1970s origin, revival from the late 1990s): clean lines without embellishment, honest materials, warm walnut and teal-orange palettes, organic-geometric shapes and generous whitespace, covering tokens, type pairing, layout, motion and WCAG contrast handling. Use when designing warm, human, design-literate brand, furniture, editorial or lifestyle surfaces that want modernist clarity with warmth.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
-      "digest": "sha256:884e279ce736160122de63f3c7581283a9e367fa796e2bd587a0fb6bf11e1828"
+      "digest": "sha256:dd06944f657ed7980652c5950c1304f7b7340edadc4fdbaac7c05e1deb2a6b3a"
     },
     {
       "name": "ui-style-nanopunk",
-      "description": "Provides the nanopunk UI and UX style (1990s-present, weak visual canon): speculative nanotech themes translated into scale-based navigation, grounded components, flows, microcopy and swarm or lattice visuals, covering CSS/SVG and accessibility. Use when a nanotech, materials-science, medtech or deep-tech product needs a molecular-scale interface language and accepts that the genre defines themes more than a look.",
+      "description": "Provides the canonical Nanopunk & Molecular Engineering UI style (1990s-present): microscopic science fiction of self-assembling nanites, diamondoid crystal structures, carbon nanotube meshes, atomic force microscopy, scale-shift navigation, and crystalline luminescence. Use when designing materials science platforms, semiconductor telemetry, quantum computing interfaces, or deep-tech research portals.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
-      "digest": "sha256:122aef318977a16bae2df69d6b8b219f2269a1a716651fc81a72b5487942228b"
+      "digest": "sha256:cb67b80218e7f44320148615faa944cec26be43bb8909d7e0dadf3c1c550693c"
     },
     {
       "name": "ui-style-neo-brutalism",
-      "description": "Provides the neo-brutalism / neubrutalism UI style (2021-present): thick black borders, hard offset shadows, saturated flat color blocks and deliberate rawness, covering the token system, press-down interaction metaphor, WCAG failure pairs, component libraries and the Gumroad/Figma trend cycle. Use when designing blunt, high-contrast marketing surfaces or building neubrutalist component systems.",
+      "description": "Provides the canonical Neo-Brutalism & Neubrutalism UI style (2021-present): graphic bluntness, thick black structural borders (2px\u20134px), hard unblurred offset drop shadows (3px\u20138px), saturated primary color blocking, square geometry, and mechanical tactile press-down feedback. Covers design tokens, Gumroad/Figma lineage, WCAG 2.2 color-pair audits, and component systems. Use when designing bold creator platforms, expressive SaaS marketing, or high-contrast web3 interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
-      "digest": "sha256:7fb14ea0f8a44367b6ed05559ec225f1ba6e9fd8007ed5eaf8ebf36647277092"
+      "digest": "sha256:1c5621d90de223163c0d8d2a65ea0961c0bab35ed38709e0b2ef08e3ed962791"
     },
     {
       "name": "ui-style-neumorphism",
-      "description": "Provides the neumorphism / Soft UI style (2019-2020): monochrome extruded and inset shapes built from paired light-dark soft shadows, covering the shadow formula, light-source model, the canonical accessibility failure mode, generator tooling and when the style is acceptable as an accent. Use when evaluating or applying soft-UI embossed surfaces or explaining why the style fails in production UI.",
+      "description": "Provides the canonical Neumorphism & Soft UI design style (2019-2020): monochromatic extruded and indented surfaces created from paired light-and-dark soft drop shadows, simulating plastic tactile relief. Covers shadow mathematics, directional lighting models, accessibility remediation, contrast border overlays, and hybrid design-system integration. Use when designing tactile smart-home remotes, audio equipment dials, or soft embossed card containers.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
-      "digest": "sha256:7ad13aa437d6ad27f32b787fd9885eff745cf91c9893bd88e73211bb77301cd3"
+      "digest": "sha256:050f2c6145393d0c55ae4ae05fdc7f9b9de7b1970df9f5b190f747d902fedd6a"
+    },
+    {
+      "name": "ui-style-nordic",
+      "description": "Provides the official Nordic & Nord UI style: Arctic minimalist aesthetic created by Sven Greb (Arctic Ice Studio), structured into Polar Night, Snow Storm, Frost, and Aurora palettes. Blends clean Scandinavian functionalism, generous whitespace, frosted matte surfaces, and cozy Hygge warmth. Use when designing minimal productivity software, developer tools, clean dashboards, or serene editorial web applications.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
+      "digest": "sha256:0edc755eaf0fe338f227c1b58b307454e7f763d8ae0e664f97a57459b8aab2d8"
     },
     {
       "name": "ui-style-organic-biophilic",
       "description": "Provides the organic / biophilic / solarpunk web style (2019-present): nature-led layouts with blob shapes, wavy dividers, earthy palettes and sustainability values, covering blob geometry, sustainable-build practices (Low-tech Magazine lineage), contrast strengths and greenwashing risks. Use when designing climate, wellness or community brands and sustainability-first sites.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
-      "digest": "sha256:839c1ae7a86eb1faed3ba64d652d6605f043233f9881e8b97684058dd60428c2"
+      "digest": "sha256:83eb0dfcf06e91f0d5193c0f9db2a2ac84b924f36987c8c7e9e76e53310e9d23"
     },
     {
       "name": "ui-style-parallax-scrolling",
@@ -2900,39 +2942,46 @@
       "digest": "sha256:e894040112a97837f543ddcd0aa1fb79751281dd9c967a64df46803ffc9ee3dc"
     },
     {
+      "name": "ui-style-pixel-art",
+      "description": "Provides the authentic Pixel Art UI style (8-bit and 16-bit video game console aesthetics): strict indexed color palettes, nearest-neighbor integer scaling, manual checkerboard dithering, crisp 1px sprite outlines, stepped frame animations, and retro gaming HUD interfaces. Use when designing video game hubs, interactive gamified dashboards, indie studio showcases, or nostalgic chiptune music players.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
+      "digest": "sha256:50000e4071f2c850d72e9200f96cdbc8b0d33f22b6d128aef16be1e6da688096"
+    },
+    {
       "name": "ui-style-pop-art-halftone",
       "description": "Provides the Pop Art and Ben-Day dot halftone UI style (1960s comic and commercial print revival): exaggerated dot screens, heavy black ink outlines, primary CMYK palettes, speech bubbles and onomatopoeic energy. Use when building playful, comic-inspired or pop culture web experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
-      "digest": "sha256:1a5df17d4336d0a6a53c61a9cad8070fff8a78ba7acb3e8d8da9fbfae4666753"
+      "digest": "sha256:529c65420e48a874e4c7df6032f8857b213fd4363d17504c32aa110a3158fc13"
     },
     {
       "name": "ui-style-psychedelic-60s",
       "description": "Provides the 1960s psychedelic rock poster UI style: melting liquid typography, vibrating complementary optical palettes, kaleidoscopic symmetry, and fluid Art Nouveau revival vectors. Use when designing music festival, creative studio, counterculture or experimental web interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
-      "digest": "sha256:dc8322c71112bf34e6d8ecabf33554726b8a7eea19f1428cd6a6605011b54865"
+      "digest": "sha256:966dbdca1c18f6ab7a1010f1642b49608d173ff99f4051226d8686db976727ac"
     },
     {
-      "name": "ui-style-retro-computing-pixel",
-      "description": "Provides the retro computing / pixel UI style (1980s aesthetics, web revival 2010s-present): bitmap fonts, restricted palettes, dithering, integer-scaled pixel art and classic OS chrome, covering nearest-neighbor scaling, palette constraints, 98.css-style bevels and accessible pixel typography. Use when designing game-adjacent, nostalgic or indie surfaces, retro OS metaphors or pixel-art interfaces.",
+      "name": "ui-style-retro-computing",
+      "description": "Provides the authentic Retro Computing UI style (1970s-1980s microcomputer and terminal hardware): monochrome P1 green and P3 amber phosphor CRTs, 80x25 character grid cells, blinking block cursors, ANSI/ASCII box-drawing dialogs, and vintage beige plastic chassis accents. Use when designing developer tools, low-level system emulators, retro command centers, or hardware nostalgia archives.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md",
-      "digest": "sha256:d93ead12d609cdfa7e7b86bda032de36d32ecae401d437ef098c6885e7b44fc7"
+      "url": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
+      "digest": "sha256:01928fb5b9499faedce2824e5075d2e9b893887c7a73d6a9b936906e9f445e64"
     },
     {
-      "name": "ui-style-risograph-zine",
-      "description": "Provides the risograph / zine UI style (print origins 1980, zine culture 1970s-present, web revival 2010s-present): limited spot-color inks, multiply overprint, misregistration and halftone grain, covering Riso print mechanics, zine DIY ethos, CSS blend-mode overprint and contrast-safe ink palettes. Use when designing indie, cultural or community-driven interfaces that mimic spot-color print.",
+      "name": "ui-style-risograph",
+      "description": "Provides the authentic Risograph UI style (1980-present Riso Kagaku duplicator print aesthetics): translucent spot-color inks, multi-drum overprint multiplication, mechanical misregistration fringes, stochastic halftone screening, and tactile uncoated paper tooth. Use when designing indie art book portals, cultural print showcases, illustration-first portfolios, or community creative presses.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md",
-      "digest": "sha256:c796fefba1ee73802384e0faf99361adba6c234bdcff8e76aa4e1908a4a3af20"
+      "url": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
+      "digest": "sha256:67d977c7b2e97e0a095453e0f856c8eae6ea8b6b6c7cb8a60287d27980b48ea0"
     },
     {
       "name": "ui-style-sandalpunk",
-      "description": "Provides the sandalpunk (bronzepunk) UI and UX style: a retrofuturist ancient world where Greek, Roman or Egyptian civilization never fell, covering components (stele cards, dials, friezes), navigation and flows, state microcopy, marble and bronze palettes and monumental capitals. Use when designing history, education, mythology, game or heritage interfaces, with care around real cultures.",
+      "description": "Provides the canonical Sandalpunk & Classical Antiquity UI style (also known as Bronzepunk): speculative retrofuturism of ancient Greco-Roman and Hellenistic civilization (Hero of Alexandria, Archimedes, the Antikythera mechanism), featuring pentelic marble surfaces, hammered bronze trim, Tyrian imperial purple, classical meander friezes, incised lapidary typography, and mechanical bronze automata. Use when designing mythic narratives, historical archives, classical philosophy hubs, or ancient alternate-future games.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
-      "digest": "sha256:f2239f10b727051988e531b75c3fbabf13844c7bf4018d17349eba8fa2139371"
+      "digest": "sha256:66882b0bc396904b6c6e033f90726053b7571ec62c4932bc029ea66c9976857e"
     },
     {
       "name": "ui-style-scrollytelling",
@@ -2943,80 +2992,101 @@
     },
     {
       "name": "ui-style-silkpunk",
-      "description": "Provides the silkpunk speculative UI style: East Asian classical antiquity fused with organic engineering, mulberry paper textures, bamboo and hammered brass accents, sumi-e ink washes and origami geometric folds. Use when creating speculative cultural, gaming or East Asian literature web experiences.",
+      "description": "Provides the canonical Silkpunk & Organic Engineering UI style: East Asian classical antiquity (Han, Tang, Song, Ming) fused with speculative organic engineering, bamboo lattice framing, mulberry paper textures, hammered brass rivets, sumi-e ink washes, and origami folding kinematics. Use when designing speculative cultural portals, narrative fantasy games, historical archives, or artisanal East Asian craft platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
-      "digest": "sha256:6d9066847e1078077fee447bc1bd130884475b041f9d502b90d20e26e5853775"
+      "digest": "sha256:16b9b0b35b8f27b74492ace726f1b30a07f7417ed405aee9003f9712ecec841b"
     },
     {
       "name": "ui-style-skeuomorphism",
-      "description": "Provides the complete skeuomorphism UI style (2007-present): real-world tactile physical metaphors, stitched leather, brushed aluminum, milled metal dials, Y2K cyber aqua gloss and tactile affordances. Covers historical iOS 1-6 lineage, modern skeu-neomorphic hybrids, translucent iMac optimism and contrast accessibility. Use when designing tactile audio plugins, metaphor-first onboarding or physical device emulations.",
+      "description": "Provides the canonical Skeuomorphism & Tactile Physical UI style (2007-present): real-world tactile physical metaphors, stitched leather, brushed aluminum, rotary knurled dials, early-2000s Mac OS X Aqua jelly gloss, and debossed letterpress typography. Covers Apple iOS 1-6 lineage, modern audio plugin interfaces, tactile affordance ergonomics, design tokens, and WCAG 2.2 accessibility. Use when designing tactile audio plugins, musical instrument software, physical hardware emulations, or metaphor-first onboarding interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
-      "digest": "sha256:92e42315c1140784bfe5f9712bf2607ea8d27c9481dc6caa9d1a6f6409e19710"
+      "digest": "sha256:ce40e97a760fce28ef615d328c4bacb57c52f53a65ef913969362a5d4916fa0b"
     },
     {
       "name": "ui-style-solarpunk",
-      "description": "Provides the complete solarpunk UI and UX style (2008-present): optimistic ecological futures, sunlit aesthetics, botanical linen and watercolor textures, Voronoi biomorphic algorithms, garden-like navigation, low-energy budgets and hopeful microcopy. Use when designing climate, renewable energy, cooperative, sustainable lifestyle or biotech interfaces.",
+      "description": "Provides the canonical Solarpunk & Biomorphic Ecological UI style (2008-present): optimistic ecological futurism, solar energy infrastructure, stained-glass photovoltaics, biomorphic Voronoi cell partitioning, warm oatmeal and sun-gold palettes, low-carbon performance budgets, and civic collective empowerment. Use when designing renewable energy platforms, climate technology, organic agriculture portals, or sustainable civic cooperatives.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
-      "digest": "sha256:00917151fcd4f87425e928474faa608148fd0079203a5d994e5688e7750e8874"
+      "digest": "sha256:5557ae92181f75a9afcdeeb7dd8811402fde5137478dcd99ba5d738455316997"
     },
     {
       "name": "ui-style-split-screen-dualism",
       "description": "Provides the split-screen dualism and asymmetric polarity UI style: 50/50 dual vertical canvas, contrasting color themes, synchronized scroll choreography and polarized storytelling. Use when comparing two worlds, products, personas or thematic narratives.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
-      "digest": "sha256:471515582c15f49497c8d2fe3891e042a47f3275871a290ae18117122cf869aa"
+      "digest": "sha256:bcc8b62b45688f4514788f35a87750e22e4e9626761d1f1b2216387939b7f4a2"
     },
     {
       "name": "ui-style-steampunk",
-      "description": "Provides the steampunk UI and UX style (1987-present): Victorian-industrial retrofuturism of brass, leather, gauges and airship ephemera, covering components, navigation metaphors, flows, microcopy, states, palette, type and motion. Use when designing heritage-flavored brands, game and event sites, maker storefronts or alternate-19th-century product worlds, including their usability.",
+      "description": "Provides the canonical Steampunk & Victorian Industrial UI style (1987-present): Victorian engineering retrofuturism of polished brass, hammered copper, riveted boiler plates, aged oxblood leather, analog pressure gauges, mechanical lever toggles, and differential gear trains. Use when designing alternate-19th-century product worlds, maker storefronts, heritage brands, or narrative game interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
-      "digest": "sha256:91b01a0720fe8b7507c8158225c570b6b139f8e0548b3f6f5320c398555babf8"
+      "digest": "sha256:90d0da37884cb32afe21ef02589b0e2969e0b533e18ae4562e99b03f75f1be6e"
     },
     {
       "name": "ui-style-swiss-web-minimalism",
       "description": "Provides the Swiss / International Typographic Style web revival (2010s-present): mathematical grids, neo-grotesque type, flush-left ragged-right and functional accent color, covering the Muller-Brockmann lineage, baseline-grid web technique, the 'all SaaS looks the same' critique and modern grid implementation. Use when designing documentation, fintech or enterprise interfaces selling rigor and trust.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
-      "digest": "sha256:2db1fc9d1ce20f18ddace5b3f512e3010dca4b3df20a994766ffc8407a28e5a9"
+      "digest": "sha256:222f9b0b9065257ae572d3290ef8b69295e45368371093a4d1a2dc7324a82643"
+    },
+    {
+      "name": "ui-style-synthwave",
+      "description": "Provides the authentic Synthwave, Retrowave & Outrun UI style (1980s retro-futurism): nocturnal dark cityscapes, neon magenta and electric cyan lasers, 3D perspective wireframe horizon grids, segmented sunset discs, analog synthesizer vibes, and sports car speed. Use when designing high-energy gaming platforms, dark-mode dashboards, music production tools, and nocturnal cyberpunk-adjacent applications.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
+      "digest": "sha256:6e65d7770375ecde769bf591e2a78dd4a9ab14eb5650e793dd2c2935b86b0165"
     },
     {
       "name": "ui-style-terminal-tui",
       "description": "Provides the terminal / TUI UI style (1970s-present, web revival 2015-present): monospace cell grid, box-drawing frames, ANSI palettes and keyboard-first interaction, covering the character-cell layout model, ANSI color tiers, block-cursor and prompt motion, and accessible web emulation. Use when designing developer tools, CLI-adjacent dashboards, terminal-themed marketing pages or real terminal applications.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
-      "digest": "sha256:4853c4c67aa43362de08faf9e47f3f112009f83d01a0010e0bf651516bc8bd57"
+      "digest": "sha256:4f89952794f25839569de6575cced487961437072453738c70422a8395b588ec"
     },
     {
-      "name": "ui-style-vaporwave-synthwave",
-      "description": "Provides the vaporwave and synthwave UI styles (2010-present): two related nostalgia aesthetics, pastel-digital vaporwave and neon-night synthwave/outrun, covering shared retro-digital motifs, the two distinct palettes, glow and grid construction, scanline and sun motifs, contrast-safe neon and reduced-motion handling. Use when designing music, gaming, event or brand surfaces with 1980s-90s internet or arcade nostalgia.",
+      "name": "ui-style-vaporwave",
+      "description": "Provides the authentic Vaporwave UI style (early-to-mid 2010s internet aesthetic rooted in late-80s/early-90s consumerism): marble classical sculptures, Japanese typography, Windows 95 chrome, pastel sunset gradients, lo-fi VHS dithering, and consumer melancholy. Use when designing ironic retro-digital art platforms, chillwave music players, vaporwave community hubs, or nostalgic early-web experiments.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md",
-      "digest": "sha256:816f818a78e8070fbdc773a353705e053caa3ab23cd7d696734b47f461a7bbcd"
+      "url": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
+      "digest": "sha256:d05ee4c45e24f780c731ded8961a32f0d723ad5f63be313bc7364ca608e4089b"
     },
     {
       "name": "ui-style-web-brutalism",
-      "description": "Provides the complete classic and data-dense web brutalism style (2014-present): raw HTML document structure, default browser styling, unadorned links, high-density financial terminal grids, zero padding waste and tabular streams. Covers Pascal Deville's movement naming, Bloomberg Terminal data density, Low-tech Magazine performance and accessibility. Use when building raw anti-corporate statements, financial consoles or performance-critical text sites.",
+      "description": "Provides the canonical Web Brutalism & Data-Dense Console UI style (2014-present): raw HTML document structure, native browser styling, unadorned blue hyperlinks (#0000EE), default monospaced typography, Bloomberg Terminal data density, tabular matrix layouts, and zero decorative padding waste. Use when building anti-corporate cultural statements, financial trading orderbooks, infrastructure telemetry consoles, or performance-critical low-tech platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
-      "digest": "sha256:1309d4fa8dd39e614d45a6ab12640b7c2e34cebff7d220aa96bab5302c506a89"
+      "digest": "sha256:ba24caded9bffad45909ffc3a569fe797b106124bec9dee61bc7c66ade990db6"
     },
     {
-      "name": "ui-style-weirdcore-dreamcore",
-      "description": "Provides the weirdcore and liminal dreamcore UI style: surreal nostalgic photography, low-res JPG compression artifacts, unsettling dreamlike typography and liminal nostalgic melancholy. Use when designing artistic music portals, indie games or surreal narrative web fiction.",
+      "name": "ui-style-weirdcore",
+      "description": "Provides the authentic Weirdcore UI style (internet surrealism of the late 2010s): amateur digital photography from the late 90s to mid-2000s, low-fidelity JPEG compression artifacts, disquieting liminal dread, primitive amateur graphic overlays, and cryptic red/yellow system text. Use when designing psychological horror experiences, uncanny ARG mysteries, underground net-art platforms, or eerie surreal interfaces.",
       "type": "skill-md",
-      "url": "knowledge/skills/domains/design/ui-style-weirdcore-dreamcore/SKILL.md",
-      "digest": "sha256:7832daaa74a450181e8d050fb33a167a45a7a8ed8c1e0f0dbdac520c45eab8d7"
+      "url": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
+      "digest": "sha256:dc989ed7f26066e9f3d90113e44ae93994b94331e56878be38973101ba721d34"
+    },
+    {
+      "name": "ui-style-windows-xp",
+      "description": "Provides the authentic Windows XP Luna Blue & Royale UI style (2001\u20132006): molded plastic aesthetics, bevels, drop shadows, glossy jelly buttons, the iconic emerald Start button, Tahoma typography, asymmetrical title bars, and Bliss rolling hills. Use when building early-2000s skeuomorphic operating system mockups, nostalgic desktop applications, devtools, or retro web applications.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+      "digest": "sha256:8fd1bbe95c2b92578f773e9ce93e1406fcd14598505cf82950717c2852d5339f"
     },
     {
       "name": "ui-style-y2k-revival",
-      "description": "Provides the Y2K revival UI style (2018-present): the retrofuturist late-1990s/early-2000s look reborn \u2014 chrome type, jelly translucents, starbursts and sparkle cursors \u2014 covering visual DNA, CSS reconstruction of chrome and marquees, accessibility hazards and McBling/Cybercore distinctions. Use when designing nostalgia-driven fashion, music or event microsites.",
+      "description": "Provides the authentic Y2K Revival UI style (1998-2003 cyber-optimism and hardware dot-com aesthetic): translucent iMac G3 jelly polycarbonate, liquid chrome 3D typography, four-point starbursts, CD/DVD optical iridescence, and Cybercore futurism. Use when designing high-energy music album launches, futuristic fashion drops, millennium nostalgia portals, or creative digital toy experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
-      "digest": "sha256:1c89a8893c25b8d2c4d6fb91c426c9a2345ae025b45c57b6e9543dda75a33b8a"
+      "digest": "sha256:7dc88d80f58ce5c4867e876c4fba4acc0f9eaf19ab9607e37ce3ffb306f69c46"
+    },
+    {
+      "name": "ui-style-zine-independent",
+      "description": "Provides the authentic Independent Zine UI style (1970s punk to 1990s riot grrrl DIY self-publishing): high-contrast black-and-white photocopier toner, cut-and-paste ransom note typography, typewriter body copy, masking tape textures, metal staples, and anti-corporate layout rebellion. Use when designing underground music blogs, subcultural archives, radical art zines, or community protest journals.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
+      "digest": "sha256:7b52f6233205bc45d41466827b371d23f1d6bc6e6a929c017c18a4dc2cc91f36"
     },
     {
       "name": "ui-ux-designer",

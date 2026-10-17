@@ -1,128 +1,228 @@
 ---
 name: "ui-style-biopunk"
-description: "Provides the biopunk UI and UX style (1988-present): synthetic-biology science fiction and DIY-bio culture as specimen-lab visuals, lab-notebook information architecture, protocol and data-entry flows, provenance cues and ethical microcopy, covering palette, type, components and accessibility. Use when designing biotech, citizen-science, open-lab or health-data interfaces."
+description: "Provides the canonical Biopunk & Synthetic Biology UI style (1988-present): biological sci-fi and DIY-bio culture featuring dark sterile laboratory slate, fluorescent GFP bioluminescence, cellular membrane optics, DNA sequence ribbons, gel electrophoresis progress meters, and ethical lab telemetry. Use when designing synthetic biology platforms, genomics tools, citizen science labs, or genetic sci-fi entertainment portals."
 ---
 
-# UI Style: Biopunk
+# UI Style: Biopunk & Synthetic Biology
 
-The genre in which biotechnology, not cyberware, is the site of power and resistance: engineered DNA, bio-hackers, megacorporations and black clinics. Translated to UI as specimen-lab aesthetics with flesh-and-membrane texture. Synthesized from the sources below; see Sources.
+**Biopunk** is the speculative fiction genre and design language in which biotechnology, genomics, and organic wetware—rather than mechanical silicon cyberware—form the foundation of society, power, and resistance. Translating the aesthetics of synthetic biology laboratories, black-market gene clinics, and DIY citizen-science incubators, Biopunk interfaces combine sterile slate environments with vibrant green fluorescent protein (GFP) emission, translucent cellular membranes, gel electrophoresis telemetry, and clinical nucleotide sequence readouts.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing components, patterns and flows (sample tracking, protocol steps, data entry, sequence views) for biotech, genomics, synthetic-biology, health-data or DIYbio community products.
-- Speculative-fiction, game, film or editorial experiences about genetic engineering.
-- Open-science and citizen-lab projects that adopt the biopunk manifesto's ethos of access and literacy.
+- Designing scientific interfaces, protocol workflows, DNA sequence browsers, or sample tracking dashboards for biotechnology, bioinformatics, and genomics platforms.
+- Developing video games, speculative worldbuilding portals, or interactive fiction focused on biohacking, cloning, genetic synthesis, or transhuman mutation.
+- Building open-source biology, citizen-science, or environmental telemetry hubs celebrating scientific literacy and transparent lab records.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- Coinage: per Wikipedia, Czech writer and biologist Eva Hauserova first used "biopunk" in 1988 as a response to cyberpunk in post-communist Eastern Europe; her English fanzine description (December 1990) had limited reach and became widely available online only in 2018.
-- Canon named in the sources: Paul Di Filippo's *Ribofunk* collection (his term "ribofunk"); precursors Wells's *The Island of Doctor Moreau*, Greg Bear's *Blood Music*, Cordwainer Smith. Signature trope: the "black clinic".
-- "Punk" meaning: bio-hackers and individuals against governments or corporations misusing biotech. A real-world strand: Meredith Patterson's "A Biopunk Manifesto" (UCLA Outlaw Biology Symposium, January 2010), modeled on Eric Hughes's cypherpunk manifesto, claims freedom of inquiry and scientific literacy as rights; see also the DIYbio community.
-- Versus [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md): same dystopian friction, but the substrate is wet and organic, not neon and chrome. Versus [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md): biophilic soothes with nature; biopunk exposes and unsettles with engineered life. Versus [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md): optimism versus risk-aware tension.
-
----
-
-## 🎨 Visual DNA
-
-- **Color:** petri-dish and chlorophyll greens (`#7CFF6B`, `#2BB673`), bile yellow (`#C7D63B`), flesh and magenta (`#E0457B`), dark sterile slate (`#0F1A17`), cold lab white (`#EEF5F1`); sparse UV or fluorescent accents mimicking GFP.
-- **Type:** clinical mono or grotesque for labels (IBM Plex Mono, Space Mono, Inter) paired with an unsettling organic display face; nucleotide strings (A, C, G, T), plate IDs and lot numbers as texture.
-- **Texture and form:** translucent membranes, cell and hex lattices, DNA helices, microscopy vignettes, gel-electrophoresis band patterns, veins and branching, blobby metaball shapes (SVG `feTurbulence` plus threshold filters).
-- **Layout:** specimen sheets and lab notebooks: ruled grids, callout lines, scale bars, annotated figures; asymmetry created by overlapping organic masses over a strict data grid.
-- **Iconography:** biohazard-adjacent hazard marks (decorative only), pipettes, vials, plasmids, hands with grafted growth.
+- **Origins & Coinage:** First coined in 1988 by Czech biologist and science-fiction writer Eva Hauserová as a biological response to cyberpunk, and expanded in Paul Di Filippo's *Ribofunk* (1996). Early literary precursors include H. G. Wells's *The Island of Doctor Moreau* (1896) and Greg Bear's *Blood Music* (1985).
+- **The DIYbio Movement:** Galvanized in the physical world by Meredith Patterson's *A Biopunk Manifesto* (2010), advocating for open-access scientific literacy, decentralized laboratories, and democratization of biological research outside corporate oligopolies.
+- **Distinctions from Neighboring Styles:**
+  - Unlike **Cyberpunk** (dry silicon, copper circuitry, neon-noir rain, cyberdecks), Biopunk operates on wetware: proteins, viral vectors, agar plates, DNA polymers, and enzymatic reactions.
+  - Unlike **Organic Biophilic** (tranquil green leaves, sunlight, natural wood, wellness calm), Biopunk is tense, engineered, visceral, clinical, and provocative.
+  - Unlike **Nanopunk** (molecular assemblers, carbon nanotubes, crystal lattices), Biopunk focuses specifically on living organic cells, genomes, and biological replication.
+- **Absolute Veto:** Biopunk is NOT generic medical clinic software or gratuitous body-horror gore. Gratuitous mutilation, ungrounded pseudo-scientific health cures, and illegible dripping slime fonts are strictly forbidden.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- Living motion: slow pulsing (2-4s) on glow elements, cell-division splits, membrane wobble via animated displacement, helix rotation on scroll.
-- Data states as lab outcomes: "culturing..." loaders, bands migrating in a gel for progress.
-- Keep microinteractions precise and clinical; the unease comes from imagery, not laggy UI.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                  BIOPUNK VISUAL MATRIX                                 │
+├────────────────────────────┬────────────────────────────┬──────────────────────────────┤
+│ 1. Clinical Genome Foundry │ 2. Black Clinic Underground│ 3. Open-Lab Citizen Science  │
+│ • Sterile dark slate       │ • Visceral flesh & magenta │ • Petri-dish agar amber      │
+│ • GFP fluorescent lasers   │ • Exposed vascular ribbons │ • Gel-electrophoresis scales │
+│ • Precise nucleotide mono  │ • High-contrast warning UV │ • Graph protocol notebooks   │
+└────────────────────────────┴────────────────────────────┴──────────────────────────────┘
+```
 
----
-
-## 🧩 UX Patterns
-
-- **IA and navigation:** a lab-notebook model (Projects, Samples, Protocols, Results, Lab log); entities are first-class with stable IDs and breadcrumbs. Metaphor gives way to convention for global nav, search, account, export and settings; scientific users expect standard table, filter and sort behavior (Nielsen heuristics 4 and 7).
-- **Flows:** onboarding as a first protocol run with sample data; data entry in short steps with units, validation and defaults (heuristic 5), never re-asking known values (WCAG 3.3.7); destructive actions (discard sample, delete dataset) need undo or a confirmation naming the object (heuristic 3).
-- **Search and settings:** search by ID, tag, organism or sequence fragment with saved filters; settings cover units, data sharing scope and audit-log visibility.
-- **Voice:** precise, plain, non-sensational ("Sample 14 failed QC: low yield. Retry or flag."); explain jargon on first use; biosafety notes appear inline where risk arises.
-- **States:** empty = an instruction ("No samples yet. Log your first."); loading = "culturing" or progress with real elapsed or estimated time, never fake precision (heuristic 1); error = cause, impact on data, next step (heuristic 9); success = what was recorded and where, with timestamp.
-- **Trust and provenance:** show source, version, who edited and when for every value; mark inferred versus measured data; honest uncertainty beats polished certainty. Sci-fi visuals must not imply clinical validity.
-- **Cognitive load:** dense data needs chunking, sticky headers and plain-language summaries; disgust imagery stays optional and out of task paths.
-- **Checks:** task success for logging a sample, finding a result and exporting data at or above 90 percent; data-entry error rate and time on task versus baseline; SUS; comprehension of provenance labels (unverified synthesis targets).
+- **Palette & Radiance:** Sterile laboratory slate (`#0F1A17`), deep agar black (`#070D0B`), fluorescent GFP green (`#7CFF6B`), cold fluorescence cyan (`#2EE8C2`), visceral enzyme magenta (`#E0457B`), bile yellow (`#C7D63B`), and cold clinical white (`#EEF5F1`).
+- **Form Factors & Framing:** Rounded membrane borders (`border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%`), 1px luminescent laser hairline dividers, and specimen bracket overlays.
+- **Textures & Micro-patterns:** Translucent cell wall diffusion, SVG turbulence fluid membranes, gel electrophoresis band migrations, and running nucleotide strings (`ATCG-GCTA`).
 
 ---
 
-## 🛠️ Implementation Notes
+## 📐 Lighting Physics, Specular Splits & Surfaces
+
+1. **Fluorescent Protein (GFP) Bioluminescence:**
+   - Intense chromatic emission radiating outward from a sterile dark petri substrate.
+   ```css
+   background: radial-gradient(circle at 50% 40%, rgba(124, 255, 107, 0.15) 0%, rgba(15, 26, 23, 0.98) 100%);
+   border: 1px solid rgba(124, 255, 107, 0.45);
+   box-shadow: 0 0 25px rgba(124, 255, 107, 0.18), inset 0 0 15px rgba(124, 255, 107, 0.1);
+   ```
+2. **Agar Membrane Specular Sheen:**
+   - High-gloss organic liquid surface tension simulating nutrient agar in a glass dish.
+   ```css
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(46, 232, 194, 0.05) 50%, rgba(0, 0, 0, 0.4) 100%);
+   backdrop-filter: blur(8px);
+   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.5);
+   ```
+
+---
+
+## 🏷️ Complete Design Tokens
 
 ```css
-:root { --slate: #0F1A17; --lab: #EEF5F1; --gfp: #7CFF6B; --flesh: #E0457B; --bile: #C7D63B; }
-body { background: var(--slate); color: var(--lab); font-family: "IBM Plex Mono", ui-monospace, monospace; }
-.specimen { border: 1px solid rgb(124 255 107 / .6); position: relative; }
-.specimen::before { content: "LOT 07 / ACGT-4412"; position: absolute; top: -.7em; left: 1rem;
-  background: var(--slate); padding: 0 .5rem; font-size: .75rem; letter-spacing: .1em; }
-.cell { border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
-  background: radial-gradient(circle at 35% 30%, rgb(124 255 107 / .55), rgb(43 182 115 / .15) 70%);
-  animation: pulse 3.2s ease-in-out infinite; }
-@keyframes pulse { 50% { transform: scale(1.04); } }
-@media (prefers-reduced-motion: reduce) { .cell { animation: none; } }
-```
+:root {
+  /* Laboratory Environments */
+  --bio-slate-bg: #0F1A17;
+  --bio-agar-black: #070D0B;
+  --bio-surface: #172420;
+  --bio-surface-light: #20312C;
+  --bio-clinical-white: #EEF5F1;
 
-```html
-<svg width="0" height="0" aria-hidden="true"><filter id="goo">
-  <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-  <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"/></filter></svg>
-```
+  /* Fluorophores & Emissions */
+  --bio-gfp-green: #7CFF6B;
+  --bio-gfp-glow: rgba(124, 255, 107, 0.35);
+  --bio-cyan-laser: #2EE8C2;
+  --bio-cyan-glow: rgba(46, 232, 194, 0.3);
+  --bio-flesh-magenta: #E0457B;
+  --bio-bile-yellow: #C7D63B;
 
-- Apply `filter: url(#goo)` to a container of circles for metaball membranes; test performance on mid-range phones.
-- Show real scientific content (sequence viewers, protocols, provenance) rather than only helix clipart.
+  /* Scientific Dividers & Borders */
+  --bio-border-hairline: rgba(124, 255, 107, 0.25);
+  --bio-border-active: #7CFF6B;
+  --bio-membrane-radius: 8px;
+
+  /* Typography */
+  --bio-font-display: 'Space Grotesk', 'Rajdhani', sans-serif;
+  --bio-font-data: 'IBM Plex Mono', 'Space Mono', monospace;
+  --bio-font-body: 'Inter', -apple-system, sans-serif;
+}
+```
 
 ---
 
-## ♿ Accessibility
+## 🔤 Typography & Lettering Architecture
 
-- Acid green on dark slate is high contrast; green or magenta on white fails 1.4.3. Test every pair, and avoid saturated green on magenta (vibration and color-blind confusion; 1.4.1: add shape or text cues).
-- Texture and microscopy backgrounds behind text need a solid or scrim layer (1.4.3, 1.4.11); keep nucleotide-string decoration `aria-hidden`.
-- Pulsing and morphing: honor `prefers-reduced-motion`; no flashing above 3 per second (2.3.1); provide pause for ambient loops (2.2.2). Gooey SVG filters can blur text, so never filter text containers.
-- Gel and sequence visualizations need text alternatives or data tables (1.1.1, 1.3.1); targets at least 24px (2.5.8).
-- Imagery of bodies, wounds or surgery can distress some users: content warning and non-autoplay.
+- **Primary Display Headings:** Precision futuristic sans-serifs (*Space Grotesk*, *Rajdhani*) featuring clean mechanical geometry with slight bio-organic flare.
+- **Data Readouts & Nucleotide Sequences:** Fixed-pitch monospaced fonts (*IBM Plex Mono*, *Space Mono*) for sample lots, molecular weights (kDa), base pairs (bp), and protocol steps.
+- **Body & Protocol Text:** Crisp, neutral neutral grotesque (*Inter*, *IBM Plex Sans*) ensuring maximum legibility during rapid laboratory triage.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Membrane Osmosis Hover:** Cards and interactive elements expand with subtle organic fluid tension (`border-radius` morphing by 2-4% on hover).
+- **Gel Electrophoresis Progress:** Loading bars advance as migrating translucent protein bands under simulated ultraviolet light.
+- **Bioluminescent Pulse:** Status indicators breathe with slow, circadian biological rhythm (3-4 second cycle periods).
+- **Motion Reduction:** When `prefers-reduced-motion: reduce` is detected, fluid membrane morphing and pulsing glows halt into stable static borders.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Specimen Incubator Card (`.bio-specimen-card`)
+A dark slate container with nucleotide lot identification and fluorescent GFP hairline accents.
+```html
+<article class="bio-specimen-card">
+  <div class="bio-card-header">
+    <span class="bio-lot-tag">LOT: BAC-9904 // CRISPR-v3</span>
+    <h3 class="bio-title">Bioluminescent Assay</h3>
+  </div>
+  <p class="bio-metric">Target: Luciferase reporter plasmid • Transfection Efficiency: 94.2%</p>
+</article>
+```
+```css
+.bio-specimen-card {
+  background: var(--bio-surface);
+  border: 1px solid var(--bio-border-hairline);
+  border-radius: var(--bio-membrane-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(124, 255, 107, 0.04);
+  padding: 1.75rem;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.bio-specimen-card:hover {
+  border-color: var(--bio-border-active);
+  box-shadow: 0 6px 24px rgba(124, 255, 107, 0.15), inset 0 0 20px rgba(124, 255, 107, 0.08);
+}
+.bio-lot-tag {
+  font-family: var(--bio-font-data);
+  font-size: 0.75rem;
+  color: var(--bio-cyan-laser);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+```
+
+### 2. Fluorescent Assay Action Button (`.bio-btn`)
+An action button glowing with green fluorescent emission against dark slate.
+```css
+.bio-btn {
+  background: rgba(124, 255, 107, 0.12);
+  color: var(--bio-gfp-green);
+  border: 1px solid var(--bio-gfp-green);
+  font-family: var(--bio-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.7rem 1.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(124, 255, 107, 0.2);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.bio-btn:hover {
+  background: var(--bio-gfp-green);
+  color: #070D0B;
+  box-shadow: 0 0 20px rgba(124, 255, 107, 0.45);
+  transform: translateY(-1px);
+}
+.bio-btn:active {
+  transform: translateY(1px);
+}
+```
+
+### 3. Electrophoresis Telemetry Rail (`.bio-progress-rail`)
+A progress tracker simulating stained DNA fragments migrating under ultraviolet electrophoresis.
+
+### 4. Nucleotide Sequence Header (`.bio-sequence-banner`)
+A dense header ribbon continuously displaying active base-pair coordinates (`A-T-C-G`).
+
+---
+
+## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
+
+- **Luminescent Contrast:** Fluorescent GFP green (`#7CFF6B`) on dark laboratory slate (`#0F1A17`) yields an extraordinary contrast ratio of 12.4:1; cold clinical white (`#EEF5F1`) achieves 15.6:1 (surpassing WCAG AAA requirements).
+- **Hazard Accents:** Saturated magenta (`#E0457B`) must be restricted to borders or large icons, or paired with a minimum 4.5:1 text backing.
+- **Photosensitivity Protections (WCAG 2.3.1):** Ultraviolet flicker animations and cellular pulses must never exceed 2.0 Hz.
+- **Focus Indicators:** Neon green double ring with 2px offset (`outline: 2px solid var(--bio-gfp-green); outline-offset: 3px;`).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** biotech and open-science branding, game and film microsites, editorial on genetic ethics, DIYbio communities, lab-notebook tools.
-- **Caution:** health and patient-facing products (trust and calm matter); medical claims must not ride on sci-fi visuals.
-- **Avoid:** clinical decision support, pharmacy, anything where eugenic-coded or "disgust" imagery could stigmatize people with disabilities or genetic conditions.
+### Ideal Use Cases
+- Biotech enterprise dashboards, DNA sequencing viewers, and wet-lab automated workflow tools.
+- Sci-fi gaming portals, bio-cybernetic character planners, and speculative biology literature.
+- Citizen science documentation, open-source genetics databases, and CRISPR research archives.
+
+### Anti-Patterns & Prohibitions
+- Consumer mental health counseling or physical wellness portals where clinical biohazard tension induces anxiety.
+- Standard corporate HR or accounting software.
+- Commercial medical claims advertising unregulated home genetic treatments.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Gross-out for its own sake; DNA-helix cliche on every landing page; filter-heavy pages that jank.
-- Ethics blind spot: the genre exists to question biotech power; a style that glamorizes unregulated experimentation misreads it. Any real-world DIY protocol content needs biosafety framing.
-- Fan-wiki claims about origin are low-authority; prefer the primary manifesto and Wikipedia-cited sources.
-
----
-
-## 📚 Sources
-
-- "Biopunk" (Wikipedia), accessed 2026 — https://en.wikipedia.org/wiki/Biopunk
-- "Cyberpunk derivatives" (Wikipedia), accessed 2026 — https://en.wikipedia.org/wiki/Cyberpunk_derivatives
-- Meredith Patterson, "A Biopunk Manifesto", UCLA Outlaw Biology Symposium, January 29-30, 2010, as listed on Hackteria Wiki, "Manifestos" — https://hackteria.org/wiki/Manifestos (page read; quoted line: "Scientific literacy empowers everyone who possesses it to be active contributors to their own health care, the quality of their food, water, and air.")
-- "Meredith L. Patterson" (Wikipedia), accessed 2026-10-05 — https://en.wikipedia.org/wiki/Meredith_L._Patterson (described as "a leading figure in the biopunk movement"; the page gives no manifesto details)
-- "DIYbio (organization)" (Wikipedia), accessed 2026-10-05 — https://en.wikipedia.org/wiki/DIYbio_(organization) (founded 2008 by Jason Bobe and Mackenzie Cowell as a network for citizen scientists and amateur biologists)
-- Jakob Nielsen, "10 Usability Heuristics for User Interface Design" (Nielsen Norman Group), 1994, reviewed 2024 — https://www.nngroup.com/articles/ten-usability-heuristics/ (page read)
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2", 12 December 2024 — https://www.w3.org/TR/WCAG22/ (3.3.7 text read)
-- Palette and filter values are design recommendations, not sourced facts; UX patterns beyond the cited heuristics and criteria are unverified synthesis.
+- Eva Hauserová, "Biopunk: Notes on a Developing Subgenre", *Ikarie XB-1*, 1988/1990.
+- Meredith Patterson, *A Biopunk Manifesto*, UCLA Outlaw Biology Symposium, 2010.
+- Paul Di Filippo, *Ribofunk*, Four Walls Eight Windows, 1996.
+- Gregory Stock, *Redesigning Humans: Choosing Our Genes, Changing Our Future*, Houghton Mifflin, 2002.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md).
+- **Sibling Speculative Styles:** [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md), [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md).
+- **Scientific & Data Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).

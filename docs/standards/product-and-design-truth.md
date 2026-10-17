@@ -39,6 +39,8 @@ UI generation MUST actively avoid generic LLM design clichés:
 - **No Gray Ink on Chromatic Fills**: Never pair low-contrast muted gray text (`text-gray-400`/`text-slate-400`) over saturated chromatic backgrounds (`bg-blue-600`, `bg-red-500`).
 - **No Nested Card Syndrome**: Never nest cards inside cards inside cards; rely on typography and whitespace before adding structural boxes.
 - **No Cartoonish Spring Easing**: Never use bounce or elastic curves for serious interface transitions.
+- **No Ungrounded Ambient Drops**: Never apply uniform, blurred 0-distance black drop shadows to cards without a defined physical lighting model.
+- **No Style Cross-Contamination**: Never conflate distinct aesthetic traditions into hybrid compromises (e.g. converting Atompunk into pastel soda fountain kitsch, or Neo-Brutalism into raw unstyled HTML). All canonical UI styles must adhere strictly to [`ui-style-architecture.md`](ui-style-architecture.md).
 
 ## Rationale
 

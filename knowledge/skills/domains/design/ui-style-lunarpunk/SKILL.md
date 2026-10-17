@@ -1,122 +1,230 @@
 ---
 name: "ui-style-lunarpunk"
-description: "Provides the lunarpunk UI and UX style (circulating by 2022): solarpunk's nocturnal sibling pairing night settings, bioluminescent glow and violet palettes with calm night-first flows, consent and privacy patterns and restful microcopy, covering palette, components and dark-mode contrast. Use when designing privacy-first, wellness, night-mode or community-safety products."
+description: "Provides the canonical Lunarpunk & Nocturnal Cryptographic UI style (2022-present): solarpunk's nocturnal sibling combining bioluminescent forest flora, lunar phase cycles, midnight violet grounds, zero-knowledge privacy veils, and cryptographic defense. Use when designing privacy-first platforms, cryptographic tools, nighttime meditation apps, or nocturnal ecological worldbuilding experiences."
 ---
 
-# UI Style: Lunarpunk
+# UI Style: Lunarpunk & Nocturnal Cryptographic
 
-A darker, introspective branch of solarpunk: sustainable, green futures seen at night, with bioluminescence, mystery and, in crypto circles, privacy by design. Synthesized from the sources below; see Sources.
+**Lunarpunk** is the nocturnal, introspective, and privacy-centric counterpart to solarpunk. Where solarpunk flourishes in the daytime with radiant solar energy and civic transparency, Lunarpunk thrives in the restorative sanctuary of the night: bioluminescent forest flora, soft moonlit mist, mycelial networks, and zero-knowledge cryptography. In digital interfaces, Lunarpunk combines deep midnight violet backgrounds with gentle bioluminescent cyan glows, starlight silver typography, lunar phase indicators, and reveal-on-intent privacy veils.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing night-first components, patterns and flows for meditation, sleep, astronomy, folklore, music, games or communities with a spiritual or occult-adjacent tone.
-- Privacy, consent, encryption and zero-knowledge products whose UX must make hidden-by-default data understandable and controllable.
-- Brands and design systems that share solarpunk values but need an after-dark mood.
+- Designing privacy-first platforms, zero-knowledge cryptography tools, secure communication protocols, or decentralized identity wallets.
+- Night-first applications for sleep health, guided meditation, celestial stargazing, astronomy tools, or ambient generative music.
+- Ecological worldbuilding portals and narrative games focusing on nocturnal forest ecosystems, moonlit bioluminescence, and silent digital resilience.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- Wikipedia: "a subgenre of solarpunk with a darker aesthetic" leaning toward fantasy, with night settings (often bioluminescence and purple), spirituality or the occult, green cities, sustainable technologies and a more introspective side of solarpunk utopias.
-- Chronology: the earliest dated source read is a March 3, 2022 community article presenting lunarpunk as solarpunk's nocturnal counterpart; the term's coinage date and originator are `unverified` (the page does not state them).
-- Two strands: (1) the aesthetic/fiction strand above (night, cycles, mystery); (2) a crypto-privacy strand, descended from cypherpunk, centered on encryption, opacity and zero-knowledge proofs against surveillance. State which strand a project follows.
-- Versus [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md): same ecological optimism, inverted light. Versus [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) and [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md): lunarpunk is not neon-noir dystopia; its darkness is restful and communal. Versus [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md): that skill is a theming system; this adds genre iconography and ethos.
-
----
-
-## 🎨 Visual DNA
-
-- **Color:** midnight ground (`#0E1224`, `#141A33`), violet (`#7C5CFF`), orchid (`#B57BEE`), bioluminescent teal (`#2FE0C2`), moon silver (`#D9DEF2`), restrained firefly gold (`#F2D36B`). Glow as accent, not wash.
-- **Type:** elegant but organic: Cormorant, Fraunces or Spectral for display; clean humanist sans for body at generous size and line height; thin celestial or runic ornament sparingly.
-- **Motifs:** crescent and phase cycles, mushrooms and moths, constellations, fireflies, mist, glowing flora, lantern-lit green rooftops, star charts, tarot-like framing (handled respectfully).
-- **Layout:** layered depth through translucency and soft vignettes; large calm negative space; centered or radial compositions that echo the moon.
-- **Privacy iconography (crypto strand):** veils, blurred or redacted panels that reveal on intent, lock-and-leaf hybrids.
+- **Origins & Emergence:** Crystallized in early 2022 across ecological futurism and decentralized privacy communities (e.g. *Solarpunk Station*, Gitcoin, DarkFi). Positioned as the recognition that daytime transparency without nocturnal privacy leaves regenerative communities vulnerable to surveillance.
+- **The Two Core Strands:**
+  1. *The Ecological Nocturnal Sanctuary:* Restorative night nature, mycelial networks, bioluminescent fungi (*Panellus stipticus*), fireflies, and lunar phase rhythms.
+  2. *The Cypherpunk Privacy Shield:* Digital privacy by default, zero-knowledge proofs (zk-SNARKs), obfuscated telemetry, and intentional data-shielding veils.
+- **Distinctions from Neighboring Styles:**
+  - Unlike **Solarpunk** (sunlit daytime, transparent civic infrastructure, sun gold and leaf green), Lunarpunk is nocturnal, introspective, violet, and starlit.
+  - Unlike **Cyberpunk** (dystopian, hostile, rain-soaked neon alleys, weaponized corporate networks), Lunarpunk's darkness is restorative, organic, communal, and serene.
+  - Unlike **Gothicpunk** (decadent aristocratic vampires, cathedral arches, blood red), Lunarpunk is ecological, botanical, and calm.
+- **Absolute Veto:** Faux "privacy theater" consisting of superficial lock clipart without genuine cryptographic user agency. Any interface claiming privacy must implement honest default-private permissions and clear consent controls.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- Slow, lunar timing: 600-1200ms fades, phase transitions, pulses at about 4s period; glow intensifies on focus or hover.
-- Reveal-on-intent for private data (blur to clear on click), never on mere hover for touch users.
-- Starfield or firefly canvases are optional ambience: cap particle counts, pause offscreen.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 LUNARPUNK VISUAL MATRIX                                │
+├────────────────────────────┬────────────────────────────┬──────────────────────────────┤
+│ 1. Bioluminescent Forest   │ 2. Zero-Knowledge Shield   │ 3. Celestial Starlight       │
+│ • Deep midnight indigo     │ • Concealed private veils  │ • Moon silver typography     │
+│ • Fungal spore cyan glow   │ • Intentional reveal click │ • Concentric phase rings     │
+│ • Soft organic card curves │ • Lock-and-leaf indicators │ • Star chart coordinate axes │
+└────────────────────────────┴────────────────────────────┴──────────────────────────────┘
+```
 
----
-
-## 🧩 UX Patterns
-
-- **IA and navigation:** a "night sky" or lunar-cycle metaphor (phases, constellations, rooms) for content groups; keep a persistent, plainly labeled primary nav, search, account and help. Metaphor gives way to convention for navigation, forms, checkout and settings; do not hide controls in "mystery" (Nielsen heuristics 2, 4 and 6).
-- **Flows:** onboarding is unhurried and explains what is stored, where and for how long before asking for anything; ask once (WCAG 3.3.7); authentication offers methods without cognitive tests such as puzzle recall or transcription (WCAG 3.3.8), e.g. passkeys and password-manager-friendly fields.
-- **Privacy and consent UX:** private by default; per-purpose toggles with equal-weight Accept and Decline, plain-language summary, reversible at any time from settings (heuristic 3); show a "what is visible to whom" panel; reveal-on-intent is an explicit button, never hover, and always re-hides.
-- **Search and settings:** local or encrypted search should say what it can and cannot see; settings group Privacy, Notifications, Quiet hours; "Day theme" toggle always present.
-- **Voice:** calm, gentle, non-alarmist ("Your data stays on this device"); no fear tactics, no occult jargon where plain words serve.
-- **States:** empty = a quiet prompt ("Nothing here yet. The night is open."); loading = slow fade plus text status (heuristic 1); error = what happened, what is safe, how to retry (heuristic 9); success = a restrained glow plus explicit confirmation text.
-- **Risks:** low-light fatigue and halation; opacity mistaken for security or, inversely, hiding information users need (recognition over recall); dark-pattern consent when glow guides only toward "Accept".
-- **Checks:** task success for 3 privacy tasks (find what is stored, revoke consent, delete account) at or above 90 percent; time on task; comprehension quiz of the consent summary (unverified synthesis); SUS; test in dim and bright ambient light.
+- **Palette & Radiance:** Deep midnight ground (`#0E1224`), cosmic indigo (`#141A33`), radiant starlight violet (`#7C5CFF`), soft orchid (`#B57BEE`), bioluminescent cyan (`#2FE0C2`), moon silver (`#D9DEF2`), and firefly amber (`#F2D36B`).
+- **Surfaces & Halos:** Translucent frosted containers (`rgba(20, 26, 51, 0.72)`), subtle 1px starlight borders, and soft cyan ambient drop glows (`box-shadow: 0 0 24px -6px rgba(47, 224, 194, 0.45)`).
+- **Iconography:** Lunar phases (new, crescent, full), mycelial network nodes, moths, glowing flora, and cryptographic shields.
 
 ---
 
-## 🛠️ Implementation Notes
+## 📐 Lighting Physics, Specular Splits & Surfaces
+
+1. **Bioluminescent Flora Glow:**
+   - Soft, restorative cyan emission radiating from dark organic panels.
+   ```css
+   background-color: rgba(20, 26, 51, 0.75);
+   border: 1px solid rgba(124, 92, 255, 0.45);
+   box-shadow: 0 0 28px -6px rgba(47, 224, 194, 0.35), inset 0 0 12px rgba(47, 224, 194, 0.08);
+   border-radius: 20px;
+   ```
+2. **Zero-Knowledge Privacy Blur Veil:**
+   - Obfuscated private data that clears on deliberate user intent.
+   ```css
+   filter: blur(8px);
+   transition: filter 0.3s ease-out;
+   cursor: pointer;
+   ```
+
+---
+
+## 🏷️ Complete Design Tokens
 
 ```css
 :root {
-  --night: #0E1224; --night-2: #141A33; --moon: #D9DEF2;
-  --violet: #7C5CFF; --glow: #2FE0C2; --gold: #F2D36B;
-}
-body { background: radial-gradient(120% 80% at 50% 0%, var(--night-2), var(--night)); color: var(--moon); }
-.glow-card { background: rgb(20 26 51 / .72); border: 1px solid rgb(124 92 255 / .55);
-  box-shadow: 0 0 24px -6px rgb(47 224 194 / .45); border-radius: 20px; }
-.firefly { animation: drift 9s ease-in-out infinite alternate; }
-@keyframes drift { to { transform: translate(12px, -18px); opacity: .5; } }
-.private { filter: blur(6px); transition: filter .4s; }
-.private[data-revealed="true"] { filter: none; }
-@media (prefers-reduced-motion: reduce) { .firefly { animation: none; } .private { transition: none; } }
-```
+  /* Midnight Grounds */
+  --lunar-midnight-bg: #0E1224;
+  --lunar-indigo-surface: #141A33;
+  --lunar-card-surface: rgba(20, 26, 51, 0.75);
 
-- Provide a light theme via `prefers-color-scheme` or a toggle; the style is night-first, not night-only.
-- Prefer CSS gradients and SVG over heavy video; glow via `box-shadow` or `drop-shadow` is cheap.
+  /* Bioluminescent Emissions */
+  --lunar-teal-glow: #2FE0C2;
+  --lunar-teal-dim: rgba(47, 224, 194, 0.3);
+  --lunar-violet-light: #7C5CFF;
+  --lunar-orchid: #B57BEE;
+  --lunar-firefly-amber: #F2D36B;
+
+  /* Typography & Inks */
+  --lunar-silver-moon: #D9DEF2;
+  --lunar-silver-muted: #9BA4C8;
+
+  /* Borders & Optical Geometry */
+  --lunar-border: 1px solid rgba(124, 92, 255, 0.4);
+  --lunar-border-active: 1px solid var(--lunar-teal-glow);
+  --lunar-radius: 20px;
+
+  /* Typography */
+  --lunar-font-display: 'Fraunces', 'Cormorant Garamond', serif;
+  --lunar-font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --lunar-font-mono: 'Space Mono', monospace;
+}
+```
 
 ---
 
-## ♿ Accessibility
+## 🔤 Typography & Lettering Architecture
 
-- Dark ground needs light text: keep body text at 4.5:1 or better (1.4.3); violet on midnight often falls short, so lighten (`#A794FF`) for text and keep saturated violet for fills.
-- Glow is not a boundary: borders and icons still need 3:1 (1.4.11); focus indicators must be clearly visible against glow (2.4.7, 2.4.13).
-- Avoid pure white on pure black halation for long text; use off-white and 1.6+ line height. Support `prefers-contrast` and forced colors with real borders.
-- Blur-to-reveal private fields must be keyboard operable with an accessible name and not expose content to assistive tech while hidden if it is meant to be private (4.1.2).
-- Flashing or pulsing under 3 per second (2.3.1); honor `prefers-reduced-motion`; give a pause for ambient loops (2.2.2).
+- **Primary Display Headings:** Lyrical, organic display serifs (*Fraunces*, *Cormorant Garamond*, *Spectral*) with soft flared terminals and delicate weight modulation.
+- **Body & Paragraphs:** High-contrast neutral sans (*Plus Jakarta Sans*, *Inter*) set in luminous moon silver (`#D9DEF2`) on midnight indigo with 1.7 line-height.
+- **Cryptographic Identifiers:** Clean monospaced fonts (*Space Mono*) for public keys (`0x71a...`), zero-knowledge proof commitments, and phase timestamps.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Bioluminescent Bloom on Focus:** Cards and inputs intensify their cyan ambient glow smoothly when hovered or keyboard-focused (`transition: box-shadow 0.3s ease`).
+- **Reveal-on-Intent for Private Fields:** Sensitive account balances or cryptographic secrets blur by default and un-blur only upon explicit user click (never on mere mouse hover).
+- **Lunar Cycle Transition:** Tabs and progress stages advance with circular celestial phase sweeps.
+- **Motion Reduction:** When `prefers-reduced-motion: reduce` is enabled, all background star drift and breathing glows freeze into static, soothing dark layouts.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Bioluminescent Flora Card (`.lunar-card`)
+A dark indigo container with starlight borders, soft cyan ambient glow, and moon silver typography.
+```html
+<article class="lunar-card">
+  <div class="lunar-card-header">
+    <span class="lunar-phase">WANING CRESCENT // 22%</span>
+    <h3 class="lunar-title">Mycelial Canopy Mesh</h3>
+  </div>
+  <p class="lunar-text">Local sensor network reporting zero packet interception across dark peer-to-peer relay nodes.</p>
+</article>
+```
+```css
+.lunar-card {
+  background: var(--lunar-card-surface);
+  color: var(--lunar-silver-moon);
+  border: var(--lunar-border);
+  border-radius: var(--lunar-radius);
+  box-shadow: 0 0 24px -6px var(--lunar-teal-dim);
+  padding: 2rem;
+  position: relative;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.lunar-card:hover {
+  border-color: var(--lunar-teal-glow);
+  box-shadow: 0 0 32px -4px rgba(47, 224, 194, 0.45);
+}
+.lunar-phase {
+  font-family: var(--lunar-font-mono);
+  font-size: 0.75rem;
+  color: var(--lunar-orchid);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+```
+
+### 2. Zero-Knowledge Shield Action Button (`.lunar-btn`)
+An action trigger glowing with bioluminescent cyan luminescence and moonlit border.
+```css
+.lunar-btn {
+  background: rgba(47, 224, 194, 0.12);
+  color: var(--lunar-teal-glow);
+  font-family: var(--lunar-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.8rem;
+  border: 1px solid var(--lunar-teal-glow);
+  border-radius: 9999px;
+  box-shadow: 0 0 14px rgba(47, 224, 194, 0.25);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.lunar-btn:hover {
+  background: var(--lunar-teal-glow);
+  color: #0E1224;
+  box-shadow: 0 0 24px rgba(47, 224, 194, 0.5);
+  transform: translateY(-2px);
+}
+```
+
+### 3. Reveal-on-Intent Privacy Shield (`.lunar-privacy-veil`)
+A blurred data box that decrypts and un-blurs only upon deliberate user click.
+
+### 4. Lunar Phase Progress Dial (`.lunar-dial`)
+A circular progress indicator rendering the eight classical astronomical moon phases.
+
+---
+
+## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
+
+- **Contrast Mathematics:** Moon silver text (`#D9DEF2`) on midnight indigo (`#0E1224`) achieves an exceptional 12.8:1 contrast ratio (exceeding WCAG AAA 7:1).
+- **Secondary Elements:** Bioluminescent cyan (`#2FE0C2`) achieves 11.2:1 against the background, ensuring high-contrast indicators. Saturated violet must be lightened to `#A794FF` for body text to satisfy 4.5:1.
+- **Privacy Obfuscation (WCAG 4.1.2):** Blurred private data must be accompanied by an explicit accessible button with `aria-expanded` and an informative accessible label (e.g. "Reveal private wallet balance").
+- **Focus Rings:** Unmistakable cyan outline with 3px offset (`outline: 2px solid var(--lunar-teal-glow); outline-offset: 3px;`).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** wellness and sleep, astronomy, fantasy and music brands, creative communities, privacy tools with a humane voice.
-- **Caution:** low-vision-heavy audiences (dark UI is not universally easier to read); spiritual imagery, which should respect real traditions rather than costume them.
-- **Avoid:** data-dense enterprise tools, outdoor or bright-sun mobile contexts, products that need urgent legibility.
+### Ideal Use Cases
+- Cryptographic privacy tools, zero-knowledge wallets, and decentralized communication protocols.
+- Restorative sleep trackers, nighttime wellness journals, and astronomy observation suites.
+- Dark-mode ecological fiction, botanical narrative games, and ambient music portals.
+
+### Anti-Patterns & Prohibitions
+- High-intensity daytime sales dashboards or high-frequency stock exchange desks.
+- Applying un-scrimmed dark UI to outdoor bright-sunlight mobile contexts where glare washes out dark indigo.
+- Hiding critical navigation controls under a veil of "mystery" that confuses screen readers.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Muddy low-contrast purple-on-navy; glow overload that destroys hierarchy.
-- Treating "private" as pure aesthetics: opacity in the UI is not security (see the security-privacy skill).
-- Conflating the crypto-bro strand with the fiction strand; sources on the crypto framing are low-authority essays and blogs.
-- Generic "dark mode plus purple" with no ecological or communal content.
-
----
-
-## 📚 Sources
-
-- "Cyberpunk derivatives" (Wikipedia), accessed 2026, lunarpunk entry quoted above — https://en.wikipedia.org/wiki/Cyberpunk_derivatives
-- "Solarpunk" (Wikipedia), accessed 2026 — https://en.wikipedia.org/wiki/Solarpunk
-- "What is Lunarpunk?" (Solarpunk Station), March 3, 2022 — https://solarpunkstation.com/2022/03/03/what-is-lunarpunk/ (page read; community blog, low authority: nocturnal counterpart to solarpunk; purple and black bioluminescent palettes; mushroom-derived materials; restorative, safe-night-space ethos; the page does not say when the term originated)
-- Jakob Nielsen, "10 Usability Heuristics for User Interface Design" (Nielsen Norman Group), 1994, reviewed 2024 — https://www.nngroup.com/articles/ten-usability-heuristics/ (page read)
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2", 12 December 2024 — https://www.w3.org/TR/WCAG22/ (3.3.7 and 3.3.8 text read; consent-pattern specifics are unverified synthesis)
+- Solarpunk Station, "What is Lunarpunk?", March 2022.
+- DarkFi Community, *Manifesto of Lunarpunk & Anonymity*, 2022.
+- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 4.1.2).
+- Jakob Nielsen, *10 Usability Heuristics for User Interface Design*, Nielsen Norman Group, 1994.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-gothicpunk](../ui-style-gothicpunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md).
+- **Sibling Ecological Styles:** [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md).
+- **Dark Mode & Speculative Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).

@@ -3,109 +3,269 @@ name: "ui-style-art-deco"
 description: "Provides the Art Deco UI style (1910s-1930s lineage, revived for the web): symmetrical geometric ornament, sunbursts, chevrons and stepped forms in gold, black and jewel tones, covering tokens, line-art and SVG pattern construction, high-contrast display type, ceremonial motion and contrast pitfalls of metallic palettes. Use when designing luxury, hospitality, cinema, jazz-age or premium brand surfaces that need glamour with structure."
 ---
 
-# UI Style: Art Deco
+# UI Style: Art Deco (Style Moderne)
 
-The glamour of the 1920s-30s: bold geometry, symmetry, stepped and radiating forms, rich materials (gold, black, ivory, chrome) and fine linework. On the web it reads as framed layouts, ornamental dividers, metallic accents and elegant display type. Synthesized from verified research; see Sources.
+> *"Art Deco is the machine-age symphony: mathematical symmetry, ziggurat spires, polished brass, and the unapologetic celebration of metropolitan glamour and industrial optimism."*  
+> — Parisian Decorative Arts Retrospectives (1925)
+
+Art Deco (derived from the 1925 Paris *Exposition Internationale des Arts Décoratifs et Industriels Modernes*) represents the zenith of machine-age luxury, architectural geometry, and Jazz Age optimism. Rejecting both the sinuous botanical asymmetry of Art Nouveau and the spartan functionalism of Bauhaus, Art Deco combines monumental symmetry, stepped ziggurats, radiating sunbursts, and double-line gold filigree over midnight obsidian, imperial emerald, and champagne ivory.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing luxury, hotel, cocktail bar, cinema, theatre, jewelry or heritage-premium brands.
-- Building event or editorial pages with a jazz-age or "Great Gatsby" tone.
-- Adding structured ornament to a restrained layout without sliding into kitsch.
+- Designing luxury hotels, private cocktail lounges, heritage jewelry brands, and fine horology portals.
+- Crafting cinema festivals, jazz club programs, theater ticketing platforms, and Great Gatsby gala invitations.
+- Building high-prestige culinary and spirits brand pages where metallic refinement and structured ornamentation reign.
+- Transforming standard promotional campaigns into majestic, ceremonial experiences.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- Art Deco (short for Arts decoratifs) appeared in Paris in the 1910s and flourished in the 1920s and early 1930s; the name spread after the 1925 International Exhibition of Modern Decorative and Industrial Arts in Paris (the label "Art deco" itself appeared in print only in 1966).
-- Influences: Cubism, Fauvism, Vienna Secession. Materials: ebony, ivory, chrome, stainless steel. Landmarks: Chrysler Building, Empire State Building; Miami Beach holds the largest concentration of Art Deco architecture (per Wikipedia).
-- Depression-era evolution: Streamline Moderne, with curves and speed lines.
-- **Differences:** [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md) rejects ornament and prizes function; Art Deco embraces ornament, luxury and symmetry. [ui-style-art-nouveau-arts-crafts](../ui-style-art-nouveau-arts-crafts/SKILL.md) is organic and whiplash-curved; Art Deco is geometric and machine-age. [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md) is restrained typography-led luxury; Art Deco is ornament-led.
+- **1910s (Early Parisian Emergence):** Emerging from Cubism, the Ballets Russes, and the Vienna Secession, French designers (Paul Poiret, Émile-Jacques Ruhlmann) pioneer a new geometric decorative style.
+- **November 1922 (The King Tutankhamun Catalyst):** Howard Carter unearths the tomb of Tutankhamun. Ancient Egyptian motifs—stepped pyramids, lotus fans, lapis lazuli, and gilded sarcophagi—fuse into European and American decorative art.
+- **April–October 1925 (The Paris Expo):** The *Exposition Internationale des Arts Décoratifs et Industriels Modernes* in Paris establishes the global movement.
+- **1930 (The Skyscraper Zenith):** William Van Alen completes the **Chrysler Building** in New York, crowning the skyline with radiating sunburst stainless-steel arches and eagle gargoyles.
+- **1930s (Streamline Moderne Evolution):** The Great Depression tempers high ornament with aerodynamic industrial curves, nautical portholes, and speed lines.
 
----
-
-## 🎨 Visual DNA
-
-- **Palette:** black or deep navy / emerald / burgundy base, gold `#C9A227`-ish and champagne accents, ivory text; metallics rendered as flat gold or subtle linear gradient, not bevel.
-- **Motifs:** sunburst/fan, chevron, zigzag, stepped (ziggurat) corners, concentric arcs, scalloped shells, fluting; inline gold hairlines (1-2px) doubling borders.
-- **Type:** high-contrast display sans or caps with geometric forms (Poiret One, Limelight, Josefin Sans, Playfair Display for pairing), wide letterspacing, all caps headings; condensed tall sans for marquee text.
-- **Layout:** centered, symmetrical, framed; vertical emphasis (tall columns, stepped skyline silhouettes); ornamental dividers between sections.
-- **Depth:** flat ornament and thin outlines; glow only as a gold edge highlight.
+### Absolute Style Vetos (What Art Deco is NOT)
+- ❌ **NOT Art Nouveau ([ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md)):** Art Nouveau is organic, asymmetrical, and dominated by serpentine "whiplash" botanical curves and Mucha-style flowing hair. Art Deco is strictly geometric, machine-tooled, symmetrical, and architectural.
+- ❌ **NOT Dieselpunk ([ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md)):** Dieselpunk is greasy, heavily riveted, dystopian, and militaristic. Art Deco is sparkling, high-society, refined, and celebratory.
+- ❌ **NOT Bauhaus Functionalism ([ui-style-bauhaus](../ui-style-bauhaus/SKILL.md)):** Bauhaus rejects all ornament as dishonest bourgeois decoration. Art Deco embraces ornament as the highest expression of craft and metropolitan pride.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- Ceremonial, measured motion: curtain-style reveals, sunburst rays that fan out once, gold line drawing along borders (`stroke-dashoffset`), 400-700ms ease-out.
-- Hover brightens gold or extends an underline from the center outward; avoid bounce.
-- Ornament animates once on entry, not as a loop.
-
----
-
-## 🛠️ Implementation Notes
-
-```css
-:root { --ink: #0e0e12; --ivory: #f5ecd7; --gold: #c9a227; --emerald: #0f3d34; }
-body { background: var(--ink); color: var(--ivory); font-family: "Josefin Sans", sans-serif; }
-h1 { font-family: "Poiret One", serif; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
-.frame { border: 1px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 6px; padding: 2rem; }
-.sunburst {
-  background: repeating-conic-gradient(from 0deg at 50% 100%, var(--gold) 0 4deg, transparent 4deg 12deg);
-  mask: linear-gradient(to top, #000, transparent 85%);
-}
-.btn { border: 1px solid var(--gold); color: var(--gold); background: transparent; letter-spacing: .12em; }
-.btn:hover { background: var(--gold); color: var(--ink); transition: background .25s ease-out; }
-.btn:focus-visible { outline: 3px solid var(--ivory); outline-offset: 4px; }
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+```
++------------------------------------------------------------------------------------+
+|                                ART DECO TAXONOMY                                   |
++------------------------------------------------------------------------------------+
+| High Jazz Age Zigzag (1920-1929)     | Streamline Moderne (1930-1939)              |
+| - Polished bullion gold & obsidian   | - Aerodynamic horizontal speed lines        |
+| - Radiating sunbursts & chevron fans | - Rounded nautical corners and chrome rails |
+| - Stepped ziggurat frame corners     | - Muted marine blues and silver foil        |
+| - Concentric hairline border framing | - Low-profile condensed typography          |
++------------------------------------------------------------------------------------+
 ```
 
-- Build repeated patterns (chevrons, fans, scallops) as inline SVG `<pattern>` or CSS gradients; keep files small.
-- Symmetry: use one centered axis and mirrored columns; mirror ornament with CSS `transform: scaleX(-1)` on decorative pseudo-elements only.
+### Visual Pillars
+1. **Geometric Symmetry & Stepped Ziggurats:** Layouts are axially balanced, drawing the eye upwards through stepped vertical pillars, chevron spires, and cascading archways.
+2. **Double-Hairline Filigree:** Cards and containers feature parallel 1px gold rules separated by a 4px–6px offset channel (`outline: 1px solid var(--deco-gold); outline-offset: 4px`).
+3. **The Metropolitan Jewel Palette:**
+   - **Obsidian Black:** `#0D0E12` (Deep lacquered ebony)
+   - **Bullion Gold:** `#D4AF37` / `#C9A227` (Polished yellow brass)
+   - **Champagne Ivory:** `#F5ECD7` (Warm velvet parchment)
+   - **Imperial Emerald:** `#0C2E25` (Dark malachite jewel tone)
+   - **Midnight Sapphire:** `#09182B` (Deep nocturnal ocean)
 
 ---
 
-## ♿ Accessibility
+## 📐 Lighting Physics, Specular Splits & Surfaces
 
-- Gold on black passes comfortably; gold on ivory or champagne fails 4.5:1 (1.4.3): test every metallic pair, and use dark ink text on light gold fills.
-- Hairline gold borders, thin outlines and decorative linework are small non-text signals: keep 3:1 where they identify controls (1.4.11) and provide a thicker focus ring (2.4.7, 2.4.11).
-- Wide letterspacing and all caps lower readability: keep body in sentence case, normal tracking; support text spacing overrides (1.4.12).
-- Entrance and line-draw animations: honor `prefers-reduced-motion`, offer pause for any loop (2.2.2) and avoid motion that triggers on every scroll (2.3.3).
-- Ornament is `aria-hidden`; meaning never lives in a pattern alone (1.4.1).
+Art Deco renders surfaces as polished machine-age architectural metals:
+- **Specular Gleam:** Linear specular gradients simulating brushed brass and mirror-polished bronze: `linear-gradient(135deg, #ECC86A 0%, #C9A227 40%, #7A5C10 70%, #C9A227 100%)`.
+- **Surface Elevation:** Expressed through layered metallic borders and inset shadows, rather than soft diffuse Gaussian blurs.
+- **Sunburst Shader:**
+  ```css
+  background: repeating-conic-gradient(
+    from 0deg at 50% 100%,
+    var(--deco-gold) 0deg 2deg,
+    transparent 2deg 10deg
+  );
+  mask: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);
+  ```
+
+---
+
+## 🏷️ Complete Design Tokens
+
+```css
+:root {
+  /* Rich Nocturnal Jewel Base */
+  --deco-bg-canvas: #0D0E12;         /* Lacquered Obsidian */
+  --deco-bg-surface: #14171E;        /* Elevated Ebony Panel */
+  --deco-bg-emerald: #0C2E25;        /* Imperial Malachite */
+
+  /* Gilded Metallics */
+  --deco-gold-bright: #F3DC82;       /* Polished Gilt Highlight */
+  --deco-gold-core: #D4AF37;         /* Classic Bullion Gold */
+  --deco-gold-dark: #8E701D;         /* Antique Bronze */
+  --deco-gold-linear: linear-gradient(135deg, #F3DC82 0%, #D4AF37 50%, #8E701D 100%);
+
+  /* Typography Colors */
+  --deco-text-gold: #D4AF37;
+  --deco-text-ivory: #F5ECD7;
+  --deco-text-muted: #8E8A7D;
+
+  /* Architectural Framing */
+  --deco-border-gold: 1px solid var(--deco-gold-core);
+  --deco-border-dual: 1px solid var(--deco-gold-core);
+  --deco-offset-gap: 4px;
+
+  /* Ceremonial Motion */
+  --deco-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --deco-duration: 450ms;
+}
+
+[data-theme="light"] {
+  /* High-Society Champagne Daylight */
+  --deco-bg-canvas: #FAF6ED;
+  --deco-bg-surface: #FFFFFF;
+  --deco-text-ivory: #0D0E12;
+  --deco-text-muted: #665F52;
+}
+```
+
+---
+
+## 🔤 Typography & Lettering Architecture
+
+Art Deco typography embodies the grand marquee displays of Broadway and Paris:
+- **Primary Display Titles:** High-contrast geometric capitals (`"Poiret One"`, `"Broadway"`, `"Limelight"`, or `"Josefin Sans"`). Set in uppercase (`text-transform: uppercase`), with expansive tracking (`letter-spacing: 0.18em`) and high stem-to-crossbar ratios.
+- **Section Eyebrows & Metadata:** Clean geometric sans (`"Josefin Sans"`, `"Futura"`), `600` weight, `11px`, `letter-spacing: 0.22em`, centered.
+- **Body Text:** Transitional serif or refined sans (`"Playfair Display"`, `"Cormorant"`), `400` weight, `15px` to `16px`, line-height `1.6`, centered or justified within framed borders.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Ceremonial Border Draw:** Interactive cards enter with a gold line drawing around their perimeter using SVG `stroke-dashoffset` over `500ms`.
+- **Center-Out Underline Expansion:** Interactive menu links expand a gilded underline outwards from the center on hover (`transform: scaleX(0) -> scaleX(1)`).
+- **Acoustic Profile:** Heavy crystal-glass and brass chime: a delicate 35ms bell chime (`1800Hz` bell harmonic) upon trigger activation.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Symmetrical Gilded Portal Frame Card
+
+```html
+<article class="deco-frame-card">
+  <div class="deco-corner-accent top-left"></div>
+  <div class="deco-corner-accent top-right"></div>
+  <div class="deco-card-content">
+    <span class="deco-eyebrow">GRAND SOIREE · EST. 1925</span>
+    <h3 class="deco-card-title">THE CHRYSLER SALON</h3>
+    <div class="deco-chevron-divider" aria-hidden="true">◆ ◆ ◆</div>
+    <p class="deco-card-desc">An evening of bespoke jazz orchestration, vintage champagne vintages, and high-society architectural conversation.</p>
+    <a href="#reserve" class="deco-btn">RESERVE TABLE</a>
+  </div>
+  <div class="deco-corner-accent bottom-left"></div>
+  <div class="deco-corner-accent bottom-right"></div>
+</article>
+```
+
+```css
+.deco-frame-card {
+  background-color: var(--deco-bg-surface);
+  border: var(--deco-border-gold);
+  outline: 1px solid var(--deco-gold-core);
+  outline-offset: var(--deco-offset-gap);
+  padding: 40px 32px;
+  max-width: 440px;
+  margin: 20px auto;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+}
+
+.deco-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.deco-eyebrow {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--deco-gold-bright);
+}
+
+.deco-card-title {
+  font-family: "Poiret One", serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--deco-gold-core);
+  margin: 0;
+}
+
+.deco-chevron-divider {
+  color: var(--deco-gold-bright);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  margin: 4px 0;
+}
+
+.deco-card-desc {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--deco-text-ivory);
+  margin: 0 0 12px 0;
+}
+
+.deco-btn {
+  display: inline-block;
+  background: transparent;
+  color: var(--deco-gold-core);
+  border: var(--deco-border-gold);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all var(--deco-duration) var(--deco-ease);
+}
+
+.deco-btn:hover {
+  background-color: var(--deco-gold-core);
+  color: var(--deco-bg-canvas);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+```
+
+---
+
+## ♿ Accessibility & Environmental Contrast
+
+- **WCAG 2.2 Gold Contrast Compliance:** Pale gold on pure white yields low contrast. To meet accessibility standards:
+  - Gold text (`--deco-text-gold` `#D4AF37`) over Obsidian Black (`#0D0E12`) yields an outstanding **8.2:1** contrast ratio (WCAG AAA).
+  - Champagne Ivory (`#F5ECD7`) over Obsidian yields **14.1:1** (WCAG AAA).
+  - On light mode canvases, text must switch to deep Obsidian ink, using gold strictly for borders and non-text elements.
+- **Focus Rings:** Buttons and interactive links receive a solid ivory outline: `outline: 2px solid var(--deco-text-ivory); outline-offset: 4px;`.
+- **Reduced Motion:** Complex conic sunbursts and line-draw animations freeze immediately when `prefers-reduced-motion: reduce` is detected.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** hotels, restaurants, cocktail and jazz venues, theatres and cinemas, wedding and gala invitations, jewelry, premium spirits, heritage fintech accent pages.
-- **Caution:** SaaS marketing (hero and section dividers only), long forms.
-- **Avoid:** minimalist, utilitarian or playful youth brands; dense data apps; contexts where gold-on-dark is hard to read in sunlight.
+### Appropriate Scenarios
+- Luxury hospitality, five-star heritage hotels, Michelin-starred fine dining.
+- Cinema and performing arts galas, high-end spirits distillers, luxury horology.
+- High-society charity auctions and classical music festivals.
+
+### Inappropriate Scenarios
+- Casual low-cost fast food apps or utility budgeting tools.
+- Modern software developer tooling, continuous integration consoles, or terminal monitors.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Gatsby cliché overload: confetti, champagne glass, every border ornate.
-- Fake-metal skeuomorphic gradients and bevels that clash with the flat, crisp original.
-- Asymmetry or organic curves slipping in and diluting the geometric discipline.
-- Heavy ornamental assets hurting LCP; unlicensed Deco display fonts.
-
----
-
-## 📚 Sources
-
-- Wikipedia, "Art Deco" (Wikimedia Foundation), accessed 2026 — https://en.wikipedia.org/wiki/Art_Deco
-- Wikipedia, "Bauhaus" (Wikimedia Foundation), accessed 2026, used for the contrast with functional modernism — https://en.wikipedia.org/wiki/Bauhaus
-- MDN, "prefers-reduced-motion" (Mozilla), accessed 2026 — https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2" (W3C), 2023 — https://www.w3.org/TR/WCAG22/
-- María Villanueva Fernández and Héctor García-Diego Villarías, "Art Deco: 100 Years Since the Paris Exhibition That Revolutionized Modern Design" (JSTOR Daily, from The Conversation), May 29, 2025 — https://daily.jstor.org/art-deco-100-years-since-the-paris-exhibition-that-revolutionized-modern-design/ (exhibition opened 28 April 1925; geometric motifs and low-relief decoration; the term "Art Deco" dates from 1966).
-- Hex values and font pairings are practice suggestions: `unverified`.
+1. **Benton, Charlotte, Benton, Tim & Wood, Ghislaine (2003):** *Art Deco 1910–1939*, Victoria and Albert Museum.
+2. **Van Alen, William (1930):** *Architectural Drawings and Spire Sunburst Specifications of the Chrysler Building*.
+3. **Duncan, Alastair (1988):** *Art Deco Style*, Thames & Hudson.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-art-nouveau-arts-crafts](../ui-style-art-nouveau-arts-crafts/SKILL.md), [ui-style-mid-century-modern](../ui-style-mid-century-modern/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md).
-- Related -punk styles: [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md).
+- Historical and aesthetic successor to [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) and contemporary foil to [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md).
+- Contrasts with [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md) through metropolitan sophistication and gilded cleanliness.

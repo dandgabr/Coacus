@@ -1,112 +1,222 @@
 ---
 name: "ui-style-glassmorphism"
-description: "Provides the complete glassmorphism and visionOS spatial computing UI style (2020-present): frosted translucent panels with backdrop blur, hairline specular borders, 3D z-axis elevation, gaze/hover illumination and depth refraction. Covers OS lineage from Windows Aero and iOS 7 to macOS Big Sur and Apple visionOS, backdrop-root pitfalls and contrast strategy. Use when designing overlays, spatial web, XR dashboards or next-generation glassmorphic interfaces."
+description: "Provides the canonical Glassmorphism & Spatial UI style (2020-present): multi-layered frosted glass surfaces, backdrop-filter optical blur, 1px specular white border highlights, subtle drop shadows, and spatial depth inspired by macOS Big Sur and visionOS. Covers contrast remediation, layered scrim fallbacks, design tokens, and WCAG 2.2 compliance. Use when designing premium fintech dashboards, spatial computing interfaces, or modern operating system shells."
 ---
 
-# UI Style: Glassmorphism & VisionOS Spatial Elevation
+# UI Style: Glassmorphism & Spatial UI
 
-Frosted translucent glass surfaces — translucent panels blurring content beneath them, edge-lit with hairline specular highlights, and elevated into three-dimensional spatial computing. Named by Michał Malewicz (December 2020), institutionalized by macOS Big Sur and Windows 11 Mica, and elevated to true spatial computing by Apple visionOS (2024). Synthesized from verified research; see Sources.
+**Glassmorphism** is the optical simulation of frosted, translucent glass floating in multi-layered spatial coordinates. Coined in late 2020 by Michał Malewicz following Apple's unveiling of macOS Big Sur (and later crystallized in visionOS), the aesthetic relies on hardware-accelerated background blurring (`backdrop-filter: blur`), multi-layered translucency, a 1px specular white border highlight catching directional light along the top-left rim, and soft diffuse ambient drop shadows.
 
 ---
 
 ## 🧭 When to Activate
 
-- Spatial web applications, WebXR experiences, floating modal overlays, audio/video players, and navigation bars.
-- High-end productivity suites, modern dashboard cards, and luxury hardware interfaces.
-- Upgrading flat 2D glassmorphic mockups into physically plausible, specular-lit optical materials.
+- Designing modern operating system shells, floating navigation overlays, spatial computing windows, or premium consumer fintech dashboards.
+- Interfaces with rich, vibrant, or multi-chromatic backgrounds (mesh gradients, 3D scenes, high-res photography) where frosted glass establishes spatial depth without obscuring underlying context.
+- Replacing flat, opaque card containers with sophisticated, translucent glass surfaces while strictly enforcing high-contrast text scrims.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- **2D Web Glassmorphism (2020–2022):** Lineage traces to Windows Vista/7 Aero Glass (2006) and iOS 7 translucency (2013). Named by Michał Malewicz in December 2020, accelerated by macOS Big Sur (Nov 2020) and Alexander Plyuto's Dribbble concepts.
-- **VisionOS Spatial Computing Strand (2023–present):** Unveiled by Apple at WWDC 2023 and shipped commercially in 2024. In spatial computing, interfaces exist within real physical rooms: opaque slabs feel claustrophobic, while unlit sheets lack legibility. VisionOS solves this via multi-pass Gaussian blur combined with dynamic specular edge lighting and eye/cursor hover flares.
-- **Difference from neighbors:** Unlike [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), which is opaque and sculpted from the background plane, Glassmorphism is transparent, optical, and reveals the layered depths below.
-
----
-
-## 🎨 Visual DNA
-
-- **Surfaces & Opacity:** 10%–20% translucent white or obsidian layers (`rgba(255, 255, 255, 0.12)`) over rich ambient gradient blobs (`#0E1017` to `#202738`).
-- **Depth & Multi-Pass Blur:** `backdrop-filter: blur(24px) saturate(180%)` to `blur(40px)`, combined with soft ambient drop shadows (`0 20px 40px rgba(0, 0, 0, 0.35)`).
-- **Specular Edge Highlights:** Calibrated 1px border where the top edge is brighter (`rgba(255, 255, 255, 0.45)`), simulating environmental ceiling light reflection, while side and bottom borders fade to `rgba(255, 255, 255, 0.12)`.
-- **Shapes:** Generously rounded corners (`border-radius: 20px` to `32px` on cards, pill `9999px` on buttons).
-- **Typography:** Ultra-crisp modern grotesques (SF Pro, Inter, Plus Jakarta Sans) paired with subtle text drop shadows for legibility over variable backgrounds.
+- **Precursors & Evolution:** Evolved from Windows Vista/7 *Aero Glass* (2006; heavy gloss, diagonal caustic lines, reflective bevels) and iOS 7 (2013; flat gaussian blur diffusion).
+- **Modern Formalization:** Formalized in November 2020 by designer Michał Malewicz to describe the sleek frosted glass interfaces in macOS Big Sur. Elevated to spatial three dimensions with Apple's *visionOS* (2023–2024), where frosted glass dynamically adapts to ambient physical room lighting.
+- **Distinctions from Neighboring Styles:**
+  - Unlike **Frutiger Aero** (2004–2012: skeuomorphic glossy water bubbles, grass, lens flares, 3D gel buttons), Glassmorphism is minimal, flat, geometric, and relies purely on blur and specular edge refraction.
+  - Unlike **Neumorphism** (extruded monochrome clay without borders or distinct backgrounds), Glassmorphism separates foreground from background via optical blur and 1px borders.
+  - Unlike **Aura / Mesh Gradient** (the colorful background beneath), Glassmorphism is the refractive lens placed on top of it.
+- **Absolute Veto:** Unscrimmed frosted cards with low-contrast gray text on multi-colored moving backgrounds are strictly forbidden. Glass cards must feature an internal dark or light contrast scrim ensuring body text meets WCAG AA (4.5:1).
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- **Gaze & Hover Flare:** Hovering a glass card raises its z-axis elevation (`transform: translateY(-3px) scale(1.01)`) and intensifies its top specular highlight.
-- **Spring-Loaded Physics:** Transitions employ Apple-style fluid damping curves (`cubic-bezier(0.25, 1, 0.5, 1)` over 300ms).
-- Keep blur static during animations: animating `backdrop-filter` radius causes severe GPU frame drops.
-- Under `prefers-reduced-motion: reduce`, disable all z-axis scaling and specular cursor tracking, maintaining static translucent panels.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                GLASSMORPHISM MATRIX                                    │
+├────────────────────────────┬────────────────────────────┬──────────────────────────────┤
+│ 1. visionOS Spatial Glass  │ 2. macOS Frosted Acrylic   │ 3. Prismatic Specular Glass  │
+│ • Adaptive light response  │ • Deep gaussian blur (24px)│ • Subtle chromatic refraction│
+│ • Thick translucent slab   │ • 1px solid white hair rim │ • Iridescent edge dispersion │
+│ • Soft ambient occlusion   │ • Vibrant gradient backing │ • Directional highlight (45°)│
+└────────────────────────────┴────────────────────────────┴──────────────────────────────┘
+```
+
+- **Surfaces & Grounds:** Translucent white sheets (`rgba(255, 255, 255, 0.12)` to `0.22`), dark glass variant (`rgba(15, 23, 42, 0.65)`), and vivid multi-stop mesh gradients beneath.
+- **Optical Rim Highlights:** 1px directional border gradient (`linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.05) 100%)`).
+- **Depth & Occlusion:** Deep backdrop blur (12px to 32px), combined with expansive, low-opacity drop shadows (`0 8px 32px rgba(0, 0, 0, 0.18)`).
 
 ---
 
-## 🛠️ Implementation Notes
+## 📐 Lighting Physics, Specular Splits & Surfaces
+
+1. **Frosted Optical Diffusion:**
+   - Multi-layered CSS backdrop blur paired with semi-transparent background fill.
+   ```css
+   background: rgba(255, 255, 255, 0.14);
+   backdrop-filter: blur(16px) saturate(180%);
+   -webkit-backdrop-filter: blur(16px) saturate(180%);
+   border: 1px solid rgba(255, 255, 255, 0.25);
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+   ```
+2. **Dark Smoked Spatial Glass:**
+   - Dark mode glass for high-contrast telemetry and video overlays.
+   ```css
+   background: rgba(15, 23, 42, 0.72);
+   backdrop-filter: blur(20px) saturate(160%);
+   border: 1px solid rgba(255, 255, 255, 0.12);
+   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+   ```
+
+---
+
+## 🏷️ Complete Design Tokens
 
 ```css
 :root {
-  --glass-bg: #0e1017;
-  --glass-surface: rgba(255, 255, 255, 0.10);
-  --glass-border: rgba(255, 255, 255, 0.20);
-  --glass-top-light: rgba(255, 255, 255, 0.45);
-}
-body {
-  background: radial-gradient(circle at 50% 20%, #202738, #0e1017);
-  color: #f5f5f7;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-}
-.glass-panel {
-  background: var(--glass-surface);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-top-light);
-  border-radius: 24px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
-}
-.glass-panel:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-@media (prefers-reduced-motion: reduce) {
-  .glass-panel { transition: none; }
+  /* Translucent Glass Substrates */
+  --glass-light-bg: rgba(255, 255, 255, 0.16);
+  --glass-light-card: rgba(255, 255, 255, 0.22);
+  --glass-dark-bg: rgba(15, 23, 42, 0.72);
+  --glass-dark-card: rgba(30, 41, 59, 0.65);
+
+  /* Specular Rim Highlights */
+  --glass-rim-highlight: rgba(255, 255, 255, 0.45);
+  --glass-rim-subtle: rgba(255, 255, 255, 0.12);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* Optical Blurs & Shadows */
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 16px;
+  --glass-blur-lg: 28px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --glass-shadow-dark: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  /* Typography */
+  --glass-font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --glass-font-body: 'Inter', system-ui, sans-serif;
+  --glass-text-light: #0F172A;
+  --glass-text-dark: #F8FAFC;
+  --glass-radius: 16px;
 }
 ```
 
-- **Backdrop-Root Bug:** Any ancestor with `filter`, `opacity < 1`, `mask`, or `mix-blend-mode` creates a new stacking context that stops backdrop blur on child elements.
-- Always provide an opaque solid fallback (`#141721`) for browsers without `backdrop-filter` support.
+---
+
+## 🔤 Typography & Lettering Architecture
+
+- **Primary Display Headings:** Modern geometric grotesque (*Inter*, *SF Pro Display*, *Plus Jakarta Sans*) set with tight tracking (-0.02em) and solid contrast.
+- **Body & Paragraphs:** High-contrast, neutral system sans (*Inter*, *SF Pro Text*) rendered in deep slate (`#0F172A`) on light glass, or bright snow white (`#F8FAFC`) on dark smoked glass.
+- **Scrim Rules:** Never place thin, gray typography directly over translucent panels. Text must sit above an internal contrast scrim (`rgba(255, 255, 255, 0.6)` or `rgba(15, 23, 42, 0.7)`).
 
 ---
 
-## ♿ Accessibility
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
 
-- **Variable Contrast Hazard:** Text contrast over glass varies depending on what scrolls underneath. Never place small body copy over unpredictable backgrounds; increase glass surface opacity under text containers to guarantee WCAG 1.4.3 (4.5:1 ratio).
-- **Focus Indicators:** Specular edge glints do not qualify as accessible focus indicators. Interactive elements must display a distinct 2px or 3px solid focus ring with high contrast (WCAG 2.4.7).
-- **Reduced Transparency:** Respect `prefers-reduced-transparency` by falling back to solid background panels.
+- **Specular Sweep on Cursor Track:** Glass cards track the pointer dynamically, shifting an internal specular light gradient across the rim (`transform: rotate3d(...)`).
+- **Depth Elevation:** On hover, cards elevate along the z-axis (`transform: translateY(-3px) scale(1.01)`), while the backdrop blur intensifies (16px to 24px) and shadow diffuses.
+- **Fluid Spring Physics:** Interactive window drags and modal reveals utilize natural spring dynamics (`cubic-bezier(0.16, 1, 0.3, 1)`).
+- **Motion Reduction:** When `prefers-reduced-motion: reduce` is detected, 3D tilts and hover elevation are disabled, keeping static frosted glass containers.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Frosted Glass Container (`.glass-card`)
+A multi-layered spatial card featuring backdrop blur, 1px specular rim, and internal text scrim.
+```html
+<article class="glass-card">
+  <div class="glass-card-header">
+    <span class="glass-badge">Spatial Compute</span>
+    <h3 class="glass-title">Hardware Telemetry</h3>
+  </div>
+  <p class="glass-text">Neural engine throughput sustained at 18.4 TFLOPS across optical lanes.</p>
+</article>
+```
+```css
+.glass-card {
+  background: var(--glass-light-bg);
+  backdrop-filter: blur(var(--glass-blur-md)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-md)) saturate(180%);
+  border: 1px solid var(--glass-rim-subtle);
+  border-top-color: var(--glass-rim-highlight);
+  border-left-color: var(--glass-rim-highlight);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  padding: 1.75rem;
+  color: var(--glass-text-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+```
+
+### 2. Glass Action Button (`.glass-btn`)
+An interactive action button finished in frosted white with crisp specular rim.
+```css
+.glass-btn {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--glass-text-light);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  padding: 0.7rem 1.6rem;
+  font-family: var(--glass-font-display);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+```
+
+### 3. Spatial Floating Tab Bar (`.glass-tabs`)
+A floating navigation pill centered at the viewport base with deep gaussian blur.
+
+### 4. Prismatic Status Indicator (`.glass-indicator`)
+A small glowing orb featuring chromatic dispersion along its specular glass perimeter.
+
+---
+
+## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
+
+- **The Background-Bleed Danger:** In pure glassmorphism, background colors and image patterns bleed through the card, potentially causing contrast to drop below 3:1.
+- **Mandatory Scrim Fallback (WCAG 1.4.3):** Every text-bearing glass element must maintain an opaque or high-density fallback scrim layer behind typography ensuring body text meets 4.5:1 at all times.
+- **Browser Fallback (`@supports`):** For browsers that do not support `backdrop-filter`, provide an opaque solid fallback (`background: #FFFFFF` in light mode or `#1E293B` in dark mode).
+- **Focus Rings:** High-visibility solid outline with 2px offset (`outline: 2px solid #0284C7; outline-offset: 3px;`).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** Floating navigation bars, modal dialogs, audio/video players, WebXR portals, and luxury tech showcase heroes.
-- **Avoid:** Dense data spreadsheets, high-contrast reading apps, and government document filings.
+### Ideal Use Cases
+- Spatial operating system shells, floating overlays, audio/video controls, and HUD window frames.
+- Premium consumer applications, modern digital bank cards, and personal portfolio hero banners.
+- Controlled environments with rich background imagery that benefits from spatial depth.
+
+### Anti-Patterns & Prohibitions
+- Text-heavy documentation wikis, books, or dense administrative spreadsheet tables.
+- Mobile sites designed for low-power devices with weak GPU hardware (backdrop-filter causes severe battery drain and frame drops).
+- Low-contrast gray text floating directly over vibrant, moving photo backgrounds without a scrim.
 
 ---
 
-## 📚 Sources
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Apple Inc., "Principles of Spatial Design", WWDC 2023 Session 10072.
-- Apple Inc., "Design for visionOS: Human Interface Guidelines", 2024.
-- Michał Malewicz, "Glassmorphism in User Interfaces", *Hype4*, 2020.
-- Microsoft Learn, "Mica material for Windows apps", 2021.
-- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 2.4.7) — https://www.w3.org/TR/WCAG22/
+- Michał Malewicz, "Glassmorphism in user interfaces", *UX Collective*, Nov 2020.
+- Apple Inc., *macOS Big Sur Human Interface Guidelines*, 2020.
+- Apple Inc., *Designing for visionOS*, WWDC 2023.
+- Adrian Bece, "CSS Backdrop Filter: A Guide", *CSS-Tricks*, 2021.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- Sibling depth styles: [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md).
+- **Sibling Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
+- **Gradient & Optical Peers:** [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).

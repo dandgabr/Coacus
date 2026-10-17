@@ -100,4 +100,4 @@ An illustration and UI technique, not a mood: a parallel projection where three 
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md).
+- Neighbors: [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-pixel-art](../ui-style-pixel-art/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md).

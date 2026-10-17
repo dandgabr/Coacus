@@ -49,12 +49,16 @@ skills:
   - knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md
   - knowledge/skills/domains/design/ui-style-art-deco/SKILL.md
-  - knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md
+  - knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md
+  - knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md
   - knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md
   - knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md
   - knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md
   - knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md
+  - knowledge/skills/domains/design/ui-style-constructivism/SKILL.md
+  - knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md
   - knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dracula/SKILL.md
   - knowledge/skills/domains/design/ui-style-glitch/SKILL.md
   - knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md
   - knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md
@@ -63,12 +67,21 @@ skills:
   - knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md
   - knowledge/skills/domains/design/ui-style-memphis/SKILL.md
   - knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md
-  - knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
+  - knowledge/skills/domains/design/ui-style-nordic/SKILL.md
+  - knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md
+  - knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md
   - knowledge/skills/domains/design/ui-style-atompunk/SKILL.md
-  - knowledge/skills/domains/design/ui-style-risograph-zine/SKILL.md
+  - knowledge/skills/domains/design/ui-style-risograph/SKILL.md
+  - knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md
   - knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md
   - knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md
-  - knowledge/skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-synthwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md
+  - knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md
   - knowledge/skills/domains/design/ui-style-biopunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md

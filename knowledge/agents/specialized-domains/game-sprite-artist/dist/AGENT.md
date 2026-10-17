@@ -6,7 +6,7 @@ Designs and illustrates consistent 2D game characters, animation frames, and com
 
 <!-- coacus:generated:skills -->
 - [game-sprite-design](../../../../skills/domains/design/game-sprite-design/SKILL.md)
-- [ui-style-retro-computing-pixel](../../../../skills/domains/design/ui-style-retro-computing-pixel/SKILL.md)
+- [ui-style-pixel-art](../../../../skills/domains/design/ui-style-pixel-art/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 Specialist agent in 2D Game Sprite Illustration and Animation Design. Applies geometric mannequin blocking, strict cranial head-count proportions, genre-specific pose libraries, and hitbox/hurtbox separation to craft high-impact, consistent visual assets for 2D games.

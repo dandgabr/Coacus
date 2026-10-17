@@ -82,6 +82,27 @@ The command is offline and deterministic: it lists every moving release pin with
 the network. Resolution itself follows the
 [version-freshness](standards/version-freshness.md) standard.
 
+### Audit visual design craft (Anti-AI Slop)
+
+Audit frontend templates, CSS and design skills against generic LLM anti-patterns
+([product-and-design-truth](standards/product-and-design-truth.md)):
+
+```bash
+# 1. Audit frontend or design skills deterministically
+python3 scripts/coacus_design_lint.py knowledge/skills/domains/design/ --strict
+
+# 2. Output findings as machine-readable JSON
+python3 scripts/coacus_design_lint.py frontend/ --json
+
+# 3. Run self-tests on the design lint rules engine
+python3 scripts/coacus_design_lint.py --test
+```
+
+Flags:
+- `--strict`: Fails with non-zero exit code on any anti-pattern (nested cards, ungrounded shadows, gray-on-color, icon tiles, hero pills with sparkles, and elastic overshoot curves).
+- `--json`: Formats violations as JSON array with severity, rule ID, line number and remediations.
+- `--test`: Runs built-in test fixtures ensuring zero false positives across valid components.
+
 ### Find a canonical skill
 
 Search the generated skill catalog or resolve a known entry by its exact name:

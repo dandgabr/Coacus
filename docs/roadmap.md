@@ -14,6 +14,9 @@ Status values: **done** (merged), **active** (in progress), **planned**.
 | **F6** | Corpus import: import, translate and organize the full corpus into the 10-category taxonomy. | done (commit `65b9fbc`) |
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract; reconcile the README with the shipped corpus. | done |
 | **F8** | Completeness verification: reconcile source repos, `sources.lock.json` and the catalog to prove nothing was left behind. | done |
+| **F9** | Portable lifecycle guardrails: PAER layer over abstract actions and native hook rendering per harness. | done |
+| **F10** | Self-improvement loop: opt-in, fail-open proposer pipeline with episodic sources and runtime ledger. | done |
+| **F11** | Canonical UI styles expansion (82 pure styles), 12-section standard, anti-AI slop governance and showcase integration. | active |
 
 ## Phase detail
 
@@ -71,8 +74,8 @@ skill entries: 199 + 15). See [`migration.md`](migration.md) and
 > Post-F7 the corpus was pruned of components coupled to a specific MCP server
 > (the `ai-memory` skills + `ai-memory-specialist`, and `autodoc-code-explorer`,
 > which drives the AutoDoc MCP). They are deliberately excluded in the import
-> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **412
-> knowledge skills plus 27 process workflows (447 catalog skill entries, the
+> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **430
+> knowledge skills plus 27 process workflows (457 catalog skill entries, the
 > number the installer and `--verify` report)**, 102 agents and one MCP.
 
 ### F7 — Final consolidation (done)
@@ -127,3 +130,18 @@ native profile and locates the full canonical corpus on demand. PRs #60/#61 were
 integrated into `main`; local installations were refreshed and authorized shell
 residues in caches/histories were removed while preserving third-party plugins.
 See the [implementation and verification record](reports/2026-10-02-python-only-migration.md).
+
+### F11 — Canonical UI styles expansion and showcase integration (active)
+
+Standardizing the design skills library under `knowledge/skills/domains/design/`
+to 82 pure, decoupled canonical UI styles, eliminating composite/hybrid styles,
+reconstructing the nuclear Cold War Atompunk aesthetic, and introducing
+Windows XP (Luna Blue), Dracula Theme (Zeno Rocha official) and Nordic. Every
+style is standardized to the 12-section canonical architecture. In lockstep,
+the showcase gallery (`estilos-visuais`) is upgraded with Driver.js onboarding,
+4 demonstrative views (Painel, Projetos, Equipe, Relatórios), an FX engine with
+`mount`/`cleanup` lifecycle, and a deterministic design linter
+(`coacus_design_lint.py`) enforcing Anti-AI Slop rules.
+Decision: [ADR 0008](decisions/0008-canonical-ui-styles-expansion-and-showcase.md).
+Standards: [`ui-style-architecture`](standards/ui-style-architecture.md),
+[`product-and-design-truth`](standards/product-and-design-truth.md).

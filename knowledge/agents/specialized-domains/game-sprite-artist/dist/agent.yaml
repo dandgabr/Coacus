@@ -15,4 +15,4 @@ tools:
   - type: skill_integration
     path: ../../../../skills/domains/design/game-sprite-design/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
+    path: ../../../../skills/domains/design/ui-style-pixel-art/SKILL.md

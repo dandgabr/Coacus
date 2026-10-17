@@ -34,6 +34,7 @@ a new one.
 
 - Per-skill overrides exist where a source subcategory is too coarse (for example
   `pentest-cloud-aws-azure-gcp` → `security/offensive`).
+- `domains/design/` hosts the 82 canonical UI design styles (expanded from 72 through the decoupling of 7 hybrid styles into 14 pure disciplines and the introduction of `windows-xp`, `dracula` and `nordic`), governed strictly by [`ui-style-architecture.md`](ui-style-architecture.md).
 - The skill namespace is FLAT. Collisions are prevented by prefixes:
   `program-*` for tooling and `superpowers-*` for imported process workflows.
 - Process workflows live under `methodology/workflows/`.

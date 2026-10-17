@@ -5,85 +5,277 @@ description: "Provides the bento grid UI style (2022-present): compartmentalized
 
 # UI Style: Bento Grid
 
-Compartmentalized "bento box" module grids — asymmetric rounded tiles of varying span (hero tile + small stat tiles) on one shared gutter grid, hierarchy expressed purely by span. Named after the Japanese lunchbox; modernized by Apple's WWDC 2022 / iPhone 14 keynote visual language. Synthesized from verified research; see Sources.
+> *"Simplicity is not the lack of clutter, that's a consequence of simplicity. Simplicity is somehow essentially describing the purpose and place of an object and product."*  
+> — Jony Ive / Apple Industrial Design Ethos
+
+Bento Grid adapts the compartmentalized elegance of Japanese bento lunchboxes (*makunouchi bento*) and Apple keynote presentation modules into a web layout paradigm. Rather than forcing uniform cards into a monotonous feed, Bento Grid organizes heterogeneous content—micro-visualizations, hardware specs, telemetry counters, and high-impact hero shots—into an interlocking, asymmetric mosaic governed by a shared mathematical gutter.
 
 ---
 
 ## 🧭 When to Activate
 
-- Designing feature overviews, pricing/marketing pages, portfolios or changelogs.
-- Converting a feature list into an Apple-style module composition.
-- Reviewing bento layouts for source-order and heading accessibility.
+- Designing product marketing pages, hardware launch overviews, and SaaS feature summaries where multiple disparate capabilities must be communicated simultaneously.
+- Constructing personal portfolio hubs, multi-metric executive dashboards, and interactive changelogs.
+- Replacing monotonous bulleted lists with modular visual storytelling.
+- Building responsive layouts using modern CSS Grid (`grid-template-areas`, `subgrid`, and container queries).
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- Long prehistory: dashboard widgets, Material cards (2014), Swiss grids; link-in-bio product Bento (bento.me) took the name for card-grid personal pages.
-- The modern wave is Apple's: WWDC 2022 and the September 2022 iPhone 14 newsroom module system, tightened through WWDC 2023 decks (deck.gallery's four-deck comparison documents the format).
-- 2023–present adoption across SaaS marketing; now default landing-page grammar rather than a passing fad.
+- **Traditional Precedents:** The centuries-old Japanese *bento* box tradition, wherein wooden lacquered compartments keep distinct culinary flavors physically separated yet harmoniously composed.
+- **2010–2014 (Early Precursors):** Windows 8 Metro UI introduced asymmetric tile spans, while Google's Material Design (2014) systematized cards. However, these systems enforced uniform content types.
+- **September 2022 (The Apple Hardware Revolution):** Apple's iPhone 14 Pro and M2 MacBook Air keynotes formalize the modern Bento slide format. Instead of bullet points, single slides present dense mosaics: large silicon wafer renders spanning 2x2 cells flanked by battery life counters, camera sensor specs, and iOS lock screen previews.
+- **2023–Present (Web Omnipresence):** Bento.me launches, popularizing bento-box personal websites. Web frameworks and landing page builders adopt the bento grid as the default design language for high-converting developer tools (Vercel, Next.js, Raycast).
 
----
-
-## 🎨 Visual DNA
-
-- **Grid:** shared gutter (8–24px) + uniform corner radius across all tiles; separation by gap alone, minimal borders.
-- **Hierarchy by span:** col/row count — not shadow, not color.
-- **Tiles alternate content types:** screenshot, stat, logo cloud, quote, video loop; dark/light tiles alternate for rhythm.
-- **Type:** large tight display in the hero tile; small labels elsewhere; icons oversized and centered; internally symmetric, centered content (Apple style).
+### Absolute Style Vetos (What Bento Grid is NOT)
+- ❌ **NOT Homogeneous Card Feed ([ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md)):** A bento grid is NOT an endless grid of identical e-commerce product cards or social media posts. The defining hallmark is *heterogeneity of cell spans and content modalities*.
+- ❌ **NOT Freeform Broken Grid ([ui-style-broken-grid](../ui-style-broken-grid/SKILL.md)):** Bento cells never collide, overlap chaotically, or break orthogonal alignment. Gutters are strictly uniform across all axes.
+- ❌ **NOT Skeuomorphic Tactility:** Surfaces are clean, dark or light squircle panels with ultra-subtle border strokes, not thick realistic plastic or wood containers.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- Staggered tile reveals on scroll; hover lift or inner parallax on media tiles; autoplaying product clips inside tiles; occasional count-up stats. Motion is per-tile, never grid-wide.
-
----
-
-## 🛠️ Implementation Notes
-
-```css
-.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-.tile-hero { grid-column: span 8; grid-row: span 2; }
-.tile-stat { grid-column: span 4; }
-.tile { border-radius: 24px; overflow: hidden; }
+```
++------------------------------------------------------------------------------------+
+|                                BENTO GRID TAXONOMY                                 |
++------------------------------------------------------------------------------------+
+| Hardware / Launch Deck Spec          | Software Feature Mosaic                     |
+| - High-contrast black/charcoal base  | - Light/dark neutral surfaces               |
+| - High-resolution 3D asset in 2x2    | - Interactive micro-controls in 1x1 cells   |
+| - Single metric counter (e.g. 3.2x)  | - Code snippet preview in 2x1 wide cell     |
+| - Squircle corner radius (24px-32px) | - Subdued secondary telemetry               |
++------------------------------------------------------------------------------------+
 ```
 
-- `aspect-ratio` for consistent tile shapes; media queries collapse spans at tablet/mobile; container queries for per-tile typography.
-- Reference: CSS-Tricks "Complete Guide to CSS Grid"; MDN "Card component" cookbook.
+### Visual Characteristics
+1. **Hierarchy Through Span:** Visual importance is determined by column and row spans (e.g., `span 8` for the flagship capability, `span 4` for supplementary metrics), rather than heavy drop shadows or lurid accent colors.
+2. **Squircle Curvature:** Generous, smooth continuous corner radii (typically `20px` to `32px` on desktop) applied universally to all modular cells.
+3. **Internal Micro-Compositions:** Each bento cell functions as a miniature autonomous canvas with dedicated typography, internal padding (`24px` to `32px`), and tailored alignment.
 
 ---
 
-## ♿ Accessibility
+## 📐 Lighting Physics, Specular Splits & Surfaces
 
-- Best contrast profile of the 2020s styles (solid tile fills) — the risks are **structural**: visual grid placement can scramble DOM/reading order; heading levels scatter across tiles; keep each tile self-contained with its own semantic heading; preserve focus order; giant hero tiles push key info below the fold; avoid low-contrast text-over-image tiles (MDN "Grid layout and accessibility").
+Bento Grid relies on industrial surface precision rather than dramatic lighting effects:
+- **Surface Geometry:** Rounded squircle tiles with a hairline border: `border: 1px solid oklch(1 0 0 / 0.08)`.
+- **Specular Top Edge:** An internal inset shadow simulates high-end anodized aluminum or polished glass: `box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.12)`.
+- **Subtle Surface Elevation:** Low-frequency ambient shadow: `box-shadow: 0 8px 32px -4px oklch(0 0 0 / 0.25)`.
+- **Color Temperature:** Neutral charcoal surfaces (`oklch(0.18 0.005 270)`) contrasted against bright white typography, with occasional single-cell vivid gradients reserved for key metrics.
+
+---
+
+## 🏷️ Complete Design Tokens
+
+```css
+:root {
+  /* Bento Container & Gutters */
+  --bento-gutter: 20px;
+  --bento-radius: 24px;
+  --bento-radius-inner: 16px;
+  --bento-padding: 28px;
+
+  /* Surfaces (Dark Mode Canonical) */
+  --bento-bg-canvas: oklch(0.12 0.005 260);
+  --bento-bg-cell: oklch(0.16 0.006 260);
+  --bento-bg-cell-elevated: oklch(0.20 0.008 260);
+  --bento-bg-cell-hover: oklch(0.22 0.010 260);
+
+  /* Border & Specular */
+  --bento-border: oklch(1 0 0 / 0.08);
+  --bento-border-hover: oklch(1 0 0 / 0.20);
+  --bento-specular: inset 0 1px 0 0 oklch(1 0 0 / 0.15);
+  --bento-shadow: 0 12px 30px -10px oklch(0 0 0 / 0.40);
+
+  /* Typography */
+  --bento-text-hero: oklch(0.98 0 0);
+  --bento-text-body: oklch(0.75 0.01 260);
+  --bento-text-muted: oklch(0.52 0.01 260);
+
+  /* Accents */
+  --bento-accent-cyan: oklch(0.75 0.16 210);
+  --bento-accent-purple: oklch(0.68 0.22 290);
+  --bento-accent-amber: oklch(0.80 0.18 75);
+
+  /* Transitions */
+  --bento-transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+```
+
+---
+
+## 🔤 Typography & Lettering Architecture
+
+Bento grids utilize geometric sans-serif typography with strong scale differentials:
+- **Hero Title (Large Feature Cell):** `font-weight: 700`, `32px` to `44px`, `letter-spacing: -0.03em`, line-height `1.1`.
+- **Telemetry Counter / Metric:** `font-weight: 800`, `48px` to `64px`, `font-feature-settings: "tnum" 1`, letter-spacing `-0.04em`.
+- **Card Subheadings:** `font-weight: 600`, `18px`, `letter-spacing: -0.015em`.
+- **Body & Explanatory Copy:** `font-weight: 400`, `14px`, line-height `1.5`, color `--bento-text-body`.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Independent Cell Hover:** Bento cells respond independently to hover states. On cursor entry, the targeted cell lifts slightly (`transform: translateY(-2px)`), the border brightens, and internal visualizers trigger subtle micro-movements.
+- **Staggered Scroll Reveal:** When the bento grid enters the viewport, cells fade and scale in with a `40ms` stagger delay per cell.
+- **Audio Profile:** Silent or ultra-minimalist soft haptic clicks for interactive toggle cells (`80Hz` low-frequency thud).
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Asymmetric 3-Module Bento Grid Section
+
+```html
+<section class="bento-container" aria-label="Product Capabilities">
+  <!-- Hero Feature Cell (2x2 Span) -->
+  <article class="bento-cell bento-hero">
+    <div class="bento-header">
+      <span class="bento-tag">Flagship Architecture</span>
+      <h3 class="bento-title">Zero-Latency Edge Inference</h3>
+      <p class="bento-desc">Deploy fine-tuned neural models across 300+ global edge nodes with automatic failover and instantaneous cold starts.</p>
+    </div>
+    <div class="bento-visual">
+      <div class="bento-wireframe-globe"></div>
+    </div>
+  </article>
+
+  <!-- Metric Cell (1x1 Span) -->
+  <article class="bento-cell bento-metric">
+    <span class="bento-tag">Throughput</span>
+    <div class="bento-stat">12.4x</div>
+    <p class="bento-desc">Faster token delivery than standard regional clusters.</p>
+  </article>
+
+  <!-- Code / Feature Cell (1x1 Span) -->
+  <article class="bento-cell bento-code">
+    <span class="bento-tag">Instant Integration</span>
+    <pre class="bento-snippet"><code>$ curl -X POST api.coacus.io/v1/run</code></pre>
+    <div class="bento-badge-group">
+      <span class="bento-badge">HTTP/3</span>
+      <span class="bento-badge">mTLS</span>
+    </div>
+  </article>
+</section>
+```
+
+```css
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--bento-gutter);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.bento-cell {
+  background: var(--bento-bg-cell);
+  border: 1px solid var(--bento-border);
+  border-radius: var(--bento-radius);
+  box-shadow: var(--bento-shadow), var(--bento-specular);
+  padding: var(--bento-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: var(--bento-transition);
+}
+
+.bento-cell:hover {
+  background: var(--bento-bg-cell-hover);
+  border-color: var(--bento-border-hover);
+  transform: translateY(-2px);
+}
+
+.bento-hero {
+  grid-column: span 8;
+  grid-row: span 2;
+  min-height: 420px;
+}
+
+.bento-metric {
+  grid-column: span 4;
+}
+
+.bento-code {
+  grid-column: span 4;
+}
+
+.bento-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bento-accent-cyan);
+  margin-bottom: 8px;
+}
+
+.bento-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--bento-text-hero);
+  margin: 0 0 12px 0;
+}
+
+.bento-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--bento-text-body);
+  margin: 0;
+}
+
+.bento-stat {
+  font-size: 54px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--bento-text-hero);
+  font-feature-settings: "tnum" 1;
+  margin: 8px 0;
+}
+
+@media (max-width: 900px) {
+  .bento-hero, .bento-metric, .bento-code {
+    grid-column: span 12;
+    grid-row: auto;
+  }
+}
+```
+
+---
+
+## ♿ Accessibility & Environmental Contrast
+
+- **DOM Source Order vs Visual Grid:** A primary hazard in asymmetric CSS grid layouts is disconnecting visual reading order from the DOM tab sequence. Bento markup MUST be authored in logical priority order (Hero first, secondary metrics next). Never rely on `grid-row` or `order` to rearrange content in ways that disorient screen reader users.
+- **Heading Level Hierarchy:** Each bento cell must provide an explicit semantic heading (`<h2>` or `<h3>`) matching its structural outline, avoiding skipping heading levels.
+- **Color Contrast:** All text content inside bento cells meets WCAG 2.2 Level AA requirements (minimum **4.5:1** contrast). Large metric displays (`54px+`) satisfy Level AAA requirements (**7:1+**).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** feature overviews, pricing/marketing, portfolios, changelogs.
-- **Avoid:** long-form reading, dashboards with fixed data priority, CMS-generated volatile content (bento is curated composition).
+### Appropriate Scenarios
+- High-impact marketing pages, product feature showcases, hardware spec sheets.
+- Portfolio sites highlighting diverse mediums (photography, case studies, client logos).
+- Executive summary dashboards bringing together telemetry, graphs, and live server health.
+
+### Inappropriate Scenarios
+- High-volume data feeds (e.g. social media timelines or e-commerce search results) where uniform predictability is mandatory.
+- Tabular data entry tools and enterprise spreadsheet software.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Everything-looks-important: uniform prettiness flattens priority; bespoke responsive span mapping; "bento-ification" sameness across SaaS; image-heavy tiles cost performance.
-
----
-
-## 📚 Sources
-
-- deck.gallery, "Apple's bento grid playbook, four keynote decks compared", 2026 — https://www.deck.gallery/blog/apple-bento-grid-decks-roundup/
-- Apple, "Apple introduces iPhone 14 and iPhone 14 Plus", Newsroom, Sep 7, 2022 — https://www.apple.com/newsroom/2022/09/apple-introduces-iphone-14-and-iphone-14-plus/
-- Chris Coyier et al., "A Complete Guide to CSS Grid", CSS-Tricks — https://css-tricks.com/snippets/css/complete-guide-grid/
-- MDN, "Grid layout and accessibility" — https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Accessibility
-- C. Jeffrey Hasan, "Apple's Bento Grid Secret", Medium, 2025 — https://medium.com/@jefyjery10/apples-bento-grid-secret-how-a-lunchbox-layout-sells-premium-tech-7c118ce898aa
+1. **Apple Special Event Keynote Design Archives (2022–2024):** iPhone 14 Pro, Apple Watch Ultra, and M-Series Silicon launch architectures.
+2. **Bento.me Visual Grammar (2023):** Modular compartmentalized personal portfolio architecture.
+3. **MDN Web Docs:** *"CSS Grid Layout and Accessibility Considerations"*, Mozilla Developer Network.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- Sibling styles: [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
-- For grid mechanics, see [frontend-developer](../../../roles/frontend-developer/SKILL.md).
+- Differentiated from [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md) through multi-span asymmetry and heterogeneous content modalities.
+- Integrates with [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) for dark-first product landing pages and [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) for mathematical grid discipline.

@@ -113,4 +113,4 @@ Interfaces that look drawn by a person: imperfect lines, scribbled fills, doodle
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md).
+- Sibling styles: [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-risograph](../ui-style-risograph/SKILL.md).

@@ -200,7 +200,9 @@ tools:
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-art-deco/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/domains/design/ui-style-art-nouveau-arts-crafts/SKILL.md
+    path: ../../../../skills/domains/design/ui-style-art-nouveau/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-arts-and-crafts/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-bauhaus/SKILL.md
   - type: skill_integration
@@ -210,7 +212,13 @@ tools:
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-collage-scrapbook/SKILL.md
   - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-constructivism/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-agitprop-poster/SKILL.md
+  - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-de-stijl/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-dracula/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-glitch/SKILL.md
   - type: skill_integration
@@ -228,17 +236,35 @@ tools:
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-mid-century-modern/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
+    path: ../../../../skills/domains/design/ui-style-nordic/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-retro-computing/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-pixel-art/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-atompunk/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/domains/design/ui-style-risograph-zine/SKILL.md
+    path: ../../../../skills/domains/design/ui-style-risograph/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-zine-independent/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-brutalist-monochrome/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-terminal-tui/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/domains/design/ui-style-vaporwave-synthwave/SKILL.md
+    path: ../../../../skills/domains/design/ui-style-vaporwave/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-synthwave/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-weirdcore/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-dreamcore/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-dungeon-synth/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-dark-fantasy/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-style-windows-xp/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/design/ui-style-biopunk/SKILL.md
   - type: skill_integration

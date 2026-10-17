@@ -7,7 +7,7 @@ description: >-
   Use when creating, sketching, or detailing 2D game sprites and character lineups.
 skills:
   - knowledge/skills/domains/design/game-sprite-design/SKILL.md
-  - knowledge/skills/domains/design/ui-style-retro-computing-pixel/SKILL.md
+  - knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md
 tags:
   - game-art
   - sprite-design

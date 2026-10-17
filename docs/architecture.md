@@ -17,7 +17,7 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 420 skills.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 430 skills.
 - `knowledge/agents/<category>/<agent>/agent.source.md` — 102 agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).
@@ -69,10 +69,10 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 
 How work proceeds inside a Coacus repository.
 
-- `methodology/workflows/<skill>/SKILL.md` — 15 process skills: 14 imported
+- `methodology/workflows/<skill>/SKILL.md` — 27 process workflows: 14 imported
   from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
-  — flat handoff names, `docs/temp/` artifacts) plus the native entry workflow
-  `using-coacus`.
+  — flat handoff names, `docs/temp/` artifacts) plus native engineering and
+  governance workflows (including the entry workflow `using-coacus`).
 - `methodology/bootstrap/session-start.canonical.md` — the single wrapper body
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`
   slots. The entry body comes from `using-coacus/SKILL.md`, so the bootstrap and

@@ -22,7 +22,7 @@ A fine, random speckle laid over color, gradients and imagery so surfaces read a
 - Film grain is "the random optical texture of processed photographic film", caused by silver particles or dye clouds; larger crystals mean higher sensitivity and more visible grain (Wikipedia).
 - Procedural noise: Ken Perlin created Perlin noise in 1982 to escape the machine-like look of CGI. SVG's `feTurbulence` (Baseline since July 2015) exposes Perlin turbulence to CSS authors.
 - Web trend: Jimmy Chion's CSS-Tricks "Grainy Gradients" (13 Sep 2021) popularized noise under a gradient plus brightness/contrast boost.
-- Distinct from [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md): grain is a global surface treatment on any palette; risograph is a spot-color print simulation with misregistration. Distinct from [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md): texture here is stochastic, not sculpted soft shadow.
+- Distinct from [ui-style-risograph](../ui-style-risograph/SKILL.md): grain is a global surface treatment on any palette; risograph is a spot-color print simulation with misregistration. Distinct from [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md): texture here is stochastic, not sculpted soft shadow.
 
 ---
 
@@ -112,4 +112,4 @@ A fine, random speckle laid over color, gradients and imagery so surfaces read a
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Sibling styles: [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+- Sibling styles: [ui-style-risograph](../ui-style-risograph/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).

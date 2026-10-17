@@ -78,10 +78,13 @@ These are machine-checked by the validators and the hygiene scan:
    enforces the Python side in CI. Verbatim third-party assets under
    `methodology/` are exempt — they are byte-identical upstream copies recorded in
    `sources.lock.json` and must not be edited.
-6. **kebab-case names; third-person, trigger-oriented descriptions.**
-7. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
-8. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).
+7. **kebab-case names; third-person, trigger-oriented descriptions.**
+8. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
+9. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).
    The concurrency cap is 5, orchestrator included; hand off with TOON payloads.
+10. **Design craft and Anti-AI Slop compliance** ([product-and-design-truth](docs/standards/product-and-design-truth.md)).
+    Frontend and design skills must pass `python3 scripts/coacus_design_lint.py --strict`
+    with zero generic clichés, authentic optical physics, and WCAG 2.2 contrast.
 
 ## Commit style
 

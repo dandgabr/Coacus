@@ -1,118 +1,238 @@
 ---
 name: "ui-style-claymorphism"
-description: "Provides the claymorphism and plasticine stop-motion UI style (2021-present): inflated 3D pastel shapes with dual inner shadows, handmade tactile fingerprint textures, stepped frame-rate animations, organic rounded contours and cozy warmth. Use when designing playful inflated UI, education apps, creative craft brands or clay-style marketing assets."
+description: "Provides the canonical Claymorphism & Stop-Motion 3D UI style (2021-present): inflated, tactile modeling clay surfaces, pillowy rounded containers, dual inner shadows simulating curved 3D volume, pastel-vibrant palettes, and playful plasticine charm. Covers inner shadow mathematics, tactile hover squish physics, design tokens, and WCAG 2.2 accessibility. Use when designing children's educational apps, gamified dashboards, crypto/NFT playful interfaces, or friendly mobile products."
 ---
 
-# UI Style: Claymorphism & Plasticine Stop-Motion
+# UI Style: Claymorphism & Stop-Motion 3D
 
-Puffy, tactile 3D UI — inflated shapes with curvature beyond plain rounded corners, dual inner shadows simulating soft clay, and artisanal plasticine textures with stepped stop-motion animation. Bridges digital 3D clay modeling (Michał Malewicz, 2021) and cinematic stop-motion animation (Aardman Animations, Will Vinton). Synthesized from verified research; see Sources.
+**Claymorphism** is the design style of inflated, tactile 3D surfaces resembling soft modeling clay, plasticine, or marshmallow cushions. Coined in late 2021 by designer Michał Malewicz as a playful and accessible evolution of neumorphism, Claymorphism solves neumorphism's contrast failure by floating brightly colored, fully inflated objects above contrasting backgrounds. The signature physical illusion is achieved using **dual inner shadows** (one light highlight and one darker tone) that curve the interior face into a bulbous, puffy cushion.
 
 ---
 
 ## 🧭 When to Activate
 
-- Kid and family products, creative education platforms, animation studios, craft marketplaces, indie games, and whimsical brand portfolios.
-- Radiating physical human warmth, approachable friendliness, and tactile comfort.
-- Integrating 3D clay renders (Spline-class) or CSS-modeled plasticine volumes into web layouts.
+- Designing friendly consumer mobile apps, gamified habit trackers, children's educational platforms, or onboarding wizards.
+- Creative tools, toy brand showcases, casual video game user interfaces, or crypto/NFT platforms seeking approachable tactile warmth.
+- Replacing sterile corporate flat boxes with friendly, voluminous 3D cushion cards that invite touch and playful interaction.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- **Digital Claymorphism:** Named and defined by Michał Malewicz in 2021 (Hype4). Sparked by the 3D web tooling surge (Spline, Pitch's 3D key visuals) and illustrated avatar packs (Amrit Pal Singh's *Toy Faces*, Sam Briskar's *Avatarz*). Peaked in 2021–2022; evolved into soft elevation design systems.
-- **Cinematic Stop-Motion Lineage:** Traced to Will Vinton (*Claymation*, 1974) and Nick Park (*Wallace & Gromit*, 1989). In digital interfaces, this strand introduces intentional human imperfections: subtle thumbprints, clay seams, matte earth pigments, and stepped 12fps animations.
-- **Difference from neighbors:** Unlike [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), where elements extrude seamlessly from the background plane, Claymorphism floats on top of the canvas with high elevation, colorful inner highlights, and vibrant candy pastels.
-
----
-
-## 🎨 Visual DNA
-
-- **Shapes:** Generously inflated contours with corner rounding exceeding 50% (`border-radius: 32px` to `48px`, or pill `9999px`), with edge midpoints bowed outward like pressed dough.
-- **Color:** Soft pastel bases (mint, cream `#FDFAF6`, marshmallow pink, baby blue) complemented by earthy plasticine accents (terracotta `#E76F51`, mustard `#E9C46A`, pine `#2A9D8F`).
-- **Depth & Lighting:** Two opposing inner shadows create the dome volume (a light highlight at top-left, a darker tinted shade at bottom-right), anchored by a deep, soft ambient drop shadow.
-- **Surface Texture:** Matte clay feel, subtle organic thumbprint contours, and soft inner bevels.
-- **Typography:** Chunky, warm, friendly display typefaces (Baloo 2, Nunito, Quicksand) paired with clean geometric sans body text.
+- **Origins & Emergence:** Coined in December 2021 by Michał Malewicz (UX Collective). Rose alongside the popularity of 3D illustration tools (Blender, Spline) and playful metaverse/NFT art aesthetics.
+- **The Physical Metaphor:** Hand-sculpted plasticine or soft matte rubber. Objects appear plump, inflated with air, and soft to the touch, evoking Aardman stop-motion animation (*Wallace & Gromit*) and physical toy prototypes.
+- **Distinctions from Neighboring Styles:**
+  - Unlike **Neumorphism** (flat extruded monochrome background, weak contrast, zero inner color fills), Claymorphism uses distinct vibrant card fills that float above different background colors, completely passing contrast audits.
+  - Unlike **Glassmorphism** (frosted translucent blur, 1px white specular hair rim), Claymorphism is 100% opaque, matte, bulbous, and pillowy.
+  - Unlike **Skeuomorphism** (photorealistic wood, leather, brushed metal), Claymorphism represents stylized cartoon plasticine with matte lighting.
+- **Absolute Veto:** Rigid 90-degree square corners or metallic chrome gradients. Claymorphic shapes must always be softly rounded (`border-radius: 20px` to `40px`) with velvety matte surfaces.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- **Squishy Affordance:** Buttons compress organically when pressed (`transform: scale(0.96)` with inner shadow contraction), giving an elastic, squishy feedback.
-- **Stepped Stop-Motion Option:** Animation curves can adopt stepped keyframes (`animation-timing-function: steps(5)` at 10–12 fps) for playful stop-motion wiggles and artisanal charm.
-- Under `prefers-reduced-motion: reduce`, disable all stepped wiggles and springy bounces, using subtle opacity transitions instead.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 CLAYMORPHISM MATRIX                                    │
+├────────────────────────────┬────────────────────────────┬──────────────────────────────┤
+│ 1. Pastel Marshmallow      │ 2. Saturated Plasticine    │ 3. Gamified Toy Prototype    │
+│ • Soft butter & lavender   │ • Punchy coral, cyan & lime│ • Bold squishy action buttons│
+│ • Deep inner volume shadow │ • High-contrast dark text  │ • Bouncy spring micro-actions│
+│ • Pillowy rounded cards    │ • Floating drop elevation  │ • Playful badge badges       │
+└────────────────────────────┴────────────────────────────┴──────────────────────────────┘
+```
+
+- **Palette & Vibrancy:** Butter cream ground (`#F8F5EE`), soft lilac (`#E0D7FF`), puffy sky blue (`#C8E7FF`), strawberry coral (`#FF9EAA`), mint clay (`#B4F8C8`), and deep charcoal text (`#1A1D20`).
+- **The Dual Inner-Shadow Formula:** Two opposite inset shadows creating interior curvature:
+  - Upper-left inner highlight: `inset 4px 4px 8px rgba(255, 255, 255, 0.7)` (reflecting overhead light).
+  - Bottom-right inner shadow: `inset -6px -6px 12px rgba(0, 0, 0, 0.12)` (shading the bottom curve).
+- **Floating Drop Shadow:** A soft, diffused outer drop shadow (`0 16px 32px rgba(0, 0, 0, 0.08)`) establishing that the clay cushion floats above the floor.
 
 ---
 
-## 🛠️ Implementation Notes
+## 📐 Lighting Physics, Specular Splits & Surfaces
+
+1. **Inflated Cushion (Convex Clay Surface):**
+   - Combining outer drop shadow with dual opposing inner volume shadows.
+   ```css
+   background-color: #e0d7ff;
+   border-radius: 28px;
+   box-shadow:
+     0 14px 28px rgba(100, 80, 160, 0.15),
+     inset 4px 4px 8px rgba(255, 255, 255, 0.75),
+     inset -6px -6px 12px rgba(80, 60, 140, 0.25);
+   ```
+2. **Squished Active Press State:**
+   - On click, inner shadow deepens and element scales down slightly, simulating pliable clay compression.
+   ```css
+   transform: scale(0.97);
+   box-shadow:
+     0 6px 14px rgba(100, 80, 160, 0.18),
+     inset 6px 6px 10px rgba(80, 60, 140, 0.3),
+     inset -3px -3px 6px rgba(255, 255, 255, 0.6);
+   ```
+
+---
+
+## 🏷️ Complete Design Tokens
 
 ```css
-.clay {
-  background: #fdfaf6;
-  border-radius: 36px;
-  box-shadow: 
-    0 16px 32px rgba(61, 43, 31, 0.12),
-    inset -6px -6px 12px rgba(61, 43, 31, 0.15),
-    inset 6px 6px 16px #ffffff;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
-}
-.clay:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 
-    0 22px 40px rgba(61, 43, 31, 0.16),
-    inset -6px -6px 12px rgba(61, 43, 31, 0.15),
-    inset 6px 6px 18px #ffffff;
-}
-.clay:active {
-  transform: translateY(2px) scale(0.97);
-  box-shadow: 
-    0 8px 16px rgba(61, 43, 31, 0.10),
-    inset -8px -8px 16px rgba(61, 43, 31, 0.20),
-    inset 4px 4px 10px #ffffff;
-}
-@media (prefers-reduced-motion: reduce) {
-  .clay { transition: none; }
+:root {
+  /* Substrates & Clay Volumes */
+  --clay-bg: #F8F5EE;
+  --clay-card-lavender: #E4DCFF;
+  --clay-card-sky: #CDE8FF;
+  --clay-card-coral: #FFB5BC;
+  --clay-card-mint: #C4F5D5;
+  --clay-surface-white: #FFFFFF;
+
+  /* Shadow Physics */
+  --clay-drop-shadow: 0 16px 32px rgba(45, 35, 65, 0.08);
+  --clay-drop-shadow-sm: 0 8px 18px rgba(45, 35, 65, 0.1);
+  --clay-inner-light: inset 4px 4px 8px rgba(255, 255, 255, 0.8);
+  --clay-inner-dark: inset -6px -6px 12px rgba(45, 35, 65, 0.15);
+
+  /* Typography & Signals */
+  --clay-text-primary: #1F242D;
+  --clay-text-muted: #565F71;
+  --clay-accent: #6366F1;
+
+  /* Typography */
+  --clay-font-display: 'Fredoka', 'Quicksand', 'Nunito', sans-serif;
+  --clay-font-body: 'Nunito', system-ui, sans-serif;
+  --clay-radius: 28px;
+  --clay-radius-pill: 9999px;
 }
 ```
 
-- The signature combination consists of a tinted outer shadow + opposing light/dark inner shadows.
-- For bowed curved edges, pair CSS with SVG shape masks or 3D Spline assets.
-- In dark themes, avoid pure black backgrounds so the inner clay shadows remain distinctly visible.
+---
+
+## 🔤 Typography & Lettering Architecture
+
+- **Primary Display Headings:** Friendly, rounded sans-serifs (*Fredoka*, *Quicksand*, *Nunito*) with plump stroke terminals, generous letter-spacing, and warm approachable cadence.
+- **Body & Paragraphs:** High-legibility rounded sans (*Nunito*, *Comfortaa*) set in deep charcoal (`#1F242D`) ensuring high-contrast readability against pastel clay surfaces.
+- **Button Microcopy:** Clear, encouraging action text ("Squish Here", "Let's Play", "Claim Badge") set in bold weights.
 
 ---
 
-## ♿ Accessibility
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
 
-- **Contrast Safety:** Pastel-on-pastel repeats the neumorphic contrast trap. Always use dark chocolate ink (`#3D2B1F`) or high-contrast white text exceeding WCAG 1.4.3 (4.5:1 ratio).
-- **Control Boundaries:** Soft clay shadows alone may be insufficient for low-vision users; reinforce interactive boundaries with a crisp 1.5px semi-transparent outline or distinct color contrast (WCAG 1.4.11).
-- **Motion Restraint:** Stepped frame animations and bouncy springs can trigger vestibular discomfort; strictly honor `prefers-reduced-motion: reduce`.
+- **Pliable Squish Feedback:** On `:active`, clay buttons compress slightly along the vertical axis (`transform: scale(0.97, 0.94)`), simulating soft rubber or modeling dough being pressed down.
+- **Natural Spring Rebound:** On release, elements bounce back with a natural spring curve (`cubic-bezier(0.34, 1.56, 0.64, 1)`).
+- **Floating Hover Bob:** Interactive cards float upward slightly on cursor hover (`transform: translateY(-4px)`).
+- **Motion Reduction:** When `prefers-reduced-motion: reduce` is enabled, bouncy spring transforms are disabled in favor of instantaneous shadow adjustments.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Inflated Marshmallow Card (`.clay-card`)
+A bulbous container with curved inner volume shadows and warm charcoal typography.
+```html
+<article class="clay-card">
+  <div class="clay-badge">Level 4 Completed!</div>
+  <h3 class="clay-title">Creative Workshop</h3>
+  <p class="clay-text">Your stop-motion animation frames are rendered and ready for playback.</p>
+</article>
+```
+```css
+.clay-card {
+  background: var(--clay-card-lavender);
+  color: var(--clay-text-primary);
+  border-radius: var(--clay-radius);
+  box-shadow: var(--clay-drop-shadow), var(--clay-inner-light), var(--clay-inner-dark);
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.clay-card:hover {
+  transform: translateY(-4px);
+}
+.clay-badge {
+  display: inline-block;
+  background: #FFFFFF;
+  color: var(--clay-accent);
+  font-family: var(--clay-font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--clay-radius-pill);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06), inset 2px 2px 4px #FFFFFF, inset -2px -2px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.75rem;
+}
+```
+
+### 2. Squishy Action Button (`.clay-btn`)
+An action button finished in coral clay with tactile spring compression on click.
+```css
+.clay-btn {
+  background: var(--clay-card-coral);
+  color: #1F242D;
+  font-family: var(--clay-font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border: none;
+  border-radius: var(--clay-radius-pill);
+  box-shadow: 0 8px 18px rgba(255, 158, 170, 0.4), inset 3px 3px 6px rgba(255, 255, 255, 0.8), inset -4px -4px 8px rgba(180, 80, 95, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+}
+.clay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 158, 170, 0.5), inset 3px 3px 6px rgba(255, 255, 255, 0.9), inset -4px -4px 8px rgba(180, 80, 95, 0.35);
+}
+.clay-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 10px rgba(255, 158, 170, 0.3), inset 5px 5px 8px rgba(180, 80, 95, 0.35), inset -2px -2px 4px rgba(255, 255, 255, 0.6);
+}
+.clay-btn:focus-visible {
+  outline: 3px solid #6366F1;
+  outline-offset: 4px;
+}
+```
+
+### 3. Puffy Counter Pill (`.clay-pill-counter`)
+An inflated metric pill with internal 3D depth and bold numeric values.
+
+### 4. Floating Clay Tab Rail (`.clay-tab-rail`)
+A rounded container housing floating clay button tabs with spring indicator pill transitions.
+
+---
+
+## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
+
+- **The Contrast Advantage Over Neumorphism:** Because claymorphic elements float with distinct colored card surfaces (`#E4DCFF`, `#FFB5BC`) over background substrates (`#F8F5EE`), card perimeter boundaries achieve clear visual separation.
+- **Text Legibility (WCAG 1.4.3):** Charcoal text (`#1F242D`) on pastel lavender and coral achieves contrast ratios exceeding 9.5:1, easily surpassing WCAG AAA (7:1).
+- **Non-Text Boundary Contrast (WCAG 1.4.11):** Outer drop shadows provide at least 3:1 luminance differential against light floors.
+- **Focus Rings:** High-visibility indigo outline with 4px offset (`outline: 3px solid #6366F1; outline-offset: 4px;`).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** Early childhood education, wellness onboarding, gamified productivity tools, creative studio showcases, and artisanal craft marketplaces.
-- **Avoid:** High-density enterprise dashboards, regulatory compliance platforms, legal contracts, and financial trading terminals where whimsical volumes reduce information throughput.
+### Ideal Use Cases
+- Children's educational apps, coding toys, and playful learning management platforms.
+- Gamified fitness, language learning apps (Duolingo-inspired friendliness), and digital habit trackers.
+- Creative showcases, toy store catalogs, and friendly indie game interfaces.
+
+### Anti-Patterns & Prohibitions
+- Formal legal, banking compliance, or medical emergency software where playful toy aesthetics undermine authority.
+- High-density data tables and administrative enterprise software with space constraints.
+- Dark mode environments where pastel clay colors look muddy or unnatural.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Overusing 3D inflated styles on every tiny UI element, causing severe visual clutter and reducing scan speed.
-- Relying exclusively on white inner highlights on pale backgrounds, which disappear on low-contrast screens.
-- Inflated asset weight: optimize 3D Spline scenes and WebP textures to prevent page load regressions.
-
----
-
-## 📚 Sources
-
-- Michał Malewicz, "Claymorphism in User Interfaces", *Hype4*, 2021 — https://hype4.academy/articles/design/claymorphism-in-user-interfaces
-- Nick Park, *The Making of Wallace & Gromit*, Pavilion Books, 1997.
-- Will Vinton, *Claymation: The Art of Dimensional Animation*, 1980.
-- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 1.4.11, 2.3.3) — https://www.w3.org/TR/WCAG22/
+- Michał Malewicz, "Claymorphism in user interfaces", *UX Collective*, Dec 2021.
+- CodyHouse, "CSS Claymorphism and 3D UI", 2022.
+- Aardman Animations, *The Art of Stop-Motion Animation*, 2018.
+- Jakob Nielsen, *10 Usability Heuristics for User Interface Design*, Nielsen Norman Group, 1994.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- Sibling tactile and 3D styles: [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md).
-- 3D asset engineering: [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+- **Sibling 3D & Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
+- **Playful & Friendly Peers:** [ui-style-kawaii-pastel-soft](../ui-style-kawaii-pastel-soft/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).

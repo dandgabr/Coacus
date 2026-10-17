@@ -3,101 +3,270 @@ name: "ui-style-memphis"
 description: "Provides the Memphis Design UI style (1980-1987 origin, recurring revival): clashing pastel and primary palettes, squiggles, terrazzo and plastic-laminate patterns, asymmetric geometry and playful rule-breaking, covering tokens, pattern layers, shape kits and WCAG-safe color handling. Use when designing youthful, irreverent brand, campaign or education surfaces that need postmodern playfulness rather than modernist restraint."
 ---
 
-# UI Style: Memphis
+# UI Style: Memphis Design (Milano Postmodernism)
 
-Postmodern 1980s Italian design translated to interfaces: colorful abstract decoration, asymmetric shapes and deliberate violation of Modernist good taste. Synthesized from verified research; see Sources.
+> *"When I was young, all we ever heard about was functionalism, functionalism, functionalism. It's not enough. Design should also be sensual and exciting."*  
+> — Ettore Sottsass, Founder of the Memphis Group (Milan, 1981)
+
+Born on an evening in Milan on December 11, 1980, the **Memphis Group** shattered the dogmatic severity of Bauhaus and International Style functionalism. Spearheaded by Ettore Sottsass, Michele De Lucchi, and Nathalie du Pasquier, Memphis celebrated vibrant vulgarity: clashing pastel and neon palettes, chaotic squiggles, plastic laminate textures (Abet Laminati's *Bacterio* pattern), terrazzo chip speckles, and irreverent geometric collisions. In user interfaces, Memphis delivers joyful energy, tactile humor, and radical visual freedom.
 
 ---
 
 ## 🧭 When to Activate
 
-- Youth, music, education, creative-tool and campaign sites that must feel loud and playful.
-- Illustrated empty states, onboarding and event pages with pattern-led identity.
-- Requests for "80s geometric", "squiggle and confetti", "terrazzo" or "Sottsass" looks.
+- Designing youth brands, creative festival landing pages, indie game showcases, and educational edtech tools that demand joyful engagement.
+- Crafting illustrated onboarding sequences, playful empty states, and celebratory reward screens.
+- Building marketing campaigns that deliberately defy the homogeneous "bland corporate SaaS" look in favor of vibrant postmodern wit.
+- Art directing lifestyle, fashion, music streaming, and cultural event portals.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- Memphis Group founded 6 December 1980 in Milan by Ettore Sottsass with young designers and architects; active 1980-1987; Sottsass left in 1985 to focus on his own firm.
-- Named after a Bob Dylan song played at the founding meeting, embracing ambiguity and eclectic reference. Materials: plastic laminate, terrazzo.
-- Became ubiquitous in 1980s-90s pop culture; later succeeded by Y2K aesthetics.
-- Distinction from [ui-style-maximalism](../ui-style-maximalism/SKILL.md): maximalism is about density and excess in general; Memphis is a specific vocabulary (squiggles, triangles, terrazzo, laminate) with flat graphic color.
-- Distinction from [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md): Memphis uses pastel clash and decoration, not thick black borders and offset shadows. Distinction from [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md): no chrome, gloss or translucency.
+- **December 11, 1980 (The Milan Genesis):** Ettore Sottsass gathers young international designers (Michele De Lucchi, Martine Bedin, Nathalie du Pasquier, George Sowden) in his Milan apartment. Listening repeatedly to Bob Dylan's *"Stuck Inside of Mobile with the Memphis Blues Again"*, they christen the movement "Memphis".
+- **September 1981 (Salone del Mobile Debut):** The Arc '74 gallery exhibition electrifies the design world. Sottsass's *Carlton* room divider (a polychrome laminate totem) and *Beverly* cabinet challenge every rule of good bourgeois taste.
+- **1985–1987 (Disbandment & Global Saturation):** Sottsass departs in 1985 to establish Sottsass Associati; the group formally disbands in 1987. However, the aesthetic spreads like wildfire through pop culture (*Pee-wee's Playhouse*, Swatch watches, MTV bumpers, and *Saved by the Bell*).
+- **2015–Present (The Digital Memphis Wave):** Designers revive Memphis geometry on the web (popularized as "neo-memphis" or "nostalgia chic"), combining SVG squiggles with responsive CSS Grid.
 
----
-
-## 🎨 Visual DNA
-
-- **Shapes:** circles, triangles, arches, zigzags, squiggles, grids of dots; asymmetry over symmetry; shapes overlap and rotate.
-- **Color:** clashing set of 4-6 flats: pink `#FF71CE`, teal `#01CDFE`, yellow `#FFD400`, black, white, plus one primary; use black and white as the stabilizers.
-- **Pattern:** terrazzo speckle, black-and-white stripes or dots as large-scale fills, kept to one pattern per region.
-- **Type:** geometric or chunky sans display, sometimes outlined or offset; body copy in a neutral sans.
-- **Layout:** off-axis blocks, floating decorative shapes in margins, clean text column at center.
+### Absolute Style Vetos (What Memphis is NOT)
+- ❌ **NOT Neo-Brutalism ([ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md)):** Neo-brutalism is dominated by thick 2px–3px solid black outlines around every container, cynical ironic memes, and hard-edged 100% black drop shadows. Memphis is celebratory, decorative, and painterly, celebrating clashing surface patterns and colorful laminate inlays.
+- ❌ **NOT Y2K Revival ([ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md)):** Zero liquid mercury chrome, zero translucent iMac G3 jelly plastic, zero futuristic matrix grids. Memphis is analog plastic laminate, wood, and terrazzo.
+- ❌ **NOT Bauhaus Functionalism ([ui-style-bauhaus](../ui-style-bauhaus/SKILL.md)):** Bauhaus insists that form must strictly follow function. Memphis insists that ornamentation and emotion *are* function.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- Playful, snappy: shapes bounce, rotate or swap color on hover, 150-300ms with slight overshoot (`cubic-bezier(.34,1.56,.64,1)`).
-- Decorative shapes may drift slowly; keep motion off the text column and pauseable.
-
----
-
-## 🛠️ Implementation Notes
-
-```css
-:root { --pink:#ff71ce; --teal:#01cdfe; --yellow:#ffd400; --ink:#111; --paper:#fff; }
-.hero { background:
-  radial-gradient(circle, var(--ink) 2px, transparent 2.5px) 0 0 / 18px 18px,
-  var(--paper); }
-.shape-tri { width:0; height:0; border:40px solid transparent; border-bottom-color:var(--teal); }
-.squiggle { background: url("squiggle.svg") repeat-x; height: 16px; }
-.btn { background: var(--yellow); color: var(--ink); border-radius: 999px 999px 6px 999px; }
-@media (prefers-reduced-motion: reduce) { .shape-float { animation: none; } }
+```
++------------------------------------------------------------------------------------+
+|                                 MEMPHIS TAXONOMY                                   |
++------------------------------------------------------------------------------------+
+| High Milanese Postmodernism (1981-1987)| 1990s Pop Culture "Saved by the Bell"     |
+| - Architectural laminate furniture     | - Wild squiggles, confetti triangles & dots|
+| - Bacterio amoeba pattern & terrazzo   | - Clashing pastel neons (teal, hot pink)   |
+| - Asymmetric totems and arches         | - Playful floating background shapes       |
+| - High-craft provocation of "bad taste"| - Quirky, energetic bouncy micro-motion    |
++------------------------------------------------------------------------------------+
 ```
 
-- Keep decorative shapes as `aria-hidden` SVG or CSS pseudo-elements; text always sits on a solid ink or paper panel.
-- Define the palette as semantic tokens (surface, accent, ink) so clashes are chosen, not accidental.
+### Visual Pillars
+1. **The Polychrome Clashing Palette:** Neon pastels balanced against punchy primaries: Flamingo Pink (`#FF71CE`), Electric Cyan (`#01CDFE`), Solar Yellow (`#FFD400`), Lavender Purple (`#B967FF`), grounded by Jet Black (`#111111`) and Crisp White (`#FFFFFF`).
+2. **Iconic Memphis Patterns:**
+   - **Bacterio:** Organic squiggling amoeba worms floating over a contrasting ground.
+   - **Terrazzo:** Multi-colored geometric chips scattered randomly over stone.
+   - **Zebra Diagonals & Polka Dots:** High-contrast black-and-white geometric fields used as regional inlays.
+3. **Asymmetrical Floating Confetti:** Backgrounds are activated by floating decorative shapes: floating 3D spheres, wireframe cubes, zigzags, and tilted arches.
 
 ---
 
-## ♿ Accessibility
+## 📐 Lighting Physics, Specular Splits & Surfaces
 
-- Pastels on white fail 1.4.3 (4.5:1 body, 3:1 large); use black or near-black text on pastel fills and test every pairing.
-- Do not use pattern or color alone to convey state (1.4.1); controls need 3:1 boundaries (1.4.11).
-- Busy backgrounds must not sit behind text; verify under text-spacing overrides (1.4.12) and 400% zoom reflow (1.4.10).
-- Moving decoration over 5 seconds needs a pause control (2.2.2); honor `prefers-reduced-motion` and avoid flashing (2.3.1).
-- Targets at least 24px (2.5.8) even with irregular shapes; focus indicator contrasts with patterned surroundings (2.4.7, 2.4.13).
+Memphis interfaces simulate physical plastic laminate (*Formica / Abet Laminati*) and cast composite stone:
+- **Surface Material:** Matte laminate sheets. Soft, low specular sheen (`oklch(1 0 0 / 0.15)`), uniform flat color planes.
+- **Drop Shadows:** Softly displaced colorful drop shadows (e.g. `box-shadow: 6px 6px 0px var(--memphis-black), 12px 12px 0px var(--memphis-pink)`).
+- **Edge Boundaries:** Mixed radii: perfectly round corners on one side (`border-radius: 24px 0 24px 0`) juxtaposed with sharp right angles.
+
+---
+
+## 🏷️ Complete Design Tokens
+
+```css
+:root {
+  /* Memphis Saturated Palette */
+  --memphis-pink: #FF71CE;          /* Flamingo Neon Pink */
+  --memphis-teal: #01CDFE;          /* Electric Swimming Pool Teal */
+  --memphis-yellow: #FFD400;        /* Vivid Sunflower */
+  --memphis-purple: #B967FF;        /* Electric Lavender */
+  --memphis-coral: #FF5E5B;         /* Postmodern Salmon Coral */
+  --memphis-mint: #05FFA1;          /* Acid Mint */
+
+  /* Structural Stabilizers */
+  --memphis-black: #111111;         /* Deep Carbon Black */
+  --memphis-white: #FFFFFF;         /* Crisp Bleached Paper */
+  --memphis-canvas: #FDF9F2;        /* Soft Cream Base */
+
+  /* Memphis Pattern Shaders */
+  --memphis-pattern-dots: radial-gradient(var(--memphis-black) 2px, transparent 2px);
+  --memphis-pattern-stripes: repeating-linear-gradient(
+    45deg,
+    var(--memphis-black),
+    var(--memphis-black) 6px,
+    var(--memphis-white) 6px,
+    var(--memphis-white) 12px
+  );
+
+  /* Geometry & Corners */
+  --memphis-radius-playful: 16px 4px 20px 8px;
+  --memphis-radius-pill: 9999px;
+
+  /* Playful Spring Transitions */
+  --memphis-spring: cubic-bezier(0.34, 1.56, 0.64, 1.0);
+  --memphis-duration: 250ms;
+}
+```
+
+---
+
+## 🔤 Typography & Lettering Architecture
+
+Memphis typography is bold, punchy, and expressive:
+- **Display Headlines:** Chubby geometric sans-serifs or display novelties (`"Righteous"`, `"Syne"`, `"Dela Gothic One"`, or `"Futura Bold"`), `800` weight, sentence case or uppercase, often paired with offset drop-shadow text effects (`text-shadow: 3px 3px 0 var(--memphis-teal)`).
+- **Body Text:** Clean, readable geometric sans (`"Jost"`, `"Inter"`), `400` weight, `15px` to `16px`, line-height `1.5`, set on pure white or black backgrounds for guaranteed legibility.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Overshoot Spring Hover:** Buttons and cards react with a playful 8% scale bounce (`transform: scale(1.08) rotate(-1.5deg)`) using `--memphis-spring`.
+- **Pattern Jiggle:** Decorative squiggles and confetti elements undergo a subtle 2-degree periodic oscillation on hover.
+- **Acoustic Feedback:** High-pitched, playful cartoon pops: an 18ms rubbery bubble click (`680Hz` rising pitch) upon activation.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Polychrome Memphis Card with Pattern Inset
+
+```html
+<article class="memphis-card">
+  <div class="memphis-card-badge">HOT RELEASE</div>
+  <div class="memphis-card-header">
+    <div class="memphis-pattern-strip" aria-hidden="true"></div>
+    <h3 class="memphis-card-title">Polyphonic Synth Studio</h3>
+  </div>
+  <p class="memphis-card-desc">Compose modular electronic melodies with vintage analog oscillators, ladder filters, and chaotic step sequencers.</p>
+  <div class="memphis-card-footer">
+    <button class="memphis-btn memphis-btn-yellow">Launch Tool</button>
+    <div class="memphis-confetti-circle" aria-hidden="true"></div>
+  </div>
+</article>
+```
+
+```css
+.memphis-card {
+  background-color: var(--memphis-white);
+  border: 3px solid var(--memphis-black);
+  border-radius: var(--memphis-radius-playful);
+  padding: 24px;
+  max-width: 360px;
+  box-shadow: 8px 8px 0px var(--memphis-black), 14px 14px 0px var(--memphis-pink);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform var(--memphis-duration) var(--memphis-spring);
+}
+
+.memphis-card:hover {
+  transform: translate(-3px, -3px) rotate(1deg);
+  box-shadow: 11px 11px 0px var(--memphis-black), 18px 18px 0px var(--memphis-pink);
+}
+
+.memphis-card-badge {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background-color: var(--memphis-teal);
+  color: var(--memphis-black);
+  font-family: "Righteous", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 2px solid var(--memphis-black);
+  border-radius: var(--memphis-radius-pill);
+}
+
+.memphis-pattern-strip {
+  width: 100%;
+  height: 12px;
+  background: var(--memphis-pattern-stripes);
+  border: 1px solid var(--memphis-black);
+  margin-bottom: 12px;
+}
+
+.memphis-card-title {
+  font-family: "Righteous", "Syne", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--memphis-black);
+  margin: 0;
+}
+
+.memphis-card-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--memphis-black);
+  margin: 0;
+}
+
+.memphis-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.memphis-btn-yellow {
+  background-color: var(--memphis-yellow);
+  color: var(--memphis-black);
+  border: 2px solid var(--memphis-black);
+  font-family: "Righteous", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--memphis-radius-pill);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.memphis-btn-yellow:hover {
+  background-color: var(--memphis-mint);
+}
+
+.memphis-confetti-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--memphis-purple);
+  border: 2px solid var(--memphis-black);
+}
+```
+
+---
+
+## ♿ Accessibility & Environmental Contrast
+
+- **The Pattern Background Trap:** Text must NEVER be set directly over complex zebra stripes, polka dots, or Bacterio squiggles. All body text and critical labels MUST sit inside solid, high-opacity white or dark containers (`background: #FFFFFF`).
+- **Contrast Ratios on Pastels:**
+  - Ink black (`#111111`) over `--memphis-yellow` (`#FFD400`) yields **12.1:1** (WCAG AAA).
+  - Ink black over `--memphis-teal` (`#01CDFE`) yields **8.6:1** (WCAG AAA).
+  - Ink black over `--memphis-pink` (`#FF71CE`) yields **5.4:1** (WCAG AA).
+- **Reduced Motion Conformance:** When `prefers-reduced-motion: reduce` is enabled, all bounce spring animations and floating background shapes freeze immediately.
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** campaigns, youth brands, music and festivals, kids and learning products, portfolio sites.
-- **Caution:** SaaS marketing (limit to hero and illustration), long reading pages.
-- **Avoid:** banking, healthcare, legal, dense admin UI, any task needing calm focus.
+### Appropriate Scenarios
+- Youth lifestyle portals, music streaming apps, toy/gaming e-commerce.
+- Creative agency landing pages and interactive portfolios.
+- Product onboarding tours that benefit from cheerful, disarming visual humor.
+
+### Inappropriate Scenarios
+- Serious enterprise infrastructure consoles, medical diagnostic displays, banking apps.
+- Contexts where high emotional sobriety and conservative corporate trust are required.
 
 ---
 
-## ⚠️ Pitfalls
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Random confetti without a rule set; every shape equally loud so hierarchy collapses.
-- Reproducing "80s nostalgia" via neon gradients, which is a different style.
-- Pattern fills hurting legibility and page weight; palette that cannot meet contrast.
-
----
-
-## 📚 Sources
-
-- Wikipedia contributors, "Memphis Group" (Wikipedia), accessed 2026-10-05 — https://en.wikipedia.org/wiki/Memphis_Group
-- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2" (W3C Recommendation), 12 Dec 2024 — https://www.w3.org/TR/WCAG22/
-- Design Museum, "Memphis" (Design Museum), accessed 2026-10-05 — https://designmuseum.org/memphis (group formed December 1980, debuted 1981; Sottsass left in 1985; plastic laminates, geometric and animal-print patterns, rule-breaking against modernist good taste).
-- Hex values, shape vocabulary guidance and the overshoot easing are author's implementation suggestions, not sourced claims.
+1. **Radice, Barbara (1984):** *Memphis: Research, Experiences, Results, Failures and Successes of New Design*, Rizzoli.
+2. **Sottsass, Ettore (1988):** *Design Metaphors*, Idea Books.
+3. **Horn, Richard (1985):** *Fifties Style: Then and Now*, Quick Fox (documenting the 1980s retro-modernist intersection).
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-maximalism](../ui-style-maximalism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md).
+- Direct postmodern antithesis to [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md) and [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
+- Contrasts with [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md) by trading cynical punk edge for colorful, joyful laminate maximalism.

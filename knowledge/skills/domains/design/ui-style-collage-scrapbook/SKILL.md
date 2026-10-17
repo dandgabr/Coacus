@@ -22,7 +22,7 @@ Interfaces assembled from cut, pasted, overlapped, and juxtaposed physical fragm
 - **Modernist Origins (1912):** Braque and Picasso introduced *papier collé*; Picasso's *Still Life with Chair Caning* (1912) pasted oilcloth onto fine art canvas, initiating modern collage.
 - **Dadaist Photomontage (1916–1924):** Founded at Cabaret Voltaire (Zurich) amidst WWI. Hannah Höch and John Heartfield invented political photomontage, juxtaposing newspaper clippings, mechanical parts, and ransom-note letterforms to challenge institutional complacency.
 - **Contemporary Digital Revival:** Web revival through 2010s zine cultures, post-punk aesthetics, and scrapbooking communities seeking tactile humanity.
-- **Difference from neighbors:** Unlike [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), which is neon, digital, and 1990s rave-inspired, Collage is analog, physical, paper-based, and tactile. Unlike [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), it is not restricted to spot-color print passes.
+- **Difference from neighbors:** Unlike [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), which is neon, digital, and 1990s rave-inspired, Collage is analog, physical, paper-based, and tactile. Unlike [ui-style-risograph](../ui-style-risograph/SKILL.md), it is not restricted to spot-color print passes.
 
 ---
 
@@ -103,4 +103,4 @@ body { background: var(--scrap-bg); color: var(--scrap-ink); }
 
 ## 🔗 Integration with Other Skills
 
-- Sibling expressive styles: [ui-style-risograph-zine](../ui-style-risograph-zine/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-constructivism-propaganda](../ui-style-constructivism-propaganda/SKILL.md).
+- Sibling expressive styles: [ui-style-risograph](../ui-style-risograph/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-constructivism](../ui-style-constructivism/SKILL.md).

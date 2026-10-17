@@ -217,6 +217,9 @@
       "path": "knowledge/skills/domains/design/ui-style-acid-anti-design"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-agitprop-poster"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui"
     },
     {
@@ -226,7 +229,10 @@
       "path": "knowledge/skills/domains/design/ui-style-art-deco"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-art-nouveau-arts-crafts"
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-atompunk"
@@ -271,10 +277,13 @@
       "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-constructivism-propaganda"
+      "path": "knowledge/skills/domains/design/ui-style-constructivism"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-cyberpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dark-fantasy"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-dark-mode-first"
@@ -286,7 +295,13 @@
       "path": "knowledge/skills/domains/design/ui-style-dieselpunk"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth-dark-fantasy"
+      "path": "knowledge/skills/domains/design/ui-style-dracula"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dreamcore"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury"
@@ -370,10 +385,16 @@
       "path": "knowledge/skills/domains/design/ui-style-neumorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-nordic"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-organic-biophilic"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-pixel-art"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone"
@@ -382,10 +403,10 @@
       "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-retro-computing-pixel"
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-risograph-zine"
+      "path": "knowledge/skills/domains/design/ui-style-risograph"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-sandalpunk"
@@ -412,19 +433,28 @@
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-synthwave"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-terminal-tui"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-vaporwave-synthwave"
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-web-brutalism"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-weirdcore-dreamcore"
+      "path": "knowledge/skills/domains/design/ui-style-weirdcore"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-windows-xp"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-y2k-revival"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-zine-independent"
     },
     {
       "path": "knowledge/skills/domains/industry/ai-application-engineering"

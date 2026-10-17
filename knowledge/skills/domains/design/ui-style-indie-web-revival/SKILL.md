@@ -23,7 +23,7 @@ Personal-website aesthetics as a stance: handmade static HTML, quirky and owner-
 - IndieWeb: ownership and control of your online presence; own your data; POSSE (Publish on Own Site, Syndicate Elsewhere); simple interoperable protocols.
 - Related artifacts: web badges, webrings, personal pages (Wikipedia lists them alongside Neocities).
 - Distinction from [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md): brutalism is an aesthetic of rawness; this is a culture and publishing model whose look is playful, personal and nostalgic, not necessarily harsh.
-- Distinction from [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md) and [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md): those are visual eras; this is defined by personal ownership, often borrowing 1990s-2000s web idioms.
+- Distinction from [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md) and [ui-style-retro-computing](../ui-style-retro-computing/SKILL.md): those are visual eras; this is defined by personal ownership, often borrowing 1990s-2000s web idioms.
 
 ---
 
@@ -99,4 +99,4 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
-- Neighbors: [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-retro-computing-pixel](../ui-style-retro-computing-pixel/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).
+- Neighbors: [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md), [ui-style-retro-computing](../ui-style-retro-computing/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).

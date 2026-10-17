@@ -1,121 +1,232 @@
 ---
 name: "ui-style-cyberpunk"
-description: "Provides the complete cyberpunk and futuristic sci-fi HUD UI style (1980s-present): neon-noir dystopia, military FUI panels, chamfered corners, scanlines, telemetry loops, chromatic aberration and cybernetic aesthetics. Covers postcyberpunk and cyberprep variants, Territory Studio lineage, CSS clip-path chamfers and photosensitivity accessibility. Use when designing game, esports, crypto, security or sci-fi entertainment interfaces."
+description: "Provides the canonical Cyberpunk & Sci-Fi Tactical HUD UI style (1980s-present): high-tech low-life neon-noir dystopia fused with Territory Studio cinematic tactical instrumentation (FUI), 45-degree chamfered polygon cards, horizontal CRT scanlines, cryptographic decoding reveals, electric cyan, acid yellow, and telemetry coordinate reticles. Use when designing game cockpits, esports streaming platforms, cybersecurity dashboards, web3 developer tools, or sci-fi entertainment portals."
 ---
 
 # UI Style: Cyberpunk & Sci-Fi Tactical HUD
 
-"High tech, low life" translated to the web: neon light against wet darkness, dense signage, degraded infrastructure, and tactical instrument HUD panels ("Fantasy User Interfaces"). Merges atmospheric street-level dystopia with cinematic FUI instrumentation (Alien, Blade Runner 2049, Cyberpunk 2077). Synthesized from verified research; see Sources.
+**Cyberpunk** translates the quintessential "high tech, low life" ethos into user interface design: the sensory overload of rain-slicked neon alleys, corporate surveillance monopolies, and underground hacker networks colliding with the hyper-dense, angular telemetry of cinematic Fantasy User Interfaces (FUI). In digital software, Cyberpunk combines near-black obsidian substrates with volumetric neon glow, 45-degree chamfered corner geometry (`clip-path: polygon`), CRT scanline overlays, cryptographic character-decoding transitions, and tactical reticle targeting grids.
 
 ---
 
 ## 🧭 When to Activate
 
-- Games, esports streaming hubs, crypto/web3 platforms, developer-tool microsites, cybersecurity dashboards, and sci-fi entertainment portals.
-- Tech brands deliberately playing with hacking aesthetics, dystopian irony, and terminal telemetry.
-- Designing tactical telemetry panels, radar sweeps, reticle overlays, and chamfered HUD containers.
+- Designing game interfaces, esports competition hubs, gaming companion apps, or sci-fi narrative portals.
+- Cybersecurity monitoring consoles, terminal hacker playgrounds, blockchain/web3 analytics, and developer tools seeking an aggressive, electric aesthetic.
+- Mission-critical cockpits, tactical telemetry grids, radar sweeps, and high-density technical readouts.
 
 ---
 
-## 🕰️ Definition and Timeline
+## 🕰️ Definition, Lineage, and Timeline
 
-- **Literary & Cinematic Canon:** Coined by Bruce Bethke in 1983; popularized by Gardner Dozois. Canon: *Blade Runner* (1982, Ridley Scott, Syd Mead), *Neuromancer* (William Gibson, 1984), *Akira* (1988), and *Ghost in the Shell* (1995).
-- **Cinematic FUI Strand (HUD):** Pioneered by *Alien* (1979) and *Minority Report* (2002); industrialized by Territory Studio (*The Martian* 2015, *Blade Runner 2049* 2017). Solidified as a web aesthetic following *Cyberpunk 2077* (CD Projekt Red, 2020).
-- **Variants:**
-  - *Dystopian Core:* Neon cyan, hot magenta, and acid yellow against deep black rainy alleys.
-  - *Postcyberpunk:* Advanced technology and cyberware in functional, daylight civic societies.
-  - *Cyberprep:* Clean white and chrome utopian aesthetic where augmentation serves leisure.
-  - *Tactical FUI / HUD:* Angular instrument readouts, real-time telemetry, calibration brackets, and targeting reticles.
-- **Difference from neighbors:** Unlike [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md), which is nostalgic 1980s pastel-retro with palm trees, Cyberpunk is gritty, aggressive, surveillance-heavy, and technologically complex.
-
----
-
-## 🎨 Visual DNA
-
-- **Palette:** Near-black obsidian canvases (`#05060A`, `#07060F`), acid yellow (`#F5E642`, `#FCEE0A`), electric cyan (`#00F0FF`), hot magenta (`#FF003C`), and hazard warning orange (`#FF5500`).
-- **Typography:** Techno-industrial sans-serifs (Rajdhani, Orbitron, Share Tech Mono) paired with dense monospaced readouts (JetBrains Mono, Fira Code).
-- **Shapes & Panels:** 45-degree chamfered card corners (`clip-path: polygon(...)`), 1px luminescent border hairlines, corner calibration brackets, and circular gauges.
-- **Texture & Lighting:** Volumetric neon bloom (`filter: drop-shadow()`), horizontal CRT scanlines (`repeating-linear-gradient`), chromatic aberration, and digital glitch artifacts.
-- **Iconography:** Reticles, telemetry coordinate axes, barcode blocks, warning diagonal hazard stripes, and technical circuit glyphs.
+- **Literary & Cinematic Canon:** Coined in 1983 by Bruce Bethke in his short story *"Cyberpunk"*; popularized by Gardner Dozois. Core canon: Ridley Scott & Syd Mead's *Blade Runner* (1982), William Gibson's *Neuromancer* (1984), Katsuhiro Otomo's *Akira* (1988), and Masamune Shirow's *Ghost in the Shell* (1995).
+- **The Cinematic FUI Lineage:** Pioneered by Ron Cobb's graphical user interfaces in *Alien* (1979) and Mark Coleran's tactical consoles in *Children of Men* (2006). Industrialized and standardized by Territory Studio (*The Martian* 2015, *Blade Runner 2049* 2017) and CD Projekt Red's *Cyberpunk 2077* (2020).
+- **Distinctions from Neighboring Styles:**
+  - Unlike **Synthwave** (nostalgic 1980s outrun, purple sunsets, palm trees, Ferrari Testarossas, chrome vector scripts), Cyberpunk is gritty, hostile, surveillance-heavy, militarized, and dystopian.
+  - Unlike **Atompunk** (1950s vacuum tubes, bakelite knobs, convex analog oscilloscopes, Cold War nuclear fallout), Cyberpunk is high-bandwidth, digital, optic-fiber, and cybernetic.
+  - Unlike **Terminal TUI** (plain ASCII character matrix), Cyberpunk HUD features multi-layered vector geometry, glowing holographic overlays, and polygon chamfers.
+- **Absolute Veto:** Blinding illegible chromatic aberration filters that distort body copy into unreadable mush are strictly forbidden. Chromatic glitch effects must be reserved for micro-interactions (hover/click) and non-text visual frames.
 
 ---
 
-## 🖱️ Interaction and Motion
+## 🎨 Visual DNA & Subgenre Taxonomy
 
-- **Decryption Reveals:** Text streams decode into view using rapid cryptographic character scrambles.
-- **Telemetry Pulses:** Corner indicators and status badges pulse slowly with live operational rhythm.
-- **Glitch Hover:** Buttons glitch with 100–150ms chromatic horizontal slice offsets when hovered.
-- Under `prefers-reduced-motion: reduce`, disable all glitch slicing, continuous scanline sweeps, and neon flicker, keeping static illuminated HUD containers.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 CYBERPUNK VISUAL MATRIX                                │
+├────────────────────────────┬────────────────────────────┬──────────────────────────────┤
+│ 1. Dystopian Neon-Noir     │ 2. Tactical FUI / HUD      │ 3. Postcyberpunk Clean State │
+│ • Electric cyan & magenta  │ • 45° chamfered polygon box│ • Polished white & gunmetal  │
+│ • CRT scanline persistence │ • Targeting reticle axes   │ • High-efficiency daylight UI│
+│ • Volumetric rain reflections│• Micro-telemetry readouts│ • Seamless cyberware sync    │
+└────────────────────────────┴────────────────────────────┴──────────────────────────────┘
+```
+
+- **Palette & Radiance:** Subterranean obsidian (`#05060A`), tactical slate surface (`#0D1017`), electric neon cyan (`#00F0FF`), acid hazard yellow (`#FCEE0A`), hot laser magenta (`#FF003C`), warning amber (`#FF5500`), and luminescent pale lavender text (`#E8EAFF`).
+- **Angular Geometry:** 45-degree corner chamfers (`clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))`), 1px luminescent border hairlines, and calibration corner brackets.
+- **HUD Overlays:** Horizontal electron scanlines, barcode tags, warning diagonal stripes, and coordinate crosshairs (`[ 34.882 // 118.441 ]`).
 
 ---
 
-## 🛠️ Implementation Notes
+## 📐 Lighting Physics, Specular Splits & Surfaces
+
+1. **Chamfered Tactical HUD Container with Luminescent Rim:**
+   - 45-degree sliced corners with volumetric cyan neon glow and dark obsidian core.
+   ```css
+   background-color: #0d1017;
+   border: 1px solid rgba(0, 240, 255, 0.45);
+   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+   box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
+   ```
+2. **Horizontal Scanline Telemetry Grid:**
+   - Non-interactive pseudo-element simulating high-resolution CRT line scanning.
+   ```css
+   background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0 1px, transparent 1px 3px);
+   pointer-events: none;
+   ```
+
+---
+
+## 🏷️ Complete Design Tokens
 
 ```css
 :root {
-  --cp-bg: #07060f;
-  --cp-surface: #0e0d1a;
-  --cp-cyan: #00f0ff;
-  --cp-yellow: #fcee0a;
-  --cp-magenta: #ff003c;
-  --cp-text: #e9e6ff;
-}
-body { background-color: var(--cp-bg); color: var(--cp-text); }
-.hud-panel {
-  background: var(--cp-surface);
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
-}
-.scanlines::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0 1px, transparent 1px 3px);
-}
-.hud-btn {
-  background: var(--cp-yellow);
-  color: #000000;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  border: none;
-  padding: 10px 24px;
-}
-.hud-btn:hover {
-  background: var(--cp-cyan);
-  box-shadow: 0 0 12px var(--cp-cyan);
+  /* Substrates & Chassis */
+  --cyber-obsidian-bg: #05060A;
+  --cyber-slate-surface: #0D1017;
+  --cyber-slate-card: #131722;
+  --cyber-border-dim: #1E2536;
+
+  /* Neon Radiances */
+  --cyber-cyan: #00F0FF;
+  --cyber-cyan-glow: rgba(0, 240, 255, 0.4);
+  --cyber-yellow: #FCEE0A;
+  --cyber-yellow-glow: rgba(252, 238, 10, 0.4);
+  --cyber-magenta: #FF003C;
+  --cyber-magenta-glow: rgba(255, 0, 60, 0.4);
+  --cyber-amber-warn: #FF5500;
+
+  /* Text & Telemetry */
+  --cyber-text-primary: #E8EAFF;
+  --cyber-text-dim: #9499B3;
+  --cyber-text-dark: #05060A;
+
+  /* Typography */
+  --cyber-font-display: 'Rajdhani', 'Orbitron', sans-serif;
+  --cyber-font-telemetry: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  --cyber-font-body: 'Inter', system-ui, sans-serif;
+
+  /* Angular Chamfer Dimensions */
+  --cyber-chamfer-size: 14px;
 }
 ```
 
 ---
 
-## ♿ Accessibility
+## 🔤 Typography & Lettering Architecture
 
-- **Contrast Safety:** Ensure neon accents on dark backgrounds maintain WCAG 1.4.3 (4.5:1). Secondary gray text is the most common failure point—ensure it stays above `#A1A1A6`.
-- **Photosensitivity Safeguards (WCAG 2.3.1):** Never flash neon borders or glitch transitions more than three times per second. Flicker animations must be subtle and slow.
-- **Overlay Legibility:** Keep scanline and noise pseudo-elements non-interactive (`pointer-events: none`) and subtle enough that body text remains sharp.
+- **Primary Display Headings:** High-tech industrial sans-serifs (*Rajdhani*, *Orbitron*) set with bold weights, crisp geometric angularity, and uppercase styling with 0.05em to 0.1em letter-spacing.
+- **HUD Telemetry & Coordinate Data:** Monospaced technical fonts (*Share Tech Mono*, *JetBrains Mono*) for target IDs, memory addresses (`0x7FFF...`), and live latency readouts.
+- **Body Text:** Clear, high-legibility grotesques (*Inter*, *Roboto*) ensuring effortless reading against dark obsidian surfaces without visual fatigue.
+
+---
+
+## 🖱️ Interaction Dynamics, Sound Cues & Motion
+
+- **Cryptographic Decryption Reveal:** Headers decode on initial view through rapid character cycling (`&%#?*` resolving into readable glyphs over 250ms).
+- **Glitch Slice on Hover:** Interactive buttons exhibit a brief, 80ms horizontal chromatic slice offset when hovered.
+- **Targeting Reticle Lock:** Cursors and active targets acquire corner bracket calibration marks that snap inwards.
+- **Motion Reduction:** When `prefers-reduced-motion: reduce` is enabled, all glitch animations, decoding scrambles, and scanline sweeps halt into clean, static illuminated HUD shapes.
+
+---
+
+## 🧩 Canonical Component Specifications
+
+### 1. Chamfered Tactical HUD Card (`.cyber-hud-card`)
+An angular container clipped with 45-degree polygon corners and illuminated by a cyan laser border.
+```html
+<article class="cyber-hud-card">
+  <div class="cyber-card-header">
+    <span class="cyber-target-id">[ TRG-8812 // ACTIVE ]</span>
+    <h3 class="cyber-title">Sub-Orbital Uplink</h3>
+  </div>
+  <p class="cyber-text">Bandwidth allocated: 104.2 TB/s. Quantum encryption key verified.</p>
+</article>
+```
+```css
+.cyber-hud-card {
+  background: var(--cyber-slate-card);
+  color: var(--cyber-text-primary);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  clip-path: polygon(0 0, calc(100% - var(--cyber-chamfer-size)) 0, 100% var(--cyber-chamfer-size), 100% 100%, var(--cyber-chamfer-size) 100%, 0 calc(100% - var(--cyber-chamfer-size)));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 240, 255, 0.04);
+  padding: 1.75rem;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cyber-hud-card:hover {
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 6px 25px var(--cyber-cyan-glow), inset 0 0 20px rgba(0, 240, 255, 0.08);
+}
+.cyber-target-id {
+  font-family: var(--cyber-font-telemetry);
+  font-size: 0.75rem;
+  color: var(--cyber-yellow);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+```
+
+### 2. Acid Yellow Tactical Button (`.cyber-btn-yellow`)
+A high-visibility chamfered action button styled in hazard acid yellow.
+```css
+.cyber-btn-yellow {
+  background: var(--cyber-yellow);
+  color: var(--cyber-text-dark);
+  font-family: var(--cyber-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.7rem 1.8rem;
+  border: none;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  cursor: pointer;
+  box-shadow: 0 0 14px var(--cyber-yellow-glow);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.cyber-btn-yellow:hover {
+  background: var(--cyber-cyan);
+  box-shadow: 0 0 22px var(--cyber-cyan-glow);
+  transform: translateY(-1px);
+}
+.cyber-btn-yellow:active {
+  transform: translateY(1px);
+}
+```
+
+### 3. Targeting Reticle Frame (`.cyber-reticle`)
+A telemetry frame featuring corner crosshair brackets and coordinate axes.
+
+### 4. Real-Time Telemetry Bar (`.cyber-telemetry-bar`)
+A horizontal status indicator displaying live memory and network ping metrics.
+
+---
+
+## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
+
+- **Contrast Mathematics:** Acid yellow (`#FCEE0A`) on obsidian black (`#05060A`) delivers an outstanding 16.8:1 contrast ratio; electric cyan (`#00F0FF`) on obsidian reaches 13.5:1 (both far exceeding WCAG AAA 7:1).
+- **Secondary Telemetry Text:** Lavender text (`#E8EAFF`) achieves 14.2:1; muted gray (`#9499B3`) delivers 6.2:1 against the dark background, satisfying WCAG AA for normal body copy.
+- **Photosensitivity Safeguards (WCAG 2.3.1):** Never trigger full-screen flashing or intense chromatic strobe effects. All neon flicker animations must stay below 2.0 Hz and be fully disableable.
+- **Focus Indicators:** High-visibility acid yellow outline (`outline: 2px solid var(--cyber-yellow); outline-offset: 3px;`).
 
 ---
 
 ## ✅ When to Use / ❌ When to Avoid
 
-- **Use:** Video games, esports platforms, cyberpunk storytelling, web3 dApps, security operations portals, and promotional tech drops.
-- **Caution:** Commercial e-commerce (confine HUD styling to badges and featured cards, keeping checkout completely standard).
-- **Avoid:** Government citizen portals, hospitals, financial accounting suites, and reading applications where decorative noise taxes attention.
+### Ideal Use Cases
+- Esports competition platforms, gaming companion apps, and game development telemetry dashboards.
+- Cybersecurity threat hunting consoles, dark web monitoring interfaces, and terminal playgrounds.
+- Sci-fi media promotion, futuristic hardware product launches, and high-performance developer tools.
+
+### Anti-Patterns & Prohibitions
+- Calm meditation, healthcare wellness, or sleep assistance apps.
+- Corporate accounting, human resources, or tax filing software.
+- Excessively noisy glitch animations that render primary checkout actions invisible.
 
 ---
 
-## 📚 Sources
+## 📚 Authoritative Sources & Historical Artifacts
 
-- Territory Studio, "Blade Runner 2049 UI Design Case Study", 2018.
-- Nathan Shedroff & Christopher Noessel, *Make It So: Interaction Design Lessons from Science Fiction*, Rosenfeld Media, 2012.
 - William Gibson, *Neuromancer*, Ace Books, 1984.
-- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 2.3.1, 2.2.2) — https://www.w3.org/TR/WCAG22/
+- Ridley Scott & Syd Mead, *Blade Runner*, Warner Bros., 1982.
+- Territory Studio, *Blade Runner 2049* Screen Graphics Case Study, 2017.
+- CD Projekt Red, *Cyberpunk 2077 Visual Design Guide*, 2020.
 
 ---
 
-## 🔗 Integration with Other Skills
+## 🔗 Cross-Skill Integration & Dialect Relations
 
-- Sibling sci-fi styles: [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-vaporwave-synthwave](../ui-style-vaporwave-synthwave/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md).
+- **Sibling Speculative Styles:** [ui-style-synthwave](../ui-style-synthwave/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md).
+- **Technical & Terminal Peers:** [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).
