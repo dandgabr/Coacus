@@ -46,6 +46,10 @@ Scroll position orchestrating a unified narrative experience: full-bleed backgro
 
 ## 🛠️ Implementation Notes
 
+- Resolve scene and observer selectors against the rendered component tree, including wrappers such as tabs or panels. Verify that every intended chapter is observed and that scrolling changes the active chapter and progress indicator.
+- Assert that revealed content is actually visible and has rendered dimensions (for example, chart bars with positive height); state classes alone do not prove the narrative content appeared. Check cleanup on style changes and the static reduced-motion path.
+- For broader responsive, dialog, and live-asset checks, use [rendered-interface verification](../../../engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md).
+
 ```css
 :root {
   --story-bg: #0f1115;

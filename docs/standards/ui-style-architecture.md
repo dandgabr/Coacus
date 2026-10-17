@@ -70,3 +70,5 @@ Every `SKILL.md` under `knowledge/skills/domains/design/ui-style-*` MUST impleme
 Each canonical UI style in Coacus maintains a corresponding pure CSS file in the partner showcase (`estilos-visuais/styles/<slug>.css`) and an entry in `estilos-visuais/styles/registry.js`. When a style introduces motion effects, it must supply a modular FX engine (`estilos-visuais/styles/fx/<slug>.js`) complying with:
 - Immediate early return when `matchMedia('(prefers-reduced-motion: reduce)').matches` is true.
 - Standard lifecycle: `export default function mount(stage)` returning a cleanup closure `() => { ... }` that clears all timers, animation frames, event listeners, and injected DOM nodes.
+
+Before merging changes that affect the partner showcase, apply the [Rendered Interface Verification](../../knowledge/skills/engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md) checks. In particular, verify selectors against the rendered nesting, measure spacing and control bounds at compact and wide viewports, assert visible output from scroll effects, and confirm that the live page serves the current version of dynamically loaded assets.

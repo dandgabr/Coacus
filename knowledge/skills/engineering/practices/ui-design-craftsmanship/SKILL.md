@@ -69,6 +69,10 @@ Before completing any frontend delivery, run these 5 deterministic mental audits
 5. **The Motion Budget Test (Accessibility & Restraint)**:
    - Does every CSS transition or animation complete in under 200ms? Are cartoonish bounce curves eliminated? Is `@media (prefers-reduced-motion)` strictly implemented?
 
+## 🧪 Rendered Interface Verification
+
+When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs with explicit choices, verify the rendered behavior against the actual DOM. Use [rendered-interface verification](references/rendered-interface-verification.md) for the checks and release evidence.
+
 ---
 
 ## 🚫 AI Slop Blacklist & Prescribed Antidotes
