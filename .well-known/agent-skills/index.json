@@ -2467,10 +2467,10 @@
     },
     {
       "name": "ui-design-craftsmanship",
-      "description": "Mastery in professional UI/UX craftsmanship, purposeful design direction, heuristic critique, and eliminating generic AI design anti-patterns.",
+      "description": "Use when designing or refining a user interface and you need design direction, heuristic critique, or a review of visual, responsive, and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:15bdc58c8d691fe813ddc17308938cd932c525f7f1dcaa3758997bc22b245948"
+      "digest": "sha256:ebee91932bf13004d7df121df0281f2f347d16dc41bbd1699653f53fc883bd03"
     },
     {
       "name": "ui-designer",

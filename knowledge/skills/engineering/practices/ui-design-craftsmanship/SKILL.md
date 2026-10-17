@@ -1,6 +1,6 @@
 ---
 name: "ui-design-craftsmanship"
-description: "Mastery in professional UI/UX craftsmanship, purposeful design direction, heuristic critique, and eliminating generic AI design anti-patterns."
+description: "Use when designing or refining a user interface and you need design direction, heuristic critique, or a review of visual, responsive, and interaction quality."
 ---
 
 # UI Design Craftsmanship

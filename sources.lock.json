@@ -20570,9 +20570,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "source_sha256": "7badb551041f0b02adfde9293e898700bd530b1ed1ba0357560473a895b89c42",
+      "source_sha256": "91d5320efa77a50e43f968e40e16bc81ed41a1322b2d748902c363aeee988f01",
       "target_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "target_sha256": "7badb551041f0b02adfde9293e898700bd530b1ed1ba0357560473a895b89c42",
+      "target_sha256": "91d5320efa77a50e43f968e40e16bc81ed41a1322b2d748902c363aeee988f01",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
