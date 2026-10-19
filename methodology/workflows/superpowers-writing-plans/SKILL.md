@@ -192,11 +192,7 @@ The roster is session state, not plan content. The plan file stays as written.
 
 ## Execution Handoff
 
-After saving and self-reviewing the plan, link it for your human partner
-to read. If they have already explicitly supplied an execution method, ask
-them to review the plan and confirm it captures what they want; wait for that
-review before implementation, then use the preserved method. Otherwise, ask
-them to review the plan and choose an execution method before implementation.
+After saving and self-reviewing the plan, link it for your human partner to read. Preserve existing authorization and the selected execution method. If the user already requested execution within this scope, proceed. Ask for review or an execution choice only when that decision is genuinely unresolved; do not add a second approval gate to already authorized work.
 
 **When no execution method has already been supplied:**
 

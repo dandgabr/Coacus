@@ -94,7 +94,7 @@ contract (`Strengths` / `Issues` by severity with the exact input that proves ea
   score is the finding: "6 of 12 killed" names the six weak assertions, which is more
   actionable than "add more tests".
 
-State the contract in the prompt — read-only, no subagents, findings ordered by
+State the contract in the prompt — canonical working tree read-only, no subagents, findings ordered by
 severity with the input that proves each — or the review returns adjectives. Where
 both lenses report the same defect independently, that is the strongest signal
 available; a defect only one lens reports is a judgment call.
@@ -142,3 +142,7 @@ consultation before any code**, and a review after each piece.
 - Request clarification
 
 See template at: [code-reviewer.md](code-reviewer.md)
+
+## Mutation Review Boundary
+
+If the QA lens replays mutants, authorize a disposable isolated copy and name its ownership explicitly. Keep the submitted branch and unrelated work read-only. Restore each mutant, preserve the observed output and report when execution was unavailable; a read-only source inspection cannot claim executed mutation results.

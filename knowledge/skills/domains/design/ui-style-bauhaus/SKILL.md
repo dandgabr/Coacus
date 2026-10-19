@@ -73,7 +73,8 @@ Bauhaus exists strictly on the graphic printing plane:
 :root {
   /* Canvas & Paper Surfaces */
   --bauhaus-bg-paper: #F4EEDB;        /* Warm Unbleached Parchment */
-  --bauhaus-bg-surface: #EAE3CF;      /* Stepped Neutral Layer */
+  --bauhaus-bg-surface: #EAE3CF;
+  --bauhaus-card-surface: #FFFFFF;      /* Stepped Neutral Layer */
   --bauhaus-ink: #121212;             /* Deep Carbon Ink */
 
   /* The Pure Primary Triad */
@@ -103,6 +104,7 @@ Bauhaus exists strictly on the graphic printing plane:
   /* Historical Inversion (Dessau Night Exhibition) */
   --bauhaus-bg-paper: #121212;
   --bauhaus-bg-surface: #1E1E1E;
+  --bauhaus-card-surface: #1E1E1E;
   --bauhaus-ink: #F4EEDB;
   --bauhaus-white: #FFFFFF;
   --bauhaus-muted: #888070;
@@ -156,7 +158,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 ```css
 .bauhaus-hero {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 40px;
   padding: 60px 40px;
   background-color: var(--bauhaus-bg-paper);
@@ -237,6 +239,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .bauhaus-btn {
@@ -253,6 +256,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 }
 
 .bauhaus-btn:hover {
+  color: #FFFFFF;
   background-color: var(--bauhaus-red);
 }
 
@@ -280,7 +284,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 
 ```css
 .bauhaus-card {
-  background-color: var(--bauhaus-white);
+  background-color: var(--bauhaus-card-surface);
   border: var(--bauhaus-rule-thick);
   position: relative;
   overflow: hidden;
@@ -364,3 +368,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 
 - Direct sibling to [ui-style-de-stijl](../ui-style-de-stijl/SKILL.md) and ancestor of [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
 - Contrasts with [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) (which Bauhaus rejected as bourgeois ornament) and [ui-style-memphis](../ui-style-memphis/SKILL.md) (which later subverted Bauhaus functionalism with postmodern irony).
+## Appearance and Interaction Verification
+
+Give workshop cards a semantic surface that changes with night inversion; explicitly pair hover ink and red fill. Add usable-width collapse for the fixed 280px geometric column while keeping elementary shapes and asymmetric balance.
+

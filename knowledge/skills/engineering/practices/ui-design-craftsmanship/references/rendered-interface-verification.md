@@ -31,6 +31,8 @@ Record geometry before any screenshot-only adaptation. Expanding a scrolling con
 
 Use an inventory-derived coverage matrix and identify sampled axes explicitly. Test the measurement itself with known bad cases such as zero-height bars, overridden hidden state or an unreadable inherited surface. A screenshot file or a successful event is not an acceptance oracle.
 
+For a small product-independent control and known defects, use [interface fixture exercises](interface-fixture-exercises.md). Keep its browser-backed results separate from source checks and reasoning-only skill evaluations.
+
 ## Prove interactive output
 
 - For scroll-driven scenes, scroll through the content and assert that the active scene changes and each scene produces its intended visible effect. For opacity-based reveals, check opacity; for progress indicators with defined endpoints, check both endpoints. Verify that animated content has nonzero rendered dimensions; a state class alone does not prove that a chart or illustration is visible.

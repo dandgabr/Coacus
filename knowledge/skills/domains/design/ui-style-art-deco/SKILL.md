@@ -96,6 +96,9 @@ Art Deco renders surfaces as polished machine-age architectural metals:
 
   /* Typography Colors */
   --deco-text-gold: #D4AF37;
+  --deco-title-ink: #D4AF37;
+  --deco-detail-ink: #F3DC82;
+  --deco-action-ink: #D4AF37;
   --deco-text-ivory: #F5ECD7;
   --deco-text-muted: #8E8A7D;
 
@@ -115,6 +118,9 @@ Art Deco renders surfaces as polished machine-age architectural metals:
   --deco-bg-surface: #FFFFFF;
   --deco-text-ivory: #0D0E12;
   --deco-text-muted: #665F52;
+  --deco-title-ink: #0D0E12;
+  --deco-detail-ink: #665F52;
+  --deco-action-ink: #0D0E12;
 }
 ```
 
@@ -183,7 +189,7 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: var(--deco-gold-bright);
+  color: var(--deco-detail-ink);
 }
 
 .deco-card-title {
@@ -191,12 +197,12 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--deco-gold-core);
+  color: var(--deco-title-ink);
   margin: 0;
 }
 
 .deco-chevron-divider {
-  color: var(--deco-gold-bright);
+  color: var(--deco-detail-ink);
   font-size: 10px;
   letter-spacing: 0.3em;
   margin: 4px 0;
@@ -213,7 +219,7 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 .deco-btn {
   display: inline-block;
   background: transparent;
-  color: var(--deco-gold-core);
+  color: var(--deco-action-ink);
   border: var(--deco-border-gold);
   font-family: "Josefin Sans", sans-serif;
   font-size: 11px;
@@ -225,8 +231,8 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 }
 
 .deco-btn:hover {
-  background-color: var(--deco-gold-core);
-  color: var(--deco-bg-canvas);
+  background-color: var(--deco-title-ink);
+  color: #0D0E12;
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 ```
@@ -269,3 +275,7 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 
 - Historical and aesthetic successor to [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) and contemporary foil to [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md).
 - Contrasts with [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md) through metropolitan sophistication and gilded cleanliness.
+## Appearance and Interaction Verification
+
+Introduce semantic title, eyebrow and action ink roles and retarget gilded card selectors for daylight; preserve gold filigree while validating hover foreground/background as a pair and retaining readable dark ink.
+

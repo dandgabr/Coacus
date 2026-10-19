@@ -177,3 +177,7 @@ Art Nouveau is the international decorative movement that flourished between 189
 
 - Alphonse Mucha, *Documents Décoratifs* (Paris, 1902).
 - Victor Horta, *The Architecture of Art Nouveau* (Brussels, 1895).
+## Appearance and Interaction Verification
+
+For unfurling panels keep final botanical frame/content immediately visible in reduced motion; bound iridescent reflection to glass decoration and give reading text a stable parchment or patinated-ink field.
+

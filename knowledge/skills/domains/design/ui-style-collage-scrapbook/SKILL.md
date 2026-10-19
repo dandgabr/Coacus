@@ -104,3 +104,7 @@ body { background: var(--scrap-bg); color: var(--scrap-ink); }
 ## 🔗 Integration with Other Skills
 
 - Sibling expressive styles: [ui-style-risograph](../ui-style-risograph/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-constructivism](../ui-style-constructivism/SKILL.md).
+## Appearance and Interaction Verification
+
+Scope paper tilt to fragments that retain readable line lengths and accessible targets; straighten or reflow dense/long fragments in narrow owners while retaining torn paper, mixed-media hierarchy and static overlaps where legible.
+

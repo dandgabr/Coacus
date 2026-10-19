@@ -236,7 +236,7 @@ Pop Art typography draws from pulp comic lettering and bold mid-century advertis
 
 .pop-btn-cyan {
   background-color: var(--pop-cyan);
-  color: var(--pop-white);
+  color: var(--pop-black);
   border: var(--pop-border-thin);
   box-shadow: var(--pop-shadow-sm);
   font-family: "Impact", sans-serif;
@@ -306,3 +306,7 @@ Pop Art typography draws from pulp comic lettering and bold mid-century advertis
 
 - Direct pop culture cousin to [ui-style-memphis](../ui-style-memphis/SKILL.md) and historical foil to [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
 - Contrasts with [ui-style-risograph](../ui-style-risograph/SKILL.md) through clean, industrial four-color process mechanics.
+## Appearance and Interaction Verification
+
+Set .pop-btn-cyan foreground to --pop-black as the accessibility section already requires; preserve halftone backgrounds and opaque speech/title/body panels, and verify focus against offset comic shadows.
+

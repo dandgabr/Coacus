@@ -320,3 +320,7 @@ Card typography enforces tight vertical rhythms:
 
 - Direct sibling to [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md) (homogeneous grid vs heterogeneous multi-span).
 - Integrates with [ui-style-material-you](../ui-style-material-you/SKILL.md) and [ui-style-flat-design](../ui-style-flat-design/SKILL.md).
+## Appearance and Interaction Verification
+
+Make two-line title trimming conditional on a discoverable full title/detail route, allow long/localized action rows to wrap, and scope media clipping so card focus/secondary actions remain visible above the expanded-link overlay.
+

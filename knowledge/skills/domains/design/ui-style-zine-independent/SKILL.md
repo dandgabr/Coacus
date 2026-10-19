@@ -253,3 +253,7 @@ Independent Zine aesthetics originate in the self-published, non-commercial coun
 - Teal Triggs, *Fanzines: The DIY Revolution* (Chronicle Books, 2010).
 - Mark Perry, *Sniffin' Glue and Other Rock'n'Roll Habits: The Essential Punk-Zine Anthology* (Omnibus Press, 2009).
 - Alison Piepmeier, *Girl Zines: Making Media, Doing Feminism* (NYU Press, 2009).
+## Appearance and Interaction Verification
+
+Wrap ransom clips in the semantic heading already required; scope photocopy texture/exposure to decorative layers with reduced-motion and flash controls, keeping content ink/focus stable; check rotated clip clearance and action/copy-count wrapping at actual owner bounds.
+

@@ -352,3 +352,7 @@ Typography is the complete identity of the interface:
 
 - Direct sculptural companion to [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md) and [ui-style-analog-newspaper-broadsheet](../ui-style-analog-newspaper-broadsheet/SKILL.md).
 - Diametrically opposed to illustration-heavy or 3D-heavy styles like [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md).
+## Appearance and Interaction Verification
+
+Require font-supported axes and check glyph extents after font readiness, language and hover at actual monument width; describe GRAD as avoiding advance-width changes rather than guaranteeing measured CLS, and let footer/actions reflow in shallow owners.
+

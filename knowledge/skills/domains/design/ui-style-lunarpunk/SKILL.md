@@ -228,3 +228,7 @@ A circular progress indicator rendering the eight classical astronomical moon ph
 
 - **Sibling Ecological Styles:** [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md).
 - **Dark Mode & Speculative Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).
+## Appearance and Interaction Verification
+
+Distinguish decorative blur from confidentiality/decryption; keep reveal-on-intent operable through keyboard and assistive state, clear revealed content on owner change, and verify silver/orchid text against translucent moonlit surfaces.
+

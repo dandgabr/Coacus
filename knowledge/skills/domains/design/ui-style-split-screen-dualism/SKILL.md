@@ -304,3 +304,7 @@ Split-screen layouts thrive on deliberate typographic tension:
 
 - Complements [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md) by visualizing dark and light states concurrently.
 - Contrasts with [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md) by maintaining two unified hemispheres instead of fragmented mosaic tiles.
+## Appearance and Interaction Verification
+
+Keep thematic polarity when stacking for narrow or short containers; allow expanded localized actions and both long narratives to remain reachable; give before/after divider a labelled operable keyboard value and verify crossing labels/focus on each local painted hemisphere.
+

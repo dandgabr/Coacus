@@ -90,3 +90,7 @@ A warm, playful aesthetic celebrating cuteness, approachability, and comforting 
 ## 🔗 Integration with Other Skills
 
 - Sibling friendly styles: [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).
+## Appearance and Interaction Verification
+
+Replace automatic hit-target and contrast guarantees with measured actual controls and pastel/ink pairs, including muted text and disabled/focus states; scope the #stage selector explicitly as a consumer example.
+

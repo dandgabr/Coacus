@@ -202,7 +202,7 @@ Flat design popularized clean geometric and humanist sans-serifs:
 }
 
 .flat-btn:focus-visible {
-  outline: 3px solid var(--flat-sunflower);
+  outline: 3px solid var(--flat-text-title);
   outline-offset: 2px;
 }
 ```
@@ -235,7 +235,7 @@ Flat design popularized clean geometric and humanist sans-serifs:
 .flat-banner-badge {
   display: inline-block;
   background-color: var(--flat-turquoise);
-  color: #FFFFFF;
+  color: var(--flat-midnight);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -264,7 +264,7 @@ Flat design popularized clean geometric and humanist sans-serifs:
 
 - **The Ghost Button Usability Trap:** Pure ghost buttons (white outline on light background) frequently fail WCAG 1.4.11 (3:1 minimum contrast for non-text UI controls). All ghost buttons must maintain at least a **2px** solid stroke with a minimum **3:1** border contrast against the surrounding canvas.
 - **Text Legibility over Flat Colors:** Avoid placing light grey text on colored tiles. White text on `--flat-turquoise` (`#1ABC9C`) yields only **2.3:1** contrast and **FAILS** WCAG AA. Instead, pair `#1ABC9C` with dark navy text (`#2C3E50`) which achieves **7.4:1** contrast.
-- **Focus Rings:** Flat design historically removed focus outlines. Modern Flat 2.0 requires high-contrast focus rings (`outline: 3px solid var(--flat-sunflower)`) that stand out vividly against both dark and light button faces.
+- **Focus Rings:** Flat design historically removed focus outlines. Modern Flat 2.0 requires high-contrast focus rings (`outline: 3px solid var(--flat-sunflower)`) chosen against the surrounding surface; invert the ring ink or use a dual ring when crossing light and dark panels.
 
 ---
 
@@ -293,3 +293,7 @@ Flat design popularized clean geometric and humanist sans-serifs:
 
 - Historical bridge between [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md) (which it rejected) and [ui-style-material-you](../ui-style-material-you/SKILL.md) (which evolved from Flat 2.0).
 - Contrasts with [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md) by pursuing polished, harmonious digital simplicity rather than subversive punk dissonance.
+## Appearance and Interaction Verification
+
+Change badge foreground to the prescribed navy role and review all solid/ghost hover pairs; choose a visible focus ring against the actual surrounding surface while retaining flat fills, simple geometry and explicit signifiers.
+

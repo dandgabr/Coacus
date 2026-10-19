@@ -166,3 +166,7 @@ Weirdcore is an internet-native visual microgenre that explores the uncanny psyc
 
 - Internet Archive, *Early Consumer Digital Camera Test Corpus (1998–2005)*.
 - Mark Fisher, *The Weird and the Eerie* (Repeater Books, 2016).
+## Appearance and Interaction Verification
+
+Keep dread in photography and cryptic decorative overlays while maintaining stable actual hit areas, focus and input response; disable optional jitter under reduced motion and verify red/yellow overlay ink on the actual flash-lit image regions.
+

@@ -231,3 +231,7 @@ A circular status badge stamped in antique crimson wax with golden sigil embroid
 
 - **Sibling Dark Speculative Styles:** [ui-style-dark-fantasy](../ui-style-dark-fantasy/SKILL.md), [ui-style-dungeon-synth](../ui-style-dungeon-synth/SKILL.md), [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md).
 - **Atmospheric & Noir Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+## Appearance and Interaction Verification
+
+Give small faction metadata a readable bone/gold ink or a contrasting wax/paper field; keep crimson as gothic material and reserve large crimson lettering only when its actual size/weight and composite pass, preserving lancet architecture and urban punk identity.
+

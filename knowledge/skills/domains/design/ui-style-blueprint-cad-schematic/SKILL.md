@@ -295,3 +295,7 @@ Blueprint typography honors standardized technical lettering (DIN 1451, ISO 3098
 
 - Direct counterpart to [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md) (vector technical precision vs character-cell console).
 - Contrasts with [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md) and [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md) by eliminating all faux-3D tactile surfaces in favor of orthographic vector clarity.
+## Appearance and Interaction Verification
+
+Reflow title-block cells according to sheet width and long project/revision strings, retaining dimension ticks; verify muted notes over actual minor/major grid lines, with a local sheet backing if needed.
+

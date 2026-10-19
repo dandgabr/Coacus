@@ -24,7 +24,7 @@ Every interface surface MUST declare its visitor mode:
 
 ---
 
-## 🛠️ The 24 Intentional Design Directives
+## 🛠️ Intentional Design Directives
 
 When directing or refining interfaces, apply these specific actions:
 
@@ -42,7 +42,7 @@ When directing or refining interfaces, apply these specific actions:
 | **Refine** | `distill` | Strip away decorative fluff, redundant cards, and non-functional containers. |
 | **Refine** | `harden` | Implement empty states, loading skeletons, error boundaries, and text overflows. |
 | **Refine** | `onboard` | Design guided first-run paths, progressive disclosure, and empty-state incentives. |
-| **Enhance** | `animate` | Add purposeful motion (<200ms) honoring spring physics and `prefers-reduced-motion`. |
+| **Enhance** | `animate` | Choose purposeful motion and timing for the task; preserve complete reduced-motion states. |
 | **Enhance** | `colorize` | Introduce intentional, semantic color accents into sterile monochrome layouts. |
 | **Enhance** | `typeset` | Establish a mathematical type scale (1.25 or 1.333) with calibrated line-heights. |
 | **Enhance** | `layout` | Fix visual rhythm, enforce multi-tier spacing grids (4px/8px), and ensure section breathing. |
@@ -82,7 +82,7 @@ When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs wi
 | **Icon in a rounded pastel box** | Habit of placing an icon tile above every card title | Place the icon inline with text or eliminate it. Rely on strong typographic titles. |
 | **Single italic serif word** | Inserting an italic serif word in a sans-serif headline | Commit to a single typeface family or establish a coherent editorial contrast across the entire header. |
 | **Hero eyebrow pill badge** | Formulaic pill with sparkles/emojis above hero | Replace with a crisp, uppercase tracking kicker or eliminate the redundant badge entirely. |
-| **Gray text on colored fill** | `text-gray-400` on `bg-blue-600` or `bg-slate-900` | Always pair saturated fills with pure white or high-contrast tinted light ink (`oklch(95% ...)`). |
+| **Gray text on colored fill** | `text-gray-400` on `bg-blue-600` or `bg-slate-900` | Choose verified foreground/background pairs; light or dark ink can be appropriate depending on the actual fill. |
 | **Nested card syndrome** | Card inside card inside card with heavy borders | Eliminate internal cards. Differentiate groupings using subtle background tint shifts or spacing. |
 | **Vague, oversized shadows** | `shadow-2xl` spreading artificial black smudge | Use layered multi-stop shadows (`0 1px 2px rgba(...)`, `0 4px 12px rgba(...)`) with low opacity. |
 | **Monotonous spacing** | `p-6` and `gap-4` used across every container | Use differentiated spacing scale: 8px tight, 16px medium, 32px-48px between major visual zones. |

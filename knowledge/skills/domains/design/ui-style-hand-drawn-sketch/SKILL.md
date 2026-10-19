@@ -114,3 +114,7 @@ Interfaces that look drawn by a person: imperfect lines, scribbled fills, doodle
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - Sibling styles: [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-risograph](../ui-style-risograph/SKILL.md).
+## Appearance and Interaction Verification
+
+Keep crisp semantic hit areas and focus already prescribed; add a style-specific reading-surface check for hachure/highlighter overlap and verify seeded hover roughening leaves labels, hit bounds and translated headings reachable.
+

@@ -220,3 +220,7 @@ A progress indicator styled as an escapement wheel ticking in discrete steps tow
 
 - **Sibling Speculative Styles:** [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-sandalpunk](../ui-style-sandalpunk/SKILL.md), [ui-style-silkpunk](../ui-style-silkpunk/SKILL.md).
 - **Archival & Bookcraft Peers:** [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-arts-and-crafts](../ui-style-arts-and-crafts/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md).
+## Appearance and Interaction Verification
+
+Freeze ornamental escapement loops while continuing meaningful dial/progress updates without interpolated travel; expose values and keyboard alternatives to astronomical rings so reduced motion retains the mechanism explanation and final state.
+

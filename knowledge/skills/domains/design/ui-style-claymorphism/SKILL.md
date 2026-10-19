@@ -236,3 +236,7 @@ A rounded container housing floating clay button tabs with spring indicator pill
 
 - **Sibling 3D & Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - **Playful & Friendly Peers:** [ui-style-kawaii-pastel-soft](../ui-style-kawaii-pastel-soft/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Replace automatic clay contrast guarantees with checking inset edges, perimeter and pressed state against the real floor; strengthen a contour where needed while preserving inflated matte volume, pastel fills and instantaneous shadow feedback under reduced motion.
+

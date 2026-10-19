@@ -83,3 +83,7 @@ Multi-stop vivid gradients and two-tone brand imagery — the 2014–2019 consum
 
 - Sibling styles: [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
 - Newer sibling styles: [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-risograph](../ui-style-risograph/SKILL.md).
+## Appearance and Interaction Verification
+
+Freeze hue cycling, background panning and button shimmer to a deliberate brand-color composition under reduced motion; keep duotone-to-full-color state understandable without a moving transition and verify gradient-text fill resets if a solid variant is chosen.
+

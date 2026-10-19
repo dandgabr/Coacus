@@ -234,3 +234,7 @@ A tab system resembling wooden paper screens sliding along brass guide rails.
 
 - **Sibling Speculative Aesthetics:** [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-clockpunk](../ui-style-clockpunk/SKILL.md), [ui-style-sandalpunk](../ui-style-sandalpunk/SKILL.md).
 - **Organic & Craft Peers:** [ui-style-arts-and-crafts](../ui-style-arts-and-crafts/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+## Appearance and Interaction Verification
+
+Preserve paper/lattice and chosen cultural lineage; validate script-aware font fallback and vertical seal/rubric extents, and ensure fan/partition decoration follows semantic expanded/hidden state with exactly the intended panel and complete static initialization.
+

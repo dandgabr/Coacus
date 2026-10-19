@@ -225,3 +225,7 @@ A mechanical lever toggle mounted in a recessed dark bezel.
 
 - **Sibling Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md).
 - **Tactile & Operating System Peers:** [ui-style-windows-xp](../ui-style-windows-xp/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md), [ui-style-steampunk](../ui-style-steampunk/SKILL.md).
+## Appearance and Interaction Verification
+
+Verify label ink across the entire Aqua gloss and hover/pressed gradients, with stable text backing where needed; expose actual dial/switch value and keyboard/step control independently of pointer drag and physical travel.
+

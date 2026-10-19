@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interface verification fixture</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 1rem/1.5 system-ui, sans-serif; background: #ddd; }
+  .fixture-label { padding: .5rem 1rem; margin: 0; }
+  #fixture {
+    --canvas: #f1eadc; --surface: #fffdf6; --ink: #30291e;
+    --muted: #625746; --action: #864324; --on-action: #fff;
+    --boundary: #88745d; --control-off: #e2d6c2;
+    background: var(--canvas); color: var(--ink); position: relative;
+    height: min(70vh, 38rem); min-height: 0; overflow: auto;
+    isolation: isolate; scroll-padding-top: 4rem;
+  }
+  #fixture[data-appearance="dark"] {
+    --canvas: #182029; --surface: #253441; --ink: #f0f4f5;
+    --muted: #c4d0d7; --action: #f3b06b; --on-action: #251b11;
+    --boundary: #96a8b4; --control-off: #435768;
+  }
+  .progress { position: sticky; top: 0; height: 4px; margin-bottom: -4px; z-index: 30; background: var(--boundary); pointer-events: none; }
+  .progress b { display: block; height: 100%; width: 40%; background: var(--action); }
+  .topbar { position: sticky; top: 0; z-index: 20; min-height: 4rem; display: flex; align-items: center; gap: 1rem; padding: .75rem clamp(1rem, 4vw, 2rem); background: var(--surface); border-bottom: 1px solid var(--boundary); }
+  .topbar a { color: var(--ink); }
+  .content { position: relative; padding: 1.5rem clamp(1rem, 4vw, 2rem); }
+  .texture { position: absolute; inset: 0; opacity: .12; pointer-events: none; background: repeating-linear-gradient(transparent 0 3px, var(--ink) 3px 4px); }
+  .content > section { position: relative; margin-block: 0 1.5rem; }
+  h1 { font-size: clamp(1.5rem, 4vw, 3rem); line-height: 1.1; overflow-wrap: anywhere; }
+  .reading-title { color: var(--ink); -webkit-text-fill-color: var(--ink); }
+  .columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+  .card { min-width: 0; padding: 1rem; background: var(--surface); color: var(--ink); border: 1px solid var(--boundary); }
+  h2, h3 { line-height: 1.2; overflow-wrap: anywhere; }
+  .muted { color: var(--muted); }
+  .checker { padding: 1rem; background: repeating-conic-gradient(#30291e 0 25%, #fffdf6 0 50%) 0 / 1rem 1rem; }
+  .reading-plate { display: inline; background: var(--surface); color: var(--ink); box-shadow: .2em 0 var(--surface), -.2em 0 var(--surface); box-decoration-break: clone; }
+  form { display: grid; gap: 1rem; }
+  .field { display: grid; gap: .25rem; }
+  input, textarea, select, button { font: inherit; max-width: 100%; min-width: 0; accent-color: var(--action); }
+  input[type="text"], textarea { width: 100%; padding: .65rem; border: 1px solid var(--boundary); background: var(--surface); color: var(--ink); }
+  .setting { display: flex; align-items: center; gap: .75rem; }
+  .setting input { flex: 0 0 auto; }
+  .switch-label { position: relative; }
+  .switch-input { position: absolute; width: 3rem; height: 1.5rem; margin: 0; opacity: 0; }
+  .switch-track { width: 3rem; height: 1.5rem; border: 1px solid var(--boundary); border-radius: 1rem; background: var(--control-off); flex: 0 0 auto; }
+  .switch-track::before { content: ""; display: block; width: 1.15rem; height: 1.15rem; margin: .1rem; border-radius: 50%; background: var(--ink); }
+  .switch-input:checked + .switch-track { background: var(--action); }
+  .switch-input:checked + .switch-track::before { transform: translateX(1.45rem); background: var(--on-action); }
+  :focus-visible { outline: 3px solid var(--action); outline-offset: 3px; }
+  .switch-input:focus-visible + .switch-track { outline: 3px solid var(--action); outline-offset: 3px; }
+  button { padding: .7rem 1rem; border: 1px solid var(--boundary); background: var(--action); color: var(--on-action); }
+  .bars { height: 8rem; display: flex; gap: .5rem; align-items: end; }
+  .bar { flex: 1; height: calc(var(--n) * 1%); background: var(--action); }
+  [hidden] { display: none !important; }
+  #fixture[data-kind="read"] .columns { grid-template-columns: minmax(0, 1fr); max-width: 65ch; }
+  #fixture[data-kind="experience"] { scroll-snap-type: y proximity; }
+  #fixture[data-kind="experience"] .content > section { min-height: 24rem; scroll-snap-align: start; }
+  @media (max-width: 42rem) { .columns { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { #fixture { scroll-behavior: auto; scroll-snap-type: none; } }
+</style>
+<p class="fixture-label">Independent fixture: change appearance and surface-kind attributes in a test context. No network assets or application services are needed.</p>
+<main id="fixture" data-appearance="light" data-kind="operate" tabindex="0">
+  <div class="progress" aria-hidden="true"><b></b></div>
+  <header class="topbar"><strong>Example workspace</strong><a href="#scene-settings">Settings</a></header>
+  <div class="content">
+    <div class="texture" aria-hidden="true"></div>
+    <section id="scene-overview">
+      <h1 class="reading-title">Clear content across surfaces</h1>
+      <p class="muted">A reading surface, task form and narrative can share roles without requiring the same composition.</p>
+      <div class="checker"><h2><span class="reading-plate">Textile heading with local reading support</span></h2></div>
+    </section>
+    <section id="scene-metrics" class="columns">
+      <article class="card"><h2>Measurements</h2><p class="muted">Visible data and meaningful states</p><div class="bars" role="img" aria-label="Three positive values"><i class="bar" style="--n:35"></i><i class="bar" style="--n:65"></i><i class="bar" style="--n:90"></i></div></article>
+      <article class="card"><h2>Long heading terminology that can wrap inside its actual owner</h2><p>Typography uses the available space without discarding the words.</p></article>
+    </section>
+    <section id="scene-settings" class="columns">
+      <form class="card">
+        <h2>Project settings</h2>
+        <label class="field">Name<input type="text" value="Example project"></label>
+        <label class="field">Description<textarea rows="6">Long content remains available.</textarea></label>
+        <label class="setting"><input id="notifications" type="checkbox" checked>Receive updates</label>
+        <label class="setting switch-label"><input class="switch-input" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span>Public mode</label>
+        <label class="field">Intensity<input id="intensity" type="range" value="60"></label>
+        <label class="field">Additional notes<textarea rows="8">A tall scene can contain controls below the initial viewport.</textarea></label>
+        <button id="final-action" type="button">Save settings</button>
+      </form>
+      <article class="card"><h2>Recent activity</h2><p>The paired panels share the intended row at wide sizes and stack at narrow sizes.</p></article>
+    </section>
+    <section id="inactive-view" hidden><button type="button">Inactive action</button></section>
+  </div>
+</main>
+</html>

@@ -26,7 +26,7 @@ For rendered UI or publication claims, use [interface evidence and revision scop
 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-If you haven't run the verification command in this message, you cannot claim it passes.
+Bind every claim to a recorded command, result and relevant source revision. Rerun evidence invalidated by subsequent changes; unaffected evidence from this session may be reused with its scope stated. Required project gates still apply.
 
 ## The Gate Function
 
@@ -34,7 +34,7 @@ If you haven't run the verification command in this message, you cannot claim it
 BEFORE claiming any status or expressing satisfaction:
 
 1. IDENTIFY: What command proves this claim?
-2. RUN: Execute the FULL command (fresh, complete)
+2. RUN: Execute the complete applicable command, or identify unaffected revision-bound evidence and explain why it remains valid
 3. READ: Full output, check exit code, count failures
 4. VERIFY: Does output confirm the claim?
    - If NO: State actual status with evidence

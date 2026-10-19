@@ -269,7 +269,7 @@ Cassette Futurism is an analog retrofuturist aesthetic derived from the consumer
 ## ✨ Micro-Interactions, Motion & Soundscapes
 
 - **Physical Switch Snap:** Rocker switches exhibit instantaneous mechanical depression with an audible clack and zero easing.
-- **CRT Power-On Raster Sweep:** Screen activation renders a high-velocity horizontal raster sweep (`clip-path: inset(0 0 0 0)` collapsing to a single line in 180ms).
+- **CRT Power-On Raster Sweep:** Screen activation renders a high-velocity horizontal raster sweep from a narrow raster line to the complete readout (`clip-path: inset(0)`) in 180ms; never leave content collapsed after completion.
 - **GaAs LED Strobe:** Standby indicators pulse with authentic 2Hz square-wave blink.
 
 ---
@@ -292,6 +292,7 @@ Cassette Futurism is an analog retrofuturist aesthetic derived from the consumer
     .cassette-led.on, .cassette-screen::after {
       animation: none;
     }
+    .cassette-screen { clip-path: inset(0); opacity: 1; }
   }
   ```
 
@@ -317,3 +318,7 @@ Cassette Futurism is an analog retrofuturist aesthetic derived from the consumer
 - Ron Cobb, *The Semiotic Standard for All Commercial and Non-Commercial Spaceflight* (20th Century Fox, 1979).
 - Syd Mead, *Oblagon: Concepts of Syd Mead* (Dentsu, 1985).
 - Hewlett-Packard Company, *HP 9845B Desktop Computer Operating and Service Manual* (1979).
+## Appearance and Interaction Verification
+
+Define CRT power-on completion as the full visible readout and immediately show it under reduced motion; wrap physical rocker controls as well as telemetry columns and preserve latched state in semantic text/pressed state.
+

@@ -233,3 +233,7 @@ A header ribbon featuring hexagonal Voronoi photovoltaic facets catching natural
 
 - **Sibling Ecological Styles:** [ui-style-lunarpunk](../ui-style-lunarpunk/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-silkpunk](../ui-style-silkpunk/SKILL.md).
 - **Craft & Tactile Peers:** [ui-style-arts-and-crafts](../ui-style-arts-and-crafts/SKILL.md), [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md).
+## Appearance and Interaction Verification
+
+When dark loam is requested, map complete surface/ink/state roles without retaining sunlit white cards by accident; verify eco-switch reversibility and content/layout with fonts/images disabled and label kilowatt-hour states statically when breathing motion stops.
+

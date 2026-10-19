@@ -81,3 +81,7 @@ Browser-native 3D as a first-class medium: a single hero scene, scroll-linked ca
 - Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md).
 - For performance budgets, see [latency-engineering](../../../engineering/practices/latency-engineering/SKILL.md).
 - Newer sibling styles: [ui-style-isometric](../ui-style-isometric/SKILL.md).
+## Appearance and Interaction Verification
+
+Specify scene-owned teardown for geometry, materials, textures, postprocessing and context listeners; distinguish frame interval targets from measured render cost, and keep poster/HTML usable after context loss.
+

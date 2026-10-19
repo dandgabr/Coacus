@@ -174,3 +174,7 @@ Dreamcore is an internet aesthetic focused on the sweet, melancholic, and peacef
 
 - René Magritte, *The Castle of the Pyrenees & Cloud Studies* (Brussels, 1959).
 - Bachelard, Gaston, *The Poetics of Reverie: Childhood and Dreams* (Beacon Press, 1960).
+## Appearance and Interaction Verification
+
+Separate dark badge ink from sky-blue decoration, inspect text/focus over actual cloud/hill composites and retain the luminous bloom around a stable reading field; stop decorative cloud drift in reduced motion.
+

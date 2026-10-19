@@ -293,3 +293,7 @@ Typography in De Stijl is constructed, unadorned, and integrated directly into r
 
 - Orthodox sibling to [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md) and historical parent of [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
 - Polar opposite to [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) and [ui-style-psychedelic-60s](../ui-style-psychedelic-60s/SKILL.md).
+## Appearance and Interaction Verification
+
+Keep thick orthogonal rules and primary planes while allowing content-driven row growth and a component-width collapse; gate track animation under reduced motion and pair inverted primary-cell fills with the existing on-red/on-blue/on-yellow text roles.
+

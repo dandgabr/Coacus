@@ -43,6 +43,10 @@ Read `catalog/INDEX.md` and `AGENTS.md` once at the start of the session. Do
 not re-scan directories per turn; rely on the index and the session's memory.
 If the index looks stale, regenerate it once, then continue.
 
+## Canonical source and installed aliases
+
+Resolve an update against the canonical catalog and provenance, then verify the source package. An installed name missing from the current catalog can be a stale alias or removed artifact; do not recreate it as a new canonical source without reconciling the recorded change. A refreshed file on disk does not prove an existing session loaded it.
+
 ## Artifact lifecycle
 
 Every canonical artifact has one source. Work moves through:

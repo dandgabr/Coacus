@@ -226,3 +226,7 @@ A dense header ribbon continuously displaying active base-pair coordinates (`A-T
 
 - **Sibling Speculative Styles:** [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md), [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md).
 - **Scientific & Data Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Give electrophoresis progress a stable numerical/semantic value and label; stop decorative band travel without hiding progress, and use shape/text alongside fluorescence for sample state.
+

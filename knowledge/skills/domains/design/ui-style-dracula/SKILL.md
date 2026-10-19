@@ -212,7 +212,7 @@ Dracula is an iconic, universal dark theme created by Zeno Rocha in 2013, design
 ## 🚫 Anti-Patterns & Visual Sins (Anti-AI Slop Traps)
 
 - ❌ **NUNCA use cinza puro desbotado:** Dracula é construído sobre violeta profundo (`#282A36`). Fundos em `#121212` ou `#1E1E1E` descaracterizam o tema.
-- ❌ **NUNCA use o token legado `#6272A4` para texto corrido:** Atinge apenas 3.03:1 de contraste; use sempre `--dracula-comment-accessible` (`#96A7DD`).
+- ❌ **Do not use the legacy `#6272A4` token for body text on the default background:** Use the documented accessible adaptation `--dracula-comment-accessible` (`#96A7DD`), verifying the actual surface pair.
 
 ---
 
@@ -220,3 +220,7 @@ Dracula is an iconic, universal dark theme created by Zeno Rocha in 2013, design
 
 - Zeno Rocha, *Dracula Theme Official Specification* (https://draculatheme.com/contribute).
 - W3C, *Web Content Accessibility Guidelines (WCAG) 2.2* (Contrast SC 1.4.3 & 1.4.11).
+## Appearance and Interaction Verification
+
+Label the accessible comment token as a documented adaptation alongside the canonical palette; fit or locally scroll code and wrap header/status/action content by actual card width, preserving violet surfaces and distinct syntax accents instead of clipping long text.
+

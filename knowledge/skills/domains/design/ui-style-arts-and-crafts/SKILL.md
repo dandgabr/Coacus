@@ -189,3 +189,7 @@ The Arts and Crafts movement (roughly 1880–1920) arose in Britain as an ideolo
 
 - William Morris, *The Ideal Book: An Address Delivered for the Bibliographical Society* (London, 1893).
 - John Ruskin, *The Stones of Venice: On the Nature of Gothic* (Smith, Elder & Co., 1853).
+## Appearance and Interaction Verification
+
+Let inner rag-paper padding respond to the actual folio width while preserving heavy woodcut borders; keep thick-paper turns optional and expose final page content immediately under reduced motion.
+
