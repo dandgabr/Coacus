@@ -228,4 +228,3 @@ A mechanical lever toggle mounted in a recessed dark bezel.
 ## Appearance and Interaction Verification
 
 Verify label ink across the entire Aqua gloss and hover/pressed gradients, with stable text backing where needed; expose actual dial/switch value and keyboard/step control independently of pointer drag and physical travel.
-

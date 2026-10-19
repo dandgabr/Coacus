@@ -229,4 +229,3 @@ A horizontal ribbon reflecting dynamic rainbow light flares on cursor movement.
 ## Appearance and Interaction Verification
 
 Replace the universal dark-core requirement with a stable contrast backing appropriate to obsidian or pearlescent-silver dialect; inspect moving specular extrema and reset transparent gradient text fill when changing appearance.
-

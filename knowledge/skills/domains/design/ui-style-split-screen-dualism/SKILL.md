@@ -307,4 +307,3 @@ Split-screen layouts thrive on deliberate typographic tension:
 ## Appearance and Interaction Verification
 
 Keep thematic polarity when stacking for narrow or short containers; allow expanded localized actions and both long narratives to remain reachable; give before/after divider a labelled operable keyboard value and verify crossing labels/focus on each local painted hemisphere.
-

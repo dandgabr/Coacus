@@ -78,4 +78,3 @@ Interfaces where the model drives not just text but the UI itself: streaming ans
 ## Appearance and Interaction Verification
 
 Scope confirmation to unresolved consequential choices; preserve prior authorization and bind streamed tool cards/results to the current request, cancelling stale updates while keeping completion/error status accessible.
-

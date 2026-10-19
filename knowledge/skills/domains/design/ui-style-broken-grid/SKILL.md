@@ -251,4 +251,3 @@ A clean collapse rule resetting overlapping layers into an orderly single-column
 ## Appearance and Interaction Verification
 
 Define the shared stacking owner for overlapping editorial planes and keyboard focus; reset overlap/negative offsets by available component width, including short-height landscapes, preserving intentional large-display bleed only where reading and controls remain exposed.
-

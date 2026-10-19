@@ -107,4 +107,3 @@ body { background: var(--scrap-bg); color: var(--scrap-ink); }
 ## Appearance and Interaction Verification
 
 Scope paper tilt to fragments that retain readable line lengths and accessible targets; straighten or reflow dense/long fragments in narrow owners while retaining torn paper, mixed-media hierarchy and static overlaps where legible.
-

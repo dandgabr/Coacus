@@ -323,4 +323,3 @@ Card typography enforces tight vertical rhythms:
 ## Appearance and Interaction Verification
 
 Make two-line title trimming conditional on a discoverable full title/detail route, allow long/localized action rows to wrap, and scope media clipping so card focus/secondary actions remain visible above the expanded-link overlay.
-

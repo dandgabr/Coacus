@@ -240,4 +240,3 @@ A streaming terminal log component rendering chronological event strings without
 ## Appearance and Interaction Verification
 
 Condition 100ms update flashes on motion preference and input/update rate; keep values and gain/loss text immediate, use link/focus ink suited to document versus dark console surfaces, and preserve deliberate density while allowing large text and keyboard access.
-

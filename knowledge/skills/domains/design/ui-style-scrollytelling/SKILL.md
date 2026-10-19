@@ -122,4 +122,3 @@ body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smo
 ## Appearance and Interaction Verification
 
 Choose continuous/reveal, pin/scrub or explicitly requested scene presentation before implementation; keep native behavior by default, scope any requested input handling with keyboard/touch exits, make oversized scenes reachable at actual usable height and verify progress over local stacking contexts.
-

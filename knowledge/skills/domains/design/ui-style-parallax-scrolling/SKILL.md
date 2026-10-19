@@ -83,4 +83,3 @@ Background layers move slower than foreground, creating 2.5D depth purely throug
 ## Appearance and Interaction Verification
 
 Declare which parallax layers belong to scroll owner versus viewport/content, recompute coverage at resize and narrative end, and supply complete static reading flow before optional depth motion; keep historical scroll-jacking separate from recommended behavior.
-

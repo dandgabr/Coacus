@@ -234,4 +234,3 @@ A circular status badge stamped in antique crimson wax with golden sigil embroid
 ## Appearance and Interaction Verification
 
 Give small faction metadata a readable bone/gold ink or a contrasting wax/paper field; keep crimson as gothic material and reserve large crimson lettering only when its actual size/weight and composite pass, preserving lancet architecture and urban punk identity.
-

@@ -95,4 +95,3 @@ Dark-native interface design — products designed dark from the start rather th
 ## Appearance and Interaction Verification
 
 Make dark-gray elevation one dark-native choice and retain intentional pure-black/OLED identities; separate manual/system/effective appearance and audit full backgrounds, image overlays, native control states and foreground roles when deriving a light counterpart.
-

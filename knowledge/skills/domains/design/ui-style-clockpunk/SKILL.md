@@ -223,4 +223,3 @@ A progress indicator styled as an escapement wheel ticking in discrete steps tow
 ## Appearance and Interaction Verification
 
 Freeze ornamental escapement loops while continuing meaningful dial/progress updates without interpolated travel; expose values and keyboard alternatives to astronomical rings so reduced motion retains the mechanism explanation and final state.
-

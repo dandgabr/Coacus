@@ -256,4 +256,3 @@ Independent Zine aesthetics originate in the self-published, non-commercial coun
 ## Appearance and Interaction Verification
 
 Wrap ransom clips in the semantic heading already required; scope photocopy texture/exposure to decorative layers with reduced-motion and flash controls, keeping content ink/focus stable; check rotated clip clearance and action/copy-count wrapping at actual owner bounds.
-

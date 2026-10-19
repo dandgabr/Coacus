@@ -239,4 +239,3 @@ A rectangular status badge rendered in fixed-width monospace with a 1px border.
 ## Appearance and Interaction Verification
 
 Choose the focus ink against the surrounding surface or use a binary dual ring across inversions; retain pure black/white identity and validate gray indices/control boundaries separately from the 21:1 headline pair.
-

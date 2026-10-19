@@ -192,4 +192,3 @@ The Arts and Crafts movement (roughly 1880–1920) arose in Britain as an ideolo
 ## Appearance and Interaction Verification
 
 Let inner rag-paper padding respond to the actual folio width while preserving heavy woodcut borders; keep thick-paper turns optional and expose final page content immediately under reduced motion.
-

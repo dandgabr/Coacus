@@ -180,4 +180,3 @@ Art Nouveau is the international decorative movement that flourished between 189
 ## Appearance and Interaction Verification
 
 For unfurling panels keep final botanical frame/content immediately visible in reduced motion; bound iridescent reflection to glass decoration and give reading text a stable parchment or patinated-ink field.
-

@@ -357,4 +357,3 @@ M3 specifies a rigorous 15-role typographic system:
 ## Appearance and Interaction Verification
 
 Label hand-picked OKLCH values as illustrative rather than HCT-generated guarantees; complete secondary/tertiary/on-state role pairs in requested appearances and verify tinted/ripple layers and chips in rendered states.
-

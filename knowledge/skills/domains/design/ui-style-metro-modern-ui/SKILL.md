@@ -338,4 +338,3 @@ Metro's core soul is **Segoe UI** (authored by Steve Matteson):
 ## Appearance and Interaction Verification
 
 Use accent-specific on-colors in tile examples, especially orange; allow tile grids and panorama tabs to reflow or remain reachable in narrow/short owners, and preserve exactly one semantic active panel while flipping decorative tile faces.
-

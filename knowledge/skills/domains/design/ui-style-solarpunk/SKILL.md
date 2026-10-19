@@ -236,4 +236,3 @@ A header ribbon featuring hexagonal Voronoi photovoltaic facets catching natural
 ## Appearance and Interaction Verification
 
 When dark loam is requested, map complete surface/ink/state roles without retaining sunlit white cards by accident; verify eco-switch reversibility and content/layout with fonts/images disabled and label kilowatt-hour states statically when breathing motion stops.
-

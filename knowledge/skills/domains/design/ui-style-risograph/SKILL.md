@@ -286,4 +286,3 @@ Risograph is a screen-based translation of the digital stencil duplicator invent
 ## Appearance and Interaction Verification
 
 Use a verified ink pair for the small pink action label; keep overprint/misregistration in isolated decorative layers with stable reading areas and confirm ink overlays cannot repaint semantic text/focus in requested appearances.
-

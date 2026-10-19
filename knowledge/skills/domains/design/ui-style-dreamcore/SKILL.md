@@ -177,4 +177,3 @@ Dreamcore is an internet aesthetic focused on the sweet, melancholic, and peacef
 ## Appearance and Interaction Verification
 
 Separate dark badge ink from sky-blue decoration, inspect text/focus over actual cloud/hill composites and retain the luminous bloom around a stable reading field; stop decorative cloud drift in reduced motion.
-

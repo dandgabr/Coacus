@@ -87,4 +87,3 @@ Nature-led web design: organic blob and asymmetric shapes, earthy palettes, bota
 ## Appearance and Interaction Verification
 
 Treat earthy contrast as a candidate pairing to verify, and distinguish low-weight sustainable implementation from texture-heavy decorative variants when discussing performance; retain masks with focus clearance and solid reading zones.
-

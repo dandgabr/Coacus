@@ -235,4 +235,3 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 ## Appearance and Interaction Verification
 
 Apply a real reading scrim in the Aurora hero example, test worst pool positions and retain pastel aurora via a light opaque reading field when chosen rather than mandating a dark 60% scrim for every variant.
-

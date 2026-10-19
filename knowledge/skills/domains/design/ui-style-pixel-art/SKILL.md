@@ -255,4 +255,3 @@ Pixel Art is a digital discipline originating in the memory- and hardware-constr
 ## Appearance and Interaction Verification
 
 Keep sprite integer scaling independent of readable text sizing; wrap HUD actions and translated dialogue within actual owner, preserve zoom and font fallback, and stop optional stepped prompt motion without suppressing game state.
-

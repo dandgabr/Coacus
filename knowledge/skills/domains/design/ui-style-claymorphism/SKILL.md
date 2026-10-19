@@ -239,4 +239,3 @@ A rounded container housing floating clay button tabs with spring indicator pill
 ## Appearance and Interaction Verification
 
 Replace automatic clay contrast guarantees with checking inset edges, perimeter and pressed state against the real floor; strengthen a contour where needed while preserving inflated matte volume, pastel fills and instantaneous shadow feedback under reduced motion.
-

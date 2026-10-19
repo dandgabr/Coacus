@@ -228,4 +228,3 @@ A high-velocity horizontal ticker continuously cycling fragmented typographic sl
 ## Appearance and Interaction Verification
 
 Check chrome button labels at the darkest reflection stop and difference-blend hover over actual artwork; supply an isolated solid label plate when required, retaining chrome/chromatic collision in decorative lettering.
-

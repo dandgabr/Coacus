@@ -256,4 +256,3 @@ Atompunk is the high-stakes, pre-transistor retro-futurism of the Cold War Nucle
 ## Appearance and Interaction Verification
 
 Specify whether CRT scanlines belong to the glass viewport or full diagnostic content; verify top/middle/bottom after resize and tune dark scanline/vignette composites without replacing green phosphor or steel/bakelite material cues.
-

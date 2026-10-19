@@ -233,4 +233,3 @@ A horizontal status indicator displaying live memory and network ping metrics.
 ## Appearance and Interaction Verification
 
 Use an unclipped focus owner or inset high-contrast bracket that survives polygon clipping; document daylight as an optional postcyberpunk material mapping with dark ink and subdued emission, rather than inheriting nocturnal card/scanline paint.
-

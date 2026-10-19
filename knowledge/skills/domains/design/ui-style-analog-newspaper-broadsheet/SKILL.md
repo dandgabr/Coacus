@@ -332,4 +332,3 @@ Typography is the absolute core and soul of broadsheet journalism:
 ## Appearance and Interaction Verification
 
 Complete microfilm paper/ink/rule roles including aged inserts and bulletin text; retain newspaper columns but collapse by usable column measure and height, and wrap translated datelines and masthead metadata without shrinking them into illegibility.
-

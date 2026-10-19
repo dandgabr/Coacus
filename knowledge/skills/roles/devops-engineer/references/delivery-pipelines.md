@@ -129,4 +129,3 @@ jobs:
 | **Canary** | Sends a gradual percentage of traffic (e.g., 5% -> 25% -> 100%) | Early anomaly detection with telemetry | Requires a service mesh or advanced ingress controller | Automatic reversal upon detecting a rise in HTTP 5xx error rate |
 
 ---
-

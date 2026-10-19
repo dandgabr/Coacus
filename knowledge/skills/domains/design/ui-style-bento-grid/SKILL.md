@@ -282,4 +282,3 @@ Bento grids utilize geometric sans-serif typography with strong scale differenti
 ## Appearance and Interaction Verification
 
 Bound clipping to visual artwork, keep headings/code and interactive controls reachable, and re-evaluate cell spans/padding/min-height by available cell width and viewport height while retaining uniform gutters and heterogeneous spans.
-

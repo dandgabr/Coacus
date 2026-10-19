@@ -296,4 +296,3 @@ Typography in De Stijl is constructed, unadorned, and integrated directly into r
 ## Appearance and Interaction Verification
 
 Keep thick orthogonal rules and primary planes while allowing content-driven row growth and a component-width collapse; gate track animation under reduced motion and pair inverted primary-cell fills with the existing on-red/on-blue/on-yellow text roles.
-

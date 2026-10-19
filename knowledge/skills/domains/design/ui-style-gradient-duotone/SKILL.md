@@ -86,4 +86,3 @@ Multi-stop vivid gradients and two-tone brand imagery — the 2014–2019 consum
 ## Appearance and Interaction Verification
 
 Freeze hue cycling, background panning and button shimmer to a deliberate brand-color composition under reduced motion; keep duotone-to-full-color state understandable without a moving transition and verify gradient-text fill resets if a solid variant is chosen.
-

@@ -371,4 +371,3 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 ## Appearance and Interaction Verification
 
 Give workshop cards a semantic surface that changes with night inversion; explicitly pair hover ink and red fill. Add usable-width collapse for the fixed 280px geometric column while keeping elementary shapes and asymmetric balance.
-

@@ -229,4 +229,3 @@ A circular badge filled with black-and-white checkerboard and bright central tex
 ## Appearance and Interaction Verification
 
 Keep saturated layered maximalism; specify a stable reading island for central badge labels over checkerboards and an operable pause control for ongoing marquees, with reduced-motion as a separate complete static fallback.
-

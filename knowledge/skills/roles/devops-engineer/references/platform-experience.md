@@ -32,4 +32,3 @@ The transition from traditional DevOps to **Platform Engineering** replaces the 
    - **Failed Deployment Recovery Time (MTTR)**: Average time to restore the service in case of degradation.
 
 ---
-

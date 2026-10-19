@@ -117,4 +117,3 @@ Interfaces that look drawn by a person: imperfect lines, scribbled fills, doodle
 ## Appearance and Interaction Verification
 
 Keep crisp semantic hit areas and focus already prescribed; add a style-specific reading-surface check for hachure/highlighter overlap and verify seeded hover roughening leaves labels, hit bounds and translated headings reachable.
-

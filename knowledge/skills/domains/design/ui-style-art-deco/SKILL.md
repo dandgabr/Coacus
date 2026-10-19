@@ -278,4 +278,3 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 ## Appearance and Interaction Verification
 
 Introduce semantic title, eyebrow and action ink roles and retarget gilded card selectors for daylight; preserve gold filigree while validating hover foreground/background as a pair and retaining readable dark ink.
-

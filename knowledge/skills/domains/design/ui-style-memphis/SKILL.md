@@ -273,4 +273,3 @@ Memphis typography is bold, punchy, and expressive:
 ## Appearance and Interaction Verification
 
 Preserve Bacterio/terrazzo and solid reading panels; make footer/badge labels wrap under localization and reserve clearance for 8% hover scale and hard shadows without hiding content or focus.
-

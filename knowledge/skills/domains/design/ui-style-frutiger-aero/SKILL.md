@@ -247,4 +247,3 @@ For glossy buttons and window chassis, use [the component recipes](references/gl
 ## Appearance and Interaction Verification
 
 Preserve split gloss and belly light on chassis, but protect button/tab label ink at every split/hover/pressed position with an unfiltered label layer and sufficient local backing. Use the content sanctuary, [component recipes](references/gloss-components.md) and [subgenre guide](references/subgenres.md) without losing the historical bibliography below.
-

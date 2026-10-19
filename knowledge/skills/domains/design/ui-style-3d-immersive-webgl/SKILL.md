@@ -84,4 +84,3 @@ Browser-native 3D as a first-class medium: a single hero scene, scroll-linked ca
 ## Appearance and Interaction Verification
 
 Specify scene-owned teardown for geometry, materials, textures, postprocessing and context listeners; distinguish frame interval targets from measured render cost, and keep poster/HTML usable after context loss.
-

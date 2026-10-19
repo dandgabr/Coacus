@@ -118,4 +118,3 @@ Typography elevated to the primary visual architecture: words in motion, per-cha
 ## Appearance and Interaction Verification
 
 Define a wrapping or scrollable static ticker fallback with all content reachable; size display type to its owner at font-load, hover-axis and localization extremes; provide a persistent operable pause control rather than treating hover/focus alone as the full pause contract.
-

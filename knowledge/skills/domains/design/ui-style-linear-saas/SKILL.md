@@ -326,4 +326,3 @@ Linear uses the **Inter** family exclusively, leveraging OpenType variable featu
 ## Appearance and Interaction Verification
 
 Retain compact issue rows but expose complete ellipsized titles and keyboard actions; bound the palette to usable height with scrollable results and verify light/dark muted labels and focus in the actual surface stack.
-

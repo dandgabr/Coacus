@@ -309,4 +309,3 @@ Pop Art typography draws from pulp comic lettering and bold mid-century advertis
 ## Appearance and Interaction Verification
 
 Set .pop-btn-cyan foreground to --pop-black as the accessibility section already requires; preserve halftone backgrounds and opaque speech/title/body panels, and verify focus against offset comic shadows.
-

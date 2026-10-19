@@ -236,4 +236,3 @@ A progress bar rendered with mechanical halftone screening and a physical needle
 ## Appearance and Interaction Verification
 
 Choose focus ink separately on tobacco dossiers and oil-black chassis, and inspect label paint over venetian stripes/chrome bands; retain both optimistic ivory/streamline and grim gunmetal schools rather than forcing one polarity.
-

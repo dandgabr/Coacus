@@ -338,4 +338,3 @@ Typography is the absolute protagonist of Swiss web design:
 ## Appearance and Interaction Verification
 
 Preserve Swiss grid cadence while allowing metadata/title columns to collapse within their actual owner; test long localized display headings and muted metadata in both appearances, keeping semantics and underlined links.
-

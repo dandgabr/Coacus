@@ -199,4 +199,3 @@ Dark Fantasy is an epic, visceral subgenre of fantasy that emphasizes dread, mor
 ## Appearance and Interaction Verification
 
 Check the darkest tarnished gradient stop against the actual iron/stone backdrop and supply solid gilt ink for functional titles when needed; make ember drift decorative, scoped and static/off under reduced motion without brightening the grimdark substrate.
-

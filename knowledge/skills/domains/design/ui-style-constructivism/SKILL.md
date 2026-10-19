@@ -276,4 +276,3 @@ Constructivism is an early 20th-century avant-garde movement founded in post-rev
 ## Appearance and Interaction Verification
 
 Separate wedge/diagonal clipping from reading and focus owners; check rotated long titles in actual panel width and create a cream reading plane where a red wedge crosses ink, preserving hard geometric thrust and thick structural bars.
-

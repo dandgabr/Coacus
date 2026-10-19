@@ -223,4 +223,3 @@ Dracula is an iconic, universal dark theme created by Zeno Rocha in 2013, design
 ## Appearance and Interaction Verification
 
 Label the accessible comment token as a documented adaptation alongside the canonical palette; fit or locally scroll code and wrap header/status/action content by actual card width, preserving violet surfaces and distinct syntax accents instead of clipping long text.
-

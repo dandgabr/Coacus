@@ -355,4 +355,3 @@ Typography is the complete identity of the interface:
 ## Appearance and Interaction Verification
 
 Require font-supported axes and check glyph extents after font readiness, language and hover at actual monument width; describe GRAD as avoiding advance-width changes rather than guaranteeing measured CLS, and let footer/actions reflow in shallow owners.
-

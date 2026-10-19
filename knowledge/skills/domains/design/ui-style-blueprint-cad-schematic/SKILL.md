@@ -298,4 +298,3 @@ Blueprint typography honors standardized technical lettering (DIN 1451, ISO 3098
 ## Appearance and Interaction Verification
 
 Reflow title-block cells according to sheet width and long project/revision strings, retaining dimension ticks; verify muted notes over actual minor/major grid lines, with a local sheet backing if needed.
-

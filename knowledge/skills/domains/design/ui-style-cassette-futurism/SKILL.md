@@ -321,4 +321,3 @@ Cassette Futurism is an analog retrofuturist aesthetic derived from the consumer
 ## Appearance and Interaction Verification
 
 Define CRT power-on completion as the full visible readout and immediately show it under reduced motion; wrap physical rocker controls as well as telemetry columns and preserve latched state in semantic text/pressed state.
-

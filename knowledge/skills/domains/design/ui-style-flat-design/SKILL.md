@@ -296,4 +296,3 @@ Flat design popularized clean geometric and humanist sans-serifs:
 ## Appearance and Interaction Verification
 
 Change badge foreground to the prescribed navy role and review all solid/ghost hover pairs; choose a visible focus ring against the actual surrounding surface while retaining flat fills, simple geometry and explicit signifiers.
-

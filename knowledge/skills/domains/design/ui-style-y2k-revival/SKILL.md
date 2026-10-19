@@ -304,4 +304,3 @@ Y2K Revival captures the cyber-optimism and technophilic exuberance of the late 
 ## Appearance and Interaction Verification
 
 Preserve liquid chrome and jelly casing; size display text to the inner pod at font-load and translated/hover extremes, reset text-fill when leaving chrome treatment, and verify Tangerine badge and secondary-button inks across translucent backing composites.
-

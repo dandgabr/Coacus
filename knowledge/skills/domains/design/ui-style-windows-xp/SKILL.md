@@ -243,4 +243,3 @@ Windows XP represents the definitive consumer transition from the flat grey boxe
 ## Appearance and Interaction Verification
 
 Reconcile titlebar foreground claims with the actual white ink over every Luna highlight stop; map client/task-pane/control states explicitly for requested Luna variants, and allow fixed task pane/window controls to fit expanded labels and real touch hit areas.
-

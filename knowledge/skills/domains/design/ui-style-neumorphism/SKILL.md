@@ -222,4 +222,3 @@ A circular extruded wheel featuring an engraved indicator notch and subtle radia
 ## Appearance and Interaction Verification
 
 Replace subtle-border-as-remediation assurance with a verified boundary/indicator pair at rest, checked, focus and disabled states; update push-button example to follow it and recalculate both paired shadows and ink if an alternate substrate is requested.
-

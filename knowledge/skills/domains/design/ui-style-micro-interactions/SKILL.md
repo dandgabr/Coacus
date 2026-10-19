@@ -79,4 +79,3 @@ Small, single-purpose feedback moments around one user action — the style defi
 ## Appearance and Interaction Verification
 
 Distinguish pending from confirmed success; make repeated submit/cancel/owner-change outcomes deterministic and prevent stale completions from changing the current control; retain immediate feedback and static final states independently of animation.
-

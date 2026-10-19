@@ -295,4 +295,3 @@ Typography in psychedelic design is expressive, swollen, and elastic:
 ## Appearance and Interaction Verification
 
 Keep optical complements in intended poster ornament; test melting headline extents and complete labels at font-load, translation and hover distortion; verify button ink at orange/magenta gradient extrema and keep a stable reading backing.
-

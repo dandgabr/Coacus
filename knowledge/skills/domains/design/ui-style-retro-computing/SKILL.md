@@ -281,4 +281,3 @@ Retro Computing captures the direct physical experience of 1970s and 1980s micro
 ## Appearance and Interaction Verification
 
 For a requested light retro desktop, consult the [Workbench-inspired period GUI adaptation](references/period-gui-appearance.md), distinguishing it from phosphor terminals instead of recoloring CRT black; declare scanline owner/coverage across content and verify focus and text against the actual scanline composite.
-

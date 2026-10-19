@@ -262,4 +262,3 @@ Agitprop Poster design emerged from the political turbulence of early 20th-centu
 ## Appearance and Interaction Verification
 
 Keep heraldic rays and hard offset shadows; restrict clipping to the decorative ray owner, fit translated slogans to the actual banner width, and verify text over the ray composite, including a scoped opaque paper reading field when needed.
-

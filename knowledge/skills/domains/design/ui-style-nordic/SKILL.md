@@ -254,4 +254,3 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
 ## Appearance and Interaction Verification
 
 Introduce semantic PolarNight/SnowStorm surface/ink roles for requested modes; verify nordic-label and primary-button hover on their actual backgrounds rather than quoting only nord0 pairs; preserve all four named Nord palette groups.
-

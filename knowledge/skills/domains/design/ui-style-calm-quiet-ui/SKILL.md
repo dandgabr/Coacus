@@ -295,4 +295,3 @@ Typography prioritizes continuous reading comfort and cognitive ease:
 ## Appearance and Interaction Verification
 
 Keep secondary controls discoverable through keyboard focus and touch, with a stable fallback when dwell is unavailable; pair button foreground with sage in both modes rather than assuming white remains legible as sage lightens.
-

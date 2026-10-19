@@ -231,4 +231,3 @@ A circular progress indicator rendering the eight classical astronomical moon ph
 ## Appearance and Interaction Verification
 
 Distinguish decorative blur from confidentiality/decryption; keep reveal-on-intent operable through keyboard and assistive state, clear revealed content on owner change, and verify silver/orchid text against translucent moonlit surfaces.
-

@@ -93,4 +93,3 @@ A warm, playful aesthetic celebrating cuteness, approachability, and comforting 
 ## Appearance and Interaction Verification
 
 Replace automatic hit-target and contrast guarantees with measured actual controls and pastel/ink pairs, including muted text and disabled/focus states; scope the #stage selector explicitly as a consumer example.
-

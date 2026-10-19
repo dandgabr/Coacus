@@ -229,4 +229,3 @@ A dense header ribbon continuously displaying active base-pair coordinates (`A-T
 ## Appearance and Interaction Verification
 
 Give electrophoresis progress a stable numerical/semantic value and label; stop decorative band travel without hiding progress, and use shape/text alongside fluorescence for sample state.
-

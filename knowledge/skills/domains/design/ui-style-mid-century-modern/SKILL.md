@@ -312,4 +312,3 @@ Typography pairs geometric modernist display caps with graceful humanist body te
 ## Appearance and Interaction Verification
 
 Preserve evening walnut/leather adaptation; verify muted specification labels and terracotta eyebrows on actual evening cards and allow footer action/specification wrapping at text expansion without shrinking the reading area.
-

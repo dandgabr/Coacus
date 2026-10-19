@@ -252,4 +252,3 @@ An electrical knife-switch toggle replacing standard checkbox controls.
 ## Appearance and Interaction Verification
 
 Name the pressure meter with its units and range; preserve lever/checkbox semantics and static value updates while decorative gears stop; verify engraved labels against convex-glass shading and keep ornament outside input interiors.
-

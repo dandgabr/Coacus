@@ -230,4 +230,3 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 ## Appearance and Interaction Verification
 
 Add an explicit reading scrim to the example and pair its ink with light/dark glass; verify the composite over changing backdrop and the opaque no-backdrop-filter fallback, retaining frosted rim and spatial depth around the reading field.
-

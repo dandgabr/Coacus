@@ -342,4 +342,3 @@ Typography is the absolute centerpiece of the luxury aesthetic:
 ## Appearance and Interaction Verification
 
 Fit plates to the available gallery width and usable height with reachable captions and native keyboard/touch panning; retune curatorial accent ink for the vault while retaining photographic plates, substantial margins and serif hierarchy.
-

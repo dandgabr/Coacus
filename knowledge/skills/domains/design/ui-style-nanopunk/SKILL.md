@@ -225,4 +225,3 @@ A telemetry container overlaid with an interactive SVG hexagonal bond lattice.
 ## Appearance and Interaction Verification
 
 Keep physically meaningful scales and crystalline identity; ensure zoom-unit labels, measurement values and controls initialize in reduced motion before decorative particle assembly, and scope lattice clipping/lifecycle to the scientific viewport owner.
-

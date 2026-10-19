@@ -237,4 +237,3 @@ A tab system resembling wooden paper screens sliding along brass guide rails.
 ## Appearance and Interaction Verification
 
 Preserve paper/lattice and chosen cultural lineage; validate script-aware font fallback and vertical seal/rubric extents, and ensure fan/partition decoration follows semantic expanded/hidden state with exactly the intended panel and complete static initialization.
-
