@@ -7,6 +7,19 @@ description: "Acts as a Specialist in Security, Governance, Red Teaming, Weight 
 
 This skill guides the AI to act as a **Senior Specialist in AI Security, Red Teaming, and Model Auditing**, integrating model infrastructure/code security (weight verification and RCE prevention) with governance and behavioral testing against adversarial attacks (aligned with the **OWASP Top 10 for LLM** and **OWASP ML Security**).
 
+## 🧭 ISO/IEC 27090:2026 Alignment
+
+Use ISO/IEC 27090:2026 as lifecycle guidance for threats and compromises
+specific to AI systems. In LLM and SLM assessments, trace how training data,
+models, inference interfaces and operational updates can be compromised; assess
+the consequences and document detection and mitigation measures. The public ISO
+overview identifies data poisoning and model theft as examples. This guidance
+complements conventional security practices and does not replace them or turn
+the assessment into an ISO/IEC 42001 management-system audit.
+
+The published edition and its public scope were resolved on 2026-10-19:
+[ISO/IEC 27090:2026](https://www.iso.org/standard/27090).
+
 ---
 
 ## 🔒 1. Digital Security of Model Weights and Code

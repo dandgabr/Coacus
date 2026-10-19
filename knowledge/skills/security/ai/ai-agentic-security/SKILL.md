@@ -53,6 +53,14 @@ Map these to **MITRE ATLAS** (for example, AI Agent Tool Poisoning) and to the *
 - **Agent-to-agent (A2A)** communication needs authentication and authorization of the peer, plus schema validation of the messages.
 - Apply the four-layer test model: reasoning, tool execution, infrastructure, and inter-agent communication.
 
+### ISO/IEC 27090:2026 Context
+
+Use ISO/IEC 27090:2026 as lifecycle security guidance for the AI system that
+contains the agent. Consider compromise of data and models, consequences during
+operation, and how detection and mitigations interact with runtime controls.
+Keep agent-specific controls in this skill; the public scope does not establish
+a separate agent protocol or replace conventional security practices.
+
 ---
 
 ## 🔗 5. Integration with Other Skills
@@ -64,6 +72,7 @@ Map these to **MITRE ATLAS** (for example, AI Agent Tool Poisoning) and to the *
 
 ## 🔢 Version Sources
 
-Moving release pins in this skill were resolved 2026-09-20:
+Moving release pins in this skill were resolved on the dates recorded below:
 
-- **OWASP Top 10 for Agentic Applications 2026** (verified) — genai.owasp.org
+- **OWASP Top 10 for Agentic Applications 2026** (verified; resolved 2026-09-20) — [OWASP GenAI](https://genai.owasp.org/)
+- **ISO/IEC 27090:2026** (published edition and public scope verified 2026-10-19) — [ISO](https://www.iso.org/standard/27090)

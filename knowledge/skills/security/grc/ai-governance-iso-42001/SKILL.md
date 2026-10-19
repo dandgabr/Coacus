@@ -1,6 +1,6 @@
 ---
 name: ai-governance-iso-42001
-description: Acts as an AI Governance and Assurance specialist covering ISO/IEC 42001 (AI Management System), 42005 (impact assessment), 23894 (AI risk), 27090 (AI security threats), the NIST AI RMF and its Generative AI Profile, and the EU AI Act risk tiers and timelines.
+description: Acts as an AI Governance and Assurance specialist covering ISO/IEC 42001 (AI Management System), 42005 (impact assessment), 23894 (AI risk), 27090:2026 (AI security threats), the NIST AI RMF and its Generative AI Profile, and the EU AI Act risk tiers and timelines.
 metadata:
   type: defensive
   phase: report
@@ -21,7 +21,7 @@ An **AI Management System (AIMS)** follows a Plan-Do-Check-Act structure like ot
 ## ⚠️ 2. Risk Frameworks
 
 - **NIST AI RMF 1.0**: the Govern, Map, Measure and Manage functions; the Generative AI Profile (NIST AI 600-1) extends it with GenAI-specific risks.
-- **ISO/IEC 27090**: AI security threats, linking AI risk to the security program.
+- **ISO/IEC 27090:2026**: security threats and compromises specific to AI systems. Use its lifecycle guidance to connect AI risk to detection and mitigation in the security program; it complements conventional security and is not an AIMS requirements standard.
 - **Google SAIF**: a 15-risk taxonomy that is practical for engineering teams.
 
 ---
@@ -51,3 +51,7 @@ An **AI Management System (AIMS)** follows a Plan-Do-Check-Act structure like ot
 - For agentic risk, see the [ai-agentic-security](../../ai/ai-agentic-security/SKILL.md) skill.
 - For the ISMS overlap, see the [iso-27000-series](../iso-27000-series/SKILL.md) skill.
 - For the general GRC program, see the [security-grc-compliance](../security-grc-compliance/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+- **ISO/IEC 27090:2026** (published edition and public scope verified 2026-10-19) — [ISO](https://www.iso.org/standard/27090)

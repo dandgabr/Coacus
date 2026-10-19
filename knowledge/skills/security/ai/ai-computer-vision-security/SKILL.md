@@ -18,6 +18,18 @@ name: ai-computer-vision-security
 
 This skill guides the AI to act as a **Security Engineer in Computer Vision and Visual Deep Learning**. The goal is to guide the development, hardening, and auditing of convolutional neural network (CNN) models, Vision Transformers (ViTs), and image/video processing pipelines against adversarial attacks, real-world physical tampering, deepfakes, visual model poisoning, and infrastructure risks based on the **OWASP Machine Learning Security Top 10** and **OWASP MLSVS**.
 
+## ISO/IEC 27090:2026 Context
+
+Use ISO/IEC 27090:2026 as lifecycle guidance for AI-specific threats affecting
+vision systems, their data and models. Assess the consequences of compromise
+and the detection and mitigation measures across development, deployment,
+operation and model updates. Pair this system-level view with the vision-specific
+attack and sensor controls below; the standard complements conventional
+cybersecurity practices.
+
+The published edition and its public scope were resolved on 2026-10-19:
+[ISO/IEC 27090:2026](https://www.iso.org/standard/27090).
+
 ---
 
 ## 🧭 OWASP Theoretical References and Frameworks & Literature

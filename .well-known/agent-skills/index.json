@@ -181,14 +181,14 @@
       "description": "Acts as an Adversarial Machine Learning specialist covering evasion (FGSM, PGD, C&W, universal and patch attacks), poisoning and backdoors, model inversion and membership inference, model extraction, and defenses including adversarial training and certified robustness, aligned with the NIST AI 100-2 taxonomy.",
       "type": "skill-md",
       "url": "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md",
-      "digest": "sha256:b88187c65a994963a2283a7dc7500515248a78fa4d0ea90d19e2d5fe87093e2c"
+      "digest": "sha256:a452b2984dfd47bb75caf2675814937a9dfc11aa16e479e2e3bba3595f0f7afd"
     },
     {
       "name": "ai-agentic-security",
       "description": "Acts as an Agentic AI Security specialist covering the lethal trifecta (untrusted data, tool access, exfiltration channel), goal hijacking, tool and function-call validation independent of the model, MCP and A2A protocol risks, memory poisoning, multi-agent trust and the OWASP Top 10 for Agentic Applications 2026.",
       "type": "skill-md",
       "url": "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
-      "digest": "sha256:0a121a56b4051181d8f3d878fcafde9ced6abec006ea5a5218aa498152ab6d72"
+      "digest": "sha256:996566e66cedd2d94fafb6c789abe4b99de64c03a36dc97031ed2f1a5ec182ac"
     },
     {
       "name": "ai-application-engineering",
@@ -202,7 +202,7 @@
       "description": "Acts as a Specialist in Computer Vision (CV) Security, covering mitigation of adversarial attacks (FGSM, PGD, Patch Attacks), image data poisoning, visual backdoors, sensor spoofing, deepfake detection, and alignment with the OWASP Machine Learning Security Top 10.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-computer-vision-security/SKILL.md",
-      "digest": "sha256:00ce2f97b68d42e11bbcef74dafc7473d49b58f2aac4d98fcb3d1407f80e8622"
+      "digest": "sha256:21750ea91ce3dd4e117913d8474100e2685dfa8db1c0d6fa7e8de4e27ef16a20"
     },
     {
       "name": "ai-drug-discovery",
@@ -213,17 +213,17 @@
     },
     {
       "name": "ai-governance-assurance",
-      "description": "Acts as an AI Assurance specialist binding MITRE ATLAS, the NIST AI RMF and Generative AI Profile, ISO/IEC 42001/42005/23894/27090 and the EU AI Act risk tiers into an auditable program with model cards, AI BOM, impact assessments and AI incident response.",
+      "description": "Acts as an AI Assurance specialist binding MITRE ATLAS, the NIST AI RMF and Generative AI Profile, ISO/IEC 42001/42005/23894/27090:2026 and the EU AI Act risk tiers into an auditable program with model cards, AI BOM, impact assessments and AI incident response.",
       "type": "skill-md",
       "url": "knowledge/skills/security/ai/ai-governance-assurance/SKILL.md",
-      "digest": "sha256:8f8f9ceae33708528ad8baff78fb7115cb9c0675f5b7a7dc86f275b22fa593c5"
+      "digest": "sha256:884c8e91c5115296d0aac29599bd9b9b6e9ce3c7abd2d7bfb79a2dc39aa12005"
     },
     {
       "name": "ai-governance-iso-42001",
-      "description": "Acts as an AI Governance and Assurance specialist covering ISO/IEC 42001 (AI Management System), 42005 (impact assessment), 23894 (AI risk), 27090 (AI security threats), the NIST AI RMF and its Generative AI Profile, and the EU AI Act risk tiers and timelines.",
+      "description": "Acts as an AI Governance and Assurance specialist covering ISO/IEC 42001 (AI Management System), 42005 (impact assessment), 23894 (AI risk), 27090:2026 (AI security threats), the NIST AI RMF and its Generative AI Profile, and the EU AI Act risk tiers and timelines.",
       "type": "skill-md",
       "url": "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md",
-      "digest": "sha256:ea4c6aeedaa0320b80ba5211bf32a4927a51d267d0d40b7a03c2aad9409f1bf1"
+      "digest": "sha256:6d835b88f9708ef2c802c8804be2ee7324935018256297f411f70df3c4373f65"
     },
     {
       "name": "ai-llm-engineering-rag",
@@ -237,7 +237,7 @@
       "description": "Acts as a Specialist in Security, Governance, Red Teaming, Weight Auditing, and Pentesting of AI Models (LLMs, SLMs, and Predictive Models). Covers mitigation and exploitation of Prompt Injection (direct and indirect), Jailbreaking, data poisoning, model inversion, RAG security, agentic tool abuse, digital weight auditing (safetensors vs pickle exploits with picklescan, trust_remote_code inspection), bias/toxicity evaluation (StereoSet, AdvBench), and full compliance with the OWASP GenAI LLM Top 10 (2026) and the OWASP Machine Learning Security Top 10.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
-      "digest": "sha256:5110f755d174ed01a709d73dc030fcd889031bdd18a6cd720410445f6370e85a"
+      "digest": "sha256:95c5845c76495cdb839734ff600ba19f9dd96b069e81caa83a659f60015629aa"
     },
     {
       "name": "ai-ml-architect",
@@ -265,7 +265,7 @@
       "description": "Acts as a Specialist in Voice Processing, Speech (STT/ASR), and Voice Synthesis (TTS) Security, covering the HAVOC model for voice-controlled devices, inaudible ultrasonic attacks, voice deepfakes, voice biometrics defense, and alignment with OWASP ML Top 10 and OWASP API Security.",
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md",
-      "digest": "sha256:8cf7135d4d2d97766b3f25d9f14dda9d7bfbfbe548279641c3c646b5b07e519f"
+      "digest": "sha256:0d1cddfab0d88fab9164697ea230cbc45a5fc78ba1113f16563443a988d286f1"
     },
     {
       "name": "antigravity-guide",
@@ -1497,7 +1497,7 @@
       "description": "Acts as a specialist auditor and ISMS/PIMS architect specialized in the entire ISO/IEC 27000 family, including ISO/IEC 27001:2022, 27002:2022, 27005, 27017, 27018, 27032, 27035, 27036, and ISO/IEC 27701.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/iso-27000-series/SKILL.md",
-      "digest": "sha256:9adbf4f0b30dedfd3d63992b850afb94b4bd51ce3ce1ecf2046cd480a0c7f12e"
+      "digest": "sha256:53c40095e3bcb2febd8d4884433ad047b36a7aad18a304d6b66164fd9f506d69"
     },
     {
       "name": "itdr-identity-threat-detection",
