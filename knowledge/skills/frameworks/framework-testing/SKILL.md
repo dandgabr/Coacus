@@ -19,6 +19,8 @@ The goal is to design, architect, and implement rigorous, balanced, and mathemat
 - **Failure**: An externally observable deviation between the behavior expected by the oracle and the system's actual output/result.
 
 ### 2. The Oracle Problem
+
+For visual and interaction assertions, use [rendered interface oracles](references/rendered-ui-oracles.md). Separate token/schema agreement, computed paint, geometry, sampled pixels and exercised behavior. Test the oracle with controlled defects; inventory coverage and a passing class-name assertion do not prove a readable or reachable interface.
 A **Test Oracle** is any mechanism capable of determining whether the output produced by the program under test is correct for a given input.
 - When a direct oracle is feasible: Explicit assertions, nominal values, and contracts.
 - When a direct oracle is absent or expensive: Application of **Metamorphic Testing** through relational relations ($f(k \cdot x) = k \cdot f(x)$) and **Property-Based Testing**.

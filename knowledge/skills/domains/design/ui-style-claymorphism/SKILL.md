@@ -204,7 +204,7 @@ A rounded container housing floating clay button tabs with spring indicator pill
 
 - **The Contrast Advantage Over Neumorphism:** Because claymorphic elements float with distinct colored card surfaces (`#E4DCFF`, `#FFB5BC`) over background substrates (`#F8F5EE`), card perimeter boundaries achieve clear visual separation.
 - **Text Legibility (WCAG 1.4.3):** Charcoal text (`#1F242D`) on pastel lavender and coral achieves contrast ratios exceeding 9.5:1, easily surpassing WCAG AAA (7:1).
-- **Non-Text Boundary Contrast (WCAG 1.4.11):** Outer drop shadows provide at least 3:1 luminance differential against light floors.
+- **Non-Text Boundary Contrast (WCAG 1.4.11):** Soft shadows do not guarantee a 3:1 boundary. Verify the actual perimeter or required state indicator against its surrounding floor, and strengthen a contour when necessary while retaining matte volume.
 - **Focus Rings:** High-visibility indigo outline with 4px offset (`outline: 3px solid #6366F1; outline-offset: 4px;`).
 
 ---
@@ -236,3 +236,6 @@ A rounded container housing floating clay button tabs with spring indicator pill
 
 - **Sibling 3D & Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - **Playful & Friendly Peers:** [ui-style-kawaii-pastel-soft](../ui-style-kawaii-pastel-soft/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Replace automatic clay contrast guarantees with checking inset edges, perimeter and pressed state against the real floor; strengthen a contour where needed while preserving inflated matte volume, pastel fills and instantaneous shadow feedback under reduced motion.

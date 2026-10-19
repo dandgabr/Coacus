@@ -87,3 +87,6 @@ An interactive, physics-driven aesthetic treating interface elements as viscous 
 ## 🔗 Integration with Other Skills
 
 - Sibling interactive styles: [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Put the filtered merging silhouettes on a decorative sibling behind unfiltered text/controls; retain discrete hit targets and focus outlines while visual droplets merge, and reset to stable rounded controls under reduced motion.

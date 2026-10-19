@@ -196,3 +196,6 @@ Dark Fantasy is an epic, visceral subgenre of fantasy that emphasizes dread, mor
 
 - Albrecht Dürer, *The Apocalypse & Knight, Death and the Devil* (Nuremberg, 1498–1513).
 - H.P. Lovecraft, *Supernatural Horror in Literature* (The Recluse, 1927).
+## Appearance and Interaction Verification
+
+Check the darkest tarnished gradient stop against the actual iron/stone backdrop and supply solid gilt ink for functional titles when needed; make ember drift decorative, scoped and static/off under reduced motion without brightening the grimdark substrate.

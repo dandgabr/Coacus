@@ -283,3 +283,6 @@ Risograph is a screen-based translation of the digital stencil duplicator invent
 - Luca Bogoni, *Risomania: The New Spirit of Printing* (Niggli Verlag, 2017).
 - Riso Kagaku Corporation, *Technical History of the Stencil Duplicator* (Tokyo, 2010).
 - John Z. Komurki, *Stationery Fever: From Paper Clips to Pencils and Everything in Between* (Prestel, 2016).
+## Appearance and Interaction Verification
+
+Use a verified ink pair for the small pink action label; keep overprint/misregistration in isolated decorative layers with stable reading areas and confirm ink overlays cannot repaint semantic text/focus in requested appearances.

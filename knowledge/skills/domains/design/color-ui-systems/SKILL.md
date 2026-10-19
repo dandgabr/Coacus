@@ -68,6 +68,8 @@ How color becomes architecture: tokens, roles, themes and the conventions that m
 
 ## ⚠️ Pitfalls
 
+For inherited surfaces, native controls or appearances that retain another theme's paint, use [theme surfaces and component states](references/theme-surface-states.md). Trace role, winning declaration and rendered paint; token agreement alone is insufficient. A second appearance need not change layout or add motion.
+
 - Components consuming primitive tokens; value-matching instead of role matching.
 - One token set per theme instead of one role set with re-bound values.
 - Reassigning semantic status colors mid-flight; custom colors shipped without dark/contrast variants.

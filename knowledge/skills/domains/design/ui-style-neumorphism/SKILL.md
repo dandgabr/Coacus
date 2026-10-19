@@ -91,7 +91,7 @@ description: "Provides the canonical Neumorphism & Soft UI design style (2019-20
   --neu-text-primary: #1E293B;
   --neu-text-secondary: #475569;
   --neu-accent-primary: #2563EB;
-  --neu-border-remedy: 1.5px solid rgba(148, 163, 184, 0.4);
+  --neu-border-remedy: 1.5px solid #64748B;
 
   /* Typography */
   --neu-font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
@@ -150,7 +150,7 @@ An interactive action button that depresses mechanically from extruded to inset 
 .neu-btn {
   background: var(--neu-base);
   color: var(--neu-text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: var(--neu-border-remedy);
   border-radius: var(--neu-radius-pill);
   padding: 0.75rem 1.8rem;
   font-family: var(--neu-font-family);
@@ -185,7 +185,7 @@ A circular extruded wheel featuring an engraved indicator notch and subtle radia
 
 - **The Fundamental Failure of Pure Neumorphism:** Because pure neumorphism relies solely on subtle gray shadows on a gray background, borders between elements and the background achieve contrast ratios under 1.5:1—completely failing WCAG 1.4.11 (Non-text Contrast, requiring 3:1). Low-vision users and users in bright sunlight cannot perceive buttons or inputs.
 - **The Remediation Protocol:**
-  1. **Add Boundary Definition:** Apply a subtle 1px border (`rgba(148, 163, 184, 0.4)` or higher) around every interactive element.
+  1. **Add Boundary Definition:** Use a boundary or state indicator whose contrast is verified against the actual substrate; a translucent gray stroke is not automatically remediation. The example uses solid `#64748B` on `#E0E5EC`, retaining paired soft shadows around it.
   2. **High-Contrast Text:** Set all body and title text in dark slate (`#1E293B`), ensuring 10.5:1 against the `#E0E5EC` ground (exceeding WCAG AAA 7:1).
   3. **High-Chroma Active States:** When a button is pressed or active, do not rely on shadow alone; introduce a distinct chromatic indicator (e.g. blue LED dot or colored text).
 - **Focus Rings:** Unambiguous 3px solid accent outline (`outline: 3px solid #2563EB; outline-offset: 3px;`).
@@ -219,3 +219,6 @@ A circular extruded wheel featuring an engraved indicator notch and subtle radia
 
 - **Sibling Material Styles:** [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - **Tactile & Hardware Peers:** [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md), [ui-style-cassette-futurism](../ui-style-cassette-futurism/SKILL.md).
+## Appearance and Interaction Verification
+
+Replace subtle-border-as-remediation assurance with a verified boundary/indicator pair at rest, checked, focus and disabled states; update push-button example to follow it and recalculate both paired shadows and ink if an alternate substrate is requested.

@@ -98,7 +98,7 @@ npm test 2>&1 | grep 'DEBUG git init'
 
 If something appears during tests but you don't know which test:
 
-Use the bisection script `find_polluter.py` in this directory:
+Use the sequential search script `find_polluter.py` in this directory, from an isolated test workspace where the unwanted path does not already exist. Select the actual project runner with `-- <runner> ...` when npm is not appropriate. A preexisting target, no matches or runner failure is inconclusive, not clean:
 
 ```bash
 python3 ./find_polluter.py '.git' 'src/**/*.test.ts'

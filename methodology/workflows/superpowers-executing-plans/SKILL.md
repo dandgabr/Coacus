@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Executing Plans
 
+For interface work, preserve revision-scoped evidence and fixture fidelity through [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md). Keep captures and tool state out of repeated product snapshots, preserve evidence required by tests, and make scratch storage configurable. Resume valid work after an environment interruption without claiming that skipped checks passed. A PR-only request ends at a reviewable PR, not a merge or publication.
+
 Execute the plan yourself, task by task, in this session: no implementer
 subagent per task, no reviewer per task. One fresh-context review of the
 whole branch at the end.
@@ -25,7 +27,7 @@ brief is the spec, the ledger is your memory, TDD is the per-task gate, and
 the final reviewer is the second pair of eyes.
 
 **Core principle:** The plan already did the thinking. Execute it exactly,
-prove each step with a test you watched fail and then pass, and leave a
+verify each step with evidence appropriate to its claim, and leave a
 record that survives your own forgetting.
 
 **Narration:** between tool calls, narrate at most one short line — the
@@ -43,11 +45,7 @@ as `Ruling: <what you decided> — <why> — <what it costs if wrong>`, and keep
 going. Deviating from the plan without a ledgered ruling is a decision made
 in secret.
 
-Four things stop you, and only these: an irreversible or destructive
-operation; a security-sensitive action; a side effect outside this worktree
-that norms say you ask about first (a merge, a push to a shared branch, a
-publish); and a plan so broken that every path forward is a guess. For
-those, stop and ask.
+Stop when required authorization is missing for a consequential action, the requested scope materially changes, or the plan cannot support a defensible next step. Existing explicit authorization persists; complete authorized preparation and actions without asking again. A PR request does not authorize merging, global installation or publication.
 
 ## When to Use
 
@@ -288,19 +286,11 @@ because the spec was silent has graded the spec, not the effect. Then:
   the fix pass, and never become rulings — a ruling is a decision about a
   conflict, not a note that you declined a polish suggestion.
 
-Fix the Critical and Important findings yourself — you are the
-implementer here — in ONE pass. Each fix is verified by TDD, not by a
-second reviewer: write the test that reproduces the finding, watch it
-fail, make it pass, then run the whole suite. Record each in the ledger as
-`Final: fixed <finding> — <test name> RED→GREEN, suite <N>/<N>`. A fix
-without a test that failed first is not verified; a suite that is not
-green after the pass means the pass is not over. Do not dispatch a
-re-review: it would re-read a diff whose covering tests already answer
-"addressed" and whose suite run already answers "broke nothing".
+Fix consequential findings and record the evidence for each. For implementation defects, reproduce the failure and verify the correction. For prose or guidance, use source reconciliation and the relevant behavior probes without inventing a failing baseline. Rerun invalidated gates; request renewed independent review when a fix changes the architecture, acceptance claim or review assumptions. Reuse unaffected evidence with its revision and scope recorded.
 
 A finding you decide not to fix is a ruling — `Final: Ruling: <finding> —
 <why the code stands> — <cost if wrong>` — and reaches your human partner
-in the rulings list. There is no second fix pass.
+in the rulings list. Continue until consequential findings are resolved or explicitly reported with their remaining risk.
 
 ## Finish
 

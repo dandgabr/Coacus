@@ -186,3 +186,6 @@ Vaporwave is an internet-native microgenre and aesthetic movement originating ar
 
 - Grafton Tanner, *Babbling Corpse: Vaporwave and the Commodification of Ghosts* (Zero Books, 2016).
 - Ramona Xavier, *Floral Shoppe* (Beer on the Rug, 2011).
+## Appearance and Interaction Verification
+
+Explain dark inset screen pods as a deliberate vaporwave dialect rather than implicit daylight palette coverage; retain classic window glyphs while increasing actual operable hit areas and allowing localized title/action text to wrap; stop decorative tape warble with complete static content.

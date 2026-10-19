@@ -98,6 +98,9 @@ description: "Provides the canonical Glassmorphism & Spatial UI style (2020-pres
   --glass-text-light: #0F172A;
   --glass-text-dark: #F8FAFC;
   --glass-radius: 16px;
+  --glass-reading: rgba(255, 255, 255, 0.94);
+  --glass-ink: #0F172A;
+  --glass-solid: #FFFFFF;
 }
 ```
 
@@ -133,9 +136,10 @@ A multi-layered spatial card featuring backdrop blur, 1px specular rim, and inte
   <p class="glass-text">Neural engine throughput sustained at 18.4 TFLOPS across optical lanes.</p>
 </article>
 ```
+The card uses a dense reading layer over its glass substrate. A host dark appearance maps `--glass-reading` to `rgba(15,23,42,.96)`, `--glass-ink` to `#F8FAFC` and `--glass-solid` to `#0F172A`; verify both over the intended backdrop.
 ```css
 .glass-card {
-  background: var(--glass-light-bg);
+  background: linear-gradient(var(--glass-reading), var(--glass-reading)), var(--glass-light-bg);
   backdrop-filter: blur(var(--glass-blur-md)) saturate(180%);
   -webkit-backdrop-filter: blur(var(--glass-blur-md)) saturate(180%);
   border: 1px solid var(--glass-rim-subtle);
@@ -144,8 +148,11 @@ A multi-layered spatial card featuring backdrop blur, 1px specular rim, and inte
   border-radius: var(--glass-radius);
   box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   padding: 1.75rem;
-  color: var(--glass-text-light);
+  color: var(--glass-ink);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card { background: var(--glass-solid); }
 }
 .glass-card:hover {
   transform: translateY(-2px);
@@ -160,7 +167,7 @@ An interactive action button finished in frosted white with crisp specular rim.
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: var(--glass-text-light);
+  color: var(--glass-ink);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 9999px;
   padding: 0.7rem 1.6rem;
@@ -220,3 +227,6 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 
 - **Sibling Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - **Gradient & Optical Peers:** [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).
+## Appearance and Interaction Verification
+
+Add an explicit reading scrim to the example and pair its ink with light/dark glass; verify the composite over changing backdrop and the opaque no-backdrop-filter fallback, retaining frosted rim and spatial depth around the reading field.

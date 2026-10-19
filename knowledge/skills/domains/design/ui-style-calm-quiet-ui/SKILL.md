@@ -81,6 +81,7 @@ Calm UI simulates natural ambient daylight through matte, unvarnished organic te
   --calm-text-muted: oklch(0.60 0.015 65);
 
   /* Restrained Botanical Accents */
+  --calm-on-sage: #FFFFFF;
   --calm-accent-sage: oklch(0.55 0.06 150);  /* Muted Forest Sage */
   --calm-accent-clay: oklch(0.58 0.08 45);   /* Warm Terracotta */
   --calm-accent-mist: oklch(0.62 0.05 220);  /* Nordic Mist Blue */
@@ -98,6 +99,7 @@ Calm UI simulates natural ambient daylight through matte, unvarnished organic te
 
 [data-theme="dark"] {
   /* Warm Dark Sanctuary */
+  --calm-on-sage: #18251C;
   --calm-bg-canvas: oklch(0.18 0.01 65);     /* Warm Peat Charcoal #1E1C1A */
   --calm-bg-surface: oklch(0.22 0.01 65);    /* Soft Dark Slate */
   --calm-bg-subtle: oklch(0.26 0.012 65);
@@ -128,7 +130,7 @@ Typography prioritizes continuous reading comfort and cognitive ease:
 
 - **Gentle State Shifts:** Transitions take `250ms` to `350ms` with gentle decelerations (`var(--calm-ease)`), confirming state without sensory jarring.
 - **Sensory Notification Discipline:** Notifications arrive in silence. No audio alerts, no vibrating alarms. Information sits calmly in a designated digest tray for intentional retrieval.
-- **Ambient Dwell Reveals:** Secondary controls fade from `opacity: 0.2` to `opacity: 1` only when the pointer lingers near them, keeping the reading sanctuary free of buttons during writing.
+- **Ambient Dwell Reveals:** Secondary controls fade from `opacity: 0.2` to `opacity: 1` when the pointer lingers, with full visibility on keyboard focus and an always-discoverable touch/no-dwell fallback. Do not make essential actions depend on pointer proximity.
 
 ---
 
@@ -224,7 +226,7 @@ Typography prioritizes continuous reading comfort and cognitive ease:
 
 .calm-btn {
   background-color: var(--calm-accent-sage);
-  color: #FFFFFF;
+  color: var(--calm-on-sage);
   border: none;
   font-family: "Source Sans 3", sans-serif;
   font-size: 13px;
@@ -290,3 +292,6 @@ Typography prioritizes continuous reading comfort and cognitive ease:
 
 - Direct philosophical ally to [ui-style-nordic](../ui-style-nordic/SKILL.md) (hygge warmth and natural materials).
 - Contrasts with [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) and [ui-style-glitch](../ui-style-glitch/SKILL.md) by eliminating synthetic chaos and high sensory stimulation.
+## Appearance and Interaction Verification
+
+Keep secondary controls discoverable through keyboard focus and touch, with a stable fallback when dwell is unavailable; pair button foreground with sage in both modes rather than assuming white remains legible as sage lightens.

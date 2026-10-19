@@ -273,3 +273,6 @@ Constructivism is an early 20th-century avant-garde movement founded in post-rev
 - Christina Lodder, *Russian Constructivism* (Yale University Press, 1983).
 - Aleksandr Rodchenko & Varvara Stepanova, *The Future Is Our Only Goal* (Prestel, 1991).
 - El Lissitzky, *About Two Squares: A Suprematist Tale in Six Constructions* (1922).
+## Appearance and Interaction Verification
+
+Separate wedge/diagonal clipping from reading and focus owners; check rotated long titles in actual panel width and create a cream reading plane where a red wedge crosses ink, preserving hard geometric thrust and thick structural bars.

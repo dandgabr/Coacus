@@ -169,3 +169,6 @@ Dungeon Synth is a musical and visual subgenre emerging in the early 1990s from 
 
 - Mortiis, *Født til å herske* (Cold Meat Industry, 1994).
 - Dungeon Synth Fanzines Archive, *The Cryptic Whisper* (1995–1999).
+## Appearance and Interaction Verification
+
+Check the hover label against moss fill and retain bone text or adjust moss if required; stop candle variation under reduced motion, preserving crypt darkness and rough ink/stone instead of replacing them with glossy fantasy ornament.

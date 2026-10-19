@@ -233,3 +233,6 @@ A progress bar rendered with mechanical halftone screening and a physical needle
 
 - **Sibling Machine Age Styles:** [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-art-deco](../ui-style-art-deco/SKILL.md).
 - **High-Contrast & Noir Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-analog-newspaper-broadsheet](../ui-style-analog-newspaper-broadsheet/SKILL.md).
+## Appearance and Interaction Verification
+
+Choose focus ink separately on tobacco dossiers and oil-black chassis, and inspect label paint over venetian stripes/chrome bands; retain both optimistic ivory/streamline and grim gunmetal schools rather than forcing one polarity.

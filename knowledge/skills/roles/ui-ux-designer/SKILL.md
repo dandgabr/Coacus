@@ -15,6 +15,8 @@ This skill empowers the artificial intelligence to act as a **User Experience (U
 Generative models suffer from **Regression to the Statistical Mean**, producing the most probable average layout from the training corpus (2019–2024). This resulted in the *"Sea of Sameness"*: sites that look like empty shells of recycled templates.
 
 ### 1.2. The Aesthetic Veto List (Banned Defaults)
+
+Interpret these as warnings about unexamined defaults within the chosen product and visual language. A deliberate gradient, monochrome, historical surface or expressive typography is not automatically a defect. Preserve functional semantics, rendered legibility and the style's distinguishing signals. For state and appearance repairs, use [rendered interface verification](../../engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md) and [interface state lifecycle](../frontend-developer/references/interface-state-lifecycle.md).
 When conceiving interfaces, it is **STRICTLY FORBIDDEN** to fall into the following AI clichés:
 1. ❌ **Generic Neon Gradients**: Avoid diagonal blue-to-purple/indigo gradients (`from-blue-500 to-purple-500` / "Tailwind Indigo") spread across headings and dark cards.
 2. ❌ **The Lazy Centered Hero**: Forbidden to resort to the overused formula of: pill badge with a ✨ star emoji (*"Transform your workflow with AI-powered XYZ"*) + vague subtitle + neon-glow button.
@@ -25,8 +27,8 @@ When conceiving interfaces, it is **STRICTLY FORBIDDEN** to fall into the follow
 
 ### 1.3. Pillars of Human Art Direction (Human Craft)
 - **The Power Couple (Typographic Tension)**: Pair a high-character Display font (*Instrument Serif*, *Clash Display*, *Syne*, *Fraunces*, *Denton*, *Cabinet Grotesk*) with a neutral, legible, functional sans-serif (*Satoshi*, *Geist*, *Switzer*, *General Sans*).
-- **Monumental Scale and Contrast**: Combine epic-sized headings (80px to 140px) with technical mono micro-typography (10px to 12px uppercase with widened tracking of `0.08em` to `0.12em`).
-- **"Exhale" Palettes & Single-Accent**: Adopt calm, sophisticated chromatic bases (charcoal `#0C0D0E`, off-whites `#F9F8F6`, earth tones, slate, or neo-mint) and reserve vibrant colors for a single focal highlight point (*single-accent* on critical CTAs).
+- **Purposeful Type Hierarchy**: Use monumental display scale when the content and available space support it. Operational interfaces may need compact headings and readable metadata; verify actual glyph extents and text expansion.
+- **Purposeful Palette**: A calm base and single accent is one option. Preserve the chosen style's multiple primaries, grayscale, pure black or vivid fields when intentional; use semantic roles and verified painted contrast.
 - **Controlled Asymmetry**: Break the monotony of boxes with asymmetric 12-column grids (e.g., a 7:5 Hero-Anchor pattern, Tetromino layouts, intentional layer overlap, and controlled column breaking).
 - **Tactile Textures and Physical Imperfection**: Incorporate sensations of real materiality through subtle Perlin noise (via CSS/SVG `<feTurbulence>` at 0.04-0.06 opacity), analog *film grain*, or ultra-thin 1px lines (*hairline borders*).
 - **Product-Forward Design**: In the hero, show the real interface in action with credible, business-specific data instead of empty phrases and 3D abstractions.
@@ -116,7 +118,7 @@ When finalizing the design and handing it off to the [frontend-developer](../fro
 2. **Complete State Matrix per Component**:
    - `Default` | `Hover` | `Focus-visible` | `Active/Pressed` | `Disabled` | `Loading` | `Skeleton`.
 3. **Motion and Physics Specification**:
-   - For animations, specify spring physics values (*stiffness*, *damping*, *mass*) instead of static linear durations.
+   - Specify the animation's purpose and complete reduced-motion state. Supply duration/easing or spring parameters as appropriate to the selected interaction; a static state may be sufficient.
    - Provide explicit alternatives for users with `prefers-reduced-motion: reduce`.
 4. **Alignment with Business and Quality**:
    - Validate criteria with the [product-owner](../product-owner/SKILL.md).

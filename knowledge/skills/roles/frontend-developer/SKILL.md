@@ -14,9 +14,8 @@ This skill empowers the artificial intelligence to act as a **Senior Frontend So
 The strongest signal of code generated uncritically by AI in the frontend is the use of standardized templates with no customization of design tokens. The Design Engineer breaks this homogenization by applying the following practices:
 
 ### 1.1. De-templatization Rules for Tailwind CSS and shadcn/ui
-1. **Never Import Raw Components Directly Into Pages**:
-   - Do not use the stock `<Button>`, `<Card>`, or `<Badge>` from shadcn directly in final screens.
-   - Build **bespoke product wrappers** (e.g., `<AppButton>`, `<MetricCard>`, `<EditorialHero>`) that encapsulate semantic tokens and brand behaviors.
+1. **Use Product Components Where They Carry Product Decisions**:
+   - Reuse accessible components when their behavior and styling fit. Add product wrappers when they centralize real tokens, semantics or behavior; do not wrap every stock component merely to rename it.
 2. **Total Token Redefinition in `globals.css`**:
    - Override shadcn's `:root` and `.dark` CSS variables. Eliminate default colors like `indigo-500` and the overused rounded radii (`radius: 0.5rem`).
    - Define surfaces by luminance (*Surface Ladders*) and tailor-made palettes:
@@ -42,8 +41,10 @@ The strongest signal of code generated uncritically by AI in the frontend is the
        --radius-base: 2px;
      }
      ```
-3. **Replacing Purple/Blue Gradients with Tactile Monochrome and Single-Accent**:
-   - Adopt solid, clean palettes with a single luminous accent tone (e.g., technical emerald green, phosphor amber, or pure white on a charcoal background).
+3. **Choose the Palette for the Product**:
+   - A restrained task surface may benefit from a small accent budget. A historical, chromatic or expressive style can intentionally use other palettes. Correct unexamined defaults and unreadable paint without converting every interface to monochrome.
+
+For complete surfaces, native controls and appearance states, use [theme surface states](../../domains/design/color-ui-systems/references/theme-surface-states.md). For reversible language changes and async ownership, use [runtime localization](references/runtime-localization.md) and [interface state lifecycle](references/interface-state-lifecycle.md). These procedures apply without requiring a particular component library.
 
 ### 1.2. Performant Implementation of Analog Noise (CSS / SVG Grain)
 Breaking digital sterility comes from applying a light Perlin noise layer that does not tax processing or block user interaction:
@@ -85,7 +86,7 @@ Breaking digital sterility comes from applying a light Perlin noise layer that d
 
 ## 🎞️ 2. Animation Physics & Microinteractions with Framer Motion
 
-Avoid mechanical, standardized transitions based on linear time (`transition: all 0.3s ease`). Adopt **real spring physics**:
+Choose explicit properties and timing appropriate to the interaction. Springs can support interruptible movement; duration-based easing can suit fades and narrative steps. Do not add motion merely to replace a default or override a deliberately static style.
 
 ### 2.1. Calibrating Natural Springs (Spring Physics)
 In professional interfaces, eliminate the excessive "bounce" that conveys a childish feel. Calibrate the critical damping to give motion a firm, fast character:

@@ -32,7 +32,7 @@ Interfaces assembled from cut, pasted, overlapped, and juxtaposed physical fragm
 - **Paper & Stock Variety:** Layered paper backgrounds (aged newsprint `#E8E6E1`, kraft cardboard, graph paper, ledger sheets).
 - **Typography:** Anarchic typographic pairings (the ransom-note effect: pairing Didot serifs, gothic blackletter, monospaced typewriter fonts, and bold grotesques in single titles).
 - **Torn Edges & Tape:** Adhesive masking tape strips, paperclips, postal stamps, and torn paper deckles (`clip-path: polygon(...)`).
-- **Controlled Tilts:** Every container is slightly tilted (`transform: rotate(-1.5deg)` to `+2deg`), simulating papers laid casually on a desk.
+- **Controlled Tilts:** Selected decorative fragments may be slightly tilted (`transform: rotate(-1.5deg)` to `+2deg`), simulating papers laid casually on a desk. Keep dense reading panels and controls upright where tilt harms line length or target clearance.
 - **Depth:** Layered physical drop shadows (`box-shadow: 6px 6px 0 rgba(0,0,0,0.25)`).
 
 ---
@@ -104,3 +104,6 @@ body { background: var(--scrap-bg); color: var(--scrap-ink); }
 ## 🔗 Integration with Other Skills
 
 - Sibling expressive styles: [ui-style-risograph](../ui-style-risograph/SKILL.md), [ui-style-hand-drawn-sketch](../ui-style-hand-drawn-sketch/SKILL.md), [ui-style-constructivism](../ui-style-constructivism/SKILL.md).
+## Appearance and Interaction Verification
+
+Scope paper tilt to fragments that retain readable line lengths and accessible targets; straighten or reflow dense/long fragments in narrow owners while retaining torn paper, mixed-media hierarchy and static overlaps where legible.

@@ -28,7 +28,7 @@ A mutation operator is a grammatical code-transformation rule.
 | **ROR** | Relational Operator Replacement | Replaces relational operators | `if (x >= limit)` | `if (x > limit)` or `if (x == limit)` |
 | **COR** | Conditional Operator Replacement | Changes boolean operators | `if (a && b)` | `if (a || b)` |
 | **LCR** | Logical Connector Replacement | Inverts boolean values / bits | `flag = !ready;` | `flag = ready;` |
-| **SDL** | Statement Deletion | Deletes an executable statement | `calculate_discount();` | `/* removido */` |
+| **SDL** | Statement Deletion | Deletes an executable statement | `calculate_discount();` | `/* removed */` |
 | **UOI** | Unary Operator Insertion | Inserts unary operators | `return value;` | `return -value;` or `return ++value;` |
 
 ### 2.2. Mutant Classification
@@ -90,4 +90,4 @@ If $f(x)$ computes a function under input $x$, we derive a transformed input $x'
 3. **Cryptographic Functions / Hashes**:
    - *Base input*: Message $M_1$.
    - *Metamorphic input*: Message $M_2 = M_1 \text{ with 1 bit flipped}$.
-   - *Relation (Avalanche Effect)*: $\text{HammingDistance}(Hash(M_1), Hash(M_2)) \approx \frac{\text{Tamanho do Hash}}{2}$.
+   - *Relation (Avalanche Effect)*: $\text{HammingDistance}(Hash(M_1), Hash(M_2)) \approx \frac{\text{Hash Bit Length}}{2}$.

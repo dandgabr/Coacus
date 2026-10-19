@@ -72,7 +72,9 @@ Material You replaces physical sun-casting with ambient surface illumination and
 
 ---
 
-## 🏷️ Complete Design Tokens
+## 🏷️ Illustrative Design Tokens
+
+These hand-picked OKLCH values illustrate role wiring; they are not an HCT-generated scheme or a contrast guarantee. Generate production roles with the selected engine and verify rendered pairs including state layers.
 
 ```css
 :root {
@@ -119,6 +121,14 @@ Material You replaces physical sun-casting with ambient surface illumination and
 
 [data-theme="dark"] {
   /* Dark Mode Inversions */
+  --md-sys-color-secondary: oklch(0.82 0.06 250);
+  --md-sys-color-on-secondary: oklch(0.20 0.04 250);
+  --md-sys-color-secondary-container: oklch(0.32 0.06 250);
+  --md-sys-color-on-secondary-container: oklch(0.92 0.03 250);
+  --md-sys-color-tertiary: oklch(0.82 0.10 320);
+  --md-sys-color-on-tertiary: oklch(0.20 0.06 320);
+  --md-sys-color-tertiary-container: oklch(0.32 0.10 320);
+  --md-sys-color-on-tertiary-container: oklch(0.92 0.04 320);
   --md-sys-color-primary: oklch(0.80 0.12 250);
   --md-sys-color-on-primary: oklch(0.20 0.15 250);
   --md-sys-color-primary-container: oklch(0.35 0.18 250);
@@ -313,7 +323,7 @@ M3 specifies a rigorous 15-role typographic system:
 
 ## ♿ Accessibility & Environmental Contrast
 
-- **Mathematical Contrast Guarantees in HCT:** The HCT model guarantees that any pairing of `Tone 90` (light background) with `Tone 30` (dark text) yields at least **7:1** contrast (WCAG AAA). Similarly, `Tone 80` over `Tone 20` yields **5.5:1** (WCAG AA).
+- **Generated Tone Pairs:** HCT tone supports contrast reasoning for generated colors. Do not transfer numerical guarantees to unrelated OKLCH samples or translucent state composites; calculate the delivered foreground/background pairs.
 - **Dynamic Palette Safeguards:** When extracting colors from arbitrary wallpapers, low-chroma images (grey gravel or beige wood) can produce washed-out palettes. The Monet algorithm injects a minimum chroma floor (Chroma ≥ 48 for Primary) to prevent contrast collapse.
 - **Focus Indicators:** Interactive components must display an explicit high-contrast focus ring (`outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px`).
 
@@ -344,3 +354,6 @@ M3 specifies a rigorous 15-role typographic system:
 
 - Direct successor to [ui-style-flat-design](../ui-style-flat-design/SKILL.md) (Flat 2.0).
 - Contrasts with [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) and [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) by trading monochrome discipline for organic, playful personalization.
+## Appearance and Interaction Verification
+
+Label hand-picked OKLCH values as illustrative rather than HCT-generated guarantees; complete secondary/tertiary/on-state role pairs in requested appearances and verify tinted/ripple layers and chips in rendered states.

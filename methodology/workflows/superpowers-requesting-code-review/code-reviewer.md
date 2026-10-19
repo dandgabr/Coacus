@@ -196,3 +196,7 @@ Subagent (general-purpose):
 
 **Reasoning:** Core implementation is solid with good architecture and tests. Important issues (help text, date validation) are easily fixed and don't affect core functionality.
 ```
+
+## Execution boundary
+
+Keep the submitted working tree read-only. If the request explicitly includes mutation replay, use only an authorized disposable copy; report the exact scope and actual result, including unavailable execution. Do not infer a killed mutant from reasoning about its likely outcome.

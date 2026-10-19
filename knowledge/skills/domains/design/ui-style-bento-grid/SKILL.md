@@ -279,3 +279,6 @@ Bento grids utilize geometric sans-serif typography with strong scale differenti
 
 - Differentiated from [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md) through multi-span asymmetry and heterogeneous content modalities.
 - Integrates with [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) for dark-first product landing pages and [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) for mathematical grid discipline.
+## Appearance and Interaction Verification
+
+Bound clipping to visual artwork, keep headings/code and interactive controls reachable, and re-evaluate cell spans/padding/min-height by available cell width and viewport height while retaining uniform gutters and heterogeneous spans.

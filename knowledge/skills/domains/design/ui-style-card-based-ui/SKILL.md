@@ -125,7 +125,7 @@ Card systems leverage ambient occlusion and directional key lighting to communic
 ## 🔤 Typography & Lettering Architecture
 
 Card typography enforces tight vertical rhythms:
-- **Card Title:** `font-weight: 600`, `16px` to `18px`, `letter-spacing: -0.015em`, line-height `1.3`. Limited to 2 lines via `-webkit-line-clamp: 2`.
+- **Card Title:** `font-weight: 600`, `16px` to `18px`, `letter-spacing: -0.015em`, line-height `1.3`. A two-line clamp is optional when the complete title remains discoverable through an accessible detail route; otherwise wrap the title and let the card grow.
 - **Card Eyebrow / Category Tag:** `font-weight: 700`, `11px`, `letter-spacing: 0.06em`, uppercase, color `--card-text-muted`.
 - **Card Body Text:** `font-weight: 400`, `13px` to `14px`, line-height `1.45`, color `--card-text-body`.
 - **Action Links & Buttons:** `font-weight: 600`, `13px`, text-decoration none.
@@ -320,3 +320,6 @@ Card typography enforces tight vertical rhythms:
 
 - Direct sibling to [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md) (homogeneous grid vs heterogeneous multi-span).
 - Integrates with [ui-style-material-you](../ui-style-material-you/SKILL.md) and [ui-style-flat-design](../ui-style-flat-design/SKILL.md).
+## Appearance and Interaction Verification
+
+Make two-line title trimming conditional on a discoverable full title/detail route, allow long/localized action rows to wrap, and scope media clipping so card focus/secondary actions remain visible above the expanded-link overlay.

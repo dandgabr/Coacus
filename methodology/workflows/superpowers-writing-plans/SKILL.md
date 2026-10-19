@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Writing Plans
 
+When extending an existing plan, reconcile maintained, superseded and excepted requirements rather than appending new gates beside obsolete ones. Distinguish required evidence from sampling and capability limits using [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md). A request to create a plan is not an instruction to implement it; when implementation is explicitly authorized later, preserve that authorization without asking the same permission again.
+
 ## Overview
 
 Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
@@ -190,11 +192,7 @@ The roster is session state, not plan content. The plan file stays as written.
 
 ## Execution Handoff
 
-After saving and self-reviewing the plan, link it for your human partner
-to read. If they have already explicitly supplied an execution method, ask
-them to review the plan and confirm it captures what they want; wait for that
-review before implementation, then use the preserved method. Otherwise, ask
-them to review the plan and choose an execution method before implementation.
+After saving and self-reviewing the plan, link it for your human partner to read. Preserve existing authorization and the selected execution method. If the user already requested execution within this scope, proceed. Ask for review or an execution choice only when that decision is genuinely unresolved; do not add a second approval gate to already authorized work.
 
 **When no execution method has already been supplied:**
 

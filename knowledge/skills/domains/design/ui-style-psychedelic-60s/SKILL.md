@@ -292,3 +292,6 @@ Typography in psychedelic design is expressive, swollen, and elastic:
 
 - Direct counterculture heir to [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) and colorful predecessor to [ui-style-synthwave](../ui-style-synthwave/SKILL.md).
 - Diametrically opposed to [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) and [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md).
+## Appearance and Interaction Verification
+
+Keep optical complements in intended poster ornament; test melting headline extents and complete labels at font-load, translation and hover distortion; verify button ink at orange/magenta gradient extrema and keep a stable reading backing.

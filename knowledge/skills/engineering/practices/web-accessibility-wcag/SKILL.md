@@ -9,6 +9,8 @@ This skill guides the AI to build interfaces that work for disabled users by con
 
 Resolve the current WCAG 2.x publication and the WAI-ARIA specification from the W3C before pinning levels or criteria.
 
+For layered surfaces and appearance changes, use [painted contrast audits](../../../domains/design/color-contrast-accessibility/references/painted-contrast-audits.md). Validate native and custom control states, not only theme tokens. A sampled visual scan, a zero-error runtime check and a conformance assessment establish different claims; keep their coverage and unsupported cases explicit.
+
 ---
 
 ## 🧭 When to Activate

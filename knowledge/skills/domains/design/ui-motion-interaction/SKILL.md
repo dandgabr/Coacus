@@ -12,7 +12,7 @@ tags:
 
 # UI Motion & Tactile Interaction Engineering
 
-Motion is not visual ornament; it is a spatial and temporal feedback system that communicates state, causality, and intent. In modern digital interfaces, static state changes feel artificial. Tactile motion grounded in physical spring dynamics transforms flat digital surfaces into responsive, tangible tools.
+Motion is not visual ornament; it is a spatial and temporal feedback system that communicates state, causality, and intent. Static changes are appropriate when clarity, accessibility or the visual language calls for them. Use tactile motion when it improves feedback rather than treating animation as evidence of quality.
 
 ---
 
@@ -28,13 +28,15 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 
 ## 🏎️ Physics-Based Motion vs. Easing Curves
 
-Traditional UI animation relied on fixed-duration cubic-bezier curves. Modern high-craft interfaces prioritize **spring physics** because springs preserve momentum, adapt fluidly to user interruption, and eliminate artificial deceleration halts.
+Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [scroll narrative modes](references/scroll-narrative-modes.md). These references distinguish visible output from state markers and frame processing from callback cadence.
+
+Duration-based easing suits many transitions. Springs can preserve momentum during interruptible movement; use the approach appropriate to the task and the actual implementation rather than assigning quality by technique alone.
 
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |
 | :--- | :--- | :--- |
 | **Parameters** | `duration`, `cubic-bezier(x1, y1, x2, y2)` | `stiffness` ($k$), `damping` ($c$), `mass` ($m$) |
-| **Interruption** | Resets or snaps awkwardly mid-flight | Preserves velocity and redirects naturally |
-| **Tactile Feel** | Mechanical and scripted | Organic, elastic, and physical |
+| **Interruption** | Retargeting continuity depends on the transition implementation | Can preserve velocity when the solver carries current state |
+| **Tactile Feel** | Determined by curve, duration, distance and context | Determined by solver parameters, distance and context |
 | **Best For** | Background fades, page opacities, color shifts | Component scaling, modals, drag-and-drop, cursor pull |
 
 ### Standard Spring Presets for Design Systems
@@ -55,10 +57,10 @@ Traditional UI animation relied on fixed-duration cubic-bezier curves. Modern hi
 ### 1. The Multi-State Component Continuum
 Every interactive component must define a coherent continuum across all physiological states:
 1. **Rest / Default:** Semantic baseline color, elevation, and opacity.
-2. **Hover:** Immediate micro-lift (`translateY(-1px to -2px)`), subtle surface luminosity gain, or border glow.
-3. **Active / Pressed:** Physical compression (`scale(0.97–0.98)` or `translateY(1px)`), increased shadow compactness.
+2. **Hover:** An appropriate visible cue; optional lift, luminance change or glow must preserve hit areas and reading ink.
+3. **Active / Pressed:** An appropriate pressed cue; physical compression is optional and must not displace essential content.
 4. **Focus-Visible:** High-contrast outline offset (`outline: 2px solid var(--accent); outline-offset: 2px;`), never suppressed without replacement.
-5. **Disabled:** Desaturated, reduced opacity (`0.4–0.5`), `pointer-events: none;`, `cursor: not-allowed;`.
+5. **Disabled:** Expose the correct disabled semantics and recognizable state. Visual attenuation depends on the surrounding surface; pointer suppression alone does not disable keyboard activation or communicate state.
 
 ### 2. Spotlight & Cursor-Tracking Borders
 - **Mechanism:** Mouse position is tracked locally via pointer events and mirrored into CSS custom properties (`--mouse-x`, `--mouse-y`) on the target element.
@@ -113,21 +115,18 @@ Every micro-interaction consists of four discrete stages:
 
 ## ♿ Accessibility, Motion Sickness & Performance
 
-1. **Hardware-Accelerated Properties Only:** Animate strictly `transform` and `opacity`. Never animate layout-triggering properties (`width`, `height`, `top`, `left`, `margin`, `padding`), which cause browser reflow and frame drops.
-2. **The 60/120fps Frame Budget:** Each frame must render in under $16.6\text{ms}$ ($8.3\text{ms}$ on 120Hz displays). Use `will-change: transform` conservatively on frequently animated layers.
+1. **Control rendering cost:** Prefer compositor-friendly properties when they achieve the effect. Layout-affecting movement needs measurement and a reason; neither a property name nor `will-change` proves hardware acceleration or acceptable cost.
+2. **Frame budget evidence:** Derive the budget from the target display and product. Distinguish callback cadence, frame processing, aggregated work and software versus hardware rendering. Use `will-change` conservatively and verify the measured workload.
 3. **WCAG 2.2 Criterion 2.2.2 & 2.3.3 (Motion Conformance):**
    - Strictly honor `@media (prefers-reduced-motion: reduce)`:
      ```css
      @media (prefers-reduced-motion: reduce) {
-       *, *::before, *::after {
-         animation-duration: 0.01ms !important;
-         animation-iteration-count: 1 !important;
-         transition-duration: 0.01ms !important;
-         scroll-behavior: auto !important;
-       }
+       .motion-decoration { animation: none; transition: none; }
+       .revealed-content { opacity: 1; transform: none; clip-path: none; }
+       .narrative-owner { scroll-behavior: auto; }
      }
      ```
-   - When motion is reduced, replace spatial movement and camera zooms with immediate opacity fades.
+   - When motion is reduced, expose a complete static result or direct navigation appropriate to the product. Do not rely on a near-zero global duration reset to reveal content or initialize state.
 4. **Vestibular Safety:** Avoid full-screen parallax, high-frequency pulsing flashes, or rotational vortex effects that trigger vestibular disorientation in sensitive users.
 
 ---

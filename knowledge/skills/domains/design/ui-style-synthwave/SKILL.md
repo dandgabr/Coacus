@@ -196,3 +196,6 @@ Synthwave (also Retrowave or Outrun) is an aesthetic and musical movement celebr
 
 - Nicolas Winding Refn, *Drive* (Film Aesthetic & Soundtrack, 2011).
 - Sega Corporation, *Out Run Arcade System Guidelines* (Tokyo, 1986).
+## Appearance and Interaction Verification
+
+Declare floor-grid extent and owner so the outrun horizon remains visible across resized content; freeze decorative acceleration/laser flashes under reduced motion while preserving switch states, and verify neon strokes without counting bloom as ink contrast.

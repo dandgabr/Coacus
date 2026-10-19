@@ -1,68 +1,54 @@
 #!/usr/bin/env python3
-"""Bisection script to find which test creates unwanted files/state.
+"""Run matching tests sequentially to identify newly created state.
 
-Usage: python3 find_polluter.py <file_or_dir_to_check> <test_pattern>
-Example: python3 find_polluter.py '.git' 'src/**/*.test.ts'
+Usage: find_polluter.py <path-to-check> <test-glob> [-- <runner> ...]
+Default adapter: npm test <matched-file>. Select the project's actual runner.
+Exit 0: executed cases clean; 1: polluter found; 2: inconclusive/usage error.
+This is a sequential search, not bisection; no files or contents are removed/read.
 """
-
 from __future__ import annotations
 
 import glob
-import os
+from pathlib import Path
 import subprocess
 import sys
-from pathlib import Path
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = argv if argv is not None else sys.argv[1:]
-    if len(args) != 2:
-        print("Usage: find_polluter.py <file_to_check> <test_pattern>")
-        print("Example: find_polluter.py '.git' 'src/**/*.test.ts'")
-        return 1
+    args = list(argv if argv is not None else sys.argv[1:])
+    if len(args) < 2 or (len(args) > 2 and (args[2] != '--' or len(args) < 4)):
+        print('Usage: find_polluter.py <path-to-check> <test-glob> [-- <runner> ...]')
+        return 2
+    target, pattern = Path(args[0]), args[1]
+    runner = args[3:] if len(args) > 2 else ['npm', 'test']
+    tests = sorted({Path(item) for item in glob.glob(pattern, recursive=True) if Path(item).is_file()})
+    executed = failed = 0
 
-    pollution_check = args[0]
-    test_pattern = args[1]
-    if test_pattern.startswith("./"):
-        test_pattern = test_pattern[2:]
+    def report(status: str, code: int) -> int:
+        print(f'Result: {status}; matched={len(tests)} executed={executed} failed={failed} skipped={len(tests)-executed}')
+        return code
 
-    print(f"🔍 Searching for test that creates: {pollution_check}")
-    print(f"Test pattern: {test_pattern}\n")
-
-    # Match recursively
-    matched_files = set(glob.glob(f"./{test_pattern}", recursive=True))
-    collapsed = test_pattern.replace("**/", "")
-    matched_files.update(glob.glob(f"./{collapsed}", recursive=True))
-
-    test_files = sorted(f for f in matched_files if os.path.isfile(f))
-    total = len(test_files)
-    print(f"Found {total} test files\n")
-
-    for count, test_file in enumerate(test_files, 1):
-        if os.path.exists(pollution_check):
-            print(f"⚠️  Pollution already exists before test {count}/{total}")
-            print(f"   Skipping: {test_file}")
-            continue
-
-        print(f"[{count}/{total}] Testing: {test_file}")
-
-        # Run npm test (or framework equivalent)
-        subprocess.run(["npm", "test", test_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-        if os.path.exists(pollution_check):
-            print("\n🎯 FOUND POLLUTER!")
-            print(f"   Test: {test_file}")
-            print(f"   Created: {pollution_check}\n")
-            print("Pollution details:")
-            subprocess.run(["ls", "-la", pollution_check])
-            print("\nTo investigate:")
-            print(f"  npm test {test_file}    # Run just this test")
-            print(f"  cat {test_file}         # Review test code")
-            return 1
-
-    print("\n✅ No polluter found - all tests clean!")
-    return 0
+    if target.exists() or target.is_symlink():
+        return report('inconclusive (pollution already exists)', 2)
+    if not tests:
+        return report('inconclusive (no matching tests)', 2)
+    for test in tests:
+        executed += 1
+        try:
+            result = subprocess.run([*runner, str(test)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except OSError:
+            failed += 1
+            return report('inconclusive (runner unavailable)', 2)
+        if result.returncode:
+            failed += 1
+            return report('inconclusive (runner failed; inspect the case separately)', 2)
+        if target.exists() or target.is_symlink():
+            print(f'FOUND POLLUTER: {test}; created path: {target}')
+            # Metadata only; never print the created content, which may be a credential.
+            print(f'Created entry size: {target.lstat().st_size} bytes')
+            return report('polluter found', 1)
+    return report('executed cases clean (limited to this pattern and runner)', 0)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

@@ -186,7 +186,8 @@ An action button snapping instantaneously between black and white states on hove
   color: var(--bm-white);
 }
 .bm-btn:focus-visible {
-  outline: 2px solid var(--bm-white);
+  outline: 2px solid #000000;
+  box-shadow: 0 0 0 5px #FFFFFF;
   outline-offset: 3px;
 }
 ```
@@ -203,7 +204,7 @@ A rectangular status badge rendered in fixed-width monospace with a 1px border.
 
 - **Unmatched Contrast Mathematics:** Pure black on pure white delivers the maximum achievable contrast ratio of 21:1, far surpassing WCAG AAA standards (7:1).
 - **Hairline Control Boundaries (WCAG 1.4.11):** While decorative interior grid lines can be subtle zinc (`rgba(255, 255, 255, 0.15)`), all interactive buttons, inputs, and checkboxes must maintain at least 3:1 boundary contrast against their background.
-- **Focus Rings:** High-visibility white offset outline (`outline: 2px solid #FFFFFF; outline-offset: 3px;`).
+- **Focus Rings:** Choose contrasting ink against the surrounding canvas or use a black outline backed by a white ring across inversions; check clipping and each local surface.
 - **Touch Target Padding (WCAG 2.5.8):** Even with 0px corner radii and razor-thin borders, ensure interactive clickable areas maintain at least 44×44px hit targets.
 
 ---
@@ -235,3 +236,6 @@ A rectangular status badge rendered in fixed-width monospace with a 1px border.
 
 - **Sibling Brutalist Styles:** [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md).
 - **Minimalist & Architectural Peers:** [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-blueprint-cad-schematic](../ui-style-blueprint-cad-schematic/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+## Appearance and Interaction Verification
+
+Choose the focus ink against the surrounding surface or use a binary dual ring across inversions; retain pure black/white identity and validate gray indices/control boundaries separately from the 21:1 headline pair.

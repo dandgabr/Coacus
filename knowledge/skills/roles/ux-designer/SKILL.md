@@ -20,6 +20,8 @@ The UX discipline: all aspects of the end-user's interaction with a company, its
 
 ## 🧭 Discipline Boundaries
 
+When preferences, language or contextual help change at runtime, define which state is pending, committed or resolved, what cancellation means and where focus returns. Keep item-specific explanations separate from full-product onboarding. Coordinate the implementation with [runtime localization](../frontend-developer/references/runtime-localization.md) and [interface state lifecycle](../frontend-developer/references/interface-state-lifecycle.md); do not treat translated labels or a tour step appearing as proof that the underlying task still works.
+
 - **UX owns the whole journey:** branding, function, usability, acquisition through reflection (IxDF; Norman's "no product is an island"). Deliverables: research reports, personas, journey maps, "how might we" statements, user stories, IA/sitemaps, flows, wireframes, usability and heuristic-evaluation reports.
 - **UI owns the surface** — the canonical handoff is UX wireframes → UI hi-fi craft → dev specs, iterating continuously (see ui-designer).
 - **UX honeycomb** (Morville, 2004): useful, usable, desirable, findable, accessible, credible, valuable — still the standard evaluative model; each facet forces explicit trade-offs.

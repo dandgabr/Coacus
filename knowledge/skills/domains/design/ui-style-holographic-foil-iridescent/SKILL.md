@@ -193,7 +193,7 @@ A horizontal ribbon reflecting dynamic rainbow light flares on cursor movement.
 
 ## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
 
-- **Contrast Protection:** Prismatic foil backgrounds must never sit directly beneath delicate body text. Body copy must always reside over a solid dark core (`#12141D`), ensuring a contrast ratio of 16.5:1 against pure white text.
+- **Contrast Protection:** Prismatic foil backgrounds must never sit directly beneath delicate body text. Use stable backing paired with the actual ink: an obsidian core for light text, or a pearlescent silver reading field for dark text. Check specular extrema rather than inferring contrast from the style name.
 - **Photosensitivity Safeguards (WCAG 2.3.1):** Shimmer loops and rainbow cycles must be smooth, continuous, and never flash or strobe above 2.0 Hz.
 - **Focus Indicators:** Pure electric cyan outline with 3px offset (`outline: 3px solid #00F0FF; outline-offset: 3px;`).
 
@@ -226,3 +226,6 @@ A horizontal ribbon reflecting dynamic rainbow light flares on cursor movement.
 
 - **Sibling Optical Styles:** [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md).
 - **Surface & 3D Peers:** [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md).
+## Appearance and Interaction Verification
+
+Replace the universal dark-core requirement with a stable contrast backing appropriate to obsidian or pearlescent-silver dialect; inspect moving specular extrema and reset transparent gradient text fill when changing appearance.

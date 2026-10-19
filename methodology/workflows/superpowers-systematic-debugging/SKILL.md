@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Systematic Debugging
 
+For a visual symptom, first establish the evaluated revision and actual rendered tree, paint and owner dimensions. Use [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md) to distinguish product defects from stale assets, capture adaptations and unavailable measurement capabilities. A larger layer number, correct token or passing screenshot file is not a root-cause finding.
+
 ## Overview
 
 **Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
@@ -91,26 +93,7 @@ You MUST complete each phase before proceeding to the next.
    THEN investigate that specific component
    ```
 
-   **Example (multi-layer system):**
-   ```bash
-   # Layer 1: Workflow
-   echo "=== Secrets available in workflow: ==="
-   echo "IDENTITY: ${IDENTITY:+SET}${IDENTITY:-UNSET}"
-
-   # Layer 2: Build script
-   echo "=== Env vars in build script: ==="
-   env | grep IDENTITY || echo "IDENTITY not in environment"
-
-   # Layer 3: Signing script
-   echo "=== Keychain state: ==="
-   security list-keychains
-   security find-identity -v
-
-   # Layer 4: Actual signing
-   codesign --sign "$IDENTITY" --verbose=4 "$APP"
-   ```
-
-   **This reveals:** Which layer fails (secrets → workflow ✓, workflow → build ✗)
+   **Example (multi-layer system):** record whether required configuration reached each boundary, the expected type and the operation's status. Use non-secret presence metadata rather than environment dumps or credential values. Obtain authorization before inspecting credential stores, including their metadata. For a synthetic diagnostic, compare `configured` versus `missing` through workflow, build and execution stages; do not print the underlying value. Validate redaction with synthetic sensitive-shaped inputs before applying a diagnostic to real data.
 
 5. **Trace Data Flow**
 

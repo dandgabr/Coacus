@@ -30,13 +30,19 @@ AI coding agents and human contributors MUST strictly separate durable product f
    - **`Read`**: The visitor absorbs information (documentation, knowledge bases, long-form articles, changelogs). Generous line length (45-75 characters), comfortable measure, structural headings and zero visual friction.
    - **`Experience`**: The visitor explores creative work (portfolios, interactive galleries, simulations). The interface recedes, allowing the artifact itself to command the viewport.
 
-## Anti-AI Slop Mandate
+## Contextual Design Judgment
 
-UI generation MUST actively avoid generic LLM design clichés:
+Apply functional requirements and applicable accessibility obligations first, the selected visual language next, and general taste heuristics within that context. A monochrome terminal, expressive gradient, historical desktop or playful motion system can legitimately differ from a restrained administrative product. Preserve an already-correct design when the task is a local repair.
+
+The recommendations below identify common unexamined defaults; their presence alone is not proof of a defect. Verify purpose, rendered legibility, interaction and the chosen style before prescribing a replacement. Alternative appearances are product choices, not a universal requirement to change layout or add animation.
+
+## Anti-AI Slop Review
+
+Review generic defaults that lack a reason in the product:
 - **No Icon Tiles**: Never place an icon inside a rounded pastel square above every heading or feature card.
 - **No Isolated Italic Serif Words**: Never interlace single italic serif words inside modern sans-serif headlines.
 - **No Hero Eyebrow Pills**: Avoid formulaic pill badges with sparkle icons at the top of landing heroes.
-- **No Gray Ink on Chromatic Fills**: Never pair low-contrast muted gray text (`text-gray-400`/`text-slate-400`) over saturated chromatic backgrounds (`bg-blue-600`, `bg-red-500`).
+- **Unreadable ink on fills**: Correct insufficient rendered contrast, including inherited text fill, alpha and overlapping layers. Class-name combinations are warnings to inspect, not measurements of the final pixels.
 - **No Nested Card Syndrome**: Never nest cards inside cards inside cards; rely on typography and whitespace before adding structural boxes.
 - **No Cartoonish Spring Easing**: Never use bounce or elastic curves for serious interface transitions.
 - **No Ungrounded Ambient Drops**: Never apply uniform, blurred 0-distance black drop shadows to cards without a defined physical lighting model.
@@ -50,5 +56,5 @@ LLMs systematically converge toward homogeneous, generic visual patterns ("AI sl
 
 - Canonical skill `ui-design-craftsmanship` instructs agents on these rules and provides actionable design directives.
 - Agent `design-qa-specialist` audits pull requests and components against this standard.
-- Python linter `scripts/coacus_design_lint.py` deterministically scans frontend code for prohibited anti-patterns.
+- Python linter `scripts/coacus_design_lint.py` reports deterministic source-pattern warnings. Those heuristics do not certify rendered accessibility or establish whether an intentional style is inappropriate.
 - `engine/validators/docs.py` reconciles living documentation counts.

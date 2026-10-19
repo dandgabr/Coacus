@@ -11,6 +11,8 @@ This skill guides the AI to conduct extreme robustness testing and deep quality 
 
 ## 🧬 1. Mutation Testing
 
+For interface oracles, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Choose single-edit defects tied to a requirement: hidden views exposed, zero-height graphics, covered progress, stale async state or unreadable inherited paint. Record the assertion that kills each mutant and restore it before the next run. A proposed mutation or a reasoning answer is not an executed kill; surviving mutants identify coverage gaps rather than justify weaker thresholds.
+
 Mutation Testing evaluates the true effectiveness of a test suite by introducing targeted synthetic changes (*mutants*) into the production code. If the test suite still passes after the change, the mutant **survived** (revealing a *Test Gap* from a weak assertion). If any test fails, the mutant was **killed**.
 
 ### A. Canonical Mutation Operators

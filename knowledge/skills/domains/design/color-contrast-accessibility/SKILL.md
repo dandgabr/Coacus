@@ -58,6 +58,8 @@ The measurable half of color work: thresholds, math, the APCA successor, color-v
 
 ## 🔬 Tooling and Workflow
 
+When layered backgrounds, text fill or skipped regions make a static pair unreliable, use [painted contrast audits](references/painted-contrast-audits.md). Keep calculated, sampled and conformance claims distinct; an unsupported measurement remains explicit rather than passing silently.
+
 - **WebAIM Contrast Checker** for quick ratios; **TPGi Colour Contrast Analyser** for on-screen eyedropper sampling, alpha support and a built-in CVD simulator.
 - **DevTools:** Chrome's color picker shows the ratio with AA/AAA badge lines and suggests a passing color; CSS Overview and the Issues panel find contrast problems; the Rendering panel emulates vision deficiencies. Firefox Accessibility Inspector simulates protanopia/deuteranopia/tritanopia/achromatopsia and contrast loss.
 - **Automated scans catch static pairs only.** Low contrast is the most common web accessibility failure — **83.9% of the top million home pages** (avg 34 instances/page) per the WebAIM Million 2026. Manual work is mandatory for text over images/gradients, alpha compositing, dynamic states and non-text contrast.

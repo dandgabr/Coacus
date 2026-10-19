@@ -237,3 +237,6 @@ A streaming terminal log component rendering chronological event strings without
 
 - **Sibling Brutalist Styles:** [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-brutalist-monochrome](../ui-style-brutalist-monochrome/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md).
 - **Performance & Minimalist Peers:** [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-retro-computing](../ui-style-retro-computing/SKILL.md), [ui-style-blueprint-cad-schematic](../ui-style-blueprint-cad-schematic/SKILL.md).
+## Appearance and Interaction Verification
+
+Condition 100ms update flashes on motion preference and input/update rate; keep values and gain/loss text immediate, use link/focus ink suited to document versus dark console surfaces, and preserve deliberate density while allowing large text and keyboard access.

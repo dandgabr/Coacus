@@ -895,12 +895,6 @@
       "reason": "Reviewed English description of GLPI asset-management software; Lingua misclassifies the product name. Exact segment hash pins the phrase."
     },
     {
-      "path": "knowledge/skills/roles/devops-engineer/SKILL.md",
-      "scope": "segment",
-      "sha256": "7bc680048fc77a2f1376b45ccc6f1f8caf9049d651e67115d2b965e255bedf4c",
-      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
-    },
-    {
       "path": "knowledge/skills/roles/product-owner/SKILL.md",
       "scope": "segment",
       "sha256": "6b66efdc84c1872e771d796da0ce4e94de4d37ea819625e4b9e3e287ff66a11f",
@@ -1027,22 +1021,10 @@
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "scope": "segment",
-      "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
       "path": "methodology/workflows/superpowers-writing-skills/persuasion-principles.md",
       "scope": "segment",
       "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
-      "path": "methodology/workflows/superpowers-writing-skills/render-graphs.js",
-      "scope": "segment",
-      "sha256": "adcfa91bad34ed8f826b4caa09704d86f6dbf5baf3ad3a13644ddf47ea068ed4",
-      "reason": "Reviewed English source-comment heading was misclassified; exact segment hash pins the comment."
     },
     {
       "path": "scripts/coacus.py",
@@ -1139,6 +1121,54 @@
       "scope": "segment",
       "sha256": "886d25a2a16c614839ece4715440fae1f5ff7791afd15b5df9fee36dc43b3ce9",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/final-formatting-binding.md",
+      "scope": "segment",
+      "sha256": "992b6a8b2282d014d25034d09c41d6b14acd0117b4e9c0a4fa32ec7a47188bfd",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/final-qa-recheck.md",
+      "scope": "segment",
+      "sha256": "e0ea16d3481aba3d80b971d23ac0aa0c8969f294441e55eb82da585e5208e240",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/final-qa-review.md",
+      "scope": "segment",
+      "sha256": "778970c9649959414ea6bec003201ddfac5398eaacd31dc98d6f260ab400b2c9",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/final-qa-review.md",
+      "scope": "segment",
+      "sha256": "86403c4050febc573725e50b7782f1181c42776275915986c37f502b17b22173",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/forward-comparison.md",
+      "scope": "segment",
+      "sha256": "01f51385fb908cd807a46aafe2e405de04cc7c909ba382487a40716a4fb98c3c",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "docs/reviews/interface-skills-2026-10-19/forward-comparison.md",
+      "scope": "segment",
+      "sha256": "a3967adf36ad2117022731a9db078dbf848041fd7195f5a7f51dfb0aab369e63",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/examples/interface-verification.html",
+      "scope": "segment",
+      "sha256": "526e0087cc3f254d9f86f6c7d8e23d954c4dfda2b312efc29194ae8a860106ba",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/examples/interface-verification.html",
+      "scope": "segment",
+      "sha256": "a5638217494a799e36dc85a3de540ca94dc297d56a024abe52a85afabf62633e",
+      "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
     }
   ]
 }

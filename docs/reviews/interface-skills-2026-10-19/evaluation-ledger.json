@@ -1,0 +1,221 @@
+{
+  "baseline_revision": "8ab8e28d8ea69c9c6653c88cf6777bb08c4278c8",
+  "snapshot": "baseline-8ab8e28",
+  "probe_sha256": "9499c42b4d311975e427897fa3583ae10c0d3d84c5d9b923ef26c1c1f18478ba",
+  "evaluation_kind": "fresh-agent application reasoning; not executed rendered fixture tests",
+  "acceptance_criteria": {
+    "S01": "Clear inherited background image/gradient when needed; retain appropriate texture; background-color alone insufficient.",
+    "S02": "Inspect effective text fill; fix ink; token color alone insufficient.",
+    "S03": "Distinguishable semantic states and native control theming; approved blue not automatically contamination.",
+    "S04": "Preserve pattern with local support; acknowledge worst background and sampling limits.",
+    "S05": "Semantic hidden wins over layout CSS; hidden focus/activity removed.",
+    "S06": "Reversible source fallback across text/attributes/hidden panels; lang/dir follow effective locale.",
+    "S07": "Invalidate stale result; atomic stylesheet/effect lifecycle; cancel preserves committed preference.",
+    "S08": "Height/usable host space and reachable content matter beyond width fit.",
+    "S09": "Choose narrative mode by brief; preserve long scene native reachability and inputs.",
+    "S10": "Stacking context relationship, content coverage and full cleanup addressed.",
+    "S11": "Detect screenshot changing viewport geometry; measure original conditions.",
+    "S12": "Test actual output geometry; zero-height mutant fails.",
+    "S13": "Cover current inventory and approved/candidate stages; no fixed candidate count.",
+    "S14": "RAF interval is cadence, not rendering cost or hardware evidence.",
+    "S15": "Verify served import graph bytes/digests and target; deploy status insufficient.",
+    "S16": "Bind scope to revision; separate observed pass/skipped/not run; no broad approval.",
+    "S17": "Continue within explicit existing authorization and exact destination; preserve neighbor.",
+    "S18": "Canonical rename/provenance resolves owner; installed drift not new source."
+  },
+  "outcomes": {
+    "baseline": {
+      "S01": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s01",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S02": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s02",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S03": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s03",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S04": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s04",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S05": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s05",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S06": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s06",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S07": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s07",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S08": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s08",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S09": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s09",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S10": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s10",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S11": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s11",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S12": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s12",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S13": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s13",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S14": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s14",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S15": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s15",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S16": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s16",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S17": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s17",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      },
+      "S18": {
+        "status": "PASS_REASONING",
+        "evidence": "baseline-response.md#s18",
+        "rationale": "Concrete diagnosis and proposed repair/check satisfy frozen probe criterion; execution not claimed."
+      }
+    },
+    "candidate-a0bcded": {
+      "S01": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s01",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S02": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s02",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S03": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s03",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S04": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s04",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S05": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s05",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S06": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s06",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S07": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s07",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S08": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s08",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S09": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s09",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S10": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s10",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S11": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s11",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S12": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s12",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S13": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s13",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S14": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s14",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S15": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s15",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S16": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s16",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S17": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s17",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      },
+      "S18": {
+        "status": "PASS_REASONING",
+        "evidence": "candidate-response.md#s18",
+        "rationale": "Supervisor manually read full response: concrete diagnosis/action/checks satisfy frozen criterion; runtime verification proposed only."
+      }
+    }
+  },
+  "limitations": [
+    "Single baseline run; no estimate of response variance.",
+    "No browser rendered screenshots, computed output geometry or executed mutants.",
+    "No no-guidance control; baseline is existing-skills condition.",
+    "All 18 prompts in one evaluator context, so not 18 independent agent trials.",
+    "Fresh model capability may pass baseline; passes are not evidence of improvement."
+  ],
+  "baseline_verdict": "No observed behavioral failure in this 18-case reasoning sample. Improvement cannot be claimed from this baseline.",
+  "comparison_verdict": "Baseline18/18 and candidate18/18 PASS_REASONING on one fresh-context evaluator each. No observed regression on sampled probes, no measured improvement demonstrated. Domain source review independently rejects a0bcded for contradictions beyond these probes."
+}

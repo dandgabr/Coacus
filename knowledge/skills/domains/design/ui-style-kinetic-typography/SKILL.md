@@ -77,7 +77,9 @@ Typography elevated to the primary visual architecture: words in motion, per-cha
   to { transform: translateX(-100%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .marquee-content { animation: none; }
+  .marquee-track { overflow: visible; user-select: text; }
+  .marquee-content { animation: none; transform: none; flex-wrap: wrap; flex-shrink: 1; min-width: 0; }
+  .marquee-content [data-decorative-duplicate] { display: none; }
 }
 ```
 
@@ -88,7 +90,7 @@ Typography elevated to the primary visual architecture: words in motion, per-cha
 
 ## ♿ Accessibility
 
-- **WCAG 2.2.2 (Pause, Stop, Hide):** Any scrolling text track that moves automatically and lasts more than 5 seconds MUST provide an accessible pause mechanism (achieved via `:hover`, `:focus-within`, or an explicit pause button).
+- **WCAG 2.2.2 (Pause, Stop, Hide):** Any scrolling text track that moves automatically and lasts more than 5 seconds MUST provide an accessible pause mechanism through a persistent operable pause button bound to playback state. Hover/focus pause can supplement this control; it is not the complete pause contract.
 - **Reading Speed & Contrast:** Keep moving text large and maintain high contrast (safety yellow on black exceeds 12:1).
 - **Screen Reader Integrity:** Ensure split or animated headlines remain accessible as continuous sentences in the accessibility tree.
 
@@ -113,3 +115,6 @@ Typography elevated to the primary visual architecture: words in motion, per-cha
 ## 🔗 Integration with Other Skills
 
 - Sibling typography styles: [ui-style-expressive-variable-typography](../ui-style-expressive-variable-typography/SKILL.md), [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md).
+## Appearance and Interaction Verification
+
+Define a wrapping or scrollable static ticker fallback with all content reachable; size display type to its owner at font-load, hover-axis and localization extremes; provide a persistent operable pause control rather than treating hover/focus alone as the full pause contract.

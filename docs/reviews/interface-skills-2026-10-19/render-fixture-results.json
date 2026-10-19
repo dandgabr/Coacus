@@ -1,0 +1,252 @@
+{
+  "cases": [
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "operate",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "operate",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "read",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "read",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "experience",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        375,
+        812
+      ],
+      "kind": "experience",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "operate",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "operate",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "read",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "read",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "experience",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "kind": "experience",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "operate",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "operate",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "read",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "read",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "experience",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        1080,
+        2550
+      ],
+      "kind": "experience",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "operate",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "operate",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "read",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "read",
+      "appearance": "dark",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "experience",
+      "appearance": "light",
+      "status": "pass"
+    },
+    {
+      "viewport": [
+        2550,
+        1080
+      ],
+      "kind": "experience",
+      "appearance": "dark",
+      "status": "pass"
+    }
+  ],
+  "mutants": [
+    {
+      "id": "zero-bars",
+      "detected": true
+    },
+    {
+      "id": "effective-text-fill",
+      "detected": true
+    },
+    {
+      "id": "semantic-hidden",
+      "detected": true
+    },
+    {
+      "id": "covered-progress",
+      "detected": true
+    },
+    {
+      "id": "truncated-texture",
+      "detected": true
+    },
+    {
+      "id": "indistinct-switch",
+      "detected": true
+    }
+  ],
+  "limitations": [
+    "Standalone controlled fixture; not rendering all visual-style examples",
+    "Contrast uses computed foreground and solid background, not exhaustive painted sampling",
+    "Does not prove causal improvement from skill text",
+    "Reduced-motion path exercised; animation frames and assistive technology not covered"
+  ]
+}

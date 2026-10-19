@@ -225,3 +225,6 @@ A high-velocity horizontal ticker continuously cycling fragmented typographic sl
 
 - **Sibling Rebellious Styles:** [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md).
 - **Postmodern & Colliding Peers:** [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md), [ui-style-zine-independent](../ui-style-zine-independent/SKILL.md).
+## Appearance and Interaction Verification
+
+Check chrome button labels at the darkest reflection stop and difference-blend hover over actual artwork; supply an isolated solid label plate when required, retaining chrome/chromatic collision in decorative lettering.

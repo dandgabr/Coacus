@@ -222,3 +222,6 @@ A telemetry container overlaid with an interactive SVG hexagonal bond lattice.
 
 - **Sibling Speculative Styles:** [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md).
 - **Precision & Structure Peers:** [ui-style-blueprint-cad-schematic](../ui-style-blueprint-cad-schematic/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Keep physically meaningful scales and crystalline identity; ensure zoom-unit labels, measurement values and controls initialize in reduced motion before decorative particle assembly, and scope lattice clipping/lifecycle to the scientific viewport owner.

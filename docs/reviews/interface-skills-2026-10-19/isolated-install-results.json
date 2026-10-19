@@ -1,0 +1,34 @@
+[
+  {
+    "harness": "codex",
+    "source_revision": "e3e8e32",
+    "install_exit": 0,
+    "verify_exit": 0,
+    "counts": {
+      "skills": 103,
+      "agents": 2,
+      "hook_files": 1,
+      "other_files": 89
+    },
+    "missing": [],
+    "drifted": [],
+    "extra_in_manifest": [],
+    "scope": "Explicit isolated temporary config root, copy mode. No user profiles changed; this verifies installation content, not a live session in both harnesses."
+  },
+  {
+    "harness": "claude-code",
+    "source_revision": "e3e8e32",
+    "install_exit": 0,
+    "verify_exit": 0,
+    "counts": {
+      "skills": 103,
+      "agents": 2,
+      "hook_files": 1,
+      "other_files": 91
+    },
+    "missing": [],
+    "drifted": [],
+    "extra_in_manifest": [],
+    "scope": "Explicit isolated temporary config root, copy mode. No user profiles changed; this verifies installation content, not a live session in both harnesses."
+  }
+]

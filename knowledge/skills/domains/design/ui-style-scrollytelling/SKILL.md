@@ -39,7 +39,7 @@ Scroll position orchestrating a unified narrative experience: full-bleed backgro
 
 - **Pin & Scrub:** Elements lock in place (`position: sticky`) while scroll progress scrubs a visual state (0% to 100%).
 - **Step Transitions:** Stepped annotations fade and slide in when crossing viewport thresholds (`IntersectionObserver`).
-- **Zero Scroll-Jacking Rule:** Never hijack the browser's native scrollwheel physics or momentum (violates user control and triggers motion sickness).
+- **Native Scroll First:** Choose continuous, scrubbed or explicitly requested scene presentation. Preserve native scrolling by default. For an authorized scene deck, scope input to its owner, preserve nested scrolling and zoom, and provide keyboard/touch navigation and exits. See [scroll narrative modes](../ui-motion-interaction/references/scroll-narrative-modes.md).
 - Under `prefers-reduced-motion: reduce`, disable all pinned scrub animations, displaying all content sequentially in standard static flow.
 
 ---
@@ -119,3 +119,6 @@ body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smo
 ## 🔗 Integration with Other Skills
 
 - Sibling narrative and motion styles: [ui-style-parallax-scrolling](../ui-style-parallax-scrolling/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+## Appearance and Interaction Verification
+
+Choose continuous/reveal, pin/scrub or explicitly requested scene presentation before implementation; keep native behavior by default, scope any requested input handling with keyboard/touch exits, make oversized scenes reachable at actual usable height and verify progress over local stacking contexts.

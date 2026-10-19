@@ -1,0 +1,32 @@
+{
+  "validate": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "validation OK"
+  },
+  "check": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "no drift: generated artifacts are up to date"
+  },
+  "completeness": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "completeness OK: nothing left behind"
+  },
+  "tests": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "Ran 518 tests; OK"
+  },
+  "evals": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "eval scenarios OK"
+  },
+  "secrets": {
+    "status": "pass",
+    "source_revision": "e3e8e32",
+    "result": "no leaks found"
+  }
+}

@@ -26,7 +26,7 @@ description: "Provides the canonical Aurora / Mesh Gradient UI style (2018-prese
   - Unlike **Gradient & Duotone** (rigid two-color tonal mapping across photography or high-contrast graphics), Aurora features 3 to 5 freely floating, blurred, organic color pools.
   - Unlike **Glassmorphism** (the frosted translucent lens sitting on top), Aurora is the atmospheric light source shining from beneath.
   - Unlike **Dark Mode First** (flat neutral graphite), Aurora injects vibrant chromatic energy into subterranean environments.
-- **Absolute Veto:** Unscrimmed body text floating directly over animated multi-hue gradient pools. Because gradient colors shift dynamically across high and low luminance values, static text will inevitably fail WCAG AA contrast (4.5:1) unless protected by an explicit contrast scrim.
+- **Absolute Veto:** Unscrimmed body text floating directly over animated multi-hue gradient pools. Because gradient colors shift dynamically across high and low luminance values, text contrast must be checked at pool extrema; use a stable reading field where the actual composite fails.
 
 ---
 
@@ -107,7 +107,7 @@ description: "Provides the canonical Aurora / Mesh Gradient UI style (2018-prese
 
 - **Primary Display Headings:** Ultra-clean geometric grotesques (*Plus Jakarta Sans*, *Inter*) rendered in pure optical white (`#FFFFFF`) with negative tracking (-0.03em) and bold weights.
 - **Body & Paragraphs:** High-contrast neutral sans (*Inter*) placed strictly over protected scrim surfaces or solid dark cards.
-- **The Text-Protection Rule:** Body copy must never float directly over un-scrimmed gradient convergence points. Always apply a 60% dark backdrop blur or solid card substrate beneath text blocks.
+- **The Text-Protection Rule:** Body copy must never float directly over un-scrimmed gradient convergence points. Choose a paired dark or light reading field; translucency alone does not guarantee contrast.
 
 ---
 
@@ -155,6 +155,9 @@ A wide viewport header with animated radial light pools and anti-banding noise s
 .aurora-content {
   position: relative;
   max-width: 800px;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--aurora-scrim);
+  color: var(--aurora-text-primary);
   margin: 0 auto;
   text-align: center;
   z-index: 1;
@@ -196,7 +199,7 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 ## ♿ Accessibility & Environmental Contrast (WCAG 2.2)
 
 - **The Dynamic Background Hazard (WCAG 1.4.3):** Multi-hue animated backgrounds continuously shift luminance values. White text on cyan pools can drop to 2.8:1, while black text on violet pools drops to 2.1:1.
-- **The Scrim Architecture:** All text blocks must reside inside containers with an explicit backdrop scrim (`background: rgba(7, 7, 20, 0.7); backdrop-filter: blur(16px)`), guaranteeing contrast exceeding 10:1 regardless of what color pool passes behind.
+- **The Scrim Architecture:** All text blocks must reside inside containers with an explicit backdrop scrim (`background: rgba(7, 7, 20, 0.7); backdrop-filter: blur(16px)`), then verify the actual ink/composite pair at the brightest and darkest pool positions. A light variant may use opaque pale backing and dark ink while preserving the surrounding aurora.
 - **Vestibular Motion Safety (WCAG 2.3.3):** Ambient gradient drift and scaling loops must immediately cease when `prefers-reduced-motion: reduce` is active.
 - **Performance Budget:** Full-viewport animated canvas or heavy SVG blur loops must pause when scrolled out of view via `IntersectionObserver` to preserve battery on mobile devices.
 
@@ -229,3 +232,6 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 
 - **Sibling Optical Styles:** [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md).
 - **Surface & Dark Mode Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+## Appearance and Interaction Verification
+
+Apply a real reading scrim in the Aurora hero example, test worst pool positions and retain pastel aurora via a light opaque reading field when chosen rather than mandating a dark 60% scrim for every variant.

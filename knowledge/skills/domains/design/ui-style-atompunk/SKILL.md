@@ -253,3 +253,6 @@ Atompunk is the high-stakes, pre-transistor retro-futurism of the Cold War Nucle
 - *Tektronix 511 Oscilloscope Service Manual* (Beaverton, OR, 1947).
 - William Gibson, *"The Gernsback Continuum"* (1981).
 - Bethesda Game Studios, *Fallout 3 & Fallout 4 Interface Systems* (Pip-Boy 3000 UI Design).
+## Appearance and Interaction Verification
+
+Specify whether CRT scanlines belong to the glass viewport or full diagnostic content; verify top/middle/bottom after resize and tune dark scanline/vignette composites without replacing green phosphor or steel/bakelite material cues.

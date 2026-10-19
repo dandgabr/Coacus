@@ -278,3 +278,6 @@ Retro Computing captures the direct physical experience of 1970s and 1980s micro
 - Digital Equipment Corporation, *VT100 User Guide* (DEC, EK-VT100-UG-003, 1979).
 - IBM Corporation, *Technical Reference: Personal Computer Hardware* (IBM, 1981).
 - Frank Durda IV, *The Cathode Ray Tube Video Display Terminal Architecture* (1984).
+## Appearance and Interaction Verification
+
+For a requested light retro desktop, consult the [Workbench-inspired period GUI adaptation](references/period-gui-appearance.md), distinguishing it from phosphor terminals instead of recoloring CRT black; declare scanline owner/coverage across content and verify focus and text against the actual scanline composite.

@@ -252,3 +252,6 @@ Pixel Art is a digital discipline originating in the memory- and hardware-constr
 - Michael Tyson, *Pixel Logic: A Guide to Pixel Art* (2018).
 - Adele Goldberg & Robert Flegal, *ACM History of Personal Workstations: Pixel Art Mechanics* (Xerox PARC, 1982).
 - Derek Yu, *Pixel Art Tutorial for Indie Game Creators* (2007).
+## Appearance and Interaction Verification
+
+Keep sprite integer scaling independent of readable text sizing; wrap HUD actions and translated dialogue within actual owner, preserve zoom and font fallback, and stop optional stepped prompt motion without suppressing game state.

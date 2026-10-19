@@ -101,6 +101,9 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
   /* Typography */
   --nord-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --nord-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --nord-surface: var(--nord-polar-0);
+  --nord-ink: var(--nord-snow-6);
+  --nord-label-ink: var(--nord-snow-4);
 }
 ```
 
@@ -138,7 +141,7 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
   border: 1px solid var(--nord-polar-2);
   border-radius: 6px;
   padding: 24px;
-  color: var(--nord-snow-6);
+  color: var(--nord-ink);
   font-family: var(--nord-font-sans);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
@@ -166,7 +169,7 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0 0 8px 0;
-  color: var(--nord-snow-6);
+  color: var(--nord-ink);
 }
 .nordic-body {
   font-size: 0.875rem;
@@ -179,28 +182,28 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding: 12px;
-  background: var(--nord-polar-0);
+  background: var(--nord-surface);
   border-radius: 4px;
   margin-bottom: 20px;
 }
 .nordic-label {
   display: block;
   font-size: 0.75rem;
-  color: var(--nord-polar-3);
+  color: var(--nord-label-ink);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 2px;
 }
 .nordic-val {
   font-size: 1rem;
-  color: var(--nord-snow-6);
+  color: var(--nord-ink);
 }
 .nordic-val.success {
   color: var(--nord-frost-0);
 }
 .nordic-btn-primary {
-  background: var(--nord-frost-3);
-  color: #FFFFFF;
+  background: var(--nord-frost-1);
+  color: var(--nord-polar-0);
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -248,3 +251,6 @@ Nordic is an arctic-inspired, functionalist design system derived from the offic
 
 - Sven Greb (Arctic Ice Studio), *Nord — An arctic, north-bluish color palette* (https://www.nordtheme.com).
 - Alvar Aalto Foundation, *Functionalism and Materials in Scandinavian Architecture* (Helsinki).
+## Appearance and Interaction Verification
+
+Introduce semantic PolarNight/SnowStorm surface/ink roles for requested modes; verify nordic-label and primary-button hover on their actual backgrounds rather than quoting only nord0 pairs; preserve all four named Nord palette groups.

@@ -249,3 +249,6 @@ An electrical knife-switch toggle replacing standard checkbox controls.
 
 - **Sibling Industrial Styles:** [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md), [ui-style-clockpunk](../ui-style-clockpunk/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md).
 - **Craft & Tactile Peers:** [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md), [ui-style-arts-and-crafts](../ui-style-arts-and-crafts/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md).
+## Appearance and Interaction Verification
+
+Name the pressure meter with its units and range; preserve lever/checkbox semantics and static value updates while decorative gears stop; verify engraved labels against convex-glass shading and keep ornament outside input interiors.

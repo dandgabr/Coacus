@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Requesting Code Review
 
+Bind the review to the product revision and actual coverage. State which cases were directly inspected versus inferred from records, and preserve remaining unknowns. For UI and published artifacts, use [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md). A plan review does not approve implementation, and a reasoning-only reviewer must not claim browser or mutation execution.
+
 Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history.
 
 **Core principle:** Review early, review often.
@@ -92,7 +94,7 @@ contract (`Strengths` / `Issues` by severity with the exact input that proves ea
   score is the finding: "6 of 12 killed" names the six weak assertions, which is more
   actionable than "add more tests".
 
-State the contract in the prompt — read-only, no subagents, findings ordered by
+State the contract in the prompt — canonical working tree read-only, no subagents, findings ordered by
 severity with the input that proves each — or the review returns adjectives. Where
 both lenses report the same defect independently, that is the strongest signal
 available; a defect only one lens reports is a judgment call.
@@ -140,3 +142,7 @@ consultation before any code**, and a review after each piece.
 - Request clarification
 
 See template at: [code-reviewer.md](code-reviewer.md)
+
+## Mutation Review Boundary
+
+If the QA lens replays mutants, authorize a disposable isolated copy and name its ownership explicitly. Keep the submitted branch and unrelated work read-only. Restore each mutant, preserve the observed output and report when execution was unavailable; a read-only source inspection cannot claim executed mutation results.
