@@ -131,7 +131,7 @@ in another tool), do not edit, stash or regenerate in place.
 
 After the local gate is green, complete the authorized delivery scope:
 
-- **Push and open the PR when requested.** Push the feature branch and create the PR with a body file describing source changes, regenerated artifacts and actual verification results. Opening a PR does not authorize a merge.
+- **Push and open the PR when requested.** Push the feature branch and create the PR with a body file describing source changes, regenerated artifacts and actual verification results. Opening a PR does not authorize a merge. For example, run `git push -u origin <branch>` and `gh pr create --title "<summary>" --body-file <description-file>`. Include the actual regenerated diff scope: `catalog/`, `knowledge/**/dist/`, `harnesses/*/bootstrap/` and `sources.lock.json` where changed.
 - **Install only selected, authorized targets.** A skill edit does not imply permission to update user profiles. For an explicitly requested installation, use `python3 scripts/coacus_install.py <harness>` and `python3 scripts/coacus_install.py <harness> --verify`. Quote the per-target result, component counts, root and drift. An absent manifest is distinct from a clean installation. For isolated tests, select an explicit temporary config root and verify it without altering user installations.
 
 ## Reach the local corpus

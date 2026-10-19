@@ -35,8 +35,8 @@ Duration-based easing suits many transitions. Springs can preserve momentum duri
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |
 | :--- | :--- | :--- |
 | **Parameters** | `duration`, `cubic-bezier(x1, y1, x2, y2)` | `stiffness` ($k$), `damping` ($c$), `mass` ($m$) |
-| **Interruption** | Resets or snaps awkwardly mid-flight | Preserves velocity and redirects naturally |
-| **Tactile Feel** | Mechanical and scripted | Organic, elastic, and physical |
+| **Interruption** | Retargeting continuity depends on the transition implementation | Can preserve velocity when the solver carries current state |
+| **Tactile Feel** | Determined by curve, duration, distance and context | Determined by solver parameters, distance and context |
 | **Best For** | Background fades, page opacities, color shifts | Component scaling, modals, drag-and-drop, cursor pull |
 
 ### Standard Spring Presets for Design Systems

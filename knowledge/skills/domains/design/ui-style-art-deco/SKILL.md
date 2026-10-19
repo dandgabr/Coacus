@@ -231,7 +231,7 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 }
 
 .deco-btn:hover {
-  background-color: var(--deco-title-ink);
+  background-color: var(--deco-gold-core);
   color: #0D0E12;
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }

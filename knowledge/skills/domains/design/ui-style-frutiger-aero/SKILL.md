@@ -194,10 +194,10 @@ For glossy buttons and window chassis, use [the component recipes](references/gl
 
 1. **The Content Sanctuary Rule (WCAG 1.4.3 & 1.4.6):**
    - *Failure Mechanism:* The "Hard 50% Split" cuts through text containers. If light text crosses the 50% horizon line, the upper half over the white gloss drops to **1.3:1 contrast**, causing severe visual fragmentation.
-   - *Rule:* Never place long-form body copy or data tables directly over raw glass or specular gradient splits. Restrict glass, aurora sweeps, and specular crescents strictly to peripheral chassis (window headers, toolbars, tactile buttons, badges). Place body content on an opaque backing panel (`background: rgba(255, 255, 255, 0.95)` with text `#1a2530`), guaranteeing **14.2:1 AAA contrast**.
+   - *Rule:* Never place long-form body copy or data tables directly over raw glass or specular gradient splits. Restrict glass, aurora sweeps, and specular crescents strictly to peripheral chassis (window headers, toolbars, tactile buttons, badges). Place body content on a stable backing panel. The illustrative `rgba(255,255,255,.95)` with `#1a2530` still requires compositing against the actual backdrop; use opaque white when a fixed backing is needed and calculate its actual pair.
 2. **Dual-Contrast Focus Ring (WCAG 1.4.11 Non-Text Contrast):**
    - *Failure Mechanism:* Standard blue browser focus rings or single-color halos blur into Frutiger Aero's decorative cyan/green hover glows, failing the 3:1 non-text requirement.
-   - *Rule:* Implement a 2px dark outer outline (`#002544`) offset by 3px and backed by a 5px white halo ring, guaranteeing visibility regardless of whether the button rests on an azure sky or a white container.
+   - *Rule:* Implement a 2px dark outer outline (`#002544`) offset by 3px and backed by a 5px white halo ring, then verify visibility and clipping on the intended azure or white surroundings.
 3. **Vestibular Safety & Motion Reduction (WCAG 2.3.3):**
    - Under `@media (prefers-reduced-motion: reduce)`, immediately terminate all animated background shimmer sweeps, water ripple simulations, and tactile translate movements.
 4. **Forced Colors Mode:**

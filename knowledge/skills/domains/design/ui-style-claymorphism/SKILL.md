@@ -204,7 +204,7 @@ A rounded container housing floating clay button tabs with spring indicator pill
 
 - **The Contrast Advantage Over Neumorphism:** Because claymorphic elements float with distinct colored card surfaces (`#E4DCFF`, `#FFB5BC`) over background substrates (`#F8F5EE`), card perimeter boundaries achieve clear visual separation.
 - **Text Legibility (WCAG 1.4.3):** Charcoal text (`#1F242D`) on pastel lavender and coral achieves contrast ratios exceeding 9.5:1, easily surpassing WCAG AAA (7:1).
-- **Non-Text Boundary Contrast (WCAG 1.4.11):** Outer drop shadows provide at least 3:1 luminance differential against light floors.
+- **Non-Text Boundary Contrast (WCAG 1.4.11):** Soft shadows do not guarantee a 3:1 boundary. Verify the actual perimeter or required state indicator against its surrounding floor, and strengthen a contour when necessary while retaining matte volume.
 - **Focus Rings:** High-visibility indigo outline with 4px offset (`outline: 3px solid #6366F1; outline-offset: 4px;`).
 
 ---

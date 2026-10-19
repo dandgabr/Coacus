@@ -2,7 +2,7 @@
 
 ## 🛠️ Implementation Notes & Pure CSS Components
 
-Use `<button class="aero-btn"><span class="aero-label">Action</span></button>`; keep label ink unfiltered above the specular layers. The local opaque label backing protects the text while the surrounding capsule retains its gloss. Check rest, hover, pressed and forced-color states.
+Use `<button class="aero-btn"><span class="aero-label">Action</span></button>` and `<a class="aero-tab is-active" href="#panel"><span class="aero-label">Panel</span></a>`; keep label ink unfiltered above the specular layers. The local opaque label backing protects the text while the surrounding capsule retains its gloss. Check rest, hover, pressed and forced-color states.
 
 Modular CSS architecture reproducing authentic Frutiger Aero controls with modern CSS features (`backdrop-filter`, pseudo-elements, and forced-colors mode):
 
@@ -182,7 +182,7 @@ Modular CSS architecture reproducing authentic Frutiger Aero controls with moder
   text-shadow: 0 0 6px #ffffff, 0 0 10px #ffffff, 0 1px 2px rgba(255, 255, 255, 0.85);
 }
 
-/* Opaque Content Sanctuary: 14.2:1 AAA Contrast Guard */
+/* Dense reading field: verify the actual alpha composite and ink pair. */
 .aero-window-body {
   background: rgba(255, 255, 255, 0.95);
   padding: 24px;

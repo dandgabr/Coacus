@@ -2330,7 +2330,7 @@
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
       "type": "archive",
       "url": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "digest": "sha256:8c8a9dd0b304b475cefc71f1940b28014f8aa17b6c3d2229215f08466cc60124"
+      "digest": "sha256:1599786f219ee2f22a9a1c3d668932bfb5456142c3be46e099fb656871258274"
     },
     {
       "name": "superpowers-test-driven-development",
@@ -2498,7 +2498,7 @@
       "description": "Provides design engineering patterns for tactile UI motion, micro-interactions, and pointer physics. Covers state transitions (hover, active, focus-visible, drag, disabled), spring physics calibration (stiffness, damping, mass), dynamic pointer tracking (spotlight radial gradients, magnetic cursor pull, 3D card tilt), Dan Saffer's micro-interaction lifecycle, the Accot-Zhai steering law for hover corridors, and strict 60/120fps hardware-composited performance with WCAG prefers-reduced-motion compliance. Use when crafting interactive components, design system motion tokens, or tactile web interfaces.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:5d49ca565f17d0bded8a6a6d2a9589efe072d98a7dae727b1dc2d8b07bb1c07a"
+      "digest": "sha256:488d7b0b38959277e4f8e8ab8dfcdeadaa03bde4069a58e90a214938a663fa2d"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2554,7 +2554,7 @@
       "description": "Provides the Art Deco UI style (1910s-1930s lineage, revived for the web): symmetrical geometric ornament, sunbursts, chevrons and stepped forms in gold, black and jewel tones, covering tokens, line-art and SVG pattern construction, high-contrast display type, ceremonial motion and contrast pitfalls of metallic palettes. Use when designing luxury, hospitality, cinema, jazz-age or premium brand surfaces that need glamour with structure.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
-      "digest": "sha256:7c0181b11955030587c1cec145f73736fe2560e82e5f78e5fb0445c00983a3e4"
+      "digest": "sha256:35a1a13cb45b11811dd8f8c551b58f99ab9d75747c0fbfddac8703402755af08"
     },
     {
       "name": "ui-style-art-nouveau",
@@ -2624,21 +2624,21 @@
       "description": "Provides the canonical Brutalist Monochrome & Tactile Brutalism UI style: strict black-and-white binary contrast system, architectural grotesque typography, razor-sharp 1px hairline borders, exposed structural scaffolding, corner registration crosshairs (+), monospaced indices, and instant inverted hover feedback. Use when designing severe architectural archives, developer infrastructure consoles, independent type foundries, or high-precision B2B platforms.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-      "digest": "sha256:77fb0dde5a5159b5a38174bcb80fc82fa3b6af18be803aa2a53ddd387b80393f"
+      "digest": "sha256:f4f2226ce86a9421288842d0c8bb03a28edc9ffab9ba2fb6dd08a776629e5c3c"
     },
     {
       "name": "ui-style-calm-quiet-ui",
       "description": "Provides the calm / quiet UI style (1995-present): low-stimulation interfaces built on calm technology, covering peripheral attention, muted palettes, generous whitespace, restrained motion, notification discipline and sensory-friendly defaults. Use when designing wellbeing, focus, reading, journaling or any product where reducing cognitive and sensory load is the brief.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
-      "digest": "sha256:0af661142fb0bd55a370c24eef2ada50734c32466299cca37fea2758feb8ef50"
+      "digest": "sha256:114b7b3bc2b6e4bf69282a79a3ae786051d0c1a55ef2a66eee54aaeab64cc479"
     },
     {
       "name": "ui-style-card-based-ui",
       "description": "Provides the card-based UI style (2013-present): self-contained content containers in grids and masonry, covering Material's card anatomy, Bootstrap 4 standardization, masonry techniques, container transforms and the density and reading-order pitfalls. Use when designing feeds, commerce grids, dashboards or any card-component system.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
-      "digest": "sha256:7a3d1036f827cec5424ca3d2ce62f4b641d9f1fed27342c0974e4dec4f3af0ba"
+      "digest": "sha256:ed275af3ccd66a1e2820f62c52ed2901e0d1ce390202a0ffdec223def2e011ce"
     },
     {
       "name": "ui-style-cassette-futurism",
@@ -2652,7 +2652,7 @@
       "description": "Provides the canonical Claymorphism & Stop-Motion 3D UI style (2021-present): inflated, tactile modeling clay surfaces, pillowy rounded containers, dual inner shadows simulating curved 3D volume, pastel-vibrant palettes, and playful plasticine charm. Covers inner shadow mathematics, tactile hover squish physics, design tokens, and WCAG 2.2 accessibility. Use when designing children's educational apps, gamified dashboards, crypto/NFT playful interfaces, or friendly mobile products.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
-      "digest": "sha256:c02afd45a5d5223a5e0fc598c2627722cbe336a2a3597054d21280468af9483e"
+      "digest": "sha256:c34e907b0816e2f1f1a9df08aa205bc37d11130c8fe31d810a61434d28f2fb48"
     },
     {
       "name": "ui-style-clockpunk",
@@ -2666,7 +2666,7 @@
       "description": "Provides the collage, scrapbook and Dadaist photomontage UI style (1912-present): cut-out photographic fragments, torn paper deckles, masking tape, rubber postmarks, ransom-note mixed typography and layered mixed media. Covers Braque/Picasso papier coll\u00e9, Cabaret Voltaire Dada anti-art, CSS clip-path torn edges and accessibility. Use when designing expressive, subversive, punk, artistic or handcrafted scrapbook surfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
-      "digest": "sha256:219bb4fa38a288423788741c759cbc3f7970ca15a81d1d11a3e3065b2ccfa9c5"
+      "digest": "sha256:23eaf712e3c348bae93f8f9947197254e4a0188aea1bf8e8cc30df8015550ac1"
     },
     {
       "name": "ui-style-constructivism",
@@ -2764,7 +2764,7 @@
       "description": "Provides the Frutiger Aero and Web 2.0 Gloss UI style (2004-2013): glossy skeuomorphic nature-tech interfaces, 50% specular splits, glass translucency, design tokens, pure CSS components, and WCAG 2.2 accessibility. Use when designing retro-optimistic marketing campaigns, casual games, media players, or analyzing pre-flat glossy ergonomics.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-      "digest": "sha256:4229b120413b7cda79e0b259300d78b40b6e6d340708490a117cf48bc49d3e45"
+      "digest": "sha256:aed849e4e5b237a61bbfd69e52d7545892828c0eb7e73e25122ad999a44a2315"
     },
     {
       "name": "ui-style-glassmorphism",
@@ -3121,7 +3121,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:52ba9cf82ecd4b40b97599f5f0dd002355c723060d793cfbd8beb4c173f73b07"
+      "digest": "sha256:3492ee48dd8323e8644d56fac80cdf66490482f16ece1108439add2fcc4c817b"
     },
     {
       "name": "ux-designer",
