@@ -1,0 +1,13 @@
+{
+  "name": "coacus-catalog",
+  "transport": "stdio",
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "command": "python3",
+  "args": [
+    "coacus_catalog_mcp.py"
+  ]
+}

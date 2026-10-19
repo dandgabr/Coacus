@@ -123,7 +123,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Skills | 431 | `domains` 144, `security` 132, `engineering` 34, `roles` 23, `languages` 20, `frameworks` 17, `data` 16, `mapping` 15, `architecture` 14, `infrastructure` 10, `platforms` 6 |
 | Agents | 102 | `cybersecurity` 23, `software-engineering` 19, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 27 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
-| MCPs | 1 | `context7` |
+| MCPs | 2 | `context7`, `coacus-catalog` |
 | Catalog | 458 skill entries | 431 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
 | Provenance | 1431 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
@@ -170,7 +170,7 @@ each one gets exactly one rendered bootstrap in its own native format.
 |---|---|---|---|
 | **opencode** | B — in-process plugin | `config` + `experimental.chat.messages.transform` hooks inject the bootstrap in-process; a second plugin enforces the governor gate | `python3 scripts/coacus_install.py opencode` |
 | **claude-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py claude-code` |
-| **antigravity** | C — rule file | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | `python3 scripts/coacus_install.py antigravity` |
+| **antigravity** | C — plugin rule | compact `rules/coacus.md` with `trigger: always_on`, native agent selectors and an on-demand catalog MCP | `python3 scripts/coacus_install.py antigravity` |
 | **codex** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py codex` |
 | **cursor** | A — Python hook | `sessionStart` → top-level `additional_context` | `python3 scripts/coacus_install.py cursor` |
 | **command-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext`, merged into `settings.json` | `python3 scripts/coacus_install.py command-code` |

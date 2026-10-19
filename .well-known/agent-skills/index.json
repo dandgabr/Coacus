@@ -272,7 +272,7 @@
       "description": "Complete guide and canonical reference for Google Antigravity (AGY), covering the Antigravity CLI (agy), Antigravity 2.0 Desktop, IDE, Python SDK, slash commands, keybindings, and the Customization System (Skills, Rules, Plugins, Hooks, Sidecars, and MCP Servers). Use this skill when asked to explain, configure, or customize the Antigravity ecosystem.",
       "type": "archive",
       "url": "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-      "digest": "sha256:6871eaae88ff53d65fcf0744c186600577c76febc9b5416d3bc70a23e124f940"
+      "digest": "sha256:1f75398c0cb47f781428f22ab1ab5ea833af24f77c346862265aaf7919cbe0b2"
     },
     {
       "name": "api-architect",

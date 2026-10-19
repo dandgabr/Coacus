@@ -3,7 +3,7 @@
   "counts": {
     "agents": 102,
     "skills": 458,
-    "mcps": 1
+    "mcps": 2
   },
   "agents": [
     {
@@ -2454,6 +2454,10 @@
     }
   ],
   "mcps": [
+    {
+      "name": "coacus-catalog",
+      "path": "knowledge/mcps/coacus-catalog/MCP.md"
+    },
     {
       "name": "context7",
       "path": "knowledge/mcps/context7/MCP.md"

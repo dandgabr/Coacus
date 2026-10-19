@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 458 skill(s) · 102 agent(s) · 1 MCP(s)
+**Totals:** 458 skill(s) · 102 agent(s) · 2 MCP(s)
 
 ## Agents
 
@@ -578,4 +578,5 @@
 
 | MCP | Path |
 |---|---|
+| coacus-catalog | [knowledge/mcps/coacus-catalog/MCP.md](../knowledge/mcps/coacus-catalog/MCP.md) |
 | context7 | [knowledge/mcps/context7/MCP.md](../knowledge/mcps/context7/MCP.md) |

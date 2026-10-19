@@ -71,8 +71,10 @@ the vendor API; its lifecycle evaluator and governor calls invoke Python.
 ### Harnesses that render nothing
 
 A harness may declare `bootstrap.supported: false` and render nothing (the
-`native-discovery` shape) when it surfaces skills natively. Antigravity rules
-are capped at 12,000 characters, so shape C content MUST respect that cap.
+`native-discovery` shape) when it surfaces skills natively. Antigravity plugin
+rules require a valid `trigger` frontmatter value (`always_on`, `model_decision`,
+`glob`, or `manual`). Coacus shape C output keeps a conservative 12,000-character
+cap, below the vendor's documented per-file limit.
 
 ## Rationale
 

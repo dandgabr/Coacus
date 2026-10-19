@@ -70,6 +70,20 @@ def make_repo(tmp: Path) -> Path:
     anti.mkdir(parents=True)
     (anti / "plugin.json").write_text("{}\n", encoding="utf-8")
     (anti / "coacus-rule.md").write_text("# rule\n", encoding="utf-8")
+    (root / "harnesses/antigravity/coacus-on-demand-rule.md").write_text(
+        "---\ntrigger: always_on\n---\nUse the Coacus catalog MCP.\n",
+        encoding="utf-8",
+    )
+    runtime = root / "scripts/coacus_catalog_mcp.py"
+    runtime.parent.mkdir(parents=True, exist_ok=True)
+    runtime.write_text("# test catalog runtime\n", encoding="utf-8")
+    catalog_mcp = root / "knowledge/mcps/coacus-catalog"
+    catalog_mcp.mkdir(parents=True)
+    (catalog_mcp / "MCP.md").write_text(
+        "---\nname: coacus-catalog\ndescription: Test catalog\ntransport: stdio\n"
+        "command: python3\nargs:\n  - coacus_catalog_mcp.py\n---\n# MCP\n",
+        encoding="utf-8",
+    )
     # Command Code carries its user rules as a static AGENTS.md beside the
     # harness, and its MCP declaration comes from the generated dist manifest.
     (root / "harnesses/command-code/AGENTS.md").write_text(
@@ -152,15 +166,20 @@ class TestInstaller(unittest.TestCase):
         # Antigravity activates by directory placement; no registry edit.
         for name, content in (
             ("plugin.json", '{"name": "coacus-antigravity", "description": "x"}'),
-            ("coacus-rule.md", "---\nactivation: always_on\n---\n# bootstrap"),
+            ("coacus-rule.md", "---\ntrigger: always_on\n---\n# bootstrap"),
         ):
             target = self.root / "harnesses/antigravity/bootstrap" / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(content, encoding="utf-8")
+        (self.root / "harnesses/antigravity/coacus-on-demand-rule.md").write_text(
+            "---\ntrigger: always_on\n---\n# on-demand rule\n", encoding="utf-8"
+        )
         coacus_install.install("antigravity", self.root, self.config, dry_run=False)
         plugin = self.config / "config/plugins/coacus"
         self.assertTrue((plugin / "plugin.json").is_file())
-        self.assertTrue((plugin / "coacus-rule.md").is_file())
+        self.assertTrue((plugin / "rules/coacus.md").is_file())
+        self.assertTrue((plugin / "mcp_config.json").is_file())
+        self.assertTrue((plugin / "catalog/index.json").is_file())
         self.assertFalse((self.config / "config/plugins.json").exists())
 
     def test_codex_installs_skills_and_hook(self) -> None:

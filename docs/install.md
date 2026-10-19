@@ -366,12 +366,19 @@ context key, not two.
 ## antigravity
 
 **Goal:** Antigravity loads Coacus as a plugin and applies its rule at session
-start.
+start, with the complete capability catalog available on demand.
 
 **How it works.** Antigravity uses an **instructions-file** bootstrap: the adapter
-renders a rule file, `coacus-rule.md`, with frontmatter `activation: always_on`,
-plus the `plugin.json` manifest that packages it. The rule directory is the
-activation unit; there is no shell hook and no in-process module.
+installs a small rule under `rules/coacus.md`, native agent selectors, and a
+local stdio MCP server. Full skill and agent sources are stored under the
+plugin's opaque `catalog/` data directory, outside Antigravity's native
+`skills/` and `agents/` discovery roots. The MCP server reads a generated index
+and returns a selected canonical source only when requested. This does not
+require the Coacus checkout to remain open.
+
+The default `on-demand` profile preserves the complete catalog while keeping
+customization discovery compact. `full` keeps the legacy native installation
+for compatibility and explicit comparison.
 
 **Vendor facts**
 
@@ -388,8 +395,15 @@ activation unit; there is no shell hook and no in-process module.
   directory, not where Coacus installs: this script stages at
   `~/.gemini/config/plugins/coacus/` and never writes
   `~/.gemini/antigravity-cli/`.
-- Plugin components are `skills/`, `agents/`, `rules/`, `mcp_config.json` and
-  `hooks.json`. Rules are capped at 12,000 characters. **[documented]**
+- Plugin components include `skills/`, `agents/`, `rules/`, `mcp_config.json`
+  and `hooks.json`. Rule files require `trigger` frontmatter; supported values
+  include `always_on`, `model_decision`, `glob` and `manual`. **[documented]**
+- The vendor's 20,000-token aggregate budget applies to active rules and is
+  separate from the customization budget. The exact
+  `Customization token budget exceeded` message and its accounting are not
+  documented as a universal 20,000-token customization limit. Use `/context`
+  in Antigravity CLI to inspect categories when diagnosing budget warnings.
+  **[documented / exact error unverified]**
 - There is **no** `~/.gemini/config/plugins.json` registry. Earlier Coacus
   revisions claimed one; that claim was wrong and has been removed. Activation
   is by directory placement alone. **[documented]**
@@ -400,25 +414,34 @@ activation unit; there is no shell hook and no in-process module.
   `ephemeralMessage`, which is a candidate for bootstrap injection on a future
   revision; the current adapter does not use it. **[documented]**
 
-**Install**
+**Install the recommended profile**
 
 ```bash
 python3 scripts/coacus_install.py antigravity
+python3 scripts/coacus_install.py antigravity --verify-after-install
 ```
 
-The script stages the plugin at `~/.gemini/config/plugins/coacus/` with
-`plugin.json`, `coacus-rule.md` and the skills. It does not edit any registry —
-none exists — and it does not invoke `agy plugin install` itself; that command
-expects a plugin or marketplace target and is left to the operator.
+The script stages the plugin at `~/.gemini/config/plugins/coacus/` with the
+compact rule, native agent selectors, complete local catalog data, the MCP
+server and hooks. It does not edit a plugin registry — none exists — and does
+not invoke `agy plugin install` itself.
+
+Use `--only`, `--skills` and `--agents` for intentional partial catalogs. Use
+`--antigravity-profile full` to restore the legacy installation of all selected
+skills and complete native agent prompts.
 
 **Verify**
 
 ```bash
 agy plugin validate ~/.gemini/config/plugins/coacus   # expect: [ok]
+agy plugin list --json
 ```
 
-If `agy plugin install` is your preferred route, point it at the staged
-directory.
+In an Antigravity CLI session, `/context` reports usage by Rules, Skills,
+Subagents, Workflows, Plugins and MCP tools. It is a CLI diagnostic; do not
+assume its output exactly matches Antigravity 2.0's desktop accounting. Compare
+the affected build with the plugin enabled and disabled before attributing a
+budget warning to a specific customization type.
 
 ## codex
 
@@ -639,7 +662,7 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 |---|---|---|---|---|
 | **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
 | **claude-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
-| **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
+| **antigravity** | C (plugin rule) | compact `rules/coacus.md` with `trigger: always_on`; local catalog MCP | plugin staged at `~/.gemini/config/plugins/coacus/` (catalog data + native agent selectors + MCP + hooks) | plugin schema and MCP config **[documented]**; local `agy plugin validate` **[verified in tests]** |
 | **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
 | **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
 | **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |

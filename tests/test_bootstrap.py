@@ -217,7 +217,7 @@ class TestBootstrapRender(unittest.TestCase):
         outputs = bootstrap.expected_outputs(self.root)
         rule = outputs["harnesses/antigravity/bootstrap/coacus-rule.md"]
         self.assertIn("ENTRY-BODY-MARKER", rule)
-        self.assertIn("activation: always_on", rule)
+        self.assertIn("trigger: always_on", rule)
         manifest = json.loads(
             outputs["harnesses/antigravity/bootstrap/plugin.json"]
         )

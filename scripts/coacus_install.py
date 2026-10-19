@@ -17,7 +17,8 @@ Mechanisms (verified against vendor docs, see docs/install.md):
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               JSON payload at bootstrap/session-start.json (matching hooks.json).
-- antigravity plugin (manifest + rule + skills + agents) ->
+- antigravity plugin (manifest + compact rule + native agent selectors +
+              on-demand catalog MCP by default; full native profile optional) ->
               <config_dir>/config/plugins/coacus/; activation is by directory,
               so no registry edit is needed.
 - codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
@@ -58,6 +59,7 @@ import argparse
 import ast
 import base64
 import fnmatch
+import hashlib
 import json
 import os
 import re
@@ -588,6 +590,130 @@ def _plan_agents_antigravity(
         name = _safe_agent_name(source)
         plan.append((agents_dir / name / "agent.md", _render_agent_named(source)))
     return plan
+
+
+def _render_antigravity_agent_stub(source: Path) -> str:
+    """Render a native agent selector whose full canonical prompt loads by MCP."""
+    meta = _agent_meta(source)
+    return (
+        "---\n"
+        f"name: {meta['name']}\n"
+        f"description: {_yaml_scalar(str(meta['description']))}\n"
+        "---\n\n"
+        f"# {meta['name']}\n\n"
+        "Load this role's complete canonical instructions with the `get` tool "
+        "from the `coacus-catalog` MCP server, using `kind: agent` and this "
+        f"name: `{meta['name']}`. Load each name in the returned "
+        "`associated_skills` list with the same tool and `kind: skill`. Follow "
+        "those instructions and use the host's native tools for the task.\n"
+    )
+
+
+def _antigravity_catalog_files(
+    root: Path,
+    plugin: Path,
+    only: list[str] | None,
+    skills: list[str] | None,
+    agents: list[str] | None,
+) -> list[tuple[Path, FileContent]]:
+    """Install all selected canonical sources as data, outside native scan roots."""
+    from engine.frontmatter import parse
+
+    plan: list[tuple[Path, FileContent]] = []
+    entries: dict[str, list[dict[str, object]]] = {"skills": [], "agents": []}
+    skill_names_by_source: dict[str, str] = {}
+
+    selected_skills = discover_skills(root, only=only, skills=skills)
+    for skill in selected_skills:
+        source = skill / "SKILL.md"
+        doc = parse(source.read_text(encoding="utf-8"))
+        meta = doc.meta
+        name = str(meta.get("name") or skill.name)
+        source_rel = source.relative_to(root).as_posix()
+        if source_rel.startswith("knowledge/skills/"):
+            category = "/".join(source.relative_to(root / "knowledge/skills").parts[:-2])
+        else:
+            category = "workflows"
+        payload_rel = f"catalog/corpus/{source_rel}"
+        entries["skills"].append(
+            {
+                "name": name,
+                "kind": "skill",
+                "category": category,
+                "description": str(meta.get("description") or ""),
+                "source": source_rel,
+                "payload": payload_rel,
+                "fingerprint": hashlib.sha256(source.read_bytes()).hexdigest(),
+            }
+        )
+        skill_names_by_source[source_rel] = name
+        for companion in _skill_files(skill):
+            relative = companion.relative_to(root).as_posix()
+            plan.append((plugin / "catalog" / "corpus" / relative, _read_source(companion)))
+
+    selected_agents = discover_agents(root, only=only, agents=agents)
+    for source in selected_agents:
+        meta = _agent_meta(source)
+        name = str(meta["name"])
+        source_rel = source.relative_to(root).as_posix()
+        skill_paths = meta.get("skills", [])
+        if not isinstance(skill_paths, list):
+            skill_paths = []
+        associated_skills = sorted(
+            {
+                skill_names_by_source[str(path)]
+                for path in skill_paths
+                if str(path) in skill_names_by_source
+            }
+        )
+        payload_rel = f"catalog/corpus/{source_rel}"
+        entries["agents"].append(
+            {
+                "name": name,
+                "kind": "agent",
+                "category": str(source.relative_to(root / "knowledge/agents").parts[0]),
+                "description": str(meta["description"]),
+                "source": source_rel,
+                "payload": payload_rel,
+                "fingerprint": hashlib.sha256(source.read_bytes()).hexdigest(),
+                "skills": associated_skills,
+            }
+        )
+        agent_root = source.parent
+        for companion in sorted(agent_root.rglob("*")):
+            if (
+                companion.is_file()
+                and not companion.is_symlink()
+                and "__pycache__" not in companion.relative_to(agent_root).parts
+                and "dist" not in companion.relative_to(agent_root).parts
+                and companion.suffix not in {".pyc", ".pyo"}
+            ):
+                relative = companion.relative_to(root).as_posix()
+                plan.append((plugin / "catalog" / "corpus" / relative, _read_source(companion)))
+        plan.append(
+            (plugin / "agents" / name / "agent.md", _render_antigravity_agent_stub(source))
+        )
+
+    index = {"schema": 1, "skills": entries["skills"], "agents": entries["agents"]}
+    plan.append((plugin / "catalog" / "index.json", json.dumps(index, indent=2) + "\n"))
+    return plan
+
+
+def _antigravity_catalog_mcp_config(root: Path, plugin: Path) -> str:
+    """Render Antigravity's official MCP schema with installed paths resolved."""
+    from engine.frontmatter import parse
+
+    source = root / "knowledge" / "mcps" / "coacus-catalog" / "MCP.md"
+    if not source.is_file():
+        raise FileNotFoundError(f"canonical MCP source is missing: {source}")
+    meta = parse(source.read_text(encoding="utf-8")).meta
+    name = str(meta.get("name") or "coacus-catalog")
+    executable = getattr(sys, "_base_executable", None) or sys.executable
+    server = plugin / "coacus_catalog_mcp.py"
+    return json.dumps(
+        {"mcpServers": {name: {"command": executable, "args": [str(server.resolve())]}}},
+        indent=2,
+    ) + "\n"
 
 
 def _plan_agents_codex(
@@ -1207,6 +1333,7 @@ def _plan_antigravity(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    profile: str = "on-demand",
 ) -> list[tuple[Path, FileContent]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
@@ -1215,11 +1342,23 @@ def _plan_antigravity(
     ``rules/`` dir with ``activation: always_on``; no registry edit is required.
     """
     plugin = config_dir / "config" / "plugins" / "coacus"
-    plan = _plan_skills(root, plugin / "skills", only, skills)
-    plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
-    for name in ("plugin.json", "coacus-rule.md"):
+    if profile not in {"full", "on-demand"}:
+        raise ValueError("Antigravity profile must be 'full' or 'on-demand'")
+    if profile == "on-demand":
+        plan = _antigravity_catalog_files(root, plugin, only, skills, agents)
+        plan.append((plugin / "coacus_catalog_mcp.py", _read_source(root / "scripts/coacus_catalog_mcp.py")))
+        rule_source = root / "harnesses/antigravity/coacus-on-demand-rule.md"
+        if not rule_source.is_file():
+            raise FileNotFoundError(f"on-demand Antigravity rule is missing: {rule_source}")
+        plan.append((plugin / "rules" / "coacus.md", _read_source(rule_source)))
+        plan.append((plugin / "mcp_config.json", _antigravity_catalog_mcp_config(root, plugin)))
+    else:
+        plan = _plan_skills(root, plugin / "skills", only, skills)
+        plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
+        plan.append((plugin / "rules" / "coacus.md", _read_source(root / "harnesses/antigravity/bootstrap/coacus-rule.md")))
+    for name in ("plugin.json",):
         source = root / "harnesses/antigravity/bootstrap" / name
-        plan.append((plugin / name, source.read_text(encoding="utf-8")))
+        plan.append((plugin / name, _read_source(source)))
     # Merge the governor wiring and the guardrail fragment into ONE plugin
     # hooks.json (the file the harness reads), keyed by hook-set name.
     hooks_doc = json.loads(_antigravity_hooks_json(root))
@@ -1415,6 +1554,7 @@ def plan(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
     skills_mode: str = "link",
+    antigravity_profile: str = "on-demand",
 ) -> list[tuple[Path, FileContent]]:
     """Compute the files to install for ``harness`` under the given filters.
 
@@ -1427,7 +1567,7 @@ def plan(
     if harness == "claude-code":
         return _plan_claude(root, config_dir, only, skills, agents, skills_mode)
     if harness == "antigravity":
-        return _plan_antigravity(root, config_dir, only, skills, agents)
+        return _plan_antigravity(root, config_dir, only, skills, agents, antigravity_profile)
     if harness == "codex":
         return _plan_codex(root, config_dir, only, skills, agents)
     if harness == "cursor":
@@ -1463,6 +1603,7 @@ def install(
     skills_mode: str = "link",
     lock_skills: bool | None = None,
     extra_policy_docs: list[dict] | None = None,
+    antigravity_profile: str = "on-demand",
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1496,7 +1637,9 @@ def install(
             "refusals": refusals,
             "files": [],
         }
-    files = plan(harness, root, config_dir, only, skills, agents, skills_mode)
+    files = plan(
+        harness, root, config_dir, only, skills, agents, skills_mode, antigravity_profile
+    )
     _assert_contained(files, config_dir)
     if lock_skills is None:
         # Default: protect the shared tree only at a harness's real install
@@ -1531,6 +1674,7 @@ def install(
             "skills": skills or [],
             "agents": agents or [],
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
+            **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
     if harness in CANONICAL_SKILLS_WRITERS:
         # A prior install may have left the shared tree read-only (see
@@ -1564,6 +1708,25 @@ def install(
                 and any(_is_within(target.resolve(), directory) for directory in allowed)
                 and target.is_file()):
             target.unlink()
+    # Antigravity profiles can replace hundreds of manifest-owned native
+    # customization files with opaque catalog data. Remove only paths recorded
+    # by the previous manifest and no longer planned; never sweep plugin dirs.
+    if harness == "antigravity":
+        for old in previous_files:
+            target = Path(old)
+            if (
+                target.as_posix() not in planned
+                and any(_is_within(target.resolve(), directory) for directory in allowed)
+                and target.is_file()
+            ):
+                target.unlink()
+                parent = target.parent
+                while parent != config_dir and _is_within(parent.resolve(), config_dir.resolve()):
+                    try:
+                        parent.rmdir()
+                    except OSError:
+                        break
+                    parent = parent.parent
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -1584,6 +1747,11 @@ def install(
                     if codex_update is not None
                     else {}
                 ),
+                **(
+                    {"antigravity_profile": antigravity_profile}
+                    if harness == "antigravity"
+                    else {}
+                ),
             },
             indent=2,
         )
@@ -1601,6 +1769,7 @@ def install(
              "codex_skill_conflicts": conflicts}
             if codex_update is not None else {}
         ),
+        **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
     }
 
 
@@ -1647,11 +1816,24 @@ def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
     agents = {_agent_key(t) for t, _ in real if _classify(t) == "agent"}
     hooks = [t for t, _ in real if _classify(t) == "hook"]
     other = [t for t, _ in real if _classify(t) == "other"]
+    catalog_skills = 0
+    catalog_agents = 0
+    for target, content in real:
+        if target.name != "index.json" or target.parent.name != "catalog" or not isinstance(content, str):
+            continue
+        try:
+            index = json.loads(content)
+        except json.JSONDecodeError:
+            continue
+        catalog_skills = len(index.get("skills", []))
+        catalog_agents = len(index.get("agents", []))
     return {
         "skills": len(skills),
         "agents": len(agents),
         "hook_files": len(hooks),
         "other_files": len(other),
+        "catalog_skills": catalog_skills,
+        "catalog_agents": catalog_agents,
     }
 
 
@@ -1729,8 +1911,10 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
+    antigravity_profile = data.get("antigravity_profile", "full")
     files = plan(
-        harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link")
+        harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link"),
+        antigravity_profile,
     )
     missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
@@ -1749,6 +1933,8 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
             "extra_in_manifest": sorted(recorded - planned),
         }
     )
+    if harness == "antigravity":
+        result["antigravity_profile"] = antigravity_profile
     result["ok"] = not missing and not drift and recorded == planned
     if harness == "codex":
         profile = data.get("codex_skill_profile", "legacy-full")
@@ -2040,6 +2226,12 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="Codex native skill visibility (default: compact; full restores legacy behavior)",
     )
     parser.add_argument(
+        "--antigravity-profile",
+        choices=["on-demand", "full"],
+        default="on-demand",
+        help="Antigravity catalog activation (default: on-demand; full installs all native entries)",
+    )
+    parser.add_argument(
         "--skills-mode",
         choices=["link", "copy"],
         default=None,
@@ -2149,6 +2341,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     )
     if args.codex_skill_profile and "codex" not in harnesses:
         parser.error("--codex-skill-profile applies only to codex or all")
+    if args.antigravity_profile != "on-demand" and "antigravity" not in harnesses:
+        parser.error("--antigravity-profile applies only to antigravity or all")
     if args.verify:
         results = []
         ok = True
@@ -2211,7 +2405,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                         codex_skill_profile=args.codex_skill_profile or "compact",
                         skills_mode=args.skills_mode or "link",
                         lock_skills=args.lock_skills,
-                        extra_policy_docs=extra_docs)
+                        extra_policy_docs=extra_docs,
+                        antigravity_profile=args.antigravity_profile)
             )
     if args.uninstall and args.harness == "all" and not args.dry_run:
         from engine.guardrail import browsers

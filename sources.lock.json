@@ -9666,9 +9666,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/antigravity-guide/references/customizations/json_configs.md",
-      "source_sha256": "10a4cc3ecbe41708646ad9bc54a7bf18e5497ed447b55ec9e8d2eda6ef5a45e2",
+      "source_sha256": "262570945e5715fb3384ef5436cbf4e187b86bddc5a32224a0659e74de11c23b",
       "target_path": "knowledge/skills/platforms/antigravity-guide/references/customizations/json_configs.md",
-      "target_sha256": "10a4cc3ecbe41708646ad9bc54a7bf18e5497ed447b55ec9e8d2eda6ef5a45e2",
+      "target_sha256": "262570945e5715fb3384ef5436cbf4e187b86bddc5a32224a0659e74de11c23b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -9680,9 +9680,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/antigravity-guide/references/customizations/mcp_servers.md",
-      "source_sha256": "418fada49bb8ed1f43438fd6a355e7f51092daa4d021eb2a43b19a1d1e2146bd",
+      "source_sha256": "f3d2715f977bc115b8d9b3e45e8937ecaf3e8237aa53a85f628a745df5e6f02b",
       "target_path": "knowledge/skills/platforms/antigravity-guide/references/customizations/mcp_servers.md",
-      "target_sha256": "418fada49bb8ed1f43438fd6a355e7f51092daa4d021eb2a43b19a1d1e2146bd",
+      "target_sha256": "f3d2715f977bc115b8d9b3e45e8937ecaf3e8237aa53a85f628a745df5e6f02b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -9694,9 +9694,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/antigravity-guide/references/customizations/plugins.md",
-      "source_sha256": "481c2612f4729fb4fab600aebc5eb0d4eda6e00d5b45084bc7523718514bf19e",
+      "source_sha256": "9515014415ed0658915e91ec1fc2c980bc9bf6a6802126f0e5c9804b408e96cf",
       "target_path": "knowledge/skills/platforms/antigravity-guide/references/customizations/plugins.md",
-      "target_sha256": "481c2612f4729fb4fab600aebc5eb0d4eda6e00d5b45084bc7523718514bf19e",
+      "target_sha256": "9515014415ed0658915e91ec1fc2c980bc9bf6a6802126f0e5c9804b408e96cf",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -9708,9 +9708,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/antigravity-guide/references/customizations/rules.md",
-      "source_sha256": "969a834145a09398b53cd63b7d473d8a915bf80928726650a6d2efc602e33bbe",
+      "source_sha256": "55eca367084d72a76a4fabf05b53891fb79a23a10b5b66e0d368801389df45ee",
       "target_path": "knowledge/skills/platforms/antigravity-guide/references/customizations/rules.md",
-      "target_sha256": "969a834145a09398b53cd63b7d473d8a915bf80928726650a6d2efc602e33bbe",
+      "target_sha256": "55eca367084d72a76a4fabf05b53891fb79a23a10b5b66e0d368801389df45ee",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -9722,9 +9722,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/antigravity-guide/references/customizations/skills.md",
-      "source_sha256": "433984f21dde0928258f90f3975a5a1faf7dfc98f51ab9f3be308fcef730f44d",
+      "source_sha256": "4924a39e54688609ad6186140c51baf387ce28b247936d2f94e2049e0756edb1",
       "target_path": "knowledge/skills/platforms/antigravity-guide/references/customizations/skills.md",
-      "target_sha256": "433984f21dde0928258f90f3975a5a1faf7dfc98f51ab9f3be308fcef730f44d",
+      "target_sha256": "4924a39e54688609ad6186140c51baf387ce28b247936d2f94e2049e0756edb1",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
