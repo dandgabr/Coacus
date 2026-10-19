@@ -2193,6 +2193,13 @@
       "digest": "sha256:2639e2be5e58924a7fc14510d71de9b12b17567cfe06dcea33de57067d712975"
     },
     {
+      "name": "security-assessment-planning",
+      "description": "Plans application security reviews across source code, live web applications, APIs, and CI supply chains. Use when a request spans multiple assessment surfaces or needs a scoped review plan before testing.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
+      "digest": "sha256:c80c45f9600182dce4ca425de991a9cd076078863d1500b8d9fcc0aa80af2ca5"
+    },
+    {
       "name": "security-champions",
       "description": "Acts as a Security Champion for the engineering team, spreading secure practices, triaging risks, and delegating demands to specialized security skills when necessary.",
       "type": "archive",
@@ -2302,7 +2309,7 @@
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
       "type": "skill-md",
       "url": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "digest": "sha256:f382c817fa49df80d38ac4a8f736eb948e6abf3d665a7e3e54f0beadfa279d8a"
+      "digest": "sha256:5ec9cd873dab9587ba7f204d4ee0f8b180dc06d31f05d96c20d1d97cfd84df40"
     },
     {
       "name": "superpowers-receiving-code-review",
@@ -2365,7 +2372,7 @@
       "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
       "type": "archive",
       "url": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "digest": "sha256:d3cc807f997aa7599de7b0911a0e580cd204a0a2a3730ee3bacc9c16396d458c"
+      "digest": "sha256:05838a39c0451d607c93de5dd4c5b7dbe253c613bb953d534ea11fb7135b4009"
     },
     {
       "name": "supply-chain-threat-modeling",

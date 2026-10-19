@@ -1,0 +1,30 @@
+{
+  "skill": "security-assessment-planning",
+  "evidence_note": "Prompt fixtures verify case coverage only. Runtime activation requires observable harness telemetry.",
+  "cases": [
+    {
+      "id": "positive-en-cross-surface",
+      "intent": "positive",
+      "language": "en",
+      "prompt": "Plan a security review of this repository's source, the API at example.test, and its CI dependency workflow. No live target is authorized; identify the scope needed and map existing Coacus procedures. Do not test anything."
+    },
+    {
+      "id": "positive-pt-br-cross-surface",
+      "intent": "positive",
+      "language": "pt-BR",
+      "prompt": "Planeje uma revisão de segurança para o código-fonte deste repositório, a API em example.test e o fluxo de dependências da CI. Nenhum alvo ativo está autorizado; identifique o escopo necessário e indique os procedimentos Coacus existentes. Não execute testes."
+    },
+    {
+      "id": "near-miss-en-definition",
+      "intent": "near-miss",
+      "language": "en",
+      "prompt": "Explain briefly what SAST means and when a small team might use it. Do not review or test a target."
+    },
+    {
+      "id": "near-miss-pt-br-definition",
+      "intent": "near-miss",
+      "language": "pt-BR",
+      "prompt": "Explique brevemente o que significa SAST e quando uma equipe pequena pode usá-lo. Não revise nem teste um alvo."
+    }
+  ]
+}

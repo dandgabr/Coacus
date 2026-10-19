@@ -32,6 +32,15 @@ class TestSkillQualityErrors(unittest.TestCase):
         write_skill(self.root, "sample-skill")
         self.assertEqual(skill_quality.validate(self.root), [])
 
+    def test_description_at_1024_characters_passes(self) -> None:
+        write_skill(self.root, "boundary-skill", description="x" * 1024)
+        self.assertEqual(skill_quality.validate(self.root), [])
+
+    def test_description_over_1024_characters_fails(self) -> None:
+        write_skill(self.root, "long-description", description="x" * 1025)
+        errors = skill_quality.validate(self.root)
+        self.assertTrue(any("description" in error and "max 1024" in error for error in errors))
+
     def test_name_over_sixty_four_chars_fails(self) -> None:
         write_skill(self.root, "s" + "x" * 64)
         errors = skill_quality.validate(self.root)

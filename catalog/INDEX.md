@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 457 skill(s) · 102 agent(s) · 1 MCP(s)
+**Totals:** 458 skill(s) · 102 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -437,6 +437,7 @@
 | rasp-runtime-protection | [knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md](../knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md) |
 | sast-code-review | [knowledge/skills/security/appsec/sast-code-review/SKILL.md](../knowledge/skills/security/appsec/sast-code-review/SKILL.md) |
 | secure-sdlc-ssdf | [knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md](../knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md) |
+| security-assessment-planning | [knowledge/skills/security/appsec/security-assessment-planning/SKILL.md](../knowledge/skills/security/appsec/security-assessment-planning/SKILL.md) |
 | software-supply-chain-security | [knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md](../knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md) |
 | web-injection-classes | [knowledge/skills/security/appsec/web-injection-classes/SKILL.md](../knowledge/skills/security/appsec/web-injection-classes/SKILL.md) |
 | cloud-detection-response | [knowledge/skills/security/cloud/cloud-detection-response/SKILL.md](../knowledge/skills/security/cloud/cloud-detection-response/SKILL.md) |

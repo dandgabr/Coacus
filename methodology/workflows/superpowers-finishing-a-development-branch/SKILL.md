@@ -119,6 +119,31 @@ git branch -d <feature-branch>
 
 ### Option 2: Push and Create PR
 
+Prepare a concise PR body with these review cues, following any repository
+template:
+
+```markdown
+## Summary
+- <user-visible behavior or problem solved>
+
+## Visual summary
+<!-- For interface changes, include before/after captures or a short visual
+     explanation of the before and after. Omit this section when the change
+     has no visual surface. -->
+
+## Evidence
+- <verification command and actual result>
+- <before/after behavior or generated-artifact scope, when relevant>
+
+## Merge risk
+- Blast radius: <affected components, users, or data>
+- Reversibility: <how to revert or roll back>
+- <migration, rollout, or compatibility concerns; state none when checked>
+```
+
+Describe only evidence collected on the branch being submitted. The merge-risk
+section informs review; it does not authorize merging or deployment.
+
 ```bash
 git push -u origin <feature-branch>
 # From a detached HEAD, name the new branch on the remote:

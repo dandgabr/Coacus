@@ -1089,6 +1089,7 @@ that has signal on this corpus:
 
 - ERRORS (safe on the current corpus, catch a regression):
   - ``name`` longer than the Agent Skills limit (64 chars);
+  - ``description`` longer than the skill-authoring limit (1024 chars);
   - an unbalanced code fence (a ``` block that is never closed).
 - WARNINGS (non-blocking):
   - a body over the word budget — depth belongs in ``references/``;
@@ -1121,7 +1122,7 @@ Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
 ``description`` present; globally unique slug; correct placement; no nested
 SKILL.md; local markdown links resolve.
 
-Warnings (non-blocking): oversized descriptions.
+Description length is enforced by :mod:`engine.validators.skill_quality`.
 
 #### `def discover_skills(root: Path) -> list[Path]`
 
@@ -1133,7 +1134,7 @@ Return a list of error strings; empty list means valid.
 
 #### `def warnings(root: Path) -> list[str]`
 
-Non-blocking findings about description size.
+No non-blocking findings are currently defined for skill structure.
 
 ### `engine/verify/ledger.py`
 

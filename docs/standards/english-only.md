@@ -41,10 +41,11 @@ scope, and includes an English justification. A segment exception is permitted
 only after a reviewer confirms that the exact text is an approved example, a
 proper name, English that the detector cannot confidently classify, or a
 non-prose structural fragment. It never permits a directory, file family, or
-future text. File scope is limited to the canonical bilingual routing lexicon;
-any edit invalidates that exception until the exact reviewed content is
-reapproved. Generated indexes are scanned through their canonical sources and
-checked for drift. Directory and glob exemptions are prohibited.
+future text. File scope is limited to the canonical bilingual routing lexicon
+and exact-hash activation fixtures that exercise its documented bilingual
+behavior; any edit invalidates the exception until the exact reviewed content
+is reapproved. Generated indexes are scanned through their canonical sources
+and checked for drift. Directory and glob exemptions are prohibited.
 
 ## Enforcement
 
@@ -60,8 +61,9 @@ checked for drift. Directory and glob exemptions are prohibited.
   and `validate`; uncertain cases say `needs human review`.
 - The language gate requires Python 3.12+ because the pinned detector does. Other
   Coacus tooling remains Python 3.10+ and standard-library-only.
-- `engine/validators/skills.py` (`warnings()`) reports oversized descriptions;
-  all language findings use the repository-wide blocking gate above.
+- `engine/validators/skills.py` checks structural skill metadata; the
+  `engine/validators/skill_quality.py` quality gate blocks descriptions over
+  1024 characters. Language findings use the repository-wide blocking gate above.
 - Translation itself is delegated to the `linguistic-specialist` agent under
   orchestrator governance; the importer owns the `pending-translation` /
   `translated` tagging.

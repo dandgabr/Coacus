@@ -95,9 +95,9 @@ gets a thin adapter.
   frontmatter parsing, kebab-case name equal to the directory, required
   description, global slug uniqueness, correct placement depth, no nested
   `SKILL.md`, and resolution of local links.
-- `engine/validators/skill_quality.py` checks the name length limit and balanced
-  code fences as errors, and reports the body word budget and a
-  description-register warning.
+- `engine/validators/skill_quality.py` blocks names over 64 characters,
+  descriptions over 1024 characters, and unbalanced code fences. It warns on
+  body word budget and description register.
 - `engine/validators/hygiene.py` enforces the tool-name denylist over canonical
   skill bodies, authoring templates, the bootstrap wrapper and workflow skills.
   The denylist is the union of a built-in seed and every

@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 102,
-    "skills": 457,
+    "skills": 458,
     "mcps": 1
   },
   "agents": [
@@ -1907,6 +1907,10 @@
     {
       "name": "secure-sdlc-ssdf",
       "path": "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md"
+    },
+    {
+      "name": "security-assessment-planning",
+      "path": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md"
     },
     {
       "name": "software-supply-chain-security",

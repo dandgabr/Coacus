@@ -9,7 +9,7 @@ Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
 ``description`` present; globally unique slug; correct placement; no nested
 SKILL.md; local markdown links resolve.
 
-Warnings (non-blocking): oversized descriptions.
+Description length is enforced by :mod:`engine.validators.skill_quality`.
 """
 
 from __future__ import annotations
@@ -22,7 +22,6 @@ from engine.frontmatter import FrontmatterError, parse
 KEBAB = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+?)(?:\s+\"[^\"]*\")?\)")
 SKIP_LINK_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
-DESCRIPTION_WARN_LEN = 1024
 # root -> allowed depth (number of parts from the root to the skill dir)
 SKILL_ROOTS: dict[str, tuple[int, ...]] = {
     "knowledge/skills": (2, 3),  # <category>[/<subcategory>]/<skill>
@@ -151,17 +150,5 @@ def validate(root: Path) -> list[str]:
 
 
 def warnings(root: Path) -> list[str]:
-    """Non-blocking findings about description size."""
-    notes: list[str] = []
-    for source in discover_skills(root):
-        rel = source.relative_to(root).as_posix()
-        try:
-            doc = parse(source.read_text(encoding="utf-8"))
-        except FrontmatterError:
-            continue
-        description = str(doc.meta.get("description", "")).strip()
-        if len(description) > DESCRIPTION_WARN_LEN:
-            notes.append(
-                f"{rel}: description is {len(description)} chars (> {DESCRIPTION_WARN_LEN})"
-            )
-    return notes
+    """No non-blocking findings are currently defined for skill structure."""
+    return []

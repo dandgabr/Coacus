@@ -14,6 +14,40 @@ Freeze the old content and record its revision. Use a fresh execution context fo
 
 A passing baseline is a passing baseline. Do not manufacture a failure, redefine the rubric after seeing the result or claim demonstrated improvement from unchanged passes. The change may still resolve a documented contradiction or reference gap; report that rationale and the limit of the experiment. Use a no-guidance control or repeated samples when needed to attribute the effect or estimate variability. A single sample does not establish reliability.
 
+## Test skill activation
+
+For a skill whose discovery description or routing behavior changes, prepare a
+small activation set with positive requests that should invoke it and near-miss
+requests that share vocabulary but should not. Include realistic wording
+variation, and include each supported user language when language should not
+change routing. Keep the expected skill and rationale in the evaluator rubric,
+not in the prompt sent to the executing agent. Label the positive activation
+and near-miss cases explicitly. Record the prompt set revision
+and compare the baseline, candidate, and a no-skill control when attribution is
+needed.
+
+An activation query is a test fixture, not proof of runtime activation or that
+a runtime loaded the skill. Claim observed activation only when the harness exposes verifiable
+activation telemetry or an equivalent artifact. When the harness does not
+expose that evidence, report the query-set coverage and the limitation; do not
+infer activation from an answer that merely repeats skill terminology.
+
+## Compare behavioral benchmarks reproducibly
+
+Use the same task set, raw inputs, rubric, model and harness settings for the
+no-skill control, old guidance and candidate guidance. Record revisions and
+environment details, run repeated samples when results are stochastic, and
+report task-level outcomes as well as aggregate values. At minimum compare
+correctness, safety-boundary adherence and task completion; include latency,
+token use or cost when those values are available. Mark unavailable measures
+as unavailable, and do not claim a benchmark improvement from a single sample
+or from a metric that the run did not record.
+
+For code simplification tasks, also record lines changed or an appropriate
+complexity measure as context. Fewer lines alone do not establish an
+improvement; preserve behavior and require the same correctness, safety and
+verification criteria as the baseline.
+
 ## Distinguish evidence depth
 
 A reasoning answer can establish a diagnosis or proposed next action. It cannot establish that a browser rendered a repair, a mutation was killed, an installer changed the intended destination or a deployment serves fresh bytes. Execute those probes when the claim requires them and the environment permits them. Otherwise record their status explicitly.

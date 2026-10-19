@@ -1169,6 +1169,12 @@
       "scope": "segment",
       "sha256": "a5638217494a799e36dc85a3de540ca94dc297d56a024abe52a85afabf62633e",
       "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
+    },
+    {
+      "path": "evals/fixtures/activation/security-assessment-planning.json",
+      "scope": "file",
+      "sha256": "f3b725411fb1fda8ef1003133f566c4b56bd155c9ec7cc0b27e69be8356c60f4",
+      "reason": "Approved PT-BR prompts are paired with English near-miss and positive activation fixtures for the documented bilingual routing behavior; this exact file hash pins the examples."
     }
   ]
 }

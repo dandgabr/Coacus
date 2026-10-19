@@ -116,15 +116,17 @@ class TestSkillWarnings(unittest.TestCase):
         write_skill(self.root, "roles", "en-skill")
         self.assertEqual(skills.warnings(self.root), [])
 
-    def test_oversized_description_warning_keeps_its_source_path(self) -> None:
+    def test_oversized_description_is_blocked_by_quality_validator(self) -> None:
+        from engine.validators import skill_quality
+
         skill = write_skill(self.root, "roles", "long-description")
         text = skill.read_text(encoding="utf-8").replace(
-            "Does long-description when asked.", "x" * (skills.DESCRIPTION_WARN_LEN + 1)
+            "Does long-description when asked.", "x" * (1024 + 1)
         )
         skill.write_text(text, encoding="utf-8")
-        warnings = skills.warnings(self.root)
-        self.assertEqual(len(warnings), 1)
-        self.assertIn("long-description/SKILL.md", warnings[0])
+        errors = skill_quality.validate(self.root)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("long-description/SKILL.md", errors[0])
 
 
 if __name__ == "__main__":

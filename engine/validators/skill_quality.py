@@ -6,6 +6,7 @@ that has signal on this corpus:
 
 - ERRORS (safe on the current corpus, catch a regression):
   - ``name`` longer than the Agent Skills limit (64 chars);
+  - ``description`` longer than the skill-authoring limit (1024 chars);
   - an unbalanced code fence (a ``` block that is never closed).
 - WARNINGS (non-blocking):
   - a body over the word budget — depth belongs in ``references/``;
@@ -27,6 +28,7 @@ from engine.frontmatter import FrontmatterError, parse
 from engine.validators.skills import discover_skills
 
 NAME_MAX = 64
+DESCRIPTION_MAX = 1024
 BODY_WORD_WARN = 3500
 BAD_DESCRIPTION_OPENER = re.compile(r"(?i)^\s*(use this skill|load when)\b")
 
@@ -49,6 +51,12 @@ def validate(root: Path) -> list[str]:
         if len(name) > NAME_MAX:
             errors.append(
                 f"{rel}: 'name' is {len(name)} chars (max {NAME_MAX}, Agent Skills spec)"
+            )
+        description = str(doc.meta.get("description", "")).strip()
+        if len(description) > DESCRIPTION_MAX:
+            errors.append(
+                f"{rel}: 'description' is {len(description)} chars "
+                f"(max {DESCRIPTION_MAX}, skill-authoring)"
             )
         if _fence_lines(doc.body) % 2:
             errors.append(
