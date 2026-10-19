@@ -14,11 +14,12 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 ## Overview
 
-Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
+Ensure work happens in an isolated workspace. Give preference to standard native git tooling (`git worktree add`) as the primary mechanism for workspace isolation, unless the current session is actively being supervised or managed by an integrated orchestrator.
 
-**Core principle:** Detect existing isolation first. Then use native tools. Then fall back to git. Never fight the harness.
+**Core principle:** Detect existing isolation first. If actively managed by an integrated orchestrator, use its integrated workspace mechanism; otherwise, use native git worktrees directly. Never hunt for or invoke external orchestrator CLIs from standalone terminal sessions.
 
 **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
+
 
 ## Step 0: Detect Existing Isolation
 
@@ -53,21 +54,22 @@ Honor any existing declared preference without asking. If the user declines cons
 
 ## Step 1: Create Isolated Workspace
 
-**You have two mechanisms. Try them in this order.**
+Choose the creation path based on whether the current session is actively managed by an orchestrator:
 
-### 1a. Native Worktree Tools (preferred)
+### 1a. Integrated Orchestrator Workspace (Conditional)
 
-The user has asked for an isolated workspace (Step 0 consent). Do you already have a way to create a worktree? It might be a tool with a name like `EnterWorktree`, `WorktreeCreate`, a `/worktree` command, or a `--worktree` flag. If you do, use it and skip to Step 2.
+**Condition:** Use this path **only** when your current session is actively running under and being supervised by an integrated orchestrator or platform that manages workspace lifecycles natively (e.g., a native tool like `EnterWorktree`, `WorktreeCreate`, or an environment-provided tool active in this session).
 
-Native tools handle directory placement, branch creation, and cleanup automatically. Using `git worktree add` when you have a native tool creates phantom state your harness can't see or manage.
+- When running under an active orchestrator, using its integrated mechanism ensures the orchestrator can track placement, supervision, and cleanup automatically.
+- **Do not hunt for, probe, or invoke external orchestrator CLIs** when running in a standalone terminal or independent session.
+- If actively managed by an integrated orchestrator, use its native mechanism and skip to Step 2. Otherwise, proceed to Step 1b.
 
-Only proceed to Step 1b if you have no native worktree tool available.
+### 1b. Native Git Worktree (Primary / Default)
 
-### 1b. Git Worktree Fallback
-
-**Only use this if Step 1a does not apply** — you have no native worktree tool available. Create a worktree manually using git.
+**Default for all standard terminal and standalone sessions.** When no active orchestrator manages the session, create an isolated worktree directly using standard `git worktree add`.
 
 #### Directory Selection
+
 
 Follow this priority order. Explicit user preference always beats observed filesystem state.
 
@@ -152,8 +154,8 @@ Ready to implement <feature-name>
 |-----------|--------|
 | Already in linked worktree | Skip creation (Step 0) |
 | In a submodule | Treat as normal repo (Step 0 guard) |
-| Native worktree tool available | Use it (Step 1a) |
-| No native tool | Git worktree fallback (Step 1b) |
+| Actively managed by orchestrator | Use integrated mechanism (Step 1a) |
+| Standalone terminal / standard session | Native git worktree (Step 1b) |
 | `.worktrees/` exists | Use it (verify ignored) |
 | `worktrees/` exists | Use it (verify ignored) |
 | Both exist | Use `.worktrees/` |
@@ -168,7 +170,8 @@ Ready to implement <feature-name>
 | Excuse | Reality |
 |--------|---------|
 | "I'm obviously not in a worktree — no need to check" | Run Step 0. Harness-created isolation and submodules both fool eyeballing; the detection commands settle it. |
-| "`git worktree add` is quicker than hunting for a native tool" | A native tool (e.g. `EnterWorktree`) owns placement, branching, and cleanup. Bypassing it is the #1 mistake — it creates phantom state your harness can't see or manage. |
+| "I should search for external orchestrator CLIs" | Hunting for external orchestrator CLIs outside an actively managed session creates detached, phantom state. In standard terminal sessions, native git worktrees are always the direct, reliable path. |
 | "The worktree directory is surely ignored already" | Run `git check-ignore`. An unignored worktree directory commits the whole tree into the repo. |
 | "Any directory name works" | Explicit instructions beat an existing project-local directory, which beats the `.worktrees/` default. |
 | "The workspace is fresh — baseline tests can wait" | A dirty baseline makes every later failure ambiguous. Run the tests now; proceeding past failures is your human partner's call. |
+
