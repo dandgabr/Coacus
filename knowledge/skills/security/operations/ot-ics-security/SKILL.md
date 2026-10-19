@@ -65,6 +65,7 @@ Map these to ATT&CK for ICS; note tactics such as Inhibit Response Function and 
 
 ## 🔢 Version Sources
 
-Moving release pins in this skill were resolved 2026-09-20:
+Moving release pins in this skill were resolved 2026-10-19:
 
-- **NIST SP 800-82r3** (verified) — csrc.nist.gov/pubs/sp/800/82/r3/final
+- **NIST SP 800-82 Rev. 3** (latest final publication) — [NIST SP 800-82 Rev. 3](https://csrc.nist.gov/pubs/sp/800/82/r3/final)
+- **NIST SP 800-82 Rev. 4** (initial public draft, not final) — [NIST SP 800-82 Rev. 4 IPD](https://csrc.nist.gov/pubs/sp/800/82/r4/ipd)

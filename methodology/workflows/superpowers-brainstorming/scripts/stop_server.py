@@ -11,8 +11,16 @@ import os
 import shutil
 import signal
 import sys
+import tempfile
 import time
 from pathlib import Path
+
+
+def is_ephemeral_session_dir(session_dir: Path) -> bool:
+    """Identify only direct, named children of the platform temp directory."""
+    resolved = session_dir.resolve()
+    temp_root = Path(tempfile.gettempdir()).resolve()
+    return resolved.parent == temp_root and resolved.name.startswith("brainstorm-")
 
 
 def mark_stopped(state_dir: Path, reason: str) -> None:
@@ -80,12 +88,9 @@ def main(argv: list[str] | None = None) -> int:
     (state_dir / "server.log").unlink(missing_ok=True)
     mark_stopped(state_dir, "stop_server.py")
 
-    # Clean up ephemeral /tmp session
-    if str(session_dir).startswith("/tmp") or "brainstorm-" in session_dir.name:
-        try:
-            shutil.rmtree(session_dir, ignore_errors=True)
-        except Exception:
-            pass
+    # Only delete sessions created directly beneath the platform temp directory.
+    if is_ephemeral_session_dir(session_dir):
+        shutil.rmtree(session_dir, ignore_errors=True)
 
     print(json.dumps({"status": "stopped"}))
     return 0

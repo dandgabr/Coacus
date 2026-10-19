@@ -707,7 +707,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "258a81a320ddf30fc5b8b327027f33c28fbb5e9cee7e9828c7b390e8a9ae2020",
+      "target_sha256": "e5d1993b3f2cfd069836191dc3b7192f870a4ef910011cc1b19fea28457ac4e9",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -843,7 +843,7 @@
       "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
       "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
       "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "37f4516fe792af4a7d99cfb90a28968099335226c3c3f671df5e561a6dedcdc6",
+      "target_sha256": "519fa1f5eb751b2d1b0e76c7f81223d7349ef996745c3428c6db3aad935bea40",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -7825,7 +7825,7 @@
       "source_path": "skills/languages/lang-markdown/examples/readme_template.md",
       "source_sha256": "09597a4a318463563c8b362e210fb40fd6db5f7f661850e84e5c665deb4d65eb",
       "target_path": "knowledge/skills/languages/lang-markdown/examples/readme_template.md",
-      "target_sha256": "3c6550d6745de6fcff1463b19228baaecc9b2af8729dbad7d7bb561299efa16f",
+      "target_sha256": "fc38eff0148884607dd0b34cbd9daa848417021045aca1057e9c84829ecc1ee8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11597,7 +11597,7 @@
       "source_path": "skills/roles/ui-ux-designer/references/web-design-styles-encyclopedia.md",
       "source_sha256": "15553ab00f6f933d0026d526b3e5173d99feab3db7df1894baa22148b854affc",
       "target_path": "knowledge/skills/roles/ui-ux-designer/references/web-design-styles-encyclopedia.md",
-      "target_sha256": "692e47835d12d48c45d648481d3b39caf032f83de706ea7746071f5ab8ca50bd",
+      "target_sha256": "43636880d42aa8b1d95353e9bf906056c3fbbae88afa24b214a7cc014656d714",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -13259,9 +13259,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/grc-compliance/security-grc-compliance/SKILL.md",
-      "source_sha256": "512e5330f6aa72093d0c3c69f39be7c41dc69d3b648e190e08a8e939a1ce3cde",
+      "source_sha256": "a34eb24f54059eb64ed3e8b1e5a4bb8909842eaeb959d053864289fda18907bf",
       "target_path": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-      "target_sha256": "512e5330f6aa72093d0c3c69f39be7c41dc69d3b648e190e08a8e939a1ce3cde",
+      "target_sha256": "a34eb24f54059eb64ed3e8b1e5a4bb8909842eaeb959d053864289fda18907bf",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17286,9 +17286,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/ot-ics-security/SKILL.md",
-      "source_sha256": "93dc1fd90c3bb5d5a317b28eb75eac9fcbf77c76a394c52b17db5ed9596ec1cb",
+      "source_sha256": "87ce78e1592547ee5228e251e916f8eee089af6a58b2b784beef057e93e75436",
       "target_path": "knowledge/skills/security/operations/ot-ics-security/SKILL.md",
-      "target_sha256": "93dc1fd90c3bb5d5a317b28eb75eac9fcbf77c76a394c52b17db5ed9596ec1cb",
+      "target_sha256": "87ce78e1592547ee5228e251e916f8eee089af6a58b2b784beef057e93e75436",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

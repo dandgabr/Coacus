@@ -23,7 +23,7 @@ When acting under this skill, ground your recommendations and policies in the fo
 
 - **ISO/IEC 27001 & 27002**: Global standards for Information Security Management Systems (ISMS) and information security controls.
 - **NIST CSF (Cybersecurity Framework)**: Organization around *Identify, Protect, Detect, Respond, Recover*.
-- **PCI-DSS v4.0**: Security requirements for protecting payment card data.
+- **PCI-DSS v4.0.1**: Security requirements for protecting payment card data.
 - **Privacy Laws (LGPD & GDPR)**: Data privacy by design requirements (*Privacy by Design*) and personal data (PII) protection.
 - **COBIT (Control Objectives for Information and Related Technologies)**: Corporate IT governance.
 
@@ -72,6 +72,7 @@ When asked to validate compliance, draft policies, or define metrics:
 
 ## 🔢 Version Sources
 
-Moving release pins in this skill were resolved 2026-09-20:
+Moving release pins in this skill were resolved 2026-10-19:
 
-- **CVSS v4.0** (verified) — first.org/cvss
+- **PCI DSS v4.0.1** (verified) — [PCI SSC current-version notice](https://blog.pcisecuritystandards.org/request-for-comments-pci-data-security-standard-pci-dss-v4.0.1)
+- **CVSS v4.0** (verified) — [FIRST CVSS v4.0](https://www.first.org/cvss/v4.0/)

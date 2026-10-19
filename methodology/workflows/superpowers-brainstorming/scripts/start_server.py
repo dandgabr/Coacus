@@ -14,6 +14,7 @@ import signal
 import socket
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -21,6 +22,11 @@ from pathlib import Path
 def is_port_in_use(port: int, host: str = "127.0.0.1") -> bool:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         return s.connect_ex((host, port)) == 0
+
+
+def default_session_dir(session_id: str) -> Path:
+    """Return the per-session directory beneath the platform temp directory."""
+    return Path(tempfile.gettempdir()).resolve() / f"brainstorm-{session_id}"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -49,9 +55,9 @@ def main(argv: list[str] | None = None) -> int:
         port_file = str(Path(args.project_dir) / ".superpowers" / "brainstorm" / ".last-port")
         token_file = str(Path(args.project_dir) / ".superpowers" / "brainstorm" / ".last-token")
     else:
-        session_dir = Path(tempfile.gettempdir() if hasattr(os, "name") else "/tmp") / f"brainstorm-{session_id}"
+        session_dir = default_session_dir(session_id)
         port_file = ""
-        token_file = ""
+        token_file = None
 
     state_dir = session_dir / "state"
     pid_file = state_dir / "server.pid"
