@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Systematic Debugging
 
+For a visual symptom, first establish the evaluated revision and actual rendered tree, paint and owner dimensions. Use [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md) to distinguish product defects from stale assets, capture adaptations and unavailable measurement capabilities. A larger layer number, correct token or passing screenshot file is not a root-cause finding.
+
 ## Overview
 
 **Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.

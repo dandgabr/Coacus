@@ -5929,7 +5929,7 @@
       "source_path": "skills/framework/framework-testing-javascript/SKILL.md",
       "source_sha256": "ce1506a59c7345a90946c2b3e44a34b73f9a759cc6e859ea07badc38ccb43ffa",
       "target_path": "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md",
-      "target_sha256": "9d7382c61e0c82caeaff81d3c14cb296ae19687b12268a05c621c18320a8b69f",
+      "target_sha256": "8d392f76f93d9d14df728a956cc2f091881320845bfb8a85ed310d6a98f40e28",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6000,7 +6000,7 @@
       "source_path": "skills/framework/framework-testing-python/SKILL.md",
       "source_sha256": "4930fd78e9c9b731029e07095f2079892fbde9e8388af762d6f9d20fe592974d",
       "target_path": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "target_sha256": "a88a9a74042c23061bfcddfb78d6571f413af8cce0f2d3c99c12d6388aeca732",
+      "target_sha256": "1f2d734cf29b359f2295e63127acabf36de194dad9217173c8e65001f54d00f6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6071,7 +6071,7 @@
       "source_path": "skills/framework/framework-testing/SKILL.md",
       "source_sha256": "653bdbda2bd05b44662d2f3d961947bef309efe8afd83b680da98af3fa3a768e",
       "target_path": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "target_sha256": "ab3c3cddd4d905005695eb681d114501a381f518dde4fbb26f836a27cf9c628e",
+      "target_sha256": "7d14d3fedd9ed11722ad6cb8f89ba0abcdedd5f0f7567ebf38d923f8bf6ad3e3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6296,7 +6296,7 @@
       "source_path": "skills/framework/mutation-fuzzing-testing/SKILL.md",
       "source_sha256": "5ab08ba908aef51ee7052369fd2cae33620587d0b1b28e7068a704e2a5066fb2",
       "target_path": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
-      "target_sha256": "b3ce04950fc5ad68d772e91e941a48d05c76dcbc35940e89966b3fac40fdd809",
+      "target_sha256": "b57bc73e32cbf1d722b9b66f9551421689f043f96a8b1b9733856dbf2f3c8a43",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10665,7 +10665,7 @@
       "source_path": "skills/roles/devops-engineer/SKILL.md",
       "source_sha256": "c8d5ee237f3c9b6a8309ad00096dfa9cf90eff5f2a4ceb3c5acfcc6acb0b33e8",
       "target_path": "knowledge/skills/roles/devops-engineer/SKILL.md",
-      "target_sha256": "1ab0769b307c7d6e24a6f9be57df223ec0303a8877a2eab085818d5594bf0a62",
+      "target_sha256": "c2e4702880969acbca09608222b8eb64ed83384ce9a512d8a0881623ac81e309",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10807,7 +10807,7 @@
       "source_path": "skills/roles/frontend-developer/SKILL.md",
       "source_sha256": "8c668ea5b9d7219f63fa9d7de4d89af1b01c81aea854fb970f9c5942b0180b03",
       "target_path": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "target_sha256": "823e35bb6b0775873e043ae140131a3b25255236e384bfaeb58878fbb85f26e8",
+      "target_sha256": "b93d75369f0d308b0a4bea6acba8b408124648765f072e618e51b39289cddecd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11552,7 +11552,7 @@
       "source_path": "skills/roles/ui-ux-designer/SKILL.md",
       "source_sha256": "f059a3eaf6a72ab2a7c65d079647f9fb6a94e8f3c35e522a086953b9956d72ff",
       "target_path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "target_sha256": "3c1c5abe0ed9c23f7bf6d919dd28b50923086bf07f4924a64be3d61f0cc9077a",
+      "target_sha256": "3be665d9f79a003f381bc4d356a8132a4abff5ae8234b9e55e580465298778ac",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15846,7 +15846,7 @@
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
       "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "6937a9fcd06fca012ae821ee7ca1922948f2b7856c4a38eefcfc02f333880d42",
+      "target_sha256": "edd0ac9e56d76e0d60b31bdb408ef2f04155e3a34ac9c2fbe045b59fd795914f",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15923,7 +15923,7 @@
       "source_path": "skills/requesting-code-review/SKILL.md",
       "source_sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
       "target_path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "target_sha256": "38fe435b4a09f8c41908426d9baa2ad37598be9497729ba813c018bfaa56a39c",
+      "target_sha256": "b80cb4c32cebab8be4732482e45c7f464beae39c4f22a036bd796b8f2a7f0e29",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16070,7 +16070,7 @@
       "source_path": "skills/systematic-debugging/SKILL.md",
       "source_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
       "target_path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "target_sha256": "7ab5c88306b1609962ba5343609b497fb276dffb988dc64ca4f6eeedc7b9a1b0",
+      "target_sha256": "84001b2d4828c094065676a5e0953887efaecbdd15c727dd6ba6979ddf25110f",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16242,7 +16242,7 @@
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
       "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "9a8fd6ec7e109f416e1f1a9512dcbaa50eb9e9ad4f3ef7508e9ad8cc82289d57",
+      "target_sha256": "f92cbe6068706fb1146460dd4187c2520b1505f254114966ffb9dfd48aea2579",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16257,7 +16257,7 @@
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
       "target_path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "target_sha256": "af5113adb2599ba96e14f2a4882b3d6f3b03aea8dcce2cc5afa4c4fe9b3769b1",
+      "target_sha256": "ec2111862bdadfd7eaeba2aad2a1d8b960758f0dd03a7d3c642fec49094765ef",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -18200,9 +18200,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "source_sha256": "9312abe8e00fe53f1dbe1a072666472931155baedc81b02cfba080edd31edd97",
+      "source_sha256": "33ad4f25173c50be0d66213375144b28545b327a5ee05389a5b6b67532264af0",
       "target_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "target_sha256": "9312abe8e00fe53f1dbe1a072666472931155baedc81b02cfba080edd31edd97",
+      "target_sha256": "33ad4f25173c50be0d66213375144b28545b327a5ee05389a5b6b67532264af0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18755,9 +18755,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "source_sha256": "31b3a9cd38d4d3dbfbb80424c4e0d6537d8f8079992ebb417cc479f104f7b238",
+      "source_sha256": "5755fe742b2738922de7507f34b1e7f5d7664eef03d60ed9176cea5564db4102",
       "target_path": "knowledge/skills/roles/ui-designer/SKILL.md",
-      "target_sha256": "31b3a9cd38d4d3dbfbb80424c4e0d6537d8f8079992ebb417cc479f104f7b238",
+      "target_sha256": "5755fe742b2738922de7507f34b1e7f5d7664eef03d60ed9176cea5564db4102",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18770,9 +18770,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "source_sha256": "18c7b6f323f5fc45c49498b913f65655570f9a41abed24220e344c7901204cc0",
+      "source_sha256": "68cfebc1afbb5a3aa80c0c10afe855729d5670a507bd1646f57d2b2f70ae7128",
       "target_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "target_sha256": "18c7b6f323f5fc45c49498b913f65655570f9a41abed24220e344c7901204cc0",
+      "target_sha256": "68cfebc1afbb5a3aa80c0c10afe855729d5670a507bd1646f57d2b2f70ae7128",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18845,9 +18845,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
-      "source_sha256": "865743b183f9b6624347db59f89c17a0e2f6707752f290b838b4945f4c6b1feb",
+      "source_sha256": "95fa29b42edeb40a962c4b6d3580178455c9d67f3f34c2c06fafcb26e01bae59",
       "target_path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
-      "target_sha256": "865743b183f9b6624347db59f89c17a0e2f6707752f290b838b4945f4c6b1feb",
+      "target_sha256": "95fa29b42edeb40a962c4b6d3580178455c9d67f3f34c2c06fafcb26e01bae59",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18860,9 +18860,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
-      "source_sha256": "022e9694864bec1174d5d30a1ae7be84a556a897cc503483e2dd1b8e41883347",
+      "source_sha256": "aad50143d1be916b5789955bbcda9fd808a3b39bf2484815380da91219349cb0",
       "target_path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
-      "target_sha256": "022e9694864bec1174d5d30a1ae7be84a556a897cc503483e2dd1b8e41883347",
+      "target_sha256": "aad50143d1be916b5789955bbcda9fd808a3b39bf2484815380da91219349cb0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19355,9 +19355,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "source_sha256": "949a9c4ed690317e1c7835c8fc473838b415d779e45b27982a3c5dd0175f50cc",
+      "source_sha256": "ebef6ca12807b349241594d20ade1969110fc4b241a7948c1d9d9aac0fa6a6dc",
       "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "target_sha256": "949a9c4ed690317e1c7835c8fc473838b415d779e45b27982a3c5dd0175f50cc",
+      "target_sha256": "ebef6ca12807b349241594d20ade1969110fc4b241a7948c1d9d9aac0fa6a6dc",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20570,9 +20570,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "source_sha256": "91d5320efa77a50e43f968e40e16bc81ed41a1322b2d748902c363aeee988f01",
+      "source_sha256": "8839fc9aa1bd0d8e9e7b5df7dff21200a3a8cf7ee6c12c6dc3a1677abb3c0d83",
       "target_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "target_sha256": "91d5320efa77a50e43f968e40e16bc81ed41a1322b2d748902c363aeee988f01",
+      "target_sha256": "8839fc9aa1bd0d8e9e7b5df7dff21200a3a8cf7ee6c12c6dc3a1677abb3c0d83",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

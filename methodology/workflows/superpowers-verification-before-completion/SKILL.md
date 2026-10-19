@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Verification Before Completion
 
+For rendered UI or publication claims, use [interface evidence and revision scope](references/interface-evidence.md). Keep unsupported measurements explicit and rerun only the evidence invalidated by a change, while satisfying the required project gate. A release authorization is distinct from technical proof.
+
 ## Overview
 
 **Core principle:** Evidence before claims, always.

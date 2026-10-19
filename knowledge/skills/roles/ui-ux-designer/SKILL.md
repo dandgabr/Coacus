@@ -15,6 +15,8 @@ This skill empowers the artificial intelligence to act as a **User Experience (U
 Generative models suffer from **Regression to the Statistical Mean**, producing the most probable average layout from the training corpus (2019–2024). This resulted in the *"Sea of Sameness"*: sites that look like empty shells of recycled templates.
 
 ### 1.2. The Aesthetic Veto List (Banned Defaults)
+
+Interpret these as warnings about unexamined defaults within the chosen product and visual language. A deliberate gradient, monochrome, historical surface or expressive typography is not automatically a defect. Preserve functional semantics, rendered legibility and the style's distinguishing signals. For state and appearance repairs, use [rendered interface verification](../../engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md) and [interface state lifecycle](../frontend-developer/references/interface-state-lifecycle.md).
 When conceiving interfaces, it is **STRICTLY FORBIDDEN** to fall into the following AI clichés:
 1. ❌ **Generic Neon Gradients**: Avoid diagonal blue-to-purple/indigo gradients (`from-blue-500 to-purple-500` / "Tailwind Indigo") spread across headings and dark cards.
 2. ❌ **The Lazy Centered Hero**: Forbidden to resort to the overused formula of: pill badge with a ✨ star emoji (*"Transform your workflow with AI-powered XYZ"*) + vague subtitle + neon-glow button.

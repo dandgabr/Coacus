@@ -37,6 +37,8 @@ The UI discipline: the surface craft — hierarchy, typography, color, layout, c
 
 ## 🧩 Component and State Craft
 
+Treat general palette, scale and spacing recommendations as starting points within the selected visual language. Inspect actual reading surfaces and state changes using [theme surfaces](../../domains/design/color-ui-systems/references/theme-surface-states.md) and [rendered verification](../../engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md). Include wide/short and tall/narrow contexts, not only named device widths. Preserve a correct composition when the request is a local repair.
+
 - Design **every state** per component: default, hover, focus, active/pressed, disabled, loading, error — plus ARIA semantics (tri-state checkbox, pressed buttons per the ARIA APG patterns).
 - **Focus is non-negotiable:** WCAG 2.2 requires visible focus (2.4.7); disabled controls are contrast-exempt but must read as inactive.
 - **Design tokens:** the W3C DTCG format (current release 2025.10) — name/value pairs with `$type`, aliases, composite tokens (typography, shadow, border, transition); translation via Style Dictionary-class tooling. Tokens are how dark mode scales: one role set, two schemes.

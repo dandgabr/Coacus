@@ -28,6 +28,8 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 
 ## 🏎️ Physics-Based Motion vs. Easing Curves
 
+Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [scroll narrative modes](references/scroll-narrative-modes.md). These references distinguish visible output from state markers and frame processing from callback cadence.
+
 Traditional UI animation relied on fixed-duration cubic-bezier curves. Modern high-craft interfaces prioritize **spring physics** because springs preserve momentum, adapt fluidly to user interruption, and eliminate artificial deceleration halts.
 
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |

@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Executing Plans
 
+For interface work, preserve revision-scoped evidence and fixture fidelity through [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md). Keep captures and tool state out of repeated product snapshots, preserve evidence required by tests, and make scratch storage configurable. Resume valid work after an environment interruption without claiming that skipped checks passed. A PR-only request ends at a reviewable PR, not a merge or publication.
+
 Execute the plan yourself, task by task, in this session: no implementer
 subagent per task, no reviewer per task. One fresh-context review of the
 whole branch at the end.

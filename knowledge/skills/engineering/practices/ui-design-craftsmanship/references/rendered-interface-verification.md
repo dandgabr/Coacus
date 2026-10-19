@@ -10,8 +10,26 @@ Use these checks after changing a design system, a multi-view surface, a scroll-
 ## Measure responsive boundaries
 
 - Check a narrow phone, a wider phone, a tablet or breakpoint edge, and a desktop viewport. Include the smallest supported width when the layout claims to be responsive.
+- Include orientation and available height: a wide, short window can fail while a tall window at another width works. Subtract application chrome, fixed headers and container insets from the usable area. In an embedded panel, the owner container can be more restrictive than the browser viewport.
 - Measure each control against its owning visual surface and the visible stage or viewport. Check all four edges and horizontal overflow. If rotation or optical alignment intentionally crosses a boundary, document the element, expected offset, and why the overlap preserves readability and hit-target access; reject clipping, obscured labels, and unreachable hit targets.
 - Check buttons, links, fields, charts, and decorative media in every active view and representative theme variants. Do not let hidden elements pass as valid visible controls.
+- Compare related columns, sibling spacing, internal padding, baselines and reading measure. A form stranded below a short column or a header touching the edge can fit the viewport while still violating the intended composition. Let long words and translated headings wrap or resize within their real container; clipping is not a typography repair.
+
+## Verify appearances and semantic state
+
+Trace the winning paint declarations as well as tokens. Check the complete surface stack and important control states using [theme surfaces](../../../../domains/design/color-ui-systems/references/theme-surface-states.md) and [painted contrast](../../../../domains/design/color-contrast-accessibility/references/painted-contrast-audits.md). A brighter canvas does not establish readable cards, fields or tables.
+
+Style rules must respect semantic visibility: switching a view should expose the intended view, not leave an inactive panel visible because an appearance forces its display mode. Check keyboard focus and effects in hidden views too.
+
+Compare stacking contexts when a progress indicator, menu or overlay covers another element. A larger layer number in a nested context may still be below its sibling. Verify the visible overlap point in every supported appearance, not just each element's separate computed style.
+
+## Preserve the subject while capturing it
+
+Wait for the selected appearance, relevant stylesheet, fonts and intended animation state. Remove incidental hover before comparing rest states. A semantic hidden state and accessibility-hidden decoration require different filtering.
+
+Record geometry before any screenshot-only adaptation. Expanding a scrolling container can change viewport-sized scenes and resize observers; making overflow visible can expose the page's unrelated background. Prefer viewport captures or a method preserving the relevant dimensions. State what any full-content capture changes and confirm representative unmodified viewport output.
+
+Use an inventory-derived coverage matrix and identify sampled axes explicitly. Test the measurement itself with known bad cases such as zero-height bars, overridden hidden state or an unreadable inherited surface. A screenshot file or a successful event is not an acceptance oracle.
 
 ## Prove interactive output
 

@@ -5,6 +5,8 @@ description: "Acts as a Specialist in Automated Testing and QA Engineering in Py
 
 # Automated Testing in Python: Pytest & Unittest
 
+For browser-backed assertions, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Keep fixture roots, fonts/state readiness and temporary storage explicit. Copy required evidence but exclude unrelated captures/tool state; resolve paths against the fixture actually exercised. Synthetic candidate/release data should remain valid after the product inventory grows or is approved.
+
 This skill establishes the engineering standards and methodologies for developing and automating test suites in Python, integrating the advanced **Pytest** ecosystem and the object-oriented standard library **Unittest**.
 
 ---

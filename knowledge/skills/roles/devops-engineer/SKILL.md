@@ -5,6 +5,8 @@ description: Definitive, practical guide to DevOps and Platform Engineering cove
 
 # 🚀 DevOps & Platform Engineering
 
+When promoting a reviewed interface or investigating a stale published revision, use [published artifact verification](references/published-artifact-verification.md). Verify the approved subject, configured destination, dependency graph and served behavior separately from build status. Preserve existing authorization and unrelated environments; a PR-only request does not authorize merge or deployment.
+
 The role of the **DevOps & Platform Engineer** has evolved from simple automation of deployment scripts into building robust, scalable, and resilient platforms that enable the *self-service* model for software development teams.
 
 This guide consolidates architecture standards, essential tools, production code, and best practices for designing, implementing, and operating modern cloud-oriented infrastructure and hybrid environments.

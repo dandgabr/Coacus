@@ -12,6 +12,8 @@ Conventions: ../using-coacus/references/coacus-process-conventions.md
 
 # Requesting Code Review
 
+Bind the review to the product revision and actual coverage. State which cases were directly inspected versus inferred from records, and preserve remaining unknowns. For UI and published artifacts, use [interface evidence](../superpowers-verification-before-completion/references/interface-evidence.md). A plan review does not approve implementation, and a reasoning-only reviewer must not claim browser or mutation execution.
+
 Dispatch a code reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history.
 
 **Core principle:** Review early, review often.

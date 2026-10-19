@@ -1,6 +1,6 @@
 ---
 name: "ui-design-craftsmanship"
-description: "Use when designing or refining a user interface and you need design direction, heuristic critique, or a review of visual, responsive, and interaction quality."
+description: "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality."
 ---
 
 # UI Design Craftsmanship
@@ -63,11 +63,11 @@ Before completing any frontend delivery, run these 5 deterministic mental audits
 2. **The Border Strip Test (Typographic Hierarchy)**:
    - Mentally remove all borders, card backgrounds, and dividing lines. Does the layout still hold together logically solely through typography and whitespace? If not, the typography is too weak.
 3. **The Color Budget Test (Chromatic Discipline)**:
-   - Does the interface use more than one brand accent color for interactive actions? Chromatic saturation must be reserved for meaningful status cues (success, error, warning). The chrome belongs to tinted neutrals.
+   - Does each color have a purpose in this product and visual language? A restrained task interface and a deliberate multicolor composition need different budgets. Check legibility and state meaning before replacing the palette with neutrals.
 4. **The Target Ergonomics Test (Hit Areas & Thumb Zones)**:
    - Are all interactive touch targets at least 44x44px? Is critical action density calibrated to prevent accidental clicks?
 5. **The Motion Budget Test (Accessibility & Restraint)**:
-   - Does every CSS transition or animation complete in under 200ms? Are cartoonish bounce curves eliminated? Is `@media (prefers-reduced-motion)` strictly implemented?
+   - Are duration, interruption and movement appropriate to the task? Brief feedback and a narrative sequence need different timing. Reduced motion must retain complete content and usable controls; decorative motion is optional.
 
 ## 🧪 Rendered Interface Verification
 
@@ -92,7 +92,9 @@ When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs wi
 
 ## 🎨 Surface & Token Craft Recipes
 
-### 1. Tinted Neutrals (Never Pure Black)
+### 1. Tinted Neutrals for Surfaces That Need Them
+
+This recipe suits many reading and task surfaces. It is not a ban on intentional black-and-white, phosphor, neon or other style-specific palettes. Preserve the chosen language while verifying painted contrast and state meaning.
 ```css
 /* Bad */
 background-color: #000000;
