@@ -5,13 +5,13 @@
 
 ## Purpose
 
-This standard defines the mandatory architecture, structural sections, physical lighting models, token specifications, and accessibility guarantees for all 82 canonical UI visual styles in Coacus. It ensures that generative agents operating across any AI harness produce authentic, production-grade, anti-slop interfaces rooted in verified design history rather than generic AI cliches.
+This standard defines the capabilities a canonical visual-style skill must teach: identifiable lineage, surfaces and tokens, readable components, responsive composition, interaction and verifiable limits. The catalog supplies the current inventory. A showcase is a consumer of these skills, not their platform or component contract.
 
 ---
 
 ## 1. Architectural Integrity & Single Style Purity
 
-1. **Pure Standalone Entity:** Every UI style skill represents a single, cohesive, uncompromised aesthetic movement or historical lineage. Composite or hybrid skills (grouping two distinct traditions under one slug) are strictly prohibited.
+1. **Identifiable lineage:** Preserve the named style's distinguishing signals and boundaries with neighboring traditions. Explain a documented dialect or adaptation explicitly; do not silently blend unrelated traditions. A historical reference can inform an adaptation without making two operating environments identical.
 2. **Anti-AI Slop Mandate:** A canonical UI style MUST NOT rely on generic AI design crutches:
    - Floating pastel pill badges with arbitrary sparkle emojis.
    - Ungrounded, blurred ambient black drop shadows applied uniformly to every card.
@@ -21,9 +21,9 @@ This standard defines the mandatory architecture, structural sections, physical 
 
 ---
 
-## 2. Canonical 12-Section Architecture
+## 2. Canonical 14-Part Content Architecture
 
-Every `SKILL.md` under `knowledge/skills/domains/design/ui-style-*` MUST implement the following structural sections in sequential order:
+Every package under `knowledge/skills/domains/design/ui-style-*` must cover the following content. Keep identity, activation, essential constraints and routing in `SKILL.md`; place substantial implementation recipes and conditional material in linked references. The sequence is a reading guide, not a requirement to inflate a concise skill with irrelevant lighting or audio sections.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -49,26 +49,34 @@ Every `SKILL.md` under `knowledge/skills/domains/design/ui-style-*` MUST impleme
 ### Section Guidelines
 
 1. **Frontmatter:** `name` in kebab-case matching the directory name (`ui-style-<slug>`). `description` in third person, trigger-oriented, under 1024 characters.
-2. **Title & Historical Epigraph:** Canonical title accompanied by a verified historical quote from a founding figure or recognized manifesto of the movement.
+2. **Title & Historical Epigraph:** Use a clear canonical title. Include a historical quote only when its wording and attribution have been verified; an epigraph is optional.
 3. **When to Activate:** Bulleted list of concrete project scenarios, operational requirements, and user experience objectives that trigger this skill.
-4. **Definition, Lineage, and Timeline:** Accurate chronological history (genesis, apex, evolution). MUST include an explicit **Absolute Style Vetos** subsection detailing what the style is NOT and preventing common agent distortions.
+4. **Definition, Lineage, and Timeline:** Distinguish verified history from interpretation. Explain neighboring styles and common misapplications. A style boundary does not override the user's functional requirements or accessibility constraints.
 5. **Visual DNA & Subgenre Taxonomy:** High-level aesthetic pillars accompanied by a structured ASCII matrix contrasting two subgenres or historical phases of the style.
-6. **Lighting Physics, Specular Splits & Surfaces:** Precise definition of the optical world: light source angle, specular highlights, surface elevation mechanics, and shader/gradient mathematics.
-7. **Complete Design Tokens:** Exhaustive `:root` and dark mode `[data-theme="dark"]` CSS custom property tokens covering backgrounds, typography inks, accents, borders, radii, shadows, and easing curves.
+6. **Lighting Physics, Specular Splits & Surfaces:** Explain the surface model appropriate to the style, including intentionally flat or typographic treatments. Physical highlights, shaders and acoustic metaphors are conditional techniques, not universal requirements.
+7. **Complete Design Tokens:** Define semantic canvas, surface, ink, accent, boundary and state roles. When multiple appearances are requested, account for the entire painted stack and component states in each. Root selectors, token syntax and theme attributes belong to platform examples; do not impose a consumer's DOM contract.
 8. **Typography & Lettering Architecture:** Prescribed font stacks, weight hierarchies, display vs body pairings, letter-spacing tracking deltas, and OpenType feature flags.
-9. **Interaction Dynamics, Sound Cues & Motion:** State change behavior (hover, focus, active), timing curves, and acoustic feedback profiles (frequency, duration, timbre).
-10. **Canonical Component Specifications:** At least two fully realized, production-ready components featuring clean semantic HTML and modular CSS classes.
-11. **Accessibility & Environmental Contrast:** Mathematical verification of contrast ratios conforming to WCAG 2.2 Level AA (minimum 4.5:1 text, 3:1 non-text controls) or Level AAA, focus indicator styling, and `prefers-reduced-motion` compliance.
+9. **Interaction Dynamics, Sound Cues & Motion:** Define meaningful states and optional motion appropriate to the product. Sound requires an explicit use case and user control. An appearance variant need not change layout or add animation.
+10. **Canonical Component Specifications:** Supply realistic, accessible component examples that demonstrate the style rather than isolated color swatches. Web examples use semantic HTML and scoped CSS; equivalent native components can implement the same principles.
+11. **Accessibility & Environmental Contrast:** Verify the applicable contrast and interaction requirements on rendered output. Distinguish a token calculation, a sampled rendering audit and a conformance assessment. Include focus, reduced motion and access to content larger than the visible region.
 12. **When to Use / When to Avoid:** Explicit binary recommendations preventing misapplication in inappropriate product contexts.
 13. **Authoritative Sources & Historical Artifacts:** Primary historical texts, museum monographs, architectural specifications, or design patents.
 14. **Cross-Skill Integration & Dialect Relations:** Clear pointers to related or opposing styles within the Coacus design corpus.
 
 ---
 
-## 3. Showcase Integration Contract
+## 3. Consumer and Effect Lifecycle Contract
 
-Each canonical UI style in Coacus maintains a corresponding pure CSS file in the partner showcase (`estilos-visuais/styles/<slug>.css`) and an entry in `estilos-visuais/styles/registry.js`. When a style introduces motion effects, it must supply a modular FX engine (`estilos-visuais/styles/fx/<slug>.js`) complying with:
-- Immediate early return when `matchMedia('(prefers-reduced-motion: reduce)').matches` is true.
-- Standard lifecycle: `export default function mount(stage)` returning a cleanup closure `() => { ... }` that clears all timers, animation frames, event listeners, and injected DOM nodes.
+Consumers define their own component tree, style registry, appearance identifiers and mounting API. Keep any concrete showcase mapping in the consumer's integration documentation. Never infer that a valid style must contain a particular number of variants, use a particular root selector or run in a browser.
 
-Before merging changes that affect the partner showcase, apply the pre-deployment checks in [Rendered Interface Verification](../../knowledge/skills/engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md): verify selectors against rendered nesting, measure spacing and control bounds at compact and wide viewports, and assert visible output from scroll effects. Once a deployed preview is available, run its published-asset freshness checks against the HTML and dynamically loaded assets.
+For effects, declare whether the layer belongs to the viewport, the scroll container or the complete content. Define mounting, updates, pause/resume and teardown. Release owned listeners, observers, timers, animation callbacks, drawing surfaces, nodes and temporary styles when the owning context changes. A higher numeric layer order does not escape an ancestor's stacking context.
+
+Reduced motion may omit decorative effects. Essential content, navigation and state must still initialize and remain reachable; an early return is appropriate only when it preserves that contract. A static appearance must be complete without an animation finishing.
+
+Before accepting interface changes, apply [Rendered Interface Verification](../../knowledge/skills/engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md). Check the actual tree, reading surfaces, component states and available container dimensions, including wide/short and tall/narrow contexts. Verify the visible result of effects, not merely their state marker. For published interfaces, verify the revision actually served through the asset dependency graph.
+
+## 4. Authority and Exceptions
+
+Functional requirements and applicable accessibility obligations constrain visual direction. Style-specific identity guides the remaining choices; general taste heuristics are recommendations within that context. A deliberate monochrome, neon, multicolor or gradient treatment is not automatically a defect.
+
+Record an exception's authority, scope, evaluated revision and residual limitations. A user may authorize a release with stated limitations; that authorization does not turn an unmeasured technical requirement into a passing result or retroactively approve a different revision.
