@@ -1,6 +1,6 @@
 # Agnostic Interface Skills Update — Delivery Review
 
-Date: 2026-10-19. Baseline: `8ab8e28`. Initial candidate: `a0bcded`; corrected source: `e3e8e32`. Authorization: execute the approved plan and open a PR for human review. No merge, production publication or user-profile installation is part of this delivery.
+Date: 2026-10-19. Baseline: `8ab8e28`. Initial candidate: `a0bcded`; corrected source: `e3e8e32`; final source formatting: `796b860`. Authorization: execute the approved plan and open a PR for human review. No merge, production publication or user-profile installation is part of this delivery.
 
 ## Scope and decisions
 
@@ -33,7 +33,7 @@ The update separates complete painted surfaces and semantic state roles from app
 - [Standalone fixture results](interface-skills-2026-10-19/render-fixture-results.json): 24 combinations of four viewports, three container types and two appearances; six controlled defects detected. Reduced-motion path exercised. Computed contrast over solid backing is not exhaustive painted sampling. This is not a runtime matrix of the 82 styles or a corpus mutation score.
 - [Targeted recipe results](interface-skills-2026-10-19/style-recipe-results.json): 20 opaque ink/fill pairs from actual component CSS, including corrected Art Deco hover, Calm mode pairs and Frutiger label backing. These checks do not certify full pages, gradient extrema, focus, other engines or assistive technology.
 - [Isolated installation verification](interface-skills-2026-10-19/isolated-install-results.json): Codex and Claude Code each verified 103 selected skills, two agents and one hook file, with no missing or drifted files. Explicit temporary config roots and copy mode preserved user profiles. This is installation-content evidence, not live behavioral evaluation across both harnesses.
-- Delivery-time SHA256 comparison: all **191** listed source bindings agreed with the corrected source. Historical record tests intentionally do not freeze the mutable corpus forever.
+- Delivery-time SHA256 comparison: all **191** listed source bindings agreed with the corrected source. Historical record tests intentionally do not freeze the mutable corpus forever. Final source formatting in `796b860` changes only trailing blank lines; all listed source files were compared with `e3e8e32` after trimming trailing whitespace before reusing its scoped reviews. An [independent formatting/binding check](interface-skills-2026-10-19/final-formatting-binding.md) confirmed 191/191 hashes and terminal-newline-only differences.
 
 ## Independent review and corrections
 

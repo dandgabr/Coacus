@@ -2,7 +2,7 @@
   "schema": 1,
   "date": "2026-10-19",
   "baseline_revision": "8ab8e28d8ea69c9c6653c88cf6777bb08c4278c8",
-  "candidate_source_revision": "e3e8e32",
+  "candidate_source_revision": "796b860",
   "inventory_source": "catalog/catalog.json at baseline revision",
   "evidence_scope": {
     "source_curation": "82 visual packages (83 baseline files), plus 21 shared packages. Findings are source evidence, not rendered conformance.",
@@ -28,7 +28,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
-          "sha256": "b25fb1b81f36212b8d3e5186f10cb4775248a0a913d39596bed9186578e97002"
+          "sha256": "1ba09d96bbc571b1940e405b462f9d3241548ea6a2bae77aac8a1b250d1bf646"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -50,7 +50,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
-          "sha256": "23d5d8dcb6b358d3c4c9b08b10c950f884cc6281275849b3fbb64dc65b53a601"
+          "sha256": "3edb3893ec5fcca80983ce4050ab23b94d4b88d8a995229c6c62279a8277a7b8"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -72,7 +72,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
-          "sha256": "b55741dccb9d6575fb00b1eff20fb2cd269885fc49d575161f3de04de4227a3c"
+          "sha256": "dd9f40338057d5e76b63063c05a47eba20bf951f3462ffca7d2ae3bb2b92621f"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -94,7 +94,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
-          "sha256": "e3ebee58fbe7449e6ba01711bff9695b97bca6d6dedff1d8aeed050c6b8494f6"
+          "sha256": "27c7c252452f285fe66916e32b2ba0560ad33fbe76c737996f57ac75bdca2d1e"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -116,7 +116,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
-          "sha256": "c03be392174f4c0f2c82c716b097d3f7e1b57ab774275802a542e4af84535367"
+          "sha256": "70392d1458447a2fd5f934d27dfee419940a2fe33a07765ae5550c484d43abe8"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -138,7 +138,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
-          "sha256": "35a1a13cb45b11811dd8f8c551b58f99ab9d75747c0fbfddac8703402755af08"
+          "sha256": "b08389d9d946d256109c3d49c95d7b88e5f2703b2ddf8483815812a882b06106"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -160,7 +160,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
-          "sha256": "05b25f8e701e8265afc7cc09923ea7a44bdba29da935578edbc72b0f0c6505dc"
+          "sha256": "155429a353cb41edfc17d07e8ed8c3bf08d0131b2c01c5733ae7539d6db295dc"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -182,7 +182,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
-          "sha256": "32c44c22fc8607315626dcba994e8968b7c686f40505a2210f78b5262e2f2c78"
+          "sha256": "a132bd6fdf3cd932cc40c2d51908522324d8c0e4a8b0e2fad134e4198d62c2ad"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -204,7 +204,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
-          "sha256": "60f7a3fc2e1cae9ea1be9e243a5781bd3295969bf46fa9a09884104a87a55193"
+          "sha256": "62b4e7128d486c6ff0faee2c8180cbf3bcd74219fae606c0c433d2b749101d49"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -226,7 +226,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
-          "sha256": "125de759630539cc5121b4efea7ad1a674865e9367521f73d27ac9dd5e96c430"
+          "sha256": "0cc665c5e03800af5dcad602c6b409a87a0aff54b264e675464847be9e9c35cc"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -248,7 +248,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
-          "sha256": "1ca2de31cbe8eeb9f4c629ad0a583f4108690554a88cd02358fc388489b95aab"
+          "sha256": "26835777ce15005173cd15c07013ee94897bde39a34aa8fe5f46a167fd0a7a0c"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -270,7 +270,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
-          "sha256": "ddeeb0f6694ee3f080b4d0d54005e244bae5c80383492cc91088553de004abb7"
+          "sha256": "7d3011a17e8b4b68c94477a4071e952ba2279a0ec76640b7fea7f6360de34e23"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -292,7 +292,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
-          "sha256": "2e13c72af59be043f55e8537ad5c24b0b3c6780a7c6b620bd22a05a87ad10e8f"
+          "sha256": "a68c95884a15c85c9638638267a2c736005706f0dff39e0604656ffedcb2d451"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -314,7 +314,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
-          "sha256": "126e8b84a934215e9cb7b8d5dc8e07deda1d25455bd629a98d3f30d8489317ed"
+          "sha256": "d25bbf0ad44d3d2655191044cbe98a679c6acb4f4767b041b85638e9d281b498"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -336,7 +336,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
-          "sha256": "b2a00f9de060a104e5ebf47b61bab71fc1f737e42e550bd3aa07033c51edb13c"
+          "sha256": "1e3b75d2cfcaa36e248e0c67c7ccfc5758268e610d6a259c106c2c50398223f4"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -358,7 +358,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-          "sha256": "f4f2226ce86a9421288842d0c8bb03a28edc9ffab9ba2fb6dd08a776629e5c3c"
+          "sha256": "ef7c01a8d062bca444448d01b177f44731915805831a73a33ca0bf91aeb9adce"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -380,7 +380,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
-          "sha256": "114b7b3bc2b6e4bf69282a79a3ae786051d0c1a55ef2a66eee54aaeab64cc479"
+          "sha256": "ebb16c7a592ef44e28c22dbfcdfa8686f9821ae91b3c490d274f2b7080d2fac2"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -402,7 +402,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
-          "sha256": "ed275af3ccd66a1e2820f62c52ed2901e0d1ce390202a0ffdec223def2e011ce"
+          "sha256": "91bfb8f8fd6b1d6fceef5b5e5aa194804d5dee51d6e72494972c3d09c52d006d"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -424,7 +424,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
-          "sha256": "e5c462a0be77d00c29a68b78612e8e5a96c5a86cfa8bbcf086ea79b379456e6b"
+          "sha256": "d21c20ea04d671c22cb9ff2fab4388ab1d91d27fa68196ec2bcba2ff6535a5ba"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -446,7 +446,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
-          "sha256": "c34e907b0816e2f1f1a9df08aa205bc37d11130c8fe31d810a61434d28f2fb48"
+          "sha256": "4f21dd153bbae498aac4a9c99a1602f8d1ac8f879c2b173b74e1bda7bcff76ac"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -468,7 +468,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
-          "sha256": "8435ebb3c81475060490a11a2288b58a39cb97c2e8b07ad4a68e04041e0f1f5a"
+          "sha256": "1f9f5c3e5a2e6b500eb3466670d7f21e1f9948ef775892d7bb218b184b8929b5"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -490,7 +490,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
-          "sha256": "23eaf712e3c348bae93f8f9947197254e4a0188aea1bf8e8cc30df8015550ac1"
+          "sha256": "49c1ec852d60c3488697c8edbc3bcf398dcfaf831e5dfa26bc939d7428c5480e"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -512,7 +512,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
-          "sha256": "8e75b21da76ce6f5c92930a2c98262e4ba4487af4de837efbf55795dcdeda86f"
+          "sha256": "68ee7403ff7f518964686a15dc3243dd9e632a5d10b73fecdf5e259723e1d07d"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -534,7 +534,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
-          "sha256": "c90e92570b0264ff861c9eaead9037ecce3dab6635897bd44efdc990105003fa"
+          "sha256": "f3d232ebcf8f5b61e910cf171fea4ce60c23626fe9690567cb821f0111e16945"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -556,7 +556,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
-          "sha256": "cb92ed1f48e0d24671b6ddb1148f40c891ac7bec34797aa8d93be6b1e151f19e"
+          "sha256": "1ef1c9a5e69e465deb043a8892f9364346485d53cba4f05c4135db5e9b2d5a87"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -578,7 +578,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
-          "sha256": "01ebe3c12bcd593d7054d4dc5f2c9102f8d4a3b763b353b0efa94bbeae6cfb69"
+          "sha256": "5af725f04ed43470af7e647a443e2e28d496fb6395211b55e40182d08de35421"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -600,7 +600,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
-          "sha256": "8ec1e1fc0916157a54ca32fa5610d5e4cca848aec9521a14b628540c5c9531cf"
+          "sha256": "13a88a8c71174ee2b3709b5ba17f35c953a8de5c5f41e72acbf91d3a33764397"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -622,7 +622,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
-          "sha256": "eb58004eab7aa82f8f66e564ff06ae94c7d276e2956fa69dd829ac592875d545"
+          "sha256": "3f6ed0f79f4ea3477003e0055e6ee9583466de32e492adaef0bce75ac81d3438"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -644,7 +644,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
-          "sha256": "88ef9b2c299ce1add4b281ce76746be30243cc00c2cce2609fc564c64183d446"
+          "sha256": "de127c33b31e0b570d8768672cadd49518d6ab69385588062e965f54c3b26b30"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -666,7 +666,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
-          "sha256": "a037aaedae7cba4e2269504378bfa489b13970189ee4f6af749f3da160451ccc"
+          "sha256": "cb4b6419a8e5b81247dc305e551810270be82e46c57f3b679306593ca094ab7d"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -688,7 +688,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
-          "sha256": "fa3411311e1a42695eba9739cafab415eb8be308e6cd03a9604bd0fb3de854d3"
+          "sha256": "a228085eaf4f562d5e9db80039490e37989132be08189ae6c342e69ace5c25e3"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -710,7 +710,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
-          "sha256": "1977f49d1b4878007c3a8c0268de84e09dc2932136328f9c6e29e1b1933fad1e"
+          "sha256": "9eaca5a45ac36a77ea9122ce43ae3059d4b6e91f2546555d4d65a405e2a68483"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -732,7 +732,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-          "sha256": "56f8a6dea2806a29ff3dbb0c3105e8ed80d940f2367461892baab655f476ba05"
+          "sha256": "eae8aa5cc540a5c9777280482945507d618281b22e457d707f0b7fc3f7cb8916"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -754,7 +754,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
-          "sha256": "94ba7bb84187d2958611ce954db82aebc72b1278331ee0a8d80edb213f3d9d86"
+          "sha256": "fa57dc8d86cef8c29341f68258ddf5b612377a5a52b2c58f2cc384788b12cd6f"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -776,7 +776,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
-          "sha256": "fecd52106400b40f78dc55468503081fa066f26fb03e6a68824842ef78357db6"
+          "sha256": "2612c2bd229895ac3883e0b3582620cca3ccd8a51afce6a27aa727a080030c43"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -798,7 +798,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-          "sha256": "0f124a504c5a7e2c8dd31ecd2cf5567d58e9a328091f6b63d6e1f595fdf4d411"
+          "sha256": "2ca78fa6122cb51e04ec8127974bdc3e7fd329ed05c93ab681fa5df3054e2d69"
         },
         {
           "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/references/gloss-components.md",
@@ -832,7 +832,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-          "sha256": "6660007759380ba57f8c87b1e42ea0986c5d1fc1a91adb18dda934c3d77b6384"
+          "sha256": "c3677b1cdefd9a17b2bb6a456b45ca848d3f06f166cc12bd073fc62e2ad3d9a3"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -874,7 +874,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
-          "sha256": "5bee258a152a4fac1b827bceec1046ca2f7ddb61ee8aa21a4395956c6e7e8183"
+          "sha256": "b37fa04215c52da65a46bc454536fda53ee0d1b669cf78ceb4fdc6670b00f2a8"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -896,7 +896,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
-          "sha256": "f73759e8ffce590fc093ed7aad3f83ca290c8e363281e1457d389d41771161b6"
+          "sha256": "80c93b10a1d911e9979a3ffb9a7fb10220eb27f86d48a8be51b463f31585105e"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -938,7 +938,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
-          "sha256": "c8a852acab7d558bfb61f3a69d85218ce3569dc4a5b579a0df0aa434fd4c71ba"
+          "sha256": "ca3a5b4d06211cb1210c76eed592609b3ee086f3782950c2e11668b39645c515"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -965,7 +965,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
-          "sha256": "72331e4c24cb17467c900a668742a7ef0a19e48f176a969a1dd01894666c67b7"
+          "sha256": "9971aafd941480a282d422fd1ad9c8fed56c5ba375a4d987f28236e1fe7547ce"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1027,7 +1027,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
-          "sha256": "4e2cb28f4261ce8744610e5eea37a9e031ceced9affcd157f91d85c36613005b"
+          "sha256": "53598f9a7d70d1f15e59bd6e7d77eb726671c12bea27c11f469c1d20c74da499"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1059,7 +1059,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-          "sha256": "54717a472b6a389233575842da586b84c0d9c5db37dc29fd685625a9ccadae35"
+          "sha256": "b4543caf0b3d5dfb5b2aa8ae6e03ba7f4008b1de3cc4088f279faef8fce67d99"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1081,7 +1081,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
-          "sha256": "3bbb211647929a0f4dd196cbbc5d662ce1937a2d3b4ff8f36e0d1f308ec93733"
+          "sha256": "7b8061c8fb49c746d8098d756bba7cee9767ffcf888b5a4050d2fd8c3b756658"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1103,7 +1103,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
-          "sha256": "6c959eb78e596ef073a3f1836283875dd1e2e225f6dc0a7c8f18dc482f86f6a6"
+          "sha256": "e50f1dfb5a602f56f508cd7b0ef8acd6c5758d0a322c6649d5cdebe7fc184bfd"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1135,7 +1135,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
-          "sha256": "8e1bb4953c7ab94d6e746450d0d1525ff64d8f18bbe36b827b0581d5d75919ae"
+          "sha256": "ae7bc5dd0b0c3e199f61370aff78cc1ebe3fc4fbbd80b99a1e32958691013457"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1157,7 +1157,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
-          "sha256": "62b37f73e147911baa61105fde53ee7be2900527ea7d279b3db4abbc7a33321a"
+          "sha256": "d795399b72913009ba90631c55a40ceadb8a8f218675d9f340a6e0c317b88c73"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1179,7 +1179,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
-          "sha256": "2c33cfe26e7577e275ca80d3303b0d2f8d2ed30d10f922cfdc417494a72b6080"
+          "sha256": "bbaa93bbc59c50db047577354d73913761e6bdf5164ac836bdd4aa1c9f6a7f97"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1201,7 +1201,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
-          "sha256": "d17397b79fd3ef3636cbb7d514c2e135598293dc0c8276fa8a16c4cd69b46f86"
+          "sha256": "c343c15a9acd8ffceb841868f5e2d1435dd728c7fc3ababe387ac20abca6fff5"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1223,7 +1223,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
-          "sha256": "be512efae5a2f3116ea401a9ad8b562afaedbf35513ba92275ca437253e8966c"
+          "sha256": "23254186146edaaf28aad1e642a5a700413db1babb843c70d839672411ad3d29"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1245,7 +1245,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
-          "sha256": "3bf24f87e05be80c7b5307416595fca231e2204b393b059b09ec2279abc659a5"
+          "sha256": "485a1e21d844f583361fd00c958753e41260fee3c3932593ecffafd20e3acb90"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1267,7 +1267,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
-          "sha256": "4e46621e68e4a44166d46c030d8aa0b7f04360ff32028eb9ca08cc8db5c2315b"
+          "sha256": "55623bad1ee9e70569efb7bbe03c21108ae0466a89e55b7308b9af154b8d9e74"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1319,7 +1319,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
-          "sha256": "14e6502a5f8ee43db1936030e973035bec246d1a7e28adcec6b682f3c205e4ec"
+          "sha256": "16f49891d5836c4842323e57fe763edbcf45c628d36147c8f5f63b1f35589e08"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1341,7 +1341,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
-          "sha256": "c0ece12bf05b50be17472f7ff2cc00db04d979e0d707b2612474586eb16fe4f9"
+          "sha256": "4a95cd3e42a363a4c5f4cd62409cfea387fcd8652aaf6cac9f6d40933a18bab3"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1363,7 +1363,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
-          "sha256": "9649bff55c9e7cbb3a08d5ebce00f4a0c8645d902454e585fe8187311840e4d2"
+          "sha256": "acce5f7f8b64610833d664efdc7c55eaafbdf481d05c99706bc1dc0032b4427c"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1385,7 +1385,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-          "sha256": "fbdc0ba20f04beafa00372aaf1de374f4d1d40b40a2913e53e923ff5c4f0e51e"
+          "sha256": "14161a7d895629656837949b6d459bc24e4405bda9883d451c47569970b8ae80"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1407,7 +1407,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
-          "sha256": "a8ecfa70e62ebd6479591307633f9781a0fff69fdb2e5f64038358c116619324"
+          "sha256": "5cc91e813c62c4eacc8e8d764d9a51f370a470512b8e199196199e8bffa60e08"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1434,7 +1434,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
-          "sha256": "be4878f271ee26b146ef17b3cf59c11b4e5675f1f12f9f47838f5ce819e6273f"
+          "sha256": "17faa3268f66b08ffaf22bc43958894ab913b23f23d4e164f5375d065b0687c6"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1456,7 +1456,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
-          "sha256": "513ab16b97de6ac6997a098771fff633dba09f2fd2e8954d09b3be33b34396b9"
+          "sha256": "049d43e928abb7a9a37facc22498d97c46b6f203afa7faaa4138647f5fa12e92"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1478,7 +1478,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
-          "sha256": "f74b99cc93cbaad5e0d088ebe65a225e39113076e67a958c335c304b938465d6"
+          "sha256": "2fb8b7451efa946e0b0531b661db6fb88796e1c0da61dbcc8f87cff804b6048f"
         },
         {
           "path": "knowledge/skills/domains/design/ui-style-retro-computing/references/period-gui-appearance.md",
@@ -1504,7 +1504,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
-          "sha256": "1543d4cef77b8ab325a624494beb7081c3b19a4c4a6c2aad2ea301650b4f8c19"
+          "sha256": "de5d6e441c8815f70dc473342a9c3ae84ec3008291e4e9d0f71baa1f216a9c64"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1556,7 +1556,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-          "sha256": "f0e979978ea3f43acf7db2ca7b42f6a400a3322e5083a7c344151cce4fa94beb"
+          "sha256": "09acd8a6124b3b2b85dd158cdd189b56c681eb73ffd80962062961399fa5e8c4"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1578,7 +1578,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
-          "sha256": "2bb9e7afa5b918e4905c818fefbc7c7cd2ce494cc1e6e746850244b3655880f9"
+          "sha256": "b0963879ea49e465573dbfc0f9348b91981dbc8b8314c134c691c63911496342"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1600,7 +1600,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
-          "sha256": "7e0715dc250edb7ec3fc191125a8d147e3afcecb2c370b790713e8de017d125c"
+          "sha256": "5d25b7d0eff328b94de989dea51c3d6e5048391afec73200943e11da0ca2c9dd"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1622,7 +1622,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
-          "sha256": "e08c4173246150eb8611986bfebc67bb2a06daff69ec87d3791f4d3f265f6747"
+          "sha256": "6932f0f0980b36e911cfc668a1e106ee801c4aafe74b6a68a07560ddaed0dde2"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1644,7 +1644,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
-          "sha256": "cac5239ff88864b2ae1cba22dd0635315c9bd6d11dec3ad5014c7724e1693409"
+          "sha256": "ba8f90df8b4146bcec38c2442569e2dfb3d01f9647637d379db0a85b5ecb85f2"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1666,7 +1666,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
-          "sha256": "0b392cd83371c6798237dd3bef159fda46189088e38fb9b9678479b1b04cdb2c"
+          "sha256": "b1d145d8addc891ac05e908f617cda6d280a0abe2ea06f25edba456c5b2b5e85"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1688,7 +1688,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
-          "sha256": "862a560cf283362572a425d0001c1e38a860859647eba45fe68eafa28430022a"
+          "sha256": "8bef70d8239ef241dea022c0c65752f1e161bcc663f7ab5177eac81117950048"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1710,7 +1710,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
-          "sha256": "9f0118a210ad45e26c3d44ada5eaaa60ecf9eb973a0e201dc544cf97b1e5c59a"
+          "sha256": "cb223170546b09103c26a6496936bcc61c487fb743d55f7560b575852466b0e1"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1752,7 +1752,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
-          "sha256": "a489e3f3a42a862be70c70b57c841c43fef421607b0889d051e0eb75fec0bab5"
+          "sha256": "f3405644d45902bae7dd25e2f2f90758263ca4a8486c8dc54d168cfc19b877b4"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1774,7 +1774,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
-          "sha256": "160835aab1e5f76a3f8f4935f92707cee6884c8e4f003bbe4e41c76ccae3e021"
+          "sha256": "3dfa0ecb336b72c1d33dabd5967f28b56aaeb6055a1f027e90d3477f342f366c"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1796,7 +1796,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
-          "sha256": "200882f650999606cc7373e0d2802dc4d202e0b1cdd5f5ae3015342cebf37c77"
+          "sha256": "91e64b842be298f038b99cbbc173bdb4be9fb7d06531dfc21b0b9eaa17fcecb9"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1828,7 +1828,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
-          "sha256": "af192fd990f39ec2c37674725b89582793bee32993abf811c5f0d61c53f81e18"
+          "sha256": "77ff894124829e382bd39fe3d6ef45f6f3710fa63f38b1ff60e93707c05eea66"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1850,7 +1850,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
-          "sha256": "2e2d2e8e6fde7fbcadc0676eb9ed49e839f102b64b09d764150d4c0d4f2d6204"
+          "sha256": "5eda8f33d623bb9e3bc2341ddc8682abd81c9b53d5860780394c18fa02cca9df"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -1877,7 +1877,7 @@
       "reviewed_files": [
         {
           "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
-          "sha256": "046b6f3e91eea7152f28926e460924de849f4d737e5afb4ebdb3f5b5d30efdee"
+          "sha256": "8e400f986d259e5bc4e8ae81bdd39db8e676a5d4ea577a7bebfc844dceba230f"
         }
       ],
       "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
@@ -2190,31 +2190,31 @@
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/ansible.md",
-          "sha256": "1ef241ad4d0bac3994d77a87f1ef912091e051cdffda1efaa441aa7b0d2cc122"
+          "sha256": "3114e161a8a0779905156913f8901883984c4c76a327c17b874152edc434c726"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/delivery-pipelines.md",
-          "sha256": "b936d7c050c656170c37aaeb6f11345bdf5a6560f69d7593c773cd0d66be045e"
+          "sha256": "6696d09f10b8f133f3f9daf036fad69de1eadda2ed9ae3a1bf7e969ea5936f7b"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/developer-platform.md",
-          "sha256": "697769eeabc64684fa8c9bb3ba9458b1cba70f4c77c409e7fe1fad215c030560"
+          "sha256": "cea573069cb67561425c2e7e76f0fe2a9efd00be813beeb6857e48b44651f1b0"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/golden-images.md",
-          "sha256": "c1281ccddad2cec25d30dce84b6f90af9b9bcf42f53f2a108c666b1fdc29917d"
+          "sha256": "68528834847d583035d3adbb9201418496f0980b7e151bdc2206b2b3233be2ec"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/kubernetes.md",
-          "sha256": "c5ebef704733ea338eb823ffb5970aacce9cdb8c9a24d75f2a1ff0c063068ec0"
+          "sha256": "f20a42e749dd995dacab2918a4cbc3f2ad7aebd3b4978a654cd3747a7134ef07"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/observability.md",
-          "sha256": "fe2c27f9f7a45ca73cae03ae40b5c3e34e9b86036893ea680d935c87bed2f51d"
+          "sha256": "c5199b982e207e025f166b72bf8f42724263062786f691e13a720e1ef9968d1d"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/platform-experience.md",
-          "sha256": "a3dda8c2c507b7c23028cf2b4931aafd35810aa228c35763b2485748d0336067"
+          "sha256": "08104b5355676d9ff3295f80f433b3d4b70b0525d1759582686342450c300fdc"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/published-artifact-verification.md",
@@ -2222,11 +2222,11 @@
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/terraform.md",
-          "sha256": "3963e6f5ccfaac9c24c52974aa89eedb7435ed038a17b12d0b99118322316264"
+          "sha256": "c295ea67c7abc3c4a43ec06c44daf9776f9f656483bdd1975ea4f2b0dd490de3"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/references/vagrant.md",
-          "sha256": "8773f50afe032c3e16cd26daf2267f0e76e64a38ca0383cf62c137d320b09bbf"
+          "sha256": "ed9456e410b05196de0bae18395c04770471ce5651b55aa50485ea1fbeb6b560"
         },
         {
           "path": "knowledge/skills/roles/devops-engineer/resources/.gitkeep",
@@ -3129,5 +3129,12 @@
     "Motion interruption comparison now states implementation dependence.",
     "Polluter reference describes sequential search and explicit inconclusive cases.",
     "Historical record integrity checks do not freeze future live sources."
-  ]
+  ],
+  "formatting_reconciliation": {
+    "source_review_revision": "e3e8e32",
+    "delivered_source_revision": "796b860",
+    "only_change": "Trailing blank-line normalization; each listed source compared byte-identical after rstrip.",
+    "changed_source_files": 84,
+    "behavioral_evidence_reused": "a0bcded blind reasoning; e3e8e32 targeted source/recipe reviews retain their declared scope."
+  }
 }
