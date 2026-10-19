@@ -1666,6 +1666,50 @@ dispatcher (knowledge-ingestion):
 
 Parse arguments and dispatch to the ``ingest`` or ``analyze`` subcommand.
 
+### `scripts/sync_pencil_skills.py`
+
+scripts/sync_pencil_skills.py — Synchronize Coacus Canonical UI Styles to Pencil (pen.dev)
+
+Performs deterministic, lossless adaptation of all 82 pure canonical UI styles
+from knowledge/skills/domains/design/ui-style-* into ~/.pencil/skills/ui-style-*/,
+purges obsolete hybrid directories, updates the central catalog, and verifies
+structural integrity.
+
+Author: Coacus Autonomous Pair Programming
+Contract: ADR 0008, AGENTS.md (Python standard library only)
+
+#### `def parse_coacus_skill(path: Path) -> tuple[str, str, str, str]`
+
+Parse Coacus SKILL.md into (slug, clean_title, canonical_desc, body).
+
+#### `def adapt_style_content(slug: str, clean_title: str, canonical_desc: str, body: str) -> str`
+
+Adapt canonical Coacus skill markdown for Pencil (.pen) canvas environment.
+
+#### `def generate_pencil_catalog(styles_data: list[tuple[str, str, str]]) -> str`
+
+Generate the full pencil-style-catalog/SKILL.md indexing all 82 styles.
+
+#### `def do_backup(pencil_dir: Path, backup_dir: Path, dry_run: bool=False) -> None`
+
+Create a recursive backup of ~/.pencil/skills/.
+
+#### `def do_purge_deprecated(pencil_dir: Path, dry_run: bool=False) -> list[str]`
+
+Purge the 7 deprecated hybrid directories from ~/.pencil/skills/.
+
+#### `def do_sync(coacus_styles_dir: Path, pencil_dir: Path, dry_run: bool=False) -> list[tuple[str, str, str]]`
+
+Synchronize all 82 canonical UI styles from Coacus to Pencil.
+
+#### `def do_verify(coacus_styles_dir: Path, pencil_dir: Path) -> bool`
+
+Verify integrity of all 82 styles in Pencil.
+
+#### `def main() -> int`
+
+_No docstring._
+
 ### `verticals/architecture_si/pipelines/analyze/analyzer.py`
 
 Analyze Markdown documents: outline, metrics, diagrams, security keywords.
