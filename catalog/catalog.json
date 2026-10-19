@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 102,
-    "skills": 458,
+    "skills": 459,
     "mcps": 2
   },
   "agents": [
@@ -219,7 +219,7 @@
     {
       "name": "devops-engineer",
       "category": "data-cloud-devops",
-      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions and Azure Pipelines) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
       "source": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md"
     },
     {
@@ -1711,6 +1711,10 @@
     {
       "name": "power-automate",
       "path": "knowledge/skills/platforms/power-automate/SKILL.md"
+    },
+    {
+      "name": "program-azure-devops",
+      "path": "knowledge/skills/platforms/program-azure-devops/SKILL.md"
     },
     {
       "name": "program-github-actions",

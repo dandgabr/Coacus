@@ -568,7 +568,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "da83d2dc28fce37a04ad76dca19dbe63b014a30b4dd946a7f6bcbe7425e10637",
+      "target_sha256": "60ec32a83b52f69be3d3651ef3fbc768b77d77474761326404931b30dfc6d043",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -20866,6 +20866,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-19T10:53:14Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/program-azure-devops/SKILL.md",
+      "source_sha256": "8c3e8d664f051b7aa42da9887449ee3d0fac5c37394db00c1591cc7c92324bca",
+      "target_path": "knowledge/skills/platforms/program-azure-devops/SKILL.md",
+      "target_sha256": "8c3e8d664f051b7aa42da9887449ee3d0fac5c37394db00c1591cc7c92324bca",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-19T18:16:34Z"
     }
   ]
 }

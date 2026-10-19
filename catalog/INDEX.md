@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 458 skill(s) · 102 agent(s) · 2 MCP(s)
+**Totals:** 459 skill(s) · 102 agent(s) · 2 MCP(s)
 
 ## Agents
 
@@ -388,6 +388,7 @@
 | antigravity-guide | [knowledge/skills/platforms/antigravity-guide/SKILL.md](../knowledge/skills/platforms/antigravity-guide/SKILL.md) |
 | gemini-enterprise | [knowledge/skills/platforms/gemini-enterprise/SKILL.md](../knowledge/skills/platforms/gemini-enterprise/SKILL.md) |
 | power-automate | [knowledge/skills/platforms/power-automate/SKILL.md](../knowledge/skills/platforms/power-automate/SKILL.md) |
+| program-azure-devops | [knowledge/skills/platforms/program-azure-devops/SKILL.md](../knowledge/skills/platforms/program-azure-devops/SKILL.md) |
 | program-github-actions | [knowledge/skills/platforms/program-github-actions/SKILL.md](../knowledge/skills/platforms/program-github-actions/SKILL.md) |
 | program-markmap | [knowledge/skills/platforms/program-markmap/SKILL.md](../knowledge/skills/platforms/program-markmap/SKILL.md) |
 | program-moodle | [knowledge/skills/platforms/program-moodle/SKILL.md](../knowledge/skills/platforms/program-moodle/SKILL.md) |

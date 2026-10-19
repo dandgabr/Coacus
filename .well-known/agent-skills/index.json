@@ -1962,6 +1962,13 @@
       "digest": "sha256:69e15192cb0da8ca5036db4a1fdf5baa4a19c6b9def119442c1245f5dd8086d1"
     },
     {
+      "name": "program-azure-devops",
+      "description": "Guides Azure DevOps Services and Server work across organization design, Boards, Repos, Pipelines, Test Plans, and Artifacts. Use when planning, securing, troubleshooting, or reviewing an Azure DevOps delivery workflow.",
+      "type": "archive",
+      "url": "knowledge/skills/platforms/program-azure-devops/SKILL.md",
+      "digest": "sha256:e8abcfba516be919d1c675b771bfb805e88a56d1648e6190fa9b50604da60b9d"
+    },
+    {
       "name": "program-cheat-engine",
       "description": "Provides expertise in developing Auto Assembler and Lua scripts for Cheat Engine 7.5 and 7.7. Covers code injection patterns, memory manipulation, and script conversion and compatibility techniques between versions 7.5 and 7.7.",
       "type": "archive",

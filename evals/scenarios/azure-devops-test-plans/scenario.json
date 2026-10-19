@@ -1,0 +1,19 @@
+{
+  "id": "azure-devops-test-plans",
+  "title": "Trace manual and automated testing to Azure Boards work",
+  "harness": "opencode",
+  "prompt": "A regulated product team needs manual acceptance testing, exploratory sessions, automated pipeline tests and defect traceability. Propose how Azure Test Plans can fit into the workflow and what evidence should connect tests to requirements and results.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(manual|acceptance).{0,100}(test plan|test suite|test case)|(test plan|test suite|test case).{0,100}(manual|acceptance)" },
+    { "kind": "regex", "value": "(?i)exploratory" },
+    { "kind": "regex", "value": "(?i)(automated|pipeline).{0,100}(test|result)|(test|result).{0,100}(automated|pipeline)" },
+    { "kind": "regex", "value": "(?i)(trace|link|associate).{0,80}(requirement|work item|bug|result)|(requirement|work item|bug|result).{0,80}(trace|link|associat)" }
+  ],
+  "rubric": [
+    "The response differentiates manual acceptance, exploratory, and automated testing instead of treating them as interchangeable.",
+    "It describes test plans, suites or cases as appropriate to organize manual test work.",
+    "It links requirements or work items to test cases and records execution results and defects.",
+    "It verifies current integration requirements for automated runs rather than assuming a test plan alone executes tests."
+  ],
+  "acceptance": "The response provides a traceable mix of manual, exploratory and automated test evidence linked to work items."
+}

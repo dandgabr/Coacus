@@ -1,0 +1,22 @@
+{
+  "id": "azure-devops-secure-pipeline",
+  "title": "Keep untrusted changes away from deployment credentials",
+  "harness": "opencode",
+  "prompt": "An Azure Pipelines YAML pipeline runs code from an external pull request on a persistent self-hosted agent. The pipeline can use a production service connection that is authorized for every pipeline. Recommend a safer design and the checks that should protect deployment.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(untrusted|external|fork|pull request).{0,100}(code|change|execution)|(code|execution).{0,100}(untrusted|external|fork|pull request)" },
+    { "kind": "regex", "value": "(?i)(separate|isolate|credential.free|no credential).{0,100}(validation|build|execution|pull request)|(validation|build|execution).{0,100}(separate|isolat|credential.free)" },
+    { "kind": "regex", "value": "(?i)(service connection).{0,100}(authorize|permission|scope|pipeline|least privilege)|(authorize|permission|scope|least privilege).{0,100}(service connection)" },
+    { "kind": "regex", "value": "(?i)(branch control|approval|check).{0,100}(environment|deployment|resource)|(environment|deployment|resource).{0,100}(branch control|approval|check)" },
+    { "kind": "not_contains", "value": "authorize all pipelines" },
+    { "kind": "not_contains", "value": "give the pull request access to the production service connection" }
+  ],
+  "rubric": [
+    "The response identifies the external pull-request code as untrusted and the persistent self-hosted agent as a boundary with residual state.",
+    "It recommends credential-free isolated validation and prevents untrusted code from using the production service connection.",
+    "It limits service-connection authorization and deployment resource access to the intended pipeline and trusted branches.",
+    "It uses environment or resource approvals/checks where deployment governance requires them.",
+    "No credentials or live pipeline permissions are changed."
+  ],
+  "acceptance": "The response separates untrusted validation from privileged deployment and constrains production access using resource permissions and checks."
+}
