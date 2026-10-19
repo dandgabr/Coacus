@@ -1708,7 +1708,7 @@ Verify integrity of all 82 styles in Pencil.
 
 #### `def main() -> int`
 
-_No docstring._
+Parse CLI arguments and dispatch the Coacus-to-Pencil style synchronization pipeline.
 
 ### `verticals/architecture_si/pipelines/analyze/analyzer.py`
 

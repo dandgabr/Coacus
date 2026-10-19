@@ -367,6 +367,7 @@ def do_verify(coacus_styles_dir: Path, pencil_dir: Path) -> bool:
 
 
 def main() -> int:
+    """Parse CLI arguments and dispatch the Coacus-to-Pencil style synchronization pipeline."""
     parser = argparse.ArgumentParser(description="Synchronize Coacus Canonical UI Styles to Pencil (pen.dev)")
     parser.add_argument("--pencil-dir", type=Path, default=DEFAULT_PENCIL_SKILLS, help="Target Pencil skills directory")
     parser.add_argument("--coacus-dir", type=Path, default=DEFAULT_COACUS_STYLES, help="Source Coacus design styles directory")
@@ -387,10 +388,10 @@ def main() -> int:
 
     print("================================================================================")
     print("🚀 COACUS -> PENCIL (pen.dev) STYLE DOMAIN SYNCHRONIZATION")
-    print(f"   Source: {coacus_dir}")
-    print(f"   Target: {pencil_dir}")
-    print(f"   Backup: {backup_dir}")
-    print(f"   Dry-run: {dry_run}")
+    print(f"   Source directory: {coacus_dir}")
+    print(f"   Target directory: {pencil_dir}")
+    print(f"   Backup directory: {backup_dir}")
+    print(f"   Dry-run mode: {dry_run}")
     print("================================================================================")
 
     # 1. Backup
