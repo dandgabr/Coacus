@@ -1020,36 +1020,18 @@ Return a list of error strings; empty list means clean.
 
 ### `engine/validators/language.py`
 
-Language policy check (english-only).
+Repository-wide English language gate using Lingua language detection.
 
-Validates that imported CONTENT is English across skills, workflows, agents and
-their reference/example assets. Prose only: fenced code blocks, inline code and
-markdown link targets are excluded, because samples, identifiers and anchor
-slugs are not prose.
+Natural-language segments are checked in tracked and non-ignored untracked
+text files. Ambiguous or unsupported text blocks validation for human review.
 
-Returns WARNINGS (non-blocking during import) — it becomes a hard gate once the
-corpus is translated.
+#### `def repository_errors(root: Path) -> list[str]`
 
-#### `def fence_hits(text: str) -> list[tuple[int, str]]`
-
-Non-English markers inside fenced code blocks (diagrams, comments, strings).
-
-``_prose_only`` deliberately drops fences, so contamination in an ASCII
-diagram, a code comment or a string literal used to pass the gate. This
-sweep closes that gap; ``FENCE_EXEMPT`` lists the files whose fences
-legitimately quote Portuguese.
+Validate natural-language segments throughout the repository.
 
 #### `def validate(root: Path) -> list[str]`
 
-Return a list of warning strings (empty = English-clean).
-
-#### `def fence_errors(root: Path) -> list[str]`
-
-Non-English content inside code fences (english-only).
-
-Blocking: after the F6 translation the corpus is English-clean, so a fence
-that carries Portuguese means a regression the reviewer must fix. Runs in
-``source_errors`` (generate pre-flight) and ``validate``.
+Return blocking repository-wide language errors.
 
 ### `engine/validators/mcps.py`
 
@@ -1139,7 +1121,7 @@ Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
 ``description`` present; globally unique slug; correct placement; no nested
 SKILL.md; local markdown links resolve.
 
-Warnings (non-blocking): non-English markers and oversized descriptions.
+Warnings (non-blocking): oversized descriptions.
 
 #### `def discover_skills(root: Path) -> list[Path]`
 
@@ -1151,11 +1133,7 @@ Return a list of error strings; empty list means valid.
 
 #### `def warnings(root: Path) -> list[str]`
 
-Non-blocking findings (language, description size).
-
-The language check inspects PROSE only: fenced code blocks are skipped, so
-illustrative samples that quote upstream docs (SQL comments, config values)
-do not count as untranslated text. This mirrors the hygiene scan.
+Non-blocking findings about description size.
 
 ### `engine/verify/ledger.py`
 

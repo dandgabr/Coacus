@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.14'
+      - name: install required language detector
+        run: python -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
       - name: validate sources
         run: python3 scripts/coacus.py validate
       # NEVER run `generate` here: it rewrites the files under comparison and

@@ -24,7 +24,7 @@ evidence class. Do not treat them as equally authoritative.
 
 ## Prerequisites & 1-Click Universal Install
 
-- Python 3.10+ (Python 3.14 is the CI target). The core tooling uses the standard library only.
+- Python 3.10+ for core tooling (Python 3.14 is the CI target). The repository-wide language gate additionally requires Python 3.12+, `lingua-language-detector==2.2.0`, and `wordfreq==3.1.1`.
 - Run every command from the repository root.
 
 ### 🌟 1-Click Universal Bootstrap (Recommended)

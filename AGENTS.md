@@ -53,7 +53,8 @@ re-scan directories per turn (D5). If indexes look stale, run
 9. **Scripts are Python-only, never shell (cross-platform-os-independence).**
    All tooling, automation, hooks, generators and workflow helpers MUST be
    authored in portable Python 3.10+ (standard library only, zero external runtime
-   dependencies). Never author `.sh`, `.bash`, `.cmd`, or `.ps1` scripts for
+   dependencies), except the repository-wide language gate, which requires the
+   pinned `lingua-language-detector==2.2.0`, `wordfreq==3.1.1` and Python 3.12+. Never author `.sh`, `.bash`, `.cmd`, or `.ps1` scripts for
    framework operations (the sole exception being root `install.sh` and
    `install.ps1` for initial host Python/venv bootstrap).
 

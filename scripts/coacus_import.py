@@ -597,10 +597,9 @@ def _source_commit(repo: Path) -> str:
 
 
 def _looks_english(text: str) -> bool:
-    """Heuristic: English prose has few of the PT-BR markers the validator uses."""
-    from engine.validators.skills import PT_MARKERS
-
-    return not any(marker in text for marker in PT_MARKERS)
+    """Legacy import tag heuristic; the repository gate uses Lingua instead."""
+    portuguese_markers = ("ção", "ções", "ã", "õ", "Atua como", "Especialista em")
+    return not any(marker in text for marker in portuguese_markers)
 
 
 def _import_transform(target: Path, extra: list[str]) -> list[str]:

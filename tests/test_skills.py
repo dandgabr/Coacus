@@ -102,14 +102,29 @@ class TestSkillWarnings(unittest.TestCase):
         self.addCleanup(self._tmp.cleanup)
         self.root = Path(self._tmp.name) / "repo"
 
-    def test_non_english_marker_warns(self) -> None:
+    def test_non_english_is_blocked_by_repository_language_validator(self) -> None:
+        from engine.validators import language
+
         write_skill(self.root, "roles", "pt-skill", body="Atua como especialista em segurança.")
-        warnings = skills.warnings(self.root)
-        self.assertTrue(any("non-English" in w for w in warnings))
+        config = self.root / "config"
+        config.mkdir(parents=True)
+        (config / "language-exceptions.json").write_text('{"exceptions": []}\n', encoding="utf-8")
+        errors = language.repository_errors(self.root)
+        self.assertTrue(any("pt-skill" in error for error in errors))
 
     def test_english_skill_has_no_warnings(self) -> None:
         write_skill(self.root, "roles", "en-skill")
         self.assertEqual(skills.warnings(self.root), [])
+
+    def test_oversized_description_warning_keeps_its_source_path(self) -> None:
+        skill = write_skill(self.root, "roles", "long-description")
+        text = skill.read_text(encoding="utf-8").replace(
+            "Does long-description when asked.", "x" * (skills.DESCRIPTION_WARN_LEN + 1)
+        )
+        skill.write_text(text, encoding="utf-8")
+        warnings = skills.warnings(self.root)
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("long-description/SKILL.md", warnings[0])
 
 
 if __name__ == "__main__":
@@ -117,11 +132,7 @@ if __name__ == "__main__":
 
 
 class TestFenceLanguageGate(unittest.TestCase):
-    """Code fences carry diagrams and comments; PT there is a blocking error.
-
-    The prose sweep intentionally drops fences, so a separate gate (F6b) keeps
-    contamination in ASCII diagrams, code comments and string literals out.
-    """
+    """Language validation includes content in Markdown fences."""
 
     def setUp(self) -> None:
         from engine.validators import language
@@ -130,6 +141,11 @@ class TestFenceLanguageGate(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.root = Path(self._tmp.name) / "repo"
+        config = self.root / "config"
+        config.mkdir(parents=True)
+        (config / "language-exceptions.json").write_text(
+            '{"exceptions": []}\n', encoding="utf-8"
+        )
 
     def test_fence_with_portuguese_fails(self) -> None:
         write_skill(
@@ -138,29 +154,32 @@ class TestFenceLanguageGate(unittest.TestCase):
             "pt-fence",
             body="## Diagram\n\n```\n# Configuração do agente\n```\n",
         )
-        errors = self.language.fence_errors(self.root)
-        self.assertEqual(len(errors), 1)
-        self.assertIn("code fence", errors[0])
+        errors = self.language.repository_errors(self.root)
+        self.assertTrue(any("non-English" in error or "needs human review" in error for error in errors))
 
-    def test_prose_only_portuguese_is_not_a_fence_error(self) -> None:
+    def test_prose_portuguese_is_detected(self) -> None:
         write_skill(
             self.root,
             "roles",
             "pt-prose",
             body="Atua como especialista em seguranca.\n",
         )
-        self.assertEqual(self.language.fence_errors(self.root), [])
+        self.assertTrue(any("pt-prose" in error for error in self.language.repository_errors(self.root)))
 
     def test_english_fence_passes(self) -> None:
-        write_skill(
+        skill = write_skill(
             self.root,
             "roles",
             "en-fence",
-            body="## Diagram\n\n```\n[ Data input ]\n```\n",
+            body="## English Diagram\n\n```\n[ Data input ]\n```\n",
         )
-        self.assertEqual(self.language.fence_errors(self.root), [])
+        text = skill.read_text(encoding="utf-8")
+        text = text.replace("Does en-fence when asked.", "Provides an English fence example.")
+        text = text.replace("# en-fence", "# English Fence Example")
+        skill.write_text(text, encoding="utf-8")
+        self.assertEqual(self.language.repository_errors(self.root), [])
 
-    def test_fence_exempt_file_is_skipped(self) -> None:
+    def test_language_specific_sample_requires_exact_exception(self) -> None:
         write_skill(self.root, "domains", "linguistic-pt-br", body="x")
         nested = self.root / "knowledge/skills/domains/linguistics" / "linguistic-pt-br"
         nested.mkdir(parents=True)
@@ -169,7 +188,7 @@ class TestFenceLanguageGate(unittest.TestCase):
             "# linguistic-pt-br\n\n```\n[ Configuração ]\n```\n",
             encoding="utf-8",
         )
-        self.assertEqual(self.language.fence_errors(self.root), [])
+        self.assertTrue(any("linguistic-pt-br" in error for error in self.language.repository_errors(self.root)))
 
 
 class TestStraySkillGuard(unittest.TestCase):

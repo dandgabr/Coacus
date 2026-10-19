@@ -11,7 +11,9 @@ merged.
 
 ### Layer 1 — deterministic infrastructure (`tests/`)
 
-- Stdlib `unittest`, ZERO runtime dependencies.
+- Stdlib `unittest`; the repository-wide language integration tests require the
+  pinned `lingua-language-detector==2.2.0` and `wordfreq==3.1.1` packages on
+  Python 3.12+.
 - Runs on every commit as a BLOCKING gate.
 - Covers schemas, generators, idempotency, deduplication, the governor, the TOON
   validator, the installer and the vertical dispatcher.
@@ -53,7 +55,7 @@ infrastructure reasons.
 ## Enforcement
 
 - `.github/workflows/ci.yml` runs `python3 -m unittest discover -s tests` as a
-  blocking step.
+  blocking step after installing the required language detector.
 - `engine/validators/evals.py` runs inside `python3 scripts/coacus.py validate`
   and rejects malformed scenarios; the D12 scan reuses
   `engine/validators/hygiene.py` patterns.

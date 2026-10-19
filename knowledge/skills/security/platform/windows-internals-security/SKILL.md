@@ -14,14 +14,14 @@ This skill lays out the security architecture foundations of the Microsoft Windo
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                       User Mode                             │
-│  [ Processos / Apps ]  ──>  [ LSASS (Local Security Auth) ] │
+│  [ Processes / Apps ]  ──>  [ LSASS (Local Security Auth) ] │
 │                                  │ (LSA Authentication)     │
 └──────────────────────────────────┼──────────────────────────┘
                                    │ NtAccessCheck
 ┌──────────────────────────────────▼──────────────────────────┐
 │                      Kernel Mode                            │
-│  [ Security Reference Monitor (SRM) ]  <──> [ Objeto Kernel]│
-│  (Valida Token contra Security Descriptor)   (DACL / SACL)  │
+│  [ Security Reference Monitor (SRM) ]  <──> [ Kernel Object]│
+│  (Checks token permissions against descriptor) (DACL / SACL)│
 └─────────────────────────────────────────────────────────────┘
 ```
 

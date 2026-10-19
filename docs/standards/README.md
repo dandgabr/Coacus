@@ -56,7 +56,7 @@ All standards are written in English (see [`english-only.md`](english-only.md)) 
 | :--- | :--- |
 | [`provenance.md`](provenance.md) | SHA-256 integrity hashing and source commit tracking recorded in `sources.lock.json` for every ingested and native asset. |
 | [`knowledge-ingestion.md`](knowledge-ingestion.md) | Document conversion pipelines, PDF/Markdown normalization, and metadata tagging under `engine/dispatcher/`. |
-| [`testing.md`](testing.md) | Deterministic testing standards using Python standard library `unittest` (zero external test dependencies) and behavioral evals. |
+| [`testing.md`](testing.md) | Deterministic testing standards using Python standard library `unittest`, the pinned language-detector test dependency and behavioral evals. |
 | [`evidence.md`](evidence.md) | Concrete artifact and telemetry verification requirement: every architectural assertion must be supported by reproducible evidence. |
 
 ---

@@ -91,7 +91,7 @@ impl Add for Point {          // trait Add<Rhs=Self> { type Output; fn add(...) 
 ```rust
 pub unsafe trait Zeroable {}
 
-unsafe impl Zeroable for u8 {}   // zeroizar um i8 é seguro
+unsafe impl Zeroable for u8 {}   // zeroing a u8 is safe
 // unsafe impl Zeroable for &T {} // ERRADO: &T zeroizada é null reference
 ```
 
@@ -186,8 +186,8 @@ macro_rules! vec_shortcut {
 use std::future::Future;
 
 async fn page_title(url: &str) -> Option<String> {
-    // equivalente a: fn page_title<'a>(url: &'a str) -> impl Future<Output = Option<String>> + 'a
-    // o futuro retém os parâmetros emprestados, tornando o Future 'a
+    // equivalent to: fn page_title<'a>(url: &'a str) -> impl Future<Output = Option<String>> + 'a
+    // the future retains the borrowed parameters, making the Future 'a
     /* ... */
 }
 ```
@@ -214,7 +214,7 @@ use std::pin::Pin;
 use std::task::{Context, Poll};
 
 fn do_poll<F: Future>(fut: Pin<&mut F>, cx: &mut Context) -> Poll<F::Output> {
-    fut.poll(cx) // método poll exige Pin<&mut Self>
+    fut.poll(cx) // The poll method requires Pin<&mut Self>.
 }
 ```
 

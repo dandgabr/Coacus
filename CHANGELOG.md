@@ -295,7 +295,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Changed
 
-- Calibration fixes: diacritics are folded so ``latência`` matches ``latencia``;
+- Calibration fixes: diacritics are folded before router trigger matching;
   multi-word triggers match as phrases (``sistema digital`` no longer matches a
   bare ``sistema``); the curated lexicon was enriched for paraphrase
   (``revisar``/``relatório``/``ameaça``).

@@ -37,7 +37,7 @@ fn main() {
 - **Doc comments** `///` become docs in `cargo doc`.
 - **Control flow**: `if/else` (the condition must be `bool`, no truthiness); `if` is an expression; **labeled loops** `'outer: loop` and `break 'outer value`/`continue`; `loop` returns a value; `while`; `for x in` over ranges/iterators:
   ```rust
-  let r = loop { break 5 * 2; };     // loop como expressão → 10
+  let r = loop { break 5 * 2; };     // A loop expression returns 10.
   for num in (1..4).rev() { ... }
   ```
 
@@ -57,16 +57,16 @@ let len = calcular(&s1);            // borrowing — não transfere posse
 fn calcular(s: &String) -> usize { s.len() }
 let mut s2 = String::from("a");
 s2.push_str("b");
-let r1 = &s2; let r2 = &s2;         // N referências imutáveis OK
+  let r1 = &s2; let r2 = &s2;         // Multiple immutable references are allowed.
 // let r3 = &mut s2;                // ERRO: &mut enquanto há & vivas
-let r4 = &mut s2;                   // OK após r1/r2 usarem e morrerem (NLL)
+  let r4 = &mut s2;                   // Allowed after r1/r2 are last used (NLL).
 ```
 - **Borrowing**: `&T` (shared, many) OR `&mut T` (exclusive, one). Never both at the same time.
 - **Dangling references** are impossible in safe Rust: the borrow checker guarantees the data outlives the reference.
 - **Slices**: a non-owning view over a collection — `&str` (string slice), `&[i32]` (array slice):
   ```rust
   fn first_word(s: &str) -> &str { s.split_whitespace().next().unwrap_or("") }
-  // &String é coerível para &str (deref coercion); prefira &str em APIs
+  // &String coerces to &str (deref coercion); prefer &str in APIs.
   ```
 
 ## 4. Structs (Ch. 5)
@@ -81,7 +81,7 @@ struct User {
 
 impl User {
     fn new(email: String) -> Self {
-        User { active: true, username: String::from("anônimo"), email, sign_in_count: 1 } // field init shorthand
+        User { active: true, username: String::from("anonymous"), email, sign_in_count: 1 } // field init shorthand
     }
     fn email(&self) -> &str { &self.email }              // método (associated function com receiver)
     fn to_upper_email(mut self) -> Self {                 // consumer builder-style
@@ -97,7 +97,7 @@ let u = User::new(String::from("a@b.c"));
 ## 5. Enums and Pattern Matching (Ch. 6, 18)
 
 ```rust
-enum IpAddr { V4(u8, u8, u8, u8), V6(String) }        // enums carregam dados
+enum IpAddr { V4(u8, u8, u8, u8), V6(String) }        // Enums can carry data.
 enum Shape { Circle(f64), Square(f64), Triangle(f64) }
 
 fn area(shape: &Shape) -> f64 {
@@ -108,12 +108,12 @@ fn area(shape: &Shape) -> f64 {
     }
 }
 
-enum Option<T> { Some(T), None }           // do core, elimina null
+enum Option<T> { Some(T), None }           // From core; eliminates null.
 fn dividir(x: f64, y: f64) -> Option<f64> {
     if y == 0.0 { None } else { Some(x / y) }
 }
 
-if let Some(val) = talvez_valor() { ... }  // um caso só
+if let Some(val) = maybe_value() { ... }  // A single case.
 let x = 5;                                  // let pode desestruturar
 let (a, b) = (1, 2);
 ```
@@ -163,7 +163,7 @@ let (a, b) = (1, 2);
   ```rust
   trait Resumir {
       fn resumir(&self) -> String;
-      fn preview(&self) -> String { format!("Lendo: {}", self.resumir()) } // default
+    fn preview(&self) -> String { format!("Reading: {}", self.resumir()) } // default
   }
   impl Resumir for Artigo { fn resumir(&self) -> String { ... } }
   ```
@@ -176,11 +176,11 @@ let (a, b) = (1, 2);
 - They guarantee that references stay valid (**they do not change the lifetime — they only describe it**):
 
 ```rust
-// Elision rule: 1 ref-input → 1 lifetime de saída implícita
+  // Elision rule: one reference input implies one output lifetime.
 fn maior<'a>(a: &'a str, b: &'a str) -> &'a str { if a.len() > b.len() { a } else { b } }
 
 struct Livro<'a> {
-    titulo: &'a str,   // struct não pode sobreviver às suas referências
+    titulo: &'a str,   // The struct cannot outlive its references.
 }
 impl<'a> Livro<'a> { fn first(&self) -> &'a str { self.titulo } }
 ```

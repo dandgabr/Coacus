@@ -1,9 +1,10 @@
 # English Only
 
 **Status:** normative
-**Scope:** every tracked artifact — documentation, ADRs and standards, skill
-frontmatter and bodies, agent sources, MCP declarations, manifests, templates,
-code comments and commit messages.
+**Scope:** all repository text artifacts — tracked and non-ignored untracked
+documentation, ADRs and standards, skill frontmatter and bodies, agent sources,
+MCP declarations, manifests, templates, source comments, docstrings and natural-
+language string values.
 
 ## Rule
 
@@ -32,31 +33,35 @@ mechanical.
 
 ## Exemptions
 
-A small, explicit set of files is intentionally non-English or intentionally
-quotes non-English material. They are listed in `LANGUAGE_EXEMPT` in
-`engine/validators/skills.py`, `ASSET_EXEMPT` and `FENCE_EXEMPT` in
-`engine/validators/language.py` — for example the Portuguese linguistic skill and
-skills that quote upstream Portuguese examples as teaching material. The prose
-check SKIPS prose inside fenced code blocks, inline code spans and markdown link
-targets, because samples, identifiers and anchor slugs are not prose.
-
-A SEPARATE fence gate covers the excluded area: `language.fence_errors()` scans
-inside fenced code blocks for strong Portuguese markers, because an ASCII
-diagram, a code comment or a string literal carrying Portuguese is still a
-single-language-contract violation (F6b). It runs in the `generate` pre-flight
-and in `validate` as a blocking error. Files whose fences legitimately quote
-Portuguese are listed in `FENCE_EXEMPT`; individual lines that must stay
-Portuguese (a Brazilian place name, a Presidio demo string) are allowed via
-`FENCE_LINE_ALLOW`.
+Approved bilingual routing data, isolated teaching examples, foreign-language
+proper titles, and individually reviewed English labels or structural fragments
+use exact content exceptions in `config/language-exceptions.json`. Each entry
+binds one SHA-256 digest to one repository path, declares `segment` or `file`
+scope, and includes an English justification. A segment exception is permitted
+only after a reviewer confirms that the exact text is an approved example, a
+proper name, English that the detector cannot confidently classify, or a
+non-prose structural fragment. It never permits a directory, file family, or
+future text. File scope is limited to the canonical bilingual routing lexicon;
+any edit invalidates that exception until the exact reviewed content is
+reapproved. Generated indexes are scanned through their canonical sources and
+checked for drift. Directory and glob exemptions are prohibited.
 
 ## Enforcement
 
-- `engine/validators/language.py` scans `knowledge/skills/**`, `knowledge/agents/**`
-  and `methodology/workflows/**` for non-English prose (reported as warnings by
-  `python3 scripts/coacus.py validate`) and for non-English content inside code
-  fences (`fence_errors()`, reported as blocking errors).
-- `engine/validators/skills.py` (`warnings()`) reports non-English markers per
-  skill and oversized descriptions.
+- `engine/validators/language.py` inventories tracked and non-ignored untracked
+  text files and classifies prose, comments, docstrings and natural-language
+  string values with `lingua-language-detector==2.2.0` (PyPI, resolved
+  2026-10-19; [package](https://pypi.org/project/lingua-language-detector/2.2.0/))
+  and `wordfreq==3.1.1` (PyPI, resolved 2026-10-19;
+  [package](https://pypi.org/project/wordfreq/3.1.1/)). Lingua classifies
+  multilingual prose; word-frequency evidence disambiguates short text and
+  technical English that Lingua mistakes for another language. Non-English
+  detections, unreadable text and unresolved language evidence block `generate`
+  and `validate`; uncertain cases say `needs human review`.
+- The language gate requires Python 3.12+ because the pinned detector does. Other
+  Coacus tooling remains Python 3.10+ and standard-library-only.
+- `engine/validators/skills.py` (`warnings()`) reports oversized descriptions;
+  all language findings use the repository-wide blocking gate above.
 - Translation itself is delegated to the `linguistic-specialist` agent under
   orchestrator governance; the importer owns the `pending-translation` /
   `translated` tagging.

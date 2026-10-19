@@ -33,6 +33,8 @@ and workflow scripts MUST be authored in Python 3.10+ using only standard librar
 modules. Platform-specific shell scripts (`.sh`, `.bash`, `.ps1`, `.bat`) must
 never be used for internal framework operations or runtime hooks. The only
 exception is the pair of root host bootstrappers (`install.sh` and `install.ps1`).
+The repository-wide language gate is the sole runtime-dependency exception: it
+requires `lingua-language-detector==2.2.0` and `wordfreq==3.1.1` on Python 3.12+.
 
 OpenCode's vendor-required in-process JavaScript adapters bridge its plugin API
 to Python tooling. They are generated native integration artifacts and must

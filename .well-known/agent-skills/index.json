@@ -41,7 +41,7 @@
       "description": "Specializes in Chemical Engineering, Reactors, Transport Phenomena, and CFD building on H. Scott Fogler (Elements of Chemical Reaction Engineering), R. Byron Bird, Warren E. Stewart & Edwin N. Lightfoot (Transport Phenomena), and John D. Anderson (Computational Fluid Dynamics). Covers Molar and Energy Balances in Batch, CSTR, PFR, and Catalytic PBR, Heterogeneous Catalysis (Langmuir-Hinshelwood, Thiele Modulus, Effectiveness Factor \u03b7), Non-Isothermal Reactors and Multiple Steady States, Vapor-Liquid Equilibrium (VLE with NRTL/UNIQUAC and McCabe-Thiele), Fluid Mechanics (Navier-Stokes Equations for Laminar and Turbulent Flow), Heat Transfer (Fourier Conduction, Convection, Stefan-Boltzmann Radiation), Mass Transfer (Fick's Laws and Diffusive Convection), Boundary Layer Theory, and Computational Fluid Dynamics (Finite Volume Method FVM and SIMPLE Algorithm).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
-      "digest": "sha256:9cef009825811db5d750eb9c35f66295bb4cb78a75e3e326e3eaf03fd39cfb16"
+      "digest": "sha256:fb2660ba7d59e31bf1f3c6263e19f2b1377695658fecfb221f0175b24b5fbd97"
     },
     {
       "name": "academic-chemistry-synthesis-analysis",
@@ -328,7 +328,7 @@
       "description": "Acts as an Application Security (AppSec) Specialist based on OWASP ASVS v5.0.0 integrated with NIST SSDF, CWE, and CERT Secure Coding, applying secure coding controls in design and implementation.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
-      "digest": "sha256:bfa99a8e658f6c65bb5fd4374658e9fedf04f8df9c69d93ee097e09dfcff53e8"
+      "digest": "sha256:5e2940c1d99df0a191027693e78d440e51ac2af183c1d3c68420da1e77873854"
     },
     {
       "name": "appsec-owasp-masvs",
@@ -384,7 +384,7 @@
       "description": "Acts as a senior Backend Developer, designing robust APIs, integrating efficient databases, applying safe concurrency, optimizing performance, and creating robust integration tests.",
       "type": "archive",
       "url": "knowledge/skills/roles/backend-developer/SKILL.md",
-      "digest": "sha256:44825fd6dc69d96b80620eeb55b8fa475259990cdf16e11c9c58ff1c98ee549d"
+      "digest": "sha256:055c8ce39a06d7001d50ffcf38009792fb4e4536f7aa62b1955ff880219c0148"
     },
     {
       "name": "binary-app-reverse-mapping",
@@ -846,7 +846,7 @@
       "description": "Acts as a DevSecOps Engineer, automating security checks in the CI/CD pipeline (SAST, DAST, SCA), managing secrets securely, and ensuring security in Cloud and Containers.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
-      "digest": "sha256:ae89f350683c60751295ba9722aa3b3150a126dcc251a946500c98885fbd925e"
+      "digest": "sha256:7990786e979f96f0e846afd5c1beb217e87bcb637ab28d0ccb72a24d73597012"
     },
     {
       "name": "dfir-forensics",
@@ -895,7 +895,7 @@
       "description": "Acts as a specialist in Technical Documentation Engineering, Human Anti-AI Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture, and Visual Diagram Modeling with Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "digest": "sha256:26bb84219ebdcb5c51cfc55d567e33cd070684febcf9ce17332423f2baaa4a37"
+      "digest": "sha256:21c78280371f7557cb801e1d747624d0fdb16b4308e5d23eefe21f7b676eff18"
     },
     {
       "name": "domain-architect",
@@ -1147,7 +1147,7 @@
       "description": "Specialist in Software Testing Engineering. Broad command of Black-Box techniques (BVA, Equivalence Partitioning, Decision Tables, FSM, Pairwise), White-Box techniques (CFG, McCabe, MC/DC, Data Flow/du-paths, Program Slicing), Mutation Testing, Integration (Call Graph, MM-Paths), TDD, and ISTQB Test Management.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "digest": "sha256:e83bb6103e341566fcec6a615319605216c1352575f1ace628be31e99e13033c"
+      "digest": "sha256:bbece313eeb64499ff664e3a33669b5b41cf14c5c84b9a95a8ef8b7bf5f312ac"
     },
     {
       "name": "framework-testing-javascript",
@@ -1168,14 +1168,14 @@
       "description": "Provides modular, high-performance development patterns using the Vue 3 ecosystem, covering the Composition API, TypeScript, Pinia, Vue Router, and reactivity optimizations.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-vue/SKILL.md",
-      "digest": "sha256:6f3de7795d89dfa16b6f4abc83b5b65a08f67776966b27704ded612055bbbe33"
+      "digest": "sha256:a3b8eb3fd170295728cad9c734ff1685b2621c37f6a259060bebb6083e239a6c"
     },
     {
       "name": "frontend-developer",
       "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Framer Motion (spring physics), Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:f22acfdd70c995cee39edd5df1234df8edda57ce5c9f8077eacf328a4ab0cbef"
+      "digest": "sha256:77975ced23be12a26b4de247014bd7b1a72f64ec718c7d1e1d3c7caecd55732f"
     },
     {
       "name": "fullstack-developer",
@@ -1651,14 +1651,14 @@
       "description": "Provides software engineering patterns in Rust based on the official documentation (doc.rust-lang.org), the Brazilian Portuguese translation 'A Linguagem de Programa\u00e7\u00e3o Rust' (rust-br.github.io/rust-book-pt-br), 'The Rust Programming Language 3rd Edition' (Klabnik, Nichols, Krycho), and 'Programming Rust 2nd Edition' (Blandy, Orendorff, Tindall), covering Ownership, Borrowing, Lifetimes, Structs, Enums and exhaustive Pattern Matching, Modules and Crates, Collections (Vec/String/HashMap), error handling (Result/Option/thiserror), Generics and Traits, zero-cost Closures and Iterators, Smart Pointers (Box/Rc/Arc/RefCell/Mutex), Concurrency (threads, channels, Send/Sync), Async (Tokio), Testing (cargo test), Cargo Workspaces and Profiles, Unsafe Rust/Nomicon, and FFI.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-rust/SKILL.md",
-      "digest": "sha256:5367ac2368a1eca1366f8e9cb021db103368ac3edcb5ae31471f70b966c16490"
+      "digest": "sha256:45c50a208b1d55e179772fe85413341db2504a6e50f21379f215b331cf26065e"
     },
     {
       "name": "lang-typescript",
       "description": "Provides secure and robust software engineering patterns using TypeScript based on the official TypeScript Handbook documentation (typescriptlang.org), Effective TypeScript 2nd Edition (Dan Vanderkam), and Total TypeScript Essentials (Matt Pocock), covering primitive and advanced types, narrowing and type guards, discriminated unions with exhaustiveness checking, generics with constraints, type manipulation (keyof, conditional, mapped, template literal types), utility types, strict compiler safety, and defensive data mapping.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-typescript/SKILL.md",
-      "digest": "sha256:6fd48bc3754a7bc41f9472a762bb5e9749685f507c739ad135f5ca807f25194e"
+      "digest": "sha256:54b98df8540265c2885d2d848051b7a3c48e4f8ccce436a7c415ff7b22977af5"
     },
     {
       "name": "lang-typst",
@@ -1917,7 +1917,7 @@
       "description": "Acts as a Senior Ethical Pentester and Penetration Testing Specialist structuring audits under the OWASP WSTG v4.2 framework and correlating them with MITRE ATT&CK techniques.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md",
-      "digest": "sha256:c8dc575f034d4a4130e719d0fda6140ad935e09b9c697521a8af11db40c964b5"
+      "digest": "sha256:72467fd4e6cecda33dabae288bec0947bbeabc23e0111c84815a4addea4e04ef"
     },
     {
       "name": "phase-boundaries",
@@ -1945,7 +1945,7 @@
       "description": "Acts as a specialist in Microsoft Power BI and Microsoft Fabric, covering dimensional modeling (Star Schema), advanced DAX, Power Query (M), RLS/OLS, Dataflows/Datamarts, and performance optimization.",
       "type": "archive",
       "url": "knowledge/skills/data/power-bi/SKILL.md",
-      "digest": "sha256:0bb27d28a8d6a2c1c6842f4331a9656107f537b67418870e53aa5134ffc17403"
+      "digest": "sha256:2a8e65de4d9dc5ce60375217599f3f7ed796370736d5ee9eaac161dd341830d6"
     },
     {
       "name": "privacy-enhancing-technologies",
@@ -1959,7 +1959,7 @@
       "description": "Acts as a Product Owner (PO), refining user stories with BDD acceptance criteria (Cucumber), managing the Product Backlog, and prioritizing deliveries with a focus on business value (ROI).",
       "type": "archive",
       "url": "knowledge/skills/roles/product-owner/SKILL.md",
-      "digest": "sha256:c995af6effa28813dfcf52baa2d48c64789e24dd40d7c29db1a9e0e4715a1f22"
+      "digest": "sha256:69e15192cb0da8ca5036db4a1fdf5baa4a19c6b9def119442c1245f5dd8086d1"
     },
     {
       "name": "program-cheat-engine",
@@ -2078,7 +2078,7 @@
       "description": "Acts as a Senior QA (Quality Assurance) Engineer, mastering risk-based strategies (RBT), formal test design techniques (ISTQB, BVA, Decision Tables, MC/DC), multi-framework test automation, effectiveness measurement (DRE, Mutation Score), and defect management.",
       "type": "archive",
       "url": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "digest": "sha256:5e167f24b205b3d158e059e6b20bc12f9bff8bc128d2d24e7e53fc7095f53221"
+      "digest": "sha256:cf9efa714d07bcfe3355296d903f9c601738a3cd9adf610216f21fe3ba788e7f"
     },
     {
       "name": "quantitative-risk-fair",
@@ -2148,14 +2148,14 @@
       "description": "Acts as a Scrum Master and Agile Coach, facilitating agile ceremonies (Planning, Review, Retrospective, Dailies), removing impediments, managing conflicts, and monitoring productivity metrics (Velocity, Burndown).",
       "type": "archive",
       "url": "knowledge/skills/roles/scrum-master/SKILL.md",
-      "digest": "sha256:0571734f489d1329892fab89f6086ddfc4df33d2d887848085d4534d490d47b7"
+      "digest": "sha256:406a132fe6020857f70b739f70849829883135803fa9bf78f4192d7f6413e0ce"
     },
     {
       "name": "secops-incident-responder",
       "description": "Acts as a SecOps and Incident Response Analyst, structuring attack response playbooks (NIST SP 800-61), operational monitoring (SIEM), hardening of production environments, and Disaster Recovery plans.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
-      "digest": "sha256:401474dc6881a4d9874fbcae2d5c1a11f7170644f6532133b1fc54e399d2064a"
+      "digest": "sha256:20d1f8848e038f883c2dbcdd15e5707ac3978fccf799ed85644fbc762d789485"
     },
     {
       "name": "secrets-management-vault",
@@ -2183,7 +2183,7 @@
       "description": "Acts as a Systems Security Architect using the SABSA framework (Sherwood Applied Business Security Architecture) aligned with TOGAF, NIST CSF, ISO 27001, and Zero Trust, executing the SABSA 6x6 Matrix, Business Attribute Profiles (BAP), Trust Domains, and the SABSA Lifecycle (Strategy, Design, Implement, Manage & Measure).",
       "type": "archive",
       "url": "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
-      "digest": "sha256:4e3a5178057e8686c836c962d485935edde3ce8e76497eaeed0b9f39d598f2aa"
+      "digest": "sha256:568e3e52be5e20318a55f04663bd5563be63e59e4c4337a04d29c126fc60165d"
     },
     {
       "name": "security-architecture-patterns",
@@ -2204,14 +2204,14 @@
       "description": "Acts as a Governance, Risk, and Compliance (GRC) Analyst, structuring security policies, aligning frameworks (ISO 27001, PCI-DSS, LGPD/GDPR), and measuring security effectiveness with organizational metrics.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-      "digest": "sha256:aa77174cf40122171798e706a8b997182fb988e4d4e6b9d87de4773d9f2f4cec"
+      "digest": "sha256:818f990dc340b86efb901528129fb6c1287f2faedfa64458b94803ddf8b00e54"
     },
     {
       "name": "security-manager-samm",
       "description": "Acts as a Security Manager using the OWASP SAMM framework aligned with BSIMM and CIS Controls to govern, assess, and raise the security maturity of the SDLC, managing rules and creating new skills.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-manager-samm/SKILL.md",
-      "digest": "sha256:f17a841df48e6095f5b60b1e53c4386c4b83c1a0c0ba0023d07324d43d02bea5"
+      "digest": "sha256:7597d382b233ee76a0aaa456891cff81bf244ac612288328deb4240db0dfdf98"
     },
     {
       "name": "security-privacy",
@@ -2253,7 +2253,7 @@
       "description": "Acts as a Software Architect applying low-level engineering, SOLID principles, DDD, system topology decisions, testability, and Design Pattern orchestration.",
       "type": "archive",
       "url": "knowledge/skills/roles/software-architect/SKILL.md",
-      "digest": "sha256:38776c6934b8fa67c833e687ac2fde09a083fa16e70a00640ee6d041753679b2"
+      "digest": "sha256:4b65f5c4e982e39d19523c6c9f1fd0e29b7296e3e6f29229eecb662bd02ca096"
     },
     {
       "name": "software-supply-chain-security",
@@ -2421,7 +2421,7 @@
       "description": "Acts as a Threat Modeling Specialist, using frameworks such as STRIDE, PASTA, and LINDDUN to anticipate attacks, identify risks, and specify security requirements.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/threat-modeler/SKILL.md",
-      "digest": "sha256:3afbc245e546b1f5cfc4dd9b8ca7fe4c6633dabf732d7f200a617269c2be4564"
+      "digest": "sha256:a9b76a97e6e0dcbe415ea27d302ec94e76203b4f7d2ed3027ea0dce8d71e1a05"
     },
     {
       "name": "to-spec",
@@ -2715,7 +2715,7 @@
       "description": "Provides the official Dracula Theme UI style created by Zeno Rocha: iconic dark palette with high-contrast pastel accents (Dracula Purple, Pink, Cyan, Green, Orange, and Yellow) over deep obsidian backgrounds. Features WCAG 2.2 AA calibrated comment tokens (#96a7dd), satin dark surfaces, and syntax highlighting ergonomics. Use when designing developer tools, code editors, dashboards, terminal interfaces, or dark-mode first applications.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
-      "digest": "sha256:723d416ba33dc81f77b4ded8cb2f1e49b5c97fa671eec498a87e38ba036c14b4"
+      "digest": "sha256:4db0225d3cbf89e0a615e9626339eedb921891157ee902f1e0435fa133882330"
     },
     {
       "name": "ui-style-dreamcore",
@@ -3093,7 +3093,7 @@
       "description": "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the style library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists.",
       "type": "archive",
       "url": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "digest": "sha256:0bc3d5d9db92ac0ffa3ac0c0831c1cd914108c342e90a2e3d3dd65e549ea8c64"
+      "digest": "sha256:4a91e24b3b0693e3b4cda44b48e0e1640e2d5ac9787a4628da2e9fe3d0d63747"
     },
     {
       "name": "ui-ux-principles",
@@ -3184,7 +3184,7 @@
       "description": "Acts as a Specialist in Windows internal architecture and security engineering based on Windows Security Internals (James Forshaw) and Windows Internals Part 2 (Mark Russinovich). Covers Security Tokens, Access Control (DACL/SACL, SIDs, privileges), Security Reference Monitor (SRM), IPC (ALPC, RPC, named pipes), LSASS, Kerberos/NTLM, and authentication through PowerShell.",
       "type": "archive",
       "url": "knowledge/skills/security/platform/windows-internals-security/SKILL.md",
-      "digest": "sha256:f1b55b49b55794520a3f9b9500be91cd1abf5770fc449e492d653485503b023e"
+      "digest": "sha256:eee55db6043e99e05454d9896262a4ec0615a1092a754792f5f2087e9afba636"
     },
     {
       "name": "writing-for-agents",

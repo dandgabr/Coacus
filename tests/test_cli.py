@@ -5,6 +5,7 @@ from __future__ import annotations
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import coacus
 
@@ -33,6 +34,9 @@ class TestCliGenerate(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.root = make_repo(Path(self._tmp.name))
+        language_gate = patch("scripts.coacus.language_validator.validate", return_value=[])
+        language_gate.start()
+        self.addCleanup(language_gate.stop)
 
     def test_generate_succeeds_when_artifacts_absent(self) -> None:
         # No dist/ and no .agents/ exist yet: generation must create them
@@ -71,6 +75,9 @@ class TestCliRefresh(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.root = make_repo(Path(self._tmp.name))
+        language_gate = patch("scripts.coacus.language_validator.validate", return_value=[])
+        language_gate.start()
+        self.addCleanup(language_gate.stop)
 
     def test_refresh_recovers_drifted_provenance(self) -> None:
         from engine import provenance

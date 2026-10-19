@@ -127,7 +127,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Catalog | 457 skill entries | 430 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
 | Provenance | 1431 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
-### Engine (stdlib only, zero runtime dependencies)
+### Core engine (stdlib only; language gate dependency is pinned)
 
 | Module | Job |
 |---|---|
@@ -217,8 +217,12 @@ skills budget.
 ### Dependencies
 
 - **Required:** [Python 3.10+](https://www.python.org/). The core tooling uses the
-  standard library only; the CI matrix checks the minimum supported release and
-  the main CI target declared in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+  standard library only. The repository-wide language gate also requires Python
+  3.12+, [`lingua-language-detector==2.2.0`](https://pypi.org/project/lingua-language-detector/2.2.0/)
+  and [`wordfreq==3.1.1`](https://pypi.org/project/wordfreq/3.1.1/)
+  (resolved 2026-10-19); CI installs them before validation. The CI matrix checks
+  the minimum core-tooling release and the main CI target declared in
+  [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 - **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
   keyless (`https://mcp.context7.com/mcp`), and declared under
   [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies

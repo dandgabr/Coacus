@@ -2,7 +2,9 @@
 
 Every command below was verified against the scripts in `scripts/`. Run them
 from the repository root. Python 3.10+ is supported (Python 3.14 is the CI target);
-the stdlib is the only dependency for the core tooling.
+the stdlib is the only dependency for the core tooling, except the repository-wide
+language gate, which requires `lingua-language-detector==2.2.0` and
+`wordfreq==3.1.1` on Python 3.12+.
 
 ## 🌟 1-Click Universal Bootstrap (Recommended)
 

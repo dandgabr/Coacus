@@ -65,7 +65,7 @@ def source_errors(root: Path) -> list[str]:
         + eval_validator.validate(root)
         + freshness_validator.validate(root)
         + routing_validator.validate_sources(root)
-        + language_validator.fence_errors(root)
+        + language_validator.validate(root)
     )
 
 
@@ -97,7 +97,6 @@ def _warnings(root: Path) -> list[str]:
         skill_validator.warnings(root)
         + skill_quality_validator.warnings(root)
         + guardrail_validator.warnings(root)
-        + language_validator.validate(root)
     )
 
 

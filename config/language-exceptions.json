@@ -1,0 +1,1144 @@
+{
+  "exceptions": [
+    {
+      "path": ".github/workflows/bandit.yml",
+      "scope": "segment",
+      "sha256": "1fcf6ebbbf8f74067ae51df64dcc73334e2896d55a1814c67665301b39026049",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": ".github/workflows/bandit.yml",
+      "scope": "segment",
+      "sha256": "690dbda92acfe50afc93e732fe2cac06bd8fd7f6ca332be779d6fbcc21c501c7",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": ".github/workflows/bandit.yml",
+      "scope": "segment",
+      "sha256": "894e988cdf94caa95b745c4df2c1f2a90ce5738b56aac00c997080d2c90d7fba",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "scope": "segment",
+      "sha256": "8b84937edff889c1f474f23c3efbc27bc62d964323c7f54c2806236937673eab",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "scope": "segment",
+      "sha256": "bb7e6d04f17656675e86f4008b49a8cbc72da32f447f65fee53fa9e1408b970c",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": ".gitleaks.toml",
+      "scope": "segment",
+      "sha256": "373d3213c1c3bcf2494455b471fb7900ca2068ad35013db15fd2ded7726b362a",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": ".gitleaks.toml",
+      "scope": "segment",
+      "sha256": "c742a0ed9d961fe3651ba96969f9359ade6f14ff2db9afa43eea7f4d0d3721c2",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "scope": "segment",
+      "sha256": "da288ebcd0b901b0554745597d704db7a2985c6a69711a661b515c686dfa9102",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "scope": "segment",
+      "sha256": "f22c167f8593feb68641e4a56ffc1ef0a47242c63f0905139a1f4c93db227302",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "README.md",
+      "scope": "segment",
+      "sha256": "2f0e3188b97d0b271920bd7a6550ae76e99f47153fbb334e7a02243fae505df1",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "docs/tutorials/routing-automatic.md",
+      "scope": "segment",
+      "sha256": "10d7438696256116c13ec507cc2cbf4dbe1f0b90f059a10a1ab33781f987942d",
+      "reason": "Reviewed bilingual routing phrase retained as a functional PT-BR product example; exact segment hash pins this exception."
+    },
+    {
+      "path": "docs/tutorials/routing-automatic.md",
+      "scope": "segment",
+      "sha256": "90ceab7ccdcec042574207ce932e06f55cd515b403d8344ee73c8e9f73ee7aed",
+      "reason": "Reviewed bilingual routing phrase retained as a functional PT-BR product example; exact segment hash pins this exception."
+    },
+    {
+      "path": "docs/tutorials/routing-automatic.md",
+      "scope": "segment",
+      "sha256": "d72a718e18034a9650274538196fdc99e3a6792345d2c6c64daccabc7c61b2f8",
+      "reason": "Reviewed bilingual routing phrase retained as a functional PT-BR product example; exact segment hash pins this exception."
+    },
+    {
+      "path": "docs/tutorials/routing-tuning.md",
+      "scope": "segment",
+      "sha256": "416b7e9312fe547e4e1577ee3057412e9de780b32537c4143b0f108d8bf98e80",
+      "reason": "Exact Portuguese phrase is a functional bilingual routing example described by the product contract."
+    },
+    {
+      "path": "docs/tutorials/routing-tuning.md",
+      "scope": "segment",
+      "sha256": "d93718eec541748c9d32673c385c87263b5820244494566d6b81acc778c18327",
+      "reason": "Reviewed bilingual routing phrase retained as a functional PT-BR product example; exact segment hash pins this exception."
+    },
+    {
+      "path": "docs/usage.md",
+      "scope": "segment",
+      "sha256": "2f0e3188b97d0b271920bd7a6550ae76e99f47153fbb334e7a02243fae505df1",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "engine/provenance.py",
+      "scope": "segment",
+      "sha256": "7b806f5eacf8b7d9ce6ec3d056d0f7b78dbed37036182bddd45ed7eecf1ca9a5",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "engine/router.py",
+      "scope": "segment",
+      "sha256": "94886ea5c9b348ad3420cddb3c6aa3430474551394ddc7061801d7f51cad8230",
+      "reason": "Exact Portuguese token demonstrates accent-folding behavior in the router; reviewed as a functional example."
+    },
+    {
+      "path": "engine/validators/design_craft.py",
+      "scope": "segment",
+      "sha256": "a64a0ec617ee10ca3247ebdb4b5823e605fac1addf371040d903b7c732d9f1df",
+      "reason": "Reviewed English code-comment heading uses the borrowed French word “cliché”; it describes a design anti-pattern. Exact segment hash pins this English label."
+    },
+    {
+      "path": "engine/validators/hygiene.py",
+      "scope": "segment",
+      "sha256": "71146e7b8063ce186238ba64983dd7aec0610a992625dadd1d7e55f0e3138982",
+      "reason": "English explanation names the Bash shell; Lingua misclassifies this exact segment."
+    },
+    {
+      "path": "evals/README.md",
+      "scope": "segment",
+      "sha256": "2f0e3188b97d0b271920bd7a6550ae76e99f47153fbb334e7a02243fae505df1",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "harnesses/antigravity/harness.json",
+      "scope": "segment",
+      "sha256": "c36f5f99f3c9c87c8a312907def82f7f53b8494825f3dc9a57b250487a23743e",
+      "reason": "Reviewed English lifecycle capability label was misclassified by Lingua; exact segment hash pins the harness metadata."
+    },
+    {
+      "path": "harnesses/command-code/harness.json",
+      "scope": "segment",
+      "sha256": "3fe057e85c4b30bd1cfc869a28d4fdea4b550c495ebc9d69dbb58a04ab52451a",
+      "reason": "Reviewed English lifecycle capability label was misclassified by Lingua; exact segment hash pins the harness metadata."
+    },
+    {
+      "path": "install.sh",
+      "scope": "segment",
+      "sha256": "73650633d5d7311e7d62f3c0629966c8d0e54aeace5c618788734ca326692268",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/routing/lexicon.json",
+      "scope": "file",
+      "sha256": "03e920fe304d3390f3778637e34cf1798f91549d1697236975b7d03ed88181ec",
+      "reason": "Approved bilingual PT-BR and English routing lexicon required by the documented product contract."
+    },
+    {
+      "path": "knowledge/skills/data/data-intensive-systems/SKILL.md",
+      "scope": "segment",
+      "sha256": "e5eaefdfacc5720c938e5e3e2cc0e2d0afea30d0faf79a8ebe2a082510d4e51c",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/data/python-data-science/SKILL.md",
+      "scope": "segment",
+      "sha256": "8b3412c4e53cf6ecfbd46fd32b8831f3ca4b25938ac3affbad1c00cc5d6f18bf",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "scope": "segment",
+      "sha256": "225f6470f5fd1e416eaaf7a4816bd8a6f8425538584fe5c95ec10c8b691ffbe7",
+      "reason": "Reviewed English scientific terminology was misclassified by Lingua; exact segment hash pins the technical phrase."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-calculus-differential-equations/SKILL.md",
+      "scope": "segment",
+      "sha256": "824ce519e0eb51fa7ee490febfc3b817287e332017d5a5046b2640796742e723",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-circuit-analysis-electronics/SKILL.md",
+      "scope": "segment",
+      "sha256": "65a2d43e043d9ce16f632cd951ea2148609facce789a4978905e8dae0b3f8f7f",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md",
+      "scope": "segment",
+      "sha256": "b41351f81afc79155987c413279185fbcbee00d39135ecc754732761ae91bac8",
+      "reason": "Reviewed English description of mechanics and relativity topics; Lingua misclassifies the technical vocabulary. Exact segment hash pins the description."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-control-systems-theory/SKILL.md",
+      "scope": "segment",
+      "sha256": "e1344a997303dc40237c7053e4543425344748090fdc00fad5f5b717d3c2aad5",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
+      "scope": "segment",
+      "sha256": "b1c859c872f7a0813071a7dacf91262aab0c4b3aece0dd385e5847743344d238",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md",
+      "scope": "segment",
+      "sha256": "2083f5f1b6a8717812900baf18ef87d45d71d07dbd23ec910d8fc6b602b9a381",
+      "reason": "Reviewed English description of electromagnetism topics; Lingua misclassifies the technical vocabulary. Exact segment hash pins the description."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md",
+      "scope": "segment",
+      "sha256": "87525e2177970f2ca81c671a02f64d77cbc6f77c5153a1ef695fc413ad83082e",
+      "reason": "Reviewed English description of electromagnetism topics; Lingua misclassifies the technical vocabulary. Exact segment hash pins the description."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+      "scope": "segment",
+      "sha256": "8047bb2b0cfde9172f2b01875c5e1780dec327ad0577cbd5a06f74e6c86a2a8e",
+      "reason": "Brazilian municipality name is preserved as a proper-noun value in the GIS query example; exact segment hash pins the localized data."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+      "scope": "segment",
+      "sha256": "613360448a1f5a36430d55de37da29a98c15be4c4ed5891dcf26a3b05e742a3e",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+      "scope": "segment",
+      "sha256": "9e432eded599af3203174553bc54c57a4b5aceecc9948775f349b123f033b38a",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "scope": "segment",
+      "sha256": "ae994c1e2efc0aa0dc18eef57f671f567683d9a64883448a9a8279d3ef9aecde",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "scope": "segment",
+      "sha256": "ba65da05335aae4cc9c271a29090fe47361132ab4865b10d06796416af63d4c4",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
+      "scope": "segment",
+      "sha256": "8bc628702114cf222641317e102624b58fb164e8724dea86f214c4db93b25f4b",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/design/game-2d-scene-composition/references/planes-and-parallax.md",
+      "scope": "segment",
+      "sha256": "a2c8511a11a834fdc383dfeb26f09a794e73e240b12813e614a408cdfc072746",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
+      "scope": "segment",
+      "sha256": "b0d88c181d79fc1bc8e29d1e24b204af10495b0b48ea2f620d71ae0830e5f6d5",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
+      "scope": "segment",
+      "sha256": "679f0a7f7dbce86fda2a202d96795bd6aadd987868d7e711e5f4fb0c8cdc23f8",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+      "scope": "segment",
+      "sha256": "308ba614c05ada8043e38492e362725704d3f7f33b2aae4d1329b4ca78b968cf",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+      "scope": "segment",
+      "sha256": "832026c159b88f22b16ebd8a7c2a73fab2394e48c8b1d7c0408bd8f3e6ad68c9",
+      "reason": "Reviewed foreign-language book title, artwork title, or historical term is retained as a proper name in English reference material; exact segment hash pins the citation."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
+      "scope": "segment",
+      "sha256": "35f9f56d36901ecd39f99a576349934588b92d9c6dbfd29603569d4dedc2504f",
+      "reason": "German typography is the exact functional visual sample for the Bauhaus style guide; the hash limits the exception to this display text."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
+      "scope": "segment",
+      "sha256": "9b89b07c75600fa00cc4cf3e33b964e64f786e8a6355e1b6c49c7c554b99c52d",
+      "reason": "Foreign-language wording is an exact bibliographic title retained as a proper name in an English reference list."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
+      "scope": "segment",
+      "sha256": "54b2febb4a8bb2b9a1855eaa24aa551de6c118a47dd061de2c856c15e195b7ed",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
+      "scope": "segment",
+      "sha256": "787fd1b80f40f533241f9bfacabc171bbf54bb4b0c6c5f38a2d3506d4ff9796a",
+      "reason": "Foreign-language wording is an exact bibliographic title retained as a proper name in an English reference list."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
+      "scope": "segment",
+      "sha256": "be963fe7a03be6fb7b26b4c82c6fc652fccb58bf325d181150eb631d908be5e6",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
+      "scope": "segment",
+      "sha256": "ac76250d67fd44c7b5f3e163a6a805974a2935ec1e073b331b0ba2c14e7404b7",
+      "reason": "Foreign-language wording is an exact bibliographic title retained as a proper name in an English reference list."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
+      "scope": "segment",
+      "sha256": "a14a0cbc75b53fb41fa126c27ac19fe8e531f7564688ee12842ab4030a8eb6b8",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
+      "scope": "segment",
+      "sha256": "116b3cfe7c460d0291f77df3b1e307f58333968ce4fe8f13c4b8580ebfd4ce28",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
+      "scope": "segment",
+      "sha256": "b835163aaf06d18152ec6081c146a7b10e8e1a8b5c22d2651996c2b37e305c09",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
+      "scope": "segment",
+      "sha256": "ec214234e8d2e8a74a52f6604c719a2e1aa4624a6d9602664d4c0062316567ed",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
+      "scope": "segment",
+      "sha256": "c43c9751ac8da3cde834f05d782e89e94d074d13a417feb4c4024fd2b64a9562",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+      "scope": "segment",
+      "sha256": "4ebf65d1947ce11e5499914a368649a0c91241002616ee0e8bf2db14cd15e0a9",
+      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
+    },
+    {
+      "path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+      "scope": "segment",
+      "sha256": "58d609374124c48b8b235a27f2e0c0cf2116ab48e880aef2b3ba7540ca2b156a",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
+      "scope": "segment",
+      "sha256": "9b657a47c5176fa83cc9951020c9d8c831cab07ffd5ed162b493c6d9fed3ee6f",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
+      "scope": "segment",
+      "sha256": "28987ae563de9da0814c7b58232270f557558277e2e7d3a3a854d8ad5e01afd7",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/industry/applied-ai-automation/SKILL.md",
+      "scope": "segment",
+      "sha256": "3d254896b0c82a085ffea17b3bc182f0e3ce46bd2539f8e353bca2553455ccf1",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
+      "scope": "segment",
+      "sha256": "1a37722d4276a0f0105ddcb8825cddd7cb19c630cbd7ba0b38b89f6e69eb6c71",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "1ea22c6ee99f2572ee1400f6d27c10e4cb3f706942c26facc2e0a32c2d13a29e",
+      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "23c416d1cc1cc94e8185693f9e4a53b93bf7512b97f2f87c6fbd5602531dff3c",
+      "reason": "Reviewed language-specific teaching content retained in the language specialist source; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "68ff16508d576fc213fefd6398da429c69c0fa8236296ddc2bd1be745aaf7f48",
+      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "935f450d8b16aa6e2ff85c276dd0b6fce9dc672e595a3c84a82ff1dde48d9020",
+      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "a0ffd6a2f4cd66a06c1c421af57656bbae443c309ebfb3c125cf74772159f149",
+      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "a400c64728a666ee06f5d2effd5f31df05ea1aa4e0dc1420aa1ff5b3bb6db44e",
+      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "a49c89590d688ad7a87672cae75b59dec63c1dc9f6b9ba84ab692a74b8bd738e",
+      "reason": "Reviewed language-specific teaching content retained in the language specialist source; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "d46c7b13dd399d752a1ab82e0466fa815d7ae95e1bc6c8ac64aeebf47b1ec509",
+      "reason": "Approved Spanish example teaches an ES-LATAM language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
+      "scope": "segment",
+      "sha256": "e1f629ae7cdd01fe2d8e792a8dd24f1f3661fd18862fc36839c9e35073d2e6e6",
+      "reason": "Approved Spanish example teaches an ES-LATAM language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "21cd2d13c5f133bfde4093895beba9bc16f4ad2b06d69cf3c2aaedcac0f3d56f",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "4680e6010000ad5a745a7f7bca598d16710953a8c472cd4bd9f52ff88981a527",
+      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "4cb09c5ce8729c72460e7f2c585d1bf7ea5c77c906f20e4bc37d64ea5715c0c7",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "5f7d0e255ec144b0ac30dee3e518592d641db7e09450f719bee2e65606168491",
+      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "8922143869ddeed3afff0e987fdaddcd6290070bbbc0f2986bd325f025b5bb85",
+      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "962da185f4821e6d55f0a7bbaffcd3fafe11fa1ea4a0b42d09fd8690dfac5ed7",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "b1eb00f2e06adbc750caab728eb26f72af24103e78776c6806c40c1f36124fed",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "b3b100e78541fbd7a791c24c6c86cfb2edd587683ae96dbf7bdd90a3cf6927b1",
+      "reason": "Reviewed language-specific teaching content retained in the language specialist source; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "b5156b662955c9d85148067a62f7744ae1f5e8b2a6b4652e1b35ea9c76d23091",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "e9c0706f1303339bea8026bcd88079546ed655b2f46cbbfa490d4ae553f8f762",
+      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
+      "scope": "segment",
+      "sha256": "faac355a1a9270b477de7be820fc6632c2909662b92c8c2e34e2a68b0ae9c5f2",
+      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/architecture-documentation/references/madr_adr_standards.md",
+      "scope": "segment",
+      "sha256": "eb86766c6ed706c2437f47ef85e5c23a3ba1bf74b5ca32227069e10ae8ebfea2",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "0a95409bb607ca430745edbfa938a88b02dff3a7c8c0b279bfc381374e824c9e",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "0e38dde9166d0bac563647fb95a1d2055df1f018360b5f35496340d81eef952e",
+      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "11d1cf210dbc28e8a899001815847521458b9d1c713b99bbfeb7b08c17ed5d3c",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "1abdfa4acfa2ed99ca5a5b868f0490028a628a61b4107b1313cbc10784bc0ea6",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "294dab55aac4bc558c43303017dae8e5ddbe04eee1924d35a07a0125eacb1fdc",
+      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "412e648df0a9a24f710a00c6af7ae9d0c4fc1d09f2a3c35a48061eea71045c81",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "4367457af2243ceb2d7fde1046cf080cd006620aa870bea4f1a93bc63865abd5",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "4bfed7494f3c615c8f0146f885a80e86af019db98dcc742622ff6164d8cbe358",
+      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "5ce3e52cdeb7101c0a8b73398ec2b26a188def1e952ba5a064fad89bc65bd92c",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "76c470deb5492924dd54eaf19bb734864c9293fe9bce77d9df4c17505cb5c769",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "8ef8c342490b0ea8aae2b86abd1cca9762a867ad5c66110a7b0cda38021041b2",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "8f06eb8ee27d9a40989abe5e6f530e12c3aa500292ae4ad97bff396268664eee",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "9dfa360bd9e40236003683b077dba5d84a7af2d158a319dfade53ac58c6c386b",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "9e3d8d198b5535b47cbc1fccb0afbf67bd68fa50c6db457405c845118a4c557f",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "b653b7d3bbe18f3b09c5fee716b3a1e2d07677999b3360519a90b8ec062fa25f",
+      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "c41698cc6b3133978c37b691b363e1ed6917c79fbe5cee960080e7db5e44248a",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "dbd04b9f29a2955b29fe1b157a775c03a232b0faebf7819eb00628b479ba0bd7",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "df6016d2d0628846d40c3acc03101e05e5371246673261f02881998d13eefe58",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/examples/mermaid_diagram_samples.md",
+      "scope": "segment",
+      "sha256": "8c05f98aff0a21b62f369510174a95a6cbcf2e5fd5cf166f20d27b4ac7051338",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/examples/mermaid_diagram_samples.md",
+      "scope": "segment",
+      "sha256": "96ada34a9aca1b57ea4b2850ac1336ed06837a19066f8dd804701c468f4e49d9",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/examples/mermaid_diagram_samples.md",
+      "scope": "segment",
+      "sha256": "cbf18bd510d40fec20b7bcc99db2731542b47a88e1bb370ccd505b2a6ba85860",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/examples/mermaid_diagram_samples.md",
+      "scope": "segment",
+      "sha256": "e6d3305a064ba752c6b7d0f4745bd1be8c1f7109908b8f25731568aae8deb3f7",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "02de7152f3f7c655c6b952821a9048de5b52ff49ea1ca4edb3953e4c176d259a",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "164e72a92637001bb045d16caca4f628e170dae0e7fd549e4a5660b51a2729e2",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "19e6c7e4587b1fb916c006fab62bcf6f6f67e258e9b5233b5739e4d197f40bcc",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "2803cdb958d742a5ee23f7af33131f737d4a888da5953a730ec88aaba2ee8cd5",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "2c99557bc9427e4539ba72308284889750e1e20f5d25148d4205f7180c7ca51a",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "44f99b100178064570536f4dd4f97c2d4b70cd82d894335d216af8b6f997767c",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "4c4a82513212265aa4766a07f94b5fe45f6d298e6c47320c31b71112d1f2d24e",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "53a0c8b991efef608778f4fbbf362fb0655d92de3d604824b7f112a957138445",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "5e2e2f3201ed568c59a9c615e76f378b00b6bb5de90194824b29f0ca67a1f9f0",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "5fc506cd428d6b5030b9877e183905bf775d622b6d392ed07d9a72aef9cb5d6a",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "68e1bf9cd6568af215e6a5f68ebbf97f44a8268e8c28c7578c2d84cea83bcff7",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "875958acaf63d7f2bfa0fb87d79607ec8b6bf898d3f9624f4a1585652e0fcd0e",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "90f27692f7cf250853aa0e96f4a70073bce35142586666a8b22ccfc1a29f26d3",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
+      "scope": "segment",
+      "sha256": "b93383e60091db3e8084aa0e233a31a92ac5ad2580c06334794650775b420b0b",
+      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/github-readme-engineering-guide.md",
+      "scope": "segment",
+      "sha256": "2f58bcdee296b226c1a27496ec29fdab9bf266318cb552968bfcc5d2724ece70",
+      "reason": "Reviewed English license attribution placeholder was misclassified; exact segment hash pins the approved template text."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/mermaid_syntax_complete_guide.md",
+      "scope": "segment",
+      "sha256": "001d83c6e7a545be668fc8b4ce81ccef8f96f13f24ea9c344d195746a86a8d10",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/mermaid_syntax_complete_guide.md",
+      "scope": "segment",
+      "sha256": "1a3c82583d8b774ec818f3dd4ad1339f11b806257b04263428fc3a1037b2ece8",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/mermaid_syntax_complete_guide.md",
+      "scope": "segment",
+      "sha256": "6e6396690e16fa75dcbaef1f44fff6c2446387b43b30eda9c7b8180ceafb97d1",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/mermaid_syntax_complete_guide.md",
+      "scope": "segment",
+      "sha256": "9840373c01d35576dd5765b884becb99c568689ceb8b7b8a861bf442735b36ca",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/documentation-designer/references/mermaid_syntax_complete_guide.md",
+      "scope": "segment",
+      "sha256": "c6c8a0ef07f7fdaf885332d848156c5df9d32e518aad5a8d868650eab3de93c8",
+      "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
+      "scope": "segment",
+      "sha256": "762acac20939076f065e11709714184447835bdf2483230911d58d5a3be6a040",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
+      "scope": "segment",
+      "sha256": "c8b93dba94bacc4cf27dadebfaa14c18d8486a40dccadc73a48d6e483d414326",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+      "scope": "segment",
+      "sha256": "ab9b20d5e6c5334cce01fec999aa2e98821fb35ab4d30aa0e50074919a6ba368",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+      "scope": "segment",
+      "sha256": "ba32a9c3d835c119e6eb5d8833f61a021e6ef56c3542c65444c017fd1417633f",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md",
+      "scope": "segment",
+      "sha256": "dd6fc4a5fbefe63171e709fc5995b76cea192d6679cf5d494b2847e7f2688fb5",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
+      "scope": "segment",
+      "sha256": "a4bd110e5ddbb47291cccf7b27a764fd8505a50913954ecd8a3ed519b75ac05d",
+      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
+      "scope": "segment",
+      "sha256": "c3fc54aa5390dc2c333d4bb596a339d552ad787337c1fdaac3957ca5a7facf50",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-grpc/SKILL.md",
+      "scope": "segment",
+      "sha256": "cb20c6e42aceff86b0ced67b14b8421b5c7da658b3f2b6df91d65300eb597f75",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-testing/references/mutation-and-fault-based-testing.md",
+      "scope": "segment",
+      "sha256": "f671cabd46bae63b330134f20027ecd100ed8db62f1a16b8e26d2bc942445688",
+      "reason": "Reviewed mathematical equation or notation contains no foreign-language prose; exact segment hash pins the formula."
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-testing/references/white-box-and-dataflow.md",
+      "scope": "segment",
+      "sha256": "2afac3d172c5033b7ffd2e5b9c81ab076c8b57d31f4e6e472bfa26e50aa48f17",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
+      "scope": "segment",
+      "sha256": "d3d336dbf10389b344e369def6df558746a7c5f586c2abfba1506f0b509a2e38",
+      "reason": "Reviewed English GPU hardware label was misclassified by Lingua; exact segment hash pins the equipment example."
+    },
+    {
+      "path": "knowledge/skills/infrastructure/program-containers/SKILL.md",
+      "scope": "segment",
+      "sha256": "2d50b69aca03ac5b69272971ec5c266b6efe7446fe409ed5cbcbcea88bc7e9ad",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
+      "scope": "segment",
+      "sha256": "af5860a706016cc257d7ed6779c11c96e2242eedb1b211d8d55225c2197b3ba4",
+      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
+    },
+    {
+      "path": "knowledge/skills/languages/javascript-high-performance/SKILL.md",
+      "scope": "segment",
+      "sha256": "59261153f7a3b9c214dcfe132678828ed299582e3458c3302398d3650f8549a7",
+      "reason": "Reviewed English code placeholder was misclassified; exact segment hash pins this functional example."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-assembly-x64/references/assembly-beginners-guide.md",
+      "scope": "segment",
+      "sha256": "078c134998d05cae698719cc9987bfbd2b552de334bde0a2a158a6d4c47612b2",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-assembly-x64/references/assembly-beginners-guide.md",
+      "scope": "segment",
+      "sha256": "0f8ddb0e317e1e475d84046787685266c308afa7a3025d42b63c7b14822183e5",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-bash/SKILL.md",
+      "scope": "segment",
+      "sha256": "22969d4d6b379d85b8e58da3bc71633b624664ba83b275c362e643a66c087121",
+      "reason": "Reviewed English heading names a shell cleanup function; exact segment hash pins the technical label."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-latex/SKILL.md",
+      "scope": "segment",
+      "sha256": "12dbe585708e41c8f264c2e2c6e6e8c29541b21164f1241ea3391bae125bd33a",
+      "reason": "Reviewed English scientific table names Erdős–Rényi and Barabási–Albert models; these are proper names. Exact segment hash pins the table row."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-lua/SKILL.md",
+      "scope": "segment",
+      "sha256": "722e0db093b4b3322bb764a6e1f1841a130f7a80df15c43fc42a7936094f41b7",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-lua/SKILL.md",
+      "scope": "segment",
+      "sha256": "8d59829c1e15afe1a7fae93e8e5e32d8511bec5fd598a09f4fea6033b31e8a66",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/languages/lang-rust/references/rust-book-guide.md",
+      "scope": "segment",
+      "sha256": "bf66df04d2fff3103fc44fc543f52f0bc2dff39cd3ca8b5bc01da42964160187",
+      "reason": "Exact Portuguese comment is retained as an instructional code example; reviewed during repository language audit."
+    },
+    {
+      "path": "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md",
+      "scope": "segment",
+      "sha256": "d6dc911a9e578e4537db233c1f49ef156bce40ace39bfbc686fb755949434550",
+      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
+    },
+    {
+      "path": "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
+      "scope": "segment",
+      "sha256": "dfbe3225dc968ca9a4a8e8f016972114a44161400d902e2829ef5385e830c54d",
+      "reason": "Reviewed English description of GLPI asset-management software; Lingua misclassifies the product name. Exact segment hash pins the phrase."
+    },
+    {
+      "path": "knowledge/skills/roles/devops-engineer/SKILL.md",
+      "scope": "segment",
+      "sha256": "7bc680048fc77a2f1376b45ccc6f1f8caf9049d651e67115d2b965e255bedf4c",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/roles/product-owner/SKILL.md",
+      "scope": "segment",
+      "sha256": "6b66efdc84c1872e771d796da0ce4e94de4d37ea819625e4b9e3e287ff66a11f",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+      "scope": "segment",
+      "sha256": "eb6e493c7b11f6b8c9499192de775de90eb9a03b27a0bdc020e0b4cc3e07687d",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
+      "scope": "segment",
+      "sha256": "9a3344a1f2c30d40c506191031b7c0f00ec0875f1a00775e5e291e01aed34d0e",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentester-owasp-api-security-2023/SKILL.md",
+      "scope": "segment",
+      "sha256": "01d23c8b6d8b93a11b7d15a88b245f9d0c480cb49f3ed5e97aa3885139d2029c",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md",
+      "scope": "segment",
+      "sha256": "01d23c8b6d8b93a11b7d15a88b245f9d0c480cb49f3ed5e97aa3885139d2029c",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
+      "scope": "segment",
+      "sha256": "a35d47fb1a7a57983e350e9e316b5371261402013a5b250596c0fba27ed68ef7",
+      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
+    },
+    {
+      "path": "knowledge/skills/security/grc/security-privacy/SKILL.md",
+      "scope": "segment",
+      "sha256": "dd024d5dee94b3722a85e5e38dce31bbc257fa6126fe8f48e2a505b9a1a0ebd1",
+      "reason": "Preserved Portuguese synthetic PII sample demonstrates free-text entity detection for the documented bilingual data scenario; exact segment hash pins the approved example."
+    },
+    {
+      "path": "knowledge/skills/security/operations/security-technical-opinion/examples/parecer_tecnico_sample.md",
+      "scope": "segment",
+      "sha256": "556595a39379196042c23ccba38ec105914eaecbc5a33b561df243dbf49930d6",
+      "reason": "Preserved Portuguese verdict demonstrates the localized outcome in this explicitly bilingual security-opinion sample; exact segment hash pins the approved example."
+    },
+    {
+      "path": "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
+      "scope": "segment",
+      "sha256": "37eb6d24781f052ba00c91c6a96363365c6697f29243b0bd1f05fc1e6c725326",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/security/platform/windows-internals-security/SKILL.md",
+      "scope": "segment",
+      "sha256": "f170c78c6da79cce9bc3ae99a7c7aee94f13c0c5136cbee61be1f3246c3616cf",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md",
+      "scope": "segment",
+      "sha256": "0404a2d905ba832699bbb5e9f144294033ebad9027b6fb044ac77c84359f599d",
+      "reason": "Reviewed localized typography or diagram label is a functional visual-design example; exact segment hash pins the sample."
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
+      "scope": "segment",
+      "sha256": "bc90d1a48dc3c491d74fe14dd2c27fa5fd0e9ecae19a2d732847d67446391e57",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
+      "scope": "segment",
+      "sha256": "f2f1bdeec39e664a15520a5e9e6b40cacc12639de6665cd2abeba054d541b94c",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
+      "scope": "segment",
+      "sha256": "05a574f2039e2076b1bceff0c552cae95032ab648b04789fa1e8d3a5ce4fd901",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
+      "scope": "segment",
+      "sha256": "f2f1bdeec39e664a15520a5e9e6b40cacc12639de6665cd2abeba054d541b94c",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "methodology/workflows/domain-modeling/SKILL.md",
+      "scope": "segment",
+      "sha256": "fec584ec59f8b29faa61c77f0f5d60b77676736040b8ff9e8d21613b92e67052",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-brainstorming/scripts/server.cjs",
+      "scope": "segment",
+      "sha256": "40eb145bba76dd743477bb9aaaf8e743deec5ea4180890db38587e96e80ab5f8",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
+      "scope": "segment",
+      "sha256": "0d3895af1bece9809955dc88236ec4b4d7f62bb612909bb237643ef692ed9f02",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
+      "scope": "segment",
+      "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
+      "scope": "segment",
+      "sha256": "fc6a9980835dbb6f272a2d593fbb56e07ae34c80ba022f2cbae80f69de603241",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
+      "scope": "segment",
+      "sha256": "bdf9943635fada856c13cb6927edf9e3c5e4c7dc6c1ba80483a9edfebdac20b5",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-skills/SKILL.md",
+      "scope": "segment",
+      "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-skills/persuasion-principles.md",
+      "scope": "segment",
+      "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "methodology/workflows/superpowers-writing-skills/render-graphs.js",
+      "scope": "segment",
+      "sha256": "adcfa91bad34ed8f826b4caa09704d86f6dbf5baf3ad3a13644ddf47ea068ed4",
+      "reason": "Reviewed English source-comment heading was misclassified; exact segment hash pins the comment."
+    },
+    {
+      "path": "scripts/coacus.py",
+      "scope": "segment",
+      "sha256": "65f1dab1c4fe19e9e72c0f38c14b637a1288d942a6065a60228e026dd009656a",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus.py",
+      "scope": "segment",
+      "sha256": "bf9788341d81214a2d562719375b7cfda3351f1043aff5fdc40e5b4084d97cea",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus.py",
+      "scope": "segment",
+      "sha256": "de248b6d084eac082d96eef11e4ac3a87c000b5bd5d8edced65e4334f5899294",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_eval.py",
+      "scope": "segment",
+      "sha256": "991a3b4973db492879827f0f289be0cc9328ec6d7e2ce2697b747d50d42febc8",
+      "reason": "Reviewed English example of harness command invocations in a code comment; Lingua misclassifies command names. Exact segment hash pins the comment."
+    },
+    {
+      "path": "scripts/coacus_eval.py",
+      "scope": "segment",
+      "sha256": "f152d5048f6d4de5a957c91c0ba41fcc758f80971d52123dadc5ceb5a122e8b2",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_import.py",
+      "scope": "segment",
+      "sha256": "9a54154f0f581b0fd24414f6c65c89dc7b433c95fd7701a7fbd8cb5c1d5b487a",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_improve.py",
+      "scope": "segment",
+      "sha256": "6e61d679659e3968fe76427dcefe15dfaf483cae6086de92d037dca3c1273993",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_install.py",
+      "scope": "segment",
+      "sha256": "36d1c087b232dcb78ba151f74c0e0391ff5cee76f7775311f7d853cbfbe43bb5",
+      "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
+    },
+    {
+      "path": "scripts/coacus_install.py",
+      "scope": "segment",
+      "sha256": "8f36cd35f40525338a563299344122194dcb154fe20128607a65ca9354862787",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_route.py",
+      "scope": "segment",
+      "sha256": "f152d5048f6d4de5a957c91c0ba41fcc758f80971d52123dadc5ceb5a122e8b2",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "scripts/coacus_secrets.py",
+      "scope": "segment",
+      "sha256": "1c7e5d9888dcb802d6bea0343fe9447d4af8aa741f4a508144a371a9adf8aba8",
+      "reason": "Reviewed official project URL is a technical reference, not foreign-language prose; exact segment hash pins the address."
+    },
+    {
+      "path": "scripts/coacus_vertical.py",
+      "scope": "segment",
+      "sha256": "5917a7dbc2c315b7b477dd24dfaa60d2d32f6f01a61d490e697ab2947d6d3e3d",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "tests/test_governor.py",
+      "scope": "segment",
+      "sha256": "a0d4546d30ae20e49106eeae28d39135c32a919ecad4321ba090418d1cd8b26e",
+      "reason": "Reviewed English test-fixture label was misclassified; exact segment hash pins the test sample."
+    },
+    {
+      "path": "tests/test_install.py",
+      "scope": "segment",
+      "sha256": "5e04b93d125aca8a45b5469bb295c150717e9933285a8d5db22b107751c53351",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    },
+    {
+      "path": "tests/test_router_calibration.py",
+      "scope": "segment",
+      "sha256": "357ede085210d57cc928e8cc139201e9025fceb5ec1512732b95fb845387886a",
+      "reason": "Exact Portuguese token is a functional regression-test input for accent folding."
+    },
+    {
+      "path": "verticals/architecture_si/pipelines/ingest/handlers/pdf.py",
+      "scope": "segment",
+      "sha256": "886d25a2a16c614839ece4715440fae1f5ff7791afd15b5df9fee36dc43b3ce9",
+      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
+    }
+  ]
+}

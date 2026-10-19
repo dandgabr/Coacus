@@ -22,7 +22,7 @@ flowchart LR
 | Reactor | Operation Type | Differential Design Equation | Integrated Equation |
 | :--- | :--- | :--- | :--- |
 | **Batch** | Transient, uniform mixing | $N_{A0}\frac{dX}{dt} = -r_A V$ | $t = N_{A0} \int_0^X \frac{dX}{-r_A V}$ |
-| **CSTR** | Steady state, homogeneous | $F_{A0} - F_A + r_A V = 0$ | $V = \frac{F_{A0} X}{-r_A(X_{saida})}$ |
+| **CSTR** | Steady state, homogeneous | $F_{A0} - F_A + r_A V = 0$ | $V = \frac{F_{A0} X}{-r_A(X_{outlet})}$ |
 | **PFR** | Steady-state tubular | $\frac{dF_A}{dV} = r_A \iff F_{A0}\frac{dX}{dV} = -r_A$ | $V = F_{A0} \int_0^X \frac{dX}{-r_A}$ |
 | **PBR** | Fixed bed with mass $W$ | $F_{A0}\frac{dX}{dW} = -r_A'$ | $W = F_{A0} \int_0^X \frac{dX}{-r_A'}$ |
 

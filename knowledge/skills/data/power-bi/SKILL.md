@@ -35,24 +35,24 @@ This skill guides the artificial intelligence to act as a **Microsoft Power BI, 
 
 ### Standard DAX Measure Snippets
 ```dax
-// Vendas Totais
+// Total Sales
 Vendas Totais = SUM(F_Vendas[ValorTotal])
 
-// Vendas no Ano Anterior (Time Intelligence)
+// Sales in the Prior Year (Time Intelligence)
 Vendas LY = 
 CALCULATE(
     [Vendas Totais],
     SAMEPERIODLASTYEAR(D_Calendario[Data])
 )
 
-// Crescimento Ano a Ano (YoY %)
+// Year-over-Year Growth (YoY %)
 Vendas YoY % = 
 VAR _VendasAtuais = [Vendas Totais]
 VAR _VendasPassadas = [Vendas LY]
 RETURN
 DIVIDE(_VendasAtuais - _VendasPassadas, _VendasPassadas, 0)
 
-// Acumulado no Ano (YTD)
+// Year-to-Date Accumulation (YTD)
 Vendas YTD = 
 TOTALYTD([Vendas Totais], D_Calendario[Data])
 ```
