@@ -13,6 +13,7 @@ After every addition, run the full gate:
 python3 scripts/coacus.py generate
 python3 scripts/coacus.py validate
 python3 scripts/coacus.py check
+python3 scripts/coacus.py completeness
 python3 -m unittest discover -s tests
 ```
 
@@ -24,8 +25,9 @@ does not.
 
 1. Copy `templates/authoring/skill.template.md` to
    `knowledge/skills/<category>[/<subcategory>]/<name>/SKILL.md`. Use one of the
-   ten categories: `data`, `domains`, `engineering`, `frameworks`,
-   `infrastructure`, `languages`, `mapping`, `platforms`, `roles`, `security`.
+   eleven categories: `architecture`, `data`, `domains`, `engineering`,
+   `frameworks`, `infrastructure`, `languages`, `mapping`, `platforms`, `roles`,
+   `security`.
 2. Set `name` to the kebab-case directory name and write a third-person,
    trigger-oriented `description`.
 3. Prescribe actions only — no harness tool names. Put tool mappings in

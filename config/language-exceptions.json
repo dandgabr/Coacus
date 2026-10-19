@@ -121,12 +121,6 @@
       "reason": "English explanation names the Bash shell; Lingua misclassifies this exact segment."
     },
     {
-      "path": "evals/README.md",
-      "scope": "segment",
-      "sha256": "2f0e3188b97d0b271920bd7a6550ae76e99f47153fbb334e7a02243fae505df1",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
       "path": "harnesses/antigravity/harness.json",
       "scope": "segment",
       "sha256": "c36f5f99f3c9c87c8a312907def82f7f53b8494825f3dc9a57b250487a23743e",

@@ -26,8 +26,8 @@ Coacus maintains a comprehensive domain of user interface design styles in `know
    - `retro-computing` & `pixel-art`
 2. **Expand the Canonical Corpus to 82 Pure Styles:**
    Reconstruct `ui-style-atompunk` to authentic nuclear futurism and introduce `ui-style-windows-xp`, `ui-style-dracula`, and `ui-style-nordic`. The design domain expands from 72 to **82 canonical UI styles**.
-3. **Standardize on the 12-Section Canonical Architecture:**
-   Every UI style skill adopts the 12-section structure established by `ui-style-frutiger-aero`: Frontmatter, Title & Epigraph, When to Activate, Definition & Timeline, Visual DNA & Subgenre Taxonomy, Lighting Physics & Surfaces, Design Tokens, Typography Architecture, Interaction & Motion, 4 Concrete Component Specifications, WCAG 2.2 Accessibility, When to Use / Avoid, Sources, and Dialect Relations.
+3. **Standardize on the 14-Part Canonical Content Architecture:**
+   Every UI style skill adopts the 14-part structure established by `ui-style-frutiger-aero`: Frontmatter, Title & Epigraph, When to Activate, Definition & Timeline, Visual DNA & Subgenre Taxonomy, Lighting Physics & Surfaces, Design Tokens, Typography Architecture, Interaction & Motion, four Concrete Component Specifications, WCAG 2.2 Accessibility, When to Use / Avoid, Sources, and Dialect Relations.
 4. **Showcase Engineering Overhaul:**
    The `estilos-visuais` showcase is upgraded with:
    - Locally vendorized [Driver.js](https://driverjs.com/) (zero external CDN dependency) for tool onboarding and per-style interactive tours.

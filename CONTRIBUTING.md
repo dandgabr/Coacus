@@ -40,6 +40,7 @@ Run the full gate before opening a pull request:
 python3 scripts/coacus.py generate     # produce the artifacts your change implies
 python3 scripts/coacus.py validate     # source + artifact contracts
 python3 scripts/coacus.py check        # must report no drift
+python3 scripts/coacus.py completeness # reconcile imported sources, lock and catalog
 python3 -m unittest discover -s tests  # deterministic suite
 ```
 
@@ -102,7 +103,7 @@ Rules:
 
 - One logical change per commit; keep generated diffs in the same commit as the
   source change that produced them.
-- Reference the phase (F1–F8) in the body or summary when relevant.
+- Reference the relevant phase (F0–F11) in the body or summary when useful.
 - Break behavior changes and scope them with `!` and a `BREAKING CHANGE:` footer.
 
 ## Pull request flow
@@ -131,9 +132,12 @@ Handlers register themselves; the dispatcher never changes
 
 ## Reporting and security
 
-- Bugs and feature requests go through repository issues.
-- Do not open a public issue for a suspected secret or vulnerability. Report it
-  privately to the maintainer, then rotate the credential.
+- Use the repository's structured issue forms for bugs and feature requests.
+- Report suspected vulnerabilities through the private process in
+  [`SECURITY.md`](SECURITY.md). Do not put vulnerability details, exploit steps
+  or proofs of concept in a public issue.
+- If a credential may have been exposed, revoke or rotate it immediately in
+  addition to reporting the incident privately.
 
 ## License
 

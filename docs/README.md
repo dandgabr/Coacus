@@ -8,10 +8,14 @@ Index of the repository's documentation. Each file has one job.
 | [`usage.md`](usage.md) | The commands you run day to day: generate, validate, install, governor, evals, the architecture_si vertical. |
 | [`extending.md`](extending.md) | How to add a skill, agent, MCP, harness, workflow, template or ingestion format without touching the engine. |
 | [`install.md`](install.md) | Per-harness installation of the rendered artifacts. |
+| [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Contribution workflow, validation gate and public issue forms. |
+| [`../SECURITY.md`](../SECURITY.md) | Private vulnerability reporting and coordinated disclosure. |
+| [`../.github/ISSUE_TEMPLATE/`](../.github/ISSUE_TEMPLATE/) | Structured bug and feature request forms. |
+| [`../.github/VULNERABILITY_REPORT.yml`](../.github/VULNERABILITY_REPORT.yml) | GitHub's private vulnerability report form; requires private reporting to be enabled in repository settings. |
 | [`tutorials/`](tutorials/) | Step-by-step, verified walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`migration.md`](migration.md) | The F6 corpus import: source repos, taxonomy mapping, dedup, provenance, translation. |
 | [`reports/2026-10-02-python-only-migration.md`](reports/2026-10-02-python-only-migration.md) | Python tooling migration, merges, portability verification, local installs and authorized cache/history cleanup. |
-| [`roadmap.md`](roadmap.md) | Phase history F0–F10 and what each phase delivered. |
+| [`roadmap.md`](roadmap.md) | Phase history F0–F11 and what each phase delivered. |
 | [`reference/python-api.md`](reference/python-api.md) | GENERATED Python API reference from source docstrings. Do not edit. |
 | [`reference/lifecycle-matrix.md`](reference/lifecycle-matrix.md) | GENERATED harness lifecycle capability matrix (one evidence class per cell). Do not edit. |
 | [`reference/desktop-extension-practices.md`](reference/desktop-extension-practices.md) | Task-based pointers to GNOME preferences, accounts, themes, and update-preservation guidance. |

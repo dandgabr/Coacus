@@ -35,7 +35,7 @@ All standards are written in English (see [`english-only.md`](english-only.md)) 
 | Standard | Scope & Mission |
 | :--- | :--- |
 | [`product-and-design-truth.md`](product-and-design-truth.md) | Separation of durable business context (`PRODUCT.md`) from visual systems (`DESIGN.md`), 4 surface modes (`Persuade`, `Operate`, `Read`, `Experience`), and Anti-AI Slop Mandate. |
-| [`ui-style-architecture.md`](ui-style-architecture.md) | Standardized 12-section architecture for canonical UI styles, anti-contamination boundaries, CSS token contract, and showcase FX lifecycle. |
+| [`ui-style-architecture.md`](ui-style-architecture.md) | The 14-part content architecture for canonical UI styles, style-purity boundaries, accessibility and consumer-integration limits. |
 | [`plan-artifacts.md`](plan-artifacts.md) | Structure, lifecycle, and strict isolation of implementation plans and interactive artifacts under the brain directory (`RequestFeedback: true`). |
 | [`decision-records.md`](decision-records.md) | Architecture Decision Records (ADRs) authored under `docs/decisions/` using the MADR 3.0 format. |
 

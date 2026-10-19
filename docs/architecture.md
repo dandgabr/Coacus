@@ -248,7 +248,7 @@ Coacus/
 | [generated-artifacts](standards/generated-artifacts.md) | Generated artifacts are committed. |
 | [provenance](standards/provenance.md) | Provenance manifest at the repository root. |
 | [session-start-bootstrap](standards/session-start-bootstrap.md) | Bootstrap rendered from one canonical body. |
-| [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and 10-category taxonomy. |
+| [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and eleven-category taxonomy. |
 | [version-freshness](standards/version-freshness.md) | Versions are resolved in-session, never recalled. |
 | [routing](standards/routing.md) | Agent selection through a generated index. |
 | [plan-artifacts](standards/plan-artifacts.md) | The gitignored `docs/temp/` home for ephemeral artifacts. |

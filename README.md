@@ -6,7 +6,7 @@ OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-deterministic%20suite-brightgreen.svg)](docs/usage.md)
-[![Status: F0–F10 complete](https://img.shields.io/badge/status-F0%E2%80%93F10%20complete-brightgreen.svg)](docs/roadmap.md)
+[![Status: F0–F11 complete](https://img.shields.io/badge/status-F0%E2%80%93F11%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
 
@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 432 skills across eleven categories, 102 agents, one MCP declaration.
+- **Knowledge** — what the framework knows: 432 skills across eleven categories, 102 agents, and two MCP declarations.
 - **Methodology** — how work proceeds: 27 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -152,13 +152,11 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 ### Scripts, tests and evals
 
-Seven CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
-`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`, `coacus_route.py`, plus
-`coacus_guard.py` (the guardrail runtime) and `coacus_improve.py` (the opt-in
-self-improvement proposal CLI). The `tests/` tree
+Python CLIs in `scripts/` cover generation, installation, routing, evaluations,
+ingestion, lifecycle guardrails, design linting and maintenance. The `tests/` tree
 holds a deterministic stdlib `unittest` suite (measure it with
-`python3 -m unittest discover -s tests`). `evals/` holds six behavior
-scenarios behind a static gate and an opt-in live runner
+`python3 -m unittest discover -s tests`). `evals/` holds behavior scenarios
+behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
 ## Harness support
@@ -315,7 +313,9 @@ read the relevant one before changing that area of the repository.
 
 ## Status
 
-Phases **F0–F10 complete**; the repository is finished.
+Phases **F0–F11 are complete**. F11 delivered the canonical UI-style expansion,
+its authoring standard, design-quality linting and showcase integration; see the
+[roadmap](docs/roadmap.md) for phase details.
 
 | Phase | Scope |
 |---|---|
@@ -330,15 +330,14 @@ Phases **F0–F10 complete**; the repository is finished.
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 | **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
 | **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
+| **F11** | Canonical UI-style library, style-purity and Anti-AI Slop standards, design linting and showcase integration. |
 
-The framework ships the imported corpus (432 skills, 102 agents, 27 workflows, one
-MCP), fully translated to English, with a generated catalog and discovery,
-multi-harness agent manifests, MCP single-source generation, a per-harness
-SessionStart bootstrap, the governor and TOON validator, a per-harness installer
-and nine behavior-eval scenarios. Live acceptance passed on OpenCode, Codex and
-Antigravity; Claude Code and Cursor are structure-verified because their binaries
-were not installed locally — see [`docs/install.md`](docs/install.md) and
-[`evals/README.md`](evals/README.md).
+The corpus, agents, workflows and MCP inventory are measured from the generated
+catalog above. Coacus also provides generated discovery manifests, per-harness
+bootstraps and installation, execution governance, lifecycle guardrails,
+behavior evaluations, design-quality checks and an opt-in improvement proposal
+pipeline. Harness-specific verification evidence and limitations are documented
+in [`docs/install.md`](docs/install.md) and [`evals/README.md`](evals/README.md).
 Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Documentation map
@@ -352,11 +351,12 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/install.md`](docs/install.md) | Per-harness installation tutorials. |
 | [`docs/tutorials/`](docs/tutorials/) | Guided walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
-| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
+| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F11 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
 | [`docs/reference/desktop-extension-practices.md`](docs/reference/desktop-extension-practices.md) | Find GNOME preferences, connector recovery, native theme, and update-preservation practices by task. |
 | [`docs/standards/`](docs/standards/) | The 26 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
+| [`SECURITY.md`](SECURITY.md) | How to report suspected vulnerabilities privately. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |
 | [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |
@@ -373,6 +373,13 @@ template or ingestion handler is a new file following the matching template in
 [knowledge-ingestion](docs/standards/knowledge-ingestion.md)). After every
 addition, run `generate`, `validate`, `check` and the tests. Steps per artifact
 type are in [`docs/extending.md`](docs/extending.md).
+
+## Reporting
+
+For bugs and feature requests, [open an issue](https://github.com/dandgabr/Coacus/issues/new)
+and choose the matching form. Report suspected vulnerabilities privately using
+the process in [`SECURITY.md`](SECURITY.md); do not disclose vulnerability
+details in a public issue.
 
 ## License
 
