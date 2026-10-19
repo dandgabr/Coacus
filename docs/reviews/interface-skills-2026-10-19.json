@@ -1,0 +1,3133 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "baseline_revision": "8ab8e28d8ea69c9c6653c88cf6777bb08c4278c8",
+  "candidate_source_revision": "e3e8e32",
+  "inventory_source": "catalog/catalog.json at baseline revision",
+  "evidence_scope": {
+    "source_curation": "82 visual packages (83 baseline files), plus 21 shared packages. Findings are source evidence, not rendered conformance.",
+    "behavior": "Fresh old and candidate agents each passed all18 frozen raw reasoning probes. No observed reasoning regression; no demonstrated improvement or runtime certification. See forward-comparison.md.",
+    "runtime": "24 standalone fixture combinations; six controlled mutants detected. No per-style runtime matrix.",
+    "binding": "File digests bind the implementer-reconciled candidate source. They are historical evidence, not a policy that future edits must match these bytes."
+  },
+  "visual_skills": [
+    {
+      "name": "ui-style-3d-immersive-webgl",
+      "decision": "update",
+      "rationale": "Specify scene-owned teardown for geometry, materials, textures, postprocessing and context listeners; distinguish frame interval targets from measured render cost, and keep poster/HTML usable after context loss.",
+      "baseline_findings": [
+        "The frame budget states an interval without separating observed callback intervals from CPU/GPU rendering cost; canvas lifecycle mentions pause and context loss but not disposal."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
+          "line": 34,
+          "quote": "60 fps budget = 16.67 ms/frame"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
+          "sha256": "b25fb1b81f36212b8d3e5186f10cb4775248a0a913d39596bed9186578e97002"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-acid-anti-design",
+      "decision": "update",
+      "rationale": "Check chrome button labels at the darkest reflection stop and difference-blend hover over actual artwork; supply an isolated solid label plate when required, retaining chrome/chromatic collision in decorative lettering.",
+      "baseline_findings": [
+        "Chrome action label is placed across alternating light/dark stops, while contrast advice only considers solid neon on black."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
+          "line": 161,
+          "quote": "background: linear-gradient"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
+          "sha256": "23d5d8dcb6b358d3c4c9b08b10c950f884cc6281275849b3fbb64dc65b53a601"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-agitprop-poster",
+      "decision": "update",
+      "rationale": "Keep heraldic rays and hard offset shadows; restrict clipping to the decorative ray owner, fit translated slogans to the actual banner width, and verify text over the ray composite, including a scoped opaque paper reading field when needed.",
+      "baseline_findings": [
+        "Poster clipping and fixed 3.5rem headline can hide long slogans; contrast figures only cover plain paper despite rays crossing the reading field."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
+          "line": 118,
+          "quote": "overflow: hidden"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
+          "sha256": "b55741dccb9d6575fb00b1eff20fb2cd269885fc49d575161f3de04de4227a3c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-ai-native-generative-ui",
+      "decision": "update",
+      "rationale": "Scope confirmation to unresolved consequential choices; preserve prior authorization and bind streamed tool cards/results to the current request, cancelling stale updates while keeping completion/error status accessible.",
+      "baseline_findings": [
+        "Confirmation advice is unconditional despite potentially existing explicit authorization."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
+          "line": 34,
+          "quote": "confirm-before-act for consequential actions"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
+          "sha256": "e3ebee58fbe7449e6ba01711bff9695b97bca6d6dedff1d8aeed050c6b8494f6"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-analog-newspaper-broadsheet",
+      "decision": "update",
+      "rationale": "Complete microfilm paper/ink/rule roles including aged inserts and bulletin text; retain newspaper columns but collapse by usable column measure and height, and wrap translated datelines and masthead metadata without shrinking them into illegibility.",
+      "baseline_findings": [
+        "Microfilm adaptation leaves aged paper, bulletin ink and Oxford rules inherited from daylight; masthead rows only justify space and lack long-label wrapping."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
+          "line": 98,
+          "quote": "[data-theme=\"dark\"]"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
+          "sha256": "c03be392174f4c0f2c82c716b097d3f7e1b57ab774275802a542e4af84535367"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-art-deco",
+      "decision": "update",
+      "rationale": "Introduce semantic title, eyebrow and action ink roles and retarget gilded card selectors for daylight; preserve gold filigree while validating hover foreground/background as a pair and retaining readable dark ink.",
+      "baseline_findings": [
+        "Light-mode guidance contradicts component colors bound directly to gold-core/bright; light tokens only change ivory/muted text."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
+          "line": 241,
+          "quote": "text must switch to deep Obsidian ink"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
+          "sha256": "35a1a13cb45b11811dd8f8c551b58f99ab9d75747c0fbfddac8703402755af08"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-art-nouveau",
+      "decision": "update",
+      "rationale": "For unfurling panels keep final botanical frame/content immediately visible in reduced motion; bound iridescent reflection to glass decoration and give reading text a stable parchment or patinated-ink field.",
+      "baseline_findings": [
+        "Whiplash panel transitions and pointer-driven reflections lack a static reduced-motion completion path; stained-glass composition is separate from parchment-only contrast examples."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+          "line": 154,
+          "quote": "Glass Specular Shift"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+          "sha256": "05b25f8e701e8265afc7cc09923ea7a44bdba29da935578edbc72b0f0c6505dc"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-arts-and-crafts",
+      "decision": "update",
+      "rationale": "Let inner rag-paper padding respond to the actual folio width while preserving heavy woodcut borders; keep thick-paper turns optional and expose final page content immediately under reduced motion.",
+      "baseline_findings": [
+        "Nested folio borders plus fixed interior padding consume a narrow reading width; weighted page turns have no static completion guidance."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
+          "line": 109,
+          "quote": "padding: 24px;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
+          "sha256": "32c44c22fc8607315626dcba994e8968b7c686f40505a2210f78b5262e2f2c78"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-atompunk",
+      "decision": "update",
+      "rationale": "Specify whether CRT scanlines belong to the glass viewport or full diagnostic content; verify top/middle/bottom after resize and tune dark scanline/vignette composites without replacing green phosphor or steel/bakelite material cues.",
+      "baseline_findings": [
+        "The scanline overlay uses the CRT glass owner but does not define ownership when readouts scroll beyond its initial height."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
+          "line": 141,
+          "quote": "inset: 0;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
+          "sha256": "60f7a3fc2e1cae9ea1be9e243a5781bd3295969bf46fa9a09884104a87a55193"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-aurora-mesh-gradient",
+      "decision": "update",
+      "rationale": "Apply a real reading scrim in the Aurora hero example, test worst pool positions and retain pastel aurora via a light opaque reading field when chosen rather than mandating a dark 60% scrim for every variant.",
+      "baseline_findings": [
+        "The scrim guarantee is universal despite unspecified moving pool composition; hero example does not apply the stipulated scrim."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
+          "line": 199,
+          "quote": "guaranteeing contrast exceeding 10:1"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
+          "sha256": "125de759630539cc5121b4efea7ad1a674865e9367521f73d27ac9dd5e96c430"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-bauhaus",
+      "decision": "update",
+      "rationale": "Give workshop cards a semantic surface that changes with night inversion; explicitly pair hover ink and red fill. Add usable-width collapse for the fixed 280px geometric column while keeping elementary shapes and asymmetric balance.",
+      "baseline_findings": [
+        "Night inversion changes ink to light but retains a white card background; neutral hover prose promises white ink while example retains paper-dependent text."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
+          "line": 85,
+          "quote": "--bauhaus-white: #FFFFFF;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
+          "sha256": "1ca2de31cbe8eeb9f4c629ad0a583f4108690554a88cd02358fc388489b95aab"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-bento-grid",
+      "decision": "update",
+      "rationale": "Bound clipping to visual artwork, keep headings/code and interactive controls reachable, and re-evaluate cell spans/padding/min-height by available cell width and viewport height while retaining uniform gutters and heterogeneous spans.",
+      "baseline_findings": [
+        "Cell clipping and fixed 420px hero minimum do not address independent micro-composition content fit or shallow embedded views."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
+          "line": 182,
+          "quote": "overflow: hidden;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
+          "sha256": "ddeeb0f6694ee3f080b4d0d54005e244bae5c80383492cc91088553de004abb7"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-biopunk",
+      "decision": "update",
+      "rationale": "Give electrophoresis progress a stable numerical/semantic value and label; stop decorative band travel without hiding progress, and use shape/text alongside fluorescence for sample state.",
+      "baseline_findings": [
+        "Reduced motion guidance stops morphing/glow but does not preserve the meaning of migrating-band progress or distinguish laboratory status independent of pulse."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
+          "line": 114,
+          "quote": "Gel Electrophoresis Progress"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
+          "sha256": "2e13c72af59be043f55e8537ad5c24b0b3c6780a7c6b620bd22a05a87ad10e8f"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-blueprint-cad-schematic",
+      "decision": "update",
+      "rationale": "Reflow title-block cells according to sheet width and long project/revision strings, retaining dimension ticks; verify muted notes over actual minor/major grid lines, with a local sheet backing if needed.",
+      "baseline_findings": [
+        "Drafting title block reserves fixed final columns and lacks narrow-owner reflow; muted drafting labels are excluded from listed cyan/amber contrast examples."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
+          "line": 226,
+          "quote": "grid-template-columns: 2fr 1fr 60px 60px;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
+          "sha256": "126e8b84a934215e9cb7b8d5dc8e07deda1d25455bd629a98d3f30d8489317ed"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-broken-grid",
+      "decision": "update",
+      "rationale": "Define the shared stacking owner for overlapping editorial planes and keyboard focus; reset overlap/negative offsets by available component width, including short-height landscapes, preserving intentional large-display bleed only where reading and controls remain exposed.",
+      "baseline_findings": [
+        "Hover elevation is described as numeric z-index without resolving nested stacking contexts; responsive section names a collapse but omits an actual owner-width rule."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
+          "line": 119,
+          "quote": "z-index: 10"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
+          "sha256": "b2a00f9de060a104e5ebf47b61bab71fc1f737e42e550bd3aa07033c51edb13c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-brutalist-monochrome",
+      "decision": "update",
+      "rationale": "Choose the focus ink against the surrounding surface or use a binary dual ring across inversions; retain pure black/white identity and validate gray indices/control boundaries separately from the 21:1 headline pair.",
+      "baseline_findings": [
+        "Focus outline is universally white despite black-on-white usage and inversion states; binary 21:1 assurance does not cover gray metadata."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
+          "line": 206,
+          "quote": "High-visibility white offset outline"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
+          "sha256": "f4f2226ce86a9421288842d0c8bb03a28edc9ffab9ba2fb6dd08a776629e5c3c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-calm-quiet-ui",
+      "decision": "update",
+      "rationale": "Keep secondary controls discoverable through keyboard focus and touch, with a stable fallback when dwell is unavailable; pair button foreground with sage in both modes rather than assuming white remains legible as sage lightens.",
+      "baseline_findings": [
+        "Dwell-reveal advice exposes secondary controls only by pointer proximity; quiet low-contrast controls are not included in body text contrast claims."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
+          "line": 131,
+          "quote": "opacity: 0.2"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
+          "sha256": "114b7b3bc2b6e4bf69282a79a3ae786051d0c1a55ef2a66eee54aaeab64cc479"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-card-based-ui",
+      "decision": "update",
+      "rationale": "Make two-line title trimming conditional on a discoverable full title/detail route, allow long/localized action rows to wrap, and scope media clipping so card focus/secondary actions remain visible above the expanded-link overlay.",
+      "baseline_findings": [
+        "Title clamping is unconditional and no route is given for users to recover long titles; card-level overflow can also clip focus."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
+          "line": 128,
+          "quote": "Limited to 2 lines"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
+          "sha256": "ed275af3ccd66a1e2820f62c52ed2901e0d1ce390202a0ffdec223def2e011ce"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-cassette-futurism",
+      "decision": "update",
+      "rationale": "Define CRT power-on completion as the full visible readout and immediately show it under reduced motion; wrap physical rocker controls as well as telemetry columns and preserve latched state in semantic text/pressed state.",
+      "baseline_findings": [
+        "Power-on sweep description ends collapsed to a single line, while reduced-motion only disables LED and ::after animations; long controls are not covered by telemetry-only mobile advice."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
+          "line": 272,
+          "quote": "collapsing to a single line"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
+          "sha256": "e5c462a0be77d00c29a68b78612e8e5a96c5a86cfa8bbcf086ea79b379456e6b"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-claymorphism",
+      "decision": "update",
+      "rationale": "Replace automatic clay contrast guarantees with checking inset edges, perimeter and pressed state against the real floor; strengthen a contour where needed while preserving inflated matte volume, pastel fills and instantaneous shadow feedback under reduced motion.",
+      "baseline_findings": [
+        "Unconditional shadow boundary assurance is unsupported by the given low-alpha shadow recipes and substrate-dependent paint; distinct colored fills are described as automatically passing audits."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
+          "line": 207,
+          "quote": "Outer drop shadows provide at least 3:1"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
+          "sha256": "c34e907b0816e2f1f1a9df08aa205bc37d11130c8fe31d810a61434d28f2fb48"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-clockpunk",
+      "decision": "update",
+      "rationale": "Freeze ornamental escapement loops while continuing meaningful dial/progress updates without interpolated travel; expose values and keyboard alternatives to astronomical rings so reduced motion retains the mechanism explanation and final state.",
+      "baseline_findings": [
+        "Freezing all gear motion conflates decorative horology with stateful educational calculators and stepped progress."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
+          "line": 117,
+          "quote": "all gear rotations and ticking animations freeze"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
+          "sha256": "8435ebb3c81475060490a11a2288b58a39cb97c2e8b07ad4a68e04041e0f1f5a"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-collage-scrapbook",
+      "decision": "update",
+      "rationale": "Scope paper tilt to fragments that retain readable line lengths and accessible targets; straighten or reflow dense/long fragments in narrow owners while retaining torn paper, mixed-media hierarchy and static overlaps where legible.",
+      "baseline_findings": [
+        "Universal container tilt includes functional controls and long text; existing focus/contrast safeguards do not prescribe usable-width composition."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
+          "line": 35,
+          "quote": "Every container is slightly tilted"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
+          "sha256": "23eaf712e3c348bae93f8f9947197254e4a0188aea1bf8e8cc30df8015550ac1"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-constructivism",
+      "decision": "update",
+      "rationale": "Separate wedge/diagonal clipping from reading and focus owners; check rotated long titles in actual panel width and create a cream reading plane where a red wedge crosses ink, preserving hard geometric thrust and thick structural bars.",
+      "baseline_findings": [
+        "The header is rotated inside a clipped panel and wedge decoration can occupy the same reading region; mobile rule only keys to viewport width."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
+          "line": 129,
+          "quote": "overflow: hidden;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
+          "sha256": "8e75b21da76ce6f5c92930a2c98262e4ba4487af4de837efbf55795dcdeda86f"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-cyberpunk",
+      "decision": "update",
+      "rationale": "Use an unclipped focus owner or inset high-contrast bracket that survives polygon clipping; document daylight as an optional postcyberpunk material mapping with dark ink and subdued emission, rather than inheriting nocturnal card/scanline paint.",
+      "baseline_findings": [
+        "Chamfered action clip can trim the prescribed outside focus outline; clean-daylight subtype has no mapping for dark-specific surfaces and glow recipes."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
+          "line": 174,
+          "quote": "clip-path: polygon(10px 0"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
+          "sha256": "c90e92570b0264ff861c9eaead9037ecce3dab6635897bd44efdc990105003fa"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dark-fantasy",
+      "decision": "update",
+      "rationale": "Check the darkest tarnished gradient stop against the actual iron/stone backdrop and supply solid gilt ink for functional titles when needed; make ember drift decorative, scoped and static/off under reduced motion without brightening the grimdark substrate.",
+      "baseline_findings": [
+        "Metallic text is gradient-painted while contrast assurance only checks flat bright gold; ember atmosphere has no reduced-motion or lifecycle direction."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
+          "line": 48,
+          "quote": "-webkit-text-fill-color: transparent;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
+          "sha256": "cb92ed1f48e0d24671b6ddb1148f40c891ac7bec34797aa8d93be6b1e151f19e"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dark-mode-first",
+      "decision": "update",
+      "rationale": "Make dark-gray elevation one dark-native choice and retain intentional pure-black/OLED identities; separate manual/system/effective appearance and audit full backgrounds, image overlays, native control states and foreground roles when deriving a light counterpart.",
+      "baseline_findings": [
+        "Opening blanket rejection of black conflicts with its own OLED variant; opacity/dimming and lighter elevation are presented more broadly than the brief warrants."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
+          "line": 8,
+          "quote": "never naive pure black"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
+          "sha256": "01ebe3c12bcd593d7054d4dc5f2c9102f8d4a3b763b353b0efa94bbeae6cfb69"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-de-stijl",
+      "decision": "update",
+      "rationale": "Keep thick orthogonal rules and primary planes while allowing content-driven row growth and a component-width collapse; gate track animation under reduced motion and pair inverted primary-cell fills with the existing on-red/on-blue/on-yellow text roles.",
+      "baseline_findings": [
+        "Fixed composition tracks and fixed side columns have no fallback for long content or shallow/narrow containers; primary-cell track redistribution can move functional content."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
+          "line": 178,
+          "quote": "grid-template-rows: 240px 180px;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
+          "sha256": "8ec1e1fc0916157a54ca32fa5610d5e4cca848aec9521a14b628540c5c9531cf"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dieselpunk",
+      "decision": "update",
+      "rationale": "Choose focus ink separately on tobacco dossiers and oil-black chassis, and inspect label paint over venetian stripes/chrome bands; retain both optimistic ivory/streamline and grim gunmetal schools rather than forcing one polarity.",
+      "baseline_findings": [
+        "Gold focus is specified across both pale dossier paper and dark chassis without adjacent-surface distinction; noir stripe/inset paint is absent from flat-pair contrast claims."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
+          "line": 205,
+          "quote": "High-visibility gold outline"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
+          "sha256": "eb58004eab7aa82f8f66e564ff06ae94c7d276e2956fa69dd829ac592875d545"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dracula",
+      "decision": "update",
+      "rationale": "Label the accessible comment token as a documented adaptation alongside the canonical palette; fit or locally scroll code and wrap header/status/action content by actual card width, preserving violet surfaces and distinct syntax accents instead of clipping long text.",
+      "baseline_findings": [
+        "The official-theme framing includes a locally calibrated comment token without clearly separating adaptation; no container-width handling is given for long code/header content."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
+          "line": 8,
+          "quote": "official Dracula Theme specification"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
+          "sha256": "88ef9b2c299ce1add4b281ce76746be30243cc00c2cce2609fc564c64183d446"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dreamcore",
+      "decision": "update",
+      "rationale": "Separate dark badge ink from sky-blue decoration, inspect text/focus over actual cloud/hill composites and retain the luminous bloom around a stable reading field; stop decorative cloud drift in reduced motion.",
+      "baseline_findings": [
+        "The accent is used for small badge text but described only as calibrated for badges/icons; cloud-white solid pairs do not establish contrast over translucent dream pods."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
+          "line": 160,
+          "quote": "Sky Deep Accent"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
+          "sha256": "a037aaedae7cba4e2269504378bfa489b13970189ee4f6af749f3da160451ccc"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-dungeon-synth",
+      "decision": "update",
+      "rationale": "Check the hover label against moss fill and retain bone text or adjust moss if required; stop candle variation under reduced motion, preserving crypt darkness and rough ink/stone instead of replacing them with glossy fantasy ornament.",
+      "baseline_findings": [
+        "Hover switches bone-on-dark to black-on-moss, but contrast examples cover only resting bone and amber; ambient candle flicker lacks a static fallback."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
+          "line": 138,
+          "quote": "color: #0E100F;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
+          "sha256": "fa3411311e1a42695eba9739cafab415eb8be308e6cd03a9604bd0fb3de854d3"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-editorial-archive-luxury",
+      "decision": "update",
+      "rationale": "Fit plates to the available gallery width and usable height with reachable captions and native keyboard/touch panning; retune curatorial accent ink for the vault while retaining photographic plates, substantial margins and serif hierarchy.",
+      "baseline_findings": [
+        "Mandatory horizontal snapping uses plates wider than narrow owners and may make captions unreachable; dark-vault adaptation leaves cognac/gold accent ink inherited."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
+          "line": 254,
+          "quote": "flex: 0 0 420px;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
+          "sha256": "1977f49d1b4878007c3a8c0268de84e09dc2932136328f9c6e29e1b1933fad1e"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-expressive-variable-typography",
+      "decision": "update",
+      "rationale": "Require font-supported axes and check glyph extents after font readiness, language and hover at actual monument width; describe GRAD as avoiding advance-width changes rather than guaranteeing measured CLS, and let footer/actions reflow in shallow owners.",
+      "baseline_findings": [
+        "Grade-axis prose guarantees a measured CLS outcome and implies variable fonts prevent all reflow; axis support and final glyph bounds are not checked."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
+          "line": 136,
+          "quote": "Cumulative Layout Shift (CLS) remains 0.00"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
+          "sha256": "56f8a6dea2806a29ff3dbb0c3105e8ed80d940f2367461892baab655f476ba05"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-flat-design",
+      "decision": "update",
+      "rationale": "Change badge foreground to the prescribed navy role and review all solid/ghost hover pairs; choose a visible focus ring against the actual surrounding surface while retaining flat fills, simple geometry and explicit signifiers.",
+      "baseline_findings": [
+        "Banner badge example uses precisely the white-on-turquoise pair its accessibility section says fails."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
+          "line": 266,
+          "quote": "White text on `--flat-turquoise`"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
+          "sha256": "94ba7bb84187d2958611ce954db82aebc72b1278331ee0a8d80edb213f3d9d86"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-fluid-liquid-morph",
+      "decision": "update",
+      "rationale": "Put the filtered merging silhouettes on a decorative sibling behind unfiltered text/controls; retain discrete hit targets and focus outlines while visual droplets merge, and reset to stable rounded controls under reduced motion.",
+      "baseline_findings": [
+        "Applying a goo filter to a container still filters its descendant labels; current prose can contradict the goal of unblurred real text."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
+          "line": 67,
+          "quote": "Liquid morphing filters must wrap UI containers"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
+          "sha256": "fecd52106400b40f78dc55468503081fa066f26fb03e6a68824842ef78357db6"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-frutiger-aero",
+      "decision": "update",
+      "rationale": "Preserve split gloss and belly light on chassis, but protect button/tab label ink at every split/hover/pressed position with an unfiltered label layer and sufficient local backing. Keep content sanctuary guidance; move full CSS recipes and six-subgenre depth to discoverable references, preserving existing historical bibliography.",
+      "baseline_findings": [
+        "The body diagnoses white text crossing the 50% gloss horizon as 1.3:1, yet button/tab examples use white foreground across pale specular caps; the long component catalogue remains inline despite an existing reference seam."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
+          "line": 452,
+          "quote": "1.3:1 contrast"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
+          "sha256": "0f124a504c5a7e2c8dd31ecd2cf5567d58e9a328091f6b63d6e1f595fdf4d411"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/references/gloss-components.md",
+          "sha256": "4829b8d860de81fc57ec2504dc29e7a2c132473d874293cc71473668d5f2d577"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/references/historical-manuals-and-literature.md",
+          "sha256": "d928d6f9c7c2a2205c8ef7564e39ca5e8bd635cd9503d333192030229d4aafbb"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/references/subgenres.md",
+          "sha256": "a5c8eaba24e63eb64b283c00d21dced13ccfa45d9a527b7f187e0e0f9fad6448"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-glassmorphism",
+      "decision": "update",
+      "rationale": "Add an explicit reading scrim to the example and pair its ink with light/dark glass; verify the composite over changing backdrop and the opaque no-backdrop-filter fallback, retaining frosted rim and spatial depth around the reading field.",
+      "baseline_findings": [
+        "Glass-card documentation promises an internal scrim, but example renders only 0.16-alpha light glass and dark ink with no protected reading layer."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
+          "line": 126,
+          "quote": "internal text scrim"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
+          "sha256": "6660007759380ba57f8c87b1e42ea0986c5d1fc1a91adb18dda934c3d77b6384"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-glitch",
+      "decision": "no-change",
+      "rationale": "Retain existing brief glitch bursts and real-text/static-state safeguards; route shared lifecycle or evidence checks through their owners rather than expanding this concise technique with generic material.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
+          "line": 44,
+          "quote": "success, error and navigation must settle"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
+          "sha256": "d7aee3c83362bef4699d74969c14d9eae38418561d0e38515700e1d3ac49fffe"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-gothicpunk",
+      "decision": "update",
+      "rationale": "Give small faction metadata a readable bone/gold ink or a contrasting wax/paper field; keep crimson as gothic material and reserve large crimson lettering only when its actual size/weight and composite pass, preserving lancet architecture and urban punk identity.",
+      "baseline_findings": [
+        "Faction stamp is small bright-crimson text, while the red guard permits large headings or bold badges without establishing a size/weight threshold for that example."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
+          "line": 148,
+          "quote": "font-size: 0.8rem;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
+          "sha256": "5bee258a152a4fac1b827bceec1046ca2f7ddb61ee8aa21a4395956c6e7e8183"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-gradient-duotone",
+      "decision": "update",
+      "rationale": "Freeze hue cycling, background panning and button shimmer to a deliberate brand-color composition under reduced motion; keep duotone-to-full-color state understandable without a moving transition and verify gradient-text fill resets if a solid variant is chosen.",
+      "baseline_findings": [
+        "The package prescribes continuous gradient drift and shimmer but supplies no reduced-motion static completion rule; text/background gradients are otherwise already covered."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
+          "line": 38,
+          "quote": "Animated gradient drift"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
+          "sha256": "f73759e8ffce590fc093ed7aad3f83ca290c8e363281e1457d389d41771161b6"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-grain-noise-texture",
+      "decision": "no-change",
+      "rationale": "Retain the static stochastic-material treatment and existing extreme-speckle/stacking safeguards; shared capture/evidence procedures remain with their owners.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
+          "line": 75,
+          "quote": "darkest and lightest grain speckles"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
+          "sha256": "b133aa090be3adb681b0aba6bf7fdf5bf0e04408d042103943ebeb95c359a6ca"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-hand-drawn-sketch",
+      "decision": "update",
+      "rationale": "Keep crisp semantic hit areas and focus already prescribed; add a style-specific reading-surface check for hachure/highlighter overlap and verify seeded hover roughening leaves labels, hit bounds and translated headings reachable.",
+      "baseline_findings": [
+        "Hachure/highlighter and hover re-roughening guidance does not explicitly require reading-surface and geometry checks at text expansion."
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
+          "line": 69,
+          "quote": "- Keep the control's real hit area and a solid focus outline independent of the rough decoration."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
+          "sha256": "c8a852acab7d558bfb61f3a69d85218ce3569dc4a5b579a0df0aa434fd4c71ba"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-holographic-foil-iridescent",
+      "decision": "update",
+      "rationale": "Replace the universal dark-core requirement with a stable contrast backing appropriate to obsidian or pearlescent-silver dialect; inspect moving specular extrema and reset transparent gradient text fill when changing appearance.",
+      "baseline_findings": [
+        "dark core requirement excludes stated silver substrate"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
+          "line": 196,
+          "quote": "- **Contrast Protection:** Prismatic foil backgrounds must never sit directly beneath delicate body text. Body copy must always reside over a solid dark core (`#12141D`), ensuring a contrast ratio of 16.5:1 against pure white text."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
+          "line": 8,
+          "quote": "**Holographic Foil & Iridescent Chrome** is the optical simulation of light wave interference across microscopic thin-film layers—recreating the dynamic, angle-dependent rainbow shimmer of security holograms, collectible trading card foils (Pokémon, Magic: The Gathering), anodized titanium coatings, and mother-of-pearl surfaces. In digital user interfaces, Holographic Foil combines dark obsidian or crisp silver substrates with multi-spectral gradient shaders, cursor-tracking specular light flares, metallic border reflections, and tactile 3D perspective tilts."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
+          "sha256": "72331e4c24cb17467c900a668742a7ef0a19e48f176a969a1dd01894666c67b7"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-indie-web-revival",
+      "decision": "no-change",
+      "rationale": "Existing solid reading panels preserve tiled-background identity; existing static navigation, underlines, pause guidance and ownership boundaries address the relevant lessons without another style-specific rule.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
+          "line": 66,
+          "quote": "- Tiled or loud backgrounds often break 1.4.3 contrast; put text on a solid panel."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
+          "sha256": "7aa560455f4c5d009c45735f4507b6585ca8ed91e4ddc763aa05a174a94f5f11"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-isometric",
+      "decision": "no-change",
+      "rationale": "Keep projection geometry and flat upright labels; existing reflow, zoom, keyboard order and text equivalents cover the relevant transfer without importing showcase rules.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
+          "line": 68,
+          "quote": "- Tiny labels in dense scenes must still reflow and zoom (1.4.4, 1.4.10); keep labels as real HTML text."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
+          "sha256": "c9687f75fb543d07e70735d3a829beae7577d925ff58ec4e0ed0bcb44699e568"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-kawaii-pastel-soft",
+      "decision": "update",
+      "rationale": "Replace automatic hit-target and contrast guarantees with measured actual controls and pastel/ink pairs, including muted text and disabled/focus states; scope the #stage selector explicitly as a consumer example.",
+      "baseline_findings": [
+        "roundness is treated as target-size proof"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
+          "line": 32,
+          "quote": "- **Cards & Buttons:** Generous pillowy radius (`border-radius: 28px` to `9999px`), white outlines (`border: 3px solid #FFFFFF`), and candy drop shadows (`0 6px 0 #FF8FAB`)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
+          "sha256": "4e2cb28f4261ce8744610e5eea37a9e031ceced9affcd157f91d85c36613005b"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-kinetic-typography",
+      "decision": "update",
+      "rationale": "Define a wrapping or scrollable static ticker fallback with all content reachable; size display type to its owner at font-load, hover-axis and localization extremes; provide a persistent operable pause control rather than treating hover/focus alone as the full pause contract.",
+      "baseline_findings": [
+        "static marquee clips untranslated or long content; hover/focus pause equivalence"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
+          "line": 58,
+          "quote": "  overflow: hidden;"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
+          "line": 80,
+          "quote": "  .marquee-content { animation: none; }"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
+          "line": 91,
+          "quote": "- **WCAG 2.2.2 (Pause, Stop, Hide):** Any scrolling text track that moves automatically and lasts more than 5 seconds MUST provide an accessible pause mechanism (achieved via `:hover`, `:focus-within`, or an explicit pause button)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
+          "sha256": "54717a472b6a389233575842da586b84c0d9c5db37dc29fd685625a9ccadae35"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-linear-saas",
+      "decision": "update",
+      "rationale": "Retain compact issue rows but expose complete ellipsized titles and keyboard actions; bound the palette to usable height with scrollable results and verify light/dark muted labels and focus in the actual surface stack.",
+      "baseline_findings": [
+        "fixed dense rows and palette placement lack short-height and long-label contract"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
+          "line": 257,
+          "quote": "  padding-top: 15vh;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
+          "sha256": "3bbb211647929a0f4dd196cbbc5d662ce1937a2d3b4ff8f36e0d1f308ec93733"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-lunarpunk",
+      "decision": "update",
+      "rationale": "Distinguish decorative blur from confidentiality/decryption; keep reveal-on-intent operable through keyboard and assistive state, clear revealed content on owner change, and verify silver/orchid text against translucent moonlit surfaces.",
+      "baseline_findings": [
+        "privacy veil described as decryption"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
+          "line": 188,
+          "quote": "A blurred data box that decrypts and un-blurs only upon deliberate user click."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
+          "sha256": "6c959eb78e596ef073a3f1836283875dd1e2e225f6dc0a7c8f18dc482f86f6a6"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-material-you",
+      "decision": "update",
+      "rationale": "Label hand-picked OKLCH values as illustrative rather than HCT-generated guarantees; complete secondary/tertiary/on-state role pairs in requested appearances and verify tinted/ripple layers and chips in rendered states.",
+      "baseline_findings": [
+        "HCT guarantees applied to illustrative OKLCH and incomplete alternate roles"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
+          "line": 316,
+          "quote": "- **Mathematical Contrast Guarantees in HCT:** The HCT model guarantees that any pairing of `Tone 90` (light background) with `Tone 30` (dark text) yields at least **7:1** contrast (WCAG AAA). Similarly, `Tone 80` over `Tone 20` yields **5.5:1** (WCAG AA)."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
+          "line": 87,
+          "quote": "  --md-sys-color-secondary-container: oklch(0.90 0.04 250);"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
+          "line": 120,
+          "quote": "[data-theme=\"dark\"] {"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
+          "sha256": "8e1bb4953c7ab94d6e746450d0d1525ff64d8f18bbe36b827b0581d5d75919ae"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-maximalism",
+      "decision": "update",
+      "rationale": "Keep saturated layered maximalism; specify a stable reading island for central badge labels over checkerboards and an operable pause control for ongoing marquees, with reduced-motion as a separate complete static fallback.",
+      "baseline_findings": [
+        "reduced preference offered as alternative to user pause; pattern badge lacks reading backing"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
+          "line": 197,
+          "quote": "- **Cognitive Load & Distraction (WCAG 2.2.2):** Continuous infinite scrolling marquees and moving background patterns can severely distract users with ADHD or cognitive conditions. Provide a visible \"Pause Motion\" control or respect `prefers-reduced-motion` to immediately freeze all loops."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
+          "sha256": "62b37f73e147911baa61105fde53ee7be2900527ea7d279b3db4abbc7a33321a"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-memphis",
+      "decision": "update",
+      "rationale": "Preserve Bacterio/terrazzo and solid reading panels; make footer/badge labels wrap under localization and reserve clearance for 8% hover scale and hard shadows without hiding content or focus.",
+      "baseline_findings": [
+        "pattern protection exists; scaled cards and floating badge lack long-label composition"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
+          "line": 120,
+          "quote": "- **Overshoot Spring Hover:** Buttons and cards react with a playful 8% scale bounce (`transform: scale(1.08) rotate(-1.5deg)`) using `--memphis-spring`."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
+          "sha256": "2c33cfe26e7577e275ca80d3303b0d2f8d2ed30d10f922cfdc417494a72b6080"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-metro-modern-ui",
+      "decision": "update",
+      "rationale": "Use accent-specific on-colors in tile examples, especially orange; allow tile grids and panorama tabs to reflow or remain reachable in narrow/short owners, and preserve exactly one semantic active panel while flipping decorative tile faces.",
+      "baseline_findings": [
+        "fixed tile span, clipped pivot and explicit white labels conflict with contrast caveat"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
+          "line": 226,
+          "quote": "  color: #FFFFFF;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
+          "sha256": "d17397b79fd3ef3636cbb7d514c2e135598293dc0c8276fa8a16c4cd69b46f86"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-micro-interactions",
+      "decision": "update",
+      "rationale": "Distinguish pending from confirmed success; make repeated submit/cancel/owner-change outcomes deterministic and prevent stale completions from changing the current control; retain immediate feedback and static final states independently of animation.",
+      "baseline_findings": [
+        "optimistic success and generic timing/INP assertions omit late completion ownership"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
+          "line": 28,
+          "quote": "- Invisible until engaged: ripple radii, checkmark morphs, toggle-thumb springs, skeleton shimmer, optimistic checkmark on submit, button press scale (0.96–0.98), 1–2px shadow lifts."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
+          "sha256": "be512efae5a2f3116ea401a9ad8b562afaedbf35513ba92275ca437253e8966c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-mid-century-modern",
+      "decision": "update",
+      "rationale": "Preserve evening walnut/leather adaptation; verify muted specification labels and terracotta eyebrows on actual evening cards and allow footer action/specification wrapping at text expansion without shrinking the reading area.",
+      "baseline_findings": [
+        "reading palette only assessed on linen while evening mode retains small warm accents"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
+          "line": 112,
+          "quote": "  --mcm-text-muted: #6E6359;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
+          "sha256": "3bf24f87e05be80c7b5307416595fca231e2204b393b059b09ec2279abc659a5"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-nanopunk",
+      "decision": "update",
+      "rationale": "Keep physically meaningful scales and crystalline identity; ensure zoom-unit labels, measurement values and controls initialize in reduced motion before decorative particle assembly, and scope lattice clipping/lifecycle to the scientific viewport owner.",
+      "baseline_findings": [
+        "scale-shift and particle assembly omit static semantic completion"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
+          "line": 113,
+          "quote": "- **Particle Swarm Coalescence:** Data visualizations assemble from dispersed floating particles into rigid geometric shapes on state load."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
+          "sha256": "4e46621e68e4a44166d46c030d8aa0b7f04360ff32028eb9ca08cc8db5c2315b"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-neo-brutalism",
+      "decision": "no-change",
+      "rationale": "Existing hard-shadow identity, explicit focus clearance, measured hit-target warning, solid black text and instantaneous reduced-motion shadows cover the transferred lessons; retain these choices without generic aesthetic normalization.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
+          "line": 216,
+          "quote": "- **Focus Indicators:** Ensure focus outlines do not get absorbed into the hard black shadow. Always offset focus rings (`outline: 3px solid #74B9FF; outline-offset: 4px;`)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
+          "sha256": "1c5621d90de223163c0d8d2a65ea0961c0bab35ed38709e0b2ef08e3ed962791"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-neumorphism",
+      "decision": "update",
+      "rationale": "Replace subtle-border-as-remediation assurance with a verified boundary/indicator pair at rest, checked, focus and disabled states; update push-button example to follow it and recalculate both paired shadows and ink if an alternate substrate is requested.",
+      "baseline_findings": [
+        "remediation border example does not establish requested boundary contrast"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
+          "line": 188,
+          "quote": "  1. **Add Boundary Definition:** Apply a subtle 1px border (`rgba(148, 163, 184, 0.4)` or higher) around every interactive element."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
+          "line": 153,
+          "quote": "  border: 1px solid rgba(255, 255, 255, 0.6);"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
+          "line": 28,
+          "quote": "- **Absolute Veto:** Borderless monochrome form fields where placeholder text and inputs share the background color (rendering them invisible to low-vision users) are strictly forbidden. All interactive inputs must feature explicit high-contrast boundaries meeting WCAG 1.4.11 (3:1)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
+          "sha256": "14e6502a5f8ee43db1936030e973035bec246d1a7e28adcec6b682f3c205e4ec"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-nordic",
+      "decision": "update",
+      "rationale": "Introduce semantic PolarNight/SnowStorm surface/ink roles for requested modes; verify nordic-label and primary-button hover on their actual backgrounds rather than quoting only nord0 pairs; preserve all four named Nord palette groups.",
+      "baseline_findings": [
+        "semantic palette names do not theme fixed polar surfaces or low-contrast labels"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
+          "line": 189,
+          "quote": "  color: var(--nord-polar-3);"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
+          "sha256": "c0ece12bf05b50be17472f7ff2cc00db04d979e0d707b2612474586eb16fe4f9"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-organic-biophilic",
+      "decision": "update",
+      "rationale": "Treat earthy contrast as a candidate pairing to verify, and distinguish low-weight sustainable implementation from texture-heavy decorative variants when discussing performance; retain masks with focus clearance and solid reading zones.",
+      "baseline_findings": [
+        "contrast superlative and heavy-texture avoidance conflict with sustainable variant"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
+          "line": 59,
+          "quote": "- **Avoid:** brutal performance budgets (heavy textures), dense tooling UI, technical/neutral brand voices (organic warmth reads off-message)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
+          "sha256": "9649bff55c9e7cbb3a08d5ebce00f4a0c8645d902454e585fe8187311840e4d2"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-parallax-scrolling",
+      "decision": "update",
+      "rationale": "Declare which parallax layers belong to scroll owner versus viewport/content, recompute coverage at resize and narrative end, and supply complete static reading flow before optional depth motion; keep historical scroll-jacking separate from recommended behavior.",
+      "baseline_findings": [
+        "effect documentation lacks layer extent and complete reduced-motion state"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
+          "line": 30,
+          "quote": "- Full-viewport fixed backgrounds; layered 2.5D scenes (sky/mid/foreground); large hero typography over imagery; long single-page narratives with pinned sections; depth communicated by motion, not shadows."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
+          "sha256": "fbdc0ba20f04beafa00372aaf1de374f4d1d40b40a2913e53e923ff5c4f0e51e"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-pixel-art",
+      "decision": "update",
+      "rationale": "Keep sprite integer scaling independent of readable text sizing; wrap HUD actions and translated dialogue within actual owner, preserve zoom and font fallback, and stop optional stepped prompt motion without suppressing game state.",
+      "baseline_findings": [
+        "responsive advice only shrinks pixel font; continuous prompt lacks pause/fallback"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
+          "line": 221,
+          "quote": "- Maintain integer scaling. If the viewport contracts, decrease pixel font size from 16px to 12px, but never render at fractional pixel sizes (e.g. 13.5px)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
+          "sha256": "a8ecfa70e62ebd6479591307633f9781a0fff69fdb2e5f64038358c116619324"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-pop-art-halftone",
+      "decision": "update",
+      "rationale": "Set .pop-btn-cyan foreground to --pop-black as the accessibility section already requires; preserve halftone backgrounds and opaque speech/title/body panels, and verify focus against offset comic shadows.",
+      "baseline_findings": [
+        "cyan button code contradicts explicit black-ink contrast rule"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
+          "line": 169,
+          "quote": "  color: var(--pop-white);"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
+          "line": 278,
+          "quote": "  - White text (`#FFFFFF`) over Process Cyan (`#00AEEF`) yields **2.8:1** (FAILS for normal text). Therefore, Cyan buttons MUST use Ink Black typography (`#111111`), which delivers **7.2:1** (WCAG AAA)."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
+          "sha256": "be4878f271ee26b146ef17b3cf59c11b4e5675f1f12f9f47838f5ce819e6273f"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-psychedelic-60s",
+      "decision": "update",
+      "rationale": "Keep optical complements in intended poster ornament; test melting headline extents and complete labels at font-load, translation and hover distortion; verify button ink at orange/magenta gradient extrema and keep a stable reading backing.",
+      "baseline_findings": [
+        "optical vibration and all-space lettering omit container/localization limits"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
+          "line": 53,
+          "quote": "1. **Melting Negative-Space Typography:** Letterforms swell, bend, and expand organically, interlocking like molten lava to eliminate empty margins."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
+          "sha256": "513ab16b97de6ac6997a098771fff633dba09f2fd2e8954d09b3be33b34396b9"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-retro-computing",
+      "decision": "update",
+      "rationale": "Document a separately named period GUI dialect for requested light appearances, distinguishing it from phosphor terminals instead of recoloring CRT black; declare scanline owner/coverage across content and verify focus and text against the actual scanline composite.",
+      "baseline_findings": [
+        "CRT-only identity and discrete-emission veto prevent coherent light adaptation"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
+          "line": 264,
+          "quote": "- ❌ **NEVER use generic smooth pastel gradients:** Colors are discrete CRT phosphor emissions."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
+          "sha256": "f74b99cc93cbaad5e0d088ebe65a225e39113076e67a958c335c304b938465d6"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-retro-computing/references/period-gui-appearance.md",
+          "sha256": "bf6a05b04788d41f63dd2f30bf5318fb7214e329821da7bc5460a6f87be891f2"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-risograph",
+      "decision": "update",
+      "rationale": "Use a verified ink pair for the small pink action label; keep overprint/misregistration in isolated decorative layers with stable reading areas and confirm ink overlays cannot repaint semantic text/focus in requested appearances.",
+      "baseline_findings": [
+        "white-on-pink button and mixed layers lack verified foreground contract"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
+          "line": 143,
+          "quote": "  background: var(--riso-pink);"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
+          "sha256": "1543d4cef77b8ab325a624494beb7081c3b19a4c4a6c2aad2ea301650b4f8c19"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-sandalpunk",
+      "decision": "no-change",
+      "rationale": "The marble/bronze dialect already separates short inscriptional caps from sentence-case reading text and resolves stepped dial/stone-door motion into direct state changes; no new style-specific transfer is justified beyond shared verification.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
+          "line": 190,
+          "quote": "- **All-Caps Legibility:** Restrict all-caps monumental typography strictly to headings and short tags; body copy must always use standard sentence-case serif type to preserve reading speed."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
+          "sha256": "66882b0bc396904b6c6e033f90726053b7571ec62c4932bc029ea66c9976857e"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-scrollytelling",
+      "decision": "update",
+      "rationale": "Choose continuous/reveal, pin/scrub or explicitly requested scene presentation before implementation; keep native behavior by default, scope any requested input handling with keyboard/touch exits, make oversized scenes reachable at actual usable height and verify progress over local stacking contexts.",
+      "baseline_findings": [
+        "absolute wheel ban conflicts with presentation-deck activation; 100vh pins omit oversized scenes"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
+          "line": 42,
+          "quote": "- **Zero Scroll-Jacking Rule:** Never hijack the browser's native scrollwheel physics or momentum (violates user control and triggers motion sickness)."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
+          "line": 16,
+          "quote": "- Implementing sticky-pinned presentation decks or scroll-scrubbed interactive demos."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
+          "line": 67,
+          "quote": "  height: 100vh;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
+          "sha256": "f0e979978ea3f43acf7db2ca7b42f6a400a3322e5083a7c344151cce4fa94beb"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-silkpunk",
+      "decision": "update",
+      "rationale": "Preserve paper/lattice and chosen cultural lineage; validate script-aware font fallback and vertical seal/rubric extents, and ensure fan/partition decoration follows semantic expanded/hidden state with exactly the intended panel and complete static initialization.",
+      "baseline_findings": [
+        "vertical rubrics, fan menus and sliding tabs lack locale/visibility state constraints"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
+          "line": 110,
+          "quote": "- **Accents & Annotations:** Vertical reading tracks (`writing-mode: vertical-rl`) for seal marks, date rubrics, and chapter markers."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
+          "sha256": "2bb9e7afa5b918e4905c818fefbc7c7cd2ce494cc1e6e746850244b3655880f9"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-skeuomorphism",
+      "decision": "update",
+      "rationale": "Verify label ink across the entire Aqua gloss and hover/pressed gradients, with stable text backing where needed; expose actual dial/switch value and keyboard/step control independently of pointer drag and physical travel.",
+      "baseline_findings": [
+        "single Aqua-blue contrast assertion ignores glossy gradient and control mechanics"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
+          "line": 195,
+          "quote": "- **Contrast Ratios (WCAG 1.4.3 & 1.4.11):** Dark charcoal text (`#1F2937`) on brushed metal (`#D8DEE4`) delivers a 9.2:1 contrast ratio (exceeding WCAG AAA). Aqua blue buttons feature pure white text achieving 4.8:1 against `#1E88E5`."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
+          "sha256": "7e0715dc250edb7ec3fc191125a8d147e3afcecb2c370b790713e8de017d125c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-solarpunk",
+      "decision": "update",
+      "rationale": "When dark loam is requested, map complete surface/ink/state roles without retaining sunlit white cards by accident; verify eco-switch reversibility and content/layout with fonts/images disabled and label kilowatt-hour states statically when breathing motion stops.",
+      "baseline_findings": [
+        "dark loam token is not a complete appearance; eco mode can change fonts/media"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
+          "line": 193,
+          "quote": "A toggle allowing visitors to disable decorative images and webfonts, cutting network transfer weight."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
+          "sha256": "e08c4173246150eb8611986bfebc67bb2a06daff69ec87d3791f4d3f265f6747"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-split-screen-dualism",
+      "decision": "update",
+      "rationale": "Keep thematic polarity when stacking for narrow or short containers; allow expanded localized actions and both long narratives to remain reachable; give before/after divider a labelled operable keyboard value and verify crossing labels/focus on each local painted hemisphere.",
+      "baseline_findings": [
+        "viewport collapse is width-only; divider drag lacks keyboard and per-owner bounds"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
+          "line": 159,
+          "quote": "  min-height: 85vh;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
+          "sha256": "cac5239ff88864b2ae1cba22dd0635315c9bd6d11dec3ad5014c7724e1693409"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-steampunk",
+      "decision": "update",
+      "rationale": "Name the pressure meter with its units and range; preserve lever/checkbox semantics and static value updates while decorative gears stop; verify engraved labels against convex-glass shading and keep ornament outside input interiors.",
+      "baseline_findings": [
+        "meter and lever metaphors omit semantic names/actual checked states"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
+          "line": 159,
+          "quote": "<div class=\"steam-gauge\" role=\"meter\" aria-valuenow=\"75\" aria-valuemin=\"0\" aria-valuemax=\"100\">"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
+          "sha256": "0b392cd83371c6798237dd3bef159fda46189088e38fb9b9678479b1b04cdb2c"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-swiss-web-minimalism",
+      "decision": "update",
+      "rationale": "Preserve Swiss grid cadence while allowing metadata/title columns to collapse within their actual owner; test long localized display headings and muted metadata in both appearances, keeping semantics and underlined links.",
+      "baseline_findings": [
+        "fixed metadata track/uppercase title lacks reflow; muted date retained across modes"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
+          "line": 153,
+          "quote": "  grid-template-columns: 180px 1fr;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
+          "sha256": "862a560cf283362572a425d0001c1e38a860859647eba45fe68eafa28430022a"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-synthwave",
+      "decision": "update",
+      "rationale": "Declare floor-grid extent and owner so the outrun horizon remains visible across resized content; freeze decorative acceleration/laser flashes under reduced motion while preserving switch states, and verify neon strokes without counting bloom as ink contrast.",
+      "baseline_findings": [
+        "continuous acceleration and laser flashes have no complete reduced-motion contract"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
+          "line": 173,
+          "quote": "- **Laser Flicker:** Active switches toggle with sharp laser flash blooms."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
+          "sha256": "9f0118a210ad45e26c3d44ada5eaaa60ecf9eb973a0e201dc544cf97b1e5c59a"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-terminal-tui",
+      "decision": "no-change",
+      "rationale": "Existing selectable DOM text, reflow/zoom, per-pair ANSI contrast, glyph-plus-word states, CJK/emoji width warnings and final-text reduced motion already address relevant lessons; no additional style-specific delta is justified.",
+      "baseline_findings": [],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
+          "line": 78,
+          "quote": "- `prefers-reduced-motion: reduce`: stop blink, typewriter and spinner animation; show final text."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
+          "sha256": "4f89952794f25839569de6575cced487961437072453738c70422a8395b588ec"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-vaporwave",
+      "decision": "update",
+      "rationale": "Explain dark inset screen pods as a deliberate vaporwave dialect rather than implicit daylight palette coverage; retain classic window glyphs while increasing actual operable hit areas and allowing localized title/action text to wrap; stop decorative tape warble with complete static content.",
+      "baseline_findings": [
+        "daylight-pastel definition and dark default need dialect explanation; tiny historic controls"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
+          "line": 134,
+          "quote": "  width: 16px;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
+          "sha256": "a489e3f3a42a862be70c70b57c841c43fef421607b0889d051e0eb75fec0bab5"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-web-brutalism",
+      "decision": "update",
+      "rationale": "Condition 100ms update flashes on motion preference and input/update rate; keep values and gain/loss text immediate, use link/focus ink suited to document versus dark console surfaces, and preserve deliberate density while allowing large text and keyboard access.",
+      "baseline_findings": [
+        "claims reduced-motion conformance despite live cell flashes; raw blue links unconditional"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
+          "line": 120,
+          "quote": "- **Motion Reduction:** Because Web Brutalism naturally avoids animation, it fully conforms to `prefers-reduced-motion` out of the box."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
+          "sha256": "160835aab1e5f76a3f8f4935f92707cee6884c8e4f003bbe4e41c76ccae3e021"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-weirdcore",
+      "decision": "update",
+      "rationale": "Keep dread in photography and cryptic decorative overlays while maintaining stable actual hit areas, focus and input response; disable optional jitter under reduced motion and verify red/yellow overlay ink on the actual flash-lit image regions.",
+      "baseline_findings": [
+        "hover jitter/lag of actual controls lacks nonmoving interaction alternative"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
+          "line": 143,
+          "quote": "- **Uncanny Jitter:** UI controls subtly twitch or lag by a fraction of a pixel on hover."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
+          "sha256": "200882f650999606cc7373e0d2802dc4d202e0b1cdd5f5ae3015342cebf37c77"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-windows-xp",
+      "decision": "update",
+      "rationale": "Reconcile titlebar foreground claims with the actual white ink over every Luna highlight stop; map client/task-pane/control states explicitly for requested Luna variants, and allow fixed task pane/window controls to fit expanded labels and real touch hit areas.",
+      "baseline_findings": [
+        "contrast section describes dark title text but example paints white; hard-coded white client area"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+          "line": 222,
+          "quote": "  - Dark titlebar text on active gradient: **6.1:1** (Passes WCAG AA)."
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+          "line": 157,
+          "quote": "  color: #FFFFFF;"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+          "line": 192,
+          "quote": ".xp-window-body {"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+          "sha256": "af192fd990f39ec2c37674725b89582793bee32993abf811c5f0d61c53f81e18"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-y2k-revival",
+      "decision": "update",
+      "rationale": "Preserve liquid chrome and jelly casing; size display text to the inner pod at font-load and translated/hover extremes, reset text-fill when leaving chrome treatment, and verify Tangerine badge and secondary-button inks across translucent backing composites.",
+      "baseline_findings": [
+        "chrome fill persists transparent and viewport-scaled display may exceed nested screen pod"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
+          "line": 62,
+          "quote": "  -webkit-text-fill-color: transparent;"
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
+          "sha256": "2e2d2e8e6fde7fbcadc0676eb9ed49e839f102b64b09d764150d4c0d4f2d6204"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    },
+    {
+      "name": "ui-style-zine-independent",
+      "decision": "update",
+      "rationale": "Wrap ransom clips in the semantic heading already required; scope photocopy texture/exposure to decorative layers with reduced-motion and flash controls, keeping content ink/focus stable; check rotated clip clearance and action/copy-count wrapping at actual owner bounds.",
+      "baseline_findings": [
+        "example ransom heading is a div despite heading rule; full-container exposure burst affects real text"
+      ],
+      "baseline_source_anchors": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
+          "line": 97,
+          "quote": "  <div class=\"zine-headline-ransom\">"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
+          "line": 232,
+          "quote": "- **Semantics:** Ransom-note `<span>` tags must be enclosed inside a single semantic heading tag (`<h2>`) with an `aria-label` providing the unbroken sentence to screen readers."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
+          "sha256": "046b6f3e91eea7152f28926e460924de849f4d737e5afb4ebdb3f5b5d30efdee"
+        }
+      ],
+      "limitations": "Full baseline package source curation and implementer reconciliation. Per-style rendered execution is not claimed."
+    }
+  ],
+  "shared_skills": [
+    {
+      "name": "color-contrast-accessibility",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
+          "sha256": "95fa29b42edeb40a962c4b6d3580178455c9d67f3f34c2c06fafcb26e01bae59"
+        },
+        {
+          "path": "knowledge/skills/domains/design/color-contrast-accessibility/references/painted-contrast-audits.md",
+          "sha256": "9d982200c01b7a477e7a960fecc0e1c52959d36ab9ccd6b61a8c8490e596d484"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "color-ui-systems",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
+          "sha256": "aad50143d1be916b5789955bbcda9fd808a3b39bf2484815380da91219349cb0"
+        },
+        {
+          "path": "knowledge/skills/domains/design/color-ui-systems/references/theme-surface-states.md",
+          "sha256": "db5d48b64b0e1eddd195c187b1b383b59cffb2e52d1b52cf14257b3321f282a5"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "ui-motion-interaction",
+      "decision": "update",
+      "rationale": "Reconcile introduction, comparison and hover/pressed guidance so static/easing/spring choices follow product purpose and accessible output.; Replace universal property/timing prescriptions with measured rendering-cost guidance and explicit static-content initialization; preserve essential state and navigation.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md:15",
+          "issue": "Purpose-based new instruction conflicts with legacy claim that static interfaces are artificial and springs are the high-craft default.",
+          "fix": "Reconcile introduction, comparison and hover/pressed guidance so static/easing/spring choices follow product purpose and accessible output.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md:118",
+          "issue": "Universal transform/opacity-only and near-zero global reduced-motion reset conflict with effect reference requiring complete static output and measured workload.",
+          "fix": "Replace universal property/timing prescriptions with measured rendering-cost guidance and explicit static-content initialization; preserve essential state and navigation.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
+          "sha256": "3420a6c078d04e11354060bf990c7eec64729fa3377e63ee66943bb76ce861c8"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-motion-interaction/references/effect-coverage-lifecycle.md",
+          "sha256": "6e6c3960e07d59e695c8b47cee3a5c03d524b26023512edef429fd01dac5f12e"
+        },
+        {
+          "path": "knowledge/skills/domains/design/ui-motion-interaction/references/scroll-narrative-modes.md",
+          "sha256": "9b726b6dc688b3332e9d6ba5a95566610dc155ae89bece6dc9c65e124f32e052"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "ui-design-craftsmanship",
+      "decision": "update",
+      "rationale": "Make animate directive conditional on purpose, timing and complete reduced-motion outcome.; Require measured appropriate foreground/background pairs; present optional recipes without universal palette prescriptions.; Measure table entries and reconcile heading or remove fixed count.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md:45",
+          "issue": "Directive table still mandates <200ms springs although amended Motion Budget permits narrative timing.",
+          "fix": "Make animate directive conditional on purpose, timing and complete reduced-motion outcome.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md:85",
+          "issue": "Mandatory white/light ink over saturated fills conflicts with painted-contrast owner; bright saturated fills can require dark ink.",
+          "fix": "Require measured appropriate foreground/background pairs; present optional recipes without universal palette prescriptions.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md:27",
+          "issue": "Heading claims 24 directives but table contains 21 rows.",
+          "fix": "Measure table entries and reconcile heading or remove fixed count.",
+          "severity": "minor",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+          "sha256": "9a0928addaa4ea1f771a2d01ccee1c816fe7f9423c8fdaba5b7fbf8d87d85e0c"
+        },
+        {
+          "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/examples/interface-verification.html",
+          "sha256": "37de793231be3fe0d149a9ada4e2a0af9a06a1cf1e1ad9c52670b744ab000071"
+        },
+        {
+          "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/references/interface-fixture-exercises.md",
+          "sha256": "278d4db0552ffe504525bbb43e2870f7a4c994d48768012d0069729f3533a21e"
+        },
+        {
+          "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/references/rendered-interface-verification.md",
+          "sha256": "a3e4d377fba34f7100c4c4fa72b59379777b7af3b561c9586e838a53af37189a"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "web-accessibility-wcag",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
+          "sha256": "33ad4f25173c50be0d66213375144b28545b327a5ee05389a5b6b67532264af0"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "framework-testing",
+      "decision": "update",
+      "rationale": "Translate residual prose/comments/formula label to English and check all package placeholders; preserve identifiers only when intentional.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/frameworks/framework-testing/references/mutation-and-fault-based-testing.md:31",
+          "issue": "Supporting reference retains Portuguese code comment and Portuguese hash-size formula, violating English canonical package requirement.",
+          "fix": "Translate residual prose/comments/formula label to English and check all package placeholders; preserve identifiers only when intentional.",
+          "severity": "minor",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/SKILL.md",
+          "sha256": "7d14d3fedd9ed11722ad6cb8f89ba0abcdedd5f0f7567ebf38d923f8bf6ad3e3"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/examples/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/black-box-techniques.md",
+          "sha256": "36d9d6929567e7d08577c69c213ab13aa04d7ed919802059b2ea4f929beb6f91"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/integration-and-system-testing.md",
+          "sha256": "f0f294787e045ea2103290d1b51cc94b43e4b9a3931c9daddc061f1a0544b145"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/istqb-test-management-and-reviews.md",
+          "sha256": "80e217f7dab201447eb4c1c601eaa043d113c7b947f6c553cb83179cc21203a7"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/mutation-and-fault-based-testing.md",
+          "sha256": "2f55b967b665a380c5cee790ace82b681850b03f8b3973f8ef55347c71a90f26"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/rendered-ui-oracles.md",
+          "sha256": "87ee7ce5b31036daf58d26f9fd741042c239591391fc4c0a5b3b7d2071ca54a8"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/references/white-box-and-dataflow.md",
+          "sha256": "21a4259f9c75bdfab6c03496e7149262abfc3f768d3bf5f173819d8621fe8a97"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/resources/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing/scripts/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "framework-testing-javascript",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md",
+          "sha256": "8d392f76f93d9d14df728a956cc2f091881320845bfb8a85ed310d6a98f40e28"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-javascript/examples/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-javascript/references/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-javascript/resources/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-javascript/scripts/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "framework-testing-python",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
+          "sha256": "1f2d734cf29b359f2295e63127acabf36de194dad9217173c8e65001f54d00f6"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-python/examples/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-python/references/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-python/resources/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/framework-testing-python/scripts/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "mutation-fuzzing-testing",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
+          "sha256": "b57bc73e32cbf1d722b9b66f9551421689f043f96a8b1b9733856dbf2f3c8a43"
+        },
+        {
+          "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/examples/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/references/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/resources/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/frameworks/mutation-fuzzing-testing/scripts/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "devops-engineer",
+      "decision": "update",
+      "rationale": "Translate diagram labels and move conditional Terraform/Ansible/Vagrant/Kubernetes/Packer/pipeline examples into discoverable focused references; preserve new release contract.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/roles/devops-engineer/SKILL.md:955",
+          "issue": "Canonical diagram retains Portuguese labels; extensive platform-specific operational examples dominate always-loaded body.",
+          "fix": "Translate diagram labels and move conditional Terraform/Ansible/Vagrant/Kubernetes/Packer/pipeline examples into discoverable focused references; preserve new release contract.",
+          "severity": "minor",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/roles/devops-engineer/SKILL.md",
+          "sha256": "8ad16694699f97b3fde3f8c506df6a582875c1c5b2151f031c90ae22a722c913"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/examples/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/ansible.md",
+          "sha256": "1ef241ad4d0bac3994d77a87f1ef912091e051cdffda1efaa441aa7b0d2cc122"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/delivery-pipelines.md",
+          "sha256": "b936d7c050c656170c37aaeb6f11345bdf5a6560f69d7593c773cd0d66be045e"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/developer-platform.md",
+          "sha256": "697769eeabc64684fa8c9bb3ba9458b1cba70f4c77c409e7fe1fad215c030560"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/golden-images.md",
+          "sha256": "c1281ccddad2cec25d30dce84b6f90af9b9bcf42f53f2a108c666b1fdc29917d"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/kubernetes.md",
+          "sha256": "c5ebef704733ea338eb823ffb5970aacce9cdb8c9a24d75f2a1ff0c063068ec0"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/observability.md",
+          "sha256": "fe2c27f9f7a45ca73cae03ae40b5c3e34e9b86036893ea680d935c87bed2f51d"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/platform-experience.md",
+          "sha256": "a3dda8c2c507b7c23028cf2b4931aafd35810aa228c35763b2485748d0336067"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/published-artifact-verification.md",
+          "sha256": "313d898699d4f0493a21da120d65f66ffbacebcf0cda32acfba0736ac8c9e29e"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/terraform.md",
+          "sha256": "3963e6f5ccfaac9c24c52974aa89eedb7435ed038a17b12d0b99118322316264"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/references/vagrant.md",
+          "sha256": "8773f50afe032c3e16cd26daf2267f0e76e64a38ca0383cf62c137d320b09bbf"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/resources/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "knowledge/skills/roles/devops-engineer/scripts/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "frontend-developer",
+      "decision": "update",
+      "rationale": "Scope wrapper example to real product decisions; preserve direct accessible reuse and optional motion with reduced-motion support.; Declare the example viewport-specific, choose owner/layer intentionally and link effect-coverage reference; avoid treating the recipe as complete-content decoration.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/roles/frontend-developer/references/design-engineering-craft-guide.md:9",
+          "issue": "Support reference still mandates wrappers, contradicting amended body that allows accessible component reuse and forbids wrappers merely for renaming.",
+          "fix": "Scope wrapper example to real product decisions; preserve direct accessible reuse and optional motion with reduced-motion support.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "knowledge/skills/roles/frontend-developer/references/design-engineering-craft-guide.md:79",
+          "issue": "Unconditional fixed viewport grain and arbitrary high layer recipe conflicts with new owner-space/stacking guidance.",
+          "fix": "Declare the example viewport-specific, choose owner/layer intentionally and link effect-coverage reference; avoid treating the recipe as complete-content decoration.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/roles/frontend-developer/SKILL.md",
+          "sha256": "b93d75369f0d308b0a4bea6acba8b408124648765f072e618e51b39289cddecd"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/examples/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/references/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/references/design-engineering-craft-guide.md",
+          "sha256": "8637fb41f0607fe534e28a3d1b52e1f2e8c1cb8cb82a37c2a52d39c3ecb11103"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/references/interface-state-lifecycle.md",
+          "sha256": "d65726f6b75ac5503a3cc1efe9e451ed971959f1d5d3d44db9588fb05f7506ea"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/references/runtime-localization.md",
+          "sha256": "eadd623c36140d607f98692fa419040d1c9f80dfab8117d41ad8e85e383601f4"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/resources/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/frontend-developer/scripts/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "ui-designer",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/roles/ui-designer/SKILL.md",
+          "sha256": "5755fe742b2738922de7507f34b1e7f5d7664eef03d60ed9176cea5564db4102"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "ui-ux-designer",
+      "decision": "update",
+      "rationale": "Reconcile handoff and art-direction prescriptions into context-specific choices; allow native/duration-based/static styles and chosen palette identity.",
+      "baseline_findings": [
+        {
+          "location": "knowledge/skills/roles/ui-ux-designer/SKILL.md:121",
+          "issue": "Handoff still requires spring physics instead of durations despite contextual motion contract. Human art-direction pillars also universally prescribe monochrome single-accent/monumental scale.",
+          "fix": "Reconcile handoff and art-direction prescriptions into context-specific choices; allow native/duration-based/static styles and chosen palette identity.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
+          "sha256": "d84d59cb0feb5cb0a08267c71fc0ded3d902f0d10f0908fad5ae82c8e8fdb388"
+        },
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/examples/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/references/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/references/web-design-styles-encyclopedia.md",
+          "sha256": "692e47835d12d48c45d648481d3b39caf032f83de706ea7746071f5ab8ca50bd"
+        },
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/resources/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        },
+        {
+          "path": "knowledge/skills/roles/ui-ux-designer/scripts/.gitkeep",
+          "sha256": "36f86d2283e803d13917bcecd08d2fac534768b3f7385f4a41b81b4a9f96707c"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "ux-designer",
+      "decision": "update",
+      "rationale": "no-change justified for the approved interface-learning scope; retain existing owner routing and complete support procedure.",
+      "baseline_findings": [],
+      "reviewed_files": [
+        {
+          "path": "knowledge/skills/roles/ux-designer/SKILL.md",
+          "sha256": "68cfebc1afbb5a3aa80c0c10afe855729d5670a507bd1646f57d2b2f70ae7128"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-executing-plans",
+      "decision": "update",
+      "rationale": "Stop only when required authority is missing or scope materially changes; continue already authorized preparation and action.; Use evidence invalidation and risk to choose reruns/re-review; do not enforce an arbitrary universal one-pass ceiling.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-executing-plans/SKILL.md:48",
+          "issue": "Unconditional stop-and-ask for security-sensitive/external actions ignores existing explicit authorization preserved by new interface-evidence reference.",
+          "fix": "Stop only when required authority is missing or scope materially changes; continue already authorized preparation and action.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "methodology/workflows/superpowers-executing-plans/SKILL.md:299",
+          "issue": "Single fix pass and categorical no re-review can waive review invalidated by consequential fix, conflicting with risk-proportional revision-bound evidence.",
+          "fix": "Use evidence invalidation and risk to choose reruns/re-review; do not enforce an arbitrary universal one-pass ceiling.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
+          "sha256": "9111c111f35aaccf5222b4dd7fed47465d7856cf81044288defed86cb7bab291"
+        },
+        {
+          "path": "methodology/workflows/superpowers-executing-plans/scripts/task-done.py",
+          "sha256": "32598d7cf2fbb3a32da8e8fb7b0d002d3a3a685ac751c78783dc11ec8ba4f49c"
+        },
+        {
+          "path": "methodology/workflows/superpowers-executing-plans/scripts/task-start.py",
+          "sha256": "aefdb196545758f13d572d6a8661036730087287c8bfa28ef3f76a2c65c7dfe4"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-requesting-code-review",
+      "decision": "update",
+      "rationale": "Distinguish source-only review from authorized isolated mutation execution; define scratch copy and report unexecuted probes as unsupported.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-requesting-code-review/SKILL.md:92",
+          "issue": "QA mutation replay is requested while same dispatch is mandated read-only and template forbids working-tree mutation; no explicit isolated mutation ownership/authorization path.",
+          "fix": "Distinguish source-only review from authorized isolated mutation execution; define scratch copy and report unexecuted probes as unsupported.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
+          "sha256": "e7a0d13ea7037e8be5c018afdf5694f7d92aab7370fac07473afc1061dac84ac"
+        },
+        {
+          "path": "methodology/workflows/superpowers-requesting-code-review/code-reviewer.md",
+          "sha256": "1fdc2f71b7e7871789ab237214076f5fc0dd9d55d53518d7fddd9eb3f5089e7a"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-systematic-debugging",
+      "decision": "update",
+      "rationale": "Replace operational shell block with redacted presence/metadata diagnostic action; keep platform signing details in adapter/reference, prove synthetic redaction.; Track executed/skipped/failed cases and return explicit inconclusive status for preexisting pollution, no matches or runner failure; use pathlib for metadata.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-systematic-debugging/SKILL.md:100",
+          "issue": "Diagnostic example prints credential-bearing IDENTITY values and env grep output, conflicting with metadata-only secret handling in using-coacus.",
+          "fix": "Replace operational shell block with redacted presence/metadata diagnostic action; keep platform signing details in adapter/reference, prove synthetic redaction.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "methodology/workflows/superpowers-systematic-debugging/find_polluter.py:63",
+          "issue": "Helper ignores runner exit codes, skips every test when pollution preexists, and reports clean when zero tests run. It shells out to ls despite portable Python helper rule.",
+          "fix": "Track executed/skipped/failed cases and return explicit inconclusive status for preexisting pollution, no matches or runner failure; use pathlib for metadata.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/CREATION-LOG.md",
+          "sha256": "c24733a5b1821bd6bed1fc950261f0b9f4e90097e0bbb96459d8179713730789"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
+          "sha256": "7947ba49fed83afda53d96ee13e69d897f043c01dbe780b3b90f11dd4aa74e93"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/condition-based-waiting-example.ts",
+          "sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/condition-based-waiting.md",
+          "sha256": "e89fec8400d6cd50f43407cec9fab50976ba4d55d0ec2eb51c0bd68036b54c26"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/defense-in-depth.md",
+          "sha256": "1e175fb86fc357e58c6aebf5441e481e1b7868b4380c0456b63a17eefbd18ba7"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/find_polluter.py",
+          "sha256": "99fd3199583ced6b2228c0e37988ae215c1a0d035acfe3f48bb7b0a9e2c7d55e"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/root-cause-tracing.md",
+          "sha256": "8d0ac6fbe2ae30f62c35009b8f34214fb7d7552654b606972243457fb09b43b5"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/test-academic.md",
+          "sha256": "fe2ba480d78ac0d686dc025f41c2a32a43d642bf533f91b0c6053a04d35d6486"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-1.md",
+          "sha256": "0b6a915db0054577819834c79be9eb614e97bddba10d73768e1fbe91cfed048a"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-2.md",
+          "sha256": "b2030aeffba07050e8ad573ddf87486457c4a016a786bb326235bebd856f2016"
+        },
+        {
+          "path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-3.md",
+          "sha256": "96b50a52e2c7989c9cf20fb752c47c1e9a3a70dc362f8f7989f8f5b64dac7708"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-verification-before-completion",
+      "decision": "update",
+      "rationale": "Bind evidence freshness to revision and invalidated claim; retain required project gates and explicit rationale for reused results.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-verification-before-completion/SKILL.md:29",
+          "issue": "Fresh-command-in-this-message rule conflicts with new explicit reuse of unaffected evidence and can cause redundant reruns after no relevant source change.",
+          "fix": "Bind evidence freshness to revision and invalidated claim; retain required project gates and explicit rationale for reused results.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
+          "sha256": "eb12b290a7a4f58dccc360bbb165b5058eedea97c205adcf1dfeba7550f7f078"
+        },
+        {
+          "path": "methodology/workflows/superpowers-verification-before-completion/references/interface-evidence.md",
+          "sha256": "49d1e4d4180a357d95584802d6e5b48cfa6cef692618aa0c70fdc086f554f37d"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-writing-plans",
+      "decision": "update",
+      "rationale": "Require plan review only when genuinely required by unresolved approval scope; preserve an existing instruction to implement and execution method.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-writing-plans/SKILL.md:197",
+          "issue": "Handoff requires another plan confirmation even when implementation and method may already be explicitly authorized, contradicting inserted authorization-persistence rule.",
+          "fix": "Require plan review only when genuinely required by unresolved approval scope; preserve an existing instruction to implement and execution method.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
+          "sha256": "9c1aafb2f6f4cc2642214886ae918393453bae5f45c85355c014cb2edc6c9c18"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-plans/plan-document-reviewer-prompt.md",
+          "sha256": "aa728b96aad603c8be28875a4305637f6c984aa81ffcadcb13e743202fa2a0c7"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "superpowers-writing-skills",
+      "decision": "update",
+      "rationale": "Rewrite the reference around authorized pressure tests, actual baseline outcomes, predetermined rubric and legitimate counterarguments; remove universal reliability conclusions.; Resolve helper disposition explicitly: replace with compliant portable helper or remove with repaired references and provenance; do not leave a silently orphaned executable.; Preserve this reusable discipline in a named conditional reference, distinguish historical observations from universal effects, and link at instruction-design decision.; Label vendor example historical/platform-specific and add or adapt a portable worked evaluation showing passing baseline, task outcome, authorized actions and an already-correct control.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/superpowers-writing-skills/testing-skills-with-subagents.md:11",
+          "issue": "Failure-first core principle, RED/checklist, Option A meta-test and bulletproof claims contradict new honest-baseline and independent-evaluation contract. A precedence header leaves contradictory operative instructions in place.",
+          "fix": "Rewrite the reference around authorized pressure tests, actual baseline outcomes, predetermined rubric and legitimate counterarguments; remove universal reliability conclusions.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "methodology/workflows/superpowers-writing-skills/render-graphs.js:1",
+          "issue": "Framework helper remains Node.js with external Graphviz dependency, while canonical authoring directs portable repository-compliant helpers.",
+          "fix": "Resolve helper disposition explicitly: replace with compliant portable helper or remove with repaired references and provenance; do not leave a silently orphaned executable.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "methodology/workflows/superpowers-writing-skills/SKILL.md:484",
+          "issue": "Original reusable guidance-form selection disappears: positive output recipe for shape failures, required template slot for omissions, observable predicate for conditional behavior, and caution about prohibition backfire have no equivalent in replacement.",
+          "fix": "Preserve this reusable discipline in a named conditional reference, distinguish historical observations from universal effects, and link at instruction-design decision.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        },
+        {
+          "location": "methodology/workflows/superpowers-writing-skills/examples/CLAUDE_MD_TESTING.md:16",
+          "issue": "Only worked evaluation example uses an installed platform path, repeated corpus scans, implied failure expectations and compliance as success. New portable blind-comparison contract lacks a worked counterexample.",
+          "fix": "Label vendor example historical/platform-specific and add or adapt a portable worked evaluation showing passing baseline, task outcome, authorized actions and an already-correct control.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/SKILL.md",
+          "sha256": "20f44768bbb9dc795d3633c6642cacb2bbd5035951a1fc989258cff4bcf3c349"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/anthropic-best-practices.md",
+          "sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/examples/guidance-comparison.md",
+          "sha256": "8c7410a5f50dbc078047f4bff332678eab7e5d9e657693f94af3c3246eb09b0c"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/graphviz-conventions.dot",
+          "sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/persuasion-principles.md",
+          "sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/references/behavior-validation.md",
+          "sha256": "8273d913cd787517ca97ecfb925f55e4e78735eeba438b94e5211c00d5b2a7e9"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/references/invocation-model.md",
+          "sha256": "f7bacaab15084fc4349105ac0d71527a8a57834d8e97a7baa7a0b10bf0bd6803"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/references/writing-for-agents.md",
+          "sha256": "39fe932ca470841f37b9a8e53ebdfb68e14dd0f812589264ebcd250b2ee01330"
+        },
+        {
+          "path": "methodology/workflows/superpowers-writing-skills/testing-skills-with-subagents.md",
+          "sha256": "dd3f967383dd7597822f222739c0a295521aebc4461fe8f794091de0b576472d"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    },
+    {
+      "name": "using-coacus",
+      "decision": "update",
+      "rationale": "Gate PR/push/installation by existing requested scope; retain installer verification for explicitly selected targets and preserve prior authorization without repeated questions.",
+      "baseline_findings": [
+        {
+          "location": "methodology/workflows/using-coacus/references/coacus-process-conventions.md:148",
+          "issue": "Process reference requires installing all local harnesses after gate, contradicting new skill-authoring statement that writing a skill does not implicitly authorize global install. Work-that-is-not-yours section likewise prescribes PR then merge independently of user scope.",
+          "fix": "Gate PR/push/installation by existing requested scope; retain installer verification for explicitly selected targets and preserve prior authorization without repeated questions.",
+          "severity": "major",
+          "resolution_status": "Root reconciled in a0bcded/e3e8e32; bounded independent recheck recorded in final review addenda."
+        }
+      ],
+      "reviewed_files": [
+        {
+          "path": "methodology/workflows/using-coacus/SKILL.md",
+          "sha256": "dc40affa1034b5423765f085d846a38b9077d2b5378813ed35b4a52cf98ee105"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/antigravity-tools.md",
+          "sha256": "f2a533e695bc86855752cbc2cf5669288bc2a8b2c368368d411b56bb875c1cf8"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/claude-code-tools.md",
+          "sha256": "f6342ac137e291d634a2d2c1b861a76b6f85a51e284a2c913f67c5e2045e9564"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/coacus-process-conventions.md",
+          "sha256": "07f8f3fa34dcaefef4d9d6f9d48c39cbda914794e03433b1d922f8d5f00c58c3"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/codex-tools.md",
+          "sha256": "f94112614338b3278b93094ca1bfd562be60fcc2bc710174f6d81c0628503dce"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/opencode-tools.md",
+          "sha256": "491c5b5f1ab82d17f8c9af057401774e96d7e25fcdb6853356aa4f4d4bf8b17a"
+        },
+        {
+          "path": "methodology/workflows/using-coacus/references/research-trust-boundary.md",
+          "sha256": "a4d6950ba7c94f34b7540cc92b2b7039d3d8bdab7ea8edef5cca2b85d2551aac"
+        }
+      ],
+      "limitations": "Independent source findings bind to 9bc310f; root reconciled subsequent edits. Final independent review is recorded separately."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L01",
+      "principle": "Complete inherited surface paint",
+      "owner": "color-ui-systems",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S01",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L02",
+      "principle": "Effective painted ink and explicit unknowns",
+      "owner": "color-contrast-accessibility",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S02",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L03",
+      "principle": "Native and custom control state roles",
+      "owner": "color-ui-systems",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S03",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L04",
+      "principle": "Preserve patterns with local reading support",
+      "owner": "ui-design-craftsmanship",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S04",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L05",
+      "principle": "Name historical dialect boundaries",
+      "owner": "ui-style-retro-computing",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S04",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L06",
+      "principle": "Usable host size and sibling relationships",
+      "owner": "ui-design-craftsmanship",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S08",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L07",
+      "principle": "Typography within actual owner and font state",
+      "owner": "ui-designer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S08",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L08",
+      "principle": "Internal/external spacing and owner bounds",
+      "owner": "ui-design-craftsmanship",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S08",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L09",
+      "principle": "Semantic visibility before decorative layout",
+      "owner": "frontend-developer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S05",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L10",
+      "principle": "Declare effect coverage and coordinate space",
+      "owner": "ui-motion-interaction",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S10",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L11",
+      "principle": "Select narrative interaction mode from brief",
+      "owner": "ui-style-scrollytelling",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S09",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L12",
+      "principle": "Prove progress above local stacking contexts",
+      "owner": "ui-motion-interaction",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S10",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L13",
+      "principle": "Reversible text/attribute localization",
+      "owner": "frontend-developer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S06",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L14",
+      "principle": "Separate contextual help, onboarding and preferences",
+      "owner": "ux-designer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S07",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L15",
+      "principle": "Validate the checker with controlled faults",
+      "owner": "framework-testing",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S12",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L16",
+      "principle": "Preserve measured conditions during capture",
+      "owner": "framework-testing",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S11",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L17",
+      "principle": "Derive inventory and review-stage fixtures",
+      "owner": "framework-testing",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S13",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L18",
+      "principle": "Bind claims to revision, scope and capability",
+      "owner": "superpowers-verification-before-completion",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S16",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L19",
+      "principle": "Verify served asset dependency graph",
+      "owner": "devops-engineer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S15",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L20",
+      "principle": "Bound fixtures and configurable temporary storage",
+      "owner": "framework-testing-python",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S13",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L21",
+      "principle": "Recover through authorized automation lifecycle",
+      "owner": "superpowers-verification-before-completion",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S16",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L22",
+      "principle": "Keep taste conditional on product and style",
+      "owner": "ui-ux-designer",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S04",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L23",
+      "principle": "Reconcile requirements and prior authorization",
+      "owner": "superpowers-writing-plans",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S17",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    },
+    {
+      "id": "L24",
+      "principle": "Resolve canonical source before installed aliases",
+      "owner": "using-coacus",
+      "disposition": "incorporated or preserved through the named owner",
+      "scenario": "S18",
+      "evidence": "Preserved user corrections and project source/release artifacts; transferred principle evaluated separately. Historical project tests were not rerun as skill behavior tests."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S01",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s01",
+        "criterion": "Clear inherited background image/gradient when needed; retain appropriate texture; background-color alone insufficient.",
+        "candidate": "candidate-response.md#s01"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S02",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s02",
+        "criterion": "Inspect effective text fill; fix ink; token color alone insufficient.",
+        "candidate": "candidate-response.md#s02"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S03",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s03",
+        "criterion": "Distinguishable semantic states and native control theming; approved blue not automatically contamination.",
+        "candidate": "candidate-response.md#s03"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S04",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s04",
+        "criterion": "Preserve pattern with local support; acknowledge worst background and sampling limits.",
+        "candidate": "candidate-response.md#s04"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S05",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s05",
+        "criterion": "Semantic hidden wins over layout CSS; hidden focus/activity removed.",
+        "candidate": "candidate-response.md#s05"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S06",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s06",
+        "criterion": "Reversible source fallback across text/attributes/hidden panels; lang/dir follow effective locale.",
+        "candidate": "candidate-response.md#s06"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S07",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s07",
+        "criterion": "Invalidate stale result; atomic stylesheet/effect lifecycle; cancel preserves committed preference.",
+        "candidate": "candidate-response.md#s07"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S08",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s08",
+        "criterion": "Height/usable host space and reachable content matter beyond width fit.",
+        "candidate": "candidate-response.md#s08"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S09",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s09",
+        "criterion": "Choose narrative mode by brief; preserve long scene native reachability and inputs.",
+        "candidate": "candidate-response.md#s09"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S10",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s10",
+        "criterion": "Stacking context relationship, content coverage and full cleanup addressed.",
+        "candidate": "candidate-response.md#s10"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S11",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s11",
+        "criterion": "Detect screenshot changing viewport geometry; measure original conditions.",
+        "candidate": "candidate-response.md#s11"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S12",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s12",
+        "criterion": "Test actual output geometry; zero-height mutant fails.",
+        "candidate": "candidate-response.md#s12"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S13",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s13",
+        "criterion": "Cover current inventory and approved/candidate stages; no fixed candidate count.",
+        "candidate": "candidate-response.md#s13"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S14",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s14",
+        "criterion": "RAF interval is cadence, not rendering cost or hardware evidence.",
+        "candidate": "candidate-response.md#s14"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S15",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s15",
+        "criterion": "Verify served import graph bytes/digests and target; deploy status insufficient.",
+        "candidate": "candidate-response.md#s15"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S16",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s16",
+        "criterion": "Bind scope to revision; separate observed pass/skipped/not run; no broad approval.",
+        "candidate": "candidate-response.md#s16"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S17",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s17",
+        "criterion": "Continue within explicit existing authorization and exact destination; preserve neighbor.",
+        "candidate": "candidate-response.md#s17"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    },
+    {
+      "id": "S18",
+      "status": "pass",
+      "evidence": {
+        "baseline": "baseline-response.md#s18",
+        "criterion": "Canonical rename/provenance resolves owner; installed drift not new source.",
+        "candidate": "candidate-response.md#s18"
+      },
+      "limitations": "Both baseline and a0bcded candidate pass reasoning only. No product execution; no no-guidance control or repeated trials. Final source corrections separately reviewed."
+    }
+  ],
+  "frozen_visual_inventory": [
+    "ui-style-3d-immersive-webgl",
+    "ui-style-acid-anti-design",
+    "ui-style-agitprop-poster",
+    "ui-style-ai-native-generative-ui",
+    "ui-style-analog-newspaper-broadsheet",
+    "ui-style-art-deco",
+    "ui-style-art-nouveau",
+    "ui-style-arts-and-crafts",
+    "ui-style-atompunk",
+    "ui-style-aurora-mesh-gradient",
+    "ui-style-bauhaus",
+    "ui-style-bento-grid",
+    "ui-style-biopunk",
+    "ui-style-blueprint-cad-schematic",
+    "ui-style-broken-grid",
+    "ui-style-brutalist-monochrome",
+    "ui-style-calm-quiet-ui",
+    "ui-style-card-based-ui",
+    "ui-style-cassette-futurism",
+    "ui-style-claymorphism",
+    "ui-style-clockpunk",
+    "ui-style-collage-scrapbook",
+    "ui-style-constructivism",
+    "ui-style-cyberpunk",
+    "ui-style-dark-fantasy",
+    "ui-style-dark-mode-first",
+    "ui-style-de-stijl",
+    "ui-style-dieselpunk",
+    "ui-style-dracula",
+    "ui-style-dreamcore",
+    "ui-style-dungeon-synth",
+    "ui-style-editorial-archive-luxury",
+    "ui-style-expressive-variable-typography",
+    "ui-style-flat-design",
+    "ui-style-fluid-liquid-morph",
+    "ui-style-frutiger-aero",
+    "ui-style-glassmorphism",
+    "ui-style-glitch",
+    "ui-style-gothicpunk",
+    "ui-style-gradient-duotone",
+    "ui-style-grain-noise-texture",
+    "ui-style-hand-drawn-sketch",
+    "ui-style-holographic-foil-iridescent",
+    "ui-style-indie-web-revival",
+    "ui-style-isometric",
+    "ui-style-kawaii-pastel-soft",
+    "ui-style-kinetic-typography",
+    "ui-style-linear-saas",
+    "ui-style-lunarpunk",
+    "ui-style-material-you",
+    "ui-style-maximalism",
+    "ui-style-memphis",
+    "ui-style-metro-modern-ui",
+    "ui-style-micro-interactions",
+    "ui-style-mid-century-modern",
+    "ui-style-nanopunk",
+    "ui-style-neo-brutalism",
+    "ui-style-neumorphism",
+    "ui-style-nordic",
+    "ui-style-organic-biophilic",
+    "ui-style-parallax-scrolling",
+    "ui-style-pixel-art",
+    "ui-style-pop-art-halftone",
+    "ui-style-psychedelic-60s",
+    "ui-style-retro-computing",
+    "ui-style-risograph",
+    "ui-style-sandalpunk",
+    "ui-style-scrollytelling",
+    "ui-style-silkpunk",
+    "ui-style-skeuomorphism",
+    "ui-style-solarpunk",
+    "ui-style-split-screen-dualism",
+    "ui-style-steampunk",
+    "ui-style-swiss-web-minimalism",
+    "ui-style-synthwave",
+    "ui-style-terminal-tui",
+    "ui-style-vaporwave",
+    "ui-style-web-brutalism",
+    "ui-style-weirdcore",
+    "ui-style-windows-xp",
+    "ui-style-y2k-revival",
+    "ui-style-zine-independent"
+  ],
+  "behavioral_comparison_revision": "a0bcded",
+  "source_correction_summary": [
+    "Art Deco gold hover fill paired with dark ink; targeted recipe probe passed.",
+    "Reconciled original Clay, Calm, Brutalist, Collage and Card prescriptions rather than relying on appended notes.",
+    "Protected Frutiger tab markup and qualified translucent contrast claims.",
+    "Motion interruption comparison now states implementation dependence.",
+    "Polluter reference describes sequential search and explicit inconclusive cases.",
+    "Historical record integrity checks do not freeze future live sources."
+  ]
+}
