@@ -2344,7 +2344,7 @@
       "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
       "type": "skill-md",
       "url": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md",
-      "digest": "sha256:866df54785aecb539d6fdbd265f89e0987f55bd43c6c92cb4f577fcb071d5270"
+      "digest": "sha256:dfae401b133b847e14a85e54f5584a158e06c7881939ac7509cc6b5577777796"
     },
     {
       "name": "superpowers-verification-before-completion",
