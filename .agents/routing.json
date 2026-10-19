@@ -1490,7 +1490,7 @@
     {
       "name": "github-specialist",
       "category": "software-engineering",
-      "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
       "skills": [
         "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
@@ -2986,7 +2986,7 @@
     {
       "name": "vcs-repository-specialist",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Version Control Systems (VCS) and Advanced Repository Management, covering low-level Git (DAG, reflog, worktrees, sparse-checkout, LFS, filter-repo), Subversion/SVN (FSFS, trunk/branches/tags, mergeinfo, svnadmin, hooks), Mercurial (Hg), full legacy VCS migrations and branching governance.",
+      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration. Use for shared history changes, repository incidents, large repositories or VCS transitions.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",

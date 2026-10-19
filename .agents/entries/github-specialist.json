@@ -1,8 +1,8 @@
 {
   "name": "github-specialist",
-  "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+  "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
   "dist": "knowledge/agents/software-engineering/github-specialist/dist",
-  "fingerprint": "2116ff71483feffd"
+  "fingerprint": "b2a824f5b18dd018"
 }

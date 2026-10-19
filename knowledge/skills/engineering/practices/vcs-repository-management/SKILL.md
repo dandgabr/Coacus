@@ -1,346 +1,71 @@
 ---
 name: vcs-repository-management
-description: Acts as a specialist in Version Control Systems (VCS) and advanced repository management. Masters low-level Git (DAG, objects, reflog, worktrees, sparse-checkout, LFS, submodules, bisect, filter-repo), Subversion/SVN (FSFS architecture, trunk/branches/tags, svn:mergeinfo, svn:externals, svnadmin, hooks), Mercurial (Hg), branching strategies (Trunk-based, GitFlow), migration of legacy repositories to Git, and monorepo scalability (Scalar).
+description: >-
+  Guides safe Git operations, repository recovery, collaboration, scaling and
+  migration, and administration of Subversion, Mercurial and Perforce. Use when
+  a task changes shared history, repairs a repository, handles large repositories
+  or migrates version-control systems.
 ---
 
-# 🛠️ vcs-repository-management: Advanced Version Control Engineering and Repository Management
-
-This skill supplies the engineering standards, version-control data architecture, repository administration, and migration techniques across distributed (Git, Mercurial) and centralized (Subversion, Perforce) VCS ecosystems.
-
----
-
-## 1. Git Fundamentals and Internal Mechanics
-
-### 1.1 Directed Acyclic Graph (DAG) Data Structure
-Git is a content-addressable filesystem. All information is stored in the object database (`.git/objects/`) and identified by a cryptographic hash: SHA-1 (40 hexadecimal characters) or SHA-256 (64 hexadecimal characters):
-- **`blob` (Binary Large Object)**: Stores only a file's raw data, with no name, permissions, or date.
-- **`tree`**: Represents a directory. Maps object identifiers (`blob` or sub-`tree`), POSIX permission modes (`100644`, `100755`, `040000`), and file names.
-- **`commit`**: Points to a snapshot's root `tree`, references zero or more parent commits (`parent`), identifies the author and committer (with timestamp and time zone), and contains the explanatory message.
-- **`tag` (Annotated)**: A permanent object pointing to a specific commit, containing the tagger, timestamp, message, and optionally a GPG/SSH cryptographic signature.
-
-```text
-  [Commit C2] ──── parent ────> [Commit C1]
-      │                             │
-    tree                          tree
-      ▼                             ▼
-   [Tree T2]                    [Tree T1]
-   ├── blob B1 (modified)       ├── blob B1 (initial version)
-   └── tree Sub                 └── blob B2
-        └── blob B3
-```
-
-### 1.2 The Index (Staging Area) and Commit Mechanism
-The index (`.git/index`) is an on-disk binary structure representing the next planned snapshot. Changes move between three fundamental states:
-1. **Working Tree**: Files in the local working directory.
-2. **Index / Staging**: The intermediate tree prepared via `git add`.
-3. **Repository (HEAD)**: The immutable history of snapshots committed on the current branch.
-
-### 1.3 Storage Optimization and Delta Compression (Packfiles)
-Git initially stores objects as loose objects (compressed via zlib). When the volume grows, it triggers packing:
-- **Packfile (`.pack`)**: A consolidated file where similar objects are stored using delta compression (bidirectional deltas based on the Rabin Fingerprint algorithm).
-- **Packfile Index (`.idx`)**: A hash table mapping SHA to exact offsets inside the `.pack`, enabling $O(1)$ lookup.
-- **Maintenance Commands**:
-  ```bash
-  # Structural integrity check and orphaned objects
-  git fsck --full --strict
-  
-  # Aggressive repacking with maximum compression
-  git gc --aggressive --prune=now
-  git repack -a -d -f --depth=250 --window=250
-  ```
-
----
-
-## 2. Advanced History Manipulation and Forensics
-
-### 2.1 Interactive Rebase and History Cleanup
-Refines commits before sharing them with the team, ensuring atomic and descriptive commits:
-```bash
-# Start an interactive rebase of the last 5 commits
-git rebase -i HEAD~5
-```
-**Interactive Rebase Commands**:
-- `pick`: Keeps the commit unchanged.
-- `reword`: Changes only the commit message.
-- `edit`: Pauses execution to allow code amendments (`git commit --amend`).
-- `squash`: Merges the commit with the previous one, combining the messages.
-- `fixup`: Merges the commit with the previous one while discarding the current message (ideal for quick fixes with `git commit --fixup <SHA>`).
-- `drop`: Removes the commit from history entirely.
-
-### 2.2 The Reflog (Reference Log) and Disaster Recovery
-`git reflog` tracks all branch-pointer and `HEAD` updates over the last 90 days (by default):
-```bash
-# Inspect the movement history of HEAD
-git reflog show HEAD
-
-# Restore a commit accidentally deleted via hard reset
-git reset --hard HEAD@{2}
-
-# Recover a deleted branch from the SHA identified in the reflog
-git checkout -b restored-branch e4a81c2
-```
-
-### 2.3 Automated Binary Search Debugging (`git bisect`)
-Locates the exact commit that introduced a regression through an $O(\log n)$ binary search over history:
-```bash
-# Start a bisect session
-git bisect start
-git bisect bad HEAD              # Current version is broken
-git bisect good v2.4.0           # Version v2.4.0 was intact
-
-# Fully automated execution with an exit-code test script (exit 0 = good, exit != 0 = bad)
-git bisect run pytest tests/unit/test_payment.py
-```
-
-### 2.4 Forensic Purge with `git-filter-repo`
-A modern, safe replacement that is orders of magnitude faster than the obsolete `git filter-branch`:
-```bash
-# Installation
-pip install git-filter-repo
-
-# 1. Purge a sensitive file (.env or private key) from the ENTIRE history
-git-filter-repo --invert-paths --path secrets.env --path id_rsa
-
-# 2. Purge files larger than 50MB that wrongly entered the history
-git-filter-repo --strip-blobs-bigger-than 50M
-
-# 3. Rewrite history by changing author e-mails or names
-git-filter-repo --mailmap my-mailmap.txt
-```
-
----
-
-## 3. Managing Workspaces, Dependencies, and Monorepos
-
-### 3.1 Multiple Working Trees with `git worktree`
-Switches context or runs long tests without needing `git stash` or re-cloning the repository:
-```bash
-# Create an isolated worktree for a hotfix in a parallel directory
-git worktree add ../hotfix-auth-service hotfix/login-bug
-
-# List active worktrees
-git worktree list
-
-# Remove a finished worktree
-git worktree remove ../hotfix-auth-service
-git worktree prune
-```
-
-### 3.2 Shallow Clones and `sparse-checkout` for Giant Monorepos
-For repositories of tens of gigabytes, avoid downloading the full history and trees:
-```bash
-# Blobless clone (downloads only the tree and commit history; blobs fetched on demand)
-git clone --filter=blob:none https://github.com/org/monorepo.git
-
-# Shallow clone with limited depth
-git clone --depth=1 --no-single-branch https://github.com/org/monorepo.git
-
-# Sparse-checkout in cone mode (downloads only the selected folders)
-git sparse-checkout init --cone
-git sparse-checkout set services/payment services/auth shared/libs
-```
-
-### 3.3 Git LFS (Large File Storage)
-Keeps text pointers in Git and large binary files (videos, ML models, datasets) on dedicated storage servers:
-```bash
-# Initialize LFS in the repository
-git lfs install
-
-# Track binary extensions
-git lfs track "*.onnx" "*.zip" "*.tar.gz" "*.mp4"
-git add .gitattributes
-
-# Validate files managed by LFS
-git lfs ls-files
-```
-
-### 3.4 Git Submodules vs. Git Subtree
-- **Submodules**: Point to a specific commit of a remote repository via the `.gitmodules` file. Lower coupling, but requires explicit management (`git submodule update --init --recursive`).
-- **Subtrees**: Merge another repository's history directly into a subfolder of the main repository without changing clone metadata. Easier for downstream developers (`git subtree add --prefix=vendor/lib https://github.com/org/lib.git main --squash`).
-
----
-
-## 4. Subversion (SVN) Architecture and Engineering
-
-### 4.1 Centralized Paradigm and FSFS Backend
-Unlike Git (where every clone holds the entire history), SVN operates on a centralized client-server model:
-- **Atomic Global Revisions**: Each commit increments a global integer revision number ($r1, r2, \dots, rN$) that represents the complete state of the entire filesystem in the server tree.
-- **FSFS (Filesystem on Filesystem)**: A flat-file persistence mechanism that groups revisions into shards for high fault tolerance.
-- **Peg Revisions vs. Operative Revisions**:
-  - `svn cat -r 15 foo.c@10`: Shows the file `foo.c` as it existed in operative revision 15, tracing the lineage of the file named `foo.c` at peg revision 10 (resolving past renames and deletions).
-
-### 4.2 Canonical SVN Directory Convention
-```text
-my-project/
-├── trunk/            # Main line of continuous development (HEAD)
-├── branches/         # Temporary forks for features, maintenance, or releases
-│   ├── feature-pix/
-│   └── release-2.0/
-└── tags/             # Static, frozen copies of specific releases (e.g., v1.0.0)
-```
-In SVN, branches and tags are **cheap copies** (copy-on-write copies) created by the `svn copy` command.
-
-### 4.3 Versioned Properties (`svn:props`)
-Versioned metadata attached to files and directories:
-- **`svn:ignore`**: The equivalent of `.gitignore`, defining locally ignored patterns.
-- **`svn:keywords`**: Expansion of variables in code (for example, `$Id$`, `$Date$`, `$Revision$`).
-- **`svn:eol-style`**: Line-ending normalization (`LF`, `CRLF`, or `native`).
-- **`svn:externals`**: Maps external repositories or folders inside the local tree (analogous to Git submodules).
-- **`svn:mergeinfo`**: Tracks which revision ranges were merged between branches to avoid repeated conflicts.
-
-### 4.4 SVN Repository Administration (`svnadmin`)
-```bash
-# Create a new repository with the FSFS backend
-svnadmin create /var/svn/repos/financeiro --fs-type fsfs
-
-# Perform a full backup (dump stream)
-svnadmin dump /var/svn/repos/financeiro > backup_financeiro.dump
-
-# Restore or load history into a new repository
-svnadmin load /var/svn/repos/novo_financeiro < backup_financeiro.dump
-
-# Integrity check of the FSFS database
-svnadmin verify /var/svn/repos/financeiro
-
-# Continuous synchronization and mirroring between servers
-svnsync initialize https://svn-mirror.local/repos/financeiro https://svn-master.local/repos/financeiro
-svnsync sync https://svn-mirror.local/repos/financeiro
-```
-
-### 4.5 SVN Server Hooks
-Scripts executed on the server, triggered by commit events and transactional control:
-- **`pre-commit`**: Runs inside a transaction before confirmation. It can abort the commit by returning status code != 0 and emitting an error message on `stderr`.
-  ```bash
-  #!/bin/bash
-  # Validation of a non-empty commit message
-  REPOS="$1"
-  TXN="$2"
-  LOGMSG=$(svnlook log -t "$TXN" "$REPOS")
-  if [ -z "$LOGMSG" ]; then
-      echo "ERROR: Commits without an explanatory message are prohibited." >&2
-      exit 1
-  fi
-  ```
-- **`post-commit`**: Runs after confirmation to trigger webhooks, emails, or CI/CD build triggers.
-
----
-
-## 5. Mercurial (Hg) and Perforce Helix Core
-
-### 5.1 Mercurial (Hg)
-- **Revlog Structure**: Stores history in append-only files with an index (`.i`) and data (`.d`), ensuring fast reads and writes.
-- **Mutability Phases**:
-  - `public`: Publicly shared commits, immutable by default.
-  - `draft`: Local commits, still subject to rebase or amendment.
-  - `secret`: Private commits that are never propagated during `hg push`.
-- **Official Extensions**: `evolve` (distributed history evolution without breaking commits) and `hg-git` (native interoperability with Git remotes).
-
-### 5.2 Perforce Helix Core
-- A high-performance centralized system, the standard in game and semiconductor industries for giant multimedia binary files (terabytes).
-- Uses **Client Workspaces** mapped to **Depots**, manages changes through numbered atomic **Changelists**, and implements concurrency control with exclusive **File Locking** (`p4 edit` / `p4 submit`).
-
----
-
-## 6. Interoperability and Migration Between VCS Systems
-
-### 6.1 Bidirectional Bridge with `git-svn`
-Lets you use Git's local flexibility on codebases centralized in SVN:
-```bash
-# Clone an SVN repository with the standard layout (trunk, branches, tags)
-git svn clone --stdlayout --authors-file=authors.txt http://svn.empresa.com/repos/app app-git
-
-# Update the local base with new SVN commits (clean rebase)
-git svn rebase
-
-# Develop local commits normally in Git
-git commit -m "feat: implements new payment route"
-
-# Publish local commits back to the SVN repository
-git svn dcommit
-```
-
-### 6.2 Full Migration from SVN to Native Git
-Canonical procedure for migrating the complete history without losing lineage, branches, or authors:
-
-#### Step 1: Extract and Map SVN Authors to Git
-```bash
-# Extract all unique authors from the SVN history
-svn log -q http://svn.empresa.com/repos/app | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2}' | sort -u > svn-authors.txt
-
-# Map to the format: svnuser = Full Name <email@empresa.com>
-sed -i 's/^\(.*\)$/\1 = \1 <\1@empresa.com>/' svn-authors.txt
-```
-
-#### Step 2: Clone via `git-svn`
-```bash
-git svn clone --stdlayout --authors-file=svn-authors.txt http://svn.empresa.com/repos/app app-migrated
-```
-
-#### Step 3: Convert SVN Remote Branches and Tags to Local Git References
-```bash
-cd app-migrado
-
-# Convert remote tags into real annotated Git tags
-for tag in $(git branch -r | grep 'tags/'); do
-    tag_name=$(echo $tag | sed 's/.*tags\///')
-    git tag -a -m "Converted from SVN tag: $tag_name" "$tag_name" "$tag"
-    git branch -r -d "$tag"
-done
-
-# Convert remote branches into trackable local branches
-for branch in $(git branch -r | grep -v 'trunk' | grep -v 'tags/'); do
-    branch_name=$(echo $branch | sed 's/.*///')
-    git branch "$branch_name" "$branch"
-    git branch -r -d "$branch"
-done
-```
-
-#### Step 4: Migrate `svn:ignore` to `.gitignore`
-```bash
-git svn show-ignore > .gitignore
-git add .gitignore
-git commit -m "chore: migrates svn:ignore properties to .gitignore"
-```
-
-#### Step 5: Link to the New Git Remote and Publish
-```bash
-git remote add origin git@github.com:empresa/app.git
-git push --all origin
-git push --tags origin
-```
-
----
-
-## 7. Governance, Branching Strategies, and Security
-
-### 7.1 Branching Strategies
-1. **Trunk-Based Development (Recommended for Modern CI/CD)**:
-   - All developers integrate small, frequent changes directly into `main` (or into short-lived branches of $< 1$ day).
-   - Use **Feature Flags** to decouple deploy from release and keep the main branch always stable and deployable.
-2. **GitFlow (Traditional for Scheduled Release Cycles)**:
-   - A structure with long-lived branches: `main` (production) and `develop` (continuous integration).
-   - Auxiliary branches: `feature/*`, `release/*`, and `hotfix/*`.
-
-### 7.2 Cryptographic Commit and Tag Signing (GPG & SSH)
-Guarantees non-repudiation and prevents committer identity forgery:
-```bash
-# Configure commit signing with a modern SSH key
-git config --global user.signingkey "~/.ssh/id_ed25519.pub"
-git config --global gpg.format ssh
-git config --global commit.gpgsign true
-git config --global tag.gpgsign true
-
-# Validate commit signatures
-git log --show-signature -n 5
-```
-
-### 7.3 Branch Protection and `CODEOWNERS`
-- Configure pull request policies: minimum approvals, required passing CI status checks, and a ban on forced pushes (`force-push`).
-- Map mandatory reviewers per domain in `.github/CODEOWNERS`:
-  ```text
-  # Review rules by path
-  *                   @org/core-team
-  /services/billing/  @org/billing-engineers
-  /infra/             @org/devops-architects
-  *.sql               @org/dba-specialists
-  ```
+# Version Control and Repository Management
+
+Use this skill when a task needs repository operations beyond routine staging and
+committing. It covers Git internals and collaboration, repository recovery,
+scaling and migration, plus non-Git version-control systems.
+
+## Safe operating procedure
+
+1. Establish the repository root, current branch, working-tree state, index
+   state, remotes and relevant upstream before choosing a command. Do not infer
+   the target branch from its name.
+2. Determine whether the affected commits are local or already shared. Ask
+   before an irreversible operation or a rewrite that changes published history.
+3. Prefer the least destructive operation that reaches the requested outcome.
+   Preview path and commit ranges before changing files or refs; preserve staged,
+   unstaged and untracked work.
+4. After acting, inspect status, the resulting diff and relevant commit or remote
+   refs. Report what was verified and what remains uncertain.
+
+For everyday Git collaboration, branch and remote selection, fetch/push, and
+conflict handling, read [Git collaboration and recovery](references/git-collaboration-and-recovery.md).
+For reset, revert, rebase, reflog, bisect and history rewriting, read
+[Git history and recovery](references/git-history-and-recovery.md). For large
+repositories, storage, subprojects and migrations, read
+[Git scale and migration](references/git-scale-and-migration.md). For SVN,
+Mercurial and Perforce administration and migration, read
+[Other version-control systems](references/other-version-control-systems.md).
+
+## Core concepts
+
+Git records snapshots in a content-addressable object database. Commits point
+to trees, trees point to blobs and subtrees, and branches are movable refs to
+commits. The index records the next snapshot; it is distinct from both the
+working tree and committed history. Use these distinctions to explain a status,
+diff or recovery plan before changing state.
+
+The repository may use SHA-1 or SHA-256 object formats. Do not assume object IDs
+have a fixed length or compare them across repositories without checking the
+repository format.
+
+## Branching and governance
+
+Choose a branching model that matches release cadence, team size and deployment
+constraints. Keep branches short-lived where practical, make commits reviewable,
+and keep protected branch rules, required checks and ownership aligned with the
+repository's actual risk. Signing and a branch naming convention do not replace
+review or access controls.
+
+## Limits and safety notes
+
+- A reflog is a local recovery aid with configurable retention, not a backup or
+  a remote history service.
+- Rewriting history can invalidate collaborators' refs and signatures. Prefer
+  `revert` for a change already shared; coordinate any required rewrite and
+  verify the exact ref range before publishing it.
+- Removing a secret from Git history does not revoke the exposed credential.
+  Rotate it first, then plan and communicate the rewrite and its downstream
+  effects.
+- Git hooks are local execution points unless provisioned and enforced by a
+  trusted system. They are not a security boundary on their own.
+- Treat example commands as patterns. Check the installed Git and extension
+  behavior before relying on a recent option or a platform-specific detail.

@@ -1,0 +1,18 @@
+{
+  "id": "actions-least-privilege-and-pinning",
+  "title": "Narrow workflow permissions and verify action references",
+  "harness": "opencode",
+  "prompt": "A workflow grants contents: write and pull-requests: write to every job and references third-party actions only by mutable tags. Without editing files, what should a security review recommend about token scope and action references?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(least privilege|minimum|minimal|narrow|job.level|per.job)" },
+    { "kind": "regex", "value": "(?i)(permission|GITHUB_TOKEN|token)" },
+    { "kind": "regex", "value": "(?i)(full.length|commit SHA|immutable|pin).{0,80}(action|reference|verified)|(action|reference).{0,80}(full.length|commit SHA|immutable|pin)" }
+  ],
+  "rubric": [
+    "The response scopes GITHUB_TOKEN permissions to the minimum needed, preferably at job level where appropriate.",
+    "It recommends verifying and pinning third-party action references to immutable full commit SHAs when policy or threat model requires it.",
+    "It does not invent a current action version or claim an unverified tag is secure.",
+    "No file was modified."
+  ],
+  "acceptance": "The response recommends least privilege and verified immutable action references without asserting an unverified release version."
+}

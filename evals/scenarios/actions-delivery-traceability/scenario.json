@@ -1,0 +1,21 @@
+{
+  "id": "actions-delivery-traceability",
+  "title": "Trace a deployment back to its source and artifact",
+  "harness": "opencode",
+  "prompt": "A team builds an artifact in one GitHub Actions workflow and deploys it in another. What evidence should link the source to the deployed artifact, and what should be checked after deployment?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(commit|revision|source).{0,100}(artifact|build|workflow)|(artifact|build|workflow).{0,100}(commit|revision|source)" },
+    { "kind": "regex", "value": "(?i)(artifact|digest|hash).{0,80}(deploy|deployment)|(deploy|deployment).{0,80}(artifact|digest|hash)" },
+    { "kind": "regex", "value": "(?i)(attestation|provenance|SBOM)" },
+    { "kind": "regex", "value": "(?i)(deploy|deployment|environment)" },
+    { "kind": "regex", "value": "(?i)(health|revision|version|smoke).{0,50}(check|verify|confirm)|(check|verify|confirm).{0,50}(health|revision|version|smoke)" },
+    { "kind": "regex", "value": "(?i)(separate|independent|after deployment).{0,60}(workflow success|success|health|revision)|(health|revision).{0,60}(independent|separate from workflow|deployment)" }
+  ],
+  "rubric": [
+    "The response connects a source commit and workflow run to the exact artifact consumed by deployment.",
+    "It mentions provenance evidence such as an attestation and/or SBOM when required by the consumer or threat model.",
+    "It recommends checking the deployed revision and a relevant health signal separately from workflow success.",
+    "No file was modified."
+  ],
+  "acceptance": "The response describes source-to-artifact provenance and verifies the live deployment independently."
+}

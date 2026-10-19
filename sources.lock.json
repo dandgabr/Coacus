@@ -741,7 +741,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "2116ff71483feffda464914bf4f0fe77dcd7999caa218bb73935378a12e14f99",
+      "target_sha256": "b2a824f5b18dd0182b9211b00adfc0943a78d9ef641d3e43bb476fc6c4a558a6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -860,7 +860,7 @@
       "source_path": "agents/software-engineering/vcs-repository-specialist/AGENT.md",
       "source_sha256": "1169c2f5418a5ac8b72761ace55c5e682deb606c9c2edae646f6c72ae3bd4b29",
       "target_path": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md",
-      "target_sha256": "066dd128fdb408296e439134e609d6e4c27038930d0e69a598cef82d45a9e75a",
+      "target_sha256": "01a9bc4c60c8d12b26095f29b43157b6ea7b5079ff701cce47e40bf9ca02ec56",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5219,7 +5219,7 @@
       "source_path": "skills/engineering-practices/vcs-repository-management/SKILL.md",
       "source_sha256": "e205a2d3ce26e89c48e2e1640a497d552d22a58b8702b5e2a3559d05fb9c4109",
       "target_path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "target_sha256": "119e5bebeba32f689ac81725ea7da19605b596abac24eccdf7bf9958c48f1188",
+      "target_sha256": "85e840bd6552b8771eba65a2caa31f3091c252bb92945403cce656e2208c3433",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -9936,7 +9936,7 @@
       "source_path": "skills/programs/github-actions/SKILL.md",
       "source_sha256": "9d824919d87912a3a38cae4e1b87fa00ac046bfd4e245e9b10107decb3ad2378",
       "target_path": "knowledge/skills/platforms/program-github-actions/SKILL.md",
-      "target_sha256": "ede1ccabd3444710ffb775056a2ab2b0f66ae45e899287ae6459d16b34c18e89",
+      "target_sha256": "895aee18ab9bb2fe21b9629946b727e4172e8d1e2c50ba618663ee1d456b58aa",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

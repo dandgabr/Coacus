@@ -787,18 +787,6 @@
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "scope": "segment",
-      "sha256": "a4bd110e5ddbb47291cccf7b27a764fd8505a50913954ecd8a3ed519b75ac05d",
-      "reason": "Reviewed structural code, diagram, token, or technical label contains no foreign-language prose; exact segment hash pins the reviewed fragment."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "scope": "segment",
-      "sha256": "c3fc54aa5390dc2c333d4bb596a339d552ad787337c1fdaac3957ca5a7facf50",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
       "path": "knowledge/skills/frameworks/framework-grpc/SKILL.md",
       "scope": "segment",
       "sha256": "cb20c6e42aceff86b0ced67b14b8421b5c7da658b3f2b6df91d65300eb597f75",

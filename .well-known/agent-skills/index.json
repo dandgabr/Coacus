@@ -1984,10 +1984,10 @@
     },
     {
       "name": "program-github-actions",
-      "description": "Specialist in the GitHub Platform, GitHub Actions, and CI/CD. Covers repository governance, protection rules (Rulesets), CODEOWNERS, Pull Request flows, automation with the GitHub CLI (gh), security with GHAS (Dependabot, CodeQL, Secret Scanning), GitHub Packages (ghcr.io), GitHub Codespaces, and complete YAML workflow engineering (reusable workflows, composite actions, matrix strategies, concurrency, protected environments, OIDC authentication, and caching).",
+      "description": "Designs, reviews and troubleshoots GitHub Actions workflows, runners and delivery pipelines. Covers workflow reuse, deployment controls, supply-chain security, compliance and performance. Use for CI/CD automation or workflow security reviews on GitHub.",
       "type": "archive",
       "url": "knowledge/skills/platforms/program-github-actions/SKILL.md",
-      "digest": "sha256:27c3fd31b58e2bbfdcb3258a7a4e0d0bf4dd36060b35f4a5e9f7538fa47d6f34"
+      "digest": "sha256:4fdfc111853758294fbf06673bc174f9bb697c8ba22355d0d61eebe505eaa4df"
     },
     {
       "name": "program-markmap",
@@ -3139,10 +3139,10 @@
     },
     {
       "name": "vcs-repository-management",
-      "description": "Acts as a specialist in Version Control Systems (VCS) and advanced repository management. Masters low-level Git (DAG, objects, reflog, worktrees, sparse-checkout, LFS, submodules, bisect, filter-repo), Subversion/SVN (FSFS architecture, trunk/branches/tags, svn:mergeinfo, svn:externals, svnadmin, hooks), Mercurial (Hg), branching strategies (Trunk-based, GitFlow), migration of legacy repositories to Git, and monorepo scalability (Scalar).",
+      "description": "Guides safe Git operations, repository recovery, collaboration, scaling and migration, and administration of Subversion, Mercurial and Perforce. Use when a task changes shared history, repairs a repository, handles large repositories or migrates version-control systems.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "digest": "sha256:bb655cdec09de92803a927e423ea0a24c01cbab88978a33b7c2229a75d415820"
+      "digest": "sha256:f97b9e5757a852ed2bd8c1f353a1bca0d7cf753d10442da6b2bc163f88ffa6d3"
     },
     {
       "name": "vector-databases",
