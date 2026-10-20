@@ -23,6 +23,7 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 - Configuring design system motion tokens (duration tiers, easing curves, spring physics parameters).
 - Preventing menu closing errors using the Accot-Zhai steering law for dropdowns and hover corridors.
 - Auditing UI animations for 60fps/120fps compositor execution and WCAG motion accessibility.
+- Building pointer effects (magnetic, tilt and glare, spotlight, cursor follower, ripple, image trail), drag and fling gestures, or text effects (split text, stagger, scramble, typewriter, number ticker): load [pointer-and-gesture.md](references/pointer-and-gesture.md) or [text-effect-recipes.md](references/text-effect-recipes.md).
 
 ### Motion hub routing
 
@@ -30,7 +31,7 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 - Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
 - Scroll-linked and scroll-triggered motion: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 - View Transitions, FLIP, shared-element and accordion/layout transitions: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
-- Pointer and gesture recipes, text-effect recipes: the hub references pointer-and-gesture.md and text-effect-recipes.md (planned).
+- Pointer and gesture recipes: [pointer-and-gesture](references/pointer-and-gesture.md); text-effect recipes: [text-effect-recipes](references/text-effect-recipes.md).
 
 ---
 
@@ -69,28 +70,13 @@ Every interactive component must define a coherent continuum across all physiolo
 5. **Disabled:** Expose the correct disabled semantics and recognizable state. Visual attenuation depends on the surrounding surface; pointer suppression alone does not disable keyboard activation or communicate state.
 
 ### 2. Spotlight & Cursor-Tracking Borders
-- **Mechanism:** Mouse position is tracked locally via pointer events and mirrored into CSS custom properties (`--mouse-x`, `--mouse-y`) on the target element.
-- **Rendering:** A radial gradient layer masked behind the border renders a luminous spotlight that follows the cursor:
-  ```css
-  .spotlight-card {
-    position: relative;
-    background: radial-gradient(
-      400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
-      rgba(255, 255, 255, 0.08),
-      transparent 80%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.25s ease;
-  }
-  ```
+Mirror the pointer position into `--x`/`--y` once per animation frame and paint a radial gradient or `mask-image` from them, with `:focus-within` parity and the repaint cost measured; the recipe and pitfalls are in [pointer-and-gesture.md](references/pointer-and-gesture.md#spotlight-and-torch).
 
 ### 3. Magnetic Pointer Attraction
-- **Mechanism:** When the pointer enters the proximity bounding box of an element (e.g., within 30px of a circular action button), the button translates toward the cursor at a fractional ratio (e.g., $0.2 \times \Delta x, 0.2 \times \Delta y$).
-- **Settling:** On pointer exit, a snappy spring restores the element to its origin with zero residual offset.
+Move an inner wrapper by 0.2–0.4× of the pointer offset while the hit area stays fixed, and spring back on exit; see [pointer-and-gesture.md](references/pointer-and-gesture.md#magnetic-button).
 
 ### 4. 3D Card Tilt with Specular Sheen
-- **Mechanism:** Rotates cards in 3D perspective (`perspective(1000px) rotateX(...) rotateY(...)`) proportional to cursor distance from the card center.
-- **Restraint:** Maximum tilt angle should not exceed $4^\circ$ to $8^\circ$ to prevent text distortion and eye strain.
+Drive registered `<angle>` properties through `perspective()` with a glare pseudo-element, a 4–8° cap and `will-change` only while hovering; see [pointer-and-gesture.md](references/pointer-and-gesture.md#3d-tilt-with-glare).
 
 ---
 

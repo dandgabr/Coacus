@@ -94,7 +94,7 @@ Anti-Hero typography exists in an architectural daylight gallery:
   --anti-font-sans: "Inter", -apple-system, sans-serif;
 
   /* Reflow-Safe Transitions */
-  --anti-transition: font-variation-settings 200ms ease, color 150ms ease;
+  --anti-transition: --grad var(--motion-state) var(--ease-enter), color var(--motion-feedback) var(--ease-enter); /* --grad is a registered axis property */
 }
 
 [data-theme="dark"] {
@@ -122,18 +122,44 @@ Typography is the complete identity of the interface:
 
 ## 🖱️ Interaction Dynamics, Sound Cues & Motion
 
-- **Reflow-Safe Grade Hover:** Hovering over headlines interpolates the OpenType `GRAD` (grade) axis:
+- **Drive axes through registered custom properties.** `font-variation-settings` is one declaration that replaces every axis at once: a hover rule that sets only `"GRAD" 150` silently resets `wght` to the font default. Give each axis its own typed custom property and compose them in a single declaration, so states change one axis and CSS can transition it:
   ```css
+  @property --wght { syntax: '<number>'; inherits: false; initial-value: 400; }
+  @property --grad { syntax: '<number>'; inherits: false; initial-value: 0; }
+
   .anti-hero-word {
-    font-variation-settings: "wght" 700, "GRAD" 0;
+    --wght: 700;
+    font-variation-settings: "wght" var(--wght), "GRAD" var(--grad);
     transition: var(--anti-transition);
   }
-  .anti-hero-word:hover {
-    font-variation-settings: "wght" 700, "GRAD" 150;
+  ```
+  Durations and easing are the shared motion tokens from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md); `--anti-transition` bundles them for this style.
+  Unregistered custom properties are untyped tokens and snap instead of interpolating. Prefer the high-level properties (`font-weight`, `font-stretch`, `font-optical-sizing: auto`) for registered axes when no other axis needs composing; reserve `font-variation-settings` for `GRAD` and custom axes.
+- **Width-neutral grade hover:** On fonts that implement it as designed, `GRAD` changes stroke weight without changing advance widths, so the hover does not push neighbouring words. Pair it with focus so keyboard users get the same state:
+  ```css
+  .anti-hero-word:hover,
+  .anti-hero-word:focus-visible {
+    --grad: 150;
     color: var(--anti-accent-terracotta);
   }
   ```
-  Because `GRAD` alters optical density without altering glyph bounding box advance widths, **Cumulative Layout Shift (CLS) remains 0.00**.
+  Verify on the actual font file: some families ship `GRAD` with width compensation gaps, and only measured layout proves the CLS outcome.
+- **Scroll-linked axis (enhancement):** Bind an axis to the element's progress through the viewport with a `view()` timeline. The base rule is the complete static state; the scroll-driven version only applies when supported and when motion is not reduced. Declare `animation-timeline` after the `animation` shorthand, which would otherwise reset it:
+  ```css
+  .anti-hero-line { --wght: 800; font-variation-settings: "wght" var(--wght); }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .anti-hero-line {
+        animation: anti-weigh linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 50%;
+      }
+    }
+  }
+  @keyframes anti-weigh { from { --wght: 300; } to { --wght: 800; } }
+  ```
+  `wght` and `wdth` change glyph advances, so every scroll frame relayouts the line on the main thread; scroll-driven animations run off the main thread only for `transform`, `opacity` and `filter`. Limit this to one monumental line inside a container whose size does not depend on it, measure on a mid-range device, or animate `GRAD` instead. Mechanics of scroll timelines live in the scroll-driven motion guidance linked from [ui-motion-interaction](../ui-motion-interaction/SKILL.md).
 - **Acoustic Profile:** Completely silent. Pure intellectual stillness.
 
 ---
@@ -233,7 +259,7 @@ Typography is the complete identity of the interface:
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 0;
-  transition: background-color 150ms ease;
+  transition: background-color var(--motion-feedback) var(--ease-enter);
 }
 
 .anti-btn:hover {
@@ -355,3 +381,11 @@ Typography is the complete identity of the interface:
 ## Appearance and Interaction Verification
 
 Require font-supported axes and check glyph extents after font readiness, language and hover at actual monument width; describe GRAD as avoiding advance-width changes rather than guaranteeing measured CLS, and let footer/actions reflow in shallow owners.
+
+## Version Sources
+
+Moving release pins in this skill were resolved 2026-10-20 (Baseline from web-features 3.43.0, browser support from MDN BCD 8.1.6):
+
+- **Registered custom properties (`@property`)** — Baseline 2024-07-09; Chrome 85, Firefox 128, Safari 16.4 (verified) — https://github.com/mdn/browser-compat-data
+- **Scroll-driven animations (`animation-timeline`, `view()`, `animation-range`)** — Limited availability: Chrome 115, Safari 26, Firefox preview only (verified) — https://web-platform-dx.github.io/web-features-explorer/
+- **`font-variation-settings`** — Baseline widely available (verified) — https://web-platform-dx.github.io/web-features-explorer/

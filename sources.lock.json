@@ -18456,9 +18456,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "source_sha256": "eae8aa5cc540a5c9777280482945507d618281b22e457d707f0b7fc3f7cb8916",
+      "source_sha256": "875303a327ac1f9457e2be3fca976cc0ca1b1f8b38e615e001018a1950a7e4db",
       "target_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "target_sha256": "eae8aa5cc540a5c9777280482945507d618281b22e457d707f0b7fc3f7cb8916",
+      "target_sha256": "875303a327ac1f9457e2be3fca976cc0ca1b1f8b38e615e001018a1950a7e4db",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18531,9 +18531,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-      "source_sha256": "b4543caf0b3d5dfb5b2aa8ae6e03ba7f4008b1de3cc4088f279faef8fce67d99",
+      "source_sha256": "121f3240fb9896bc73eb8b5345ef921b1df06e82f5c8572c9e4498d5e7a3c355",
       "target_path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-      "target_sha256": "b4543caf0b3d5dfb5b2aa8ae6e03ba7f4008b1de3cc4088f279faef8fce67d99",
+      "target_sha256": "121f3240fb9896bc73eb8b5345ef921b1df06e82f5c8572c9e4498d5e7a3c355",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19341,9 +19341,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "source_sha256": "dcf08161d44dabe93307bdfd88b0190f626eb7127bae279df8017f46f09da012",
+      "source_sha256": "1a0036ee63af29726ccb497f94017de817035b420c8a6fb18cc45346af804004",
       "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "target_sha256": "dcf08161d44dabe93307bdfd88b0190f626eb7127bae279df8017f46f09da012",
+      "target_sha256": "1a0036ee63af29726ccb497f94017de817035b420c8a6fb18cc45346af804004",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

@@ -2512,7 +2512,7 @@
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:93390169006099c5127d82adcce617cb90b49ab88e4f613f1d96a922d2d04d8c"
+      "digest": "sha256:0b54fa9c0cfc3dd8096e8e0996e079f3b121f0ac55f4be7d8b443d12a1fd5f95"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2771,7 +2771,7 @@
       "description": "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "digest": "sha256:eae8aa5cc540a5c9777280482945507d618281b22e457d707f0b7fc3f7cb8916"
+      "digest": "sha256:875303a327ac1f9457e2be3fca976cc0ca1b1f8b38e615e001018a1950a7e4db"
     },
     {
       "name": "ui-style-flat-design",
@@ -2869,7 +2869,7 @@
       "description": "Provides the kinetic typography and motion-first UI style (2016-present): type as the primary visual element, per-glyph masked reveals, variable-font axis morphs, continuous infinite marquee tickers, stock exchange telemetry streams and velocity pacing. Covers GSAP SplitText, Motion springs, WCAG 2.2.2 pause compliance and CLS budgets. Use when designing high-impact type heroes, streetwear drops or telemetry-dense ticker interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-      "digest": "sha256:b4543caf0b3d5dfb5b2aa8ae6e03ba7f4008b1de3cc4088f279faef8fce67d99"
+      "digest": "sha256:121f3240fb9896bc73eb8b5345ef921b1df06e82f5c8572c9e4498d5e7a3c355"
     },
     {
       "name": "ui-style-linear-saas",
