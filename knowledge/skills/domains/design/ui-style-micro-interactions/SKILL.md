@@ -31,7 +31,7 @@ Small, single-purpose feedback moments around one user action — the style defi
 
 ## 🖱️ Interaction and Motion
 
-- Durations: 150–250 ms for state feedback, ~300 ms ripples (Material guidance); MD3 "emphasized" easing `cubic-bezier(0.2, 0, 0, 1)`; spring damping ≈ 0.7–1.0 (slight overshoot reads as tactile); two-phase press→release; loading→success morph in place (no layout swap); pull-to-refresh loops; haptics (`navigator.vibrate`).
+- Durations and springs: take them from the canonical bands and presets in [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md) (feedback and component-state bands, `spring.snap` for press feedback); Material ripples run longer than plain state feedback by design; two-phase press→release; loading→success morph in place (no layout swap); pull-to-refresh loops; haptics (`navigator.vibrate`).
 
 ---
 

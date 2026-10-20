@@ -79,7 +79,7 @@ Background layers move slower than foreground, creating 2.5D depth purely throug
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).
+- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).
 ## Appearance and Interaction Verification
 
 Declare which parallax layers belong to scroll owner versus viewport/content, recompute coverage at resize and narrative end, and supply complete static reading flow before optional depth motion; keep historical scroll-jacking separate from recommended behavior.

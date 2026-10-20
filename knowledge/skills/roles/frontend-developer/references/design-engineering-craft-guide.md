@@ -10,8 +10,9 @@ Use a product wrapper when it centralizes actual token, semantic or behavior dec
 
 ```tsx
 // components/craft/AppButton.tsx
+"use client";
 import * as React from "react";
-import { motion, HTMLMotionProps, useReducedMotion } from "framer-motion";
+import { motion, HTMLMotionProps, useReducedMotion } from "motion/react";
 
 export interface AppButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary" | "subtle" | "brutalist";
@@ -43,7 +44,7 @@ export const AppButton = React.forwardRef<HTMLButtonElement, AppButtonProps>(
       <motion.button
         ref={ref}
         whileTap={!reduceMotion && variant !== "brutalist" ? { scale: 0.98 } : undefined}
-        transition={{ type: "spring", stiffness: 500, damping: 25 }}
+        transition={{ type: "spring", stiffness: 500, damping: 45, mass: 1 }} // spring.snap
         className={`inline-flex items-center justify-center rounded-[2px] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-ground)] disabled:opacity-50 disabled:pointer-events-none ${sizeClasses} ${variantClasses} ${className}`}
         {...props}
       >
@@ -85,34 +86,34 @@ Add texture only where it fits the material language. Define its owner and measu
 
 ---
 
-## 3. Spring Architecture in Framer Motion (Spring Physics)
+## 3. Spring Architecture in Motion (formerly Framer Motion)
 
-Example spring parameters for products that need interruptible motion. Preserve a complete static state under reduced motion and choose timings through actual interaction testing:
+These objects carry the canonical spring tokens; [motion-timing-engines](../../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their values, damping ratios and interruption rules, so update that file first and mirror it here. Preserve a complete static state under reduced motion and validate choices through actual interaction testing:
 
 ```typescript
-// lib/animation/springs.ts
+// lib/animation/springs.ts — mirrors the canonical tokens (mass 1)
 
 export const springPhysics = {
-  // Spring for modals, dropdowns and tabs (high firmness and no oscillation)
-  interfaceSnappy: {
+  // spring.smooth: modals, dropdowns, drawers, layout moves (ζ≈0.89, ≈0.2% overshoot)
+  smooth: {
     type: "spring" as const,
-    stiffness: 420,
-    damping: 34,
-    mass: 0.8
+    stiffness: 300,
+    damping: 31,
+    mass: 1
   },
-  // Spring for sequential reveal of cards (soft, fluid)
-  contentGentle: {
+  // spring.snap: press feedback, toggles, small controls (ζ≈1.0, no overshoot)
+  snap: {
     type: "spring" as const,
-    stiffness: 280,
-    damping: 26,
-    mass: 1.0
+    stiffness: 500,
+    damping: 45,
+    mass: 1
   },
-  // Tactile spring for micro-states and buttons
-  microPress: {
+  // spring.playful: celebratory badges, rare delight only (ζ≈0.51, ≈16% overshoot)
+  playful: {
     type: "spring" as const,
-    stiffness: 550,
-    damping: 22,
-    mass: 0.4
+    stiffness: 250,
+    damping: 16,
+    mass: 1
   }
 };
 ```
@@ -150,3 +151,10 @@ export function TactileCard({ level = 1, children, className = "" }: TactileCard
   );
 }
 ```
+
+---
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **motion 14.4.0** (verified; React import `motion/react`) — https://motion.dev/changelog

@@ -1172,10 +1172,10 @@
     },
     {
       "name": "frontend-developer",
-      "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Framer Motion (spring physics), Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance.",
+      "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:c16c5140baacb0ecc87c603b7cab2115cba57bed48c78ed4b7fc2842607a4a47"
+      "digest": "sha256:7bc50cbbbe3d66fdd044ae826cb75c3e04fff6a9b4d3e473ae6d27a412d84fc3"
     },
     {
       "name": "fullstack-developer",
@@ -2484,7 +2484,7 @@
       "description": "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:e24da2acd6d13fa00e48ca9af8af1850bfac171ce2cec147c347a1f264caaf5e"
+      "digest": "sha256:9e868133bd677e0863598a1c7ebbb277d9722d4627714fa742a4540a4090da79"
     },
     {
       "name": "ui-designer",
@@ -2509,10 +2509,10 @@
     },
     {
       "name": "ui-motion-interaction",
-      "description": "Provides design engineering patterns for tactile UI motion, micro-interactions, and pointer physics. Covers state transitions (hover, active, focus-visible, drag, disabled), spring physics calibration (stiffness, damping, mass), dynamic pointer tracking (spotlight radial gradients, magnetic cursor pull, 3D card tilt), Dan Saffer's micro-interaction lifecycle, the Accot-Zhai steering law for hover corridors, and strict 60/120fps hardware-composited performance with WCAG prefers-reduced-motion compliance. Use when crafting interactive components, design system motion tokens, or tactile web interfaces.",
+      "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Routes scroll-driven motion to ui-scroll-driven-motion, state and layout transitions to ui-state-layout-transitions, and pointer, gesture and text-effect recipes to its references. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:488d7b0b38959277e4f8e8ab8dfcdeadaa03bde4069a58e90a214938a663fa2d"
+      "digest": "sha256:54cec493d486528410bbdc87e910bd85cc3c27e20b88fb8625b1dc025274e9ed"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2904,7 +2904,7 @@
       "description": "Provides the micro-interaction-driven UI style (2013-present): single-purpose feedback moments around one user action, covering Saffer's trigger-rules-feedback-loops model, spring physics and Material durations, optimistic UI, haptics, INP budgets and reduced-motion fallbacks. Use when designing state feedback, buttons, toggles, likes and async action responses.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
-      "digest": "sha256:23254186146edaaf28aad1e642a5a700413db1babb843c70d839672411ad3d29"
+      "digest": "sha256:243bb30036ca9efb9430a2e959265063a31efdee9f9ee1eccf0589bfaff3edb8"
     },
     {
       "name": "ui-style-mid-century-modern",
@@ -2953,7 +2953,7 @@
       "description": "Provides the parallax scrolling design era (2011-2016): layered depth via differential scroll motion, covering the Silverback/Nike lineage, skrollr and ScrollMagic tooling, the Purdue nausea findings, scroll-hijacking criticism and the native CSS successors. Use when building scroll-depth effects responsibly or studying the era's usability evidence.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-      "digest": "sha256:14161a7d895629656837949b6d459bc24e4405bda9883d451c47569970b8ae80"
+      "digest": "sha256:6864811e2d9b6098e0a377f07be228aafe7b8ff8937e020cb9a214733c44491f"
     },
     {
       "name": "ui-style-pixel-art",
@@ -3167,10 +3167,10 @@
     },
     {
       "name": "web-accessibility-wcag",
-      "description": "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI.",
+      "description": "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, motion and animation accessibility (pause controls, flash thresholds, reduced-motion house policy, accessible animated text), keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "digest": "sha256:33ad4f25173c50be0d66213375144b28545b327a5ee05389a5b6b67532264af0"
+      "digest": "sha256:160950bb7ae224fc04d54e7e4d9b5e54bc1d36b4650a848b42dff8d511ea53e7"
     },
     {
       "name": "web-injection-classes",

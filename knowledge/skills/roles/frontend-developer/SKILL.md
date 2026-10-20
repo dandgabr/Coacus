@@ -1,6 +1,6 @@
 ---
 name: "frontend-developer"
-description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Framer Motion (spring physics), Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance."
+description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance."
 ---
 
 # 💻 AI Skill: Senior Frontend Engineer & Design Engineer
@@ -84,37 +84,22 @@ Breaking digital sterility comes from applying a light Perlin noise layer that d
 
 ---
 
-## 🎞️ 2. Animation Physics & Microinteractions with Framer Motion
+## 🎞️ 2. Animation Physics & Microinteractions with Motion (formerly Framer Motion)
 
 Choose explicit properties and timing appropriate to the interaction. Springs can support interruptible movement; duration-based easing can suit fades and narrative steps. Do not add motion merely to replace a default or override a deliberately static style.
 
 ### 2.1. Calibrating Natural Springs (Spring Physics)
-In professional interfaces, eliminate the excessive "bounce" that conveys a childish feel. Calibrate the critical damping to give motion a firm, fast character:
+Use the canonical spring tokens below; [motion-timing-engines](../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their damping ratios, overshoot, settle times, duration bands and interruption rules — link to it instead of restating values. Only `snap` (ζ≈1) is bounce-free; `smooth` overshoots ≈0.2% and `playful` ≈16%, so reserve `playful` for rare delight:
 ```typescript
-// Canonical firm-spring configuration for professional software
+// Canonical spring tokens (mass 1) — mirror motion-timing-engines.md
 export const springPresets = {
-  // Firm transition, no bounce, ideal for modals, dropdowns and tabs
-  snappy: {
-    type: "spring",
-    stiffness: 400,
-    damping: 32,
-    mass: 0.8
-  },
-  // Soft, organic touch for cards and scroll reveals
-  gentle: {
-    type: "spring",
-    stiffness: 260,
-    damping: 24,
-    mass: 1
-  },
-  // Tactile button click (sink and immediate return)
-  press: {
-    type: "spring",
-    stiffness: 500,
-    damping: 20,
-    mass: 0.5
-  }
-};
+  // spring.snap: press feedback, toggles, small controls (ζ≈1.0, no overshoot)
+  snap: { type: "spring", stiffness: 500, damping: 45, mass: 1 },
+  // spring.smooth: menus, drawers, modals, layout moves (ζ≈0.89)
+  smooth: { type: "spring", stiffness: 300, damping: 31, mass: 1 },
+  // spring.playful: celebratory badges, rare delight (ζ≈0.51)
+  playful: { type: "spring", stiffness: 250, damping: 16, mass: 1 }
+} as const;
 ```
 
 ### 2.2. Atomic Sequential Orchestration with `staggerChildren`
@@ -136,30 +121,61 @@ export const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: springPresets.snappy
+    transition: springPresets.smooth
   }
 };
 ```
 
-### 2.3. Mandatory Respect for `prefers-reduced-motion`
-Users with vestibular sensitivity or accessibility preferences must receive versions without spatial displacement:
-```typescript
-import { useReducedMotion } from "framer-motion";
+### 2.3. Honouring `prefers-reduced-motion` (House Policy)
+Honouring the user's reduced-motion preference is Coacus house policy and WCAG technique C39 — not a Level AA requirement. The normative obligations (2.2.2 Pause, Stop, Hide; 2.3.1; 2.3.3) live in [web-accessibility-wcag](../../engineering/practices/web-accessibility-wcag/SKILL.md) (section "Motion and Animation").
+
+`useReducedMotion()` returns `null` during SSR and the first client render, then a boolean. Treat `null` as "reduce", start from the no-motion state so server and client HTML match, and never read `window.matchMedia` during render (hydration mismatch). For app-wide defaults, wrap the tree in `<MotionConfig reducedMotion="user">`.
+```tsx
+"use client";
+import { motion, useReducedMotion } from "motion/react";
 
 export function AccessibleAnimatedCard({ children }: { children: React.ReactNode }) {
-  const shouldReduceMotion = useReducedMotion();
+  // null (unknown) and true both mean: no spatial motion
+  const allowMotion = useReducedMotion() === false;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={shouldReduceMotion ? { duration: 0.15 } : springPresets.snappy}
+      initial={false} // SSR HTML is the final, visible state
+      whileHover={allowMotion ? { y: -4 } : undefined}
+      transition={allowMotion ? springPresets.smooth : { duration: 0 }}
     >
       {children}
     </motion.div>
   );
 }
 ```
+
+### 2.4. Motion in Component Lifecycles (React, Next.js, Vue)
+This skill owns the lifecycle contract; motion skills link here.
+
+- **SSR baseline**: never ship content as `opacity: 0` in server HTML when JS may not run. Hide only from script (`gsap.from`, Motion `initial` on client-only trees).
+- **GSAP in React**: use `useGSAP()` (`@gsap/react`) with a `scope` ref; everything created inside reverts on unmount. Wrap later callbacks (events, timers, promises) in `contextSafe`. Create SplitText with `autoSplit` + `onSplit` (re-splits after `document.fonts.ready` and resizes) so it reverts with the context; call `ScrollTrigger.refresh()` after fonts or images change layout.
+```tsx
+"use client";
+const scope = useRef<HTMLDivElement>(null);
+const { contextSafe } = useGSAP(() => {
+  SplitText.create(".title", {
+    type: "words", aria: "auto", autoSplit: true,
+    onSplit: (self) => gsap.from(self.words, { yPercent: 100, stagger: 0.04 })
+  });
+}, { scope });
+const nudge = contextSafe(() => gsap.to(".cta", { x: 4, yoyo: true, repeat: 1 }));
+```
+- **Lenis in Next.js**: instantiate inside a client component (`'use client'`) and destroy on unmount.
+```tsx
+useEffect(() => {
+  const lenis = new Lenis({ autoRaf: true });
+  return () => lenis.destroy();
+}, []);
+```
+- **Motion exits**: `AnimatePresence` direct children need stable, unique `key`s (never array indexes) or `exit` never runs.
+- **Vue**: drive JS hooks via `<Transition :css="false" @enter="(el, done) => gsap.from(el, { opacity: 0, onComplete: done })">` (same hooks on `<TransitionGroup>`); in `onBeforeUnmount`, call `ctx.revert()` for a `gsap.context()` and `lenis.destroy()`.
+- **React `<ViewTransition>`**: stable since React 19.3 (see Version Sources); it animates only updates inside `startTransition`, `<Suspense>` reveals or `useDeferredValue`. On earlier React, feature-detect and use `document.startViewTransition(() => flushSync(() => setState(next)))`.
 
 ---
 
@@ -259,3 +275,14 @@ Five companion skills cover color end to end — science, palettes, contrast, to
 - [color contrast accessibility](../../domains/design/color-contrast-accessibility/SKILL.md)
 - [color ui systems](../../domains/design/color-ui-systems/SKILL.md)
 - [color data visualization](../../domains/design/color-data-visualization/SKILL.md)
+
+---
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **motion 14.4.0** (verified; React import `motion/react`) — https://motion.dev/changelog
+- **@gsap/react 2.1.2** (verified) — https://registry.npmjs.org/@gsap/react
+- **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap
+- **lenis 1.3.27** (verified) — https://registry.npmjs.org/lenis
+- **React `<ViewTransition>` stable in React 19.3.0** (verified; released 2026-09-09, latest 19.3.1) — https://react.dev/blog/2026/09/09/react-19-3 and https://registry.npmjs.org/react

@@ -959,7 +959,8 @@
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
         "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-        "knowledge/skills/roles/frontend-developer/SKILL.md"
+        "knowledge/skills/roles/frontend-developer/SKILL.md",
+        "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md"
       ],
       "triggers": [
         "anti-ai-slop",

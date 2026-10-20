@@ -65,9 +65,9 @@ Before completing any frontend delivery, run these 5 deterministic mental audits
 3. **The Color Budget Test (Chromatic Discipline)**:
    - Does each color have a purpose in this product and visual language? A restrained task interface and a deliberate multicolor composition need different budgets. Check legibility and state meaning before replacing the palette with neutrals.
 4. **The Target Ergonomics Test (Hit Areas & Thumb Zones)**:
-   - Are all interactive touch targets at least 44x44px? Is critical action density calibrated to prevent accidental clicks?
+   - Does every interactive target measure at least 24×24 CSS px (WCAG 2.5.8, AA), with primary touch controls at the 44×44 enhanced target (2.5.5, AAA) where the layout allows? Is critical action density calibrated to prevent accidental clicks?
 5. **The Motion Budget Test (Accessibility & Restraint)**:
-   - Are duration, interruption and movement appropriate to the task? Brief feedback and a narrative sequence need different timing. Reduced motion must retain complete content and usable controls; decorative motion is optional.
+   - Are duration, interruption and movement appropriate to the task? Brief feedback and a narrative sequence need different timing; check each duration against the canonical bands in [motion-timing-engines](../../../domains/design/ui-motion-interaction/references/motion-timing-engines.md). Reduced motion must retain complete content and usable controls; decorative motion is optional.
 
 ## 🧪 Rendered Interface Verification
 

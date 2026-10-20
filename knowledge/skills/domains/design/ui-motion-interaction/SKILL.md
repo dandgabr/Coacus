@@ -1,6 +1,6 @@
 ---
 name: "ui-motion-interaction"
-description: "Provides design engineering patterns for tactile UI motion, micro-interactions, and pointer physics. Covers state transitions (hover, active, focus-visible, drag, disabled), spring physics calibration (stiffness, damping, mass), dynamic pointer tracking (spotlight radial gradients, magnetic cursor pull, 3D card tilt), Dan Saffer's micro-interaction lifecycle, the Accot-Zhai steering law for hover corridors, and strict 60/120fps hardware-composited performance with WCAG prefers-reduced-motion compliance. Use when crafting interactive components, design system motion tokens, or tactile web interfaces."
+description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Routes scroll-driven motion to ui-scroll-driven-motion, state and layout transitions to ui-state-layout-transitions, and pointer, gesture and text-effect recipes to its references. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
 tags:
   - motion-design
   - micro-interactions
@@ -24,31 +24,37 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 - Preventing menu closing errors using the Accot-Zhai steering law for dropdowns and hover corridors.
 - Auditing UI animations for 60fps/120fps compositor execution and WCAG motion accessibility.
 
+### Motion hub routing
+
+- Durations, easing, spring tokens, interruption, Web Animations API, motion tokens: [motion-timing-engines](references/motion-timing-engines.md) (single source; do not restate values elsewhere).
+- Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
+- Scroll-linked and scroll-triggered motion: the ui-scroll-driven-motion skill (planned).
+- View Transitions, FLIP, shared-element and accordion/layout transitions: the ui-state-layout-transitions skill (planned).
+- Pointer and gesture recipes, text-effect recipes: the hub references pointer-and-gesture.md and text-effect-recipes.md (planned).
+
 ---
 
 ## 🏎️ Physics-Based Motion vs. Easing Curves
 
 Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [scroll narrative modes](references/scroll-narrative-modes.md). These references distinguish visible output from state markers and frame processing from callback cadence.
 
-Duration-based easing suits many transitions. Springs can preserve momentum during interruptible movement; use the approach appropriate to the task and the actual implementation rather than assigning quality by technique alone.
-
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |
 | :--- | :--- | :--- |
 | **Parameters** | `duration`, `cubic-bezier(x1, y1, x2, y2)` | `stiffness` ($k$), `damping` ($c$), `mass` ($m$) |
 | **Interruption** | Retargeting continuity depends on the transition implementation | Can preserve velocity when the solver carries current state |
-| **Tactile Feel** | Determined by curve, duration, distance and context | Determined by solver parameters, distance and context |
 | **Best For** | Background fades, page opacities, color shifts | Component scaling, modals, drag-and-drop, cursor pull |
 
-### Standard Spring Presets for Design Systems
-- **Snappy / Tight (Buttons, Toggles, Micro-actions):**
-  - Stiffness: `400`–`500`, Damping: `30`–`35`, Mass: `1.0`
-  - Zero visible bounce; instantaneous response (<150ms perceived settling).
-- **Smooth / Gentle (Modals, Drawers, Floating Panels):**
-  - Stiffness: `250`–`300`, Damping: `25`–`28`, Mass: `1.0`
-  - Elegant deceleration with imperceptible overshoot.
-- **Bouncy / Playful (Badges, Gamified Toast Alerts, Drop Pins):**
-  - Stiffness: `200`–`300`, Damping: `12`–`18`, Mass: `1.0`
-  - Explicit elastic rebound for celebratory moments (use sparingly).
+### Canonical Spring Tokens
+
+Values (k, c, settle time, Motion mapping) live only in [motion-timing-engines](references/motion-timing-engines.md#3-spring-model-and-canonical-presets).
+
+| Token | Use | ζ | Overshoot |
+| :--- | :--- | :--- | :--- |
+| `spring.snap` | Press feedback, toggles, small controls | ≈1.0 | 0% |
+| `spring.smooth` | Menus, drawers, modals, layout moves | ≈0.89 | ≈0.2% |
+| `spring.playful` | Celebratory badges, rare delight | ≈0.51 | ≈16% |
+
+Damping ratio ζ, not stiffness, decides bounce. Effects (opacity, colour) never overshoot.
 
 ---
 
@@ -115,19 +121,40 @@ Every micro-interaction consists of four discrete stages:
 
 ## ♿ Accessibility, Motion Sickness & Performance
 
-1. **Control rendering cost:** Prefer compositor-friendly properties when they achieve the effect. Layout-affecting movement needs measurement and a reason; neither a property name nor `will-change` proves hardware acceleration or acceptable cost.
-2. **Frame budget evidence:** Derive the budget from the target display and product. Distinguish callback cadence, frame processing, aggregated work and software versus hardware rendering. Use `will-change` conservatively and verify the measured workload.
-3. **WCAG 2.2 Criterion 2.2.2 & 2.3.3 (Motion Conformance):**
-   - Strictly honor `@media (prefers-reduced-motion: reduce)`:
-     ```css
-     @media (prefers-reduced-motion: reduce) {
-       .motion-decoration { animation: none; transition: none; }
-       .revealed-content { opacity: 1; transform: none; clip-path: none; }
-       .narrative-owner { scroll-behavior: auto; }
-     }
-     ```
-   - When motion is reduced, expose a complete static result or direct navigation appropriate to the product. Do not rely on a near-zero global duration reset to reveal content or initialize state.
-4. **Vestibular Safety:** Avoid full-screen parallax, high-frequency pulsing flashes, or rotational vortex effects that trigger vestibular disorientation in sensitive users.
+Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md); do not restate them here. The framing to keep straight (WCAG 2.2):
+
+- **2.2.2 Pause, Stop, Hide (Level A):** auto-moving content lasting more than 5 s alongside other content needs a pause mechanism. Hover-only pause does not count.
+- **2.3.3 Animation from Interactions (AAA):** interaction-triggered motion can be disabled.
+- **`prefers-reduced-motion`:** WCAG technique C39 and a Coacus house policy, not an AA requirement. Apply it everywhere anyway.
+
+Author no-motion first: opt into spatial motion only when the user has no preference, and keep a reduce fallback for motion that is set elsewhere.
+
+```css
+.revealed-content { opacity: 1; transform: none; }   /* static result is the default */
+
+@media (prefers-reduced-motion: no-preference) {
+  .revealed-content:not(.is-visible) { opacity: 0; transform: translateY(12px); }
+  .revealed-content { transition: opacity 220ms ease-out, transform 220ms ease-out; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-decoration { animation: none; transition: none; }
+  .narrative-owner { scroll-behavior: auto; }
+  .state-change { transition: opacity 120ms linear; }  /* fade replaces travel */
+}
+```
+
+When motion is reduced, expose a complete static result or direct navigation. Do not rely on a near-zero global duration reset to reveal content or initialise state. Avoid full-screen parallax, flashing, and rotational or zooming vortex effects.
+
+### Rendering performance for animation
+
+- **Compositor-friendly:** `transform` and `opacity`; `filter` sometimes (cheap blurs, browser-dependent). Width, height, top/left, margin, padding and font metrics trigger layout; colour, shadow, border-radius, `clip-path` and masks trigger paint. Neither a property name nor `will-change` proves acceleration: measure.
+- **Read, then write:** batch all layout reads (`getBoundingClientRect`, `offsetWidth`) before any style writes in a frame. Interleaving forces synchronous layout (layout thrashing). Depth: [javascript-high-performance](../../../languages/javascript-high-performance/SKILL.md).
+- **`will-change` lifecycle:** add it just before the motion (e.g. on `pointerenter`), remove it on `transitionend`/`finished`. Permanent or blanket use creates a layer explosion and wastes GPU memory; treat it as a last resort.
+- **INP:** good ≤ 200 ms, poor > 500 ms at p75. Start visual feedback in the same frame as the input; defer heavy work. Core Web Vitals context: [frontend-developer](../../../roles/frontend-developer/SKILL.md).
+- **Long Animation Frames (Chrome/Edge only):** `PerformanceObserver` type `long-animation-frame` exposes `blockingDuration` and `scripts[].forcedStyleAndLayoutDuration` to attribute forced layout to the script that caused it.
+- **Offscreen work:** `content-visibility: auto` with `contain-intrinsic-size` skips rendering for offscreen sections; pause animations there too.
+- **Frame budget:** 16.6 ms at 60 Hz, 8.3 ms at 120 Hz; distinguish callback cadence from frame processing.
 
 ---
 
@@ -137,3 +164,13 @@ Every micro-interaction consists of four discrete stages:
 - J. Accot and S. Zhai, "Beyond Fitts' Law: Models for Trajectory-Based HCI Tasks", *ACM CHI Proceedings*, 1997.
 - Paul M. Fitts, "The information capacity of the human motor system in controlling the amplitude of movement", *Journal of Experimental Psychology*, 1954.
 - W3C WAI, "Understanding SC 2.3.3: Animation from Interactions", WCAG 2.2.
+- W3C, "Web Content Accessibility Guidelines (WCAG) 2.2", W3C Recommendation, 12 December 2024 edition; technique C39.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+
+- **WCAG 2.2** (verified) — W3C Recommendation, 12 December 2024 edition, https://www.w3.org/TR/WCAG22/
+- **INP thresholds** (verified) — good ≤ 200 ms, poor > 500 ms at p75, https://web.dev/articles/inp
+- **Long Animation Frames API** (verified) — Chrome/Edge 123 only, MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/API/PerformanceLongAnimationFrameTiming
+- **`content-visibility`** (verified) — Baseline 2024 (Chrome 85, Firefox 125, Safari 18), web-features 3.43.0, https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility

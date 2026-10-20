@@ -1,6 +1,6 @@
 ---
 name: "web-accessibility-wcag"
-description: "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI."
+description: "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, motion and animation accessibility (pause controls, flash thresholds, reduced-motion house policy, accessible animated text), keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI."
 ---
 
 # AI Skill: Web Accessibility and Inclusive Design
@@ -61,6 +61,44 @@ For layered surfaces and appearance changes, use [painted contrast audits](../..
 
 ---
 
+## 🎞️ Motion and Animation
+
+This section is the canonical source of motion accessibility obligations in Coacus; other skills link here instead of restating levels. Duration bands and springs live in [motion-timing-engines](../../../domains/design/ui-motion-interaction/references/motion-timing-engines.md).
+
+| SC | Name | Level | Requirement for motion | Test |
+|---|---|---|---|---|
+| 2.2.2 | Pause, Stop, Hide | A | Auto-moving content lasting over 5 s beside other content gets a pause, stop or hide control; hover-only pause fails; motion started by scrolling into view counts as automatic | Inventory loops, marquees, carousels; operate each control by keyboard |
+| 2.3.1 | Three Flashes or Below Threshold | A | No more than three flashes in any one second | Frame-step the animation; run a flash analyser on large strobing areas |
+| 2.3.3 | Animation from Interactions | AAA | Interaction-triggered motion can be disabled unless essential | Set reduced motion; trigger every interaction |
+| 1.4.13 | Content on Hover or Focus | AA | Animated tooltips and popovers are dismissible, hoverable and persistent | Escape dismisses; pointer can move onto the content |
+| 2.4.11 | Focus Not Obscured (Minimum) | AA | Sticky, pinned or sliding layers never fully hide the focused element | Tab through with every sticky and pinned state active |
+| 2.5.7 | Dragging Movements | AA | Drag gestures (sliders, reorder, swipe carousels) have a single-pointer non-drag alternative | Complete each task with taps or clicks only |
+| 1.4.12 | Text Spacing | AA | Split-text spans survive user spacing overrides without clipping or overlap | Apply spacing overrides after the split runs |
+| 4.1.3 | Status Messages | AA | Tickers, counters and typewriters expose only the final value | Screen reader hears one announcement per completed change |
+| 1.4.10 | Reflow | AA | Horizontal-scroll sections collapse to one column at 320 CSS px | Zoom to 400 %; no two-dimensional scrolling |
+| 2.4.3 | Focus Order | A | After a view transition, focus lands on the new view's heading or the logical next control | Cross every transition by keyboard |
+| 2.5.8 / 2.5.5 | Target Size (Minimum / Enhanced) | AA / AAA | Animated targets measure at least 24×24 CSS px (AA); 44×44 is the enhanced level and the house target for primary touch controls | Measure the hit box at rest and mid-motion |
+
+**House policy.** Honouring `prefers-reduced-motion` is WCAG technique C39 and a Coacus house policy, not an AA requirement.
+
+- Author no-motion first: base styles are static; add motion inside `@media (prefers-reduced-motion: no-preference)`.
+- `reduce` replaces spatial motion (translate, scale, zoom, parallax) with a cross-fade or an instant change. Never delete feedback, state or content.
+- In script, read `matchMedia('(prefers-reduced-motion: reduce)')` and subscribe to its `change` event. Server rendering starts from the no-motion state and upgrades after hydration.
+- `prefers-reduced-transparency` has no Safari support: ship opaque defaults and add translucency as an enhancement. Honour `prefers-contrast: more` with solid fills and stronger borders, and keep state legible under `forced-colors: active`.
+
+**Vestibular triggers.** Treat large-area parallax, zoom, spin and scroll-linked motion of viewport-sized layers as vestibular triggers: gate them behind `no-preference` and offer an in-page motion toggle on scroll narratives.
+
+**Animated text and hidden content.**
+
+- Never put `aria-label` on a generic `span`, `div` or `p` (prohibited in ARIA 1.2). Render one visually hidden full-text copy and mark animated fragments `aria-hidden="true"`.
+- Never attach `aria-live` to intermediate values; announce the final value only.
+- Make collapsed or clipped content `inert`.
+- Mark marquee clones `aria-hidden="true"` and `inert`, and render a visible pause control.
+
+WCAG 3.0 is a W3C Working Draft (10 September 2026) and does not replace WCAG 2; keep conformance claims on WCAG 2.2.
+
+---
+
 ## 📝 Forms, Navigation and Interaction
 
 - Surface login-versus-register choices up front; sequential readers miss small post-submit links.
@@ -101,3 +139,11 @@ For layered surfaces and appearance changes, use [painted contrast audits](../..
 - For visual craft and design-system rigor, see [ui-ux-designer](../../../roles/ui-ux-designer/SKILL.md) and [frontend-developer](../../../roles/frontend-developer/SKILL.md).
 - For the underlying UX principles, see [ui-ux-principles](../ui-ux-principles/SKILL.md).
 - For trustworthy AI feature behavior, see [ai-application-engineering](../../../domains/industry/ai-application-engineering/SKILL.md).
+
+---
+
+## Version Sources
+
+Moving standard pins in this file were resolved 2026-10-20:
+- **WCAG 2.2** (verified) — W3C Recommendation, 12 December 2024 edition — https://www.w3.org/TR/WCAG22/
+- **WCAG 3.0** (verified) — W3C Working Draft, 10 September 2026 — https://www.w3.org/TR/wcag-3.0/
