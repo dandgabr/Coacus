@@ -37,8 +37,35 @@ const durationFor = (px, { min = 150, max = 400, msPerPx = 0.5 } = {}) =>
 | Route / page | page or view change | 300–500 ms |
 | Exit | any of the above leaving | ≈ 70–80% of the matching enter |
 | Scroll-linked | progress, parallax, reveal tied to scroll | no duration: progress-driven |
+| Narrative (exception) | decorative SVG line drawing, narrative reveal | 600–1000 ms, non-blocking decorative motion only |
 
 Effects (opacity, colour) never overshoot, whatever engine drives them.
+
+### Canonical CSS tokens
+
+These custom-property names are the single source of the bands above. Other skills reference `var(--motion-*)` and `var(--ease-*)` instead of literal values; each value is one point inside its band.
+
+```css
+:root {
+  --motion-feedback: 120ms;    /* feedback band, 100–150 ms */
+  --motion-state: 200ms;       /* component state band, 150–250 ms */
+  --motion-layout: 320ms;      /* overlay / layout band, 250–400 ms */
+  --motion-route: 400ms;       /* route / page band, 300–500 ms */
+  --motion-exit-ratio: 0.75;   /* exit = enter × ratio, e.g. calc(var(--motion-layout) * var(--motion-exit-ratio)) */
+  --motion-narrative: 800ms;   /* exception band, 600–1000 ms: decorative, non-blocking only */
+  --ease-enter: cubic-bezier(0.2, 0, 0, 1);  /* ease-out */
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);   /* ease-in */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* spatial motion collapses to 0 or becomes a cross-fade on --motion-feedback */
+  :root { --motion-layout: 0ms; --motion-route: 0ms; --motion-narrative: 0ms; }
+}
+```
+
+- **Easing choice:** `--ease-enter` (the enter curve from section 1) covers about 70% of its travel in the first third of the duration and lands with no overshoot; `--ease-exit` starts slowly and leaves at full speed, so departures never decelerate in the user's way.
+- **Reduced motion:** spatial durations (travel, scale, reflow) collapse to `0ms` or turn into an opacity cross-fade on `--motion-feedback`; feedback and state colour changes keep their timing.
+- **Narrative exception:** `--motion-narrative` (600–1000 ms) is only for long decorative draws such as SVG line drawing or narrative reveals that never block input, hide content at rest or delay a task. Anything the user waits on uses the bands above.
 
 ## 2. `cubic-bezier()` versus `linear()`
 

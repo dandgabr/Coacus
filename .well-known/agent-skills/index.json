@@ -1175,7 +1175,7 @@
       "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance. Use when building React, Next.js or Vue interfaces, wiring Motion or GSAP lifecycles, de-templatizing component libraries, or tuning Core Web Vitals.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:cf6fa3c49e53d69bc64b19dfbebf5d609285751596481fa73ea38228e77e3840"
+      "digest": "sha256:603b86c955b79cf1945deeda73feca815e2f7a35cca12acb4954cf4c43d9930e"
     },
     {
       "name": "fullstack-developer",
@@ -2512,7 +2512,7 @@
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:55374b12dfea1811adebb8da365acace443dca5e3243af2dfcdcd51dde9fe9f1"
+      "digest": "sha256:93390169006099c5127d82adcce617cb90b49ab88e4f613f1d96a922d2d04d8c"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2534,6 +2534,13 @@
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
       "digest": "sha256:2b8b2a9ce95bc3777f6666bd938b7f5af51ec047ee2f11b6c6852ee81a313485"
+    },
+    {
+      "name": "ui-state-layout-transitions",
+      "description": "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself.",
+      "type": "archive",
+      "url": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
+      "digest": "sha256:757880fbb0c17e9c883d8ca666ed6156d87a63cceb231cf0e89642d06fe3f2ed"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
@@ -2827,7 +2834,7 @@
       "description": "Provides the hand-drawn / sketch UI style (2010s-present): wobbly strokes, hachure fills, doodle icons and marker typography that signal drafts and humanity, covering Rough.js, SVG filter wobble, stroke-dash techniques, tool precedents like Excalidraw and legibility limits. Use when designing whiteboard-like tools, playful brand surfaces or low-fidelity-feeling interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
-      "digest": "sha256:ca3a5b4d06211cb1210c76eed592609b3ee086f3782950c2e11668b39645c515"
+      "digest": "sha256:b5c91517811b55d3cd82fda615b052b5737454019fc884ce64d753058301a632"
     },
     {
       "name": "ui-style-holographic-foil-iridescent",
@@ -2911,7 +2918,7 @@
       "description": "Provides the micro-interaction-driven UI style (2013-present): single-purpose feedback moments around one user action, covering Saffer's trigger-rules-feedback-loops model, spring physics and Material durations, optimistic UI, haptics, INP budgets and reduced-motion fallbacks. Use when designing state feedback, buttons, toggles, likes and async action responses.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
-      "digest": "sha256:243bb30036ca9efb9430a2e959265063a31efdee9f9ee1eccf0589bfaff3edb8"
+      "digest": "sha256:cc268fc12609023b8a75ef140139d05a22ba5e0ab8836568119c256822ad1615"
     },
     {
       "name": "ui-style-mid-century-modern",

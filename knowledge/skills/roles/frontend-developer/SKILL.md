@@ -167,7 +167,7 @@ useEffect(() => {
 ```
 - **Motion exits**: `AnimatePresence` direct children need stable, unique `key`s (never array indexes): missing keys stop `exit` from running, and index keys make the wrong element exit.
 - **Vue**: drive JS hooks via `<Transition :css="false" @enter="(el, done) => gsap.from(el, { opacity: 0, onComplete: done })">` (same hooks on `<TransitionGroup>`); in `onBeforeUnmount`, call `ctx.revert()` for a `gsap.context()` and `lenis.destroy()`.
-- **React `<ViewTransition>`**: stable since React 19.3 (see Version Sources); it animates only updates inside `startTransition`, `<Suspense>` reveals or `useDeferredValue`. On earlier React, feature-detect and use `document.startViewTransition(() => flushSync(() => setState(next)))`.
+- **React `<ViewTransition>`**: stable since React 19.3 (see Version Sources); it animates only updates inside `startTransition`, `<Suspense>` reveals or `useDeferredValue`. For earlier React lines, use the fallback in [view-transitions.md](../../domains/design/ui-state-layout-transitions/references/view-transitions.md#framework-integration-snippets).
 
 ---
 

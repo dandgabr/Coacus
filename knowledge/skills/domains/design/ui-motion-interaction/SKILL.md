@@ -29,7 +29,7 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 - Durations, easing, spring tokens, interruption, Web Animations API, motion tokens: [motion-timing-engines](references/motion-timing-engines.md) (single source; do not restate values elsewhere).
 - Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
 - Scroll-linked and scroll-triggered motion: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
-- View Transitions, FLIP, shared-element and accordion/layout transitions: the ui-state-layout-transitions skill (planned).
+- View Transitions, FLIP, shared-element and accordion/layout transitions: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - Pointer and gesture recipes, text-effect recipes: the hub references pointer-and-gesture.md and text-effect-recipes.md (planned).
 
 ---
