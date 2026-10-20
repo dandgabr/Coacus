@@ -92,6 +92,8 @@ skills:
   - knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-steampunk/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
+  - knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md
 ---
 
 ## 🎯 Description and Purpose

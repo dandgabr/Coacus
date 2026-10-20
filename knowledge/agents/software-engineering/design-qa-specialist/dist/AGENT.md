@@ -12,6 +12,7 @@ Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibili
 - [ui-ux-designer](../../../../skills/roles/ui-ux-designer/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -62,6 +63,7 @@ This agent operates using the following skills:
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
 
 ---
 

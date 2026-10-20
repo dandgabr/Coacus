@@ -13,6 +13,7 @@ skills:
   - knowledge/skills/roles/ui-ux-designer/SKILL.md
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/domains/design/ui-motion-interaction/SKILL.md
+  - knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -63,6 +64,7 @@ This agent operates using the following skills:
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-state-layout-transitions](knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md)
 
 ---
 
