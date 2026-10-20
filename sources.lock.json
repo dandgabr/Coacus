@@ -11552,7 +11552,7 @@
       "source_path": "skills/roles/ui-ux-designer/SKILL.md",
       "source_sha256": "f059a3eaf6a72ab2a7c65d079647f9fb6a94e8f3c35e522a086953b9956d72ff",
       "target_path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "target_sha256": "d84d59cb0feb5cb0a08267c71fc0ded3d902f0d10f0908fad5ae82c8e8fdb388",
+      "target_sha256": "9869492736eb1e2fe64b33a3a05920fbe03cb8da4fa022c2336b839282f453a4",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15846,7 +15846,7 @@
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
       "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "9111c111f35aaccf5222b4dd7fed47465d7856cf81044288defed86cb7bab291",
+      "target_sha256": "48cfa534f1516e69e60d0c4eb77efcd8a71e57a8762fb4933d9c160aa078cb81",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16257,7 +16257,7 @@
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
       "target_path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "target_sha256": "9c1aafb2f6f4cc2642214886ae918393453bae5f45c85355c014cb2edc6c9c18",
+      "target_sha256": "f091b31cf99f0256488df9799159cbc8ade51e5dd1f712b586e32e5b9866b46d",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -18156,9 +18156,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "source_sha256": "bde4e9d151e9bd5e125f01c509d5b1d27d3f7f0ad6261eadac7472ab400b6e8b",
+      "source_sha256": "fd72c09ad27d46d03ab537be3090995df99891429a5a8de072900434ca4b410a",
       "target_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "target_sha256": "bde4e9d151e9bd5e125f01c509d5b1d27d3f7f0ad6261eadac7472ab400b6e8b",
+      "target_sha256": "fd72c09ad27d46d03ab537be3090995df99891429a5a8de072900434ca4b410a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18756,9 +18756,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "source_sha256": "68cfebc1afbb5a3aa80c0c10afe855729d5670a507bd1646f57d2b2f70ae7128",
+      "source_sha256": "ea72c7a57580c447e82b23adbfa74f1cf7b2eedbf826cbd38466a4fc41978502",
       "target_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "target_sha256": "68cfebc1afbb5a3aa80c0c10afe855729d5670a507bd1646f57d2b2f70ae7128",
+      "target_sha256": "ea72c7a57580c447e82b23adbfa74f1cf7b2eedbf826cbd38466a4fc41978502",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

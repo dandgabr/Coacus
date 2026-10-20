@@ -42,7 +42,7 @@ Before defining tasks, map out which files will be created or modified and what 
 
 This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
 
-## Task Right-Sizing
+## Task Right-Sizing & Cognitive Chunking
 
 A task is the smallest unit that carries its own test cycle and is worth a
 fresh reviewer's gate. When drawing task boundaries: fold setup,
@@ -50,6 +50,9 @@ configuration, scaffolding, and documentation steps into the task whose
 deliverable needs them; split only where a reviewer could meaningfully
 reject one task while approving its neighbor. Each task ends with an
 independently testable deliverable.
+
+- **Cowan's Chunking Limit ($4 \pm 1$):** Structure implementation plans into 3 to 5 coherent phases, with each phase containing 3 to 5 atomic tasks. Avoid monolith single-phase plans or 20-phase sprawling lists that induce cognitive fatigue.
+- **Goal-Gradient & Endowed Progress:** Design Phase 1 to include pre-flight verification, branch checkout, or baseline environment checks that are already satisfied or rapidly achieved. Starting with visible progress ($>0\%$) immediately builds momentum and commitment.
 
 ## Bite-Sized Task Granularity
 

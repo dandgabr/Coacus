@@ -109,6 +109,14 @@ Instead of stacking artificial blurred shadows, create depth through the luminos
 - **Ethical Consent**: Banners and forms without deceptive patterns (*dark patterns*). The reject button must carry the same visual weight as the accept button.
 - **Masking and Authenticity Indicators**: Secure display of sensitive data with visual reveal controls and evident indicators of encrypted connection.
 
+### 4.3. Cognitive Ergonomics & Interaction Laws
+Incorporate mathematical and empirical interaction laws across GUI, terminal, and agentic systems:
+- **Target Ergonomics (Fitts's Law & KLM)**: High-frequency actions placed close to focus; touch targets adhering to 44x44px.
+- **Choice Architecture (Hick's Law & Miller/Cowan Limit)**: Progressive disclosure, sensible defaults, and bounded chunking ($4 \pm 1$ chunks).
+- **Perceptual Salience (Von Restorff Effect)**: Isolate the single primary action; prevent alert fatigue and visual noise.
+- **Progress & Closure (Goal-Gradient & Zeigarnik Effects)**: Visible determinate progress indicators and explicit completion boundaries.
+For complete formulations and patterns across GUI, CLI, and multi-agent interaction, see [applied cognitive laws](../../engineering/practices/ui-ux-principles/references/applied-cognitive-laws.md).
+
 ---
 
 ## 🤝 5. Handover Protocol to Frontend Engineering

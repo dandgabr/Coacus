@@ -1614,17 +1614,28 @@ Parse arguments and run install, uninstall, verify or list.
 
 Select agents for a prompt (routing) — manual and automated modes.
 
-    coacus_route.py "<prompt>" [--top N] [--min-score X] [--max-slots]   # Mode A
+    coacus_route.py "<prompt>" [--top N] [--all] [--raw] [--min-score X] # Mode A
     coacus_route.py --list [--category C] [--grep TERM]                  # Mode M
     coacus_route.py --agents name1,name2                                # Mode M
 
-Mode A (automated curation) ranks the agents against the prompt and prints the
-best candidates, one per line: ``score<TAB>name<TAB>category<TAB>matched``.
+Mode A (automated curation) ranks the agents against the prompt and presents
+the best candidates. In interactive terminals, output is formatted ergonomically
+using Cognitive UX Laws (Fitts's Law quick actions, Cowan 4±1 chunking, Von Restorff
+isolation, and Hick's Law progressive disclosure). When piped or given --raw, it prints
+standard TSV: ``score<TAB>name<TAB>category<TAB>matched``.
 Mode M (manual) browses or validates an explicit selection; an unknown name is an
 error with suggestions and a non-zero exit.
 
 The command only PROPOSES; it never spawns an agent. ``--max-slots`` caps the
 proposal at the governor's free slots so a caller cannot over-subscribe.
+
+#### `def format_candidates(candidates: list[router.Candidate], *, raw: bool=False, use_color: bool=False, total_matches: int | None=None) -> str`
+
+Format candidate agent proposals for CLI output.
+
+When raw=True, outputs standard TSV (score\tname\tcategory\tmatched).
+When raw=False, outputs human-first presentation with Von Restorff isolation,
+Cowan chunking (4±1), and Fitts zero-distance quick action on the last line.
 
 #### `def main(argv: list[str] | None=None) -> int`
 

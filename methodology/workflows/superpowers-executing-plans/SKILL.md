@@ -30,8 +30,10 @@ the final reviewer is the second pair of eyes.
 verify each step with evidence appropriate to its claim, and leave a
 record that survives your own forgetting.
 
-**Narration:** between tool calls, narrate at most one short line — the
-ledger and the tool results carry the record.
+**Narration & Goal-Gradient Telemetry:** between tool calls, narrate at most one short line. On major task boundaries, emit progress indicators (`[Step X/Y — Z% complete | Task N: <title>]`).
+
+**Zeigarnik Open Loops & Escape Hatches:** When halting or recovering from rate limits (429), ledger the state:
+(1) Completed, (2) Active task, (3) Pending tasks, and (4) The exact resume/rollback command (`git merge --abort` or resume command). This prevents silent context loss across sessions.
 
 **Continuous execution:** Do not pause to check in with your human partner
 between tasks. They chose inline execution to spend less, not to answer
