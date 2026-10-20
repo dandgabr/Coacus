@@ -44,7 +44,7 @@ Effects (opacity, colour) never overshoot, whatever engine drives them.
 
 `cubic-bezier(x1, y1, x2, y2)` describes one smooth curve with two control points. Y values outside [0, 1] give a single overshoot or anticipation; it cannot express oscillation.
 
-`linear()` (Baseline widely available since December 2023: Chrome 113, Firefox 112, Safari 17.2) is a piecewise-linear easing through any number of points. Sampling a spring or bounce solver offline produces an easing that CSS transitions and keyframes can run off the main thread:
+`linear()` (Baseline newly available December 2023, widely available June 2026: Chrome 113, Firefox 112, Safari 17.2) is a piecewise-linear easing through any number of points. Sampling a spring or bounce solver offline produces an easing that CSS transitions and keyframes can run off the main thread:
 
 ```css
 :root {
@@ -197,8 +197,8 @@ For character and sprite motion review, use [game-animation-qa-motion](../../../
 
 Moving release pins in this file were resolved 2026-10-20:
 
-- **CSS `linear()` easing** (verified) — Baseline widely available December 2023 (Chrome 113, Firefox 112, Safari 17.2) — web-features 3.43.0 and MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
+- **CSS `linear()` easing** (verified) — Baseline newly available December 2023, widely available June 2026 (Chrome 113, Firefox 112, Safari 17.2) — web-features 3.43.0 and MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
 - **Scroll-driven animations / `ScrollTimeline` / `ViewTimeline`** (verified) — Limited availability: Chrome 115, Safari 26, Firefox preview only — MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline
 - **Motion `spring` options** (verified) — motion 14.4.0 (2026-10-19), https://motion.dev/docs/spring and https://motion.dev/changelog
 - **Material 3 Expressive Compose motion scheme values** (verified) — androidx-main `MotionScheme.kt`, https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MotionScheme.kt
-- **DTCG Format Module 2025.10** (verified) — Stable, published 2025-10-28, https://www.designtokens.org/technical-reports/
+- **DTCG Format Module 2025.10** (verified) — Stable, published 2025-10-28, https://www.designtokens.org/TR/2025.10/format/

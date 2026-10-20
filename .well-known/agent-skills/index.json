@@ -1172,10 +1172,10 @@
     },
     {
       "name": "frontend-developer",
-      "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance.",
+      "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance. Use when building React, Next.js or Vue interfaces, wiring Motion or GSAP lifecycles, de-templatizing component libraries, or tuning Core Web Vitals.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:7bc50cbbbe3d66fdd044ae826cb75c3e04fff6a9b4d3e473ae6d27a412d84fc3"
+      "digest": "sha256:cf6fa3c49e53d69bc64b19dfbebf5d609285751596481fa73ea38228e77e3840"
     },
     {
       "name": "fullstack-developer",
@@ -2509,10 +2509,10 @@
     },
     {
       "name": "ui-motion-interaction",
-      "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Routes scroll-driven motion to ui-scroll-driven-motion, state and layout transitions to ui-state-layout-transitions, and pointer, gesture and text-effect recipes to its references. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
+      "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:54cec493d486528410bbdc87e910bd85cc3c27e20b88fb8625b1dc025274e9ed"
+      "digest": "sha256:7756a7172068e95bab021167689c2cfe838694a365b936a3559240a78e5b5beb"
     },
     {
       "name": "ui-onboarding-tours",
@@ -3170,7 +3170,7 @@
       "description": "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, motion and animation accessibility (pause controls, flash thresholds, reduced-motion house policy, accessible animated text), keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "digest": "sha256:160950bb7ae224fc04d54e7e4d9b5e54bc1d36b4650a848b42dff8d511ea53e7"
+      "digest": "sha256:f174b54b782ba0aad533567ba1dc2c06c594c429e140f78b68bac3f93a476781"
     },
     {
       "name": "web-injection-classes",

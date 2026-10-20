@@ -1,6 +1,6 @@
 ---
 name: "ui-motion-interaction"
-description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Routes scroll-driven motion to ui-scroll-driven-motion, state and layout transitions to ui-state-layout-transitions, and pointer, gesture and text-effect recipes to its references. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
+description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
 tags:
   - motion-design
   - micro-interactions
@@ -46,13 +46,13 @@ Choose motion by purpose and interruption needs; neither springs nor short fixed
 
 ### Canonical Spring Tokens
 
-Values (k, c, settle time, Motion mapping) live only in [motion-timing-engines](references/motion-timing-engines.md#3-spring-model-and-canonical-presets).
+Values (k, c, ζ, overshoot, settle time, Motion mapping) live only in [motion-timing-engines](references/motion-timing-engines.md#3-spring-model-and-canonical-presets).
 
-| Token | Use | ζ | Overshoot |
-| :--- | :--- | :--- | :--- |
-| `spring.snap` | Press feedback, toggles, small controls | ≈1.0 | 0% |
-| `spring.smooth` | Menus, drawers, modals, layout moves | ≈0.89 | ≈0.2% |
-| `spring.playful` | Celebratory badges, rare delight | ≈0.51 | ≈16% |
+| Token | Use |
+| :--- | :--- |
+| `spring.snap` | Press feedback, toggles, small controls (no overshoot) |
+| `spring.smooth` | Menus, drawers, modals, layout moves |
+| `spring.playful` | Celebratory badges, rare delight (visible bounce) |
 
 Damping ratio ζ, not stiffness, decides bounce. Effects (opacity, colour) never overshoot.
 
@@ -121,11 +121,7 @@ Every micro-interaction consists of four discrete stages:
 
 ## ♿ Accessibility, Motion Sickness & Performance
 
-Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md); do not restate them here. The framing to keep straight (WCAG 2.2):
-
-- **2.2.2 Pause, Stop, Hide (Level A):** auto-moving content lasting more than 5 s alongside other content needs a pause mechanism. Hover-only pause does not count.
-- **2.3.3 Animation from Interactions (AAA):** interaction-triggered motion can be disabled.
-- **`prefers-reduced-motion`:** WCAG technique C39 and a Coacus house policy, not an AA requirement. Apply it everywhere anyway.
+Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md). Honour reduced motion everywhere: it is WCAG technique C39 and Coacus house policy, not an AA requirement.
 
 Author no-motion first: opt into spatial motion only when the user has no preference, and keep a reduce fallback for motion that is set elsewhere.
 

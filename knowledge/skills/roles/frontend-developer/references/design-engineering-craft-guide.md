@@ -13,6 +13,7 @@ Use a product wrapper when it centralizes actual token, semantic or behavior dec
 "use client";
 import * as React from "react";
 import { motion, HTMLMotionProps, useReducedMotion } from "motion/react";
+import { springPresets } from "@/lib/animation/springs";
 
 export interface AppButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary" | "subtle" | "brutalist";
@@ -44,7 +45,7 @@ export const AppButton = React.forwardRef<HTMLButtonElement, AppButtonProps>(
       <motion.button
         ref={ref}
         whileTap={!reduceMotion && variant !== "brutalist" ? { scale: 0.98 } : undefined}
-        transition={{ type: "spring", stiffness: 500, damping: 45, mass: 1 }} // spring.snap
+        transition={springPresets.snap}
         className={`inline-flex items-center justify-center rounded-[2px] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-ground)] disabled:opacity-50 disabled:pointer-events-none ${sizeClasses} ${variantClasses} ${className}`}
         {...props}
       >
@@ -93,7 +94,7 @@ These objects carry the canonical spring tokens; [motion-timing-engines](../../.
 ```typescript
 // lib/animation/springs.ts — mirrors the canonical tokens (mass 1)
 
-export const springPhysics = {
+export const springPresets = {
   // spring.smooth: modals, dropdowns, drawers, layout moves (ζ≈0.89, ≈0.2% overshoot)
   smooth: {
     type: "spring" as const,

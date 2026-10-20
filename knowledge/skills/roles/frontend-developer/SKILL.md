@@ -1,6 +1,6 @@
 ---
 name: "frontend-developer"
-description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance."
+description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance. Use when building React, Next.js or Vue interfaces, wiring Motion or GSAP lifecycles, de-templatizing component libraries, or tuning Core Web Vitals."
 ---
 
 # 💻 AI Skill: Senior Frontend Engineer & Design Engineer
@@ -89,17 +89,9 @@ Breaking digital sterility comes from applying a light Perlin noise layer that d
 Choose explicit properties and timing appropriate to the interaction. Springs can support interruptible movement; duration-based easing can suit fades and narrative steps. Do not add motion merely to replace a default or override a deliberately static style.
 
 ### 2.1. Calibrating Natural Springs (Spring Physics)
-Use the canonical spring tokens below; [motion-timing-engines](../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their damping ratios, overshoot, settle times, duration bands and interruption rules — link to it instead of restating values. Only `snap` (ζ≈1) is bounce-free; `smooth` overshoots ≈0.2% and `playful` ≈16%, so reserve `playful` for rare delight:
+Use the canonical spring tokens below; [motion-timing-engines](../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their damping ratios, overshoot, settle times, duration bands and interruption rules — link to it instead of restating values. Only `snap` is bounce-free; reserve `playful` for rare delight. The typed `springPresets` object (the one code copy of the values) lives in [design-engineering-craft-guide](references/design-engineering-craft-guide.md); import it rather than re-declaring numbers:
 ```typescript
-// Canonical spring tokens (mass 1) — mirror motion-timing-engines.md
-export const springPresets = {
-  // spring.snap: press feedback, toggles, small controls (ζ≈1.0, no overshoot)
-  snap: { type: "spring", stiffness: 500, damping: 45, mass: 1 },
-  // spring.smooth: menus, drawers, modals, layout moves (ζ≈0.89)
-  smooth: { type: "spring", stiffness: 300, damping: 31, mass: 1 },
-  // spring.playful: celebratory badges, rare delight (ζ≈0.51)
-  playful: { type: "spring", stiffness: 250, damping: 16, mass: 1 }
-} as const;
+import { springPresets } from "@/lib/animation/springs"; // snap | smooth | playful
 ```
 
 ### 2.2. Atomic Sequential Orchestration with `staggerChildren`
@@ -173,7 +165,7 @@ useEffect(() => {
   return () => lenis.destroy();
 }, []);
 ```
-- **Motion exits**: `AnimatePresence` direct children need stable, unique `key`s (never array indexes) or `exit` never runs.
+- **Motion exits**: `AnimatePresence` direct children need stable, unique `key`s (never array indexes): missing keys stop `exit` from running, and index keys make the wrong element exit.
 - **Vue**: drive JS hooks via `<Transition :css="false" @enter="(el, done) => gsap.from(el, { opacity: 0, onComplete: done })">` (same hooks on `<TransitionGroup>`); in `onBeforeUnmount`, call `ctx.revert()` for a `gsap.context()` and `lenis.destroy()`.
 - **React `<ViewTransition>`**: stable since React 19.3 (see Version Sources); it animates only updates inside `startTransition`, `<Suspense>` reveals or `useDeferredValue`. On earlier React, feature-detect and use `document.startViewTransition(() => flushSync(() => setState(next)))`.
 

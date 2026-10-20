@@ -67,14 +67,14 @@ This section is the canonical source of motion accessibility obligations in Coac
 
 | SC | Name | Level | Requirement for motion | Test |
 |---|---|---|---|---|
-| 2.2.2 | Pause, Stop, Hide | A | Auto-moving content lasting over 5 s beside other content gets a pause, stop or hide control; hover-only pause fails; motion started by scrolling into view counts as automatic | Inventory loops, marquees, carousels; operate each control by keyboard |
-| 2.3.1 | Three Flashes or Below Threshold | A | No more than three flashes in any one second | Frame-step the animation; run a flash analyser on large strobing areas |
+| 2.2.2 | Pause, Stop, Hide | A | Auto-moving content lasting over 5 s beside other content gets a pause, stop or hide control; hover-only pause fails; house policy also treats motion started by scrolling into view as automatic | Inventory loops, marquees, carousels; operate each control by keyboard |
+| 2.3.1 | Three Flashes or Below Threshold | A | No more than three flashes in any one second, unless the flashes stay below the general and red flash thresholds | Frame-step the animation; run a flash analyser on large strobing areas |
 | 2.3.3 | Animation from Interactions | AAA | Interaction-triggered motion can be disabled unless essential | Set reduced motion; trigger every interaction |
 | 1.4.13 | Content on Hover or Focus | AA | Animated tooltips and popovers are dismissible, hoverable and persistent | Escape dismisses; pointer can move onto the content |
 | 2.4.11 | Focus Not Obscured (Minimum) | AA | Sticky, pinned or sliding layers never fully hide the focused element | Tab through with every sticky and pinned state active |
 | 2.5.7 | Dragging Movements | AA | Drag gestures (sliders, reorder, swipe carousels) have a single-pointer non-drag alternative | Complete each task with taps or clicks only |
 | 1.4.12 | Text Spacing | AA | Split-text spans survive user spacing overrides without clipping or overlap | Apply spacing overrides after the split runs |
-| 4.1.3 | Status Messages | AA | Tickers, counters and typewriters expose only the final value | Screen reader hears one announcement per completed change |
+| 4.1.3 | Status Messages | AA | Status changes are announced without moving focus; house policy: tickers, counters and typewriters announce only the final value | Screen reader hears one announcement per completed change |
 | 1.4.10 | Reflow | AA | Horizontal-scroll sections collapse to one column at 320 CSS px | Zoom to 400 %; no two-dimensional scrolling |
 | 2.4.3 | Focus Order | A | After a view transition, focus lands on the new view's heading or the logical next control | Cross every transition by keyboard |
 | 2.5.8 / 2.5.5 | Target Size (Minimum / Enhanced) | AA / AAA | Animated targets measure at least 24×24 CSS px (AA); 44×44 is the enhanced level and the house target for primary touch controls | Measure the hit box at rest and mid-motion |
@@ -146,4 +146,5 @@ WCAG 3.0 is a W3C Working Draft (10 September 2026) and does not replace WCAG 2;
 
 Moving standard pins in this file were resolved 2026-10-20:
 - **WCAG 2.2** (verified) — W3C Recommendation, 12 December 2024 edition — https://www.w3.org/TR/WCAG22/
+- **`prefers-reduced-transparency`** (verified) — Chrome 118, Firefox 113, no Safari; not Baseline — MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-transparency
 - **WCAG 3.0** (verified) — W3C Working Draft, 10 September 2026 — https://www.w3.org/TR/wcag-3.0/
