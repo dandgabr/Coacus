@@ -106,6 +106,7 @@
         "ui-motion-interaction",
         "ui-onboarding-tours",
         "ui-presentation-slides",
+        "ui-scroll-driven-motion",
         "ui-style-3d-immersive-webgl",
         "ui-style-acid-anti-design",
         "ui-style-agitprop-poster",

@@ -2512,7 +2512,7 @@
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:7756a7172068e95bab021167689c2cfe838694a365b936a3559240a78e5b5beb"
+      "digest": "sha256:ed7b1850de350ee9d85ca726444a2db92f53e620b1dbefb56aa4760f8b80d750"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2527,6 +2527,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md",
       "digest": "sha256:be288badf0df21fbe9d82a12e13055b3362786f7eca5e08d397ef28e74644e24"
+    },
+    {
+      "name": "ui-scroll-driven-motion",
+      "description": "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Covers the selection decision tree, browser support with fallbacks, progressive enhancement, reduced-motion static layouts, refresh after layout changes and gating for scroll hijacking. Use when building scroll animations, scrubbed scenes, pinned or sticky sections, carousels with snap points, pull-to-refresh, scroll-driven image sequences, or when reviewing scroll motion for accessibility and performance.",
+      "type": "archive",
+      "url": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
+      "digest": "sha256:60f509467c042078acb48656a9375c4e6844bc57ac5948a7fcee4ecb9862595a"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
@@ -2953,7 +2960,7 @@
       "description": "Provides the parallax scrolling design era (2011-2016): layered depth via differential scroll motion, covering the Silverback/Nike lineage, skrollr and ScrollMagic tooling, the Purdue nausea findings, scroll-hijacking criticism and the native CSS successors. Use when building scroll-depth effects responsibly or studying the era's usability evidence.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-      "digest": "sha256:6864811e2d9b6098e0a377f07be228aafe7b8ff8937e020cb9a214733c44491f"
+      "digest": "sha256:156362c0a196da83438f3882317c94943884ab2fa622401aa2248f22b6dd9403"
     },
     {
       "name": "ui-style-pixel-art",
@@ -3002,7 +3009,7 @@
       "description": "Provides the scrollytelling, narrative scroll and one-page continuous scroll UI style (2012-present): scroll-sequenced stories, pinned scenes, stepped annotations and unified narrative long-scroll pages. Covers NYT Snow Fall origins, CSS animation-timeline scroll()/view(), ScrollTrigger/scrollama tooling, single-page anchor navigation and reduced-motion fallbacks. Use when building investigative data stories, product explainers or continuous one-page narrative sites.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-      "digest": "sha256:09acd8a6124b3b2b85dd158cdd189b56c681eb73ffd80962062961399fa5e8c4"
+      "digest": "sha256:62417196a5aa67c40203239748744a6666736b9f35ba493022443b10e166d6bc"
     },
     {
       "name": "ui-style-silkpunk",

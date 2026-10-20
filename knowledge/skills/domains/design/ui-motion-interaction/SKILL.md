@@ -28,7 +28,7 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 
 - Durations, easing, spring tokens, interruption, Web Animations API, motion tokens: [motion-timing-engines](references/motion-timing-engines.md) (single source; do not restate values elsewhere).
 - Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
-- Scroll-linked and scroll-triggered motion: the ui-scroll-driven-motion skill (planned).
+- Scroll-linked and scroll-triggered motion: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 - View Transitions, FLIP, shared-element and accordion/layout transitions: the ui-state-layout-transitions skill (planned).
 - Pointer and gesture recipes, text-effect recipes: the hub references pointer-and-gesture.md and text-effect-recipes.md (planned).
 
@@ -36,7 +36,7 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 
 ## 🏎️ Physics-Based Motion vs. Easing Curves
 
-Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [scroll narrative modes](references/scroll-narrative-modes.md). These references distinguish visible output from state markers and frame processing from callback cadence.
+Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md). These references distinguish visible output from state markers and frame processing from callback cadence.
 
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |
 | :--- | :--- | :--- |

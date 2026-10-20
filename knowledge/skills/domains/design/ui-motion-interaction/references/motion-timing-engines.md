@@ -143,7 +143,7 @@ document.getAnimations();     // every animation in the document
 
 Avoid leaving `fill: "forwards"` animations piling up; commit and cancel instead.
 
-Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Scroll-driven animations are **Limited availability** (Chrome 115, Safari 26, Firefox preview only): feature-detect with `"ScrollTimeline" in window` and keep a static or IntersectionObserver fallback. Depth on scroll-linked motion belongs to the planned ui-scroll-driven-motion skill.
+Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Scroll-driven animations are **Limited availability** (Chrome 115, Safari 26, Firefox preview only): feature-detect with `"ScrollTimeline" in window` and keep a static or IntersectionObserver fallback. Depth on scroll-linked motion belongs to [ui-scroll-driven-motion](../../ui-scroll-driven-motion/SKILL.md).
 
 ## 6. Motion tokens and choreography
 

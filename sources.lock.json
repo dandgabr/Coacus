@@ -18651,9 +18651,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-      "source_sha256": "6864811e2d9b6098e0a377f07be228aafe7b8ff8937e020cb9a214733c44491f",
+      "source_sha256": "156362c0a196da83438f3882317c94943884ab2fa622401aa2248f22b6dd9403",
       "target_path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-      "target_sha256": "6864811e2d9b6098e0a377f07be228aafe7b8ff8937e020cb9a214733c44491f",
+      "target_sha256": "156362c0a196da83438f3882317c94943884ab2fa622401aa2248f22b6dd9403",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18666,9 +18666,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-      "source_sha256": "09acd8a6124b3b2b85dd158cdd189b56c681eb73ffd80962062961399fa5e8c4",
+      "source_sha256": "62417196a5aa67c40203239748744a6666736b9f35ba493022443b10e166d6bc",
       "target_path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-      "target_sha256": "09acd8a6124b3b2b85dd158cdd189b56c681eb73ffd80962062961399fa5e8c4",
+      "target_sha256": "62417196a5aa67c40203239748744a6666736b9f35ba493022443b10e166d6bc",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19341,9 +19341,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "source_sha256": "5401b5bf25790efef2c8fe1f7c06597fcc919f158572c6b48d3a6ca7dbe5ac3d",
+      "source_sha256": "af1ddefbde143a3ed59d3c93c5d8efc94d5706d9db5ddb1d34abc0399fc663f9",
       "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "target_sha256": "5401b5bf25790efef2c8fe1f7c06597fcc919f158572c6b48d3a6ca7dbe5ac3d",
+      "target_sha256": "af1ddefbde143a3ed59d3c93c5d8efc94d5706d9db5ddb1d34abc0399fc663f9",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20881,6 +20881,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-19T18:16:34Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
+      "source_sha256": "8d0adea20bf65664527c400b589b631411e325cf5b515ccdeb96336b597b793b",
+      "target_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
+      "target_sha256": "8d0adea20bf65664527c400b589b631411e325cf5b515ccdeb96336b597b793b",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-20T17:49:21Z"
     }
   ]
 }

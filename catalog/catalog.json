@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 102,
-    "skills": 459,
+    "skills": 460,
     "mcps": 2
   },
   "agents": [
@@ -899,6 +899,10 @@
     {
       "name": "ui-presentation-slides",
       "path": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md"
+    },
+    {
+      "name": "ui-scroll-driven-motion",
+      "path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
