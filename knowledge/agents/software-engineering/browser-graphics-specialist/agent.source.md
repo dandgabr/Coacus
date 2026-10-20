@@ -13,6 +13,8 @@ skills:
   - knowledge/skills/roles/frontend-developer/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
+  - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
+  - knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md
 tags:
   - webgpu
   - webgl
@@ -58,11 +60,13 @@ Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using 
 
 This agent operates using the guidelines and technical standards established in the following skills:
 
-- [ui-gpu-graphics-web](../../../skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
-- [ui-style-3d-immersive-webgl](../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
-- [frontend-developer](../../../skills/roles/frontend-developer/SKILL.md)
-- [web-accessibility-wcag](../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
-- [clean-code-reusability](../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-gpu-graphics-web](knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
+- [ui-style-3d-immersive-webgl](knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
+- [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
+- [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-scroll-driven-motion](knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-style-glassmorphism](knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md)
 
 ---
 

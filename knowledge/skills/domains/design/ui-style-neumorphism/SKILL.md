@@ -190,6 +190,23 @@ A circular extruded wheel featuring an engraved indicator notch and subtle radia
   3. **High-Chroma Active States:** When a button is pressed or active, do not rely on shadow alone; introduce a distinct chromatic indicator (e.g. blue LED dot or colored text).
 - **Focus Rings:** Unambiguous 3px solid accent outline (`outline: 3px solid #2563EB; outline-offset: 3px;`).
 
+> **Default: No** for soft-shadow interactive controls (buttons, toggles, inputs, sliders).
+> **Allowed when:** every control has a boundary or indicator at 3:1 against the substrate (1.4.11), its state (pressed, checked, selected, disabled) is not conveyed by shadow direction alone, and focus is visible (2.4.7).
+> **Evidence required:** measured boundary contrast at rest, hover, checked, focus and disabled; a render under `forced-colors: active`; a render under `prefers-contrast: more`.
+> **Fallback:** a flat control with a solid border and a chromatic or iconic state marker, keeping the soft relief only on decorative cards.
+
+- **Forced Colors:** Under `forced-colors: active` the browser removes `box-shadow`, so a shadow-only control vanishes entirely. Keep a real `border` (it maps to a system colour) and express state with text, an icon or `aria-pressed`/`aria-checked` styling rather than shadow:
+  ```css
+  @media (forced-colors: active) {
+    .neu-btn { border: 2px solid ButtonText; }
+    .neu-btn[aria-pressed="true"] { background: Highlight; color: HighlightText; }
+  }
+  @media (prefers-contrast: more) {
+    .neu-btn, .neu-card { box-shadow: none; border: 2px solid var(--neu-text-primary); }
+  }
+  ```
+- **Motion:** The extrude-to-inset swap is feedback, not decoration; keep it instantaneous under reduced motion. Canonical motion obligations live in [web accessibility](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
+
 ---
 
 ## ✅ When to Use / ❌ When to Avoid

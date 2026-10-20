@@ -2496,9 +2496,9 @@
     {
       "name": "ui-gpu-graphics-web",
       "description": "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, generative canvases, or high-performance GPU interfaces.",
-      "type": "skill-md",
+      "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "digest": "sha256:281139ee0baf56578628ac2d0b065d62e351c3d8da52c212e212ce041dfc8aff"
+      "digest": "sha256:384ffb1310fe1b6584c5d0f6bd60db05eb9254f125c6712967b6c964034b290b"
     },
     {
       "name": "ui-hero-sections",
@@ -2610,7 +2610,7 @@
       "description": "Provides the canonical Aurora / Mesh Gradient UI style (2018-present): ambient multi-color blurred gradient fields, pure-CSS radial mesh recipes, Stripe WebGL minigl canvas lineage, SVG feTurbulence grain anti-banding, contrast scrim architecture, and vestibular motion gating. Use when designing atmospheric hero backgrounds, landing page splash headers, or high-aesthetic devtool marketing experiences.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
-      "digest": "sha256:0cc665c5e03800af5dcad602c6b409a87a0aff54b264e675464847be9e9c35cc"
+      "digest": "sha256:20c577092b96d50761e388211b1b238821dd6eb126bcbcb58ec5f056c01c5563"
     },
     {
       "name": "ui-style-bauhaus",
@@ -2624,7 +2624,7 @@
       "description": "Provides the bento grid UI style (2022-present): compartmentalized bento-box layouts of asymmetric rounded tiles with hierarchy expressed by span rather than shadow, covering the CSS grid recipe, Apple keynote lineage, motion patterns, DOM-order accessibility risks and appropriate page types. Use when designing feature overviews, marketing pages or portfolio grids in the Apple bento grammar.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
-      "digest": "sha256:7d3011a17e8b4b68c94477a4071e952ba2279a0ec76640b7fea7f6360de34e23"
+      "digest": "sha256:ba39f166deaf28449545d6b1864535c052f5592ed3912ca795c7fe3b02fef5cd"
     },
     {
       "name": "ui-style-biopunk",
@@ -2797,9 +2797,9 @@
     {
       "name": "ui-style-glassmorphism",
       "description": "Provides the canonical Glassmorphism & Spatial UI style (2020-present): multi-layered frosted glass surfaces, backdrop-filter optical blur, 1px specular white border highlights, subtle drop shadows, and spatial depth inspired by macOS Big Sur and visionOS. Covers contrast remediation, layered scrim fallbacks, design tokens, and WCAG 2.2 compliance. Use when designing premium fintech dashboards, spatial computing interfaces, or modern operating system shells.",
-      "type": "skill-md",
+      "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "digest": "sha256:c3677b1cdefd9a17b2bb6a456b45ca848d3f06f166cc12bd073fc62e2ad3d9a3"
+      "digest": "sha256:1ca4e6af725e54f341c3c30e0cb6f8a2f18460a1fd664900f647734661745358"
     },
     {
       "name": "ui-style-glitch",
@@ -2946,7 +2946,7 @@
       "description": "Provides the canonical Neumorphism & Soft UI design style (2019-2020): monochromatic extruded and indented surfaces created from paired light-and-dark soft drop shadows, simulating plastic tactile relief. Covers shadow mathematics, directional lighting models, accessibility remediation, contrast border overlays, and hybrid design-system integration. Use when designing tactile smart-home remotes, audio equipment dials, or soft embossed card containers.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
-      "digest": "sha256:16f49891d5836c4842323e57fe763edbcf45c628d36147c8f5f63b1f35589e08"
+      "digest": "sha256:3557387c509667d0a522ed0178d26ff2a43dcf99727765c809693216b52e162f"
     },
     {
       "name": "ui-style-nordic",

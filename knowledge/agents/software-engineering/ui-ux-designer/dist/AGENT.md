@@ -90,6 +90,8 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 - [ui-style-solarpunk](../../../../skills/domains/design/ui-style-solarpunk/SKILL.md)
 - [ui-style-steampunk](../../../../skills/domains/design/ui-style-steampunk/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose

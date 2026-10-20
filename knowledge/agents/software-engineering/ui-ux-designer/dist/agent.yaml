@@ -287,3 +287,7 @@ tools:
     path: ../../../../skills/domains/design/ui-style-steampunk/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/security-privacy/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md
