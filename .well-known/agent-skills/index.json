@@ -2512,7 +2512,7 @@
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:ed7b1850de350ee9d85ca726444a2db92f53e620b1dbefb56aa4760f8b80d750"
+      "digest": "sha256:55374b12dfea1811adebb8da365acace443dca5e3243af2dfcdcd51dde9fe9f1"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2530,10 +2530,10 @@
     },
     {
       "name": "ui-scroll-driven-motion",
-      "description": "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Covers the selection decision tree, browser support with fallbacks, progressive enhancement, reduced-motion static layouts, refresh after layout changes and gating for scroll hijacking. Use when building scroll animations, scrubbed scenes, pinned or sticky sections, carousels with snap points, pull-to-refresh, scroll-driven image sequences, or when reviewing scroll motion for accessibility and performance.",
+      "description": "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Use when building scroll animations, scrubbed or pinned scenes, snap carousels, pull-to-refresh or scroll-driven image sequences, when sticky positioning does not stick, or when reviewing scroll motion for browser support, reduced motion or performance.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "digest": "sha256:60f509467c042078acb48656a9375c4e6844bc57ac5948a7fcee4ecb9862595a"
+      "digest": "sha256:2b8b2a9ce95bc3777f6666bd938b7f5af51ec047ee2f11b6c6852ee81a313485"
     },
     {
       "name": "ui-style-3d-immersive-webgl",

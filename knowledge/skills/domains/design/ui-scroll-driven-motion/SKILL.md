@@ -1,6 +1,6 @@
 ---
 name: "ui-scroll-driven-motion"
-description: "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Covers the selection decision tree, browser support with fallbacks, progressive enhancement, reduced-motion static layouts, refresh after layout changes and gating for scroll hijacking. Use when building scroll animations, scrubbed scenes, pinned or sticky sections, carousels with snap points, pull-to-refresh, scroll-driven image sequences, or when reviewing scroll motion for accessibility and performance."
+description: "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Use when building scroll animations, scrubbed or pinned scenes, snap carousels, pull-to-refresh or scroll-driven image sequences, when sticky positioning does not stick, or when reviewing scroll motion for browser support, reduced motion or performance."
 tags:
   - scroll-driven-animation
   - scroll-timeline
@@ -80,7 +80,7 @@ Recipes for all four live in [CSS scroll timelines](references/css-scroll-timeli
 | `::scroll-button()`, `::scroll-marker`, `scroll-marker-group` | Limited | Chrome 135 only | Real buttons and anchor links |
 | `scrollend` | Baseline newly available (2025-12-12) | Chrome 114, Firefox 109, Safari 26.2 | Debounced `scroll` |
 | `scroll-behavior` | Baseline widely available (2024-09-14) | All current | Instant jump |
-| `overscroll-behavior` | Partial everywhere; full spec Limited | Chrome 63, Firefox 59, Safari 16 (non-overflowing containers: Chrome 144, Firefox 150) | Scroll lock on the document |
+| `overscroll-behavior` | Limited (full spec); older partial behaviour works in all engines | Chrome 63, Firefox 59, Safari 16 (non-overflowing containers: Chrome 144, Firefox 150) | Scroll lock on the document |
 
 ---
 
@@ -90,7 +90,7 @@ Recipes for all four live in [CSS scroll timelines](references/css-scroll-timeli
 2. **Base path first.** Write the static layout, then layer motion inside `@supports (animation-timeline: scroll())` or after feature detection. Chrome-only features never carry content or controls alone.
 3. **Off-main-thread only for `transform`, `opacity` and `filter`.** Timelines driving layout or paint properties (`height`, `clip-path`, `mask`) run on the main thread each frame; measure first.
 4. **Refresh after layout changes.** Trigger positions are cached; recalculate (`ScrollTrigger.refresh()`) after `document.fonts.ready`, image loads, accordions and route changes.
-5. **Reduced motion means a static layout.** Under `prefers-reduced-motion: reduce`, unpin, drop scrub and parallax, show every step in normal flow. Honoring the preference is WCAG technique C39 and a Coacus house policy.
+5. **Reduced motion means a static layout.** Under `prefers-reduced-motion: reduce`, unpin, drop scrub and parallax, show every step in normal flow. (house policy; see the canonical accessibility section).
 6. **Progress-driven motion has no duration** and no easing lag. Triggered reveals take durations from [motion timing engines](../ui-motion-interaction/references/motion-timing-engines.md).
 7. **Own and release resources.** Observers, triggers, smooth-scroll instances and rAF loops die with their mounting context; see the lifecycle contract in [frontend-developer](../../../roles/frontend-developer/SKILL.md).
 
@@ -142,11 +142,11 @@ Prefer `proximity`, add `scroll-padding` for fixed headers, and give carousels p
 
 Canonical obligations live in the `🎞️ Motion and Animation` section of [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md). Scroll-specific checks:
 
-- **2.2.2 Pause, Stop, Hide:** motion started by scrolling into view that then runs on its own is automatic; add a visible control.
-- **2.3.3 Animation from Interactions:** scrub, parallax and pinning are interaction-triggered; the static path removes them.
-- **2.4.11 Focus Not Obscured (Minimum):** sticky headers and pinned scenes must not hide the focused element.
-- **2.5.7 Dragging Movements:** carousels, horizontal tracks and pull-to-refresh need single-pointer alternatives.
-- **1.4.10 Reflow:** horizontal travel collapses to vertical flow at narrow widths.
+- **2.2.2:** loops started by scrolling into view get a visible pause control.
+- **2.3.3:** scrub, parallax and pinning disappear on the static path.
+- **2.4.11:** sticky headers and pinned scenes never entirely hide the focused element; reserve space with `scroll-padding-top`.
+- **2.5.7:** carousels, horizontal tracks and pull-to-refresh offer buttons.
+- **1.4.10:** horizontal travel collapses to vertical flow at narrow widths.
 
 Nothing may depend on a wheel event.
 

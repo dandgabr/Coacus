@@ -65,8 +65,8 @@ Vertical scrolling drives horizontal travel of a track. Gate it first (see the "
 
 ```html
 <section class="hscroll" aria-labelledby="hscroll-title" style="--items: 5">
-  <h2 id="hscroll-title">Release timeline</h2>
   <div class="hscroll__sticky">
+    <h2 id="hscroll-title">Release timeline</h2>
     <ol class="hscroll__track">
       <li class="hscroll__item"><a href="/releases/1">…</a></li>
       <!-- … -->

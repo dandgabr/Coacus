@@ -95,9 +95,10 @@ The `animation` shorthand resets `animation-timeline` to `auto`. Declare `animat
     opacity: 0;
     transform: translateY(1.5rem);
   }
+  /* --reveal-duration: a component-state band token from motion-timing-engines.md */
   .js-reveal .reveal {
-    transition: opacity var(--reveal-duration, 250ms) ease-out,
-                transform var(--reveal-duration, 250ms) ease-out;
+    transition: opacity var(--reveal-duration) ease-out,
+                transform var(--reveal-duration) ease-out;
   }
 }
 ```
@@ -304,4 +305,4 @@ Moving release pins in this file were resolved 2026-10-20:
 - **lenis 1.3.27** (verified) — https://registry.npmjs.org/lenis ; options and defaults from https://github.com/darkroomengineering/lenis (README, main branch)
 - **locomotive-scroll 5.0.1** (verified) — https://registry.npmjs.org/locomotive-scroll (depends on lenis)
 - **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap ; ScrollTrigger and `gsap.matchMedia()` per https://gsap.com/docs/v3/Plugins/ScrollTrigger/
-- **Scroll-driven animations support** (verified) — https://registry.npmjs.org/@mdn/browser-compat-data 8.1.6: `animation-timeline` and `animation-range` Chrome 115, Safari 26, Firefox preview; `timeline-scope` Chrome 116
+- **Scroll-driven animations support** (verified) — https://registry.npmjs.org/@mdn/browser-compat-data 8.1.6: `animation-timeline` and `animation-range` Chrome 115, Safari 26, Firefox preview; `timeline-scope` Chrome 116, Safari 26

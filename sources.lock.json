@@ -20886,9 +20886,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "source_sha256": "8d0adea20bf65664527c400b589b631411e325cf5b515ccdeb96336b597b793b",
+      "source_sha256": "dbc79a3b5cf10e426affdfe927050717939636854542c394b7ce448f94562280",
       "target_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "target_sha256": "8d0adea20bf65664527c400b589b631411e325cf5b515ccdeb96336b597b793b",
+      "target_sha256": "dbc79a3b5cf10e426affdfe927050717939636854542c394b7ce448f94562280",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
