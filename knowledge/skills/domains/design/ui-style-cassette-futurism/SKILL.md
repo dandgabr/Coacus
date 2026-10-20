@@ -269,7 +269,7 @@ Cassette Futurism is an analog retrofuturist aesthetic derived from the consumer
 ## ✨ Micro-Interactions, Motion & Soundscapes
 
 - **Physical Switch Snap:** Rocker switches exhibit instantaneous mechanical depression with an audible clack and zero easing.
-- **CRT Power-On Raster Sweep:** Screen activation renders a high-velocity horizontal raster sweep from a narrow raster line to the complete readout (`clip-path: inset(0)`) in 180ms; never leave content collapsed after completion.
+- **CRT Power-On Raster Sweep:** Screen activation renders a high-velocity horizontal raster sweep from a narrow raster line to the complete readout (`clip-path: inset(0)`) in 180ms; never leave content collapsed after completion. Clip reveal mechanics and `inert` handling: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - **GaAs LED Strobe:** Standby indicators pulse with authentic 2Hz square-wave blink.
 
 ---

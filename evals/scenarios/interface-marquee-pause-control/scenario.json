@@ -1,0 +1,45 @@
+{
+  "id": "interface-marquee-pause-control",
+  "title": "Marquee pause control and clone semantics",
+  "harness": "codex",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nLogo marquee auto-scrolls forever at the top of a pricing page. The track is duplicated with a cloned `<ul>` so the loop is seamless; screen readers announce every logo twice and keyboard focus lands on cloned links. The team says `:hover { animation-play-state: paused }` already covers accessibility. Review and repair.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)2\\.2\\.2|pause,?\\s*stop,?\\s*hide",
+      "reason": "The answer must cite WCAG 2.2.2 Pause, Stop, Hide."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(visible|explicit|dedicated|real)\\s+(pause|play/pause|stop)\\s+(button|control|toggle)|(pause|stop)\\s+(button|control|toggle)",
+      "reason": "A visible pause control is required."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)aria-hidden\\W{0,6}true",
+      "reason": "The cloned track must be hidden from assistive technology."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)\\binert\\b",
+      "reason": "The cloned track must be inert so focus cannot reach duplicate links."
+    },
+    {
+      "kind": "not_contains",
+      "value": "hover pause is enough",
+      "reason": "Hover-only pause does not satisfy 2.2.2; asserting it does is the anti-pattern."
+    },
+    {
+      "kind": "not_contains",
+      "value": "on hover is sufficient",
+      "reason": "Hover-only pause does not satisfy 2.2.2; asserting it does is the anti-pattern."
+    }
+  ],
+  "rubric": [
+    "A visible, keyboard-operable pause control is added; hover or focus pause is at most a supplement.",
+    "The clone carries aria-hidden=\"true\" and inert, and reduced motion stops the loop.",
+    "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
+    "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
+  ],
+  "acceptance": "The response makes the justified decision for this raw case, provides a discriminating verification and states the evidence limits without inventing execution."
+}

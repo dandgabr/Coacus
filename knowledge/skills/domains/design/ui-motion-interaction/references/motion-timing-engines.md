@@ -37,14 +37,41 @@ const durationFor = (px, { min = 150, max = 400, msPerPx = 0.5 } = {}) =>
 | Route / page | page or view change | 300–500 ms |
 | Exit | any of the above leaving | ≈ 70–80% of the matching enter |
 | Scroll-linked | progress, parallax, reveal tied to scroll | no duration: progress-driven |
+| Narrative (exception) | decorative SVG line drawing, narrative reveal | 600–1000 ms, non-blocking decorative motion only |
 
 Effects (opacity, colour) never overshoot, whatever engine drives them.
+
+### Canonical CSS tokens
+
+These custom-property names are the single source of the bands above. Other skills reference `var(--motion-*)` and `var(--ease-*)` instead of literal values; each value is one point inside its band.
+
+```css
+:root {
+  --motion-feedback: 120ms;    /* feedback band, 100–150 ms */
+  --motion-state: 200ms;       /* component state band, 150–250 ms */
+  --motion-layout: 320ms;      /* overlay / layout band, 250–400 ms */
+  --motion-route: 400ms;       /* route / page band, 300–500 ms */
+  --motion-exit-ratio: 0.75;   /* exit = enter × ratio, e.g. calc(var(--motion-layout) * var(--motion-exit-ratio)) */
+  --motion-narrative: 800ms;   /* exception band, 600–1000 ms: decorative, non-blocking only */
+  --ease-enter: cubic-bezier(0.2, 0, 0, 1);  /* ease-out */
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);   /* ease-in */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* spatial motion collapses to 0 or becomes a cross-fade on --motion-feedback */
+  :root { --motion-layout: 0ms; --motion-route: 0ms; --motion-narrative: 0ms; }
+}
+```
+
+- **Easing choice:** `--ease-enter` (the enter curve from section 1) covers about 70% of its travel in the first third of the duration and lands with no overshoot; `--ease-exit` starts slowly and leaves at full speed, so departures never decelerate in the user's way.
+- **Reduced motion:** spatial durations (travel, scale, reflow) collapse to `0ms` or turn into an opacity cross-fade on `--motion-feedback`; feedback and state colour changes keep their timing.
+- **Narrative exception:** `--motion-narrative` (600–1000 ms) is only for long decorative draws such as SVG line drawing or narrative reveals that never block input, hide content at rest or delay a task. Anything the user waits on uses the bands above.
 
 ## 2. `cubic-bezier()` versus `linear()`
 
 `cubic-bezier(x1, y1, x2, y2)` describes one smooth curve with two control points. Y values outside [0, 1] give a single overshoot or anticipation; it cannot express oscillation.
 
-`linear()` (Baseline widely available since December 2023: Chrome 113, Firefox 112, Safari 17.2) is a piecewise-linear easing through any number of points. Sampling a spring or bounce solver offline produces an easing that CSS transitions and keyframes can run off the main thread:
+`linear()` (Baseline newly available December 2023, widely available June 2026: Chrome 113, Firefox 112, Safari 17.2) is a piecewise-linear easing through any number of points. Sampling a spring or bounce solver offline produces an easing that CSS transitions and keyframes can run off the main thread:
 
 ```css
 :root {
@@ -124,6 +151,8 @@ Compose uses a damping ratio directly; convert to `c = 2ζ·√(k·m)` for web s
 
 Use a JS spring for anything the user can grab, fling or toggle rapidly. Use CSS for fire-and-forget transitions.
 
+View Transition, FLIP and auto-height mechanics, including how to handle interaction during the snapshot, live in [ui-state-layout-transitions](../../ui-state-layout-transitions/SKILL.md).
+
 ## 5. Web Animations API foundation
 
 CSS animations, CSS transitions and `element.animate()` all surface as `Animation` objects.
@@ -143,7 +172,7 @@ document.getAnimations();     // every animation in the document
 
 Avoid leaving `fill: "forwards"` animations piling up; commit and cancel instead.
 
-Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Scroll-driven animations are **Limited availability** (Chrome 115, Safari 26, Firefox preview only): feature-detect with `"ScrollTimeline" in window` and keep a static or IntersectionObserver fallback. Depth on scroll-linked motion belongs to the planned ui-scroll-driven-motion skill.
+Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Scroll-driven animations are not Baseline (support matrix in the scroll skill): feature-detect with `"ScrollTimeline" in window` and keep a static or IntersectionObserver fallback. Depth on scroll-linked motion belongs to [ui-scroll-driven-motion](../../ui-scroll-driven-motion/SKILL.md).
 
 ## 6. Motion tokens and choreography
 
@@ -197,8 +226,8 @@ For character and sprite motion review, use [game-animation-qa-motion](../../../
 
 Moving release pins in this file were resolved 2026-10-20:
 
-- **CSS `linear()` easing** (verified) — Baseline widely available December 2023 (Chrome 113, Firefox 112, Safari 17.2) — web-features 3.43.0 and MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
+- **CSS `linear()` easing** (verified) — Baseline newly available December 2023, widely available June 2026 (Chrome 113, Firefox 112, Safari 17.2) — web-features 3.43.0 and MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
 - **Scroll-driven animations / `ScrollTimeline` / `ViewTimeline`** (verified) — Limited availability: Chrome 115, Safari 26, Firefox preview only — MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline
 - **Motion `spring` options** (verified) — motion 14.4.0 (2026-10-19), https://motion.dev/docs/spring and https://motion.dev/changelog
 - **Material 3 Expressive Compose motion scheme values** (verified) — androidx-main `MotionScheme.kt`, https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MotionScheme.kt
-- **DTCG Format Module 2025.10** (verified) — Stable, published 2025-10-28, https://www.designtokens.org/technical-reports/
+- **DTCG Format Module 2025.10** (verified) — Stable, published 2025-10-28, https://www.designtokens.org/TR/2025.10/format/

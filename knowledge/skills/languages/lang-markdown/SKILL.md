@@ -134,7 +134,7 @@ When writing or refactoring Markdown documents, apply the following rules strict
 - **`scripts/`**: Executable Markdown automation and validation scripts.
 - **`examples/`**: Default models and templates (technical README, ADR, Changelog).
 - **`resources/`**: Auxiliary resources and icon/badge palettes.
-- **`references/`**: Reference documentation for the CommonMark, GFM, and MarkdownLint specifications.
+- **`references/`**: Reference documentation for the CommonMark, GFM, and MarkdownLint specifications; start with [gfm_spec_guide](references/gfm_spec_guide.md).
 
 ## 🔒 Security Issues and Safe Practices
 

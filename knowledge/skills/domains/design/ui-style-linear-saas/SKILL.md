@@ -323,6 +323,7 @@ Linear uses the **Inter** family exclusively, leveraging OpenType variable featu
 
 - Complements [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md) by providing the concrete high-craft execution framework.
 - Contrasts with [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md) and [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md) by prioritizing surgical restraint and zero-lag performance over physical hyperbole.
+- Takes its duration bands, easing curves and zero-bounce spring presets from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Retain compact issue rows but expose complete ellipsized titles and keyboard actions; bound the palette to usable height with scrollable results and verify light/dark muted labels and focus in the actual surface stack.

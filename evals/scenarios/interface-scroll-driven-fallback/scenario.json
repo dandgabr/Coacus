@@ -1,0 +1,40 @@
+{
+  "id": "interface-scroll-driven-fallback",
+  "title": "Scroll timeline fallback and no-JS visibility",
+  "harness": "codex",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nLanding page reveals each section with `animation: reveal linear both; animation-timeline: view();` on `.section`, where the keyframes start at `opacity: 0`. The base stylesheet also sets `.section { opacity: 0 }` and a script adds `.is-visible` from an IntersectionObserver. QA on Firefox and with JavaScript disabled reports blank sections. Review and repair.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)@supports\\s*(not\\s+)?\\(?\\s*animation-timeline",
+      "reason": "The fix must guard the scroll timeline behind an @supports feature query."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(?:\\b(?:without|no|disabled)\\s+(?:javascript|js)\\b|\\b(?:javascript|js)\\s+(?:is\\s+)?(?:disabled|unavailable|off|fails|blocked)\\b)(?:(?!\\bnot\\b|\\bnever\\b|n't).){0,120}\\b(?:visible|readable|shown|opacity:\\s*1)\\b|\\b(?:visible|readable|shown|opacity:\\s*1)\\b(?:(?!\\bnot\\b|\\bnever\\b|n't).){0,120}(?:\\b(?:without|no|disabled)\\s+(?:javascript|js)\\b|\\b(?:javascript|js)\\s+(?:is\\s+)?(?:disabled|unavailable|off|fails|blocked)\\b)",
+      "reason": "Content must stay visible when JavaScript is unavailable."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(firefox|gecko|unsupported|no support).{0,160}(fallback|base|static|visible)|(fallback|base|static|visible).{0,160}(firefox|gecko|unsupported)",
+      "reason": "The answer must address the engine without scroll timelines."
+    },
+    {
+      "kind": "not_contains",
+      "value": "animation-timeline is Baseline",
+      "reason": "Scroll-driven animations are not Baseline; claiming universal support is an anti-pattern."
+    },
+    {
+      "kind": "not_contains",
+      "value": "Firefox supports animation-timeline",
+      "reason": "Scroll-driven animations are not Baseline; claiming universal support is an anti-pattern."
+    }
+  ],
+  "rubric": [
+    "The base state is visible content; hidden starting states are applied only inside @supports (animation-timeline: view()) or after script confirms support.",
+    "Firefox and no-JavaScript paths are verified explicitly, and reduced motion removes the reveal.",
+    "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
+    "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
+  ],
+  "acceptance": "The response makes the justified decision for this raw case, provides a discriminating verification and states the evidence limits without inventing execution."
+}

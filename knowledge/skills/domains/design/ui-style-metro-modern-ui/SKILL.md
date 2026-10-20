@@ -335,6 +335,7 @@ Metro's core soul is **Segoe UI** (authored by Steve Matteson):
 
 - Direct ancestor of [ui-style-flat-design](../ui-style-flat-design/SKILL.md) and contemporary foil to [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - Contrasts with [ui-style-windows-xp](../ui-style-windows-xp/SKILL.md) by eliminating all bevels, drop shadows, and glossy plastic gradients.
+- Takes its tile flip and tilt durations, easing curves and choreography tokens from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Use accent-specific on-colors in tile examples, especially orange; allow tile grids and panorama tabs to reflow or remain reachable in narrow/short owners, and preserve exactly one semantic active panel while flipping decorative tile faces.

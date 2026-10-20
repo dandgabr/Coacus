@@ -236,6 +236,7 @@ A rectangular status badge rendered in fixed-width monospace with a 1px border.
 
 - **Sibling Brutalist Styles:** [ui-style-web-brutalism](../ui-style-web-brutalism/SKILL.md), [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md).
 - **Minimalist & Architectural Peers:** [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-blueprint-cad-schematic](../ui-style-blueprint-cad-schematic/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+- **Timing Tokens:** Canonical duration bands and easing for its instant-feeling state changes: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Choose the focus ink against the surrounding surface or use a binary dual ring across inversions; retain pure black/white identity and validate gray indices/control boundaries separately from the 21:1 headline pair.

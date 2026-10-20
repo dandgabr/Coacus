@@ -90,6 +90,8 @@ Senior specialist agent in Interface Design (UI), User Experience (UX) and Art D
 - [ui-style-solarpunk](../../../../skills/domains/design/ui-style-solarpunk/SKILL.md)
 - [ui-style-steampunk](../../../../skills/domains/design/ui-style-steampunk/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -115,6 +117,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
 - [ui-onboarding-tours](../../../../skills/domains/design/ui-onboarding-tours/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
 - [ui-gpu-graphics-web](../../../../skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)

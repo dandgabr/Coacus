@@ -71,6 +71,7 @@ When a table exceeds viewport width:
 - **Pinned Primary Key (Left)**: The identifier column (e.g., ID, Name, Customer) remains pinned (`position: sticky; left: 0; z-index: 10`) with a subtle drop-shadow or border separator when scrolled.
 - **Pinned Actions (Right)**: Context actions remain sticky to the right edge (`position: sticky; right: 0; z-index: 10`) so the user never has to scroll back and forth to execute an action.
 - **Scroll Affordance**: Render subtle gradient shadow edges on the container to signal hidden horizontal content to the user.
+- **Sticky Pitfalls**: When a pinned column silently stops sticking (an `overflow` ancestor or a missing inset), see [sticky positioning](../ui-scroll-driven-motion/references/sticky-snap-overscroll.md).
 
 ---
 
@@ -114,6 +115,7 @@ Dashboards synthesize table data into actionable top-level metrics:
 1. **Skeleton Loading**:
    - Mirror the exact table structure with animated pulsating bars (`width: 60-80%`, `height: 12px`, `border-radius: 4px`).
    - Never replace the table structure with a single spinner in the center; skeletons preserve perceived layout stability and layout shift metrics (CLS).
+   - Shimmer mechanics, reduced-motion handling and the skeleton-to-content swap: [skeletons and shimmer](../ui-state-layout-transitions/references/reveal-collapse-loading.md).
 2. **Actionable Empty States (Zero-Data)**:
    - When no records exist: Provide a clear icon, explanatory title ("No invoices yet"), secondary guidance, and a primary CTA ("Create your first invoice").
    - When filters yield 0 results: State clearly "No matches for current filters" and provide a "Clear all filters" button.

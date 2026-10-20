@@ -354,6 +354,7 @@ M3 specifies a rigorous 15-role typographic system:
 
 - Direct successor to [ui-style-flat-design](../ui-style-flat-design/SKILL.md) (Flat 2.0).
 - Contrasts with [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) and [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) by trading monochrome discipline for organic, playful personalization.
+- **Motion Mechanics:** state-layer ripple in [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md); Material 3 Expressive springs, easing and duration tokens in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md); container morphing from card or FAB into a detail view in [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 ## Appearance and Interaction Verification
 
 Label hand-picked OKLCH values as illustrative rather than HCT-generated guarantees; complete secondary/tertiary/on-state role pairs in requested appearances and verify tinted/ripple layers and chips in rendered states.

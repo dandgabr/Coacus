@@ -75,6 +75,7 @@ Interfaces where the model drives not just text but the UI itself: streaming ans
 
 - Sibling styles: [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md).
 - For the underlying interaction paradigms, see [ai-application-engineering](../../industry/ai-application-engineering/SKILL.md) and [conversational-ai-chatbots](../../industry/conversational-ai-chatbots/SKILL.md).
+- Skeleton placeholders for tool latency and the skeleton-to-component swap: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 ## Appearance and Interaction Verification
 
 Scope confirmation to unresolved consequential choices; preserve prior authorization and bind streamed tool cards/results to the current request, cancelling stale updates while keeping completion/error status accessible.

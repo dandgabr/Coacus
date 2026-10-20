@@ -39,7 +39,7 @@ Scroll position orchestrating a unified narrative experience: full-bleed backgro
 
 - **Pin & Scrub:** Elements lock in place (`position: sticky`) while scroll progress scrubs a visual state (0% to 100%).
 - **Step Transitions:** Stepped annotations fade and slide in when crossing viewport thresholds (`IntersectionObserver`).
-- **Native Scroll First:** Choose continuous, scrubbed or explicitly requested scene presentation. Preserve native scrolling by default. For an authorized scene deck, scope input to its owner, preserve nested scrolling and zoom, and provide keyboard/touch navigation and exits. See [scroll narrative modes](../ui-motion-interaction/references/scroll-narrative-modes.md).
+- **Native Scroll First:** Choose continuous, scrubbed or explicitly requested scene presentation. Preserve native scrolling by default. For an authorized scene deck, scope input to its owner, preserve nested scrolling and zoom, and provide keyboard/touch navigation and exits. See [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md) for narrative modes and stepped-presentation contracts.
 - Under `prefers-reduced-motion: reduce`, disable all pinned scrub animations, displaying all content sequentially in standard static flow.
 
 ---
@@ -87,7 +87,8 @@ body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smo
 }
 ```
 
-- Prefer native CSS `animation-timeline: view()` where supported; fall back gracefully to `IntersectionObserver`.
+- Prefer native CSS `animation-timeline: view()` where supported; fall back gracefully to `IntersectionObserver`. Timelines, ScrollTrigger pinning, sticky stages, snapping and image sequences are specified in [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md); this skill owns the narrative style.
+- Scrollama 3.2.0 has not been published since 2022; prefer a plain `IntersectionObserver` step tracker or ScrollTrigger for new work.
 - Ensure all narrative chapters are directly accessible via standard keyboard navigation (Tab and Page Down) and anchor links.
 
 ---
@@ -95,6 +96,7 @@ body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smo
 ## ♿ Accessibility
 
 - **Keyboard Reachability:** Never conceal information that can only be unlocked via mousewheel events. Keyboard users must be able to step through every scene.
+- **Skip Link (2.4.1 Bypass Blocks):** Place a "Skip the story" link before a long pinned or scrubbed narrative, visible on focus, that moves focus to the first content after it. SC 2.4.1 strictly targets blocks repeated across pages; treat the skip link as required here regardless, because a multi-screen narrative costs keyboard and screen-reader users dozens of steps to pass.
 - **Reduced Motion Alternatives:** Respect `prefers-reduced-motion: reduce` by laying out scenes sequentially without sticky pins or scrubbing.
 - **Scroll Contrast:** Ensure overlaid narrative text cards have sufficient background opacity to meet WCAG 1.4.3 (4.5:1 ratio) regardless of underlying media.
 
@@ -119,6 +121,13 @@ body { background: var(--story-bg); color: var(--story-fg); scroll-behavior: smo
 ## 🔗 Integration with Other Skills
 
 - Sibling narrative and motion styles: [ui-style-parallax-scrolling](../ui-style-parallax-scrolling/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md), [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md).
+- Scroll mechanics, support matrix and fallbacks: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 ## Appearance and Interaction Verification
 
 Choose continuous/reveal, pin/scrub or explicitly requested scene presentation before implementation; keep native behavior by default, scope any requested input handling with keyboard/touch exits, make oversized scenes reachable at actual usable height and verify progress over local stacking contexts.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+
+- **scrollama 3.2.0** (verified) — stale: it is the latest npm release, last published 2022-06-17 (https://registry.npmjs.org/scrollama)

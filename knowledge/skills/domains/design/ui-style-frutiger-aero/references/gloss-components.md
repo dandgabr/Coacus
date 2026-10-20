@@ -2,7 +2,7 @@
 
 ## 🛠️ Implementation Notes & Pure CSS Components
 
-Use `<button class="aero-btn"><span class="aero-label">Action</span></button>` and `<a class="aero-tab is-active" href="#panel"><span class="aero-label">Panel</span></a>`; keep label ink unfiltered above the specular layers. The local opaque label backing protects the text while the surrounding capsule retains its gloss. Check rest, hover, pressed and forced-color states.
+Use `<button class="aero-btn"><span class="aero-label">Action</span></button>` and `<a class="aero-tab is-active" href="#panel"><span class="aero-label">Panel</span></a>`; keep label ink unfiltered above the specular layers. The local opaque label backing protects the text while the surrounding capsule retains its gloss. Check rest, hover, pressed and forced-color states. The 180ms transition curves below map to the shared timing tokens in [motion-timing-engines](../../ui-motion-interaction/references/motion-timing-engines.md).
 
 Modular CSS architecture reproducing authentic Frutiger Aero controls with modern CSS features (`backdrop-filter`, pseudo-elements, and forced-colors mode):
 

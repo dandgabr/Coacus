@@ -111,3 +111,4 @@ Error as ornament: channel separation, displaced slices, scanline tears, compres
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - Sibling styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md), [ui-style-retro-computing](../ui-style-retro-computing/SKILL.md), [ui-style-vaporwave](../ui-style-vaporwave/SKILL.md).
+- For random character swaps (scramble/decode) and split glitch text with an accessible-text contract, see [text-effect-recipes.md](../ui-motion-interaction/references/text-effect-recipes.md).

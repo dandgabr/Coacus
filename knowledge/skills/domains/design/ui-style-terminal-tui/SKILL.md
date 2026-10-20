@@ -112,3 +112,4 @@ body { background: var(--bg); color: var(--fg);
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - Sibling styles: [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md), [ui-style-retro-computing](../ui-style-retro-computing/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).
+- For typed output and line-by-line reveal with an accessible-text contract, see [text-effect-recipes.md](../ui-motion-interaction/references/text-effect-recipes.md).

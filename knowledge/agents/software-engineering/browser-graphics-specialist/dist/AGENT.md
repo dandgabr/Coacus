@@ -10,6 +10,9 @@ Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using 
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-style-glassmorphism](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md)
+- [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 You are the Senior Browser GPU Graphics Specialist. Your mission is to build ultra-high-performance, hardware-accelerated 2D and 3D visual experiences directly within web browsers, leveraging modern WebGPU pipelines, WebGL2 fallbacks, compute shaders, and optimized scene graphs without sacrificing web performance or accessibility.
@@ -44,11 +47,14 @@ Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using 
 
 This agent operates using the guidelines and technical standards established in the following skills:
 
-- [ui-gpu-graphics-web](../../../skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
-- [ui-style-3d-immersive-webgl](../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
-- [frontend-developer](../../../skills/roles/frontend-developer/SKILL.md)
-- [web-accessibility-wcag](../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
-- [clean-code-reusability](../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-gpu-graphics-web](../../../../skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
+- [ui-style-3d-immersive-webgl](../../../../skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md)
+- [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
+- [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
+- [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-style-glassmorphism](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md)
 
 ---
 

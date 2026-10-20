@@ -87,6 +87,8 @@ An interactive, physics-driven aesthetic treating interface elements as viscous 
 ## 🔗 Integration with Other Skills
 
 - Sibling interactive styles: [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+- Not the Liquid Glass refraction dialect: metaball goo deforms the element's own shape, while refraction bends the backdrop behind a fixed-shape control; see [refraction-dialect.md](../ui-style-glassmorphism/references/refraction-dialect.md).
+- For spring presets, duration tokens and volume-preserving squash and stretch, see [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Put the filtered merging silhouettes on a decorative sibling behind unfiltered text/controls; retain discrete hit targets and focus outlines while visual droplets merge, and reset to stable rounded controls under reduced motion.

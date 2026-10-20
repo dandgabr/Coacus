@@ -219,3 +219,4 @@ A horizontal decorative band repeating the traditional Greek key geometric patte
 
 - **Sibling Antiquity & Clockwork Styles:** [ui-style-clockpunk](../ui-style-clockpunk/SKILL.md), [ui-style-steampunk](../ui-style-steampunk/SKILL.md), [ui-style-silkpunk](../ui-style-silkpunk/SKILL.md).
 - **Monuments & Stone Craft Peers:** [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-arts-and-crafts](../ui-style-arts-and-crafts/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md).
+- **Motion Mechanics:** inertial damping curves and duration tokens in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md); the drawn meander underline follows the SVG line-drawing mechanics in [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).

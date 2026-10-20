@@ -244,11 +244,31 @@ Bento grids utilize geometric sans-serif typography with strong scale differenti
 }
 ```
 
+### 2. Masonry Packing Variant (`display: grid-lanes`)
+
+When tiles have unknown heights (portfolio images, testimonials), CSS Grid Lanes packs them into columns without row gaps. Support is narrow: Safari 26.4 ships it; Chrome and Edge have an older alternative syntax behind a flag; Firefox has the original `grid-template-rows: masonry` syntax behind a preference. Declare `display` twice so other engines keep a regular grid, and scope lane-only rules with `@supports`:
+
+```css
+.bento-lanes {
+  display: grid;                /* fallback: aligned rows */
+  display: grid-lanes;          /* ignored where unsupported */
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--bento-gutter);
+}
+@supports not (display: grid-lanes) {
+  .bento-lanes > * { align-self: start; }
+}
+```
+
+Masonry packing places items by available space, so visual order drifts from source order; keep the classic span-based bento for curated hierarchy and reserve lanes for homogeneous, order-insensitive collections.
+
 ---
 
 ## ♿ Accessibility & Environmental Contrast
 
-- **DOM Source Order vs Visual Grid:** A primary hazard in asymmetric CSS grid layouts is disconnecting visual reading order from the DOM tab sequence. Bento markup MUST be authored in logical priority order (Hero first, secondary metrics next). Never rely on `grid-row` or `order` to rearrange content in ways that disorient screen reader users.
+- **DOM Source Order vs Visual Grid (1.3.2 Meaningful Sequence, 2.4.3 Focus Order):** A primary hazard in asymmetric CSS grid layouts is disconnecting visual reading order from the DOM tab sequence. Bento markup MUST be authored in logical priority order (Hero first, secondary metrics next). Never rely on `grid-row`, `order`, dense auto-placement or masonry packing to rearrange content in ways that disorient screen reader and keyboard users; DOM order is the reading order.
+- **`reading-flow` Is Not a Fix Yet:** `reading-flow: grid-rows` (and related values) lets the browser follow visual grid order for focus and reading, but it is experimental and ships only in Chromium 137+. Treat it as progressive enhancement after the DOM order is already correct, never as the remedy.
+- **Long-Running Tile Animations (2.2.2, Level A):** Looping visualizers, tickers or auto-rotating tiles that start automatically and run longer than 5 seconds need a visible pause control (hover-only pausing does not count) or must stop within 5 seconds. Scroll-reveal staggers end quickly and need only the reduced-motion treatment. Canonical motion obligations live in [web accessibility](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - **Heading Level Hierarchy:** Each bento cell must provide an explicit semantic heading (`<h2>` or `<h3>`) matching its structural outline, avoiding skipping heading levels.
 - **Color Contrast:** All text content inside bento cells meets WCAG 2.2 Level AA requirements (minimum **4.5:1** contrast). Large metric displays (`54px+`) satisfy Level AAA requirements (**7:1+**).
 
@@ -272,6 +292,7 @@ Bento grids utilize geometric sans-serif typography with strong scale differenti
 1. **Apple Special Event Keynote Design Archives (2022–2024):** iPhone 14 Pro, Apple Watch Ultra, and M-Series Silicon launch architectures.
 2. **Bento.me Visual Grammar (2023):** Modular compartmentalized personal portfolio architecture.
 3. **MDN Web Docs:** *"CSS Grid Layout and Accessibility Considerations"*, Mozilla Developer Network.
+4. **WebKit Blog:** *"When will CSS Grid Lanes arrive? How long until we can use it?"*, 2026-01-22 (fallback pattern and engine status).
 
 ---
 
@@ -279,6 +300,16 @@ Bento grids utilize geometric sans-serif typography with strong scale differenti
 
 - Differentiated from [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md) through multi-span asymmetry and heterogeneous content modalities.
 - Integrates with [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) for dark-first product landing pages and [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) for mathematical grid discipline.
+- Timing tokens behind `--bento-transition` and the per-cell stagger: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
+- Viewport-entry mechanics for the staggered scroll reveal (IntersectionObserver, content visible without JavaScript): [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 ## Appearance and Interaction Verification
 
 Bound clipping to visual artwork, keep headings/code and interactive controls reachable, and re-evaluate cell spans/padding/min-height by available cell width and viewport height while retaining uniform gutters and heterogeneous spans.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **`display: grid-lanes` fallback pattern and engine status, 2026-01-22** (verified) — https://webkit.org/blog/17758/
+- **`display: grid-lanes` shipping in Safari 26.4 only** (verified) — MDN browser-compat-data 8.1.6 (2026-10-15)
+- **`reading-flow` in Chromium 137+, experimental** (verified) — MDN browser-compat-data 8.1.6 (2026-10-15)
+- **WCAG 2.2, W3C Recommendation, 2024-12-12 edition** (verified) — https://www.w3.org/TR/WCAG22/

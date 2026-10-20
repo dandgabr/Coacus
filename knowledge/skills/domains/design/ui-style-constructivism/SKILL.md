@@ -221,7 +221,7 @@ Constructivism is an early 20th-century avant-garde movement founded in post-rev
 
 ## ✨ Micro-Interactions, Motion & Soundscapes
 
-- **Mechanical Step Easing:** Avoid soft bouncy springs; transitions must be rapid and architectural (`120ms linear` or `cubic-bezier(0, 0, 0.2, 1)`).
+- **Mechanical Step Easing:** Avoid soft bouncy springs; transitions must be rapid and architectural (`120ms linear` or `cubic-bezier(0, 0, 0.2, 1)`). Timing tokens: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 - **Axis Realignment on Hover:** Elements tilted at `-3deg` snap to `0deg` on hover/focus, representing structural stabilization under user inspection.
 - **Angular Wipe Transitions:** Container entrances clip along diagonal wedge angles using CSS `clip-path`.
 

@@ -275,6 +275,8 @@ Art Deco typography embodies the grand marquee displays of Broadway and Paris:
 
 - Historical and aesthetic successor to [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) and contemporary foil to [ui-style-bauhaus](../ui-style-bauhaus/SKILL.md).
 - Contrasts with [ui-style-dieselpunk](../ui-style-dieselpunk/SKILL.md) through metropolitan sophistication and gilded cleanliness.
+- SVG `stroke-dashoffset` border draw (line-drawing mechanics, non-scaling strokes, reduced motion): [svg-path-animation](../ui-state-layout-transitions/references/svg-path-animation.md).
+- Timing tokens behind `--deco-ease` and `--deco-duration`: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Introduce semantic title, eyebrow and action ink roles and retarget gilded card selectors for daylight; preserve gold filigree while validating hover foreground/background as a pair and retaining readable dark ink.

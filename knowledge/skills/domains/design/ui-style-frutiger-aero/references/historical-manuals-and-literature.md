@@ -14,6 +14,7 @@ This reference document provides the archival citations, hardware/compositor arc
   - Rendered via Desktop Window Manager (DWM) over Direct3D 9Ex and Windows Display Driver Model (WDDM 1.0).
   - Offloaded compositing from GDI CPU rendering to GPU shaders.
   - Introduced real-time glass refraction, alpha channel blurring, Live Taskbar Thumbnails, and Flip3D window switching.
+  - Its modern refraction descendant, Apple's Liquid Glass, is documented with web recreation limits in [refraction-dialect.md](../../ui-style-glassmorphism/references/refraction-dialect.md).
   - Standardized Segoe UI with ClearType subpixel anti-aliasing across all dialogs and shell navigation.
 
 ### Apple Mac OS X Aqua (10.0 Cheetah through 10.6 Snow Leopard)

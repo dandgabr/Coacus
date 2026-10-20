@@ -20,6 +20,8 @@ Senior UI designer who owns the interface surface: visual hierarchy and composit
 - [ui-style-glassmorphism](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md)
 - [ui-style-bento-grid](../../../../skills/domains/design/ui-style-bento-grid/SKILL.md)
 - [ui-style-swiss-web-minimalism](../../../../skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -52,6 +54,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
 - [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)

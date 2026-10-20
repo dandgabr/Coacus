@@ -230,6 +230,7 @@ A horizontal status indicator displaying live memory and network ping metrics.
 
 - **Sibling Speculative Styles:** [ui-style-synthwave](../ui-style-synthwave/SKILL.md), [ui-style-atompunk](../ui-style-atompunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md), [ui-style-nanopunk](../ui-style-nanopunk/SKILL.md).
 - **Technical & Terminal Peers:** [ui-style-terminal-tui](../ui-style-terminal-tui/SKILL.md), [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-glitch](../ui-style-glitch/SKILL.md).
+- **Decryption Reveal Mechanics:** Accessible character-cycling scramble (stable accessible name, reduced-motion final text): [text-effect-recipes](../ui-motion-interaction/references/text-effect-recipes.md).
 ## Appearance and Interaction Verification
 
 Use an unclipped focus owner or inset high-contrast bracket that survives polygon clipping; document daylight as an optional postcyberpunk material mapping with dark ink and subdued emission, rather than inheriting nocturnal card/scanline paint.

@@ -244,6 +244,7 @@ For glossy buttons and window chassis, use [the component recipes](references/gl
 - Ancestor and sibling styles: [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-y2k-revival](../ui-style-y2k-revival/SKILL.md).
 - Eco counterpart: [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md).
 - Modern successor: [ui-style-metro-modern-ui](../ui-style-metro-modern-ui/SKILL.md).
+- Timing tokens behind the 180ms spring-like tactile transitions: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Preserve split gloss and belly light on chassis, but protect button/tab label ink at every split/hover/pressed position with an unfiltered label layer and sufficient local backing. Use the content sanctuary, [component recipes](references/gloss-components.md) and [subgenre guide](references/subgenres.md) without losing the historical bibliography below.

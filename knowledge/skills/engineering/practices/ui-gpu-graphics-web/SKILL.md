@@ -90,6 +90,7 @@ GPU memory in browsers is bounded and aggressively managed by operating system w
 - **Frame Budget:** $16.6\text{ms}$ at 60Hz, $8.3\text{ms}$ at 120Hz.
 - **Render on Demand:** Avoid infinite continuous `requestAnimationFrame` loops when the scene is static. Trigger re-renders only on user interaction, state changes, or active physics simulation.
 - **Off-Screen Culling:** Use an `IntersectionObserver` on the `<canvas>` element. When the canvas scrolls out of the active viewport, cancel the rendering loop immediately to save GPU cycles and battery life.
+- **Scroll-Keyed Image Sequences:** When a canvas paints pre-rendered frames scrubbed by scroll, render only on frame change and follow the sliding-window loader and memory budget in [canvas-image-sequence](../../../domains/design/ui-scroll-driven-motion/references/canvas-image-sequence.md).
 
 ### 2. Resolution Scaling (Device Pixel Ratio)
 - High-density displays (e.g., Retina screens with DPR 3) multiply pixel fill rate by $9\times$.
@@ -105,13 +106,25 @@ GPU memory in browsers is bounded and aggressively managed by operating system w
 
 ---
 
+## 🔍 Refraction and Chromatic Dispersion
+
+Glass refraction (the Liquid Glass dialect) on the GPU is a fragment shader over a **captured background texture**: derive a surface normal from an SDF of the control shape, offset the background lookup along that normal near the rim, and sample red, green and blue with slightly different offsets for chromatic dispersion. Apply it with these limits:
+
+- **Snapshots go stale:** a captured page region does not follow live DOM (focus, hover, input, scroll). Use the shader only over backgrounds already on the GPU (canvas scenes, video textures); over live HTML use the CSS glass surface.
+- **Budget:** three texture samples per pixel plus tint; render on demand, clamp DPR, stop off-screen.
+- **Fallbacks:** on context or device loss, under `prefers-reduced-transparency: reduce` and with no GPU at all, show the CSS glass surface (opaque default, plain blur where supported). Under `prefers-reduced-motion: reduce`, freeze motion-driven speculars.
+
+The GLSL sketch, WGSL notes and constraint detail live in [references/refraction-shaders.md](references/refraction-shaders.md). The visual gate ("Default: No", worst-backdrop contrast) is owned by [ui-style-glassmorphism](../../../domains/design/ui-style-glassmorphism/SKILL.md).
+
+---
+
 ## ♿ Canvas Accessibility & Core Web Vitals
 
 1. **Decouple LCP from Canvas:** Canvas drawing operations never trigger standard browser text/image LCP. The hero message, primary headline, and critical UI controls must reside in semantic, server-rendered HTML.
 2. **Screen Reader Integration:**
    - Mark decorative or visual-only canvases with `aria-hidden="true"`.
    - For interactive canvases (e.g., charts or diagrams), provide an accessible HTML fallback (such as an off-screen semantic `<table>` or interactive list) reflecting the canvas state.
-3. **Prefers-Reduced-Motion:** When `@media (prefers-reduced-motion: reduce)` is active, freeze continuous camera rotation, disable particle velocity, and display a tranquil static frame.
+3. **Prefers-Reduced-Motion:** When `@media (prefers-reduced-motion: reduce)` is active, freeze continuous camera rotation, disable particle velocity, and display a tranquil static frame. Pause controls for auto-playing loops and the reduced-motion house policy follow the canonical [web accessibility](../web-accessibility-wcag/SKILL.md) skill.
 
 ---
 
@@ -121,3 +134,8 @@ GPU memory in browsers is bounded and aggressively managed by operating system w
 - Khronos Group, WebGL 2.0 Specification.
 - Three.js WebGPURenderer & TSL Architecture, mrdoob.
 - Pixi.js v8 Architecture Guide, Goodboy Digital.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **prefers-reduced-transparency: Chrome 118, Firefox 113, no Safari** (verified) — MDN browser-compat-data 8.1.6 (2026-10-15)

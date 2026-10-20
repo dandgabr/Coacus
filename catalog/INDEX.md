@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 459 skill(s) · 102 agent(s) · 2 MCP(s)
+**Totals:** 461 skill(s) · 102 agent(s) · 2 MCP(s)
 
 ## Agents
 
@@ -185,6 +185,8 @@
 | ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
 | ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |
 | ui-presentation-slides | [knowledge/skills/domains/design/ui-presentation-slides/SKILL.md](../knowledge/skills/domains/design/ui-presentation-slides/SKILL.md) |
+| ui-scroll-driven-motion | [knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md](../knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md) |
+| ui-state-layout-transitions | [knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md](../knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md) |
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
 | ui-style-agitprop-poster | [knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md](../knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md) |

@@ -1,0 +1,35 @@
+{
+  "id": "interface-view-transition-reduced-motion",
+  "title": "View transition with reduced motion",
+  "harness": "codex",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nSPA route change calls `document.startViewTransition(() => render(next))` unconditionally. Product cards and the detail hero both set `view-transition-name: hero`, and some list pages render twelve cards with that name. Users with vestibular disorders report a large zoom on every navigation, and some transitions silently do nothing. Review and repair.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)prefers-reduced-motion",
+      "reason": "The answer must handle prefers-reduced-motion."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(duplicate|same|unique|multiple).{0,80}view-transition-name|view-transition-name.{0,80}(duplicate|unique|same)",
+      "reason": "Duplicate view-transition-name values abort the transition and must be made unique."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(if|when)\\s*\\(?\\s*!?\\s*document\\.startViewTransition|feature.detect|startViewTransition.{0,60}(undefined|unsupported|absent)|[\\\"']startViewTransition[\\\"']\\s+in\\s+document",
+      "reason": "Support must be feature-detected with a direct-render fallback."
+    },
+    {
+      "kind": "not_contains",
+      "value": "reduced motion is handled automatically",
+      "reason": "A reduced variant (crossfade or instant) is expected, not a blanket claim that state feedback must vanish."
+    }
+  ],
+  "rubric": [
+    "Duplicate names are replaced with per-element unique names (or assigned only to the clicked card), reduced motion swaps the zoom for a crossfade or instant change, and the call is feature-detected.",
+    "Verification covers emulated reduced motion and a browser without View Transitions.",
+    "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
+    "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
+  ],
+  "acceptance": "The response makes the justified decision for this raw case, provides a discriminating verification and states the evidence limits without inventing execution."
+}

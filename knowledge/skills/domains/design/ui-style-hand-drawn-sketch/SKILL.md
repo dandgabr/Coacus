@@ -38,7 +38,7 @@ Interfaces that look drawn by a person: imperfect lines, scribbled fills, doodle
 
 ## 🖱️ Interaction and Motion
 
-- "Draw-on" reveals: animate `stroke-dashoffset` so an outline traces itself (400-900ms), once on entry.
+- "Draw-on" reveals: animate `stroke-dashoffset` so an outline traces itself (400-900ms), once on entry; for `pathLength="1"` normalisation, scroll-linked drawing and the finished-stroke base state, follow [svg-path-animation.md](../ui-state-layout-transitions/references/svg-path-animation.md).
 - Hover: slight rotation (1-2 degrees) or re-roughening with a new seed, 120-200ms.
 - Avoid constant jitter; if a boil effect is used, step it at 6-8 fps on a single decorative element.
 - Under `prefers-reduced-motion: reduce`, render final strokes immediately and stop all jitter.
@@ -113,6 +113,7 @@ Interfaces that look drawn by a person: imperfect lines, scribbled fills, doodle
 ## 🔗 Integration with Other Skills
 
 - For conformance discipline, see [web-accessibility-wcag](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
+- For line-drawing and SVG morph mechanics, see [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - Sibling styles: [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-organic-biophilic](../ui-style-organic-biophilic/SKILL.md), [ui-style-flat-design](../ui-style-flat-design/SKILL.md), [ui-style-micro-interactions](../ui-style-micro-interactions/SKILL.md), [ui-style-risograph](../ui-style-risograph/SKILL.md).
 ## Appearance and Interaction Verification
 

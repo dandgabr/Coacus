@@ -74,8 +74,8 @@ skill entries: 199 + 15). See [`migration.md`](migration.md) and
 > Post-F7 the corpus was pruned of components coupled to a specific MCP server
 > (the `ai-memory` skills + `ai-memory-specialist`, and `autodoc-code-explorer`,
 > which drives the AutoDoc MCP). They are deliberately excluded in the import
-> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **432
-> knowledge skills plus 27 process workflows (459 catalog skill entries, the
+> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **434
+> knowledge skills plus 27 process workflows (461 catalog skill entries, the
 > number the installer and `--verify` report)**, 102 agents and two MCPs.
 
 ### F7 — Final consolidation (done)

@@ -67,6 +67,13 @@ description: "Provides the canonical Aurora / Mesh Gradient UI style (2018-prese
    ```css
    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
    ```
+3. **Perceptual Interpolation (`in oklch`):**
+   - sRGB interpolation between distant hues passes through a grey, muddy midpoint. Interpolating in OKLCH keeps lightness and chroma even; the hue keyword picks the arc: `shorter hue` (default) takes the short way round the wheel, `longer hue` sweeps the long way for a full spectral aurora. Supported in Chrome 111, Safari 16.2 and Firefox 127 (Baseline 2024); keep the sRGB declaration first as the fallback.
+   ```css
+   background-image: linear-gradient(120deg, #3A3AFF, #FF61AB);
+   background-image: linear-gradient(120deg in oklch longer hue, #3A3AFF, #FF61AB);
+   ```
+   - **Gamut caveat:** OKLCH midpoints at high chroma can fall outside sRGB (and outside P3) and are clipped by the browser, which shows up as flat or shifted bands on standard displays. Lower the chroma of the endpoints or add an explicit midpoint stop, and check on an sRGB monitor, not only a wide-gamut laptop.
 
 ---
 
@@ -117,6 +124,31 @@ description: "Provides the canonical Aurora / Mesh Gradient UI style (2018-prese
 - **Scroll-Linked Chromatic Shifting:** Scrolling the viewport shifts the focus of radial gradient pools along the Y-axis.
 - **Cursor Repulsion / Attraction:** On pointer movement, nearest light pools displace slightly towards the cursor coordinates.
 - **Motion Gating (Vestibular Safety):** When `prefers-reduced-motion: reduce` is detected, all drift animations freeze immediately into a stable, static high-aesthetic composition.
+- **Animating Stops with `@property`:** Gradients are not interpolable as images, so animate registered custom properties instead (Baseline 2024-07-09: Chrome 85, Firefox 128, Safari 16.4). Prefer moving a small, pre-blurred pool layer with `transform` over animating stops when possible, because every stop change repaints the whole gradient.
+  ```css
+  @property --pool-a { syntax: '<color>'; inherits: false; initial-value: #3A3AFF; }
+  @property --pool-x { syntax: '<percentage>'; inherits: false; initial-value: 20%; }
+  .aurora-hero {
+    background-image: radial-gradient(circle at var(--pool-x) 30%, var(--pool-a), transparent 50%);
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes aurora-drift { to { --pool-a: #7C3AED; --pool-x: 70%; } }
+  .aurora-hero.is-paused { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .aurora-hero { animation: none; } }
+  ```
+  The 18 s loop runs longer than 5 seconds beside other content, so it ships with a visible, keyboard-operable pause toggle (WCAG 2.2.2):
+  ```html
+  <button type="button" class="aurora-pause" aria-pressed="false">Pause background animation</button>
+  <script>
+    const hero = document.querySelector('.aurora-hero');
+    document.querySelector('.aurora-pause').addEventListener('click', (event) => {
+      const paused = event.currentTarget.getAttribute('aria-pressed') !== 'true';
+      event.currentTarget.setAttribute('aria-pressed', String(paused));
+      hero.classList.toggle('is-paused', paused);
+    });
+  </script>
+  ```
+- **Blur Paint Cost:** A large `filter: blur()` on an animated full-viewport layer repaints the blurred area every frame and is a common cause of dropped frames on mobile. Prefer pre-blurred static images, soft radial gradients (already smooth, no filter needed), or a small canvas rendered at low resolution and scaled up with CSS.
 
 ---
 
@@ -200,7 +232,8 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 
 - **The Dynamic Background Hazard (WCAG 1.4.3):** Multi-hue animated backgrounds continuously shift luminance values. White text on cyan pools can drop to 2.8:1, while black text on violet pools drops to 2.1:1.
 - **The Scrim Architecture:** All text blocks must reside inside containers with an explicit backdrop scrim (`background: rgba(7, 7, 20, 0.7); backdrop-filter: blur(16px)`), then verify the actual ink/composite pair at the brightest and darkest pool positions. A light variant may use opaque pale backing and dark ink while preserving the surrounding aurora.
-- **Vestibular Motion Safety (WCAG 2.3.3):** Ambient gradient drift and scaling loops must immediately cease when `prefers-reduced-motion: reduce` is active.
+- **Vestibular Motion Safety:** Ambient gradient drift and scaling loops must immediately cease when `prefers-reduced-motion: reduce` is active (Coacus house policy, WCAG technique C39).
+- **Pause, Stop, Hide (WCAG 2.2.2, Level A):** A drift loop that starts automatically, runs longer than 5 seconds and sits alongside other content needs a visible pause control; hover-only pausing does not satisfy it. Alternatively stop the loop within 5 seconds. Detailed motion obligations live in [web accessibility](../../../engineering/practices/web-accessibility-wcag/SKILL.md).
 - **Performance Budget:** Full-viewport animated canvas or heavy SVG blur loops must pause when scrolled out of view via `IntersectionObserver` to preserve battery on mobile devices.
 
 ---
@@ -224,7 +257,8 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 - Kevin Hufnagl, *How To: Create the Stripe Website Gradient Effect*, Oct 2021.
 - Jimmy Chion, "Grainy Gradients", *CSS-Tricks*, Sep 2021.
 - Michał Malewicz, "Aurora UI — new visual trend for 2021", *Hype4 Academy*, 2021.
-- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 2.3.3).
+- W3C, *Web Content Accessibility Guidelines 2.2* (1.4.3, 2.2.2, 2.3.3).
+- W3C, *CSS Color Module Level 4* (OKLCH, hue interpolation methods) and *CSS Properties and Values API Level 1* (`@property`).
 
 ---
 
@@ -232,6 +266,14 @@ A small pill badge reflecting gradient light along its translucent perimeter.
 
 - **Sibling Optical Styles:** [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md), [ui-style-gradient-duotone](../ui-style-gradient-duotone/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md).
 - **Surface & Dark Mode Peers:** [ui-style-dark-mode-first](../ui-style-dark-mode-first/SKILL.md), [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-3d-immersive-webgl](../ui-style-3d-immersive-webgl/SKILL.md).
+- **Scroll-Linked Mechanics:** Driving pool position from scroll with CSS `scroll()` timelines or a single rAF fallback: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 ## Appearance and Interaction Verification
 
 Apply a real reading scrim in the Aurora hero example, test worst pool positions and retain pastel aurora via a light opaque reading field when chosen rather than mandating a dark 60% scrim for every variant.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **Gradient interpolation `in oklch` / hue methods, Baseline 2024 (Chrome 111, Safari 16.2, Firefox 127)** (verified) — web-features 3.43.0 and MDN browser-compat-data 8.1.6 (2026-10-15)
+- **Registered custom properties `@property`, Baseline 2024-07-09 (Chrome 85, Firefox 128, Safari 16.4)** (verified) — web-features 3.43.0
+- **WCAG 2.2, W3C Recommendation, 2024-12-12 edition** (verified) — https://www.w3.org/TR/WCAG22/

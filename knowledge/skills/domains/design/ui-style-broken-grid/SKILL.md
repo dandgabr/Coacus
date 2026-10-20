@@ -248,6 +248,8 @@ A clean collapse rule resetting overlapping layers into an orderly single-column
 
 - **Sibling Layout Styles:** [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md), [ui-style-bento-grid](../ui-style-bento-grid/SKILL.md), [ui-style-card-based-ui](../ui-style-card-based-ui/SKILL.md).
 - **Postmodern & Editorial Peers:** [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-maximalism](../ui-style-maximalism/SKILL.md).
+- **Timing Tokens:** Shared durations and easing curves for the image-scale and hover transitions: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
+- **Scroll Mechanics:** Differential-speed parallax layers with `view()` timelines and fallbacks: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 ## Appearance and Interaction Verification
 
 Define the shared stacking owner for overlapping editorial planes and keyboard focus; reset overlap/negative offsets by available component width, including short-height landscapes, preserving intentional large-display bleed only where reading and controls remain exposed.

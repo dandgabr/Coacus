@@ -92,6 +92,8 @@ skills:
   - knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-steampunk/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
+  - knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -117,6 +119,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-hero-sections](knowledge/skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
 - [ui-onboarding-tours](knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md)
+- [ui-scroll-driven-motion](knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-state-layout-transitions](knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md)
 - [ui-gpu-graphics-web](knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)

@@ -178,7 +178,8 @@ This document is the complete canonical reference for the art direction, history
 * **Formal Attributes**:
   - `backdrop-filter: blur(24px to 40px) saturate(180%)` with semi-transparent white/obsidian layers.
   - Calibrated 1px specular highlight border simulating physical overhead lighting.
-  - Deep 3D z-axis elevation and gaze/cursor responsive illumination.
+  - Deep 3D z-axis elevation and gaze/cursor responsive illumination (spotlight and tilt-glare recipes in [pointer-and-gesture](../../../domains/design/ui-motion-interaction/references/pointer-and-gesture.md)).
+  - Refraction (Liquid Glass) dialect: lens-rim displacement and moving speculars; see [refraction-dialect](../../../domains/design/ui-style-glassmorphism/references/refraction-dialect.md).
 
 ### 17. Claymorphism & Plasticine Stop-Motion (2021–Present)
 * **Origin**: Playful 3D web (Spline) and clay animation cinema (Aardman, Will Vinton).
@@ -297,7 +298,7 @@ Each style below has a dedicated deep-dive skill in the design style library.
 - **3D Immersive / WebGL** — Interactive 3D scene canvas and real-time graphics. See [ui-style-3d-immersive-webgl](../../../domains/design/ui-style-3d-immersive-webgl/SKILL.md).
 - **AI-Native / Generative UI** — Intent-driven dynamic interface composition. See [ui-style-ai-native-generative-ui](../../../domains/design/ui-style-ai-native-generative-ui/SKILL.md).
 - **Organic / Biophilic** — Calm nature-inspired forms, earthy tones and biological curves. See [ui-style-organic-biophilic](../../../domains/design/ui-style-organic-biophilic/SKILL.md).
-- **Micro-Interactions** — Deliberate animation feedback loops for states and controls. See [ui-style-micro-interactions](../../../domains/design/ui-style-micro-interactions/SKILL.md).
+- **Micro-Interactions** — Deliberate animation feedback loops for states and controls. See [ui-style-micro-interactions](../../../domains/design/ui-style-micro-interactions/SKILL.md); for state and layout changes (view transitions, FLIP, reveals, skeletons) see [ui-state-layout-transitions](../../../domains/design/ui-state-layout-transitions/SKILL.md).
 - **Gradient & Duotone** — Two-tone color maps, high-energy duotones and vivid blending. See [ui-style-gradient-duotone](../../../domains/design/ui-style-gradient-duotone/SKILL.md).
 - **Aurora / Mesh Gradient** — Organic, shifting multi-point blur meshes and ambient lighting. See [ui-style-aurora-mesh-gradient](../../../domains/design/ui-style-aurora-mesh-gradient/SKILL.md).
 - **Dark Mode First** — Deep obsidian surfaces engineered for low-light immersion. See [ui-style-dark-mode-first](../../../domains/design/ui-style-dark-mode-first/SKILL.md).

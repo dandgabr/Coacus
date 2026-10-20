@@ -229,6 +229,7 @@ Retro Computing captures the direct physical experience of 1970s and 1980s micro
 - **Blinking Cursor:** Rigid 1Hz square wave (`step-end`), completely un-eased.
 - **Instantaneous Character Printing:** Transitions between states occur line-by-line with no opacity fades.
 - **Phosphor Persistence Decay:** Fast scrolling leaves a faint 150ms green decay ghosting trail.
+- **Character Printing Mechanics:** typed and line-by-line reveals follow the accessible-text contract in [text-effect-recipes.md](../ui-motion-interaction/references/text-effect-recipes.md).
 
 ---
 

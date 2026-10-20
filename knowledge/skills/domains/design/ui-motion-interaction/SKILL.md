@@ -1,6 +1,6 @@
 ---
 name: "ui-motion-interaction"
-description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Routes scroll-driven motion to ui-scroll-driven-motion, state and layout transitions to ui-state-layout-transitions, and pointer, gesture and text-effect recipes to its references. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
+description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
 tags:
   - motion-design
   - micro-interactions
@@ -23,20 +23,21 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 - Configuring design system motion tokens (duration tiers, easing curves, spring physics parameters).
 - Preventing menu closing errors using the Accot-Zhai steering law for dropdowns and hover corridors.
 - Auditing UI animations for 60fps/120fps compositor execution and WCAG motion accessibility.
+- Building pointer effects (magnetic, tilt and glare, spotlight, cursor follower, ripple, image trail), drag and fling gestures, or text effects (split text, stagger, scramble, typewriter, number ticker): load [pointer-and-gesture.md](references/pointer-and-gesture.md) or [text-effect-recipes.md](references/text-effect-recipes.md).
 
 ### Motion hub routing
 
 - Durations, easing, spring tokens, interruption, Web Animations API, motion tokens: [motion-timing-engines](references/motion-timing-engines.md) (single source; do not restate values elsewhere).
 - Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
-- Scroll-linked and scroll-triggered motion: the ui-scroll-driven-motion skill (planned).
-- View Transitions, FLIP, shared-element and accordion/layout transitions: the ui-state-layout-transitions skill (planned).
-- Pointer and gesture recipes, text-effect recipes: the hub references pointer-and-gesture.md and text-effect-recipes.md (planned).
+- Scroll-linked and scroll-triggered motion: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
+- View Transitions, FLIP, shared-element and accordion/layout transitions: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
+- Pointer and gesture recipes: [pointer-and-gesture](references/pointer-and-gesture.md); text-effect recipes: [text-effect-recipes](references/text-effect-recipes.md).
 
 ---
 
 ## 🏎️ Physics-Based Motion vs. Easing Curves
 
-Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [scroll narrative modes](references/scroll-narrative-modes.md). These references distinguish visible output from state markers and frame processing from callback cadence.
+Choose motion by purpose and interruption needs; neither springs nor short fixed durations are universal requirements. For overlays, active scenes and teardown, use [effect coverage and lifecycle](references/effect-coverage-lifecycle.md). For continuous, revealed, scrubbed or stepped stories, use [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md). These references distinguish visible output from state markers and frame processing from callback cadence.
 
 | Dimension | Cubic-Bezier (Duration-based) | Spring Physics (Physics-based) |
 | :--- | :--- | :--- |
@@ -46,13 +47,13 @@ Choose motion by purpose and interruption needs; neither springs nor short fixed
 
 ### Canonical Spring Tokens
 
-Values (k, c, settle time, Motion mapping) live only in [motion-timing-engines](references/motion-timing-engines.md#3-spring-model-and-canonical-presets).
+Values (k, c, ζ, overshoot, settle time, Motion mapping) live only in [motion-timing-engines](references/motion-timing-engines.md#3-spring-model-and-canonical-presets).
 
-| Token | Use | ζ | Overshoot |
-| :--- | :--- | :--- | :--- |
-| `spring.snap` | Press feedback, toggles, small controls | ≈1.0 | 0% |
-| `spring.smooth` | Menus, drawers, modals, layout moves | ≈0.89 | ≈0.2% |
-| `spring.playful` | Celebratory badges, rare delight | ≈0.51 | ≈16% |
+| Token | Use |
+| :--- | :--- |
+| `spring.snap` | Press feedback, toggles, small controls (no overshoot) |
+| `spring.smooth` | Menus, drawers, modals, layout moves |
+| `spring.playful` | Celebratory badges, rare delight (visible bounce) |
 
 Damping ratio ζ, not stiffness, decides bounce. Effects (opacity, colour) never overshoot.
 
@@ -69,28 +70,13 @@ Every interactive component must define a coherent continuum across all physiolo
 5. **Disabled:** Expose the correct disabled semantics and recognizable state. Visual attenuation depends on the surrounding surface; pointer suppression alone does not disable keyboard activation or communicate state.
 
 ### 2. Spotlight & Cursor-Tracking Borders
-- **Mechanism:** Mouse position is tracked locally via pointer events and mirrored into CSS custom properties (`--mouse-x`, `--mouse-y`) on the target element.
-- **Rendering:** A radial gradient layer masked behind the border renders a luminous spotlight that follows the cursor:
-  ```css
-  .spotlight-card {
-    position: relative;
-    background: radial-gradient(
-      400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
-      rgba(255, 255, 255, 0.08),
-      transparent 80%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: border-color 0.25s ease;
-  }
-  ```
+Mirror the pointer position into `--x`/`--y` once per animation frame and paint a radial gradient or `mask-image` from them, with `:focus-within` parity and the repaint cost measured; the recipe and pitfalls are in [pointer-and-gesture.md](references/pointer-and-gesture.md#spotlight-and-torch).
 
 ### 3. Magnetic Pointer Attraction
-- **Mechanism:** When the pointer enters the proximity bounding box of an element (e.g., within 30px of a circular action button), the button translates toward the cursor at a fractional ratio (e.g., $0.2 \times \Delta x, 0.2 \times \Delta y$).
-- **Settling:** On pointer exit, a snappy spring restores the element to its origin with zero residual offset.
+Move an inner wrapper by 0.2–0.4× of the pointer offset while the hit area stays fixed, and spring back on exit; see [pointer-and-gesture.md](references/pointer-and-gesture.md#magnetic-button).
 
 ### 4. 3D Card Tilt with Specular Sheen
-- **Mechanism:** Rotates cards in 3D perspective (`perspective(1000px) rotateX(...) rotateY(...)`) proportional to cursor distance from the card center.
-- **Restraint:** Maximum tilt angle should not exceed $4^\circ$ to $8^\circ$ to prevent text distortion and eye strain.
+Drive registered `<angle>` properties through `perspective()` with a glare pseudo-element, a 4–8° cap and `will-change` only while hovering; see [pointer-and-gesture.md](references/pointer-and-gesture.md#3d-tilt-with-glare).
 
 ---
 
@@ -121,11 +107,7 @@ Every micro-interaction consists of four discrete stages:
 
 ## ♿ Accessibility, Motion Sickness & Performance
 
-Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md); do not restate them here. The framing to keep straight (WCAG 2.2):
-
-- **2.2.2 Pause, Stop, Hide (Level A):** auto-moving content lasting more than 5 s alongside other content needs a pause mechanism. Hover-only pause does not count.
-- **2.3.3 Animation from Interactions (AAA):** interaction-triggered motion can be disabled.
-- **`prefers-reduced-motion`:** WCAG technique C39 and a Coacus house policy, not an AA requirement. Apply it everywhere anyway.
+Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md). Honour reduced motion everywhere: it is WCAG technique C39 and Coacus house policy, not an AA requirement.
 
 Author no-motion first: opt into spatial motion only when the user has no preference, and keep a reduce fallback for motion that is set elsewhere.
 

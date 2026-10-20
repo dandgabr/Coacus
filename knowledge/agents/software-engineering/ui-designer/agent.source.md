@@ -23,6 +23,8 @@ skills:
   - knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md
   - knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md
   - knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md
+  - knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md
+  - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
 tags:
   - ui-design
   - interface-design
@@ -60,6 +62,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-designer](knowledge/skills/roles/ui-designer/SKILL.md)
 - [ui-hero-sections](knowledge/skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-state-layout-transitions](knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md)
+- [ui-scroll-driven-motion](knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)

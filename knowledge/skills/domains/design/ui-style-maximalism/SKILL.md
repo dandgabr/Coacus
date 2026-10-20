@@ -226,6 +226,7 @@ A circular badge filled with black-and-white checkerboard and bright central tex
 
 - **Sibling Rebellious Styles:** [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md), [ui-style-acid-anti-design](../ui-style-acid-anti-design/SKILL.md), [ui-style-memphis](../ui-style-memphis/SKILL.md).
 - **Pop & Collage Peers:** [ui-style-pop-art-halftone](../ui-style-pop-art-halftone/SKILL.md), [ui-style-collage-scrapbook](../ui-style-collage-scrapbook/SKILL.md), [ui-style-broken-grid](../ui-style-broken-grid/SKILL.md).
+- Takes its spring overshoot curves and duration tokens from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Keep saturated layered maximalism; specify a stable reading island for central badge labels over checkerboards and an operable pause control for ongoing marquees, with reduced-motion as a separate complete static fallback.

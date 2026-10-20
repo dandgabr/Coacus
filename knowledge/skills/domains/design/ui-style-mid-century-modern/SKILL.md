@@ -309,6 +309,7 @@ Typography pairs geometric modernist display caps with graceful humanist body te
 
 - Direct cousin to [ui-style-nordic](../ui-style-nordic/SKILL.md) and [ui-style-calm-quiet-ui](../ui-style-calm-quiet-ui/SKILL.md).
 - Contrasts with [ui-style-atompunk](../ui-style-atompunk/SKILL.md) through domestic organic warmth rather than Cold War industrial militarism.
+- Takes its easing curves and duration tokens from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Preserve evening walnut/leather adaptation; verify muted specification labels and terracotta eyebrows on actual evening cards and allow footer action/specification wrapping at text expansion without shrinking the reading area.

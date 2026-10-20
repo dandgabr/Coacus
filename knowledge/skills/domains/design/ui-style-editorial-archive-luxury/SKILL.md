@@ -339,6 +339,9 @@ Typography is the absolute centerpiece of the luxury aesthetic:
 
 - Direct literary sister to [ui-style-analog-newspaper-broadsheet](../ui-style-analog-newspaper-broadsheet/SKILL.md) (haute-couture magazine vs daily newsprint).
 - Contrasts with [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) and [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md) through sensual luxury and patient negative space.
+- Horizontal gallery snap (snap tracking, button base path, reduced motion): [sticky-snap-overscroll](../ui-scroll-driven-motion/references/sticky-snap-overscroll.md).
+- Curatorial `clip-path` curtain reveals: [reveal-collapse-loading](../ui-state-layout-transitions/references/reveal-collapse-loading.md).
+- Timing tokens behind `--lux-ease` and `--lux-duration`: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Fit plates to the available gallery width and usable height with reachable captions and native keyboard/touch panning; retune curatorial accent ink for the vault while retaining photographic plates, substantial margins and serif hierarchy.

@@ -292,6 +292,7 @@ Typography prioritizes continuous reading comfort and cognitive ease:
 
 - Direct philosophical ally to [ui-style-nordic](../ui-style-nordic/SKILL.md) (hygge warmth and natural materials).
 - Contrasts with [ui-style-cyberpunk](../ui-style-cyberpunk/SKILL.md) and [ui-style-glitch](../ui-style-glitch/SKILL.md) by eliminating synthetic chaos and high sensory stimulation.
+- Timing tokens behind `--calm-ease` and `--calm-duration`: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Keep secondary controls discoverable through keyboard focus and touch, with a stable fallback when dwell is unavailable; pair button foreground with sage in both modes rather than assuming white remains legible as sage lightens.

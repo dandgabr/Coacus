@@ -37,6 +37,7 @@ An application layout is the structural skeleton that supports all user interact
   - Full expanded state (labels + icons).
   - Compact Rail state (icon-only, 64px width, tooltips on hover).
   - Hidden overlay drawer on tablet/mobile screens (`< 1024px`).
+  - Animating the expanded ↔ rail collapse, the overlay drawer and bottom-sheet entry/exit (FLIP, `@starting-style`, `<dialog>`): [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - **Best For**: Multi-tier B2B SaaS, management consoles, cloud provider portals.
 
 ### 2. Navigation Rail + Contextual Sidebar (Dual-Nav)

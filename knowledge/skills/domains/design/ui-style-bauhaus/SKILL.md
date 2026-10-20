@@ -368,6 +368,7 @@ Typography reflects the geometric revolution led by Herbert Bayer and Jan Tschic
 
 - Direct sibling to [ui-style-de-stijl](../ui-style-de-stijl/SKILL.md) and ancestor of [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
 - Contrasts with [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md) (which Bauhaus rejected as bourgeois ornament) and [ui-style-memphis](../ui-style-memphis/SKILL.md) (which later subverted Bauhaus functionalism with postmodern irony).
+- Timing tokens behind `--bauhaus-ease` and `--bauhaus-duration`: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Give workshop cards a semantic surface that changes with night inversion; explicitly pair hover ink and red fill. Add usable-width collapse for the fixed 280px geometric column while keeping elementary shapes and asymmetric balance.

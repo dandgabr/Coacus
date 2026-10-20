@@ -68,6 +68,17 @@ description: "Provides the canonical Glassmorphism & Spatial UI style (2020-pres
    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
    ```
 
+### Refraction Dialect (Liquid Glass)
+
+Apple's **Liquid Glass** (announced 2025-06-09) is a refraction dialect of this style: a translucent material that bends the backdrop at its rim, adapts between light and dark surroundings and carries specular highlights that react to motion. Apple applies it to the floating controls and navigation layer, not to content. NN/g (Raluca Budiu, "Liquid Glass Is Cracked", 2025-10-10) documents the cost: legibility fails over busy content and the motion rarely carries meaning; iOS 26.1 answered with a Clear/Tinted choice. On the web, an SVG `feDisplacementMap` through `backdrop-filter: url(#filter)` renders only in Chromium (unverified), so Firefox and Safari show the plain blur, which must be declared as the fallback. It is not [fluid liquid morph](../ui-style-fluid-liquid-morph/SKILL.md): metaball goo deforms the element's own shape, refraction deforms what lies behind a fixed-shape control.
+
+> **Default: No.**
+> **Allowed when:** the surface is the chrome or controls layer only (toolbar, tab bar, floating action), never a reading surface, and its worst-case backdrop has been measured.
+> **Evidence required:** text at 4.5:1 and icons or boundaries at 3:1 over the worst backdrop frame; a `forced-colors: active` render; a Firefox or Safari render showing the intended blur.
+> **Fallback:** an opaque surface by default, the plain blur where `backdrop-filter` is supported, refraction only as an opt-in enhancement.
+
+Recreation code, engine limits and the verification checklist live in [references/refraction-dialect.md](references/refraction-dialect.md); the shader path (captured background, per-channel dispersion, context-loss fallback) lives in [ui-gpu-graphics-web](../../../engineering/practices/ui-gpu-graphics-web/SKILL.md).
+
 ---
 
 ## 🏷️ Complete Design Tokens
@@ -196,7 +207,16 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 - **The Background-Bleed Danger:** In pure glassmorphism, background colors and image patterns bleed through the card, potentially causing contrast to drop below 3:1.
 - **Mandatory Scrim Fallback (WCAG 1.4.3):** Every text-bearing glass element must maintain an opaque or high-density fallback scrim layer behind typography ensuring body text meets 4.5:1 at all times.
 - **Browser Fallback (`@supports`):** For browsers that do not support `backdrop-filter`, provide an opaque solid fallback (`background: #FFFFFF` in light mode or `#1E293B` in dark mode).
+- **Worst-Backdrop Contrast (1.4.3, 1.4.11):** Measure the rendered composite over the brightest, darkest and busiest backdrop the surface can sit or scroll over, not the average. Text needs 4.5:1, icons and control boundaries 3:1.
+- **Reduced Transparency:** `prefers-reduced-transparency: reduce` ships in Chrome 118 and Firefox 113 but not in Safari, so the media query can only remove translucency, never add legibility. Make the opaque or high-density surface the default and layer translucency on top:
+  ```css
+  @media (prefers-reduced-transparency: reduce) {
+    .glass-card, .glass-btn { background: var(--glass-solid); backdrop-filter: none; }
+  }
+  ```
+- **Forced Colors:** Under `forced-colors: active` the browser drops backgrounds, gradients and shadows, so the rim highlight and blur disappear. Keep a real `border` (it maps to a system colour) and avoid `forced-color-adjust: none` on text-bearing glass.
 - **Focus Rings:** High-visibility solid outline with 2px offset (`outline: 2px solid #0284C7; outline-offset: 3px;`).
+- **Motion:** Specular sweeps and tilt are decorative; motion obligations (pause controls, reduced motion as house policy) follow the canonical [web accessibility](../../../engineering/practices/web-accessibility-wcag/SKILL.md) skill.
 
 ---
 
@@ -220,6 +240,8 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 - Apple Inc., *macOS Big Sur Human Interface Guidelines*, 2020.
 - Apple Inc., *Designing for visionOS*, WWDC 2023.
 - Adrian Bece, "CSS Backdrop Filter: A Guide", *CSS-Tricks*, 2021.
+- Apple Newsroom, "Apple introduces a delightful and elegant new software design", 2025-06-09 (Liquid Glass).
+- Raluca Budiu, "Liquid Glass Is Cracked, and Usability Suffers in iOS 26", *Nielsen Norman Group*, 2025-10-10.
 
 ---
 
@@ -227,6 +249,17 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 
 - **Sibling Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - **Gradient & Optical Peers:** [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).
+- **Refraction Neighbours:** [ui-style-fluid-liquid-morph](../ui-style-fluid-liquid-morph/SKILL.md) (metaball goo, a different technique), [ui-gpu-graphics-web](../../../engineering/practices/ui-gpu-graphics-web/SKILL.md) (refraction and dispersion shaders).
+- **Pointer & Timing Mechanics:** cursor-tracked specular sweep and 3D tilt in [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md); spring presets and duration tokens for elevation and modal reveals in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
 ## Appearance and Interaction Verification
 
 Add an explicit reading scrim to the example and pair its ink with light/dark glass; verify the composite over changing backdrop and the opaque no-backdrop-filter fallback, retaining frosted rim and spatial depth around the reading field.
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **Liquid Glass announcement, 2025-06-09** (verified) — https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+- **NN/g "Liquid Glass Is Cracked", 2025-10-10** (unverified) — the nngroup.com page could not be fetched this session; citation comes from the coordinating brief
+- **iOS 26.1 Clear/Tinted toggle** (unverified) — secondary press coverage only; Apple release notes not re-read
+- **backdrop-filter: url() rendering in Chromium only** (unverified) — only secondary sources; MDN browser-compat-data does not track the `url()` value
+- **backdrop-filter Baseline 2024; prefers-reduced-transparency Chrome 118, Firefox 113, no Safari** (verified) — web-features 3.43.0 and MDN browser-compat-data 8.1.6 (2026-10-15)

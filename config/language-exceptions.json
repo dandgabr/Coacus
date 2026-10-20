@@ -141,7 +141,7 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "03e920fe304d3390f3778637e34cf1798f91549d1697236975b7d03ed88181ec",
+      "sha256": "c593779348bd5554e8f35da9fcd66176740c7bd878f64e3b2d83ae45737a4407",
       "reason": "Approved bilingual PT-BR and English routing lexicon required by the documented product contract."
     },
     {

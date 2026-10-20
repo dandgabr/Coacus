@@ -202,3 +202,4 @@ function getCached(key) {
 - [framework-react](../../frameworks/framework-react/SKILL.md): state immutability, memoization, and re-renders in the React ecosystem.
 - [framework-vue](../../frameworks/framework-vue/SKILL.md): reactivity based on getters/setters and Proxies (the same fundamentals as the vanilla chapter).
 - [frontend-developer](../../roles/frontend-developer/SKILL.md): integrating performance optimizations into the UI construction cycle.
+- [ui-motion-interaction](../../domains/design/ui-motion-interaction/SKILL.md): rendering performance for animation (compositor-friendly properties, `will-change` lifecycle, Long Animation Frames) built on the forced-reflow patterns here.

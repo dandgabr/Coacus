@@ -40,13 +40,13 @@ When directing or refining interfaces, apply these specific actions:
 | **Refine** | `bolder` | Inject character into timid, bland layouts: amplify scale contrast, tighten typography. |
 | **Refine** | `quieter` | Tone down aggressive, over-saturated layouts: reduce competing visual noise. |
 | **Refine** | `distill` | Strip away decorative fluff, redundant cards, and non-functional containers. |
-| **Refine** | `harden` | Implement empty states, loading skeletons, error boundaries, and text overflows. |
+| **Refine** | `harden` | Implement empty states, loading skeletons, error boundaries, and text overflows; skeleton and state-change mechanics in [ui-state-layout-transitions](../../../domains/design/ui-state-layout-transitions/SKILL.md). |
 | **Refine** | `onboard` | Design guided first-run paths, progressive disclosure, and empty-state incentives. |
 | **Enhance** | `animate` | Choose purposeful motion and timing for the task; preserve complete reduced-motion states. |
 | **Enhance** | `colorize` | Introduce intentional, semantic color accents into sterile monochrome layouts. |
 | **Enhance** | `typeset` | Establish a mathematical type scale (1.25 or 1.333) with calibrated line-heights. |
 | **Enhance** | `layout` | Fix visual rhythm, enforce multi-tier spacing grids (4px/8px), and ensure section breathing. |
-| **Enhance** | `delight` | Add subtle, memorable tactile micro-interactions (magnetic hovers, tactile clicks). |
+| **Enhance** | `delight` | Add subtle, memorable tactile micro-interactions (magnetic hovers, tactile clicks); recipes in [pointer-and-gesture](../../../domains/design/ui-motion-interaction/references/pointer-and-gesture.md). |
 | **Enhance** | `overdrive` | Implement technically extraordinary effects (shaders, dynamic canvas, physics). |
 | **Fix** | `clarify` | Rewrite ambiguous UX copy, microcopy, form field labels, and validation errors. |
 | **Fix** | `adapt` | Adapt layout seamlessly for extreme screen sizes, mobile viewports, and touch targets. |
@@ -71,7 +71,7 @@ Before completing any frontend delivery, run these 5 deterministic mental audits
 
 ## 🧪 Rendered Interface Verification
 
-When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs with explicit choices, verify the rendered behavior against the actual DOM. Use [rendered-interface verification](references/rendered-interface-verification.md) for the checks and release evidence.
+When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs with explicit choices, verify the rendered behavior against the actual DOM. Use [rendered-interface verification](references/rendered-interface-verification.md) for the checks and release evidence. To exercise a checker outside the product, use the [interface fixture exercises](references/interface-fixture-exercises.md).
 
 ---
 

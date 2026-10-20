@@ -35,7 +35,7 @@ For a small product-independent control and known defects, use [interface fixtur
 
 ## Prove interactive output
 
-- For scroll-driven scenes, scroll through the content and assert that the active scene changes and each scene produces its intended visible effect. For opacity-based reveals, check opacity; for progress indicators with defined endpoints, check both endpoints. Verify that animated content has nonzero rendered dimensions; a state class alone does not prove that a chart or illustration is visible.
+- For scroll-driven scenes, scroll through the content and assert that the active scene changes and each scene produces its intended visible effect. For opacity-based reveals, check opacity; for progress indicators with defined endpoints, check both endpoints. Verify that animated content has nonzero rendered dimensions; a state class alone does not prove that a chart or illustration is visible. The scene mechanics and their acceptance checks live in [ui-scroll-driven-motion](../../../../domains/design/ui-scroll-driven-motion/SKILL.md).
 - Verify effect cleanup when changing views or themes, and confirm that `prefers-reduced-motion` exposes the information without requiring animation.
 - For dialogs with explicit **Accept** and **Cancel** choices, stage preference changes until acceptance. Cancel, Escape, and the close control should discard pending changes unless the product explicitly defines a different save model.
 - Assert user-visible outcomes and dimensions, not only class names or event completion. When adding automated regression coverage, seed a failure such as zero-height chart bars or a hidden action row and confirm the check catches it.
