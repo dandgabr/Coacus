@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Coacus Universal Bootstrap Installer (Windows PowerShell)
   Verifies Python 3.10+, installs it if missing, creates a .venv,
