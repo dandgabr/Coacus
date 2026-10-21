@@ -35,7 +35,7 @@ foreach ($cmd in $Candidates) {
                 $parts = $ver.Split('.')
                 if ([int]$parts[0] -eq 3 -and [int]$parts[1] -ge 10) {
                     $PythonBin = $cmd
-                    Write-Host "✔ Detected compatible Python: $PythonBin ($ver)" -ForegroundColor Green
+                    Write-Host "[OK] Detected compatible Python: $PythonBin ($ver)" -ForegroundColor Green
                     break
                 }
             }
@@ -45,7 +45,7 @@ foreach ($cmd in $Candidates) {
 
 # 2. Install Python if missing
 if (-not $PythonBin) {
-    Write-Host "⚠ No Python >= 3.10 detected on PATH." -ForegroundColor Yellow
+    Write-Host "[WARN] No Python >= 3.10 detected on PATH." -ForegroundColor Yellow
     Write-Host "Attempting to install Python via winget / choco..." -ForegroundColor Yellow
 
     if (Get-Command winget -ErrorAction SilentlyContinue) {
@@ -60,7 +60,7 @@ if (-not $PythonBin) {
         $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
         $PythonBin = "python"
     } else {
-        Write-Error "❌ Error: Could not automatically install Python 3.10+. Please install Python manually from python.org."
+        Write-Error "[ERROR] Could not automatically install Python 3.10+. Please install Python manually from python.org."
         exit 1
     }
 }
@@ -86,6 +86,6 @@ Write-Host "Installing Coacus into harness: $TargetHarness..." -ForegroundColor 
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "====================================================" -ForegroundColor Green
-Write-Host "✔ Coacus installation and verification completed successfully!" -ForegroundColor Green
+Write-Host "[OK] Coacus installation and verification completed successfully!" -ForegroundColor Green
 Write-Host "Virtual environment ready at: $VenvDir" -ForegroundColor Green
 Write-Host "====================================================" -ForegroundColor Green
