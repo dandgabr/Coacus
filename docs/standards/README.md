@@ -28,7 +28,7 @@ All standards are written in English (see [`english-only.md`](english-only.md)) 
 | [`agent-manifests.md`](agent-manifests.md) | Canonical agent definition in `agent.source.md`, prohibition of hardcoded models (enforcing `model: inherit`), and generation of `agent.yaml`, `agent.json`, and `plugin.json`. |
 | [`mcp-definition.md`](mcp-definition.md) | Canonical declaration of Model Context Protocol (MCP) servers via the triple: `MCP.md`, `mcp.json`, and `mcp_config.json`. |
 | [`english-only.md`](english-only.md) | Strict English-only mandate across all canonical bodies, code identifiers, frontmatter, and machine manifests. |
-| [`version-freshness.md`](version-freshness.md) | Dynamic resolution and provenance pinning of external libraries, standards, and framework versions (Context7 resolution). |
+| [`version-freshness.md`](version-freshness.md) | Dynamic resolution and provenance pinning of external libraries, standards, and framework versions via primary package registries and publisher sources. |
 
 ### 3. Product, Design & Plan Artifacts
 

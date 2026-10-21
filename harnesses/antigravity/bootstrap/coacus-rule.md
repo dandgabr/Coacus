@@ -119,8 +119,9 @@ only when a command produced it in this session.
 ## Freshness — resolve, do not recall
 
 Before naming a version of a standard, framework, library or regulation, resolve
-it in the current session — Context7 for libraries and frameworks, the
-publisher for standards — and pin the version with its source and date. An
+it in the current session from authoritative primary sources — official documentation
+sites and package registries (npm, PyPI, crates.io) for libraries and frameworks,
+the publisher for standards — and pin the version with its source and date. An
 unresolved pin is marked `unverified`, never presented as current. The
 `version-freshness` skill carries the workflow.
 

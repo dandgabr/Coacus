@@ -219,7 +219,7 @@ library; the scanner is an external executable supplied by its publisher.
 
 `command-code` differs from the hook harnesses: it merges its `SessionStart`
 entry into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in
-a `hooks.json`), merges the `context7` server into `~/.commandcode/mcp.json`, and
+a `hooks.json`), merges declared framework MCP servers into `~/.commandcode/mcp.json`, and
 writes its user rules to `~/.commandcode/AGENTS.md` only when that file does not
 yet exist. It shares the `~/.agents/skills/` tree with Codex and Cursor.
 

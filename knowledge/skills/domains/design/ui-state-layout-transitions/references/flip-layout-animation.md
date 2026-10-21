@@ -162,5 +162,5 @@ import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
 Moving release pins in this file were resolved 2026-10-20:
 
 - **gsap 3.15.0, plugins free since 3.13** (verified) — https://registry.npmjs.org/gsap ; https://gsap.com/standard-license ; Flip docs https://gsap.com/docs/v3/Plugins/Flip/
-- **motion 14.4.0, `motion/react` layout props** (verified) — https://registry.npmjs.org/motion ; https://motion.dev/docs/react-layout-animations (Context7 `/websites/motion_dev`)
+- **motion 14.4.0, `motion/react` layout props** (verified) — https://registry.npmjs.org/motion ; https://motion.dev/docs/react-layout-animations
 - **`overflow-anchor` Baseline 2026-09-14** (verified) — web-features 3.43.0 and @mdn/browser-compat-data 8.1.6, https://www.npmjs.com/package/web-features

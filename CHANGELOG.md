@@ -5,6 +5,19 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Zero external MCP dependencies and primary version resolution
+
+### Removed
+
+- Canonical `context7` MCP definition under `knowledge/mcps/context7/` (`MCP.md`, `dist/mcp.json`, `dist/mcp_config.json`).
+- External MCP recommendation from `README.md` and `docs/install.md`.
+
+### Changed
+
+- `docs/standards/version-freshness.md` and skill `version-freshness`: migrated library and framework version resolution from Context7 to authoritative package registries (npm, PyPI, crates.io, Maven Central) and vendor release sources.
+- Canonical agents (`web-researcher`, `scientific-researcher`, `web-search-specialist`) and entry workflow `using-coacus`: updated instructions to resolve versions via primary registries and publisher release notes.
+- Synchronized generated discovery manifests (`.agents/mcps.json`), catalog indexes (`catalog/catalog.json`, `catalog/INDEX.md`), and python API reference (`docs/reference/python-api.md`).
+
 ## [Unreleased] — Session learnings: gate parity and baselines
 
 ### Added

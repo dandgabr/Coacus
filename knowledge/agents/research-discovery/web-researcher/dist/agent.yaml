@@ -26,7 +26,7 @@ instruction: >
      - Show the search strings used when relevant, to guarantee reproducibility.
 
   ### 4. Documentation Freshness (mandatory):
-     - Never state the current version of a standard, framework, library, tool or regulation from memory. Resolve it in the current session: Context7 for libraries and frameworks, the publisher's own page for standards and regulations.
+     - Never state the current version of a standard, framework, library, tool or regulation from memory. Resolve it in the current session: official documentation and canonical package registries for libraries and frameworks, the publisher's own page for standards and regulations.
      - State the resolved edition/revision with its source and resolution date; verify the revision, not just the base number. Mark an unresolved pin `unverified` and never present it as current.
      - Prefer an evergreen, version-independent statement when the version would not change the reader's action.
 

@@ -2540,7 +2540,7 @@
       "description": "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "digest": "sha256:757880fbb0c17e9c883d8ca666ed6156d87a63cceb231cf0e89642d06fe3f2ed"
+      "digest": "sha256:b49b9beb363ade808fec2f300fe95e3aab33d1d02d5d7f099519caea7a2ccda0"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
@@ -3149,7 +3149,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:3492ee48dd8323e8644d56fac80cdf66490482f16ece1108439add2fcc4c817b"
+      "digest": "sha256:34696e84873d7217c07c0c86877838fee9a085a18baf45b80ca216080a9d7c46"
     },
     {
       "name": "ux-designer",
@@ -3177,7 +3177,7 @@
       "description": "Establishes how to resolve the current version of a standard, framework, library, tool or regulation before citing it, so no artifact asserts a version from training memory. Use when naming an RFC, NIST/ISO/IEC/FIPS publication, OWASP release, library or framework version, or any dated edition.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-      "digest": "sha256:44b449320c3ee11a9448c9c578ccec6ffc6f8748c5e1c41e78f3e5b956bf4f11"
+      "digest": "sha256:454d7cb012bc3e81a98a216c598a648f1b67caf3d8523d3dad9c8591d15d767d"
     },
     {
       "name": "web-accessibility-wcag",
@@ -3198,7 +3198,7 @@
       "description": "Specialist in Advanced Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo, Mojeek). Masters boolean operators, Google Dorks, structural filters (site, filetype, intitle, inurl), temporal search, disambiguation strategies, and fact/primary-source verification.",
       "type": "archive",
       "url": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "digest": "sha256:6ad3f5da8c50515c71e232e4aea6cb3e2bc2b537977b25e40e794b4670de2c6d"
+      "digest": "sha256:661f8cb5b6cb8f27010485297bd025725159fbfecd67ee0ac8be13e091bd96e4"
     },
     {
       "name": "webassembly",

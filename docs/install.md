@@ -52,15 +52,13 @@ artifact generation (`scripts/coacus.py generate`), and verified installation
 
 If you prefer to run the steps manually:
 
-### Recommended MCP dependency
+### Zero external dependencies
 
-The [`context7`](https://context7.com/) MCP server is the framework's recommended
-external dependency. It is hosted, keyless and declared once under
-[`knowledge/mcps/context7/`](../knowledge/mcps/context7/MCP.md); the generator
-derives `dist/mcp.json` and `dist/mcp_config.json` from it. Registering it with a
-harness is optional — the scripts, validators and generated artifacts all work
-without it — but the corpus skills assume current library/framework docs when a
-task needs them, which is what context7 provides.
+Coacus is completely self-contained and operates offline by default. The
+framework requires no third-party MCP servers, hosted endpoints, or API keys.
+The only MCP server distributed with the repository is the internal
+`coacus-catalog` helper (stdio), used for dynamic asset discovery and routing
+in supported harnesses.
 
 ## Step 1 — render the artifacts
 
@@ -576,7 +574,7 @@ The last command must print `True`. The hook must not emit
 ## command-code
 
 **Goal:** a `SessionStart` hook injects the bootstrap, Command Code discovers the
-Coacus skills and agents natively, and context7 is registered.
+Coacus skills and agents natively, and framework MCP servers are registered.
 
 **How it works.** Command Code has no in-process plugin API. It runs a
 `SessionStart` hook that emits JSON and reads a single native key,
@@ -630,7 +628,7 @@ The script mirrors the skills to `~/.agents/skills/` (a Command Code user scan
 root, shared with Codex and Cursor), writes agents to
 `~/.commandcode/agents/<name>.md` with `tools: "*"`, uses the generated JSON
 payload in the repository, **merges** the `SessionStart` entry
-into `~/.commandcode/settings.json`, **merges** `context7` into
+into `~/.commandcode/settings.json`, **merges** framework MCP servers into
 `~/.commandcode/mcp.json`, and writes the Coacus user rules to
 `~/.commandcode/AGENTS.md` — only when that file does not already exist, since it
 is your memory. An existing `settings.json` or `mcp.json` is merged, never
@@ -665,7 +663,7 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 | **antigravity** | C (plugin rule) | compact `rules/coacus.md` with `trigger: always_on`; local catalog MCP | plugin staged at `~/.gemini/config/plugins/coacus/` (catalog data + native agent selectors + MCP + hooks) | plugin schema and MCP config **[documented]**; local `agy plugin validate` **[verified in tests]** |
 | **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
 | **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
-| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
+| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; framework MCP servers merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
 
 ### Verifying
 

@@ -117,6 +117,6 @@ Moving release pins in this file were resolved 2026-10-20:
 
 - **Baseline statuses** (verified) — web-features 3.43.0, https://www.npmjs.com/package/web-features
 - **Browser versions** (verified) — @mdn/browser-compat-data 8.1.6 (2026-10-15), https://www.npmjs.com/package/@mdn/browser-compat-data
-- **React 19.3, `<ViewTransition>` stable** (verified) — https://react.dev/blog/2026/09/09/react-19-3 ; npm `react` 19.3.1 (2026-10-14) exports `ViewTransition`. Divergence: the Context7 index of react.dev still labels it Canary/Experimental; the newer publisher post wins.
-- **Next.js, no config flag** (verified) — https://nextjs.org/docs/app/guides/view-transitions (updated 2026-10-15; npm `next` 16.4.2); Context7 `/vercel/next.js` notes `experimental.viewTransition` was inert and removed (vercel/next.js PR 96098).
+- **React 19.3, `<ViewTransition>` stable** (verified) — https://react.dev/blog/2026/09/09/react-19-3 ; npm `react` 19.3.1 (2026-10-14) exports `ViewTransition`.
+- **Next.js, no config flag** (verified) — https://nextjs.org/docs/app/guides/view-transitions (updated 2026-10-15; npm `next` 16.4.2; experimental flag removed in vercel/next.js PR 96098).
 - **Vue 3.5.44, vue-router 5.4.0 `viewTransition` prop** (verified) — https://router.vuejs.org/api/interfaces/RouterLinkProps.html ; npm registry.

@@ -18,7 +18,7 @@ This skill establishes the advanced methodology for investigation, information r
    - Never trust a single isolated result for critical factual claims or statistics.
    - Cross-check primary sources (official sites, government bodies, original reports) with reliable secondary sources.
 3. **Version and Edition Verification (Mandatory)**:
-   - Never state the current version of a standard, framework, tool or regulation from memory. Resolve it in the current session before asserting it: Context7 for libraries and frameworks, the publisher's own page for standards and regulations.
+   - Never state the current version of a standard, framework, tool or regulation from memory. Resolve it in the current session before asserting it: official documentation and package registries for libraries and frameworks, the publisher's own page for standards and regulations.
    - Prefer an evergreen statement when the version does not change the action; pin the version, with its source and resolution date, only when it does.
    - Check the edition/revision, not just the base number (`SP 800-53 Rev. 5.2.0` is not `SP 800-53`), and mark an unresolved pin `unverified` rather than presenting it as current.
    - Follow the `version-freshness` skill for the full workflow.

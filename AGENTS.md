@@ -47,9 +47,10 @@ re-scan directories per turn (D5). If indexes look stale, run
    run, never as a fixed number.
 8. **Versions are resolved, never recalled (version-freshness).** Before naming a
    version of a standard, framework or library, resolve it in the current session
-   — Context7 for libraries/frameworks, the publisher for standards — and pin the
-   resolved version with its source and date. An unresolved pin is marked
-   `unverified`, never presented as current.
+   from authoritative primary sources — official documentation sites and package
+   registries (npm, PyPI, crates.io) for libraries and frameworks, the publisher
+   for standards — and pin the resolved version with its source and date. An
+   unresolved pin is marked `unverified`, never presented as current.
 9. **Scripts are Python-only, never shell (cross-platform-os-independence).**
    All tooling, automation, hooks, generators and workflow helpers MUST be
    authored in portable Python 3.10+ (standard library only, zero external runtime

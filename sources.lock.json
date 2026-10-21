@@ -622,7 +622,7 @@
       "source_path": "agents/research-discovery/scientific-researcher/AGENT.md",
       "source_sha256": "208a17fec24b62663cadc3f26290ccbdef8a582ffc774c8c355bbdb297b3c97b",
       "target_path": "knowledge/agents/research-discovery/scientific-researcher/agent.source.md",
-      "target_sha256": "208a17fec24b62663cadc3f26290ccbdef8a582ffc774c8c355bbdb297b3c97b",
+      "target_sha256": "7653099e5fa03d9fc6f1ffe283222c8dafcb45056a50c9d3e165722295bb0b98",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -639,7 +639,7 @@
       "source_path": "agents/research-discovery/web-researcher/AGENT.md",
       "source_sha256": "57c732022056b3f04c3dba62b1208fab8fd7cfa962b78b4d143d4ac4090fd859",
       "target_path": "knowledge/agents/research-discovery/web-researcher/agent.source.md",
-      "target_sha256": "57c732022056b3f04c3dba62b1208fab8fd7cfa962b78b4d143d4ac4090fd859",
+      "target_sha256": "f784b67d43134e17df4daf2eb4923aed3734a7e4c9aa066d4af74902e0cff116",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11640,9 +11640,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/web-search-specialist/SKILL.md",
-      "source_sha256": "8f6b14ee5255619b3fdd5575d564cff548cb0bb9e1c434ff0cabb87847c5c2cb",
+      "source_sha256": "21c032e1316880d57a1ed49001ffb808fa0e5cd428711fe9c863088d1241ba38",
       "target_path": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "target_sha256": "8f6b14ee5255619b3fdd5575d564cff548cb0bb9e1c434ff0cabb87847c5c2cb",
+      "target_sha256": "21c032e1316880d57a1ed49001ffb808fa0e5cd428711fe9c863088d1241ba38",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17766,9 +17766,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-      "source_sha256": "44b449320c3ee11a9448c9c578ccec6ffc6f8748c5e1c41e78f3e5b956bf4f11",
+      "source_sha256": "454d7cb012bc3e81a98a216c598a648f1b67caf3d8523d3dad9c8591d15d767d",
       "target_path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-      "target_sha256": "44b449320c3ee11a9448c9c578ccec6ffc6f8748c5e1c41e78f3e5b956bf4f11",
+      "target_sha256": "454d7cb012bc3e81a98a216c598a648f1b67caf3d8523d3dad9c8591d15d767d",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17781,9 +17781,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "docs/standards/version-freshness.md",
-      "source_sha256": "1320a41cd73282e9668fbaa1b3253e8df0d790898bee13328e0e2d7eeeb6e31d",
+      "source_sha256": "250ff7209f14f3442ed8f6887d054b0a4986c1e3d368e3638cc99e8a6d07530c",
       "target_path": "docs/standards/version-freshness.md",
-      "target_sha256": "1320a41cd73282e9668fbaa1b3253e8df0d790898bee13328e0e2d7eeeb6e31d",
+      "target_sha256": "250ff7209f14f3442ed8f6887d054b0a4986c1e3d368e3638cc99e8a6d07530c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17796,9 +17796,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "engine/validators/freshness.py",
-      "source_sha256": "cc5222eb386d9fa0230630a57cef1cc9ce9a0fa0dda3b8d21ffe25f735be867a",
+      "source_sha256": "95a96de325f0b064757687ba49ca8504b99e76a2f96f52b21971394d067475b6",
       "target_path": "engine/validators/freshness.py",
-      "target_sha256": "cc5222eb386d9fa0230630a57cef1cc9ce9a0fa0dda3b8d21ffe25f735be867a",
+      "target_sha256": "95a96de325f0b064757687ba49ca8504b99e76a2f96f52b21971394d067475b6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17826,9 +17826,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "dc40affa1034b5423765f085d846a38b9077d2b5378813ed35b4a52cf98ee105",
+      "source_sha256": "1e69dec464cdf4d121fcc618c56aa3a1ed7852c66593cb63e4e715f0786db1ff",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "dc40affa1034b5423765f085d846a38b9077d2b5378813ed35b4a52cf98ee105",
+      "target_sha256": "1e69dec464cdf4d121fcc618c56aa3a1ed7852c66593cb63e4e715f0786db1ff",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20901,9 +20901,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "source_sha256": "3ecf5e28e88d670c29c4cfacc76ab6b61b8b8214afd0a3d61bd14966bcdb44c4",
+      "source_sha256": "39b20fd984e7a80017709492430e2eb3ed8afc1a4cbd0d501e2074869f5290fa",
       "target_path": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "target_sha256": "3ecf5e28e88d670c29c4cfacc76ab6b61b8b8214afd0a3d61bd14966bcdb44c4",
+      "target_sha256": "39b20fd984e7a80017709492430e2eb3ed8afc1a4cbd0d501e2074869f5290fa",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

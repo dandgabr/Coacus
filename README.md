@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 434 skills across eleven categories, 102 agents, and two MCP declarations.
+- **Knowledge** — what the framework knows: 434 skills across eleven categories, 102 agents, and one MCP declaration.
 - **Methodology** — how work proceeds: 27 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -123,7 +123,7 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Skills | 434 | `domains` 146, `security` 132, `engineering` 34, `roles` 23, `languages` 20, `frameworks` 17, `data` 16, `mapping` 15, `architecture` 14, `infrastructure` 10, `platforms` 7 |
 | Agents | 102 | `cybersecurity` 23, `software-engineering` 19, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 8, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 27 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
-| MCPs | 2 | `context7`, `coacus-catalog` |
+| MCPs | 1 | `coacus-catalog` |
 | Catalog | 461 skill entries | 434 knowledge skills + 27 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
 | Provenance | 1434 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
@@ -221,14 +221,14 @@ skills budget.
   (resolved 2026-10-19); CI installs them before validation. The CI matrix checks
   the minimum core-tooling release and the main CI target declared in
   [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
-- **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
-  keyless (`https://mcp.context7.com/mcp`), and declared under
-  [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies
-  up-to-date library and framework documentation and is the first resolution
-  channel of the [version-freshness](docs/standards/version-freshness.md) rule:
-  agents resolve a version in-session before asserting it, and never pin one from
-  memory. Optional: the framework and its scripts run without it, in which case
-  an unresolved pin is marked `unverified`.
+- **Self-contained (zero external MCP dependencies):** Coacus operates
+  offline-by-default and requires no third-party MCP servers or API keys to run.
+  The framework distributes a single internal helper, `coacus-catalog` (stdio),
+  for on-demand asset discovery and routing. Version resolution follows the
+  [version-freshness](docs/standards/version-freshness.md) rule: agents resolve
+  versions in-session from canonical package registries (npm, PyPI, crates.io) or
+  official publisher release notes, never from training memory. Optional: when
+  no resolution channel is reachable, an unresolved pin is marked `unverified`.
 
 ## Everyday commands
 
@@ -306,7 +306,7 @@ read the relevant one before changing that area of the repository.
 | [provenance](docs/standards/provenance.md) | The provenance manifest at the repository root. |
 | [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its eleven-category taxonomy. |
 | [routing](docs/standards/routing.md) | Agents are selected through a generated index, in a manual or an automated mode. |
-| [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from Context7 or the publisher, never recalled; the most recent definition wins. |
+| [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from official package registries or publisher pages, never recalled; the most recent definition wins. |
 | [lifecycle-guardrails](docs/standards/lifecycle-guardrails.md) | The PAER guardrail model, per-harness capability data and the native render. |
 | [decision-records](docs/standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
 | [self-improvement-loop](docs/standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |

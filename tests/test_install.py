@@ -89,14 +89,14 @@ def make_repo(tmp: Path) -> Path:
     (root / "harnesses/command-code/AGENTS.md").write_text(
         "# rules\n\nroot=__COACUS_ROOT__\n", encoding="utf-8"
     )
-    mcp = root / "knowledge/mcps/context7/dist"
+    mcp = root / "knowledge/mcps/mock-mcp/dist"
     mcp.mkdir(parents=True)
     (mcp / "mcp.json").write_text(
         json.dumps(
             {
-                "name": "context7",
+                "name": "mock-mcp",
                 "transport": "streamable-http",
-                "url": "https://mcp.context7.com/mcp",
+                "url": "https://mcp.example.com/mcp",
             }
         ),
         encoding="utf-8",
@@ -1045,7 +1045,7 @@ class TestCommandCode(unittest.TestCase):
         self.assertNotIn("__COACUS_ROOT__", json.dumps(settings))
         self.assertIn("coacus_session_start.py", (self.config / "settings.json").read_text())
         mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
-        self.assertEqual(mcp["mcpServers"]["context7"]["url"], "https://mcp.context7.com/mcp")
+        self.assertEqual(mcp["mcpServers"]["mock-mcp"]["url"], "https://mcp.example.com/mcp")
 
     def test_reserved_agent_name_is_skipped(self) -> None:
         coacus_install.install("command-code", self.root, self.config, dry_run=False)
@@ -1069,7 +1069,7 @@ class TestCommandCode(unittest.TestCase):
         self.assertEqual(settings["permissions"], {"deny": ["Read(.env*)"]})
         self.assertIn("Stop", settings["hooks"])
         mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
-        self.assertIn("context7", mcp["mcpServers"])
+        self.assertIn("mock-mcp", mcp["mcpServers"])
         self.assertIn("other", mcp["mcpServers"])
 
         coacus_install.uninstall("command-code", self.root, self.config)
@@ -1077,7 +1077,7 @@ class TestCommandCode(unittest.TestCase):
         self.assertEqual(settings["permissions"], {"deny": ["Read(.env*)"]})
         self.assertNotIn("SessionStart", settings.get("hooks", {}))
         mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
-        self.assertNotIn("context7", mcp["mcpServers"])
+        self.assertNotIn("mock-mcp", mcp["mcpServers"])
         self.assertIn("other", mcp["mcpServers"])
 
     def test_rules_written_only_when_absent(self) -> None:

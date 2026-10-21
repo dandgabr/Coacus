@@ -33,7 +33,7 @@ sentence never goes stale.
 
 | Subject | First channel | Fallback |
 |---|---|---|
-| Library, framework, SDK, CLI, cloud service | Context7 documentation server (`knowledge/mcps/context7/MCP.md`) | vendor documentation site |
+| Library, framework, SDK, CLI, cloud service | canonical package registry (`npmjs.com`, `pypi.org`, `crates.io`) or vendor docs | official repository release tags (`github.com`) |
 | Standard, RFC, regulation | publisher page (`rfc-editor.org`, `nist.gov`, `iso.org`, `owasp.org`) | reputable secondary source, triangulated |
 | Academic claim | indexed publication (DOI, arXiv ID) | preprints, flagged as such |
 

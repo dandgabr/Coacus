@@ -30,8 +30,8 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - command-code skills   -> ~/.agents/skills/<skill>/ (a Command Code user scan
               root); agents -> <config_dir>/agents/<name>.md; the SessionStart
               bootstrap is merged into <config_dir>/settings.json under the
-              'hooks' key (Command Code has no separate hooks.json); the context7
-              MCP is merged into <config_dir>/mcp.json under 'mcpServers'; and
+              'hooks' key (Command Code has no separate hooks.json); framework
+              MCP servers are merged into <config_dir>/mcp.json under 'mcpServers'; and
               the Coacus user rules are written to <config_dir>/AGENTS.md when
               that file does not already exist.
 
