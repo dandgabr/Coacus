@@ -177,6 +177,13 @@
       "digest": "sha256:79de377d7b2c46261f901bc362f44341397921a68efde8d400a0f761c82a0ef5"
     },
     {
+      "name": "agentic-temporal-knowledge-graphs",
+      "description": "Provides patterns for bi-temporal knowledge graphs and structured episodic memory in autonomous agents using Graphiti and Neo4j. Use when modeling time-evolving entity relationships, separating episodic logs from procedural memory, maintaining vulnerability state transitions, or performing hybrid graph and vector retrieval.",
+      "type": "skill-md",
+      "url": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+      "digest": "sha256:f6839dce94e695917fa248b6e36b0a9c80a1757a1b9fdad860631739d7de54aa"
+    },
+    {
       "name": "ai-adversarial-ml-security",
       "description": "Acts as an Adversarial Machine Learning specialist covering evasion (FGSM, PGD, C&W, universal and patch attacks), poisoning and backdoors, model inversion and membership inference, model extraction, and defenses including adversarial training and certified robustness, aligned with the NIST AI 100-2 taxonomy.",
       "type": "skill-md",
@@ -1322,7 +1329,7 @@
       "description": "Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "digest": "sha256:3976264918eab0c3e3d9cc025d0244b1ab48c4eb12f259d77f744107b639967f"
+      "digest": "sha256:9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8"
     },
     {
       "name": "handoff",
@@ -1703,6 +1710,20 @@
       "digest": "sha256:f19fb4326631248494472df44e99ea295a261a0ef6d8f7b23c7d338de5f2df43"
     },
     {
+      "name": "llm-observability-otel-langfuse",
+      "description": "Provides runtime observability, tracing, and telemetry for LLMs and multi-agent systems using OpenTelemetry GenAI semantic conventions and Langfuse. Use when instrumenting agent cognitive loops, debugging multi-step tool calls, monitoring prompt cache hit rates, or attributing inference token costs across models.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
+      "digest": "sha256:d0e45c476cc5fcf1c99550f6a628d75c0cb8fa9747495279cfbec8873593b4df"
+    },
+    {
+      "name": "llm-provider-protocol-interoperability",
+      "description": "Provides protocol compatibility patterns across LLM providers for extended thinking, tool calling, and prompt caching. Use when switching between Anthropic, Google Gemini, OpenAI, and local Ollama or vLLM models, normalizing tool-call IDs, preserving reasoning signatures across turns, or tuning small local models for structured tool use.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md",
+      "digest": "sha256:4143c7f03e94abbdff5a73019fe068efe28c0b3930386cc686d00fe95fd3c806"
+    },
+    {
       "name": "llvm-compiler-infrastructure",
       "description": "Provides expert patterns in LLVM-based compiler and toolchain engineering based on Learn LLVM 17 and LLVM Code Generation, covering project build and libraries, LLVM IR and SSA, frontend construction with IRBuilder, the pass manager and custom passes, TableGen target description, instruction selection (SelectionDAG and GlobalISel), legalization, register allocation and scheduling, the MC layer and object emission, the ORC JIT, and the opt/llc/lit/FileCheck debugging workflow.",
       "type": "skill-md",
@@ -1791,7 +1812,7 @@
       "description": "Specialist in Orchestration, Supervision, and Governance of Multi-Agent Systems. Focused on anchoring initial objectives, continuously detecting scope drift (Agent Drift and Role Drift), proactive intervention (Self-Correction), gradual containment, and applying kill-switch/safe termination to non-compliant agents.",
       "type": "archive",
       "url": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "digest": "sha256:9e65f610e0302a4ac42ad07ce559e935985337a2566ccb94fd5a09900ecc0b64"
+      "digest": "sha256:55e90b2d47c87a4eca1b69bc50590221639d5d762cc54c49f652d3dd308a9c03"
     },
     {
       "name": "mutation-fuzzing-testing",
@@ -1813,6 +1834,13 @@
       "type": "archive",
       "url": "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
       "digest": "sha256:df61f24325fb506aeeaf54c21a7e89e3e41e18195ad18896bd2d14bdf26b7d43"
+    },
+    {
+      "name": "network-infrastructure-pentest",
+      "description": "Provides methodology for internal and external network infrastructure penetration testing, two-stage port reconnaissance, service enumeration, multi-hop pivoting, and non-interactive exploitation automation. Use when auditing layer 2/3/4 network boundaries, configuring tunneling relays (Ligolo-ng, Chisel, Proxychains), or automating CLI security frameworks.",
+      "type": "skill-md",
+      "url": "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md",
+      "digest": "sha256:ddceacf36efdcd552a66c43a9036f5f4ca98a3c1da65ff63cbd10ec0483742e5"
     },
     {
       "name": "network-security-onprem-cloud",
@@ -1924,7 +1952,7 @@
       "description": "Use when deciding whether to continue a session, clear it, hand it off, dispatch a subagent or compact it.",
       "type": "skill-md",
       "url": "methodology/workflows/phase-boundaries/SKILL.md",
-      "digest": "sha256:ea7e38d3844352154e4b35378a89011c18ddde635435392db17cd256225973b5"
+      "digest": "sha256:20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d"
     },
     {
       "name": "platform-architect",
@@ -1980,7 +2008,7 @@
       "description": "Specialist in container technologies and ecosystems (local and cloud), with mastery of OCI standards, Docker, Podman, CRI-O, Buildah, Kubernetes, secure registries, hardening, and managed cloud orchestration.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/program-containers/SKILL.md",
-      "digest": "sha256:1954a98f0183824cc4855956de0f5cd5db1221b1f1cee2f24e625918d22ba40b"
+      "digest": "sha256:7bd0b14ad9d05126d26ec41af18726b88ff278d8e83c9d0854a32bf63fed5978"
     },
     {
       "name": "program-dongtai-iast",
@@ -2204,7 +2232,7 @@
       "description": "Plans application security reviews across source code, live web applications, APIs, and CI supply chains. Use when a request spans multiple assessment surfaces or needs a scoped review plan before testing.",
       "type": "skill-md",
       "url": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
-      "digest": "sha256:c80c45f9600182dce4ca425de991a9cd076078863d1500b8d9fcc0aa80af2ca5"
+      "digest": "sha256:890e5edae04f973091217e561681d1cdc64e92db60d11c0b8c6cdbc7a142ecec"
     },
     {
       "name": "security-champions",
@@ -2309,7 +2337,7 @@
       "description": "Use when executing an implementation plan in the current session as the implementer yourself \u2014 your human partner chose inline execution, or no subagent tool is available",
       "type": "archive",
       "url": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "digest": "sha256:acc7a26b0916921dcc2792bf7c895f12b808350ae5be8ff3b17eb0e2edf3dd3c"
+      "digest": "sha256:328f380af854b0a2658ad24d729a3633a1bc8841b5a30e20c8f6d3f353c80982"
     },
     {
       "name": "superpowers-finishing-a-development-branch",
@@ -2457,6 +2485,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md",
       "digest": "sha256:be5fb49da9dbccc5cf80d93697d792c35f1bc23fe69c25d86b3d068942c8028d"
+    },
+    {
+      "name": "tui-terminal-engineering",
+      "description": "Provides engineering patterns for interactive terminal applications (TUIs), command-line wizards, and terminal emulators using MVU architecture (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh) and equivalents in Python and Rust. Use when designing terminal layouts, handling ANSI escape sequences, managing screen resize breakpoints, or building multi-step interactive CLI forms.",
+      "type": "skill-md",
+      "url": "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md",
+      "digest": "sha256:115bc043f1a4594beb29ddb42f15462bb810a9e1245bf4a7c38091442293f1a5"
     },
     {
       "name": "two-axis-code-review",
@@ -3198,7 +3233,7 @@
       "description": "Specialist in Advanced Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo, Mojeek). Masters boolean operators, Google Dorks, structural filters (site, filetype, intitle, inurl), temporal search, disambiguation strategies, and fact/primary-source verification.",
       "type": "archive",
       "url": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "digest": "sha256:661f8cb5b6cb8f27010485297bd025725159fbfecd67ee0ac8be13e091bd96e4"
+      "digest": "sha256:7d1784c576a337ed2fdbd19360ffaff4b8e74926b5edd665fc2c302c020568e9"
     },
     {
       "name": "webassembly",

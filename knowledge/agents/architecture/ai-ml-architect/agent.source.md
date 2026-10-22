@@ -18,6 +18,8 @@ skills:
   - knowledge/skills/data/distributed-ml-scaling/SKILL.md
   - knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md
   - knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md
+  - knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md
+  - knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md
 tags:
   - architecture
   - ai-ml-architecture

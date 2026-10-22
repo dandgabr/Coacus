@@ -19,6 +19,24 @@ out before moving on.
 5. **Compact** — the default, not the first reach. Its failure mode is a fresh
    session that is confidently wrong about a decision the summary flattened.
 
+## Tool-call-aware compaction (ChainAST rule)
+
+When executing compaction across turns with tool calls and extended reasoning:
+
+- **Preserve Header and Last Body Pair**: The system header and the most recent
+  `BodyPair` (the latest AI reasoning + tool call + tool response) MUST NEVER be
+  summarized into prose. Summarizing the active body pair destroys provider-specific
+  reasoning signatures (`thought_signature` for Gemini, cryptographic signatures for
+  Anthropic) and orphan tool call IDs, causing fatal HTTP 400 Bad Request errors.
+- **`<summarized_content_handling>` Anti-Mimicry**: Agents reading compacted history
+  must treat prior turns purely as declarative facts, never mimicking summarized
+  response formats, hallucinating that skipped checks passed, or assuming unverified
+  deliverables are complete.
+- **Reflector Guard & Argument Fixer**: If an agent emits a free-form completion where
+  a required tool call was expected, the harness must bounce the turn with a reflection
+  prompt rather than losing the thread; malformed tool arguments should pass through
+  a schema-repair pass before execution.
+
 ## The trade
 
 Every move except Continue turns a **primary source** into a **secondary source**:

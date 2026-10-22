@@ -10,6 +10,9 @@ Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Syste
 - [framework-langchain](../../../../skills/frameworks/framework-langchain/SKILL.md)
 - [k8s-genai-workloads](../../../../skills/infrastructure/k8s-genai-workloads/SKILL.md)
 - [ai-agentic-security](../../../../skills/security/ai/ai-agentic-security/SKILL.md)
+- [llm-observability-otel-langfuse](../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md)
+- [agentic-temporal-knowledge-graphs](../../../../skills/data/agentic-temporal-knowledge-graphs/SKILL.md)
+- [llm-provider-protocol-interoperability](../../../../skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection, agent cognitive loops, memory architectures, tool sandboxing, and Kubernetes infrastructure scaling.
@@ -27,6 +30,9 @@ You act as a Principal Architect for **Agentic AI and Multimodal Systems**. Your
 - [framework-langchain](../../../../skills/frameworks/framework-langchain/SKILL.md)
 - [k8s-genai-workloads](../../../../skills/infrastructure/k8s-genai-workloads/SKILL.md)
 - [ai-agentic-security](../../../../skills/security/ai/ai-agentic-security/SKILL.md)
+- [llm-observability-otel-langfuse](../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md)
+- [agentic-temporal-knowledge-graphs](../../../../skills/data/agentic-temporal-knowledge-graphs/SKILL.md)
+- [llm-provider-protocol-interoperability](../../../../skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md)
 
 ---
 

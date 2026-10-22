@@ -43,6 +43,9 @@
       "path": "knowledge/skills/architecture/enterprise/solution-architect"
     },
     {
+      "path": "knowledge/skills/data/agentic-temporal-knowledge-graphs"
+    },
+    {
       "path": "knowledge/skills/data/data-intensive-systems"
     },
     {
@@ -514,6 +517,12 @@
       "path": "knowledge/skills/domains/industry/healthtech-standards-security"
     },
     {
+      "path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability"
+    },
+    {
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity"
     },
     {
@@ -608,6 +617,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/tui-terminal-engineering"
     },
     {
       "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship"
@@ -1145,6 +1157,9 @@
     },
     {
       "path": "knowledge/skills/security/offensive/kubernetes-attack-paths"
+    },
+    {
+      "path": "knowledge/skills/security/offensive/network-infrastructure-pentest"
     },
     {
       "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp"

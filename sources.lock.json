@@ -313,7 +313,7 @@
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
       "source_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
+      "target_sha256": "ecaf7828b7c1f7ea8d2a53addc99a11cc557ba13920508facc9795dd84b8d5a0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -415,7 +415,7 @@
       "source_path": "agents/cybersecurity/pentester-agent/AGENT.md",
       "source_sha256": "ea1e6a9c0a26f2e67378aff13e152d74d55f82771db6aa96f4d033b0491f3d82",
       "target_path": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md",
-      "target_sha256": "d3496336511ed142cd0b3bc6b65746ef10eab3a42a313f0ebce99f8675ef8883",
+      "target_sha256": "124e3d74b24f2d13c277755b2acb51fc17f740ce5bf28edb5ca1d1253c0223dd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -517,7 +517,7 @@
       "source_path": "agents/data-cloud-devops/data-ai-engineer/AGENT.md",
       "source_sha256": "bfd0b5d3af2fdb9e6661240c1f6b7638505d44b6cfcc1c76199b589a53f71aeb",
       "target_path": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
-      "target_sha256": "25813b99993b2771e5fe07d7b6d2a7cd7e610ce0548b0d71056f05ab6b412be0",
+      "target_sha256": "40ddafb8f2c615a568a8f6cdffcd368bcef6ecf0469a452e07bffdd9c6f02f10",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6862,9 +6862,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/programs/containers/SKILL.md",
-      "source_sha256": "e44c94a451ad4b94fb3511b568c9a7cfd0366fe80756bafcecfb5eedbc46cc3e",
+      "source_sha256": "6570b5193d90ecd5de6a61dfee63c07ac2867567aeac1e2ace60db161d216685",
       "target_path": "knowledge/skills/infrastructure/program-containers/SKILL.md",
-      "target_sha256": "e44c94a451ad4b94fb3511b568c9a7cfd0366fe80756bafcecfb5eedbc46cc3e",
+      "target_sha256": "6570b5193d90ecd5de6a61dfee63c07ac2867567aeac1e2ace60db161d216685",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11108,9 +11108,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "source_sha256": "d95b5b6771264a7db18b461f6106c9aa857b84d983dc68eaf4ef0f19b2b5a3a2",
+      "source_sha256": "722d7185abed048c2a5c4ecdc1cbbe77eba1ba8e6d88926bdd95483141fc99ef",
       "target_path": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "target_sha256": "d95b5b6771264a7db18b461f6106c9aa857b84d983dc68eaf4ef0f19b2b5a3a2",
+      "target_sha256": "722d7185abed048c2a5c4ecdc1cbbe77eba1ba8e6d88926bdd95483141fc99ef",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11640,9 +11640,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/web-search-specialist/SKILL.md",
-      "source_sha256": "21c032e1316880d57a1ed49001ffb808fa0e5cd428711fe9c863088d1241ba38",
+      "source_sha256": "7e7e74a31f85feb3bf6a9d8abbe1381e6b6c58e228a79f99e2b6119ec6a910e1",
       "target_path": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "target_sha256": "21c032e1316880d57a1ed49001ffb808fa0e5cd428711fe9c863088d1241ba38",
+      "target_sha256": "7e7e74a31f85feb3bf6a9d8abbe1381e6b6c58e228a79f99e2b6119ec6a910e1",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15846,7 +15846,7 @@
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
       "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "48cfa534f1516e69e60d0c4eb77efcd8a71e57a8762fb4933d9c160aa078cb81",
+      "target_sha256": "297cb067f21413065432440b90e8c5351d8c432507f3297e9d1d2b8db6541574",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -17721,9 +17721,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "source_sha256": "251bded214763971da011ed847eef3bacc6679f317615c0611c360eaa0fc0303",
+      "source_sha256": "fad7b5433cb944adf3b6e86703ad9ad3cf4d85911eeb3d6eddf4ef9930b92d7e",
       "target_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "target_sha256": "251bded214763971da011ed847eef3bacc6679f317615c0611c360eaa0fc0303",
+      "target_sha256": "fad7b5433cb944adf3b6e86703ad9ad3cf4d85911eeb3d6eddf4ef9930b92d7e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18906,9 +18906,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "source_sha256": "098e143d7f574593c9df1fa1dea5217a581364327eeaa34ba8c649ac666a1454",
+      "source_sha256": "90ae63f1cb932d68c0af50e5c5da2bac2971150dcd68906cbc34ea593ef7a83a",
       "target_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "target_sha256": "098e143d7f574593c9df1fa1dea5217a581364327eeaa34ba8c649ac666a1454",
+      "target_sha256": "90ae63f1cb932d68c0af50e5c5da2bac2971150dcd68906cbc34ea593ef7a83a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20091,9 +20091,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "source_sha256": "3976264918eab0c3e3d9cc025d0244b1ab48c4eb12f259d77f744107b639967f",
+      "source_sha256": "9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8",
       "target_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "target_sha256": "3976264918eab0c3e3d9cc025d0244b1ab48c4eb12f259d77f744107b639967f",
+      "target_sha256": "9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20241,9 +20241,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/phase-boundaries/SKILL.md",
-      "source_sha256": "ea7e38d3844352154e4b35378a89011c18ddde635435392db17cd256225973b5",
+      "source_sha256": "20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d",
       "target_path": "methodology/workflows/phase-boundaries/SKILL.md",
-      "target_sha256": "ea7e38d3844352154e4b35378a89011c18ddde635435392db17cd256225973b5",
+      "target_sha256": "20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20421,9 +20421,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "source_sha256": "6a3bb4b6fd72db252b5e2691c76757f3814b7d0dce721162d17cb219da372828",
+      "source_sha256": "cca3c21a9662df44fa9cd488e11a117a335bcebbc443e83d54a834d7ae393efc",
       "target_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "target_sha256": "6a3bb4b6fd72db252b5e2691c76757f3814b7d0dce721162d17cb219da372828",
+      "target_sha256": "cca3c21a9662df44fa9cd488e11a117a335bcebbc443e83d54a834d7ae393efc",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20856,9 +20856,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
-      "source_sha256": "c80c45f9600182dce4ca425de991a9cd076078863d1500b8d9fcc0aa80af2ca5",
+      "source_sha256": "fe06da2bcac072a05b15cc068adcfbcf467b855dbbd2389364a2c5d9db4fb270",
       "target_path": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
-      "target_sha256": "c80c45f9600182dce4ca425de991a9cd076078863d1500b8d9fcc0aa80af2ca5",
+      "target_sha256": "fe06da2bcac072a05b15cc068adcfbcf467b855dbbd2389364a2c5d9db4fb270",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20911,6 +20911,96 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-20T22:11:45Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
+      "source_sha256": "b748938151088e923f92944d4c6869e6b91ef2c739ad09b597da131553132dd4",
+      "target_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
+      "target_sha256": "b748938151088e923f92944d4c6869e6b91ef2c739ad09b597da131553132dd4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+      "source_sha256": "f6839dce94e695917fa248b6e36b0a9c80a1757a1b9fdad860631739d7de54aa",
+      "target_path": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+      "target_sha256": "f6839dce94e695917fa248b6e36b0a9c80a1757a1b9fdad860631739d7de54aa",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
+      "source_sha256": "d0e45c476cc5fcf1c99550f6a628d75c0cb8fa9747495279cfbec8873593b4df",
+      "target_path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
+      "target_sha256": "d0e45c476cc5fcf1c99550f6a628d75c0cb8fa9747495279cfbec8873593b4df",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md",
+      "source_sha256": "4143c7f03e94abbdff5a73019fe068efe28c0b3930386cc686d00fe95fd3c806",
+      "target_path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md",
+      "target_sha256": "4143c7f03e94abbdff5a73019fe068efe28c0b3930386cc686d00fe95fd3c806",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md",
+      "source_sha256": "115bc043f1a4594beb29ddb42f15462bb810a9e1245bf4a7c38091442293f1a5",
+      "target_path": "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md",
+      "target_sha256": "115bc043f1a4594beb29ddb42f15462bb810a9e1245bf4a7c38091442293f1a5",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md",
+      "source_sha256": "ddceacf36efdcd552a66c43a9036f5f4ca98a3c1da65ff63cbd10ec0483742e5",
+      "target_path": "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md",
+      "target_sha256": "ddceacf36efdcd552a66c43a9036f5f4ca98a3c1da65ff63cbd10ec0483742e5",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T19:29:21Z"
     }
   ]
 }

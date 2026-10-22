@@ -26,6 +26,11 @@ This skill establishes the advanced methodology for investigation, information r
    - **Step 1 (Broadening)**: Broad exploratory query to identify the correct terminology and industry synonyms.
    - **Step 2 (Narrowing)**: Application of quotes and inclusion/exclusion operators to eliminate obvious noise.
    - **Step 3 (Targeted Extraction)**: Use of structural operators (`site:`, `filetype:`, `intitle:`, `inurl:`) to locate source documents or canonical portals.
+4. **Intent-Mode Search Routing**:
+   - `mode: links`: Rapid locator mode to find canonical URLs, official repositories, or package registries without consuming tokens on large body snippets.
+   - `mode: answer`: High-confidence extraction of precise facts, command syntax, or version tables from primary sources.
+   - `mode: research`: In-depth multi-source triangulation across primary documentation, RFCs, and academic databases.
+   - `mode: exploit`: Security-specific investigation querying CVE databases, vendor advisories, GitHub advisories, and MITRE ATT&CK techniques with verified PoC references.
 
 ---
 

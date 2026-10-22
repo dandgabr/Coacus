@@ -46,9 +46,21 @@ missing or ambiguous, stop at a plan and request clarification.
    limits, environment/rate constraints, and whether execution of untrusted
    build or application code is unavailable. Do not execute target code without
    an isolated, authorized environment.
-5. Report candidates with evidence and a status: `confirmed`, `needs validation`,
-   or `rejected`. Do not present an unverified candidate as a vulnerability.
+5. Report candidates with evidence and status (`confirmed`, `needs validation`, or `rejected`), tracking vulnerability lifecycle in the engagement graph:
+   - `DETECTED_VULNERABILITY`: Initial scanner heuristic or unconfirmed hypothesis.
+   - `CONFIRMED_VULNERABILITY`: Corroborated by independent probe or code trace.
+   - `HAS_VULNERABILITY`: Exploitation verified with reproducible proof-of-concept.
+   Do not present an unverified candidate as a proven vulnerability.
    For findings that need filtering, follow [review findings pipeline](../../../engineering/practices/review-findings-pipeline/SKILL.md).
+
+## Operational protocols
+
+- **Passive Lateral Discovery (<scope_check_protocol>):**
+  When testing reveals unannounced assets (subdomains, internal CIDRs, exposed buckets), register them strictly as finding candidates. Never scan or exploit lateral discoveries without explicit user scope authorization.
+- **Memory Sanitization (<anonymization>):**
+  Before storing reusable vulnerability guides or procedural playbooks in long-term memory, sanitize customer assets with placeholders: `{target_ip}`, `{target_domain}`, `{username}`, `{password}`, `{token}`.
+- **Non-Interactive Batch CLI:**
+  Security tooling running in containerized environments must use non-interactive batch invocations (e.g., `msfconsole -q -x "...; exit"`), verify listener port availability, and validate CLI arguments against tool manuals to prevent flag collisions.
 
 ## Plan output
 

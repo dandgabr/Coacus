@@ -35,10 +35,7 @@ record that survives your own forgetting.
 **Zeigarnik Open Loops & Escape Hatches:** When halting or recovering from rate limits (429), ledger the state:
 (1) Completed, (2) Active task, (3) Pending tasks, and (4) The exact resume/rollback command (`git merge --abort` or resume command). This prevents silent context loss across sessions.
 
-**Continuous execution:** Do not pause to check in with your human partner
-between tasks. They chose inline execution to spend less, not to answer
-"should I continue?" after every task. Execute all tasks from the plan
-without stopping.
+**Continuous execution & adaptive plan delta:** Do not pause between tasks. After each subtask, prune obsolete steps and insert discovered prerequisites via delta ops (`add|remove|modify|reorder`), recording rulings (`Ruling: Plan Delta`). Keep scope bounded.
 
 **Rulings, not stalls.** Conflicts, ambiguities, plan defects — decide them.
 The spec is the binding authority, the plan is its argument, and your

@@ -23,6 +23,7 @@
     {
       "title": "data",
       "skills": [
+        "agentic-temporal-knowledge-graphs",
         "data-intensive-systems",
         "data-mesh-governance",
         "data-science-workflow",
@@ -97,6 +98,8 @@
         "linguistic-en-us",
         "linguistic-es-latam",
         "linguistic-pt-br",
+        "llm-observability-otel-langfuse",
+        "llm-provider-protocol-interoperability",
         "medical-device-cybersecurity",
         "quantum-computing-algorithms",
         "telecom-voice-engineering",
@@ -222,6 +225,7 @@
         "repository-artifact-hygiene",
         "review-findings-pipeline",
         "system-design-scalability",
+        "tui-terminal-engineering",
         "ui-design-craftsmanship",
         "ui-gpu-graphics-web",
         "ui-ux-principles",
@@ -438,6 +442,7 @@
         "mobile-app-pentest",
         "mobile-enterprise-mdm",
         "mobile-malware-forensics",
+        "network-infrastructure-pentest",
         "network-security-onprem-cloud",
         "network-segmentation-microsegmentation",
         "nis2-cra-compliance",

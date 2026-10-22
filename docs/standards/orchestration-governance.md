@@ -36,13 +36,55 @@ A task that invokes two or more agents MUST route through the
 `multi-agent-orchestrator` as supervisor. The orchestrator:
 
 1. Anchors the initial goal and acceptance criteria against scope drift.
-2. Supervises each subagent's progress.
+2. Supervises each subagent's progress using quantitative tool caps and mentor checks.
 3. Mediates conflicts through TOON evidence in `@FILES` (see
    [`toon-protocol.md`](toon-protocol.md)).
 4. Intervenes or terminates a subagent that loops, drifts or acts out of scope.
 
 Handoffs between agents MUST be TOON payloads. Free-text handoffs are
 non-compliant.
+
+### Quantitative supervision and mentor loop
+
+The supervisor MUST enforce quantitative execution bounds:
+
+- **Differentiated tool-call budgets**: general/deep execution agents operate under
+  `MAX_GENERAL_AGENT_TOOL_CALLS = 100`, while limited/refinement/search agents operate
+  under `MAX_LIMITED_AGENT_TOOL_CALLS = 20`.
+- **Sliding-window loop detection**: `same_tool_limit` triggers after 3–5 identical
+  consecutive calls with unchanged inputs or repetitive errors. Exceeding `total_tool_limit`
+  forces an immediate pause and supervisor evaluation.
+- **`<mentor_analysis>` progress checkpoint**: before redelegating or accepting completion,
+  the supervisor answers a 6-question progress check:
+  1. Did the subagent produce concrete artifacts or verifiable evidence?
+  2. Are tools being called in a repetitive or unproductive loop?
+  3. Is the subagent performing unrequested work or touching out-of-scope files?
+  4. Can the question be answered directly from the existing context without further calls?
+  5. Has the tool-call budget reached 80% without measurable progress?
+  6. Is the next step clearly grounded in the user's initial objective?
+
+### Language policy: English-first and dual-channel
+
+To maintain semantic precision in cross-model reasoning and retrieval:
+
+- **Technical wire and memory channel (100% `en`)**: all TOON handoff payloads, tool arguments,
+  vector queries, graph triples, and long-term memory entries MUST be strictly in English (`en`).
+- **Human communication and reporting channel (`en` default; `en | pt-BR | es` supported)**:
+  when interacting with human operators or rendering final deliverables, the supervisor supports
+  the three official languages: `en` (canonical default), `pt-BR`, and `es`.
+
+### Cryptographic evidence receipt chain
+
+For high-assurance and security audits, multi-agent workflows MAY emit an Ed25519-signed,
+hash-linked DAG of execution receipts:
+
+```text
+flow_start -> task_created -> subtask_started -> toolcall_finished -> artifact_recorded -> report_created
+```
+
+Each receipt records `receipt_id`, `parent_receipt_ids`, `event_type`, `input_hash`,
+`output_hash`, and `artifact_hashes` (SHA-256). Any receipt validation failure halts downstream
+processing fail-closed.
 
 ### Health
 

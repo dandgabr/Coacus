@@ -516,6 +516,12 @@ Container security requires a layered approach (*defense-in-depth*), from source
 - **Read-Only Filesystem**: Configure `readOnlyRootFilesystem: true` while mounting volatile directories (`/tmp`, `/run`) on an isolated `emptyDir`.
 - **Seccomp & AppArmor/SELinux**: Restrict permitted system calls (syscalls) using the `RuntimeDefault` profile or custom profiles.
 
+### 6. Agent Container Sandboxing & Active OPA Policy Preflight
+When executing untrusted agent code or security tools inside containers:
+- **TLS DinD Isolation vs Raw Socket**: Never bind-mount the host's `/var/run/docker.sock` into an agent container (which allows trivial host privilege escalation and race conditions during boot). Use an isolated Docker-in-Docker daemon communicating over mutual TLS (`DOCKER_INSIDE_HOST`).
+- **Capability Filtering**: Apply `CapDrop: ["ALL"]` with an explicit capability allowlist. Explicitly disallow `CAP_MKNOD` while retaining `CAP_SETFCAP` only when binary packet capture or network utilities (`nmap`, `dumpcap`) require file capability initialization (`setcap`).
+- **Active OPA Authorization Preflight**: Before opening the container runtime to autonomous agents, execute an automated preflight probe battery (e.g. 15 synthetic `POST /containers/create` test vectors) to verify that the Docker authorization plugin (`opa-docker-authz`) strictly blocks privileged flags, sensitive host mounts (`/`, `/etc`, `/var/run`), and capability escalations with HTTP 403 Forbidden.
+
 ---
 
 ## ☁️ 9. Cloud Orchestration & Managed / Serverless Containers

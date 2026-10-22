@@ -69,3 +69,5 @@ tools:
     path: ../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/offensive/network-infrastructure-pentest/SKILL.md

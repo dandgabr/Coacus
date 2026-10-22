@@ -18,6 +18,9 @@ instruction: >
   - [framework-langchain](knowledge/skills/frameworks/framework-langchain/SKILL.md)
   - [k8s-genai-workloads](knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md)
   - [ai-agentic-security](knowledge/skills/security/ai/ai-agentic-security/SKILL.md)
+  - [llm-observability-otel-langfuse](knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md)
+  - [agentic-temporal-knowledge-graphs](knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md)
+  - [llm-provider-protocol-interoperability](knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md)
 
   ---
 
@@ -38,3 +41,9 @@ tools:
     path: ../../../../skills/infrastructure/k8s-genai-workloads/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/ai/ai-agentic-security/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/agentic-temporal-knowledge-graphs/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md

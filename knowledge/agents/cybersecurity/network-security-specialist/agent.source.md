@@ -14,6 +14,7 @@ skills:
   - knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md
   - knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md
   - knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md
+  - knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md
 ---
 
 ## 🎯 Description and Purpose

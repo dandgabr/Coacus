@@ -49,3 +49,15 @@ tested and fail-open. See the `lifecycle-guardrails` standard for the model.
 - **Prompt budget.** When layered rule files concatenate under a size cap,
   document the truncation order: drop the tail first, so user-wide rules survive
   and the most local are lost.
+
+## Conservative Tool & Missing-CLI Fallback Policy
+
+When an autonomous agent encounters a missing CLI binary or tool failure:
+
+- **Policy Modes (`disabled | observe | enforce`)**: Default to `observe` during development and `enforce` in production.
+- **Strict Disallow Rules**: Prohibit blind auto-installation of missing tools. Specifically ban:
+  - `curl_pipe_shell` (`curl ... | sh` / `bash`)
+  - `wget_pipe_shell` (`wget -O- ... | sh`)
+  - `untrusted_repository` (adding random third-party PPAs or unverified git URLs)
+  - `model_generated_unverified_command` (executing hallucinated multi-line install scripts without user gating).
+- **Fallback Result Transparency**: When a fallback mechanism or alternative tool is used, the report must preserve the primary tool's failure log alongside the fallback outcome, preventing silent degradation.

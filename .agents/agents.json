@@ -259,6 +259,9 @@
       "path": "knowledge/agents/software-engineering/software-engineer"
     },
     {
+      "path": "knowledge/agents/software-engineering/tui-cli-engineer"
+    },
+    {
       "path": "knowledge/agents/software-engineering/ui-designer"
     },
     {

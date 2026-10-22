@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 461 skill(s) · 102 agent(s) · 1 MCP(s)
+**Totals:** 466 skill(s) · 103 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -104,6 +104,7 @@
 | telecom-engineer | academic-sciences | [knowledge/agents/academic-sciences/telecom-engineer/agent.source.md](../knowledge/agents/academic-sciences/telecom-engineer/agent.source.md) |
 | telecom-voice-specialist | academic-sciences | [knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md](../knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md) |
 | threat-intelligence-specialist | cybersecurity | [knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md](../knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md) |
+| tui-cli-engineer | software-engineering | [knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md](../knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md) |
 | ui-designer | software-engineering | [knowledge/agents/software-engineering/ui-designer/agent.source.md](../knowledge/agents/software-engineering/ui-designer/agent.source.md) |
 | ui-motion-specialist | software-engineering | [knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
 | ui-ux-designer | software-engineering | [knowledge/agents/software-engineering/ui-ux-designer/agent.source.md](../knowledge/agents/software-engineering/ui-ux-designer/agent.source.md) |
@@ -129,6 +130,7 @@
 | domain-architect | [knowledge/skills/architecture/enterprise/domain-architect/SKILL.md](../knowledge/skills/architecture/enterprise/domain-architect/SKILL.md) |
 | enterprise-architect | [knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md](../knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md) |
 | solution-architect | [knowledge/skills/architecture/enterprise/solution-architect/SKILL.md](../knowledge/skills/architecture/enterprise/solution-architect/SKILL.md) |
+| agentic-temporal-knowledge-graphs | [knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md](../knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md) |
 | data-intensive-systems | [knowledge/skills/data/data-intensive-systems/SKILL.md](../knowledge/skills/data/data-intensive-systems/SKILL.md) |
 | data-mesh-governance | [knowledge/skills/data/data-mesh-governance/SKILL.md](../knowledge/skills/data/data-mesh-governance/SKILL.md) |
 | data-science-workflow | [knowledge/skills/data/data-science-workflow/SKILL.md](../knowledge/skills/data/data-science-workflow/SKILL.md) |
@@ -286,6 +288,8 @@
 | game-asset-pipeline | [knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md](../knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md) |
 | hardware-hacking-embedded-security | [knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md](../knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md) |
 | healthtech-standards-security | [knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md](../knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md) |
+| llm-observability-otel-langfuse | [knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md](../knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md) |
+| llm-provider-protocol-interoperability | [knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md](../knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md) |
 | medical-device-cybersecurity | [knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md) |
 | telecom-voice-engineering | [knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md](../knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md) |
 | linguistic-en-us | [knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md](../knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md) |
@@ -318,6 +322,7 @@
 | repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
 | review-findings-pipeline | [knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md](../knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
+| tui-terminal-engineering | [knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md](../knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md) |
 | ui-design-craftsmanship | [knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md](../knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
@@ -497,6 +502,7 @@
 | bug-bounty-methodology | [knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md](../knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md) |
 | exploit-development-vulnerability-research | [knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md](../knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md) |
 | kubernetes-attack-paths | [knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md](../knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md) |
+| network-infrastructure-pentest | [knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md](../knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md) |
 | pentest-cloud-aws-azure-gcp | [knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md](../knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md) |
 | red-team-infrastructure | [knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md](../knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md) |
 | auth-protocols-mfa | [knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md](../knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md) |

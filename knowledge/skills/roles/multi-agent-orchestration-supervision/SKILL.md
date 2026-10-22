@@ -128,12 +128,52 @@ The concurrency cap above is **enforced at runtime** by a slot governor, not mer
 
 ---
 
-## 📐 6. Escalation Decision Example
+## 🧮 6. Quantitative Tool-Call Caps and Mentor Supervision Loop
 
-Given a queue of 6 independent subtasks and the cap of 5:
+Beyond subagent process counts, the supervisor actively enforces tool-call budgets and sliding-window loop detection:
 
-1. You + 4 subagents started = 5 active. The remaining 2 stay `QUEUED`.
-2. One of the active subagents fails with `429`. You kill it → `PAUSED`. Active = 4.
-3. Release the next `QUEUED` as `ACTIVE` (active = 5) **and** relaunch the `PAUSED` one (active = 6? **no**: apply a new wait until active < 5).
+### 6.1 Differentiated Tool-Call Budgets
+- **Deep Execution Agents** (`general`, `backend-developer`, `pentester-agent`): `MAX_GENERAL_AGENT_TOOL_CALLS = 100`.
+- **Auxiliary & Refinement Agents** (`code-explorer`, `web-researcher`, `subtasks-refiner`): `MAX_LIMITED_AGENT_TOOL_CALLS = 20`.
 
-> **Cap adjustment**: the value 5 is the default (`MAX_CONCURRENT = 5`, counting the orchestrator). If the provider in use has a lower limit (e.g., 3 RPM), reduce the cap proportionally. The cap can be parameterized via the `ORCH_MAX_CONCURRENT` environment variable when the harness allows it.
+### 6.2 Sliding-Window Loop Detection
+- **`same_tool_limit` (3–5 calls)**: If an agent invokes the same tool with identical or near-identical arguments 3 to 5 times consecutively without new outputs or error resolution, trigger an immediate Level 1 drift intervention.
+- **`total_tool_limit`**: If an agent consumes 80% of its budget without generating verifiable artifacts or passing tests, pause the agent and evaluate progress using the `<mentor_analysis>` checklist.
+
+### 6.3 The `<mentor_analysis>` Progress Checklist
+Before redelegating a task, approving completion, or releasing an agent:
+```text
+<mentor_analysis>
+1. Artifact Verification: Has the subagent produced physical files, test runs, or concrete evidence?
+2. Loop Check: Is the subagent repeating tool invocations or stuck in an unproductive cycle?
+3. Scope Adherence: Are modified files strictly within the declared bounded context?
+4. Context Completeness: Can the current question or step be resolved immediately from context?
+5. Budget Depletion: Has the agent consumed >80% of its tool budget without measurable progress?
+6. Objective Grounding: Is the proposed next step aligned with the user's root objective?
+</mentor_analysis>
+```
+
+---
+
+## 🌐 7. English-First & Dual-Channel Language Governance
+
+To maintain semantic density, eliminate token waste, and prevent translation loss during cross-agent handoffs and memory retrieval:
+
+1. **Technical Wire & Memory Channel (100% `en`)**:
+   - All TOON handoff fields (`@SUMMARY`, `@ACTION_NEEDED`, `@CTX`), tool call parameters, vector search queries, knowledge graph triples, and internal scratch notes MUST be in **English (`en`)**.
+2. **Human Communication & Reporting Channel (`en` canonical; `en | pt-BR | es` supported)**:
+   - When presenting final executive reports, asking user clarification, or providing status summaries to human stakeholders, the agent standardizes on the three core supported languages: **English (`en`)** as canonical default, **Brazilian Portuguese (`pt-BR`)**, and **Spanish (`es`)**.
+
+---
+
+## 🔐 8. Cryptographic Evidence Receipt Chain Integration
+
+For auditability and non-repudiation in offensive security, GRC, or critical code deliveries, agents emit an Ed25519-signed, hash-linked DAG of execution receipts:
+
+```text
+flow_start -> task_created -> subtask_started -> toolcall_finished -> artifact_recorded -> report_created
+```
+
+- Each receipt records: `receipt_id`, `parent_receipt_ids`, `event_type`, `input_hash` (SHA-256), `output_hash` (SHA-256), and `artifact_hashes`.
+- Offline verification fails closed: any broken link or mismatched payload signature invalidates downstream findings.
+

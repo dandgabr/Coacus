@@ -10,7 +10,10 @@
         "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
         "knowledge/skills/frameworks/framework-langchain/SKILL.md",
         "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md",
-        "knowledge/skills/security/ai/ai-agentic-security/SKILL.md"
+        "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
+        "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
+        "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+        "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md"
       ],
       "triggers": [
         "agent cognitive loop",
@@ -39,7 +42,9 @@
         "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
         "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
         "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
-        "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md"
+        "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md",
+        "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
+        "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md"
       ],
       "triggers": [
         "ai architect",
@@ -787,7 +792,9 @@
         "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
         "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
         "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
-        "knowledge/skills/data/human-in-the-loop-ml/SKILL.md"
+        "knowledge/skills/data/human-in-the-loop-ml/SKILL.md",
+        "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+        "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md"
       ],
       "triggers": [
         "airflow",
@@ -2095,7 +2102,8 @@
         "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md",
         "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
         "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
+        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
+        "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md"
       ],
       "triggers": [
         "dns security",
@@ -2157,6 +2165,7 @@
         "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md",
         "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md",
         "knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md",
+        "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md",
         "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md"
       ],
       "triggers": [
@@ -2767,6 +2776,38 @@
         "taxii",
         "threat",
         "threat intelligence"
+      ]
+    },
+    {
+      "name": "tui-cli-engineer",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+      "skills": [
+        "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
+        "knowledge/skills/languages/lang-go/SKILL.md",
+        "knowledge/skills/languages/lang-python/SKILL.md",
+        "knowledge/skills/languages/lang-rust/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "ansi escape",
+        "bubble tea",
+        "bubbletea",
+        "charm",
+        "charmbracelet",
+        "cli interativa",
+        "emulador de terminal",
+        "interactive cli",
+        "interface de terminal",
+        "lip gloss",
+        "lipgloss",
+        "pty",
+        "ratatui",
+        "terminal emulator",
+        "terminal user interface",
+        "textual",
+        "tui"
       ]
     },
     {

@@ -13,6 +13,7 @@ Specialist Agent in Network Security, covering firewalls and NGFW, IDS/IPS and N
 - [iot-untrusted-device-isolation](../../../../skills/security/operations/iot-untrusted-device-isolation/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
+- [network-infrastructure-pentest](../../../../skills/security/offensive/network-infrastructure-pentest/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose

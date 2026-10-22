@@ -67,3 +67,7 @@ tools:
     path: ../../../../skills/security/ai/ai-llm-slm-security/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/ai-governance-iso-42001/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md

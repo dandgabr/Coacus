@@ -78,3 +78,7 @@ tools:
     path: ../../../../skills/data/mlops-platform-engineering/SKILL.md
   - type: skill_integration
     path: ../../../../skills/data/human-in-the-loop-ml/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/agentic-temporal-knowledge-graphs/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md

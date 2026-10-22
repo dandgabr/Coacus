@@ -15,6 +15,8 @@ AI/ML Architecture agent that owns the end-to-end architecture of machine learni
 - [distributed-ml-scaling](../../../../skills/data/distributed-ml-scaling/SKILL.md)
 - [ai-llm-slm-security](../../../../skills/security/ai/ai-llm-slm-security/SKILL.md)
 - [ai-governance-iso-42001](../../../../skills/security/grc/ai-governance-iso-42001/SKILL.md)
+- [llm-observability-otel-langfuse](../../../../skills/domains/industry/llm-observability-otel-langfuse/SKILL.md)
+- [llm-provider-protocol-interoperability](../../../../skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## Description and Purpose

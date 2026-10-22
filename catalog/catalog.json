@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 102,
-    "skills": 461,
+    "agents": 103,
+    "skills": 466,
     "mcps": 1
   },
   "agents": [
@@ -583,6 +583,12 @@
       "source": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md"
     },
     {
+      "name": "tui-cli-engineer",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+      "source": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md"
+    },
+    {
       "name": "ui-designer",
       "category": "software-engineering",
       "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
@@ -675,6 +681,10 @@
     {
       "name": "solution-architect",
       "path": "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md"
+    },
+    {
+      "name": "agentic-temporal-knowledge-graphs",
+      "path": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md"
     },
     {
       "name": "data-intensive-systems",
@@ -1305,6 +1315,14 @@
       "path": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md"
     },
     {
+      "name": "llm-observability-otel-langfuse",
+      "path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md"
+    },
+    {
+      "name": "llm-provider-protocol-interoperability",
+      "path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md"
+    },
+    {
       "name": "medical-device-cybersecurity",
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md"
     },
@@ -1431,6 +1449,10 @@
     {
       "name": "system-design-scalability",
       "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "tui-terminal-engineering",
+      "path": "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md"
     },
     {
       "name": "ui-design-craftsmanship",
@@ -2147,6 +2169,10 @@
     {
       "name": "kubernetes-attack-paths",
       "path": "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md"
+    },
+    {
+      "name": "network-infrastructure-pentest",
+      "path": "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md"
     },
     {
       "name": "pentest-cloud-aws-azure-gcp",
