@@ -2232,7 +2232,7 @@
       "description": "Plans application security reviews across source code, live web applications, APIs, and CI supply chains. Use when a request spans multiple assessment surfaces or needs a scoped review plan before testing.",
       "type": "skill-md",
       "url": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
-      "digest": "sha256:890e5edae04f973091217e561681d1cdc64e92db60d11c0b8c6cdbc7a142ecec"
+      "digest": "sha256:fe06da2bcac072a05b15cc068adcfbcf467b855dbbd2389364a2c5d9db4fb270"
     },
     {
       "name": "security-champions",
