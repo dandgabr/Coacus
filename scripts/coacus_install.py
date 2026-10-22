@@ -291,6 +291,8 @@ def _home() -> Path:
 
 def default_config_dir(harness: str, home: Path) -> Path:
     """Return the default config directory for ``harness`` under ``home``."""
+    if harness == "claude-desktop":
+        harness = "claude-code"
     return {
         "opencode": home / ".config" / "opencode",
         "claude-code": home / ".claude",
@@ -309,20 +311,226 @@ def default_config_dir(harness: str, home: Path) -> Path:
 HARNESS_DETECTION: dict[str, dict[str, list[str]]] = {
     "opencode": {"env": ["OPENCODE_CONFIG_DIR", "OPENCODE"], "bins": ["opencode"]},
     "claude-code": {"env": ["CLAUDE_PLUGIN_ROOT"], "bins": ["claude"]},
+    "claude-desktop": {"env": ["CLAUDE_PLUGIN_ROOT"], "bins": ["claude"]},
     "antigravity": {"env": ["GEMINI_DIR", "ANTIGRAVITY"], "bins": ["agy", "antigravity"]},
     "codex": {"env": ["CODEX_HOME"], "bins": ["codex"]},
     "cursor": {"env": ["CURSOR_TRACE_ID", "CURSOR_PLUGIN_ROOT"], "bins": ["cursor", "cursor-agent"]},
-    "command-code": {"env": ["COMMANDCODE_PROJECT_DIR"], "bins": ["command-code", "cmd"]},
+    "command-code": {"env": ["COMMANDCODE_PROJECT_DIR"], "bins": ["command-code"]},
 }
+
+
+def _detect_desktop(harness: str, home: Path) -> bool:
+    """True when an installation or runtime directory for a Desktop/IDE harness is found on this OS."""
+    candidates: list[Path] = []
+    glob_candidates: list[tuple[Path, str]] = []
+
+    if sys.platform == "win32":
+        app_data_env = os.environ.get("APPDATA")
+        local_app_data_env = os.environ.get("LOCALAPPDATA")
+        program_files_env = os.environ.get("ProgramFiles")
+        program_files_x86_env = os.environ.get("ProgramFiles(x86)")
+
+        local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+        app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+        program_files = Path(program_files_env) if program_files_env else Path("C:/Program Files")
+        program_files_x86 = Path(program_files_x86_env) if program_files_x86_env else Path("C:/Program Files (x86)")
+
+        if harness == "antigravity":
+            candidates.extend([
+                local_app_data / "Programs" / "Antigravity" / "Antigravity.exe",
+                local_app_data / "Programs" / "antigravity-ide" / "Antigravity.exe",
+                program_files / "Antigravity" / "Antigravity.exe",
+                program_files_x86 / "Antigravity" / "Antigravity.exe",
+                app_data / "npm" / "agy.cmd",
+                app_data / "npm" / "antigravity.cmd",
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                local_app_data / "AnthropicClaude" / "claude.exe",
+                local_app_data / "Programs" / "Claude" / "Claude.exe",
+                local_app_data / "Programs" / "claude-code" / "claude.exe",
+                app_data / "Claude" / "claude_desktop_config.json",
+                app_data / "Claude",
+                app_data / "npm" / "claude.cmd",
+            ])
+            glob_candidates.append((local_app_data / "Packages", "Claude_*"))
+        elif harness == "codex":
+            candidates.extend([
+                local_app_data / "Programs" / "Codex" / "Codex.exe",
+                local_app_data / "Programs" / "openai-codex" / "codex.exe",
+                program_files / "Codex" / "Codex.exe",
+                program_files_x86 / "Codex" / "Codex.exe",
+                app_data / "npm" / "codex.cmd",
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+            glob_candidates.append((local_app_data / "Packages", "OpenAI.Codex*"))
+        elif harness == "opencode":
+            candidates.extend([
+                local_app_data / "Programs" / "OpenCode" / "OpenCode.exe",
+                local_app_data / "Programs" / "opencode" / "opencode.exe",
+                program_files / "OpenCode" / "OpenCode.exe",
+                program_files_x86 / "OpenCode" / "OpenCode.exe",
+                app_data / "npm" / "opencode.cmd",
+                app_data / "opencode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                local_app_data / "Programs" / "CommandCode" / "CommandCode.exe",
+                local_app_data / "Programs" / "command-code" / "command-code.exe",
+                program_files / "CommandCode" / "CommandCode.exe",
+                program_files_x86 / "CommandCode" / "CommandCode.exe",
+                app_data / "npm" / "command-code.cmd",
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                local_app_data / "Programs" / "cursor" / "Cursor.exe",
+                local_app_data / "cursor" / "Cursor.exe",
+                program_files / "Cursor" / "Cursor.exe",
+                program_files_x86 / "Cursor" / "Cursor.exe",
+            ])
+    elif sys.platform == "darwin":
+        if harness == "antigravity":
+            candidates.extend([
+                Path("/Applications/Antigravity.app"),
+                Path("/Applications/Antigravity IDE.app"),
+                home / "Applications" / "Antigravity.app",
+                home / "Applications" / "Antigravity IDE.app",
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                Path("/Applications/Claude.app"),
+                home / "Applications" / "Claude.app",
+                home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json",
+                home / "Library" / "Application Support" / "Claude",
+            ])
+        elif harness == "codex":
+            candidates.extend([
+                Path("/Applications/Codex.app"),
+                home / "Applications" / "Codex.app",
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+        elif harness == "opencode":
+            candidates.extend([
+                Path("/Applications/OpenCode.app"),
+                home / "Applications" / "OpenCode.app",
+                home / "Library" / "Application Support" / "opencode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                Path("/Applications/Command Code.app"),
+                Path("/Applications/CommandCode.app"),
+                home / "Applications" / "Command Code.app",
+                home / "Applications" / "CommandCode.app",
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                Path("/Applications/Cursor.app"),
+                home / "Applications" / "Cursor.app",
+            ])
+    else:  # Linux / other posix
+        if harness == "antigravity":
+            candidates.extend([
+                Path("/opt/Antigravity/antigravity"),
+                Path("/usr/share/antigravity/antigravity"),
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                Path("/opt/Claude/claude"),
+                home / ".config" / "Claude" / "claude_desktop_config.json",
+                home / ".config" / "Claude",
+                Path("/var/lib/flatpak/app/com.anthropic.Claude"),
+                home / ".local" / "share" / "flatpak" / "app" / "com.anthropic.Claude",
+            ])
+        elif harness == "codex":
+            candidates.extend([
+                Path("/opt/Codex/codex"),
+                Path("/usr/share/codex/codex"),
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+        elif harness == "opencode":
+            candidates.extend([
+                Path("/opt/OpenCode/opencode"),
+                Path("/usr/share/opencode/opencode"),
+                Path("/var/lib/flatpak/app/ai.opencode.OpenCode"),
+                home / ".local" / "share" / "flatpak" / "app" / "ai.opencode.OpenCode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                Path("/opt/CommandCode/command-code"),
+                Path("/usr/share/command-code/command-code"),
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                Path("/opt/Cursor/cursor"),
+                Path("/usr/share/cursor/cursor"),
+                Path("/var/lib/flatpak/app/com.todesktop.230313mzl4w4u92"),
+                home / ".local" / "share" / "flatpak" / "app" / "com.todesktop.230313mzl4w4u92",
+            ])
+
+    for c in candidates:
+        try:
+            if c.exists():
+                return True
+        except OSError:
+            pass
+
+    for parent, pattern in glob_candidates:
+        try:
+            if parent.is_dir() and any(parent.glob(pattern)):
+                return True
+        except OSError:
+            pass
+
+    return False
+
+
+def _claude_desktop_config_paths(home: Path) -> list[Path]:
+    """Candidate locations for claude_desktop_config.json on this machine."""
+    paths: list[Path] = []
+    if sys.platform == "win32":
+        app_data_env = os.environ.get("APPDATA")
+        local_app_data_env = os.environ.get("LOCALAPPDATA")
+        app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+        local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+        paths.append(app_data / "Claude" / "claude_desktop_config.json")
+        packages = local_app_data / "Packages"
+        if packages.is_dir():
+            try:
+                for pkg in packages.glob("Claude_*"):
+                    paths.append(pkg / "LocalCache" / "Roaming" / "Claude" / "claude_desktop_config.json")
+            except OSError:
+                pass
+    elif sys.platform == "darwin":
+        paths.append(home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json")
+    else:
+        paths.append(home / ".config" / "Claude" / "claude_desktop_config.json")
+    return paths
+
+
+def _primary_claude_desktop_config_path(home: Path) -> Path:
+    """The canonical primary claude_desktop_config.json path for the current OS."""
+    if sys.platform == "win32":
+        app_data = Path(os.environ.get("APPDATA") or (home / "AppData" / "Roaming"))
+        return app_data / "Claude" / "claude_desktop_config.json"
+    if sys.platform == "darwin":
+        return home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json"
+    return home / ".config" / "Claude" / "claude_desktop_config.json"
 
 
 def harness_present(harness: str, home: Path | None = None) -> bool:
     """True when ``harness`` appears installed on this machine.
 
-    Detection is by the harness's own environment variable or its executable on
-    PATH — never by the mere existence of the config directory, which Coacus
-    itself may have created. This is what prevents installing into an absent
-    harness.
+    Detection is by the harness's own environment variable, its executable on
+    PATH, or its Desktop/IDE installation paths.
     """
     import os
 
@@ -331,7 +539,10 @@ def harness_present(harness: str, home: Path | None = None) -> bool:
         return True  # unknown harness: do not block a custom adapter
     if any(os.environ.get(var) for var in facts.get("env", [])):
         return True
-    return any(shutil.which(binary) for binary in facts.get("bins", []))
+    if any(shutil.which(binary) for binary in facts.get("bins", [])):
+        return True
+    effective_home = home or _home()
+    return _detect_desktop(harness, effective_home)
 
 
 def _split_filter(value: str | None) -> list[str]:
@@ -484,9 +695,22 @@ def _allowed_roots(config_dir: Path) -> list[Path]:
     """Roots the installer legitimately writes under.
 
     ``config_dir`` for the harness's own files, plus ``<config_dir>/../.agents``
-    for the shared ``~/.agents/skills`` tree Codex and Cursor scan.
+    for the shared ``~/.agents/skills`` tree Codex and Cursor scan, plus legitimate
+    Desktop config roots for Claude Desktop.
     """
-    return [config_dir, config_dir.parent / ".agents"]
+    home = config_dir.parent
+    roots = [config_dir, home / ".agents"]
+    app_data_env = os.environ.get("APPDATA")
+    local_app_data_env = os.environ.get("LOCALAPPDATA")
+    app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+    local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+    roots.extend([
+        app_data / "Claude",
+        local_app_data / "Packages",
+        home / "Library" / "Application Support" / "Claude",
+        home / ".config" / "Claude",
+    ])
+    return roots
 
 
 def _assert_contained(targets: list[tuple[Path, FileContent]], config_dir: Path) -> None:
@@ -1066,15 +1290,21 @@ def _mcp_servers(root: Path) -> dict[str, dict]:
     mcp_root = root / "knowledge" / "mcps"
     if not mcp_root.is_dir():
         return servers
+    executable = getattr(sys, "_base_executable", None) or sys.executable
+    catalog_script = (root / "scripts" / "coacus_catalog_mcp.py").resolve().as_posix()
     for manifest in sorted(mcp_root.glob("*/dist/mcp.json")):
         data = _load_existing_json(manifest)
         name = str(data.get("name") or manifest.parent.parent.name)
         if str(data.get("transport") or "").lower() == "stdio":
             entry: dict = {"transport": "stdio", "enabled": True}
-            if data.get("command"):
-                entry["command"] = data["command"]
-            if data.get("args"):
-                entry["args"] = data["args"]
+            if name == "coacus-catalog":
+                entry["command"] = executable
+                entry["args"] = [catalog_script, "--root", root.resolve().as_posix()]
+            else:
+                if data.get("command"):
+                    entry["command"] = data["command"]
+                if data.get("args"):
+                    entry["args"] = data["args"]
         else:
             entry = {"transport": "http", "enabled": True}
             if data.get("url"):
@@ -1269,6 +1499,7 @@ def _plan_claude(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
     skills_mode: str = "link",
+    is_desktop_target: bool = False,
 ) -> list[tuple[Path, FileContent]]:
     """Skills + subagents + a hook plugin whose script matches hooks.json.
 
@@ -1324,6 +1555,30 @@ def _plan_claude(
             ),
         )
     )
+    # Global settings.json hooks (active for CLI, IDE extension and Desktop Code tab)
+    settings_path = config_dir / "settings.json"
+    existing_settings = _load_existing_json(settings_path)
+    merged_settings = _merge_hooks(existing_settings, bootstrap_fragment, markers)
+    if guard_fragment:
+        merged_settings = _merge_hooks(merged_settings, guard_fragment, markers)
+    plan.append((settings_path, json.dumps(merged_settings, indent=2) + "\n"))
+
+    # Claude Desktop MCP configuration
+    servers = _mcp_servers(root)
+    if servers:
+        desktop_candidates = _claude_desktop_config_paths(config_dir.parent)
+        configured_desktop = False
+        for cpath in desktop_candidates:
+            if cpath.parent.is_dir() or cpath.is_file():
+                existing_mcp = _load_existing_json(cpath)
+                merged_mcp = _merge_mcp(existing_mcp, servers)
+                plan.append((cpath, json.dumps(merged_mcp, indent=2) + "\n"))
+                configured_desktop = True
+        if not configured_desktop and is_desktop_target:
+            primary = _primary_claude_desktop_config_path(config_dir.parent)
+            existing_mcp = _load_existing_json(primary)
+            merged_mcp = _merge_mcp(existing_mcp, servers)
+            plan.append((primary, json.dumps(merged_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1368,6 +1623,14 @@ def _plan_antigravity(
         hooks_doc.update(guard_fragment)
     if hooks_doc:
         plan.append((plugin / "hooks.json", json.dumps(hooks_doc, indent=2) + "\n"))
+    # Antigravity IDE global MCP configuration
+    antigravity_ide_dir = config_dir / "antigravity"
+    ide_mcp_path = antigravity_ide_dir / "mcp_config.json"
+    servers = _mcp_servers(root)
+    if servers and (antigravity_ide_dir.is_dir() or ide_mcp_path.exists()):
+        existing_ide_mcp = _load_existing_json(ide_mcp_path)
+        merged_ide_mcp = _merge_mcp(existing_ide_mcp, servers)
+        plan.append((ide_mcp_path, json.dumps(merged_ide_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1470,6 +1733,12 @@ def _plan_cursor(
             json.dumps(merged, indent=2) + "\n",
         )
     )
+    servers = _mcp_servers(root)
+    if servers:
+        cursor_mcp = config_dir / "mcp.json"
+        existing_cursor_mcp = _load_existing_json(cursor_mcp)
+        merged_cursor_mcp = _merge_mcp(existing_cursor_mcp, servers)
+        plan.append((cursor_mcp, json.dumps(merged_cursor_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1564,8 +1833,16 @@ def plan(
     """
     if harness == "opencode":
         return _plan_opencode(root, config_dir, only, skills, agents)
-    if harness == "claude-code":
-        return _plan_claude(root, config_dir, only, skills, agents, skills_mode)
+    if harness in ("claude-code", "claude-desktop"):
+        return _plan_claude(
+            root,
+            config_dir,
+            only,
+            skills,
+            agents,
+            skills_mode,
+            is_desktop_target=(harness == "claude-desktop"),
+        )
     if harness == "antigravity":
         return _plan_antigravity(root, config_dir, only, skills, agents, antigravity_profile)
     if harness == "codex":
@@ -1837,6 +2114,39 @@ def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
     }
 
 
+def _merged_config_paths(harness: str, config_dir: Path) -> list[Path]:
+    """The user config files Coacus merges its hook entries into for ``harness``."""
+    if harness == "command-code":
+        return [config_dir / COMMAND_CODE_HOOKS_FILE]
+    if harness in ("claude-code", "claude-desktop"):
+        return [config_dir / "settings.json"]
+    return [config_dir / "hooks.json"]
+
+
+def _merged_mcp_paths(harness: str, config_dir: Path) -> list[Path]:
+    """The user MCP configs Coacus merges into, or empty when it installs none."""
+    if harness == "command-code":
+        return [config_dir / COMMAND_CODE_MCP_FILE]
+    if harness == "cursor":
+        return [config_dir / "mcp.json"]
+    if harness == "antigravity":
+        return [config_dir / "antigravity" / "mcp_config.json"]
+    if harness in ("claude-code", "claude-desktop"):
+        return _claude_desktop_config_paths(config_dir.parent)
+    return []
+
+
+def _merged_config_path(harness: str, config_dir: Path) -> Path:
+    """The primary user config file Coacus merges its hook entry into."""
+    return _merged_config_paths(harness, config_dir)[0]
+
+
+def _merged_mcp_path(harness: str, config_dir: Path) -> Path | None:
+    """The primary user MCP config Coacus merges into, or None."""
+    paths = _merged_mcp_paths(harness, config_dir)
+    return paths[0] if paths else None
+
+
 def _installed_state(
     files: list[tuple[Path, FileContent]], harness: str, root: Path, config_dir: Path
 ) -> tuple[list[str], list[str]]:
@@ -1847,10 +2157,10 @@ def _installed_state(
     install, so drift there means the Coacus entry is gone — not that the bytes
     differ. Every other file is compared verbatim.
     """
-    hooks_path = _merged_config_path(harness, config_dir)
+    hooks_paths = {p.resolve(): p for p in _merged_config_paths(harness, config_dir)}
     markers = _hook_owner_markers(root, harness)
-    mcp_path = _merged_mcp_path(harness, config_dir)
-    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
+    mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
+    mcp_names = set(_mcp_servers(root)) if mcp_paths else set()
     missing: list[str] = []
     drift: list[str] = []
     for target, content in files:
@@ -1861,7 +2171,11 @@ def _installed_state(
         if not target.is_file():
             missing.append(target.as_posix())
             continue
-        if target == hooks_path:
+        try:
+            target_res = target.resolve()
+        except OSError:
+            target_res = target
+        if target_res in hooks_paths:
             expected_hooks = json.loads(content).get("hooks", {})
             actual_hooks = _load_existing_json(target).get("hooks", {})
             expected_entries = [
@@ -1873,7 +2187,7 @@ def _installed_state(
             ):
                 drift.append(target.as_posix())
             continue
-        if mcp_path is not None and target == mcp_path:
+        if target_res in mcp_paths:
             servers = _load_existing_json(target).get("mcpServers") or {}
             if not any(name in servers for name in mcp_names):
                 drift.append(target.as_posix())
@@ -1990,24 +2304,6 @@ def _claimed_elsewhere(config_dir: Path, own_manifest: Path) -> set[str]:
     return claimed
 
 
-def _merged_config_path(harness: str, config_dir: Path) -> Path:
-    """The user config file Coacus merges its hook entry into for ``harness``.
-
-    Most harnesses keep hooks in ``hooks.json``; Command Code keeps them in its
-    ``settings.json`` (key ``hooks``), so the uninstall strip must target that.
-    """
-    if harness == "command-code":
-        return config_dir / COMMAND_CODE_HOOKS_FILE
-    return config_dir / "hooks.json"
-
-
-def _merged_mcp_path(harness: str, config_dir: Path) -> Path | None:
-    """The user MCP config Coacus merges into, or None when it installs none."""
-    if harness == "command-code":
-        return config_dir / COMMAND_CODE_MCP_FILE
-    return None
-
-
 def uninstall(
     harness: str,
     root: Path,
@@ -2047,18 +2343,10 @@ def uninstall(
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
     skipped: list[str] = []
-    hooks_path = _merged_config_path(harness, config_dir)
+    hooks_paths = {p.resolve(): p for p in _merged_config_paths(harness, config_dir)}
     markers = _hook_owner_markers(root, harness)
-    existing_hooks = _load_existing_json(hooks_path) if hooks_path.is_file() else {}
-    had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
-    mcp_path = _merged_mcp_path(harness, config_dir)
-    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
-    mcp_existing = (
-        _load_existing_json(mcp_path) if (mcp_path and mcp_path.is_file()) else {}
-    )
-    had_mcp_entry = bool(mcp_names) and any(
-        name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
-    )
+    mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
+    mcp_names = set(_mcp_servers(root)) if mcp_paths else set()
     for path in data.get("files", []):
         target = Path(path)
         if not any(_is_within(target.resolve(), r) for r in roots):
@@ -2074,23 +2362,32 @@ def uninstall(
                 target.unlink()
             planned.append(path)
             continue
-        if not dry_run and target == hooks_path and had_hooks_entry:
-            # hooks.json / settings.json is a user file we merged into; strip only
-            # our entries and never delete the user's other keys.
-            trimmed = _strip_hooks(_load_existing_json(hooks_path), markers)
-            if trimmed is None:
-                target.unlink()
-            else:
-                target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
+        try:
+            target_res = target.resolve()
+        except OSError:
+            target_res = target
+        if not dry_run and target_res in hooks_paths:
+            existing_hooks = _load_existing_json(target)
+            had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
+            if had_hooks_entry:
+                trimmed = _strip_hooks(existing_hooks, markers)
+                if trimmed is None:
+                    target.unlink()
+                else:
+                    target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
             planned.append(path)
             continue
-        if not dry_run and mcp_path and target == mcp_path and had_mcp_entry:
-            # mcp.json is a user file we merged into; strip only our servers.
-            trimmed_mcp = _strip_mcp(_load_existing_json(mcp_path), mcp_names)
-            if trimmed_mcp is None:
-                target.unlink()
-            else:
-                target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
+        if not dry_run and target_res in mcp_paths:
+            mcp_existing = _load_existing_json(target)
+            had_mcp_entry = bool(mcp_names) and any(
+                name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
+            )
+            if had_mcp_entry:
+                trimmed_mcp = _strip_mcp(mcp_existing, mcp_names)
+                if trimmed_mcp is None:
+                    target.unlink()
+                else:
+                    target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
             planned.append(path)
             continue
         if target.is_file():
@@ -2202,7 +2499,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     parser.add_argument(
         "harness",
         nargs="?",
-        choices=["opencode", "claude-code", "antigravity", "codex", "cursor", "command-code", "all"],
+        choices=["opencode", "claude-code", "claude-desktop", "antigravity", "codex", "cursor", "command-code", "all"],
         help="harness to install into (omit with --list)",
     )
     parser.add_argument("--config-dir", help="override the harness config directory")

@@ -1241,7 +1241,7 @@ not scan the corpus on each request; source files are opened only on demand.
 
 #### `class Catalog`
 
-Read the prebuilt index and resolve capability files safely.
+Read the prebuilt index or repository corpus and resolve capability files safely.
 
 - `def search(self, query: str, kind: str='all', limit: int=MAX_RESULTS) -> list[dict]` — Return a deterministic, bounded list of matching capabilities.
 - `def get(self, name: str, kind: str) -> dict` — Return a canonical body and metadata for one exact capability.
@@ -1255,9 +1255,9 @@ Handle one MCP JSON-RPC message; return None for notifications.
 
 Serve newline-delimited JSON-RPC messages over MCP stdio.
 
-#### `def main() -> int`
+#### `def main(argv: list[str] | None=None) -> int`
 
-Start the server from the installed plugin directory.
+Start the server from the installed plugin directory or repo root.
 
 ### `scripts/coacus_design_lint.py`
 
@@ -1518,10 +1518,8 @@ Return the default config directory for ``harness`` under ``home``.
 
 True when ``harness`` appears installed on this machine.
 
-Detection is by the harness's own environment variable or its executable on
-PATH — never by the mere existence of the config directory, which Coacus
-itself may have created. This is what prevents installing into an absent
-harness.
+Detection is by the harness's own environment variable, its executable on
+PATH, or its Desktop/IDE installation paths.
 
 #### `def discover_skills(root: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[Path]`
 

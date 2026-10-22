@@ -340,16 +340,17 @@ both injects the body twice ([session-start-bootstrap](standards/session-start-b
 **Install**
 
 ```bash
-python3 scripts/coacus_install.py claude-code
+python3 scripts/coacus_install.py claude-code     # installs skills, agents, settings.json hooks, and Claude Desktop MCP
+python3 scripts/coacus_install.py claude-desktop  # alias targeting Claude Desktop and Claude Code
 ```
 
 This mirrors the skills to `~/.claude/skills/<skill>/`, the agents to
-`~/.claude/agents/<name>.md`, and stages the hook plugin at
-`~/.claude/plugins/coacus/` with `.claude-plugin/plugin.json`,
-`hooks/hooks.json` and `bootstrap/session-start.json`. Treat that staging as a
-local helper. For a durable install across machines, publish the repository as a
-Claude Code plugin and install it through the marketplace path, which is the
-supported route. **[documented]**
+`~/.claude/agents/<name>.md`, merges the session hooks into `~/.claude/settings.json`,
+stages the hook plugin at `~/.claude/plugins/coacus/`, and merges the `coacus-catalog`
+MCP server into `claude_desktop_config.json` when Claude Desktop is installed
+(`%APPDATA%/Claude/claude_desktop_config.json` on Windows,
+`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS, and
+`~/.config/Claude/claude_desktop_config.json` on Linux).
 
 **Verify** (structure only; no live Claude Code binary was available here):
 
@@ -658,12 +659,12 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
-| **claude-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
-| **antigravity** | C (plugin rule) | compact `rules/coacus.md` with `trigger: always_on`; local catalog MCP | plugin staged at `~/.gemini/config/plugins/coacus/` (catalog data + native agent selectors + MCP + hooks) | plugin schema and MCP config **[documented]**; local `agy plugin validate` **[verified in tests]** |
-| **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
-| **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
-| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; framework MCP servers merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
+| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | CLI & Desktop: plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
+| **claude-code** / **claude-desktop** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext`; `coacus-catalog` stdio MCP | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; hooks merged into `~/.claude/settings.json`; staged plugin at `~/.claude/plugins/coacus/`; Desktop MCP merged into `claude_desktop_config.json` | vendor plugin & settings route **[documented]**; MCP integration **[verified locally]** |
+| **antigravity** | C (plugin rule) | compact `rules/coacus.md` with `trigger: always_on`; local catalog MCP | CLI & App 2.0: plugin staged at `~/.gemini/config/plugins/coacus/` (catalog data + native agent selectors + MCP + hooks); IDE: MCP merged into `~/.gemini/antigravity/mcp_config.json` | plugin schema and MCP config **[documented]**; local `agy plugin validate` **[verified in tests]** |
+| **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | CLI & Desktop: skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json`; config at `~/.codex/config.toml` | skill roots + hook framework **[documented]**; install **[verified locally]** |
+| **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context`; `coacus-catalog` stdio MCP | Desktop IDE & CLI: skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json`; MCP merged into `~/.cursor/mcp.json` | hook schema + key **[documented]**; install **[verified locally]** |
+| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext`; `coacus-catalog` stdio MCP | Desktop/IDE & CLI: skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; framework MCP servers merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
 
 ### Verifying
 

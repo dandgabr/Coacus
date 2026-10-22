@@ -84,6 +84,19 @@ def make_repo(tmp: Path) -> Path:
         "command: python3\nargs:\n  - coacus_catalog_mcp.py\n---\n# MCP\n",
         encoding="utf-8",
     )
+    catalog_dist = catalog_mcp / "dist"
+    catalog_dist.mkdir(parents=True, exist_ok=True)
+    (catalog_dist / "mcp.json").write_text(
+        json.dumps(
+            {
+                "name": "coacus-catalog",
+                "transport": "stdio",
+                "command": "python3",
+                "args": ["coacus_catalog_mcp.py"],
+            }
+        ),
+        encoding="utf-8",
+    )
     # Command Code carries its user rules as a static AGENTS.md beside the
     # harness, and its MCP declaration comes from the generated dist manifest.
     (root / "harnesses/command-code/AGENTS.md").write_text(
@@ -1324,3 +1337,153 @@ class TestInstallAndVerify(unittest.TestCase):
                 status = coacus_install.main(["claude-code", "--verify-after-install"], root)
             self.assertEqual(status, 0)
             self.assertTrue(json.loads(output.getvalue())[0]["skipped"])
+
+
+class TestDesktopHarnessSupport(unittest.TestCase):
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        self.root = make_repo(self.tmp)
+        self.home = self.tmp / "userhome"
+        self.home.mkdir()
+
+    def test_command_code_does_not_false_positive_on_cmd(self) -> None:
+        from unittest import mock
+        with mock.patch.dict(os.environ, {}, clear=True):
+            with mock.patch("shutil.which", side_effect=lambda b: "C:\\Windows\\System32\\cmd.exe" if b == "cmd" else None):
+                self.assertFalse(coacus_install.harness_present("command-code", home=self.home))
+
+    def test_detect_desktop_windows(self) -> None:
+        from unittest import mock
+        appdata = self.home / "AppData" / "Roaming"
+        localappdata = self.home / "AppData" / "Local"
+        appdata.mkdir(parents=True)
+        localappdata.mkdir(parents=True)
+
+        env = {
+            "APPDATA": str(appdata),
+            "LOCALAPPDATA": str(localappdata),
+        }
+        with mock.patch("sys.platform", "win32"), mock.patch.dict(os.environ, env, clear=True), mock.patch("shutil.which", return_value=None):
+            # Initially none detected
+            self.assertFalse(coacus_install.harness_present("antigravity", home=self.home))
+            self.assertFalse(coacus_install.harness_present("claude-code", home=self.home))
+            self.assertFalse(coacus_install.harness_present("codex", home=self.home))
+            self.assertFalse(coacus_install.harness_present("opencode", home=self.home))
+            self.assertFalse(coacus_install.harness_present("command-code", home=self.home))
+            self.assertFalse(coacus_install.harness_present("cursor", home=self.home))
+
+            # Simulate Antigravity Desktop
+            exe = localappdata / "Programs" / "Antigravity" / "Antigravity.exe"
+            exe.parent.mkdir(parents=True)
+            exe.write_text("dummy", encoding="utf-8")
+            self.assertTrue(coacus_install.harness_present("antigravity", home=self.home))
+
+            # Simulate Claude Desktop
+            cfg = appdata / "Claude" / "claude_desktop_config.json"
+            cfg.parent.mkdir(parents=True)
+            cfg.write_text("{}", encoding="utf-8")
+            self.assertTrue(coacus_install.harness_present("claude-code", home=self.home))
+
+            # Simulate Codex Desktop
+            codex_exe = localappdata / "Programs" / "Codex" / "Codex.exe"
+            codex_exe.parent.mkdir(parents=True)
+            codex_exe.write_text("dummy", encoding="utf-8")
+            self.assertTrue(coacus_install.harness_present("codex", home=self.home))
+
+            # Simulate OpenCode Desktop
+            opencode_dir = appdata / "opencode"
+            opencode_dir.mkdir(parents=True)
+            self.assertTrue(coacus_install.harness_present("opencode", home=self.home))
+
+            # Simulate Command Code Desktop
+            cmd_exe = localappdata / "Programs" / "CommandCode" / "CommandCode.exe"
+            cmd_exe.parent.mkdir(parents=True)
+            cmd_exe.write_text("dummy", encoding="utf-8")
+            self.assertTrue(coacus_install.harness_present("command-code", home=self.home))
+
+            # Simulate Cursor Desktop
+            cursor_exe = localappdata / "Programs" / "cursor" / "Cursor.exe"
+            cursor_exe.parent.mkdir(parents=True)
+            cursor_exe.write_text("dummy", encoding="utf-8")
+            self.assertTrue(coacus_install.harness_present("cursor", home=self.home))
+
+    def test_claude_desktop_alias_and_config_provisioning(self) -> None:
+        from unittest import mock
+        claude_dir = self.home / ".claude"
+        desktop_dir = self.home / ".config" / "Claude"
+        desktop_dir.mkdir(parents=True)
+        desktop_cfg = desktop_dir / "claude_desktop_config.json"
+        desktop_cfg.write_text(json.dumps({"mcpServers": {"user-tool": {"command": "echo"}}}), encoding="utf-8")
+
+        with mock.patch.object(coacus_install, "_home", return_value=self.home):
+            result = coacus_install.install("claude-desktop", self.root, claude_dir, dry_run=False, force=True)
+            self.assertEqual(result["harness"], "claude-desktop")
+            # Settings.json with hooks
+            settings_path = claude_dir / "settings.json"
+            self.assertTrue(settings_path.is_file())
+            settings_data = json.loads(settings_path.read_text(encoding="utf-8"))
+            self.assertIn("hooks", settings_data)
+
+            # Claude Desktop config with coacus-catalog MCP
+            self.assertTrue(desktop_cfg.is_file())
+            cfg_data = json.loads(desktop_cfg.read_text(encoding="utf-8"))
+            self.assertIn("coacus-catalog", cfg_data["mcpServers"])
+            self.assertIn("user-tool", cfg_data["mcpServers"])
+
+            # Verify passes
+            ver = coacus_install.verify("claude-desktop", self.root, claude_dir)
+            self.assertTrue(ver["ok"])
+
+            # Uninstall strips coacus-catalog without destroying user-tool
+            un = coacus_install.uninstall("claude-desktop", self.root, claude_dir, dry_run=False)
+            self.assertIn(desktop_cfg.as_posix(), un["removed"])
+            cfg_data_after = json.loads(desktop_cfg.read_text(encoding="utf-8"))
+            self.assertNotIn("coacus-catalog", cfg_data_after.get("mcpServers", {}))
+            self.assertIn("user-tool", cfg_data_after["mcpServers"])
+
+    def test_antigravity_ide_mcp_config_provisioning(self) -> None:
+        from unittest import mock
+        gemini_dir = self.home / ".gemini"
+        ide_dir = gemini_dir / "antigravity"
+        ide_dir.mkdir(parents=True)
+        ide_mcp = ide_dir / "mcp_config.json"
+        ide_mcp.write_text(json.dumps({"mcpServers": {"existing-ide": {"command": "node"}}}), encoding="utf-8")
+
+        with mock.patch.object(coacus_install, "_home", return_value=self.home):
+            coacus_install.install("antigravity", self.root, gemini_dir, dry_run=False, force=True)
+            self.assertTrue(ide_mcp.is_file())
+            data = json.loads(ide_mcp.read_text(encoding="utf-8"))
+            self.assertIn("coacus-catalog", data["mcpServers"])
+            self.assertIn("existing-ide", data["mcpServers"])
+
+            ver = coacus_install.verify("antigravity", self.root, gemini_dir)
+            self.assertTrue(ver["ok"])
+
+            coacus_install.uninstall("antigravity", self.root, gemini_dir, dry_run=False)
+            data_after = json.loads(ide_mcp.read_text(encoding="utf-8"))
+            self.assertNotIn("coacus-catalog", data_after.get("mcpServers", {}))
+            self.assertIn("existing-ide", data_after["mcpServers"])
+
+    def test_cursor_mcp_provisioning(self) -> None:
+        from unittest import mock
+        cursor_dir = self.home / ".cursor"
+        cursor_dir.mkdir(parents=True)
+        cursor_mcp = cursor_dir / "mcp.json"
+        cursor_mcp.write_text(json.dumps({"mcpServers": {"user-server": {"command": "go"}}}), encoding="utf-8")
+
+        with mock.patch.object(coacus_install, "_home", return_value=self.home):
+            coacus_install.install("cursor", self.root, cursor_dir, dry_run=False, force=True)
+            self.assertTrue(cursor_mcp.is_file())
+            data = json.loads(cursor_mcp.read_text(encoding="utf-8"))
+            self.assertIn("coacus-catalog", data["mcpServers"])
+            self.assertIn("user-server", data["mcpServers"])
+
+            ver = coacus_install.verify("cursor", self.root, cursor_dir)
+            self.assertTrue(ver["ok"])
+
+            coacus_install.uninstall("cursor", self.root, cursor_dir, dry_run=False)
+            data_after = json.loads(cursor_mcp.read_text(encoding="utf-8"))
+            self.assertNotIn("coacus-catalog", data_after.get("mcpServers", {}))
+            self.assertIn("user-server", data_after["mcpServers"])

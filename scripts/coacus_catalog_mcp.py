@@ -62,18 +62,97 @@ TOOLS = [
 ]
 
 
+def _parse_frontmatter(text: str) -> dict[str, object]:
+    """Extract name, description, and skills from a canonical frontmatter block."""
+    if not text.startswith("---"):
+        return {}
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return {}
+    meta: dict[str, object] = {}
+    current_key: str | None = None
+    list_items: list[str] = []
+    in_block_scalar = False
+    block_lines: list[str] = []
+
+    for line in lines[1:]:
+        stripped = line.strip()
+        if stripped == "---":
+            break
+        if in_block_scalar:
+            if line.startswith("  ") or not stripped:
+                block_lines.append(stripped)
+                continue
+            else:
+                meta[current_key] = " ".join(block_lines).strip()
+                in_block_scalar = False
+                current_key = None
+        if current_key and stripped.startswith("- "):
+            list_items.append(stripped[2:].strip().strip('"\''))
+            meta[current_key] = list(list_items)
+            continue
+        elif current_key and list_items:
+            current_key = None
+            list_items = []
+
+        if ":" in line and not line.startswith(" "):
+            key, val = line.split(":", 1)
+            key = key.strip()
+            val = val.strip()
+            if val in (">-", ">", "|", "|-"):
+                in_block_scalar = True
+                current_key = key
+                block_lines = []
+            elif val.startswith("[") and val.endswith("]"):
+                items = [item.strip().strip('"\'') for item in val[1:-1].split(",") if item.strip()]
+                meta[key] = items
+                current_key = None
+            elif not val:
+                current_key = key
+                list_items = []
+            else:
+                meta[key] = val.strip('"\'')
+                current_key = None
+    if in_block_scalar and current_key:
+        meta[current_key] = " ".join(block_lines).strip()
+    return meta
+
+
+try:
+    from engine.frontmatter import parse as _fm_parse
+
+    def _get_frontmatter(text: str) -> dict[str, object]:
+        try:
+            return _fm_parse(text).meta
+        except Exception:
+            return _parse_frontmatter(text)
+except ImportError:
+    def _get_frontmatter(text: str) -> dict[str, object]:
+        return _parse_frontmatter(text)
+
+
 class Catalog:
-    """Read the prebuilt index and resolve capability files safely."""
+    """Read the prebuilt index or repository corpus and resolve capability files safely."""
 
     def __init__(self, install_root: Path):
         self.install_root = install_root.resolve()
+        if not (self.install_root / "catalog").is_dir() and (self.install_root.parent / "catalog").is_dir():
+            self.install_root = self.install_root.parent
         index_path = self.install_root / "catalog" / "index.json"
-        try:
-            index = json.loads(index_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
-            raise ValueError(f"cannot read Coacus catalog index: {exc}") from exc
-        if not isinstance(index, dict) or index.get("schema") != 1:
-            raise ValueError("unsupported or malformed Coacus catalog index")
+        if index_path.is_file():
+            try:
+                index = json.loads(index_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                raise ValueError(f"cannot read Coacus catalog index: {exc}") from exc
+            if not isinstance(index, dict) or index.get("schema") != 1:
+                raise ValueError("unsupported or malformed Coacus catalog index")
+            self._load_from_index(index)
+        elif (self.install_root / "catalog" / "catalog.json").is_file() or (self.install_root / "knowledge" / "skills").is_dir():
+            self._load_from_repo()
+        else:
+            raise ValueError(f"cannot read Coacus catalog index at {index_path}")
+
+    def _load_from_index(self, index: dict) -> None:
         self._entries: dict[str, dict[str, dict]] = {"skill": {}, "agent": {}}
         for kind in self._entries:
             rows = index.get(kind + "s")
@@ -88,6 +167,81 @@ class Catalog:
                     raise ValueError(f"catalog contains an invalid or duplicate {kind} entry")
                 self._safe_path(payload)
                 self._entries[kind][name] = row
+
+    def _load_from_repo(self) -> None:
+        import hashlib
+
+        self._entries: dict[str, dict[str, dict]] = {"skill": {}, "agent": {}}
+        skills_dir = self.install_root / "knowledge" / "skills"
+        workflow_dir = self.install_root / "methodology" / "workflows"
+        skill_files: list[Path] = []
+        if skills_dir.is_dir():
+            skill_files.extend(sorted(skills_dir.rglob("SKILL.md")))
+        if workflow_dir.is_dir():
+            skill_files.extend(sorted(workflow_dir.rglob("SKILL.md")))
+
+        skill_names_by_source: dict[str, str] = {}
+        for sf in skill_files:
+            try:
+                rel = sf.relative_to(self.install_root).as_posix()
+            except ValueError:
+                continue
+            text = sf.read_text(encoding="utf-8")
+            meta = _get_frontmatter(text)
+            name = str(meta.get("name") or sf.parent.name)
+            if rel.startswith("knowledge/skills/"):
+                category = "/".join(sf.relative_to(skills_dir).parts[:-2])
+            else:
+                category = "workflows"
+            skill_names_by_source[rel] = name
+            entry = {
+                "name": name,
+                "kind": "skill",
+                "category": category,
+                "description": str(meta.get("description") or ""),
+                "source": rel,
+                "payload": rel,
+                "fingerprint": hashlib.sha256(sf.read_bytes()).hexdigest(),
+            }
+            self._safe_path(rel)
+            self._entries["skill"][name] = entry
+
+        agents_dir = self.install_root / "knowledge" / "agents"
+        agent_files: list[Path] = []
+        if agents_dir.is_dir():
+            agent_files.extend(sorted(agents_dir.rglob("agent.source.md")))
+
+        for af in agent_files:
+            try:
+                rel = af.relative_to(self.install_root).as_posix()
+            except ValueError:
+                continue
+            text = af.read_text(encoding="utf-8")
+            meta = _get_frontmatter(text)
+            name = str(meta.get("name") or af.parent.name)
+            category = str(af.relative_to(agents_dir).parts[0])
+            skill_paths = meta.get("skills", [])
+            if not isinstance(skill_paths, list):
+                skill_paths = []
+            associated_skills = sorted(
+                {
+                    skill_names_by_source[str(p)]
+                    for p in skill_paths
+                    if str(p) in skill_names_by_source
+                }
+            )
+            entry = {
+                "name": name,
+                "kind": "agent",
+                "category": category,
+                "description": str(meta.get("description") or ""),
+                "source": rel,
+                "payload": rel,
+                "fingerprint": hashlib.sha256(af.read_bytes()).hexdigest(),
+                "skills": associated_skills,
+            }
+            self._safe_path(rel)
+            self._entries["agent"][name] = entry
 
     def search(self, query: str, kind: str = "all", limit: int = MAX_RESULTS) -> list[dict]:
         """Return a deterministic, bounded list of matching capabilities."""
@@ -299,10 +453,21 @@ def serve(input_stream: TextIO, output_stream: TextIO, catalog: Catalog) -> None
             output_stream.flush()
 
 
-def main() -> int:
-    """Start the server from the installed plugin directory."""
+def main(argv: list[str] | None = None) -> int:
+    """Start the server from the installed plugin directory or repo root."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Coacus catalog MCP server")
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=None,
+        help="Root directory containing catalog/index.json or Coacus repository root",
+    )
+    args = parser.parse_args(argv)
+    root = (args.root or Path(__file__).resolve().parent).resolve()
     try:
-        catalog = Catalog(Path(__file__).resolve().parent)
+        catalog = Catalog(root)
     except ValueError as exc:
         print(f"Catalog MCP startup error: {exc}", file=sys.stderr)
         return 2

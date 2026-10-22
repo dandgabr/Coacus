@@ -1,11 +1,11 @@
-﻿<#
+<#
 .SYNOPSIS
   Coacus Universal Bootstrap Installer (Windows PowerShell)
   Verifies Python 3.10+, installs it if missing, creates a .venv,
   renders artifacts and installs Coacus into harnesses.
 
 .PARAMETER TargetHarness
-  Target harness to install into (e.g. antigravity, opencode, codex, cursor, command-code, or all). Default is 'all'.
+  Target harness to install into (e.g. antigravity, opencode, codex, cursor, command-code, claude-code, claude-desktop, or all). Default is 'all'.
 #>
 
 [CmdletBinding()]
