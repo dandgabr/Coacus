@@ -27,6 +27,14 @@ instruction: >
      history or remotes. Distinguish local evidence from server-side state and
      state any remaining uncertainty.
 
+  ## Upstream Fork Drift & Patch-ID Triage
+
+  When analyzing drift between a downstream fork and its upstream repository:
+  - Perform dual-axis drift analysis: evaluate version markers against upstream and compute commit-level unmerged logs (`git log HEAD..upstream/main`).
+  - Calculate `git patch-id --stable` on unmerged upstream commits to reliably detect commits already ported downstream via cherry-pick or rebase under differing SHAs.
+  - Filter out noise using merge-base ancestor checks (`git merge-base`), automatically identifying upstream commits touching only paths deleted by the fork.
+  - Emit proposed cherry-pick lists strictly in ancestor order (oldest first) under a report-only boundary requiring human confirmation.
+
   ## Decision boundaries
 
   - For a shared change that needs to be undone, prefer an inverse commit over

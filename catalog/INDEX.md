@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 466 skill(s) · 103 agent(s) · 1 MCP(s)
+**Totals:** 471 skill(s) · 103 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -299,6 +299,7 @@
 | dp-behavioral-patterns | [knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md) |
 | dp-creational-patterns | [knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md) |
 | dp-structural-patterns | [knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md) |
+| agentic-state-sync-hitl | [knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md](../knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md) |
 | api-design | [knowledge/skills/engineering/practices/api-design/SKILL.md](../knowledge/skills/engineering/practices/api-design/SKILL.md) |
 | architecture-ddd | [knowledge/skills/engineering/practices/architecture-ddd/SKILL.md](../knowledge/skills/engineering/practices/architecture-ddd/SKILL.md) |
 | architecture-documentation | [knowledge/skills/engineering/practices/architecture-documentation/SKILL.md](../knowledge/skills/engineering/practices/architecture-documentation/SKILL.md) |
@@ -329,6 +330,7 @@
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
 | web-accessibility-wcag | [knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md](../knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md) |
+| web-portal-cli-scaffolding | [knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md](../knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md) |
 | writing-for-agents | [knowledge/skills/engineering/practices/writing-for-agents/SKILL.md](../knowledge/skills/engineering/practices/writing-for-agents/SKILL.md) |
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
@@ -405,12 +407,15 @@
 | cloud-infrastructure-architect | [knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md](../knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md) |
 | code-mapping-specialist | [knowledge/skills/roles/code-mapping-specialist/SKILL.md](../knowledge/skills/roles/code-mapping-specialist/SKILL.md) |
 | code-optimizer | [knowledge/skills/roles/code-optimizer/SKILL.md](../knowledge/skills/roles/code-optimizer/SKILL.md) |
+| cover-letter-application-drafter | [knowledge/skills/roles/cover-letter-application-drafter/SKILL.md](../knowledge/skills/roles/cover-letter-application-drafter/SKILL.md) |
 | dba-database-administrator | [knowledge/skills/roles/dba-database-administrator/SKILL.md](../knowledge/skills/roles/dba-database-administrator/SKILL.md) |
 | devops-engineer | [knowledge/skills/roles/devops-engineer/SKILL.md](../knowledge/skills/roles/devops-engineer/SKILL.md) |
 | explore | [knowledge/skills/roles/explore/SKILL.md](../knowledge/skills/roles/explore/SKILL.md) |
 | frontend-developer | [knowledge/skills/roles/frontend-developer/SKILL.md](../knowledge/skills/roles/frontend-developer/SKILL.md) |
 | fullstack-developer | [knowledge/skills/roles/fullstack-developer/SKILL.md](../knowledge/skills/roles/fullstack-developer/SKILL.md) |
 | general | [knowledge/skills/roles/general/SKILL.md](../knowledge/skills/roles/general/SKILL.md) |
+| interview-prep-upskill-tracker | [knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md](../knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md) |
+| job-fit-evaluation-ranking | [knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md](../knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md) |
 | job-hunting-sourcing | [knowledge/skills/roles/job-hunting-sourcing/SKILL.md](../knowledge/skills/roles/job-hunting-sourcing/SKILL.md) |
 | multi-agent-orchestration-supervision | [knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md](../knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md) |
 | product-owner | [knowledge/skills/roles/product-owner/SKILL.md](../knowledge/skills/roles/product-owner/SKILL.md) |

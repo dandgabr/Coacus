@@ -37,6 +37,13 @@ ATS algorithms rank candidates by comparing the density, frequency, and semantic
 - **Mandatory Contextualization**:
   - Do not create sterile keyword lists at the end of the document (modern parsers penalize them). Integrate the terms into achievement descriptions.
 
+### 4-State Keyword Coverage Matrix
+When auditing a resume against a target job specification, classify every requirement into one of four distinct states:
+1. **Covered**: Keyword or skill explicitly present in the resume with contextual proof.
+2. **Synonym-Only**: Concept present under an alternate phrasing (e.g. *Postgres* when the job requests *PostgreSQL*, or *REST API* when the job requests *HTTP Web Services*). Prefer adopting the job posting's exact term if factually accurate.
+3. **Missing (Have it)**: The candidate possesses this skill (corroborated in profile/background sources) but it is currently omitted from the draft. Add contextual bullet points to bridge the gap.
+4. **Missing (Real gap)**: The candidate lacks this competency. **Strictly forbid keyword stuffing or fabricating experience.** Acknowledge real gaps for coverage in interview preparation or as adjacent bridge experiences.
+
 ---
 
 ## 📊 3. Impact Formula for Experience Bullets (Google XYZ Formula)
@@ -47,9 +54,39 @@ $$\text{Achieved [X]}, \text{ as measured by [Y]}, \text{ by doing [Z]}$$
 - **Weak**: "Responsible for developing the payments API."
 - **Strong (XYZ)**: "Reduced payments processing latency by 35% (from 1.2s to 780ms) for 200,000 daily transactions by refactoring endpoints and implementing a distributed Redis cache."
 
+### Tenure-to-Output Ratio & In-Progress Credentials
+- **Long Tenure Re-balancing:** When a candidate has spent multiple years (3+ years) at a single company with only 2–3 brief bullets, parsers and hiring managers perceive low output velocity. Apply three honest remedies:
+  1. Break the tenure into distinct phases or promotions (e.g. *Software Engineer II* → *Senior Engineer*).
+  2. Surface secondary initiatives, architecture decisions, and cross-team mentoring.
+  3. Frame the multi-year cycle explicitly around the domain's long-horizon delivery lifecycle (e.g., medical device certification, compliance overhauls).
+- **In-Progress Academic & Professional Credentials:** Never list an in-progress degree or certification as completed. Always use explicit status notation: `In progress, expected MM/YYYY` or `Candidate, Thesis defense MM/YYYY`.
+
 ---
 
-## ✅ 4. Pre-Submission Checklist (ATS Audit)
+## ✂️ 4. Relevance-Weighted Content Cutting (Signal Over Chronology)
+
+When a resume exceeds the targeted page budget (e.g. 1 or 2 pages), never truncate older experiences blindly based on chronology alone:
+1. **Relevance Scoring:** Score each bullet point across three dimensions:
+   - *Target Posting Match:* Direct alignment with critical job requirements.
+   - *Document Uniqueness:* Demonstrates a capability not evidenced in other bullets.
+   - *Narrative Offload:* Can this bullet be omitted from the resume because it is better suited for deep discussion in the cover letter?
+2. **Pruning Sequence:** Cut bullets with the lowest total relevance score first. Summarize early foundational roles into single-line scope summaries rather than deleting them entirely.
+
+---
+
+## 🔍 5. Post-Compilation PDF Text-Layer Audit
+
+Before submitting any compiled PDF resume:
+1. **Extract Raw Text Layer:** Use `pdftotext -layout -enc UTF-8` or `pypdf` to inspect the literal character stream seen by ATS parsers.
+2. **Defect Checklist:**
+   - **No corrupted CID glyphs:** Search for `(cid:NNN)` or `\uFFFD` character replacements caused by missing font encodings.
+   - **No icon-only contacts:** Ensure phone numbers, email addresses, and LinkedIn URLs include complete literal text rather than relying on decorative font glyphs.
+   - **Reading order verification:** Verify that text extracted from two-column headers or horizontal metadata strips reads in logical sequence without interleaving names and phone numbers.
+   - **ASCII date separators:** Verify that all date intervals use standard ASCII hyphens (`-`) rather than Unicode en-dashes (`--` or `U+2013`), which frequently corrupt Workday date tokenizers.
+
+---
+
+## ✅ 6. Pre-Submission Checklist (ATS Audit)
 
 - [ ] Single-column layout with no tables, text boxes, or images.
 - [ ] Name and contacts in the document body (not in a header/footer).

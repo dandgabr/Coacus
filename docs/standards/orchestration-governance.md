@@ -86,6 +86,17 @@ Each receipt records `receipt_id`, `parent_receipt_ids`, `event_type`, `input_ha
 `output_hash`, and `artifact_hashes` (SHA-256). Any receipt validation failure halts downstream
 processing fail-closed.
 
+### State-through-tools context hygiene and CLI portability
+
+To preserve LLM context windows and prevent token saturation during long-running or multi-agent sessions:
+
+1. **State moves through tools, never context:**
+   - Append-only or cumulative state files (e.g. `seen_jobs.json`, processed message IDs, triage queues, audit event streams) MUST NOT be ingested in their entirety into conversational context.
+   - Agents interact with state strictly through deterministic helper CLI tools that expose filtered candidate queries, dry-run sweeps, and atomic update flags (`apply --results <temp.json>`).
+2. **Cross-platform CLI I/O and process hygiene:**
+   - Helper scripts written in Python MUST defensively reconfigure `sys.stdout` and `sys.stderr` to UTF-8 on Windows (`reconfigure(encoding="utf-8")`) without closing underlying binary streams.
+   - Scripts that discover Python interpreters on Windows MUST detect and skip Microsoft Store `WindowsApps` 0-byte redirection stubs, resolving only fully qualified Python executables.
+
 ### Health
 
 `coacus_governor.py health` verifies the ledger is readable and consistent. A

@@ -175,7 +175,14 @@
       "entrevista",
       "interview",
       "ats",
-      "linkedin"
+      "linkedin",
+      "cover letter",
+      "carta de apresentação",
+      "carta de apresentacao",
+      "job fit",
+      "job ranking",
+      "upskilling",
+      "interview prep"
     ],
     "chemical-engineer": [
       "química",
@@ -1222,7 +1229,9 @@
       "pty",
       "terminal emulator",
       "emulador de terminal",
-      "ansi escape"
+      "ansi escape",
+      "portal cli",
+      "cli scaffolding"
     ],
     "ui-designer": [
       "ui design",

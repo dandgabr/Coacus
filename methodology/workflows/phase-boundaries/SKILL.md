@@ -37,6 +37,16 @@ When executing compaction across turns with tool calls and extended reasoning:
   prompt rather than losing the thread; malformed tool arguments should pass through
   a schema-repair pass before execution.
 
+## State-Through-Tools Context Hygiene
+
+When managing workflows with cumulative or growing state (such as scanned job postings, candidate queues, email IDs, audit histories, or execution logs):
+
+- **State moves through tools, never context:** Never dump large or append-only state files directly into the LLM context. Loading an $O(N)$ state file directly causes rapid context exhaustion, hallucinated re-emissions, and format corruption.
+- **Deterministic CLI helper interface:** State files must be queried and mutated via dedicated helper scripts:
+  - Query only active candidates or filtered subsets (`candidates`, `query --status ...`).
+  - Purge expired or stale records deterministically (`sweep --write`).
+  - Apply atomic updates using temporary JSON/diff payloads (`apply --results <temp.json>`) rather than asking the LLM to rewrite the entire JSON or CSV database.
+
 ## The trade
 
 Every move except Continue turns a **primary source** into a **secondary source**:

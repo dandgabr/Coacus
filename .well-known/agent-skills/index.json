@@ -177,6 +177,13 @@
       "digest": "sha256:79de377d7b2c46261f901bc362f44341397921a68efde8d400a0f761c82a0ef5"
     },
     {
+      "name": "agentic-state-sync-hitl",
+      "description": "Provides patterns for human-in-the-loop state synchronization, external signal triage (email/MCP), and local-first workspace projection. Use when synchronizing external inbox feeds, updating local trackers with human confirmation, or projecting local state to third-party MCP workspaces.",
+      "type": "skill-md",
+      "url": "knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md",
+      "digest": "sha256:a6229fe3aa9d695aff4740b887a12d8dfa4e3eb653b7495725e2b4f0013798d2"
+    },
+    {
       "name": "agentic-temporal-knowledge-graphs",
       "description": "Provides patterns for bi-temporal knowledge graphs and structured episodic memory in autonomous agents using Graphiti and Neo4j. Use when modeling time-evolving entity relationships, separating episodic logs from procedural memory, maintaining vulnerability state transitions, or performing hybrid graph and vector retrieval.",
       "type": "skill-md",
@@ -370,7 +377,7 @@
       "description": "Specialist in Resume Engineering and Optimization for ATS (Applicant Tracking Systems). Masters single-column parsing, keyword semantic density, acronyms, XYZ-formula impact metrics, and job-description compatibility auditing.",
       "type": "archive",
       "url": "knowledge/skills/roles/ats-resume-optimization/SKILL.md",
-      "digest": "sha256:6d4cd29254193941bd2d6f891e0d47526343512c10c8c9c46aa67c3029aff125"
+      "digest": "sha256:e5889f4a14e87335db02d6eca8f0f75c075f634e0720b729fc5b7b4375e1951c"
     },
     {
       "name": "auth-protocols-mfa",
@@ -454,7 +461,7 @@
       "description": "Specialist in Professional Profile Optimization (LinkedIn, Upwork, GitHub). Masters LinkedIn Recruiter search algorithms, high-conversion headline formulation, Upwork proposal engineering (two-first-lines rule, JSS management), and GitHub portfolio curation.",
       "type": "archive",
       "url": "knowledge/skills/roles/career-profile-optimization/SKILL.md",
-      "digest": "sha256:7ac425f75ad709b4292f4c518543570d76badef6a9375da508285e91e4fc1508"
+      "digest": "sha256:1d7e6dfc137e928f3c492a34a439a372f190ed4402d1d3fdbc6852f456d7aef2"
     },
     {
       "name": "ci-security-scanning",
@@ -658,6 +665,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
       "digest": "sha256:b298c674a65cc9fced12ca220da9371aea7e21f0758794e5c6f07eb2c9c2ddd2"
+    },
+    {
+      "name": "cover-letter-application-drafter",
+      "description": "Provides strategic drafting and adversarial review for cover letters and portal application forms. Use when authoring customized cover letters, completing online application free-text questions, or running dual-agent drafter-reviewer validation.",
+      "type": "skill-md",
+      "url": "knowledge/skills/roles/cover-letter-application-drafter/SKILL.md",
+      "digest": "sha256:fce7e1ca067bc1a140335211e575c99a36cf2ae08f2a4ebadc88a4b3cc1eea01"
     },
     {
       "name": "cpp-template-metaprogramming",
@@ -1329,7 +1343,7 @@
       "description": "Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "digest": "sha256:9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8"
+      "digest": "sha256:a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180"
     },
     {
       "name": "handoff",
@@ -1486,6 +1500,13 @@
       "digest": "sha256:4d3022dd6d15294a1b03dc764d0dd212466f12d472e565a4ed0f8a732fa079db"
     },
     {
+      "name": "interview-prep-upskill-tracker",
+      "description": "Provides stage-specific interview preparation, application lifecycle tracking, quiet follow-ups, and skill-gap heatmaps for targeted upskilling. Use when preparing for recruiter or technical interview rounds, managing application outcome states, or generating dependency-ordered learning plans from interview gaps.",
+      "type": "skill-md",
+      "url": "knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md",
+      "digest": "sha256:7fe67218e0043dc178a0ba83a055b06a4a8e97b14896d7ecae58a531032c8cf8"
+    },
+    {
       "name": "iot-untrusted-device-isolation",
       "description": "Provides a defensive playbook to isolate untrusted consumer/IoT devices (IP cameras, printers, appliances, embedded appliances) on a dedicated network segment behind an asymmetric access policy. Use when segmenting an untrusted device, deploying it on a separate VLAN/SSID, or hardening an unpatchable IoT device that cannot be trusted on the user LAN.",
       "type": "skill-md",
@@ -1521,11 +1542,18 @@
       "digest": "sha256:2ec0b831a04bd7f6918e00d40b2e2fd464e84972054ffc41158b262b6c4d81d2"
     },
     {
+      "name": "job-fit-evaluation-ranking",
+      "description": "Provides structured job-fit scoring, pre-scoring eligibility and language gates, multi-dimensional weighted rubrics, and batch shortlist ranking. Use when evaluating job postings against candidate profiles, scoring job compatibility, or ranking active opportunities.",
+      "type": "skill-md",
+      "url": "knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md",
+      "digest": "sha256:da7990b15384a705b2b0463c924b8e1f430eb2261fd655e84d50619865b69f18"
+    },
+    {
       "name": "job-hunting-sourcing",
       "description": "Specialist in Active Job Mining and Strategic Job Search. Masters Google Dorks for direct ATS portals (Greenhouse, Lever, Workday, Ashby), boolean operators for location and seniority, and direct outreach techniques to hiring managers.",
       "type": "archive",
       "url": "knowledge/skills/roles/job-hunting-sourcing/SKILL.md",
-      "digest": "sha256:d408735a6cc77bdd87059cae7ca5c2563613e76632254d83bb6a98632a74a223"
+      "digest": "sha256:ddf9e7cd21c86502eb60c541a9fa3ad87ec25dca338595aff8a5cd449fb3e61a"
     },
     {
       "name": "jpa-hibernate-performance",
@@ -1616,7 +1644,7 @@
       "description": "Provides engineering and academic/scientific typography patterns in LaTeX (LaTeX2e and LuaLaTeX/XeLaTeX). Covers modular multilevel document structuring, bibliography management with BibLaTeX/Biber, illustrations with TikZ, rigorous mathematical formatting (amsmath/mathtools), custom commands (newcommand/ProvideDocumentCommand), and prevention of common compilation errors.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-latex/SKILL.md",
-      "digest": "sha256:fdd7efa8e67a7b5476a3d17f79168ce351372d49e86e09254f47987c928f1995"
+      "digest": "sha256:36ea72b395f36ffca1cccdfa2c3e59781e59e3409f9d11bfe5436fb5d80be506"
     },
     {
       "name": "lang-lua",
@@ -1672,7 +1700,7 @@
       "description": "Provides engineering and modern digital typography patterns using Typst. Covers markup syntax, custom functions, creating reusable templates, show/set rules, advanced math, tables, page layout, and bibliography via Hayagriva/BibTeX.",
       "type": "archive",
       "url": "knowledge/skills/languages/lang-typst/SKILL.md",
-      "digest": "sha256:a8c2e9d14ee11bb2a228c994beddc7f547b5ab2fc3519011765279d9b4f30240"
+      "digest": "sha256:21641cca886f703c7274c97132d625c395c9a594ee487705b748871ddad4ce90"
     },
     {
       "name": "latency-engineering",
@@ -1952,7 +1980,7 @@
       "description": "Use when deciding whether to continue a session, clear it, hand it off, dispatch a subagent or compact it.",
       "type": "skill-md",
       "url": "methodology/workflows/phase-boundaries/SKILL.md",
-      "digest": "sha256:20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d"
+      "digest": "sha256:1d2db074b67dc70a795cf4e7a4eb6b12f7e6be0cc28a63135d74d433ad78f193"
     },
     {
       "name": "platform-architect",
@@ -2099,7 +2127,7 @@
       "description": "Provides expert patterns for Python data science and applied machine learning based on Data Science from Scratch, Introduction to Machine Learning with Python, the Python Data Science Handbook, Python Machine Learning Cookbook, and Practical Statistics for Data Scientists. Covers NumPy vectorization and broadcasting, pandas wrangling, matplotlib/seaborn, the scikit-learn estimator API with pipelines and model selection, supervised and unsupervised algorithms, feature engineering, and the statistics (bootstrap, A/B testing, regression) behind applied data science.",
       "type": "skill-md",
       "url": "knowledge/skills/data/python-data-science/SKILL.md",
-      "digest": "sha256:96ccd32adeea1830fdf65190394bafdec5f11c17a2f85cf5bb7bcc362a7c06ac"
+      "digest": "sha256:abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4"
     },
     {
       "name": "python-performance-parallelism",
@@ -2302,7 +2330,7 @@
       "description": "Acts as a Specialist in Software Supply Chain Security, Software Composition Analysis (SCA), and Dependency Management based on Cassie Crossley and NIST SSDF / SP 800-161. Covers SBOM generation and auditing (CycloneDX v1.7.2 / ECMA-424 and SPDX v3.0.1), VEX, SLSA v1.2 provenance (Build and Source tracks), cryptographic signing with Sigstore/Cosign and in-toto, vulnerability mitigation (CVEs, GHSA, EPSS, CISA KEV), open-source license auditing (GPL, AGPL, Apache, MIT), lockfile pinning, call-graph reachability analysis, and defense against typosquatting, dependency confusion and protestware.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
-      "digest": "sha256:9b0bb1a2373a03bed6e3c198b41ab4ae364b76805e63af0d3df9a49246161297"
+      "digest": "sha256:148fce08ecfa0ed3a1f98000be7dafe641187ed60ee5ebcdbdeea6fea93eeac5"
     },
     {
       "name": "solution-architect",
@@ -2512,7 +2540,7 @@
       "description": "Provides design engineering patterns for complex data tables, dense data displays, and analytical dashboard architectures. Covers data density modes (compact, default, comfy), tabular numeral typography, column pinning (frozen headers/columns), multi-column sorting and filtering, batch actions, skeleton loading states, empty states, and inline micro-visualizations (sparklines, trend indicators). Use when designing B2B dashboards, financial consoles, analytics portals, or data-heavy administration views.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
-      "digest": "sha256:90fb396e51e2aee5a7af6e65cc5922ffe7914fa5786999df9a6bb89fc9d35505"
+      "digest": "sha256:09680668acb5bbf4811c7f64a522103fb24874ef748f9630ac89de558e8f5da7"
     },
     {
       "name": "ui-design-craftsmanship",
@@ -3177,7 +3205,7 @@
       "description": "Establishes a trust boundary for content retrieved from the open internet, papers, documents and third-party data, so research agents treat it as evidence and never as instructions. Use when fetching web pages, reading PDFs, parsing research papers, or ingesting any external corpus that may contain prompt injection.",
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "digest": "sha256:a7773dd7f1af3a818f6097cb334cde35b47f9fb9715dd20c47f6ee2ff8f00973"
+      "digest": "sha256:53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20"
     },
     {
       "name": "using-coacus",
@@ -3198,7 +3226,7 @@
       "description": "Guides safe Git operations, repository recovery, collaboration, scaling and migration, and administration of Subversion, Mercurial and Perforce. Use when a task changes shared history, repairs a repository, handles large repositories or migrates version-control systems.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "digest": "sha256:f97b9e5757a852ed2bd8c1f353a1bca0d7cf753d10442da6b2bc163f88ffa6d3"
+      "digest": "sha256:12bf7cfc3f8a543c6d40a9576d444779d79c3dd8c46acb8883fd86e6681198cf"
     },
     {
       "name": "vector-databases",
@@ -3229,11 +3257,18 @@
       "digest": "sha256:8b0b75bdfc7589b42a585406574610948fee74b0381715317d8769dfcc764b25"
     },
     {
+      "name": "web-portal-cli-scaffolding",
+      "description": "Provides end-to-end patterns to reverse-engineer public web portals into zero-dependency agent CLIs. Use when building standalone command-line tools from web portals, APIs, RSS feeds, or HTML listings for automated consumption by agents.",
+      "type": "skill-md",
+      "url": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
+      "digest": "sha256:f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880"
+    },
+    {
       "name": "web-search-specialist",
       "description": "Specialist in Advanced Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo, Mojeek). Masters boolean operators, Google Dorks, structural filters (site, filetype, intitle, inurl), temporal search, disambiguation strategies, and fact/primary-source verification.",
       "type": "archive",
       "url": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "digest": "sha256:7d1784c576a337ed2fdbd19360ffaff4b8e74926b5edd665fc2c302c020568e9"
+      "digest": "sha256:4c53130611847fee44ba6f1118e75c49fea117fda2dbe855d7a48e0090dad28c"
     },
     {
       "name": "webassembly",

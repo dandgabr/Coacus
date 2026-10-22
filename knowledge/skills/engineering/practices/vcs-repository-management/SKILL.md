@@ -55,6 +55,28 @@ and keep protected branch rules, required checks and ownership aligned with the
 repository's actual risk. Signing and a branch naming convention do not replace
 review or access controls.
 
+## Upstream Fork Drift & Patch-ID Triage
+
+When maintaining a fork or downstream variant of an upstream repository:
+
+1. **Dual-Axis Drift Detection**:
+   - Compare component semantic versions (e.g. `framework_version` metadata) against the upstream default branch for a coarse overview.
+   - Execute commit-level history triage (`git log HEAD..upstream/main`) to identify unmerged changes.
+2. **Stable `git patch-id --stable` Cherry-Pick Equivalence**:
+   - When downstream branches undergo rebase or selective cherry-picks, commit SHA hashes diverge.
+   - Compute `git diff-tree -p <sha> | git patch-id --stable` for each unmerged upstream commit and compare against downstream commits.
+   - **Triage classification:**
+     - *Exact patch match:* The patch contents have already been ported under a different commit SHA. Mark as skipped.
+     - *Subject match but patch differs:* Commit subject lines match but the diffs diverge. Flag for manual inspection (`patch differs: verify`).
+     - *New change:* Differs in both subject and patch contents.
+3. **Merge-Base Deleted-Tree Filtering**:
+   - When a fork deliberately deletes entire directories or files present in upstream (e.g. templates, examples, or unused tools), unmerged upstream commits touching those paths produce noisy conflicts.
+   - Find the common ancestor using `git merge-base HEAD upstream/main`.
+   - Walk changed files in each commit; if every touched file is absent in downstream and belongs to an intentionally pruned subtree (`git cat-file -e`), classify the commit as *"Probably skip (touches deleted tree)"*.
+4. **Ancestor-Ordered Cherry-Pick Generation**:
+   - Emit proposed `git cherry-pick` sequences in chronological ancestor order (oldest commit first).
+   - Operate under a strict **report-only boundary**: present the evaluated triage table to the human operator; never automatically cherry-pick or merge upstream commits without explicit user confirmation.
+
 ## Limits and safety notes
 
 - A reflog is a local recovery aid with configurable retention, not a backup or

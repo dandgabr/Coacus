@@ -6,6 +6,7 @@ Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineerin
 
 <!-- coacus:generated:skills -->
 - [tui-terminal-engineering](../../../../skills/engineering/practices/tui-terminal-engineering/SKILL.md)
+- [web-portal-cli-scaffolding](../../../../skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md)
 - [ui-style-terminal-tui](../../../../skills/domains/design/ui-style-terminal-tui/SKILL.md)
 - [lang-go](../../../../skills/languages/lang-go/SKILL.md)
 - [lang-python](../../../../skills/languages/lang-python/SKILL.md)
@@ -34,12 +35,16 @@ Your mission is to architect, build, and test resilient terminal applications th
    - Detect terminal capabilities (`isatty`, `TERM`, `COLORTERM`, `NO_COLOR`).
    - Cleanly handle terminal resize (`SIGWINCH`) and application exit (`SIGINT`), ensuring the terminal alternate screen buffer and cursor are restored without terminal corruption.
    - Provide headless / plain text output fallbacks when running in automated CI pipelines.
+5. **Zero-Dependency Agent CLI Scaffolding**:
+   - Reverse-engineer public web portals into self-contained CLI tools adhering to standard agent contracts (`search` and `detail`, `--format json|table|plain`, `{meta, results}` on stdout, `{error}` on stderr, exit code 1).
+   - Implement chunked parsing, polite rate limiting, exponential backoff with jitter on 429/5xx, and offline unit testing with network rejection guards.
 
 ---
 
 ## 🧰 Associated Skills
 
 - [tui-terminal-engineering](../../../skills/engineering/practices/tui-terminal-engineering/SKILL.md)
+- [web-portal-cli-scaffolding](../../../skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md)
 - [ui-style-terminal-tui](../../../skills/domains/design/ui-style-terminal-tui/SKILL.md)
 - [lang-go](../../../skills/languages/lang-go/SKILL.md)
 - [lang-python](../../../skills/languages/lang-python/SKILL.md)

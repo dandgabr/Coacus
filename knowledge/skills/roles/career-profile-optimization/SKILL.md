@@ -58,3 +58,33 @@ For technical recruiters and hiring managers:
   - Clear instructions to reproduce it locally (`docker compose up`).
   - Live demo link when applicable.
   - Badges for test coverage, CI/CD status, and linter.
+
+---
+
+## 🔍 4. Multi-Source Competency Expansion & Grounding Union
+
+When building a comprehensive candidate capability profile (the `/expand` pattern):
+
+### A. Dual-Approach Competency Discovery
+Extract capabilities across all local candidate documents (`cv/`, `linkedin/`, `diplomas/`, `references/`, `projects/`, and public GitHub repositories) using two complementary discovery strategies:
+1. **Approach A (Direct Syllabus & Exam-Guide Lookup):**
+   - For every listed certification, academic degree, or accredited course, map the official syllabus or exam objectives into explicit competencies (e.g. AWS Certified Solutions Architect maps to *VPC Peering, IAM Policies, Multi-AZ RDS, S3 Lifecycle Policies*).
+2. **Approach B (Problem-Domain Inference):**
+   - For every project, repository, or role, infer the necessary engineering disciplines required to solve that problem (e.g., implementing an e-commerce checkout implies *idempotency, distributed transactions, payment gateway webhooks, PCI-DSS boundaries*).
+   - Require explicit citation of the evidence source for every extracted competency.
+
+### B. Cross-Document Consistency Check & 3-Source Grounding
+- **Reconcile Discrepancies:** Cross-check dates, job titles, and academic honors between CV drafts, LinkedIn profile exports, and diploma certificates. Flag timeline overlaps or conflicting titles to the user before finalizing the profile.
+- **Immediate Same-Turn Write-Back:** When the user confirms or clarifies a missing detail, date, or metric in conversation, immediately persist the verified fact back into the canonical local profile file in the current turn. Do not defer or leave verified facts solely in conversational memory.
+
+---
+
+## 🎭 5. Behavioral Profile Calibration & Repository Privacy Guard
+
+1. **Behavioral Profile Calibration**:
+   - Record candidate behavioral assessment data where available (Predictive Index, DISC, CliftonStrengths).
+   - Identify energizing tasks (e.g., greenfield architecture, deep algorithmic optimization) versus draining tasks (e.g., legacy maintenance, vendor negotiations).
+   - Use this calibration to steer job search filters and ensure authentic cover letter voice matching.
+2. **Repository Privacy & PII Pre-Check**:
+   - Before writing or committing candidate profile data, resumes, or compensation expectations to disk, inspect Git remotes (`git remote -v`).
+   - If the repository points to a public remote repository, warn the operator and ensure that sensitive PII (home addresses, personal phone numbers, salary targets) is routed to `.gitignore`-protected directories.

@@ -198,6 +198,7 @@
     {
       "title": "engineering",
       "skills": [
+        "agentic-state-sync-hitl",
         "api-design",
         "arch-bce-pattern",
         "architecture-ddd",
@@ -232,6 +233,7 @@
         "vcs-repository-management",
         "version-freshness",
         "web-accessibility-wcag",
+        "web-portal-cli-scaffolding",
         "writing-for-agents"
       ]
     },
@@ -338,12 +340,15 @@
         "cloud-infrastructure-architect",
         "code-mapping-specialist",
         "code-optimizer",
+        "cover-letter-application-drafter",
         "dba-database-administrator",
         "devops-engineer",
         "explore",
         "frontend-developer",
         "fullstack-developer",
         "general",
+        "interview-prep-upskill-tracker",
+        "job-fit-evaluation-ranking",
         "job-hunting-sourcing",
         "multi-agent-orchestration-supervision",
         "product-owner",

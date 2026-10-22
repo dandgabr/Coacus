@@ -121,3 +121,23 @@ Dashboards synthesize table data into actionable top-level metrics:
    - When filters yield 0 results: State clearly "No matches for current filters" and provide a "Clear all filters" button.
 3. **Inline Error State**:
    - Provide row-level or table-level retry buttons without losing active filter/pagination parameters.
+
+---
+
+## 📉 Zero-CDN Offline HTML/SVG Analytics Dashboards
+
+When generating portable visual reports, audit summaries, or job search/pipeline dashboards:
+
+### 1. Single-File Offline Architecture
+- Output a single, standalone `.html` file with embedded CSS and vanilla JavaScript.
+- **Zero CDN or external web dependencies:** Do not link external charting libraries (e.g. Chart.js, D3) or remote font stylesheets. The file must render identically offline, in air-gapped environments, or when opened directly from a local filesystem (`file://`).
+- Use semantic HTML tags with accessible `<svg role="img" aria-label="...">` elements for charts.
+
+### 2. Pure SVG Analytical Visualizations
+- **Doughnut / Pie Visualizations:** Render segment arcs using SVG `<circle>` elements with calculated `stroke-dasharray` and `stroke-dashoffset` percentages based on the circumference ($C = 2 \pi r$). Include an accessible center summary label.
+- **Horizontal Bar Charts:** Render proportional metric bars using `<rect>` elements scaled against max domain values, pairing each bar with an inline tabular numeric label.
+- **Cumulative Funnel Semantics:** In lifecycle funnels (e.g. Applied → Phone Screen → Technical Round → Final Offer), compute stage totals **cumulatively**. The count for a stage must represent the union of items currently in that stage plus all items that historically reached or passed that stage (even if later rejected or withdrawn). Calculating funnels only from current terminal statuses erroneously erases historical interview conversion rates.
+
+### 3. Client-Side Filtering & Text Escaping
+- **Multi-Facet AND Filtering:** Implement responsive, zero-dependency client-side filters (text search input + status dropdown + category dropdown) that execute synchronously over table rows using DOM dataset attributes.
+- **Strict SVG and HTML Escaping:** All user-supplied strings or external entity names rendered inside HTML or SVG text nodes (`<text>`, `<td>`) must be rigorously escaped (`&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`) to prevent layout breakage and DOM XSS injection.

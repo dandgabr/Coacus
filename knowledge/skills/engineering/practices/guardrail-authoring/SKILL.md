@@ -61,3 +61,36 @@ When an autonomous agent encounters a missing CLI binary or tool failure:
   - `untrusted_repository` (adding random third-party PPAs or unverified git URLs)
   - `model_generated_unverified_command` (executing hallucinated multi-line install scripts without user gating).
 - **Fallback Result Transparency**: When a fallback mechanism or alternative tool is used, the report must preserve the primary tool's failure log alongside the fallback outcome, preventing silent degradation.
+
+## Agent Workspace Permission Surface & Supply-Chain Auditing
+
+Autonomous AI developer environments define their execution authority through workspace configuration, frontmatter tool grants, hooks, and ignore files. Author guardrails to enforce strict mechanical boundaries across this surface:
+
+### 1. 3-Tier Permission Surface Model (`allow` / `ask` / `deny`)
+
+1. **`ask` on the permission surface itself:** Any operation targeting files or actions that define the agent's own authorization boundary must require human gating (`ask`). An agent must never be permitted to unilaterally widen its own permissions. This includes:
+   - Agent harness settings (`.claude/settings.json`, `.gemini/settings.json`, `.cursor/rules`, etc.).
+   - Skill manifests (`SKILL.md`) carrying `allowed-tools` declarations.
+   - CI/CD workflow configurations (`.github/workflows/**`, Azure pipeline definitions).
+   - Security guard scripts and linter configurations.
+   - Remote write actions (`git push`).
+2. **`deny` tripwires for exfiltration and credential theft:** Enforce non-bypassable `deny` rules on patterns commonly used to siphon data or steal secrets:
+   - Outbound HTTP data transmission flags: `curl -d`, `curl -F`, `curl -T`, `curl --data*`, `curl --upload-file`, `curl -X POST`, `wget --post*`, `scp`, `ssh`, `nc`.
+   - Private key and sensitive credential paths: `.env`, `.env.*` (excluding `.env.example`), `~/.ssh/**`, `~/.aws/**`, `~/.gnupg/**`, `id_rsa`, `*.pem`, `*.key`.
+
+### 2. Hook Allowlisting & Automated Execution Defense
+
+Repository lifecycle hooks (`SessionStart`, `PreToolUse`, `PostToolUse`) execute automatically upon opening or interacting with a workspace without requiring a user prompt.
+- Enforce an explicit, audited allowlist (`ALLOWED_HOOKS`) of verified hook scripts.
+- Disallow unvetted hooks or dynamically generated hook definitions that could execute arbitrary commands upon repository cloning or branch checkout.
+
+### 3. Skill Frontmatter and Subagent Tool-Grant Hygiene
+
+- **Disallow wildcard globs in tool grants:** Reject frontmatter granting command patterns containing unanchored wildcards (e.g. `Bash(*)` or `Bash(curl *)`). Commands must use explicit subcommands and pinned arguments.
+- **Explicit `tools:` list on untrusted-content subagents:** Subagents handling external untrusted data (scrapers, evaluators, parsers) must explicitly list allowed tools. Never leave `tools:` empty or omitted if the harness defaults to granting all parent tools (`Edit`, `Write`, `Bash`, `Agent`).
+- **Granularity resolution traps:** Beware of harnessing engines where subagent `tools:` accepts tool names but ignores argument constraints (e.g. interpreting `Bash(ls *)` as full unconstrained `Bash`). Flag and prevent such misconfigurations.
+
+### 4. Order-Sensitive `.gitignore` Negation & Package Lifecycle Script Bans
+
+- **Negation allowlist in `.gitignore`:** In ignore configurations that exclude PII or credential folders, audit all `!<pattern>` unignore directives against an approved list (`ALLOWED_IGNORE_NEGATIONS`). A late negation in an ignore file can silently un-ignore and expose previously protected files.
+- **Lifecycle script ban in development toolchains:** For supplementary tools or workspace scripts defining a `package.json`, explicitly disallow execution of arbitrary install hooks: `preinstall`, `install`, `postinstall`, `prepare`, `prepack`, and runtime `trustedDependencies`. Package installations in agent workspaces must be pure dependency unpacks without arbitrary shell execution.

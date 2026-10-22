@@ -860,7 +860,7 @@
       "source_path": "agents/software-engineering/vcs-repository-specialist/AGENT.md",
       "source_sha256": "1169c2f5418a5ac8b72761ace55c5e682deb606c9c2edae646f6c72ae3bd4b29",
       "target_path": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md",
-      "target_sha256": "01a9bc4c60c8d12b26095f29b43157b6ea7b5079ff701cce47e40bf9ca02ec56",
+      "target_sha256": "f915d20f8ab1e96c86e9c04c11f586c6a702395e0b6ae3ccc401d9a1be835cb0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -877,7 +877,7 @@
       "source_path": "agents/specialized-domains/career-coach-job-hunter/AGENT.md",
       "source_sha256": "a59a8805e39769ac35adbe69d724720d7227e05b7f7ba64a7ead3c432896eaaa",
       "target_path": "knowledge/agents/specialized-domains/career-coach-job-hunter/agent.source.md",
-      "target_sha256": "fcd5a8f832bf1c89685e8af774645c7570903ca69bff712521c7035bbd189a10",
+      "target_sha256": "5c9ffc40554b8150bcd85f942473c9b91ebf61c4cb32fd0ef8ecbdd2379f9f8a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5219,7 +5219,7 @@
       "source_path": "skills/engineering-practices/vcs-repository-management/SKILL.md",
       "source_sha256": "e205a2d3ce26e89c48e2e1640a497d552d22a58b8702b5e2a3559d05fb9c4109",
       "target_path": "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-      "target_sha256": "85e840bd6552b8771eba65a2caa31f3091c252bb92945403cce656e2208c3433",
+      "target_sha256": "f99ef7f0d425472c8825927fd39cf45751353d8151ed52c4dd6ccaca13520401",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -7639,7 +7639,7 @@
       "source_path": "skills/languages/lang-latex/SKILL.md",
       "source_sha256": "e385e87354997af19b551ca585185f0f7c65a20560e10eb31c29b1cc95d963be",
       "target_path": "knowledge/skills/languages/lang-latex/SKILL.md",
-      "target_sha256": "2a4d3ccd64025ce9c0a255f68ed62231d1eef90407836d39ebf1862351cbbb3d",
+      "target_sha256": "01c30a57337f8df5859cb146085408d2c9082485c132d9bb52b3427e62063cfb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -8331,7 +8331,7 @@
       "source_path": "skills/languages/lang-typst/SKILL.md",
       "source_sha256": "1cdb6db0eb42d1b482314d035714f2af3ebd3523aab7e03494660589053bad68",
       "target_path": "knowledge/skills/languages/lang-typst/SKILL.md",
-      "target_sha256": "6ebf1c7622dce3714c3ad1047a79d5b830f26485a4f6a511be87bb8bd51f71c3",
+      "target_sha256": "b2c95d2458b084e6d6771bfc9aadf7eaf6165c6aa0a8c321a8b7c58f9e72b96b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10164,7 +10164,7 @@
       "source_path": "skills/roles/ats-resume-optimization/SKILL.md",
       "source_sha256": "fc9d43911f7f2ae6bde4fa35a9c02e9f74a61ba54e9724811eb2282cee628951",
       "target_path": "knowledge/skills/roles/ats-resume-optimization/SKILL.md",
-      "target_sha256": "9ef81ebcfcd91cb852b50799c574b41a95ec901e3d73c0e066592ba7cf50caa1",
+      "target_sha256": "1676d1bb18f0131453c2a9166ea25e6bc86d52122e024defff87aea0da7706f5",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10310,7 +10310,7 @@
       "source_path": "skills/roles/career-profile-optimization/SKILL.md",
       "source_sha256": "6593772e690b4beda89113b81d6e54a97b8bcfcd429261f044836d830479b28f",
       "target_path": "knowledge/skills/roles/career-profile-optimization/SKILL.md",
-      "target_sha256": "ca5b2611620a5e530af332283d3ed0a3099f63c1abff29bec34b02d38757cba6",
+      "target_sha256": "84c893b834fcaf11fa660a140d93e7d48b238bd2c5a8b1975c60df4ad512b4fe",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11039,7 +11039,7 @@
       "source_path": "skills/roles/job-hunting-sourcing/SKILL.md",
       "source_sha256": "74c1dca5873b06c3604c6bc693262c87ec00586f6ef1aa6850992049250ac16b",
       "target_path": "knowledge/skills/roles/job-hunting-sourcing/SKILL.md",
-      "target_sha256": "a0758f8279d89d944e08c22d0715ec2c2cf3890f76c7b805710823a3f421cf36",
+      "target_sha256": "682056ad96d1a4994f3b9566954269400520cea0f207871f406763def3acf211",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11640,9 +11640,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/web-search-specialist/SKILL.md",
-      "source_sha256": "7e7e74a31f85feb3bf6a9d8abbe1381e6b6c58e228a79f99e2b6119ec6a910e1",
+      "source_sha256": "4d9373b69ec55909c91ce378f70572a2c9c3eb3dfade79c48ea1d0a248b20375",
       "target_path": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "target_sha256": "7e7e74a31f85feb3bf6a9d8abbe1381e6b6c58e228a79f99e2b6119ec6a910e1",
+      "target_sha256": "4d9373b69ec55909c91ce378f70572a2c9c3eb3dfade79c48ea1d0a248b20375",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -12762,9 +12762,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/appsec/software-supply-chain-security/SKILL.md",
-      "source_sha256": "b7a7408700c330f8b64c69d7cb66396e845d83651a80b2effba9e26b3c6cc4f0",
+      "source_sha256": "eeb42522e83ecaab026ebdcb052fe728b07b2eb085069b8d162446b99216172f",
       "target_path": "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
-      "target_sha256": "b7a7408700c330f8b64c69d7cb66396e845d83651a80b2effba9e26b3c6cc4f0",
+      "target_sha256": "eeb42522e83ecaab026ebdcb052fe728b07b2eb085069b8d162446b99216172f",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17376,9 +17376,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "source_sha256": "a7773dd7f1af3a818f6097cb334cde35b47f9fb9715dd20c47f6ee2ff8f00973",
+      "source_sha256": "53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20",
       "target_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "target_sha256": "a7773dd7f1af3a818f6097cb334cde35b47f9fb9715dd20c47f6ee2ff8f00973",
+      "target_sha256": "53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17991,9 +17991,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/data/python-data-science/SKILL.md",
-      "source_sha256": "96ccd32adeea1830fdf65190394bafdec5f11c17a2f85cf5bb7bcc362a7c06ac",
+      "source_sha256": "abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4",
       "target_path": "knowledge/skills/data/python-data-science/SKILL.md",
-      "target_sha256": "96ccd32adeea1830fdf65190394bafdec5f11c17a2f85cf5bb7bcc362a7c06ac",
+      "target_sha256": "abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20091,9 +20091,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "source_sha256": "9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8",
+      "source_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
       "target_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "target_sha256": "9d64a3a4c8a5c364827454c11c32b900656deb560e9b47659403addc8c691ba8",
+      "target_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20241,9 +20241,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/phase-boundaries/SKILL.md",
-      "source_sha256": "20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d",
+      "source_sha256": "1d2db074b67dc70a795cf4e7a4eb6b12f7e6be0cc28a63135d74d433ad78f193",
       "target_path": "methodology/workflows/phase-boundaries/SKILL.md",
-      "target_sha256": "20d8a6d1c7b5d6dec83b9c2635d702fe745180f885c028e2f90645c5ea90749d",
+      "target_sha256": "1d2db074b67dc70a795cf4e7a4eb6b12f7e6be0cc28a63135d74d433ad78f193",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20376,9 +20376,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
-      "source_sha256": "90fb396e51e2aee5a7af6e65cc5922ffe7914fa5786999df9a6bb89fc9d35505",
+      "source_sha256": "09680668acb5bbf4811c7f64a522103fb24874ef748f9630ac89de558e8f5da7",
       "target_path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
-      "target_sha256": "90fb396e51e2aee5a7af6e65cc5922ffe7914fa5786999df9a6bb89fc9d35505",
+      "target_sha256": "09680668acb5bbf4811c7f64a522103fb24874ef748f9630ac89de558e8f5da7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20916,9 +20916,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
-      "source_sha256": "b748938151088e923f92944d4c6869e6b91ef2c739ad09b597da131553132dd4",
+      "source_sha256": "dfb665a08c9ca5b51d0072b6d6b21942ad35cf3bd5d25d69c0e9f804e43fc53b",
       "target_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
-      "target_sha256": "b748938151088e923f92944d4c6869e6b91ef2c739ad09b597da131553132dd4",
+      "target_sha256": "dfb665a08c9ca5b51d0072b6d6b21942ad35cf3bd5d25d69c0e9f804e43fc53b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21001,6 +21001,81 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-22T19:29:21Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md",
+      "source_sha256": "a6229fe3aa9d695aff4740b887a12d8dfa4e3eb653b7495725e2b4f0013798d2",
+      "target_path": "knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md",
+      "target_sha256": "a6229fe3aa9d695aff4740b887a12d8dfa4e3eb653b7495725e2b4f0013798d2",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T21:08:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
+      "source_sha256": "f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880",
+      "target_path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
+      "target_sha256": "f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T21:08:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/roles/cover-letter-application-drafter/SKILL.md",
+      "source_sha256": "fce7e1ca067bc1a140335211e575c99a36cf2ae08f2a4ebadc88a4b3cc1eea01",
+      "target_path": "knowledge/skills/roles/cover-letter-application-drafter/SKILL.md",
+      "target_sha256": "fce7e1ca067bc1a140335211e575c99a36cf2ae08f2a4ebadc88a4b3cc1eea01",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T21:08:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md",
+      "source_sha256": "7fe67218e0043dc178a0ba83a055b06a4a8e97b14896d7ecae58a531032c8cf8",
+      "target_path": "knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md",
+      "target_sha256": "7fe67218e0043dc178a0ba83a055b06a4a8e97b14896d7ecae58a531032c8cf8",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T21:08:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md",
+      "source_sha256": "da7990b15384a705b2b0463c924b8e1f430eb2261fd655e84d50619865b69f18",
+      "target_path": "knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md",
+      "target_sha256": "da7990b15384a705b2b0463c924b8e1f430eb2261fd655e84d50619865b69f18",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-22T21:08:52Z"
     }
   ]
 }

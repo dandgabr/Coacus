@@ -98,6 +98,31 @@ Implementing the primitives once (Grus) exposes why scaling, learning rates and 
 4. **Start from the simplest baseline** (dummy → logistic → complexity justified by the learning curve).
 5. **Handle missing data deliberately**; impute rather than blunt `dropna`.
 6. **Encode categories correctly** — `OneHotEncoder(handle_unknown='ignore')` for nominal (never `LabelEncoder` on features, which invents order).
+
+---
+
+## 📑 Resilient Spreadsheet Ingestion & Locale-Aware Parsing
+
+Real-world datasets (financial reports, compensation surveys, legacy exports) often arrive as malformed spreadsheets containing decorative header banners, aggregated footnotes, multi-line column names, or mixed locale number representations.
+
+### 1. Two-Pass Corroborated Header Detection
+- **Avoid naive row 0 assumptions:** Scanning row 0 blindly fails when sheets begin with logos, legal disclaimers, or empty cells.
+- **Corroborated row scoring:** Scan the first 10–15 rows using a two-pass corroboration rule. A row qualifies as the true tabular header only if it contains **both** an entity identifier (e.g., regex matching `Company`, `Organization`, `ID`) **and** a distinct metric or demographic indicator (e.g., `City`, `Count`, `Salary`, `Ratio`) across separate columns.
+- **Skip chartsheets and note tabs:** Detect and bypass openpyxl chartsheets or tabs whose cells contain exclusively long prose blocks without tabular boundaries.
+
+### 2. 3-Tier Column Disambiguation
+When extracting specific target columns from wide spreadsheets where multiple headers share overlapping keywords:
+1. **Tier 1 (Exact normalized match):** Direct equality against the canonical field name.
+2. **Tier 2 (Non-metric descriptive match):** Substring match that specifically excludes metric/index keywords (e.g. matching `Company` while explicitly rejecting columns named `Company Index` or `Company Score`).
+3. **Tier 3 (Any match fallback):** General substring match if no Tier 2 candidate exists.
+- **Header normalization:** Strip compound-word prefixes, collapse line breaks (`\n`, `\r`) within cell headers into single spaces, and trim punctuation.
+
+### 3. Locale-Aware Numeric Parsing
+- **Disambiguate thousands vs decimal separators:**
+  - Standard US/UK: `1,234,567.89` (comma is thousands, period is decimal).
+  - Continental Europe / Latin America: `1.234.567,89` (period is thousands, comma is decimal).
+- **Ambiguity rejection:** If a value features a single ambiguous separator with 3 trailing digits (`1,234` or `1.234`) without a corroborated decimal point, evaluate the broader column distribution before parsing.
+- **Strict type rejection:** Reject non-finite strings (`NaN`, `Inf`, `-Infinity`), currency symbols, and boolean values (`True`/`False`) from being coerced into valid numerical zeros without an explicit business rule.
 7. **Seed everything** (`random_state`, `np.random.default_rng`) and pin library versions.
 8. **Reduce dimensionality** before distance-based work — the curse of dimensionality degrades k-NN/clustering.
 9. **Interpret before shipping** — feature importances, coefficients with standard errors; correlation ≠ causation.

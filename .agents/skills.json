@@ -550,6 +550,9 @@
       "path": "knowledge/skills/engineering/patterns/dp-structural-patterns"
     },
     {
+      "path": "knowledge/skills/engineering/practices/agentic-state-sync-hitl"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/api-design"
     },
     {
@@ -638,6 +641,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/web-accessibility-wcag"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding"
     },
     {
       "path": "knowledge/skills/engineering/practices/writing-for-agents"
@@ -868,6 +874,9 @@
       "path": "knowledge/skills/roles/code-optimizer"
     },
     {
+      "path": "knowledge/skills/roles/cover-letter-application-drafter"
+    },
+    {
       "path": "knowledge/skills/roles/dba-database-administrator"
     },
     {
@@ -884,6 +893,12 @@
     },
     {
       "path": "knowledge/skills/roles/general"
+    },
+    {
+      "path": "knowledge/skills/roles/interview-prep-upskill-tracker"
+    },
+    {
+      "path": "knowledge/skills/roles/job-fit-evaluation-ranking"
     },
     {
       "path": "knowledge/skills/roles/job-hunting-sourcing"
