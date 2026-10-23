@@ -28,6 +28,11 @@ The main role is to lead the end-to-end quality strategy: from static requiremen
   - *Decision Tables*: Boolean simplification of complex rules, eliminating ambiguity and specification gaps.
   - *State Transition (FSM)*: Transition coverage (0-switch) and transition sequences (1-switch).
   - *Combinatorial Testing (All-Pairs)*: Pairwise coverage over orthogonal arrays.
+  - *Persisted-Data Invariants*: For editors and import/export flows, derive
+    cases from the authoritative format or product rules. Cover lower and upper
+    bounds, just-outside values, combined limits, special states, malformed or
+    missing fields, and serialization round-trips. Check immediate interface
+    feedback as well as rejection at the authoritative write boundary.
 - **White-Box (Structural)**:
   - *Control Flow Graph and Cyclomatic Complexity ($V(G)$)*: Ensure the number of test cases covers at least the linearly independent basis ($V(G)$ paths).
   - *Modified Condition/Decision Coverage (MC/DC)*: Test the independence of each boolean condition in mission-critical systems.

@@ -514,10 +514,10 @@
     },
     {
       "name": "cloud-cloudflare",
-      "description": "Acts as a specialist on the Cloudflare platform, covering the new unified cf CLI, Wrangler v3/v4, C3 (create-cloudflare), private tunnels with cloudflared, Edge Compute (Workers, Pages, Durable Objects, Workers AI), edge storage (D1, R2, KV, Vectorize, Hyperdrive, Queues), security (WAF Managed Rulesets, Turnstile, Rate Limiting, SSL/TLS), and Cloudflare Zero Trust architecture.",
+      "description": "Acts as a specialist on the Cloudflare platform, covering the unified cf CLI, Wrangler v3/v4, C3 (create-cloudflare), private tunnels with cloudflared, Edge Compute (Workers, Pages, Durable Objects, Workers AI), edge storage (D1, R2, KV, Vectorize, Hyperdrive, Queues), security (WAF Managed Rulesets, Turnstile, Rate Limiting, SSL/TLS), and Cloudflare Zero Trust architecture.",
       "type": "archive",
       "url": "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md",
-      "digest": "sha256:cddab5a16be9150a0eed89bb3463c9d8f29b7ecf9a8235f43f8b25479ba6d16c"
+      "digest": "sha256:ccb5368c6d12dae513d41bf29d0cadff7821a2f9a3258c49a23778d1c02ced84"
     },
     {
       "name": "cloud-detection-response",
@@ -2120,7 +2120,7 @@
       "description": "Acts as a specialist Project Reviewer, auditing and standardizing business rules, defining the distribution of responsibilities across Database, Backend, and Frontend, and ensuring adherence to software architecture and security best practices.",
       "type": "archive",
       "url": "knowledge/skills/roles/project-reviewer/SKILL.md",
-      "digest": "sha256:2f69a17ad3d28cbe9ea004a2adf1e402e62073ae488d8a6a11c07b1bf0d637e5"
+      "digest": "sha256:67e7347bdec914ae4a4ed3b3bcba044a927247e79da57a3aef4498be246dc19c"
     },
     {
       "name": "python-data-science",
@@ -2141,7 +2141,7 @@
       "description": "Acts as a Senior QA (Quality Assurance) Engineer, mastering risk-based strategies (RBT), formal test design techniques (ISTQB, BVA, Decision Tables, MC/DC), multi-framework test automation, effectiveness measurement (DRE, Mutation Score), and defect management.",
       "type": "archive",
       "url": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "digest": "sha256:cf9efa714d07bcfe3355296d903f9c601738a3cd9adf610216f21fe3ba788e7f"
+      "digest": "sha256:36a4ccfef3d9fad3562c9879764179ca1aa1c27a1eac52559c2b49a96ae71967"
     },
     {
       "name": "quantitative-risk-fair",
@@ -3184,7 +3184,7 @@
       "description": "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the style library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists.",
       "type": "archive",
       "url": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "digest": "sha256:2ca04823ee9242f69d737419f841b5ba0fb47cbc30d51bb146d0db8ee1b1e475"
+      "digest": "sha256:0305b5db79b9941ba864f1d2af5fdcbda199e078bdc87b0fec3b1ff019f240af"
     },
     {
       "name": "ui-ux-principles",

@@ -61,6 +61,14 @@ The designer must consciously select the project's visual language from the ency
 
 The box above lists the core canon. The design style library extends it with further `ui-style-*` skills (for example Terminal TUI, Risograph/Zine, Vaporwave/Synthwave, Calm UI, Broken Grid, Grain and Noise Texture); browse `knowledge/skills/domains/design/` rather than relying on a fixed count.
 
+When a product already has visual references or a live showcase, inspect them
+before proposing a visual direction. Extract reusable decisions such as
+typography hierarchy, spacing, responsive behavior, focus treatment and motion
+preferences; adapt them to the product's purpose and existing visual identity.
+Do not transplant a reference's brand palette or presentation wholesale. Verify
+the resulting interface at relevant viewport sizes and with accessibility
+requirements in force.
+
 ### Quick Style Decision Matrix:
 | Scenario / Product Type | Recommended Style | Execution Guideline |
 | :--- | :--- | :--- |

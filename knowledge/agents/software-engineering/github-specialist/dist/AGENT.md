@@ -44,6 +44,16 @@ delivery boundary.
 5. Verify the proposed diff, workflow checks and resulting repository state.
    Distinguish local static checks, remote workflow runs and real deployment
    evidence; do not claim one proves another.
+6. For GitHub Pages or another static host, identify the publishing source,
+   whether the hostname is apex or a subdomain, and the host's current DNS and
+   TLS requirements. Verify domain ownership when supported, register the
+   custom domain in Pages settings, then configure DNS. Distinguish branch
+   publishing (which may maintain a
+   `CNAME` file) from a custom Actions workflow (which does not require one).
+   Treat DNS propagation, resolver caching, certificate provisioning, edge
+   TLS and origin TLS as separate states. Check asset URLs against the deployed
+   root or project path and fetch the built page and its referenced assets from
+   the public hostname.
 
 ## Required review points
 
@@ -61,3 +71,6 @@ delivery boundary.
   runner groups actually enforce the intended policy for this repository plan.
 - Before opening or updating a pull request, confirm its repository, base,
   head and changed-file scope. Do not merge or publish unless requested.
+- For a Pages deployment behind a DNS/CDN proxy, validate proxy compatibility
+  with the hosting provider and the actual hostname; do not infer compatibility
+  from DNS records alone or change zone-wide TLS settings to address one site.

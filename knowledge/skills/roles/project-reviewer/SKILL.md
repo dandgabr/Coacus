@@ -27,6 +27,15 @@ Validate whether features and logic are distributed in the correct part of the s
 | **Backend** | Input data validation, authorization/authentication, API orchestration, heavy processing, business transactions, encryption of sensitive data in transit/at rest, integrity of core business rules. | Rendering of specific layouts, direct manipulation of visual state, purely cosmetic validations. |
 | **Frontend** | User experience (UX), data presentation, fast local validations for instant user feedback, UI state management. | Blind trust in inputs (always revalidate in the Backend), storing secret API keys or system secrets. |
 
+For editors, importers and other tools that modify persisted or externally
+consumed data, derive explicit domain invariants from the authoritative format
+or product rules before assigning behavior to a layer. Enforce them at the
+authoritative write boundary; mirror inexpensive checks in the interface for
+immediate feedback. Cover minimum/maximum limits, aggregate constraints,
+special states and serialization round-trips. A UI control is not an integrity
+boundary, and a value that renders successfully may still produce invalid
+persisted data.
+
 ### 3. Architecture Guarantees
 - **Separation of Concerns (SoC)**: Validate whether there is improper coupling between layers.
 - **DDD and SOLID**: Ensure domain logic is isolated from infrastructure details (such as frameworks and libraries).

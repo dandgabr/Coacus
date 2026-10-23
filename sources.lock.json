@@ -500,7 +500,7 @@
       "source_path": "agents/data-cloud-devops/cloudflare-specialist/AGENT.md",
       "source_sha256": "66878a2225791bf7f917754256475bd9c77340c42a6c2df8bc63e78fd7954328",
       "target_path": "knowledge/agents/data-cloud-devops/cloudflare-specialist/agent.source.md",
-      "target_sha256": "6c4063310f99ef2a732cd7942cee1da7d16aa7656f07289fc7eb1c4c41f1e2d2",
+      "target_sha256": "dcd6170b6c4d7cbf8c3bcee481e21939eff9f934a213a3fc49459a3894e9fc71",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -741,7 +741,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "b2a824f5b18dd0182b9211b00adfc0943a78d9ef641d3e43bb476fc6c4a558a6",
+      "target_sha256": "a7e5ad9c7f6703a7a27307ed14ff93360db1edb4946854ee2b03e10fae10d07e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -792,7 +792,7 @@
       "source_path": "agents/software-engineering/qa-testing-specialist/AGENT.md",
       "source_sha256": "c091fd618bb7d4921ed8a9000c5e15e368caf64260bd30e5e208c4182b980fc0",
       "target_path": "knowledge/agents/software-engineering/qa-testing-specialist/agent.source.md",
-      "target_sha256": "568290814a2d2dc1d46087774e3a41b345a0eb9a05427c514c73a4b154aef0ee",
+      "target_sha256": "e94ebeef7898cb83534f5f43474cb490d2bf84e156d6f425d67b2869511c4d5a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6509,7 +6509,7 @@
       "source_path": "skills/cloud-infra/cloud-cloudflare/SKILL.md",
       "source_sha256": "cc6e491c4f58e9958bab8b91ecd07137aa0778a2afb4dc30a00e6505765076e3",
       "target_path": "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md",
-      "target_sha256": "16fa779f3cf6e2873034107f3c5f7527b5e34166b2cbc12956dbb1f14ba2c106",
+      "target_sha256": "3701048ced8e361f66837599237e51ea318b14e33c0cc17a9fcdd47e6dff3c09",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11256,7 +11256,7 @@
       "source_path": "skills/roles/project-reviewer/SKILL.md",
       "source_sha256": "4c1e6c0d946b73367c1f4abcd25787cc3cfddcc4b163cea0bf6ca4dce85a7317",
       "target_path": "knowledge/skills/roles/project-reviewer/SKILL.md",
-      "target_sha256": "f89c25fb443c98668e202e2054b3fce5c0207d27c75ffbb30e0137f0d81fe80a",
+      "target_sha256": "873d58b9d9374f12b58473a424dd64dd294729430aaa69fb720c914a8211e604",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11327,7 +11327,7 @@
       "source_path": "skills/roles/qa-engineer/SKILL.md",
       "source_sha256": "dd37cd987a10ad5c4bed8b7ac3db2e83baf28c6a50a087ed36356831e4ad7e7f",
       "target_path": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "target_sha256": "cca2ecf9ae3d1307a8563b653351120f43406521b32b6245d11c9e2e161d432f",
+      "target_sha256": "4307014f684fab2112b94fe4cf9cd16da406a87cfb1d8ca78afe864689575e7c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11552,7 +11552,7 @@
       "source_path": "skills/roles/ui-ux-designer/SKILL.md",
       "source_sha256": "f059a3eaf6a72ab2a7c65d079647f9fb6a94e8f3c35e522a086953b9956d72ff",
       "target_path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "target_sha256": "9869492736eb1e2fe64b33a3a05920fbe03cb8da4fa022c2336b839282f453a4",
+      "target_sha256": "56ade0c505555d7747259bb680e447ccc50cb26bc81d84a44c8b501d1d46d2b7",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
