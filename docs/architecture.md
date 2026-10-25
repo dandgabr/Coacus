@@ -69,7 +69,7 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 
 How work proceeds inside a Coacus repository.
 
-- `methodology/workflows/<skill>/SKILL.md` — 27 process workflows: 14 imported
+- `methodology/workflows/<skill>/SKILL.md` — 28 process workflows: 14 imported
   from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
   — flat handoff names, `docs/temp/` artifacts) plus native engineering and
   governance workflows (including the entry workflow `using-coacus`).
