@@ -1710,6 +1710,13 @@
       "digest": "sha256:55729d834b4b74c672eb046c5a9f509b3ff82db763b721b82cf6dccddb63fab3"
     },
     {
+      "name": "learning-consolidation",
+      "description": "Consolidates an evidence-backed lesson selected by retro or explicitly requested into a proposal for human review.",
+      "type": "skill-md",
+      "url": "methodology/workflows/learning-consolidation/SKILL.md",
+      "digest": "sha256:0d396f1e1479c2b767d7cc936abfcc3cf82db63ca4336c6b41b9f345dda94b19"
+    },
+    {
       "name": "linguistic-en-us",
       "description": "Specialist in American English (EN-US) linguistic editing and technical copyediting, adhering to the Chicago Manual of Style, eliminating AI idiolect, resolving syntax ambiguities, and ensuring clear human communication.",
       "type": "archive",

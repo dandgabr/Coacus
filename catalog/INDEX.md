@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 471 skill(s) · 103 agent(s) · 1 MCP(s)
+**Totals:** 472 skill(s) · 103 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -567,6 +567,7 @@
 | grilling | [methodology/workflows/grilling/SKILL.md](../methodology/workflows/grilling/SKILL.md) |
 | handoff | [methodology/workflows/handoff/SKILL.md](../methodology/workflows/handoff/SKILL.md) |
 | implement-spec | [methodology/workflows/implement-spec/SKILL.md](../methodology/workflows/implement-spec/SKILL.md) |
+| learning-consolidation | [methodology/workflows/learning-consolidation/SKILL.md](../methodology/workflows/learning-consolidation/SKILL.md) |
 | phase-boundaries | [methodology/workflows/phase-boundaries/SKILL.md](../methodology/workflows/phase-boundaries/SKILL.md) |
 | retro | [methodology/workflows/retro/SKILL.md](../methodology/workflows/retro/SKILL.md) |
 | superpowers-brainstorming | [methodology/workflows/superpowers-brainstorming/SKILL.md](../methodology/workflows/superpowers-brainstorming/SKILL.md) |

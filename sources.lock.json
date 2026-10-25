@@ -21076,6 +21076,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-22T21:08:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "methodology/workflows/learning-consolidation/SKILL.md",
+      "source_sha256": "0d396f1e1479c2b767d7cc936abfcc3cf82db63ca4336c6b41b9f345dda94b19",
+      "target_path": "methodology/workflows/learning-consolidation/SKILL.md",
+      "target_sha256": "0d396f1e1479c2b767d7cc936abfcc3cf82db63ca4336c6b41b9f345dda94b19",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-25T02:53:36Z"
     }
   ]
 }

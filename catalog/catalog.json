@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 103,
-    "skills": 471,
+    "skills": 472,
     "mcps": 1
   },
   "agents": [
@@ -2429,6 +2429,10 @@
     {
       "name": "implement-spec",
       "path": "methodology/workflows/implement-spec/SKILL.md"
+    },
+    {
+      "name": "learning-consolidation",
+      "path": "methodology/workflows/learning-consolidation/SKILL.md"
     },
     {
       "name": "phase-boundaries",
