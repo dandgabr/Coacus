@@ -127,6 +127,9 @@ class TestBootstrapRender(unittest.TestCase):
         self.assertIn("@param", plugin)
         self.assertIn("@returns", plugin)
         self.assertIn("/**", plugin)
+        self.assertIn("export const CoacusPlugin", plugin)
+        self.assertIn("export default", plugin)
+        self.assertIn("id: 'coacus'", plugin)
 
     def test_router_hook_is_never_rendered(self) -> None:
         # Routing is user-invoked only (coacus_route.py): even a declared

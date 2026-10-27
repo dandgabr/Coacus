@@ -29,3 +29,16 @@ export const CoacusPlugin = async () => ({
     firstUser.parts.unshift({ ...ref, type: 'text', text: BOOTSTRAP });
   },
 });
+
+// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped
+export default {
+  id: 'coacus',
+  server: CoacusPlugin,
+  async setup(ctx) {
+    await ctx.session.hook('context', async (event) => {
+      if (!Array.isArray(event.system)) return;
+      if (event.system.some((p) => (typeof p === 'string' ? p.includes(GUARD) : p?.text?.includes(GUARD)))) return;
+      event.system.unshift({ type: 'text', text: BOOTSTRAP });
+    });
+  },
+};
