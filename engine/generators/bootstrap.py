@@ -189,6 +189,19 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
         "    firstUser.parts.unshift({ ...ref, type: 'text', text: BOOTSTRAP });\n"
         "  },\n"
         "});\n"
+        "\n"
+        "// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped\n"
+        "export default {\n"
+        "  id: 'coacus',\n"
+        "  server: CoacusPlugin,\n"
+        "  async setup(ctx) {\n"
+        "    await ctx.session.hook('context', async (event) => {\n"
+        "      if (!Array.isArray(event.system)) return;\n"
+        "      if (event.system.some((p) => (typeof p === 'string' ? p.includes(GUARD) : p?.text?.includes(GUARD)))) return;\n"
+        "      event.system.unshift({ type: 'text', text: BOOTSTRAP });\n"
+        "    });\n"
+        "  },\n"
+        "};\n"
     )
 
 

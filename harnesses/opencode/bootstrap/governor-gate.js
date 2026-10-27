@@ -13,7 +13,7 @@ const PYTHON = "__COACUS_PYTHON__";
 const GOVERNOR = COACUS_ROOT + '/scripts/coacus_governor.py';
 const MAX_TOTAL = String(process.env.ORCH_MAX_CONCURRENT ?? 5);
 const MAX_CALLS = 3;
-const SPAWN_TOOLS = new Set(['task']);
+const SPAWN_TOOLS = new Set(['task', 'subagent']);
 const RATE_LIMIT_RE = /(429|Too Many Requests|rate.?limit|quota exceeded|RPM|TPM)/i;
 
 // caller -> {token, calls}; kept on the plugin instance, never in args.
@@ -83,3 +83,18 @@ export const CoacusGovernor = async () => ({
     held.clear();
   },
 });
+
+// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped
+export default {
+  id: 'coacus-governor',
+  server: CoacusGovernor,
+  async setup(ctx) {
+    const v1 = await CoacusGovernor();
+    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before'](e, { args: e.input }));
+    await ctx.tool.hook('execute.after', (e) => {
+      const out = { output: e.status === 'completed' ? e.result : String(e.error ?? ''), metadata: e.metadata };
+      return v1['tool.execute.after']({ ...e, args: e.input }, out);
+    });
+    await ctx.session.hook('prompt', () => v1['chat.message']());
+  },
+};

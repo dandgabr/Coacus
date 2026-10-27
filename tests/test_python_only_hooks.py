@@ -118,7 +118,7 @@ class TestPythonOnlyHooks(unittest.TestCase):
                 shutil.copyfile(ROOT / rel, target)
             coacus_install.install("opencode", root, config, dry_run=False)
             plugin = (config / "plugins/coacus-governor.js").as_uri()
-            code = f"import {{ CoacusGovernor }} from {json.dumps(plugin)}; const hooks = await CoacusGovernor(); await hooks['tool.execute.before']({{tool:'task',sessionID:'test',callID:'1'}},{{args:{{}}}});"
+            code = f"import v2Def, {{ CoacusGovernor }} from {json.dumps(plugin)}; if (!v2Def || v2Def.id !== 'coacus-governor' || typeof v2Def.setup !== 'function') process.exit(2); const hooks = await CoacusGovernor(); await hooks['tool.execute.before']({{tool:'task',sessionID:'test',callID:'1'}},{{args:{{}}}});"
             state = Path(tmp) / "state"
             env = dict(os.environ, GOVERNOR_STATE_DIR=str(state), ORCH_MAX_CONCURRENT="3")
             result = subprocess.run([shutil.which("node"), "--input-type=module", "-e", code], env=env, capture_output=True, text=True)
