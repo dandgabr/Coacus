@@ -1,0 +1,17 @@
+{
+  "id": "pooled-screen-replicates",
+  "title": "Distinguish sequencing lanes from biological replicates",
+  "harness": "opencode",
+  "prompt": "A pooled perturbation screen has one biological sample per condition, each sequenced on three lanes. A collaborator calls the lanes three independent biological replicates and claims a top-ranked gene proves its mechanism. Explain the limits. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(biological|replicate)" },
+    { "kind": "regex", "value": "(?i)(lane|sequenc)" },
+    { "kind": "regex", "value": "(?i)(not|cannot|aren't|isn't|do not|does not)[^.!?]{0,90}(independent|biological replicate)" }
+  ],
+  "rubric": [
+    "The response distinguishes sequencing lanes from independent biological replicates.",
+    "It describes the limitation of one biological sample per condition for inference.",
+    "It treats a screen hit as a candidate for follow-up rather than proof of a mechanism."
+  ],
+  "acceptance": "The response identifies the lack of biological replication and does not present a ranked hit as proof of mechanism."
+}

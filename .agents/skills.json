@@ -166,10 +166,49 @@
       "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics"
     },
     {
+      "path": "knowledge/skills/domains/academic/animal-welfare-research-evidence"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/astronomical-data-integrity"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/bulk-rna-seq-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/constraint-based-metabolic-research"
+    },
+    {
       "path": "knowledge/skills/domains/academic/data-science-advanced-math"
     },
     {
+      "path": "knowledge/skills/domains/academic/flow-cytometry-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/genomic-coordinate-integrity"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/isotope-flux-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/laboratory-automation-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/measurement-units-uncertainty"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/pooled-screen-research"
+    },
+    {
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/scientific-data-retrieval"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/single-cell-expression-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/tandem-mass-spectra-research"
     },
     {
       "path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding"

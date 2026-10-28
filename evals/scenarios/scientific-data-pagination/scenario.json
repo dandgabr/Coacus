@@ -1,0 +1,16 @@
+{
+  "id": "scientific-data-pagination",
+  "title": "Report incomplete scientific database retrieval",
+  "harness": "opencode",
+  "prompt": "A scientific database returned two pages of records, then timed out before the remaining pages. A separate lookup returned not found for an identifier. Explain what can be concluded and what provenance should be recorded. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(incomplete|partial|truncat|not complete)" },
+    { "kind": "regex", "value": "(?i)(source|provider|database)" }
+  ],
+  "rubric": [
+    "The response reports pagination as incomplete and does not claim all records were retrieved.",
+    "It treats the not-found response as scoped to that provider and does not claim universal nonexistence.",
+    "It records the source, query or filters, retrieval time, status and dataset release where available without inventing them."
+  ],
+  "acceptance": "The response distinguishes incomplete pagination and provider-scoped not-found results from exhaustive evidence."
+}

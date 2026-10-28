@@ -1,0 +1,104 @@
+{
+  "source_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "scope": "Five priority package source samples; read-only; no code or tests executed",
+  "items": [
+    {
+      "name": "qutip",
+      "declared_license": "MIT (SKILL.md frontmatter only)",
+      "status": "partial",
+      "coacus_owner": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "inspected": [
+        "skills/qutip/SKILL.md (complete)",
+        "Coacus quantum-computing-algorithms/SKILL.md (complete)"
+      ],
+      "uninspected": [
+        "skills/qutip/references/*.md",
+        "skills/qutip/scripts/*.py",
+        "tests/qutip/*.py"
+      ],
+      "decision": "Add open-system safeguards to the existing quantum owner or a specifically routed companion; review implementation and provenance before import.",
+      "finding": "Existing owner covers closed-state and circuit foundations but not Lindblad dynamics, collapse-rate scaling, open-system solver assumptions, state-physicality checks or numerical convergence."
+    },
+    {
+      "name": "pycalphad",
+      "declared_license": "MIT (SKILL.md frontmatter only)",
+      "status": "partial",
+      "coacus_owner": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+      "inspected": [
+        "SKILL.md",
+        "references/model-and-validation.md excerpts",
+        "scripts/equilibrate.py entry points",
+        "tests/pycalphad/test_scripts.py names",
+        "Coacus owner",
+        "helper and tests substantial excerpts; output truncated",
+        "SKILL.md and principal reference read in full; helper and test output truncated and therefore partial"
+      ],
+      "decision": "retain as domain gap pending full workflow and license review; avoid treating hypothetical test database as experimental evidence",
+      "uninspected": [
+        "Unseen portions of helper and tests due to truncation",
+        "Package assets and fixtures",
+        "Dependency and underlying database/data licensing"
+      ]
+    },
+    {
+      "name": "pybamm",
+      "declared_license": "MIT (SKILL.md frontmatter only)",
+      "status": "partial",
+      "coacus_owner": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+      "inspected": [
+        "SKILL.md excerpts",
+        "references/protocol-and-comparison.md excerpts",
+        "scripts/simulate_battery.py entry points",
+        "tests/pybamm/test_scripts.py names",
+        "Coacus owner",
+        "helper and tests substantial excerpts; output truncated",
+        "SKILL.md and principal reference read in full; helper and test output truncated and therefore partial"
+      ],
+      "decision": "retain as battery-modeling gap pending full workflow and runtime review; distinguish convergence and experimental validation",
+      "uninspected": [
+        "Unseen portions of helper and tests due to truncation",
+        "Package assets and fixtures",
+        "Dependency and underlying database/data licensing"
+      ]
+    },
+    {
+      "name": "statistical-power",
+      "declared_license": "MIT (SKILL.md frontmatter only)",
+      "status": "partial",
+      "coacus_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "inspected": [
+        "SKILL.md excerpts",
+        "references/simulation_based_power.md excerpts",
+        "scripts/power.py and simulate_power.py entry points",
+        "tests/statistical-power/test_scripts.py names",
+        "Coacus skill"
+      ],
+      "decision": "add design and effect sensitivity and failed-simulation accounting; avoid importing helper untested",
+      "uninspected": [
+        "Other reference and script contents not specifically listed as inspected",
+        "Full package test bodies, fixtures and dependency licensing"
+      ]
+    },
+    {
+      "name": "uncertainty-and-units",
+      "declared_license": "MIT (SKILL.md frontmatter only)",
+      "status": "partial",
+      "coacus_owner": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "inspected": [
+        "SKILL.md",
+        "references/gum-methodology.md",
+        "references/reporting-rules.md",
+        "scripts/convert_units.py excerpts",
+        "tests/uncertainty-and-units/test_regressions.py excerpts",
+        "Coacus skill and affine evaluation"
+      ],
+      "decision": "retain focused Coacus skill; do not import helpers without full review and tests",
+      "finding": "upstream converter uses central difference and PR 350 flags affine cancellation; static Coacus scenario does not check exact uncertainty",
+      "uninspected": [
+        "Other reference and script contents not specifically listed as inspected",
+        "Full package test bodies, fixtures and dependency licensing"
+      ]
+    }
+  ],
+  "limits": "All reviews partial. No independent scientific validation, execution, full dependency license assessment or confirmation of upstream version claims. Truncated helper and test reads are not complete reviews."
+}

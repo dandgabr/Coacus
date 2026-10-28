@@ -17,8 +17,8 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 448 skills.
-- `knowledge/agents/<category>/<agent>/agent.source.md` — 104 agents.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — canonical skills.
+- `knowledge/agents/<category>/<agent>/agent.source.md` — canonical agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).
 - `knowledge/rules/` — reserved for repository rules.
@@ -69,7 +69,7 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 
 How work proceeds inside a Coacus repository.
 
-- `methodology/workflows/<skill>/SKILL.md` — 28 process workflows: 14 imported
+- `methodology/workflows/<skill>/SKILL.md` — process workflows, including those imported
   from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
   — flat handoff names, `docs/temp/` artifacts) plus native engineering and
   governance workflows (including the entry workflow `using-coacus`).
@@ -226,8 +226,8 @@ Coacus/
   `harnesses/<h>/bootstrap/` is generated.
 - **Language is English** ([english-only](standards/english-only.md)).
 - **No plaintext secrets, no machine-specific absolute paths** ([secrets-portability](standards/secrets-portability.md)).
-- **No ungoverned parallel work.** The concurrency cap is 5, orchestrator
-  included ([orchestration-governance](standards/orchestration-governance.md)); handoffs are
+- **No ungoverned parallel work.** Limits are scoped and configurable
+  ([orchestration-governance](standards/orchestration-governance.md)); handoffs are
   TOON payloads ([toon-protocol](standards/toon-protocol.md)).
 - **`model` is omitted in canonical sources** and resolved per harness
   ([agent-manifests](standards/agent-manifests.md)).

@@ -1,0 +1,18 @@
+{
+  "id": "measurement-affine-uncertainty",
+  "title": "Convert an uncertain temperature without losing uncertainty",
+  "harness": "opencode",
+  "prompt": "Convert a measured temperature of 20 ± 1 degrees Celsius to kelvin. The ±1 is a standard uncertainty. Also convert the two endpoints 19 and 21 degrees Celsius. Explain how the uncertainty changes and state any assumptions. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "293[.,]15" },
+    { "kind": "regex", "value": "(?i)(standard uncertainty|uncertainty)" },
+    { "kind": "regex", "value": "(?i)(±|\\+/-|uncertainty(?: of| is|:)?)\\s*1(?:[.,]0+)?\\s*(K|kelvin)" }
+  ],
+  "rubric": [
+    "The response reports 293.15 K with standard uncertainty 1 K.",
+    "The endpoints are 292.15 K and 294.15 K, and the offset is applied to each endpoint.",
+    "It applies the offset to the temperature and not to the uncertainty interval.",
+    "It does not invent an expanded uncertainty or coverage probability."
+  ],
+  "acceptance": "The converted measurement preserves the stated standard uncertainty."
+}

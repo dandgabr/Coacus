@@ -1,0 +1,1699 @@
+{
+  "source_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "scope": "Inventory indexes 89 through 176 inclusive, zero-indexed (human positions 90 through 177)",
+  "method": "Provisional disposition only. Sampled source evidence does not establish completeness, import suitability or owner assignment. Expanded package evidence is separate. Indexes refer to Python zero-based array positions.",
+  "items": [
+    {
+      "position": 89,
+      "name": "nwb-conversion",
+      "source_path": "skills/nwb-conversion/SKILL.md",
+      "source_sha256": "e2381f17db5e2b20354186a8a3c85b466afcf534cc1ae6181e87654ba5ed5fc6",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Timebase and clock-alignment evidence must be explicit; schema validation is not proof of synchronized measurements. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers biomedical signals and acquisition; it does not specify NWB conversions, schemas or preservation of timing metadata.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 90,
+      "name": "omero-integration",
+      "source_path": "skills/omero-integration/SKILL.md",
+      "source_sha256": "c75e73ba447bbf9530f6d3df4ba6224185f3c7728460b37938c8626dab664ad2",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Remote microscopy service use requires scoped access and reviewed writes. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers quantitative microscopy and image metadata, but not OMERO server authentication or workflows.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 91,
+      "name": "onekgpd",
+      "source_path": "skills/onekgpd/SKILL.md",
+      "source_sha256": "6a7c0a90c42e899e818de866e843cf60d5434422fa69b910a7db9a06f25240e9",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "Public individual variant data access still requires correct reference-coordinate provenance. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner establishes coordinate and assembly provenance, while population-data and external-access semantics remain separate.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 92,
+      "name": "ontology-term-resolution",
+      "source_path": "skills/ontology-term-resolution/SKILL.md",
+      "source_sha256": "db310515a230a47023169be207f654458789377c98b30fa593ee420738e4eefb",
+      "declared_license": "MIT",
+      "decision": "improve-existing",
+      "evidence_depth": "Owner source read in full; upstream was sampled in prior triage.",
+      "local_owner_checked": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "rationale": "Current owner explicitly verifies ontology identifier, definition, status and intended schema, retaining ambiguous mappings.",
+      "unreviewed": "Remaining upstream package references, scripts, tests and independent API/license validation.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "candidate_compared": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+      "owner_comparison": "Current owner explicitly verifies ontology identifier, definition, status and intended schema, retaining ambiguous mappings.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 93,
+      "name": "open-notebook",
+      "source_path": "skills/open-notebook/SKILL.md",
+      "source_sha256": "39f3bb01946218b53c02e3aedde025e6f8b786307e5ba0c4698c5aed02f9fdd6",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Configured providers can receive ingested source data and require explicit scope review. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers scientific search and evidence synthesis, not private-provider transmission of ingested data.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 94,
+      "name": "openpiv",
+      "source_path": "skills/openpiv/SKILL.md",
+      "source_sha256": "dc9aeeb18ef4b4832b9405c342ce40abbb09bc8162e35f2c659dd5814b07369a",
+      "declared_license": "BSD-3-Clause",
+      "decision": "improve-existing",
+      "evidence_depth": "Owner source current PIV paragraph read in full; upstream sampled previously.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
+      "rationale": "Current owner records PIV calibration, timing, coordinate conventions and rejected-vector flags, and separates CFD-model validation.",
+      "unreviewed": "Remaining upstream package source, tests, numerical execution and license/dependency review.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "candidate_compared": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "owner_comparison": "Current owner records PIV calibration, timing, coordinate conventions and rejected-vector flags, and separates CFD-model validation.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 95,
+      "name": "opentrons-integration",
+      "source_path": "skills/opentrons-integration/SKILL.md",
+      "source_sha256": "3600fece96f89e7cedc23d13e48ce7eb25a90698d7ae3d8bae65035d89f392ff",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "rationale": "Simulation is not physical execution approval. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly requires device configuration, simulation limits and operator handoff; Opentrons-specific API and robot safety remain unverified.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 96,
+      "name": "optimize-for-gpu",
+      "source_path": "skills/optimize-for-gpu/SKILL.md",
+      "source_sha256": "e31bdb10b8ea66e5ec438583755999b66b9afab90f2583e1d500b8457ef28054",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
+      "rationale": "Demonstrate correctness and speed on target hardware before claiming acceleration. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers GPU kernels, profiling and benchmarking, but the current example has partial-tile correctness defects; target-hardware proof and upstream runtime remain unverified.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 97,
+      "name": "pacsomatic",
+      "source_path": "skills/pacsomatic/SKILL.md",
+      "source_sha256": "5425319387beb29684ae5148cba33bd3a6c4306651ba574d47c76a8dc390d45d",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "Upstream skills/pacsomatic/SKILL.md lines 1–114 read in full.",
+      "rationale": "Research pipeline for matched tumor-normal HiFi; dry-run does not validate BAM identity or execute a clinical pipeline, while scheduler acceptance is not completion. External references, containers and genomic data require access and privacy review.",
+      "unreviewed": "Referenced guides, helper scripts, test sources, data permissions and actual pipeline execution remain unreviewed.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "owner_comparison": "Compared biomedical imaging source, which does not cover this somatic variant workflow; no suitable owner established.",
+      "candidate_compared": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "local_owner_checked": null,
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 98,
+      "name": "paper-lookup",
+      "source_path": "skills/paper-lookup/SKILL.md",
+      "source_sha256": "fac99456ad404ff9a0d3043709b956b5d6383838ae8e8394f274a5693d8bd294",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "HTTP success alone cannot establish valid source response or available full text. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner requires bibliographic source verification and discloses inaccessible full texts; it does not validate each provider response.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 99,
+      "name": "paperclip",
+      "source_path": "skills/paperclip/SKILL.md",
+      "source_sha256": "4f6fc05346aefdf5685b11d6d34fbe5b9782fc5156d69702c00dd8c71bf63473",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Evidence extraction uses external service credentials and requires authorized source disclosure. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers evidence synthesis, not third-party service credentials or data disclosure.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 100,
+      "name": "paperzilla",
+      "source_path": "skills/paperzilla/SKILL.md",
+      "source_sha256": "f1b5feb3c76ce064803e5d44757f0fc468bf670499015b9c6a9d487fca699771",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Remote account and third-party CLI introduce external-service and supply-chain boundaries. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers literature search methods but not remote provider accounts, third-party CLI security, or paid service boundaries.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 101,
+      "name": "parallel-web",
+      "source_path": "skills/parallel-web/SKILL.md",
+      "source_sha256": "04b4873674998c4fb47de017397e753d69049609135efed43a82572b9002f52c",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Documented network workflows may incur paid or persistent side effects. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers methodological search limitations, not costs or network-side effects.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 102,
+      "name": "pathml",
+      "source_path": "skills/pathml/SKILL.md",
+      "source_sha256": "654cef910bd567689b854eab52176628f39184d7cca7a6bf405343f337e58538",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Computational pathology research is not a validated diagnostic system. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers imaging physics and research limitations; pathology ML, patient data and clinical validation remain separate.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 103,
+      "name": "pathogen-variant-surveillance",
+      "source_path": "skills/pathogen-variant-surveillance/SKILL.md",
+      "source_sha256": "95510f890a47ab2e2275832fe60e725eca34e5318dcde88b0940d9362b3ab590",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "Sequence sample proportions are not automatically infection prevalence or growth advantage. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers assembly and variant coordinates but does not turn sequence sample proportions into population prevalence.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 104,
+      "name": "pathway-enrichment",
+      "source_path": "skills/pathway-enrichment/SKILL.md",
+      "source_sha256": "82783d8ba63b6b03646492ee75afcdf591903a213decf7e7c9d844eb517acd78",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "rationale": "Map query and background identifiers consistently; use the correct measured-gene background. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly records tested-gene universe, mappings, method and multiple-testing family; enrichment is not proof of pathway activation.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 105,
+      "name": "peer-review",
+      "source_path": "skills/peer-review/SKILL.md",
+      "source_sha256": "a042ccdc76d3399431b9a6c4cd4f98968eab964b1c14baeea4d9e73de82c7d19",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Unpublished manuscripts and review drafts require confidentiality and authorized handling. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers review methodology, not handling of confidential third-party manuscripts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 106,
+      "name": "pennylane",
+      "source_path": "skills/pennylane/SKILL.md",
+      "source_sha256": "7908ee374ed9bef310bd7071a175d97e0428cec184cce3e36db9fe3ae8e77c52",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "rationale": "Validate against classical baselines before extending variational circuits to hardware. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers quantum circuits and VQE, but not PennyLane differentiation APIs or hardware-validation claims.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 107,
+      "name": "phylogenetics",
+      "source_path": "skills/phylogenetics/SKILL.md",
+      "source_sha256": "eef2354a8fe6c51c2ad8a506e512326553bda52c731952598adef677ae2d67d5",
+      "declared_license": "Unknown",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "rationale": "Model assumptions, source sequence and support interpretation matter; source declares unknown license. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers molecular biology foundations, but phylogenetic inference and tree uncertainty are outside its scope.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 108,
+      "name": "pi-agent",
+      "source_path": "skills/pi-agent/SKILL.md",
+      "source_sha256": "ef84742b6e491b3f65941dbb19fdd508b0aada3b87d95aa28b0f66a111f7c748",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "Upstream skills/pi-agent/SKILL.md lines 1–112 read in full.",
+      "local_owner_checked": null,
+      "rationale": "Harness-integration reference, outside scientific-domain methodology. Project extensions run with process permissions; network services and provider credentials need independent authorization.",
+      "unreviewed": "References, SDK/extension code, package provenance, authentication, runtime and dependencies remain unreviewed.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "candidate_compared": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "owner_comparison": "Owner covers research data workflow, not a separate agent harness; no suitable owner established.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 109,
+      "name": "pkpd-modeling",
+      "source_path": "skills/pkpd-modeling/SKILL.md",
+      "source_sha256": "fc58aed600d0fe9de911176cb0f2a43e8df6bbae8c2260be6f8abade133a2837",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Numerical fit and synthetic recovery do not establish parameter identifiability or clinical validation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers physical chemistry and kinetics, but does not establish population pharmacokinetic identifiability or clinical model validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 110,
+      "name": "polars",
+      "source_path": "skills/polars/SKILL.md",
+      "source_sha256": "05d64a001190b516bc922bac616483c3109a6d29c3e9950e3e2d6c31b9415e79",
+      "declared_license": "https://github.com/pola-rs/polars/blob/main/LICENSE",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Check schema inference, data types and scientific data provenance. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers data wrangling and provenance broadly, not Polars-specific schema or API compatibility.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 111,
+      "name": "polars-bio",
+      "source_path": "skills/polars-bio/SKILL.md",
+      "source_sha256": "b9dbf93b5d8dbaa3de4541449b828cd6199625c54956e8598f7552eefc30116f",
+      "declared_license": "Apache-2.0",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "Normalize coordinate systems and validate interval joins against simple examples. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers coordinate conversion and cross-assembly mismatches, but interval-join implementation and validation require package-specific review.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 112,
+      "name": "pptx-posters",
+      "source_path": "skills/pptx-posters/SKILL.md",
+      "source_sha256": "bb4923ec520ac5175f837e75c8b600344cc1eb71490b1fa9c809ac65e64f1fb9",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "rationale": "Editable poster generation requires human review for printer and accessibility requirements. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers visual accessibility principles but not printer settings or editable slide-generation workflows.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 113,
+      "name": "primekg",
+      "source_path": "skills/primekg/SKILL.md",
+      "source_sha256": "b20698944fa51b287a13e7dc22ac033b83836b73614a21cff725ad7d6d807226",
+      "declared_license": "Unknown",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
+      "rationale": "Graph paths support hypotheses rather than establish causality; license is unknown. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner describes generic temporal graph modeling; PrimeKG scientific provenance, biomedical semantics and dataset license are not covered.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 114,
+      "name": "primer-design",
+      "source_path": "skills/primer-design/SKILL.md",
+      "source_sha256": "ea8bed0aa340a5f6538c206bb3d9fe503da6759e68a944a2bce564fa115d25e4",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "rationale": "Computational primer candidates do not establish assay specificity or clinical validation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers recombinant DNA foundations but not sequence-specific primer validation or diagnostic assay performance.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 115,
+      "name": "protocolsio-integration",
+      "source_path": "skills/protocolsio-integration/SKILL.md",
+      "source_sha256": "4439249ba8cd35a8507463f8be84db511abc23daa00be3f892c47d847d2aeda5",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "rationale": "External service reads and planned mutations have distinct execution boundaries. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner distinguishes planning, remote mutations and sample-data disclosure; protocols.io API permissions and runtime remain unverified.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 116,
+      "name": "pufferlib",
+      "source_path": "skills/pufferlib/SKILL.md",
+      "source_sha256": "031975c6abaabd8237c18b6472886f4a718c509da70fc6ebca06455f8a002fa7",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Distinguish native and historical API versions; checkpoint loading is a trust boundary. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers generic ML, not distributed reinforcement-learning infrastructure or checkpoint trust.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 117,
+      "name": "pybamm",
+      "source_path": "skills/pybamm/SKILL.md",
+      "source_sha256": "9d6f375f4d9def40072ea734f07e1a48c60a1cd906231cab1a4189a75499a1a4",
+      "declared_license": "MIT",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+      "rationale": "Separate model adequacy, solver and mesh convergence, and matched experimental validation. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "Third-party PyBaMM parameter-set/data and dependency licenses",
+        "Runtime execution and independent experimental validation"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 118,
+      "name": "pycalphad",
+      "source_path": "skills/pycalphad/SKILL.md",
+      "source_sha256": "7748a9413e22566316893d882596b5c2a321e9e03de93e6097c59a003e899a24",
+      "declared_license": "MIT",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+      "rationale": "Thermodynamic database provenance, selected phase and composition basis are necessary; numerical convergence is not experimental validation. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "Third-party pycalphad distribution and its Al-Ni database/license",
+        "Runtime execution and independent experimental validation"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 119,
+      "name": "pydeseq2",
+      "source_path": "skills/pydeseq2/SKILL.md",
+      "source_sha256": "f06a9f5ece540c05bd8a8208bb3970d000b13cb1032abc9488cfbfe6106cd843",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "rationale": "Experimental unit and raw-count provenance affect differential analysis; repeated donor measurements are not independent. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly addresses count representation, design identifiability, contrasts and multiple testing; PyDESeq2 API and runtime remain unreviewed.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 120,
+      "name": "pydicom",
+      "source_path": "skills/pydicom/SKILL.md",
+      "source_sha256": "e42c35688a3dc7e0faaf1d1e88c8883eabc60ad291d348bfe5aee89a64c95b01",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "De-identification is contextual and pseudonymization keys and UID maps are sensitive. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly describes DICOM metadata, burned-in identifiers and re-identification limitations; package implementation and testing remain distinct.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 121,
+      "name": "pyhealth",
+      "source_path": "skills/pyhealth/SKILL.md",
+      "source_sha256": "ec4de54618b71a4f8cfeb086d131c610127784a6839d842a67b3c1e87b66e161",
+      "declared_license": null,
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Patient-level partition, prevalence-sensitive metrics and calibration differ from deployment safety. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers health information formats, but does not specify patient-level ML partitions or calibration.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 122,
+      "name": "pylabrobot",
+      "source_path": "skills/pylabrobot/SKILL.md",
+      "source_sha256": "b2aab8871006d84e53621fc0f4886d0fd0c671007d112569e444e0a56a564d76",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "rationale": "Offline simulation is distinct from safe physical laboratory operation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly distinguishes simulated planning from physical execution, actual calibration and trained-operator handoff; package hardware integrations are not validated.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 123,
+      "name": "pymatgen",
+      "source_path": "skills/pymatgen/SKILL.md",
+      "source_sha256": "4a106d7682cd9881765700d534cb419458ba407935a59168547da1ae6ea4b6b1",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Check structure, units, tolerances and provenance; numerical validation is not material validation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers chemistry and phase equilibrium basics, but crystal-structure tooling and data provenance need specific methods.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 124,
+      "name": "pymc",
+      "source_path": "skills/pymc/SKILL.md",
+      "source_sha256": "77d29ba7adf73d822329eab576d15a748811633a60bca88f5e93954793b3ea8a",
+      "declared_license": "Apache License, Version 2.0",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Specify predictive unit, priors, diagnostics and provenance; untested inference backends are explicit. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers uncertainty and model assumptions, but not Bayesian sampler diagnostics or predictive validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 125,
+      "name": "pymoo",
+      "source_path": "skills/pymoo/SKILL.md",
+      "source_sha256": "942573e5b8099717487b45cf84798348fb2128516791dcafe2d76aa1bdfed117",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+      "rationale": "Use matched evaluation budgets and multiple seeds; bounded demonstrations do not prove convergence. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers optimization and constraints; multiobjective algorithms, evaluation budgets and convergence require separate validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 126,
+      "name": "pyopenms",
+      "source_path": "skills/pyopenms/SKILL.md",
+      "source_sha256": "020e7392adbb000aaab4968ae9a803ca4bd97818ca35e9eebd3abc222766a48f",
+      "declared_license": "3 clause BSD license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Peptide-level error control does not establish protein-level FDR. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers mass spectrometry in analytical chemistry, but does not specify identification-level FDR or pyOpenMS software contracts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 127,
+      "name": "pysam",
+      "source_path": "skills/pysam/SKILL.md",
+      "source_sha256": "afc275bbeb084553cd6507c4ffee848c46bef94dcd24c3b8a58d8b14d021ea09",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "CRAM decoding must match reference assembly and file; genomic coordinate conventions need explicit recording. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly records assembly, interval conventions, allele/reference mismatch and rejected records; CRAM decoding and API behavior require package-specific evidence.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 128,
+      "name": "pytdc",
+      "source_path": "skills/pytdc/SKILL.md",
+      "source_sha256": "b7df3f50c1c618a47a81e994b2863ddd8adf695e795aa495c3a8fef5e78a0493",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Dataset provenance and task-appropriate splits need review separate from code license. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers molecular prediction and experimental confirmation; dataset provenance and split semantics are not addressed with dataset-specific rigor.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 129,
+      "name": "pytorch-lightning",
+      "source_path": "skills/pytorch-lightning/SKILL.md",
+      "source_sha256": "d8829e74e8a1d908f923cf0c0a850ecfdd9edcb004d2fa90ec32fb1ed0006ce8",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Hardware and online logger examples are not established by CPU smoke tests. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner includes production ML lifecycle but not Lightning trainer, online logger or accelerator contracts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 130,
+      "name": "pyzotero",
+      "source_path": "skills/pyzotero/SKILL.md",
+      "source_sha256": "82dec36c7294674f33d9b6003e523d1dc4da33ed1c7427dc4e53731119fc5f74",
+      "declared_license": "MIT License",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Private library access and remote writes use separate permissions. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers citation validation and research workflow but not private Zotero access or mutations.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 131,
+      "name": "qiime2-amplicon",
+      "source_path": "skills/qiime2-amplicon/SKILL.md",
+      "source_sha256": "605ae0581620f654ca9e12122a2bdb1d62a813841c5fea61b0eacb2031377cf7",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "rationale": "Track classifier provenance and read retention; artifact format validation does not make serialized models safe. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers microbial biotechnology but not amplicon artifact provenance or taxonomic classifiers.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 132,
+      "name": "qiskit",
+      "source_path": "skills/qiskit/SKILL.md",
+      "source_sha256": "538e5db262e7c237cff2bac191480f81688b8679167740af7405fcda1340511e",
+      "declared_license": "Apache-2.0",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "rationale": "Joint bitstrings require shot alignment; quantum hardware and mock outputs have different validation boundaries. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner includes Bell-circuit simulation, but bit ordering and hardware/mock output validation require package-specific review.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 133,
+      "name": "qutip",
+      "source_path": "skills/qutip/SKILL.md",
+      "source_sha256": "6b93a95eb586147b2f1639f7e669dece3182ab4ddd70b1200291073cfd533902",
+      "declared_license": "MIT",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+      "rationale": "Quantum dynamics needs density-matrix physicality and convergence checks; owner is a candidate only. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "skills/qutip/scripts/*.py",
+        "tests/qutip/test_qutip_graphics.py",
+        "tests/qutip/test_qutip_synthetic.py",
+        "tests/qutip/test_scripts.py",
+        "tests/qutip/test_static.py"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 134,
+      "name": "rdkit",
+      "source_path": "skills/rdkit/SKILL.md",
+      "source_sha256": "9f32d5d229bc1a5bac3e57de5fb87895cdb85dcc99132c57373905db0e1a941e",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Validate parsed molecules and avoid presenting descriptor cutoffs as safety or efficacy evidence; upstream skill declares BSD-3-Clause. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers chemical representation, screening and QSAR; parsed molecule validation and RDKit APIs need specific attention.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 135,
+      "name": "relion",
+      "source_path": "skills/relion/SKILL.md",
+      "source_sha256": "3f80369ef73ccb8c20e2e49ad2b9bd71da3ffa4a819c035691ca4a5b26cb8399",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Keep half-map independence and distinguish convergence from biological structural validity. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers imaging physics and microscopy but not cryo-EM reconstruction, half-map independence, or structural validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 136,
+      "name": "relsa-severity-assessment",
+      "source_path": "skills/relsa-severity-assessment/SKILL.md",
+      "source_sha256": "10ee1a904565f5e9c9d432b3af136db42927d0811f07f646355600fec6633f8a",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "Upstream skills/relsa-severity-assessment/SKILL.md lines 1–364 read in full.",
+      "local_owner_checked": null,
+      "rationale": "Exploratory severity scoring and forecasting does not establish humane endpoints; frozen reference and animal-level held-out validation are required. Observed distress and approved welfare criteria take precedence.",
+      "unreviewed": "Reference implementation, assets, methods, tests, current regulatory requirements and prospective biological validation are unreviewed.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "candidate_compared": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "owner_comparison": "Owner concerns human physiological instrumentation and is not an animal welfare scoring standard; no suitable owner established.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 137,
+      "name": "research-grants",
+      "source_path": "skills/research-grants/SKILL.md",
+      "source_sha256": "3ca7ea8075bbe8008389660cc4a5769d66ac9ec638f3f61a955a5d7b20aeba85",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Verify current opportunity rules and agency submission status against official sources. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers evidence synthesis but does not validate live grant eligibility, rules or submissions.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 138,
+      "name": "research-lookup",
+      "source_path": "skills/research-lookup/SKILL.md",
+      "source_sha256": "8da1618350bf3434e4569a180a15b7241a50118ee9b79bccc514fa1bf3b4a102",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "A fixed reference-count target and retrieved excerpts do not establish comprehensive evidence verification. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner rejects exhaustive claims for limited search or screening; external search APIs still require separate validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 139,
+      "name": "rowan",
+      "source_path": "skills/rowan/SKILL.md",
+      "source_sha256": "d631f00ae0f9325aa58912bb571b7eb43bc42c553498e4c97f4d65a1683c8599",
+      "declared_license": "Proprietary (API key required)",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Declared proprietary; remote molecular modeling needs an account, license and disclosure review. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers molecular simulation context but not third-party account, proprietary terms or provider data disclosure.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 140,
+      "name": "scanpy",
+      "source_path": "skills/scanpy/SKILL.md",
+      "source_sha256": "4a59f87933a1e9ed49eac603719af1b0c606dd99050fe59ffa1c1bf807900cb8",
+      "declared_license": "BSD-3-Clause",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "Provenance of count data cannot be inferred from numeric appearance alone; synthetic checks do not establish biological validity. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly addresses matrix provenance, unmeasured features, donor-level replication and batch effects; Scanpy runtime remains unreviewed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 141,
+      "name": "scholar-evaluation",
+      "source_path": "skills/scholar-evaluation/SKILL.md",
+      "source_sha256": "9abc66a9ba13f6cf0f61614ddfff17822b5be2cc7118f52ef2631323dac8c94e",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Qualitative low-stakes work is not valid for ranking people or consequential decisions. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner uses citation networks for discovery, not individual evaluation; research-impact use requires separate safeguards.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 142,
+      "name": "scientific-brainstorming",
+      "source_path": "skills/scientific-brainstorming/SKILL.md",
+      "source_sha256": "06f73b71556356a7f488c369b9445d7943543a3f14d159b2168fd3f621d6f8a9",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Ideation produces hypotheses, not empirical validation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner separates hypotheses from observations and prevents novelty or causality claims from limited searches.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 143,
+      "name": "scientific-critical-thinking",
+      "source_path": "skills/scientific-critical-thinking/SKILL.md",
+      "source_sha256": "563af70571b7dcd6a96bf2e303bedfdcba623b4e9f082d58f04aacbc961fdae4",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Distinguish independent observations, confounding, uncertainty and causal claims. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner explicitly distinguishes observations and hypotheses, rival explanations and uncertainty.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 144,
+      "name": "scientific-schematics",
+      "source_path": "skills/scientific-schematics/SKILL.md",
+      "source_sha256": "e15d761ef88013c98fd5b19cc144aba7336e20dbadf340db17bd1ba2227d1d69",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "rationale": "Generated figures need human verification; remote inference has data-disclosure and cost boundaries. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers visual encoding but not factual accuracy of generated scientific diagrams or external image services.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 145,
+      "name": "scientific-slides",
+      "source_path": "skills/scientific-slides/SKILL.md",
+      "source_sha256": "b1d34b81d30789f561bd4ee3ddb373c9fb84bed25086794bebd842af46afbad6",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "rationale": "Rendering and source evidence need review; optional generative services are external. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers visual color encoding, not scientific claims, presentation rendering or third-party services.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 146,
+      "name": "scientific-visualization",
+      "source_path": "skills/scientific-visualization/SKILL.md",
+      "source_sha256": "8cbde7cdc10d959cf72cfd08335cc8ce996247eee6ebdb900eb64a4cb0ff34a3",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
+      "rationale": "Label uncertainty and independent sampling unit; preserve repeated-measure IDs in figures. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers chart color and accessibility but does not determine correct statistical uncertainty or observational independence.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 147,
+      "name": "scientific-writing",
+      "source_path": "skills/scientific-writing/SKILL.md",
+      "source_sha256": "511a2096bebecd8cf0f8212b9d262d37154ae1ba566eb385d93ac968682edbd1",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Separate source evidence from authorship and confidentiality controls. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner distinguishes verified evidence, hypotheses and uncertainty; publication-specific authorship and confidentiality require separate attention.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 148,
+      "name": "scikit-bio",
+      "source_path": "skills/scikit-bio/SKILL.md",
+      "source_sha256": "4a7a5760adadf32782dc4694028371df13b25472ff8ffe4cef2b2fc564226f6c",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "rationale": "Ordination and matrix associations do not establish causation or remove confounding. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers biology context, but biological distance, ordination and statistical model validation remain separate.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 149,
+      "name": "scikit-learn",
+      "source_path": "skills/scikit-learn/SKILL.md",
+      "source_sha256": "a1765797d072ab40094522abe68fb04505d0881f66b7dfceeb8582422dbe488d",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Fit preprocessing within folds and reserve test data. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "The owner covers training-fold preprocessing and deployment-aligned splits; the package provides specific API workflows beyond this general guidance.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 150,
+      "name": "scikit-survival",
+      "source_path": "skills/scikit-survival/SKILL.md",
+      "source_sha256": "8f99860440f23312d9803d3ac65ae9eb65274597d59499f1021d59378adef2fb",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Fit imputation and model selection within training partitions and use censoring-aware evaluation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers leakage and group/time splits; censoring-aware evaluation remains package-specific.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 151,
+      "name": "scvelo",
+      "source_path": "skills/scvelo/SKILL.md",
+      "source_sha256": "c43258bccdbaa5772fd1aeac8d12d6107dd9c9b19c6a3a81fde7d421c0d2609e",
+      "declared_license": "BSD-3-Clause",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "Velocity provides directional hypotheses, not proof of fate or causal drivers. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers single-cell provenance and warns embeddings are exploratory; RNA velocity and time-direction assumptions need separate methods.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 152,
+      "name": "scvi-tools",
+      "source_path": "skills/scvi-tools/SKILL.md",
+      "source_sha256": "b22633470d40ddaf31451fbbf811941fc89c3174c404ca359f25378691267e73",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "Preserve count provenance and separate synthetic API testing from biological validity. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers counts and donor-level replication but lacks scvi posterior diagnostics and training contracts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 153,
+      "name": "seaborn",
+      "source_path": "skills/seaborn/SKILL.md",
+      "source_sha256": "d1500d1e3d9db1db4c72cd272861378d1b98b0b5a5a98e8a3fca5a45bc0c6b2e",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Sampling units and aggregation affect uncertainty displays. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner distinguishes randomized units and repeated observations; plotting-specific uncertainty semantics remain external.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 154,
+      "name": "shap",
+      "source_path": "skills/shap/SKILL.md",
+      "source_sha256": "9c395662e608accd60acb62158f1d25299b12ec0e40f9f94b70a46ec527d52c1",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Background choice affects attributions; explanations do not establish causal effects. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner acknowledges feature-attribution drift but does not establish causal interpretation or background dependence.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 155,
+      "name": "simpy",
+      "source_path": "skills/simpy/SKILL.md",
+      "source_sha256": "027244a3587e70c3e2f1aed4bfb5d737cb24fdc6b2ad276302ed81c02e38a7fc",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Separate reproducible event simulation from validity of study design and causal inference. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers experimental planning and causal limits; it does not cover discrete-event simulator contracts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 156,
+      "name": "stable-baselines3",
+      "source_path": "skills/stable-baselines3/SKILL.md",
+      "source_sha256": "8383ae480e27163b9dbe1d9af822e05f0e85dd05b5bab1f6444588d57f569837",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Distinguish local examples from validated policies; verify training and evaluation environment separation. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers generic ML methodology, not reinforcement-learning environments or policy evaluation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 157,
+      "name": "statistical-analysis",
+      "source_path": "skills/statistical-analysis/SKILL.md",
+      "source_sha256": "e112848726b3713267cac65e4e2c15491a0a26ee1ed628db01195f7e43f97997",
+      "declared_license": "MIT license",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Specify estimand, dependence and multiplicity; diagnostic non-rejection does not validate assumptions. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "remaining upstream references and test bodies"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 158,
+      "name": "statistical-power",
+      "source_path": "skills/statistical-power/SKILL.md",
+      "source_sha256": "a969660eafdc3504ac36e49bd7ded00e18b00fe5cef5699940d5d8281e24dd3d",
+      "declared_license": "MIT license",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Specify design, independent unit and plausible effects; simulation needs a credible data generating model and calibrated analysis. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "Dependency licensing and runtime validation"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 159,
+      "name": "statsmodels",
+      "source_path": "skills/statsmodels/SKILL.md",
+      "source_sha256": "9e6c034bb4acbf0972fda18892d2feea907885ac5ad7194d220182d8810295a3",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "A successful numerical fit does not prove causal identification or model adequacy. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner includes estimands and cautions that diagnostics do not establish assumptions; detailed library contracts remain external.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 160,
+      "name": "sympy",
+      "source_path": "skills/sympy/SKILL.md",
+      "source_sha256": "bb97087bdddccc845401737ddc7f7a8da1c14ced5e8d40da01271c991ac46e23",
+      "declared_license": "https://github.com/sympy/sympy/blob/master/LICENSE",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
+      "rationale": "Preserve assumptions and distinguish a converged local root from a complete root set. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner discusses algebra and numerical roots, not SymPy assumptions or exact domain-specific API behavior.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 161,
+      "name": "tamarind",
+      "source_path": "skills/tamarind/SKILL.md",
+      "source_sha256": "aa9bb0aa10acefa52621acd9ba06604997ed2f3d20533359f47d4b24dfdc9494",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Cloud molecular-model API needs authorized disclosure, account and review of real runtime results. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers molecular modeling context but not provider access and external disclosure.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 162,
+      "name": "tellurium",
+      "source_path": "skills/tellurium/SKILL.md",
+      "source_sha256": "69faa97aa45e7ad46515acd3e6497b044b7b44624ffd28c74fb40d97c74513a7",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Track model provenance and units, and reset state between experimental conditions. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers reaction kinetics but not systems-biology simulation semantics or Tellurium-specific contracts.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 163,
+      "name": "tiledbvcf",
+      "source_path": "skills/tiledbvcf/SKILL.md",
+      "source_sha256": "38e55a6962e14637e82f60be8e53e6d87c78f1a7874b9f832f442a038942f7d5",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "Validate genomic region and sample outputs against small known intervals and round trips. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner requires reference and coordinate checks, while TileDB-VCF storage and query semantics remain unverified.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 164,
+      "name": "timesfm-forecasting",
+      "source_path": "skills/timesfm-forecasting/SKILL.md",
+      "source_sha256": "6f785fe73b133e9af7720fa46cf9013645198950155624889ef611b7b0dc74b8",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Use chronological holdouts and naive baselines; validate regular timestamps and forecast uncertainty. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers time-series processing and ML splits but not foundation-model forecasting and its runtime constraints.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 165,
+      "name": "torch-geometric",
+      "source_path": "skills/torch-geometric/SKILL.md",
+      "source_sha256": "89805e17cdbc64ed01426548442b3aa1bda8bcfdd4f9528f5c8dd6e0ea813c96",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Preserve isolated nodes and validate graph construction, especially edge-free cases. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers standard machine-learning pipelines but not graph construction, isolated nodes or graph library runtime.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 166,
+      "name": "torchdrug",
+      "source_path": "skills/torchdrug/SKILL.md",
+      "source_sha256": "03538274e00aad262d159ca5ebed55fe6519d605171569feff44afeb781088fd",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Match scaffold split to target generalization and keep duplicate molecules together. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers molecular graph learning but not package/model runtime and training guarantees.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 167,
+      "name": "transformers",
+      "source_path": "skills/transformers/SKILL.md",
+      "source_sha256": "584d1c35d513f87616df9bcf7ddc8c48ab38cfbfad18d55c8481578d1c0d6f1a",
+      "declared_license": "Apache-2.0 license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Review remote model code before enabling execution; model and code licenses are separate. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers ML lifecycle and leakage but not loading remote model code or model-specific licenses.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 168,
+      "name": "treatment-plans",
+      "source_path": "skills/treatment-plans/SKILL.md",
+      "source_sha256": "ebb509854e12d016475ee6d45834a2a72c16815d1b9d940a9d156e7f024cbed6",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "Upstream skills/treatment-plans/SKILL.md lines 1–204 read in full.",
+      "local_owner_checked": null,
+      "rationale": "Documentation-only formatting of verified clinician-authored decisions; no clinical decisions or patient-content transmission. Requires an authorized local workflow and independent human release.",
+      "unreviewed": "All referenced governance, templates, helpers, tests, patient-data environment and applicable jurisdictional requirements remain unreviewed.",
+      "limitations": "Static review only; no source runtime execution or independent copyright/license/dependency compatibility assessment.",
+      "candidate_compared": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "owner_comparison": "Owner covers medical instrumentation and health data, not the clinical authority or methods needed to generate treatment plans.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 169,
+      "name": "umap-learn",
+      "source_path": "skills/umap-learn/SKILL.md",
+      "source_sha256": "0cfef32ae0e1d52eec6513bafc0ab4387cf38e43121fba715762b2b2c11b6930",
+      "declared_license": "BSD-3-Clause license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Evaluate cluster structure in original feature space and test sensitivity across seeds. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers data exploration and modeling generally, not embedding stability or local/global geometry tradeoffs.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 170,
+      "name": "uncertainty-and-units",
+      "source_path": "skills/uncertainty-and-units/SKILL.md",
+      "source_sha256": "caaafa079a4eaac6012717bcf705dec0417b5434f5dbd1af934a3a36ad375722",
+      "declared_license": "MIT",
+      "decision": "improve-existing",
+      "evidence_depth": "Expanded read-only package and owner review; exact inspected files in [temporary review artifact] or [temporary review artifact]",
+      "local_owner_checked": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "rationale": "Distinguish uncertain measurement model, correlations and coverage; temperature uncertainty requires interval conversion. Existing owner can carry these bounded safeguards; consult current diffs before further work.",
+      "unreviewed": [
+        "Other reference and script contents not specifically listed as inspected",
+        "Full package test bodies, fixtures and dependency licensing"
+      ],
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 171,
+      "name": "usfiscaldata",
+      "source_path": "skills/usfiscaldata/SKILL.md",
+      "source_sha256": "7cdcb756489ae8e94a73df1eebfb9abef554e912af6559ebd28dffa021ab63d5",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Remote fiscal datasets need access-date, endpoint and metric provenance. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers citation provenance and access limitations, but does not implement fiscal endpoint retrieval or time-varying dataset semantics.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 172,
+      "name": "vaex",
+      "source_path": "skills/vaex/SKILL.md",
+      "source_sha256": "a8ab5bcb0ab9c8d372b987e584b5c589a15b1e2b2f73457546d2888988d40b4f",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Validate counts and join cardinality against a small fixture. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner addresses data preparation broadly, not lazy table join cardinality or Vaex-specific validation.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 173,
+      "name": "venue-templates",
+      "source_path": "skills/venue-templates/SKILL.md",
+      "source_sha256": "8607993327f451cc6b9d7ca7502c0e7d5f5060954fec12e2ea779d96841e78b5",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Verify live submission rules from the relevant venue. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package and dependency licenses, runtime behavior and package-specific API details; no runtime testing.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner addresses research reporting rather than current venue-specific formatting or eligibility.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 174,
+      "name": "waypoint-bio",
+      "source_path": "skills/waypoint-bio/SKILL.md",
+      "source_sha256": "132d1f33d5d99bd6288a4cb432b277fcbc0f8bc4315e333dcecb840e7adc87a5",
+      "declared_license": "MIT",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
+      "rationale": "Gated model access and training compatibility require independent review. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers predictive drug models, but does not establish access, compatibility, or validation of a gated model.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 175,
+      "name": "what-if-oracle",
+      "source_path": "skills/what-if-oracle/SKILL.md",
+      "source_sha256": "509af149c8cfc8f17dd15608d6337eb8a7ff3f4056fcadeda573c5e527c68a97",
+      "declared_license": "CC BY-NC-SA 4.0",
+      "decision": "reference-without-import",
+      "evidence_depth": "First-pass sampled SKILL source; see docs/research/scientific-upstream-triage-second.json; not a full package review.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Narrative scenarios do not establish calibrated forecast probabilities; CC BY-NC-SA declared. Use as a bounded reference pending full source, maintenance, dependency and license review; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers statistics and uncertainty but not calibrated scenario forecasts; narrative speculation remains separate.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "position": 176,
+      "name": "zarr-python",
+      "source_path": "skills/zarr-python/SKILL.md",
+      "source_sha256": "1edaabfc3fc618d4c3a16bd70c589c039a3cb3a26683f02bca0ccc140d3c9c4d",
+      "declared_license": "MIT license",
+      "decision": "reference-without-import",
+      "evidence_depth": "skills/zarr-python/SKILL.md lines 1–140 inspected; remaining source unreviewed.",
+      "local_owner_checked": "knowledge/skills/data/python-data-science/SKILL.md",
+      "rationale": "Chunked array guidance distinguishes package and storage format versions, warns that missing chunks can appear as fill values, and calls for readback and shard-level writer coordination. Reference provisionally; no import approval.",
+      "unreviewed": "Full upstream package, dependency licenses and runtime behavior; no code executed.",
+      "limitations": "No runtime tests or independent license/dependency compatibility verification.",
+      "owner_comparison": "Owner covers NumPy array shape/dtype and scientific processing, but not chunk/shard semantics, missing fill values or Zarr storage safety.",
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    }
+  ],
+  "limitations": "No tests executed; no independent licensing determination, external current-version verification or full audit of sampled packages."
+}

@@ -100,7 +100,7 @@ Keep a live record of each subagent's state:
 
 ### 5.2 Concurrency Cap
 
-- **Central rule**: never leave more than **5 active agents** at once **counting the supervisor itself** (that is, supervisor + at most **4 subagents** in `ACTIVE`).
+- **Role limit**: never leave more than **5 active agents** at once **counting the supervisor itself** (that is, supervisor + at most **4 subagents** in `ACTIVE`). Respect any lower limit resolved by the runtime governor.
 - To delegate, compute `active = 1 (you) + number of ACTIVE subagents`. While `active >= 5`, do **not** spawn new subagents: move the task to `QUEUED` and wait for a `DONE`/`FAILED`/`PAUSED` signal to release the next one from the queue (FIFO).
 
 ### 5.3 Rate-Limit Failure → Kill, Wait, and Relaunch
@@ -120,9 +120,9 @@ When one of these symptoms is detected on an active subagent:
 
 ### 5.5 Executable Mechanism (not just instructional)
 
-The concurrency cap above is **enforced at runtime** by a slot governor, not merely described in prose:
+The role limit above is an instruction. The runtime governor enforces the scope ledger's effective slot limit, which can differ from the role limit:
 
-- **Governor** (`scripts/coacus_governor.py`): the slot ledger. `acquire` blocks (queues) when the cap is saturated; `fail` marks the caller `PAUSED` for retry. The cap = `ORCH_MAX_CONCURRENT` (default 5, counting the orchestrator). Commands: `acquire|release|fail|paused|status|health|reset`; inspect with `python3 scripts/coacus_governor.py status`.
+- **Governor** (`scripts/coacus_governor.py`): the slot ledger. `acquire` blocks (queues) when the effective cap is saturated; `fail` marks the caller `PAUSED` for retry. Initial limits resolve from model, harness and environment settings; the fallback for an unlisted scope is 6. An existing ledger persists its cap: a higher requested cap can raise it, but lowering configuration alone does not lower it. For a durable decrease, lower the relevant configuration as well as using `set-max`; a later caller with a higher resolved cap can raise it again. Inspect the effective value with `status`.
 - **OpenCode gate** (`~/.config/opencode/plugins/coacus-governor.js`): intercepts `task`, acquires a slot before the spawn, releases/marks it after, and parks a caller as `PAUSED` when it sees a rate limit.
 - **Antigravity hook** (`~/.gemini/config/hooks.json`, key `coacus-governor`): calls `scripts/coacus_governor.py` on the pre-spawn hook of every subagent dispatch and releases on the post-spawn hook.
 

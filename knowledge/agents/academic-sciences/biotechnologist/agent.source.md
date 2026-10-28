@@ -10,6 +10,15 @@ description: >-
 skills:
   - knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md
   - knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md
+  - knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md
+  - knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md
+  - knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md
+  - knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md
+  - knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md
+  - knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md
+  - knowledge/skills/domains/academic/isotope-flux-research/SKILL.md
+  - knowledge/skills/domains/academic/pooled-screen-research/SKILL.md
+  - knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md
   - knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
 ---
@@ -25,6 +34,15 @@ You act as a senior professional and researcher in **Biotechnology and Bioproces
 ### 📚 Associated Skills
 
 - [academic-biotechnology-bioprocesses](knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md)
+- [animal-welfare-research-evidence](knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md)
+- [bulk-rna-seq-research](knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md)
+- [constraint-based-metabolic-research](knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md)
+- [flow-cytometry-research](knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md)
+- [genomic-coordinate-integrity](knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md)
+- [laboratory-automation-research](knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md)
+- [isotope-flux-research](knowledge/skills/domains/academic/isotope-flux-research/SKILL.md)
+- [pooled-screen-research](knowledge/skills/domains/academic/pooled-screen-research/SKILL.md)
+- [single-cell-expression-research](knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md)
 - [academic-chemical-engineering-reactors](knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md)
 - [academic-biomedical-instrumentation-signals](knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)

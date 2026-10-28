@@ -1,0 +1,70 @@
+{
+  "scope": "Read-only priority package audit; selected source sections, test assertions and corresponding Coacus guidance; no tests executed",
+  "packages": [
+    {
+      "name": "bulk-rnaseq",
+      "license": "MIT as declared in SKILL.md",
+      "examined": [
+        "skills/bulk-rnaseq/SKILL.md",
+        "skills/bulk-rnaseq/references/design-and-qc.md (selected lines)",
+        "skills/bulk-rnaseq/references/counts-and-handoff.md (selected lines)",
+        "skills/bulk-rnaseq/scripts/validate_samplesheet.py (selected lines)",
+        "tests/bulk-rnaseq/test_scripts.py (selected assertions)",
+        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md"
+      ],
+      "decision": "Improve existing owner: explicitly check design matrix rank and residual degrees of freedom; retain method-specific counts and offset semantics. Do not import helpers before reviewing the open parser fix.",
+      "unexamined": "Remaining references, script bodies and full test suite; no test execution."
+    },
+    {
+      "name": "anndata",
+      "license": "BSD-3-Clause as declared in SKILL.md",
+      "examined": [
+        "skills/anndata/SKILL.md",
+        "skills/anndata/references/concatenation.md (selected lines)",
+        "tests/anndata/test_api_contracts.py (selected assertions)",
+        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md"
+      ],
+      "decision": "Distinct single-cell matrix integrity candidate; sparse outer joins can conflate zero with unmeasured feature, and batch concatenation is not batch correction.",
+      "unexamined": "Remaining references, full tests, dependencies and execution."
+    },
+    {
+      "name": "pydicom",
+      "license": "MIT as declared in SKILL.md",
+      "examined": [
+        "skills/pydicom/SKILL.md (selected sections)",
+        "skills/pydicom/scripts/deidentification_audit.py (selected lines)",
+        "tests/pydicom/test_scripts.py (selected assertions)",
+        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md"
+      ],
+      "decision": "Improve existing owner: metadata-only audits cannot establish pixel safety and UID linkage data require protection; retain expert review.",
+      "unexamined": "Remaining helper scripts, reference docs and tests; no execution or clinical validation."
+    },
+    {
+      "name": "13c-metabolic-flux",
+      "license": "MIT as declared in SKILL.md; bundled mfapy attribution/license present",
+      "examined": [
+        "skills/13c-metabolic-flux/SKILL.md",
+        "skills/13c-metabolic-flux/references/input-contract.md (selected lines)",
+        "skills/13c-metabolic-flux/scripts/mfa.py (selected lines)",
+        "tests/13c-metabolic-flux/test_scripts.py (selected assertions)",
+        "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md"
+      ],
+      "decision": "Distinct research skill candidate: differentiate metabolic and isotopic steady state and propagate identifiability uncertainty; no solver import without additional review.",
+      "unexamined": "Remaining helper code, numerical validation, assets and full licenses; no execution."
+    },
+    {
+      "name": "analytical-method-validation",
+      "license": "MIT as declared in SKILL.md; underlying standards may have separate terms",
+      "examined": [
+        "skills/analytical-method-validation/SKILL.md (selected sections)",
+        "skills/analytical-method-validation/references/framework-selection.md (selected lines)",
+        "skills/analytical-method-validation/references/source-ledger.md (selected lines)",
+        "skills/analytical-method-validation/scripts/check_response.py (selected lines)",
+        "tests/analytical-method-validation/test_refresh_regressions.py (selected assertions)",
+        "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md"
+      ],
+      "decision": "Improve existing chemistry owner to require framework-specific prespecified criteria; avoid unsupported universal thresholds and do not claim certification.",
+      "unexamined": "Most references, remaining helpers, fixtures and full tests; no execution or independent standards interpretation."
+    }
+  ]
+}

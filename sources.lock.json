@@ -24,7 +24,7 @@
       "source_path": "agents/academic-sciences/biotechnologist/AGENT.md",
       "source_sha256": "fec3c03fbfb321d9439ee4f226d1bfa81b16fe68d71c4ca2cee52b858475270f",
       "target_path": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md",
-      "target_sha256": "1abd32e45b82a1296beb8221c5b0509f4aa056b5159583433bedaf91385dbc9c",
+      "target_sha256": "5e16815c8511f458c3b061ba0121dc97f7d9c73aefbc486709af98e8385746ac",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -41,7 +41,7 @@
       "source_path": "agents/academic-sciences/chemical-engineer/AGENT.md",
       "source_sha256": "b761b36aada3a6977a9d93aaf33a613db6ff28789745bf966e83fe00ccff9a2c",
       "target_path": "knowledge/agents/academic-sciences/chemical-engineer/agent.source.md",
-      "target_sha256": "d5ee842dbdffdc14667e385f8ea9d7af788d67f6007bbfda8cdfa1ac9d4e1713",
+      "target_sha256": "2fd178ad91974c7baa5d0e52c581787df06624a58b342f7b1e6ff4969d85c824",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -211,7 +211,7 @@
       "source_path": "agents/academic-sciences/physicist/AGENT.md",
       "source_sha256": "014599c8221bc0f2a896633ae51ddae3e61a501df88237e55b8b5ce82410be10",
       "target_path": "knowledge/agents/academic-sciences/physicist/agent.source.md",
-      "target_sha256": "6c1066fcbc7d230c37bf2510f50dcc1dbd7cba0f18f3dd3635a891451d7cb455",
+      "target_sha256": "15591b06557fdabbbe6924015b437ed3a28715b8628bbe02453dda895b21eb4a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -622,7 +622,7 @@
       "source_path": "agents/research-discovery/scientific-researcher/AGENT.md",
       "source_sha256": "208a17fec24b62663cadc3f26290ccbdef8a582ffc774c8c355bbdb297b3c97b",
       "target_path": "knowledge/agents/research-discovery/scientific-researcher/agent.source.md",
-      "target_sha256": "7653099e5fa03d9fc6f1ffe283222c8dafcb45056a50c9d3e165722295bb0b98",
+      "target_sha256": "241aedb80a516b1859d049d941108b73988acf32ffc0aacd5e286d41656b0aa2",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -1760,7 +1760,7 @@
       "source_path": "skills/domains/academic-biomedical-instrumentation-signals/SKILL.md",
       "source_sha256": "9a0b260b7a420cc4afeeaf377c1520895f824fc7e84a29fd9a787b9aeebb3870",
       "target_path": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
-      "target_sha256": "cb658efdba646a4b276a7ff2e46d73b917dd6a432c6171c4493c763e636766b5",
+      "target_sha256": "8a908313a0ce7fdaab661683b70e40d3d1294b0d412443b317d6e893a0b6eb00",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -1831,7 +1831,7 @@
       "source_path": "skills/domains/academic-biotechnology-bioprocesses/SKILL.md",
       "source_sha256": "cd66a073f832a92c649531bab036386beee6e534f5103efce2a6c86b5a5d175d",
       "target_path": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
-      "target_sha256": "e3fff2bfec4e7df2df3437491eb4cb9fdeea52b0d9c5a614bc4835984530d963",
+      "target_sha256": "9fbf5536d84208297025858d1d40571b25a55f16f5b84abea78a8301ed268215",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -1973,7 +1973,7 @@
       "source_path": "skills/domains/academic-chemical-engineering-reactors/SKILL.md",
       "source_sha256": "1c7563f5c442f6485cde0cdc35ba6c7f157ab9afbcd1d378166c7b6b64a241cb",
       "target_path": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
-      "target_sha256": "d7d8a644e393ad372d40f2fba826aa7c08e5a90ebcdc2c3a8f28b63d6f023e23",
+      "target_sha256": "8028d137552d55c03c072adf349275d2d4f4dc84a8321560b11b95ecc8b3f29e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2044,7 +2044,7 @@
       "source_path": "skills/domains/academic-chemistry-synthesis-analysis/SKILL.md",
       "source_sha256": "69d19b319cee70e0a2d9a73f8716efb72d5edd69ad47cabe28a71cc85c4f28e4",
       "target_path": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
-      "target_sha256": "4d2bf780c922acbb97f7a32746c71085233a2df1c323c6a9b514785190fb2127",
+      "target_sha256": "696961ff35d26e6b4a181387b3441007816bf6a4c395e3da19f1f02fc29e48be",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2612,7 +2612,7 @@
       "source_path": "skills/domains/academic-electrical-power-energy-systems/SKILL.md",
       "source_sha256": "1677828d6a2291c92649ab34d1d7da525b64dec7cb720cc5cf0090808d92a2b2",
       "target_path": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
-      "target_sha256": "019e78916353a7d89c0f890c3bc15595807d383674acb78083a110a221dcff76",
+      "target_sha256": "f73758ae3b93bf4df4b068a31af4cbfae4e96bd730c65c0b4a72030a15a29722",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -2825,7 +2825,7 @@
       "source_path": "skills/domains/academic-geosciences-remote-sensing-gis/SKILL.md",
       "source_sha256": "a869f97c06adfd8cac1a6e90ca748c5b6e231abf1545ec0a1b2752e7c5cc5734",
       "target_path": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
-      "target_sha256": "043334ec79f7de42ebb2b92d73a67d0adce44305277e8a4d0fd87c045e1c7b90",
+      "target_sha256": "d1a71ea90171764fa2c7bf23b2612937c3f2064bf186d529735f194bae67f7df",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3036,9 +3036,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/domains/academic-scientific-research/SKILL.md",
-      "source_sha256": "6ca80fb314d7b42208a67490702bce4ae6977f6bd0a6abaebf1e601c62456fab",
+      "source_sha256": "13336b9d534fa12efa6ca8b75dec20fc6a3941947f92c55582eea717b1231fbe",
       "target_path": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
-      "target_sha256": "6ca80fb314d7b42208a67490702bce4ae6977f6bd0a6abaebf1e601c62456fab",
+      "target_sha256": "13336b9d534fa12efa6ca8b75dec20fc6a3941947f92c55582eea717b1231fbe",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3251,7 +3251,7 @@
       "source_path": "skills/domains/academic-thermodynamics-statistical-physics/SKILL.md",
       "source_sha256": "f8e3903d2a4da766d9f984be2c95e09aa801a7c222e8dcced886e78375fdf84f",
       "target_path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
-      "target_sha256": "167dea348a5bd11bfd88ff50b040f4cb1b7dd3c3c9700b4c0d460efb1aab112a",
+      "target_sha256": "3de6b37dadeb10a205ed1d473988b7b1f75f0d512e25712bf5e4b238e64ff19b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3322,7 +3322,7 @@
       "source_path": "skills/domains/data-science-advanced-math/SKILL.md",
       "source_sha256": "4cb4a784958025cbf2e33bcc49bad1a7dee970ce400582f4a384be9b376fbf5f",
       "target_path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
-      "target_sha256": "0abf0a1e23103ec00d2633f0bd6d55033810707d8802e26ebf9677c4e38f0b34",
+      "target_sha256": "1a36c0147befa7c3a979a0417149741aeb59f16f6f9d5190e5e40b42e783eb12",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3393,7 +3393,7 @@
       "source_path": "skills/domains/quantum-computing-algorithms/SKILL.md",
       "source_sha256": "844e5de98efdce84d45ce3871c18601dc04b1575be71facd954c0a5710b293dd",
       "target_path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
-      "target_sha256": "d5fb74d356376666889da5d4e0098905442426fd77c9270766b3990b5c2a539d",
+      "target_sha256": "1ca2b2fe538f79a517eaf771bb7e60b415be72575d33b48e0f1033c49aa6e3b8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11108,9 +11108,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "source_sha256": "722d7185abed048c2a5c4ecdc1cbbe77eba1ba8e6d88926bdd95483141fc99ef",
+      "source_sha256": "c85cb66d3d4dc427db45773fcc25f7a76348599bdd1a7d1925de750f8f1c3517",
       "target_path": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "target_sha256": "722d7185abed048c2a5c4ecdc1cbbe77eba1ba8e6d88926bdd95483141fc99ef",
+      "target_sha256": "c85cb66d3d4dc427db45773fcc25f7a76348599bdd1a7d1925de750f8f1c3517",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17916,9 +17916,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
-      "source_sha256": "1c9df4466ee848861934d7a94379e9123c4f172448d308a3696b83290c9a4cb3",
+      "source_sha256": "45340625a79c89d3fc39154999c03a581a38c3f8e52291cf0270a30c6c517393",
       "target_path": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
-      "target_sha256": "1c9df4466ee848861934d7a94379e9123c4f172448d308a3696b83290c9a4cb3",
+      "target_sha256": "45340625a79c89d3fc39154999c03a581a38c3f8e52291cf0270a30c6c517393",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17946,9 +17946,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/data/data-science-workflow/SKILL.md",
-      "source_sha256": "1a12679880a4fda91bd71628e08ee58f22366ed1ca6545577216112c61f16d8e",
+      "source_sha256": "32cfe6c5745e663638ce826bdfbb7878191d798cdc9e6ca1bfc0897aed09db70",
       "target_path": "knowledge/skills/data/data-science-workflow/SKILL.md",
-      "target_sha256": "1a12679880a4fda91bd71628e08ee58f22366ed1ca6545577216112c61f16d8e",
+      "target_sha256": "32cfe6c5745e663638ce826bdfbb7878191d798cdc9e6ca1bfc0897aed09db70",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17961,9 +17961,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
-      "source_sha256": "27d48bc1c6c16a4ec113f91520722ac0525e722b92daad1a44e45e949c232a2a",
+      "source_sha256": "906a417092dcd729c47013d150a22145734a84bb61de70b2db9e98dd8a24deef",
       "target_path": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
-      "target_sha256": "27d48bc1c6c16a4ec113f91520722ac0525e722b92daad1a44e45e949c232a2a",
+      "target_sha256": "906a417092dcd729c47013d150a22145734a84bb61de70b2db9e98dd8a24deef",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17991,9 +17991,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/data/python-data-science/SKILL.md",
-      "source_sha256": "abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4",
+      "source_sha256": "b703cb6b340e5d3ed2099f0f757b362d969019121e575f1169af472075c1a819",
       "target_path": "knowledge/skills/data/python-data-science/SKILL.md",
-      "target_sha256": "abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4",
+      "target_sha256": "b703cb6b340e5d3ed2099f0f757b362d969019121e575f1169af472075c1a819",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18246,9 +18246,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
-      "source_sha256": "b7e439a7cf25ee151cea481dc8805704fff995d091ec054ec64af176d3edc7af",
+      "source_sha256": "38a2fb8f651c52e33b3eb8a925dfe7982b755582573772758fd51df3c0900aa6",
       "target_path": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
-      "target_sha256": "b7e439a7cf25ee151cea481dc8805704fff995d091ec054ec64af176d3edc7af",
+      "target_sha256": "38a2fb8f651c52e33b3eb8a925dfe7982b755582573772758fd51df3c0900aa6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21166,6 +21166,201 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-28T19:19:15Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "source_sha256": "3e7b520b5796fdadf5abf7003626ac14e7ce3aae3fe6de617e6b949e4b882684",
+      "target_path": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "target_sha256": "3e7b520b5796fdadf5abf7003626ac14e7ce3aae3fe6de617e6b949e4b882684",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:27:12Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "source_sha256": "834a67fd51b70c49baa9f18facbe6d5cf462c946d312dbb864009bb2d605bdd7",
+      "target_path": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "target_sha256": "834a67fd51b70c49baa9f18facbe6d5cf462c946d312dbb864009bb2d605bdd7",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:33:59Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "source_sha256": "4de70de19ecb700e4701f0b2f1a16d3c3f3ee3cc0da320970be79a93caab091e",
+      "target_path": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "target_sha256": "4de70de19ecb700e4701f0b2f1a16d3c3f3ee3cc0da320970be79a93caab091e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:33:59Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "source_sha256": "d14687660d0ded280450d8520321496da9f8cea2e44440928d0d6b0ba7175189",
+      "target_path": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "target_sha256": "d14687660d0ded280450d8520321496da9f8cea2e44440928d0d6b0ba7175189",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:38:02Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "source_sha256": "e764c6ca7bfbd8f35d3300cab1067891ed3b3386d40c81b134464e34c8bd6585",
+      "target_path": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "target_sha256": "e764c6ca7bfbd8f35d3300cab1067891ed3b3386d40c81b134464e34c8bd6585",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:44:06Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
+      "source_sha256": "4519348f7995d57721b7a1151d90fc4f485393424d06038fb691f8cf4a8a74d1",
+      "target_path": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
+      "target_sha256": "4519348f7995d57721b7a1151d90fc4f485393424d06038fb691f8cf4a8a74d1",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:50:25Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "source_sha256": "786c8d6ca59fcfdf52f9aaa6584f9d3a522c4b07ec11232e3829ff5d2f57ae6e",
+      "target_path": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "target_sha256": "786c8d6ca59fcfdf52f9aaa6584f9d3a522c4b07ec11232e3829ff5d2f57ae6e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:52:49Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+      "source_sha256": "f9dc1cbc0f1c3da757781ee943541a52e3ae7e41a866c24477524d4fe4731f96",
+      "target_path": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+      "target_sha256": "f9dc1cbc0f1c3da757781ee943541a52e3ae7e41a866c24477524d4fe4731f96",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:56:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+      "source_sha256": "e269906806594aaf00680b7e50f5e1e77bef2c99875dcb982e2506d5733db98e",
+      "target_path": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+      "target_sha256": "e269906806594aaf00680b7e50f5e1e77bef2c99875dcb982e2506d5733db98e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:57:49Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+      "source_sha256": "d3261212131eb1a578034e2faf89cc87bbd39404d40e9fd29d4b3b94d3166c3d",
+      "target_path": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+      "target_sha256": "d3261212131eb1a578034e2faf89cc87bbd39404d40e9fd29d4b3b94d3166c3d",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:59:00Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+      "source_sha256": "caa2bac725c5981f0c26f58978cacf35284c70fdba91f153f19b7041e8459713",
+      "target_path": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+      "target_sha256": "caa2bac725c5981f0c26f58978cacf35284c70fdba91f153f19b7041e8459713",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:59:00Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md",
+      "source_sha256": "db6ef64b7aac366b8dbe55ac49ae608f9efb2c6851b3a884566243b7713b2353",
+      "target_path": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md",
+      "target_sha256": "db6ef64b7aac366b8dbe55ac49ae608f9efb2c6851b3a884566243b7713b2353",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T20:59:00Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+      "source_sha256": "248e1749d5af3d13413ee16f4ca7d8b20e3c21a2c90a1acb87bd057303f6cc49",
+      "target_path": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+      "target_sha256": "248e1749d5af3d13413ee16f4ca7d8b20e3c21a2c90a1acb87bd057303f6cc49",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T21:02:58Z"
     }
   ]
 }
