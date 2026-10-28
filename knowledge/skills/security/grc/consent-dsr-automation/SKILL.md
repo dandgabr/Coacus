@@ -34,7 +34,7 @@ This skill guides the AI to operationalize the rights that privacy law grants to
 
 ## 🗑️ 3. Cascading Erasure
 
-Deletion must reach transactional databases, logs, analytics replicas, caches and processors, while preserving only what the law requires (for example, immutable audit hashes or financial records under a retention obligation). Document the exceptions and their legal basis.
+Deletion must reach transactional databases, logs, analytics replicas, caches and processors, while retaining only records with a documented legal justification. Subject-linked hashes are not automatically anonymous or safe to retain. Document the exceptions and their legal basis.
 
 ---
 
@@ -44,3 +44,7 @@ Deletion must reach transactional databases, logs, analytics replicas, caches an
 - For data discovery across systems, see the [data-classification-dspm](../../data/data-classification-dspm/SKILL.md) skill.
 - For the retention and disposal schedule, see the [data-mesh-governance](../../../data/data-mesh-governance/SKILL.md) skill.
 - For the audit evidence, see the [grc-automation-oscal](../grc-automation-oscal/SKILL.md) skill.
+
+## Implementation Verification
+
+When checking actual consent gates, withdrawal or backup restoration, use [runtime consent and erasure](references/runtime-consent-and-erasure.md). Record observations and limits separately from legal applicability and reasoning-only evaluation.

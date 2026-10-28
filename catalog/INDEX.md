@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 472 skill(s) · 103 agent(s) · 1 MCP(s)
+**Totals:** 473 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -77,6 +77,7 @@
 | medical-device-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md) |
 | mobile-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md) |
 | moodle-specialist | specialized-domains | [knowledge/agents/specialized-domains/moodle-specialist/agent.source.md](../knowledge/agents/specialized-domains/moodle-specialist/agent.source.md) |
+| motion-graphics-producer | specialized-domains | [knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md) |
 | multi-agent-orchestrator | core-orchestration | [knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md](../knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md) |
 | network-architect | architecture | [knowledge/agents/architecture/network-architect/agent.source.md](../knowledge/agents/architecture/network-architect/agent.source.md) |
 | network-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/network-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/network-security-specialist/agent.source.md) |
@@ -179,6 +180,7 @@
 | color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
 | color-theory-foundations | [knowledge/skills/domains/design/color-theory-foundations/SKILL.md](../knowledge/skills/domains/design/color-theory-foundations/SKILL.md) |
 | color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
+| deterministic-motion-rendering | [knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md](../knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md) |
 | game-2d-scene-composition | [knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md](../knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md) |
 | game-sprite-design | [knowledge/skills/domains/design/game-sprite-design/SKILL.md](../knowledge/skills/domains/design/game-sprite-design/SKILL.md) |
 | ui-app-layout-architectures | [knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md](../knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md) |

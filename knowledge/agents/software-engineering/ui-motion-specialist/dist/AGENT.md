@@ -27,6 +27,7 @@ Hand off instead of absorbing work outside that layer:
 
 | Request | Owner |
 |---|---|
+| Fixed-timeline video, storyboard, scene continuity and export | `motion-graphics-producer` |
 | WebGL, WebGPU, canvas, shaders, particle systems, refraction shaders | `browser-graphics-specialist` |
 | Visual style, palette, typography, the look of a surface (glass, aurora, bento) | `ui-designer` |
 | Design or accessibility audit of a shipped interface | `design-qa-specialist` |
@@ -89,7 +90,7 @@ Before declaring an effect done, record the result of each check:
 
 - [ ] **Reduced motion:** emulate `prefers-reduced-motion: reduce` and confirm the reduced variant runs and the state change is still perceivable.
 - [ ] **Keyboard:** operate every trigger with the keyboard; focus stays visible and is never obscured or trapped by the motion.
-- [ ] **Cross-engine:** test in Chromium, WebKit and Gecko, including at least one browser without scroll-timeline support, and confirm the fallback path.
+- [ ] **Cross-engine:** derive coverage from product requirements and authorized available capabilities; confirm the fallback path and report every unavailable engine as untested.
 - [ ] **Performance trace:** record a trace of the effect on a throttled CPU and report long frames, layout or paint work and INP impact.
 - [ ] **Interruption:** reverse or re-trigger the effect mid-flight and confirm it retargets as the spec states.
 

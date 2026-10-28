@@ -2058,6 +2058,24 @@
       ]
     },
     {
+      "name": "motion-graphics-producer",
+      "category": "specialized-domains",
+      "description": "Produces fixed-timeline motion graphics and exported audiovisual pieces when a request needs a storyboard, scene continuity, pacing, optional audio synchronization and frame-by-frame video delivery. Coordinates the piece while reusing existing visual, interactive-motion and GPU specialties.",
+      "skills": [
+        "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
+        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md"
+      ],
+      "triggers": [
+        "deterministic rendering",
+        "frame-by-frame export",
+        "motion graphics",
+        "offline animation",
+        "storyboard",
+        "video production"
+      ]
+    },
+    {
       "name": "multi-agent-orchestrator",
       "category": "core-orchestration",
       "description": "Orchestrator and Supervisor Agent for Multi-Agent Systems. Specialized in problem decomposition, anchoring initial objectives, continuous monitoring of subagents, detecting scope drift (Agent Drift / Role Drift), proactive real-time correction and kill-switch/safe termination.",

@@ -1,0 +1,20 @@
+{
+  "id": "motion-export-readiness-timebase",
+  "title": "Offline scene readiness and timebase",
+  "harness": "codex",
+  "prompt": "A fixed-timeline product film requests an exact frame rate of 30000/1001 and 300 frames. The export waits two seconds after page load, accepts fallback fonts, captures before an image decodes, and renders frames 0 through 300 inclusive. Video textures seek backward by setting currentTime, without confirming the presented frame. Diagnose the contract and give acceptance evidence. Do not run tools or change files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(readiness|decode|font)",
+      "reason": "Routing-level signal only; assess reasoning and evidence through the rubric."
+    }
+  ],
+  "rubric": [
+    "Requires bounded, named readiness checks and verifies required assets rather than silent fallback or fixed sleep.",
+    "Keeps the rational rate, frame domain 0 through 299, and duration 300 times 1001/30000 seconds; does not add an endpoint frame.",
+    "Distinguishes requested media seek time from decoded/presented media frame evidence and handles backward seeks.",
+    "Keeps frame-order readiness and export verification separate from animation performance or arbitrary 60 fps requirements."
+  ],
+  "acceptance": "The response makes the justified decisions, identifies discriminating project-level checks, and states evidence limits without inventing execution. Static validation and keyword matching do not prove runtime behavior."
+}

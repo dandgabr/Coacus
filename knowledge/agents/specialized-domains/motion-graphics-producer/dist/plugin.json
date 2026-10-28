@@ -1,0 +1,6 @@
+{
+  "name": "motion-graphics-producer",
+  "version": "0.1.0",
+  "description": "Produces fixed-timeline motion graphics and exported audiovisual pieces when a request needs a storyboard, scene continuity, pacing, optional audio synchronization and frame-by-frame video delivery. Coordinates the piece while reusing existing visual, interactive-motion and GPU specialties.",
+  "entrypoint": "AGENT.md"
+}

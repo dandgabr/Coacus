@@ -43,3 +43,13 @@ For a small product-independent control and known defects, use [interface fixtur
 ## Verify published assets
 
 When a CDN or edge cache serves the site, check the deployed preview or live HTML and the CSS, JavaScript, and dynamically loaded modules that it references. Confirm that the responses contain the intended revision for that deployment; propagate an asset version through dynamic imports when stale cached assets can mix old behavior with new markup. Run this check after the preview or deployment is available; a successful build or deployment status alone does not prove edge freshness.
+
+## Bound verification to the change
+
+Select representative surfaces, shared consumers and failure boundaries from the actual change. A clipped-label repair needs its owner container, relevant width and zoom, text expansion and affected shared controls; it does not require rediscovering the brand or testing every possible combination. A system-wide token change justifies broader consumer coverage.
+
+For each selected case record the expected user-visible outcome, evidence and revision, then mark it observed, not run, or not applicable with a reason. State unavailable browsers/devices and residual uncertainty. Follow authorized local automation capabilities; do not claim cross-engine coverage from a single engine. Include reflow and zoom where the changed content can fail.
+
+Keep source/schema checks, reasoning-only behavior evaluations and actual browser/media/network observations separate. None alone certifies general conformance. Operational tracker checks belong to [consent automation](../../../../security/grc/consent-dsr-automation/references/runtime-consent-and-erasure.md).
+
+Sources reviewed 2026-10-27: [WAI reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html), [involving users](https://www.w3.org/WAI/test-evaluate/involving-users/), and [lab versus field evidence](https://web.dev/articles/lab-and-field-data-differences). Offline export cadence does not establish live input responsiveness; do not add telemetry automatically to obtain evidence.

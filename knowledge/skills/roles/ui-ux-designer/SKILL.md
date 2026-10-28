@@ -120,7 +120,7 @@ Instead of stacking artificial blurred shadows, create depth through the luminos
 ### 4.3. Cognitive Ergonomics & Interaction Laws
 Incorporate mathematical and empirical interaction laws across GUI, terminal, and agentic systems:
 - **Target Ergonomics (Fitts's Law & KLM)**: High-frequency actions placed close to focus; touch targets adhering to 44x44px.
-- **Choice Architecture (Hick's Law & Miller/Cowan Limit)**: Progressive disclosure, sensible defaults, and bounded chunking ($4 \pm 1$ chunks).
+- **Choice Architecture (Hick's Law & Miller/Cowan Limit)**: Progressive disclosure, sensible defaults and meaningful grouping; use the canonical reference for empirical limits rather than imposing a fixed item count.
 - **Perceptual Salience (Von Restorff Effect)**: Isolate the single primary action; prevent alert fatigue and visual noise.
 - **Progress & Closure (Goal-Gradient & Zeigarnik Effects)**: Visible determinate progress indicators and explicit completion boundaries.
 For complete formulations and patterns across GUI, CLI, and multi-agent interaction, see [applied cognitive laws](../../engineering/practices/ui-ux-principles/references/applied-cognitive-laws.md).
@@ -139,3 +139,18 @@ When finalizing the design and handing it off to the [frontend-developer](../fro
 4. **Alignment with Business and Quality**:
    - Validate criteria with the [product-owner](../product-owner/SKILL.md).
    - Validate visual test cases and responsiveness with the [qa-engineer](../qa-engineer/SKILL.md).
+
+## Proportional Delivery Coordination
+
+For work spanning disciplines, coordinate the existing owners rather than inventing another design process:
+
+| Stage | Owner | Input and useful output |
+|---|---|---|
+| Context and task | UX and product owner | Product facts and user task become an outcome and unresolved assumptions |
+| Reference interpretation | UI design with craftsmanship | Observations become justified reuse/adaptation decisions in the design authority |
+| Flow and composition | UX and UI | Task structure and visual decisions become implementation-ready states |
+| Engineering | Frontend developer | Specifications become usable components with lifecycle and failure handling |
+| Motion, when relevant | UI motion or browser graphics | Effect purpose becomes an interaction or rendering contract |
+| Verification | Design QA | Changed surfaces become evidence, findings and explicit limits |
+
+At each handoff, identify the highest-impact unresolved question and the cheapest suitable probe. Use the existing [UX methods](../ux-designer/SKILL.md) and [reference adoption procedure](../../engineering/practices/ui-design-craftsmanship/references/reference-evidence-and-adoption.md). For a local repair, preserve established context and skip unrelated discovery or redesign stages. Compose the existing methodology without adding approval gates or requiring agents to delegate every stage. Route a fixed-timeline video deliverable to the motion graphics producer; route ordinary interface feedback to the interactive motion owner.

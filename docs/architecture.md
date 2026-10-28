@@ -17,8 +17,8 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 444 skills.
-- `knowledge/agents/<category>/<agent>/agent.source.md` — 103 agents.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 445 skills.
+- `knowledge/agents/<category>/<agent>/agent.source.md` — 104 agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).
 - `knowledge/rules/` — reserved for repository rules.
@@ -161,7 +161,10 @@ flowchart TD
     CAT["catalog/{catalog.json,INDEX.md}"]
     DSC[".agents/{skills,mcps,agents}.json + entries/"]
     MAT["docs/reference/lifecycle-matrix.md"]
-    LOCK["sources.lock.json<br/>(provenance, root)"]
+  end
+
+  subgraph REG["Provenance registry (committed, outside drift comparison)"]
+    LOCK["sources.lock.json<br/>(imported + authored origins)"]
   end
 
   subgraph RUN["Runtime"]
@@ -184,6 +187,7 @@ flowchart TD
   GEN --> CAT
   GEN --> DSC
   GEN --> MAT
+  GEN -->|"registers native sources"| LOCK
   VAL -->|"gates generate"| GEN
   LOCK -->|"target-existence check"| VAL
   DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex | cursor | command-code"]
@@ -211,7 +215,7 @@ Coacus/
 ├── tests/                # deterministic infrastructure tests (stdlib unittest)
 ├── evals/                # LLM behavior evals (static gate + opt-in live runner)
 ├── docs/                 # this documentation + standards/ + decisions/
-├── sources.lock.json     # provenance for imported artifacts (provenance)
+├── sources.lock.json     # provenance for imported and native canonical artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```
 

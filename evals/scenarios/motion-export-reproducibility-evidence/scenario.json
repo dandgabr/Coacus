@@ -1,0 +1,20 @@
+{
+  "id": "motion-export-reproducibility-evidence",
+  "title": "Export reproducibility and deliverable evidence",
+  "harness": "codex",
+  "prompt": "A producer captured PNG frames on Linux and macOS using different installed fonts and GPUs. The report promises identical SHA-256 for every MP4 because both exports use 60 fps. One export has 299 decoded frames instead of 300, a narration starts late, and no decoded output samples were reviewed. Give a justified review and verification plan. Do not claim actual execution.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(pixel|environment|decoded)",
+      "reason": "Routing-level signal only; assess reasoning and evidence through the rubric."
+    }
+  ],
+  "rubric": [
+    "Rejects universal cross-machine hash guarantees and distinguishes scene-state, decoded-pixel and final-file identity.",
+    "Records scene and input hashes, seed, fonts, viewport/DPR, timebase, environment and capture/encoding parameters before comparing baselines.",
+    "Requires independent decoded frame count, timing, dimensions, sampled output frames and audio offset/end policy; does not hide a mismatch by unexplained trimming or retiming.",
+    "Separates technical export evidence from narrative quality and does not equate MP4/WebM or nominal fps with losslessness."
+  ],
+  "acceptance": "The response makes the justified decisions, identifies discriminating project-level checks, and states evidence limits without inventing execution. Static validation and keyword matching do not prove runtime behavior."
+}

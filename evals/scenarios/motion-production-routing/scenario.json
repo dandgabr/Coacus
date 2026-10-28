@@ -1,0 +1,20 @@
+{
+  "id": "motion-production-routing",
+  "title": "Motion production responsibility boundaries",
+  "harness": "codex",
+  "prompt": "Three independent briefs arrive: A) a keyboard-accessible drawer must reverse smoothly when clicked again; B) a large interactive shader field needs GPU performance work; C) a narrated product film needs storyboard, scene continuity, fixed timeline and frame-by-frame MP4 export. Identify owners, knowledge to reuse and evidence each delivery needs. Can one agent coordinate C without duplicating the other specialties? Do not spawn agents or claim execution.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(ui-motion-specialist|browser-graphics-specialist|motion-graphics-producer)",
+      "reason": "Routing-level signal only; assess reasoning and evidence through the rubric."
+    }
+  ],
+  "rubric": [
+    "Routes live DOM interaction to ui-motion-specialist and GPU implementation to browser-graphics-specialist.",
+    "Routes the exported audiovisual piece to motion-graphics-producer with deterministic-motion-rendering for export semantics.",
+    "Preserves ownership of visual identity, interactive behavior and GPU engineering; independent auditing belongs to design-qa-specialist.",
+    "Does not require automatic multi-agent execution; names separate interaction, performance, media and narrative evidence."
+  ],
+  "acceptance": "The response makes the justified decisions, identifies discriminating project-level checks, and states evidence limits without inventing execution. Static validation and keyword matching do not prove runtime behavior."
+}

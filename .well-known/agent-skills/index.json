@@ -648,9 +648,9 @@
     {
       "name": "consent-dsr-automation",
       "description": "Acts as a Consent and Data Subject Request automation specialist covering consent capture and lifecycle, Global Privacy Control, DSR/DSAR orchestration, identity verification, cascading erasure and the audit evidence required by LGPD and GDPR.",
-      "type": "skill-md",
+      "type": "archive",
       "url": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "digest": "sha256:27b1adc1d9775b3e5bceb911c01485047b2bc81d4e03d46fca4d99045e3ab618"
+      "digest": "sha256:e3a0cdba310b6d3186e17af4e4859fd50a31c29e4838a49082f8eb5c36a9b9be"
     },
     {
       "name": "container-runtime-security",
@@ -854,6 +854,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md",
       "digest": "sha256:b750514fb599f04cc028c0e2873763dd31a328849938ef59c3a9926ec859d183"
+    },
+    {
+      "name": "deterministic-motion-rendering",
+      "description": "Provides offline animation and video export guidance when rendering scenes frame by frame, seeking arbitrary frames, or verifying reproducible fixed-timeline media. Covers scene readiness, frame evaluation and exported media evidence rather than ordinary live UI interaction.",
+      "type": "archive",
+      "url": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
+      "digest": "sha256:19aba660fe5abd3451cf8f699eda17ff54a55dfa81dd815b2e0d47f022cb73a8"
     },
     {
       "name": "devops-engineer",
@@ -2281,7 +2288,7 @@
       "description": "Acts as a Governance, Risk, and Compliance (GRC) Analyst, structuring security policies, aligning frameworks (ISO 27001, PCI-DSS, LGPD/GDPR), and measuring security effectiveness with organizational metrics.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-      "digest": "sha256:c9ef622722fa21ace52344b198442045646fc30792dc3f257493d2f710a18a09"
+      "digest": "sha256:b95c8859edf9c5f25ceda8ac1c7e54e8afb9a7f4127a5f6d12ccef96979c3968"
     },
     {
       "name": "security-manager-samm",
@@ -2295,7 +2302,7 @@
       "description": "Acts as a Data Privacy, PII Governance, and De-identification/Anonymization Engineering Specialist. Covers compliance with LGPD, GDPR, HIPAA, ISO/IEC 27701:2025, and the NIST Privacy Framework, the 7 principles of Privacy by Design, formal mathematical de-identification models (k-anonymity, l-diversity, t-closeness, epsilon-DP differential privacy with Laplace/Gauss noise), tokenization vs masking vs pseudonymization, Privacy-Enhancing Technologies (FHE, SMPC, TEE, federated learning, DP-SGD), DSR (Data Subject Request) automation, cross-border transfers, breach notification, and anonymization pipelines with Microsoft Presidio and Faker.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-privacy/SKILL.md",
-      "digest": "sha256:3d612bf898655b47f91c540b1ea8aa9afd5eff8fca1e731953e67d32ff400b5f"
+      "digest": "sha256:5c4ac1b1a42fdf168ab82877beb70b75c2d88af464f905d49cb3a0631bf3a9a9"
     },
     {
       "name": "security-technical-opinion",
@@ -2554,7 +2561,7 @@
       "description": "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:fd58396aaae2441b1a2eb6b23383660b307e97afe66918908369ce3d9f43dab0"
+      "digest": "sha256:edfc6c3815d71abbb9e90bea4f9bed717e5505b362960e9c918dce40407f2d8f"
     },
     {
       "name": "ui-designer",
@@ -3191,14 +3198,14 @@
       "description": "Acts as the lead UI/UX orchestrator coordinating the separated UI and UX disciplines: routes research, IA and usability work to the UX discipline and visual craft, design systems and style application to the UI discipline, while owning art direction, the style library and the Anti-AI Slop Manifesto. Use when a task spans both disciplines or when directing UI and UX specialists.",
       "type": "archive",
       "url": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "digest": "sha256:0305b5db79b9941ba864f1d2af5fdcbda199e078bdc87b0fec3b1ff019f240af"
+      "digest": "sha256:9d3c0759bab0dff6a7f9daba6e5b4414a247c79d88fe81f2f9c22eab35fd61dc"
     },
     {
       "name": "ui-ux-principles",
       "description": "Provides expert patterns for user-interface and interaction design based on Designing the User Interface (Shneiderman & Plaisant), Don't Make Me Think (Krug), Laws of UX (Yablonski), and Designing AI Interfaces (Macfadyen). Covers the eight golden rules, interaction styles, information visualization, usability testing, scanning and navigation, applied UX laws (Fitts, Hick, Jakob, Miller, Peak-End, Doherty), the Hook Model, and human-AI interaction with autonomy, trust and shared control.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "digest": "sha256:517190a88649882edf9394502a9f30ddc201821873a6e74a1ed066d2a3567c37"
+      "digest": "sha256:dbf585b03c9e191669093ad46037e6640ba1f6573be9bb2f17ad6d262f872127"
     },
     {
       "name": "uml-diagram-generation",
@@ -3226,7 +3233,7 @@
       "description": "Provides the UX design discipline (experience design separated from UI craft): the ISO 9241-210 definition and UX honeycomb, process frameworks (Double Diamond, design thinking, Lean UX, JTBD, continuous discovery), the user-research method map, usability heuristics and metrics (Nielsen's 10, SUS, HEART), information architecture and journey mapping, and ethics (WCAG as baseline, deceptive patterns). Use when planning research, structuring experiences, evaluating usability or governing UX ethics.",
       "type": "skill-md",
       "url": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "digest": "sha256:ea72c7a57580c447e82b23adbfa74f1cf7b2eedbf826cbd38466a4fc41978502"
+      "digest": "sha256:ea8ed02dc533f5dba78300d6e7b4d9d7da5c23bec027c177e2d17176facfdeea"
     },
     {
       "name": "vcs-repository-management",

@@ -1,0 +1,19 @@
+{
+  "id": "cognitive-transfer-boundaries",
+  "title": "Human memory studies and agent limits",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not claim execution, change files or access real user data. A guideline says Cowan proves every agent must receive exactly four tools and review at most five files. It also promises every incomplete onboarding task has 90 percent higher recall. Review these claims and propose useful alternatives.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|observ|context|condition|purpose|unknown)",
+      "reason": "Advisory routing signal; the rubric assesses decisions, not keyword presence."
+    }
+  ],
+  "rubric": [
+    "Reject universal agent cardinalities derived from human memory experiments; keep actual governor limits independent.",
+    "Distinguish study conditions, practitioner heuristics and proposals; remove unsupported recall guarantees.",
+    "Use task evidence, coherent dependencies and truthful progress rather than replacing one magic number with another."
+  ],
+  "acceptance": "The response makes justified contextual decisions, proposes discriminating checks and states evidence limits without inventing execution."
+}
