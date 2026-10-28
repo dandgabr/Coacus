@@ -1,0 +1,20 @@
+{
+  "id": "ui-consumer-stale-exceptions",
+  "title": "Unknown classes and stale exceptions",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, access real user data or claim execution. A consumer uses a documented card class, an absent imaginary-card class, and a dynamically generated status family whose stylesheet is loaded conditionally. An exception still suppresses a real finding. A second exception references a removed consumer; one sampled page lacks that class but the rest of its owning scope has not been checked. Propose verification and outcomes.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|contract|verify|baseline|document|scope|client|focus)",
+      "reason": "Advisory signal only; the rubric judges decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Accept the documented card and investigate dynamic class construction and conditional styles before judging availability.",
+    "Reject a genuinely absent class; retain an exception that still suppresses a valid finding.",
+    "Inspect the complete relevant owning scope before declaring the second exception stale; reject it if it suppresses nothing there.",
+    "State that the Coacus reference is guidance, not automatic runtime enforcement."
+  ],
+  "acceptance": "The response makes the specified contextual decisions, proposes discriminating observations and states evidence limits without inventing execution."
+}

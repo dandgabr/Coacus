@@ -53,3 +53,7 @@ For each selected case record the expected user-visible outcome, evidence and re
 Keep source/schema checks, reasoning-only behavior evaluations and actual browser/media/network observations separate. None alone certifies general conformance. Operational tracker checks belong to [consent automation](../../../../security/grc/consent-dsr-automation/references/runtime-consent-and-erasure.md).
 
 Sources reviewed 2026-10-27: [WAI reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html), [involving users](https://www.w3.org/WAI/test-evaluate/involving-users/), and [lab versus field evidence](https://web.dev/articles/lab-and-field-data-differences). Offline export cadence does not establish live input responsiveness; do not add telemetry automatically to obtain evidence.
+
+## Component-library compatibility
+
+Before comparing working and released output, validate the same fixture against the pinned baseline using [consumer contracts](consumer-contract-verification.md). An invalid baseline stops regression classification. Verify dynamic class families and the owning scope before treating an exception as obsolete.

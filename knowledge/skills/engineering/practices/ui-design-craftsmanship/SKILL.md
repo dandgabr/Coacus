@@ -140,3 +140,7 @@ for them:
 ## Reference and Commercial Evidence
 
 When adopting screenshots, URLs or recordings, use [reference evidence and adoption](references/reference-evidence-and-adoption.md) to separate observations, inferences and unknowns, preserve semantic tokens and document claim and asset evidence. Keep legal interpretation with the compliance owner.
+
+## Consumer Contracts and Accessibility Exercises
+
+For component-library changes, use [consumer contract verification](references/consumer-contract-verification.md) to resolve unknown classes, obsolete exceptions and invalid compatibility baselines. For high-contrast controls and retained loading information, use [forced-colors and motion exercises](references/forced-colors-motion-exercises.md). These are verification procedures, not new automatic framework gates.

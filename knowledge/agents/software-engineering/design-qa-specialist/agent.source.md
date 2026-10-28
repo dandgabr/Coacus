@@ -6,6 +6,7 @@ description: >-
   Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of
   generic AI design anti-patterns, heuristic evaluation and design token discipline.
 skills:
+  - knowledge/skills/frameworks/framework-tabler/SKILL.md
   - knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md
@@ -94,3 +95,7 @@ Use the agent selector and choose `design-qa-specialist`.
 ```text
 invoke_subagent(TypeName="design-qa-specialist", Role="Design QA Specialist", Prompt="...")
 ```
+
+## Conditional component-library integration
+
+When the project already uses Tabler or explicitly requests it, consult [framework-tabler](knowledge/skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.

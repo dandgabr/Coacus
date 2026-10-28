@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 474 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 475 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -346,6 +346,7 @@
 | framework-soap | [knowledge/skills/frameworks/framework-soap/SKILL.md](../knowledge/skills/frameworks/framework-soap/SKILL.md) |
 | framework-spring-ai | [knowledge/skills/frameworks/framework-spring-ai/SKILL.md](../knowledge/skills/frameworks/framework-spring-ai/SKILL.md) |
 | framework-spring-boot | [knowledge/skills/frameworks/framework-spring-boot/SKILL.md](../knowledge/skills/frameworks/framework-spring-boot/SKILL.md) |
+| framework-tabler | [knowledge/skills/frameworks/framework-tabler/SKILL.md](../knowledge/skills/frameworks/framework-tabler/SKILL.md) |
 | framework-testing | [knowledge/skills/frameworks/framework-testing/SKILL.md](../knowledge/skills/frameworks/framework-testing/SKILL.md) |
 | framework-testing-javascript | [knowledge/skills/frameworks/framework-testing-javascript/SKILL.md](../knowledge/skills/frameworks/framework-testing-javascript/SKILL.md) |
 | framework-testing-python | [knowledge/skills/frameworks/framework-testing-python/SKILL.md](../knowledge/skills/frameworks/framework-testing-python/SKILL.md) |

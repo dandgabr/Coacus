@@ -121,7 +121,13 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
+
+  ## Conditional component-library integration
+
+  When the project already uses Tabler or explicitly requests it, consult [framework-tabler](knowledge/skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/frameworks/framework-tabler/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration

@@ -253,6 +253,7 @@
         "framework-soap",
         "framework-spring-ai",
         "framework-spring-boot",
+        "framework-tabler",
         "framework-testing",
         "framework-testing-javascript",
         "framework-testing-python",

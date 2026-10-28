@@ -20,3 +20,7 @@ Inject each defect separately in the test context, observe the discriminating as
 | Make off/on switch tracks and thumb paint identical and remove thumb displacement | Distinguishable state output fails |
 
 The examples can establish that a particular oracle detects a controlled defect. They do not render every visual style, prove a skill caused an agent's improvement, or cover every writing system, browser, assistive technology or moving gradient frame.
+
+## Forced colors and loading information
+
+The fixture also includes a dismissible notice with focus restoration and a loading status whose decorative spinner stops under reduced motion. Use [forced-colors and motion exercises](forced-colors-motion-exercises.md) for positive cases and controlled defects. Keep these observations separate from source/schema checks.

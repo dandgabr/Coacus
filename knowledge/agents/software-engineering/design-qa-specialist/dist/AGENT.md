@@ -5,6 +5,7 @@ Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibili
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md)
 - [ui-design-craftsmanship](../../../../skills/engineering/practices/ui-design-craftsmanship/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
@@ -93,3 +94,7 @@ Use the agent selector and choose `design-qa-specialist`.
 ```text
 invoke_subagent(TypeName="design-qa-specialist", Role="Design QA Specialist", Prompt="...")
 ```
+
+## Conditional component-library integration
+
+When the project already uses Tabler or explicitly requests it, consult [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.

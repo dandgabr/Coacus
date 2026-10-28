@@ -281,3 +281,7 @@ Moving release pins in this file were resolved 2026-10-20:
 - **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap
 - **lenis 1.3.27** (verified) — https://registry.npmjs.org/lenis
 - **React `<ViewTransition>` stable in React 19.3.0** (verified; released 2026-09-09, latest 19.3.1) — https://react.dev/blog/2026/09/09/react-19-3 and https://registry.npmjs.org/react
+
+## Conditional Tabler Integration
+
+For an existing Tabler dependency or an explicit Tabler request, use [framework-tabler](../../frameworks/framework-tabler/SKILL.md). Match component documentation to the installed release and verify client-side initialization and cleanup. A generic dashboard request preserves the project’s existing component library.
