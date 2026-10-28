@@ -690,7 +690,7 @@
       "source_path": "agents/software-engineering/documenter/AGENT.md",
       "source_sha256": "eac2de60990f318ddcbccb52425c8cb8a80edb70c336d7f51d94f7ee889c2bf8",
       "target_path": "knowledge/agents/software-engineering/documenter/agent.source.md",
-      "target_sha256": "8ad2d6f827eeac8b301237fdd2bc17625f6db37489ce8fae83e78530e92e43b6",
+      "target_sha256": "e4d157468af2bf6fe26c19ce805361595cada5c1849cb36bfd7caf65b29ebae3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4456,7 +4456,7 @@
       "source_path": "skills/engineering-practices/architecture-documentation/SKILL.md",
       "source_sha256": "da12d44f2aca6608a6b25dded54dd1e3143f3b7aadf7305dc763531c4bb789a8",
       "target_path": "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
-      "target_sha256": "46530f41ed8f03f8bea2796741e26c99eedb817d0261de0519b550e2f7fea0ae",
+      "target_sha256": "57a9488c6ff2057c0226b62bd0b73f43c87d40b4adec602bb24a87c7975a20aa",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4570,9 +4570,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/engineering-practices/c4-model-architecture/SKILL.md",
-      "source_sha256": "3f2e28ea863fb79cb4cc349eacecf2546acfa957a0e7ad8d74834153914dd151",
+      "source_sha256": "c9df5a2d07cbbbbe14d70d6bfc2e88ef7176bf623aa7d7a63d858876f48839a6",
       "target_path": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-      "target_sha256": "3f2e28ea863fb79cb4cc349eacecf2546acfa957a0e7ad8d74834153914dd151",
+      "target_sha256": "c9df5a2d07cbbbbe14d70d6bfc2e88ef7176bf623aa7d7a63d858876f48839a6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4744,7 +4744,7 @@
       "source_path": "skills/engineering-practices/documentation-designer/SKILL.md",
       "source_sha256": "993f43e958ba9459281ccb66b6882c38c4f1f3249d38910b6680bcf1ca880123",
       "target_path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "target_sha256": "9f64578b69f4c77119b5c63fff977c421bd7bef729ee44e56fc8aed898e07c3e",
+      "target_sha256": "20b5cdef8b3f2ab3688e3fc1214d5db5fb36db8aa5b7b7dbbde87045a009a924",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -8802,7 +8802,7 @@
       "source_path": "skills/mapping/code-architecture-mapping/SKILL.md",
       "source_sha256": "d216d40af5918dfa5d9c16b2b3ed3a3575533d622c137398c064894071bdb1fd",
       "target_path": "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
-      "target_sha256": "a02d7004e13cd0b66e925871443caa1ac900ee83e291da2825dc9fed60a0ac3d",
+      "target_sha256": "6a6a5d33ddfb8bc1c5b448f88dc48dbac3b2a05a232bda31ddd573021ab7b2c0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -9015,7 +9015,7 @@
       "source_path": "skills/mapping/graph-relationship-mapping/SKILL.md",
       "source_sha256": "f24827f59097aa0a4956f09ea867943322fa3ff9715ae904a6d650f47416b0d1",
       "target_path": "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
-      "target_sha256": "b2919fe7f3d908200e754dadd6498e3807897719d5e1b694206ea21563f1107a",
+      "target_sha256": "779d4c989403f1273eb49ab61ecde402da453ae0ccc7b24f0f35cdead018e0a5",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -9512,7 +9512,7 @@
       "source_path": "skills/mapping/uml-diagram-generation/SKILL.md",
       "source_sha256": "3630507f4384ed08a2a254992bb8d256a4cd3c1ee87bb3ab6c4282ee50d31c82",
       "target_path": "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
-      "target_sha256": "42e3f9398d0ceb168df43ef0ea51763748baa25589713bc1afea2ae321dece11",
+      "target_sha256": "e6665df09c6cf2acff86bba1fa007b2f86c484060fe7ff61d1db7bbd435d1407",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -21111,9 +21111,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
-      "source_sha256": "ffd14c6db7e3b791c7a58bc0032421b2e79e6c9f2377568311f1e13e767ed56f",
+      "source_sha256": "1ea8f864116e1062a31608f5a3c43a23eb45ad770510ba09b60ba4f36f644d2f",
       "target_path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
-      "target_sha256": "ffd14c6db7e3b791c7a58bc0032421b2e79e6c9f2377568311f1e13e767ed56f",
+      "target_sha256": "1ea8f864116e1062a31608f5a3c43a23eb45ad770510ba09b60ba4f36f644d2f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21121,6 +21121,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-28T00:53:00Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md",
+      "source_sha256": "e4a6f28934c3f8308605bb4ec26b459a39ebe7c38ecec4fda3a0c756719d7779",
+      "target_path": "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md",
+      "target_sha256": "e4a6f28934c3f8308605bb4ec26b459a39ebe7c38ecec4fda3a0c756719d7779",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T01:28:13Z"
     }
   ]
 }

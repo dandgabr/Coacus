@@ -163,6 +163,27 @@ then use [operational consent and erasure evidence](../knowledge/skills/security
 when checking the actual implementation. State unobserved network, processor
 and server boundaries rather than inferring compliance from a banner.
 
+### Persistent editable diagrams
+
+Use [editable diagram engineering](../knowledge/skills/mapping/editable-diagram-engineering/SKILL.md)
+for persistent diagrams that must survive manual edits, source updates or format
+conversion. The existing [documenter](../knowledge/agents/software-engineering/documenter/agent.source.md)
+coordinates diagram communication; UML/C4 and mapping owners retain notation
+and extraction responsibility. Ordinary inline Mermaid remains suitable when
+no editable-file lifecycle is required.
+
+Keep an identified authoritative source, revision and editable original. Separate
+semantic changes from layout and story changes; record conversion losses and
+check reopening as well as rendered output. Select tools by actual format, page, identity, patch, concurrency, undo and
+export capabilities. Recipes generalize those techniques across editors;
+draw.io and DrawCMS are optional case studies with snapshot-specific limits.
+They do not install an editor or MCP server.
+
+For animated exports, use the existing [motion adapter reference](../knowledge/skills/domains/design/deterministic-motion-rendering/references/diagram-export-adapters.md)
+for endpoint and duration differences. An authored walkthrough is not evidence
+of observed production traffic. Static scenario validation and reasoning evals
+remain separate from actual editor readback, rendering and export evidence.
+
 ### Validate a TOON payload
 
 ```bash

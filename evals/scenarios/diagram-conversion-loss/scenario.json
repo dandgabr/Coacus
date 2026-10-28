@@ -1,0 +1,19 @@
+{
+  "id": "diagram-conversion-loss",
+  "title": "Editable conversion and loss records",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. A converter emits a Mermaid flowchart from a draw.io sequence model and skips compressed pages. The result drops activation bars and groups. A PNG of another diagram has no embedded model data. The author claims both conversions are fully editable lossless roundtrips. Diagnose the claims and specify delivery evidence.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Record preserved, approximated, flattened, dropped and unverified semantics, identity, grouping, geometry, assets and metadata as relevant.",
+    "Retain the original when the target cannot express meaning; do not claim arbitrary roundtrip fidelity.",
+    "Distinguish embedded model extraction from uncertain visual reconstruction; PNG pixels alone do not recover the original editable graph."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "diagram-local-cloud-boundary",
+  "title": "Local editor and companion cloud workflow",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. A user asks for a portable DrawCMS diagram using the OSS app with local browser storage. A companion skill describes a cloud CLI with login, push and project history. The assistant says the local app requires cloud login and that local-first proves no network access, although icons may be fetched remotely. Correct the recipe without installing anything.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Distinguish the OSS app storage path from the companion cloud CLI and its operations.",
+    "Do not impose account, push or cloud history on the local workflow; inspect actual document/tool capabilities.",
+    "Local-first is not proof of network isolation; document external asset requests and portable-file limits without inventing runtime observations."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

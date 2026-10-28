@@ -98,3 +98,11 @@ When analyzing dependency and security graphs, the specialist should apply class
 - [ ] **Directed Edges with Clear Semantics**: Name relationships with expressive verbs (`[:CALLS]`, `[:IMPLEMENTS]`, `[:DEPENDS_ON]`, `[:COMMUNICATES_WITH]`, `[:ADMIN_TO]`).
 - [ ] **Indexing of Search Properties**: Create unique indexes on node IDs and names (`CREATE CONSTRAINT FOR (n:Node) REQUIRE n.id IS UNIQUE`) to guarantee sub-second Cypher queries on graphs with millions of vertices.
 - [ ] **Orphan Node Cleanup**: Run periodic maintenance routines to remove nodes without relationships left over from older code versions.
+
+## Model Query Evidence Boundaries
+
+State which declared or observed relationships a path, impact or dependency
+query traverses, including revision and coverage gaps. A graph result or a
+filtered diagram does not by itself prove deployed reachability, encryption,
+reliability or exploitability. Preserve those evidence limits in diagram
+consumers using [editable diagram engineering](../editable-diagram-engineering/SKILL.md).

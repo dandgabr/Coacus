@@ -529,6 +529,10 @@
       "readme",
       "diagrama",
       "mermaid",
+      "editable diagram",
+      "draw.io",
+      "drawio",
+      "drawcms",
       "adr"
     ],
     "domain-architect": [

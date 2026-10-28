@@ -180,3 +180,14 @@ godepgraph -s github.com/empresa/my-repo | dot -Tpng -o godeps.png
 - [ ] **Architecture Lock in CI/CD**: Fail the build if new dependency cycles or layer violations are introduced in Pull Requests.
 - [ ] **Martin's Metrics**: Keep the distance from the main sequence ($D$) below `0.2` for core business packages.
 - [ ] **Monorepo Isolation**: Configure explicit boundary limits (isolation tags in Nx or package rules in Dependency Cruiser) to prevent internal libraries from importing private modules from other domains.
+
+## Evidence for Diagram Consumers
+
+Carry source revision, extraction scope and known gaps with the graph. Static
+imports are dependencies under the extractor's rules, not observed runtime
+traffic. Desired infrastructure configuration differs from a live snapshot
+observed at a particular time. Label extracted, inferred, proposed and unknown
+relationships so the visual consumer does not silently promote assumptions to
+facts. Use [editable diagram engineering](../editable-diagram-engineering/SKILL.md)
+for artifact identity and reconciliation; keep extraction and architecture
+rules with the existing mapping owners.

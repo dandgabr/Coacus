@@ -2,7 +2,7 @@
   "id": "motion-export-readiness-timebase",
   "title": "Offline scene readiness and timebase",
   "harness": "codex",
-  "prompt": "A fixed-timeline product film requests an exact frame rate of 30000/1001 and 300 frames. The export waits two seconds after page load, accepts fallback fonts, captures before an image decodes, and renders frames 0 through 300 inclusive. Video textures seek backward by setting currentTime, without confirming the presented frame. Diagnose the contract and give acceptance evidence. Do not run tools or change files.",
+  "prompt": "A fixed-timeline product film requests an exact frame rate of 30000/1001 and 300 frames. The export waits two seconds after page load, accepts fallback fonts, captures before an image decodes, and renders frames 0 through 300 inclusive. Video textures seek backward by setting currentTime, without confirming the presented frame. Diagnose the contract and give acceptance evidence. Do not run tools or change files. In a separate diagram export case, an external editor samples a one-second scene at 30 fps using ceil(duration * fps) + 1, clamps times to duration, and assigns a full frame delay to every sample. Review whether it satisfies a 30-frame delivery contract; do not assume a container duration or silently discard the endpoint.",
   "checks": [
     {
       "kind": "regex",
@@ -14,7 +14,8 @@
     "Requires bounded, named readiness checks and verifies required assets rather than silent fallback or fixed sleep.",
     "Keeps the rational rate, frame domain 0 through 299, and duration 300 times 1001/30000 seconds; does not add an endpoint frame.",
     "Distinguishes requested media seek time from decoded/presented media frame evidence and handles backward seeks.",
-    "Keeps frame-order readiness and export verification separate from animation performance or arbitrary 60 fps requirements."
+    "Keeps frame-order readiness and export verification separate from animation performance or arbitrary 60 fps requirements.",
+    "Identifies the uncapped 31 endpoint-inclusive samples, distinguishes scene sample time from encoded playback duration, and proposes an explicit adapter conversion or limitation rather than silently changing rate, endpoint or timing."
   ],
   "acceptance": "The response makes the justified decisions, identifies discriminating project-level checks, and states evidence limits without inventing execution. Static validation and keyword matching do not prove runtime behavior."
 }

@@ -811,6 +811,9 @@
       "path": "knowledge/skills/mapping/db-schema-reverse-mapping"
     },
     {
+      "path": "knowledge/skills/mapping/editable-diagram-engineering"
+    },
+    {
       "path": "knowledge/skills/mapping/execution-flow-callgraph"
     },
     {

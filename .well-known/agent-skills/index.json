@@ -370,7 +370,7 @@
       "description": "Guides the technical documentation of software systems and architectures with the C4 Model, Mermaid-structured diagrams, Architectural Decision Record management (ADRs in MADR 3.0 format), and traceability matrices that link requirements, decisions, and components.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
-      "digest": "sha256:eb6fc72d3bd607f6bbccd511f748a503cc346b895be69fb7c33abbe67f95f21a"
+      "digest": "sha256:34601795453ab3b4b0a4c967abe2c58cf8c23a780badd5f7ed2616bd909573e5"
     },
     {
       "name": "ats-resume-optimization",
@@ -447,7 +447,7 @@
       "description": "Acts as a specialist in modeling and documenting software architecture with the C4 Model (Context, Containers, Components, Code) created by Simon Brown, integrated with PlantUML, Structurizr DSL, and Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-      "digest": "sha256:9caff42c34c51c93b1d45581e78420dc4b2ae9ee58c3c53ae49e9d8e94a08ebd"
+      "digest": "sha256:e7a45d9de9391f6856a49b26331957850a976d8966a258e6beef1eb03fcce582"
     },
     {
       "name": "canvas-spatial-whiteboarding",
@@ -580,7 +580,7 @@
       "description": "Provides expertise in source code mapping, software architecture, AST analysis, and class dependencies across Java, .NET, Python, TypeScript, Go, and multilingual codebases (Structure101, Sonargraph, ArchUnit, jQAssistant, NDepend, Roslyn, Pyreverse, Dependency Cruiser, Madge, Nx Graph, Go Callvis, CodeScene, SonarQube, Sourcetrail, Understand).",
       "type": "archive",
       "url": "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
-      "digest": "sha256:9bf7a17d3b1f5e399b6104987de5c54a7b6d277de31b11584494efd240c20e9e"
+      "digest": "sha256:b7a563465e35bf1edc7e0e8e3f5e3f953fd1a4ee4fc903c293a7d5250f111e15"
     },
     {
       "name": "code-mapping-specialist",
@@ -860,7 +860,7 @@
       "description": "Provides offline animation and video export guidance when rendering scenes frame by frame, seeking arbitrary frames, or verifying reproducible fixed-timeline media. Covers scene readiness, frame evaluation and exported media evidence rather than ordinary live UI interaction.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
-      "digest": "sha256:19aba660fe5abd3451cf8f699eda17ff54a55dfa81dd815b2e0d47f022cb73a8"
+      "digest": "sha256:203fc160bcc80b052553f2bd0eddbbbd2775793f2ab4e2812dc5c7172a00d8fc"
     },
     {
       "name": "devops-engineer",
@@ -923,7 +923,7 @@
       "description": "Acts as a specialist in Technical Documentation Engineering, Human Anti-AI Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture, and Visual Diagram Modeling with Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "digest": "sha256:21c78280371f7557cb801e1d747624d0fdb16b4308e5d23eefe21f7b676eff18"
+      "digest": "sha256:ec76c2ecb2d7fc77fa535c01e0ee3e5c8dc248aeed3a26a60b14f0634b700a2f"
     },
     {
       "name": "domain-architect",
@@ -959,6 +959,13 @@
       "type": "archive",
       "url": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
       "digest": "sha256:23c6a5d5d5763a4f579c5bc660db8ec551585e8f3bf7644491de09af437f6333"
+    },
+    {
+      "name": "editable-diagram-engineering",
+      "description": "Provides persistent editable technical diagram authoring, incremental updates and conversion guidance when creating or maintaining editable diagram files or editor documents, preserving human edits, or assessing roundtrip fidelity.",
+      "type": "archive",
+      "url": "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md",
+      "digest": "sha256:96f800fdedc8863ee3872ebc48876e730d1d55be41accf6bde418d9a66eb826d"
     },
     {
       "name": "edr-evasion-endpoint-security",
@@ -1315,7 +1322,7 @@
       "description": "Provides expertise in Knowledge Graph modeling, dependency relationships, property graph engineering, and attack/security surface mapping using Neo4j, Cartography, jQAssistant, BloodHound, ArangoDB, JanusGraph, Attack Flow, and OpenCTI.",
       "type": "archive",
       "url": "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
-      "digest": "sha256:02c2a36bd9e0681e104d34295fcdebeb66cd84459bdff0b8497d75e7461f2a1c"
+      "digest": "sha256:6332b0fdb90ab750cfaaa27eb5e2dc64c080f8cd55e0d5d908e46b326d6775cb"
     },
     {
       "name": "grc-automation-oscal",
@@ -3212,7 +3219,7 @@
       "description": "Provides expertise in reverse engineering code into UML diagrams, software topologies, and visual models using PlantUML, UMLGraph, ObjectAid, Visual Paradigm, StarUML, Doxygen, Graphviz, and Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
-      "digest": "sha256:add5da1612abcd2ff05c80386486b40021311ecf5ed9f11f42dd74a0d4a1dd12"
+      "digest": "sha256:32096ed1f70dadaeb5bc9fad7e2c5e46ccc30ea843ae97cb093c25244b7282f5"
     },
     {
       "name": "untrusted-content-security",
