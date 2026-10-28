@@ -10,10 +10,26 @@
 <button id="front" disabled>Front view</button><button id="side" disabled>Side view</button><button id="three" disabled>Three-quarter view</button><button id="save" disabled>Save image as PNG</button>
 <div id="scene"></div>
 <p id="status" role="status"></p>
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}
-</script>
 <script type="module">
+const dependencies = {
+  'three.module.js': 'sha384-wyxAlyAVVsyc7KN24a4+m1tMTC2BwrjQyLgLStDaUBDmwK+gWUMULWHSS0NRoZKv',
+  'three.core.js': 'sha384-r1q8Si7xFBrvMv3Q4yjQkKhkYZ2lp+wn/bPPzNZTsc8DY4uPJmm2vheuz1Yn+8m8'
+};
+async function loadThree() {
+  const base = 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/';
+  const entries = await Promise.all(Object.entries(dependencies).map(async ([name, integrity]) => {
+    const request = new Request(base + name, { integrity, mode: 'cors' });
+    if (request.integrity !== integrity) throw new Error('Integrity verification unavailable');
+    const response = await fetch(request);
+    if (!response.ok) throw new Error('Dependency unavailable');
+    return [name, await response.text()];
+  }));
+  const sources = Object.fromEntries(entries);
+  const core = URL.createObjectURL(new Blob([sources['three.core.js']], {type:'text/javascript'}));
+  const module = URL.createObjectURL(new Blob([sources['three.module.js'].replaceAll("'./three.core.js'", JSON.stringify(core))], {type:'text/javascript'}));
+  try { return await import(module); }
+  finally { URL.revokeObjectURL(module); URL.revokeObjectURL(core); }
+}
 let THREE;
 function createLamp({ height = 2, color = 0xf1a45b } = {}) {
   const root = new THREE.Group(), parts = {}, owned = [];
@@ -48,7 +64,7 @@ function createMug({ color = 0x6d9eaa } = {}) {
 }
 let renderer;
 try {
-  THREE = await import('three');
+  THREE = await loadThree();
   renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
   renderer.setSize(800,500,false);
   document.querySelector('#scene').append(renderer.domElement);

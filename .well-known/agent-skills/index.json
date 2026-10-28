@@ -3275,7 +3275,7 @@
       "description": "Provides procedural editable 3D object modeling for web layouts from text or reference images. Use when constructing parametric objects, reviewing shapes, preparing interactive models, or rendering static page images.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md",
-      "digest": "sha256:4ea3daeeb228c31434059e407eba61abf073a8a2e4c58f0b02f41d3e51cf162b"
+      "digest": "sha256:587d3cd166c14237b98c8e15c2a924882dd9d1eb42b1b800dab9a8d54567e346"
     },
     {
       "name": "web-accessibility-wcag",
