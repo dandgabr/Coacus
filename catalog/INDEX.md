@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 473 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 474 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -387,6 +387,7 @@
 | cloud-topology-mapping | [knowledge/skills/mapping/cloud-topology-mapping/SKILL.md](../knowledge/skills/mapping/cloud-topology-mapping/SKILL.md) |
 | code-architecture-mapping | [knowledge/skills/mapping/code-architecture-mapping/SKILL.md](../knowledge/skills/mapping/code-architecture-mapping/SKILL.md) |
 | db-schema-reverse-mapping | [knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md](../knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md) |
+| editable-diagram-engineering | [knowledge/skills/mapping/editable-diagram-engineering/SKILL.md](../knowledge/skills/mapping/editable-diagram-engineering/SKILL.md) |
 | execution-flow-callgraph | [knowledge/skills/mapping/execution-flow-callgraph/SKILL.md](../knowledge/skills/mapping/execution-flow-callgraph/SKILL.md) |
 | graph-relationship-mapping | [knowledge/skills/mapping/graph-relationship-mapping/SKILL.md](../knowledge/skills/mapping/graph-relationship-mapping/SKILL.md) |
 | infra-inventory-cmdb | [knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md](../knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md) |

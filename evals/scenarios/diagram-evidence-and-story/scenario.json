@@ -1,0 +1,19 @@
+{
+  "id": "diagram-evidence-and-story",
+  "title": "Declared diagram facts and animated explanation",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. A code import and desired Terraform configuration produce a filtered security view. Missing metadata triggers a fallback to the full graph. A rule passes because an edge label says encrypted, and an animated arrow shows the request path. The report claims deployed encryption, network reachability and an observed runtime trace. Review the evidence and propose a truthful explanation.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Distinguish extracted, inferred, proposed and unknown relationships; desired configuration and static imports do not establish observed deployment or traffic.",
+    "Heuristic view selection and declaration-based architecture rules cannot certify deployed security or actual reachability.",
+    "Label motion/story as authored explanation, provide a static/text equivalent and explain what runtime evidence would be needed for stronger claims."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

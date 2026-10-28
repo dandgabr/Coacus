@@ -1,0 +1,19 @@
+{
+  "id": "diagram-stable-identity-sync",
+  "title": "Stable identity and human-preserving synchronization",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. The source renames billing-api to payments-api but keeps its stable service ID. The editable diagram has a manually positioned node, a custom label and a second page maintained by a person. A generator proposes deleting billing-api, creating a new node and replacing the file from source. Describe an incremental update and its evidence limits. Also explain how the approach changes if no previous source baseline exists.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Separate stable identity from labels and require evidence before treating a rename as deletion/recreation.",
+    "Compare baseline, manual state and new source when available; preserve unaffected layout, annotations and pages.",
+    "Expose competing label/source edits as conflicts without universal automatic precedence. Without a baseline, do not invent one or overwrite unexplained differences."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

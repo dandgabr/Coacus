@@ -261,3 +261,12 @@ every finding:
 
 > For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md). For GitHub README engineering and templates, see [`references/github-readme-engineering-guide.md`](./references/github-readme-engineering-guide.md).
 
+## Format Selection for Editable Diagrams
+
+Keep lightweight inline Mermaid when it answers the reader's question. Use
+[editable diagram engineering](../../../mapping/editable-diagram-engineering/SKILL.md)
+when the task requires a persistent visual artifact, incremental editing or
+conversion between formats. Keep prose and document structure here rather than
+duplicating model-sync or editor-specific recipes. Provide a readable textual
+explanation and legend appropriate to the audience; the diagram's motion must
+not be the only carrier of meaning.

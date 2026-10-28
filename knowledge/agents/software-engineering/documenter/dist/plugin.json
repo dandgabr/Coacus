@@ -1,6 +1,6 @@
 {
   "name": "documenter",
   "version": "0.1.0",
-  "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+  "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
   "entrypoint": "AGENT.md"
 }

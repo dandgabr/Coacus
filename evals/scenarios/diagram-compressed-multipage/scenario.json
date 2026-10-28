@@ -1,0 +1,19 @@
+{
+  "id": "diagram-compressed-multipage",
+  "title": "Adapter page and compression boundaries",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. An editable draw.io file has three pages: the first is uncompressed XML and the next two are compressed. The selected reconciliation implementation only patches the first uncompressed page. The task requests a change on page three. A plan says sync succeeded because the first page parsed. Review it and propose a capability-aware delivery.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Inspect page structure and target capability before mutation; successful first-page parsing does not satisfy a third-page edit.",
+    "Preserve original pages and avoid blind conversion or whole-file replacement; select a supported path or provide an explicit proposed change.",
+    "Reopen/read back the intended page and rendered output when execution is possible; state checks not run."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

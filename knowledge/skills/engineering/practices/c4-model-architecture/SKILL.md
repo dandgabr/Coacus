@@ -132,3 +132,12 @@ C4Container
    - Use boundary delimiters (`System_Boundary`, `Container_Boundary`) to separate clearly what belongs to the system scope from what is external.
 4. **Alignment with Documentation**:
    - Integrate C4 diagrams into Software Architecture Documents (SADs) and Architectural Decision Records (ADRs).
+
+## Editable Views and Dynamic Explanations
+
+For persistent files and layout-preserving updates, use [editable diagram engineering](../../../mapping/editable-diagram-engineering/SKILL.md).
+Keep C4 abstraction and meaning here, and view authority with
+[architecture documentation](../architecture-documentation/SKILL.md).
+A presentation sequence or animated request path may explain a design; label
+its evidence separately from an observed execution. Do not infer trust or
+transport guarantees merely from the title of a security view.

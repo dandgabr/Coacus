@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 445 skills across eleven categories, 104 agents, and one MCP declaration.
+- **Knowledge** — what the framework knows: 446 skills across eleven categories, 104 agents, and one MCP declaration.
 - **Methodology** — how work proceeds: 28 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 445 | `domains` 149, `security` 133, `engineering` 37, `roles` 26, `languages` 20, `frameworks` 17, `data` 17, `mapping` 15, `architecture` 14, `infrastructure` 10, `platforms` 7 |
+| Skills | 446 | `domains` 149, `security` 133, `engineering` 37, `roles` 26, `languages` 20, `frameworks` 17, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 7 |
 | Agents | 104 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 12, `data-cloud-devops` 9, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 28 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
 | MCPs | 1 | `coacus-catalog` |
-| Catalog | 473 skill entries | 445 knowledge skills + 28 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1448 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 474 skill entries | 446 knowledge skills + 28 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1449 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Core engine (stdlib only; language gate dependency is pinned)
 

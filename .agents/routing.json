@@ -1070,9 +1070,10 @@
     {
       "name": "documenter",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md",
         "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
         "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
@@ -1086,6 +1087,10 @@
         "documentar",
         "documentation",
         "documenta\u00e7\u00e3o",
+        "draw.io",
+        "drawcms",
+        "drawio",
+        "editable diagram",
         "mermaid",
         "readme"
       ]

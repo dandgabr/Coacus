@@ -309,6 +309,7 @@
         "cloud-topology-mapping",
         "code-architecture-mapping",
         "db-schema-reverse-mapping",
+        "editable-diagram-engineering",
         "execution-flow-callgraph",
         "graph-relationship-mapping",
         "infra-inventory-cmdb",

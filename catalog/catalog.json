@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 104,
-    "skills": 473,
+    "skills": 474,
     "mcps": 1
   },
   "agents": [
@@ -225,7 +225,7 @@
     {
       "name": "documenter",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
       "source": "knowledge/agents/software-engineering/documenter/agent.source.md"
     },
     {
@@ -1711,6 +1711,10 @@
     {
       "name": "db-schema-reverse-mapping",
       "path": "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md"
+    },
+    {
+      "name": "editable-diagram-engineering",
+      "path": "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md"
     },
     {
       "name": "execution-flow-callgraph",

@@ -1,0 +1,19 @@
+{
+  "id": "diagram-schema-and-graph-validity",
+  "title": "Format-aware graph and schema verification",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, install software or claim execution. A diagram contains a valid bidirectional pair, an intentional isolated legend node, a connector with a missing target and unknown metadata in a supported document version. A validator proposes rejecting all cycles and deleting every unknown field. Another input declares an unsupported future document version. Review the validation policy.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|preserv|unknown|capabil|limit|source)",
+      "reason": "Advisory routing signal only; use the rubric to judge decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Reject or flag unresolved endpoints according to format semantics, while allowing intentional cycles, bidirectional edges and isolated elements where valid.",
+    "Preserve unknown fields within supported schema behavior rather than silently stripping them.",
+    "Handle unsupported future versions explicitly without pretending full understanding; separate parsing/schema checks from semantic and rendered evidence."
+  ],
+  "acceptance": "The response makes justified format-aware decisions, preserves human work and states discriminating checks and evidence limits. Static checks and reasoning do not prove actual editor or exporter behavior."
+}

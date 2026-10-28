@@ -141,8 +141,8 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "80c8da24c8d30feb5efbd5ce02bb29d3d2f4692c3c24df9d5686f3d9851d141c",
-      "reason": "Reviewed existing approved bilingual routing terms unchanged; added only English motion graphics production triggers. The exact file digest preserves the documented bilingual routing contract."
+      "sha256": "041fc698dffaa468c1ff606a56bad9323176796dd11299d5dfc3b252660c387e",
+      "reason": "Reviewed existing approved bilingual terms unchanged; added English editable diagram terminology and product identifiers to the existing documentation owner. Exact file digest preserves the bilingual routing contract."
     },
     {
       "path": "knowledge/skills/data/data-intensive-systems/SKILL.md",

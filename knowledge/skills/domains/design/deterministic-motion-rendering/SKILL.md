@@ -41,6 +41,10 @@ Load only the reference needed for the current operation:
 - For capture records, external encoding recipes, decoded-output inspection
   and acceptance evidence, use [reproducibility and review](references/reproducibility-and-review.md).
 
+For an animated technical diagram exported from an editor, use
+[diagram export adapters](references/diagram-export-adapters.md) to reconcile
+endpoint samples, frame caps and output timing with the delivery contract.
+
 ## Preserve ownership
 
 Use [interactive motion](../ui-motion-interaction/SKILL.md) for live controls,
