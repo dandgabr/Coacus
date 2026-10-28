@@ -136,3 +136,7 @@ for them:
   are consistent: weight, corner and margin are judged side by side.
 - Draw inspired glyphs rather than trace a trademarked logo when the set is not the
   owner's.
+
+## Reference and Commercial Evidence
+
+When adopting screenshots, URLs or recordings, use [reference evidence and adoption](references/reference-evidence-and-adoption.md) to separate observations, inferences and unknowns, preserve semantic tokens and document claim and asset evidence. Keep legal interpretation with the compliance owner.

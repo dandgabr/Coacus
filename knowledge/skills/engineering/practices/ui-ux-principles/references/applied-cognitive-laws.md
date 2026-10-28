@@ -18,7 +18,7 @@ Where:
 - $a$ is start/stop motor reaction time; $1/b$ is human motor channel bandwidth (throughput in bits/s).
 
 **Corner & Edge Advantage (Infinity Edges):**
-When a target is anchored against a physical display edge or corner, the effective target width $W \to \infty$. Consequently, $\lim_{W \to \infty} \log_2(D/W + 1) = 0$, reducing acquisition time to near-instantaneous ballistic movement.
+A pointer constrained by a display edge can make overshooting a target harder. This depends on target placement, pointing device and display arrangement; it does not make acquisition instantaneous.
 
 ### 1.2. Graphical UI & Accessibility (WCAG 2.2)
 - **Minimum Target Dimensions:** Ensure touch and click targets satisfy WCAG 2.2 SC 2.5.8 (minimum $24 \times 24$ CSS px) and prefer AAA / Mobile platform baselines ($44 \times 44$ pt in Apple HIG, $48 \times 48$ dp in Material 3).
@@ -27,7 +27,7 @@ When a target is anchored against a physical display edge or corner, the effecti
 
 ### 1.3. CLI & Terminal Ergonomics (DevEx)
 - **Keystroke-Level Model (KLM-GOMS):** Distance $D$ in a terminal corresponds to physical hand and finger travel from the keyboard home row (`ASDF JKL;`). Frequent actions must leverage zero-travel modifier keys (`Tab`, `Enter`, `Ctrl+C`).
-- **Tab Completion as Infinite Width:** Shell autocomplete expands semantic target width $W$ to infinity, turning a fragile string entry into a single deterministic keystroke.
+- **Completion as recognition support:** Shell completion can reduce typing and recall. This is a practical analogy, not a measurement of infinite target width or a derivation from Fitts's equation.
 - **Immediate Inline Actions:** Suggested or corrective commands must be printed on the **very last line** directly above the shell prompt, minimizing visual and motor distance to execution.
 
 ### 1.4. Agentic Systems & Multi-Agent UX
@@ -56,7 +56,7 @@ Where:
 - $n$ is the number of equiprobable alternatives; $+1$ represents the uncertainty of whether to respond.
 - $b$ is cognitive processing rate ($\approx 150\text{--}200$ ms/bit).
 
-Decision time grows logarithmically when items can be mentally subdivided into categories, but degenerates into linear search ($O(n)$) when unstructured.
+These reaction-time models describe studied choice tasks, not a universal complexity bound for navigation or an LLM tool-selection model. Search strategy, familiarity and labels matter.
 
 ### 2.2. Graphical UI & Accessibility
 - **Progressive Disclosure:** Expose only primary workflows initially; reveal advanced configurations on-demand (e.g., expandable `<details>` accordions, segmented wizards).
@@ -69,7 +69,7 @@ Decision time grows logarithmically when items can be mentally subdivided into c
 - **Interactive Prompts vs. Flag Bloat:** Replace combinatorial flag puzzles with guided interactive selection prompts for multi-parameter scaffolding.
 
 ### 2.4. Agentic Systems & Multi-Agent UX
-- **On-Demand Tool Provisioning:** Injecting 50+ tool schemas into an LLM context causes choice degradation and argument hallucination. Route and inject only the $3\text{--}7$ tools relevant to the current agent phase.
+- **Relevant tool provisioning:** Select tools according to the actual task and measured model performance. Human choice experiments do not establish a fixed tool count for agents.
 - **Bounded HITL Decisions:** When an agent prompts a human operator, frame choices as mutually exclusive, numbered options ($2\text{--}4$ choices maximum) rather than open-ended queries.
 
 ### 2.5. Common Pitfalls
@@ -82,7 +82,7 @@ Decision time grows logarithmically when items can be mentally subdivided into c
 
 ### 3.1. Theoretical Foundation
 Identified by Bluma Zeigarnik (1927) under Kurt Lewin's Field Theory, and expanded by Maria Ovsiankina (1928):
-- **Zeigarnik Effect:** Uncompleted or interrupted tasks create a persistent quasi-need (*psychic tension*), resulting in approximately 90% higher recall than completed tasks.
+- **Zeigarnik Effect:** Recall differences for interrupted tasks depend on experimental conditions; do not promise a fixed recall improvement in a product.
 - **Ovsiankina Effect:** Interrupted tasks produce an intrinsic behavioral urge to resume and finish the action once constraints are lifted.
 - **Closure:** Reaching a clear completion boundary releases cognitive tension and allows memory buffers to clear.
 
@@ -157,7 +157,7 @@ Effort accelerates based on **relative perceived progress** rather than absolute
 
 ### 5.2. Graphical UI & Accessibility
 - **Step Indicators:** Multi-stage flows must show explicit step progression ("Step 2 of 4 — 50% Complete").
-- **Determinate Progress Bars:** For operations exceeding 2 seconds, use determinate progress bars with elapsed/estimated time rather than indefinite spinners.
+- **Progress honesty:** Show determinate progress when meaningful units are measurable; otherwise explain the active stage without inventing a percentage or completion time.
 
 ### 5.3. CLI & Terminal Ergonomics (DevEx)
 - **Determinate Progress in Workflows:** Output measurable progress (`[3/10] Compiling modules... (30%)`) for batch operations.
@@ -197,7 +197,7 @@ Discovered by Hedwig von Restorff (1933) and formalized in cognitive vision via 
 - **Diff Salience:** Use distinct line markers (`+`, `-`) in addition to green/red coloring for accessibility across diverse color profiles.
 
 ### 6.4. Agentic Systems & Multi-Agent UX
-- **Critical HITL Approval Gating:** When an agent transitions from read-only inspection to an action with side effects (file mutation, network push, command execution), isolate the approval card with distinct border styling, separating it from regular text output.
+- **Authorized HITL decisions:** When governing instructions require a human decision, make the action and consequences clear. Visual salience does not create an approval requirement for already-authorized work.
 
 ### 6.5. Common Pitfalls
 - **Terminal Rainbows:** Outputting random combinations of magenta, cyan, yellow, and red on every line, obliterating perceptual focus.
@@ -209,8 +209,8 @@ Discovered by Hedwig von Restorff (1933) and formalized in cognitive vision via 
 
 ### 7.1. Theoretical Foundation & Working Memory
 - **Miller's Law (1956):** George A. Miller established that human immediate memory span spans approximately $7 \pm 2$ discrete items. Crucially, capacity is measured not in raw bits, but in **Chunks** — meaningful cognitive units bound to prior knowledge.
-- **Cowan's Limit (2001):** Nelson Cowan demonstrated that when subvocal rehearsal and automatic grouping are controlled, pure human working memory capacity is strictly **$4 \pm 1$ active chunks**.
-- **Recognition vs. Recall:** The $4 \pm 1$ limit applies to information held in active memory without perceptual support. External visual aids reduce working memory load by enabling recognition over recall.
+- **Cowan's analysis (2001):** Capacity estimates near four chunks concern defined experimental conditions and controls for rehearsal and grouping. They are not a strict universal capacity for every person or task.
+- **Recognition vs. Recall:** External visual aids can reduce recall demands by supporting recognition; capacity findings depend on the experimental task and grouping conditions.
 
 ### 7.2. Graphical UI & Accessibility
 - **Information Chunking:** Decompose complex dashboards, forms, and tables into discrete, scannable clusters separated by whitespace.
@@ -218,12 +218,22 @@ Discovered by Hedwig von Restorff (1933) and formalized in cognitive vision via 
 
 ### 7.3. CLI & Terminal Ergonomics (DevEx)
 - **Categorized Help Output:** Never dump long lists of commands alphabetically. Group commands into $3\text{--}5$ functional chunks (e.g., Git's work-tree, commit, history, and collaboration groupings).
-- **Bounded Candidate Display:** Default routing and search proposals to top $3\text{--}5$ ranked candidates ($4 \pm 1$).
+- **Candidate display:** Offer a useful shortlist with access to further results. Choose its size through task evidence, not a direct transfer of working-memory estimates.
 
 ### 7.4. Agentic Systems & Multi-Agent UX
 - **Prompt Architecture & Attention Degradation:** Large context windows suffer from *Lost in the Middle* attention degradation. Structure system prompts into discrete semantic chunks using XML delimiters (`<rules>`, `<tools>`, `<guidelines>`).
-- **Atomic Review Chunks:** Never present a 50-file diff in a single review turn. Chunk reviews into atomic units of $3\text{--}5$ files per review checkpoint to ensure rigorous evaluation.
+- **Coherent review units:** Group changes by responsibility and dependencies while retaining whole-change integration review. No human memory study establishes a universal file count for an agent review.
 
 ### 7.5. Common Pitfalls
 - **The "Seven Menu Items" Fallacy:** Dogmatically restricting visible menus to 7 items when visual recognition renders working memory constraints inapplicable.
 - **Unstructured Stack Traces:** Dumping 200 lines of unparsed execution traces without summarizing root causes into digestible diagnostic chunks.
+
+## Evidence and transfer boundaries
+
+Reviewed 2026-10-27. Distinguish empirical models under defined conditions, practitioner heuristics and original Coacus recommendations. Do not turn a human memory estimate into a mandatory number of tools, files, agents or plan phases. Preserve genuine operational limits established by the governor independently of these analogies.
+
+- [Cowan original article](https://memory.psych.missouri.edu/assets/doc/articles/2001/cowan-bbs-2001.pdf): conditions, chunking and capacity estimates.
+- [GOV.UK service measurement](https://www.gov.uk/service-manual/measuring-success/measuring-the-success-of-your-service): connect task outcomes and user research.
+- [WAI involving users](https://www.w3.org/WAI/test-evaluate/involving-users/): human evaluation complements technical checks.
+
+The CLI and agent examples above are design proposals to validate in context, not findings that these papers established. Keep progress truthful, actions reversible where appropriate and choices understandable without fabricating study-backed numeric guarantees.

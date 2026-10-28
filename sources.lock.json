@@ -11552,7 +11552,7 @@
       "source_path": "skills/roles/ui-ux-designer/SKILL.md",
       "source_sha256": "f059a3eaf6a72ab2a7c65d079647f9fb6a94e8f3c35e522a086953b9956d72ff",
       "target_path": "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-      "target_sha256": "56ade0c505555d7747259bb680e447ccc50cb26bc81d84a44c8b501d1d46d2b7",
+      "target_sha256": "a6e07ef16bfdddb32f4394cc823ebb603b445bed7dc80283ae10e5945b1f4594",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -13259,9 +13259,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/grc-compliance/security-grc-compliance/SKILL.md",
-      "source_sha256": "a34eb24f54059eb64ed3e8b1e5a4bb8909842eaeb959d053864289fda18907bf",
+      "source_sha256": "89389702297587895641ca9a45ffd74a4ff5557b8bafd4c796a65988e573b8f4",
       "target_path": "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-      "target_sha256": "a34eb24f54059eb64ed3e8b1e5a4bb8909842eaeb959d053864289fda18907bf",
+      "target_sha256": "89389702297587895641ca9a45ffd74a4ff5557b8bafd4c796a65988e573b8f4",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -13409,9 +13409,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/grc-compliance/security-privacy/SKILL.md",
-      "source_sha256": "8333df46fb99986c0e9dcf08a1123953bf8f3c0c9c2f469101e2d8ad4c61468d",
+      "source_sha256": "a5ba4292b0fbb02b12529ba2ea6eb0e47c5033dc013d430cc6c97b3183126933",
       "target_path": "knowledge/skills/security/grc/security-privacy/SKILL.md",
-      "target_sha256": "8333df46fb99986c0e9dcf08a1123953bf8f3c0c9c2f469101e2d8ad4c61468d",
+      "target_sha256": "a5ba4292b0fbb02b12529ba2ea6eb0e47c5033dc013d430cc6c97b3183126933",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16806,9 +16806,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "source_sha256": "27b1adc1d9775b3e5bceb911c01485047b2bc81d4e03d46fca4d99045e3ab618",
+      "source_sha256": "8c1d3a5716450af388604637b7a6ece9e3cfd3f5a38a95cb02e03b7384246a1f",
       "target_path": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "target_sha256": "27b1adc1d9775b3e5bceb911c01485047b2bc81d4e03d46fca4d99045e3ab618",
+      "target_sha256": "8c1d3a5716450af388604637b7a6ece9e3cfd3f5a38a95cb02e03b7384246a1f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18156,9 +18156,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "source_sha256": "fd72c09ad27d46d03ab537be3090995df99891429a5a8de072900434ca4b410a",
+      "source_sha256": "8c40785a00de19288215e5166ab347be5cea0f8f1a36ec3d0a90ee7fa289349c",
       "target_path": "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-      "target_sha256": "fd72c09ad27d46d03ab537be3090995df99891429a5a8de072900434ca4b410a",
+      "target_sha256": "8c40785a00de19288215e5166ab347be5cea0f8f1a36ec3d0a90ee7fa289349c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18756,9 +18756,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "source_sha256": "ea72c7a57580c447e82b23adbfa74f1cf7b2eedbf826cbd38466a4fc41978502",
+      "source_sha256": "ea8ed02dc533f5dba78300d6e7b4d9d7da5c23bec027c177e2d17176facfdeea",
       "target_path": "knowledge/skills/roles/ux-designer/SKILL.md",
-      "target_sha256": "ea72c7a57580c447e82b23adbfa74f1cf7b2eedbf826cbd38466a4fc41978502",
+      "target_sha256": "ea8ed02dc533f5dba78300d6e7b4d9d7da5c23bec027c177e2d17176facfdeea",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19296,9 +19296,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "source_sha256": "f62755f951931d259fe46ad33cdb3166b03a2ec8324c210a967934671b9a4366",
+      "source_sha256": "045c1a49d761bbe05ad34cd4d41cf60bca433362c9f26bf934c2355559ac0005",
       "target_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "target_sha256": "f62755f951931d259fe46ad33cdb3166b03a2ec8324c210a967934671b9a4366",
+      "target_sha256": "045c1a49d761bbe05ad34cd4d41cf60bca433362c9f26bf934c2355559ac0005",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19311,9 +19311,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
-      "source_sha256": "37c574f18d409288d419776581206a1a27da8ec28fad5dab3614a7c4df2d2ef1",
+      "source_sha256": "98ba9c6e4d9d5be8259f94166cfa4f2b538689cd5896ec3b738812abcb61c0de",
       "target_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
-      "target_sha256": "37c574f18d409288d419776581206a1a27da8ec28fad5dab3614a7c4df2d2ef1",
+      "target_sha256": "98ba9c6e4d9d5be8259f94166cfa4f2b538689cd5896ec3b738812abcb61c0de",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20541,9 +20541,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
-      "source_sha256": "0a8ba013f4150cceb923b66591671686065ef01c2c46c89dd75f76b94bdd2160",
+      "source_sha256": "da8b130f1d098658a7b75437a9ecda41f08e000ec947bbb75f7c0fa56121b43d",
       "target_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
-      "target_sha256": "0a8ba013f4150cceb923b66591671686065ef01c2c46c89dd75f76b94bdd2160",
+      "target_sha256": "da8b130f1d098658a7b75437a9ecda41f08e000ec947bbb75f7c0fa56121b43d",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20556,9 +20556,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "source_sha256": "6565156ef5ce1e03b225c68a22bd743271c2bb9a16e2ff40746f3e47d992cf29",
+      "source_sha256": "3f34ef574f8a87ffd313cf64ca6b15d40655a71a4a9d8845b7cc52e0d562da71",
       "target_path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "target_sha256": "6565156ef5ce1e03b225c68a22bd743271c2bb9a16e2ff40746f3e47d992cf29",
+      "target_sha256": "3f34ef574f8a87ffd313cf64ca6b15d40655a71a4a9d8845b7cc52e0d562da71",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21091,6 +21091,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-25T02:53:36Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md",
+      "source_sha256": "d04f6c6cd3806bc243fc76d679b31270d36e2b466fa6e6d75a2f63b39c798363",
+      "target_path": "knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md",
+      "target_sha256": "d04f6c6cd3806bc243fc76d679b31270d36e2b466fa6e6d75a2f63b39c798363",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T00:53:00Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
+      "source_sha256": "ffd14c6db7e3b791c7a58bc0032421b2e79e6c9f2377568311f1e13e767ed56f",
+      "target_path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md",
+      "target_sha256": "ffd14c6db7e3b791c7a58bc0032421b2e79e6c9f2377568311f1e13e767ed56f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T00:53:00Z"
     }
   ]
 }

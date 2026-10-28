@@ -21,6 +21,20 @@ python3 -m unittest discover -s tests
 `[error]` lines before regenerating. `check` must report no drift; CI fails if it
 does not.
 
+## Reuse before extending
+
+Identify the canonical owner before adding a capability. Extend an existing
+skill or agent when it already owns the responsibility; use references and
+cross-links for conditional depth. Create a new artifact when its trigger and
+responsibility fill a demonstrated gap, and document neighboring ownership.
+For example, fixed-timeline audiovisual production belongs to
+[motion graphics production](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md),
+while live interface motion and GPU implementation retain their existing owners.
+
+For native skills, workflows and agent sources, `generate` records authored
+provenance automatically. For copied or adapted upstream files, retain imported
+provenance and license attribution. See [provenance](standards/provenance.md).
+
 ## Add a skill
 
 1. Copy `templates/authoring/skill.template.md` to
@@ -43,14 +57,15 @@ is kebab-case and equals the directory; `description` present; the slug is
 globally unique across both skill roots (one flat namespace); placement depth is
 `knowledge/skills/<category>` or `knowledge/skills/<category>/<subcategory>`;
 no nested `SKILL.md`; every local Markdown link resolves. Oversized
-descriptions and non-English markers are warnings, not errors.
+descriptions are blocked by the quality gate, and non-English or unresolved
+language findings are blocked by the repository language gate.
 
-Quality contract (`engine/validators/skill_quality.py`): `name` ≤ 64 chars and a
-balanced code fence are ERRORS; a body over the word budget and a
-description-register problem are warnings. The register, progressive-disclosure
+Quality contract (`engine/validators/skill_quality.py`): `name` ≤ 64 chars,
+`description` ≤ 1024 chars and balanced code fences are blocking requirements;
+a body over the word budget and a description-register problem are warnings. The register, progressive-disclosure
 and invocation rules are in [skill-authoring](standards/skill-authoring.md).
-After adding a skill, run `coacus validate`, then hand it to the `skill-auditor`
-agent for a severity-ranked review before publishing.
+After adding a skill, run the full gate above and obtain a severity-ranked
+review from the `skill-auditor` before publishing.
 
 ## Update a skill and its references
 

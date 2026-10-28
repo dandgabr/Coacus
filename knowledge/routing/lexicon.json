@@ -2,6 +2,14 @@
   "schema": 1,
   "description": "Curated bilingual (PT-BR + EN) routing lexicon. Maps agent names to trigger terms used by the deterministic router (engine/router.py). Edit this file to tune matching; the generated .agents/routing.json merges it with each agent's canonical name, category, description and skills. Keep terms lowercase; multi-word terms are matched as phrases.",
   "agents": {
+    "motion-graphics-producer": [
+      "motion graphics",
+      "storyboard",
+      "offline animation",
+      "frame-by-frame export",
+      "video production",
+      "deterministic rendering"
+    ],
     "ai-ml-architect": [
       "arquiteto de ia",
       "arquiteto de ml",

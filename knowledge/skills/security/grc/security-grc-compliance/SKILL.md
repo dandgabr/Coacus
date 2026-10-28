@@ -76,3 +76,9 @@ Moving release pins in this skill were resolved 2026-10-19:
 
 - **PCI DSS v4.0.1** (verified) — [PCI SSC current-version notice](https://blog.pcisecuritystandards.org/request-for-comments-pci-data-security-standard-pci-dss-v4.0.1)
 - **CVSS v4.0** (verified) — [FIRST CVSS v4.0](https://www.first.org/cvss/v4.0/)
+
+## Contextual Product Obligations
+
+For a commercial website or SaaS, establish jurisdiction, audience and contracting model before recommending supplier identification, terms, cancellation or refund disclosures. Do not invent a company identifier or require every site to place one in a footer. Verify the applicable official legal text before stating a mandatory obligation; an inaccessible source or search excerpt is insufficient for detailed legal rules.
+
+Use [privacy applicability](../security-privacy/references/saas-applicability-and-telemetry.md) for personal-data questions and [claim and asset evidence](../../../engineering/practices/ui-design-craftsmanship/references/reference-evidence-and-adoption.md) for substantiation records. Interpret those records in context rather than duplicating their collection procedure.

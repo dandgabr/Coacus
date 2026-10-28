@@ -1,0 +1,19 @@
+{
+  "id": "motion-export-frame-order",
+  "title": "Offline motion frame order",
+  "harness": "codex",
+  "prompt": "A scene exporter uses a seeded random generator created once when the page loads. Each render(frame) advances the generator and updates particle positions from their previous values. A client asks for frames 90, 0, 90 and plans parallel shuffled batches. Explain whether this meets repeatability, propose a scene evaluation contract, and give a discriminating verification. Do not implement or claim execution.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(order|reset|keyed)",
+      "reason": "Routing-level signal only; assess reasoning and evidence through the rubric."
+    }
+  ],
+  "rubric": [
+    "A seed alone does not remove capture-order dependence from mutable random streams or incremental simulation.",
+    "Proposes direct evaluation or reset and fixed-step replay/checkpoints with stable scene, element and sample identity.",
+    "Compares both requests for frame 90 and sequential versus shuffled evaluation in a controlled environment; does not claim the comparison ran."
+  ],
+  "acceptance": "The response makes the justified decisions, identifies discriminating project-level checks, and states evidence limits without inventing execution. Static validation and keyword matching do not prove runtime behavior."
+}

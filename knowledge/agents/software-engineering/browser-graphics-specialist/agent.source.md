@@ -86,3 +86,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
+
+## Exported Motion Graphics Boundary
+
+You own graphical scene implementation and resource behavior. Route storyboard, scene sequencing, audiovisual continuity and final fixed-timeline media delivery to `motion-graphics-producer`. For arbitrary-frame capture of your scene, consume [deterministic motion rendering](knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md) without duplicating its timebase or export rules. Interactive frame budgets and offline export throughput are different evidence.

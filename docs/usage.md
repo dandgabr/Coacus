@@ -28,11 +28,12 @@ python3 -m unittest discover -s tests  # deterministic suite
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
-artifacts. It also records a provenance entry for every authored skill, workflow
-and agent ([provenance](standards/provenance.md)); the write is idempotent. It
-then writes the generated files and checks the **artifact** outputs. If artifacts
+artifacts. After rendering, it also records a provenance entry for every authored
+skill, workflow and agent source ([provenance](standards/provenance.md)); the
+write is idempotent. It then checks the **artifact** outputs. If artifacts
 remain inconsistent after writing, it exits non-zero. Non-blocking warnings
-(language markers, oversized descriptions) print as `[warn]`.
+(body word budgets and description register) print as `[warn]`. Language findings
+and oversized descriptions are blocking errors.
 
 `check` compares disk against a fresh in-memory regeneration and exits 1 on any
 diff. It never writes. Generated files carry no timestamps, so the check is
@@ -134,6 +135,33 @@ selection — an unknown name is an error with suggestions. `--rerank "<command>
 plugs in an optional semantic reranker behind the same interface and fails open.
 See [routing](standards/routing.md) and the
 [tutorials](tutorials/) for a guided walkthrough of each mode.
+
+### Frontend and exported motion entry points
+
+Use [UI/UX coordination](../knowledge/skills/roles/ui-ux-designer/SKILL.md)
+for work spanning product context, reference analysis, UX, implementation and
+verification. Local repairs preserve existing decisions and skip unrelated
+rediscovery. The [reference adoption procedure](../knowledge/skills/engineering/practices/ui-design-craftsmanship/references/reference-evidence-and-adoption.md)
+separates observed properties, inferences and unknowns before adopting a design.
+
+Choose the owner by the requested deliverable:
+
+| Deliverable | Canonical owner |
+|---|---|
+| Storyboard, scene sequence and exported audiovisual piece | [motion graphics producer](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md) |
+| Hover, gesture, drawer or scroll interaction | [UI motion specialist](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
+| Canvas, GPU scene or shader implementation | [browser graphics specialist](../knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md) |
+
+The [deterministic motion skill](../knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md)
+provides frame-evaluation, resource-readiness and export-verification recipes.
+It does not install a renderer or require automatic delegation. Media tools are
+external project dependencies. Export evidence is separate from interactive
+player accessibility and from reasoning-only evaluations.
+
+For product privacy work, begin with [applicability and telemetry](../knowledge/skills/security/grc/security-privacy/references/saas-applicability-and-telemetry.md),
+then use [operational consent and erasure evidence](../knowledge/skills/security/grc/consent-dsr-automation/references/runtime-consent-and-erasure.md)
+when checking the actual implementation. State unobserved network, processor
+and server boundaries rather than inferring compliance from a banner.
 
 ### Validate a TOON payload
 
@@ -268,8 +296,7 @@ python3 scripts/coacus_eval.py run --judge-agent
 `--judge-cmd` receives `{"scenario": ..., "transcript": ...}` as JSON on stdin
 and must print a verdict line. `--judge-agent` routes the rubric through the
 same harness as a subagent. Transcripts are redacted by default; set
-`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The six seeded scenarios
-and the scenario schema are documented in [`../evals/README.md`](../evals/README.md).
+`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The scenario schema and execution boundaries are documented in [`../evals/README.md`](../evals/README.md).
 
 ## architecture_si vertical
 
@@ -326,7 +353,7 @@ python3 scripts/coacus_install.py claude-code --allow-advisory
 ```
 
 See [`lifecycle-guardrails`](standards/lifecycle-guardrails.md). The generated
-hook shell scripts are executed directly by `tests/test_guardrail_scripts.py`.
+hook adapters are exercised by `tests/test_guardrail_scripts.py`.
 
 ## Self-improvement (opt-in)
 

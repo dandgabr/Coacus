@@ -10,7 +10,7 @@ Routing rules for any AI agent operating in this repository, in any harness.
 - `evals/README.md` — behavior evals (static gate + opt-in live runner).
 - `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
-- `sources.lock.json` — provenance manifest for imported artifacts (provenance).
+- `sources.lock.json` — provenance manifest for imported and native canonical artifacts (provenance).
 - `.agents/*.json` + `.agents/entries/*.json` — GENERATED discovery manifests. Do not hand-edit.
 - `.agents/routing.json` — GENERATED routing index; select agents with
   `python3 scripts/coacus_route.py` (manual or automated), never by guessing a name.

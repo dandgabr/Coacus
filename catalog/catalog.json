@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 103,
-    "skills": 472,
+    "agents": 104,
+    "skills": 473,
     "mcps": 1
   },
   "agents": [
@@ -419,6 +419,12 @@
       "category": "specialized-domains",
       "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
       "source": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md"
+    },
+    {
+      "name": "motion-graphics-producer",
+      "category": "specialized-domains",
+      "description": "Produces fixed-timeline motion graphics and exported audiovisual pieces when a request needs a storyboard, scene continuity, pacing, optional audio synchronization and frame-by-frame video delivery. Coordinates the piece while reusing existing visual, interactive-motion and GPU specialties.",
+      "source": "knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md"
     },
     {
       "name": "multi-agent-orchestrator",
@@ -877,6 +883,10 @@
     {
       "name": "color-ui-systems",
       "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md"
+    },
+    {
+      "name": "deterministic-motion-rendering",
+      "path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md"
     },
     {
       "name": "game-2d-scene-composition",

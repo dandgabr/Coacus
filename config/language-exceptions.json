@@ -141,8 +141,8 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "7c77dcf8babf1d043a06795d5d099cf779f57f5ff41a7d21512da3750c92b9b3",
-      "reason": "Approved bilingual PT-BR and English routing lexicon required by the documented product contract."
+      "sha256": "80c8da24c8d30feb5efbd5ce02bb29d3d2f4692c3c24df9d5686f3d9851d141c",
+      "reason": "Reviewed existing approved bilingual routing terms unchanged; added only English motion graphics production triggers. The exact file digest preserves the documented bilingual routing contract."
     },
     {
       "path": "knowledge/skills/data/data-intensive-systems/SKILL.md",
