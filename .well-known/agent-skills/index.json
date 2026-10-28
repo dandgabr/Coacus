@@ -3271,6 +3271,13 @@
       "digest": "sha256:454d7cb012bc3e81a98a216c598a648f1b67caf3d8523d3dad9c8591d15d767d"
     },
     {
+      "name": "web-3d-object-modeling",
+      "description": "Provides procedural editable 3D object modeling for web layouts from text or reference images. Use when constructing parametric objects, reviewing shapes, preparing interactive models, or rendering static page images.",
+      "type": "archive",
+      "url": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md",
+      "digest": "sha256:4ea3daeeb228c31434059e407eba61abf073a8a2e4c58f0b02f41d3e51cf162b"
+    },
+    {
       "name": "web-accessibility-wcag",
       "description": "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, motion and animation accessibility (pause controls, flash thresholds, reduced-motion house policy, accessible animated text), keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI.",
       "type": "skill-md",

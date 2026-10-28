@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 104,
-    "skills": 475,
+    "skills": 476,
     "mcps": 1
   },
   "agents": [
@@ -1487,6 +1487,10 @@
     {
       "name": "version-freshness",
       "path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md"
+    },
+    {
+      "name": "web-3d-object-modeling",
+      "path": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md"
     },
     {
       "name": "web-accessibility-wcag",
