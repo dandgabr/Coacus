@@ -1,0 +1,21 @@
+{
+  "id": "web-3d-object-modeling",
+  "title": "Procedural web object modeling",
+  "harness": "codex",
+  "prompt": "A page needs an editable articulated desk lamp, a static PNG and a browser-ready model based on one reference image. Describe the modeling workflow, inferred geometry, ownership and verification. The optional CAD runtime is unavailable. Do not claim to have rendered or installed anything.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(pivot|hinge|articulat)",
+      "reason": "Routing signal only; the rubric assesses the actual decisions."
+    }
+  ],
+  "rubric": [
+    "Distinguishes observed image features from inferred hidden geometry and reviews multiple views.",
+    "Uses editable named parts and meaningful pivots while preserving attachment relationships.",
+    "Specifies static image settings, interactive integration, resource ownership and accessible fallback.",
+    "Retains procedural source separately from GLB and reports unavailable optional tools without installation.",
+    "Distinguishes proposed verification from rendered evidence."
+  ],
+  "acceptance": "The response specifies a reproducible object workflow and honest evidence limits without claiming unperformed rendering or CAD checks."
+}

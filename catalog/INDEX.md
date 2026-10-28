@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 475 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 476 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -331,6 +331,7 @@
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
+| web-3d-object-modeling | [knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md](../knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md) |
 | web-accessibility-wcag | [knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md](../knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md) |
 | web-portal-cli-scaffolding | [knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md](../knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md) |
 | writing-for-agents | [knowledge/skills/engineering/practices/writing-for-agents/SKILL.md](../knowledge/skills/engineering/practices/writing-for-agents/SKILL.md) |

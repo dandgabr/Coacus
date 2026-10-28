@@ -1153,6 +1153,12 @@
       "reason": "Reviewed English technical evidence containing hashes/revision identifiers or a short UI label is ambiguous to automatic language detection; exact segment hash limits this resolution."
     },
     {
+      "path": "knowledge/skills/engineering/practices/web-3d-object-modeling/examples/lamp-and-mug.html",
+      "scope": "segment",
+      "sha256": "b87ebd85ee2563cd4ee5dc741e63c971127e1b024a2cecef6b92320b1b918a81",
+      "reason": "SHA-384 integrity metadata is a cryptographic identifier rather than natural language; the exact segment hash restricts this exception."
+    },
+    {
       "path": "evals/fixtures/activation/security-assessment-planning.json",
       "scope": "file",
       "sha256": "f3b725411fb1fda8ef1003133f566c4b56bd155c9ec7cc0b27e69be8356c60f4",

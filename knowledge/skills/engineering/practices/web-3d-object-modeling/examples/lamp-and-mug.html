@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Procedural lamp and mug</title>
+<style>body{font:16px system-ui;margin:1rem} canvas{display:block;max-width:100%;height:auto} button{margin:.5rem .5rem .5rem 0}</style>
+<h1>Procedural lamp and mug</h1>
+<p>A parametric lamp and a stylized mug. Select a view or download the current still.</p>
+<p>The mug follows an original <a href="mug-reference.svg">front-view reference</a>. Its depth and unseen rear are inferred.</p>
+<button id="front" disabled>Front view</button><button id="side" disabled>Side view</button><button id="three" disabled>Three-quarter view</button><button id="save" disabled>Save image as PNG</button>
+<div id="scene"></div>
+<p id="status" role="status"></p>
+<script type="module">
+const dependencies = {
+  'three.module.js': 'sha384-wyxAlyAVVsyc7KN24a4+m1tMTC2BwrjQyLgLStDaUBDmwK+gWUMULWHSS0NRoZKv',
+  'three.core.js': 'sha384-r1q8Si7xFBrvMv3Q4yjQkKhkYZ2lp+wn/bPPzNZTsc8DY4uPJmm2vheuz1Yn+8m8'
+};
+async function loadThree() {
+  const base = 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/';
+  const entries = await Promise.all(Object.entries(dependencies).map(async ([name, integrity]) => {
+    const request = new Request(base + name, { integrity, mode: 'cors' });
+    if (request.integrity !== integrity) throw new Error('Integrity verification unavailable');
+    const response = await fetch(request);
+    if (!response.ok) throw new Error('Dependency unavailable');
+    return [name, await response.text()];
+  }));
+  const sources = Object.fromEntries(entries);
+  const core = URL.createObjectURL(new Blob([sources['three.core.js']], {type:'text/javascript'}));
+  const module = URL.createObjectURL(new Blob([sources['three.module.js'].replaceAll("'./three.core.js'", JSON.stringify(core))], {type:'text/javascript'}));
+  try { return await import(module); }
+  finally { URL.revokeObjectURL(module); URL.revokeObjectURL(core); }
+}
+let THREE;
+function createLamp({ height = 2, color = 0xf1a45b } = {}) {
+  const root = new THREE.Group(), parts = {}, owned = [];
+  const material = new THREE.MeshStandardMaterial({ color }); owned.push(material);
+  function mesh(name, geometry, parent) {
+    owned.push(geometry);
+    const m = new THREE.Mesh(geometry, material); m.name = name; parent.add(m); parts[name] = m; return m;
+  }
+  mesh('base', new THREE.CylinderGeometry(.45,.5,.15,32), root);
+  const pivot = new THREE.Group(); pivot.position.y = .12; pivot.rotation.z = -.18; root.add(pivot);
+  const arm = mesh('arm', new THREE.CylinderGeometry(.06,.06,height,16), pivot); arm.position.y = height/2;
+  const shade = mesh('shade', new THREE.ConeGeometry(.4,.55,32,1,true), pivot); shade.position.y = height;
+  parts.pivot = pivot;
+  return { root, parts, dispose() { owned.forEach(x => x.dispose()); } };
+}
+function createMug({ color = 0x6d9eaa } = {}) {
+  const root = new THREE.Group(), parts = {}, owned = [];
+  const material = new THREE.MeshStandardMaterial({ color, roughness:.55 });
+  const innerMaterial = new THREE.MeshStandardMaterial({ color: new THREE.Color(color).multiplyScalar(.7), roughness:.65, side:THREE.BackSide }); owned.push(material, innerMaterial);
+  const bodyGeometry = new THREE.CylinderGeometry(.38,.32,.8,32,1,true);
+  const handleGeometry = new THREE.TorusGeometry(.25,.065,12,32);
+  owned.push(bodyGeometry, handleGeometry);
+  parts.body = new THREE.Mesh(bodyGeometry,material); parts.body.position.y=.4; root.add(parts.body);
+  const innerGeometry = new THREE.CylinderGeometry(.34,.28,.74,32,1,true); owned.push(innerGeometry);
+  parts.interior = new THREE.Mesh(innerGeometry,innerMaterial); parts.interior.position.y=.43; root.add(parts.interior);
+  const rimGeometry = new THREE.RingGeometry(.34,.38,32); owned.push(rimGeometry);
+  parts.rim = new THREE.Mesh(rimGeometry,material); parts.rim.rotation.x=-Math.PI/2; parts.rim.position.y=.8; root.add(parts.rim);
+  const bottomGeometry = new THREE.CircleGeometry(.32,32); owned.push(bottomGeometry);
+  parts.bottom = new THREE.Mesh(bottomGeometry,material); parts.bottom.rotation.x=-Math.PI/2; parts.bottom.position.y=.02; root.add(parts.bottom);
+  parts.handle = new THREE.Mesh(handleGeometry,material); parts.handle.position.set(.43,.48,0); root.add(parts.handle);
+  return { root, parts, dispose() { owned.forEach(x => x.dispose()); } };
+}
+let renderer;
+try {
+  THREE = await loadThree();
+  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+  renderer.setSize(800,500,false);
+  document.querySelector('#scene').append(renderer.domElement);
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0xf5f1e9);
+  const camera = new THREE.PerspectiveCamera(35, 800/500, .1, 100);
+  const lamp = createLamp(), mug = createMug(); lamp.root.position.x=-.8; mug.root.position.x=.8;
+  scene.add(lamp.root,mug.root,new THREE.HemisphereLight(0xffffff,0x808080,2));
+  const light = new THREE.DirectionalLight(0xffffff,2); light.position.set(3,5,4); scene.add(light);
+  function view(x,z) { camera.position.set(x,2.1,z); camera.lookAt(0,1,0); renderer.render(scene,camera); }
+  document.querySelector('#front').onclick=()=>view(0,6);
+  document.querySelector('#side').onclick=()=>view(6,0);
+  document.querySelector('#three').onclick=()=>view(4,5);
+  document.querySelector('#save').onclick=()=>{ const a=document.createElement('a'); a.download='objects.png'; a.href=renderer.domElement.toDataURL('image/png'); a.click(); };
+  document.querySelectorAll('button').forEach(button => { button.disabled = false; });
+  renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); document.querySelector('#status').textContent='Graphics unavailable. Reload to retry.'; });
+  addEventListener('pagehide',event=>{if (!event.persisted) {lamp.dispose();mug.dispose();renderer.dispose();}});
+  view(4,5);
+} catch (error) { document.querySelector('#status').textContent='Graphics unavailable. The object descriptions remain available above.'; }
+</script>
+</html>

@@ -19296,9 +19296,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "source_sha256": "045c1a49d761bbe05ad34cd4d41cf60bca433362c9f26bf934c2355559ac0005",
+      "source_sha256": "e304f287dd29faf97f694e779906664c2dcf571070763e31b88643da22ece2e0",
       "target_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "target_sha256": "045c1a49d761bbe05ad34cd4d41cf60bca433362c9f26bf934c2355559ac0005",
+      "target_sha256": "e304f287dd29faf97f694e779906664c2dcf571070763e31b88643da22ece2e0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21151,6 +21151,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-28T14:57:55Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md",
+      "source_sha256": "5d0867ad6bcb01781341a40ce67bae7386fe79def99159b6fd1506293171eea1",
+      "target_path": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md",
+      "target_sha256": "5d0867ad6bcb01781341a40ce67bae7386fe79def99159b6fd1506293171eea1",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-28T19:19:15Z"
     }
   ]
 }
