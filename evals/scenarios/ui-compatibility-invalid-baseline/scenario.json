@@ -1,0 +1,19 @@
+{
+  "id": "ui-compatibility-invalid-baseline",
+  "title": "Validate compatibility baselines first",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, access real user data or claim execution. The same fixture fails against a pinned released component library and the working tree because it expects a nonexistent class. A proposal calls this a newly introduced regression and removes the assertion to pass. Assess the comparison and the next step.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|contract|verify|baseline|document|scope|client|focus)",
+      "reason": "Advisory signal only; the rubric judges decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Classify the baseline/fixture as invalid and stop the regression comparison.",
+    "Investigate and correct the fixture contract without weakening assertions merely to obtain green output.",
+    "Require the baseline to pass before comparing the working revision; separate source checks from rendered behavior."
+  ],
+  "acceptance": "The response makes the specified contextual decisions, proposes discriminating observations and states evidence limits without inventing execution."
+}

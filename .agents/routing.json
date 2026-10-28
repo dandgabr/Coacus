@@ -978,6 +978,7 @@
       "category": "software-engineering",
       "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
       "skills": [
+        "knowledge/skills/frameworks/framework-tabler/SKILL.md",
         "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
@@ -1252,6 +1253,7 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), spring-based motion implementation with Motion (formerly Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
       "skills": [
+        "knowledge/skills/frameworks/framework-tabler/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/frameworks/framework-react/SKILL.md",
         "knowledge/skills/frameworks/framework-vue/SKILL.md",

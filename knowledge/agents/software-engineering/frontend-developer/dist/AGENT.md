@@ -5,6 +5,7 @@ Senior specialist agent in Frontend Engineering and Design Engineering, masterin
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [framework-react](../../../../skills/frameworks/framework-react/SKILL.md)
 - [framework-vue](../../../../skills/frameworks/framework-vue/SKILL.md)
@@ -216,3 +217,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
+
+## Conditional component-library integration
+
+When the project already uses Tabler or explicitly requests it, consult [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.

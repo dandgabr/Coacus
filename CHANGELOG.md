@@ -5,6 +5,14 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Tabler component integration and consumer verification
+
+### Added
+
+- Narrow `framework-tabler` skill with version-matched documentation lookup, client lifecycle guidance and conditional discovery from existing frontend and design QA agents.
+- Consumer-contract procedures for unknown classes, stale exceptions and baseline-first compatibility checks; these are guidance, not new runtime validators.
+- Standalone forced-colors and reduced-motion fixture exercises and focused behavior evaluation scenarios. Static schema checks, live evaluation and browser observations remain separate evidence layers.
+
 ## [Unreleased] — Zero external MCP dependencies and primary version resolution
 
 ### Removed

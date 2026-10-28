@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 104,
-    "skills": 474,
+    "skills": 475,
     "mcps": 1
   },
   "agents": [
@@ -1547,6 +1547,10 @@
     {
       "name": "framework-spring-boot",
       "path": "knowledge/skills/frameworks/framework-spring-boot/SKILL.md"
+    },
+    {
+      "name": "framework-tabler",
+      "path": "knowledge/skills/frameworks/framework-tabler/SKILL.md"
     },
     {
       "name": "framework-testing",

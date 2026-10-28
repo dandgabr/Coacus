@@ -1178,6 +1178,13 @@
       "digest": "sha256:d8bba8c81e117cc96097e72f79576ef064129c12701dc66d12292dc9394194f5"
     },
     {
+      "name": "framework-tabler",
+      "description": "Provides documented Tabler component integration and review when a project already uses Tabler or explicitly requests Tabler. Covers component lookup, installation boundaries, themes and interactive lifecycle ownership.",
+      "type": "archive",
+      "url": "knowledge/skills/frameworks/framework-tabler/SKILL.md",
+      "digest": "sha256:af595fb63ff9a829b992331bf035b65e63ec8a54ca9eee1c30e186ae22cac836"
+    },
+    {
       "name": "framework-testing",
       "description": "Specialist in Software Testing Engineering. Broad command of Black-Box techniques (BVA, Equivalence Partitioning, Decision Tables, FSM, Pairwise), White-Box techniques (CFG, McCabe, MC/DC, Data Flow/du-paths, Program Slicing), Mutation Testing, Integration (Call Graph, MM-Paths), TDD, and ISTQB Test Management.",
       "type": "archive",
@@ -1210,7 +1217,7 @@
       "description": "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance. Use when building React, Next.js or Vue interfaces, wiring Motion or GSAP lifecycles, de-templatizing component libraries, or tuning Core Web Vitals.",
       "type": "archive",
       "url": "knowledge/skills/roles/frontend-developer/SKILL.md",
-      "digest": "sha256:495521f7135b246df2b9e772edbee1d47a2ecc2dedcd47548a3af08f61439e3d"
+      "digest": "sha256:7e0a01d695558b2288785f1e6d39376277317f36ac518697ee6559725961b309"
     },
     {
       "name": "fullstack-developer",
@@ -2568,7 +2575,7 @@
       "description": "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:edfc6c3815d71abbb9e90bea4f9bed717e5505b362960e9c918dce40407f2d8f"
+      "digest": "sha256:d3dbb17dd3aa2c40296ed9745920ed92db3b084311b4e8ff84b7deeeb4e88741"
     },
     {
       "name": "ui-designer",

@@ -1,0 +1,20 @@
+{
+  "id": "tabler-component-lifecycle",
+  "title": "Client component ownership across routes",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, access real user data or claim execution. A server-rendered page imports DOM-dependent Tabler behavior at server module evaluation. Tooltips initialize after an asynchronous import; the route can unmount before it finishes, and later remount. A proposal initializes every time without retaining instances. Review it.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|contract|verify|baseline|document|scope|client|focus)",
+      "reason": "Advisory signal only; the rubric judges decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Keep browser-dependent initialization out of server evaluation and render functions.",
+    "Retain owner-scoped instances; avoid duplicates and dispose instances/listeners on unmount.",
+    "Invalidate stale asynchronous completion so unmounted owners cannot initialize later.",
+    "Require SSR and mount/unmount/remount observations rather than claiming execution."
+  ],
+  "acceptance": "The response makes the specified contextual decisions, proposes discriminating observations and states evidence limits without inventing execution."
+}
