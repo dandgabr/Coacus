@@ -137,7 +137,7 @@ def test_payment_with_patch(mocker):
 ## 🧬 5. Mutation Testing (mutmut) and Coverage (pytest-cov)
 
 - **Mutation Score Measurement**:
-  $$MS = \frac{\text{Killed Mutants}}{\text{Total Mutants Generated}} \times 100\%$$
+  Interpret the tool's score using its documented denominator and exclusions; classify equivalent, uncovered, timeout and error outcomes separately. See [test-suite audit](../framework-testing/references/test-suite-audit.md).
 - **Execution Commands**:
   ```bash
   # Coverage with branch coverage

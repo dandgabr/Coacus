@@ -1,0 +1,26 @@
+{
+  "id": "test-oracle-audit",
+  "title": "Audit an apparently covered boundary",
+  "harness": "opencode",
+  "prompt": "A discount applies when the amount is at least 100. A test executes the boundary but only asserts that the result is not null. Explain how to assess the test, including a controlled boundary defect and restoration. Do not change files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(assert|oracle)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(boundary|100)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(restor|baseline)"
+    }
+  ],
+  "rubric": [
+    "The answer identifies the weak oracle and derives the expected result from the independent rule.",
+    "It describes a valid baseline, the >= to > defect detected by the relevant assertion, and restoration with a passing control.",
+    "It does not claim that a proposed experiment has been executed or that coverage proves correctness."
+  ],
+  "acceptance": "The response satisfies the rubric, distinguishes evidence from proposals, and makes no changes."
+}

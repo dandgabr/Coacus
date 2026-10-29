@@ -792,7 +792,7 @@
       "source_path": "agents/software-engineering/qa-testing-specialist/AGENT.md",
       "source_sha256": "c091fd618bb7d4921ed8a9000c5e15e368caf64260bd30e5e208c4182b980fc0",
       "target_path": "knowledge/agents/software-engineering/qa-testing-specialist/agent.source.md",
-      "target_sha256": "e94ebeef7898cb83534f5f43474cb490d2bf84e156d6f425d67b2869511c4d5a",
+      "target_sha256": "c54f961ecc161062f59965758557cdce875141e551eeeacb375fe6d52c203248",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6000,7 +6000,7 @@
       "source_path": "skills/framework/framework-testing-python/SKILL.md",
       "source_sha256": "4930fd78e9c9b731029e07095f2079892fbde9e8388af762d6f9d20fe592974d",
       "target_path": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "target_sha256": "1f2d734cf29b359f2295e63127acabf36de194dad9217173c8e65001f54d00f6",
+      "target_sha256": "4ac6f9db299567b0a33847360e9eff59c648ac47246ff1e9aa7e5f0af46d3f6d",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6071,7 +6071,7 @@
       "source_path": "skills/framework/framework-testing/SKILL.md",
       "source_sha256": "653bdbda2bd05b44662d2f3d961947bef309efe8afd83b680da98af3fa3a768e",
       "target_path": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "target_sha256": "271a4543940faecedb3734621360fe86cb67cdcb50d8bba376e1760ef0310256",
+      "target_sha256": "97a11923a30545e53eee8f0f20d7feeef6caa88c581e7b2fdda4663f9f5e6b76",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6161,7 +6161,7 @@
       "source_path": "skills/framework/framework-testing/references/mutation-and-fault-based-testing.md",
       "source_sha256": "58ce4b8d4f7f4c1dde8064fc5a7464f045743d879d1f1163ebe3809b7de83ef4",
       "target_path": "knowledge/skills/frameworks/framework-testing/references/mutation-and-fault-based-testing.md",
-      "target_sha256": "2f55b967b665a380c5cee790ace82b681850b03f8b3973f8ef55347c71a90f26",
+      "target_sha256": "d788db165348e090a95a3b5e883aa7e1ed02c32a3c5cbcbb5359ec913513c38c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6296,7 +6296,7 @@
       "source_path": "skills/framework/mutation-fuzzing-testing/SKILL.md",
       "source_sha256": "5ab08ba908aef51ee7052369fd2cae33620587d0b1b28e7068a704e2a5066fb2",
       "target_path": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
-      "target_sha256": "b57bc73e32cbf1d722b9b66f9551421689f043f96a8b1b9733856dbf2f3c8a43",
+      "target_sha256": "15fe7046767486c00c0736274d1a2ff919cfa118c036924a98e0700ce6f7f946",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11327,7 +11327,7 @@
       "source_path": "skills/roles/qa-engineer/SKILL.md",
       "source_sha256": "dd37cd987a10ad5c4bed8b7ac3db2e83baf28c6a50a087ed36356831e4ad7e7f",
       "target_path": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "target_sha256": "4307014f684fab2112b94fe4cf9cd16da406a87cfb1d8ca78afe864689575e7c",
+      "target_sha256": "99f3ac13583a97bf0fdefa42c456b2bcf3b418a4d7b45cd4e92139c4c1fed588",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

@@ -11,6 +11,8 @@ The main role is to lead the end-to-end quality strategy: from static requiremen
 
 ---
 
+For auditing tests and reporting observed evidence, use [test-suite audit](../../frameworks/framework-testing/references/test-suite-audit.md).
+
 ## 🧭 Quality Engineering Competencies and Guidelines
 
 ### 1. Risk-Based Testing (RBT)
@@ -55,7 +57,7 @@ When assessing a project's progress and maturity, monitor the following formal K
 1. **Defect Removal Efficiency (DRE)**:
    $$DRE = \frac{D_{\text{internal}}}{D_{\text{internal}} + D_{\text{production}}} \times 100\% \quad (\text{Target: } \ge 95\%)$$
 2. **Mutation Score ($MS$)**:
-   $$MS = \frac{\text{Mutants Killed}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\% \quad (\text{Target: } \ge 85\%)$$
+   $$MS = \frac{\text{Mutants Killed}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\%$$
 3. **Defect Density**:
    $$\text{Density} = \frac{\text{Total Defects}}{\text{KLOC or Function Points}}$$
 4. **Residual Defect Estimation (Mills / Seeding Model)**:
@@ -106,7 +108,7 @@ The system calculates only a 10% discount (Total: R$ 900.00), because the bounda
    - JS/TS: [framework-jest](../../frameworks/framework-testing-javascript/SKILL.md), [framework-mocha](../../frameworks/framework-testing-javascript/SKILL.md), Vitest
    - C/C++: [framework-criterion](../../frameworks/framework-criterion/SKILL.md)
    - Web E2E: Playwright, Cypress
-4. **Test Quality Assessment**: Run code coverage analysis and mutation testing to ensure the tests contain no false positives and are capable of killing mutants.
+4. **Test Quality Assessment**: Use coverage and mutation as complementary indicators; investigate false positives, relevant survivors and execution errors. Neither metric proves correctness.
 
 ---
 

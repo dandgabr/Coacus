@@ -1224,7 +1224,7 @@
       "description": "Specialist in Software Testing Engineering. Broad command of Black-Box techniques (BVA, Equivalence Partitioning, Decision Tables, FSM, Pairwise), White-Box techniques (CFG, McCabe, MC/DC, Data Flow/du-paths, Program Slicing), Mutation Testing, Integration (Call Graph, MM-Paths), TDD, and ISTQB Test Management.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "digest": "sha256:b43f35c9ae38d3144f6539186d230967705d932c8fc82627dcc337e31e18599d"
+      "digest": "sha256:bf315f0d86459d364159a449fbbe147ced9f7f9870eacef309da0f349ac176ba"
     },
     {
       "name": "framework-testing-javascript",
@@ -1238,7 +1238,7 @@
       "description": "Acts as a Specialist in Automated Testing and QA Engineering in Python, covering the Pytest ecosystem and the native Unittest framework. Masters modular Fixtures, conftest.py, formal parameterization (BVA/Equivalence Partitioning), subTests, Property-Based Testing (Hypothesis), Mocks (unittest.mock, @patch, MagicMock, pytest-mock), Mutation Testing (mutmut), asynchronous tests (pytest-asyncio), and coverage analysis (pytest-cov).",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "digest": "sha256:7112284ccbc41b090cd70bb9f94c2696fdb6fa19e63a7af915cd881aa742f151"
+      "digest": "sha256:6a4cef40ba85811c2e81a2c8f280bb67d237ae21fca9feb31b068cc4f286917b"
     },
     {
       "name": "framework-vue",
@@ -1938,7 +1938,7 @@
       "description": "Specialist in Mutation Testing, Fuzzing Engineering, and Requirement Conformance Analysis. Masters systematic injection of synthetic faults, Mutation Score measurement, coverage-guided fuzzing (AFL++, libFuzzer, Atheris, Hypothesis), Test Gap Analysis, and metamorphic oracles.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/mutation-fuzzing-testing/SKILL.md",
-      "digest": "sha256:0eb798a9b170f02f461b303bcf2923ef336cbfd295a31da0509cf0557d42c41e"
+      "digest": "sha256:36244dbfaf1d5195ffcdb888cffecf8cf7690c72ef783f505660c4d5da306d2c"
     },
     {
       "name": "network-architect",
@@ -2239,7 +2239,7 @@
       "description": "Acts as a Senior QA (Quality Assurance) Engineer, mastering risk-based strategies (RBT), formal test design techniques (ISTQB, BVA, Decision Tables, MC/DC), multi-framework test automation, effectiveness measurement (DRE, Mutation Score), and defect management.",
       "type": "archive",
       "url": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "digest": "sha256:36a4ccfef3d9fad3562c9879764179ca1aa1c27a1eac52559c2b49a96ae71967"
+      "digest": "sha256:0faec8c0b9c527f731890c8114451ab7353caf00ef9192dd97206ab872568549"
     },
     {
       "name": "quantitative-risk-fair",
