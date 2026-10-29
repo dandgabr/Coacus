@@ -1,0 +1,26 @@
+{
+  "id": "test-mutation-evidence",
+  "title": "Interpret mutation results responsibly",
+  "harness": "opencode",
+  "prompt": "A hypothetical mutation report could contain a surviving boundary mutant, an equivalent mutant, an uncovered mutant and a timeout. No mutation run has been performed yet. Explain what to report and how to investigate. Do not change files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(equivalent)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(timeout)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(not (yet )?(executed|run)|has not (been )?(run|executed)|no (run|execution))"
+    }
+  ],
+  "rubric": [
+    "The answer labels the run as not executed and does not count hypothetical results as evidence.",
+    "It distinguishes surviving, equivalent, uncovered and timeout outcomes and calls for triage rather than treating every survivor as a confirmed gap.",
+    "It reports scope, tool, denominator and exclusions and does not claim the score proves correctness."
+  ],
+  "acceptance": "The response satisfies the rubric, distinguishes evidence from proposals, and makes no changes."
+}

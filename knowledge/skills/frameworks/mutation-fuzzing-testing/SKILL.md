@@ -9,11 +9,13 @@ This skill guides the AI to conduct extreme robustness testing and deep quality 
 
 ---
 
+Use [test-suite audit](../framework-testing/references/test-suite-audit.md) for controlled experiments, classification, stability and evidence reporting.
+
 ## 🧬 1. Mutation Testing
 
-For interface oracles, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Choose single-edit defects tied to a requirement: hidden views exposed, zero-height graphics, covered progress, stale async state or unreadable inherited paint. Record the assertion that kills each mutant and restore it before the next run. A proposed mutation or a reasoning answer is not an executed kill; surviving mutants identify coverage gaps rather than justify weaker thresholds.
+For interface oracles, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Choose single-edit defects tied to a requirement: hidden views exposed, zero-height graphics, covered progress, stale async state or unreadable inherited paint. Record the assertion that kills each mutant and restore it before the next run. A proposed mutation or a reasoning answer is not an executed kill; surviving mutants are candidates for triage, not automatic proof of gaps.
 
-Mutation Testing evaluates the true effectiveness of a test suite by introducing targeted synthetic changes (*mutants*) into the production code. If the test suite still passes after the change, the mutant **survived** (revealing a *Test Gap* from a weak assertion). If any test fails, the mutant was **killed**.
+Mutation testing probes a test suite by introducing targeted synthetic changes (*mutants*) into an isolated copy of the code. A survivor needs triage; an assertion failure must be checked for the expected cause. Errors and timeouts are separate outcomes.
 
 ### A. Canonical Mutation Operators
 1. **AOR (Arithmetic Operator Replacement)**: Substitution of arithmetic operators (`+` for `-`, `*` for `/`).
@@ -25,7 +27,7 @@ Mutation Testing evaluates the true effectiveness of a test suite by introducing
 ### B. Mutation Score Metric
 $$\text{Mutation Score (MS)} = \frac{\text{Killed Mutants}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\%$$
 - **Equivalent Mutant**: A mutant that is syntactically different but semantically identical in behavior to the original code (must be excluded from the denominator).
-- **Minimum Corporate Target**: $MS \ge 85\%$ for critical components and $MS \ge 90\%$ for financial/security rules.
+- Choose thresholds by risk and project requirements. Report the tool, scope, denominator, exclusions and unresolved outcomes; do not infer correctness from the score.
 
 ### C. Tooling by Language
 - **Python**: `mutmut` (`mutmut run`, `mutmut results`, `mutmut show <id>`) and `Cosmic Ray`.
@@ -69,11 +71,11 @@ Every test case must be explicitly mapped to an original acceptance criterion:
 ```
 
 ### B. Test Gap Analysis
-1. Identify code sections with green execution coverage but with **surviving mutants**.
-2. Create specific assertions to force the mutant's death.
-3. Test whether the original requirement covers the edge case exposed by the mutant.
+1. Identify covered code with surviving mutants and classify their execution outcomes.
+2. Check equivalence, relevance and whether the requirement covers the exposed behavior.
+3. For confirmed gaps, add a meaningful assertion grounded in the requirement and verify the outcome.
 ### C. EARS Methodology (Easy Approach to Requirements Syntax) & Parameterized Tests
-To guarantee full conformance with system requirements, structure the business rules in the 4 EARS syntactic patterns before generating test code:
+To improve traceability to system requirements, structure the business rules in the 4 EARS syntactic patterns before generating test code:
 
 1. **Ubiquitous**: `The <system> shall <system response>.`
 2. **Event-Driven**: `WHEN <trigger>, the <system> shall <system response>.`
@@ -83,4 +85,4 @@ To guarantee full conformance with system requirements, structure the business r
 #### Mechanical EARS → Parameterized Tests Mapping (JUnit 5 / Pytest)
 Each group of EARS statements that share the same boundary operation (arrange/act) is deterministically converted into a parameterized test (`@ParameterizedTest` / `@pytest.mark.parametrize`):
 - The requirement identifier (`REQ-01`, `REQ-02`) acts as the row label in the data table.
-- It eliminates assertion duplication, guarantees that every requirement has an explicit test case, and guides the injection of mutations focused on the acceptance criterion.
+- It can reduce assertion duplication and improve traceability when the requirement inventory is complete, and guides the injection of mutations focused on the acceptance criterion.
