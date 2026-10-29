@@ -1,8 +1,8 @@
 # Normative Standards
 
-This directory contains the normative standards of the Coacus framework. Every standard defines strict, machine-enforceable contracts, rules, rationales, and validation surfaces governing the generation, authoring, and lifecycle of skills, agents, workflows, and harness configurations.
+This directory contains the normative standards governing the generation, authoring and lifecycle of skills, agents, workflows and harness configurations. Each standard states its rules, rationale and enforcement surface.
 
-All standards are written in English (see [`english-only.md`](english-only.md)) and enforced during pre-flight generation (`python3 scripts/coacus.py generate`) and validation (`python3 scripts/coacus.py validate`).
+Standards are written in English (see [`english-only.md`](english-only.md)). Enforcement varies: some rules run in generation or validation, others at runtime or as documented conventions.
 
 ---
 
@@ -36,14 +36,14 @@ All standards are written in English (see [`english-only.md`](english-only.md)) 
 | :--- | :--- |
 | [`product-and-design-truth.md`](product-and-design-truth.md) | Separation of durable business context (`PRODUCT.md`) from visual systems (`DESIGN.md`), 4 surface modes (`Persuade`, `Operate`, `Read`, `Experience`), and Anti-AI Slop Mandate. |
 | [`ui-style-architecture.md`](ui-style-architecture.md) | The 14-part content architecture for canonical UI styles, style-purity boundaries, accessibility and consumer-integration limits. |
-| [`plan-artifacts.md`](plan-artifacts.md) | Structure, lifecycle, and strict isolation of implementation plans and interactive artifacts under the brain directory (`RequestFeedback: true`). |
+| [`plan-artifacts.md`](plan-artifacts.md) | Lifecycle and location of temporary process artifacts under `docs/temp/`. |
 | [`decision-records.md`](decision-records.md) | Architecture Decision Records (ADRs) authored under `docs/decisions/` using the MADR 3.0 format. |
 
 ### 4. Governance, Runtime & Lifecycle Guardrails
 
 | Standard | Scope & Mission |
 | :--- | :--- |
-| [`orchestration-governance.md`](orchestration-governance.md) | Multi-agent concurrency limits (Governor ledger, max 5 subagents + orchestrator), rate-limit backoff, and topology isolation. |
+| [`orchestration-governance.md`](orchestration-governance.md) | Scoped, configurable governor limits, rate-limit backoff and orchestration rules. |
 | [`toon-protocol.md`](toon-protocol.md) | Task-Oriented Object Notation (TOON) payload schema for structured, loss-free handoffs between autonomous agents. |
 | [`lifecycle-guardrails.md`](lifecycle-guardrails.md) | PAER policy runtime (`engine/guardrail/`), fail-open posture, event interception, and native hook rendering per harness. |
 | [`self-improvement-loop.md`](self-improvement-loop.md) | Opt-in, deterministic proposal pipeline (`scripts/coacus_improve.py`) with dry-run ledger audit and fail-open execution. |
@@ -63,7 +63,7 @@ All standards are written in English (see [`english-only.md`](english-only.md)) 
 
 ## Machine Enforcement
 
-Standards are not advisory guidelines — they are compiled and validated by Python modules in `engine/validators/`:
+Source and artifact validators enforce the rules described by their individual standards. Runtime and convention-based rules have separate enforcement surfaces:
 
 ```bash
 # 1. Regenerate all derived artifacts from canonical sources

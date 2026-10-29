@@ -21,6 +21,11 @@ The concurrency governor is a disk ledger guarded by `flock`
 - The cap is dynamically configurable via environment variables (`COACUS_MAX_<SCOPE>`,
   `COACUS_MAX_<MODEL>`, `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY`, `OLLAMA_NUM_PARALLEL`,
   `ORCH_MAX_CONCURRENT`) or authoritatively updated via `coacus_governor.py set-max <n> [--scope <scope>]`.
+- An existing scope ledger persists its effective cap. A higher requested cap may
+  raise it, but lowering configuration alone does not reduce a persisted cap;
+  lower the relevant caller configuration as well as using `set-max` for a durable
+  decrease. A subsequent caller with a higher resolved cap can raise it again.
+  Verify the effective result with `status`.
 - A caller parks as PAUSED on a 429 rate-limit and reports the backoff hint the
   orchestrator uses to retry (2s → 60s).
 - Because the acquiring CLI process is short-lived, slots are released by the

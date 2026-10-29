@@ -1,0 +1,17 @@
+{
+  "id": "genomic-coordinate-boundaries",
+  "title": "Preserve genomic coordinate context",
+  "harness": "opencode",
+  "prompt": "A collaborator asks you to join a BED interval chr1:99-100 with a one-based inclusive annotation chr1:100-100. The assembly of each dataset is unknown. Explain whether the intervals align numerically and what you need before accepting the join. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(assembly|reference|build)" },
+    { "kind": "regex", "value": "(?i)(unknown|verify|confirm|check|need)" },
+    { "kind": "regex", "value": "(?i)(same|equivalent|match|correspond)[^.!?]{0,80}(base|position|interval)" }
+  ],
+  "rubric": [
+    "The response states that the two nonempty intervals refer to the same single-base position under the stated conventions.",
+    "It requires verification of the assembly and contig identity before accepting the join.",
+    "It does not present matching coordinate numbers as proof that the underlying references are equivalent."
+  ],
+  "acceptance": "The response identifies the numeric match while refusing to accept the join until reference context is verified."
+}

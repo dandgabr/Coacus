@@ -90,6 +90,10 @@ $$T_1 = \frac{\sqrt{3} T_s |\mathbf{V}_{ref}|}{V_{dc}} \sin\left( \frac{\pi}{3} 
 
 ---
 
+## Battery-model research
+
+For battery-model research, record chemistry, parameter provenance, state of charge, temperature, operating protocol and initial conditions. Check solver and spatial discretization convergence and compare predictions against independent measurements under a matched protocol. A successful simulation or a fit to synthetic data alone does not validate battery performance. This guidance was informed by the [upstream battery-model workflow](https://github.com/K-Dense-AI/scientific-agent-skills/blob/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/pybamm/SKILL.md).
+
 ## 📋 5. Electrical Installations and Regulatory Compliance (LV and MV)
 
 | Regulatory / Technical Standard | Scope of Application | Critical Engineering Requirements |

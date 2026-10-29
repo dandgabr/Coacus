@@ -38,7 +38,7 @@ Distinguish **memory-bound** (data doesn't fit → more machines) from **compute
 
 ## 🐍 Dask
 
-Dask exposes NumPy/pandas/scikit-learn-compatible APIs mapped onto a **task graph** executed by a scheduler. Nothing runs until `.compute()`/`.persist()`/`.visualize()`.
+Dask exposes NumPy/pandas/scikit-learn-compatible APIs mapped onto a **task graph** executed by a scheduler. Lazy collections submit work through operations such as `.compute()` or `.persist()`; `.visualize()` renders the graph rather than executing it. Futures submitted to a distributed client can start immediately. See the [Dask user interfaces](https://docs.dask.org/en/stable/user-interfaces.html) and [collection methods](https://docs.dask.org/en/stable/custom-collections.html).
 
 - **Collections:** `dask.dataframe` (partitioned pandas; best on Parquet/S3), `dask.array` (subset of `ndarray`, same dtype only), `dask.bag` (messy/unstructured; weak at reductions).
 ```python

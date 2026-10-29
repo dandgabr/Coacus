@@ -78,13 +78,13 @@ y_pred = model.predict(X_test)
 ## 🧪 Statistics for Data Science
 
 - **EDA:** location (mean, trimmed mean, median, mode), variability (variance, std, IQR, MAD), percentiles, distributions, correlation matrices.
-- **Bootstrap:** resample with replacement `R` times to obtain confidence intervals and standard errors for *any* statistic.
+- **Bootstrap:** resample appropriate independent units with replacement to estimate uncertainty when the resampling method and statistic support it. Dependent data, clustered designs and nonregular estimators can require a different method; assess coverage assumptions rather than treating ordinary bootstrap as universal.
 ```python
 def bootstrap_sample(data):
     return [random.choice(data) for _ in data]
 ```
 - **Inference:** Central Limit Theorem, standard error, permutation tests, t-tests (`scipy.stats.ttest_ind`), ANOVA (`statsmodels`), chi-square (`chi2_contingency`), power and sample size, multiple-testing correction.
-- **Regression:** from-scratch least squares; `statsmodels` `smf.ols` for standard errors/t-stats/p-values vs `sklearn` for prediction. Diagnose outliers, influence, heteroskedasticity, multicollinearity (VIF); logistic regression coefficients are **odds ratios**.
+- **Regression:** from-scratch least squares; `statsmodels` `smf.ols` for standard errors/t-stats/p-values vs `sklearn` for prediction. Diagnose outliers, influence, heteroskedasticity and multicollinearity (VIF). In logistic regression, coefficients are on the log-odds scale; exponentiating a coefficient gives the odds ratio for a one-unit change under the model and its coding.
 
 Implementing the primitives once (Grus) exposes why scaling, learning rates and loss gradients matter.
 

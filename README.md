@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 448 skills across eleven categories, 104 agents, and one MCP declaration.
+- **Knowledge** — what the framework knows: 461 skills across eleven categories, 104 agents, and one MCP declaration.
 - **Methodology** — how work proceeds: 28 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 448 | `domains` 149, `security` 133, `engineering` 38, `roles` 26, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 7 |
+| Skills | 461 | `domains` 162, `security` 133, `engineering` 38, `roles` 26, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 7 |
 | Agents | 104 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 12, `data-cloud-devops` 9, `core-orchestration` 4, `research-discovery` 4 |
 | Workflows | 28 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
 | MCPs | 1 | `coacus-catalog` |
-| Catalog | 476 skill entries | 448 knowledge skills + 28 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1451 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 489 skill entries | 461 knowledge skills + 28 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1464 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Core engine (stdlib only; language gate dependency is pinned)
 
@@ -180,20 +180,29 @@ Per-harness tutorials, vendor facts and the evidence class behind each claim:
 
 ### 🌟 1-Click Universal Bootstrap (Recommended)
 
-Quickly verify/install Python (3.10+), create an isolated virtual environment (`.venv`),
-render artifacts, and install Coacus into all detected harnesses:
+Verify Python (3.12+), attempt installation if absent, create an isolated virtual environment (`.venv`),
+install the language-gate dependencies, render artifacts, and install Coacus into
+detected harnesses:
 
 ```bash
 # Linux / macOS
-./install.sh [harness|all]
+./install.sh
 
 # Windows (PowerShell)
-.\install.ps1 [harness|all]
+.\install.ps1
 ```
+
+To target one harness, pass its name, for example `./install.sh codex` or
+`.\install.ps1 codex`.
 
 ### Manual Install
 
+On Linux or macOS, use a `python3` interpreter at least as recent as 3.12:
+
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
 python3 scripts/coacus.py generate          # render every artifact first
 python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | command-code | all
 python3 scripts/coacus_install.py all --verify-after-install # install and verify detected harnesses
@@ -203,6 +212,8 @@ python3 scripts/coacus_install.py codex --agents 'qa-*'   # filter agents only
 python3 scripts/coacus_install.py --list    # available categories and skills
 python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
 ```
+
+For Windows manual setup, see [the installation guide](docs/install.md#manual-setup-step-by-step).
 
 The installer is idempotent: it writes a `coacus-install.json` manifest beside
 each target, never rewrites a harness config file wholesale, and removes exactly

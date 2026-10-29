@@ -1,0 +1,16 @@
+{
+  "id": "microscopy-segmentation-qc",
+  "title": "Separate microscopy table validity from segmentation accuracy",
+  "harness": "opencode",
+  "prompt": "A fluorescence microscopy pipeline produced a valid measurement CSV for thousands of cells from one well. The segmentation overlays were never inspected. Can the table prove segmentation accuracy and provide thousands of independent biological replicates? Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(segmentation|overlay)" },
+    { "kind": "regex", "value": "(?i)(replicate|independent|well)" }
+  ],
+  "rubric": [
+    "The response explains that a valid table does not establish segmentation accuracy and calls for representative overlay review.",
+    "It distinguishes cells from independent biological replicates and does not equate thousands of cells from one well with thousands of independent wells.",
+    "It does not claim clinical validation."
+  ],
+  "acceptance": "The response separates table validation from segmentation accuracy and identifies the biological replication limit."
+}

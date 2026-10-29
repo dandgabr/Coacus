@@ -29,18 +29,22 @@ evidence class. Do not treat them as equally authoritative.
 
 ### 🌟 1-Click Universal Bootstrap (Recommended)
 
-To automatically verify Python, install it if missing, create an isolated `.venv`,
-render all artifacts, and install Coacus into all detected harnesses:
+To verify Python, attempt installation if it is missing, create an isolated `.venv`, install the
+language-gate dependencies, render artifacts, and install into detected harnesses:
 
 **Linux / macOS:**
 ```bash
-./install.sh [harness|all]
+./install.sh
 ```
 
 **Windows (PowerShell):**
 ```powershell
-.\install.ps1 [harness|all]
+.\install.ps1
 ```
+
+Pass a harness name to target one installation, for example `./install.sh codex`
+or `.\install.ps1 codex`. Both scripts require Python 3.12 or newer, and may
+need network access to install the language-gate dependencies.
 
 Both entrypoint scripts handle environment detection, virtual environment setup,
 artifact generation (`scripts/coacus.py generate`), and verified installation
@@ -52,10 +56,34 @@ artifact generation (`scripts/coacus.py generate`), and verified installation
 
 If you prefer to run the steps manually:
 
-### Zero external dependencies
+Create a virtual environment using Python 3.12 or newer and install the pinned
+language-gate dependencies into that same environment. On Linux or macOS:
 
-Coacus is completely self-contained and operates offline by default. The
-framework requires no third-party MCP servers, hosted endpoints, or API keys.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
+```
+
+On Windows, select an installed Python 3.12+ interpreter. The following example
+uses Python 3.12; replace `-3.12` with another installed compatible version if
+needed:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
+```
+
+The commands below assume this environment is active; use `python` in place of
+`python3` on Windows. If activation is restricted, invoke the interpreter at
+`.venv\Scripts\python.exe` directly.
+
+### External dependencies
+
+Core tooling uses the standard library; generation and validation additionally
+require the language-gate packages listed above. Once dependencies are present,
+the framework requires no third-party MCP servers, hosted endpoints, or API keys.
 The only MCP server distributed with the repository is the internal
 `coacus-catalog` helper (stdio), used for dynamic asset discovery and routing
 in supported harnesses.

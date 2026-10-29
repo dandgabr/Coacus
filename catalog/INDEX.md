@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 476 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 489 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -172,8 +172,21 @@
 | academic-solid-state-semiconductors | [knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md](../knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md) |
 | academic-structural-analysis-solid-mechanics | [knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md](../knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md) |
 | academic-thermodynamics-statistical-physics | [knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md](../knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md) |
+| animal-welfare-research-evidence | [knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md](../knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md) |
+| astronomical-data-integrity | [knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md](../knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md) |
+| bulk-rna-seq-research | [knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md](../knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md) |
+| constraint-based-metabolic-research | [knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md](../knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md) |
 | data-science-advanced-math | [knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md](../knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md) |
+| flow-cytometry-research | [knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md](../knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md) |
+| genomic-coordinate-integrity | [knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md](../knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md) |
+| isotope-flux-research | [knowledge/skills/domains/academic/isotope-flux-research/SKILL.md](../knowledge/skills/domains/academic/isotope-flux-research/SKILL.md) |
+| laboratory-automation-research | [knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md](../knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md) |
+| measurement-units-uncertainty | [knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md](../knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md) |
+| pooled-screen-research | [knowledge/skills/domains/academic/pooled-screen-research/SKILL.md](../knowledge/skills/domains/academic/pooled-screen-research/SKILL.md) |
 | quantum-computing-algorithms | [knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md](../knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md) |
+| scientific-data-retrieval | [knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md](../knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md) |
+| single-cell-expression-research | [knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md](../knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md) |
+| tandem-mass-spectra-research | [knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md](../knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md) |
 | canvas-spatial-whiteboarding | [knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md](../knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md) |
 | color-contrast-accessibility | [knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md](../knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md) |
 | color-data-visualization | [knowledge/skills/domains/design/color-data-visualization/SKILL.md](../knowledge/skills/domains/design/color-data-visualization/SKILL.md) |

@@ -20,14 +20,14 @@
       "description": "Specializes in Biomedical Engineering, Medical Instrumentation, Physiological Signals, and Diagnostic Imaging building on John G. Webster (Medical Instrumentation Application and Design) and Jerrold T. Bushberg (The Essential Physics of Medical Imaging). Covers biopotential electrodes (Ag/AgCl), instrumentation amplifiers (INA) with high CMRR, the Right Leg Drive (RLD) circuit, physiological signals (ECG, EEG, EMG), galvanic isolation, and electrical safety standards (IEC 60601-1), medical imaging physics (X-ray, Computed Tomography CT with the Radon Transform and Filtered Backprojection, Nuclear Magnetic Resonance MRI with Bloch Equations and k-space, Doppler Ultrasound, Nuclear Medicine PET/SPECT), and interoperability with DICOM and HL7/FHIR.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
-      "digest": "sha256:aa66900bdc86361dd0b5a549ebc572a47bd78bbc864bc23a00e31abc328b527f"
+      "digest": "sha256:8e0176091bf8875885b48b616a0f9b90db0e0348ade198daf81a5658487f5b4c"
     },
     {
       "name": "academic-biotechnology-bioprocesses",
       "description": "Specializes in Biotechnology, Bioprocess Engineering, Industrial Bioreactors, and Recombinant DNA Technology building on Bioprocess Engineering Principles (Pauline M. Doran), Bioprocess Engineering (Shuler, Kargi, DeLisle), and Biotecnologia Industrial (Schmidell et al.). Covers Kinetic Modeling of Cell Growth (Monod, Luedeking-Piret), Hydrodynamics and Mass/Energy Balances in Bioreactors (STR, Airlift, Bubble Column, Single-Use SUBs), Volumetric Oxygen Transfer Coefficient (kLa), Downstream Purification Operations (Tangential Flow Filtration TFF, Affinity/IEX/HIC Chromatography, Lyophilization), Enzymology (Michaelis-Menten, Eadie-Hofstee), Therapeutic Product and Monoclonal Antibody (mAb) Technology, GLP (Good Laboratory Practice / NIT-DICLA-035), Biosafety (NB-1 to NB-4, CTNBio/ANVISA), and Biological Effluent Treatment.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
-      "digest": "sha256:e86b4b30fdd55cfdfb414711eae49acf7c593394daca86724766cf87e39879ad"
+      "digest": "sha256:902eff4af62b2a9fd8aa96d2b30ec2bc6d49e9b855088eb9d64ee24cc49dbf92"
     },
     {
       "name": "academic-calculus-differential-equations",
@@ -41,14 +41,14 @@
       "description": "Specializes in Chemical Engineering, Reactors, Transport Phenomena, and CFD building on H. Scott Fogler (Elements of Chemical Reaction Engineering), R. Byron Bird, Warren E. Stewart & Edwin N. Lightfoot (Transport Phenomena), and John D. Anderson (Computational Fluid Dynamics). Covers Molar and Energy Balances in Batch, CSTR, PFR, and Catalytic PBR, Heterogeneous Catalysis (Langmuir-Hinshelwood, Thiele Modulus, Effectiveness Factor \u03b7), Non-Isothermal Reactors and Multiple Steady States, Vapor-Liquid Equilibrium (VLE with NRTL/UNIQUAC and McCabe-Thiele), Fluid Mechanics (Navier-Stokes Equations for Laminar and Turbulent Flow), Heat Transfer (Fourier Conduction, Convection, Stefan-Boltzmann Radiation), Mass Transfer (Fick's Laws and Diffusive Convection), Boundary Layer Theory, and Computational Fluid Dynamics (Finite Volume Method FVM and SIMPLE Algorithm).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
-      "digest": "sha256:fb2660ba7d59e31bf1f3c6263e19f2b1377695658fecfb221f0175b24b5fbd97"
+      "digest": "sha256:60a145b90335b2801fab9cfc70e8a4840cf11eef83e32fb5712338da8fcd63fa"
     },
     {
       "name": "academic-chemistry-synthesis-analysis",
       "description": "Specializes in Fundamental and Applied Chemistry, Organic/Inorganic Synthesis, Physical Chemistry, and Instrumental Analysis building on Clayden, Miessler, Atkins, and Skoog. Covers Solution Thermodynamics and Phase Equilibrium (Antoine Equation, Azeotropic and Ternary Diagrams), Electrochemistry and Conductometry (Debye-H\u00fcckel-Onsager), Chemical Kinetics and Transition State Theory, Coordination and Organometallic Chemistry (Crystal/Ligand Field Theory, Jahn-Teller Effect, 18-Electron Rule, Palladium Suzuki/Heck/Sonogashira Couplings), Advanced Organic Mechanisms (SEAr, SN1/SN2, E1/E2, Enolates, Retrosynthesis), Analytical Chemistry and Instrumental Methods (EDTA Complexometry, UV-Vis, AAS, ICP-OES, HPLC, GC-MS, 1D/2D 1H/13C COSY/HSQC/HMBC NMR, FTIR, MS), Chemical Metrology (ISO/IEC 17025:2017), GHS (ABNT NBR 14725), and CFQ/CRQ Legislation (Law 2,800/1956).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
-      "digest": "sha256:763da599e036c48fcc86e3aad83064b1eb4e3e1fa247b9051de9704ac2805fb4"
+      "digest": "sha256:11720ac712e3c5beb1e6c352aebdd30e363916cdd03a75cce787bd1a81fc86cc"
     },
     {
       "name": "academic-circuit-analysis-electronics",
@@ -104,7 +104,7 @@
       "description": "Specializes in Electric Power Systems (EPS), Energy Generation, Transmission and Distribution, Rotating Electrical Machines, and Power Electronics building on Power System Analysis (Grainger, Stevenson), Electric Machinery (Fitzgerald, Kingsley), Power Electronics (Rashid), and ABNT/IEEE/IEC standards. Covers Admittance/Impedance Matrices (Ybus, Zbus), Power Flow (Newton-Raphson, Fast Decoupled), Symmetrical and Asymmetrical Short-Circuit Calculation (Fortescue Symmetrical Components), Digital Power System Protection (ANSI 50/51, 21, 87 Functions and IEC 61850), Synchronous and Induction Machines, Power Transformers, Low/Medium Voltage Electrical Installations (ABNT NBR 5410 and NBR 14039), Power Electronics and Three-Phase Inverters (SVPWM, SiC/GaN Converters), Smart Grids (Microgrids, BESS Storage), and Multiphysics/Electromagnetic Simulation (OpenDSS, FEMM).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
-      "digest": "sha256:c6303d1aa7ac41fb1d182fe1e87dcef4cebb86b42e4bb1fd72ad582ced7db5c3"
+      "digest": "sha256:eb61857f508f45a813968d469dbe3dc4608505cf3e73ff0d518bd4ca43139a53"
     },
     {
       "name": "academic-electromagnetism-electrodynamics",
@@ -125,7 +125,7 @@
       "description": "Specializes in Geosciences, Remote Sensing, Geoprocessing (GIS), Cartography, and Land-Use Planning building on Remote Sensing and Image Interpretation (Lillesand, Kiefer, Chipman), Geographic Information Systems and Science (Longley et al.), and Decifrando a Terra (Teixeira et al.). Covers Satellite Image Spectrometry (Sentinel-2, Landsat-8/9, CBERS-4A), Spectral Indices (NDVI, NDWI, NBR, EVI), Land Use and Land Cover Classification (Random Forest, Google Earth Engine), Digital Elevation Modeling (DEM/SRTM, Topographic Wetness Index TWI, Watershed Delineation), Spatial Analysis in GIS and Geospatial Databases (QGIS, PostGIS, GDAL/GeoPandas), Geodesy and Surveying (GNSS RTK, UTM Projections, SIRGAS2000 Datum), Thematic Cartography (Bertin's Visual Variables), Pedology (SiBCS), Hazard Geomorphology (CPRM/IPT Landslides), and Territorial/Environmental Legislation (CAR/SICAR, EIA/RIMA, City Statute and Master Plans).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
-      "digest": "sha256:17bd6f87e3708342d1e160472e846bf88bc8f48274187cf8e0604b38d58b1624"
+      "digest": "sha256:2f2357963ef7f39e84d25f6451f93613a462c6744d33b345823f22f8ffea36da"
     },
     {
       "name": "academic-microprocessors-embedded-systems",
@@ -146,7 +146,7 @@
       "description": "Specializes in Scientific Research Methodology, Systematic Literature Review (PRISMA 2020), PICO/PECO Structuring, PRESS Appraisal, Searching Indexed Databases (PubMed/MeSH, arXiv, IEEE Xplore, Semantic Scholar, Scopus, SciELO), and Citation Networks.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
-      "digest": "sha256:56ee388fc4bd7968e3bf8271b83c31b3e3b251551b68845760f6ab9d508a328b"
+      "digest": "sha256:cc3703c2f7431d76450e9d8c5a2ef8a563e6ec9983d28992137eda34dca7515f"
     },
     {
       "name": "academic-solid-state-semiconductors",
@@ -167,7 +167,7 @@
       "description": "Specializes in Classical Thermodynamics, Statistical Physics, and Phase Transitions building on Statistical Mechanics (R. K. Pathria, Paul D. Beale), Thermodynamics and an Introduction to Thermostatistics (Herbert B. Callen), and Statistical Physics (Landau & Lifshitz). Covers the Postulates and Laws of Thermodynamics, Thermodynamic Potentials and Maxwell Relations, Statistical Ensembles (Microcanonical, Canonical, and Grand Canonical with Partition Functions), Quantum Statistics (Maxwell-Boltzmann, Fermi-Dirac with Degenerate Electron Gas/Fermi Energy, and Bose-Einstein with Bose-Einstein Condensation BEC and Planck Radiation), First- and Second-Order Phase Transitions, and the Ising Model.",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
-      "digest": "sha256:0e8972afa7ae50b3e5db0db74fa8310a9499b6ed1a0748006d4ea0572fcf9368"
+      "digest": "sha256:eed474acbe6e8899903c8b573ed9823b31283921ac266b7ddb7e5d6493a26857"
     },
     {
       "name": "active-directory-attack-paths",
@@ -223,7 +223,7 @@
       "description": "Provides AI drug discovery pipeline engineering based on computational drug discovery practice, covering molecular representations (SMILES, descriptors, fingerprints, graphs), virtual screening and Ro5/PAINS filters, QSAR modeling discipline, docking and active learning at billion-compound scale, VAE-based de novo design, graph neural networks for drug-target affinity, protein structure prediction platforms and honest clinical translation metrics. Use when building ML pipelines for molecular property prediction, virtual screening, de novo molecular generation or drug-target interaction modeling.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
-      "digest": "sha256:b7e439a7cf25ee151cea481dc8805704fff995d091ec054ec64af176d3edc7af"
+      "digest": "sha256:38a2fb8f651c52e33b3eb8a925dfe7982b755582573772758fd51df3c0900aa6"
     },
     {
       "name": "ai-governance-assurance",
@@ -280,6 +280,13 @@
       "type": "archive",
       "url": "knowledge/skills/security/ai/ai-voice-stt-tts-security/SKILL.md",
       "digest": "sha256:0d1cddfab0d88fab9164697ea230cbc45a5fc78ba1113f16563443a988d286f1"
+    },
+    {
+      "name": "animal-welfare-research-evidence",
+      "description": "Guides interpretation of research data used in laboratory-animal welfare assessment. Use when reviewing welfare scores, longitudinal observations or exploratory severity forecasts.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+      "digest": "sha256:248e1749d5af3d13413ee16f4ca7d8b20e3c21a2c90a1acb87bd057303f6cc49"
     },
     {
       "name": "antigravity-guide",
@@ -373,6 +380,13 @@
       "digest": "sha256:34601795453ab3b4b0a4c967abe2c58cf8c23a780badd5f7ed2616bd909573e5"
     },
     {
+      "name": "astronomical-data-integrity",
+      "description": "Guides provenance and coordinate checks for observational astronomy data. Use when analyzing astronomical images, FITS files, sky coordinates, observation times or catalog matches.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
+      "digest": "sha256:4519348f7995d57721b7a1151d90fc4f485393424d06038fb691f8cf4a8a74d1"
+    },
+    {
       "name": "ats-resume-optimization",
       "description": "Specialist in Resume Engineering and Optimization for ATS (Applicant Tracking Systems). Masters single-column parsing, keyword semantic density, acronyms, XYZ-formula impact metrics, and job-description compatibility auditing.",
       "type": "archive",
@@ -427,6 +441,13 @@
       "type": "archive",
       "url": "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md",
       "digest": "sha256:1a3faac1eb6f8364b72b8a671753fd6d12072ad97a890e29f8eeed9818528a26"
+    },
+    {
+      "name": "bulk-rna-seq-research",
+      "description": "Guides reproducible bulk RNA sequencing analysis from sample metadata to differential expression. Use when preparing bulk RNA-seq reads, quantification results, count matrices or downstream comparisons.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "digest": "sha256:834a67fd51b70c49baa9f18facbe6d5cf462c946d312dbb864009bb2d605bdd7"
     },
     {
       "name": "business-architect",
@@ -653,6 +674,13 @@
       "digest": "sha256:e3a0cdba310b6d3186e17af4e4859fd50a31c29e4838a49082f8eb5c36a9b9be"
     },
     {
+      "name": "constraint-based-metabolic-research",
+      "description": "Guides research interpretation of constraint-based metabolic network models. Use when assessing flux balance, feasible flux ranges, medium assumptions or model-based perturbation results.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+      "digest": "sha256:d3261212131eb1a578034e2faf89cc87bbd39404d40e9fd29d4b3b94d3166c3d"
+    },
+    {
       "name": "container-runtime-security",
       "description": "Acts as a Container Runtime Security specialist covering namespace and cgroup isolation, seccomp, AppArmor/SELinux and capabilities, gVisor/Kata sandboxing, container escapes (CVE-2019-5736, CVE-2024-21626), and runtime detection with Falco/Tetragon/Tracee.",
       "type": "skill-md",
@@ -783,14 +811,14 @@
       "description": "Specializes in Advanced Mathematics, Linear Algebra, Topology, Differential Calculus, and Optimization for Machine Learning and Data Science building on Algebra, Topology, Differential Calculus, and Optimization Theory for CS and ML (Jean Gallier, Jocelyn Quaintance), Numerical Algorithms (Justin Solomon), and Essential Math for Data Science (Thomas Nield). Covers Linear Algebra and Matrix Factorizations (SVD, Cholesky, QR, Moore-Penrose, Eigenvalues), Tensor Calculus and Backpropagation (Jacobians, Hessians, Multivariable Taylor), Convex Optimization and Duality (KKT Conditions, Lagrange Multipliers), First- and Second-Order Numerical Optimizers (SGD, AdamW, Newton-Raphson, BFGS, L-BFGS, Levenberg-Marquardt), Large-Scale Linear Systems (Conjugate Gradient, GMRES), Manifold Topology (Isomap, t-SNE, UMAP), and Bayesian Inference/Regularization (MLE, MAP, Lasso, Ridge, Elastic Net).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
-      "digest": "sha256:c7c2e2f9cebfcad3af2547a3aabee33ccf2f94525d84232e65c83f7ee26a46b9"
+      "digest": "sha256:60c2152b5829ed8f8aad3da946f8c68511eac93736fa602e78e75c94e622b723"
     },
     {
       "name": "data-science-workflow",
       "description": "Provides expert patterns for the end-to-end data science workflow and strategy based on Learning Data Science, Data Science at the Command Line, Data Science: The Hard Parts, and Data Science on AWS. Covers the lifecycle (ask/obtain/clean/explore/model/communicate) and OSEMN, Unix command-line data wrangling, data strategy and stakeholder communication, metrics design (funnels, stock-flow, P\u00d7Q), data leakage and drift, A/B testing, and MLOps lifecycle on AWS with SageMaker.",
       "type": "skill-md",
       "url": "knowledge/skills/data/data-science-workflow/SKILL.md",
-      "digest": "sha256:1a12679880a4fda91bd71628e08ee58f22366ed1ca6545577216112c61f16d8e"
+      "digest": "sha256:32cfe6c5745e663638ce826bdfbb7878191d798cdc9e6ca1bfc0897aed09db70"
     },
     {
       "name": "db-mariadb",
@@ -895,7 +923,7 @@
       "description": "Provides expert patterns for scaling data processing and machine learning across machines using Dask and Apache Spark based on Scaling Python with Dask (Karau & Kimmins) and Scaling Machine Learning with Spark (Polak). Covers Dask collections and schedulers, task graphs and lazy execution, Dask-ML, Spark architecture and DataFrames, the MLlib/ML pipeline API, distributed deep-learning bridges (Petastorm, Horovod, TensorFlow/PyTorch strategies), data vs model parallelism, deployment and drift monitoring.",
       "type": "skill-md",
       "url": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
-      "digest": "sha256:27d48bc1c6c16a4ec113f91520722ac0525e722b92daad1a44e45e949c232a2a"
+      "digest": "sha256:906a417092dcd729c47013d150a22145734a84bb61de70b2db9e98dd8a24deef"
     },
     {
       "name": "distributed-systems",
@@ -1092,6 +1120,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/flow-architectures/SKILL.md",
       "digest": "sha256:4695bf5f2fbc58d3f8c3fbb5495449610ee5fb9b0fa73ff84542f26408fd69e8"
+    },
+    {
+      "name": "flow-cytometry-research",
+      "description": "Guides research flow-cytometry data integrity, compensation and gating review. Use when inspecting cytometry files, reproducing a gating strategy or comparing populations across samples.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+      "digest": "sha256:f9dc1cbc0f1c3da757781ee943541a52e3ae7e41a866c24477524d4fe4731f96"
     },
     {
       "name": "framework-criterion",
@@ -1304,6 +1339,13 @@
       "digest": "sha256:adaaa3814f541b60f6fcd5b8622b74da66b0d6d6468cd192bad2715f3d8edbec"
     },
     {
+      "name": "genomic-coordinate-integrity",
+      "description": "Checks genomic interval and variant coordinates across file formats and reference assemblies. Use when joining genomic datasets, converting intervals, reconciling contig names, or investigating potential off-by-one and reference mismatches.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "digest": "sha256:3e7b520b5796fdadf5abf7003626ac14e7ce3aae3fe6de617e6b949e4b882684"
+    },
+    {
       "name": "git-conventional-commits",
       "description": "Standardizes atomic commit authoring and version-control history with the Conventional Commits v1.0.0 specification (feat, fix, refactor, perf, test, docs, breaking changes), driven by git-diff inspection.",
       "type": "archive",
@@ -1322,7 +1364,7 @@
       "description": "Provides expert patterns in GPU parallel programming with C++ and CUDA based on GPU Programming with C++ and CUDA (Paulo Motta), covering the parallelism taxonomy, SIMT and GPU architecture, the CUDA execution model (kernels, threads, blocks, grids, warps), host-device memory management, coalescing and shared-memory tiling, streams and asynchronous overlap, occupancy, register pressure, reductions and atomics, cuBLAS/Thrust, Nsight profiling and roofline analysis.",
       "type": "skill-md",
       "url": "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
-      "digest": "sha256:1c9df4466ee848861934d7a94379e9123c4f172448d308a3696b83290c9a4cb3"
+      "digest": "sha256:45340625a79c89d3fc39154999c03a581a38c3f8e52291cf0270a30c6c517393"
     },
     {
       "name": "graph-relationship-mapping",
@@ -1549,6 +1591,13 @@
       "digest": "sha256:53c40095e3bcb2febd8d4884433ad047b36a7aad18a304d6b66164fd9f506d69"
     },
     {
+      "name": "isotope-flux-research",
+      "description": "Guides research interpretation of carbon isotope tracing and metabolic flux inference. Use when assessing isotope-labeling inputs, model assumptions, flux identifiability or uncertainty.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+      "digest": "sha256:e269906806594aaf00680b7e50f5e1e77bef2c99875dcb982e2506d5733db98e"
+    },
+    {
       "name": "itdr-identity-threat-detection",
       "description": "Acts as an Identity Threat Detection and Response specialist covering token theft, adversary-in-the-middle phishing, credential stuffing, session hijacking, impossible travel, MFA fatigue and the detection of abnormal identity behavior across identity providers and clouds.",
       "type": "skill-md",
@@ -1610,6 +1659,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md",
       "digest": "sha256:60836c93837b1854d1e263695e083a5cb212f3ac151ddc1a15859f949a7581be"
+    },
+    {
+      "name": "laboratory-automation-research",
+      "description": "Guides planning and review of laboratory automation workflows. Use when designing a protocol for laboratory software, checking a simulated run or preparing a handoff to an equipment operator.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
+      "digest": "sha256:e764c6ca7bfbd8f35d3300cab1067891ed3b3386d40c81b134464e34c8bd6585"
     },
     {
       "name": "lang-assembly-x64",
@@ -1815,6 +1871,13 @@
       "digest": "sha256:2287b23fc20b523ef95cbfdd8fc1b8995945b2339e44714614733758da55662c"
     },
     {
+      "name": "measurement-units-uncertainty",
+      "description": "Guides dimensional checks and measurement uncertainty evaluation. Use when converting scientific quantities, evaluating a measurement model, reporting uncertainty or checking physical plausibility.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "digest": "sha256:4de70de19ecb700e4701f0b2f1a16d3c3f3ee3cc0da320970be79a93caab091e"
+    },
+    {
       "name": "medical-device-cybersecurity",
       "description": "Acts as a Medical Device Cybersecurity specialist covering FDA \u00a7524B premarket requirements, the FDA February 2026 guidance, SBOM/CBOM for devices, postmarket vulnerability management, legacy-device risk and the safety impact of medical device compromise.",
       "type": "skill-md",
@@ -1868,7 +1931,7 @@
       "description": "Specialist in Orchestration, Supervision, and Governance of Multi-Agent Systems. Focused on anchoring initial objectives, continuously detecting scope drift (Agent Drift and Role Drift), proactive intervention (Self-Correction), gradual containment, and applying kill-switch/safe termination to non-compliant agents.",
       "type": "archive",
       "url": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "digest": "sha256:55e90b2d47c87a4eca1b69bc50590221639d5d762cc54c49f652d3dd308a9c03"
+      "digest": "sha256:c25f8948cbf9ab82ce1754279209fa2697f0fde4d4c7f920e2e9419fb14f28da"
     },
     {
       "name": "mutation-fuzzing-testing",
@@ -2018,6 +2081,13 @@
       "digest": "sha256:fb8c862dca625208a97d40c04f0640de37c33e45e23c7930c63e35a1cee062ea"
     },
     {
+      "name": "pooled-screen-research",
+      "description": "Guides research analysis of existing pooled perturbation screen counts. Use when validating guide libraries, sample contrasts, replicate quality or gene-level enrichment and depletion results.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+      "digest": "sha256:caa2bac725c5981f0c26f58978cacf35284c70fdba91f153f19b7041e8459713"
+    },
+    {
       "name": "power-automate",
       "description": "Acts as a specialist in Microsoft Power Automate, covering Cloud Flows (Automated, Instant, Scheduled), Desktop Flows (RPA), Process Mining, AI Builder, custom connectors, and governance/DLP architecture.",
       "type": "archive",
@@ -2155,7 +2225,7 @@
       "description": "Provides expert patterns for Python data science and applied machine learning based on Data Science from Scratch, Introduction to Machine Learning with Python, the Python Data Science Handbook, Python Machine Learning Cookbook, and Practical Statistics for Data Scientists. Covers NumPy vectorization and broadcasting, pandas wrangling, matplotlib/seaborn, the scikit-learn estimator API with pipelines and model selection, supervised and unsupervised algorithms, feature engineering, and the statistics (bootstrap, A/B testing, regression) behind applied data science.",
       "type": "skill-md",
       "url": "knowledge/skills/data/python-data-science/SKILL.md",
-      "digest": "sha256:abd20e3e85993ffbf172532c58a482bcdab637e9c371fb61a915b21c067e69b4"
+      "digest": "sha256:b703cb6b340e5d3ed2099f0f757b362d969019121e575f1169af472075c1a819"
     },
     {
       "name": "python-performance-parallelism",
@@ -2183,7 +2253,7 @@
       "description": "Specializes in Advanced Quantum Mechanics, Theoretical Physics, Quantum Circuits, and Quantum Algorithms building on J. J. Sakurai (Modern Quantum Mechanics), Claude Cohen-Tannoudji (Quantum Mechanics), and Michael A. Nielsen & Isaac L. Chuang (Quantum Computation and Quantum Information). Covers the Dirac Formalism in Hilbert Space, the Quantum Harmonic Oscillator via Ladder Operators, Angular Momentum and Spin 1/2 (Pauli Matrices, Clebsch-Gordan Coefficients), Perturbation Theory and Fermi's Golden Rule, Qubit Fundamentals and the Bloch Sphere, Universal Quantum Gates (Hadamard, Pauli-X/Y/Z, Phase-S/T, CNOT, Toffoli), Quantum Entanglement (Bell States, GHZ), the Quantum Fourier Transform (QFT), Shor's Algorithm (Polynomial Factorization), Grover's Algorithm (Quadratic-Speedup Search), the Variational Quantum Eigensolver (VQE for Quantum Chemistry), and Practical Implementation with Qiskit (IBM) and Cirq (Google).",
       "type": "archive",
       "url": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
-      "digest": "sha256:63452220eae315f5b12a6123442f9f2648ac9134ea66161991ab6f4e8f3e526d"
+      "digest": "sha256:57408251015c658671fc9884ef761eae94563831afcafa4f05c74701663fe771"
     },
     {
       "name": "rasp-runtime-protection",
@@ -2233,6 +2303,13 @@
       "type": "archive",
       "url": "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
       "digest": "sha256:85af5d7e0fa4275907aa8e3ed37caebaa606894a2f60d64bb7fefce7e98627f2"
+    },
+    {
+      "name": "scientific-data-retrieval",
+      "description": "Guides reproducible retrieval from scientific databases and public data services. Use when selecting a source, querying datasets, resolving identifiers or assessing retrieval completeness and provenance.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "digest": "sha256:786c8d6ca59fcfdf52f9aaa6584f9d3a522c4b07ec11232e3829ff5d2f57ae6e"
     },
     {
       "name": "scrum-master",
@@ -2331,6 +2408,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/security/cloud/serverless-security/SKILL.md",
       "digest": "sha256:84d39602f57b908c8ce5c2fcdef838968df4ff6d2273fd27bbb4d196dd66eb0d"
+    },
+    {
+      "name": "single-cell-expression-research",
+      "description": "Guides research analysis of single-cell expression data and annotated matrices. Use when preparing, combining or interpreting single-cell datasets and sample-level comparisons.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "digest": "sha256:d14687660d0ded280450d8520321496da9f8cea2e44440928d0d6b0ba7175189"
     },
     {
       "name": "soc-operations-maturity",
@@ -2485,6 +2569,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/architecture/delivery/systems-architect/SKILL.md",
       "digest": "sha256:75e01832192c8d89b099fda7f05fccc38b02551a5ff6ea4e0a95b7a70d4f3843"
+    },
+    {
+      "name": "tandem-mass-spectra-research",
+      "description": "Guides research comparison of tandem mass spectra and spectral-library evidence. Use when preparing MS/MS data, matching spectra or interpreting candidate compound identities.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md",
+      "digest": "sha256:db6ef64b7aac366b8dbe55ac49ae608f9efb2c6851b3a884566243b7713b2353"
     },
     {
       "name": "technology-architect",

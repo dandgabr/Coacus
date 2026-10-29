@@ -1,0 +1,897 @@
+{
+  "scope": "Partial review of requested inventory positions 0-88 and PR positions 0-32; no inventory status changes.",
+  "upstream_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "skills_examined": [
+    {
+      "index": 4,
+      "name": "analytical-method-validation",
+      "source": "skills/analytical-method-validation/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Source requires choosing the governing framework and prespecifying fit-for-purpose criteria; the owner previously attributed numerical thresholds to a laboratory standard. Verify that any replacement and provenance are documented against authoritative sources.",
+      "coverage": "Relevant source sections and owner passage inspected, not entire packages or scripts."
+    },
+    {
+      "index": 15,
+      "name": "bulk-rnaseq",
+      "source": "skills/bulk-rnaseq/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Source covers bulk reads-to-counts quality gates, sample metadata, quantification provenance and an explicit downstream handoff; the inspected owner focuses on bioprocesses, not this workflow.",
+      "coverage": "Source overview and owner excerpt inspected; implementation and package scripts not fully reviewed."
+    },
+    {
+      "index": 48,
+      "name": "genomic-coordinates",
+      "source": "skills/genomic-coordinates/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "finding": "New owner reflects reference and interval conventions and exceptional cases; suggest explicit validation of interval order and contig bounds.",
+      "coverage": "Source and owner workflows inspected; no runtime evaluation."
+    },
+    {
+      "index": 0,
+      "name": "13c-metabolic-flux",
+      "source": "skills/13c-metabolic-flux/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Distinct carbon atom maps, isotopic versus metabolic steady-state, tracer purity, uncertainty and identifiability requirements are not represented in the inspected bioprocess source; model fits do not by themselves prove identifiability.",
+      "coverage": "Source SKILL.md inspected; referenced model, tests and external dependencies not independently checked."
+    },
+    {
+      "index": 5,
+      "name": "anndata",
+      "source": "skills/anndata/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Single-cell annotated matrix provenance, distinction between raw counts and transformed data, aligned identifiers, and batch concatenation versus correction are not covered by the inspected bioprocess source.",
+      "coverage": "Source SKILL.md inspected; referenced package and interoperability claims not independently checked."
+    },
+    {
+      "index": 12,
+      "name": "bids",
+      "source": "skills/bids/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Indexing alone is not validation; source data can retain identifiers, and imaging timing and direction require metadata rather than guesses. The declared license is CC BY, so adaptation must preserve applicable attribution.",
+      "coverage": "Portions of source and owner inspected; full package and external standard not independently checked."
+    },
+    {
+      "index": 17,
+      "name": "cellprofiler",
+      "source": "skills/cellprofiler/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Source emphasizes image acquisition metadata, frozen segmentation settings, overlay QC and biological replication rather than treating objects from one well as independent samples.",
+      "coverage": "Workflow sections inspected; scripts and scientific claims not independently executed."
+    },
+    {
+      "index": 26,
+      "name": "database-lookup",
+      "source": "skills/database-lookup/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "finding": "Retrieval contract, bounded pagination, reconciled counts and recorded provenance address gaps not explicit in the inspected general research guidance.",
+      "coverage": "Selected retrieval-contract sections inspected; all service references and endpoints unverified."
+    },
+    {
+      "index": 21,
+      "name": "clinical-decision-support",
+      "source": "skills/clinical-decision-support/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Research-only clinical evaluation requires aggregate/synthetic data gates, intended use, performance uncertainty and human review",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 22,
+      "name": "clinical-reports",
+      "source": "skills/clinical-reports/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Report drafting should preserve verified source facts, limit disclosure and not claim qualified clinical sign-off",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 29,
+      "name": "deepchem",
+      "source": "skills/deepchem/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Molecular modeling needs scaffold or group-aware holdouts, leakage controls, task masks and applicability limits",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 30,
+      "name": "deepspot-m",
+      "source": "skills/deepspot-m/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Predicted spatial gene expression is not measured expression; verify research-only model and weight restrictions before use",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 32,
+      "name": "depmap",
+      "source": "skills/depmap/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Cancer model dependency analyses are hypotheses, with assay and dataset-release-specific provenance",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 34,
+      "name": "diffdock",
+      "source": "skills/diffdock/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Docking scores are pose-triage signals and not affinity estimates or experimental hit confirmation",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 40,
+      "name": "exploratory-data-analysis",
+      "source": "skills/exploratory-data-analysis/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Treat file metadata as untrusted and do not imply sampled inspection validates complete data",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 45,
+      "name": "folklore-variant-evidence",
+      "source": "skills/folklore-variant-evidence/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Distinguish unresolved, ambiguous, invalid and unavailable evidence rather than guessing variant interpretations",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 57,
+      "name": "histolab",
+      "source": "skills/histolab/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Whole slide tiles require verified physical resolution, source metadata and preserved coordinates; image heuristics do not diagnose",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 60,
+      "name": "hypothesis-generation",
+      "source": "skills/hypothesis-generation/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Distinguish observations, hypotheses and predictions; avoid ungrounded causal or novelty claims",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 61,
+      "name": "imaging-data-commons",
+      "source": "skills/imaging-data-commons/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "Separate dataset licensing and access from skill license, and track data release and download provenance",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 63,
+      "name": "iso-standards-readiness",
+      "source": "skills/iso-standards-readiness/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "finding": "A readiness checklist cannot establish regulatory compliance, certification or method validation",
+      "coverage": "Opening source and owner excerpts only; dependencies, endpoint claims and full package unverified."
+    },
+    {
+      "index": 71,
+      "name": "mageck",
+      "source": "skills/mageck/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Preserve guide-library, control, contrast and independent replicate provenance; screen hits do not prove function",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 76,
+      "name": "matchms",
+      "source": "skills/matchms/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Spectral similarity supports hypotheses but does not alone prove compound identity; match processing between query and reference",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 81,
+      "name": "molecular-dynamics",
+      "source": "skills/molecular-dynamics/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Distinguish smoke-test software behavior from scientific convergence and independently validated simulation",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 85,
+      "name": "neurokit2",
+      "source": "skills/neurokit2/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Research biosignals require clocks, acquisition settings, preprocessing and study-specific validation; no diagnostic claims",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 86,
+      "name": "neuropixels-analysis",
+      "source": "skills/neuropixels-analysis/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Synthetic pipeline checks do not validate native sorting, GPU runs or clinical use; curated units require QC",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 88,
+      "name": "nmrglue",
+      "source": "skills/nmrglue/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md;knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "finding": "Verify acquisition axis, reference, signal convention and digital filter before interpretation; successful conversion is not acquisition validation",
+      "coverage": "Only source opening and scoped owner excerpts inspected; package, claims, and dependencies not independently evaluated."
+    },
+    {
+      "index": 42,
+      "name": "flowio",
+      "source": "skills/flowio/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md;knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Raw cytometry reads differ from compensated and transformed events; metadata can be sensitive",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 43,
+      "name": "flowkit",
+      "source": "skills/flowkit/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md;knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Compensation, transformations and gate definitions require exact channel and sample identity; import success does not prove workspace concordance",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 47,
+      "name": "geniml",
+      "source": "skills/geniml/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md;knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Model/tokenizer compatibility, genome assembly and sample grouping must be explicit; scripts that plan or inspect are not training runs",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 51,
+      "name": "geopandas",
+      "source": "skills/geopandas/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+      "finding": "Existing owner already covers CRS transformation, geometry validity and spatial join cardinality; upstream adds explicit disclosure and export-plan boundaries.",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 55,
+      "name": "glycoengineering",
+      "source": "skills/glycoengineering/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md;knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Sequence motif is not evidence of site occupancy; source declares unknown license and needs license resolution before reuse",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 56,
+      "name": "gtars",
+      "source": "skills/gtars/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md;knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "finding": "Inspect interval and model artifacts locally before remote constructors; record exact redistributed artifact license",
+      "coverage": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified."
+    },
+    {
+      "index": 66,
+      "name": "lamindb",
+      "source": "skills/lamindb/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Dataset registration alone does not establish scientific validity or FAIR compliance; preserve storage and source scope",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 67,
+      "name": "latchbio-integration",
+      "source": "skills/latchbio-integration/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Network registration and execution examples are illustrative, not proof of an authenticated live run",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 79,
+      "name": "medchem",
+      "source": "skills/medchem/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Structural alerts and drug-likeness filters are context-dependent triage and not experimentally established activity",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 82,
+      "name": "molfeat",
+      "source": "skills/molfeat/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Maintain molecule-to-label alignment and evaluate representation on same split and endpoint",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 83,
+      "name": "ncats-arax",
+      "source": "skills/ncats-arax/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "A graph path is an evidence candidate, not clinical inference; absent results remain scoped to query constraints",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 87,
+      "name": "nextflow",
+      "source": "skills/nextflow/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Cache resumption does not validate scientific results; record pipeline, reference and parameter provenance",
+      "coverage": "Opening sections and owner excerpts only; package, behavior, license details and external systems not verified."
+    },
+    {
+      "index": 2,
+      "name": "aeon",
+      "source": "skills/aeon/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Keep temporal split semantics and distinguish local synthetic checks from unrun cloud or training examples",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 3,
+      "name": "alphagenome",
+      "source": "skills/alphagenome/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Variant model output is research-only and provider rights and supported reference builds require review",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 7,
+      "name": "arboreto",
+      "source": "skills/arboreto/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Gene regulatory associations inferred from expression are not proof of direct regulation or causality",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 8,
+      "name": "astropy",
+      "source": "skills/astropy/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Astronomical workflows require explicit coordinate frames, physical units and time scales",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 13,
+      "name": "biopython",
+      "source": "skills/biopython/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Source declares a specific license and external executables/services; do not assume parser support or network entitlement",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 14,
+      "name": "bioservices",
+      "source": "skills/bioservices/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "GPL-licensed source performs cross-service mapping; ambiguous identifiers and provider terms require review",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 18,
+      "name": "cellxgene-census",
+      "source": "skills/cellxgene-census/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Versioned population datasets require dataset provenance and licensing separate from client and source licenses",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 19,
+      "name": "cirq",
+      "source": "skills/cirq/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Local simulation results do not establish execution on cloud or physical hardware",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 23,
+      "name": "cobrapy",
+      "source": "skills/cobrapy/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Constraint-based flux prediction does not establish kinetic rates or experimentally measured growth; source declares GPL-2.0",
+      "coverage": "Source opening and general owner excerpts only; package, detailed procedure, dependency versions and services unverified."
+    },
+    {
+      "index": 6,
+      "name": "arbor",
+      "source": "skills/arbor/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Optimization loops need independent held-out evaluation and explicit side-effect boundaries",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 9,
+      "name": "autoskill",
+      "source": "skills/autoskill/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Work-history scanning and external model disclosure need explicit user scope and privacy controls",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 10,
+      "name": "benchling-integration",
+      "source": "skills/benchling-integration/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Authenticated laboratory writes need explicit permissions and source schema verification",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 11,
+      "name": "bgpt-paper-search",
+      "source": "skills/bgpt-paper-search/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Extracted claims are discovery aids, not comprehensive systematic searches or established risk-of-bias assessments",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 20,
+      "name": "citation-management",
+      "source": "skills/citation-management/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Citation metadata must be checked, and deduplication must preserve retained identity and source provenance",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 24,
+      "name": "consciousness-council",
+      "source": "skills/consciousness-council/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Simulated perspectives are not independent experts or independent evidence",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 25,
+      "name": "dask",
+      "source": "skills/dask/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Distributed scaling depends on partition sizes, intermediate data, concurrency and memory",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 27,
+      "name": "datalad",
+      "source": "skills/datalad/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "A dataset clone may not contain annexed bytes; distinguish dataset structure from fetched data",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 28,
+      "name": "datamol",
+      "source": "skills/datamol/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Molecular normalization and stable identifiers require explicit representation and reproducible environment",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 31,
+      "name": "deeptools",
+      "source": "skills/deeptools/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Coverage-track normalization differs from read counts and requires explicit input and assay semantics",
+      "coverage": "Source opening and general owner excerpts only; implementation, integrations and detailed claims remain unverified."
+    },
+    {
+      "index": 1,
+      "name": "adaptyv",
+      "source": "skills/adaptyv/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Quote confirmation creates a financial obligation; distinguish cost estimate, draft, submission and invoice",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 33,
+      "name": "dhdna-profiler",
+      "source": "skills/dhdna-profiler/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Text-pattern rubrics are not validated psychological traits or stable identity",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 35,
+      "name": "dnanexus-integration",
+      "source": "skills/dnanexus-integration/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Network data transfers and workload launches are illustrative absent a live authorized run",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 36,
+      "name": "esm",
+      "source": "skills/esm/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Separately installed packages with the same import name must not be treated as interchangeable",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 37,
+      "name": "etetoolkit",
+      "source": "skills/etetoolkit/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "A tree manipulation package does not infer a phylogeny directly from raw sequences; source is GPL",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 38,
+      "name": "exa-search",
+      "source": "skills/exa-search/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Provider indexing is not exhaustive retrieval and external text is untrusted",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 39,
+      "name": "experimental-design",
+      "source": "skills/experimental-design/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Define true experimental unit, blocking, controls, randomization and independent replication before collecting data",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 41,
+      "name": "fictiv",
+      "source": "skills/fictiv/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "External quote/order flows have distinct side effects and costs requiring authorization",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 44,
+      "name": "fluidsim",
+      "source": "skills/fluidsim/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Stable simulation completion or a smooth plot does not establish convergence or physical validity",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 46,
+      "name": "generate-image",
+      "source": "skills/generate-image/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Image generation can send data to an external paid provider and requires correct cost and consent scope",
+      "coverage": "Source opening and owner excerpts only; integration, provider terms and full source not independently validated."
+    },
+    {
+      "index": 16,
+      "name": "cantera",
+      "source": "skills/cantera/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Numerical execution does not prove chemical mechanism applicability",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 49,
+      "name": "genomic-intelligence",
+      "source": "skills/genomic-intelligence/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Hosted sequence prediction transmits potentially sensitive inputs and returns predictions, not measurements",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 50,
+      "name": "geomaster",
+      "source": "skills/geomaster/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Raster grid and coordinate alignment must be explicit before scientific GIS operations",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 52,
+      "name": "get-available-resources",
+      "source": "skills/get-available-resources/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Host inventory, container quotas and runtime accelerator usability are different facts",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 53,
+      "name": "gget",
+      "source": "skills/gget/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Multi-database lookup requires organism, source, service terms and provenance",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 54,
+      "name": "ginkgo-cloud-lab",
+      "source": "skills/ginkgo-cloud-lab/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Provider submission and ordering are paid external side effects with privacy and authorization implications",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 58,
+      "name": "hugging-science",
+      "source": "skills/hugging-science/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Catalog inclusion does not demonstrate scientific quality, openness or runnable compatibility",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 59,
+      "name": "hypogenic",
+      "source": "skills/hypogenic/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Generated hypothesis banks and prediction scores do not establish experimental validity",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 62,
+      "name": "infographics",
+      "source": "skills/infographics/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Generated figures require verification against source data and external-service disclosure",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 64,
+      "name": "lab-hardware-cad",
+      "source": "skills/lab-hardware-cad/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Fabrication needs actual interface drawings and verification beyond a generated model",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 65,
+      "name": "labarchive-integration",
+      "source": "skills/labarchive-integration/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Remote API use needs matching interface, authority and verified provider semantics",
+      "coverage": "Source opening and general owner excerpts only; full package, services and claims not independently verified."
+    },
+    {
+      "index": 68,
+      "name": "latex-posters",
+      "source": "skills/latex-posters/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "PDF poster requires source fidelity and print preflight; optional external image generation transmits data",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 69,
+      "name": "liteparse",
+      "source": "skills/liteparse/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "PDF extraction and OCR output do not prove complete or faithful visual transcription",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 70,
+      "name": "literature-review",
+      "source": "skills/literature-review/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Record search coverage and distinguish records from studies; scripts are not a complete systematic review",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 72,
+      "name": "marine-carbonate-chemistry",
+      "source": "skills/marine-carbonate-chemistry/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Seawater carbonate calculations require explicit measurements, chemistry assumptions and propagated uncertainty",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 73,
+      "name": "markdown-mermaid-writing",
+      "source": "skills/markdown-mermaid-writing/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Text diagrams require renderer compatibility and are not a substitute for quantitative scientific figures",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 74,
+      "name": "market-research-reports",
+      "source": "skills/market-research-reports/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Separate market estimates and forecasts from verified source facts and disclose assumptions",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 75,
+      "name": "markitdown",
+      "source": "skills/markitdown/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Markdown extraction is not a faithful rendering and external plugins or OCR can add security boundaries",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 77,
+      "name": "matlab",
+      "source": "skills/matlab/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "MATLAB and Octave have partial compatibility and independent runtime licenses",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 78,
+      "name": "matplotlib",
+      "source": "skills/matplotlib/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Publication figures require source-faithful quantitative data and validation of exported output",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 80,
+      "name": "modal",
+      "source": "skills/modal/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Cloud compute and GPU jobs require authenticated external resources and may incur costs",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    },
+    {
+      "index": 84,
+      "name": "networkx",
+      "source": "skills/networkx/SKILL.md",
+      "owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md;knowledge/skills/data/data-science-workflow/SKILL.md",
+      "finding": "Graph methods require an explicit data model and algorithm assumptions; installed version does not establish empirical validity",
+      "coverage": "Source opening and general owner excerpts only; full package, renderer, providers and specific claims not independently verified."
+    }
+  ],
+  "pull_requests_partially_examined": [
+    {
+      "number": 343,
+      "evidence": "Inspected changes to _tabular.py, read_table callers, and test_scripts.py patch excerpt. Parser warnings become errors to avoid shifted or truncated values; full patch and tests not independently executed."
+    },
+    {
+      "number": 349,
+      "evidence": "Inspected grouping changes in _common.py and check_response.py plus test_level_identity.py patch excerpt. Rounded concentration grouping is replaced with exact parsed numeric grouping; full patch and tests not independently executed."
+    },
+    {
+      "number": 350,
+      "evidence": "Inspected propagate change and affine uncertainty test patch excerpt. Unit differences are converted without subtracting nearby absolute values; full patch and tests not independently executed."
+    },
+    {
+      "number": 353,
+      "evidence": "Inspected shared reader and CSV field-count test patch excerpt. Nonempty surplus fields trigger InputError; full patch and tests not independently executed."
+    },
+    {
+      "number": 354,
+      "evidence": "Inspected identifier cleanup, numeric missing token separation and tests patch excerpt. Literal missing-like gene symbols are retained; full patch and tests not independently executed."
+    },
+    {
+      "number": 348,
+      "evidence": "Read selected Python implementation and test patch excerpts: DOI identity should be reserved only for entries retained after citation-key collision checks. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 352,
+      "evidence": "Read selected Python implementation and test patch excerpts: Unmapped sequential SAM/BAM may legitimately lack a reference dictionary. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 351,
+      "evidence": "Read selected Python implementation and test patch excerpts: Sample identifiers need string-preserving parsing separate from numeric missing-value behavior. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 341,
+      "evidence": "Read selected Python implementation and test patch excerpts: Binary AUC computation needs elementwise target comparison across array-like containers. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 339,
+      "evidence": "Read selected Python implementation and test patch excerpts: Half-open interval overlap counting should not depend on input order; adjacency is not overlap. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 338,
+      "evidence": "Read selected Python implementation and test patch excerpts: JATS contributor extraction should distinguish article authors from journal and non-author contributors. Full patch not inspected and tests not independently executed."
+    },
+    {
+      "number": 321,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 322,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 323,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Full patch inspected: explicit LaTeX citation command matcher and synthetic manuscript tests; executable coverage not measured."
+    },
+    {
+      "number": 325,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Full patch inspected: OpenAlex cursor behavior, pricing/rate documentation and URL-construction tests; live provider behavior not verified."
+    },
+    {
+      "number": 327,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch partially inspected: unnamed sequence handling and mocked CLI tests; output truncated and live service not verified."
+    },
+    {
+      "number": 329,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch partially inspected: acceptance boundary tolerance and precision degrees of freedom; output was truncated, and standards claims and tests not verified."
+    },
+    {
+      "number": 331,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Full patch inspected: centered-scaled logistic IRLS and Fisher-information errors, with synthetic unit-invariance and CLI tests; tests not run."
+    },
+    {
+      "number": 332,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 333,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 334,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Empty records no longer assert contig conflict; tests preserve header conflicts; no upstream tests executed."
+    },
+    {
+      "number": 335,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 336,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 337,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 340,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Returned output count is separated from collected records and redaction limit; mocked pagination tests; no upstream tests executed."
+    },
+    {
+      "number": 342,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Enum validation checks type before membership to avoid malformed JSON crash; unit and CLI cases; no upstream tests executed."
+    },
+    {
+      "number": 344,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Documentation adds tarball checksum command; digest origin independently unverified; no upstream tests executed."
+    },
+    {
+      "number": 345,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Retrieved pages are untrusted input; documentation-only change; no upstream tests executed."
+    },
+    {
+      "number": 346,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Documentation alone claims changed key precedence, but base code still prioritizes explicit --api-key; no upstream tests executed."
+    },
+    {
+      "number": 347,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Read full patch: Documentation adds manual hash display; no automatic checksum comparison; no upstream tests executed."
+    },
+    {
+      "number": 355,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 357,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    },
+    {
+      "number": 358,
+      "captured_head_match": true,
+      "patch_path": "[temporary review artifact]",
+      "evidence": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review."
+    }
+  ],
+  "remaining": "All 89 assigned skill openings sampled only; full packages and precise owner comparison remain pending. All assigned PR patch metadata sampled; only the listed seven full patches read, plus eleven earlier patch excerpts; no tests executed."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "single-cell-feature-presence",
+  "title": "Distinguish unmeasured features from observed zeros",
+  "harness": "opencode",
+  "prompt": "Two single-cell datasets have different measured gene panels. A sparse outer join fills genes missing from one panel with zeros. The resulting matrix contains integer-looking values but its transformation history is unknown. Can those zeros be treated as observed lack of expression, and can you infer that the matrix contains raw counts? Explain how sample-level comparisons should account for donors. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(unmeasured|not measured|missing|absent)" },
+    { "kind": "regex", "value": "(?i)(donor|biological replicate|biological sample)" }
+  ],
+  "rubric": [
+    "The response distinguishes unmeasured genes from measured zero expression and preserves feature-presence provenance.",
+    "It identifies donors or independent samples as the relevant biological replication rather than treating cells as independent replicates.",
+    "It does not infer raw-count provenance solely from numeric appearance."
+  ],
+  "acceptance": "The response preserves the missing-versus-zero distinction and accounts for independent biological replication."
+}

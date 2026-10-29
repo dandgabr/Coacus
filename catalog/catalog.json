@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 104,
-    "skills": 476,
+    "skills": 489,
     "mcps": 1
   },
   "agents": [
@@ -853,12 +853,64 @@
       "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md"
     },
     {
+      "name": "animal-welfare-research-evidence",
+      "path": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md"
+    },
+    {
+      "name": "astronomical-data-integrity",
+      "path": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md"
+    },
+    {
+      "name": "bulk-rna-seq-research",
+      "path": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md"
+    },
+    {
+      "name": "constraint-based-metabolic-research",
+      "path": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md"
+    },
+    {
       "name": "data-science-advanced-math",
       "path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md"
     },
     {
+      "name": "flow-cytometry-research",
+      "path": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md"
+    },
+    {
+      "name": "genomic-coordinate-integrity",
+      "path": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md"
+    },
+    {
+      "name": "isotope-flux-research",
+      "path": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md"
+    },
+    {
+      "name": "laboratory-automation-research",
+      "path": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md"
+    },
+    {
+      "name": "measurement-units-uncertainty",
+      "path": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md"
+    },
+    {
+      "name": "pooled-screen-research",
+      "path": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md"
+    },
+    {
       "name": "quantum-computing-algorithms",
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
+    },
+    {
+      "name": "scientific-data-retrieval",
+      "path": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md"
+    },
+    {
+      "name": "single-cell-expression-research",
+      "path": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md"
+    },
+    {
+      "name": "tandem-mass-spectra-research",
+      "path": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md"
     },
     {
       "name": "canvas-spatial-whiteboarding",

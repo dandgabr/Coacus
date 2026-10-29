@@ -1,6 +1,6 @@
 """On-disk concurrency governor with an flock-guarded slot ledger (orchestration-governance).
 
-Bounds how many agents may run at once (default 5, orchestrator included),
+Bounds how many agents may run at once (scoped, configurable limits; fallback 6),
 handles rate-limit (429) by parking a caller as PAUSED for retry, and is the
 executable counterpart of the AGENTS.md governance rule. Zero dependencies.
 
@@ -10,7 +10,8 @@ Ledger format (text, one record per line):
     PAUSED  <caller> <unix-ts> <attempts>
 
 Callers are validated tokens (``[A-Za-z0-9._:-]+``); matching is EXACT, never
-prefix-based. The cap is persisted so no caller can raise it. Stale RUNNING
+prefix-based. The cap is persisted and can be changed through the configured
+maximum or the explicit setter. Stale RUNNING
 rows (dead PID or older than the lease) are reaped before capacity is judged,
 so a crashed holder cannot leak a slot forever.
 """

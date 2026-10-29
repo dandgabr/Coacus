@@ -80,3 +80,7 @@ print("Measurement Distribution:", counts)
 | **Grover's Search** | Linear $\mathcal{O}(N)$ | Quadratic $\mathcal{O}(\sqrt{N})$ | Search in unstructured databases via amplitude amplification by inversion about the mean. |
 | **VQE (Variational Quantum Eigensolver)** | Exponential $\mathcal{O}(2^n)$ | Hybrid Classical-Quantum | Variational minimization of the ground-state energy $\langle \psi(\theta) | \hat{H} | \psi(\theta) \rangle$ for quantum chemistry and new materials. |
 | **QPE (Quantum Phase Estimation)** | Exponential | Polynomial $\mathcal{O}(n^2)$ | Determination of the unitary eigenvalues of $\hat{U}|\psi\rangle = e^{2\pi i \theta}|\psi\rangle$. |
+
+## Open-system simulation
+
+Record subsystem dimensions, basis order, Hamiltonian and rate units, initial state, environmental assumptions and numerical tolerances. For a Lindblad model using the standard collapse-operator convention, an operator with rate $\gamma$ is scaled by $\sqrt{\gamma}$; confirm the convention of the selected solver. Check density-matrix trace, Hermiticity and positivity within numerical tolerance, and assess convergence with time-step or cutoff changes. Physical-state checks and numerical convergence do not establish that the environmental model is valid. Consult the [QuTiP master-equation guide](https://qutip.readthedocs.io/en/latest/guide/dynamics/dynamics-master.html) for the solver's assumptions and API.
