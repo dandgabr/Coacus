@@ -87,7 +87,7 @@ This skill supplies the principles, patterns, and heuristics for designing scala
 3. **Rate Limiting & Throttling**:
    - Algorithms: **Token Bucket**, **Leaky Bucket**, **Fixed Window**, **Sliding Window Log**.
 4. **Idempotency Keys**:
-   - Unique UUID keys in the `Idempotency-Key` header with temporary storage in Redis to prevent duplication on network retries.
+   - Use a durable key, payload fingerprint and operation state when duplicate side effects matter; atomically claim the key and define retention and recovery. A cache can accelerate lookup but cannot alone guarantee durable deduplication. For external effects, use provider idempotency and reconciliation as described in [framework-rest-api](../../../frameworks/framework-rest-api/SKILL.md).
 
 ---
 

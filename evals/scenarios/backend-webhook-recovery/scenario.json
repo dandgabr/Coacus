@@ -1,0 +1,31 @@
+{
+  "id": "backend-webhook-recovery",
+  "title": "Handle webhook duplicates and ambiguous external effects",
+  "harness": "opencode",
+  "prompt": "A payment webhook arrives twice concurrently. A remote charge may succeed before the local process crashes. Explain the event record, acknowledgment, and recovery strategy. Respond in a few concise lines; do not modify files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(unique|uniqueness)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(idempotenc|deduplicat|reconcil)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(in.progress|pending|failed|failure)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)\\b(claim|persist|store|record)\\b.{0,55}\\b(durable|unique|event.id|event id)"
+    }
+  ],
+  "rubric": [
+    "The answer uses durable provider-scoped event identity and a uniqueness constraint with atomic claiming.",
+    "It distinguishes completed, in-progress and failed processing and acknowledges only according to the provider retry contract.",
+    "It uses a stable provider idempotency key or reconciliation for ambiguous external effects and does not claim a local transaction guarantees exactly once.",
+    "No file was modified."
+  ],
+  "acceptance": "The response satisfies the listed behavioral requirements and makes no changes."
+}

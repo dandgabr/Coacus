@@ -92,7 +92,21 @@ sequenceDiagram
 
 ### 3.2 Idempotency in Mutations (`Idempotency-Key`)
 - The client sends the `Idempotency-Key: <UUIDv4>` header.
-- The server stores the key in Redis/DB with a TTL (e.g., 24 h). If it repeats, the server returns the original cached response without reprocessing.
+- Persist the key and request fingerprint with the result for a retention period suited to the retry contract. Atomically claim a key; return the stored result only for a completed matching request. Handle in-progress and failed requests explicitly, and reject reuse with a different payload.
+
+For webhooks, authenticate the sender before trusting the event ID. Persist a
+provider-scoped event ID under a unique constraint and atomically claim it;
+concurrent duplicates must not independently execute the work. Commit local
+business changes and the completed state in the same transaction when possible.
+A completed duplicate can receive the provider's success acknowledgment; an
+in-progress or failed event needs a defined retry and recovery policy, not a
+false success that loses work. Retain IDs for the provider's replay window.
+
+A local transaction cannot atomically commit an external payment or API call.
+Use the provider's stable idempotency key when supported, and persist an outbox
+or recoverable operation state for retries and reconciliation. If the provider
+cannot deduplicate, an ambiguous timeout requires reconciliation or manual
+resolution; do not promise exactly-once external effects.
 
 ---
 

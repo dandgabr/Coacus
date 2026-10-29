@@ -94,6 +94,7 @@ WHERE u.created_at >= '2026-01-01' AND o.status = 'COMPLETED';
 - **Least Privilege and Row Level Security (RLS)**:
   - Never run applications as the `postgres` superuser.
   - Enable RLS for multitenant data isolation (`ALTER TABLE tbl ENABLE ROW LEVEL SECURITY;`).
+  - Verify policies for reads and writes using the actual application role and distinct users or tenants. Check ownership, superuser and `BYPASSRLS` exemptions and whether `FORCE ROW LEVEL SECURITY` is needed; enabling RLS alone does not prove isolation.
 - **Auditing (`pgaudit`)**: Enable the `pgaudit` extension to record DDL operations and modifications to sensitive tables without overloading the system log.
 
 ---

@@ -1,0 +1,30 @@
+{
+  "id": "backend-client-secrets",
+  "title": "Keep private keys out of client bundles",
+  "harness": "opencode",
+  "prompt": "An application puts a private LLM API key in NEXT_PUBLIC_LLM_KEY and VITE_LLM_KEY. Explain the exposure and an appropriate remediation. Respond in a few concise lines; do not modify files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(public|expos|client|browser)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(backend|server)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(rotat|revok)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(\\b(rotate|revoke|replace)\\b.{0,35}\\b(key|credential|secret)|\\b(key|credential|secret)\\b.{0,35}\\b(rotated|revoked|replaced))"
+    }
+  ],
+  "rubric": [
+    "The answer treats both client-exposed prefixes and browser bundles as public.",
+    "It moves private credentials to the backend, restricts access through authorized server operations, and rotates an exposed key.",
+    "No file was modified."
+  ],
+  "acceptance": "The response satisfies the listed behavioral requirements and makes no changes."
+}

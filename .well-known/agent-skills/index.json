@@ -412,7 +412,7 @@
       "description": "Acts as a senior Backend Developer, designing robust APIs, integrating efficient databases, applying safe concurrency, optimizing performance, and creating robust integration tests.",
       "type": "archive",
       "url": "knowledge/skills/roles/backend-developer/SKILL.md",
-      "digest": "sha256:055c8ce39a06d7001d50ffcf38009792fb4e4536f7aa62b1955ff880219c0148"
+      "digest": "sha256:549a44d1d94fa6e21b27f73362885c875f7f4d785ad2548f6f78ec5e0e4305af"
     },
     {
       "name": "binary-app-reverse-mapping",
@@ -461,7 +461,7 @@
       "description": "Acts as a specialist in business logic and abuse-case security, covering unrestricted access to sensitive business flows, transaction authorization gaps, race conditions, replay, coupon and refund abuse, and the modeling of misuse cases that static scanners cannot detect.",
       "type": "skill-md",
       "url": "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
-      "digest": "sha256:60bda3f84c017e68084bf0d6753cd66721f700bb13ccc6d1669dcedb842610b1"
+      "digest": "sha256:2baf06a91e1824005cafca5e2aa9618e32be36c9656fd6bd731b8f2cabf0a154"
     },
     {
       "name": "c4-model-architecture",
@@ -510,7 +510,7 @@
       "description": "Provides expert patterns for clean/hexagonal architecture and decoupling from frameworks based on Clean Architectures in Python (Giordani), covering the dependency rule (talk inwards with simple structures, outwards through interfaces), entities and use cases, ports and adapters, dependency injection, repositories and unit of work, request/response objects, and the functional core / imperative shell split, with TDD-driven construction.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
-      "digest": "sha256:4f85b61e4d2a435490ffa93c79ad13e213c1c9b76901e55c72cf86b5e6664bc0"
+      "digest": "sha256:7dd7d1e9c93349e39b1e3d24b267a775a2967f30ab3c62076717e0bf6ac9bf44"
     },
     {
       "name": "clean-code-reusability",
@@ -839,7 +839,7 @@
       "description": "Provides administration and engineering patterns for PostgreSQL based on the official documentation (postgresql.org/docs). Covers MVCC architecture, Autovacuum tuning, advanced types (JSONB, PostGIS), index strategy (B-Tree, GIN, GiST, BRIN), EXPLAIN ANALYZE BUFFERS analysis, replication, and PgBouncer.",
       "type": "archive",
       "url": "knowledge/skills/data/db-postgresql/SKILL.md",
-      "digest": "sha256:b51916bf4d0057ba9eb9e37754a9d8552e53f952ac5ce79545b80ca602898bfd"
+      "digest": "sha256:12f038adbfb57d8528bd1f82e903ffda4387eeaa352e72c2f505af4eaa645b72"
     },
     {
       "name": "db-schema-reverse-mapping",
@@ -1105,7 +1105,7 @@
       "description": "Acts as a specialist in financial transaction processing and payment systems in Brazil (Pix, SPI, DICT, SPB, Boleto, CIP/N\u00faclea) and abroad (ISO 20022, SWIFT, FedNow, SEPA, Acquiring, Gateways, Anti-Fraud, Reconciliation, and Idempotency).",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
-      "digest": "sha256:599539eabbe0f840201f7bd8d3cf4f873aaa524085618591d6383fe4f84aa944"
+      "digest": "sha256:add413e892ba3977079ab7d64e367ee30131516118173c3c7d0f0bedce13609c"
     },
     {
       "name": "firmware-uefi-implant-analysis",
@@ -1189,7 +1189,7 @@
       "description": "Specialist in HTTP architecture, RESTful API design, and advanced contract patterns (OpenAPI 3.2, RFC 9110/9112/9113/9114, RFC 10008, and RFC 7807). Covers the full semantics of verbs (GET, QUERY, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), status codes, content negotiation, security headers (CSP, HSTS), CORS, caching (ETag, Cache-Control), long-running operations (LRO), deterministic cursor-based pagination, batch mutations, idempotency keys, and evolutionary API governance.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-      "digest": "sha256:af7db7a4c19abb005e00973f2df4f1cfe99d46f4d85fb615d106dc8294c5e135"
+      "digest": "sha256:415891b7b56bf0996677047888684ea4320f5b5691bafa2211e31dc594036af0"
     },
     {
       "name": "framework-soap",
@@ -1224,7 +1224,7 @@
       "description": "Specialist in Software Testing Engineering. Broad command of Black-Box techniques (BVA, Equivalence Partitioning, Decision Tables, FSM, Pairwise), White-Box techniques (CFG, McCabe, MC/DC, Data Flow/du-paths, Program Slicing), Mutation Testing, Integration (Call Graph, MM-Paths), TDD, and ISTQB Test Management.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "digest": "sha256:ec024fb0de3a740a6dd216e3b06aee412e964c78541e13cdaadbfee5d9e617f1"
+      "digest": "sha256:b43f35c9ae38d3144f6539186d230967705d932c8fc82627dcc337e31e18599d"
     },
     {
       "name": "framework-testing-javascript",
@@ -2302,7 +2302,7 @@
       "description": "Acts as a Specialist in Static Application Security Testing (SAST) and Security Code Review, identifying vulnerabilities in source code, applying static verification rules, AST, CFG, interprocedural taint analysis, remediating flaws (Injection, XSS, CSRF, Insecure Deserialization, Broken Access Control), and establishing automated and manual review standards.",
       "type": "archive",
       "url": "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
-      "digest": "sha256:85af5d7e0fa4275907aa8e3ed37caebaa606894a2f60d64bb7fefce7e98627f2"
+      "digest": "sha256:3f055bed053c85a53bd6112c65d935ca7038208ffe777e9ad23610619d029944"
     },
     {
       "name": "scientific-data-retrieval",
@@ -2561,7 +2561,7 @@
       "description": "Acts as a specialist in System Design, large-scale systems engineering, and highly available distributed architectures. Covers sharding, partitioning, replication, eventual consistency (CAP/PACELC), distributed caching, load balancing, rate limiting, circuit breakers, and resilience.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
-      "digest": "sha256:bde3536e2a190300297cb3b706fbb264d133942b6da554e9ea28e486917d21c7"
+      "digest": "sha256:d2d24202929c5c90e99f8a7decc2eaa9eea9a19835ab8f97fa91b058b5f09c5d"
     },
     {
       "name": "systems-architect",

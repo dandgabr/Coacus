@@ -25,10 +25,11 @@ A **Test Oracle** is any mechanism capable of determining whether the output pro
 - When a direct oracle is feasible: Explicit assertions, nominal values, and contracts.
 - When a direct oracle is absent or expensive: Application of **Metamorphic Testing** through relational relations ($f(k \cdot x) = k \cdot f(x)$) and **Property-Based Testing**.
 
-### 3. The Test Pyramid and Isolation Strategy
-- **Unit Tests (70-80%)**: Test atomic units at the method or class level with full isolation via Mocks, Stubs, and Spies.
-- **Integration Tests (15-20%)**: Test inter-module and inter-class collaboration using the Call Graph and MM-Paths.
-- **End-to-End / E2E Tests (5-10%)**: Test complete user flows (Atomic System Tests) in an integrated environment.
+### 3. Test Levels and Isolation Strategy
+- Choose test levels by risk, feedback speed and maintenance cost rather than fixed percentages. Unit tests isolate logic; integration tests exercise collaborating components; end-to-end tests cover complete user flows where needed.
+- For critical API flows, prioritize integration tests through the route and a representative isolated database, including concurrent requests, authorization and retries. Use real database semantics where an in-memory substitute cannot reproduce locks or constraints.
+- Never remove, skip or weaken an assertion merely to make a test pass. Change an assertion when the intended contract changes, and retain a meaningful check of the new behavior.
+- Run automated suites with isolated test services, data and credentials. Fail closed before connecting when the target cannot be established as a test environment; never run the suite against production. Separately authorized production checks must be designed and scoped for that purpose.
 
 ---
 
