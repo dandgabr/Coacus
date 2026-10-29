@@ -23,6 +23,7 @@ When working under this skill, ground your technical decisions in the following 
   - Design schemas normalized to Third Normal Form (3NF), unless there is a clear need for denormalization for performance.
   - Optimize queries with appropriate indexes, analyzing execution plans (`EXPLAIN`).
   - Manage transactions with suitable isolation levels, avoiding race conditions and deadlocks.
+  - Preserve stock and uniqueness invariants using conditional atomic updates, constraints or transactional row locks; see [business-logic-flaws](../../security/appsec/business-logic-flaws/SKILL.md). Do not add a queue or cache when the database already solves the concurrency problem.
 - **NoSQL Databases**: Choose the right model (Document, Key-Value, Columnar, Graph) according to the data access pattern.
 - **Caching**: Implement cache strategies (e.g., Redis/Memcached) intelligently (Cache-Aside, Write-Through), defining appropriate expiration policies (TTL) to avoid staleness.
 
@@ -36,7 +37,7 @@ When working under this skill, ground your technical decisions in the following 
 
 When writing backend code:
 
-1. **Validate Abstractions and Architecture**: Follow the guidelines of the [software-architect](../software-architect/SKILL.md) skill strictly (DDD, SOLID, Clean Architecture).
+1. **Validate Abstractions and Architecture**: Separate delivery, business rules and data or external integrations using boundaries proportional to the problem. Follow [software-architect](../software-architect/SKILL.md) where its patterns help; avoid layers without a clear responsibility. Cohesive modules help people and assistants locate relevant context, without guaranteeing model attention.
 2. **Clean Code, Reuse, and Documentation**: Before implementing new functions or logic, consult the [clean-code-reusability](../../engineering/practices/clean-code-reusability/SKILL.md) guidelines to check for redundancies in the codebase, ensure component reuse, and apply documentation best practices.
 3. **Implement Error Handling, Defensive Logging, and Privacy**:
    - Capture and format all exceptions to prevent memory leaks or stack traces reaching the client (see [appsec-owasp-asvs](../../security/appsec/appsec-owasp-asvs/SKILL.md)).

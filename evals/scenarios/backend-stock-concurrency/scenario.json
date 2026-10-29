@@ -1,0 +1,31 @@
+{
+  "id": "backend-stock-concurrency",
+  "title": "Protect the last item under concurrency",
+  "harness": "opencode",
+  "prompt": "Two different customers simultaneously buy the last item. Recommend a relational database approach and explain how to detect the loser, without introducing infrastructure unnecessarily. Respond in a few concise lines; do not modify files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(atomic|conditional|lock)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(one|single|only one|affected row)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(database|transaction)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)((?<!not )\\b(use|apply|perform|prefer)\\b.{0,35}\\b(atomic|conditional|lock)|\\b(database|transaction)\\b.{0,35}\\batomically\\b.{0,35}\\b(decrement|update))"
+    }
+  ],
+  "rubric": [
+    "The answer proposes an atomic conditional update or transactional row lock and explains that only one buyer succeeds.",
+    "It checks the update result or equivalent transaction outcome.",
+    "It does not treat an idempotency key as a substitute for concurrency control.",
+    "No file was modified."
+  ],
+  "acceptance": "The response satisfies the listed behavioral requirements and makes no changes."
+}

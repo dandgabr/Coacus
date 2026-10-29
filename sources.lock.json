@@ -1263,7 +1263,7 @@
       "source_path": "skills/databases/db-postgresql/SKILL.md",
       "source_sha256": "0d398daa1713e97fce162bbaf6355f2732d244a97db3067292d046abd273b345",
       "target_path": "knowledge/skills/data/db-postgresql/SKILL.md",
-      "target_sha256": "4a522a7682d4e2a01e6fdc941a34bb903e6f42c8d0139d3263d21a7ad49bda0d",
+      "target_sha256": "a87b3c088ec5ec096e698babcd39835751788768cd2d07ed09961ef372cfb0b4",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3675,9 +3675,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/domains/financial-transaction-processing/SKILL.md",
-      "source_sha256": "244169f1c811066ea3238d0372d24cc3e128ab958419a92f2186d66ed3984a0d",
+      "source_sha256": "1f3c6d3e1b2545e3f54fe5050e71becfad8331c8732efc32a2e136c0cd37a04c",
       "target_path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
-      "target_sha256": "244169f1c811066ea3238d0372d24cc3e128ab958419a92f2186d66ed3984a0d",
+      "target_sha256": "1f3c6d3e1b2545e3f54fe5050e71becfad8331c8732efc32a2e136c0cd37a04c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5148,7 +5148,7 @@
       "source_path": "skills/engineering-practices/system-design-scalability/SKILL.md",
       "source_sha256": "58dfd45c93ce5c3dcdd4d15a95edbe89ea675730282ed84a2eb261bead59c1a6",
       "target_path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
-      "target_sha256": "7621baf9ada8ccc66cfff8c09fe4b2724e48de2cb859e90d0b717083c45c32f6",
+      "target_sha256": "318a1a1f9f692b8f9cd28aac20e49f486266dbc2c010d305f40af3d013d44497",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5716,7 +5716,7 @@
       "source_path": "skills/framework/framework-rest-api/SKILL.md",
       "source_sha256": "95004e4d0ddc839a9cdec10e8c1266183195ca7e1c0c5c84edb78bc4806087af",
       "target_path": "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-      "target_sha256": "024ad0db51a50636f3f57e4103e9c2b43ff18e6ca4fecd914c894eba2186c51f",
+      "target_sha256": "ed65880f8db584a1708798f4c661b40293a0f4ae753d8fd8ba0a4303cac99b1e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -6071,7 +6071,7 @@
       "source_path": "skills/framework/framework-testing/SKILL.md",
       "source_sha256": "653bdbda2bd05b44662d2f3d961947bef309efe8afd83b680da98af3fa3a768e",
       "target_path": "knowledge/skills/frameworks/framework-testing/SKILL.md",
-      "target_sha256": "7d14d3fedd9ed11722ad6cb8f89ba0abcdedd5f0f7567ebf38d923f8bf6ad3e3",
+      "target_sha256": "271a4543940faecedb3734621360fe86cb67cdcb50d8bba376e1760ef0310256",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10235,7 +10235,7 @@
       "source_path": "skills/roles/backend-developer/SKILL.md",
       "source_sha256": "085a019fe4f014097b8ac8227151578d98e0a371aa1975b97a0cdce66b80055e",
       "target_path": "knowledge/skills/roles/backend-developer/SKILL.md",
-      "target_sha256": "070c5a88474b1a07eae97e21bbfcd30e817b5219c2549337161a2b88b51a63d5",
+      "target_sha256": "efa44a60ca6310d7319dd4746eee1aa04dac0ffe5afc8bef758f3d1090ba11c9",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -12691,9 +12691,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/appsec/sast-code-review/SKILL.md",
-      "source_sha256": "6d57c94a442e6aee882b1da610a84727f97f76a5b20329d32740327c68b2d455",
+      "source_sha256": "75d46b89381bbc5acb794ef9c34229e1b1fd90c87b7795352f0a6e3178e05e0b",
       "target_path": "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
-      "target_sha256": "6d57c94a442e6aee882b1da610a84727f97f76a5b20329d32740327c68b2d455",
+      "target_sha256": "75d46b89381bbc5acb794ef9c34229e1b1fd90c87b7795352f0a6e3178e05e0b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16461,9 +16461,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
-      "source_sha256": "60bda3f84c017e68084bf0d6753cd66721f700bb13ccc6d1669dcedb842610b1",
+      "source_sha256": "2baf06a91e1824005cafca5e2aa9618e32be36c9656fd6bd731b8f2cabf0a154",
       "target_path": "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
-      "target_sha256": "60bda3f84c017e68084bf0d6753cd66721f700bb13ccc6d1669dcedb842610b1",
+      "target_sha256": "2baf06a91e1824005cafca5e2aa9618e32be36c9656fd6bd731b8f2cabf0a154",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18096,9 +18096,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
-      "source_sha256": "4f85b61e4d2a435490ffa93c79ad13e213c1c9b76901e55c72cf86b5e6664bc0",
+      "source_sha256": "7dd7d1e9c93349e39b1e3d24b267a775a2967f30ab3c62076717e0bf6ac9bf44",
       "target_path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
-      "target_sha256": "4f85b61e4d2a435490ffa93c79ad13e213c1c9b76901e55c72cf86b5e6664bc0",
+      "target_sha256": "7dd7d1e9c93349e39b1e3d24b267a775a2967f30ab3c62076717e0bf6ac9bf44",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
