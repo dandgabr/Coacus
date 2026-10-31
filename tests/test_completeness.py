@@ -24,6 +24,42 @@ class TestCompleteness(unittest.TestCase):
         import json
         path.write_text(json.dumps(data), encoding="utf-8")
 
+    def test_workspace_token_resolves_source_and_exclusions(self) -> None:
+        from unittest.mock import patch
+        source = self.tmp / "siblings/skills/skills/roles/missing"
+        source.mkdir(parents=True)
+        (source / "SKILL.md").write_text("x")
+        self._seed_manifest({"source_repos": {"skills": "{workspace}/skills"}})
+        with patch.dict("os.environ", {"COACUS_WORKSPACE": str(self.tmp / "siblings")}):
+            self.assertTrue(any("source skill not imported: missing" in g for g in completeness.validate(self.root)))
+            self._seed_manifest({"source_repos": {"skills": "{workspace}/skills"}, "exclude_import_from": ["{workspace}/skills"]})
+            self.assertFalse(any("source skill not imported: missing" in g for g in completeness.validate(self.root)))
+
+    def test_relabelled_known_derivative_still_requires_attribution(self) -> None:
+        import json
+        self._seed_manifest({"source_repos": {}})
+        workflow = self.root / "methodology/workflows/brainstorming/SKILL.md"
+        workflow.parent.mkdir(parents=True)
+        workflow.write_text("native claim")
+        (self.root / "sources.lock.json").write_text(json.dumps({"entries": [{"source_repo": "authoring", "target_path": "methodology/workflows/brainstorming/SKILL.md"}]}))
+        gaps = completeness.validate(self.root)
+        self.assertTrue(any("attribution" in g and "brainstorming" in g for g in gaps), gaps)
+        self.assertTrue(any("provenance" in g and "brainstorming" in g for g in gaps), gaps)
+
+    def test_workflow_provenance_and_derivative_attribution(self) -> None:
+        import json
+        self._seed_manifest({"source_repos": {}})
+        target = self.root / "methodology/workflows/example/SKILL.md"
+        target.parent.mkdir(parents=True)
+        target.write_text("native body", encoding="utf-8")
+        lock = self.root / "sources.lock.json"
+        lock.write_text(json.dumps({"entries": []}))
+        self.assertTrue(any("orphan workflow" in g for g in completeness.validate(self.root)))
+        lock.write_text(json.dumps({"entries": [{"source_repo": "superpowers", "target_path": "methodology/workflows/example/SKILL.md"}]}))
+        self.assertTrue(any("attribution" in g for g in completeness.validate(self.root)))
+        target.write_text("Coacus adaptation of a Superpowers workflow (MIT).\nUpstream: https://github.com/obra/superpowers @ abc\n")
+        self.assertFalse(any("attribution" in g for g in completeness.validate(self.root)))
+
     def test_missing_manifest_is_reported(self) -> None:
         # no manifest, no knowledge/skills -> gaps
         gaps = completeness.validate(self.root)

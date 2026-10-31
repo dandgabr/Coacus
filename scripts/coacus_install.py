@@ -666,9 +666,17 @@ def _agent_meta(source: Path) -> dict[str, object]:
     from engine.frontmatter import parse
 
     doc = parse(source.read_text(encoding="utf-8"))
+    paths = doc.meta.get("skills", [])
+    if not isinstance(paths, list):
+        raise ValueError(f"{source}: skills must be a list")
+    for path in paths:
+        if (not isinstance(path, str) or not re.fullmatch(
+                r"(?:knowledge/skills|methodology/workflows)/(?:[a-z0-9]+(?:-[a-z0-9]+)*/)+SKILL\.md", path)):
+            raise ValueError(f"{source}: invalid skill path {path!r}")
     return {
         "name": str(doc.meta.get("name", "")).strip(),
         "description": str(doc.meta.get("description", "")).strip(),
+        "skills": paths,
         "body": doc.body.strip(),
     }
 
@@ -718,6 +726,13 @@ def _assert_contained(targets: list[tuple[Path, FileContent]], config_dir: Path)
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
     for target, _ in targets:
         resolved = target.resolve()
+        lexical_roots = [Path(os.path.abspath(r)) for r in _allowed_roots(config_dir)]
+        absolute = Path(os.path.abspath(target))
+        for parent in absolute.parents:
+            if parent in lexical_roots:
+                break
+            if parent.is_symlink():
+                raise ValueError(f"refusing to install through symlink parent: {parent}")
         if not any(_is_within(resolved, r) for r in roots):
             raise ValueError(
                 f"refusing to install outside {config_dir}: {target} resolves to {resolved}"
@@ -744,6 +759,14 @@ def _yaml_scalar(text: str) -> str:
     return json.dumps(text)
 
 
+def _agent_skill_guidance(meta: dict[str, object]) -> str:
+    names = [path.split("/")[-2] for path in meta["skills"]]
+    if not names:
+        return ""
+    return ("\n\n## Contextual skills\n\nThese skills may not be installed when the installation is filtered. "
+            "Load available relevant skills on demand: " + ", ".join(f"`{name}`" for name in names) + ".")
+
+
 def _render_agent_opencode(source: Path, root: Path) -> str:
     """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
     meta = _agent_meta(source)
@@ -757,7 +780,7 @@ def _render_agent_opencode(source: Path, root: Path) -> str:
         "mode: subagent\n"
         "---\n\n"
         f"<!-- Generated from {rel} (Coacus) -->\n\n"
-        f"{meta['body']}\n"
+        f"{meta['body']}{_agent_skill_guidance(meta)}\n"
     )
 
 
@@ -768,7 +791,7 @@ def _render_agent_named(source: Path) -> str:
     name in frontmatter (OpenCode derives it from the filename instead).
     """
     meta = _agent_meta(source)
-    body = meta["body"]
+    body = meta["body"] + _agent_skill_guidance(meta)
     first = body.lstrip().splitlines()[:1]
     if not first or not first[0].startswith("# "):
         body = f"# {meta['name']}\n\n{body}"
@@ -785,7 +808,7 @@ def _render_agent_codex(source: Path) -> str:
     """Codex agent role TOML: name/description + developer_instructions."""
     meta = _agent_meta(source)
     # TOML basic multiline string: escape backslashes and triple quotes.
-    body = meta["body"].replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
+    body = (meta["body"] + _agent_skill_guidance(meta)).replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
     description = str(meta["description"]).replace("\\", "\\\\").replace('"', '\\"')
     return (
         f'name = "{meta["name"]}"\n'
@@ -827,8 +850,8 @@ def _render_antigravity_agent_stub(source: Path) -> str:
         f"# {meta['name']}\n\n"
         "Load this role's complete canonical instructions with the `get` tool "
         "from the `coacus-catalog` MCP server, using `kind: agent` and this "
-        f"name: `{meta['name']}`. Load each name in the returned "
-        "`associated_skills` list with the same tool and `kind: skill`. Follow "
+        f"name: `{meta['name']}`. Load relevant names from the returned "
+        "`associated_skills` list on demand with the same tool and `kind: skill`. Follow "
         "those instructions and use the host's native tools for the task.\n"
     )
 
@@ -971,7 +994,7 @@ def _render_agent_command_code(source: Path) -> str:
     tool is never grantable, which keeps delegation one level deep.
     """
     meta = _agent_meta(source)
-    body = meta["body"]
+    body = meta["body"] + _agent_skill_guidance(meta)
     first = body.lstrip().splitlines()[:1]
     if not first or not first[0].startswith("# "):
         body = f"# {meta['name']}\n\n{body}"
@@ -1046,14 +1069,10 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     base = f"{root.as_posix()}/harnesses/{harness}/bootstrap"
     return {
         f"{base}/session-start.sh", f"{base}/coacus-guard.sh",
-        # Legacy wrappers may refer to a retired checkout. Their harness
-        # namespace identifies ownership independently of that checkout root.
-        f"/harnesses/{harness}/bootstrap/session-start.sh",
-        f"/harnesses/{harness}/bootstrap/coacus-guard.sh",
         f"{base}/session-start.json", f"{base}/coacus-guardrails.js",
-        "/scripts/coacus_session_start.py",
-        "/coacus/coacus-guard.sh", "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
-        f"--harness {harness} --event tool.pre",
+        f"{root.as_posix()}/scripts/coacus_session_start.py",
+        "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
+        f"{root.as_posix()}/scripts/coacus_guard.py",
     }
 
 
@@ -1115,25 +1134,46 @@ def _plugin_substitute(text: str, root: Path) -> str:
 
 def _entry_owned(entry: object, markers: set[str]) -> bool:
     """True if a hook entry references any Coacus script (by our markers)."""
-    blob = json.dumps(entry)
-    for encoded in re.findall(r"b64decode\('([A-Za-z0-9+/=]+)'\)", blob):
+    if not isinstance(entry, dict):
+        return False
+    hooks = entry.get("hooks")
+    if hooks is None:
+        command = entry.get("command")
+    elif isinstance(hooks, list) and len(hooks) == 1 and isinstance(hooks[0], dict):
+        command = hooks[0].get("command")
+    else:
+        return False
+    if not isinstance(command, str):
+        return False
+    try:
+        args = shlex.split(command)
+    except ValueError:
+        return False
+    if not args or not re.fullmatch(r"(?:python(?:\d+(?:\.\d+)*)?(?:\.exe)?|bash|sh)", re.split(r"[/\\]", args[0])[-1], re.I):
+        return False
+    if len(args) == 3 and args[1] == "-c":
+        shim = re.fullmatch(
+            r"import base64,json,runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
+            args[2],
+        )
+        if not shim:
+            return False
         try:
-            decoded = json.loads(base64.b64decode(encoded, validate=True))
-            if isinstance(decoded, list) and all(isinstance(arg, str) for arg in decoded):
-                blob += " ".join(decoded)
+            decoded = json.loads(base64.b64decode(shim.group(1), validate=True))
         except (ValueError, UnicodeDecodeError):
+            return False
+        if not isinstance(decoded, list) or not decoded or not all(isinstance(x, str) for x in decoded):
+            return False
+        args = [args[0], *decoded]
+    # Only argv[1] is the executed script; later arguments are user data.
+    for arg in args[1:2]:
+        if arg.startswith("-"):
             continue
-    for marker in markers:
-        if marker not in blob:
-            continue
-        if marker.startswith("/harnesses/") and marker.endswith("/session-start.sh"):
-            # This generic filename also exists in other products. A retired
-            # checkout must retain a Coacus-named path component as evidence.
-            owner = r'/[^/"\\]*\bcoacus\b[^/"\\]*' + re.escape(marker)
-            if re.search(owner, blob, flags=re.IGNORECASE):
+        for marker in markers:
+            if marker.startswith("--"):
+                continue
+            if arg == marker:
                 return True
-        else:
-            return True
     return False
 
 
@@ -1446,7 +1486,17 @@ def _lock_canonical_skills(files: list[tuple[Path, FileContent]], config_dir: Pa
             continue
         try:
             if target.parent.resolve().is_relative_to(canonical_resolved):
-                _walk_chmod(target.parent, writable=False)
+                skill_dir = target.parent
+                for planned, value in files:
+                    if isinstance(value, Symlink) or not planned.is_relative_to(skill_dir):
+                        continue
+                    if planned.is_file() and not planned.is_symlink():
+                        os.chmod(planned, planned.stat().st_mode & ~0o222)
+                    directory = planned.parent
+                    while directory.is_relative_to(skill_dir):
+                        if not directory.is_symlink():
+                            os.chmod(directory, directory.stat().st_mode & ~0o222)
+                        directory = directory.parent
         except OSError:
             pass
 
@@ -1917,7 +1967,11 @@ def install(
     files = plan(
         harness, root, config_dir, only, skills, agents, skills_mode, antigravity_profile
     )
-    _assert_contained(files, config_dir)
+    try:
+        _assert_contained(files, config_dir)
+    except ValueError as exc:
+        return {"harness": harness, "error": str(exc),
+                "conflicts": [str(t) for t, _ in files if t.is_symlink()], "files": []}
     if lock_skills is None:
         # Default: protect the shared tree only at a harness's real install
         # location, never an explicit custom target (tests, staging).
@@ -1929,11 +1983,81 @@ def install(
     )
     previous_manifest = config_dir / MANIFEST_NAME
     previous_files: list[str] = []
+    previous_workflows: dict[str, str] = {}
+    previous_fingerprints: dict[str, str] = {}
     if previous_manifest.is_file():
         try:
-            previous_files = _parse_manifest(previous_manifest).get("files", [])
+            previous_data = _parse_manifest(previous_manifest)
+            previous_files = previous_data.get("files", [])
+            previous_workflows = previous_data.get("workflow_fingerprints", {})
+            previous_fingerprints = previous_data.get("file_fingerprints", {})
         except ValueError:
             pass
+    ambiguous_hooks = []
+    for hook_path in _merged_config_paths(harness, config_dir):
+        document = _load_existing_json(hook_path)
+        events = document.get("hooks", {})
+        if not isinstance(events, dict):
+            continue
+        markers = _hook_owner_markers(root, harness)
+        for entries in events.values():
+            if not isinstance(entries, list):
+                continue
+            if any(not _entry_owned(entry, markers) and re.search(
+                    r"(?:coacus_session_start\.py|coacus_guard\.py|/harnesses/[^/]+/bootstrap/(?:session-start|coacus-guard)\.sh)",
+                    json.dumps(entry)) for entry in entries):
+                ambiguous_hooks.append(hook_path.as_posix())
+                break
+    conflicts = []
+    shared_fingerprints: dict[str, str] = {}
+    for other in config_dir.parent.glob("*/coacus-install.json"):
+        if other == previous_manifest:
+            continue
+        try:
+            data = _parse_manifest(other)
+            shared_fingerprints.update({p: d for p, d in data.get("file_fingerprints", {}).items()
+                                        if p in data.get("files", [])})
+        except (ValueError, AttributeError, TypeError):
+            continue
+    merged_paths = set(_merged_config_paths(harness, config_dir) + _merged_mcp_paths(harness, config_dir))
+    for target, content in files:
+        if not (target.exists() or target.is_symlink()):
+            continue
+        path = target.as_posix()
+        if isinstance(content, Symlink):
+            safe = (path in previous_files and target.is_symlink()
+                    and previous_fingerprints.get(path) in (None, "symlink:" + os.readlink(target))
+                    and os.readlink(target) == content.target)
+        else:
+            digest = previous_fingerprints.get(path) or previous_workflows.get(path) or shared_fingerprints.get(path)
+            safe = ((path in previous_files or path in shared_fingerprints) and isinstance(digest, str)
+                    and not target.is_symlink() and target.is_file()
+                    and hashlib.sha256(target.read_bytes()).hexdigest() == digest)
+            if (not safe and path in previous_files and digest is None
+                    and not target.is_symlink() and target.is_file()):
+                expected = content.encode("utf-8") if isinstance(content, str) else content
+                safe = target.read_bytes() == expected
+            if target in merged_paths and not target.is_symlink() and target.is_file():
+                try:
+                    original = json.loads(target.read_text(encoding="utf-8"))
+                    proposed = json.loads(content)
+                    safe = isinstance(original, dict) and isinstance(proposed, dict)
+                    if safe and target in _merged_mcp_paths(harness, config_dir):
+                        old_servers = original.get("mcpServers", {})
+                        new_servers = proposed.get("mcpServers", {})
+                        safe = (isinstance(old_servers, dict) and isinstance(new_servers, dict)
+                                and all(k not in new_servers or new_servers[k] == v
+                                        for k, v in old_servers.items()))
+                except (OSError, ValueError, TypeError):
+                    safe = False
+        if not safe:
+            conflicts.append(path)
+    if conflicts:
+        return {"harness": harness, "error": "install conflicts with existing files",
+                "conflicts": sorted(conflicts), "files": [],
+                "recovery": ("Review and back up each conflicting path. Move or remove it only "
+                             "after deciding it is safe, then rerun installation. Legacy manifests "
+                             "without fingerprints cannot distinguish updates from local edits.")}
     rules_target = config_dir / COMMAND_CODE_RULES_FILE
     rules_source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
     rules_pending = (
@@ -1953,20 +2077,45 @@ def install(
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
             **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
-    if harness in CANONICAL_SKILLS_WRITERS:
-        # A prior install may have left the shared tree read-only (see
-        # _lock_canonical_skills); restore write access before rewriting it.
-        _walk_chmod(_canonical_skills_dir(config_dir), writable=True)
+    # Unlock only directories backed by validated, fingerprinted managed files.
+    managed_dirs: set[Path] = set()
+    canonical = _canonical_skills_dir(config_dir)
+    fingerprints = {**shared_fingerprints, **previous_fingerprints}
+    for path, digest in fingerprints.items():
+        target = Path(path)
+        if (target.is_relative_to(canonical) and not target.is_symlink()
+                and target.is_file() and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            directory = target.parent
+            while directory != canonical and directory.is_relative_to(canonical):
+                if not directory.is_symlink():
+                    managed_dirs.add(directory)
+                directory = directory.parent
+    modes: dict[Path, int] = {}
     written: list[str] = []
-    for target, content in files:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if isinstance(content, Symlink):
-            _install_symlink(target, content.target)
-        elif isinstance(content, bytes):
-            target.write_bytes(content)
-        else:
-            target.write_text(content, encoding="utf-8")
-        written.append(target.as_posix())
+    try:
+        for target, content in files:
+            for directory in reversed(target.parent.parents):
+                if directory in managed_dirs and directory not in modes:
+                    modes[directory] = directory.stat().st_mode & 0o7777
+                    os.chmod(directory, modes[directory] | 0o200)
+            if target.parent in managed_dirs and target.parent not in modes:
+                modes[target.parent] = target.parent.stat().st_mode & 0o7777
+                os.chmod(target.parent, modes[target.parent] | 0o200)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if (target.is_file() and not target.is_symlink()
+                    and (target.as_posix() in previous_files or target.as_posix() in shared_fingerprints)):
+                os.chmod(target, target.stat().st_mode | 0o200)
+            if isinstance(content, Symlink):
+                _install_symlink(target, content.target)
+            elif isinstance(content, bytes):
+                target.write_bytes(content)
+            else:
+                target.write_text(content, encoding="utf-8")
+            written.append(target.as_posix())
+    finally:
+        for directory, mode in reversed(list(modes.items())):
+            os.chmod(directory, mode)
     if lock_skills and harness in CANONICAL_SKILLS_WRITERS:
         _lock_canonical_skills(files, config_dir)
     if codex_update is not None:
@@ -1977,33 +2126,74 @@ def install(
     planned = set(written)
     retired = {"session-start.sh", "coacus-guard.sh", "governor-hook.sh"}
     allowed = [directory.resolve() for directory in _allowed_roots(config_dir)]
+    shared = _claimed_elsewhere(config_dir, previous_manifest)
+    retained: list[str] = []
     for old in previous_files:
         target = Path(old)
-        canonical = target.as_posix()
-        replacement = canonical + ".py" in planned
-        if ((target.name in retired or replacement) and canonical not in planned
+        replacement = old + ".py" in planned
+        candidate = (harness == "antigravity" and not (only or skills or agents)) or target.name in retired or replacement
+        if not candidate or old in planned or not (target.exists() or target.is_symlink()):
+            continue
+        digest = previous_fingerprints.get(old) or previous_workflows.get(old)
+        if (old not in shared and not target.is_symlink() and target.is_file()
                 and any(_is_within(target.resolve(), directory) for directory in allowed)
-                and target.is_file()):
+                and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
             target.unlink()
-    # Antigravity profiles can replace hundreds of manifest-owned native
-    # customization files with opaque catalog data. Remove only paths recorded
-    # by the previous manifest and no longer planned; never sweep plugin dirs.
+        else:
+            retained.append(old)
     if harness == "antigravity":
-        for old in previous_files:
-            target = Path(old)
-            if (
-                target.as_posix() not in planned
+        _prune_empty_dirs([p for p in previous_files if p not in planned and p not in retained], allowed)
+    # Retire only removed workflow names, not workflows omitted by filters.
+    workflow_names = {p.name for p in discover_skills(root)
+                      if _is_within(p.resolve(), (root / "methodology/workflows").resolve())}
+    for old, digest in previous_workflows.items():
+        target = Path(old)
+        if (old in previous_files and old not in planned and old not in shared and target.is_file()
+                and not any(part in workflow_names for part in target.parts)
+                and not target.is_symlink()
                 and any(_is_within(target.resolve(), directory) for directory in allowed)
-                and target.is_file()
-            ):
-                target.unlink()
-                parent = target.parent
-                while parent != config_dir and _is_within(parent.resolve(), config_dir.resolve()):
-                    try:
-                        parent.rmdir()
-                    except OSError:
-                        break
-                    parent = parent.parent
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            target.unlink()
+        elif (old not in planned and (target.exists() or target.is_symlink())
+              and not any(part in workflow_names for part in target.parts)
+              and old not in retained):
+            retained.append(old)
+    # Older manifests have no digest; their stale paths cannot be safely retired.
+    for old in previous_files:
+        target = Path(old)
+        if (old not in planned and old not in previous_workflows
+                and old not in previous_fingerprints and old not in retained
+                and (target.exists() or target.is_symlink())):
+            retained.append(old)
+    carried_fingerprints = {}
+    for old, digest in previous_fingerprints.items():
+        target = Path(old)
+        if old not in previous_files or old in planned or not isinstance(digest, str):
+            continue
+        if not any(_is_within(target.parent.resolve(), directory) for directory in allowed):
+            continue
+        if target.is_symlink():
+            matches = digest == "symlink:" + os.readlink(target)
+        else:
+            matches = target.is_file() and hashlib.sha256(target.read_bytes()).hexdigest() == digest
+        if matches:
+            carried_fingerprints[old] = digest
+            written.append(old)
+    workflow_fingerprints = {}
+    for old, digest in previous_workflows.items():
+        target = Path(old)
+        if (old in previous_files and old not in planned and target.is_file() and not target.is_symlink()
+                and any(_is_within(target.resolve(), directory) for directory in allowed)
+                and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            workflow_fingerprints[old] = digest
+            if old not in written:
+                written.append(old)
+    for target, content in files:
+        if (not isinstance(content, Symlink) and any(part in workflow_names for part in target.parts)
+                and target.is_file() and not target.is_symlink()):
+            workflow_fingerprints[target.as_posix()] = hashlib.sha256(target.read_bytes()).hexdigest()
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -2011,6 +2201,15 @@ def install(
             {
                 "harness": harness,
                 "files": written,
+                "workflow_fingerprints": workflow_fingerprints,
+                "file_fingerprints": {
+                    **carried_fingerprints,
+                    **{target.as_posix(): ("symlink:" + os.readlink(target) if isinstance(content, Symlink)
+                                        else hashlib.sha256(target.read_bytes()).hexdigest())
+                    for target, content in files
+                    if target.is_symlink() and isinstance(content, Symlink)
+                    or target.is_file() and not target.is_symlink()}
+                },
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
@@ -2038,6 +2237,8 @@ def install(
     return {
         "harness": harness,
         "files": written,
+        "retained": sorted(retained),
+        "ambiguous_hooks": sorted(ambiguous_hooks),
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
@@ -2329,20 +2530,20 @@ def uninstall(
         return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
-    if not dry_run and harness in CANONICAL_SKILLS_WRITERS:
-        # Restore write access so the shared tree can be emptied on uninstall.
-        _walk_chmod(_canonical_skills_dir(config_dir), writable=True)
-    if harness == "codex" and not dry_run and "codex_skill_profile" in data:
+    skipped: list[str] = []
+    if harness == "codex" and "codex_skill_profile" in data:
         config_path = config_dir / "config.toml"
         if config_path.is_file():
-            base, _ = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
-            if not base and not data.get("codex_config_existed", True):
-                config_path.unlink()
-            else:
-                _write_codex_config(config_dir, base, True)
+            base, block = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
+            if block != data.get("codex_profile_block"):
+                skipped.append(config_path.as_posix())
+            elif not dry_run:
+                if not base and not data.get("codex_config_existed", True):
+                    config_path.unlink()
+                else:
+                    _write_codex_config(config_dir, base, True)
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
-    skipped: list[str] = []
     hooks_paths = {p.resolve(): p for p in _merged_config_paths(harness, config_dir)}
     markers = _hook_owner_markers(root, harness)
     mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
@@ -2355,7 +2556,12 @@ def uninstall(
         if path in shared:
             skipped.append(path)
             continue
+        fingerprints = data.get("file_fingerprints", {})
+        digest = fingerprints.get(path) or data.get("workflow_fingerprints", {}).get(path)
         if target.is_symlink():
+            if digest != "symlink:" + os.readlink(target):
+                skipped.append(path)
+                continue
             # A linked skill lives once in the canonical tree; removing our link
             # here leaves the real copy (claimed by the shared tree) intact.
             if not dry_run:
@@ -2366,7 +2572,13 @@ def uninstall(
             target_res = target.resolve()
         except OSError:
             target_res = target
-        if not dry_run and target_res in hooks_paths:
+        if target_res in hooks_paths:
+            if not target.is_file() or not isinstance(digest, str) or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+                skipped.append(path)
+                continue
+            if dry_run:
+                planned.append(path)
+                continue
             existing_hooks = _load_existing_json(target)
             had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
             if had_hooks_entry:
@@ -2377,7 +2589,13 @@ def uninstall(
                     target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
             planned.append(path)
             continue
-        if not dry_run and target_res in mcp_paths:
+        if target_res in mcp_paths:
+            if not target.is_file() or not isinstance(digest, str) or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+                skipped.append(path)
+                continue
+            if dry_run:
+                planned.append(path)
+                continue
             mcp_existing = _load_existing_json(target)
             had_mcp_entry = bool(mcp_names) and any(
                 name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
@@ -2390,13 +2608,21 @@ def uninstall(
                     target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
             planned.append(path)
             continue
-        if target.is_file():
+        if target.is_file() and isinstance(digest, str) and hashlib.sha256(target.read_bytes()).hexdigest() == digest:
             if not dry_run:
-                target.unlink()
+                parent_mode = target.parent.stat().st_mode
+                try:
+                    os.chmod(target.parent, parent_mode | 0o200)
+                    target.unlink()
+                finally:
+                    os.chmod(target.parent, parent_mode)
             planned.append(path)
+        elif target.exists():
+            skipped.append(path)
     if not dry_run:
         _prune_empty_dirs([str(p) for p in data.get("files", [])], roots)
-        manifest.unlink()
+        if not skipped:
+            manifest.unlink()
     return {"harness": harness, "removed": planned, "skipped": skipped, "dry_run": dry_run}
 
 

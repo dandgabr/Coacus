@@ -12,6 +12,9 @@ description: >-
 <!-- SUBAGENT-STOP -->
 If you were dispatched as a subagent to execute a specific task, skip this
 skill unless that task explicitly asks you to plan, review, or coordinate.
+That exception only makes the skill applicable; it does not grant authority to
+delegate. A review or planning worker remains a leaf unless its assignment
+explicitly authorizes coordination or delegation.
 <!-- /SUBAGENT-STOP -->
 
 ## The rule
@@ -59,7 +62,7 @@ change the source and regenerate.
 
 ## Process workflows
 
-The 14 process workflows under `methodology/workflows/superpowers-*` —
+The imported process workflows under `methodology/workflows/` —
 brainstorming, writing plans, executing plans, test-driven development,
 systematic debugging, code review, worktrees, verification and the rest — are
 imported from Superpowers (MIT) and adapted to Coacus. Their handoffs resolve to
@@ -70,8 +73,18 @@ flow, and how to reach the local skill corpus — live in
 
 ## Coordination
 
-Cap concurrent work at the repository's governor limit and hand off between
-agents with compact TOON payloads. Never spawn ungoverned parallel work.
+The main chat orchestrates and delegates substantive specialist work to routed
+specialists when permitted and available. This is not a delegation mandate for
+leaf workers, including review workers. Dispatch independent ready tasks in
+parallel up to actual free governor capacity and any lower applicable limit; each
+dispatch requires one slot: use adapter-managed acquisition when available, or
+manual acquisition otherwise, never both. OpenCode background dispatch is
+prohibited until its slot-lifetime fix is verified; report the limitation and use
+supported foreground dispatch if permitted. Queue the remainder. Report an explicit blocker if
+delegation is unavailable, prohibited, or cannot be governed; do not silently
+substitute ungoverned work. Respect the user's inline-work instructions and obtain
+required human approvals before approval-gated actions. Handoffs use compact TOON
+payloads. The subagent stop above remains in force.
 
 ## Verification — measure, do not infer
 

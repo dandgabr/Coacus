@@ -63,7 +63,7 @@ beneath another skill directory are forbidden.
 Whether a skill is reached by the human (user-invoked) or the model
 (model-invoked), the reach of a router skill and the carve-out for a human-only
 prerequisite are documented in
-[`superpowers-writing-skills`](../../methodology/workflows/superpowers-writing-skills/references/invocation-model.md).
+[`writing-skills`](../../methodology/workflows/writing-skills/references/invocation-model.md).
 Invocation policy is DATA in the canonical source and is rendered per harness; the
 body never names a skill-invocation tool.
 

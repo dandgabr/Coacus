@@ -64,6 +64,7 @@
       "category": "specialized-domains",
       "description": "Senior AI product manager who frames AI products as data products: dual lifecycle management, ML problem-class framing, opportunity discovery and prioritization, model selection under governance constraints, shadow/A-B/ canary deployment strategy, AI UX trust obligations, bias and privacy governance, and metrics discipline. Applies AI product management, product ownership, evaluation and responsible-AI practices.",
       "skills": [
+        "knowledge/skills/roles/scrum-master/SKILL.md",
         "knowledge/skills/roles/product-owner/SKILL.md",
         "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
         "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
@@ -97,6 +98,7 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning, AI-system lifecycle threats under ISO/IEC 27090:2026, and OWASP Top 10 for LLM compliance.",
       "skills": [
+        "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
         "knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md",
@@ -223,6 +225,7 @@
       "category": "software-engineering",
       "description": "Senior Backend Development Agent specialized in designing robust APIs (REST, gRPC, GraphQL), integrating efficient databases (SQL/NoSQL), applying safe concurrency, resilient asynchronous processing and writing integration tests, while ensuring clean, secure, performant code.",
       "skills": [
+        "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/frameworks/framework-grpc/SKILL.md",
         "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
@@ -464,6 +467,8 @@
       "category": "data-cloud-devops",
       "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
       "skills": [
+        "knowledge/skills/platforms/gemini-enterprise/SKILL.md",
+        "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md",
         "knowledge/skills/infrastructure/cloud-aws/SKILL.md",
         "knowledge/skills/infrastructure/cloud-azure/SKILL.md",
         "knowledge/skills/infrastructure/cloud-gcp/SKILL.md",
@@ -541,7 +546,7 @@
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-        "knowledge/skills/roles/explore/SKILL.md",
+        "knowledge/skills/roles/codebase-exploration/SKILL.md",
         "knowledge/skills/roles/software-architect/SKILL.md"
       ],
       "triggers": [
@@ -698,6 +703,7 @@
       "category": "data-cloud-devops",
       "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
       "skills": [
+        "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
         "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
         "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
         "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
@@ -732,6 +738,7 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 14882 standard (C++17/20/23), STL and ranges, memory management and RAII, template metaprogramming and concepts, GPU/CUDA acceleration, low-latency and lock-free programming, and C++ design patterns. Designs high-performance, memory-safe C++ libraries and applications and diagnoses performance and lifetime defects.",
       "skills": [
+        "knowledge/skills/frameworks/framework-qt6/SKILL.md",
         "knowledge/skills/languages/lang-cpp/SKILL.md",
         "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
         "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
@@ -891,6 +898,7 @@
       "description": "Senior data scientist who turns data into decisions: exploratory analysis and statistics, feature engineering, supervised and unsupervised modeling with scikit-learn, model evaluation and explainability, and clear communication of results. Applies Python data science, applied machine learning, explainable AI and distributed scaling.",
       "skills": [
         "knowledge/skills/data/python-data-science/SKILL.md",
+        "knowledge/skills/data/data-science-workflow/SKILL.md",
         "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
         "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
         "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
@@ -1084,6 +1092,8 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
       "skills": [
+        "knowledge/skills/platforms/program-markmap/SKILL.md",
+        "knowledge/skills/languages/lang-markdown/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md",
         "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
@@ -1188,6 +1198,7 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
       "skills": [
+        "knowledge/skills/languages/lang-powershell/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md",
         "knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md",
@@ -1264,6 +1275,7 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), spring-based motion implementation with Motion (formerly Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
       "skills": [
+        "knowledge/skills/languages/webassembly/SKILL.md",
         "knowledge/skills/frameworks/framework-tabler/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/frameworks/framework-react/SKILL.md",
@@ -1377,6 +1389,7 @@
       "category": "software-engineering",
       "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
       "skills": [
+        "knowledge/skills/roles/fullstack-developer/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/frameworks/framework-grpc/SKILL.md",
         "knowledge/skills/frameworks/framework-react/SKILL.md",
@@ -1496,27 +1509,6 @@
       ]
     },
     {
-      "name": "general",
-      "category": "core-orchestration",
-      "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
-      "skills": [
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-        "knowledge/skills/roles/general/SKILL.md",
-        "knowledge/skills/roles/software-architect/SKILL.md"
-      ],
-      "triggers": [
-        "general",
-        "geral",
-        "multi-step",
-        "multietapa",
-        "orchestrate",
-        "orquestrar",
-        "varias tarefas",
-        "v\u00e1rias tarefas"
-      ]
-    },
-    {
       "name": "geoscientist",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
@@ -1548,8 +1540,8 @@
         "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
         "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
         "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-        "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-        "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
+        "methodology/workflows/finishing-a-development-branch/SKILL.md",
+        "methodology/workflows/verification-before-completion/SKILL.md",
         "knowledge/skills/platforms/program-github-actions/SKILL.md",
         "knowledge/skills/roles/devops-engineer/SKILL.md"
       ],
@@ -1668,10 +1660,35 @@
       ]
     },
     {
+      "name": "harness-specialist",
+      "category": "core-orchestration",
+      "description": "Guides configuration and troubleshooting across supported assistant harnesses, distinguishing vendor behavior from repository installation and session activation.",
+      "skills": [
+        "knowledge/skills/platforms/opencode-guide/SKILL.md",
+        "knowledge/skills/platforms/claude-code-guide/SKILL.md",
+        "knowledge/skills/platforms/claude-desktop-guide/SKILL.md",
+        "knowledge/skills/platforms/codex-guide/SKILL.md",
+        "knowledge/skills/platforms/cursor-guide/SKILL.md",
+        "knowledge/skills/platforms/command-code-guide/SKILL.md",
+        "knowledge/skills/platforms/antigravity-guide/SKILL.md"
+      ],
+      "triggers": [
+        "assistant harness",
+        "claude code",
+        "claude cowork",
+        "claude desktop",
+        "codex cli",
+        "command code",
+        "cursor configuration",
+        "opencode"
+      ]
+    },
+    {
       "name": "iam-architect",
       "category": "architecture",
       "description": "Identity and Access Architecture agent that owns identity lifecycle, authentication and authorization, federation, privileged access and identity governance across applications and clouds. Use when designing IAM/CIAM architecture, defining identity lifecycle and access governance, or standardizing identity across systems and clouds.",
       "skills": [
+        "knowledge/skills/security/iam/identity-security-software-development/SKILL.md",
         "knowledge/skills/architecture/delivery/iam-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
@@ -1786,6 +1803,7 @@
       "category": "architecture",
       "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
       "skills": [
+        "knowledge/skills/frameworks/framework-soap/SKILL.md",
         "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
@@ -1844,6 +1862,7 @@
       "category": "software-engineering",
       "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
       "skills": [
+        "knowledge/skills/frameworks/framework-spring-ai/SKILL.md",
         "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
         "knowledge/skills/engineering/patterns/arch-bce-pattern/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
@@ -2136,7 +2155,6 @@
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-        "knowledge/skills/roles/general/SKILL.md",
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
       ],
       "triggers": [
@@ -2236,6 +2254,7 @@
       "category": "cybersecurity",
       "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, Active Directory, Kubernetes, LLMs and Red Team Infrastructure) using CLI utilities and custom scripts.",
       "skills": [
+        "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
@@ -2342,6 +2361,7 @@
       "category": "software-engineering",
       "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
       "skills": [
+        "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
         "knowledge/skills/roles/project-reviewer/SKILL.md"
       ],
       "triggers": [
@@ -2500,6 +2520,8 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
       "skills": [
+        "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md",
+        "knowledge/skills/security/operations/security-champions/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/security/appsec/api-protocol-security/SKILL.md",
         "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
@@ -2542,28 +2564,11 @@
       ]
     },
     {
-      "name": "self",
-      "category": "core-orchestration",
-      "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
-      "skills": [
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/roles/general/SKILL.md"
-      ],
-      "triggers": [
-        "clone",
-        "contexto isolado",
-        "delegar a si",
-        "fork",
-        "self subagent",
-        "subagente pr\u00f3prio"
-      ]
-    },
-    {
       "name": "skill-auditor",
       "category": "specialized-domains",
       "description": "Audits an existing skill against the authoring contract and returns a severity-ranked report. Use when reviewing or grading a SKILL.md, when a skill fails validation, or when improving trigger quality, progressive disclosure and token budget before a skill ships.",
       "skills": [
-        "methodology/workflows/superpowers-writing-skills/SKILL.md",
+        "methodology/workflows/writing-skills/SKILL.md",
         "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md"
       ],
@@ -2587,6 +2592,7 @@
       "category": "specialized-domains",
       "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
       "skills": [
+        "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/documentation-designer/SKILL.md"
@@ -2671,6 +2677,8 @@
       "category": "software-engineering",
       "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
       "skills": [
+        "knowledge/skills/languages/lang-lua/SKILL.md",
+        "knowledge/skills/languages/lang-perl/SKILL.md",
         "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
@@ -2712,6 +2720,8 @@
       "category": "architecture",
       "description": "Solution Architecture agent that designs one bounded solution inside the enterprise guardrails \u2014 structure, components, interfaces and quality attributes \u2014 selecting technologies and integration patterns and proving compliance at the architecture review gate. Use when architecting a specific initiative, choosing technologies for a delivery, or producing solution options.",
       "skills": [
+        "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md",
+        "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
         "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
@@ -2907,6 +2917,19 @@
       "category": "software-engineering",
       "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
       "skills": [
+        "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
+        "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
+        "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md",
         "knowledge/skills/roles/ui-designer/SKILL.md",
         "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
         "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
@@ -3131,6 +3154,7 @@
       "category": "software-engineering",
       "description": "Senior UX designer who owns the experience end to end: discovery and research method selection, information architecture, flows and journey maps, usability evaluation with heuristics and metrics (SUS, HEART), and ethical design governance. Applies the full UX discipline from ISO 9241-210 framing to deceptive-pattern review.",
       "skills": [
+        "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md",
         "knowledge/skills/roles/ux-designer/SKILL.md",
         "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",

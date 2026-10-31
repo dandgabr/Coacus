@@ -9,6 +9,7 @@ description: >-
   learning, explainable AI and distributed scaling.
 skills:
   - knowledge/skills/data/python-data-science/SKILL.md
+  - knowledge/skills/data/data-science-workflow/SKILL.md
   - knowledge/skills/data/distributed-ml-scaling/SKILL.md
   - knowledge/skills/domains/industry/explainable-ai/SKILL.md
   - knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md
@@ -46,6 +47,7 @@ When acting, follow the guidelines in the associated skills: python-data-science
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [python-data-science](knowledge/skills/data/python-data-science/SKILL.md)
+- [data-science-workflow](knowledge/skills/data/data-science-workflow/SKILL.md)
 - [distributed-ml-scaling](knowledge/skills/data/distributed-ml-scaling/SKILL.md)
 - [explainable-ai](knowledge/skills/domains/industry/explainable-ai/SKILL.md)
 - [computer-vision-deep-learning](knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md)

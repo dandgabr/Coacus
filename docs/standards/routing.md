@@ -33,10 +33,17 @@ agent with none extra (`engine/validators/routing.py`).
 
 ### Concurrency
 
-Routing PROPOSES; it never spawns. `--max-slots` caps the proposal at the
-governor's free slots, so a caller cannot over-subscribe concurrency
-([orchestration-governance](orchestration-governance.md)). The orchestrator routes
-BEFORE delegating ([routing step 0](../../knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md)).
+Routing PROPOSES; it never spawns or reserves a slot. `--max-slots` caps a
+proposal using the governor's reported free slots, a snapshot that can change.
+The main chat routes before delegating specialist work and dispatches independent
+ready tasks up to actual available capacity and any lower applicable limit. Each
+dispatch requires one governor slot; use adapter-managed acquisition where present,
+or manual acquisition otherwise, never both. Queue tasks when capacity is exhausted.
+OpenCode background dispatch is prohibited until its slot-lifetime fix is verified;
+report the limitation and use supported foreground dispatch if permitted.
+If delegation is unavailable, prohibited or cannot be governed, report the blocker
+rather than silently substituting ungoverned work. Routing does not authorize
+approval-gated actions. See [orchestration governance](orchestration-governance.md).
 
 ### Language
 

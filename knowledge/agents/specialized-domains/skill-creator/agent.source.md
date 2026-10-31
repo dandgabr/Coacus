@@ -7,6 +7,7 @@ description: >-
   into structured Markdown, writing production-standard SKILL.md files,
   interlinking skills and repository governance.
 skills:
+  - knowledge/skills/engineering/practices/writing-for-agents/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/engineering/practices/documentation-designer/SKILL.md
@@ -60,3 +61,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [writing-for-agents](knowledge/skills/engineering/practices/writing-for-agents/SKILL.md)

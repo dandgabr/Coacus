@@ -2,7 +2,7 @@
 
 How Coacus adapts the imported Superpowers process workflows, and the local
 conventions every process skill follows. Companion reference for the
-`superpowers-*` workflow family.
+imported workflow family.
 
 ## Artifact locations
 
@@ -189,7 +189,7 @@ skill namespace is FLAT, so every reference resolves to the installed name:
 
 | Upstream reference | Coacus skill |
 |---|---|
-| `superpowers:<name>` | `superpowers-<name>` |
+| `superpowers:<name>` | `<name>` (or the canonical renamed workflow) |
 
 The imported bodies were rewritten at import time to use the flat form, so a
 handoff always names a skill that exists. `using-superpowers` is not imported;
@@ -199,20 +199,19 @@ the `using-coacus` skill replaces it.
 
 | Workflow | Use it to |
 |---|---|
-| `superpowers-brainstorming` | explore intent and produce a design spec before building |
-| `superpowers-writing-plans` | turn a spec into a bite-sized implementation plan |
-| `superpowers-executing-plans` | implement a plan task by task in one session |
-| `superpowers-subagent-driven-development` | implement a plan with a fresh subagent per task, plus review |
-| `superpowers-test-driven-development` | write the failing test first, then the minimal code |
-| `superpowers-systematic-debugging` | find a root cause instead of guessing |
-| `superpowers-requesting-code-review` | ask for a review at a defined checkpoint |
-| `superpowers-receiving-code-review` | evaluate and act on review feedback |
-| `superpowers-verification-before-completion` | prove a change works before claiming success |
-| `superpowers-using-git-worktrees` | isolate work in a worktree |
-| `superpowers-finishing-a-development-branch` | close out a branch for integration |
-| `superpowers-dispatching-parallel-agents` | fan out independent work |
-| `superpowers-writing-skills` | author and pressure-test a new skill |
-| `superpowers-diagnosing-superpowers` | diagnose the workflow collection itself |
+| `brainstorming` | explore intent and produce a design spec before building |
+| `writing-plans` | turn a spec into a bite-sized implementation plan |
+| `executing-plans` | implement a plan task by task in one session |
+| `subagent-driven-development` | implement a plan with a fresh subagent per task, plus review |
+| `test-driven-development` | write the failing test first, then the minimal code |
+| `requesting-code-review` | ask for a review at a defined checkpoint |
+| `receiving-code-review` | evaluate and act on review feedback |
+| `verification-before-completion` | prove a change works before claiming success |
+| `using-git-worktrees` | isolate work in a worktree |
+| `finishing-a-development-branch` | close out a branch for integration |
+| `dispatching-parallel-agents` | fan out independent work |
+| `writing-skills` | author and pressure-test a new skill |
+| `diagnosing-agent-sessions` | diagnose the workflow collection itself |
 | `grilling` | interview the user in frontier rounds until the design tree is resolved |
 | `grill-me` / `grill-with-docs` | the grilling interview, plain or with documents |
 | `handoff` | compact a session for the next agent |

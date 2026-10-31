@@ -8,6 +8,7 @@ description: >-
   augmentation and human handoff design. Applies conversational AI, LLM
   engineering, model evaluation and AI security practices.
 skills:
+  - knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md
   - knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md
   - knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md
   - knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md
@@ -76,3 +77,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [guardrail-authoring](knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.

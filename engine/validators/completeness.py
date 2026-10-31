@@ -13,12 +13,24 @@ repos it still verifies the target side (lock + catalog + references).
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from engine.generators.catalog import build as build_catalog
 
 MANIFEST = "templates/import/import-manifest.json"
 LOCK = "sources.lock.json"
+
+# Historical local derivatives, independent of mutable lock labels. This is not
+# an upstream inventory; additions require provenance review.
+SUPERPOWERS_DERIVATIVES = frozenset({
+    "brainstorming", "diagnosing-agent-sessions", "diagnosing-bugs",
+    "dispatching-parallel-agents", "executing-plans",
+    "finishing-a-development-branch", "receiving-code-review",
+    "requesting-code-review", "subagent-driven-development",
+    "test-driven-development", "using-git-worktrees",
+    "verification-before-completion", "writing-plans", "writing-skills",
+})
 
 
 def _load(path: Path) -> dict:
@@ -110,6 +122,28 @@ def validate(root: Path) -> list[str]:
         if rel not in provenance_targets:
             gaps.append(f"orphan skill with no provenance: {rel}")
 
+    entries = _load(lock_path).get("entries", []) if lock_path.is_file() else []
+    derivative_dirs = {str(e.get("target_path", "")).split("/")[2]
+                       for e in entries if e.get("source_repo") == "superpowers"
+                       and str(e.get("target_path", "")).startswith("methodology/workflows/")
+                       and len(str(e.get("target_path", "")).split("/")) > 3}
+    for source in (root / "methodology" / "workflows").rglob("SKILL.md"):
+        rel = source.relative_to(root).as_posix()
+        if rel not in provenance_targets:
+            gaps.append(f"orphan workflow with no provenance: {rel}")
+        if source.parent.name in SUPERPOWERS_DERIVATIVES:
+            local_entries = [e for e in entries if (root / e.get("target_path", "")).parent == source.parent]
+            if not any(e.get("source_repo") == "superpowers" for e in local_entries):
+                gaps.append(f"missing historical derivative provenance: {rel}")
+        if source.parent.name in derivative_dirs or source.parent.name in SUPERPOWERS_DERIVATIVES:
+            candidates = [source, source.parent / "systematic-investigation.md"] + [root / e.get("target_path", "") for e in entries
+                                     if e.get("source_repo") == "superpowers"
+                                     and str(e.get("source_path", "")).endswith("/SKILL.md")
+                                     and (root / e.get("target_path", "")).parent == source.parent]
+            text = "\n".join(p.read_text(encoding="utf-8") for p in candidates if p.is_file())
+            if "Coacus adaptation of a Superpowers workflow (MIT)" not in text or "https://github.com/obra/superpowers @ " not in text:
+                gaps.append(f"missing derivative attribution: {rel}")
+
     # --- agent skill references (parsed from frontmatter) ------------------
     from engine.frontmatter import FrontmatterError, parse as parse_frontmatter
 
@@ -127,7 +161,10 @@ def validate(root: Path) -> list[str]:
                 )
 
     # --- source side (only when the repos are present) ----------------------
-    source_repos = manifest.get("source_repos", {})
+    workspace = Path(os.environ.get("COACUS_WORKSPACE") or root.parent)
+    def resolve(value: str) -> str:
+        return str(value).replace("{workspace}", workspace.as_posix())
+    source_repos = {key: resolve(value) for key, value in manifest.get("source_repos", {}).items()}
     excluded_skills = set(manifest.get("exclude_skills", []))
     excluded_agents = set(manifest.get("exclude_agents", []))
     merged_sources = {
@@ -136,7 +173,7 @@ def validate(root: Path) -> list[str]:
         for name in names  # every listed source is folded into the merge target
     }
     merge_targets = set(manifest.get("agent_merges", {}).keys())
-    blocked = set(manifest.get("exclude_import_from", []))
+    blocked = {resolve(value) for value in manifest.get("exclude_import_from", [])}
 
     skills_repo = source_repos.get("skills")
     renamed = manifest.get("name_dir_fixes", {})
@@ -161,16 +198,8 @@ def validate(root: Path) -> list[str]:
             if target not in imported_agents:
                 gaps.append(f"merge target agent missing: {target}")
 
-    super_repo = source_repos.get("superpowers")
-    if super_repo and Path(super_repo).is_dir():
-        repo = Path(super_repo)
-        for name, path in _source_skills(repo).items():
-            if name in ("using-superpowers",):  # replaced by using-coacus
-                continue
-            if f"superpowers-{name}" not in imported_workflows and name not in imported_workflows:
-                gaps.append(f"source workflow not imported: {name}")
-        if "using-coacus" not in imported_workflows:
-            gaps.append("entry workflow using-coacus is missing")
+    if "using-coacus" not in imported_workflows:
+        gaps.append("entry workflow using-coacus is missing")
 
     # --- the normative standards are present ------------------------------
     standards = (

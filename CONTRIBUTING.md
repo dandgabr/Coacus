@@ -112,15 +112,20 @@ Rules:
 2. Make the change; run the full local gate.
 3. Stage only intended files. Commit `generate` output together with its sources.
 4. Open a pull request against `main`.
-5. CI runs the `ci` job (validate → check → completeness → tests) and the `secrets` job
-   (pinned gitleaks in directory mode, scanning the checked-out state). A `main`
-   ruleset makes **both** checks required.
+5. CI runs the `ci` job (validate → check → completeness → tests) and the `secrets` job.
+   The secrets runner scans history reachable from locally available Git refs and
+   temporary copies of tracked regular working-tree files. It excludes untracked
+   files and does not cover unavailable remote refs or unreachable history. Run
+   the scanner in a trusted, quiescent worktree; it does not isolate malicious
+   local actors. See [secrets-portability](docs/standards/secrets-portability.md)
+   for hardlink and concurrent rename limitations. A `main` ruleset makes
+   **both** checks required.
 6. Review the generated diff in the PR. It is the visible proof that source and
    output agree.
 
-Because the repository squashes on merge, the gitleaks scan checks the state
-that ships, not every intermediate commit. Do not rewrite or force-push a branch
-under review.
+The history scan covers intermediate commits reachable from locally available
+refs. It does not establish coverage of commits absent from the checkout. Do not
+rewrite or force-push a branch under review.
 
 ## Adding an ingestion format
 

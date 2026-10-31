@@ -7,7 +7,7 @@ description: >-
   fails validation, or when improving trigger quality, progressive disclosure and
   token budget before a skill ships.
 skills:
-  - methodology/workflows/superpowers-writing-skills/SKILL.md
+  - methodology/workflows/writing-skills/SKILL.md
   - knowledge/skills/engineering/practices/documentation-designer/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
 ---
@@ -79,7 +79,7 @@ Return exactly these sections, in order:
 - Hand a rewrite to the author; do not silently restructure the skill.
 
 When acting, follow the authoring discipline in
-[superpowers-writing-skills](methodology/workflows/superpowers-writing-skills/SKILL.md)
+[writing-skills](methodology/workflows/writing-skills/SKILL.md)
 and the documentation standards in
 [documentation-designer](knowledge/skills/engineering/practices/documentation-designer/SKILL.md).
 
@@ -87,7 +87,7 @@ and the documentation standards in
 
 ## 🧰 Integrated Skills and Knowledge
 
-- [superpowers-writing-skills](methodology/workflows/superpowers-writing-skills/SKILL.md)
+- [writing-skills](methodology/workflows/writing-skills/SKILL.md)
 - [documentation-designer](knowledge/skills/engineering/practices/documentation-designer/SKILL.md)
 - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
 

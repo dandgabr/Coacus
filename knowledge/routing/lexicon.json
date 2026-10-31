@@ -651,15 +651,15 @@
       "game economy",
       "esports"
     ],
-    "general": [
-      "geral",
-      "general",
-      "orquestrar",
-      "orchestrate",
-      "multietapa",
-      "multi-step",
-      "varias tarefas",
-      "várias tarefas"
+    "harness-specialist": [
+      "opencode",
+      "claude code",
+      "claude desktop",
+      "claude cowork",
+      "codex cli",
+      "cursor configuration",
+      "command code",
+      "assistant harness"
     ],
     "geoscientist": [
       "geociências",
@@ -1096,14 +1096,6 @@
       "devsecops",
       "vulnerabilidade",
       "vulnerability"
-    ],
-    "self": [
-      "clone",
-      "delegar a si",
-      "subagente próprio",
-      "fork",
-      "contexto isolado",
-      "self subagent"
     ],
     "skill-auditor": [
       "skill auditor",

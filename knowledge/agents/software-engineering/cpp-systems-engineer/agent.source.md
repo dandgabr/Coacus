@@ -9,6 +9,7 @@ description: >-
   high-performance, memory-safe C++ libraries and applications and diagnoses
   performance and lifetime defects.
 skills:
+  - knowledge/skills/frameworks/framework-qt6/SKILL.md
   - knowledge/skills/languages/lang-cpp/SKILL.md
   - knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md
   - knowledge/skills/languages/gpu-programming-cuda/SKILL.md
@@ -73,3 +74,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult [framework-qt6](knowledge/skills/frameworks/framework-qt6/SKILL.md) when developing Qt-based C++ applications.

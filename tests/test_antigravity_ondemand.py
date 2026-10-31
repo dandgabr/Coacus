@@ -230,7 +230,9 @@ class TestAntigravityOnDemandInstall(unittest.TestCase):
         self.assertFalse(coacus_install.verify("antigravity", self.root, self.config)["ok"])
         removed = coacus_install.uninstall("antigravity", self.root, self.config)
         self.assertTrue(removed["removed"])
-        self.assertFalse((self.config / "config/plugins/coacus").exists())
+        tampered = self.config / "config/plugins/coacus/catalog/corpus/knowledge/skills/security/ai/agent-risk/SKILL.md"
+        self.assertEqual(tampered.read_text(encoding="utf-8"), "tampered\n")
+        self.assertIn(tampered.as_posix(), removed["skipped"])
 
     def test_switching_from_full_to_on_demand_removes_owned_native_files(self) -> None:
         coacus_install.install(

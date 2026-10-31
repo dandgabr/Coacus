@@ -293,44 +293,10 @@
     {
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/core-orchestration/general/AGENT.md",
-      "source_sha256": "f2740ce853749e40b65b2247f8f14f2f1f271a42c8eaa6412143a6c804fb8145",
-      "target_path": "knowledge/agents/core-orchestration/general/agent.source.md",
-      "target_sha256": "8815e54ce76a17c780f896a94a15705ea7be58d45805e6225d013350c15dc3df",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
       "source_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "ecaf7828b7c1f7ea8d2a53addc99a11cc557ba13920508facc9795dd84b8d5a0",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/core-orchestration/self/AGENT.md",
-      "source_sha256": "748de78241895dd18f4f6190e4da89f3ec73cb1cdd0435a128ee2bce15372a7c",
-      "target_path": "knowledge/agents/core-orchestration/self/agent.source.md",
-      "target_sha256": "5b02c0848993e4b509b528bae1f88033d01ccec9c2937be2566bd9d1af336d48",
+      "target_sha256": "9c7821b91275fc839e8349811d453f92a0cb758b7c60b43d8c77efd316cc5c4b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -347,7 +313,7 @@
       "source_path": "agents/cybersecurity/ai-security-specialist/AGENT.md",
       "source_sha256": "9b78d9ed610c04dabeb8af151ae7996dfa92a7e9f4526ccc2d1a94d2a040577f",
       "target_path": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md",
-      "target_sha256": "9d820fb29ae261900af6c4a220db1e9e439892e80802aff95d08ffc935bb711f",
+      "target_sha256": "cc57af0c54e459038e9a91dd85680599e9be7f7246876bc78d1c9baea6f2c130",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -415,7 +381,7 @@
       "source_path": "agents/cybersecurity/pentester-agent/AGENT.md",
       "source_sha256": "ea1e6a9c0a26f2e67378aff13e152d74d55f82771db6aa96f4d033b0491f3d82",
       "target_path": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md",
-      "target_sha256": "124e3d74b24f2d13c277755b2acb51fc17f740ce5bf28edb5ca1d1253c0223dd",
+      "target_sha256": "7cb98a4361bc671ade30244b9053869860465b5b0b7b47ba2313b297cf79a542",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -466,12 +432,13 @@
       "source_path": "agents/cybersecurity/security-specialist/AGENT.md",
       "source_sha256": "a72af0d6d283095ba6a3cbdaf71d2251d77dc2deba595091075a104f87cde4ee",
       "target_path": "knowledge/agents/cybersecurity/security-specialist/agent.source.md",
-      "target_sha256": "a72af0d6d283095ba6a3cbdaf71d2251d77dc2deba595091075a104f87cde4ee",
+      "target_sha256": "422c6f03fcdfcd032ea1cd4df4d661e8577ecea751f8105c28d307a6fead0281",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
         "converted:agent.source.md",
-        "translated"
+        "translated",
+        "adapted:local-changes"
       ],
       "aliases": [],
       "import_run_id": "20260920T022214Z",
@@ -483,7 +450,7 @@
       "source_path": "agents/data-cloud-devops/cloud-infrastructure-architect/AGENT.md",
       "source_sha256": "9ed10c3fe7cc342374cfa869c3f6464ca6ac26afa04beeb04aa83bfb87ee138a",
       "target_path": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md",
-      "target_sha256": "f60fc5c8b93815ee0cd48884d7544bcf4abea42b4a07dac8102c0374fd462f11",
+      "target_sha256": "b43ed583125a3c56be67d6f3cf29b93025e363be73e9fdff7443ed8ac1281aff",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -585,7 +552,7 @@
       "source_path": "agents/research-discovery/explore/AGENT.md",
       "source_sha256": "27ea74bafe15cec0abc8797a12b884f67dbf5ec532b45c2e3a8768f9e3a8a2cc",
       "target_path": "knowledge/agents/research-discovery/code-explorer/agent.source.md",
-      "target_sha256": "19e4ce9132fb169a2a48f750e045716f96c2f72ac05008baba56e846aa6efc90",
+      "target_sha256": "11505f94fe86e158e1154ab92c74644128433c9a9aab1c78e0d84058ee1edbd6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -656,7 +623,7 @@
       "source_path": "agents/software-engineering/backend-developer/AGENT.md",
       "source_sha256": "3d1ad2591e09c769a854ff5f10481ea02320d6fabdeb484d0e1faf837583eece",
       "target_path": "knowledge/agents/software-engineering/backend-developer/agent.source.md",
-      "target_sha256": "3d1b50351bec05a34b5acab973c57fb9089f5bc95a7236cc64a2c1b67268f6e8",
+      "target_sha256": "fe0c1e8644274892bef6d3bf95dceb65752feda87f770b9493d2f43b5fee7cb3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -690,7 +657,7 @@
       "source_path": "agents/software-engineering/documenter/AGENT.md",
       "source_sha256": "eac2de60990f318ddcbccb52425c8cb8a80edb70c336d7f51d94f7ee889c2bf8",
       "target_path": "knowledge/agents/software-engineering/documenter/agent.source.md",
-      "target_sha256": "e4d157468af2bf6fe26c19ce805361595cada5c1849cb36bfd7caf65b29ebae3",
+      "target_sha256": "61758a7d2fa9a275e146925a8887167b79cc0d3cf990a38c860213611531c60b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -707,7 +674,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "222048e3892c72bdbc7093a18c40165868bfcdce3d80738a4ec91b779d354962",
+      "target_sha256": "416d55ba87b8dae30ab4608fb94d8978b4a4e13951fd3905ca4089e73e436d2a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -724,7 +691,7 @@
       "source_path": "agents/software-engineering/fullstack-developer/AGENT.md",
       "source_sha256": "4ed5cb2137a0e280bf20c693a85ede791e850a0d16d6614ccb7b6f338dc46649",
       "target_path": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md",
-      "target_sha256": "a8d588fee54a539200fc7643ab75eeb14a080c1ecdf0f562acd6a0b412ed7edd",
+      "target_sha256": "7c07dff0aef624cfd5368cd647bf465ed8fed4535c2bdd41c00db9384fbe6e7a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -741,7 +708,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "a7e5ad9c7f6703a7a27307ed14ff93360db1edb4946854ee2b03e10fae10d07e",
+      "target_sha256": "6f20be8ce6bf3a71f358493ab9bfeb1e1def4d4a3bd7e87ca080df48ec9a33e1",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -758,7 +725,7 @@
       "source_path": "agents/software-engineering/java-enterprise-architect/AGENT.md",
       "source_sha256": "a841f6db6ced267ea8efa9ffd209bdc160dc1029227be640d3cd5448177497bd",
       "target_path": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md",
-      "target_sha256": "898be614c4f7c98e0a03e1b6122985f4cdcb80c39e26c939521c1b5279cb2a5f",
+      "target_sha256": "e256cb8e9e648a34ee442b9a666edbc9be9863f1e7396b92f1408b0ed3d72a39",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -775,7 +742,7 @@
       "source_path": "agents/software-engineering/project-reviewer/AGENT.md",
       "source_sha256": "220c530ff5bfcf6040914722f967a2c1517669ddc37b031ddd597bb790915d30",
       "target_path": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
-      "target_sha256": "54b8bedbfef03c2610c4e10989bdbd14e1510efc2bcb58ed5ed0cc0fe72cc270",
+      "target_sha256": "2be82035b5b3184b710837dbafd864d36b39a2025dd3b22c7204f2c54e671a3d",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -826,7 +793,7 @@
       "source_path": "agents/software-engineering/software-engineer/AGENT.md",
       "source_sha256": "94974db977861878bf6b7bc659e00326678ec3af4f1102d9d50cb5830a5e79af",
       "target_path": "knowledge/agents/software-engineering/software-engineer/agent.source.md",
-      "target_sha256": "c27b0bdeb25636327fd4c43e2d2aeabcafaa232ae85a2edcffe655a5f8a0e0ab",
+      "target_sha256": "8e332c5277a11b2f0afaa11a39e6194e6d83915441965e99aa43ea715b565c83",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -962,7 +929,7 @@
       "source_path": "agents/specialized-domains/skill-creator/AGENT.md",
       "source_sha256": "94ee1b38efcfff4e67ab9943fdb22b00e8c390068d00ba4170019126c1ffaa5d",
       "target_path": "knowledge/agents/specialized-domains/skill-creator/agent.source.md",
-      "target_sha256": "7102e981bbb11f87b1ead6e25ccbe22948aba23fd1b8308d196a11257b0da1ce",
+      "target_sha256": "f5f90dd0d260d18c8cbd6a40c220064f4e2dd9e2825c8a69fc837dd292150c3b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10735,8 +10702,8 @@
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/explore/SKILL.md",
       "source_sha256": "b2ac3a508a0d48a5611eb055cb96b51d7dd1f2f41f9570e556ae6e8fc6861169",
-      "target_path": "knowledge/skills/roles/explore/SKILL.md",
-      "target_sha256": "5b65ba23f38933eeaf1ac249a1edd06c052798d6384c89c390bf80eda038e14d",
+      "target_path": "knowledge/skills/roles/codebase-exploration/SKILL.md",
+      "target_sha256": "60e1a1eef6dbb4c8b8b768602ab6ea2da5de9f97f49723774f35fa51c410af87",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -10750,7 +10717,7 @@
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/explore/examples/.gitkeep",
       "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/explore/examples/.gitkeep",
+      "target_path": "knowledge/skills/roles/codebase-exploration/examples/.gitkeep",
       "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "origin_license": "GPL-3.0",
       "transform": [
@@ -10764,7 +10731,7 @@
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/explore/references/.gitkeep",
       "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/explore/references/.gitkeep",
+      "target_path": "knowledge/skills/roles/codebase-exploration/references/.gitkeep",
       "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "origin_license": "GPL-3.0",
       "transform": [
@@ -10778,7 +10745,7 @@
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/explore/resources/.gitkeep",
       "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/explore/resources/.gitkeep",
+      "target_path": "knowledge/skills/roles/codebase-exploration/resources/.gitkeep",
       "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "origin_license": "GPL-3.0",
       "transform": [
@@ -10792,7 +10759,7 @@
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/explore/scripts/.gitkeep",
       "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/explore/scripts/.gitkeep",
+      "target_path": "knowledge/skills/roles/codebase-exploration/scripts/.gitkeep",
       "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "origin_license": "GPL-3.0",
       "transform": [
@@ -10965,77 +10932,6 @@
     {
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/roles/general/SKILL.md",
-      "source_sha256": "173ea03f49d50a6aebcc29e1ea73619b949b8410bf91efe6ce43688c8dc9c4eb",
-      "target_path": "knowledge/skills/roles/general/SKILL.md",
-      "target_sha256": "a05b164cb2a36a9aca44fd5690c92df3f091bf6dadc976bec419e80ab4216ab8",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "translated"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/roles/general/examples/.gitkeep",
-      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/general/examples/.gitkeep",
-      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/roles/general/references/.gitkeep",
-      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/general/references/.gitkeep",
-      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/roles/general/resources/.gitkeep",
-      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/general/resources/.gitkeep",
-      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "skills/roles/general/scripts/.gitkeep",
-      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "target_path": "knowledge/skills/roles/general/scripts/.gitkeep",
-      "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported"
-      ],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:14Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/job-hunting-sourcing/SKILL.md",
       "source_sha256": "74c1dca5873b06c3604c6bc693262c87ec00586f6ef1aa6850992049250ac16b",
       "target_path": "knowledge/skills/roles/job-hunting-sourcing/SKILL.md",
@@ -11110,11 +11006,12 @@
       "source_path": "skills/roles/multi-agent-orchestration-supervision/SKILL.md",
       "source_sha256": "c85cb66d3d4dc427db45773fcc25f7a76348599bdd1a7d1925de750f8f1c3517",
       "target_path": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "target_sha256": "c85cb66d3d4dc427db45773fcc25f7a76348599bdd1a7d1925de750f8f1c3517",
+      "target_sha256": "df42f96081b1ed0967ba99df05cc044f2f05b11f5fdf8f36e9c8818f2ecca04b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
-        "translated"
+        "translated",
+        "adapted:local-changes"
       ],
       "import_run_id": "20260920T022214Z",
       "imported_at": "2026-09-20T02:22:14Z"
@@ -15463,8 +15360,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/SKILL.md",
       "source_sha256": "a32d2255354775aa124855aa7100cf276bea096fff4ebb3a0edf57be216e6c72",
-      "target_path": "methodology/workflows/superpowers-brainstorming/SKILL.md",
-      "target_sha256": "37ecea69391ec9ed60d524c56863d08e58f050f04965b5c119fc721e1f34b64d",
+      "target_path": "methodology/workflows/brainstorming/SKILL.md",
+      "target_sha256": "7486409438d01886cc979ead18d1c90d9dcfa302ef9943159757100d44528ba1",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15478,8 +15375,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/scripts/frame-template.html",
       "source_sha256": "6a8a4e58bd6a44b904e2e3c57de774481d909204597e1498de53f1b2fecc4c4e",
-      "target_path": "methodology/workflows/superpowers-brainstorming/scripts/frame-template.html",
-      "target_sha256": "6a8a4e58bd6a44b904e2e3c57de774481d909204597e1498de53f1b2fecc4c4e",
+      "target_path": "methodology/workflows/brainstorming/scripts/frame-template.html",
+      "target_sha256": "ede490ecf25083c5af502601063ce07832831cc61f994b4767c36c0f382d0d8b",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15492,8 +15389,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/scripts/helper.js",
       "source_sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
-      "target_path": "methodology/workflows/superpowers-brainstorming/scripts/helper.js",
-      "target_sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
+      "target_path": "methodology/workflows/brainstorming/scripts/helper.js",
+      "target_sha256": "fd8e224e0c2639373efef4bfa10d93a54db2cc669e28e44d63c0521fc04ee5f1",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15506,11 +15403,12 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/scripts/server.cjs",
       "source_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
-      "target_path": "methodology/workflows/superpowers-brainstorming/scripts/server.cjs",
-      "target_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
+      "target_path": "methodology/workflows/brainstorming/scripts/server.py",
+      "target_sha256": "bfa622928ddb515d053a5954c3eaff82e68858148270dfe9492ba09d077c130f",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "converted:python"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15520,7 +15418,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/spec-document-reviewer-prompt.md",
       "source_sha256": "95a0a195de9d984be2fffa95bab16fc8c563bc296a9cfc5e9c29cb3ece0d7457",
-      "target_path": "methodology/workflows/superpowers-brainstorming/spec-document-reviewer-prompt.md",
+      "target_path": "methodology/workflows/brainstorming/spec-document-reviewer-prompt.md",
       "target_sha256": "34cd634e570ff904f841459f790c51dcfa496019e3ef7995ebcc3375ec3072cf",
       "origin_license": "MIT",
       "transform": [
@@ -15535,8 +15433,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/brainstorming/visual-companion.md",
       "source_sha256": "be3d22f6bcea6ed2464d1cd1457dd245da79cf1a598fdc7f8554c046507fe011",
-      "target_path": "methodology/workflows/superpowers-brainstorming/visual-companion.md",
-      "target_sha256": "be3d22f6bcea6ed2464d1cd1457dd245da79cf1a598fdc7f8554c046507fe011",
+      "target_path": "methodology/workflows/brainstorming/visual-companion.md",
+      "target_sha256": "24ff255bf1cc81a2a205253b1fc38757f3f9cf72e7282765ff60b7aa94c6dccd",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15549,8 +15447,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/SKILL.md",
       "source_sha256": "5a652f8132cc901eb5ca61f89157839f87a2f20aed037fc7a2b51051bc37cd19",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md",
-      "target_sha256": "5a188eeb197d11c18d5b12faed96ba09cbd999cc9c8dac04a074866a0e3e043a",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/SKILL.md",
+      "target_sha256": "0f1490dbc079fcc813f37cb4c905d87277faf54ec76182162e06cb9441d21df4",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15564,8 +15462,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/analyst-common.md",
       "source_sha256": "88801c36070be2a54a8a9a29632b01ab21db053e2e76ee49b5252a9b74ca4090",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/analyst-common.md",
-      "target_sha256": "88801c36070be2a54a8a9a29632b01ab21db053e2e76ee49b5252a9b74ca4090",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/analyst-common.md",
+      "target_sha256": "d4f43f0fbfac50be10810e8850a8450c96c9acdd36bff84d80ddb736ed28b160",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15578,7 +15476,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/cost-and-time.md",
       "source_sha256": "fe97a66d4db3b436816ef82694bda413b522b3a862dd41978da01e358fffecc4",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/cost-and-time.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/cost-and-time.md",
       "target_sha256": "fe97a66d4db3b436816ef82694bda413b522b3a862dd41978da01e358fffecc4",
       "origin_license": "MIT",
       "transform": [
@@ -15592,7 +15490,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/plan-adherence.md",
       "source_sha256": "1dcbab82033598a2e9c9ee42e950d4b1822d2c871c02cef9e102cdd5cbbda113",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/plan-adherence.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/plan-adherence.md",
       "target_sha256": "1dcbab82033598a2e9c9ee42e950d4b1822d2c871c02cef9e102cdd5cbbda113",
       "origin_license": "MIT",
       "transform": [
@@ -15606,7 +15504,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/quality-evidence.md",
       "source_sha256": "749d11cf678f379ed77a29274cad456634e0284aa523639a1a214a9f2b986eb1",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/quality-evidence.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/quality-evidence.md",
       "target_sha256": "749d11cf678f379ed77a29274cad456634e0284aa523639a1a214a9f2b986eb1",
       "origin_license": "MIT",
       "transform": [
@@ -15620,7 +15518,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/repeated-work.md",
       "source_sha256": "895027f2dfa4b1b8bcdb7ac9aec8d45a80bff212fad6ec6cad5ab38fa68322f5",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/repeated-work.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/repeated-work.md",
       "target_sha256": "895027f2dfa4b1b8bcdb7ac9aec8d45a80bff212fad6ec6cad5ab38fa68322f5",
       "origin_license": "MIT",
       "transform": [
@@ -15634,7 +15532,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/request-conflicts.md",
       "source_sha256": "e800e38d8b7752c212c76c5c3ed75cd78b749684263ea0c313586f26af6f4b5c",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/request-conflicts.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/request-conflicts.md",
       "target_sha256": "e800e38d8b7752c212c76c5c3ed75cd78b749684263ea0c313586f26af6f4b5c",
       "origin_license": "MIT",
       "transform": [
@@ -15648,7 +15546,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/scrub-audit.md",
       "source_sha256": "5cc48f05a7f81f5f7e05e0c7ceafc0fb8774bcaf75fe88dcb5c7e408026c70ad",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/scrub-audit.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/scrub-audit.md",
       "target_sha256": "5cc48f05a7f81f5f7e05e0c7ceafc0fb8774bcaf75fe88dcb5c7e408026c70ad",
       "origin_license": "MIT",
       "transform": [
@@ -15662,7 +15560,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/scrub.md",
       "source_sha256": "854cb3320cc5377b493cea2f72519d67983464882db68a0f408a7d0a0f040b8c",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/scrub.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/scrub.md",
       "target_sha256": "854cb3320cc5377b493cea2f72519d67983464882db68a0f408a7d0a0f040b8c",
       "origin_license": "MIT",
       "transform": [
@@ -15676,7 +15574,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/similar-session.md",
       "source_sha256": "b190f713b463df2bb5ec3914647e204074d1bd50643a53159db6d13cace916c1",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/similar-session.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/similar-session.md",
       "target_sha256": "b190f713b463df2bb5ec3914647e204074d1bd50643a53159db6d13cace916c1",
       "origin_license": "MIT",
       "transform": [
@@ -15690,8 +15588,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/skill-timeline.md",
       "source_sha256": "45d604d583b57a77b9033eced8eb875ef342af70fcd66cf7d15c6dc89964890f",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/skill-timeline.md",
-      "target_sha256": "45d604d583b57a77b9033eced8eb875ef342af70fcd66cf7d15c6dc89964890f",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/skill-timeline.md",
+      "target_sha256": "f60d328a5a0c571ce060dbf689e507f9f523818206f5d786d4bdde493be37738",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15704,7 +15602,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/prompts/stumbles.md",
       "source_sha256": "1f2d1f048aff7b8b400006301f1ce8c232ecc7e9d5f705af27a849b2c03ea2e7",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/prompts/stumbles.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/prompts/stumbles.md",
       "target_sha256": "1f2d1f048aff7b8b400006301f1ce8c232ecc7e9d5f705af27a849b2c03ea2e7",
       "origin_license": "MIT",
       "transform": [
@@ -15718,7 +15616,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/references/context-safety.md",
       "source_sha256": "e6be2bd3495f454d4bedee9484d728d245d1fa656e11fc4ceec5693c16e4730a",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/references/context-safety.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/references/context-safety.md",
       "target_sha256": "e6be2bd3495f454d4bedee9484d728d245d1fa656e11fc4ceec5693c16e4730a",
       "origin_license": "MIT",
       "transform": [
@@ -15732,8 +15630,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/references/github-issues.md",
       "source_sha256": "a656f5e15b21c7a200c39c038f5ede74b9d6ea3ceeb90f39af7e930c8d8424d6",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/references/github-issues.md",
-      "target_sha256": "a656f5e15b21c7a200c39c038f5ede74b9d6ea3ceeb90f39af7e930c8d8424d6",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/references/github-issues.md",
+      "target_sha256": "de82fc733f21330b126e83a0e0c2d913f6ecbc6913f00afcb83bae5be57abc1b",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15746,8 +15644,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/references/redaction-policy.md",
       "source_sha256": "96b16f47074838fe2d7e609577d6f8b0ad460f8378b281a3f96ee23cb5a08bde",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/references/redaction-policy.md",
-      "target_sha256": "96b16f47074838fe2d7e609577d6f8b0ad460f8378b281a3f96ee23cb5a08bde",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/references/redaction-policy.md",
+      "target_sha256": "01023f7fb417222e988694cda61dc4d42a1d0942dcef3489b451cb1b27a92f4a",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15760,7 +15658,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/references/session-discovery.md",
       "source_sha256": "6d1dced083e5d978448a78df298cf515531b0eb39b2854a4a2afbffeb69a7435",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/references/session-discovery.md",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/references/session-discovery.md",
       "target_sha256": "6d1dced083e5d978448a78df298cf515531b0eb39b2854a4a2afbffeb69a7435",
       "origin_license": "MIT",
       "transform": [
@@ -15774,8 +15672,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/templates/bundle-README.md",
       "source_sha256": "2e6ddc6b106028d5ebd00a50ad93a77111d675c219ee1273cd0857869e8d51ec",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/templates/bundle-README.md",
-      "target_sha256": "2e6ddc6b106028d5ebd00a50ad93a77111d675c219ee1273cd0857869e8d51ec",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/templates/bundle-README.md",
+      "target_sha256": "5c24faf9a1db75c4f7673ebc8c47154976021696e6b4b95fe46bf43640ea4150",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15788,8 +15686,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/templates/case.md",
       "source_sha256": "597892462be83bc478536ec91f7c285f6dd25d119c560734a3a180fe8471301d",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/templates/case.md",
-      "target_sha256": "597892462be83bc478536ec91f7c285f6dd25d119c560734a3a180fe8471301d",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/templates/case.md",
+      "target_sha256": "a034d6f8efaf4b66c14fad2dd5843221e93691b87d143e6408f049e93f28d013",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15802,8 +15700,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/templates/issue.md",
       "source_sha256": "8f28dbfe60602f77dda76d81815cb4e2dce7d3e2a93348890e1581be8310ac1f",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/templates/issue.md",
-      "target_sha256": "8f28dbfe60602f77dda76d81815cb4e2dce7d3e2a93348890e1581be8310ac1f",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/templates/issue.md",
+      "target_sha256": "04504331181be79d5000bae60ec19983f2124db91d6e609a6509427c20d2e2a9",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15816,8 +15714,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/diagnosing-superpowers/templates/report.md",
       "source_sha256": "38295d0fd785e8608f330815c59ebd7047942002ec7085aecbed54681f56b0c1",
-      "target_path": "methodology/workflows/superpowers-diagnosing-superpowers/templates/report.md",
-      "target_sha256": "38295d0fd785e8608f330815c59ebd7047942002ec7085aecbed54681f56b0c1",
+      "target_path": "methodology/workflows/diagnosing-agent-sessions/templates/report.md",
+      "target_sha256": "bde1e76869a82665e8fa83da9ebf850f24e658e6c1d2c9e52f50091e5f6845e2",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15830,8 +15728,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/dispatching-parallel-agents/SKILL.md",
       "source_sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c",
-      "target_path": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md",
-      "target_sha256": "172263971a7d2281e0c458f1535e3c5daa3f819bb604fc761566dd6d6c9edb7e",
+      "target_path": "methodology/workflows/dispatching-parallel-agents/SKILL.md",
+      "target_sha256": "9654f1f2dbaa9aa9f94b3da71c52a5833beac33784a7da802574995fd7415afe",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15845,8 +15743,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/executing-plans/SKILL.md",
       "source_sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
-      "target_path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "target_sha256": "297cb067f21413065432440b90e8c5351d8c432507f3297e9d1d2b8db6541574",
+      "target_path": "methodology/workflows/executing-plans/SKILL.md",
+      "target_sha256": "b6aa4f3a2fd4d3d999fe504c1bf0abfba70385b6a1ab8d5888832f2ec6d964a8",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15860,8 +15758,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/executing-plans/scripts/task-done",
       "source_sha256": "f704dc216e0602f95c601b9ee1113c9a55cc1c5f6e4d149dddfba0fd3ad1c314",
-      "target_path": "methodology/workflows/superpowers-executing-plans/scripts/task-done.py",
-      "target_sha256": "32598d7cf2fbb3a32da8e8fb7b0d002d3a3a685ac751c78783dc11ec8ba4f49c",
+      "target_path": "methodology/workflows/executing-plans/scripts/task-done.py",
+      "target_sha256": "8acb4af97682cedc56b41982ef986bd6519db52129ad0d73bd643dc05a4427cd",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15876,8 +15774,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/executing-plans/scripts/task-start",
       "source_sha256": "f833693c8fce3700fc9f841562d80f8015cd40f652c168a3405ac3e46947a1fe",
-      "target_path": "methodology/workflows/superpowers-executing-plans/scripts/task-start.py",
-      "target_sha256": "aefdb196545758f13d572d6a8661036730087287c8bfa28ef3f76a2c65c7dfe4",
+      "target_path": "methodology/workflows/executing-plans/scripts/task-start.py",
+      "target_sha256": "801a685724d75e93fb69d7cdc2378d057ef0edeff5607a7fb1097690bb3852d7",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15892,8 +15790,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/finishing-a-development-branch/SKILL.md",
       "source_sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65",
-      "target_path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "target_sha256": "ded3b2539841cc05b77b9dd63d6864091115949b1b0a012b8781f1cc4c01d29e",
+      "target_path": "methodology/workflows/finishing-a-development-branch/SKILL.md",
+      "target_sha256": "5f5e5dc849fe56257873164170446ed69081ac8a6e902d06baa5f9c50f5bb0ed",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15907,8 +15805,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/receiving-code-review/SKILL.md",
       "source_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438",
-      "target_path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md",
-      "target_sha256": "bc7382c4b516ca97cffba343c1d2a29ae573b1a34f1e39fd894765536dbca96a",
+      "target_path": "methodology/workflows/receiving-code-review/SKILL.md",
+      "target_sha256": "d0fdd41ba2a3ee6ba11761badc6cecc49b18cb3cff81187f3a38ac9a234b244b",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15922,8 +15820,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/requesting-code-review/SKILL.md",
       "source_sha256": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
-      "target_path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "target_sha256": "e7a0d13ea7037e8be5c018afdf5694f7d92aab7370fac07473afc1061dac84ac",
+      "target_path": "methodology/workflows/requesting-code-review/SKILL.md",
+      "target_sha256": "5d1e46f27d6b05935e66a747147b418d06bb75ead2c3fe83490debb740bcf990",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15937,7 +15835,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/requesting-code-review/code-reviewer.md",
       "source_sha256": "1fdc2f71b7e7871789ab237214076f5fc0dd9d55d53518d7fddd9eb3f5089e7a",
-      "target_path": "methodology/workflows/superpowers-requesting-code-review/code-reviewer.md",
+      "target_path": "methodology/workflows/requesting-code-review/code-reviewer.md",
       "target_sha256": "1fdc2f71b7e7871789ab237214076f5fc0dd9d55d53518d7fddd9eb3f5089e7a",
       "origin_license": "MIT",
       "transform": [
@@ -15951,8 +15849,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "target_sha256": "731e98923e9a8422854d0082508593da5f6ad0a760d3644d2ef3e569f42dfd62",
+      "target_path": "methodology/workflows/subagent-driven-development/SKILL.md",
+      "target_sha256": "8db9fd41805dc092a2cd998145df51bb63ab91e4f7b7b0c0176114f7126d2b73",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15966,11 +15864,12 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/implementer-prompt.md",
       "source_sha256": "41a5af89105840667b27ca72974875145780ef2ae2cc60422f552516921609c9",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/implementer-prompt.md",
-      "target_sha256": "41a5af89105840667b27ca72974875145780ef2ae2cc60422f552516921609c9",
+      "target_path": "methodology/workflows/subagent-driven-development/implementer-prompt.md",
+      "target_sha256": "7748546df861e5fcef63babc731cb5e28f7f0a982405a58ae41c30929477eb41",
       "origin_license": "MIT",
       "transform": [
-        "imported"
+        "imported",
+        "adapted:local-changes"
       ],
       "import_run_id": "20260920T022215Z",
       "imported_at": "2026-09-20T02:22:15Z"
@@ -15980,8 +15879,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/re-review-prompt.md",
       "source_sha256": "0828a5e9cbb12ba49f14621dd8c3953c48c0fc383e75bb5494f055ed0d6d824f",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/re-review-prompt.md",
-      "target_sha256": "88c500c88de986fe472f7da05b0d53bff35d8d4c184f1de127f5e350a27128fd",
+      "target_path": "methodology/workflows/subagent-driven-development/re-review-prompt.md",
+      "target_sha256": "7ef0513920931bf2fc45c87f74c18aee195466b29f086cbf240ec0298aad1d67",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -15995,7 +15894,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/scripts/review-package",
       "source_sha256": "f9275175b2276b1d5fdb1bae0bedaadd2a950659b7c6f311ea37ff85e1861b1f",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/scripts/review-package.py",
+      "target_path": "methodology/workflows/subagent-driven-development/scripts/review-package.py",
       "target_sha256": "b564c8e9b6494e4f3c604f4d3e4324ccec75aad307a9757eb6a7ac5cca710b76",
       "origin_license": "MIT",
       "transform": [
@@ -16010,8 +15909,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/scripts/sdd-workspace",
       "source_sha256": "75ca46c756ba4209ca36e0d3d65567257ceb33bc7a6775b9dad946707cb3bd7b",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/scripts/sdd-workspace.py",
-      "target_sha256": "40db9ea6e4d8d57c02d8b6c2dd6a0da86215c0fb0fa1a17009f1edb1cc23370f",
+      "target_path": "methodology/workflows/subagent-driven-development/scripts/sdd-workspace.py",
+      "target_sha256": "186e2f2b0c43503bed59a52464ac9cb104f3a1ccb2bc58c1edbe204b40b10a57",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16025,8 +15924,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/scripts/task-brief",
       "source_sha256": "cc563538e09abf719b34ddf4b2fa7a65cf3b301729039dbfa923cb060f729146",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/scripts/task-brief.py",
-      "target_sha256": "70d7c33a608ac0ac9d83d11b1fc8619a0f7ab94c31a927b669a21bd434e46d48",
+      "target_path": "methodology/workflows/subagent-driven-development/scripts/task-brief.py",
+      "target_sha256": "071699f55930130dca40c8a442cae7853817f65b5682eeb66277df70f0c3b802",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16040,8 +15939,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/subagent-driven-development/task-reviewer-prompt.md",
       "source_sha256": "bfed55c8f19d0ff6ed57b0fe09127c92890e9311c6c73917129598826bf9ebe8",
-      "target_path": "methodology/workflows/superpowers-subagent-driven-development/task-reviewer-prompt.md",
-      "target_sha256": "f5b2803ad82581cfbd12b96263752ca56ef1917d9b967fba96fb40f59aa6b87f",
+      "target_path": "methodology/workflows/subagent-driven-development/task-reviewer-prompt.md",
+      "target_sha256": "9080189fbd5aa1edeacbb118749e20f18570ebea2b1d6761a5cb845be65a778d",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16055,7 +15954,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/CREATION-LOG.md",
       "source_sha256": "c24733a5b1821bd6bed1fc950261f0b9f4e90097e0bbb96459d8179713730789",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/CREATION-LOG.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/CREATION-LOG.md",
       "target_sha256": "c24733a5b1821bd6bed1fc950261f0b9f4e90097e0bbb96459d8179713730789",
       "origin_license": "MIT",
       "transform": [
@@ -16069,8 +15968,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/SKILL.md",
       "source_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "target_sha256": "7947ba49fed83afda53d96ee13e69d897f043c01dbe780b3b90f11dd4aa74e93",
+      "target_path": "methodology/workflows/diagnosing-bugs/systematic-investigation.md",
+      "target_sha256": "7dbacca894eb98887a91728c0ce09793040dd50d38a8457b8fef955bb67ad537",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16084,7 +15983,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/condition-based-waiting-example.ts",
       "source_sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/condition-based-waiting-example.ts",
+      "target_path": "methodology/workflows/diagnosing-bugs/condition-based-waiting-example.ts",
       "target_sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e",
       "origin_license": "MIT",
       "transform": [
@@ -16098,7 +15997,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/condition-based-waiting.md",
       "source_sha256": "e89fec8400d6cd50f43407cec9fab50976ba4d55d0ec2eb51c0bd68036b54c26",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/condition-based-waiting.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/condition-based-waiting.md",
       "target_sha256": "e89fec8400d6cd50f43407cec9fab50976ba4d55d0ec2eb51c0bd68036b54c26",
       "origin_license": "MIT",
       "transform": [
@@ -16112,7 +16011,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/defense-in-depth.md",
       "source_sha256": "1e175fb86fc357e58c6aebf5441e481e1b7868b4380c0456b63a17eefbd18ba7",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/defense-in-depth.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/defense-in-depth.md",
       "target_sha256": "1e175fb86fc357e58c6aebf5441e481e1b7868b4380c0456b63a17eefbd18ba7",
       "origin_license": "MIT",
       "transform": [
@@ -16126,7 +16025,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/root-cause-tracing.md",
       "source_sha256": "8d0ac6fbe2ae30f62c35009b8f34214fb7d7552654b606972243457fb09b43b5",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/root-cause-tracing.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/root-cause-tracing.md",
       "target_sha256": "8d0ac6fbe2ae30f62c35009b8f34214fb7d7552654b606972243457fb09b43b5",
       "origin_license": "MIT",
       "transform": [
@@ -16140,7 +16039,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/test-academic.md",
       "source_sha256": "fe2ba480d78ac0d686dc025f41c2a32a43d642bf533f91b0c6053a04d35d6486",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/test-academic.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/test-academic.md",
       "target_sha256": "fe2ba480d78ac0d686dc025f41c2a32a43d642bf533f91b0c6053a04d35d6486",
       "origin_license": "MIT",
       "transform": [
@@ -16154,7 +16053,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/test-pressure-1.md",
       "source_sha256": "0b6a915db0054577819834c79be9eb614e97bddba10d73768e1fbe91cfed048a",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-1.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/test-pressure-1.md",
       "target_sha256": "0b6a915db0054577819834c79be9eb614e97bddba10d73768e1fbe91cfed048a",
       "origin_license": "MIT",
       "transform": [
@@ -16168,7 +16067,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/test-pressure-2.md",
       "source_sha256": "b2030aeffba07050e8ad573ddf87486457c4a016a786bb326235bebd856f2016",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-2.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/test-pressure-2.md",
       "target_sha256": "b2030aeffba07050e8ad573ddf87486457c4a016a786bb326235bebd856f2016",
       "origin_license": "MIT",
       "transform": [
@@ -16182,7 +16081,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/systematic-debugging/test-pressure-3.md",
       "source_sha256": "96b50a52e2c7989c9cf20fb752c47c1e9a3a70dc362f8f7989f8f5b64dac7708",
-      "target_path": "methodology/workflows/superpowers-systematic-debugging/test-pressure-3.md",
+      "target_path": "methodology/workflows/diagnosing-bugs/test-pressure-3.md",
       "target_sha256": "96b50a52e2c7989c9cf20fb752c47c1e9a3a70dc362f8f7989f8f5b64dac7708",
       "origin_license": "MIT",
       "transform": [
@@ -16196,8 +16095,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/test-driven-development/SKILL.md",
       "source_sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
-      "target_path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "target_sha256": "09035070067cd00f5a48f5ebe0ed8f6857a5a4842549548ba72ac5a0bf51a9de",
+      "target_path": "methodology/workflows/test-driven-development/SKILL.md",
+      "target_sha256": "37500b20acb12fd702cf3d99b739baa89130958285ec2b858fc1fa2742efb284",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16211,8 +16110,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/test-driven-development/writing-good-tests.md",
       "source_sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
-      "target_path": "methodology/workflows/superpowers-test-driven-development/writing-good-tests.md",
-      "target_sha256": "322dba73eecdbb021ca5315c3ed2d09d2072b9102bf16df06ef7a6ca337d8a3b",
+      "target_path": "methodology/workflows/test-driven-development/writing-good-tests.md",
+      "target_sha256": "78261b8292af054965dee4570151aefcfb839cbb82b6c9115817cd5875ae642f",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16226,8 +16125,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/using-git-worktrees/SKILL.md",
       "source_sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd",
-      "target_path": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md",
-      "target_sha256": "55571a8e09cb141a3d4c6005fa0d2b72c29b39f833761699d6e0fc51e33321cb",
+      "target_path": "methodology/workflows/using-git-worktrees/SKILL.md",
+      "target_sha256": "490d3282093b0739d44371a81c20e49e93c4ef3c4e9f7253722aad08d3c7f5e7",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16241,8 +16140,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/verification-before-completion/SKILL.md",
       "source_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
-      "target_path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "target_sha256": "eb12b290a7a4f58dccc360bbb165b5058eedea97c205adcf1dfeba7550f7f078",
+      "target_path": "methodology/workflows/verification-before-completion/SKILL.md",
+      "target_sha256": "8f542567aec246685cd4ad680b2cd8f600e9f71c54712d0b8d74a97545bf1c0f",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16256,8 +16155,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
-      "target_path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "target_sha256": "f091b31cf99f0256488df9799159cbc8ade51e5dd1f712b586e32e5b9866b46d",
+      "target_path": "methodology/workflows/writing-plans/SKILL.md",
+      "target_sha256": "3075c6bef2a19f8fc8d20b9818499f0a847e7bfb33c1186f6f0f95e9570e72a9",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16271,7 +16170,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-plans/plan-document-reviewer-prompt.md",
       "source_sha256": "aa728b96aad603c8be28875a4305637f6c984aa81ffcadcb13e743202fa2a0c7",
-      "target_path": "methodology/workflows/superpowers-writing-plans/plan-document-reviewer-prompt.md",
+      "target_path": "methodology/workflows/writing-plans/plan-document-reviewer-prompt.md",
       "target_sha256": "aa728b96aad603c8be28875a4305637f6c984aa81ffcadcb13e743202fa2a0c7",
       "origin_license": "MIT",
       "transform": [
@@ -16285,8 +16184,8 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/SKILL.md",
       "source_sha256": "bbdfe742f853562e643a3d40d64476359d47881e39cef80a189283fa26d11ab9",
-      "target_path": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "target_sha256": "20f44768bbb9dc795d3633c6642cacb2bbd5035951a1fc989258cff4bcf3c349",
+      "target_path": "methodology/workflows/writing-skills/SKILL.md",
+      "target_sha256": "e9a189e72fca6ea01fbe174fe966846d620a52fb495d97715b33b47b853f8cac",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16300,7 +16199,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/anthropic-best-practices.md",
       "source_sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
-      "target_path": "methodology/workflows/superpowers-writing-skills/anthropic-best-practices.md",
+      "target_path": "methodology/workflows/writing-skills/anthropic-best-practices.md",
       "target_sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
       "origin_license": "MIT",
       "transform": [
@@ -16314,7 +16213,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/examples/CLAUDE_MD_TESTING.md",
       "source_sha256": "0b379a3415e185d3c434b3ad283d8aa132f3022c2a4f210f168865b5986bcef0",
-      "target_path": "methodology/workflows/superpowers-writing-skills/examples/guidance-comparison.md",
+      "target_path": "methodology/workflows/writing-skills/examples/guidance-comparison.md",
       "target_sha256": "8c7410a5f50dbc078047f4bff332678eab7e5d9e657693f94af3c3246eb09b0c",
       "origin_license": "MIT",
       "transform": [
@@ -16329,7 +16228,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/graphviz-conventions.dot",
       "source_sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
-      "target_path": "methodology/workflows/superpowers-writing-skills/graphviz-conventions.dot",
+      "target_path": "methodology/workflows/writing-skills/graphviz-conventions.dot",
       "target_sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
       "origin_license": "MIT",
       "transform": [
@@ -16343,7 +16242,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/persuasion-principles.md",
       "source_sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
-      "target_path": "methodology/workflows/superpowers-writing-skills/persuasion-principles.md",
+      "target_path": "methodology/workflows/writing-skills/persuasion-principles.md",
       "target_sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
       "origin_license": "MIT",
       "transform": [
@@ -16357,7 +16256,7 @@
       "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "source_path": "skills/writing-skills/testing-skills-with-subagents.md",
       "source_sha256": "c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade",
-      "target_path": "methodology/workflows/superpowers-writing-skills/testing-skills-with-subagents.md",
+      "target_path": "methodology/workflows/writing-skills/testing-skills-with-subagents.md",
       "target_sha256": "dd3f967383dd7597822f222739c0a295521aebc4461fe8f794091de0b576472d",
       "origin_license": "MIT",
       "transform": [
@@ -17661,9 +17560,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md",
-      "source_sha256": "d1205ba4089eed6f1e47a100a2e14b9455cfd38f2dd2aa28aaf2ccb92df31d02",
+      "source_sha256": "783319b11b87c7c1a85fdd4f15a732f4e0ab79808565a24a7970a0414afd3c35",
       "target_path": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md",
-      "target_sha256": "d1205ba4089eed6f1e47a100a2e14b9455cfd38f2dd2aa28aaf2ccb92df31d02",
+      "target_sha256": "783319b11b87c7c1a85fdd4f15a732f4e0ab79808565a24a7970a0414afd3c35",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17826,9 +17725,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "1e69dec464cdf4d121fcc618c56aa3a1ed7852c66593cb63e4e715f0786db1ff",
+      "source_sha256": "c2aab2d316d186feacd6e127dd43c33a370bdf3c9663039d6c8949553b4cd7c5",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "1e69dec464cdf4d121fcc618c56aa3a1ed7852c66593cb63e4e715f0786db1ff",
+      "target_sha256": "c2aab2d316d186feacd6e127dd43c33a370bdf3c9663039d6c8949553b4cd7c5",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17856,9 +17755,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
-      "source_sha256": "5c511c834d08b96e831f15a5830397059ca1ff72f176a97e7af9f18213ad5f68",
+      "source_sha256": "e93340b86e1b9d0bf556acac7979072b594292b4517d493b38416f1bf3b53819",
       "target_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
-      "target_sha256": "5c511c834d08b96e831f15a5830397059ca1ff72f176a97e7af9f18213ad5f68",
+      "target_sha256": "e93340b86e1b9d0bf556acac7979072b594292b4517d493b38416f1bf3b53819",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17931,9 +17830,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
-      "source_sha256": "f33c453a25814800ac61e374be279b060ca330ca426859b3bfe0ca25c8599411",
+      "source_sha256": "fca9713802a40ea9a320f717474660d1d6adba3b8fa06da4e60e3652c2534373",
       "target_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
-      "target_sha256": "f33c453a25814800ac61e374be279b060ca330ca426859b3bfe0ca25c8599411",
+      "target_sha256": "fca9713802a40ea9a320f717474660d1d6adba3b8fa06da4e60e3652c2534373",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18201,9 +18100,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "source_sha256": "dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165",
+      "source_sha256": "f8b244d7081c77f464dc36bcac53fc3d2d9cefd5870b16904e9b9d3b8ab95488",
       "target_path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "target_sha256": "dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165",
+      "target_sha256": "f8b244d7081c77f464dc36bcac53fc3d2d9cefd5870b16904e9b9d3b8ab95488",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18291,9 +18190,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
-      "source_sha256": "7060ae56c323804fa622e2e4a9fd7d854df51d1c3adcdfbbf453482ce0dae05a",
+      "source_sha256": "e7fb0d968fb0c2bd7e156cf440abd16bdf9e2712eb37e9c9414a74aa72ce2fe7",
       "target_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
-      "target_sha256": "7060ae56c323804fa622e2e4a9fd7d854df51d1c3adcdfbbf453482ce0dae05a",
+      "target_sha256": "e7fb0d968fb0c2bd7e156cf440abd16bdf9e2712eb37e9c9414a74aa72ce2fe7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18306,9 +18205,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
-      "source_sha256": "dd8ddfd4df88fb665271caf2abbc1abdb71f1f97ca7e45032c21ae66a9f88607",
+      "source_sha256": "1756038f8d620d65e5f6eb25ec8e72b7d419b7fc6e2b5d1c53381004ce2b315c",
       "target_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
-      "target_sha256": "dd8ddfd4df88fb665271caf2abbc1abdb71f1f97ca7e45032c21ae66a9f88607",
+      "target_sha256": "1756038f8d620d65e5f6eb25ec8e72b7d419b7fc6e2b5d1c53381004ce2b315c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18771,9 +18670,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "source_sha256": "d738441105d7d541f207184c11b485bca43f8b7c0479fa665fe61703d598e59b",
+      "source_sha256": "abd56bffa00ec47f2f43104e4e47b5a2502bfa54c76fcfeb67d3c5f79cef9d0e",
       "target_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "target_sha256": "d738441105d7d541f207184c11b485bca43f8b7c0479fa665fe61703d598e59b",
+      "target_sha256": "abd56bffa00ec47f2f43104e4e47b5a2502bfa54c76fcfeb67d3c5f79cef9d0e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18786,9 +18685,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
-      "source_sha256": "77707a266b27fbfa33a7e94db1160b5c42c5afb311d150d1a049ecd3742eecab",
+      "source_sha256": "234ece7d21bb1b241078a1c5612dc4a08c74efa8ab2274dde978fe67883cfc08",
       "target_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
-      "target_sha256": "77707a266b27fbfa33a7e94db1160b5c42c5afb311d150d1a049ecd3742eecab",
+      "target_sha256": "234ece7d21bb1b241078a1c5612dc4a08c74efa8ab2274dde978fe67883cfc08",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18996,9 +18895,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "source_sha256": "3cc793f2724b69af643a6f83cfdb52531ec8fd23a832de4305afdb2a89084532",
+      "source_sha256": "c2114ed1e9190ef17fcb908f5b16b99ab61117912528fde9e9c2ba78c448571e",
       "target_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "target_sha256": "3cc793f2724b69af643a6f83cfdb52531ec8fd23a832de4305afdb2a89084532",
+      "target_sha256": "c2114ed1e9190ef17fcb908f5b16b99ab61117912528fde9e9c2ba78c448571e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19011,9 +18910,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "source_sha256": "5ede674e82cc795e0244307fd74f048aa5c936d83cd6d96ebcd3c204270893c3",
+      "source_sha256": "dc554a51470999979826c226dd3f9498a9e7017c5a5fe57f9d61d407b5089e3b",
       "target_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "target_sha256": "5ede674e82cc795e0244307fd74f048aa5c936d83cd6d96ebcd3c204270893c3",
+      "target_sha256": "dc554a51470999979826c226dd3f9498a9e7017c5a5fe57f9d61d407b5089e3b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19056,9 +18955,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "source_sha256": "2dfec0a5df1fec25973948f79dc4b4a33abe24f86b2bfcaee9b629cd12064a93",
+      "source_sha256": "c9405ef25123491373be7571662df279c9e8b45977ecc81c566a41bb2f31c7f9",
       "target_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "target_sha256": "2dfec0a5df1fec25973948f79dc4b4a33abe24f86b2bfcaee9b629cd12064a93",
+      "target_sha256": "c9405ef25123491373be7571662df279c9e8b45977ecc81c566a41bb2f31c7f9",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20076,9 +19975,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md",
-      "source_sha256": "d5f90d4b0afc95d20615dbde694709a52a49a9032b812375f99cac496b56be19",
+      "source_sha256": "b644204b34b2e9878b6dd2c77c9345bf869acd6d0e4eedbe298e1e3a564fc088",
       "target_path": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md",
-      "target_sha256": "d5f90d4b0afc95d20615dbde694709a52a49a9032b812375f99cac496b56be19",
+      "target_sha256": "b644204b34b2e9878b6dd2c77c9345bf869acd6d0e4eedbe298e1e3a564fc088",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20136,9 +20035,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "source_sha256": "029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12",
+      "source_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
       "target_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "target_sha256": "029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12",
+      "target_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20226,9 +20125,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/implement-spec/SKILL.md",
-      "source_sha256": "2df373f1baf893c60238116bbb8cbde81b29d7e7fbf33a4a02249b2d2c180775",
+      "source_sha256": "799f2285d0e3bf2a42b59d467de7ed161907fe0233f1522af8101eefec0ec60b",
       "target_path": "methodology/workflows/implement-spec/SKILL.md",
-      "target_sha256": "2df373f1baf893c60238116bbb8cbde81b29d7e7fbf33a4a02249b2d2c180775",
+      "target_sha256": "799f2285d0e3bf2a42b59d467de7ed161907fe0233f1522af8101eefec0ec60b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20301,9 +20200,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "source_sha256": "6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0",
+      "source_sha256": "f91256a5016a8d75f993b04ee34c61aa9b6a5bc95620944d2fec92d3874dcbcb",
       "target_path": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "target_sha256": "6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0",
+      "target_sha256": "f91256a5016a8d75f993b04ee34c61aa9b6a5bc95620944d2fec92d3874dcbcb",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21481,6 +21380,111 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md",
+      "source_sha256": "c120dd67948d1558e9e2146ccbd1d323898b0adbb995aebf37415e7e612aa28b",
+      "target_path": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md",
+      "target_sha256": "c120dd67948d1558e9e2146ccbd1d323898b0adbb995aebf37415e7e612aa28b",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/claude-code-guide/SKILL.md",
+      "source_sha256": "ca9596f16d07454500dfb4d9ac6d5fd62df8d1d322b4b8f0b8269f5f551c8203",
+      "target_path": "knowledge/skills/platforms/claude-code-guide/SKILL.md",
+      "target_sha256": "ca9596f16d07454500dfb4d9ac6d5fd62df8d1d322b4b8f0b8269f5f551c8203",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/claude-desktop-guide/SKILL.md",
+      "source_sha256": "9ea16de1b74c151cebc864fb260096514524b73514a1f0c03b80d1f971cc6cad",
+      "target_path": "knowledge/skills/platforms/claude-desktop-guide/SKILL.md",
+      "target_sha256": "9ea16de1b74c151cebc864fb260096514524b73514a1f0c03b80d1f971cc6cad",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/codex-guide/SKILL.md",
+      "source_sha256": "18196342905647317d38f020424cd8355fe0453a2b4e3cf2a777d30848090e3f",
+      "target_path": "knowledge/skills/platforms/codex-guide/SKILL.md",
+      "target_sha256": "18196342905647317d38f020424cd8355fe0453a2b4e3cf2a777d30848090e3f",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/command-code-guide/SKILL.md",
+      "source_sha256": "652f0459d23b382272ac76c72454645230a640e749bddd8d2ef1307948377fb7",
+      "target_path": "knowledge/skills/platforms/command-code-guide/SKILL.md",
+      "target_sha256": "652f0459d23b382272ac76c72454645230a640e749bddd8d2ef1307948377fb7",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/cursor-guide/SKILL.md",
+      "source_sha256": "3b1f88b148f8676d11b5ad55bca01cbe0dc252bbf1eab7010218a1391759c214",
+      "target_path": "knowledge/skills/platforms/cursor-guide/SKILL.md",
+      "target_sha256": "3b1f88b148f8676d11b5ad55bca01cbe0dc252bbf1eab7010218a1391759c214",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/platforms/opencode-guide/SKILL.md",
+      "source_sha256": "9871560d9bc9f5eac76048af06cca74e07693c21ded7022100b0960a6bd96250",
+      "target_path": "knowledge/skills/platforms/opencode-guide/SKILL.md",
+      "target_sha256": "9871560d9bc9f5eac76048af06cca74e07693c21ded7022100b0960a6bd96250",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T03:05:29.788304+00:00"
     }
   ]
 }

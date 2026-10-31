@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 496 skill(s) · 105 agent(s) · 1 MCP(s)
+**Totals:** 500 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -56,12 +56,12 @@
 | game-asset-pipeline-engineer | specialized-domains | [knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md](../knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md) |
 | game-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/game-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/game-security-specialist/agent.source.md) |
 | game-sprite-artist | specialized-domains | [knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md](../knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md) |
-| general | core-orchestration | [knowledge/agents/core-orchestration/general/agent.source.md](../knowledge/agents/core-orchestration/general/agent.source.md) |
 | geoscientist | academic-sciences | [knowledge/agents/academic-sciences/geoscientist/agent.source.md](../knowledge/agents/academic-sciences/geoscientist/agent.source.md) |
 | github-specialist | software-engineering | [knowledge/agents/software-engineering/github-specialist/agent.source.md](../knowledge/agents/software-engineering/github-specialist/agent.source.md) |
 | grc-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md) |
 | growth-marketing-specialist | specialized-domains | [knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md](../knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md) |
 | hardware-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md) |
+| harness-specialist | core-orchestration | [knowledge/agents/core-orchestration/harness-specialist/agent.source.md](../knowledge/agents/core-orchestration/harness-specialist/agent.source.md) |
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
 | incident-response-commander | cybersecurity | [knowledge/agents/cybersecurity/incident-response-commander/agent.source.md](../knowledge/agents/cybersecurity/incident-response-commander/agent.source.md) |
@@ -94,7 +94,6 @@
 | scientific-researcher | research-discovery | [knowledge/agents/research-discovery/scientific-researcher/agent.source.md](../knowledge/agents/research-discovery/scientific-researcher/agent.source.md) |
 | security-architect | cybersecurity | [knowledge/agents/cybersecurity/security-architect/agent.source.md](../knowledge/agents/cybersecurity/security-architect/agent.source.md) |
 | security-specialist | cybersecurity | [knowledge/agents/cybersecurity/security-specialist/agent.source.md](../knowledge/agents/cybersecurity/security-specialist/agent.source.md) |
-| self | core-orchestration | [knowledge/agents/core-orchestration/self/agent.source.md](../knowledge/agents/core-orchestration/self/agent.source.md) |
 | skill-auditor | specialized-domains | [knowledge/agents/specialized-domains/skill-auditor/agent.source.md](../knowledge/agents/specialized-domains/skill-auditor/agent.source.md) |
 | skill-creator | specialized-domains | [knowledge/agents/specialized-domains/skill-creator/agent.source.md](../knowledge/agents/specialized-domains/skill-creator/agent.source.md) |
 | soc-dfir-specialist | cybersecurity | [knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md](../knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md) |
@@ -419,7 +418,13 @@
 | program-windbg | [knowledge/skills/mapping/program-windbg/SKILL.md](../knowledge/skills/mapping/program-windbg/SKILL.md) |
 | uml-diagram-generation | [knowledge/skills/mapping/uml-diagram-generation/SKILL.md](../knowledge/skills/mapping/uml-diagram-generation/SKILL.md) |
 | antigravity-guide | [knowledge/skills/platforms/antigravity-guide/SKILL.md](../knowledge/skills/platforms/antigravity-guide/SKILL.md) |
+| claude-code-guide | [knowledge/skills/platforms/claude-code-guide/SKILL.md](../knowledge/skills/platforms/claude-code-guide/SKILL.md) |
+| claude-desktop-guide | [knowledge/skills/platforms/claude-desktop-guide/SKILL.md](../knowledge/skills/platforms/claude-desktop-guide/SKILL.md) |
+| codex-guide | [knowledge/skills/platforms/codex-guide/SKILL.md](../knowledge/skills/platforms/codex-guide/SKILL.md) |
+| command-code-guide | [knowledge/skills/platforms/command-code-guide/SKILL.md](../knowledge/skills/platforms/command-code-guide/SKILL.md) |
+| cursor-guide | [knowledge/skills/platforms/cursor-guide/SKILL.md](../knowledge/skills/platforms/cursor-guide/SKILL.md) |
 | gemini-enterprise | [knowledge/skills/platforms/gemini-enterprise/SKILL.md](../knowledge/skills/platforms/gemini-enterprise/SKILL.md) |
+| opencode-guide | [knowledge/skills/platforms/opencode-guide/SKILL.md](../knowledge/skills/platforms/opencode-guide/SKILL.md) |
 | power-automate | [knowledge/skills/platforms/power-automate/SKILL.md](../knowledge/skills/platforms/power-automate/SKILL.md) |
 | program-azure-devops | [knowledge/skills/platforms/program-azure-devops/SKILL.md](../knowledge/skills/platforms/program-azure-devops/SKILL.md) |
 | program-github-actions | [knowledge/skills/platforms/program-github-actions/SKILL.md](../knowledge/skills/platforms/program-github-actions/SKILL.md) |
@@ -431,13 +436,12 @@
 | cloud-infrastructure-architect | [knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md](../knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md) |
 | code-mapping-specialist | [knowledge/skills/roles/code-mapping-specialist/SKILL.md](../knowledge/skills/roles/code-mapping-specialist/SKILL.md) |
 | code-optimizer | [knowledge/skills/roles/code-optimizer/SKILL.md](../knowledge/skills/roles/code-optimizer/SKILL.md) |
+| codebase-exploration | [knowledge/skills/roles/codebase-exploration/SKILL.md](../knowledge/skills/roles/codebase-exploration/SKILL.md) |
 | cover-letter-application-drafter | [knowledge/skills/roles/cover-letter-application-drafter/SKILL.md](../knowledge/skills/roles/cover-letter-application-drafter/SKILL.md) |
 | dba-database-administrator | [knowledge/skills/roles/dba-database-administrator/SKILL.md](../knowledge/skills/roles/dba-database-administrator/SKILL.md) |
 | devops-engineer | [knowledge/skills/roles/devops-engineer/SKILL.md](../knowledge/skills/roles/devops-engineer/SKILL.md) |
-| explore | [knowledge/skills/roles/explore/SKILL.md](../knowledge/skills/roles/explore/SKILL.md) |
 | frontend-developer | [knowledge/skills/roles/frontend-developer/SKILL.md](../knowledge/skills/roles/frontend-developer/SKILL.md) |
 | fullstack-developer | [knowledge/skills/roles/fullstack-developer/SKILL.md](../knowledge/skills/roles/fullstack-developer/SKILL.md) |
-| general | [knowledge/skills/roles/general/SKILL.md](../knowledge/skills/roles/general/SKILL.md) |
 | interview-prep-upskill-tracker | [knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md](../knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md) |
 | job-fit-evaluation-ranking | [knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md](../knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md) |
 | job-hunting-sourcing | [knowledge/skills/roles/job-hunting-sourcing/SKILL.md](../knowledge/skills/roles/job-hunting-sourcing/SKILL.md) |
@@ -584,9 +588,14 @@
 | program-owasp-zap | [knowledge/skills/security/tooling/program-owasp-zap/SKILL.md](../knowledge/skills/security/tooling/program-owasp-zap/SKILL.md) |
 | program-sbom-tooling | [knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md](../knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md) |
 | program-sigstore-cosign | [knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md](../knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md) |
+| brainstorming | [methodology/workflows/brainstorming/SKILL.md](../methodology/workflows/brainstorming/SKILL.md) |
 | codebase-design | [methodology/workflows/codebase-design/SKILL.md](../methodology/workflows/codebase-design/SKILL.md) |
+| diagnosing-agent-sessions | [methodology/workflows/diagnosing-agent-sessions/SKILL.md](../methodology/workflows/diagnosing-agent-sessions/SKILL.md) |
 | diagnosing-bugs | [methodology/workflows/diagnosing-bugs/SKILL.md](../methodology/workflows/diagnosing-bugs/SKILL.md) |
+| dispatching-parallel-agents | [methodology/workflows/dispatching-parallel-agents/SKILL.md](../methodology/workflows/dispatching-parallel-agents/SKILL.md) |
 | domain-modeling | [methodology/workflows/domain-modeling/SKILL.md](../methodology/workflows/domain-modeling/SKILL.md) |
+| executing-plans | [methodology/workflows/executing-plans/SKILL.md](../methodology/workflows/executing-plans/SKILL.md) |
+| finishing-a-development-branch | [methodology/workflows/finishing-a-development-branch/SKILL.md](../methodology/workflows/finishing-a-development-branch/SKILL.md) |
 | grill-me | [methodology/workflows/grill-me/SKILL.md](../methodology/workflows/grill-me/SKILL.md) |
 | grill-with-docs | [methodology/workflows/grill-with-docs/SKILL.md](../methodology/workflows/grill-with-docs/SKILL.md) |
 | grilling | [methodology/workflows/grilling/SKILL.md](../methodology/workflows/grilling/SKILL.md) |
@@ -595,25 +604,19 @@
 | learning-consolidation | [methodology/workflows/learning-consolidation/SKILL.md](../methodology/workflows/learning-consolidation/SKILL.md) |
 | phase-boundaries | [methodology/workflows/phase-boundaries/SKILL.md](../methodology/workflows/phase-boundaries/SKILL.md) |
 | prototype | [methodology/workflows/prototype/SKILL.md](../methodology/workflows/prototype/SKILL.md) |
+| receiving-code-review | [methodology/workflows/receiving-code-review/SKILL.md](../methodology/workflows/receiving-code-review/SKILL.md) |
+| requesting-code-review | [methodology/workflows/requesting-code-review/SKILL.md](../methodology/workflows/requesting-code-review/SKILL.md) |
 | retro | [methodology/workflows/retro/SKILL.md](../methodology/workflows/retro/SKILL.md) |
-| superpowers-brainstorming | [methodology/workflows/superpowers-brainstorming/SKILL.md](../methodology/workflows/superpowers-brainstorming/SKILL.md) |
-| superpowers-diagnosing-superpowers | [methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md](../methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md) |
-| superpowers-dispatching-parallel-agents | [methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md](../methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md) |
-| superpowers-executing-plans | [methodology/workflows/superpowers-executing-plans/SKILL.md](../methodology/workflows/superpowers-executing-plans/SKILL.md) |
-| superpowers-finishing-a-development-branch | [methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md](../methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md) |
-| superpowers-receiving-code-review | [methodology/workflows/superpowers-receiving-code-review/SKILL.md](../methodology/workflows/superpowers-receiving-code-review/SKILL.md) |
-| superpowers-requesting-code-review | [methodology/workflows/superpowers-requesting-code-review/SKILL.md](../methodology/workflows/superpowers-requesting-code-review/SKILL.md) |
-| superpowers-subagent-driven-development | [methodology/workflows/superpowers-subagent-driven-development/SKILL.md](../methodology/workflows/superpowers-subagent-driven-development/SKILL.md) |
-| superpowers-systematic-debugging | [methodology/workflows/superpowers-systematic-debugging/SKILL.md](../methodology/workflows/superpowers-systematic-debugging/SKILL.md) |
-| superpowers-test-driven-development | [methodology/workflows/superpowers-test-driven-development/SKILL.md](../methodology/workflows/superpowers-test-driven-development/SKILL.md) |
-| superpowers-using-git-worktrees | [methodology/workflows/superpowers-using-git-worktrees/SKILL.md](../methodology/workflows/superpowers-using-git-worktrees/SKILL.md) |
-| superpowers-verification-before-completion | [methodology/workflows/superpowers-verification-before-completion/SKILL.md](../methodology/workflows/superpowers-verification-before-completion/SKILL.md) |
-| superpowers-writing-plans | [methodology/workflows/superpowers-writing-plans/SKILL.md](../methodology/workflows/superpowers-writing-plans/SKILL.md) |
-| superpowers-writing-skills | [methodology/workflows/superpowers-writing-skills/SKILL.md](../methodology/workflows/superpowers-writing-skills/SKILL.md) |
+| subagent-driven-development | [methodology/workflows/subagent-driven-development/SKILL.md](../methodology/workflows/subagent-driven-development/SKILL.md) |
+| test-driven-development | [methodology/workflows/test-driven-development/SKILL.md](../methodology/workflows/test-driven-development/SKILL.md) |
 | to-spec | [methodology/workflows/to-spec/SKILL.md](../methodology/workflows/to-spec/SKILL.md) |
 | to-tickets | [methodology/workflows/to-tickets/SKILL.md](../methodology/workflows/to-tickets/SKILL.md) |
 | two-axis-code-review | [methodology/workflows/two-axis-code-review/SKILL.md](../methodology/workflows/two-axis-code-review/SKILL.md) |
 | using-coacus | [methodology/workflows/using-coacus/SKILL.md](../methodology/workflows/using-coacus/SKILL.md) |
+| using-git-worktrees | [methodology/workflows/using-git-worktrees/SKILL.md](../methodology/workflows/using-git-worktrees/SKILL.md) |
+| verification-before-completion | [methodology/workflows/verification-before-completion/SKILL.md](../methodology/workflows/verification-before-completion/SKILL.md) |
+| writing-plans | [methodology/workflows/writing-plans/SKILL.md](../methodology/workflows/writing-plans/SKILL.md) |
+| writing-skills | [methodology/workflows/writing-skills/SKILL.md](../methodology/workflows/writing-skills/SKILL.md) |
 
 ## MCPs
 

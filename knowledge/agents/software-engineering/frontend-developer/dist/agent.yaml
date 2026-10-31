@@ -125,7 +125,15 @@ instruction: >
   ## Conditional component-library integration
 
   When the project already uses Tabler or explicitly requests it, consult [framework-tabler](knowledge/skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - Consult [WebAssembly engineering](knowledge/skills/languages/webassembly/SKILL.md) when the task involves WebAssembly.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/languages/webassembly/SKILL.md
   - type: skill_integration
     path: ../../../../skills/frameworks/framework-tabler/SKILL.md
   - type: skill_integration

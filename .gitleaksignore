@@ -1,0 +1,2 @@
+# Historical test fixture: WebSocket handshake nonce, not an API credential.
+03adff6cc5cb661a81e53c2ec0cf43d62f4dd3ef:tests/test_brainstorm_python_server.py:generic-api-key:161

@@ -9,6 +9,8 @@ description: >-
   initiative, choosing technologies for a delivery, or producing solution
   options.
 skills:
+  - knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md
+  - knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md
   - knowledge/skills/architecture/enterprise/solution-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
@@ -85,3 +87,8 @@ The Solution Architect proves that a delivery is true within the enterprise
 frame and the domain standards. Handoffs between agents must be compact
 structured payloads, and parallel subagent work must acquire a governor slot
 first.
+
+## Conditional domain references
+
+- Consult [financial-transaction-processing](knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) when designing or reviewing payment and financial transaction processing.
+- Consult [blockchain-cryptocurrency](knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) when the solution involves blockchain or cryptocurrency.

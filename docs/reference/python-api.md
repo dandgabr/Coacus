@@ -453,9 +453,11 @@ Ledger format (text, one record per line):
 
 Callers are validated tokens (``[A-Za-z0-9._:-]+``); matching is EXACT, never
 prefix-based. The cap is persisted and can be changed through the configured
-maximum or the explicit setter. Stale RUNNING
-rows (dead PID or older than the lease) are reaped before capacity is judged,
-so a crashed holder cannot leak a slot forever.
+maximum or the explicit setter. RUNNING rows occupy slots until explicitly
+released, parked, or reset; neither age nor the acquiring CLI PID proves that
+the worker has finished. Crashes may therefore require operator recovery after
+confirming the worker is no longer running. PAUSED rows do not occupy slots.
+The lease setting is retained for compatibility but does not expire slots.
 
 #### `def resolve_concurrency_cap(scope: str='global', model: str | None=None, explicit_max: int | None=None) -> int`
 
@@ -480,11 +482,11 @@ A file-backed slot ledger guarded by ``fcntl.flock``.
 
 - `def set_max(self, new_max: int) -> int` — Authoritatively set a new maximum concurrency cap in the ledger.
 - `def acquire(self, caller: str, orchestrator: bool=False, timeout: float=30.0) -> str | None` — Reserve a slot. Returns the token, or None if the cap stayed full.
-- `def release(self, caller: str) -> None` — Release the slot held by ``caller`` (a no-op if it holds none).
-- `def fail(self, caller: str, attempts: int=1) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
+- `def release(self, caller: str, token: str | None=None) -> None` — Release caller's slot; if supplied, the token must match atomically.
+- `def fail(self, caller: str, attempts: int=1, token: str | None=None) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
 - `def paused(self) -> list[dict]` — Callers parked for retry, with a backoff hint (2s -> 60s).
 - `def clear_paused(self, caller: str | None=None) -> None` — Drop PAUSED rows for ``caller``, or for every caller when ``None``.
-- `def status(self) -> dict` — Reap stale leases and return the current running/paused/slots snapshot.
+- `def status(self) -> dict` — Return the current running/paused/slots snapshot without reclaiming slots.
 - `def reset(self) -> None` — Clear every record, returning the ledger to an idle state.
 
 ### `engine/guardrail/browsers.py`
@@ -1319,8 +1321,8 @@ Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:
 
     coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-    coacus_governor.py release <caller>
-    coacus_governor.py fail    <caller>
+    coacus_governor.py release <caller> [--token TOKEN]
+    coacus_governor.py fail    <caller> [--token TOKEN]
     coacus_governor.py paused
     coacus_governor.py status  [max-total]
     coacus_governor.py reset
@@ -1339,8 +1341,8 @@ Coacus governor hook for Antigravity (cross-platform, stdlib only).
 Bridges Antigravity lifecycle hooks to the shared Coacus governor.
 The payload on stdin is protojson camelCase:
 toolCall.name, conversationId, stepIdx, error.
-  - pretool : acquire a slot before a subagent spawn.
-  - posttool: release the slot, or mark PAUSED on a rate-limit (429).
+  - pretool : deny spawn until host correlation and lifetime are verified.
+  - posttool: preserve existing reservations when correlation is unverified.
   - preinv  : inject the concurrency budget + retry contract.
 
 #### `def main() -> int`
@@ -1647,6 +1649,10 @@ Run the pinned, checksum-verified secret scanner using portable Python tooling.
 #### `def install_binary(content: bytes, checksum: str, target: Path) -> None`
 
 Reject checksum drift, then copy only the named regular executable.
+
+#### `def stage_tracked_files(root: Path, destination: Path) -> None`
+
+Copy tracked regular worktree files without following any symlink.
 
 #### `def main(argv: list[str] | None=None) -> int`
 

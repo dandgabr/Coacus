@@ -47,7 +47,15 @@ instruction: >
   The Integration Architect enforces integration standards across all solutions
   inside the enterprise frame. Handoffs between agents must be compact structured
   payloads, and parallel subagent work must acquire a governor slot first.
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - [framework-soap](knowledge/skills/frameworks/framework-soap/SKILL.md)
 tools:
+  - type: skill_integration
+    path: ../../../../skills/frameworks/framework-soap/SKILL.md
   - type: skill_integration
     path: ../../../../skills/architecture/domains/integration-architect/SKILL.md
   - type: skill_integration

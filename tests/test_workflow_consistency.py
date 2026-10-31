@@ -9,15 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 CONVENTIONS = (
     ROOT / "methodology/workflows/using-coacus/references/coacus-process-conventions.md"
 )
-WRITING_PLANS = ROOT / "methodology/workflows/superpowers-writing-plans/SKILL.md"
+WRITING_PLANS = ROOT / "methodology/workflows/writing-plans/SKILL.md"
 SUBAGENT = (
-    ROOT / "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
+    ROOT / "methodology/workflows/subagent-driven-development/SKILL.md"
 )
 FINISHING = (
-    ROOT / "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
+    ROOT / "methodology/workflows/finishing-a-development-branch/SKILL.md"
 )
 BEHAVIOR_VALIDATION = (
-    ROOT / "methodology/workflows/superpowers-writing-skills/references/behavior-validation.md"
+    ROOT / "methodology/workflows/writing-skills/references/behavior-validation.md"
 )
 ROUTING_STD = ROOT / "docs/standards/routing.md"
 

@@ -9,6 +9,7 @@ description: >-
   governance, and metrics discipline. Applies AI product management, product
   ownership, evaluation and responsible-AI practices.
 skills:
+  - knowledge/skills/roles/scrum-master/SKILL.md
   - knowledge/skills/roles/product-owner/SKILL.md
   - knowledge/skills/domains/industry/ai-application-engineering/SKILL.md
   - knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md
@@ -78,3 +79,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [scrum-master](knowledge/skills/roles/scrum-master/SKILL.md) when facilitating Scrum practices for the product team.

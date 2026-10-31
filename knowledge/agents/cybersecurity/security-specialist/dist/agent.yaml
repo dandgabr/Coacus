@@ -106,7 +106,18 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - [security-champions](knowledge/skills/security/operations/security-champions/SKILL.md)
+  - Consult [blockchain-cryptocurrency](knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) when the solution involves blockchain or cryptocurrency.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/domains/industry/blockchain-cryptocurrency/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/operations/security-champions/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
   - type: skill_integration

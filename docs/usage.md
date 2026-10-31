@@ -244,11 +244,11 @@ after `--`; the helper does not interpret shell pipelines or variable expansion.
 
 | Workflow | Python helper | Purpose |
 |---|---|---|
-| `superpowers-subagent-driven-development` | `scripts/sdd-workspace.py PLAN_FILE` | Resolve a plan-specific workspace. |
-| `superpowers-subagent-driven-development` | `scripts/task-brief.py PLAN_FILE TASK_NUMBER [OUTFILE]` | Extract a task brief. |
-| `superpowers-subagent-driven-development` | `scripts/review-package.py PLAN_FILE BASE HEAD [OUTFILE]` | Package a nonempty descendant commit range. |
-| `superpowers-executing-plans` | `scripts/task-start.py PLAN_FILE TASK_NUMBER` | Print the brief path and review base. |
-| `superpowers-executing-plans` | `scripts/task-done.py PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]` | Record completion only after successful tests. |
+| `subagent-driven-development` | `scripts/sdd-workspace.py PLAN_FILE` | Resolve a plan-specific workspace. |
+| `subagent-driven-development` | `scripts/task-brief.py PLAN_FILE TASK_NUMBER [OUTFILE]` | Extract a task brief. |
+| `subagent-driven-development` | `scripts/review-package.py PLAN_FILE BASE HEAD [OUTFILE]` | Package a nonempty descendant commit range. |
+| `executing-plans` | `scripts/task-start.py PLAN_FILE TASK_NUMBER` | Print the brief path and review base. |
+| `executing-plans` | `scripts/task-done.py PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]` | Record completion only after successful tests. |
 
 Prefix each resolved helper path with the Python interpreter command. The original test output
 is retained in the task log; its displayed summary tolerates undecodable bytes
@@ -276,28 +276,49 @@ Per-harness behavior and manual paths are in [`install.md`](install.md).
 
 ## Governor
 
-Bound concurrent subagents and handle rate limits.
+The governor tracks slots for cooperating dispatchers and records rate-limit pauses.
+It cannot stop workers that bypass it or verify that a worker is still running.
 
 ```bash
 python3 scripts/coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-python3 scripts/coacus_governor.py release <caller>
-python3 scripts/coacus_governor.py fail    <caller>   # mark a caller that hit a rate limit
-python3 scripts/coacus_governor.py paused             # backoff hints for parked callers
-python3 scripts/coacus_governor.py status [max-total] # running/paused/max/slots_free
-python3 scripts/coacus_governor.py health             # ledger dir + lock + cap
+python3 scripts/coacus_governor.py release <caller> [--token TOKEN]
+python3 scripts/coacus_governor.py fail <caller> [--token TOKEN]
+python3 scripts/coacus_governor.py paused
+python3 scripts/coacus_governor.py status
+python3 scripts/coacus_governor.py health
+python3 scripts/coacus_governor.py set-max <max-total>
 python3 scripts/coacus_governor.py reset
 ```
 
-`acquire` prints the token and exits 0 on success, or prints nothing and exits 1
-when the cap stayed saturated past the timeout. The default cap is 5, orchestrator
-included. Knobs: `ORCH_MAX_CONCURRENT`, `GOVERNOR_STATE_DIR`,
-`GOVERNOR_LEASE_SECONDS`. See [orchestration-governance](standards/orchestration-governance.md).
+Commands accept `--scope SCOPE` and `--model MODEL`; use the same scope for
+operations on a ledger. `acquire` prints a token and exits 0 on success. It
+returns the existing token if the caller already holds a slot. If the cap stays
+full past the acquisition timeout, it prints nothing and exits 1. The timeout
+does not limit worker runtime. A supplied token makes `release` or `fail`
+match both caller and token; without it, the operation matches the caller alone.
+`fail` parks a running caller, and `paused` prints retry hints.
 
-`status` example output:
+The configured cap is resolved from the explicit acquisition maximum, model and
+scope settings, environment variables, and built-in mappings; the global fallback
+is 6. The ledger also persists a cap. A higher resolved cap other than the
+fallback can override a lower persisted cap when read. `set-max` writes a cap
+for the selected scope, but a later operation with a higher resolved cap can
+raise the effective value again. Use `status` in the intended scope and model
+context to inspect the effective `max` and available slots. The orchestrator
+occupies a slot only when registered as running. `GOVERNOR_STATE_DIR` selects
+the ledger directory; see [orchestration-governance](standards/orchestration-governance.md).
 
-```text
-running=0 paused=0 max=5 orchestrator=false slots_free=5
-```
+Running slots do not expire by age or by the acquiring CLI process exiting.
+`GOVERNOR_LEASE_SECONDS` is retained for compatibility and does not reap slots.
+After a crash, inspect `status` and independently confirm the worker has stopped
+before releasing its caller with the recorded token. Use `reset` only after
+confirming that no workers tracked by that ledger are running; it clears all
+records. Tokenless cleanup can affect a newer acquisition for the same caller.
+
+The OpenCode gate rejects background subagent spawns and requires a stable session
+or call ID. Its cleanup currently calls `release` and `fail` without the token;
+do not assume those calls are token-fenced. Gate behavior applies only when the
+plugin is installed and invoked, not to every possible dispatch path.
 
 ## Behavior evals
 

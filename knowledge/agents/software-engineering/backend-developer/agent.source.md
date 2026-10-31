@@ -8,6 +8,7 @@ description: >-
   writing integration tests, while ensuring clean, secure, performant
   code.
 skills:
+  - knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/frameworks/framework-grpc/SKILL.md
   - knowledge/skills/frameworks/framework-rest-api/SKILL.md
@@ -77,3 +78,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [financial-transaction-processing](knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) when designing or reviewing payment and financial transaction processing.

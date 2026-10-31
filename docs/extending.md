@@ -89,8 +89,9 @@ review from the `skill-auditor` before publishing.
 
 Same contract as a skill, but the path is
 `methodology/workflows/<name>/SKILL.md` (depth 1). Imported Superpowers
-workflows are namespaced `superpowers-<name>`. The native entry workflow
-`using-coacus` is the single source of the bootstrap body; if you change how
+workflows use their canonical Coacus names; preserve their provenance and
+attribution when changing them. The native entry workflow `using-coacus` is the
+single source of the bootstrap body; if you change how
 sessions start, edit that skill, not the bootstrap.
 
 ## Add an agent

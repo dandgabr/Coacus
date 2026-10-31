@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import tempfile
 import tomllib
 import unittest
@@ -149,6 +150,44 @@ class TestInstaller(unittest.TestCase):
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
 
+    def test_agent_renderers_reference_contextual_skills_on_demand(self) -> None:
+        agent = add_agent(self.root, "knowledge/agents/roles/example-agent")
+        (agent / coacus_install.AGENT_SOURCE_NAME).write_text("---\nname: example-agent\ndescription: example\nskills:\n  - methodology/workflows/using-coacus/SKILL.md\n---\n\n# Role\n", encoding="utf-8")
+        for harness in ("opencode", "claude-code", "cursor", "codex", "command-code", "antigravity"):
+            with self.subTest(harness=harness):
+                rendered = coacus_install.plan(harness, self.root, self.tmp / harness,
+                                               antigravity_profile="full")
+                texts = [c for p, c in rendered if "example-agent" in str(p) and isinstance(c, str)]
+                self.assertTrue(texts)
+                self.assertIn("using-coacus", texts[0])
+                self.assertIn("relevant", texts[0].lower())
+                self.assertNotIn(self.root.as_posix(), texts[0])
+
+    def test_filtered_agent_guidance_warns_skills_may_be_unavailable(self) -> None:
+        agent = add_agent(self.root, "knowledge/agents/roles/example-agent")
+        (agent / coacus_install.AGENT_SOURCE_NAME).write_text(
+            "---\nname: example-agent\ndescription: example\nskills:\n  - methodology/workflows/using-coacus/SKILL.md\n---\n\n# Role\n", encoding="utf-8")
+        for filters in ({"skills": ["no-match"]}, {"skills": ["using-coacus"]}, {"only": ["roles"]}):
+            for harness in ("opencode", "claude-code", "cursor", "codex", "command-code"):
+                with self.subTest(harness=harness, filters=filters):
+                    files = coacus_install.plan(harness, self.root, self.tmp / harness, **filters)
+                    texts = [c for p, c in files if "example-agent" in str(p) and isinstance(c, str)]
+                    self.assertTrue(texts)
+                    self.assertIn("may not be installed", texts[0])
+                    self.assertIn("using-coacus", texts[0])
+                    skill_paths = [p for p, _ in files if "using-coacus" in str(p)]
+                    if filters.get("skills") == ["using-coacus"]:
+                        self.assertTrue(skill_paths)
+                    else:
+                        self.assertFalse(skill_paths)
+
+    def test_antigravity_catalog_associates_agent_skills(self) -> None:
+        agent = add_agent(self.root, "knowledge/agents/roles/example-agent")
+        (agent / coacus_install.AGENT_SOURCE_NAME).write_text("---\nname: example-agent\ndescription: example\nskills:\n  - methodology/workflows/using-coacus/SKILL.md\n---\n\n# Role\n", encoding="utf-8")
+        files = coacus_install._antigravity_catalog_files(self.root, self.config, None, None, None)
+        index = json.loads(next(c for p, c in files if p.as_posix().endswith("catalog/index.json")))
+        self.assertEqual(index["agents"][0]["skills"], ["using-coacus"])
+
     def test_dry_run_writes_nothing(self) -> None:
         result = coacus_install.install("opencode", self.root, self.config, dry_run=True)
         self.assertTrue(result["dry_run"])
@@ -161,11 +200,224 @@ class TestInstaller(unittest.TestCase):
         self.assertIn(self.root.as_posix(), plugin.read_text(encoding="utf-8"))
         self.assertNotIn("__COACUS_ROOT__", plugin.read_text(encoding="utf-8"))
 
+    def test_upgrade_retires_unchanged_workflow_but_preserves_modified_and_unowned(self) -> None:
+        old = add_skill(self.root, "methodology/workflows/old-workflow")
+        modified = add_skill(self.root, "methodology/workflows/modified-workflow")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        old_target = self.config / "skills/old-workflow/SKILL.md"
+        modified_target = self.config / "skills/modified-workflow/SKILL.md"
+        modified_target.write_text("local edits", encoding="utf-8")
+        unowned = self.config / "skills/unowned/SKILL.md"
+        unowned.parent.mkdir(parents=True)
+        unowned.write_text("user data", encoding="utf-8")
+        shutil.rmtree(old)
+        shutil.rmtree(modified)
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertFalse(old_target.exists())
+        self.assertEqual(modified_target.read_text(encoding="utf-8"), "local edits")
+        self.assertEqual(unowned.read_text(encoding="utf-8"), "user data")
+
+    def test_parent_symlink_inside_config_cannot_redirect_install(self) -> None:
+        self.config.mkdir()
+        destination = self.config / "user-data"
+        destination.mkdir()
+        (self.config / "skills").symlink_to(destination, target_is_directory=True)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertTrue(result.get("error"))
+        self.assertFalse((destination / "using-coacus/SKILL.md").exists())
+
+    def test_hook_marker_inside_unrelated_command_is_preserved(self) -> None:
+        markers = coacus_install._hook_owner_markers(self.root, "codex")
+        user = {"hooks": [{"type": "command", "command": "echo /scripts/coacus_session_start.py-not-mine"}]}
+        merged = coacus_install._merge_hooks({"hooks": {"SessionStart": [user]}},
+                                             {"hooks": {"SessionStart": []}}, markers)
+        self.assertIn(user, merged["hooks"]["SessionStart"])
+
+    def test_windows_hook_shim_reinstall_and_uninstall(self) -> None:
+        import base64
+        argv = [str(self.root / "scripts/coacus_session_start.py"), "payload"]
+        encoded = base64.b64encode(json.dumps(argv).encode()).decode()
+        shim = ("import base64,json,runpy,sys;"
+                f"sys.argv=json.loads(base64.b64decode('{encoded}'));"
+                "runpy.run_path(sys.argv[0],run_name='__main__')")
+        owned = {"hooks": [{"command": f'"python.exe" -c "{shim}"'}]}
+        unrelated = {"hooks": [{"command": f'"python.exe" -c "print(1)" {argv[0]}'}]}
+        markers = coacus_install._hook_owner_markers(self.root, "codex")
+        self.assertTrue(coacus_install._entry_owned(owned, markers))
+        self.assertFalse(coacus_install._entry_owned(unrelated, markers))
+        fragment = {"hooks": {"SessionStart": [owned]}}
+        existing = {"hooks": {"SessionStart": [owned, unrelated]}}
+        merged = coacus_install._merge_hooks(existing, fragment, markers)
+        merged = coacus_install._merge_hooks(merged, fragment, markers)
+        self.assertEqual(merged["hooks"]["SessionStart"], [unrelated, owned])
+        stripped = coacus_install._strip_hooks(merged, markers)
+        self.assertEqual(stripped["hooks"]["SessionStart"], [unrelated])
+
+    def test_unrelated_session_script_is_not_owned(self) -> None:
+        markers = coacus_install._hook_owner_markers(self.root, "codex")
+        for script in ("coacus_session_start.py", "coacus_guard.py"):
+            entry = {"hooks": [{"command": f"python /opt/third-party/scripts/{script}"}]}
+            self.assertFalse(coacus_install._entry_owned(entry, markers))
+
+    def test_unrelated_guard_script_is_not_owned(self) -> None:
+        entry = {"hooks": [{"command": "python /opt/third-party/coacus_guard.py --harness codex --event tool.pre"}]}
+        self.assertFalse(coacus_install._entry_owned(entry, coacus_install._hook_owner_markers(self.root, "codex")))
+
+    def test_python_code_argument_does_not_claim_user_hook(self) -> None:
+        entry = {"hooks": [{"command": "python -c pass /scripts/coacus_session_start.py"}]}
+        self.assertFalse(coacus_install._entry_owned(entry, coacus_install._hook_owner_markers(self.root, "codex")))
+
+    def test_legacy_manifest_adopts_matching_skill_link(self) -> None:
+        coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        self.assertNotIn("error", result)
+
+    def test_legacy_manifest_adopts_exact_planned_files(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertNotIn("error", result)
+
+    def test_upgrade_refuses_modified_and_unowned_planned_paths(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "skills/using-coacus/SKILL.md"
+        target.write_text("local", encoding="utf-8")
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertEqual(target.read_text(encoding="utf-8"), "local")
+
+    def test_planned_symlink_does_not_overwrite_destination(self) -> None:
+        target = self.config / "skills/using-coacus/SKILL.md"
+        target.parent.mkdir(parents=True)
+        victim = self.tmp / "victim"
+        victim.write_text("safe", encoding="utf-8")
+        target.symlink_to(victim)
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertEqual(victim.read_text(encoding="utf-8"), "safe")
+
+    def test_link_mode_preserves_unowned_directory_collision(self) -> None:
+        target = self.config / "skills/using-coacus"
+        target.mkdir(parents=True)
+        user = target / "user.txt"
+        user.write_text("keep", encoding="utf-8")
+        result = coacus_install.install("claude-code", self.root, self.config, dry_run=False)
+        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertEqual(user.read_text(encoding="utf-8"), "keep")
+
+    def test_filtered_antigravity_preserves_omitted_skills(self) -> None:
+        for name, content in (("plugin.json", '{"name":"coacus"}'), ("coacus-rule.md", "# rule")):
+            target = self.root / "harnesses/antigravity/bootstrap" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(content, encoding="utf-8")
+        add_skill(self.root, "methodology/workflows/omitted-workflow")
+        coacus_install.install("antigravity", self.root, self.config, dry_run=False,
+                               antigravity_profile="full")
+        target = self.config / "config/plugins/coacus/skills/omitted-workflow/SKILL.md"
+        result = coacus_install.install("antigravity", self.root, self.config, dry_run=False,
+                                       antigravity_profile="full", skills=["using-coacus"])
+        self.assertTrue(target.exists())
+        self.assertNotIn("error", result)
+
+    def test_filtered_install_preserves_nonworkflow_ownership(self) -> None:
+        add_skill(self.root, "knowledge/skills/languages/omitted-skill")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "skills/omitted-skill/SKILL.md"
+        coacus_install.install("opencode", self.root, self.config, dry_run=False, skills=["using-coacus"])
+        self.assertTrue(target.is_file())
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertNotIn("error", result)
+
+    def test_filtered_upgrade_keeps_workflow_retirement_record(self) -> None:
+        old = add_skill(self.root, "methodology/workflows/old-workflow")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "skills/old-workflow/SKILL.md"
+        coacus_install.install("opencode", self.root, self.config, dry_run=False,
+                               skills=["using-coacus"])
+        self.assertTrue(target.exists())
+        shutil.rmtree(old)
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertFalse(target.exists())
+
+    def test_legacy_wrapper_without_fingerprint_is_retained(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        target = self.config / "session-start.sh"
+        target.write_text("local edits", encoding="utf-8")
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data["files"].append(target.as_posix())
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertEqual(target.read_text(encoding="utf-8"), "local edits")
+        self.assertIn(target.as_posix(), result["retained"])
+
     def test_opencode_installs_skills(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
         self.assertTrue(
             (self.config / "skills/using-coacus/SKILL.md").is_file()
         )
+
+    def test_uninstall_preserves_modified_hook_and_dry_run_agrees(self) -> None:
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        path = self.config / "hooks.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["hooks"]["SessionStart"][0]["custom"] = "user edit"
+        path.write_text(json.dumps(data), encoding="utf-8")
+        dry = coacus_install.uninstall("codex", self.root, self.config, dry_run=True)
+        real = coacus_install.uninstall("codex", self.root, self.config)
+        self.assertIn(path.as_posix(), dry["skipped"])
+        self.assertIn(path.as_posix(), real["skipped"])
+        self.assertEqual(json.loads(path.read_text())["hooks"]["SessionStart"][0]["custom"], "user edit")
+
+    def test_uninstall_preserves_modified_mcp_entry(self) -> None:
+        coacus_install.install("command-code", self.root, self.config, dry_run=False)
+        path = self.config / "mcp.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["mcpServers"]["mock-mcp"]["url"] = "https://user.example/"
+        path.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.uninstall("command-code", self.root, self.config)
+        self.assertEqual(json.loads(path.read_text())["mcpServers"]["mock-mcp"]["url"], "https://user.example/")
+        self.assertIn(path.as_posix(), result["skipped"])
+        self.assertTrue((self.config / coacus_install.MANIFEST_NAME).exists())
+
+    def test_uninstall_retains_modified_codex_profile_and_manifest(self) -> None:
+        add_skill(self.root, "knowledge/skills/languages/extra-skill")
+        coacus_install.install("codex", self.root, self.config, dry_run=False)
+        config = self.config / "config.toml"
+        original = config.read_text(encoding="utf-8")
+        self.assertIn("enabled = false", original)
+        changed = original.replace("enabled = false", "enabled = true")
+        config.write_text(changed, encoding="utf-8")
+        result = coacus_install.uninstall("codex", self.root, self.config)
+        self.assertEqual(config.read_text(encoding="utf-8"), changed)
+        self.assertIn(config.as_posix(), result["skipped"])
+        self.assertTrue((self.config / coacus_install.MANIFEST_NAME).exists())
+
+    def test_uninstall_retains_modified_and_fingerprint_free_files(self) -> None:
+        add_skill(self.root, "knowledge/skills/languages/legacy-skill")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        modified = self.config / "skills/using-coacus/SKILL.md"
+        legacy = self.config / "skills/legacy-skill/SKILL.md"
+        modified.write_text("user edit", encoding="utf-8")
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data["file_fingerprints"].pop(legacy.as_posix())
+        data["workflow_fingerprints"].pop(legacy.as_posix(), None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.uninstall("opencode", self.root, self.config)
+        self.assertEqual(modified.read_text(encoding="utf-8"), "user edit")
+        self.assertTrue(legacy.exists())
+        self.assertIn(modified.as_posix(), result["skipped"])
+        self.assertIn(legacy.as_posix(), result["skipped"])
 
     def test_manifest_enables_idempotent_uninstall(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
@@ -174,6 +426,39 @@ class TestInstaller(unittest.TestCase):
         result = coacus_install.uninstall("opencode", self.root, self.config)
         self.assertTrue(result["removed"])
         self.assertFalse((self.config / "plugins/coacus.js").exists())
+
+    def test_antigravity_upgrade_retains_modified_and_legacy_files(self) -> None:
+        for name, content in (("plugin.json", '{"name":"coacus"}'),
+                              ("coacus-rule.md", "# rule")):
+            target = self.root / "harnesses/antigravity/bootstrap" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(content, encoding="utf-8")
+        (self.root / "harnesses/antigravity/coacus-on-demand-rule.md").write_text(
+            "# rule", encoding="utf-8"
+        )
+        add_skill(self.root, "methodology/workflows/modified-workflow")
+        coacus_install.install("antigravity", self.root, self.config, dry_run=False,
+                               antigravity_profile="full")
+        skills = self.config / "config/plugins/coacus/skills"
+        clean = skills / "using-coacus/SKILL.md"
+        modified = skills / "modified-workflow/SKILL.md"
+        modified.write_text("local edits", encoding="utf-8")
+        result = coacus_install.install("antigravity", self.root, self.config, dry_run=False)
+        self.assertFalse(clean.exists())
+        self.assertEqual(modified.read_text(encoding="utf-8"), "local edits")
+        self.assertIn(modified.as_posix(), result["retained"])
+
+        modified.unlink()
+        coacus_install.install("antigravity", self.root, self.config, dry_run=False,
+                               antigravity_profile="full")
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        result = coacus_install.install("antigravity", self.root, self.config, dry_run=False)
+        self.assertTrue(clean.exists())
+        self.assertTrue(result.get("conflicts") or clean.as_posix() in result["retained"])
 
     def test_antigravity_stages_plugin_without_registry_edit(self) -> None:
         # Antigravity activates by directory placement; no registry edit.
@@ -362,17 +647,16 @@ class TestInstaller(unittest.TestCase):
         path = self.config / "hooks.json"
         path.write_text(json.dumps(existing))
         for _ in range(2):
-            coacus_install.install("codex", self.root, self.config, dry_run=False)
+            result = coacus_install.install("codex", self.root, self.config, dry_run=False)
             installed = json.loads(path.read_text())
-            self.assertNotIn(old_root.as_posix(), json.dumps(installed))
+            self.assertIn(old_root.as_posix(), json.dumps(installed))
+            self.assertIn(path.as_posix(), result["ambiguous_hooks"])
             self.assertEqual(installed["mySetting"], 42)
             for event in ("SessionStart", "PreToolUse"):
-                self.assertEqual(len(installed["hooks"][event]), 2)
+                self.assertEqual(len(installed["hooks"][event]), 3)
                 self.assertIn(user, installed["hooks"][event])
         coacus_install.uninstall("codex", self.root, self.config)
-        self.assertEqual(json.loads(path.read_text()), {"mySetting": 42, "hooks": {
-            "SessionStart": [user], "PreToolUse": [user]
-        }})
+        self.assertEqual(json.loads(path.read_text()), existing)
 
     def test_codex_preserves_other_products_bootstrap_hook(self) -> None:
         self.config.mkdir()
@@ -443,7 +727,26 @@ class TestInstaller(unittest.TestCase):
         self.assertFalse((canonical / "SKILL.md").stat().st_mode & 0o222)
         # a later install must restore write access before rewriting the tree
         coacus_install.install("claude-code", self.root, self.config, dry_run=False)
-        self.assertTrue(canonical.stat().st_mode & 0o200)
+        self.assertTrue((canonical / "SKILL.md").stat().st_mode & 0o200)
+        self.assertFalse(canonical.stat().st_mode & 0o200)
+
+    def test_locked_skill_accepts_new_reference_preserving_user_data(self) -> None:
+        coacus_install.install("claude-code", self.root, self.config, dry_run=False, lock_skills=True)
+        canonical = self.config.parent / ".agents/skills/using-coacus"
+        canonical.chmod(0o755)
+        user_file = canonical / "notes.txt"
+        user_file.write_text("keep", encoding="utf-8")
+        user_file.chmod(0o640)
+        canonical.chmod(0o555)
+        reference = self.root / "methodology/workflows/using-coacus/references"
+        reference.mkdir(parents=True)
+        (reference / "new.md").write_text("new", encoding="utf-8")
+        result = coacus_install.install("claude-code", self.root, self.config, dry_run=False, lock_skills=True)
+        self.assertNotIn("error", result)
+        self.assertEqual((canonical / "references/new.md").read_text(), "new")
+        self.assertEqual(canonical.stat().st_mode & 0o777, 0o555)
+        self.assertEqual(user_file.stat().st_mode & 0o777, 0o640)
+        self.assertEqual(user_file.read_text(), "keep")
 
     def test_skills_install_includes_references(self) -> None:
         reference = self.root / "methodology/workflows/using-coacus/references"

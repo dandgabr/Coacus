@@ -73,9 +73,9 @@ tools:
   - type: skill_integration
     path: ../../../../skills/engineering/practices/vcs-repository-management/SKILL.md
   - type: skill_integration
-    path: ../../../../../methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md
+    path: ../../../../../methodology/workflows/finishing-a-development-branch/SKILL.md
   - type: skill_integration
-    path: ../../../../../methodology/workflows/superpowers-verification-before-completion/SKILL.md
+    path: ../../../../../methodology/workflows/verification-before-completion/SKILL.md
   - type: skill_integration
     path: ../../../../skills/platforms/program-github-actions/SKILL.md
   - type: skill_integration

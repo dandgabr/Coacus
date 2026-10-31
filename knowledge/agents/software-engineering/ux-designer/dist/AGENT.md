@@ -5,6 +5,7 @@ Senior UX designer who owns the experience end to end: discovery and research me
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [canvas-spatial-whiteboarding](../../../../skills/domains/design/canvas-spatial-whiteboarding/SKILL.md)
 - [ux-designer](../../../../skills/roles/ux-designer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
@@ -65,3 +66,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [canvas-spatial-whiteboarding](../../../../skills/domains/design/canvas-spatial-whiteboarding/SKILL.md)

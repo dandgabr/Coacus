@@ -11,8 +11,8 @@ skills:
   - knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md
   - knowledge/skills/engineering/practices/code-review-practices/SKILL.md
   - knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md
-  - methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md
-  - methodology/workflows/superpowers-verification-before-completion/SKILL.md
+  - methodology/workflows/finishing-a-development-branch/SKILL.md
+  - methodology/workflows/verification-before-completion/SKILL.md
   - knowledge/skills/platforms/program-github-actions/SKILL.md
   - knowledge/skills/roles/devops-engineer/SKILL.md
 ---

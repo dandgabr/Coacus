@@ -11,9 +11,11 @@ Ledger format (text, one record per line):
 
 Callers are validated tokens (``[A-Za-z0-9._:-]+``); matching is EXACT, never
 prefix-based. The cap is persisted and can be changed through the configured
-maximum or the explicit setter. Stale RUNNING
-rows (dead PID or older than the lease) are reaped before capacity is judged,
-so a crashed holder cannot leak a slot forever.
+maximum or the explicit setter. RUNNING rows occupy slots until explicitly
+released, parked, or reset; neither age nor the acquiring CLI PID proves that
+the worker has finished. Crashes may therefore require operator recovery after
+confirming the worker is no longer running. PAUSED rows do not occupy slots.
+The lease setting is retained for compatibility but does not expire slots.
 """
 
 from __future__ import annotations
@@ -246,26 +248,6 @@ class Ledger:
     def _running(records: list[str]) -> list[list[str]]:
         return [r.split() for r in records if r.startswith("RUNNING ")]
 
-    def _reap_stale(self, records: list[str], now: float) -> list[str]:
-        """Drop RUNNING rows older than the lease.
-
-        Reaping is AGE-based, not PID-based: harness adapters acquire through a
-        short-lived CLI process, so the acquiring PID is gone while the slot is
-        still legitimately held by the agent. A crashed holder is covered by the
-        lease plus the adapter's release-on-next-turn safety net.
-        """
-        kept: list[str] = []
-        for record in records:
-            if not record.startswith("RUNNING "):
-                kept.append(record)
-                continue
-            parts = record.split()
-            started = float(parts[5]) if len(parts) > 5 else 0.0
-            if (now - started) > self.lease_seconds:
-                continue  # lease expired (holder crashed or vanished)
-            kept.append(record)
-        return kept
-
     @staticmethod
     def _token_for(records: list[str], caller: str) -> str | None:
         for parts in Ledger._running(records):
@@ -295,7 +277,6 @@ class Ledger:
                 if existing:
                     return existing
                 now = time.time()
-                records = self._reap_stale(records, now)
                 if len(self._running(records)) < max_total:
                     token = f"{caller}-{os.getpid()}-{uuid.uuid4().hex[:8]}"
                     records.append(
@@ -304,24 +285,25 @@ class Ledger:
                     )
                     self._write(max_total, records)
                     return token
-                self._write(max_total, records)  # persist reaping even on failure
             if time.monotonic() >= deadline:
                 return None
             time.sleep(POLL_SECONDS)
 
-    def release(self, caller: str) -> None:
-        """Release the slot held by ``caller`` (a no-op if it holds none)."""
+    def release(self, caller: str, token: str | None = None) -> None:
+        """Release caller's slot; if supplied, the token must match atomically."""
         self._validate_caller(caller)
         with self._locked():
             max_total, records = self._read()
-            records = [
+            remaining = [
                 r
                 for r in records
-                if not (r.startswith("RUNNING ") and r.split()[1] == caller)
+                if not (r.startswith("RUNNING ") and r.split()[1] == caller
+                        and (token is None or (len(r.split()) >= 4 and r.split()[3] == token)))
             ]
-            self._write(max_total, records)
+            if len(remaining) != len(records):
+                self._write(max_total, remaining)
 
-    def fail(self, caller: str, attempts: int = 1) -> None:
+    def fail(self, caller: str, attempts: int = 1, token: str | None = None) -> None:
         """Park a caller as PAUSED after a rate-limit (429) for retry.
 
         Idempotent: only a caller that was actually RUNNING is parked, and an
@@ -331,7 +313,9 @@ class Ledger:
         with self._locked():
             max_total, records = self._read()
             was_running = any(
-                r.startswith("RUNNING ") and r.split()[1] == caller for r in records
+                r.startswith("RUNNING ") and r.split()[1] == caller
+                and (token is None or (len(r.split()) >= 4 and r.split()[3] == token))
+                for r in records
             )
             if not was_running:
                 # Not holding a slot: leave the ledger untouched (do not create
@@ -340,7 +324,8 @@ class Ledger:
             records = [
                 r
                 for r in records
-                if not (r.startswith("RUNNING ") and r.split()[1] == caller)
+                if not (r.startswith("RUNNING ") and r.split()[1] == caller
+                        and (token is None or (len(r.split()) >= 4 and r.split()[3] == token)))
                 and not (r.startswith("PAUSED ") and r.split()[1] == caller)
             ]
             records.append(f"PAUSED {caller} {int(time.time())} {attempts}")
@@ -376,12 +361,9 @@ class Ledger:
             self._write(max_total, records)
 
     def status(self) -> dict:
-        """Reap stale leases and return the current running/paused/slots snapshot."""
+        """Return the current running/paused/slots snapshot without reclaiming slots."""
         with self._locked():
             max_total, records = self._read()
-            now = time.time()
-            records = self._reap_stale(records, now)
-            self._write(max_total, records)
             running = self._running(records)
             paused = [r for r in records if r.startswith("PAUSED ")]
             return {

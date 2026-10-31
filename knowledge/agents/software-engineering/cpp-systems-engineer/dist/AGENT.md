@@ -5,6 +5,7 @@ Senior specialist agent in modern C++ systems engineering, covering the ISO/IEC 
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [framework-qt6](../../../../skills/frameworks/framework-qt6/SKILL.md)
 - [lang-cpp](../../../../skills/languages/lang-cpp/SKILL.md)
 - [cpp-template-metaprogramming](../../../../skills/languages/cpp-template-metaprogramming/SKILL.md)
 - [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
@@ -69,3 +70,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult [framework-qt6](../../../../skills/frameworks/framework-qt6/SKILL.md) when developing Qt-based C++ applications.

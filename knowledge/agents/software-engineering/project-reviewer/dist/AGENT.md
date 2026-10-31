@@ -5,6 +5,7 @@ Project Review Agent specialized in auditing business rules, technical distribut
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [review-findings-pipeline](../../../../skills/engineering/practices/review-findings-pipeline/SKILL.md)
 - [project-reviewer](../../../../skills/roles/project-reviewer/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -42,3 +43,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [review-findings-pipeline](../../../../skills/engineering/practices/review-findings-pipeline/SKILL.md)

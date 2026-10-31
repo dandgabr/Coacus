@@ -141,7 +141,7 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "cfbb966ed49baa238d007117b2bdeb926c3f2d841d9cb8c68d315214b2a7a7b1",
+      "sha256": "ec4de265c2fae78065403e94a1fb096d9c3a28301b14ab0203c586a10ad1c9cf",
       "reason": "Reviewed existing approved bilingual terms unchanged; added English editable diagram terminology and product identifiers to the existing documentation owner. Exact file digest preserves the bilingual routing contract."
     },
     {
@@ -973,37 +973,31 @@
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-brainstorming/scripts/server.cjs",
-      "scope": "segment",
-      "sha256": "40eb145bba76dd743477bb9aaaf8e743deec5ea4180890db38587e96e80ab5f8",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
-      "path": "methodology/workflows/superpowers-executing-plans/SKILL.md",
+      "path": "methodology/workflows/executing-plans/SKILL.md",
       "scope": "segment",
       "sha256": "0d3895af1bece9809955dc88236ec4b4d7f62bb612909bb237643ef692ed9f02",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
+      "path": "methodology/workflows/test-driven-development/SKILL.md",
       "scope": "segment",
       "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
+      "path": "methodology/workflows/test-driven-development/SKILL.md",
       "scope": "segment",
       "sha256": "fc6a9980835dbb6f272a2d593fbb56e07ae34c80ba022f2cbae80f69de603241",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-writing-plans/SKILL.md",
+      "path": "methodology/workflows/writing-plans/SKILL.md",
       "scope": "segment",
       "sha256": "bdf9943635fada856c13cb6927edf9e3c5e4c7dc6c1ba80483a9edfebdac20b5",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
     },
     {
-      "path": "methodology/workflows/superpowers-writing-skills/persuasion-principles.md",
+      "path": "methodology/workflows/writing-skills/persuasion-principles.md",
       "scope": "segment",
       "sha256": "ef9249a23af78b8f032497b1dcb534921f1b79a95d93b74d4ce55e5ad8da056b",
       "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
