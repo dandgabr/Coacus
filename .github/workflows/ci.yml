@@ -69,6 +69,11 @@ jobs:
           python-version: '3.10'
       - name: run portable hook and workflow contracts
         run: python -m unittest tests.test_python_only_hooks tests.test_python_only_validator tests.test_workflow_helpers tests.test_governor_hook tests.test_secrets_runner
+      # The installer test module uses tomllib; keep the hook floor at 3.10
+      # and run installer contracts on the same interpreter as the full suite.
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
       - name: run portable legacy migration and probe safety contracts
         run: >-
           python -m unittest
