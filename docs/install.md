@@ -691,7 +691,11 @@ also exempt the `agent` tool, so a mod alone does not establish a fail-closed
 governor. A local fake-model probe of Command Code 1.88.2 (resolved from
 [npm](https://www.npmjs.com/package/command-code/v/1.88.2) on 2026-10-31)
 confirmed this fallback for a synthetic `read_file` call. It did not test agent
-dispatch or the lifetime of a subagent.
+dispatch or the lifetime of a subagent. A separate local probe reserved
+governor slots before issuing one synthetic foreground `agent` call: a blocking
+mod prevented the call, while a throwing mod was skipped and the worker started
+and stopped. This observation does not establish background-worker lifetime or
+fail-closed behavior when a mod fails to load.
 
 **Vendor facts**
 

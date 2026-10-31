@@ -1916,6 +1916,11 @@ def _is_default_target(harness: str, config_dir: Path) -> bool:
         return config_dir == default_config_dir(harness, _home())
 
 
+def _install_text_bytes(content: str) -> bytes:
+    """Match the native newline translation of UTF-8 text-mode writes."""
+    return content.replace("\n", os.linesep).encode("utf-8")
+
+
 def install(
     harness: str,
     root: Path,
@@ -2038,7 +2043,7 @@ def install(
                     and hashlib.sha256(target.read_bytes()).hexdigest() == digest)
             if (not safe and path in previous_files and digest is None
                     and not target.is_symlink() and target.is_file()):
-                expected = content.encode("utf-8") if isinstance(content, str) else content
+                expected = _install_text_bytes(content) if isinstance(content, str) else content
                 safe = target.read_bytes() == expected
                 if safe and target not in merged_paths:
                     legacy_unchanged[target] = hashlib.sha256(expected).hexdigest()
@@ -2169,7 +2174,7 @@ def install(
                         return {"harness": harness, "error": "legacy file changed type",
                                 "legacy_backup": str(legacy_backup_dir), "files": written}
                     mode = live_backup.stat().st_mode & 0o777
-                    new_content = content.encode("utf-8") if isinstance(content, str) else content
+                    new_content = _install_text_bytes(content) if isinstance(content, str) else content
                     fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
                     try:
                         stream = os.fdopen(fd, "wb")

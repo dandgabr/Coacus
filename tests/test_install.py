@@ -143,6 +143,10 @@ def add_agent(root: Path, relative: str) -> Path:
 
 
 class TestInstaller(unittest.TestCase):
+    def test_install_text_bytes_use_native_newlines(self) -> None:
+        with patch.object(coacus_install.os, "linesep", "\r\n"):
+            self.assertEqual(coacus_install._install_text_bytes("first\nsecond\n"), b"first\r\nsecond\r\n")
+
     def setUp(self) -> None:
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)

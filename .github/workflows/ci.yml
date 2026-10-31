@@ -78,6 +78,7 @@ jobs:
         run: >-
           python -m unittest
           tests.test_command_code_mod_probe
+          tests.test_install.TestInstaller.test_install_text_bytes_use_native_newlines
           tests.test_install.TestInstaller.test_legacy_matching_file_edited_after_check_is_not_overwritten
           tests.test_install.TestInstaller.test_legacy_divergence_requires_explicit_backup_and_preserves_original
           tests.test_install.TestInstaller.test_legacy_backup_aborts_if_file_changes_during_backup
