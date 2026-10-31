@@ -510,7 +510,11 @@ installation alone does not prove runtime enforcement. The vendor describes CLI
 subagents as [asynchronous background workers](https://antigravity.google/docs/subagents),
 whereas [`PostToolUse`](https://antigravity.google/docs/hooks) reports the tool
 call's completion. A post-tool event alone therefore does not establish that a
-worker has ended, and must not be used by itself to release its reservation.
+worker has ended, and must not be used by itself to release its reservation. In
+an isolated probe using a synthetic local model and manually reserved governor
+slots, the post-tool event preceded the worker response. Subsequent list output
+showed the same synthetic worker identifier on lines reporting `running` and
+`idle`; this does not prove that an idle worker has ended or cannot be resumed.
 
 **Verify**
 
