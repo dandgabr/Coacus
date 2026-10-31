@@ -83,10 +83,13 @@ class TestGovernor(unittest.TestCase):
 
     def test_unmatched_release_does_not_raise_persisted_cap(self) -> None:
         ledger = Ledger(self.dir, max_total=1)
+        stale = ledger.acquire("a")
+        ledger.release("a", token=stale)
         token = ledger.acquire("a")
+        self.assertNotEqual(stale, token)
         higher = Ledger(self.dir, max_total=3)
         before = ledger.path.read_text(encoding="utf-8")
-        higher.release("a", token="stale")
+        higher.release("a", token=stale)
         self.assertEqual(ledger.path.read_text(encoding="utf-8"), before)
         higher.release("other")
         self.assertEqual(ledger.path.read_text(encoding="utf-8"), before)

@@ -98,6 +98,17 @@
       let data;
       try { data = JSON.parse(msg.data); } catch (e) { return; }
       if (data.type === 'reload') window.location.reload();
+      if (data.type === 'error' && document.body) {
+        let alert = document.getElementById('bs-error');
+        if (!alert) {
+          alert = document.createElement('div');
+          alert.id = 'bs-error';
+          alert.setAttribute('role', 'alert');
+          alert.style.cssText = 'position:fixed;bottom:1rem;left:1rem;right:1rem;z-index:100000;padding:1rem;background:#720f18;color:white;font-family:system-ui,sans-serif';
+          document.body.appendChild(alert);
+        }
+        alert.textContent = 'Failed to save choice. Please try again.';
+      }
     };
 
     ws.onclose = () => {

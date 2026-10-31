@@ -98,13 +98,14 @@ class TestPythonOnlyHooks(unittest.TestCase):
             for target in (wrapper, helper, unowned):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("#!/usr/bin/env bash\necho old\n")
-            fingerprints = {str(target): hashlib.sha256(target.read_bytes()).hexdigest()
+            fingerprints = {target.as_posix(): hashlib.sha256(target.read_bytes()).hexdigest()
                             for target in (wrapper, helper)}
             (config / coacus_install.MANIFEST_NAME).write_text(json.dumps({
-                "files": [str(wrapper), str(helper)], "file_fingerprints": fingerprints,
+                "files": [wrapper.as_posix(), helper.as_posix()], "file_fingerprints": fingerprints,
             }))
-            coacus_install.install("codex", ROOT, config, dry_run=False,
-                                   skills=["executing-plans"], agents=["no-match"])
+            result = coacus_install.install("codex", ROOT, config, dry_run=False,
+                                            skills=["executing-plans"], agents=["no-match"])
+            self.assertNotIn("error", result)
             self.assertFalse(wrapper.exists())
             self.assertFalse(helper.exists())
             self.assertTrue(unowned.exists())
@@ -119,11 +120,12 @@ class TestPythonOnlyHooks(unittest.TestCase):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("user changes\n")
             (config / coacus_install.MANIFEST_NAME).write_text(json.dumps({
-                "files": [str(wrapper), str(helper)],
-                "file_fingerprints": {str(wrapper): hashlib.sha256(b"original\n").hexdigest()},
+                "files": [wrapper.as_posix(), helper.as_posix()],
+                "file_fingerprints": {wrapper.as_posix(): hashlib.sha256(b"original\n").hexdigest()},
             }))
-            coacus_install.install("codex", ROOT, config, dry_run=False,
-                                   skills=["executing-plans"], agents=["no-match"])
+            result = coacus_install.install("codex", ROOT, config, dry_run=False,
+                                            skills=["executing-plans"], agents=["no-match"])
+            self.assertNotIn("error", result)
             self.assertEqual(wrapper.read_text(), "user changes\n")
             self.assertEqual(helper.read_text(), "user changes\n")
             self.assertTrue(helper.with_suffix(".py").exists())

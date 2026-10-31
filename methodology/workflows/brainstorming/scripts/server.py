@@ -18,7 +18,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, quote, urlsplit
 
 HERE = Path(__file__).resolve().parent
-ROOT = Path(os.environ.get('BRAINSTORM_DIR', '/tmp/brainstorm'))
+ROOT = Path(os.environ.get('BRAINSTORM_DIR', ''))
 CONTENT, STATE = ROOT / 'content', ROOT / 'state'
 HOST = os.environ.get('BRAINSTORM_HOST', '127.0.0.1')
 URL_HOST = os.environ.get('BRAINSTORM_URL_HOST', 'localhost' if HOST == '127.0.0.1' else HOST)
@@ -38,16 +38,33 @@ def activity():
 
 def safe_read(name):
     """Open a single regular file without following links, including hard links."""
-    if not name or name.startswith('.') or name != Path(name).name:
+    if not name or '\0' in name or name.startswith('.') or name != Path(name).name:
         raise FileNotFoundError(name)
     flags = os.O_RDONLY | getattr(os, 'O_NOFOLLOW', 0) | getattr(os, 'O_NONBLOCK', 0)
-    fd = os.open(CONTENT / name, flags)
+    directory = None
+    path = CONTENT.absolute()
+    if os.open in os.supports_dir_fd and hasattr(os, 'O_NOFOLLOW') and hasattr(os, 'O_DIRECTORY'):
+        directory = os.open(path.anchor, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            for component in path.parts[1:]:
+                next_fd = os.open(component, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
+                os.close(directory)
+                directory = next_fd
+            fd = os.open(name, flags, dir_fd=directory)
+        except BaseException:
+            os.close(directory)
+            raise
+    else:
+        # Without dirfd/nofollow, lstat checks cannot prevent a concurrent local rename race.
+        for parent in (path, *path.parents):
+            if stat.S_ISLNK(os.lstat(parent).st_mode):
+                raise FileNotFoundError(name)
+        fd = os.open(path / name, flags)
     try:
         st = os.fstat(fd)
         if not stat.S_ISREG(st.st_mode) or st.st_nlink != 1:
             raise FileNotFoundError(name)
-        # On platforms without O_NOFOLLOW, ensure the opened file matches lstat.
-        lst = os.lstat(CONTENT / name)
+        lst = os.stat(name, dir_fd=directory, follow_symlinks=False) if directory is not None else os.lstat(path / name)
         if stat.S_ISLNK(lst.st_mode) or (lst.st_dev, lst.st_ino) != (st.st_dev, st.st_ino):
             raise FileNotFoundError(name)
         with os.fdopen(fd, 'rb') as f:
@@ -56,6 +73,61 @@ def safe_read(name):
     finally:
         if fd >= 0:
             os.close(fd)
+        if directory is not None:
+            os.close(directory)
+
+
+def safe_state_write(name, text, append=False):
+    return safe_file_write(STATE / name, text, append)
+
+
+def safe_file_write(target, text, append=False):
+    """Write without following links or truncating unvalidated files."""
+    target = Path(target).absolute()
+    name = target.name
+    if not name or '\0' in name or name in ('.', '..'):
+        raise FileNotFoundError(name)
+    if os.open not in os.supports_dir_fd or not hasattr(os, 'O_NOFOLLOW') or not hasattr(os, 'O_DIRECTORY'):
+        raise OSError('secure state writes are unavailable on this platform')
+    path = target.parent
+    directory = os.open(path.anchor, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    try:
+        for component in path.parts[1:]:
+            next_fd = os.open(component, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
+            os.close(directory)
+            directory = next_fd
+        flags = os.O_WRONLY | os.O_CREAT | os.O_NOFOLLOW | getattr(os, 'O_NONBLOCK', 0)
+        fd = os.open(name, flags | (os.O_APPEND if append else 0), 0o600, dir_fd=directory)
+        try:
+            st = os.fstat(fd)
+            if not stat.S_ISREG(st.st_mode) or st.st_nlink != 1:
+                raise OSError('unsafe state file')
+            if append:
+                os.fchmod(fd, 0o600)
+                with os.fdopen(fd, 'w') as file:
+                    fd = -1
+                    file.write(text)
+        finally:
+            if fd >= 0:
+                os.close(fd)
+        if not append:
+            temporary = '.state-' + secrets.token_hex(16)
+            fd = os.open(temporary, flags | os.O_EXCL, 0o600, dir_fd=directory)
+            try:
+                os.fchmod(fd, 0o600)
+                with os.fdopen(fd, 'w') as file:
+                    fd = -1
+                    file.write(text)
+                os.replace(temporary, name, src_dir_fd=directory, dst_dir_fd=directory)
+            finally:
+                if fd >= 0:
+                    os.close(fd)
+                try:
+                    os.unlink(temporary, dir_fd=directory)
+                except FileNotFoundError:
+                    pass
+    finally:
+        os.close(directory)
 
 
 def frame(opcode, payload=b''):
@@ -246,7 +318,8 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(400, 'Invalid WebSocket handshake')
             self.close_connection = True
             return
-        accept = base64.b64encode(hashlib.sha1((key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11').encode()).digest()).decode()
+        # The WebSocket handshake specifies SHA-1 for protocol interoperability, not authentication.
+        accept = base64.b64encode(hashlib.sha1((key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11').encode(), usedforsecurity=False).digest()).decode()
         self.send_response(101, 'Switching Protocols')
         self.send_header('Upgrade', 'websocket')
         self.send_header('Connection', 'Upgrade')
@@ -286,10 +359,13 @@ class Handler(BaseHTTPRequestHandler):
                     try:
                         event = json.loads(data.decode('utf-8', errors='replace'))
                         activity()
-                        print(json.dumps({'source': 'user-event', **(event if isinstance(event, dict) else {})}), flush=True)
                         if isinstance(event, dict) and event.get('choice'):
-                            with (STATE / 'events').open('a') as f: f.write(json.dumps(event) + '\n')
-                    except (ValueError, OSError):
+                            safe_state_write('events', json.dumps(event) + '\n', append=True)
+                        print(json.dumps({'source': 'user-event', **(event if isinstance(event, dict) else {})}), flush=True)
+                    except OSError:
+                        print('Failed to save user choice', file=sys.stderr, flush=True)
+                        client.send(frame(1, b'{"type":"error","message":"Failed to save choice"}'))
+                    except ValueError:
                         pass
                 elif opcode != 10:
                     client.send(frame(8, struct.pack('!H', 1003)), wait=True); break
@@ -305,6 +381,8 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     global token, server
+    if not os.environ.get('BRAINSTORM_DIR'):
+        raise SystemExit('BRAINSTORM_DIR is required')
     CONTENT.mkdir(parents=True, exist_ok=True)
     STATE.mkdir(parents=True, exist_ok=True)
     token = os.environ.get('BRAINSTORM_TOKEN', '')
@@ -314,7 +392,6 @@ def main():
             candidate = Path(TOKEN_FILE).read_text().strip()
             if len(candidate) >= 32 and all(c in '0123456789abcdefABCDEF' for c in candidate):
                 token, source = candidate, 'file'
-                os.chmod(TOKEN_FILE, 0o600)
         except OSError: pass
     if not token: token = secrets.token_hex(32)
     try:
@@ -337,14 +414,12 @@ def main():
         server = Server((HOST, 0), Handler)
     if not fallback and PORT_FILE:
         try:
-            Path(PORT_FILE).write_text(str(server.server_port))
+            safe_file_write(PORT_FILE, str(server.server_port))
         except OSError:
             pass
         if TOKEN_FILE:
             try:
-                fd = os.open(TOKEN_FILE, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-                with os.fdopen(fd, 'w') as f: f.write(token)
-                os.chmod(TOKEN_FILE, 0o600)
+                safe_file_write(TOKEN_FILE, token)
             except OSError:
                 pass
     idle = positive('BRAINSTORM_IDLE_TIMEOUT_MS', 14400000) / 1000
@@ -358,9 +433,7 @@ def main():
             except OSError:
                 pass
     info = dict(type='server-started', port=server.server_port, host=HOST, url_host=URL_HOST, url=url(), screen_dir=str(CONTENT), state_dir=str(STATE), idle_timeout_ms=idle * 1000)
-    fd = os.open(STATE / 'server-info', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-    with os.fdopen(fd, 'w') as f: f.write(json.dumps(info) + '\n')
-    os.chmod(STATE / 'server-info', 0o600)
+    safe_state_write('server-info', json.dumps(info) + '\n')
     print(json.dumps(info), flush=True)
     owner = int(os.environ.get('BRAINSTORM_OWNER_PID', '0') or 0)
     def alive(pid):

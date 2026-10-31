@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import http.client
 import json
 import os
@@ -15,6 +16,131 @@ SCRIPT = Path(__file__).resolve().parents[1] / 'methodology/workflows/brainstorm
 
 
 class PythonServerTests(unittest.TestCase):
+    def test_safe_read_contains_names_and_rejects_links(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('brainstorm_server_paths', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / 'content'
+            content.mkdir()
+            (content / 'ok.txt').write_text('inside')
+            outside = root / 'outside.txt'
+            outside.write_text('outside')
+            try:
+                (content / 'symlink').symlink_to(outside)
+            except OSError:
+                pass
+            os.link(outside, content / 'hardlink')
+            module.CONTENT = content
+            self.assertEqual(module.safe_read('ok.txt')[0], b'inside')
+            for name in ('../outside.txt', str(outside), '.hidden', 'symlink', 'hardlink', 'bad\0name'):
+                with self.subTest(name=name), self.assertRaises(OSError):
+                    module.safe_read(name)
+
+    def test_safe_read_rejects_symlinked_content_directory(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('brainstorm_server_parent', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outside = root / 'outside'
+            outside.mkdir()
+            (outside / 'screen.html').write_text('outside')
+            module.CONTENT = root / 'content'
+            try:
+                module.CONTENT.symlink_to(outside, target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f'symlinks unavailable: {exc}')
+            with self.assertRaises(OSError):
+                module.safe_read('screen.html')
+
+    def test_state_writes_reject_links_and_preserve_targets(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('brainstorm_server_write', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            module.STATE = root / 'state'
+            module.STATE.mkdir()
+            outside = root / 'outside'
+            outside.write_text('protected')
+            for name in ('events', 'server-info'):
+                target = module.STATE / name
+                module.safe_state_write(name, 'first')
+                module.safe_state_write(name, 'second', append=True)
+                self.assertEqual(target.read_text(), 'firstsecond')
+                if os.name == 'posix':
+                    os.chmod(target, 0o644)
+                    module.safe_state_write(name, 'private')
+                    self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+                target.unlink()
+                os.link(outside, target)
+                with self.assertRaises(OSError):
+                    module.safe_state_write(name, 'destroy')
+                self.assertEqual(outside.read_text(), 'protected')
+                target.unlink()
+                try:
+                    target.symlink_to(outside)
+                except OSError:
+                    continue
+                with self.assertRaises(OSError):
+                    module.safe_state_write(name, 'destroy')
+                self.assertEqual(outside.read_text(), 'protected')
+                target.unlink()
+
+    def test_state_replace_failure_preserves_previous_content(self):
+        import importlib.util
+        from unittest import mock
+        spec = importlib.util.spec_from_file_location('brainstorm_atomic_write', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            module.STATE = Path(tmp)
+            (module.STATE / 'server-info').write_text('original')
+            with mock.patch.object(module.os, 'replace', side_effect=OSError('injected')):
+                with self.assertRaises(OSError):
+                    module.safe_state_write('server-info', 'replacement')
+            self.assertEqual((module.STATE / 'server-info').read_text(), 'original')
+
+    def test_configured_output_rejects_links_and_writes_normally(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('brainstorm_output', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outside = root / 'outside'
+            outside.write_text('protected')
+            for filename in ('port', 'token'):
+                output = root / filename
+                module.safe_file_write(output, 'normal')
+                self.assertEqual(output.read_text(), 'normal')
+                output.unlink()
+                os.link(outside, output)
+                with self.assertRaises(OSError):
+                    module.safe_file_write(output, 'replacement')
+                self.assertEqual(outside.read_text(), 'protected')
+                output.unlink()
+                try:
+                    output.symlink_to(outside)
+                except OSError:
+                    continue
+                with self.assertRaises(OSError):
+                    module.safe_file_write(output, 'replacement')
+                self.assertEqual(outside.read_text(), 'protected')
+                output.unlink()
+
+    def test_server_requires_explicit_session_directory(self):
+        env = dict(os.environ)
+        env.pop('BRAINSTORM_DIR', None)
+        result = subprocess.run([sys.executable, str(SCRIPT)], env=env, capture_output=True, text=True, timeout=5)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('BRAINSTORM_DIR is required', result.stderr)
+
     def test_first_screen_created_at_readiness_is_detected(self):
         with tempfile.TemporaryDirectory() as tmp:
             code = """import builtins, json, os, runpy, sys
@@ -135,7 +261,10 @@ runpy.run_path(sys.argv[1], run_name='__main__')
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / 'content'
             content.mkdir()
-            (content / 'broken.html').symlink_to(content / 'missing')
+            try:
+                (content / 'broken.html').symlink_to(content / 'missing')
+            except OSError as exc:
+                self.skipTest(f'symlinks unavailable: {exc}')
             env = dict(os.environ, BRAINSTORM_DIR=tmp, BRAINSTORM_PORT='0', BRAINSTORM_TOKEN='a' * 64)
             proc = subprocess.Popen([sys.executable, str(SCRIPT)], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             try:
@@ -158,11 +287,12 @@ runpy.run_path(sys.argv[1], run_name='__main__')
             proc = subprocess.Popen([sys.executable, str(SCRIPT)], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             try:
                 port = json.loads(proc.stdout.readline())['port']
-                def handshake(key='MDEyMzQ1Njc4OWFiY2RlZg==', version='13'):
+                valid_key = base64.b64encode(os.urandom(16)).decode()
+                def handshake(key=valid_key, version='13'):
                     ws = socket.create_connection(('127.0.0.1', port), timeout=2)
                     ws.sendall((f'GET /?key={"a" * 64} HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: {version}\r\n\r\n').encode())
                     return ws, ws.recv(4096)
-                for key, version in [('bad', '13'), ('MDEyMzQ1Njc4OWFiY2RlZg==', '12')]:
+                for key, version in [('bad', '13'), (valid_key, '12')]:
                     ws, response = handshake(key, version)
                     with ws: self.assertNotIn(b'101 Switching Protocols', response)
                 for data in [b'\x01\x80abcd', b'\xc1\x80abcd', b'\x89\xfe\x00\x7e', b'\x81\xff' + (10 * 1024 * 1024 + 1).to_bytes(8, 'big')]:
@@ -201,14 +331,21 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 self.assertIn(b'<h1>Example</h1>', response.read())
                 outside = Path(tmp) / 'outside'
                 outside.write_text('secret')
-                (content / 'link').symlink_to(outside)
+                try:
+                    (content / 'link').symlink_to(outside)
+                except OSError:
+                    pass
                 conn.request('GET', '/files/link', headers={'Cookie': cookie})
                 response = conn.getresponse()
                 self.assertEqual(response.status, 404)
                 response.read()
+                key = base64.b64encode(os.urandom(16)).decode()
+                expected_accept = base64.b64encode(hashlib.sha1((key + '258EAFA5-E914-47DA-95CA-C5AB0DC85B11').encode(), usedforsecurity=False).digest())
                 with socket.create_connection(('127.0.0.1', port), timeout=3) as ws:
-                    ws.sendall((f'GET / HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {base64.b64encode(b"0123456789abcdef").decode()}\r\nSec-WebSocket-Version: 13\r\nCookie: {cookie}\r\nOrigin: http://127.0.0.1:{port}\r\n\r\n').encode())
-                    self.assertIn(b'101 Switching Protocols', ws.recv(4096))
+                    ws.sendall((f'GET / HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: {key}\r\nSec-WebSocket-Version: 13\r\nCookie: {cookie}\r\nOrigin: http://127.0.0.1:{port}\r\n\r\n').encode())
+                    handshake = ws.recv(4096)
+                    self.assertIn(b'101 Switching Protocols', handshake)
+                    self.assertIn(b'Sec-WebSocket-Accept: ' + expected_accept, handshake)
                     payload = json.dumps({'choice': 'yes'}).encode()
                     mask = b'abcd'
                     ws.sendall(bytes([0x81, 0x80 | len(payload)]) + mask + bytes(b ^ mask[i % 4] for i, b in enumerate(payload)))

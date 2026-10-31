@@ -15390,7 +15390,7 @@
       "source_path": "skills/brainstorming/scripts/helper.js",
       "source_sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
       "target_path": "methodology/workflows/brainstorming/scripts/helper.js",
-      "target_sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
+      "target_sha256": "fd8e224e0c2639373efef4bfa10d93a54db2cc669e28e44d63c0521fc04ee5f1",
       "origin_license": "MIT",
       "transform": [
         "imported"
@@ -15404,7 +15404,7 @@
       "source_path": "skills/brainstorming/scripts/server.cjs",
       "source_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
       "target_path": "methodology/workflows/brainstorming/scripts/server.py",
-      "target_sha256": "19ea5e4f3775a2edc71a5941c26fdda96555a3e2eca92ea457078c7f87746dc3",
+      "target_sha256": "7dca349fa44d73c93be7553e00cdc266fd7642f94397a7e7e9f2b24145f47c6e",
       "origin_license": "MIT",
       "transform": [
         "imported",
