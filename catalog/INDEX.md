@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 489 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 496 skill(s) · 105 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -60,6 +60,7 @@
 | geoscientist | academic-sciences | [knowledge/agents/academic-sciences/geoscientist/agent.source.md](../knowledge/agents/academic-sciences/geoscientist/agent.source.md) |
 | github-specialist | software-engineering | [knowledge/agents/software-engineering/github-specialist/agent.source.md](../knowledge/agents/software-engineering/github-specialist/agent.source.md) |
 | grc-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md) |
+| growth-marketing-specialist | specialized-domains | [knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md](../knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md) |
 | hardware-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md) |
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
@@ -296,16 +297,21 @@
 | blockchain-cryptocurrency | [knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md](../knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) |
 | computer-vision-deep-learning | [knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md](../knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md) |
 | conversational-ai-chatbots | [knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md](../knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md) |
+| conversion-copywriting-psychology | [knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md](../knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md) |
+| cro-onboarding-experimentation | [knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md](../knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md) |
 | edtech-andragogy | [knowledge/skills/domains/industry/edtech-andragogy/SKILL.md](../knowledge/skills/domains/industry/edtech-andragogy/SKILL.md) |
 | explainable-ai | [knowledge/skills/domains/industry/explainable-ai/SKILL.md](../knowledge/skills/domains/industry/explainable-ai/SKILL.md) |
 | financial-transaction-processing | [knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md](../knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) |
 | game-animation-qa-motion | [knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md](../knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md) |
 | game-asset-pipeline | [knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md](../knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md) |
+| gtm-positioning-strategy | [knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md](../knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md) |
 | hardware-hacking-embedded-security | [knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md](../knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md) |
 | healthtech-standards-security | [knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md](../knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md) |
+| lifecycle-revops-paid-growth | [knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md](../knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md) |
 | llm-observability-otel-langfuse | [knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md](../knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md) |
 | llm-provider-protocol-interoperability | [knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md](../knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md) |
 | medical-device-cybersecurity | [knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md) |
+| seo-aeo-engineering | [knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md](../knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md) |
 | telecom-voice-engineering | [knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md](../knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md) |
 | linguistic-en-us | [knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md](../knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md) |
 | linguistic-es-latam | [knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md](../knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md) |
@@ -578,6 +584,7 @@
 | program-owasp-zap | [knowledge/skills/security/tooling/program-owasp-zap/SKILL.md](../knowledge/skills/security/tooling/program-owasp-zap/SKILL.md) |
 | program-sbom-tooling | [knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md](../knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md) |
 | program-sigstore-cosign | [knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md](../knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md) |
+| codebase-design | [methodology/workflows/codebase-design/SKILL.md](../methodology/workflows/codebase-design/SKILL.md) |
 | diagnosing-bugs | [methodology/workflows/diagnosing-bugs/SKILL.md](../methodology/workflows/diagnosing-bugs/SKILL.md) |
 | domain-modeling | [methodology/workflows/domain-modeling/SKILL.md](../methodology/workflows/domain-modeling/SKILL.md) |
 | grill-me | [methodology/workflows/grill-me/SKILL.md](../methodology/workflows/grill-me/SKILL.md) |
@@ -587,6 +594,7 @@
 | implement-spec | [methodology/workflows/implement-spec/SKILL.md](../methodology/workflows/implement-spec/SKILL.md) |
 | learning-consolidation | [methodology/workflows/learning-consolidation/SKILL.md](../methodology/workflows/learning-consolidation/SKILL.md) |
 | phase-boundaries | [methodology/workflows/phase-boundaries/SKILL.md](../methodology/workflows/phase-boundaries/SKILL.md) |
+| prototype | [methodology/workflows/prototype/SKILL.md](../methodology/workflows/prototype/SKILL.md) |
 | retro | [methodology/workflows/retro/SKILL.md](../methodology/workflows/retro/SKILL.md) |
 | superpowers-brainstorming | [methodology/workflows/superpowers-brainstorming/SKILL.md](../methodology/workflows/superpowers-brainstorming/SKILL.md) |
 | superpowers-diagnosing-superpowers | [methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md](../methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md) |

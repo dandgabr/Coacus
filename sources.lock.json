@@ -639,7 +639,7 @@
       "source_path": "agents/research-discovery/web-researcher/AGENT.md",
       "source_sha256": "57c732022056b3f04c3dba62b1208fab8fd7cfa962b78b4d143d4ac4090fd859",
       "target_path": "knowledge/agents/research-discovery/web-researcher/agent.source.md",
-      "target_sha256": "f784b67d43134e17df4daf2eb4923aed3734a7e4c9aa066d4af74902e0cff116",
+      "target_sha256": "978a08c9f82d8083bb9852b7b97e0c30c9946b8f9c3e007d23c23288e1d20931",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -5645,7 +5645,7 @@
       "source_path": "skills/framework/framework-react/SKILL.md",
       "source_sha256": "b8ce23a64e4569eda982ac5772364a5ccf5905244f1ec0fb6db151da3413952a",
       "target_path": "knowledge/skills/frameworks/framework-react/SKILL.md",
-      "target_sha256": "3d14a52f67baf9d428475bf94f6a5c697e0b1c8da959cccf6d982182c15281f6",
+      "target_sha256": "3b72ca6ca678eacce44e6158e3de7128b05c2805ebfb6f6cf4c4e9e723c54698",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11181,7 +11181,7 @@
       "source_path": "skills/roles/product-owner/SKILL.md",
       "source_sha256": "dccd408d35991c56c49e166fd9da041990f239afbb00afa78aa3448868b30c8c",
       "target_path": "knowledge/skills/roles/product-owner/SKILL.md",
-      "target_sha256": "78d10fa6d8758397f047fa23de113ff51df5e4664089386263db84b7dfd27caf",
+      "target_sha256": "da3961f0092beebc251c36a005644e67b9f3cccaa08893a46becfa42b642e38a",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11640,9 +11640,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/roles/web-search-specialist/SKILL.md",
-      "source_sha256": "4d9373b69ec55909c91ce378f70572a2c9c3eb3dfade79c48ea1d0a248b20375",
+      "source_sha256": "df1794b2c985e4944ac912b7a09cad7d3ec18a1c1d1aca177843799677a5eeef",
       "target_path": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "target_sha256": "4d9373b69ec55909c91ce378f70572a2c9c3eb3dfade79c48ea1d0a248b20375",
+      "target_sha256": "df1794b2c985e4944ac912b7a09cad7d3ec18a1c1d1aca177843799677a5eeef",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15893,7 +15893,7 @@
       "source_path": "skills/finishing-a-development-branch/SKILL.md",
       "source_sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65",
       "target_path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "target_sha256": "5ec9cd873dab9587ba7f204d4ee0f8b180dc06d31f05d96c20d1d97cfd84df40",
+      "target_sha256": "ded3b2539841cc05b77b9dd63d6864091115949b1b0a012b8781f1cc4c01d29e",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16212,7 +16212,7 @@
       "source_path": "skills/test-driven-development/writing-good-tests.md",
       "source_sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
       "target_path": "methodology/workflows/superpowers-test-driven-development/writing-good-tests.md",
-      "target_sha256": "171e33297437bf7057713856978fb0ccd8ffb666c78cafe675e60d1c0df1bfee",
+      "target_sha256": "322dba73eecdbb021ca5315c3ed2d09d2072b9102bf16df06ef7a6ca337d8a3b",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -17376,9 +17376,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "source_sha256": "53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20",
+      "source_sha256": "9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8",
       "target_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "target_sha256": "53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20",
+      "target_sha256": "9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19326,9 +19326,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "source_sha256": "052d98c7ee5a8a9b37ede8e70bfc92dfcafccea87593861294159cdf9ff1f4ea",
+      "source_sha256": "f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78",
       "target_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "target_sha256": "052d98c7ee5a8a9b37ede8e70bfc92dfcafccea87593861294159cdf9ff1f4ea",
+      "target_sha256": "f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19341,9 +19341,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "source_sha256": "1a0036ee63af29726ccb497f94017de817035b420c8a6fb18cc45346af804004",
+      "source_sha256": "398b06d9081f5aa742dde18cd9de6dec861cb4755186acf72d4a2d278bf0618a",
       "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "target_sha256": "1a0036ee63af29726ccb497f94017de817035b420c8a6fb18cc45346af804004",
+      "target_sha256": "398b06d9081f5aa742dde18cd9de6dec861cb4755186acf72d4a2d278bf0618a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19356,9 +19356,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
-      "source_sha256": "ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a",
+      "source_sha256": "14ba5a64d04244d9e46447408603f5d0894a54d8bef89586703b144240b50e81",
       "target_path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
-      "target_sha256": "ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a",
+      "target_sha256": "14ba5a64d04244d9e46447408603f5d0894a54d8bef89586703b144240b50e81",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19371,9 +19371,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "source_sha256": "5dea59cc7a5352a796afb5f90734026bb206ee08a4bff4d0d30a4b7060561d4e",
+      "source_sha256": "e6a6636ba265e91102ecd276898d3c9596606f0a7f0866212bfcb5e7f97cf02b",
       "target_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "target_sha256": "5dea59cc7a5352a796afb5f90734026bb206ee08a4bff4d0d30a4b7060561d4e",
+      "target_sha256": "e6a6636ba265e91102ecd276898d3c9596606f0a7f0866212bfcb5e7f97cf02b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19536,9 +19536,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-      "source_sha256": "c9687f75fb543d07e70735d3a829beae7577d925ff58ec4e0ed0bcb44699e568",
+      "source_sha256": "964996ea5ce158bbfd054f1afc28d548a43293b3e44e94e9b73588e66085fc31",
       "target_path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-      "target_sha256": "c9687f75fb543d07e70735d3a829beae7577d925ff58ec4e0ed0bcb44699e568",
+      "target_sha256": "964996ea5ce158bbfd054f1afc28d548a43293b3e44e94e9b73588e66085fc31",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20121,9 +20121,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
-      "source_sha256": "f7831c67c59eb64bf9e72bb45a0aff2d5b63f6c5647aeddd5b6b9b535c8d07b7",
+      "source_sha256": "a693887fb731857992f73b03fc773b62f08e85d1319b86f036fc3ce70908aad0",
       "target_path": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
-      "target_sha256": "f7831c67c59eb64bf9e72bb45a0aff2d5b63f6c5647aeddd5b6b9b535c8d07b7",
+      "target_sha256": "a693887fb731857992f73b03fc773b62f08e85d1319b86f036fc3ce70908aad0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20136,9 +20136,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "source_sha256": "6b4d5db3ba0d4b2aee61e299aa2323ffdfa64399e4b22b1868250b552bf8b1d7",
+      "source_sha256": "029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12",
       "target_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "target_sha256": "6b4d5db3ba0d4b2aee61e299aa2323ffdfa64399e4b22b1868250b552bf8b1d7",
+      "target_sha256": "029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20151,9 +20151,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/domain-modeling/SKILL.md",
-      "source_sha256": "f41fd540948a035e2e622e918ee876e36f7302ef2bb67037499f42b4da48befe",
+      "source_sha256": "9ef74b595969f6c5095badc9553aec859d7793dc2305d4462999ebbe6d5e7376",
       "target_path": "methodology/workflows/domain-modeling/SKILL.md",
-      "target_sha256": "f41fd540948a035e2e622e918ee876e36f7302ef2bb67037499f42b4da48befe",
+      "target_sha256": "9ef74b595969f6c5095badc9553aec859d7793dc2305d4462999ebbe6d5e7376",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20196,9 +20196,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/grilling/SKILL.md",
-      "source_sha256": "65b72358b83638a2672a62d0764494e5fefb2be479a25523ce9956f641b0469d",
+      "source_sha256": "2ff5b336bb99765239deb467cfe009cb6d1bab2710f43697cdd63e53b8011dea",
       "target_path": "methodology/workflows/grilling/SKILL.md",
-      "target_sha256": "65b72358b83638a2672a62d0764494e5fefb2be479a25523ce9956f641b0469d",
+      "target_sha256": "2ff5b336bb99765239deb467cfe009cb6d1bab2710f43697cdd63e53b8011dea",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20301,9 +20301,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "source_sha256": "639d38aa10df946dd172274c112ed3b9523f85c1c9a178846020f95cbc333923",
+      "source_sha256": "6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0",
       "target_path": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "target_sha256": "639d38aa10df946dd172274c112ed3b9523f85c1c9a178846020f95cbc333923",
+      "target_sha256": "6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21021,9 +21021,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
-      "source_sha256": "f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880",
+      "source_sha256": "48c16f8fcb829a5a3cbc593145d9ee6017e84539d55b91cb4a4c9e27d3495a44",
       "target_path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
-      "target_sha256": "f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880",
+      "target_sha256": "48c16f8fcb829a5a3cbc593145d9ee6017e84539d55b91cb4a4c9e27d3495a44",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21361,6 +21361,126 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-28T21:02:58Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md",
+      "source_sha256": "5dfacb7c0a72f8edcc9158fe5f508d143aae49d47855ff1b63639efb6ebbde6a",
+      "target_path": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md",
+      "target_sha256": "5dfacb7c0a72f8edcc9158fe5f508d143aae49d47855ff1b63639efb6ebbde6a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md",
+      "source_sha256": "c784c711a3cd55a468387e11faa5ec55f8522a108aa2ded8316a615f085ae999",
+      "target_path": "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md",
+      "target_sha256": "c784c711a3cd55a468387e11faa5ec55f8522a108aa2ded8316a615f085ae999",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md",
+      "source_sha256": "502137a4d115c0fe8e906fe76c6b682c2fc97edc65539f2f7023dc698c14b6c0",
+      "target_path": "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md",
+      "target_sha256": "502137a4d115c0fe8e906fe76c6b682c2fc97edc65539f2f7023dc698c14b6c0",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md",
+      "source_sha256": "f31c7e1334b6355194212110babfb8836818da8e3b38a51f538d5dffaba3bda9",
+      "target_path": "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md",
+      "target_sha256": "f31c7e1334b6355194212110babfb8836818da8e3b38a51f538d5dffaba3bda9",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md",
+      "source_sha256": "24c7d7a2a36626899ef7f84a5d70fceb7c542f9bc4620488b35993f2c6679663",
+      "target_path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md",
+      "target_sha256": "24c7d7a2a36626899ef7f84a5d70fceb7c542f9bc4620488b35993f2c6679663",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md",
+      "source_sha256": "54b086bcbc709bbbf22c2e3d8d6fe211e48659cbc25529181bab9c1febd4d93a",
+      "target_path": "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md",
+      "target_sha256": "54b086bcbc709bbbf22c2e3d8d6fe211e48659cbc25529181bab9c1febd4d93a",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "methodology/workflows/codebase-design/SKILL.md",
+      "source_sha256": "0eae89918a2c2a8510ce42bfb5645aea4d16c3ff26a3c857a517ac8ab48b29e3",
+      "target_path": "methodology/workflows/codebase-design/SKILL.md",
+      "target_sha256": "0eae89918a2c2a8510ce42bfb5645aea4d16c3ff26a3c857a517ac8ab48b29e3",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "methodology/workflows/prototype/SKILL.md",
+      "source_sha256": "28bec0524556bd89fded9877eaa59f8f4c299ccce7925a9aa6f17dede11b0cd4",
+      "target_path": "methodology/workflows/prototype/SKILL.md",
+      "target_sha256": "28bec0524556bd89fded9877eaa59f8f4c299ccce7925a9aa6f17dede11b0cd4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-10-31T01:55:53Z"
     }
   ]
 }

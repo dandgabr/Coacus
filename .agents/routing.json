@@ -1608,6 +1608,42 @@
       ]
     },
     {
+      "name": "growth-marketing-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Go-To-Market (GTM) Strategy, Positioning, Conversion Copywriting, CRO, SEO/AEO Engineering, and Revenue Operations. Bridges product capabilities with commercial growth, market positioning, experimentation discipline, and SaaS unit economics.",
+      "skills": [
+        "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md",
+        "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md",
+        "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md",
+        "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md",
+        "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md",
+        "knowledge/skills/roles/product-owner/SKILL.md",
+        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "aeo",
+        "answer engine optimization",
+        "cac",
+        "conversion copywriting",
+        "conversion rate optimization",
+        "copywriting",
+        "cro",
+        "go to market",
+        "growth marketing",
+        "gtm strategy",
+        "ltv",
+        "marketing strategy",
+        "onboarding funnel",
+        "posicionamento",
+        "positioning",
+        "revenue operations",
+        "revops",
+        "seo",
+        "unit economics"
+      ]
+    },
+    {
       "name": "hardware-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",

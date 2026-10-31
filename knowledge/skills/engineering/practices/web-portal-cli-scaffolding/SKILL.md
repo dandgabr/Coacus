@@ -108,3 +108,22 @@ To guarantee that CLI unit tests can run reliably in hermetic CI/CD pipelines wi
    - Test suites must install a socket/fetch monkeypatch that immediately throws an assertion error if any test attempts to establish a real external network connection.
 3. **Mandatory Live Smoke Test**:
    - Before activating a newly scaffolded portal CLI in an agent repository, execute an interactive one-shot smoke query against the live target to verify that current selectors and endpoints remain intact.
+
+---
+
+## 🔄 5. Canonical URL Normalization & Enrichment-Preserving Deduplication
+
+### A. Canonical URL Normalization
+1. Strip tracking and session query parameters (`utm_*`, `ref`, `source`, `fbclid`, `gclid`).
+2. Normalize protocol schemes to lowercase HTTPS.
+3. Strip default ports (`:443`, `:80`) and normalize trailing slashes on root domains.
+4. Resolve relative paths against the base URL deterministically before generating output records.
+
+### B. Enrichment-Preserving Deduplication
+When multi-page fetches or parallel search passes yield multiple records for the same canonical entity URL:
+- **Never discard blindly:** A later summary or detail card often carries fields missing from the earlier overview listing.
+- **Field-Level Merging:**
+  - Keep the earliest observed primary identifier (`id`, `canonical_url`).
+  - Take the longest non-empty text string for `title` and `description`.
+  - Merge metadata objects; non-null keys overwrite null keys.
+  - Union array fields (e.g. `tags`, `categories`, `author_list`), deduplicating identical values.

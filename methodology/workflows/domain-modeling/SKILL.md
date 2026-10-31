@@ -18,6 +18,10 @@ in the code, the docs and the conversation agree.
 - **Cross-check the code.** "The code cancels whole Orders, but you said partial
   cancellation is possible. Which is right?"
 - **Update the glossary inline**, as terms resolve — never batch the updates.
+- **Semantic reset on drift:** When conversation or implementation drifts into
+  contradictory metaphors, halt execution immediately. Re-frame the problem in
+  clear, unambiguous technical prose (ASD-STE100 style) constrained strictly to
+  canonical terms defined in `GLOSSARY.md`.
 
 ## The glossary
 

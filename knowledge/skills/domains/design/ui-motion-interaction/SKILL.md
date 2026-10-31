@@ -105,6 +105,18 @@ Every micro-interaction consists of four discrete stages:
 
 ---
 
+## 🛠️ Multi-Part Exploded-View Assembly Springs
+
+For technical apparatus, 3D diagrams, or multi-component isometric representations that expand into exploded inspection views:
+- **Kinematic Hierarchy:** Components expand outward along their primary assembly axes ($X$, $Y$, or $Z$) with proportional spatial offsets.
+- **Damping & Oscillation Invariant:** Exploded-view springs must be critically damped ($\zeta \ge 1.0$) or overdamped. Never allow mechanical sub-assemblies to oscillate or overshoot past their physical mounting stops.
+- **Centroid Depth Re-ordering:** When parts expand, recalculate visual depth ordering ($D = x + y + z$) or DOM layer order dynamically so front plates never clip behind interior core components during the transition.
+- **Accessibility Decoupling (`aria-valuetext`):**
+  - Continuous mechanical spring animations or numerical scrubbers must NEVER spam assistive technology with intermediate frame values.
+  - Decouple screen reader announcements: update `aria-valuenow` and `aria-valuetext` ONLY upon resting/settling state or at debounced discrete milestone steps (minimum $250\text{ms}$ debounce interval), keeping visual fluidity isolated from screen reader verbosity.
+
+---
+
 ## ♿ Accessibility, Motion Sickness & Performance
 
 Canonical obligations live in [web-accessibility-wcag, Motion and Animation](../../../engineering/practices/web-accessibility-wcag/SKILL.md). Honour reduced motion everywhere: it is WCAG technique C39 and Coacus house policy, not an AA requirement.

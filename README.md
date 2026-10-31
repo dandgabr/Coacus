@@ -36,8 +36,8 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 461 skills across eleven categories, 104 agents, and one MCP declaration.
-- **Methodology** — how work proceeds: 28 process workflows for planning,
+- **Knowledge** — what the framework knows: 466 skills across eleven categories, 105 agents, and one MCP declaration.
+- **Methodology** — how work proceeds: 30 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
   then analysis.
@@ -71,7 +71,7 @@ Three layers, plus one closed engine:
 - **`knowledge/`** — the canonical WHAT. Skills, agents and MCP declarations,
   harness-agnostic. Bodies name actions, never tool names
   ([skill-authoring](docs/standards/skill-authoring.md)).
-- **`methodology/`** — the canonical HOW. The 28 process workflows and the single
+- **`methodology/`** — the canonical HOW. The 30 process workflows and the single
   bootstrap wrapper body ([session-start-bootstrap](docs/standards/session-start-bootstrap.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
   file: bootstrap shape, output paths, tool mapping, install method. Shapes: `A`
@@ -120,12 +120,12 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 461 | `domains` 162, `security` 133, `engineering` 38, `roles` 26, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 7 |
-| Agents | 104 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 12, `data-cloud-devops` 9, `core-orchestration` 4, `research-discovery` 4 |
-| Workflows | 28 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
+| Skills | 466 | `domains` 167, `security` 133, `engineering` 38, `roles` 26, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 7 |
+| Agents | 105 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 13, `data-cloud-devops` 9, `core-orchestration` 4, `research-discovery` 4 |
+| Workflows | 30 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
 | MCPs | 1 | `coacus-catalog` |
-| Catalog | 489 skill entries | 461 knowledge skills + 28 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1464 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Catalog | 496 skill entries | 466 knowledge skills + 30 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1472 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Core engine (stdlib only; language gate dependency is pinned)
 

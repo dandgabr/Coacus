@@ -128,3 +128,11 @@ A resilient hero section adheres to a strict six-part anatomical structure:
 - Jakob Nielsen, "F-Shaped Pattern For Reading Web Content (original eyetracking research)", *Nielsen Norman Group*, 2006/2017.
 - W3C Web Content Accessibility Guidelines (WCAG) 2.2, Dec 2024.
 - W3C Design Tokens Community Group (DTCG) Format Specification.
+
+---
+
+## 🔗 Integration with Other Skills
+
+- For value proposition crafting, Schwartz awareness stages, and CTA friction reduction formulas, see [conversion-copywriting-psychology](../../industry/conversion-copywriting-psychology/SKILL.md).
+- For competitive positioning and category framing, see [gtm-positioning-strategy](../../industry/gtm-positioning-strategy/SKILL.md).
+- For technical search indexing and structured data schemas, see [seo-aeo-engineering](../../industry/seo-aeo-engineering/SKILL.md).

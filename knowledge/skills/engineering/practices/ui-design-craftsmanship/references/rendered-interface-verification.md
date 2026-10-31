@@ -27,6 +27,14 @@ Compare stacking contexts when a progress indicator, menu or overlay covers anot
 
 Wait for the selected appearance, relevant stylesheet, fonts and intended animation state. Remove incidental hover before comparing rest states. A semantic hidden state and accessibility-hidden decoration require different filtering.
 
+### Visual Regression & Sub-Pixel Tolerance Discipline
+
+When running automated image or DOM comparison audits:
+- **Deterministic Snapshot Stabilization:** Freeze system clocks (`Date.now()`, `performance.now()`), disable CSS transition/animation runtimes (`* { animation: none !important; transition: none !important; }`), mock dynamic network requests with static fixtures, and seed all pseudorandom generators with fixed seeds.
+- **Sub-Pixel Geometry Thresholds:** Different GPU rasterizers and font rendering engines produce sub-pixel shifts ($\le 0.5\text{px}$). Do not treat sub-pixel boundary antialiasing fringes as visual regression failures.
+- **Anti-Aliasing Masking:** Mask out high-frequency font smoothing edges with a 1-pixel color-tolerance neighborhood ($\Delta E \le 2.0$) so font rasterizer variance between headless environments does not generate false alarms.
+- **True Regression Threshold:** Flag only structural layout shifts ($\ge 1\text{px}$ container bounding changes), missing icons, text wraps, clipped containers, or color token discrepancies ($\Delta E > 5.0$).
+
 Record geometry before any screenshot-only adaptation. Expanding a scrolling container can change viewport-sized scenes and resize observers; making overflow visible can expose the page's unrelated background. Prefer viewport captures or a method preserving the relevant dimensions. State what any full-content capture changes and confirm representative unmodified viewport output.
 
 Use an inventory-derived coverage matrix and identify sampled axes explicitly. Test the measurement itself with known bad cases such as zero-height bars, overridden hidden state or an unreadable inherited surface. A screenshot file or a successful event is not an acceptance oracle.

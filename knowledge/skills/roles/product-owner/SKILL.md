@@ -64,6 +64,7 @@ As a Product Owner, you lead product direction collaboratively:
 - **Developers**: Explain the "why" and the "what" of the stories to the [backend-developer](../backend-developer/SKILL.md) and the [frontend-developer](../frontend-developer/SKILL.md) in planning meetings.
 - **QA**: Work in partnership with the [qa-engineer](../qa-engineer/SKILL.md) to ensure all usage paths (happy and unhappy) are documented in the acceptance criteria.
 - **Scrum Master**: Support the [scrum-master](../scrum-master/SKILL.md) in shielding the team from additional scope and monitoring delivery velocity.
+- **Growth & Marketing**: Partner with commercial teams using [gtm-positioning-strategy](../../domains/industry/gtm-positioning-strategy/SKILL.md) and [cro-onboarding-experimentation](../../domains/industry/cro-onboarding-experimentation/SKILL.md) to align feature backlog prioritization with market positioning, activation experiments, and unit economics.
 
 ---
 

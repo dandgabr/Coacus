@@ -118,6 +118,38 @@ The GLSL sketch, WGSL notes and constraint detail live in [references/refraction
 
 ---
 
+## 🥪 The Hybrid SVG / GPU Canvas Sandwich
+
+High-precision technical interfaces often suffer when forced entirely into either pure vector DOM (high CPU layout and element overhead) or pure GPU canvas (poor text rendering and inaccessible hit testing). The hybrid sandwich pattern resolves this:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│ Top Layer: Accessible Vector SVG Overlay                │
+│  - Interactive hitboxes, hover focus rings               │
+│  - Upright HTML typography, leader lines, annotations    │
+│  - Keyboard navigation and screen reader semantics       │
+├──────────────────────────────────────────────────────────┤
+│ Middle Layer: Hardware-Accelerated GPU Canvas           │
+│  - High-poly meshes, raymarched volumetric apparatus     │
+│  - Dynamic particle flows, compute-driven point clouds   │
+│  - Real-time technical ink shaders                       │
+├──────────────────────────────────────────────────────────┤
+│ Base Layer: Structural Canvas Background & Shadows       │
+│  - CSS grid guides, dark/light canvas tokens             │
+│  - Static boundary planes                                │
+└──────────────────────────────────────────────────────────┘
+```
+
+### Technical Ink & Holographic Wireframe Shaders (Light & Dark Themes)
+
+When rendering technical schematics or mechanical apparatus on the GPU:
+- **Avoid dark-room bias:** Shaders must adapt to both light (paper drafting) and dark (blueprint/terminal) themes:
+  - *Dark Theme:* Electric cyan/green emission lines over deep midnight backdrops (`#0b0f19`).
+  - *Light Theme:* Technical ink lines (`hsl(215, 30%, 20%)`) with warm parchment highlights and subtle sepia rim occlusions over clean paper whites (`hsl(45, 15%, 98%)`).
+- **Analytic Line Widths:** Implement screen-space anti-aliased wireframes using standard derivative functions (`fwidth()` in GLSL/WGSL) so line strokes remain exactly $1\text{px}$ wide regardless of camera distance or zoom factor.
+
+---
+
 ## ♿ Canvas Accessibility & Core Web Vitals
 
 1. **Decouple LCP from Canvas:** Canvas drawing operations never trigger standard browser text/image LCP. The hero message, primary headline, and critical UI controls must reside in semantic, server-rendered HTML.
