@@ -5,6 +5,8 @@ description: Use when reviewing a diff, running a Standards review and a Spec re
 
 # Two-axis code review
 
+For review timing, scope and dispatch context, see [requesting code review](../requesting-code-review/SKILL.md). For handling returned findings, see [review reception](../receiving-code-review/SKILL.md).
+
 Review the diff since a fixed point on two axes, isolated from each other:
 
 - **Standards** — does the change follow the repository's coding standards, plus a

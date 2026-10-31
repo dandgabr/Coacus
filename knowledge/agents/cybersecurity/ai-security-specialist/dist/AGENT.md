@@ -5,6 +5,7 @@ Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Secu
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [guardrail-authoring](../../../../skills/engineering/practices/guardrail-authoring/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [ai-agentic-security](../../../../skills/security/ai/ai-agentic-security/SKILL.md)
 - [ai-adversarial-ml-security](../../../../skills/security/ai/ai-adversarial-ml-security/SKILL.md)
@@ -60,3 +61,7 @@ The agent loads natively through the [`agent.yaml`](agent.yaml) file.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Load the structured definitions from [`agent.json`](agent.json).
+
+## Conditional domain references
+
+- Consult [guardrail-authoring](../../../../skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.

@@ -5,6 +5,8 @@ Senior specialist agent in Software Engineering, covering formal requirements en
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [lang-lua](../../../../skills/languages/lang-lua/SKILL.md)
+- [lang-perl](../../../../skills/languages/lang-perl/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [gnome-shell-extension-development](../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
@@ -66,3 +68,8 @@ The agent loads natively through the [`agent.yaml`](agent.yaml) file.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Load the structured definitions from [`agent.json`](agent.json).
+
+## Conditional domain references
+
+- Consult [lang-perl](../../../../skills/languages/lang-perl/SKILL.md) when working on Perl code.
+- Consult [lang-lua](../../../../skills/languages/lang-lua/SKILL.md) when working on Lua code.

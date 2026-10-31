@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = importlib.util.spec_from_file_location('polluter', ROOT / 'methodology/workflows/superpowers-systematic-debugging/find_polluter.py')
+SPEC = importlib.util.spec_from_file_location('polluter', ROOT / 'methodology/workflows/diagnosing-bugs/find_polluter.py')
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 

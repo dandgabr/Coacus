@@ -436,6 +436,13 @@
       "digest": "sha256:aafc4c7012dbacae48edb536c8129af89b7f5120299025cc61df1915e106978d"
     },
     {
+      "name": "brainstorming",
+      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+      "type": "archive",
+      "url": "methodology/workflows/brainstorming/SKILL.md",
+      "digest": "sha256:f4f6aa1c611f01cfcb82fbd426ea8ad792445661d869ebb23427c2daa7a5eb47"
+    },
+    {
       "name": "bug-bounty-methodology",
       "description": "Acts as a Specialist in Bug Bounty and Large-Scale Vulnerability Hunting methodologies based on Bug Bounty Bootcamp (Vickie Li). Covers active/passive subdomain reconnaissance, hidden asset discovery, distributed port scanning, parameter fuzzing automation, logic flaw exploitation, and structuring professional impact reports (PoC, CVSS v3.1/v4.0, remediation).",
       "type": "archive",
@@ -504,6 +511,20 @@
       "type": "archive",
       "url": "knowledge/skills/security/grc/cis-controls/SKILL.md",
       "digest": "sha256:22863a90d4b647f33d7c622a0caefee2e97ab65f43e37f199413fb0301b61a8e"
+    },
+    {
+      "name": "claude-code-guide",
+      "description": "Guides configuration, discovery and troubleshooting for Claude Code. Use when working with Claude Code skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/claude-code-guide/SKILL.md",
+      "digest": "sha256:ca9596f16d07454500dfb4d9ac6d5fd62df8d1d322b4b8f0b8269f5f551c8203"
+    },
+    {
+      "name": "claude-desktop-guide",
+      "description": "Guides configuration, discovery and troubleshooting for Claude Desktop. Use when working with Claude Desktop skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/claude-desktop-guide/SKILL.md",
+      "digest": "sha256:9ea16de1b74c151cebc864fb260096514524b73514a1f0c03b80d1f971cc6cad"
     },
     {
       "name": "clean-architecture",
@@ -622,7 +643,7 @@
       "description": "Provides constructive code review practice based on modern review-culture literature, covering review goals, pull-request scope and anatomy, team working agreements, review automation and gate checks, objective comment patterns, emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "digest": "sha256:dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165"
+      "digest": "sha256:f8b244d7081c77f464dc36bcac53fc3d2d9cefd5870b16904e9b9d3b8ab95488"
     },
     {
       "name": "codebase-design",
@@ -630,6 +651,20 @@
       "type": "skill-md",
       "url": "methodology/workflows/codebase-design/SKILL.md",
       "digest": "sha256:0eae89918a2c2a8510ce42bfb5645aea4d16c3ff26a3c857a517ac8ab48b29e3"
+    },
+    {
+      "name": "codebase-exploration",
+      "description": "Acts as an agent specialized in rapid codebase exploration, pattern search, structure understanding, and answering questions about existing code.",
+      "type": "archive",
+      "url": "knowledge/skills/roles/codebase-exploration/SKILL.md",
+      "digest": "sha256:d4b73b8e1554c58d982097403c7531c073ed8c2aa47d3b37919421a80ca9d8d5"
+    },
+    {
+      "name": "codex-guide",
+      "description": "Guides configuration, discovery and troubleshooting for Codex. Use when working with Codex skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/codex-guide/SKILL.md",
+      "digest": "sha256:18196342905647317d38f020424cd8355fe0453a2b4e3cf2a777d30848090e3f"
     },
     {
       "name": "color-contrast-accessibility",
@@ -665,6 +700,13 @@
       "type": "archive",
       "url": "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
       "digest": "sha256:e351e513eb84ff4dfd67cb2a8e0d884228b20d0dd0ff78ce10bbcfe764606e5a"
+    },
+    {
+      "name": "command-code-guide",
+      "description": "Guides configuration, discovery and troubleshooting for Command Code. Use when working with Command Code skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/command-code-guide/SKILL.md",
+      "digest": "sha256:652f0459d23b382272ac76c72454645230a640e749bddd8d2ef1307948377fb7"
     },
     {
       "name": "computer-vision-deep-learning",
@@ -784,6 +826,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/security/cti/cti-threat-intel-lifecycle/SKILL.md",
       "digest": "sha256:b2b35fe45b9a42a8d23f65622a3c991419ed35bb5c350e23059e6e889127ddeb"
+    },
+    {
+      "name": "cursor-guide",
+      "description": "Guides configuration, discovery and troubleshooting for Cursor. Use when working with Cursor skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/cursor-guide/SKILL.md",
+      "digest": "sha256:3b1f88b148f8676d11b5ad55bca01cbe0dc252bbf1eab7010218a1391759c214"
     },
     {
       "name": "cybersecurity-ops-bash",
@@ -933,11 +982,25 @@
       "digest": "sha256:a37c5184aa73cd20281d8e2d40d91d3fef57b0277aa874690d6e7eee7197695f"
     },
     {
+      "name": "diagnosing-agent-sessions",
+      "description": "Use when a workflow session went wrong and your human partner wants to know why \u2014 repeated work, ignored plans, stumbles, poor results, a skill that didn't fire, \"it took too long\", \"why is it so expensive\", \"what is it doing\" \u2014 or wants to build a bug report for the workflow maintainers, for the current session or a past one identified by id or path, on any harness.",
+      "type": "archive",
+      "url": "methodology/workflows/diagnosing-agent-sessions/SKILL.md",
+      "digest": "sha256:33431770e67b279c86ad07e727030950f52add4f7416a408e228e5d77c3025a5"
+    },
+    {
       "name": "diagnosing-bugs",
-      "description": "Use when a bug or performance regression is hard to find, to build a tight pass/fail feedback loop before forming any hypothesis, then fix and lock it down.",
-      "type": "skill-md",
+      "description": "Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.",
+      "type": "archive",
       "url": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "digest": "sha256:029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12"
+      "digest": "sha256:890415b69bf0e91bf966c6f63cc9815cdcb9c753533d3dd18ae07d56a113c558"
+    },
+    {
+      "name": "dispatching-parallel-agents",
+      "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+      "type": "skill-md",
+      "url": "methodology/workflows/dispatching-parallel-agents/SKILL.md",
+      "digest": "sha256:9654f1f2dbaa9aa9f94b3da71c52a5833beac33784a7da802574995fd7415afe"
     },
     {
       "name": "distributed-ml-scaling",
@@ -1087,6 +1150,13 @@
       "digest": "sha256:a28ee9dcc528992ff8b047c55fb9e74d726cda57be74c654372d2f7d29ebe0b0"
     },
     {
+      "name": "executing-plans",
+      "description": "Use when executing an implementation plan in the current session as the implementer yourself \u2014 your human partner chose inline execution, or no subagent tool is available",
+      "type": "archive",
+      "url": "methodology/workflows/executing-plans/SKILL.md",
+      "digest": "sha256:8a624bcddd165b0c3096f4314ed6acc752175ca5e3dbfd6f68ee1cbb025bf99e"
+    },
+    {
       "name": "execution-flow-callgraph",
       "description": "Provides expertise in execution flow analysis, control paths, and static and dynamic Call Graph generation using Go Callvis, Pyan3, Code2Flow, Doxygen, CodeScene, NDepend, Sourcetrail, Understand, OpenTelemetry, and Jaeger.",
       "type": "archive",
@@ -1108,13 +1178,6 @@
       "digest": "sha256:48b6294545b0136209abb251a5d7d883b2f57c0f511de815f04a0455bc9de4d3"
     },
     {
-      "name": "explore",
-      "description": "Acts as an agent specialized in rapid codebase exploration, pattern search, structure understanding, and answering questions about existing code.",
-      "type": "archive",
-      "url": "knowledge/skills/roles/explore/SKILL.md",
-      "digest": "sha256:31ab5b28d2907cad1ae7849ea57284eaee9c7ec99e5ad75f25f286677808cafd"
-    },
-    {
       "name": "fedramp-cmmc-cloud-gov-assurance",
       "description": "Acts as a US government assurance specialist covering FedRAMP (including the FedRAMP 20x modernization path), CMMC 2.0 levels, and NIST SP 800-171/172 for protecting Controlled Unclassified Information.",
       "type": "skill-md",
@@ -1127,6 +1190,13 @@
       "type": "archive",
       "url": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md",
       "digest": "sha256:add413e892ba3977079ab7d64e367ee30131516118173c3c7d0f0bedce13609c"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
+      "type": "skill-md",
+      "url": "methodology/workflows/finishing-a-development-branch/SKILL.md",
+      "digest": "sha256:5f5e5dc849fe56257873164170446ed69081ac8a6e902d06baa5f9c50f5bb0ed"
     },
     {
       "name": "firmware-uefi-implant-analysis",
@@ -1353,13 +1423,6 @@
       "digest": "sha256:4057f866930d2cf5efda6785682317f70814cf04474bf1e0f59e0f97a714cc20"
     },
     {
-      "name": "general",
-      "description": "Acts as a general-purpose agent for complex research and multi-step task execution, integrating multiple skills as needed.",
-      "type": "archive",
-      "url": "knowledge/skills/roles/general/SKILL.md",
-      "digest": "sha256:adaaa3814f541b60f6fcd5b8622b74da66b0d6d6468cd192bad2715f3d8edbec"
-    },
-    {
       "name": "genomic-coordinate-integrity",
       "description": "Checks genomic interval and variant coordinates across file formats and reference assemblies. Use when joining genomic datasets, converting intervals, reconciling contig names, or investigating potential off-by-one and reference mismatches.",
       "type": "skill-md",
@@ -1567,7 +1630,7 @@
       "description": "Use when implementing a whole specification or ticket set, working the ready frontier with parallel implementer subagents on one integration branch.",
       "type": "skill-md",
       "url": "methodology/workflows/implement-spec/SKILL.md",
-      "digest": "sha256:2df373f1baf893c60238116bbb8cbde81b29d7e7fbf33a4a02249b2d2c180775"
+      "digest": "sha256:799f2285d0e3bf2a42b59d467de7ed161907fe0233f1522af8101eefec0ec60b"
     },
     {
       "name": "incident-response-blue-team",
@@ -1966,7 +2029,7 @@
       "description": "Specialist in Orchestration, Supervision, and Governance of Multi-Agent Systems. Focused on anchoring initial objectives, continuously detecting scope drift (Agent Drift and Role Drift), proactive intervention (Self-Correction), gradual containment, and applying kill-switch/safe termination to non-compliant agents.",
       "type": "archive",
       "url": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "digest": "sha256:c25f8948cbf9ab82ce1754279209fa2697f0fde4d4c7f920e2e9419fb14f28da"
+      "digest": "sha256:91af6c7d745af179beeaf444d49a02dc437aed2f159d7efbfe48cb8f3ee727e8"
     },
     {
       "name": "mutation-fuzzing-testing",
@@ -2030,6 +2093,13 @@
       "type": "archive",
       "url": "knowledge/skills/mapping/observability-correlation/SKILL.md",
       "digest": "sha256:288b7eec0d46dc469415081bee71985c7b33bae1f30b9715c2648127be363a21"
+    },
+    {
+      "name": "opencode-guide",
+      "description": "Guides configuration, discovery and troubleshooting for OpenCode. Use when working with OpenCode skills or harness behavior.",
+      "type": "skill-md",
+      "url": "knowledge/skills/platforms/opencode-guide/SKILL.md",
+      "digest": "sha256:9871560d9bc9f5eac76048af06cca74e07693c21ded7022100b0960a6bd96250"
     },
     {
       "name": "os-hardening-baselines",
@@ -2312,6 +2382,13 @@
       "digest": "sha256:ede73b1fd558d48ba3b27dc8bd3c580067c45dfe172a740656fbf506167da255"
     },
     {
+      "name": "receiving-code-review",
+      "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+      "type": "skill-md",
+      "url": "methodology/workflows/receiving-code-review/SKILL.md",
+      "digest": "sha256:d0fdd41ba2a3ee6ba11761badc6cecc49b18cb3cff81187f3a38ac9a234b244b"
+    },
+    {
       "name": "red-team-infrastructure",
       "description": "Acts as a Red Team Infrastructure specialist covering command-and-control architecture, redirectors, operational security for operators, payload staging, phishing infrastructure separation, and rules of engagement for adversary emulation.",
       "type": "skill-md",
@@ -2324,6 +2401,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
       "digest": "sha256:4cc200d8ebfd90fe9ac18c57e7c001d98b81ac42e7d79cb3e689b32ae7d61e40"
+    },
+    {
+      "name": "requesting-code-review",
+      "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+      "type": "archive",
+      "url": "methodology/workflows/requesting-code-review/SKILL.md",
+      "digest": "sha256:84eb69d8203e3a4876a8a6c9ea4488dbf0ec3659312edfc66356458242956e49"
     },
     {
       "name": "retro",
@@ -2501,102 +2585,11 @@
       "digest": "sha256:58f05ba1639cb803afb2db61bca2f61f866ddd0f844f707183b0c3e0e42ffdf3"
     },
     {
-      "name": "superpowers-brainstorming",
-      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-brainstorming/SKILL.md",
-      "digest": "sha256:b14bfab203651cfecc894318e3e7f853efb879e79b568fb43342ad541dfef2b1"
-    },
-    {
-      "name": "superpowers-diagnosing-superpowers",
-      "description": "Use when a superpowers session went wrong and your human partner wants to know why \u2014 repeated work, ignored plans, stumbles, poor results, a skill that didn't fire, \"it took too long\", \"why is it so expensive\", \"what is it doing\" \u2014 or wants to build a bug report for the superpowers maintainers, for the current session or a past one identified by id or path, on any harness.",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md",
-      "digest": "sha256:d8c6342e3c0ceca4bbefedf59ef9fc6febeba0584733edc2f5454851c0e7f4e5"
-    },
-    {
-      "name": "superpowers-dispatching-parallel-agents",
-      "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-      "type": "skill-md",
-      "url": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md",
-      "digest": "sha256:172263971a7d2281e0c458f1535e3c5daa3f819bb604fc761566dd6d6c9edb7e"
-    },
-    {
-      "name": "superpowers-executing-plans",
-      "description": "Use when executing an implementation plan in the current session as the implementer yourself \u2014 your human partner chose inline execution, or no subagent tool is available",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-executing-plans/SKILL.md",
-      "digest": "sha256:328f380af854b0a2658ad24d729a3633a1bc8841b5a30e20c8f6d3f353c80982"
-    },
-    {
-      "name": "superpowers-finishing-a-development-branch",
-      "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
-      "type": "skill-md",
-      "url": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "digest": "sha256:ded3b2539841cc05b77b9dd63d6864091115949b1b0a012b8781f1cc4c01d29e"
-    },
-    {
-      "name": "superpowers-receiving-code-review",
-      "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-      "type": "skill-md",
-      "url": "methodology/workflows/superpowers-receiving-code-review/SKILL.md",
-      "digest": "sha256:bc7382c4b516ca97cffba343c1d2a29ae573b1a34f1e39fd894765536dbca96a"
-    },
-    {
-      "name": "superpowers-requesting-code-review",
-      "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-requesting-code-review/SKILL.md",
-      "digest": "sha256:723838deeb5798a04aab087e9c9dd50fc6ac67e8a42643c7113d71ff7d4feee4"
-    },
-    {
-      "name": "superpowers-subagent-driven-development",
+      "name": "subagent-driven-development",
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
-      "url": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md",
-      "digest": "sha256:0a83a7ba27d6e24652a0bd150a1c33d508ec5bb9b72c87239a55964d26415513"
-    },
-    {
-      "name": "superpowers-systematic-debugging",
-      "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-systematic-debugging/SKILL.md",
-      "digest": "sha256:1599786f219ee2f22a9a1c3d668932bfb5456142c3be46e099fb656871258274"
-    },
-    {
-      "name": "superpowers-test-driven-development",
-      "description": "Use when implementing any feature or bugfix, before writing implementation code",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "digest": "sha256:2508068d56a33bc75ab3d0565a7656c1b62178f84e8e01a6265411a1117e00fe"
-    },
-    {
-      "name": "superpowers-using-git-worktrees",
-      "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-      "type": "skill-md",
-      "url": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md",
-      "digest": "sha256:55571a8e09cb141a3d4c6005fa0d2b72c29b39f833761699d6e0fc51e33321cb"
-    },
-    {
-      "name": "superpowers-verification-before-completion",
-      "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-verification-before-completion/SKILL.md",
-      "digest": "sha256:b7f2abf4e196030c314bb06c4a9519867838be893b4e894789d6ac7922b17439"
-    },
-    {
-      "name": "superpowers-writing-plans",
-      "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-writing-plans/SKILL.md",
-      "digest": "sha256:b0edff93e9e6c4bce4f0baa52f3df606bc6f81dc7bf1153aeaa5b3a099c7ccc2"
-    },
-    {
-      "name": "superpowers-writing-skills",
-      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-      "type": "archive",
-      "url": "methodology/workflows/superpowers-writing-skills/SKILL.md",
-      "digest": "sha256:05838a39c0451d607c93de5dd4c5b7dbe253c613bb953d534ea11fb7135b4009"
+      "url": "methodology/workflows/subagent-driven-development/SKILL.md",
+      "digest": "sha256:b33d0f32984fbdee01f212be804f2cc5908b9969080a2149f8038095cd164dfb"
     },
     {
       "name": "supply-chain-threat-modeling",
@@ -2639,6 +2632,13 @@
       "type": "archive",
       "url": "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md",
       "digest": "sha256:a76a7520d9a1d2e9af2db07bd12795e1df848504aec85c1dc54092afe852d30a"
+    },
+    {
+      "name": "test-driven-development",
+      "description": "Use when implementing any feature or bugfix, before writing implementation code",
+      "type": "archive",
+      "url": "methodology/workflows/test-driven-development/SKILL.md",
+      "digest": "sha256:ab9c6904a978613b5a7f0bdc4226beefe661a8418bc2ea26cd2cf6ae5c97dc8d"
     },
     {
       "name": "third-party-risk-management",
@@ -2694,7 +2694,7 @@
       "description": "Use when reviewing a diff, running a Standards review and a Spec review as isolated parallel subagents so neither pollutes the other.",
       "type": "skill-md",
       "url": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "digest": "sha256:6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0"
+      "digest": "sha256:f91256a5016a8d75f993b04ee34c61aa9b6a5bc95620944d2fec92d3874dcbcb"
     },
     {
       "name": "ui-app-layout-architectures",
@@ -3380,7 +3380,14 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:34696e84873d7217c07c0c86877838fee9a085a18baf45b80ca216080a9d7c46"
+      "digest": "sha256:b348012f0116448438f6ab7c0a9743221df68abdc4923464b13dc0b70f3df6cd"
+    },
+    {
+      "name": "using-git-worktrees",
+      "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+      "type": "skill-md",
+      "url": "methodology/workflows/using-git-worktrees/SKILL.md",
+      "digest": "sha256:490d3282093b0739d44371a81c20e49e93c4ef3c4e9f7253722aad08d3c7f5e7"
     },
     {
       "name": "ux-designer",
@@ -3402,6 +3409,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/data/vector-databases/SKILL.md",
       "digest": "sha256:65d50f80829d375161074fb9b80bc1aa2477cd59e6cfd1a6e5260d50b3aa0e9f"
+    },
+    {
+      "name": "verification-before-completion",
+      "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+      "type": "archive",
+      "url": "methodology/workflows/verification-before-completion/SKILL.md",
+      "digest": "sha256:b3b99d3c5c67d6c7ef4cde56bae20dc1ffcba620085e5c6e77f40ab25eebd4cd"
     },
     {
       "name": "version-freshness",
@@ -3465,6 +3479,20 @@
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
       "digest": "sha256:a693887fb731857992f73b03fc773b62f08e85d1319b86f036fc3ce70908aad0"
+    },
+    {
+      "name": "writing-plans",
+      "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+      "type": "archive",
+      "url": "methodology/workflows/writing-plans/SKILL.md",
+      "digest": "sha256:698c393b00e96ccd72a9169edb1cb12839fbb7018ad9659023988f92e824ea2c"
+    },
+    {
+      "name": "writing-skills",
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+      "type": "archive",
+      "url": "methodology/workflows/writing-skills/SKILL.md",
+      "digest": "sha256:b7dd9820b873edc8453d78555acb792d4847e3ce2554f4d55ebe28d030f7f2eb"
     },
     {
       "name": "zero-trust-architecture-engineering",

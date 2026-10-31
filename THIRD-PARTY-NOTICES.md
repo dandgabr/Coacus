@@ -10,16 +10,27 @@ hash — is recorded in [`sources.lock.json`](sources.lock.json)
 
 ## Superpowers — MIT
 
-The process workflows under `methodology/workflows/superpowers-*` are derived
-from the Superpowers workflow collection by Jesse Vincent
+The process workflows at `methodology/workflows/brainstorming`,
+`methodology/workflows/diagnosing-agent-sessions`,
+`methodology/workflows/dispatching-parallel-agents`,
+`methodology/workflows/executing-plans`,
+`methodology/workflows/finishing-a-development-branch`,
+`methodology/workflows/receiving-code-review`,
+`methodology/workflows/requesting-code-review`,
+`methodology/workflows/subagent-driven-development`,
+`methodology/workflows/test-driven-development`,
+`methodology/workflows/using-git-worktrees`,
+`methodology/workflows/verification-before-completion`,
+`methodology/workflows/writing-plans`, and `methodology/workflows/writing-skills`
+are derived from the Superpowers workflow collection by Jesse Vincent
 (<https://github.com/obra/superpowers>), imported at commit
 `5bf4e78011075bcfc0dc295f0724994cd123ee71`. They are redistributed under the MIT
 License, reproduced in full below.
 
-The workflows are adapted for Coacus: their handoffs use the flat
-`superpowers-<name>` skill names, their plan and spec output is redirected to
-`docs/temp/`, and each adapted `SKILL.md` carries an attribution footer. The MIT
-terms are unchanged.
+The workflows are adapted for Coacus and use flat skill names; their plan and
+spec output is redirected to `docs/temp/`. The systematic-debugging supporting
+files were moved to `methodology/workflows/diagnosing-bugs/`, retaining their
+Superpowers derivation. The MIT terms are unchanged.
 
 ```text
 MIT License
@@ -48,8 +59,8 @@ SOFTWARE.
 ## Skill-authoring references — MIT
 
 The authoring discipline in
-`methodology/workflows/superpowers-writing-skills/references/writing-for-agents.md`
-and `.../references/invocation-model.md` is adapted — paraphrased, not copied —
+`methodology/workflows/writing-skills/references/writing-for-agents.md`
+and `methodology/workflows/writing-skills/references/invocation-model.md` is adapted — paraphrased, not copied —
 from the `mattpocock/skills` collection by Matt Pocock
 (<https://github.com/mattpocock/skills>), MIT-licensed. The `skill-auditor`
 agent's review vocabulary (severity tiers, rating, report shape) is inspired by the

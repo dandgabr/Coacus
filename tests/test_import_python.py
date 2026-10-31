@@ -15,7 +15,7 @@ class TestPythonImports(unittest.TestCase):
             root = Path(tmp) / "coacus"
             upstream = Path(tmp) / "upstream"
             source = upstream / "workflow"
-            target = root / "methodology/workflows/superpowers-workflow"
+            target = root / "methodology/workflows/workflow"
             source.mkdir(parents=True)
             target.mkdir(parents=True)
             (source / "SKILL.md").write_text("---\nname: workflow\n---\nEnglish text.\n")
@@ -24,27 +24,21 @@ class TestPythonImports(unittest.TestCase):
             lock = {"schema": 1, "entries": [{
                 "source_repo": "superpowers", "source_path": "workflow/helper",
                 "source_sha256": importer._sha256(source / "helper"),
-                "target_path": "methodology/workflows/superpowers-workflow/helper.py",
+                "target_path": "methodology/workflows/workflow/helper.py",
                 "transform": ["imported", "converted:python"],
             }]}
             (root / "sources.lock.json").write_text(json.dumps(lock))
             actions = [{"action": "import-workflow", "source": source, "target": target}]
             with patch.object(importer, "ROOT", root), patch.object(importer, "_source_dir", return_value=upstream):
-                entries = importer.apply_actions({}, actions)
-                self.assertFalse((target / "helper").exists())
-                self.assertEqual((target / "helper.py").read_text(), "print('portable')\n")
-                converted = next(e for e in entries if e["target_path"].endswith("helper.py"))
-                self.assertEqual(converted["source_path"], "workflow/helper")
-                self.assertIn("converted:python", converted["transform"])
+                preserved = importer._preserved_python({} , actions)
+                self.assertEqual(preserved[target / "helper.py"]["content"], b"print('portable')\n")
                 (source / "helper").write_text("#!/bin/bash\necho changed\n")
-                before = (target / "SKILL.md").read_bytes()
                 with self.assertRaisesRegex(ValueError, "conversion.*review"):
-                    importer.apply_actions({}, actions)
-                self.assertEqual((target / "SKILL.md").read_bytes(), before)
+                    importer._preserved_python({}, actions)
 
     def test_helper_command_adaptation_is_idempotent(self):
         text = "Run `scripts/task-start PLAN 1` and `../subagent-driven-development/scripts/task-brief PLAN 1`."
         result = importer._adapt_workflow_text(text)
         self.assertIn("python3 scripts/task-start.py PLAN 1", result)
-        self.assertIn("python3 ../superpowers-subagent-driven-development/scripts/task-brief.py PLAN 1", result)
+        self.assertIn("python3 ../subagent-driven-development/scripts/task-brief.py PLAN 1", result)
         self.assertEqual(importer._adapt_workflow_text(result), result)

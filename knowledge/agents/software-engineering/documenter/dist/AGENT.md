@@ -5,6 +5,8 @@ Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Pr
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [program-markmap](../../../../skills/platforms/program-markmap/SKILL.md)
+- [lang-markdown](../../../../skills/languages/lang-markdown/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [editable-diagram-engineering](../../../../skills/mapping/editable-diagram-engineering/SKILL.md)
 - [architecture-documentation](../../../../skills/engineering/practices/architecture-documentation/SKILL.md)
@@ -74,3 +76,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [lang-markdown](../../../../skills/languages/lang-markdown/SKILL.md)
+- [program-markmap](../../../../skills/platforms/program-markmap/SKILL.md)

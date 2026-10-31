@@ -16,7 +16,7 @@ of tickets ready to be grabbed.
   rather than discovery.
 - **Implementer subagents.** Each runs in its own worktree on its own branch, based
   on the integration branch (reset onto it if not), builds with
-  [superpowers-test-driven-development](../superpowers-test-driven-development/SKILL.md),
+  [test-driven-development](../test-driven-development/SKILL.md),
   and merges the integration tip into its own branch before reporting done, so its
   merge is a fast-forward.
 - **Merger subagents.** Land finished work on the integration branch.

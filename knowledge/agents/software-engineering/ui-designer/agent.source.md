@@ -8,6 +8,19 @@ description: >-
   standards. Applies UI craft, the design style library and accessibility
   conformance to ship pixel-faithful, token-driven interfaces.
 skills:
+  - knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md
+  - knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md
+  - knowledge/skills/domains/design/ui-presentation-slides/SKILL.md
+  - knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md
+  - knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md
+  - knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md
+  - knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md
+  - knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md
+  - knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md
+  - knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md
+  - knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md
+  - knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md
   - knowledge/skills/roles/ui-designer/SKILL.md
   - knowledge/skills/domains/design/ui-hero-sections/SKILL.md
   - knowledge/skills/domains/design/ui-motion-interaction/SKILL.md
@@ -91,3 +104,21 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [ui-style-split-screen-dualism](knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md)
+- [ui-style-silkpunk](knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md)
+- [ui-style-psychedelic-60s](knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md)
+- [ui-style-pop-art-halftone](knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md)
+- [ui-style-kawaii-pastel-soft](knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md)
+- [ui-style-holographic-foil-iridescent](knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md)
+- [ui-style-fluid-liquid-morph](knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md)
+- [ui-style-cassette-futurism](knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md)
+- [ui-style-blueprint-cad-schematic](knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md)
+- [ui-style-analog-newspaper-broadsheet](knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md)
+- [ui-presentation-slides](knowledge/skills/domains/design/ui-presentation-slides/SKILL.md)
+- [ui-data-tables-dashboards](knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md)
+- [ui-app-layout-architectures](knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md)

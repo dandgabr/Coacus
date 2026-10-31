@@ -6,6 +6,7 @@ Senior data scientist who turns data into decisions: exploratory analysis and st
 
 <!-- coacus:generated:skills -->
 - [python-data-science](../../../../skills/data/python-data-science/SKILL.md)
+- [data-science-workflow](../../../../skills/data/data-science-workflow/SKILL.md)
 - [distributed-ml-scaling](../../../../skills/data/distributed-ml-scaling/SKILL.md)
 - [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
 - [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)
@@ -43,6 +44,7 @@ When acting, follow the guidelines in the associated skills: python-data-science
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [python-data-science](../../../../skills/data/python-data-science/SKILL.md)
+- [data-science-workflow](../../../../skills/data/data-science-workflow/SKILL.md)
 - [distributed-ml-scaling](../../../../skills/data/distributed-ml-scaling/SKILL.md)
 - [explainable-ai](../../../../skills/domains/industry/explainable-ai/SKILL.md)
 - [computer-vision-deep-learning](../../../../skills/domains/industry/computer-vision-deep-learning/SKILL.md)

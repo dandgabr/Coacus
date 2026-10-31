@@ -5,6 +5,8 @@ Specialist Agent in Information Security, covering AppSec practices (SAST, DAST,
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [blockchain-cryptocurrency](../../../../skills/domains/industry/blockchain-cryptocurrency/SKILL.md)
+- [security-champions](../../../../skills/security/operations/security-champions/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [api-protocol-security](../../../../skills/security/appsec/api-protocol-security/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
@@ -136,3 +138,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [security-champions](../../../../skills/security/operations/security-champions/SKILL.md)
+- Consult [blockchain-cryptocurrency](../../../../skills/domains/industry/blockchain-cryptocurrency/SKILL.md) when the solution involves blockchain or cryptocurrency.

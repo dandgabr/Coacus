@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import subprocess
 import sys
@@ -32,7 +33,9 @@ class TestPythonOnlyHooks(unittest.TestCase):
         shim = shlex.split(command)[2]
         encoded = shim.split("b64decode('", 1)[1].split("'", 1)[0]
         self.assertEqual(json.loads(base64.b64decode(encoded)), argv[1:])
-        self.assertTrue(coacus_install._entry_owned({"command": command}, {"/scripts/helper.py"}))
+        self.assertTrue(coacus_install._entry_owned({"command": command}, {argv[1]}))
+        self.assertFalse(coacus_install._entry_owned({"command": command}, {"/scripts/helper.py"}))
+        self.assertFalse(coacus_install._entry_owned({"command": command}, {argv[2]}))
 
     def test_skill_install_omits_python_runtime_caches(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -90,17 +93,39 @@ class TestPythonOnlyHooks(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             config = Path(tmp) / "codex"
             wrapper = config / "coacus/session-start.sh"
-            helper = config.parent / ".agents/skills/superpowers-executing-plans/scripts/task-start"
+            helper = config.parent / ".agents/skills/executing-plans/scripts/task-start"
             unowned = config / "user.sh"
             for target in (wrapper, helper, unowned):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("#!/usr/bin/env bash\necho old\n")
-            (config / coacus_install.MANIFEST_NAME).write_text(json.dumps({"files": [str(wrapper), str(helper)]}))
+            fingerprints = {str(target): hashlib.sha256(target.read_bytes()).hexdigest()
+                            for target in (wrapper, helper)}
+            (config / coacus_install.MANIFEST_NAME).write_text(json.dumps({
+                "files": [str(wrapper), str(helper)], "file_fingerprints": fingerprints,
+            }))
             coacus_install.install("codex", ROOT, config, dry_run=False,
-                                   skills=["superpowers-executing-plans"], agents=["no-match"])
+                                   skills=["executing-plans"], agents=["no-match"])
             self.assertFalse(wrapper.exists())
             self.assertFalse(helper.exists())
             self.assertTrue(unowned.exists())
+            self.assertTrue(helper.with_suffix(".py").exists())
+
+    def test_reinstall_preserves_unverified_and_modified_legacy_wrappers(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = Path(tmp) / "codex"
+            wrapper = config / "coacus/session-start.sh"
+            helper = config.parent / ".agents/skills/executing-plans/scripts/task-start"
+            for target in (wrapper, helper):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("user changes\n")
+            (config / coacus_install.MANIFEST_NAME).write_text(json.dumps({
+                "files": [str(wrapper), str(helper)],
+                "file_fingerprints": {str(wrapper): hashlib.sha256(b"original\n").hexdigest()},
+            }))
+            coacus_install.install("codex", ROOT, config, dry_run=False,
+                                   skills=["executing-plans"], agents=["no-match"])
+            self.assertEqual(wrapper.read_text(), "user changes\n")
+            self.assertEqual(helper.read_text(), "user changes\n")
             self.assertTrue(helper.with_suffix(".py").exists())
 
     @unittest.skipUnless(shutil.which("node"), "OpenCode adapter requires Node")

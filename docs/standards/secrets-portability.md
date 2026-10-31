@@ -65,7 +65,20 @@ build before merge does.
 - `engine/validators/evals.py` applies the same path and secret patterns to every
   scenario string.
 - `engine/toon.py` rejects secret-like literals in TOON payload fields.
-- `.gitleaks.toml` extends the default ruleset with narrow allowlists; the
-  `secrets` job in `.github/workflows/ci.yml` runs a pinned, checksum-verified
-  gitleaks scan in directory mode against the checked-out state.
+- `.gitleaks.toml` extends the default ruleset with narrow allowlists. The
+  `secrets` job runs `python3 scripts/coacus_secrets.py` with a pinned,
+  checksum-verified scanner. It scans Git history reachable from locally
+  available refs (`--all`), then scans temporary copies of tracked regular
+  working-tree files. Untracked files, symlinks, missing files and non-regular
+  files are excluded from the working-tree scan. Unavailable remote refs and
+  unreachable history are not covered.
+- Working-tree staging requires descriptor-relative `os.open` and `O_NOFOLLOW`
+  support. On platforms where secure staging is unavailable or fails, the runner
+  reports an incomplete scan and exits nonzero. Run it in a trusted, quiescent
+  worktree: do not modify or rename files or directories during staging.
+  `O_NOFOLLOW` prevents following symlinks during opens; it does not prove a
+  file's origin or exclude hardlinks to files outside the worktree. Concurrent
+  renames and hardlinks are outside the scanner's isolation guarantees, and the
+  scanner does not isolate a malicious local actor. Scanner output is suppressed;
+  a nonzero scan may indicate findings or a scanner failure, so inspect privately.
 - `tests/test_validators.py` covers the hygiene patterns.

@@ -904,7 +904,25 @@
       "path": "knowledge/skills/platforms/antigravity-guide"
     },
     {
+      "path": "knowledge/skills/platforms/claude-code-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/claude-desktop-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/codex-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/command-code-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/cursor-guide"
+    },
+    {
       "path": "knowledge/skills/platforms/gemini-enterprise"
+    },
+    {
+      "path": "knowledge/skills/platforms/opencode-guide"
     },
     {
       "path": "knowledge/skills/platforms/power-automate"
@@ -940,6 +958,9 @@
       "path": "knowledge/skills/roles/code-optimizer"
     },
     {
+      "path": "knowledge/skills/roles/codebase-exploration"
+    },
+    {
       "path": "knowledge/skills/roles/cover-letter-application-drafter"
     },
     {
@@ -949,16 +970,10 @@
       "path": "knowledge/skills/roles/devops-engineer"
     },
     {
-      "path": "knowledge/skills/roles/explore"
-    },
-    {
       "path": "knowledge/skills/roles/frontend-developer"
     },
     {
       "path": "knowledge/skills/roles/fullstack-developer"
-    },
-    {
-      "path": "knowledge/skills/roles/general"
     },
     {
       "path": "knowledge/skills/roles/interview-prep-upskill-tracker"
@@ -1399,13 +1414,28 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign"
     },
     {
+      "path": "methodology/workflows/brainstorming"
+    },
+    {
       "path": "methodology/workflows/codebase-design"
+    },
+    {
+      "path": "methodology/workflows/diagnosing-agent-sessions"
     },
     {
       "path": "methodology/workflows/diagnosing-bugs"
     },
     {
+      "path": "methodology/workflows/dispatching-parallel-agents"
+    },
+    {
       "path": "methodology/workflows/domain-modeling"
+    },
+    {
+      "path": "methodology/workflows/executing-plans"
+    },
+    {
+      "path": "methodology/workflows/finishing-a-development-branch"
     },
     {
       "path": "methodology/workflows/grill-me"
@@ -1432,49 +1462,19 @@
       "path": "methodology/workflows/prototype"
     },
     {
+      "path": "methodology/workflows/receiving-code-review"
+    },
+    {
+      "path": "methodology/workflows/requesting-code-review"
+    },
+    {
       "path": "methodology/workflows/retro"
     },
     {
-      "path": "methodology/workflows/superpowers-brainstorming"
+      "path": "methodology/workflows/subagent-driven-development"
     },
     {
-      "path": "methodology/workflows/superpowers-diagnosing-superpowers"
-    },
-    {
-      "path": "methodology/workflows/superpowers-dispatching-parallel-agents"
-    },
-    {
-      "path": "methodology/workflows/superpowers-executing-plans"
-    },
-    {
-      "path": "methodology/workflows/superpowers-finishing-a-development-branch"
-    },
-    {
-      "path": "methodology/workflows/superpowers-receiving-code-review"
-    },
-    {
-      "path": "methodology/workflows/superpowers-requesting-code-review"
-    },
-    {
-      "path": "methodology/workflows/superpowers-subagent-driven-development"
-    },
-    {
-      "path": "methodology/workflows/superpowers-systematic-debugging"
-    },
-    {
-      "path": "methodology/workflows/superpowers-test-driven-development"
-    },
-    {
-      "path": "methodology/workflows/superpowers-using-git-worktrees"
-    },
-    {
-      "path": "methodology/workflows/superpowers-verification-before-completion"
-    },
-    {
-      "path": "methodology/workflows/superpowers-writing-plans"
-    },
-    {
-      "path": "methodology/workflows/superpowers-writing-skills"
+      "path": "methodology/workflows/test-driven-development"
     },
     {
       "path": "methodology/workflows/to-spec"
@@ -1487,6 +1487,18 @@
     },
     {
       "path": "methodology/workflows/using-coacus"
+    },
+    {
+      "path": "methodology/workflows/using-git-worktrees"
+    },
+    {
+      "path": "methodology/workflows/verification-before-completion"
+    },
+    {
+      "path": "methodology/workflows/writing-plans"
+    },
+    {
+      "path": "methodology/workflows/writing-skills"
     }
   ]
 }

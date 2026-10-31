@@ -5,6 +5,7 @@ Senior specialist agent in Frontend Engineering and Design Engineering, masterin
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [webassembly](../../../../skills/languages/webassembly/SKILL.md)
 - [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [framework-react](../../../../skills/frameworks/framework-react/SKILL.md)
@@ -221,3 +222,9 @@ Consume the definitions through the structured [`agent.json`](agent.json) manife
 ## Conditional component-library integration
 
 When the project already uses Tabler or explicitly requests it, consult [framework-tabler](../../../../skills/frameworks/framework-tabler/SKILL.md) for version-matched component contracts, lifecycle ownership and relevant theme/direction checks. A generic dashboard request does not select Tabler; preserve the existing project stack.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- Consult [WebAssembly engineering](../../../../skills/languages/webassembly/SKILL.md) when the task involves WebAssembly.

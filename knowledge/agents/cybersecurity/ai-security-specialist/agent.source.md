@@ -7,6 +7,7 @@ description: >-
   poisoning, AI-system lifecycle threats under ISO/IEC 27090:2026, and
   OWASP Top 10 for LLM compliance.
 skills:
+  - knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/ai/ai-agentic-security/SKILL.md
   - knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md
@@ -62,3 +63,7 @@ The agent loads natively through the [`agent.yaml`](agent.yaml) file.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Load the structured definitions from [`agent.json`](agent.json).
+
+## Conditional domain references
+
+- Consult [guardrail-authoring](knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.

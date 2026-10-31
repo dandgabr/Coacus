@@ -6,13 +6,17 @@
 ## Rule
 
 Parallel work is governed, executable and testable. No agent may spawn a subagent
-without acquiring a slot from the shared ledger, and ungoverned parallel spawning
-is prohibited.
+without a slot acquired from the shared ledger, and ungoverned parallel spawning
+is prohibited. Use exactly one acquisition per dispatch: when an adapter manages
+acquisition, let it acquire and release the slot; otherwise the caller must use
+the governor lifecycle. Never acquire manually in addition to the adapter.
 
 ### The governor
 
-The concurrency governor is a disk ledger guarded by `flock`
+The concurrency governor is a disk ledger with platform-specific locking
 (`engine/governor/ledger.py`). It MUST be consulted before dispatching a subagent.
+Adapter wiring and live enforcement must be verified for the actual host; the
+existence of a hook or ledger alone does not establish enforcement.
 
 - Concurrency is managed per harness/provider scope (`ledger-{scope}`) without a
   shared global bottleneck. An exhausted local model (e.g. Ollama cap = 2) does not
@@ -28,17 +32,44 @@ The concurrency governor is a disk ledger guarded by `flock`
   Verify the effective result with `status`.
 - A caller parks as PAUSED on a 429 rate-limit and reports the backoff hint the
   orchestrator uses to retry (2s → 60s).
-- Because the acquiring CLI process is short-lived, slots are released by the
-  harness adapter after the task, and on the next turn as a safety net. A crashed
-  holder is reclaimed by a lease TTL (`GOVERNOR_LEASE_SECONDS`).
+- The adapter releases a slot after the task when its lifecycle is supported.
+  RUNNING slots are not reaped by age: a crash can leave a stale slot. Recover
+  a stale slot only after independently verifying that its worker has stopped;
+  otherwise retain it and report the blocker. Never reset the ledger or increase
+  its cap merely to clear congestion; either action can permit over-cap work.
+
+The OpenCode gate can release a slot when a background spawn returns rather than
+when its worker finishes. Until a runtime fix is verified, governed background
+dispatch on that adapter is prohibited: report this limitation and use a
+supported foreground dispatch if permitted. Do not claim the gate bounds the
+lifetime of background workers.
+
+The Antigravity hook denies recognized subagent spawn on all platforms until host
+call identity and worker lifetime are verified; recognized list and kill operations
+remain allowed. Live host behavior is unverified. Do not claim runtime enforcement;
+report a blocker rather than dispatching without established governance.
 
 The command surface is `scripts/coacus_governor.py`:
 `acquire`, `release`, `fail`, `paused`, `status`, `health`, `reset`, `set-max`.
 
 ### The orchestrator
 
-A task that invokes two or more agents MUST route through the
-`multi-agent-orchestrator` as supervisor. The orchestrator:
+The main chat acts as orchestrator for delegated work; it need not spawn a
+separate `multi-agent-orchestrator`. Delegate substantive specialist work to
+routed specialists when delegation is available and permitted. A dispatched
+subagent executes its bounded assignment and does not recursively orchestrate
+unless explicitly tasked to coordinate.
+
+Decompose work into dependency-aware, non-overlapping tasks. Dispatch independent
+ready tasks concurrently up to the actual free governor capacity and any lower
+applicable limit; queue the remainder. A proposal or status check does not reserve
+a slot: each dispatch still requires acquisition. If delegation is unavailable,
+prohibited, or cannot be governed, report the explicit blocker; do not silently
+substitute ungoverned delegation. Follow the user's instructions on whether to
+proceed inline. Delegation never grants approval for destructive, privileged,
+external, or otherwise approval-gated actions; obtain required human approval.
+
+The orchestrator:
 
 1. Anchors the initial goal and acceptance criteria against scope drift.
 2. Supervises each subagent's progress using quantitative tool caps and mentor checks.
@@ -112,8 +143,9 @@ OpenCode adapter.
 ## Rationale
 
 Multi-agent runs need bounded concurrency, deterministic rate-limit handling and a
-hard ban on ungoverned spawning. A disk ledger with `flock` makes governance
-executable and testable rather than prose, and adds no external broker dependency
+hard ban on ungoverned spawning. A disk ledger makes governance
+executable and testable rather than prose, subject to host and adapter limitations,
+and adds no external broker dependency
 before multi-host operation is actually required.
 
 ## Enforcement
@@ -121,8 +153,9 @@ before multi-host operation is actually required.
 - `scripts/coacus_governor.py` exposes the runtime command surface
   (`acquire/release/fail/paused/status/health/reset`) over
   `engine/governor/ledger.py`.
-- `harnesses/opencode/bootstrap/governor-gate.js` is the rendered OpenCode gate;
+- `harnesses/opencode/bootstrap/governor-gate.js` is the OpenCode gate; its
+  background slot-lifetime limitation above remains a dispatch blocker.
   `harnesses/*/harness.json` declares plugin wiring.
-- `tests/test_governor.py` exercises the cross-process cap and lease behavior.
+- `tests/test_governor.py` exercises governor behavior, including cross-process capacity.
 - The TOON half is enforced by `engine/toon.py` via
   `python3 scripts/coacus.py toon <file>`.

@@ -81,6 +81,67 @@ class TestGovernor(unittest.TestCase):
         self.assertEqual(status["paused"], 1)
         self.assertEqual(len(ledger.paused()), 1)
 
+    def test_unmatched_release_does_not_raise_persisted_cap(self) -> None:
+        ledger = Ledger(self.dir, max_total=1)
+        token = ledger.acquire("a")
+        higher = Ledger(self.dir, max_total=3)
+        before = ledger.path.read_text(encoding="utf-8")
+        higher.release("a", token="stale")
+        self.assertEqual(ledger.path.read_text(encoding="utf-8"), before)
+        higher.release("other")
+        self.assertEqual(ledger.path.read_text(encoding="utf-8"), before)
+        self.assertIsNone(ledger.acquire("b", timeout=0))
+        ledger.release("a", token=token)
+        self.assertIsNotNone(ledger.acquire("b", timeout=0))
+
+    def test_stale_token_cannot_release_or_pause_new_holder(self) -> None:
+        ledger = Ledger(self.dir, max_total=1)
+        old = ledger.acquire("a")
+        ledger.release("a", token=old)
+        current = ledger.acquire("a")
+        self.assertNotEqual(old, current)
+        ledger.release("a", token=old)
+        ledger.fail("a", token=old)
+        self.assertEqual(ledger.status()["running"], 1)
+        self.assertEqual(ledger.status()["paused"], 0)
+        ledger.fail("a", token=current)
+        self.assertEqual(ledger.status()["running"], 0)
+        self.assertEqual(ledger.status()["paused"], 1)
+
+    def test_cli_acquire_requires_caller_but_status_and_reset_do_not(self) -> None:
+        import os
+
+        env = {**os.environ, "GOVERNOR_STATE_DIR": str(self.dir)}
+        script = str(ROOT / "scripts" / "coacus_governor.py")
+        def run(*args: str) -> subprocess.CompletedProcess:
+            return subprocess.run([sys.executable, script, *args], cwd=ROOT, env=env,
+                                  capture_output=True, text=True)
+        for args in (("acquire",), ("acquire", "")):
+            result = run(*args)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout.strip(), "")
+        self.assertEqual(Ledger(self.dir).status()["running"], 0)
+        self.assertEqual(run("status").returncode, 0)
+        self.assertEqual(run("reset").returncode, 0)
+        self.assertEqual(run("acquire", "valid-caller").returncode, 0)
+
+    def test_cli_token_fences_release_and_fail(self) -> None:
+        import os
+
+        env = {**os.environ, "GOVERNOR_STATE_DIR": str(self.dir)}
+        script = str(ROOT / "scripts" / "coacus_governor.py")
+        def run(*args: str) -> str:
+            return subprocess.run([sys.executable, script, *args], cwd=ROOT, env=env,
+                                  check=True, capture_output=True, text=True).stdout.strip()
+        old = run("acquire", "a")
+        run("release", "a", "--token", old)
+        current = run("acquire", "a")
+        run("release", "a", "--token", old)
+        run("fail", "a", "--token", old)
+        self.assertEqual(Ledger(self.dir).status()["running"], 1)
+        run("fail", "a", "--token", current)
+        self.assertEqual(Ledger(self.dir).status()["paused"], 1)
+
     def test_fail_on_unknown_caller_creates_no_paused_row(self) -> None:
         ledger = Ledger(self.dir, max_total=2)
         ledger.fail("ghost")
@@ -94,18 +155,51 @@ class TestGovernor(unittest.TestCase):
         self.assertEqual(row["caller"], "a")
         self.assertGreaterEqual(row["retry_after_s"], 2)
 
-    def test_stale_slot_beyond_lease_is_reaped(self) -> None:
-        import time as _time
-
+    def test_aged_running_slot_remains_occupied_until_release(self) -> None:
         ledger = Ledger(self.dir, max_total=1, lease_seconds=1)
-        # Forge a RUNNING row that started well past the lease.
-        old = int(_time.time()) - 3600
-        ledger.path.write_text(
-            f"MAX 1\nRUNNING crashed no tok 999999 {old}\n", encoding="utf-8"
+        token = ledger.acquire("holder")
+        parts = ledger.path.read_text(encoding="utf-8").splitlines()[1].split()
+        parts[4] = "999999"  # Acquiring CLI PID is not the worker's identity.
+        parts[5] = str(int(time.time()) - 3600)
+        ledger.path.write_text("MAX 1\n" + " ".join(parts) + "\n", encoding="utf-8")
+        self.assertEqual(ledger.status()["slots_free"], 0)
+        self.assertEqual(ledger.acquire("holder", timeout=0), token)
+        self.assertIsNone(ledger.acquire("other", timeout=0))
+        ledger.release("holder")
+        self.assertIsNotNone(ledger.acquire("other", timeout=0))
+
+    def test_departed_acquiring_process_does_not_free_slot(self) -> None:
+        code = (
+            "from pathlib import Path; from engine.governor.ledger import Ledger; "
+            "import sys; Ledger(Path(sys.argv[1]), max_total=1).acquire('holder')"
         )
-        # The expired holder must not block a real acquirer.
-        self.assertIsNotNone(ledger.acquire("live", timeout=0.5))
+        subprocess.run([sys.executable, "-c", code, str(self.dir)], cwd=ROOT, check=True)
+        ledger = Ledger(self.dir, max_total=1)
         self.assertEqual(ledger.status()["running"], 1)
+        self.assertIsNone(ledger.acquire("other", timeout=0))
+        ledger.release("hold")
+        self.assertIsNone(ledger.acquire("other", timeout=0))
+        ledger.release("holder")
+        self.assertIsNotNone(ledger.acquire("other", timeout=0))
+
+    def test_lower_cap_does_not_reclaim_occupied_slots(self) -> None:
+        ledger = Ledger(self.dir, max_total=2)
+        ledger.acquire("a")
+        ledger.acquire("b")
+        ledger.set_max(1)
+        self.assertEqual(ledger.status()["running"], 2)
+        self.assertEqual(ledger.status()["slots_free"], 0)
+        self.assertIsNone(ledger.acquire("c", timeout=0))
+        ledger.release("a")
+        self.assertIsNone(ledger.acquire("c", timeout=0))
+        ledger.release("b")
+        self.assertIsNotNone(ledger.acquire("c", timeout=0))
+
+    def test_aged_paused_row_does_not_occupy_a_slot(self) -> None:
+        ledger = Ledger(self.dir, max_total=1, lease_seconds=1)
+        ledger.path.write_text("MAX 1\nPAUSED holder 1 1\n", encoding="utf-8")
+        self.assertIsNotNone(ledger.acquire("other", timeout=0))
+        self.assertEqual(ledger.status()["paused"], 1)
 
     def test_cap_cannot_be_raised_by_a_default_caller(self) -> None:
         Ledger(self.dir, max_total=2).acquire("a")  # persists MAX 2

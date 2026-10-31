@@ -103,4 +103,4 @@ This skill guides the AI to run and improve code review as a socio-technical sys
 - For the security-focused review lens, see [sast-code-review](../../../security/appsec/sast-code-review/SKILL.md).
 - For commit message standards, see [git-conventional-commits](../git-conventional-commits/SKILL.md).
 - For process discipline around automation gates, see [devsecops-engineer](../../../security/operations/devsecops-engineer/SKILL.md).
-- For requesting review workflows, see [superpowers-requesting-code-review](../../../../../methodology/workflows/superpowers-requesting-code-review/SKILL.md).
+- For requesting review workflows, see [requesting-code-review](../../../../../methodology/workflows/requesting-code-review/SKILL.md).

@@ -5,6 +5,7 @@ Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, applicatio
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [lang-powershell](../../../../skills/languages/lang-powershell/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [linux-kernel-systemd-internals](../../../../skills/infrastructure/linux-kernel-systemd-internals/SKILL.md)
 - [endpoint-detection-engineering](../../../../skills/security/operations/endpoint-detection-engineering/SKILL.md)
@@ -65,3 +66,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- Consult [PowerShell engineering](../../../../skills/languages/lang-powershell/SKILL.md) when the task involves PowerShell.

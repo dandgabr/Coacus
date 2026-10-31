@@ -5,8 +5,8 @@ Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:
 
     coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-    coacus_governor.py release <caller>
-    coacus_governor.py fail    <caller>
+    coacus_governor.py release <caller> [--token TOKEN]
+    coacus_governor.py fail    <caller> [--token TOKEN]
     coacus_governor.py paused
     coacus_governor.py status  [max-total]
     coacus_governor.py reset
@@ -41,7 +41,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("max_total", nargs="?", type=int, default=None)
     parser.add_argument("--scope", default="global", help="Harness or provider scope (default: global)")
     parser.add_argument("--model", default=None, help="Active model name (e.g. flash, pro, sonnet)")
+    parser.add_argument("--token", default=None, help="Fence release or fail to this acquisition token")
     args = parser.parse_args(argv)
+    if args.token is not None and args.action not in ("release", "fail"):
+        parser.error("--token is only valid for release or fail")
+    if args.action == "acquire" and not args.caller:
+        parser.error("acquire requires a caller")
 
     ledger = Ledger(scope=args.scope, model=args.model, max_total=args.max_total)
     if args.action == "set-max":
@@ -51,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.action == "acquire":
         token = ledger.acquire(
-            args.caller or "unknown",
+            args.caller,
             orchestrator=args.orchestrator == "yes",
             timeout=args.timeout,
         )
@@ -60,10 +65,10 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         return 1
     if args.action == "release":
-        ledger.release(args.caller or "unknown")
+        ledger.release(args.caller or "unknown", token=args.token)
         return 0
     if args.action == "fail":
-        ledger.fail(args.caller or "unknown")
+        ledger.fail(args.caller or "unknown", token=args.token)
         return 0
     if args.action == "reset":
         ledger.reset()

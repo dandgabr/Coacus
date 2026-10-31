@@ -97,13 +97,10 @@
       "path": "knowledge/agents/core-orchestration/antigravity-agent"
     },
     {
-      "path": "knowledge/agents/core-orchestration/general"
+      "path": "knowledge/agents/core-orchestration/harness-specialist"
     },
     {
       "path": "knowledge/agents/core-orchestration/multi-agent-orchestrator"
-    },
-    {
-      "path": "knowledge/agents/core-orchestration/self"
     },
     {
       "path": "knowledge/agents/cybersecurity/ai-security-specialist"

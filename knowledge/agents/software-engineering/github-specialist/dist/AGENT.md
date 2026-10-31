@@ -10,8 +10,8 @@ Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/C
 - [git-conventional-commits](../../../../skills/engineering/practices/git-conventional-commits/SKILL.md)
 - [code-review-practices](../../../../skills/engineering/practices/code-review-practices/SKILL.md)
 - [vcs-repository-management](../../../../skills/engineering/practices/vcs-repository-management/SKILL.md)
-- [superpowers-finishing-a-development-branch](../../../../../methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md)
-- [superpowers-verification-before-completion](../../../../../methodology/workflows/superpowers-verification-before-completion/SKILL.md)
+- [finishing-a-development-branch](../../../../../methodology/workflows/finishing-a-development-branch/SKILL.md)
+- [verification-before-completion](../../../../../methodology/workflows/verification-before-completion/SKILL.md)
 - [program-github-actions](../../../../skills/platforms/program-github-actions/SKILL.md)
 - [devops-engineer](../../../../skills/roles/devops-engineer/SKILL.md)
 <!-- /coacus:generated:skills -->

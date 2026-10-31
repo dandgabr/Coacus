@@ -5,6 +5,7 @@ Senior specialist agent in Skill Architecture, Creation, Improvement and Catalog
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [writing-for-agents](../../../../skills/engineering/practices/writing-for-agents/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [documentation-designer](../../../../skills/engineering/practices/documentation-designer/SKILL.md)
@@ -58,3 +59,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [writing-for-agents](../../../../skills/engineering/practices/writing-for-agents/SKILL.md)

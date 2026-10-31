@@ -5,6 +5,7 @@ Integration Architecture agent that owns how systems talk — messaging, APIs, e
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [framework-soap](../../../../skills/frameworks/framework-soap/SKILL.md)
 - [integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
@@ -61,3 +62,9 @@ any contract specification version, resolve it in the current session
 The Integration Architect enforces integration standards across all solutions
 inside the enterprise frame. Handoffs between agents must be compact structured
 payloads, and parallel subagent work must acquire a governor slot first.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [framework-soap](../../../../skills/frameworks/framework-soap/SKILL.md)

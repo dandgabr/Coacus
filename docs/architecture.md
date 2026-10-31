@@ -70,8 +70,8 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 How work proceeds inside a Coacus repository.
 
 - `methodology/workflows/<skill>/SKILL.md` — process workflows, including those imported
-  from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
-  — flat handoff names, `docs/temp/` artifacts) plus native engineering and
+  from Superpowers (adapted to flat Coacus handoff names and `docs/temp/`
+  artifacts) plus native engineering and
   governance workflows (including the entry workflow `using-coacus`).
 - `methodology/bootstrap/session-start.canonical.md` — the single wrapper body
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`

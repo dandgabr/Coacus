@@ -6,6 +6,8 @@ description: >-
   Human Prose (Anti-AI Writing Manifesto), Diátaxis Architecture and
   Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.
 skills:
+  - knowledge/skills/platforms/program-markmap/SKILL.md
+  - knowledge/skills/languages/lang-markdown/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/mapping/editable-diagram-engineering/SKILL.md
   - knowledge/skills/engineering/practices/architecture-documentation/SKILL.md
@@ -75,3 +77,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the definitions through the structured [`agent.json`](agent.json) manifest or the standard [`plugin.json`](plugin.json) plugin.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [lang-markdown](knowledge/skills/languages/lang-markdown/SKILL.md)
+- [program-markmap](knowledge/skills/platforms/program-markmap/SKILL.md)

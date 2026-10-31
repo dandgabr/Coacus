@@ -202,19 +202,8 @@ def plan_superpowers(manifest: dict) -> list[dict]:
     if not base.is_dir():
         return actions
     for skill_dir in sorted(p.parent for p in base.rglob("SKILL.md")):
-        if skill_dir.name in ("using-superpowers", "writing-skills"):
-            # using-superpowers is replaced by using-coacus; keep writing-skills
-            if skill_dir.name == "using-superpowers":
-                actions.append({"action": "exclude", "name": skill_dir.name, "reason": "replaced by using-coacus"})
-                continue
-        target_name = f"superpowers-{skill_dir.name}"
-        target = ROOT / manifest["superpowers"]["target_dir"] / target_name
-        actions.append({
-            "action": "import-workflow",
-            "source": skill_dir,
-            "target": target,
-            "name": target_name,
-        })
+        actions.append({"action": "exclude", "name": skill_dir.name,
+                        "reason": "consultative source; no automatic import"})
     return actions
 
 
@@ -341,7 +330,7 @@ def _fix_misc_links(root: Path) -> None:
     machine = re.compile(r"`?/tmp/opencode/[^`\s)]*`?")
     docs = list((root / "knowledge" / "skills").rglob("*.md"))
     docs += list((root / "knowledge" / "agents").rglob("*.md"))
-    docs += list((root / "methodology" / "workflows").rglob("*.md"))
+    # Curated workflows are never rewritten during imports.
     for path in docs:
         text = path.read_text(encoding="utf-8")
         rel_dir = path.parent
@@ -371,7 +360,7 @@ def _fix_skill_links(root: Path) -> None:
     # contract); `_convert_agent` already produced those. Only skill and
     # workflow bodies use file-relative links, so skip knowledge/agents here.
     files = list((root / "knowledge" / "skills").rglob("*.md"))
-    files += list((root / "methodology" / "workflows").rglob("*.md"))
+    # Curated workflows are never rewritten during imports.
     for path in files:
         text = path.read_text(encoding="utf-8")
         rel_dir = path.parent.relative_to(root)
@@ -407,14 +396,9 @@ def _workflow_index(root: Path) -> dict[str, str]:
 
 
 def _workflow_renames(root: Path) -> dict[str, str]:
-    """old workflow dir name -> namespaced name (for sibling links)."""
-    renames: dict[str, str] = {}
-    base = root / "methodology" / "workflows"
-    if base.is_dir():
-        for path in base.iterdir():
-            if path.is_dir() and path.name.startswith("superpowers-"):
-                renames[path.name[len("superpowers-"):]] = path.name
-    return renames
+    """Map the exceptional upstream directory name to its local name."""
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    return manifest["superpowers"].get("name_fixes", {})
 
 
 def _superpowers_commit(root: Path) -> str:
@@ -434,11 +418,21 @@ def _workflow_files(root: Path) -> list[Path]:
     base = root / "methodology" / "workflows"
     if not base.is_dir():
         return []
-    return sorted(
-        p
-        for p in base.glob("superpowers-*/**/*")
-        if p.is_file() and (p.suffix in _TEXT_SUFFIXES or p.suffix == "")
-    )
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    names = {entry.get("target_path", "").split("/")[2]
+             for entry in provenance.load(root).get("entries", [])
+             if entry.get("source_repo") == "superpowers"
+             and entry.get("target_path", "").startswith("methodology/workflows/")}
+    names.difference_update(manifest["superpowers"].get("consolidated", {}).values())
+    names.update(manifest["superpowers"].get("name_fixes", {}).values())
+    source = _source_dir(manifest, "superpowers") / "skills"
+    if source.is_dir():
+        names.update(manifest["superpowers"].get("name_fixes", {}).get(p.parent.name, p.parent.name)
+                     for p in source.rglob("SKILL.md")
+                     if p.parent.name != "using-superpowers"
+                     and p.parent.name not in manifest["superpowers"].get("consolidated", {}))
+    return sorted(p for name in names for p in (base / name).rglob("*")
+                  if p.is_file() and (p.suffix in _TEXT_SUFFIXES or p.suffix == ""))
 
 
 def _attribution_footer(commit: str) -> str:
@@ -462,8 +456,10 @@ def _adapt_workflow_text(text: str) -> str:
     corpus are repaired.
     """
     text = _USING_SUPERPOWERS.sub("../using-coacus/references/", text)
-    text = _BARE_SIBLING.sub(r"../superpowers-\1", text)
-    text = _COLON_NAMESPACE.sub("superpowers-", text)
+    text = _COLON_NAMESPACE.sub("", text)
+    text = re.sub(r"(?<![\w/])diagnosing-superpowers(?![\w-])", "diagnosing-agent-sessions", text)
+    text = text.replace("../diagnosing-superpowers/", "../diagnosing-agent-sessions/")
+    text = re.sub(r"(?<![\w-])systematic-debugging(?![\w-])", "diagnosing-bugs", text)
     text = _UPSTREAM_OUTPUT.sub("docs/temp", text)
     text = text.replace(
         "elements-of-style:writing-clearly-and-concisely", "linguistic-en-us"
@@ -474,7 +470,7 @@ def _adapt_workflow_text(text: str) -> str:
         "skills/brainstorming/visual-companion.md", "visual-companion.md"
     )
     text = re.sub(
-        r"(?<![\w/])((?:\.\./superpowers-[\w-]+/)?scripts/"
+        r"(?<![\w/])((?:\.\./[\w-]+/)?scripts/"
         r"(?:task-start|task-done|task-brief|review-package|sdd-workspace))(?![\w.-])",
         r"python3 \1.py", text,
     )
@@ -516,17 +512,7 @@ def _normalize_workflow_files(root: Path, commit: str | None = None) -> list[str
     ``apply`` path passes the freshly imported one). Returns the
     repository-relative paths it changed (empty when the corpus is adapted).
     """
-    footer = _attribution_footer(commit or _superpowers_commit(root))
-    changed: list[str] = []
-    for path in _workflow_files(root):
-        text = path.read_text(encoding="utf-8")
-        adapted = _adapt_workflow_text(text)
-        if path.name == "SKILL.md":
-            adapted = _attach_attribution(adapted, footer)
-        if adapted != text:
-            path.write_text(adapted, encoding="utf-8")
-            changed.append(path.relative_to(root).as_posix())
-    return changed
+    raise ValueError("automatic workflow normalization is disabled; workflows are curated")
 
 
 def _tag_adapted(root: Path, lock: dict, changed: list[str]) -> int:
@@ -562,13 +548,7 @@ def _run_normalize() -> int:
     Needs no source checkout: it is the surface for applying the adaptation to a
     corpus that was imported earlier. Idempotent — a second run changes nothing.
     """
-    changed = _normalize_workflow_files(ROOT)
-    lock = provenance.load(ROOT)
-    modified = _tag_adapted(ROOT, lock, changed)
-    if changed or modified:
-        provenance.write(ROOT, lock)
-    print(json.dumps({"normalized": len(changed), "files": changed}, indent=2))
-    return 0
+    raise ValueError("automatic workflow normalization is disabled; workflows are curated")
 
 
 def _wrap_description(text: str, width: int = 70) -> list[str]:
@@ -711,6 +691,8 @@ def _preserved_python(manifest: dict, actions: list[dict]) -> dict[Path, dict]:
 
 def apply_actions(manifest: dict, actions: list[dict]) -> list[dict]:
     """Execute the planned actions and return the recorded provenance entries."""
+    if any(action.get("action") == "import-workflow" for action in actions):
+        raise ValueError("Superpowers integration is consultative; workflow imports are disabled")
     entries: list[dict] = []
     converted = _preserved_python(manifest, actions)
     run_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
@@ -811,7 +793,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.action == "normalize":
         if args.source not in (None, "superpowers"):
             parser.error("normalize applies only to the superpowers workflows")
-        return _run_normalize()
+        parser.error("Superpowers workflows are curated; automatic normalization is disabled")
 
     manifest = _load_manifest()
     actions: list[dict] = []
@@ -846,6 +828,10 @@ def main(argv: list[str] | None = None) -> int:
         }, indent=2))
         return 0
 
+    if args.source == "superpowers":
+        print(json.dumps({"imported_files": 0, "reason": "consultative source; no automatic import"}))
+        return 0
+
     entries = apply_actions(manifest, actions)
     _prune_orphan_outputs(ROOT)
     _fix_skill_links(ROOT)
@@ -859,9 +845,6 @@ def main(argv: list[str] | None = None) -> int:
     # Adapt the imported workflows to Coacus conventions. The pass walks the
     # whole superpowers corpus, so tagging is lock-wide and the footer carries
     # this run's upstream commit.
-    if args.source in (None, "superpowers"):
-        commit = _source_commit(_source_dir(manifest, "superpowers"))
-        _tag_adapted(ROOT, lock, _normalize_workflow_files(ROOT, commit=commit))
     relabeled = _relabel_licenses(lock, manifest)
     provenance.write(ROOT, lock)
     print(json.dumps({

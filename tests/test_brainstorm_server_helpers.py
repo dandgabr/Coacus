@@ -10,7 +10,7 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT_DIR = ROOT / "methodology/workflows/superpowers-brainstorming/scripts"
+SCRIPT_DIR = ROOT / "methodology/workflows/brainstorming/scripts"
 
 
 def load_script(name: str) -> object:
@@ -46,25 +46,19 @@ class TestBrainstormServerHelpers(unittest.TestCase):
             self.assertEqual(result, 0)
             self.assertTrue(session_dir.is_dir())
 
-    def test_stop_removes_only_ephemeral_session_directory(self) -> None:
-        session_dir = Path(tempfile.gettempdir()).resolve() / "brainstorm-audit-cleanup"
-        state_dir = session_dir / "state"
-        state_dir.mkdir(parents=True, exist_ok=True)
-        (state_dir / "server.pid").write_text("987654321\n", encoding="utf-8")
-
-        try:
-            with mock.patch.object(
-                stop_server.os, "kill", side_effect=[None, ProcessLookupError]
-            ):
+    def test_stale_pid_preserves_ephemeral_session_and_marks_stopped(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            session_dir = Path(temp) / "brainstorm-audit-cleanup"
+            state_dir = session_dir / "state"
+            state_dir.mkdir(parents=True)
+            pid_file = state_dir / "server.pid"
+            pid_file.write_text("987654321\n", encoding="utf-8")
+            with mock.patch.object(stop_server.os, "pidfd_open", side_effect=ProcessLookupError):
                 result = stop_server.main([str(session_dir)])
-
             self.assertEqual(result, 0)
-            self.assertFalse(session_dir.exists())
-        finally:
-            if session_dir.exists():
-                import shutil
-
-                shutil.rmtree(session_dir)
+            self.assertTrue(session_dir.is_dir())
+            self.assertFalse(pid_file.exists())
+            self.assertIn('"reason": "stale_pid"', (state_dir / "server-stopped").read_text())
 
 
 if __name__ == "__main__":

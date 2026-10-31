@@ -1,12 +1,18 @@
 ---
 name: diagnosing-bugs
-description: Use when a bug or performance regression is hard to find, to build a tight pass/fail feedback loop before forming any hypothesis, then fix and lock it down.
+description: Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.
 ---
 
 # Diagnosing bugs
 
-A disciplined diagnosis loop for hard bugs and regressions. Work the phases in
-order; do not skip Phase 1.
+A disciplined diagnosis loop for failures and regressions. Work the phases in
+order; do not skip Phase 1. Read errors and stack traces, compare recent changes
+and working examples, and trace data across component boundaries before proposing
+a fix. Use [systematic investigation](systematic-investigation.md) for boundary
+instrumentation, root-cause tracing, failed-fix escalation and related techniques.
+For visual symptoms, establish the evaluated revision and rendered evidence using
+[interface evidence](../verification-before-completion/references/interface-evidence.md).
+If three fixes fail, stop repeated fixes, reassess evidence and escalate the blocker; consider architecture only if the evidence supports it.
 
 ## Phase 1 — Build the loop (this is the skill)
 

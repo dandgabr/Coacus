@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 105,
-    "skills": 496,
+    "agents": 104,
+    "skills": 500,
     "mcps": 1
   },
   "agents": [
@@ -295,12 +295,6 @@
       "source": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md"
     },
     {
-      "name": "general",
-      "category": "core-orchestration",
-      "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
-      "source": "knowledge/agents/core-orchestration/general/agent.source.md"
-    },
-    {
       "name": "geoscientist",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
@@ -329,6 +323,12 @@
       "category": "cybersecurity",
       "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
       "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md"
+    },
+    {
+      "name": "harness-specialist",
+      "category": "core-orchestration",
+      "description": "Guides configuration and troubleshooting across supported assistant harnesses, distinguishing vendor behavior from repository installation and session activation.",
+      "source": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md"
     },
     {
       "name": "iam-architect",
@@ -521,12 +521,6 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
       "source": "knowledge/agents/cybersecurity/security-specialist/agent.source.md"
-    },
-    {
-      "name": "self",
-      "category": "core-orchestration",
-      "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
-      "source": "knowledge/agents/core-orchestration/self/agent.source.md"
     },
     {
       "name": "skill-auditor",
@@ -1843,8 +1837,32 @@
       "path": "knowledge/skills/platforms/antigravity-guide/SKILL.md"
     },
     {
+      "name": "claude-code-guide",
+      "path": "knowledge/skills/platforms/claude-code-guide/SKILL.md"
+    },
+    {
+      "name": "claude-desktop-guide",
+      "path": "knowledge/skills/platforms/claude-desktop-guide/SKILL.md"
+    },
+    {
+      "name": "codex-guide",
+      "path": "knowledge/skills/platforms/codex-guide/SKILL.md"
+    },
+    {
+      "name": "command-code-guide",
+      "path": "knowledge/skills/platforms/command-code-guide/SKILL.md"
+    },
+    {
+      "name": "cursor-guide",
+      "path": "knowledge/skills/platforms/cursor-guide/SKILL.md"
+    },
+    {
       "name": "gemini-enterprise",
       "path": "knowledge/skills/platforms/gemini-enterprise/SKILL.md"
+    },
+    {
+      "name": "opencode-guide",
+      "path": "knowledge/skills/platforms/opencode-guide/SKILL.md"
     },
     {
       "name": "power-automate",
@@ -1891,6 +1909,10 @@
       "path": "knowledge/skills/roles/code-optimizer/SKILL.md"
     },
     {
+      "name": "codebase-exploration",
+      "path": "knowledge/skills/roles/codebase-exploration/SKILL.md"
+    },
+    {
       "name": "cover-letter-application-drafter",
       "path": "knowledge/skills/roles/cover-letter-application-drafter/SKILL.md"
     },
@@ -1903,20 +1925,12 @@
       "path": "knowledge/skills/roles/devops-engineer/SKILL.md"
     },
     {
-      "name": "explore",
-      "path": "knowledge/skills/roles/explore/SKILL.md"
-    },
-    {
       "name": "frontend-developer",
       "path": "knowledge/skills/roles/frontend-developer/SKILL.md"
     },
     {
       "name": "fullstack-developer",
       "path": "knowledge/skills/roles/fullstack-developer/SKILL.md"
-    },
-    {
-      "name": "general",
-      "path": "knowledge/skills/roles/general/SKILL.md"
     },
     {
       "name": "interview-prep-upskill-tracker",
@@ -2503,16 +2517,36 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
     },
     {
+      "name": "brainstorming",
+      "path": "methodology/workflows/brainstorming/SKILL.md"
+    },
+    {
       "name": "codebase-design",
       "path": "methodology/workflows/codebase-design/SKILL.md"
+    },
+    {
+      "name": "diagnosing-agent-sessions",
+      "path": "methodology/workflows/diagnosing-agent-sessions/SKILL.md"
     },
     {
       "name": "diagnosing-bugs",
       "path": "methodology/workflows/diagnosing-bugs/SKILL.md"
     },
     {
+      "name": "dispatching-parallel-agents",
+      "path": "methodology/workflows/dispatching-parallel-agents/SKILL.md"
+    },
+    {
       "name": "domain-modeling",
       "path": "methodology/workflows/domain-modeling/SKILL.md"
+    },
+    {
+      "name": "executing-plans",
+      "path": "methodology/workflows/executing-plans/SKILL.md"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "path": "methodology/workflows/finishing-a-development-branch/SKILL.md"
     },
     {
       "name": "grill-me",
@@ -2547,64 +2581,24 @@
       "path": "methodology/workflows/prototype/SKILL.md"
     },
     {
+      "name": "receiving-code-review",
+      "path": "methodology/workflows/receiving-code-review/SKILL.md"
+    },
+    {
+      "name": "requesting-code-review",
+      "path": "methodology/workflows/requesting-code-review/SKILL.md"
+    },
+    {
       "name": "retro",
       "path": "methodology/workflows/retro/SKILL.md"
     },
     {
-      "name": "superpowers-brainstorming",
-      "path": "methodology/workflows/superpowers-brainstorming/SKILL.md"
+      "name": "subagent-driven-development",
+      "path": "methodology/workflows/subagent-driven-development/SKILL.md"
     },
     {
-      "name": "superpowers-diagnosing-superpowers",
-      "path": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md"
-    },
-    {
-      "name": "superpowers-dispatching-parallel-agents",
-      "path": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md"
-    },
-    {
-      "name": "superpowers-executing-plans",
-      "path": "methodology/workflows/superpowers-executing-plans/SKILL.md"
-    },
-    {
-      "name": "superpowers-finishing-a-development-branch",
-      "path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
-    },
-    {
-      "name": "superpowers-receiving-code-review",
-      "path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md"
-    },
-    {
-      "name": "superpowers-requesting-code-review",
-      "path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md"
-    },
-    {
-      "name": "superpowers-subagent-driven-development",
-      "path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
-    },
-    {
-      "name": "superpowers-systematic-debugging",
-      "path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md"
-    },
-    {
-      "name": "superpowers-test-driven-development",
-      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md"
-    },
-    {
-      "name": "superpowers-using-git-worktrees",
-      "path": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md"
-    },
-    {
-      "name": "superpowers-verification-before-completion",
-      "path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md"
-    },
-    {
-      "name": "superpowers-writing-plans",
-      "path": "methodology/workflows/superpowers-writing-plans/SKILL.md"
-    },
-    {
-      "name": "superpowers-writing-skills",
-      "path": "methodology/workflows/superpowers-writing-skills/SKILL.md"
+      "name": "test-driven-development",
+      "path": "methodology/workflows/test-driven-development/SKILL.md"
     },
     {
       "name": "to-spec",
@@ -2621,6 +2615,22 @@
     {
       "name": "using-coacus",
       "path": "methodology/workflows/using-coacus/SKILL.md"
+    },
+    {
+      "name": "using-git-worktrees",
+      "path": "methodology/workflows/using-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "verification-before-completion",
+      "path": "methodology/workflows/verification-before-completion/SKILL.md"
+    },
+    {
+      "name": "writing-plans",
+      "path": "methodology/workflows/writing-plans/SKILL.md"
+    },
+    {
+      "name": "writing-skills",
+      "path": "methodology/workflows/writing-skills/SKILL.md"
     }
   ],
   "mcps": [

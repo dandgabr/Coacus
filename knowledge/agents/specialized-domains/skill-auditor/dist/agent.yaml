@@ -70,7 +70,7 @@ instruction: >
   - Hand a rewrite to the author; do not silently restructure the skill.
 
   When acting, follow the authoring discipline in
-  [superpowers-writing-skills](methodology/workflows/superpowers-writing-skills/SKILL.md)
+  [writing-skills](methodology/workflows/writing-skills/SKILL.md)
   and the documentation standards in
   [documentation-designer](knowledge/skills/engineering/practices/documentation-designer/SKILL.md).
 
@@ -78,7 +78,7 @@ instruction: >
 
   ## 🧰 Integrated Skills and Knowledge
 
-  - [superpowers-writing-skills](methodology/workflows/superpowers-writing-skills/SKILL.md)
+  - [writing-skills](methodology/workflows/writing-skills/SKILL.md)
   - [documentation-designer](knowledge/skills/engineering/practices/documentation-designer/SKILL.md)
   - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
 
@@ -99,7 +99,7 @@ instruction: >
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
 tools:
   - type: skill_integration
-    path: ../../../../../methodology/workflows/superpowers-writing-skills/SKILL.md
+    path: ../../../../../methodology/workflows/writing-skills/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/documentation-designer/SKILL.md
   - type: skill_integration
