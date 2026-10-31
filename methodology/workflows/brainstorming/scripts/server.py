@@ -50,16 +50,18 @@ def safe_read(name):
                 next_fd = os.open(component, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
                 os.close(directory)
                 directory = next_fd
+            # Select an existing entry rather than constructing a path from the request.
+            entry = next((entry for entry in os.listdir(directory) if entry == name), None)
+            if entry is None:
+                raise FileNotFoundError(name)
+            name = entry
             fd = os.open(name, flags, dir_fd=directory)
         except BaseException:
             os.close(directory)
             raise
     else:
-        # Without dirfd/nofollow, lstat checks cannot prevent a concurrent local rename race.
-        for parent in (path, *path.parents):
-            if stat.S_ISLNK(os.lstat(parent).st_mode):
-                raise FileNotFoundError(name)
-        fd = os.open(path / name, flags)
+        # Fail closed: pathname checks cannot prevent concurrent link substitution.
+        raise OSError('secure content reads are unavailable on this platform')
     try:
         st = os.fstat(fd)
         if not stat.S_ISREG(st.st_mode) or st.st_nlink != 1:

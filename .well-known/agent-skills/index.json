@@ -440,7 +440,7 @@
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "type": "archive",
       "url": "methodology/workflows/brainstorming/SKILL.md",
-      "digest": "sha256:25e16e9fedf8aa94cb80b95156c10e9e69a8019ed8ce7a70e8865c8cbedd74c5"
+      "digest": "sha256:746691c55f60e73b16c0d6ffe56a252e4b30a900c643565451898c095523bc35"
     },
     {
       "name": "bug-bounty-methodology",

@@ -15404,7 +15404,7 @@
       "source_path": "skills/brainstorming/scripts/server.cjs",
       "source_sha256": "805bce24ff505ba125ef34ae80cfcae4a95ebc428553f109a572cb51191b965e",
       "target_path": "methodology/workflows/brainstorming/scripts/server.py",
-      "target_sha256": "7dca349fa44d73c93be7553e00cdc266fd7642f94397a7e7e9f2b24145f47c6e",
+      "target_sha256": "bfa622928ddb515d053a5954c3eaff82e68858148270dfe9492ba09d077c130f",
       "origin_license": "MIT",
       "transform": [
         "imported",
