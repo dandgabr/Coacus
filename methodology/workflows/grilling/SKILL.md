@@ -41,6 +41,18 @@ Separate rounds with a horizontal rule.
 The frontier is empty **and** the user confirms a shared understanding. Until
 then, do not act on the plan.
 
+## Asynchronous Stakeholder Decision Brief
+
+When a decision branch requires input from an external stakeholder or remote partner:
+1. Identify the recipient's role and the exact decision blocking the frontier.
+2. Render an asynchronous questionnaire containing only the unblocked frontier questions.
+3. Order questions by business and technical impact (highest leverage first).
+4. For each question, supply:
+   - **Context:** The immediate decision to unlock.
+   - **Why this matters:** What breaks or stalls if deferred.
+   - **Recommended option:** The preferred default with rationale.
+   - **Explicit choices:** Discrete, actionable alternatives.
+
 ## Red flags
 
 - Asking one question at a time when several are independent — batch the frontier.

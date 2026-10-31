@@ -538,6 +538,12 @@
       "path": "knowledge/skills/domains/industry/conversational-ai-chatbots"
     },
     {
+      "path": "knowledge/skills/domains/industry/conversion-copywriting-psychology"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/cro-onboarding-experimentation"
+    },
+    {
       "path": "knowledge/skills/domains/industry/edtech-andragogy"
     },
     {
@@ -553,10 +559,16 @@
       "path": "knowledge/skills/domains/industry/game-asset-pipeline"
     },
     {
+      "path": "knowledge/skills/domains/industry/gtm-positioning-strategy"
+    },
+    {
       "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security"
     },
     {
       "path": "knowledge/skills/domains/industry/healthtech-standards-security"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth"
     },
     {
       "path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse"
@@ -566,6 +578,9 @@
     },
     {
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/seo-aeo-engineering"
     },
     {
       "path": "knowledge/skills/domains/industry/telecom-voice-engineering"
@@ -1384,6 +1399,9 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign"
     },
     {
+      "path": "methodology/workflows/codebase-design"
+    },
+    {
       "path": "methodology/workflows/diagnosing-bugs"
     },
     {
@@ -1409,6 +1427,9 @@
     },
     {
       "path": "methodology/workflows/phase-boundaries"
+    },
+    {
+      "path": "methodology/workflows/prototype"
     },
     {
       "path": "methodology/workflows/retro"

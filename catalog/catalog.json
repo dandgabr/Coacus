@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 104,
-    "skills": 489,
+    "agents": 105,
+    "skills": 496,
     "mcps": 1
   },
   "agents": [
@@ -317,6 +317,12 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Governance, Risk and Compliance (GRC), covering ISO/IEC 27001 and 42001, NIST CSF 2.0 and SP 800-53, CIS Controls, OWASP SAMM, SOC 2, FedRAMP/CMMC, DORA, NIS2/CRA, OSCAL automation, quantitative risk (FAIR) and third-party risk management.",
       "source": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md"
+    },
+    {
+      "name": "growth-marketing-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Go-To-Market (GTM) Strategy, Positioning, Conversion Copywriting, CRO, SEO/AEO Engineering, and Revenue Operations. Bridges product capabilities with commercial growth, market positioning, experimentation discipline, and SaaS unit economics.",
+      "source": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md"
     },
     {
       "name": "hardware-security-specialist",
@@ -1349,6 +1355,14 @@
       "path": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md"
     },
     {
+      "name": "conversion-copywriting-psychology",
+      "path": "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md"
+    },
+    {
+      "name": "cro-onboarding-experimentation",
+      "path": "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md"
+    },
+    {
       "name": "edtech-andragogy",
       "path": "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md"
     },
@@ -1369,12 +1383,20 @@
       "path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md"
     },
     {
+      "name": "gtm-positioning-strategy",
+      "path": "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md"
+    },
+    {
       "name": "hardware-hacking-embedded-security",
       "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md"
     },
     {
       "name": "healthtech-standards-security",
       "path": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md"
+    },
+    {
+      "name": "lifecycle-revops-paid-growth",
+      "path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md"
     },
     {
       "name": "llm-observability-otel-langfuse",
@@ -1387,6 +1409,10 @@
     {
       "name": "medical-device-cybersecurity",
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md"
+    },
+    {
+      "name": "seo-aeo-engineering",
+      "path": "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md"
     },
     {
       "name": "telecom-voice-engineering",
@@ -2477,6 +2503,10 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
     },
     {
+      "name": "codebase-design",
+      "path": "methodology/workflows/codebase-design/SKILL.md"
+    },
+    {
       "name": "diagnosing-bugs",
       "path": "methodology/workflows/diagnosing-bugs/SKILL.md"
     },
@@ -2511,6 +2541,10 @@
     {
       "name": "phase-boundaries",
       "path": "methodology/workflows/phase-boundaries/SKILL.md"
+    },
+    {
+      "name": "prototype",
+      "path": "methodology/workflows/prototype/SKILL.md"
     },
     {
       "name": "retro",

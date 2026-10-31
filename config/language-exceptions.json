@@ -141,7 +141,7 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "041fc698dffaa468c1ff606a56bad9323176796dd11299d5dfc3b252660c387e",
+      "sha256": "cfbb966ed49baa238d007117b2bdeb926c3f2d841d9cb8c68d315214b2a7a7b1",
       "reason": "Reviewed existing approved bilingual terms unchanged; added English editable diagram terminology and product identifiers to the existing documentation owner. Exact file digest preserves the bilingual routing contract."
     },
     {

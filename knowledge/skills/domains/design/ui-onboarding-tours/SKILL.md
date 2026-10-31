@@ -132,3 +132,10 @@ A guided tour is a state machine with strict transition guards:
 - W3C WAI ARIA Authoring Practices Guide (APG), Dialog (Modal) Pattern.
 - Nielsen Norman Group, "Product Tours and Onboarding: 5 Design Guidelines", 2024.
 - W3C Web Content Accessibility Guidelines (WCAG) 2.2, Guideline 2.1 (Keyboard Accessible).
+
+---
+
+## 🔗 Integration with Other Skills
+
+- For quantitative funnel drop-off analysis, user activation metrics, and Fogg Behavior Model ($B=MAP$) onboarding design, see [cro-onboarding-experimentation](../../industry/cro-onboarding-experimentation/SKILL.md).
+- For lifecycle event triggers and milestone email nudges, see [lifecycle-revops-paid-growth](../../industry/lifecycle-revops-paid-growth/SKILL.md).

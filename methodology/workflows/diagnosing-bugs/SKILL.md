@@ -42,6 +42,28 @@ before the loop exists is the exact failure this skill prevents.
 Completion criterion — the loop is red-capable, deterministic, fast and runnable
 by the agent, unattended.
 
+### The 4-Tier Escalation Ladder
+
+If the cheapest reproduction cannot be built, climb the ladder one rung at a time:
+
+1. **Deterministic CLI / unit assertion:** Run the exact command or test assertion with frozen clocks and seeded inputs.
+2. **Headless interface runner:** Spin up a headless execution run against a static fixture or local test server to reproduce DOM or protocol race conditions.
+3. **Tagged instrumentation:** Inject deterministic debug probes tagged with unique markers (`[DEBUG-xxxx]`) across the suspect call chain.
+4. **Interactive human-in-the-loop script:** Present a deterministic CLI prompt script with explicit input sequences as the final fallback before guessing.
+
+### Verifying the Red Signal
+
+Prove the failure signal is genuine before investigating causes:
+- Mutate the test or fixture slightly to verify it toggles cleanly between passing on known-good states and failing on the bug.
+- If the test never passes even on baseline commits, the test harness itself is broken, not the code under test.
+
+### Performance Regressions: The Profiler Branch
+
+Do not debug performance regressions with scattered print statements:
+- Establish a quantitative baseline benchmark ($p50$, $p95$, $p99$ latency or memory footprint).
+- Use an execution profiler or flamegraph to identify hot call sites.
+- Bisect git history against the quantitative baseline to locate the introducing commit.
+
 ## Phase 2 — Minimise
 
 Reduce the reproduction to the smallest input and the fewest moving parts before
@@ -63,7 +85,8 @@ search.
 
 Write the regression test at the seam **before** the fix. If no correct seam
 exists, that itself is the finding: the architecture is preventing the bug from
-being locked down — report it.
+being locked down — report it as a missing architectural seam rather than authoring
+a false-confidence shallow mock test.
 
 ## Phase 6 — Clean up
 

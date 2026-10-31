@@ -43,14 +43,17 @@ branching — inline what every branch needs; disclose what only some branches r
 - **Duplication** — one meaning repeated in two places; it costs maintenance and
   inflates the meaning's prominence past its real rank.
 - **Scattering** — one meaning fragmented across many places; it hides the whole.
+- **Sprawl** — a failure mode where every line is distinct, yet total length
+  thins model attention across the document; remedy by pushing depth to references.
 
 ## Completion criteria
 
 Every step ends on a checkable done-condition, set by two levers:
 
 - **Clarity** — can the agent tell done from not-done? A vague bound invites
-  premature completion. Sharpen the bound first; only if it is irreducibly fuzzy,
-  hide later steps behind a real context boundary.
+  premature completion. Visible downstream steps tempt the agent to rush the
+  current step; sharpen completion criteria first, or hide later steps across a
+  real context boundary.
 - **Demand** — "every modified model accounted for" forces thorough work where
   "produce a change list" does not. Demand can bind a body of flat reference too.
 
@@ -83,5 +86,8 @@ place only as a hard guardrail, paired with the positive.
 - **By sequence** — split where post-completion steps tempt rushing.
 - **By invocation** — split off a model-invoked skill when it has a distinct
   leading word, or when another skill must reach it.
+- **Router skills** — when multiple entry points share execution mechanics, author
+  a lean router skill that sequences user choices and delegates actual work to
+  focused model-invoked skills or disclosed branch files.
 - **Orphan case** — shared reference two user-invoked skills both need can live in
   neither; push it to a plain file outside the skill system.

@@ -132,6 +132,15 @@ break when the mock changes, switch to an integration test with real
 components. **your human partner's question:** "Do we need to be using a
 mock here?"
 
+### The 4-Tier Dependency Strategy
+
+Evaluate dependencies in order before reaching for a test double:
+
+1. **In-process dependency:** Run against the real code. Merge helpers and internal classes into the test of the deep module's boundary interface.
+2. **Local-substitutable dependency:** Swap slow external services for fast, real in-memory implementations (e.g. SQLite `:memory:`, ephemeral temp directories). Exercise the real query planner and schema constraints.
+3. **Ports and adapters (Architectural seam):** Define an abstract interface only when multiple concrete implementations exist or when boundary separation is essential. *One adapter is a hypothetical seam; two adapters prove a real seam.*
+4. **Mock double (Last resort):** Reserve mocks strictly for non-deterministic external networks, rate-limited third-party services, or catastrophic failure simulation that cannot be reproduced locally.
+
 ### Gate Function
 
 ```

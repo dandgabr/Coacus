@@ -625,6 +625,13 @@
       "digest": "sha256:dd9a44e9cd2b06839d3588afd20bdc5f8ab3ff2e9b1ee2f5c580b9427248b165"
     },
     {
+      "name": "codebase-design",
+      "description": "Use when designing or restructuring module boundaries, to create deep modules with simple interfaces and hide internal complexity.",
+      "type": "skill-md",
+      "url": "methodology/workflows/codebase-design/SKILL.md",
+      "digest": "sha256:0eae89918a2c2a8510ce42bfb5645aea4d16c3ff26a3c857a517ac8ab48b29e3"
+    },
+    {
       "name": "color-contrast-accessibility",
       "description": "Provides color contrast and accessibility engineering: WCAG 2.2 thresholds (4.5:1, 3:1, 7:1, non-text 3:1), the relative-luminance and contrast-ratio math, known WCAG limitations and APCA (Lc values, WCAG 3 status), color vision deficiency types and prevalence, colorblind-safe palettes (Okabe-Ito, viridis), testing tooling and the full state matrix, plus dark-mode halation pitfalls. Use when verifying contrast, choosing accessible palettes or implementing dark mode.",
       "type": "archive",
@@ -695,6 +702,13 @@
       "digest": "sha256:b298c674a65cc9fced12ca220da9371aea7e21f0758794e5c6f07eb2c9c2ddd2"
     },
     {
+      "name": "conversion-copywriting-psychology",
+      "description": "Provides behavioral psychology, cognitive bias application, conversion copywriting formulas, value proposition messaging, and customer awareness stage mapping based on Daniel Kahneman (Thinking, Fast and Slow), Robert Cialdini (Influence), and Eugene Schwartz (Breakthrough Advertising). Use when authoring landing page copy, value propositions, call-to-action microcopy, cold outreach sequences, or evaluating objection-handling messaging.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md",
+      "digest": "sha256:c784c711a3cd55a468387e11faa5ec55f8522a108aa2ded8316a615f085ae999"
+    },
+    {
       "name": "cover-letter-application-drafter",
       "description": "Provides strategic drafting and adversarial review for cover letters and portal application forms. Use when authoring customized cover letters, completing online application free-text questions, or running dual-agent drafter-reviewer validation.",
       "type": "skill-md",
@@ -707,6 +721,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/languages/cpp-template-metaprogramming/SKILL.md",
       "digest": "sha256:15c1b47b557e84cd823f1d016e6f6172dcc8ec8b4b743a7ea63057a6d2f9ac82"
+    },
+    {
+      "name": "cro-onboarding-experimentation",
+      "description": "Provides Conversion Rate Optimization (CRO), product onboarding funnels, A/B testing statistical rigor, user activation, and friction elimination based on Ron Kohavi (Trustworthy Online Controlled Experiments), Sean Ellis (Hacking Growth), and the Fogg Behavior Model (B=MAP). Use when analyzing conversion funnels, designing product activation sequences, planning multivariate experiments, or auditing drop-off points.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md",
+      "digest": "sha256:502137a4d115c0fe8e906fe76c6b682c2fc97edc65539f2f7023dc698c14b6c0"
     },
     {
       "name": "crypto-agility-pqc-migration",
@@ -916,7 +937,7 @@
       "description": "Use when a bug or performance regression is hard to find, to build a tight pass/fail feedback loop before forming any hypothesis, then fix and lock it down.",
       "type": "skill-md",
       "url": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "digest": "sha256:6b4d5db3ba0d4b2aee61e299aa2323ffdfa64399e4b22b1868250b552bf8b1d7"
+      "digest": "sha256:029ea5e9028a29f08429e1baa078ddcc74758b99eac4eb12e37b99432233ab12"
     },
     {
       "name": "distributed-ml-scaling",
@@ -965,7 +986,7 @@
       "description": "Use when a project's running language is fuzzy or drifting, to build and sharpen GLOSSARY.md and record durable decisions as ADRs while working.",
       "type": "archive",
       "url": "methodology/workflows/domain-modeling/SKILL.md",
-      "digest": "sha256:2e45ac1f9eaa94fa52c9e6a0ffffc574061b74f96f5d618c45e70cb365a1cc56"
+      "digest": "sha256:3d082cb226cdcb383cf3b100d1ae96ec9e92e72f2ae89c4773362bd3924029b4"
     },
     {
       "name": "dp-behavioral-patterns",
@@ -1182,7 +1203,7 @@
       "description": "Provides engineering and architecture patterns for the React library (React 18+ / React 19) and its ecosystem. Covers functional components, advanced Hooks, Server Components (RSC), state management (Context, Zustand, TanStack Query), routing, performance optimization, and testing.",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-react/SKILL.md",
-      "digest": "sha256:bbead40cfbd5ce0fd69e785a0dd202bcd8dfc1f3ae09aea410bc14b8663fcd17"
+      "digest": "sha256:e8d9aae0223c1e567f78849f78bac5e11d831ba83781d13fa443b09bba76c4a7"
     },
     {
       "name": "framework-rest-api",
@@ -1399,7 +1420,14 @@
       "description": "Use when a plan, design or decision has unresolved branches, to interview the user in frontier rounds until every branch is resolved before any work starts.",
       "type": "skill-md",
       "url": "methodology/workflows/grilling/SKILL.md",
-      "digest": "sha256:65b72358b83638a2672a62d0764494e5fefb2be479a25523ce9956f641b0469d"
+      "digest": "sha256:2ff5b336bb99765239deb467cfe009cb6d1bab2710f43697cdd63e53b8011dea"
+    },
+    {
+      "name": "gtm-positioning-strategy",
+      "description": "Provides Go-To-Market (GTM) strategy, market positioning, competitive differentiation, value proposition design, and ICP definition based on April Dunford (Obviously Awesome), Geoffrey Moore (Crossing the Chasm), and Jobs-to-be-Done (JTBD). Use when defining product positioning, launching new offerings, choosing target segments, designing pricing packaging, or mapping competitive alternatives.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md",
+      "digest": "sha256:f31c7e1334b6355194212110babfb8836818da8e3b38a51f538d5dffaba3bda9"
     },
     {
       "name": "guardrail-authoring",
@@ -1794,6 +1822,13 @@
       "digest": "sha256:0d396f1e1479c2b767d7cc936abfcc3cf82db63ca4336c6b41b9f345dda94b19"
     },
     {
+      "name": "lifecycle-revops-paid-growth",
+      "description": "Provides customer lifecycle marketing, revenue operations (RevOps), SaaS unit economics (CAC, LTV, NRR, Magic Number), paid acquisition modeling, and email retention architectures based on Brian Balfour (Four Fits), David Skok (SaaS Metrics 2.0), and Mark Roberge (The Science of Scaling). Use when designing email drip sequences, modeling unit economics, tracking pipeline velocity, optimizing ad spend return, or auditing churn cohorts.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md",
+      "digest": "sha256:24c7d7a2a36626899ef7f84a5d70fceb7c542f9bc4620488b35993f2c6679663"
+    },
+    {
       "name": "linguistic-en-us",
       "description": "Specialist in American English (EN-US) linguistic editing and technical copyediting, adhering to the Chicago Manual of Style, eliminating AI idiolect, resolving syntax ambiguities, and ensuring clear human communication.",
       "type": "archive",
@@ -2113,7 +2148,7 @@
       "description": "Acts as a Product Owner (PO), refining user stories with BDD acceptance criteria (Cucumber), managing the Product Backlog, and prioritizing deliveries with a focus on business value (ROI).",
       "type": "archive",
       "url": "knowledge/skills/roles/product-owner/SKILL.md",
-      "digest": "sha256:69e15192cb0da8ca5036db4a1fdf5baa4a19c6b9def119442c1245f5dd8086d1"
+      "digest": "sha256:713c094669e80566151c4b62c9b1f0e0d5753b8a9f0a3e24e4895cf2e7deaa72"
     },
     {
       "name": "program-azure-devops",
@@ -2219,6 +2254,13 @@
       "type": "archive",
       "url": "knowledge/skills/roles/project-reviewer/SKILL.md",
       "digest": "sha256:67e7347bdec914ae4a4ed3b3bcba044a927247e79da57a3aef4498be246dc19c"
+    },
+    {
+      "name": "prototype",
+      "description": "Use when validating uncertain interaction physics or state transitions, to build disposable logic or UI prototypes before writing production code.",
+      "type": "skill-md",
+      "url": "methodology/workflows/prototype/SKILL.md",
+      "digest": "sha256:28bec0524556bd89fded9877eaa59f8f4c299ccce7925a9aa6f17dede11b0cd4"
     },
     {
       "name": "python-data-science",
@@ -2403,6 +2445,13 @@
       "digest": "sha256:07d2c013eebaee039d7e240e4acc4c527cba4071dcfccaf7ddae15decfd1fda8"
     },
     {
+      "name": "seo-aeo-engineering",
+      "description": "Provides Search Engine Optimization (SEO), Answer Engine Optimization (AEO/GEO), structured data (Schema.org JSON-LD), technical web architecture, and LLM search discovery based on Google Search Essentials, Schema.org, and llms.txt. Use when auditing site indexing, structuring technical metadata, optimizing Core Web Vitals for search, authoring machine-readable schemas, or designing content for AI answer engines.",
+      "type": "skill-md",
+      "url": "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md",
+      "digest": "sha256:54b086bcbc709bbbf22c2e3d8d6fe211e48659cbc25529181bab9c1febd4d93a"
+    },
+    {
       "name": "serverless-security",
       "description": "Acts as a Serverless Security specialist covering function-level IAM least privilege, event-source injection, dependency and layer risk, secret handling, cold-start and timeout abuse, and the runtime protections available for Lambda, Cloud Functions and Cloud Run.",
       "type": "skill-md",
@@ -2484,7 +2533,7 @@
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
       "type": "skill-md",
       "url": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md",
-      "digest": "sha256:5ec9cd873dab9587ba7f204d4ee0f8b180dc06d31f05d96c20d1d97cfd84df40"
+      "digest": "sha256:ded3b2539841cc05b77b9dd63d6864091115949b1b0a012b8781f1cc4c01d29e"
     },
     {
       "name": "superpowers-receiving-code-review",
@@ -2519,7 +2568,7 @@
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
       "type": "archive",
       "url": "methodology/workflows/superpowers-test-driven-development/SKILL.md",
-      "digest": "sha256:76330e3efcc767c6759bb55e4b425ec3c2454bce8abf99cdbf161a4f8615b70f"
+      "digest": "sha256:2508068d56a33bc75ab3d0565a7656c1b62178f84e8e01a6265411a1117e00fe"
     },
     {
       "name": "superpowers-using-git-worktrees",
@@ -2645,7 +2694,7 @@
       "description": "Use when reviewing a diff, running a Standards review and a Spec review as isolated parallel subagents so neither pollutes the other.",
       "type": "skill-md",
       "url": "methodology/workflows/two-axis-code-review/SKILL.md",
-      "digest": "sha256:639d38aa10df946dd172274c112ed3b9523f85c1c9a178846020f95cbc333923"
+      "digest": "sha256:6e0a0cd8d978d97965bd2ed4630988d53340f7c3232d89115e2a911dd9e967d0"
     },
     {
       "name": "ui-app-layout-architectures",
@@ -2666,7 +2715,7 @@
       "description": "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:d3dbb17dd3aa2c40296ed9745920ed92db3b084311b4e8ff84b7deeeb4e88741"
+      "digest": "sha256:606fa1edbae3f35ba91527aacfc358d7e734fad7080b006cb6e8f2f4eeff2dd5"
     },
     {
       "name": "ui-designer",
@@ -2680,28 +2729,28 @@
       "description": "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, generative canvases, or high-performance GPU interfaces.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "digest": "sha256:8f2750398ec8c6c7b3db07648219e07e279badca441f176fa6c5b956058c10ee"
+      "digest": "sha256:cf071cb75df12db4d59b966ba715c56c3f9d36cef9c4e6621f60d819739bab67"
     },
     {
       "name": "ui-hero-sections",
       "description": "Provides design engineering patterns for high-converting hero sections and above-the-fold interface architectures. Covers canonical layout typologies (split-screen, product-led, live interactive sandbox, metric-driven B2B, 3D canvas backdrop), the 50ms visual judgment rule, F/Z-pattern attention choreography, outcome-driven typography formulas, dual-CTA friction reduction, social proof anchors, and responsive viewport budgeting. Use when designing web application landing pages, SaaS dashboards, or above-the-fold brand moments.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "digest": "sha256:052d98c7ee5a8a9b37ede8e70bfc92dfcafccea87593861294159cdf9ff1f4ea"
+      "digest": "sha256:f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78"
     },
     {
       "name": "ui-motion-interaction",
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:0c1c410cd3ab0c01a83be2be36f9f613c1bde35e8774fc8fda1feab5eac83f79"
+      "digest": "sha256:61155f7a48657c0bdf9db37a4e3f5b2b2906a670fe9c936c68b3a28c2415a957"
     },
     {
       "name": "ui-onboarding-tours",
       "description": "Provides architecture and UX engineering patterns for product tours, contextual walkthroughs, and UI feature highlights modeled after Driver.js paradigms. Covers SVG cutout spotlight masks, target element alignment and positioning, popover step choreography, keyboard navigation (Esc, Tab, Arrow keys), focus management, progressive disclosure, and everboarding telemetry. Use when implementing interactive onboarding tours, guided product walkthroughs, contextual feature announcements, or help popovers.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
-      "digest": "sha256:ad13dea1aa86347634f437160ecc014adfb977262cee35a93efe7cf5b971945a"
+      "digest": "sha256:14ba5a64d04244d9e46447408603f5d0894a54d8bef89586703b144240b50e81"
     },
     {
       "name": "ui-presentation-slides",
@@ -3035,9 +3084,9 @@
     {
       "name": "ui-style-isometric",
       "description": "Provides the isometric illustration and UI technique (engineering drawing origins, video games from 1981, web revival 2010s-present): equal-foreshortening 30-degree axes, 2:1 dimetric pixel art, CSS transform and SVG construction, covering geometry, shading, layout, motion and WCAG handling. Use when designing explainer illustrations, product diagrams, isometric dashboards or game-like scenes without needing a WebGL renderer.",
-      "type": "skill-md",
+      "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-      "digest": "sha256:c9687f75fb543d07e70735d3a829beae7577d925ff58ec4e0ed0bcb44699e568"
+      "digest": "sha256:5d976577f52afe40f1e10f66e8657b3168afeecc381d9fae7d29d9e957bf7f0f"
     },
     {
       "name": "ui-style-kawaii-pastel-soft",
@@ -3324,7 +3373,7 @@
       "description": "Establishes a trust boundary for content retrieved from the open internet, papers, documents and third-party data, so research agents treat it as evidence and never as instructions. Use when fetching web pages, reading PDFs, parsing research papers, or ingesting any external corpus that may contain prompt injection.",
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "digest": "sha256:53afcfe7c1b643116c12e1d4629d8fbad5ffdd57c44fb414c9b8295b49f3ab20"
+      "digest": "sha256:9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8"
     },
     {
       "name": "using-coacus",
@@ -3387,14 +3436,14 @@
       "description": "Provides end-to-end patterns to reverse-engineer public web portals into zero-dependency agent CLIs. Use when building standalone command-line tools from web portals, APIs, RSS feeds, or HTML listings for automated consumption by agents.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
-      "digest": "sha256:f3d5449950a86c9711ba00ca289165a902475d1c4a9165daf65a0c5f04da7880"
+      "digest": "sha256:48c16f8fcb829a5a3cbc593145d9ee6017e84539d55b91cb4a4c9e27d3495a44"
     },
     {
       "name": "web-search-specialist",
       "description": "Specialist in Advanced Web Research and Search Engines (Google, DuckDuckGo, Bing, SearXNG, Yahoo, Mojeek). Masters boolean operators, Google Dorks, structural filters (site, filetype, intitle, inurl), temporal search, disambiguation strategies, and fact/primary-source verification.",
       "type": "archive",
       "url": "knowledge/skills/roles/web-search-specialist/SKILL.md",
-      "digest": "sha256:4c53130611847fee44ba6f1118e75c49fea117fda2dbe855d7a48e0090dad28c"
+      "digest": "sha256:fc910c28248470a5990582a4e96758f6b80126f753e9a591318a01f0908f3e12"
     },
     {
       "name": "webassembly",
@@ -3415,7 +3464,7 @@
       "description": "Use when writing or editing a skill, an AGENTS.md line, or any document an agent reaches by a pointer, to keep it followable and free of drift.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
-      "digest": "sha256:f7831c67c59eb64bf9e72bb45a0aff2d5b63f6c5647aeddd5b6b9b535c8d07b7"
+      "digest": "sha256:a693887fb731857992f73b03fc773b62f08e85d1319b86f036fc3ce70908aad0"
     },
     {
       "name": "zero-trust-architecture-engineering",

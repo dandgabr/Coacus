@@ -136,8 +136,9 @@ template:
 - <before/after behavior or generated-artifact scope, when relevant>
 
 ## Merge risk
-- Blast radius: <affected components, users, or data>
-- Reversibility: <how to revert or roll back>
+- Decision type: <One-way door (irreversible schema/protocol break) | Two-way door (isolated logic change)>
+- Blast radius: <affected components, consumers, or state persistence>
+- Reversibility: <exact rollback command or migration reversal procedure>
 - <migration, rollout, or compatibility concerns; state none when checked>
 ```
 
