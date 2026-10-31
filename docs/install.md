@@ -242,6 +242,13 @@ An unowned or modified file at a planned install destination can produce an
 `install conflicts with existing files` error and a `conflicts` list. Review those
 paths and preserve user changes before deciding how to resolve the conflict;
 `--force` bypasses harness detection, not file-conflict checks. The installer
+can back up and replace divergent regular files recorded in a fingerprint-free
+legacy manifest when explicitly passed `--legacy-backup-dir PATH`. Use a new,
+private directory for each harness; review the reported paths first. Its
+`manifest.json` maps original paths to backup files and their SHA-256 digests.
+Restore a file by copying its recorded backup to its original path. Unowned files,
+symlinks, modified fingerprinted files and merged configuration conflicts are
+not covered by this option. Run a separate command for each harness. The installer
 normalizes manifest path separators when retiring legacy helpers on Windows and
 skips Python bytecode and `__pycache__` directories when copying skill trees.
 

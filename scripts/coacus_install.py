@@ -1931,6 +1931,7 @@ def install(
     lock_skills: bool | None = None,
     extra_policy_docs: list[dict] | None = None,
     antigravity_profile: str = "on-demand",
+    legacy_backup_dir: Path | None = None,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -2009,6 +2010,7 @@ def install(
                 ambiguous_hooks.append(hook_path.as_posix())
                 break
     conflicts = []
+    legacy_backup_targets: list[Path] = []
     shared_fingerprints: dict[str, str] = {}
     for other in config_dir.parent.glob("*/coacus-install.json"):
         if other == previous_manifest:
@@ -2037,6 +2039,9 @@ def install(
                     and not target.is_symlink() and target.is_file()):
                 expected = content.encode("utf-8") if isinstance(content, str) else content
                 safe = target.read_bytes() == expected
+                if not safe and legacy_backup_dir is not None and target not in merged_paths:
+                    legacy_backup_targets.append(target)
+                    safe = True
             if target in merged_paths and not target.is_symlink() and target.is_file():
                 try:
                     original = json.loads(target.read_text(encoding="utf-8"))
@@ -2071,12 +2076,30 @@ def install(
             "files": [str(t) for t, _ in files],
             "rules": rules_target.as_posix() if rules_pending else None,
             "dry_run": True,
+            "legacy_backup_targets": [str(p) for p in legacy_backup_targets],
             "only": only or [],
             "skills": skills or [],
             "agents": agents or [],
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
             **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
+    if legacy_backup_targets:
+        assert legacy_backup_dir is not None
+        try:
+            legacy_backup_dir.mkdir(mode=0o700, parents=False, exist_ok=False)
+            records = []
+            for index, target in enumerate(legacy_backup_targets):
+                content = target.read_bytes()
+                name = str(index)
+                (legacy_backup_dir / name).write_bytes(content)
+                if (legacy_backup_dir / name).read_bytes() != content:
+                    raise OSError("backup verification failed")
+                records.append({"original": str(target), "backup": name,
+                                "sha256": hashlib.sha256(content).hexdigest()})
+            (legacy_backup_dir / "manifest.json").write_text(
+                json.dumps({"files": records}, indent=2), encoding="utf-8")
+        except OSError as exc:
+            return {"harness": harness, "error": "legacy backup failed", "detail": str(exc), "files": []}
     # Unlock only directories backed by validated, fingerprinted managed files.
     managed_dirs: set[Path] = set()
     canonical = _canonical_skills_dir(config_dir)
@@ -2086,6 +2109,13 @@ def install(
         if (target.is_relative_to(canonical) and not target.is_symlink()
                 and target.is_file() and isinstance(digest, str)
                 and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            directory = target.parent
+            while directory != canonical and directory.is_relative_to(canonical):
+                if not directory.is_symlink():
+                    managed_dirs.add(directory)
+                directory = directory.parent
+    for target in legacy_backup_targets:
+        if target.is_relative_to(canonical):
             directory = target.parent
             while directory != canonical and directory.is_relative_to(canonical):
                 if not directory.is_symlink():
@@ -2241,6 +2271,7 @@ def install(
         "ambiguous_hooks": sorted(ambiguous_hooks),
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
+        "legacy_backup": str(legacy_backup_dir) if legacy_backup_targets else None,
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
         **(
             {"codex_skill_profile": codex_skill_profile,
@@ -2787,6 +2818,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
     )
     parser.add_argument(
+        "--legacy-backup-dir", type=Path,
+        help="back up divergent legacy managed files to a new directory before replacing them",
+    )
+    parser.add_argument(
         "--verify-after-install", action="store_true",
         help="install, then verify each installed harness (skip undetected harnesses)",
     )
@@ -2835,6 +2870,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     if not args.harness:
         parser.error("a harness is required unless --list is used")
+    if args.legacy_backup_dir and args.harness == "all":
+        parser.error("--legacy-backup-dir requires one harness at a time")
 
     # A filter that matches nothing silently installs only the harness files;
     # surface the typo instead (categories come from --list). `--only` spans
@@ -2929,7 +2966,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                         skills_mode=args.skills_mode or "link",
                         lock_skills=args.lock_skills,
                         extra_policy_docs=extra_docs,
-                        antigravity_profile=args.antigravity_profile)
+                        antigravity_profile=args.antigravity_profile,
+                        legacy_backup_dir=args.legacy_backup_dir)
             )
     if args.uninstall and args.harness == "all" and not args.dry_run:
         from engine.guardrail import browsers

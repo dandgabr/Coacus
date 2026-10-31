@@ -1557,7 +1557,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None, extra_policy_docs: list[dict] | None=None, antigravity_profile: str='on-demand') -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None, extra_policy_docs: list[dict] | None=None, antigravity_profile: str='on-demand', legacy_backup_dir: Path | None=None) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 

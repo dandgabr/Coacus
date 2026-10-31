@@ -184,10 +184,10 @@ const rateLimited = (value, depth = 0, seen = new Set()) => {
         '  server: CoacusGovernor,\n'
         '  async setup(ctx) {\n'
         '    const v1 = await CoacusGovernor();\n'
-        "    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before'](e, { args: e.input }));\n"
+        "    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before']({ ...e, callID: e.id }, { args: e.input }));\n"
         "    await ctx.tool.hook('execute.after', (e) => {\n"
         "      const out = { output: e.status === 'completed' ? e.result : String(e.error ?? ''), metadata: e.metadata };\n"
-        "      return v1['tool.execute.after']({ ...e, args: e.input }, out);\n"
+        "      return v1['tool.execute.after']({ ...e, callID: e.id, args: e.input }, out);\n"
         '    });\n'
         '  },\n'
         '};\n'

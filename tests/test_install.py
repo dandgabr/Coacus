@@ -287,11 +287,88 @@ class TestInstaller(unittest.TestCase):
         result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
         self.assertNotIn("error", result)
 
+    def test_legacy_divergence_requires_explicit_backup_and_preserves_original(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        target = self.config / "skills/using-coacus/SKILL.md"
+        target.write_text("local changes", encoding="utf-8")
+        self.assertIn("error", coacus_install.install("opencode", self.root, self.config, False))
+        backup = self.tmp / "backup"
+        result = coacus_install.install("opencode", self.root, self.config, False, legacy_backup_dir=backup)
+        self.assertNotIn("error", result)
+        record = json.loads((backup / "manifest.json").read_text(encoding="utf-8"))
+        saved = next(item for item in record["files"] if item["original"] == str(target))
+        self.assertEqual((backup / saved["backup"]).read_text(encoding="utf-8"), "local changes")
+        self.assertNotEqual(target.read_text(encoding="utf-8"), "local changes")
+
+    def test_legacy_backup_failure_does_not_replace_file(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        target = self.config / "skills/using-coacus/SKILL.md"
+        target.write_text("local changes", encoding="utf-8")
+        backup = self.tmp / "existing-backup"
+        backup.mkdir()
+        result = coacus_install.install("opencode", self.root, self.config, False, legacy_backup_dir=backup)
+        self.assertEqual(result.get("error"), "legacy backup failed")
+        self.assertEqual(target.read_text(encoding="utf-8"), "local changes")
+
+    def test_legacy_backup_upgrade_for_each_harness(self) -> None:
+        for harness in ("opencode", "claude-code", "claude-desktop", "antigravity", "codex", "cursor", "command-code"):
+            with self.subTest(harness=harness), tempfile.TemporaryDirectory() as tmp:
+                home = Path(tmp)
+                root = make_repo(home)
+                config = home / "config"
+                first = coacus_install.install(harness, root, config, False, skills_mode="copy")
+                self.assertNotIn("error", first)
+                manifest = config / coacus_install.MANIFEST_NAME
+                data = json.loads(manifest.read_text(encoding="utf-8"))
+                data.pop("file_fingerprints", None)
+                data.pop("workflow_fingerprints", None)
+                manifest.write_text(json.dumps(data), encoding="utf-8")
+                merged = set(coacus_install._merged_config_paths(harness, config) + coacus_install._merged_mcp_paths(harness, config))
+                candidates = [Path(path) for path in data["files"] if Path(path).is_file()
+                              and not Path(path).is_symlink() and Path(path) not in merged]
+                self.assertTrue(candidates)
+                target = candidates[0]
+                target.write_text("local changes", encoding="utf-8")
+                backup = home / "backup"
+                result = coacus_install.install(harness, root, config, False, skills_mode="copy", legacy_backup_dir=backup)
+                self.assertNotIn("error", result)
+                records = json.loads((backup / "manifest.json").read_text(encoding="utf-8"))["files"]
+                saved = next(item for item in records if item["original"] == str(target))
+                self.assertEqual((backup / saved["backup"]).read_text(encoding="utf-8"), "local changes")
+
+    def test_legacy_backup_updates_locked_shared_skill(self) -> None:
+        first = coacus_install.install("codex", self.root, self.config, False, lock_skills=True)
+        self.assertNotIn("error", first)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        source = self.root / "methodology/workflows/using-coacus/SKILL.md"
+        source.write_text(ENTRY + "\nupdated\n", encoding="utf-8")
+        result = coacus_install.install("codex", self.root, self.config, False,
+                                        lock_skills=True, legacy_backup_dir=self.tmp / "backup")
+        self.assertNotIn("error", result)
+
     def test_upgrade_refuses_modified_and_unowned_planned_paths(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
         target = self.config / "skills/using-coacus/SKILL.md"
         target.write_text("local", encoding="utf-8")
         result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertEqual(target.read_text(encoding="utf-8"), "local")
+        result = coacus_install.install("opencode", self.root, self.config, dry_run=False,
+                                        legacy_backup_dir=self.tmp / "backup")
         self.assertIn(target.as_posix(), result["conflicts"])
         self.assertEqual(target.read_text(encoding="utf-8"), "local")
 

@@ -13,6 +13,29 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @unittest.skipUnless(shutil.which('node'), 'Node is required')
 class OpenCodeGovernorGateTests(unittest.TestCase):
+    def test_v2_hook_correlates_call_id(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            from engine.generators.plugins import _opencode_governor_gate
+            source = _opencode_governor_gate().replace('"__COACUS_ROOT__"', json.dumps(str(ROOT)))
+            source = source.replace('"__COACUS_PYTHON__"', json.dumps(sys.executable))
+            (Path(tmp) / 'gate.mjs').write_text(source)
+            script = '''
+import assert from 'node:assert/strict';
+import plugin from './gate.mjs';
+const hooks = {};
+await plugin.setup({tool:{hook: async (name, fn) => {hooks[name] = fn;}}});
+const call = {tool:'subagent', sessionID:'session', id:'call-1', input:{}};
+await hooks['execute.before'](call);
+await assert.rejects(hooks['execute.before'](call), /duplicate/);
+await hooks['execute.after']({...call, status:'completed', result:''});
+await hooks['execute.before'](call);
+await hooks['execute.after']({...call, status:'completed', result:''});
+'''
+            result = subprocess.run([shutil.which('node'), '--input-type=module', '-e', script],
+                cwd=tmp, env=dict(os.environ, GOVERNOR_STATE_DIR=tmp, ORCH_MAX_CONCURRENT='1'),
+                text=True, capture_output=True, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_separate_processes_do_not_share_slot(self):
         with tempfile.TemporaryDirectory() as tmp:
             from engine.generators.plugins import _opencode_governor_gate

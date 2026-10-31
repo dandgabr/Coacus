@@ -120,10 +120,10 @@ export default {
   server: CoacusGovernor,
   async setup(ctx) {
     const v1 = await CoacusGovernor();
-    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before'](e, { args: e.input }));
+    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before']({ ...e, callID: e.id }, { args: e.input }));
     await ctx.tool.hook('execute.after', (e) => {
       const out = { output: e.status === 'completed' ? e.result : String(e.error ?? ''), metadata: e.metadata };
-      return v1['tool.execute.after']({ ...e, args: e.input }, out);
+      return v1['tool.execute.after']({ ...e, callID: e.id, args: e.input }, out);
     });
   },
 };
