@@ -506,7 +506,11 @@ skills and complete native agent prompts.
 **Governance limitation.** The Antigravity hook denies recognized subagent spawn
 requests on all platforms until host call identity and worker lifetime are verified.
 Recognized list and kill operations remain allowed. Live host behavior is unverified;
-installation alone does not prove runtime enforcement.
+installation alone does not prove runtime enforcement. The vendor describes CLI
+subagents as [asynchronous background workers](https://antigravity.google/docs/subagents),
+whereas [`PostToolUse`](https://antigravity.google/docs/hooks) reports the tool
+call's completion. A post-tool event alone therefore does not establish that a
+worker has ended, and must not be used by itself to release its reservation.
 
 **Verify**
 
@@ -514,6 +518,11 @@ installation alone does not prove runtime enforcement.
 agy plugin validate ~/.gemini/config/plugins/coacus   # expect: [ok]
 agy plugin list --json
 ```
+
+The plugin validator can succeed while reporting zero hook groups. Check that
+the installed plugin's `hooks.json` contains `coacus-governor`, and inspect
+`/hooks` in a fresh CLI session. A validated manifest or a running `agy`
+process does not prove the governor hook is loaded.
 
 In an Antigravity CLI session, `/context` reports usage by Rules, Skills,
 Subagents, Workflows, Plugins and MCP tools. It is a CLI diagnostic; do not
@@ -658,7 +667,7 @@ The last command must print `True`. The hook must not emit
 **Goal:** a `SessionStart` hook injects the bootstrap, Command Code discovers the
 Coacus skills and agents natively, and framework MCP servers are registered.
 
-**How it works.** Command Code has no in-process plugin API. It runs a
+**How it works.** The Coacus adapter uses a native hook. Command Code runs a
 `SessionStart` hook that emits JSON and reads a single native key,
 `hookSpecificOutput.additionalContext` — the same key Claude Code and Codex use.
 The adapter renders `harnesses/command-code/bootstrap/session-start.json` and a
@@ -676,6 +685,13 @@ the `agent` tool — so the cap is documented in `~/.commandcode/AGENTS.md` and 
 ledger stays available through `python3 scripts/coacus_governor.py`. The main
 agent must follow [orchestration governance](standards/orchestration-governance.md)
 when dispatching; the coordinator persona does not bypass the tool restriction.
+Command Code also exposes an experimental in-process [mods API](https://commandcode.ai/docs/mods),
+but it skips a tool hook that throws. Its [permission rules](https://commandcode.ai/docs/permissions)
+also exempt the `agent` tool, so a mod alone does not establish a fail-closed
+governor. A local fake-model probe of Command Code 1.88.2 (resolved from
+[npm](https://www.npmjs.com/package/command-code/v/1.88.2) on 2026-10-31)
+confirmed this fallback for a synthetic `read_file` call. It did not test agent
+dispatch or the lifetime of a subagent.
 
 **Vendor facts**
 

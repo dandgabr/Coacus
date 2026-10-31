@@ -34,6 +34,12 @@ redacted by default. Set `COACUS_EVAL_VERBOSE=1` only when local debugging
 requires an excerpt, and inspect it before sharing because it may contain
 sensitive context.
 
+The opt-in `python3 evals/command_code_mod_probe.py` checks Command Code's
+tool-hook failure behavior against a fake loopback provider and a synthetic
+file. Run it in an isolated environment with the CLI already installed; it
+uses a temporary home and does not require credentials or launch subagents.
+It tests `read_file`, not subagent interception or worker lifetime.
+
 ## Scenario format
 
 Scenarios live at `evals/scenarios/<id>/scenario.json`. Each JSON object declares
