@@ -2083,6 +2083,7 @@ def install(
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
             **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
+    legacy_backup_digests: dict[Path, str] = {}
     if legacy_backup_targets:
         assert legacy_backup_dir is not None
         try:
@@ -2096,8 +2097,14 @@ def install(
                     raise OSError("backup verification failed")
                 records.append({"original": str(target), "backup": name,
                                 "sha256": hashlib.sha256(content).hexdigest()})
+                legacy_backup_digests[target] = hashlib.sha256(content).hexdigest()
             (legacy_backup_dir / "manifest.json").write_text(
                 json.dumps({"files": records}, indent=2), encoding="utf-8")
+            for target, digest in legacy_backup_digests.items():
+                if (target.is_symlink() or not target.is_file()
+                        or hashlib.sha256(target.read_bytes()).hexdigest() != digest):
+                    return {"harness": harness, "error": "legacy file changed during backup",
+                            "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": []}
         except OSError as exc:
             return {"harness": harness, "error": "legacy backup failed", "detail": str(exc), "files": []}
     # Unlock only directories backed by validated, fingerprinted managed files.
@@ -2125,6 +2132,11 @@ def install(
     written: list[str] = []
     try:
         for target, content in files:
+            if target in legacy_backup_digests and (
+                    target.is_symlink() or not target.is_file()
+                    or hashlib.sha256(target.read_bytes()).hexdigest() != legacy_backup_digests[target]):
+                return {"harness": harness, "error": "legacy file changed after backup",
+                        "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": written}
             for directory in reversed(target.parent.parents):
                 if directory in managed_dirs and directory not in modes:
                     modes[directory] = directory.stat().st_mode & 0o7777

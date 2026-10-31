@@ -304,6 +304,8 @@ class TestInstaller(unittest.TestCase):
         saved = next(item for item in record["files"] if item["original"] == str(target))
         self.assertEqual((backup / saved["backup"]).read_text(encoding="utf-8"), "local changes")
         self.assertNotEqual(target.read_text(encoding="utf-8"), "local changes")
+        shutil.copyfile(backup / saved["backup"], target)
+        self.assertEqual(target.read_text(encoding="utf-8"), "local changes")
 
     def test_legacy_backup_failure_does_not_replace_file(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)
@@ -319,6 +321,28 @@ class TestInstaller(unittest.TestCase):
         result = coacus_install.install("opencode", self.root, self.config, False, legacy_backup_dir=backup)
         self.assertEqual(result.get("error"), "legacy backup failed")
         self.assertEqual(target.read_text(encoding="utf-8"), "local changes")
+
+    def test_legacy_backup_aborts_if_file_changes_during_backup(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest = self.config / coacus_install.MANIFEST_NAME
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        data.pop("file_fingerprints", None)
+        data.pop("workflow_fingerprints", None)
+        manifest.write_text(json.dumps(data), encoding="utf-8")
+        target = self.config / "skills/using-coacus/SKILL.md"
+        target.write_text("first edit", encoding="utf-8")
+        backup = self.tmp / "backup"
+        read_bytes = Path.read_bytes
+        def read_and_modify(path):
+            content = read_bytes(path)
+            if path == backup / "0":
+                target.write_text("concurrent edit", encoding="utf-8")
+            return content
+        with patch.object(Path, "read_bytes", read_and_modify):
+            result = coacus_install.install("opencode", self.root, self.config, False, legacy_backup_dir=backup)
+        self.assertIn("error", result)
+        self.assertEqual(target.read_text(encoding="utf-8"), "concurrent edit")
+        self.assertEqual((backup / "0").read_text(encoding="utf-8"), "first edit")
 
     def test_legacy_backup_upgrade_for_each_harness(self) -> None:
         for harness in ("opencode", "claude-code", "claude-desktop", "antigravity", "codex", "cursor", "command-code"):
