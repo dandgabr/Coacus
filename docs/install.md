@@ -242,11 +242,21 @@ An unowned or modified file at a planned install destination can produce an
 `install conflicts with existing files` error and a `conflicts` list. Review those
 paths and preserve user changes before deciding how to resolve the conflict;
 `--force` bypasses harness detection, not file-conflict checks. The installer
+does not rewrite a matching fingerprint-free legacy file; it records the expected
+fingerprint so a concurrent user edit is detected as drift on later verification.
+The installer
 can back up and replace divergent regular files recorded in a fingerprint-free
 legacy manifest when explicitly passed `--legacy-backup-dir PATH`. Use a new,
-private directory for each harness; review the reported paths first. Its
-`manifest.json` maps original paths to backup files and their SHA-256 digests.
-Restore a file by copying its recorded backup to its original path. Unowned files,
+private directory for each harness on the same filesystem as the files being
+upgraded; review the reported paths first. Its `manifest.json` maps original
+paths to verified initial backups and to `preserved_current` files. The latter
+are the original files moved at replacement time and can contain newer edits;
+they may still change while another process holds an open handle. Stop concurrent
+writers before restoring, and prefer `preserved_current` when it exists. If a
+rename across filesystems is required, replacement fails and the backup remains
+available. Migration across multiple files is not transactional: if an error or
+interruption occurs, inspect the backup manifest and each original path before
+restoring or rerunning. Unowned files,
 symlinks, modified fingerprinted files and merged configuration conflicts are
 not covered by this option. Run a separate command for each harness. The installer
 normalizes manifest path separators when retiring legacy helpers on Windows and
