@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import secrets
 import unittest
 from unittest.mock import patch
 
@@ -19,7 +20,7 @@ class CommandCodeModProbeTests(unittest.TestCase):
 
     def test_missing_cli_is_reported_without_exposing_environment(self) -> None:
         output = io.StringIO()
-        secret = "synthetic-token-123"
+        secret = secrets.token_urlsafe(24)
         with patch.dict("os.environ", {"PATH": "", "EXAMPLE_SECRET": secret}, clear=True):
             with contextlib.redirect_stdout(output):
                 result = command_code_mod_probe.main()

@@ -2094,7 +2094,8 @@ def install(
     legacy_backup_digests: dict[Path, str] = {}
     legacy_live_backups: dict[Path, Path] = {}
     if legacy_backup_targets:
-        assert legacy_backup_dir is not None
+        if legacy_backup_dir is None:
+            return {"harness": harness, "error": "legacy backup directory is required", "files": []}
         try:
             legacy_backup_dir.mkdir(mode=0o700, parents=False, exist_ok=False)
             records = []
