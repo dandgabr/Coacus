@@ -242,6 +242,23 @@ An unowned or modified file at a planned install destination can produce an
 `install conflicts with existing files` error and a `conflicts` list. Review those
 paths and preserve user changes before deciding how to resolve the conflict;
 `--force` bypasses harness detection, not file-conflict checks. The installer
+does not rewrite a matching fingerprint-free legacy file; it records the expected
+fingerprint so a concurrent user edit is detected as drift on later verification.
+The installer
+can back up and replace divergent regular files recorded in a fingerprint-free
+legacy manifest when explicitly passed `--legacy-backup-dir PATH`. Use a new,
+private directory for each harness on the same filesystem as the files being
+upgraded; review the reported paths first. Its `manifest.json` maps original
+paths to verified initial backups and to `preserved_current` files. The latter
+are the original files moved at replacement time and can contain newer edits;
+they may still change while another process holds an open handle. Stop concurrent
+writers before restoring, and prefer `preserved_current` when it exists. If a
+rename across filesystems is required, replacement fails and the backup remains
+available. Migration across multiple files is not transactional: if an error or
+interruption occurs, inspect the backup manifest and each original path before
+restoring or rerunning. Unowned files,
+symlinks, modified fingerprinted files and merged configuration conflicts are
+not covered by this option. Run a separate command for each harness. The installer
 normalizes manifest path separators when retiring legacy helpers on Windows and
 skips Python bytecode and `__pycache__` directories when copying skill trees.
 
@@ -489,7 +506,15 @@ skills and complete native agent prompts.
 **Governance limitation.** The Antigravity hook denies recognized subagent spawn
 requests on all platforms until host call identity and worker lifetime are verified.
 Recognized list and kill operations remain allowed. Live host behavior is unverified;
-installation alone does not prove runtime enforcement.
+installation alone does not prove runtime enforcement. The vendor describes CLI
+subagents as [asynchronous background workers](https://antigravity.google/docs/subagents),
+whereas [`PostToolUse`](https://antigravity.google/docs/hooks) reports the tool
+call's completion. A post-tool event alone therefore does not establish that a
+worker has ended, and must not be used by itself to release its reservation. In
+an isolated probe using a synthetic local model and manually reserved governor
+slots, the post-tool event preceded the worker response. Subsequent list output
+showed the same synthetic worker identifier on lines reporting `running` and
+`idle`; this does not prove that an idle worker has ended or cannot be resumed.
 
 **Verify**
 
@@ -497,6 +522,11 @@ installation alone does not prove runtime enforcement.
 agy plugin validate ~/.gemini/config/plugins/coacus   # expect: [ok]
 agy plugin list --json
 ```
+
+The plugin validator can succeed while reporting zero hook groups. Check that
+the installed plugin's `hooks.json` contains `coacus-governor`, and inspect
+`/hooks` in a fresh CLI session. A validated manifest or a running `agy`
+process does not prove the governor hook is loaded.
 
 In an Antigravity CLI session, `/context` reports usage by Rules, Skills,
 Subagents, Workflows, Plugins and MCP tools. It is a CLI diagnostic; do not
@@ -641,7 +671,7 @@ The last command must print `True`. The hook must not emit
 **Goal:** a `SessionStart` hook injects the bootstrap, Command Code discovers the
 Coacus skills and agents natively, and framework MCP servers are registered.
 
-**How it works.** Command Code has no in-process plugin API. It runs a
+**How it works.** The Coacus adapter uses a native hook. Command Code runs a
 `SessionStart` hook that emits JSON and reads a single native key,
 `hookSpecificOutput.additionalContext` — the same key Claude Code and Codex use.
 The adapter renders `harnesses/command-code/bootstrap/session-start.json` and a
@@ -659,6 +689,17 @@ the `agent` tool — so the cap is documented in `~/.commandcode/AGENTS.md` and 
 ledger stays available through `python3 scripts/coacus_governor.py`. The main
 agent must follow [orchestration governance](standards/orchestration-governance.md)
 when dispatching; the coordinator persona does not bypass the tool restriction.
+Command Code also exposes an experimental in-process [mods API](https://commandcode.ai/docs/mods),
+but it skips a tool hook that throws. Its [permission rules](https://commandcode.ai/docs/permissions)
+also exempt the `agent` tool, so a mod alone does not establish a fail-closed
+governor. A local fake-model probe of Command Code 1.88.2 (resolved from
+[npm](https://www.npmjs.com/package/command-code/v/1.88.2) on 2026-10-31)
+confirmed this fallback for a synthetic `read_file` call. It did not test agent
+dispatch or the lifetime of a subagent. A separate local probe reserved
+governor slots before issuing one synthetic foreground `agent` call: a blocking
+mod prevented the call, while a throwing mod was skipped and the worker started
+and stopped. This observation does not establish background-worker lifetime or
+fail-closed behavior when a mod fails to load.
 
 **Vendor facts**
 

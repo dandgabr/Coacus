@@ -1916,6 +1916,11 @@ def _is_default_target(harness: str, config_dir: Path) -> bool:
         return config_dir == default_config_dir(harness, _home())
 
 
+def _install_text_bytes(content: str) -> bytes:
+    """Match the native newline translation of UTF-8 text-mode writes."""
+    return content.replace("\n", os.linesep).encode("utf-8")
+
+
 def install(
     harness: str,
     root: Path,
@@ -1931,6 +1936,7 @@ def install(
     lock_skills: bool | None = None,
     extra_policy_docs: list[dict] | None = None,
     antigravity_profile: str = "on-demand",
+    legacy_backup_dir: Path | None = None,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -2009,6 +2015,8 @@ def install(
                 ambiguous_hooks.append(hook_path.as_posix())
                 break
     conflicts = []
+    legacy_backup_targets: list[Path] = []
+    legacy_unchanged: dict[Path, str] = {}
     shared_fingerprints: dict[str, str] = {}
     for other in config_dir.parent.glob("*/coacus-install.json"):
         if other == previous_manifest:
@@ -2035,8 +2043,13 @@ def install(
                     and hashlib.sha256(target.read_bytes()).hexdigest() == digest)
             if (not safe and path in previous_files and digest is None
                     and not target.is_symlink() and target.is_file()):
-                expected = content.encode("utf-8") if isinstance(content, str) else content
+                expected = _install_text_bytes(content) if isinstance(content, str) else content
                 safe = target.read_bytes() == expected
+                if safe and target not in merged_paths:
+                    legacy_unchanged[target] = hashlib.sha256(expected).hexdigest()
+                if not safe and legacy_backup_dir is not None and target not in merged_paths:
+                    legacy_backup_targets.append(target)
+                    safe = True
             if target in merged_paths and not target.is_symlink() and target.is_file():
                 try:
                     original = json.loads(target.read_text(encoding="utf-8"))
@@ -2071,12 +2084,41 @@ def install(
             "files": [str(t) for t, _ in files],
             "rules": rules_target.as_posix() if rules_pending else None,
             "dry_run": True,
+            "legacy_backup_targets": [str(p) for p in legacy_backup_targets],
             "only": only or [],
             "skills": skills or [],
             "agents": agents or [],
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
             **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
+    legacy_backup_digests: dict[Path, str] = {}
+    legacy_live_backups: dict[Path, Path] = {}
+    if legacy_backup_targets:
+        if legacy_backup_dir is None:
+            return {"harness": harness, "error": "legacy backup directory is required", "files": []}
+        try:
+            legacy_backup_dir.mkdir(mode=0o700, parents=False, exist_ok=False)
+            records = []
+            for index, target in enumerate(legacy_backup_targets):
+                content = target.read_bytes()
+                name = str(index)
+                (legacy_backup_dir / name).write_bytes(content)
+                if (legacy_backup_dir / name).read_bytes() != content:
+                    raise OSError("backup verification failed")
+                live_name = name + ".current"
+                records.append({"original": str(target), "backup": name, "preserved_current": live_name,
+                                "sha256": hashlib.sha256(content).hexdigest()})
+                legacy_backup_digests[target] = hashlib.sha256(content).hexdigest()
+                legacy_live_backups[target] = legacy_backup_dir / live_name
+            (legacy_backup_dir / "manifest.json").write_text(
+                json.dumps({"files": records}, indent=2), encoding="utf-8")
+            for target, digest in legacy_backup_digests.items():
+                if (target.is_symlink() or not target.is_file()
+                        or hashlib.sha256(target.read_bytes()).hexdigest() != digest):
+                    return {"harness": harness, "error": "legacy file changed during backup",
+                            "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": []}
+        except OSError as exc:
+            return {"harness": harness, "error": "legacy backup failed", "detail": str(exc), "files": []}
     # Unlock only directories backed by validated, fingerprinted managed files.
     managed_dirs: set[Path] = set()
     canonical = _canonical_skills_dir(config_dir)
@@ -2091,10 +2133,26 @@ def install(
                 if not directory.is_symlink():
                     managed_dirs.add(directory)
                 directory = directory.parent
+    for target in legacy_backup_targets:
+        if target.is_relative_to(canonical):
+            directory = target.parent
+            while directory != canonical and directory.is_relative_to(canonical):
+                if not directory.is_symlink():
+                    managed_dirs.add(directory)
+                directory = directory.parent
     modes: dict[Path, int] = {}
     written: list[str] = []
+    legacy_written_expected: dict[Path, str] = {}
     try:
         for target, content in files:
+            if target in legacy_unchanged:
+                written.append(target.as_posix())
+                continue
+            if target in legacy_backup_digests and (
+                    target.is_symlink() or not target.is_file()
+                    or hashlib.sha256(target.read_bytes()).hexdigest() != legacy_backup_digests[target]):
+                return {"harness": harness, "error": "legacy file changed after backup",
+                        "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": written}
             for directory in reversed(target.parent.parents):
                 if directory in managed_dirs and directory not in modes:
                     modes[directory] = directory.stat().st_mode & 0o7777
@@ -2103,10 +2161,34 @@ def install(
                 modes[target.parent] = target.parent.stat().st_mode & 0o7777
                 os.chmod(target.parent, modes[target.parent] | 0o200)
             target.parent.mkdir(parents=True, exist_ok=True)
-            if (target.is_file() and not target.is_symlink()
+            if (target not in legacy_live_backups and target.is_file() and not target.is_symlink()
                     and (target.as_posix() in previous_files or target.as_posix() in shared_fingerprints)):
                 os.chmod(target, target.stat().st_mode | 0o200)
-            if isinstance(content, Symlink):
+            if target in legacy_live_backups:
+                live_backup = legacy_live_backups[target]
+                try:
+                    # Rename retains the actual inode, including edits made through
+                    # a descriptor opened before this operation. O_EXCL prevents
+                    # replacing a new file created at the original path.
+                    os.rename(target, live_backup)
+                    if live_backup.is_symlink() or not live_backup.is_file():
+                        return {"harness": harness, "error": "legacy file changed type",
+                                "legacy_backup": str(legacy_backup_dir), "files": written}
+                    mode = live_backup.stat().st_mode & 0o777
+                    new_content = _install_text_bytes(content) if isinstance(content, str) else content
+                    fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
+                    try:
+                        stream = os.fdopen(fd, "wb")
+                    except OSError:
+                        os.close(fd)
+                        raise
+                    with stream:
+                        stream.write(new_content)
+                    legacy_written_expected[target] = hashlib.sha256(new_content).hexdigest()
+                except OSError as exc:
+                    return {"harness": harness, "error": "legacy replacement failed",
+                            "detail": str(exc), "legacy_backup": str(legacy_backup_dir), "files": written}
+            elif isinstance(content, Symlink):
                 _install_symlink(target, content.target)
             elif isinstance(content, bytes):
                 target.write_bytes(content)
@@ -2193,7 +2275,8 @@ def install(
     for target, content in files:
         if (not isinstance(content, Symlink) and any(part in workflow_names for part in target.parts)
                 and target.is_file() and not target.is_symlink()):
-            workflow_fingerprints[target.as_posix()] = hashlib.sha256(target.read_bytes()).hexdigest()
+            workflow_fingerprints[target.as_posix()] = (legacy_unchanged.get(target) or legacy_written_expected.get(target)
+                                                        or hashlib.sha256(target.read_bytes()).hexdigest())
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -2205,7 +2288,8 @@ def install(
                 "file_fingerprints": {
                     **carried_fingerprints,
                     **{target.as_posix(): ("symlink:" + os.readlink(target) if isinstance(content, Symlink)
-                                        else hashlib.sha256(target.read_bytes()).hexdigest())
+                                        else legacy_unchanged.get(target) or legacy_written_expected.get(target)
+                                        or hashlib.sha256(target.read_bytes()).hexdigest())
                     for target, content in files
                     if target.is_symlink() and isinstance(content, Symlink)
                     or target.is_file() and not target.is_symlink()}
@@ -2241,6 +2325,7 @@ def install(
         "ambiguous_hooks": sorted(ambiguous_hooks),
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
+        "legacy_backup": str(legacy_backup_dir) if legacy_backup_targets else None,
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
         **(
             {"codex_skill_profile": codex_skill_profile,
@@ -2787,6 +2872,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
     )
     parser.add_argument(
+        "--legacy-backup-dir", type=Path,
+        help="back up divergent legacy managed files to a new directory before replacing them",
+    )
+    parser.add_argument(
         "--verify-after-install", action="store_true",
         help="install, then verify each installed harness (skip undetected harnesses)",
     )
@@ -2835,6 +2924,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     if not args.harness:
         parser.error("a harness is required unless --list is used")
+    if args.legacy_backup_dir and args.harness == "all":
+        parser.error("--legacy-backup-dir requires one harness at a time")
 
     # A filter that matches nothing silently installs only the harness files;
     # surface the typo instead (categories come from --list). `--only` spans
@@ -2929,7 +3020,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                         skills_mode=args.skills_mode or "link",
                         lock_skills=args.lock_skills,
                         extra_policy_docs=extra_docs,
-                        antigravity_profile=args.antigravity_profile)
+                        antigravity_profile=args.antigravity_profile,
+                        legacy_backup_dir=args.legacy_backup_dir)
             )
     if args.uninstall and args.harness == "all" and not args.dry_run:
         from engine.guardrail import browsers

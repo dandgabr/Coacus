@@ -69,3 +69,22 @@ jobs:
           python-version: '3.10'
       - name: run portable hook and workflow contracts
         run: python -m unittest tests.test_python_only_hooks tests.test_python_only_validator tests.test_workflow_helpers tests.test_governor_hook tests.test_secrets_runner
+      # The installer test module uses tomllib; keep the hook floor at 3.10
+      # and run installer contracts on the same interpreter as the full suite.
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
+      - name: run portable legacy migration and probe safety contracts
+        run: >-
+          python -m unittest
+          tests.test_command_code_mod_probe
+          tests.test_install.TestInstaller.test_install_text_bytes_use_native_newlines
+          tests.test_install.TestInstaller.test_legacy_matching_file_edited_after_check_is_not_overwritten
+          tests.test_install.TestInstaller.test_legacy_divergence_requires_explicit_backup_and_preserves_original
+          tests.test_install.TestInstaller.test_legacy_backup_aborts_if_file_changes_during_backup
+          tests.test_install.TestInstaller.test_legacy_edit_after_final_check_is_preserved
+          tests.test_install.TestInstaller.test_legacy_replacement_refuses_new_file_created_after_rename
+          tests.test_install.TestInstaller.test_legacy_edit_after_replacement_is_not_adopted_as_managed
+          tests.test_install.TestInstaller.test_legacy_replacement_fails_safely_when_rename_is_unavailable
+          tests.test_install.TestInstaller.test_legacy_replacement_closes_descriptor_if_fdopen_fails
+          tests.test_install.TestInstaller.test_legacy_replacement_does_not_follow_late_symlink
