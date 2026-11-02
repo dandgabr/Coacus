@@ -2421,7 +2421,7 @@
       "description": "Use when a review or audit produces many candidate findings, to filter false positives through adversarial validation and a confidence threshold before reporting.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "digest": "sha256:d963fa0e4dc2024577f254e4dd50a593bc5eac1589cb85b88187224dfc964e50"
+      "digest": "sha256:9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff"
     },
     {
       "name": "sast-code-review",
@@ -2736,14 +2736,14 @@
       "description": "Provides design engineering patterns for high-converting hero sections and above-the-fold interface architectures. Covers canonical layout typologies (split-screen, product-led, live interactive sandbox, metric-driven B2B, 3D canvas backdrop), the 50ms visual judgment rule, F/Z-pattern attention choreography, outcome-driven typography formulas, dual-CTA friction reduction, social proof anchors, and responsive viewport budgeting. Use when designing web application landing pages, SaaS dashboards, or above-the-fold brand moments.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "digest": "sha256:f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78"
+      "digest": "sha256:6dbf2cef7610d8af10e199f219f495c5b4585d920e2b44fbb9f0ace5ad624f99"
     },
     {
       "name": "ui-motion-interaction",
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:61155f7a48657c0bdf9db37a4e3f5b2b2906a670fe9c936c68b3a28c2415a957"
+      "digest": "sha256:8659b2747a4a2623e2f543bf22b833992376bd3ef5e05f234343281f3e7d2254"
     },
     {
       "name": "ui-onboarding-tours",
@@ -3373,7 +3373,7 @@
       "description": "Establishes a trust boundary for content retrieved from the open internet, papers, documents and third-party data, so research agents treat it as evidence and never as instructions. Use when fetching web pages, reading PDFs, parsing research papers, or ingesting any external corpus that may contain prompt injection.",
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "digest": "sha256:9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8"
+      "digest": "sha256:e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e"
     },
     {
       "name": "using-coacus",

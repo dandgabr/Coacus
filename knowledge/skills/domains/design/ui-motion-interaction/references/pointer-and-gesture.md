@@ -445,6 +445,41 @@ Mechanics:
 - **Reduced motion:** keep the drag 1:1 (it is user-driven), but replace the fling and rubber-band settle with a short opacity or instant snap.
 - **Single-pointer alternative (SC 2.5.7):** every drag outcome needs a non-drag path: previous/next buttons, a select control, or arrow keys on the focused item. Swipe-to-dismiss needs a visible dismiss button.
 
+## Pure CSS micro-interactions and shimmer text
+
+When high tactile quality is required with zero JavaScript overhead:
+- **Zero-JS Micro-interactions:** Use modern CSS `:has()`, `:hover`, and `:active` combined with transition variables (`transition: transform var(--motion-feedback) var(--ease-squish)`). Never spin up event listeners or animation loops for deterministic button depress, badge pop, or toggle switches.
+- **Hardware-Accelerated Shimmer Text:** Animate text sheen across display typography using `background-clip: text`, `color: transparent`, and a linear gradient translated via `background-position`:
+  ```css
+  .fx-shimmer-text {
+    background: linear-gradient(
+      110deg,
+      var(--fg-muted) 0%,
+      var(--fg-muted) 40%,
+      var(--fg-accent) 50%,
+      var(--fg-muted) 60%,
+      var(--fg-muted) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fx-shimmer 3s ease-in-out infinite;
+  }
+  @keyframes fx-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fx-shimmer-text {
+      animation: none;
+      color: var(--fg);
+      background: none;
+    }
+  }
+  ```
+- **Performance Budget:** Ensure the animation does not cause layout or paint thrashing; verify with DevTools Rendering tab that only compositor properties are animated.
+
 ## Version Sources
 
 Moving release pins in this file were resolved 2026-10-20 (Baseline from web-features 3.43.0, browser support from MDN BCD 8.1.6):

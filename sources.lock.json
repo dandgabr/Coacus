@@ -17275,9 +17275,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "source_sha256": "9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8",
+      "source_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
       "target_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "target_sha256": "9947ea27bea9e98c20d9180d9a19d3eac97eb8077432829ca85fed7f8eca0ae8",
+      "target_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19225,9 +19225,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "source_sha256": "f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78",
+      "source_sha256": "6dbf2cef7610d8af10e199f219f495c5b4585d920e2b44fbb9f0ace5ad624f99",
       "target_path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "target_sha256": "f0931042c369edc8249e1cb628a29624a48784266147ee289ccab9fa49caad78",
+      "target_sha256": "6dbf2cef7610d8af10e199f219f495c5b4585d920e2b44fbb9f0ace5ad624f99",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20005,9 +20005,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "source_sha256": "d963fa0e4dc2024577f254e4dd50a593bc5eac1589cb85b88187224dfc964e50",
+      "source_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
       "target_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "target_sha256": "d963fa0e4dc2024577f254e4dd50a593bc5eac1589cb85b88187224dfc964e50",
+      "target_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

@@ -25,7 +25,12 @@ parallel, validate each finding adversarially, and report only what survives.
    - **50** — real, but possibly a nitpick.
    - **75** — double-checked and verified; important, or in a written rule.
    - **100** — confirmed, and frequent in practice.
-4. **Threshold.** Report only findings scored **80 or above**.
+4. **Severity classification and safety preservation:**
+   - **Critical (P0):** Proven remote code execution, authentication bypass, data loss, or system compromise. Must never be dropped or silently suppressed by style thresholds.
+   - **High (P1):** Exploitable logic vulnerability, memory leak, or broken core functional contract.
+   - **Medium (P2):** Regression risk, performance bottleneck under load, or concurrency race without immediate corruption.
+   - **Low / Suggestion (P3):** Maintainability enhancement, naming alignment, or minor cleanup.
+5. **Threshold and gating.** Report only findings scored **80 or above**, with one strict exception: verified Critical and High security vulnerabilities (P0/P1) backed by clear proof or reproducer must never be filtered out solely by confidence score.
 
 ## Do NOT flag
 

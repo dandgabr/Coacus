@@ -100,6 +100,12 @@ A resilient hero section adheres to a strict six-part anatomical structure:
 - Displayed above the fold: client logos with normalized opacity (monochrome / desaturated), verified rating stars, or active usage numbers.
 - Reduces existential adoption anxiety before the user begins to scroll.
 
+### 6. Dynamic Backdrops and Light Beam Architecture
+High-conversion backdrops balance aesthetic immersion with zero impact on LCP:
+- **Directional Animated Beams:** Render sweeping light cones or atmospheric beams using hardware-accelerated CSS pseudo-elements (`conic-gradient`, `linear-gradient`) and 3D transforms (`rotate3d`, `translateZ(0)`). Never rely on heavy unoptimized video textures or non-culled WebGL loops for simple ambient illumination.
+- **Pure-CSS Grid Scaffolding:** Layer radial gradients with CSS grid masks (`radial-gradient(circle at center, transparent 0%, var(--bg) 80%)`) to create depth without layout reflows.
+- **Compositor Isolation:** Apply `contain: strict; will-change: transform; pointer-events: none;` to background light effects to eliminate repainting and keep interactions on the primary thread responsive.
+
 ---
 
 ## 📱 Responsive Adaptation & Viewport Constraints
