@@ -163,6 +163,115 @@ await after(call, {output:{error:{message:'HTTP 429'}}});
             self.assertEqual(status['running'], 0)
             self.assertEqual(status['paused'], 1)
 
+    def test_background_subagent_lifecycle_tracking(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            from engine.generators.plugins import _opencode_governor_gate
+            source = _opencode_governor_gate()
+            source = source.replace('"__COACUS_ROOT__"', json.dumps(str(ROOT)))
+            source = source.replace('"__COACUS_PYTHON__"', json.dumps(sys.executable))
+            plugin_path = Path(tmp) / 'gate.mjs'
+            plugin_path.write_text(source)
+            script = r'''
+import assert from 'node:assert/strict';
+import plugin from './gate.mjs';
+
+const hooks = {};
+let pushEvent;
+const eventStream = {
+  [Symbol.asyncIterator]() {
+    const queue = [];
+    const resolvers = [];
+    pushEvent = (item) => {
+      if (resolvers.length > 0) {
+        resolvers.shift()({ value: item, done: false });
+      } else {
+        queue.push(item);
+      }
+    };
+    return {
+      next: () => {
+        if (queue.length > 0) {
+          return Promise.resolve({ value: queue.shift(), done: false });
+        }
+        return new Promise(resolve => resolvers.push(resolve));
+      }
+    };
+  }
+};
+
+await plugin.setup({
+  tool: {
+    hook: async (name, fn) => { hooks[name] = fn; }
+  },
+  event: {
+    subscribe: () => eventStream
+  }
+});
+
+const before = hooks['execute.before'];
+const after = hooks['execute.after'];
+
+// 1. Successful background subagent dispatch
+const bgCall1 = { tool: 'subagent', sessionID: 'parent-1', id: 'call-bg-1', input: { background: true } };
+await before(bgCall1);
+
+// Tool executes and returns immediately with child session ID
+await after({
+  ...bgCall1,
+  status: 'completed',
+  result: { output: { sessionID: 'child-ses-1', status: 'running' } }
+});
+
+// Since concurrency cap is 1, a second spawn must be blocked / timeout
+const otherCall = { tool: 'subagent', sessionID: 'parent-1', id: 'call-other', input: {} };
+const blockedWait = before(otherCall);
+let otherAcquired = false;
+blockedWait.then(() => { otherAcquired = true; }).catch(() => {});
+await new Promise(r => setTimeout(r, 300));
+assert.equal(otherAcquired, false, 'Second subagent must not acquire slot while background subagent runs');
+
+// Terminal event: child session succeeds!
+pushEvent({ type: 'session.execution.succeeded', data: { sessionID: 'child-ses-1' } });
+
+// Now blockedWait should resolve and acquire slot!
+await blockedWait;
+assert.equal(otherAcquired, true, 'Second subagent must acquire slot after background subagent completes');
+await after({ ...otherCall, status: 'completed', result: '' });
+
+// 2. Background subagent that fails with rate limit during execution
+const bgCall2 = { tool: 'subagent', sessionID: 'parent-1', id: 'call-bg-2', input: { background: true } };
+await before(bgCall2);
+await after({
+  ...bgCall2,
+  status: 'completed',
+  result: { output: { sessionID: 'child-ses-2', status: 'running' } }
+});
+
+pushEvent({
+  type: 'session.execution.failed',
+  data: { sessionID: 'child-ses-2', error: 'HTTP 429 Too Many Requests: quota exceeded' }
+});
+await new Promise(r => setTimeout(r, 300));
+
+// 3. Background subagent spawn failure (error status on tool return)
+const bgCall3 = { tool: 'subagent', sessionID: 'parent-1', id: 'call-bg-3', input: { background: true } };
+await before(bgCall3);
+// Spawn failed at startup (e.g. invalid model) -> slot released immediately
+await after({
+  ...bgCall3,
+  status: 'error',
+  error: 'Model not available'
+});
+'''
+            env = dict(os.environ, GOVERNOR_STATE_DIR=tmp, ORCH_MAX_CONCURRENT='1')
+            result = subprocess.run([shutil.which('node'), '--input-type=module', '-e', script],
+                cwd=tmp, env=env, text=True, capture_output=True, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            from engine.governor.ledger import Ledger
+            status = Ledger(Path(tmp), scope='opencode').status()
+            self.assertEqual(status['running'], 0)
+            self.assertEqual(status['paused'], 1)
+
 
 if __name__ == '__main__':
     unittest.main()

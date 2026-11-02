@@ -153,8 +153,8 @@ before multi-host operation is actually required.
 - `scripts/coacus_governor.py` exposes the runtime command surface
   (`acquire/release/fail/paused/status/health/reset`) over
   `engine/governor/ledger.py`.
-- `harnesses/opencode/bootstrap/governor-gate.js` is the OpenCode gate; its
-  background slot-lifetime limitation above remains a dispatch blocker.
+- `harnesses/opencode/bootstrap/governor-gate.js` is the OpenCode gate; it tracks
+  subagent lifecycle across foreground and background via session execution events.
   `harnesses/*/harness.json` declares plugin wiring.
 - `tests/test_governor.py` exercises governor behavior, including cross-process capacity.
 - The TOON half is enforced by `engine/toon.py` via

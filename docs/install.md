@@ -346,11 +346,12 @@ and parks a caller as PAUSED when it sees a rate limit. Knobs:
 `ORCH_MAX_CONCURRENT` (default 5), `GOVERNOR_STATE_DIR`, `GOVERNOR_LEASE_SECONDS`.
 Inspect the ledger with `python3 scripts/coacus_governor.py status`.
 
-**Background dispatch is prohibited** until the OpenCode governor's slot-lifetime
-fix is verified. Report the limitation and use supported foreground dispatch if
-permitted. Each dispatch requires one slot: use adapter-managed acquisition when
-available or manual acquisition otherwise, never both. Do not treat plugin
-installation as evidence that background slot lifetime has been verified.
+**Background dispatch is governed** in OpenCode v2+ via session execution events
+(`session.execution.succeeded`, `session.execution.failed`, `session.execution.interrupted`,
+`session.deleted`), retaining the ledger slot until child session termination. In
+environments without event subscription support, use supported foreground dispatch.
+Each dispatch requires one slot: use adapter-managed acquisition when available or
+manual acquisition otherwise, never both.
 
 **Manual equivalent.** Copy `harnesses/opencode/bootstrap/coacus.js` and
 `governor-gate.js` to `~/.config/opencode/plugins/`, replacing

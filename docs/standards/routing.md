@@ -39,8 +39,8 @@ The main chat routes before delegating specialist work and dispatches independen
 ready tasks up to actual available capacity and any lower applicable limit. Each
 dispatch requires one governor slot; use adapter-managed acquisition where present,
 or manual acquisition otherwise, never both. Queue tasks when capacity is exhausted.
-OpenCode background dispatch is prohibited until its slot-lifetime fix is verified;
-report the limitation and use supported foreground dispatch if permitted.
+OpenCode background dispatch is governed via session execution events in OpenCode v2+;
+in environments without event subscription, use supported foreground dispatch.
 If delegation is unavailable, prohibited or cannot be governed, report the blocker
 rather than silently substituting ungoverned work. Routing does not authorize
 approval-gated actions. See [orchestration governance](orchestration-governance.md).

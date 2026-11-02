@@ -81,8 +81,8 @@ leaf workers, including review workers. Dispatch independent ready tasks in
 parallel up to actual free governor capacity and any lower applicable limit; each
 dispatch requires one slot: use adapter-managed acquisition when available, or
 manual acquisition otherwise, never both. OpenCode background dispatch is
-prohibited until its slot-lifetime fix is verified; report the limitation and use
-supported foreground dispatch if permitted. Queue the remainder. Report an explicit blocker if
+governed via session execution events in OpenCode v2+; in environments without event
+subscription, use supported foreground dispatch. Queue the remainder. Report an explicit blocker if
 delegation is unavailable, prohibited, or cannot be governed; do not silently
 substitute ungoverned work. Respect the user's inline-work instructions and obtain
 required human approvals before approval-gated actions. Handoffs use compact TOON
