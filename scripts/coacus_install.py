@@ -2038,13 +2038,14 @@ def install(
                     and os.readlink(target) == content.target)
         else:
             digest = previous_fingerprints.get(path) or previous_workflows.get(path) or shared_fingerprints.get(path)
+            target_bytes = target.read_bytes() if not target.is_symlink() and target.is_file() else None
+            expected = _install_text_bytes(content) if isinstance(content, str) else content
             safe = ((path in previous_files or path in shared_fingerprints) and isinstance(digest, str)
-                    and not target.is_symlink() and target.is_file()
-                    and hashlib.sha256(target.read_bytes()).hexdigest() == digest)
+                    and target_bytes is not None
+                    and (hashlib.sha256(target_bytes).hexdigest() == digest or target_bytes == expected))
             if (not safe and path in previous_files and digest is None
-                    and not target.is_symlink() and target.is_file()):
-                expected = _install_text_bytes(content) if isinstance(content, str) else content
-                safe = target.read_bytes() == expected
+                    and target_bytes is not None):
+                safe = target_bytes == expected
                 if safe and target not in merged_paths:
                     legacy_unchanged[target] = hashlib.sha256(expected).hexdigest()
                 if not safe and legacy_backup_dir is not None and target not in merged_paths:
