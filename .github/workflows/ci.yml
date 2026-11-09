@@ -48,17 +48,13 @@ jobs:
         run: python scripts/coacus_secrets.py
 
   portable-hooks:
-    name: portable hooks (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    name: portable hooks
+    runs-on: [self-hosted, linux, arm64]
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.10'
+          python-version: '3.14'
       - name: run portable hook and workflow contracts
-        run: python -m unittest tests.test_python_only_hooks tests.test_python_only_validator tests.test_workflow_helpers tests.test_governor_hook tests.test_secrets_runner
+        run: python3 -m unittest tests.test_python_only_hooks tests.test_python_only_validator tests.test_workflow_helpers tests.test_governor_hook tests.test_secrets_runner
