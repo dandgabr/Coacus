@@ -3,18 +3,6 @@
     {
       "path": ".github/workflows/bandit.yml",
       "scope": "segment",
-      "sha256": "1fcf6ebbbf8f74067ae51df64dcc73334e2896d55a1814c67665301b39026049",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
-      "path": ".github/workflows/bandit.yml",
-      "scope": "segment",
-      "sha256": "690dbda92acfe50afc93e732fe2cac06bd8fd7f6ca332be779d6fbcc21c501c7",
-      "reason": "Reviewed by the linguistic specialist as an English technical identifier, citation, or structural label that cannot be classified in isolation; this exact hash limits the exception to the reviewed segment."
-    },
-    {
-      "path": ".github/workflows/bandit.yml",
-      "scope": "segment",
       "sha256": "894e988cdf94caa95b745c4df2c1f2a90ce5738b56aac00c997080d2c90d7fba",
       "reason": "Human-reviewed English technical title or label is too short or domain-specific for confident automatic classification; exact segment hash pins this individual resolution."
     },
