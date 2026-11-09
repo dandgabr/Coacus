@@ -6,6 +6,8 @@ description: >-
   Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC
   automation.
 skills:
+  - knowledge/skills/platforms/gemini-enterprise/SKILL.md
+  - knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md
   - knowledge/skills/infrastructure/cloud-aws/SKILL.md
   - knowledge/skills/infrastructure/cloud-azure/SKILL.md
   - knowledge/skills/infrastructure/cloud-gcp/SKILL.md
@@ -56,3 +58,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [hpc-supercomputing-clusters](knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md)
+- Consult [gemini-enterprise](knowledge/skills/platforms/gemini-enterprise/SKILL.md) when assessing Google Gemini Enterprise integration or governance.

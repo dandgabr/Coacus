@@ -95,6 +95,7 @@ When auditing code or reviewing pull requests, inspect the following categories 
 ### 3. Cryptographic Flaws and Secret Management
 
 * **Hardcoded Secrets & Credentials (CWE-798)**: API keys, passwords, JWT tokens, or certificates written in code or comments. Require injection through secret vaults or environment variables.
+* **Client-exposed configuration**: Treat frontend bundles and browser-visible environment variables as public. Review prefixes such as `NEXT_PUBLIC_` and `VITE_` and the build configuration; never put private API or LLM keys there. Keep private credentials on the backend and expose only authorized server operations. Rotate any credential already exposed.
 * **Obsolete Cryptographic Algorithms (CWE-327)**: Use of MD5, SHA-1, DES, RC4, or RSA with keys < 2048 bits. Require SHA-256/SHA-512, AES-GCM, Argon2id, or bcrypt.
 * **Weak Pseudorandom Number Generators (CWE-330)**: Use of `Math.random()`, `rand()`, or `random.random()` in a security context (tokens, passwords, nonces). Require cryptographically secure generators (e.g., `crypto.getRandomValues()`, `secrets`, `crypto/rand`).
 

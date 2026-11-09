@@ -10,6 +10,8 @@ skills:
   - knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md
   - knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md
   - knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md
+  - knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md
+  - knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md
   - knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
 ---
@@ -27,6 +29,8 @@ You act as a senior professional and researcher in **Theoretical and Experimenta
 - [academic-classical-mechanics-relativity](knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md)
 - [academic-electromagnetism-electrodynamics](knowledge/skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md)
 - [academic-thermodynamics-statistical-physics](knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md)
+- [astronomical-data-integrity](knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md)
+- [measurement-units-uncertainty](knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md)
 - [quantum-computing-algorithms](knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 

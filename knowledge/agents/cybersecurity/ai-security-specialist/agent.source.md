@@ -4,8 +4,10 @@ category: cybersecurity
 description: >-
   Specialist Agent in Artificial Intelligence, LLM, Computer Vision and
   Voice Security, covering AI Red Teaming, Prompt Injection, data
-  poisoning and OWASP Top 10 for LLM compliance.
+  poisoning, AI-system lifecycle threats under ISO/IEC 27090:2026, and
+  OWASP Top 10 for LLM compliance.
 skills:
+  - knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/ai/ai-agentic-security/SKILL.md
   - knowledge/skills/security/ai/ai-adversarial-ml-security/SKILL.md
@@ -23,6 +25,19 @@ Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Secu
 ## 🎯 Scope of Practice and Guidelines
 
 You act as a senior specialist in **AI Security and LLM Red Teaming**. Your mission is to solve problems to a high technical and quality standard.
+
+### ISO/IEC 27090:2026 — AI System Security
+
+Use ISO/IEC 27090:2026 as lifecycle security guidance for understanding,
+detecting and mitigating threats specific to AI systems. Apply it to the AI
+system, its data and models across development, operation and updates or
+retraining; include threat consequences, detection and mitigation in the
+assessment. Treat it as a complement to established cybersecurity practices,
+not as a replacement for them or as an AI management-system requirements
+standard. ISO/IEC 42001 covers the management-system role.
+
+The published edition and its public scope were resolved on 2026-10-19:
+[ISO/IEC 27090:2026](https://www.iso.org/standard/27090).
 
 ### 📚 Associated Skills
 
@@ -48,3 +63,7 @@ The agent loads natively through the [`agent.yaml`](agent.yaml) file.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Load the structured definitions from [`agent.json`](agent.json).
+
+## Conditional domain references
+
+- Consult [guardrail-authoring](knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.

@@ -1,0 +1,20 @@
+{
+  "id": "git-shared-history-recovery",
+  "title": "Choose a safe recovery for shared Git history",
+  "harness": "opencode",
+  "prompt": "A defective commit has already been pushed to a shared branch. The user asks how to undo it. In at most three short lines and without editing files, what should you establish and which recovery approach should you recommend?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(repository|repo).{0,60}(branch|remote)|(branch|remote).{0,60}(repository|repo)" },
+    { "kind": "regex", "value": "(?i)(shared|published|pushed).{0,100}(history|branch|commit)|(history|branch|commit).{0,100}(shared|published|pushed)" },
+    { "kind": "regex", "value": "(?i)revert" },
+    { "kind": "regex", "value": "(?i)(avoid|without|not|do not).{0,45}(force.push|rewrite|reset)" },
+    { "kind": "regex", "value": "(?i)(coordinate|collaborat|team|owner|confirm).{0,60}(rewrite|force.push|branch|shared)|(rewrite|force.push|branch|shared).{0,60}(coordinate|collaborat|team|owner|confirm)" }
+  ],
+  "rubric": [
+    "The response checks whether the commit is shared and identifies the affected repository and branch.",
+    "It recommends an inverse commit with revert as the default for shared history.",
+    "It does not recommend force-pushing or rewriting shared history as the default.",
+    "No file was modified."
+  ],
+  "acceptance": "The response distinguishes shared from local history, recommends revert for shared history, and avoids an uncoordinated rewrite."
+}

@@ -53,7 +53,7 @@ PIN_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
 # edition and URL on adjacent lines).
 ANCHOR = re.compile(
     r"(https?://|resolved\s+\d{4}-\d{2}-\d{2}|rfc-editor|nist\.gov|iso\.org"
-    r"|owasp\.org|context7|pcisecuritystandards\.org|github\.com)",
+    r"|owasp\.org|pcisecuritystandards\.org|github\.com)",
     re.IGNORECASE,
 )
 CONTEXT_LINES = 3

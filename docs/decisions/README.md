@@ -13,3 +13,4 @@ the repository. The convention is normative in
 | [0005](0005-part-b-boundary-and-one-way-interface.md) | Self-improvement boundary and one-way interface | accepted |
 | [0006](0006-default-policy-posture.md) | Default guardrail policy posture | accepted |
 | [0007](0007-cross-platform-os-independence.md) | Cross-Platform OS Independence and Python-Exclusive Scripting | accepted |
+| [0008](0008-canonical-ui-styles-expansion-and-showcase.md) | Canonical UI Styles Expansion (82 Pure Styles), Decoupling and Showcase Integration | accepted |

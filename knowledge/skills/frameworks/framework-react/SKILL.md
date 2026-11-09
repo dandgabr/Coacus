@@ -74,7 +74,14 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 1. **Avoid Unwanted Re-renders**:
    - Keep state as close as possible to where it is used (*Lift state up* only when necessary).
    - Use automatic compilation from the **React Compiler** (React 19) or deliberate manual memoization with `useCallback` and `useMemo`.
-2. **Code-Splitting and Lazy Loading**:
+2. **Decouple Continuous Physics & RAF from React State**:
+   - Continuous 60fps/120fps animations, pointer coordinates, canvas renderings, and physics loops must NEVER call React state setters (`setState`) on every tick.
+   - Store mutable animation variables in mutable refs (`useRef`). Mutate DOM styles directly (`nodeRef.current.style.transform = ...`) or draw to GPU canvas directly. Reserve React state strictly for discrete semantic milestone transitions.
+3. **Strict Unmount & Effect Cleanup Discipline**:
+   - Every `useEffect` that attaches listeners, subscribes to observers, or schedules timers must return an explicit cleanup function.
+   - In-flight network requests must attach an `AbortController.signal` and abort in cleanup (`controller.abort()`) to prevent state updates on unmounted trees.
+   - Canvas, WebGL, and WebGPU contexts must release geometries, textures, and event listeners upon unmount.
+4. **Code-Splitting and Lazy Loading**:
    - Import heavy components dynamically via `React.lazy()` wrapped in `<Suspense fallback={<Loading />}>`.
 
 ---

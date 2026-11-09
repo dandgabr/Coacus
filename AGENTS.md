@@ -10,7 +10,7 @@ Routing rules for any AI agent operating in this repository, in any harness.
 - `evals/README.md` — behavior evals (static gate + opt-in live runner).
 - `catalog/catalog.json` — GENERATED machine index of all assets. Do not hand-edit.
 - `catalog/INDEX.md` — GENERATED human index. Do not hand-edit.
-- `sources.lock.json` — provenance manifest for imported artifacts (provenance).
+- `sources.lock.json` — provenance manifest for imported and native canonical artifacts (provenance).
 - `.agents/*.json` + `.agents/entries/*.json` — GENERATED discovery manifests. Do not hand-edit.
 - `.agents/routing.json` — GENERATED routing index; select agents with
   `python3 scripts/coacus_route.py` (manual or automated), never by guessing a name.
@@ -47,13 +47,15 @@ re-scan directories per turn (D5). If indexes look stale, run
    run, never as a fixed number.
 8. **Versions are resolved, never recalled (version-freshness).** Before naming a
    version of a standard, framework or library, resolve it in the current session
-   — Context7 for libraries/frameworks, the publisher for standards — and pin the
-   resolved version with its source and date. An unresolved pin is marked
-   `unverified`, never presented as current.
+   from authoritative primary sources — official documentation sites and package
+   registries (npm, PyPI, crates.io) for libraries and frameworks, the publisher
+   for standards — and pin the resolved version with its source and date. An
+   unresolved pin is marked `unverified`, never presented as current.
 9. **Scripts are Python-only, never shell (cross-platform-os-independence).**
    All tooling, automation, hooks, generators and workflow helpers MUST be
    authored in portable Python 3.10+ (standard library only, zero external runtime
-   dependencies). Never author `.sh`, `.bash`, `.cmd`, or `.ps1` scripts for
+   dependencies), except the repository-wide language gate, which requires the
+   pinned `lingua-language-detector==2.2.0`, `wordfreq==3.1.1` and Python 3.12+. Never author `.sh`, `.bash`, `.cmd`, or `.ps1` scripts for
    framework operations (the sole exception being root `install.sh` and
    `install.ps1` for initial host Python/venv bootstrap).
 

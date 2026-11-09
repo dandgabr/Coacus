@@ -81,6 +81,21 @@ class TestGuardRuntime(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(out, "{}")
 
+    def test_antigravity_allow_is_an_explicit_decision(self) -> None:
+        # Antigravity requires `decision` on PreToolUse: an empty object is read
+        # as a denial, which would block every call.
+        out, code = run_guard("antigravity", json.dumps(
+            {"tool": "read", "tool_input": {"filePath": "repo/README.md"}}
+        ), self.root)
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(out), {"decision": "allow"})
+
+    def test_antigravity_mechanism_failure_keeps_the_explicit_allow(self) -> None:
+        # D4 (fail-open) must still hold where `{}` would be read as a deny.
+        out, code = run_guard("antigravity", "not-json", self.root)
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(out), {"decision": "allow"})
+
     def test_stdout_is_exactly_one_json_document(self) -> None:
         out, _ = run_guard("claude-code", json.dumps(
             {"tool": "read", "tool_input": {"filePath": "repo/.env"}}

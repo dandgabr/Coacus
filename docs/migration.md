@@ -9,6 +9,22 @@ translation was handled. The rules are recorded in
 The import is reproducible: `templates/import/import-manifest.json` is the
 single data file that drives it, and `scripts/coacus_import.py` performs it.
 
+## Workflow name transition
+
+The F6 sections below describe the original import, including its historical
+`superpowers-` names. Current workflow sources use flat names under
+`methodology/workflows/`: for example, `superpowers-writing-plans` became
+`writing-plans`, and `superpowers-diagnosing-superpowers` became
+`diagnosing-agent-sessions`. Consult the generated catalog for the current
+names. The source project, license and import records remain provenance, not
+instructions to invoke an old name.
+
+After updating a checkout, regenerate its artifacts and follow the
+[installation guide](install.md) to reinstall and verify each selected harness.
+Regeneration does not update a copied installation or reload an active session.
+Check the installer output and the harness's discovery behavior before assuming
+old installed names have been removed.
+
 ## Source repositories
 
 | Key | Repository | Imported |
@@ -90,9 +106,10 @@ templates were reconciled into the single-source locations rather than copied.
 - `using-superpowers` is excluded: the native `using-coacus` entry workflow
   replaces it.
 - `template-skill` is excluded by `exclude_skills`.
-- The Superpowers workflows are kept but namespaced `superpowers-<name>` and
-  moved to `methodology/workflows/`, so they can never collide with a
-  skill name.
+- The F6 import retained the Superpowers workflows under
+  `methodology/workflows/` with the prefix `superpowers-<name>` to avoid name
+  collisions. Current workflow names are described in
+  [Workflow name transition](#workflow-name-transition).
 
 ### Agent merges
 
@@ -180,19 +197,19 @@ the lock file and the catalog to prove nothing was left behind.
 The imported Superpowers workflows are adapted to Coacus conventions, because
 the upstream collection assumes its own namespace and output layout:
 
-- **Flat namespace.** Upstream addresses its siblings as `superpowers:<name>`;
-  the Coacus flat namespace installs them as `superpowers-<name>`. Every colon
-  reference is rewritten to the flat name, so a handoff resolves to a skill that
-  exists.
+- **Flat namespace.** Upstream addressed its siblings as `superpowers:<name>`.
+  The F6 adaptation rewrote those references to the then-installed
+  `superpowers-<name>` form. Current names differ; see
+  [Workflow name transition](#workflow-name-transition).
 - **Artifact location.** Plan and spec output is redirected from the upstream
   `docs/superpowers/` default to `docs/temp/`
   ([plan-artifacts](standards/plan-artifacts.md)).
 - **External references.** A reference to a skill that does not exist here is
   repaired or generalized — for example `elements-of-style:…` becomes the local
   `linguistic-en-us`.
-- **Sibling paths.** Bare sibling workflow paths (`../subagent-driven-development/…`),
-  in prose, diagrams and the workflow's own shell and JS helpers, are prefixed so
-  they resolve in the flat namespace.
+- **Sibling paths.** The F6 adaptation prefixed bare sibling workflow paths
+  (`../subagent-driven-development/…`) in prose, diagrams and the workflow's
+  own shell and JS helpers to match the names used at import time.
 - **Attribution.** Each adapted `SKILL.md` carries a footer naming the upstream
   project, commit and license; `THIRD-PARTY-NOTICES.md` carries the license text,
   and every file keeps its `sources.lock.json` entry.

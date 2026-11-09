@@ -8,6 +8,7 @@ description: >-
   architecture, defining identity lifecycle and access governance, or
   standardizing identity across systems and clouds.
 skills:
+  - knowledge/skills/security/iam/identity-security-software-development/SKILL.md
   - knowledge/skills/architecture/delivery/iam-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
@@ -71,3 +72,9 @@ resolve it in the current session (version-freshness).
 The IAM Architect owns the identity control plane and coordinates it with the
 security architect. Handoffs between agents must be compact structured payloads,
 and parallel subagent work must acquire a governor slot first.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [identity-security-software-development](knowledge/skills/security/iam/identity-security-software-development/SKILL.md)

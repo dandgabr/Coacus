@@ -1,0 +1,21 @@
+{
+  "id": "azure-devops-artifacts-governance",
+  "title": "Govern package feeds and upstream dependencies",
+  "harness": "opencode",
+  "prompt": "Several teams consume packages from public registries and publish internal packages. The organization wants a controlled Azure Artifacts feed that supports review before consumers receive a release. How should feed scope, upstream sources, permissions and views be considered?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(upstream source|upstream).{0,100}(feed|package)|(feed|package).{0,100}(upstream source|upstream)" },
+    { "kind": "regex", "value": "(?i)(project.scope|organization.scope|scope).{0,80}(feed|permission)|(feed|permission).{0,80}(project.scope|organization.scope|scope)" },
+    { "kind": "regex", "value": "(?i)(@release|view|promot).{0,80}(tested|validat|consumer|package)|(tested|validat|consumer).{0,80}(@release|view|promot)" },
+    { "kind": "regex", "value": "(?i)(reader|publisher|owner|least.privilege|permission).{0,80}(feed|pipeline)|(feed|pipeline).{0,80}(reader|publisher|owner|least.privilege|permission)" },
+    { "kind": "not_contains", "value": "make every consumer a feed owner" }
+  ],
+  "rubric": [
+    "The response chooses feed scope based on which projects or teams need access.",
+    "It treats upstream sources as controlled dependency inputs and checks who can add or change them.",
+    "It distinguishes publishing from consuming permissions and uses views to expose selected package versions.",
+    "It verifies current feed and view permission semantics before changing access.",
+    "No feed, upstream source or permission is changed."
+  ],
+  "acceptance": "The response gives a least-privilege feed design that controls upstream inputs and promotes validated package versions to consumers."
+}

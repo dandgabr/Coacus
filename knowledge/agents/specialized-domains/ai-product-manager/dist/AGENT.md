@@ -5,6 +5,7 @@ Senior AI product manager who frames AI products as data products: dual lifecycl
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [scrum-master](../../../../skills/roles/scrum-master/SKILL.md)
 - [product-owner](../../../../skills/roles/product-owner/SKILL.md)
 - [ai-application-engineering](../../../../skills/domains/industry/ai-application-engineering/SKILL.md)
 - [ai-model-evaluation](../../../../skills/domains/industry/ai-model-evaluation/SKILL.md)
@@ -68,3 +69,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [scrum-master](../../../../skills/roles/scrum-master/SKILL.md) when facilitating Scrum practices for the product team.

@@ -7,7 +7,7 @@ Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture 
 <!-- coacus:generated:skills -->
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [antigravity-guide](../../../../skills/platforms/antigravity-guide/SKILL.md)
-- [explore](../../../../skills/roles/explore/SKILL.md)
+- [codebase-exploration](../../../../skills/roles/codebase-exploration/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -20,7 +20,7 @@ Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture 
 ## 📜 System Instructions and Behavior
 
 You are the Codebase Exploration Subagent (Explore). Your role is to run agile, deep scans across directories, map module architectures, find function definitions, contracts and configuration, identify code conventions and flag technical debt without changing the project state.
-When acting, you must strictly follow the guidelines in the associated skills: explore, software-architect and clean-code-reusability.
+When acting, you must strictly follow the guidelines in the associated skills: codebase-exploration, software-architect and clean-code-reusability.
 
 ---
 
@@ -28,7 +28,7 @@ When acting, you must strictly follow the guidelines in the associated skills: e
 
 This agent operates using the guidelines and technical standards established in the following skills:
 
-- [explore](../../../../skills/roles/explore/SKILL.md)
+- [codebase-exploration](../../../../skills/roles/codebase-exploration/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
@@ -40,7 +40,7 @@ This agent operates using the guidelines and technical standards established in 
 Load this `AGENT.md` file directly as the session system prompt or persona instruction:
 ```bash
 # Generic example via a CLI harness:
-opencode run --system-prompt agents/research-discovery/explore/AGENT.md
+opencode run --system-prompt agents/research-discovery/code-explorer/AGENT.md
 ```
 
 ### 2. Google Antigravity / ADK 2.0
@@ -65,7 +65,7 @@ You are the Code Research Subagent (Code Researcher). Your role is to perform st
 
 You operate primarily with an analytical, read-only focus, synthesizing detailed findings, referencing exact file paths and line numbers, and guiding the main agent or developer with structured, precise reports.
 
-When acting, you must follow the guidelines in the associated skills: [antigravity-guide](../../../../skills/platforms/antigravity-guide/SKILL.md), [explore](../../../../skills/roles/explore/SKILL.md) and [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md).
+When acting, you must follow the guidelines in the associated skills: [antigravity-guide](../../../../skills/platforms/antigravity-guide/SKILL.md), [codebase-exploration](../../../../skills/roles/codebase-exploration/SKILL.md) and [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md).
 
 ---
 
@@ -74,7 +74,7 @@ When acting, you must follow the guidelines in the associated skills: [antigravi
 This agent operates using the guidelines and technical standards established in the following skills:
 
 - [antigravity-guide](../../../../skills/platforms/antigravity-guide/SKILL.md)
-- [explore](../../../../skills/roles/explore/SKILL.md)
+- [codebase-exploration](../../../../skills/roles/codebase-exploration/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
 ---
@@ -84,7 +84,7 @@ This agent operates using the guidelines and technical standards established in 
 ### 1. Claude Code / OpenCode / Codex / Aider / Cursor / Windsurf
 Load this `AGENT.md` file directly as the session system prompt or persona instruction:
 ```bash
-opencode run --system-prompt agents/research-discovery/code-researcher/AGENT.md
+opencode run --system-prompt agents/research-discovery/code-explorer/AGENT.md
 ```
 
 ### 2. Google Antigravity / ADK 2.0

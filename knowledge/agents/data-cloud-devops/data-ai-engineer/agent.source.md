@@ -23,6 +23,8 @@ skills:
   - knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md
   - knowledge/skills/data/mlops-platform-engineering/SKILL.md
   - knowledge/skills/data/human-in-the-loop-ml/SKILL.md
+  - knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md
+  - knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md
 ---
 
 Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.

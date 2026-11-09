@@ -1,0 +1,913 @@
+{
+  "scope": "Inventory skill positions 89-176; PR positions 33-65. Partial review only.",
+  "source_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "skills": [
+    {
+      "name": "pycalphad",
+      "source_path": "skills/pycalphad/SKILL.md",
+      "source_sha256": "7748a9413e22566316893d882596b5c2a321e9e03de93e6097c59a003e899a24",
+      "status": "sampled",
+      "reason": "Thermodynamic database provenance, selected phase and composition basis are necessary; numerical convergence is not experimental validation.",
+      "candidate_owner": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md"
+    },
+    {
+      "name": "statistical-analysis",
+      "source_path": "skills/statistical-analysis/SKILL.md",
+      "source_sha256": "e112848726b3713267cac65e4e2c15491a0a26ee1ed628db01195f7e43f97997",
+      "status": "sampled",
+      "reason": "Specify estimand, dependence and multiplicity; diagnostic non-rejection does not validate assumptions.",
+      "candidate_owner": "knowledge/skills/data/data-science-workflow/SKILL.md"
+    },
+    {
+      "name": "pybamm",
+      "source_path": "skills/pybamm/SKILL.md",
+      "source_sha256": "9d6f375f4d9def40072ea734f07e1a48c60a1cd906231cab1a4189a75499a1a4",
+      "status": "sampled",
+      "candidate_owner": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+      "reason": "Separate model adequacy, solver and mesh convergence, and matched experimental validation."
+    },
+    {
+      "name": "qutip",
+      "source_path": "skills/qutip/SKILL.md",
+      "source_sha256": "6b93a95eb586147b2f1639f7e669dece3182ab4ddd70b1200291073cfd533902",
+      "status": "sampled",
+      "candidate_owner": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+      "reason": "Quantum dynamics needs density-matrix physicality and convergence checks; owner is a candidate only."
+    },
+    {
+      "name": "rdkit",
+      "source_path": "skills/rdkit/SKILL.md",
+      "source_sha256": "9f32d5d229bc1a5bac3e57de5fb87895cdb85dcc99132c57373905db0e1a941e",
+      "status": "sampled",
+      "candidate_owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "reason": "Validate parsed molecules and avoid presenting descriptor cutoffs as safety or efficacy evidence; upstream skill declares BSD-3-Clause."
+    },
+    {
+      "name": "statistical-power",
+      "source_path": "skills/statistical-power/SKILL.md",
+      "source_sha256": "a969660eafdc3504ac36e49bd7ded00e18b00fe5cef5699940d5d8281e24dd3d",
+      "status": "sampled",
+      "candidate_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "reason": "Specify design, independent unit and plausible effects; simulation needs a credible data generating model and calibrated analysis."
+    },
+    {
+      "name": "uncertainty-and-units",
+      "source_path": "skills/uncertainty-and-units/SKILL.md",
+      "source_sha256": "caaafa079a4eaac6012717bcf705dec0417b5434f5dbd1af934a3a36ad375722",
+      "status": "sampled",
+      "candidate_owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "reason": "Distinguish uncertain measurement model, correlations and coverage; temperature uncertainty requires interval conversion."
+    },
+    {
+      "name": "pydicom",
+      "source_path": "skills/pydicom/SKILL.md",
+      "source_sha256": "e42c35688a3dc7e0faaf1d1e88c8883eabc60ad291d348bfe5aee89a64c95b01",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "De-identification is contextual and pseudonymization keys and UID maps are sensitive."
+    },
+    {
+      "name": "pymatgen",
+      "source_path": "skills/pymatgen/SKILL.md",
+      "source_sha256": "4a106d7682cd9881765700d534cb419458ba407935a59168547da1ae6ea4b6b1",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Check structure, units, tolerances and provenance; numerical validation is not material validation."
+    },
+    {
+      "name": "pymc",
+      "source_path": "skills/pymc/SKILL.md",
+      "source_sha256": "77d29ba7adf73d822329eab576d15a748811633a60bca88f5e93954793b3ea8a",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Specify predictive unit, priors, diagnostics and provenance; untested inference backends are explicit."
+    },
+    {
+      "name": "pymoo",
+      "source_path": "skills/pymoo/SKILL.md",
+      "source_sha256": "942573e5b8099717487b45cf84798348fb2128516791dcafe2d76aa1bdfed117",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Use matched evaluation budgets and multiple seeds; bounded demonstrations do not prove convergence."
+    },
+    {
+      "name": "relion",
+      "source_path": "skills/relion/SKILL.md",
+      "source_sha256": "3f80369ef73ccb8c20e2e49ad2b9bd71da3ffa4a819c035691ca4a5b26cb8399",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Keep half-map independence and distinguish convergence from biological structural validity."
+    },
+    {
+      "name": "scanpy",
+      "source_path": "skills/scanpy/SKILL.md",
+      "source_sha256": "4a59f87933a1e9ed49eac603719af1b0c606dd99050fe59ffa1c1bf807900cb8",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Provenance of count data cannot be inferred from numeric appearance alone; synthetic checks do not establish biological validity."
+    },
+    {
+      "name": "scientific-visualization",
+      "source_path": "skills/scientific-visualization/SKILL.md",
+      "source_sha256": "8cbde7cdc10d959cf72cfd08335cc8ce996247eee6ebdb900eb64a4cb0ff34a3",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Label uncertainty and independent sampling unit; preserve repeated-measure IDs in figures."
+    },
+    {
+      "name": "sympy",
+      "source_path": "skills/sympy/SKILL.md",
+      "source_sha256": "bb97087bdddccc845401737ddc7f7a8da1c14ced5e8d40da01271c991ac46e23",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Preserve assumptions and distinguish a converged local root from a complete root set."
+    },
+    {
+      "name": "tellurium",
+      "source_path": "skills/tellurium/SKILL.md",
+      "source_sha256": "69faa97aa45e7ad46515acd3e6497b044b7b44624ffd28c74fb40d97c74513a7",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Track model provenance and units, and reset state between experimental conditions."
+    },
+    {
+      "name": "zarr-python",
+      "source_path": "skills/zarr-python/SKILL.md",
+      "source_sha256": "1edaabfc3fc618d4c3a16bd70c589c039a3cb3a26683f02bca0ccc140d3c9c4d",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Preserve shape, axes, units and masks and reopen read-only before publication."
+    },
+    {
+      "name": "pathway-enrichment",
+      "source_path": "skills/pathway-enrichment/SKILL.md",
+      "source_sha256": "82783d8ba63b6b03646492ee75afcdf591903a213decf7e7c9d844eb517acd78",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Map query and background identifiers consistently; use the correct measured-gene background."
+    },
+    {
+      "name": "phylogenetics",
+      "source_path": "skills/phylogenetics/SKILL.md",
+      "source_sha256": "eef2354a8fe6c51c2ad8a506e512326553bda52c731952598adef677ae2d67d5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Model assumptions, source sequence and support interpretation matter; source declares unknown license."
+    },
+    {
+      "name": "pydeseq2",
+      "source_path": "skills/pydeseq2/SKILL.md",
+      "source_sha256": "f06a9f5ece540c05bd8a8208bb3970d000b13cb1032abc9488cfbfe6106cd843",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Experimental unit and raw-count provenance affect differential analysis; repeated donor measurements are not independent."
+    },
+    {
+      "name": "pyopenms",
+      "source_path": "skills/pyopenms/SKILL.md",
+      "source_sha256": "020e7392adbb000aaab4968ae9a803ca4bd97818ca35e9eebd3abc222766a48f",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Peptide-level error control does not establish protein-level FDR."
+    },
+    {
+      "name": "pysam",
+      "source_path": "skills/pysam/SKILL.md",
+      "source_sha256": "afc275bbeb084553cd6507c4ffee848c46bef94dcd24c3b8a58d8b14d021ea09",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "CRAM decoding must match reference assembly and file; genomic coordinate conventions need explicit recording."
+    },
+    {
+      "name": "qiime2-amplicon",
+      "source_path": "skills/qiime2-amplicon/SKILL.md",
+      "source_sha256": "605ae0581620f654ca9e12122a2bdb1d62a813841c5fea61b0eacb2031377cf7",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Track classifier provenance and read retention; artifact format validation does not make serialized models safe."
+    },
+    {
+      "name": "scikit-survival",
+      "source_path": "skills/scikit-survival/SKILL.md",
+      "source_sha256": "8f99860440f23312d9803d3ac65ae9eb65274597d59499f1021d59378adef2fb",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Fit imputation and model selection within training partitions and use censoring-aware evaluation."
+    },
+    {
+      "name": "scvelo",
+      "source_path": "skills/scvelo/SKILL.md",
+      "source_sha256": "c43258bccdbaa5772fd1aeac8d12d6107dd9c9b19c6a3a81fde7d421c0d2609e",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Velocity provides directional hypotheses, not proof of fate or causal drivers."
+    },
+    {
+      "name": "scvi-tools",
+      "source_path": "skills/scvi-tools/SKILL.md",
+      "source_sha256": "b22633470d40ddaf31451fbbf811941fc89c3174c404ca359f25378691267e73",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Preserve count provenance and separate synthetic API testing from biological validity."
+    },
+    {
+      "name": "seaborn",
+      "source_path": "skills/seaborn/SKILL.md",
+      "source_sha256": "d1500d1e3d9db1db4c72cd272861378d1b98b0b5a5a98e8a3fca5a45bc0c6b2e",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Sampling units and aggregation affect uncertainty displays."
+    },
+    {
+      "name": "shap",
+      "source_path": "skills/shap/SKILL.md",
+      "source_sha256": "9c395662e608accd60acb62158f1d25299b12ec0e40f9f94b70a46ec527d52c1",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Background choice affects attributions; explanations do not establish causal effects."
+    },
+    {
+      "name": "stable-baselines3",
+      "source_path": "skills/stable-baselines3/SKILL.md",
+      "source_sha256": "8383ae480e27163b9dbe1d9af822e05f0e85dd05b5bab1f6444588d57f569837",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Distinguish local examples from validated policies; verify training and evaluation environment separation."
+    },
+    {
+      "name": "timesfm-forecasting",
+      "source_path": "skills/timesfm-forecasting/SKILL.md",
+      "source_sha256": "6f785fe73b133e9af7720fa46cf9013645198950155624889ef611b7b0dc74b8",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Use chronological holdouts and naive baselines; validate regular timestamps and forecast uncertainty."
+    },
+    {
+      "name": "torchdrug",
+      "source_path": "skills/torchdrug/SKILL.md",
+      "source_sha256": "03538274e00aad262d159ca5ebed55fe6519d605171569feff44afeb781088fd",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Match scaffold split to target generalization and keep duplicate molecules together."
+    },
+    {
+      "name": "umap-learn",
+      "source_path": "skills/umap-learn/SKILL.md",
+      "source_sha256": "0cfef32ae0e1d52eec6513bafc0ab4387cf38e43121fba715762b2b2c11b6930",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Evaluate cluster structure in original feature space and test sensitivity across seeds."
+    },
+    {
+      "name": "nwb-conversion",
+      "source_path": "skills/nwb-conversion/SKILL.md",
+      "source_sha256": "e2381f17db5e2b20354186a8a3c85b466afcf534cc1ae6181e87654ba5ed5fc6",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Timebase and clock-alignment evidence must be explicit; schema validation is not proof of synchronized measurements."
+    },
+    {
+      "name": "omero-integration",
+      "source_path": "skills/omero-integration/SKILL.md",
+      "source_sha256": "c75e73ba447bbf9530f6d3df4ba6224185f3c7728460b37938c8626dab664ad2",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Remote microscopy service use requires scoped access and reviewed writes."
+    },
+    {
+      "name": "ontology-term-resolution",
+      "source_path": "skills/ontology-term-resolution/SKILL.md",
+      "source_sha256": "db310515a230a47023169be207f654458789377c98b30fa593ee420738e4eefb",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Treat search results as candidates; validate term identity and obsolescence, preserving unresolved status."
+    },
+    {
+      "name": "openpiv",
+      "source_path": "skills/openpiv/SKILL.md",
+      "source_sha256": "dc9aeeb18ef4b4832b9405c342ce40abbb09bc8162e35f2c659dd5814b07369a",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Vector filtering and interpolation must not silently erase rejected measurement flags."
+    },
+    {
+      "name": "paper-lookup",
+      "source_path": "skills/paper-lookup/SKILL.md",
+      "source_sha256": "fac99456ad404ff9a0d3043709b956b5d6383838ae8e8394f274a5693d8bd294",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "HTTP success alone cannot establish valid source response or available full text."
+    },
+    {
+      "name": "paperclip",
+      "source_path": "skills/paperclip/SKILL.md",
+      "source_sha256": "4f6fc05346aefdf5685b11d6d34fbe5b9782fc5156d69702c00dd8c71bf63473",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Evidence extraction uses external service credentials and requires authorized source disclosure."
+    },
+    {
+      "name": "peer-review",
+      "source_path": "skills/peer-review/SKILL.md",
+      "source_sha256": "a042ccdc76d3399431b9a6c4cd4f98968eab964b1c14baeea4d9e73de82c7d19",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Unpublished manuscripts and review drafts require confidentiality and authorized handling."
+    },
+    {
+      "name": "pkpd-modeling",
+      "source_path": "skills/pkpd-modeling/SKILL.md",
+      "source_sha256": "fc58aed600d0fe9de911176cb0f2a43e8df6bbae8c2260be6f8abade133a2837",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Numerical fit and synthetic recovery do not establish parameter identifiability or clinical validation."
+    },
+    {
+      "name": "primer-design",
+      "source_path": "skills/primer-design/SKILL.md",
+      "source_sha256": "ea8bed0aa340a5f6538c206bb3d9fe503da6759e68a944a2bce564fa115d25e4",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Computational primer candidates do not establish assay specificity or clinical validation."
+    },
+    {
+      "name": "pyhealth",
+      "source_path": "skills/pyhealth/SKILL.md",
+      "source_sha256": "ec4de54618b71a4f8cfeb086d131c610127784a6839d842a67b3c1e87b66e161",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Patient-level partition, prevalence-sensitive metrics and calibration differ from deployment safety."
+    },
+    {
+      "name": "pylabrobot",
+      "source_path": "skills/pylabrobot/SKILL.md",
+      "source_sha256": "b2aab8871006d84e53621fc0f4886d0fd0c671007d112569e444e0a56a564d76",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Offline simulation is distinct from safe physical laboratory operation."
+    },
+    {
+      "name": "qiskit",
+      "source_path": "skills/qiskit/SKILL.md",
+      "source_sha256": "538e5db262e7c237cff2bac191480f81688b8679167740af7405fcda1340511e",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Joint bitstrings require shot alignment; quantum hardware and mock outputs have different validation boundaries."
+    },
+    {
+      "name": "research-lookup",
+      "source_path": "skills/research-lookup/SKILL.md",
+      "source_sha256": "8da1618350bf3434e4569a180a15b7241a50118ee9b79bccc514fa1bf3b4a102",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "A fixed reference-count target and retrieved excerpts do not establish comprehensive evidence verification."
+    },
+    {
+      "name": "scientific-writing",
+      "source_path": "skills/scientific-writing/SKILL.md",
+      "source_sha256": "511a2096bebecd8cf0f8212b9d262d37154ae1ba566eb385d93ac968682edbd1",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Separate source evidence from authorship and confidentiality controls."
+    },
+    {
+      "name": "what-if-oracle",
+      "source_path": "skills/what-if-oracle/SKILL.md",
+      "source_sha256": "509af149c8cfc8f17dd15608d6337eb8a7ff3f4056fcadeda573c5e527c68a97",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Narrative scenarios do not establish calibrated forecast probabilities; CC BY-NC-SA declared."
+    },
+    {
+      "name": "onekgpd",
+      "source_path": "skills/onekgpd/SKILL.md",
+      "source_sha256": "6a7c0a90c42e899e818de866e843cf60d5434422fa69b910a7db9a06f25240e9",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Public individual variant data access still requires correct reference-coordinate provenance."
+    },
+    {
+      "name": "open-notebook",
+      "source_path": "skills/open-notebook/SKILL.md",
+      "source_sha256": "39f3bb01946218b53c02e3aedde025e6f8b786307e5ba0c4698c5aed02f9fdd6",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Configured providers can receive ingested source data and require explicit scope review."
+    },
+    {
+      "name": "opentrons-integration",
+      "source_path": "skills/opentrons-integration/SKILL.md",
+      "source_sha256": "3600fece96f89e7cedc23d13e48ce7eb25a90698d7ae3d8bae65035d89f392ff",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Simulation is not physical execution approval."
+    },
+    {
+      "name": "optimize-for-gpu",
+      "source_path": "skills/optimize-for-gpu/SKILL.md",
+      "source_sha256": "e31bdb10b8ea66e5ec438583755999b66b9afab90f2583e1d500b8457ef28054",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Demonstrate correctness and speed on target hardware before claiming acceleration."
+    },
+    {
+      "name": "pacsomatic",
+      "source_path": "skills/pacsomatic/SKILL.md",
+      "source_sha256": "5425319387beb29684ae5148cba33bd3a6c4306651ba574d47c76a8dc390d45d",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Workflow prep does not establish clinical validation or verify source BAM contents."
+    },
+    {
+      "name": "paperzilla",
+      "source_path": "skills/paperzilla/SKILL.md",
+      "source_sha256": "f1b5feb3c76ce064803e5d44757f0fc468bf670499015b9c6a9d487fca699771",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Remote account and third-party CLI introduce external-service and supply-chain boundaries."
+    },
+    {
+      "name": "parallel-web",
+      "source_path": "skills/parallel-web/SKILL.md",
+      "source_sha256": "04b4873674998c4fb47de017397e753d69049609135efed43a82572b9002f52c",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Documented network workflows may incur paid or persistent side effects."
+    },
+    {
+      "name": "pathml",
+      "source_path": "skills/pathml/SKILL.md",
+      "source_sha256": "654cef910bd567689b854eab52176628f39184d7cca7a6bf405343f337e58538",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Computational pathology research is not a validated diagnostic system."
+    },
+    {
+      "name": "pathogen-variant-surveillance",
+      "source_path": "skills/pathogen-variant-surveillance/SKILL.md",
+      "source_sha256": "95510f890a47ab2e2275832fe60e725eca34e5318dcde88b0940d9362b3ab590",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Sequence sample proportions are not automatically infection prevalence or growth advantage."
+    },
+    {
+      "name": "pennylane",
+      "source_path": "skills/pennylane/SKILL.md",
+      "source_sha256": "7908ee374ed9bef310bd7071a175d97e0428cec184cce3e36db9fe3ae8e77c52",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Validate against classical baselines before extending variational circuits to hardware."
+    },
+    {
+      "name": "pi-agent",
+      "source_path": "skills/pi-agent/SKILL.md",
+      "source_sha256": "ef84742b6e491b3f65941dbb19fdd508b0aada3b87d95aa28b0f66a111f7c748",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "A separate agent harness is infrastructure, not scientific methodology."
+    },
+    {
+      "name": "polars",
+      "source_path": "skills/polars/SKILL.md",
+      "source_sha256": "05d64a001190b516bc922bac616483c3109a6d29c3e9950e3e2d6c31b9415e79",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Check schema inference, data types and scientific data provenance."
+    },
+    {
+      "name": "polars-bio",
+      "source_path": "skills/polars-bio/SKILL.md",
+      "source_sha256": "b9dbf93b5d8dbaa3de4541449b828cd6199625c54956e8598f7552eefc30116f",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Normalize coordinate systems and validate interval joins against simple examples."
+    },
+    {
+      "name": "pptx-posters",
+      "source_path": "skills/pptx-posters/SKILL.md",
+      "source_sha256": "bb4923ec520ac5175f837e75c8b600344cc1eb71490b1fa9c809ac65e64f1fb9",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Editable poster generation requires human review for printer and accessibility requirements."
+    },
+    {
+      "name": "primekg",
+      "source_path": "skills/primekg/SKILL.md",
+      "source_sha256": "b20698944fa51b287a13e7dc22ac033b83836b73614a21cff725ad7d6d807226",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Graph paths support hypotheses rather than establish causality; license is unknown."
+    },
+    {
+      "name": "protocolsio-integration",
+      "source_path": "skills/protocolsio-integration/SKILL.md",
+      "source_sha256": "4439249ba8cd35a8507463f8be84db511abc23daa00be3f892c47d847d2aeda5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "External service reads and planned mutations have distinct execution boundaries."
+    },
+    {
+      "name": "pufferlib",
+      "source_path": "skills/pufferlib/SKILL.md",
+      "source_sha256": "031975c6abaabd8237c18b6472886f4a718c509da70fc6ebca06455f8a002fa7",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Distinguish native and historical API versions; checkpoint loading is a trust boundary."
+    },
+    {
+      "name": "pytdc",
+      "source_path": "skills/pytdc/SKILL.md",
+      "source_sha256": "b7df3f50c1c618a47a81e994b2863ddd8adf695e795aa495c3a8fef5e78a0493",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Dataset provenance and task-appropriate splits need review separate from code license."
+    },
+    {
+      "name": "pytorch-lightning",
+      "source_path": "skills/pytorch-lightning/SKILL.md",
+      "source_sha256": "d8829e74e8a1d908f923cf0c0a850ecfdd9edcb004d2fa90ec32fb1ed0006ce8",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Hardware and online logger examples are not established by CPU smoke tests."
+    },
+    {
+      "name": "pyzotero",
+      "source_path": "skills/pyzotero/SKILL.md",
+      "source_sha256": "82dec36c7294674f33d9b6003e523d1dc4da33ed1c7427dc4e53731119fc5f74",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Private library access and remote writes use separate permissions."
+    },
+    {
+      "name": "relsa-severity-assessment",
+      "source_path": "skills/relsa-severity-assessment/SKILL.md",
+      "source_sha256": "10ee1a904565f5e9c9d432b3af136db42927d0811f07f646355600fec6633f8a",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Animal welfare scoring is an aid to expert review, not a humane endpoint decision rule."
+    },
+    {
+      "name": "research-grants",
+      "source_path": "skills/research-grants/SKILL.md",
+      "source_sha256": "3ca7ea8075bbe8008389660cc4a5769d66ac9ec638f3f61a955a5d7b20aeba85",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Verify current opportunity rules and agency submission status against official sources."
+    },
+    {
+      "name": "rowan",
+      "source_path": "skills/rowan/SKILL.md",
+      "source_sha256": "d631f00ae0f9325aa58912bb571b7eb43bc42c553498e4c97f4d65a1683c8599",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Declared proprietary; remote molecular modeling needs an account, license and disclosure review."
+    },
+    {
+      "name": "scholar-evaluation",
+      "source_path": "skills/scholar-evaluation/SKILL.md",
+      "source_sha256": "9abc66a9ba13f6cf0f61614ddfff17822b5be2cc7118f52ef2631323dac8c94e",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Qualitative low-stakes work is not valid for ranking people or consequential decisions."
+    },
+    {
+      "name": "scientific-brainstorming",
+      "source_path": "skills/scientific-brainstorming/SKILL.md",
+      "source_sha256": "06f73b71556356a7f488c369b9445d7943543a3f14d159b2168fd3f621d6f8a9",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Ideation produces hypotheses, not empirical validation."
+    },
+    {
+      "name": "scientific-critical-thinking",
+      "source_path": "skills/scientific-critical-thinking/SKILL.md",
+      "source_sha256": "563af70571b7dcd6a96bf2e303bedfdcba623b4e9f082d58f04aacbc961fdae4",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Distinguish independent observations, confounding, uncertainty and causal claims."
+    },
+    {
+      "name": "scientific-schematics",
+      "source_path": "skills/scientific-schematics/SKILL.md",
+      "source_sha256": "e15d761ef88013c98fd5b19cc144aba7336e20dbadf340db17bd1ba2227d1d69",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Generated figures need human verification; remote inference has data-disclosure and cost boundaries."
+    },
+    {
+      "name": "scientific-slides",
+      "source_path": "skills/scientific-slides/SKILL.md",
+      "source_sha256": "b1d34b81d30789f561bd4ee3ddb373c9fb84bed25086794bebd842af46afbad6",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Rendering and source evidence need review; optional generative services are external."
+    },
+    {
+      "name": "scikit-bio",
+      "source_path": "skills/scikit-bio/SKILL.md",
+      "source_sha256": "4a7a5760adadf32782dc4694028371df13b25472ff8ffe4cef2b2fc564226f6c",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Ordination and matrix associations do not establish causation or remove confounding."
+    },
+    {
+      "name": "scikit-learn",
+      "source_path": "skills/scikit-learn/SKILL.md",
+      "source_sha256": "a1765797d072ab40094522abe68fb04505d0881f66b7dfceeb8582422dbe488d",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Fit preprocessing within folds and reserve test data."
+    },
+    {
+      "name": "simpy",
+      "source_path": "skills/simpy/SKILL.md",
+      "source_sha256": "027244a3587e70c3e2f1aed4bfb5d737cb24fdc6b2ad276302ed81c02e38a7fc",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Separate reproducible event simulation from validity of study design and causal inference."
+    },
+    {
+      "name": "statsmodels",
+      "source_path": "skills/statsmodels/SKILL.md",
+      "source_sha256": "9e6c034bb4acbf0972fda18892d2feea907885ac5ad7194d220182d8810295a3",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "A successful numerical fit does not prove causal identification or model adequacy."
+    },
+    {
+      "name": "tamarind",
+      "source_path": "skills/tamarind/SKILL.md",
+      "source_sha256": "aa9bb0aa10acefa52621acd9ba06604997ed2f3d20533359f47d4b24dfdc9494",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Cloud molecular-model API needs authorized disclosure, account and review of real runtime results."
+    },
+    {
+      "name": "tiledbvcf",
+      "source_path": "skills/tiledbvcf/SKILL.md",
+      "source_sha256": "38e55a6962e14637e82f60be8e53e6d87c78f1a7874b9f832f442a038942f7d5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Validate genomic region and sample outputs against small known intervals and round trips."
+    },
+    {
+      "name": "torch-geometric",
+      "source_path": "skills/torch-geometric/SKILL.md",
+      "source_sha256": "89805e17cdbc64ed01426548442b3aa1bda8bcfdd4f9528f5c8dd6e0ea813c96",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Preserve isolated nodes and validate graph construction, especially edge-free cases."
+    },
+    {
+      "name": "transformers",
+      "source_path": "skills/transformers/SKILL.md",
+      "source_sha256": "584d1c35d513f87616df9bcf7ddc8c48ab38cfbfad18d55c8481578d1c0d6f1a",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Review remote model code before enabling execution; model and code licenses are separate."
+    },
+    {
+      "name": "treatment-plans",
+      "source_path": "skills/treatment-plans/SKILL.md",
+      "source_sha256": "ebb509854e12d016475ee6d45834a2a72c16815d1b9d940a9d156e7f024cbed6",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Formats decisions supplied and verified by licensed clinicians, not clinical decision-making."
+    },
+    {
+      "name": "usfiscaldata",
+      "source_path": "skills/usfiscaldata/SKILL.md",
+      "source_sha256": "7cdcb756489ae8e94a73df1eebfb9abef554e912af6559ebd28dffa021ab63d5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Remote fiscal datasets need access-date, endpoint and metric provenance."
+    },
+    {
+      "name": "vaex",
+      "source_path": "skills/vaex/SKILL.md",
+      "source_sha256": "a8ab5bcb0ab9c8d372b987e584b5c589a15b1e2b2f73457546d2888988d40b4f",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Validate counts and join cardinality against a small fixture."
+    },
+    {
+      "name": "venue-templates",
+      "source_path": "skills/venue-templates/SKILL.md",
+      "source_sha256": "8607993327f451cc6b9d7ca7502c0e7d5f5060954fec12e2ea779d96841e78b5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Verify live submission rules from the relevant venue."
+    },
+    {
+      "name": "waypoint-bio",
+      "source_path": "skills/waypoint-bio/SKILL.md",
+      "source_sha256": "132d1f33d5d99bd6288a4cb432b277fcbc0f8bc4315e333dcecb840e7adc87a5",
+      "status": "sampled",
+      "candidate_owner": null,
+      "reason": "Gated model access and training compatibility require independent review."
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 319,
+      "head_sha": "ec428be30b8eaf53d89e64cbc655e8a305574890",
+      "status": "sampled",
+      "reason": "Observed case-insensitive DOI comparison and one unit test; test not run."
+    },
+    {
+      "number": 275,
+      "head_sha": "6cdd88b78dd2994e6721a75f3ee504e0972679c6",
+      "status": "sampled",
+      "reason": "Global imputation before grouped cross-validation leaks held-out features; missing CRS assignment needs source verification. Sampled patch and test; outputs truncated and tests not run."
+    },
+    {
+      "number": 313,
+      "head_sha": "4a21e3375c27add2c73a606d8756740444d37433",
+      "status": "sampled",
+      "reason": "Normalizes tracked paths and exercises LF and CRLF FASTA fixture offsets; no cross-platform execution observed. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 312,
+      "head_sha": "d1a877e24b2a99692ec8a853976cec838b559f32",
+      "status": "sampled",
+      "reason": "Supports shorter explicit PubMed identifiers; added unit tests also reject generic years. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 309,
+      "head_sha": "12105b0a5118bf2c9815ca207012d38a3c2225a3",
+      "status": "sampled",
+      "reason": "Decodes BibTeX bytes as UTF-8 and tests a non-ASCII page range; replacement decoding may mask malformed input. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 278,
+      "head_sha": "a5928a684f0af72d78da0731927bff9c5236c36d",
+      "status": "sampled",
+      "reason": "Separates article locator from issue and pages; tests missing, numeric and zero-padded cases. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 316,
+      "head_sha": "ec5747221a527302b57f57bbe6237d56bfa02e66",
+      "status": "sampled",
+      "reason": "Reports nonfinite variant quality separately; JSON finite-output test. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 315,
+      "head_sha": "3d03378bdb756eb92cde00a1ebb882ae197b3bb9",
+      "status": "sampled",
+      "reason": "Preserves paragraphs adjacent to JATS sections; sample tests reading order. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 306,
+      "head_sha": "7aed8c1192e5257cb3cc26924bb43397b9861f40",
+      "status": "sampled",
+      "reason": "Makes scanner cache hashing platform stable; patch and test excerpts only. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 305,
+      "head_sha": "f61dbfee47d0dff5acc06fa18f071388fa1bcb21",
+      "status": "sampled",
+      "reason": "Specifies UTF-8 for tooling and adds a static AST check; scope and dynamic modes require further review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 272,
+      "head_sha": "08ed96e293e5e8c155c44f558eac68a11e8ba758",
+      "status": "sampled",
+      "reason": "Checks documented additional skill package entries; candidate is a repository-contract policy. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 271,
+      "head_sha": "7021e242acfd251c5e15e597d7fa0ff6adebf8e9",
+      "status": "sampled",
+      "reason": "Recursively checks nested documents and potential module shadows; exceptions and risk require deeper review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 269,
+      "head_sha": "89d759a0badd9826bd01c166878999f539157ca1",
+      "status": "sampled",
+      "reason": "Skips shell executable and syntax checks on Windows when unavailable; not directly portable to Coacus Python-only tooling. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 299,
+      "head_sha": "6737c57c79bc06818e93ac9f489b50fb5a728790",
+      "status": "sampled",
+      "reason": "Proposes scaffold-based QSAR validation; synthetic CSV contains disconnected SMILES despite generator description claiming joined fragments; requires reproduction. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 298,
+      "head_sha": "15be897c5505d0bb53bd05f224ee458ddaec653c",
+      "status": "sampled",
+      "reason": "Proposes circuit compilation and half-turn unit tests; test setup and dependency changes require further review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 297,
+      "head_sha": "ef6e547c7f3c9a176192e273e0f836dafcebec85",
+      "status": "sampled",
+      "reason": "Proposes authorized external CoGAP service; access, trust boundary and privacy require independent review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 293,
+      "head_sha": "e05bf7ee2e7d5ed62d0d6d74c7d9890b3facb770",
+      "status": "sampled",
+      "reason": "Proposes glycan analysis; touched glycoengineering source declares unknown license. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 283,
+      "head_sha": "16c26b7c8927b54f8322ae609bea71ee2c881488",
+      "status": "sampled",
+      "reason": "Proposes EEG/MEG workflow with synthetic signal tests; scope and test coverage require further review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 276,
+      "head_sha": "8180708e09d0b7d78dcf1865d461b44e1c41219d",
+      "status": "sampled",
+      "reason": "Proposes remote epitranscriptome query with captured fixtures; service failure is represented, but data rights and real-time access need review. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 267,
+      "head_sha": "4dafb2ccc94e78db8242b2fcbe6d1b62e3da7f74",
+      "status": "sampled",
+      "reason": "Proposes remote tabix access with pinned dataset metadata; mocked tests and optional live checks cover different evidence. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 265,
+      "head_sha": "2220f997ffb782bef5e761c829469a4ad993e67d",
+      "status": "sampled",
+      "reason": "Adds explicitly attributed provenance adaptation; examine license and compatibility per file. Patch excerpts inspected; tests not run."
+    },
+    {
+      "number": 320,
+      "head_sha": "d7d12c1cb306a216b2f2475bea5e8781658c57b3",
+      "status": "sampled",
+      "reason": "Corrects stale upstream references after office-skill removal; documentation patch sampled. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 311,
+      "head_sha": "a5428ec5ed3788eeec45bfd73ebcc79bc96a266b",
+      "status": "sampled",
+      "reason": "Fixes BIDS and deepTools links; endpoint validity not independently checked. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 310,
+      "head_sha": "e8117934a08ec88fa7f140d202ce6fab0668a8a5",
+      "status": "sampled",
+      "reason": "Changes links in several skill references; endpoints not independently checked. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 308,
+      "head_sha": "dedb9f9d773389ed8294b5a3f30e9963c3015d66",
+      "status": "sampled",
+      "reason": "Changes Mermaid internal anchors; rendering not independently tested. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 307,
+      "head_sha": "491eed584e7cdb82d9bead000fdd8f477158bcb0",
+      "status": "sampled",
+      "reason": "Replaces three documentation links; endpoints not independently checked. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 304,
+      "head_sha": "69e092493dccbcb7c3de1b0673eab28a748412e9",
+      "status": "sampled",
+      "reason": "Adds a third-party statistical-data service; availability, licensing and source provenance need review. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 300,
+      "head_sha": "4185fb3ff9fc07731458585a376cbdd2d8be491e",
+      "status": "sampled",
+      "reason": "Adds a third-party macro-data service; availability, licensing and source provenance need review. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 266,
+      "head_sha": "5c61b2e7a1b1f6081dfd6bab84c5999484fe20e0",
+      "status": "sampled",
+      "reason": "Adds Chinese README; external translation is not a canonical Coacus skill. Patch excerpts inspected; no tests run."
+    },
+    {
+      "number": 274,
+      "head_sha": "18670c40d745df34205bba77e40a7cfc1cd97269",
+      "status": "sampled",
+      "reason": "Finite-element workflow PR includes README and skill but no added test file in the inspected diff; no scientific run observed. Tests not run."
+    },
+    {
+      "number": 260,
+      "head_sha": "8de91ae6aa30e96c9609e51db89c44cb9f1c4374",
+      "status": "sampled",
+      "reason": "Batch updates endpoints and setup references across many skills with differing declared licenses; full changes and link targets remain unchecked. Tests not run."
+    },
+    {
+      "number": 254,
+      "head_sha": "04e33a2bcbeec22e61c30a8c1c9ff715973d2536",
+      "status": "sampled",
+      "reason": "Citation audit distinguishes not-found from unresolved, but search coverage cannot establish absence; sampled test names only. Tests not run."
+    },
+    {
+      "number": 252,
+      "head_sha": "5b386d5a92d152075a785d191c2bbcf0f45cb32e",
+      "status": "sampled",
+      "reason": "Molecular-story workflow includes script and geometry/browser tests; only test names and a patch excerpt were inspected. Tests not run."
+    }
+  ],
+  "remaining_skills": [],
+  "remaining_pull_requests": [],
+  "limitations": "Samples are not complete package or test-suite reviews. Other referenced assets and upstream cases were not exhaustively assessed."
+}

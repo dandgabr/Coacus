@@ -17,8 +17,8 @@ build failure — not silent debt ([generated-artifacts](standards/generated-art
 
 What the framework knows. This layer is harness-agnostic and holds only sources:
 
-- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — 355 skills.
-- `knowledge/agents/<category>/<agent>/agent.source.md` — 94 agents.
+- `knowledge/skills/<category>[/<subcategory>]/<skill>/SKILL.md` — canonical skills.
+- `knowledge/agents/<category>/<agent>/agent.source.md` — canonical agents.
 - `knowledge/mcps/<mcp>/MCP.md` — MCP server declarations (one source, generated
   configs, [mcp-definition](standards/mcp-definition.md)).
 - `knowledge/rules/` — reserved for repository rules.
@@ -69,10 +69,10 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 
 How work proceeds inside a Coacus repository.
 
-- `methodology/workflows/<skill>/SKILL.md` — 15 process skills: 14 imported
-  from Superpowers (namespaced `superpowers-*` and adapted to Coacus conventions
-  — flat handoff names, `docs/temp/` artifacts) plus the native entry workflow
-  `using-coacus`.
+- `methodology/workflows/<skill>/SKILL.md` — process workflows, including those imported
+  from Superpowers (adapted to flat Coacus handoff names and `docs/temp/`
+  artifacts) plus native engineering and
+  governance workflows (including the entry workflow `using-coacus`).
 - `methodology/bootstrap/session-start.canonical.md` — the single wrapper body
   injected at SessionStart, with `{entry_skill_body}` and `{tool_mapping}`
   slots. The entry body comes from `using-coacus/SKILL.md`, so the bootstrap and
@@ -161,7 +161,10 @@ flowchart TD
     CAT["catalog/{catalog.json,INDEX.md}"]
     DSC[".agents/{skills,mcps,agents}.json + entries/"]
     MAT["docs/reference/lifecycle-matrix.md"]
-    LOCK["sources.lock.json<br/>(provenance, root)"]
+  end
+
+  subgraph REG["Provenance registry (committed, outside drift comparison)"]
+    LOCK["sources.lock.json<br/>(imported + authored origins)"]
   end
 
   subgraph RUN["Runtime"]
@@ -184,6 +187,7 @@ flowchart TD
   GEN --> CAT
   GEN --> DSC
   GEN --> MAT
+  GEN -->|"registers native sources"| LOCK
   VAL -->|"gates generate"| GEN
   LOCK -->|"target-existence check"| VAL
   DIST -->|"install"| HARN["harnesses: opencode | claude-code | antigravity | codex | cursor | command-code"]
@@ -211,7 +215,7 @@ Coacus/
 ├── tests/                # deterministic infrastructure tests (stdlib unittest)
 ├── evals/                # LLM behavior evals (static gate + opt-in live runner)
 ├── docs/                 # this documentation + standards/ + decisions/
-├── sources.lock.json     # provenance for imported artifacts (provenance)
+├── sources.lock.json     # provenance for imported and native canonical artifacts (provenance)
 └── .github/workflows/    # ci.yml, bandit.yml, evals.yml
 ```
 
@@ -222,8 +226,8 @@ Coacus/
   `harnesses/<h>/bootstrap/` is generated.
 - **Language is English** ([english-only](standards/english-only.md)).
 - **No plaintext secrets, no machine-specific absolute paths** ([secrets-portability](standards/secrets-portability.md)).
-- **No ungoverned parallel work.** The concurrency cap is 5, orchestrator
-  included ([orchestration-governance](standards/orchestration-governance.md)); handoffs are
+- **No ungoverned parallel work.** Limits are scoped and configurable
+  ([orchestration-governance](standards/orchestration-governance.md)); handoffs are
   TOON payloads ([toon-protocol](standards/toon-protocol.md)).
 - **`model` is omitted in canonical sources** and resolved per harness
   ([agent-manifests](standards/agent-manifests.md)).
@@ -248,7 +252,7 @@ Coacus/
 | [generated-artifacts](standards/generated-artifacts.md) | Generated artifacts are committed. |
 | [provenance](standards/provenance.md) | Provenance manifest at the repository root. |
 | [session-start-bootstrap](standards/session-start-bootstrap.md) | Bootstrap rendered from one canonical body. |
-| [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and 10-category taxonomy. |
+| [corpus-and-taxonomy](standards/corpus-and-taxonomy.md) | Corpus import with a data-driven manifest and eleven-category taxonomy. |
 | [version-freshness](standards/version-freshness.md) | Versions are resolved in-session, never recalled. |
 | [routing](standards/routing.md) | Agent selection through a generated index. |
 | [plan-artifacts](standards/plan-artifacts.md) | The gitignored `docs/temp/` home for ephemeral artifacts. |

@@ -1,0 +1,26 @@
+{
+  "id": "test-stability-audit",
+  "title": "Investigate an order-dependent test",
+  "harness": "opencode",
+  "prompt": "A test passes alone but fails after another test modifies shared state. Explain a reproducible investigation and what repeated passing runs establish. Do not change files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(order|seed)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(state|isolat)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(reproduc|repeat)"
+    }
+  ],
+  "rubric": [
+    "The answer varies and records order and seed, isolates shared state, and considers parallelism and environment.",
+    "It does not conclude that passing repetitions prove absence of flakiness.",
+    "It distinguishes observed results from proposed checks."
+  ],
+  "acceptance": "The response satisfies the rubric, distinguishes evidence from proposals, and makes no changes."
+}

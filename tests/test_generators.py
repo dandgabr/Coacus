@@ -95,6 +95,85 @@ class TestAgentGeneration(unittest.TestCase):
         self.assertTrue(any("orphan" in item for item in drift))
         self.assertTrue(any(item.endswith(".agents/entries/sample-agent.json: orphan (source removed — delete or restore it)") for item in drift))
 
+    def test_write_removes_only_generated_deleted_agent_entry(self) -> None:
+        import subprocess
+
+        def git(*args):
+            subprocess.run(["git", *args], cwd=self.root, check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        git("init")
+        git("config", "user.email", "test@example.invalid")
+        git("config", "user.name", "Test")
+        agent_manifests.write_all(self.root)
+        git("add", "-f", ".")
+        git("commit", "-m", "fixture")
+        entry = self.root / ".agents/entries/sample-agent.json"
+        source = self.root / "knowledge/agents/roles/sample-agent/agent.source.md"
+        source.unlink()
+        custom = entry.parent / "custom.json"
+        custom.write_text('{"name": "custom"}\n', encoding="utf-8")
+        agent_manifests.write_all(self.root)
+        self.assertFalse(entry.exists())
+        self.assertEqual(custom.read_text(encoding="utf-8"), '{"name": "custom"}\n')
+
+    def test_orphan_entry_preserves_modified_and_untracked_bytes(self) -> None:
+        import subprocess
+
+        def git(*args):
+            subprocess.run(["git", *args], cwd=self.root, check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        git("init")
+        git("config", "user.email", "test@example.invalid")
+        git("config", "user.name", "Test")
+        agent_manifests.write_all(self.root)
+        git("add", "-f", ".")
+        git("commit", "-m", "fixture")
+        entry = self.root / ".agents/entries/sample-agent.json"
+        data = json.loads(entry.read_text())
+        data["fingerprint"] = "0" * 16
+        modified = json.dumps(data, indent=2) + "\n"
+        entry.write_text(modified)
+        unknown = entry.parent / "unknown.json"
+        data["name"] = "unknown"
+        data["source"] = "knowledge/agents/roles/unknown/agent.source.md"
+        data["dist"] = "knowledge/agents/roles/unknown/dist"
+        unknown_content = json.dumps(data, indent=2) + "\n"
+        unknown.write_text(unknown_content)
+        dist = self.root / data["dist"]
+        dist.mkdir(parents=True)
+        (dist / "agent.json").write_text(json.dumps({k: data[k] for k in ("name", "description", "category")}))
+        (self.root / "knowledge/agents/roles/sample-agent/agent.source.md").unlink()
+        agent_manifests.write_all(self.root)
+        self.assertEqual(entry.read_text(), modified)
+        self.assertEqual(unknown.read_text(), unknown_content)
+
+    def test_orphan_dist_cleanup_preserves_modified_and_extra_files(self) -> None:
+        import subprocess
+
+        def git(*args):
+            return subprocess.run(["git", *args], cwd=self.root, check=True,
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        git("init")
+        git("config", "user.email", "test@example.invalid")
+        git("config", "user.name", "Test")
+        agent_manifests.write_all(self.root)
+        git("add", "-f", ".")
+        git("commit", "-m", "fixture")
+        dist = self.root / "knowledge/agents/roles/sample-agent/dist"
+        modified = dist / "AGENT.md"
+        modified.write_text("user edit\n", encoding="utf-8")
+        extra = dist / "notes.txt"
+        extra.write_text("user data\n", encoding="utf-8")
+        (dist.parent / "agent.source.md").unlink()
+        agent_manifests.write_all(self.root)
+        self.assertEqual(modified.read_text(encoding="utf-8"), "user edit\n")
+        self.assertEqual(extra.read_text(encoding="utf-8"), "user data\n")
+        for filename in ("agent.yaml", "agent.json", "plugin.json"):
+            self.assertFalse((dist / filename).exists())
+
     def test_non_list_skills_raise(self) -> None:
         source = self.root / "knowledge/agents/roles/sample-agent/agent.source.md"
         source.write_text(

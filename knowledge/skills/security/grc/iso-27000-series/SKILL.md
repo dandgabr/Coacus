@@ -37,7 +37,8 @@ The ISO/IEC 27000 series establishes the definitive international ecosystem for 
 | **ISO/IEC 27035** | Information security incident management (planning, response, and lessons learned). |
 | **ISO/IEC 27036** | Information security in supplier relationships and the supply chain. |
 | **ISO/IEC 27701:2025** | Privacy Information Management System (PIMS). The 2025 edition is an independent management-system standard (no longer only an extension of ISO 27001/27002) and supersedes the 2019 edition. |
-| **ISO/IEC 42001:2023** | Artificial Intelligence Management System (AIMS), complemented by ISO/IEC 42005 (AI impact assessment), 23894 (AI risk) and 27090 (AI security threats). |
+| **ISO/IEC 42001:2023** | Artificial Intelligence Management System (AIMS), complemented by ISO/IEC 42005 (AI impact assessment) and 23894 (AI risk). |
+| **ISO/IEC 27090:2026** | Cybersecurity guidance for understanding, detecting and mitigating threats and compromises specific to AI systems throughout their life cycle. Complements conventional cybersecurity practices; it is not an AI management-system requirements standard. |
 
 ---
 
@@ -116,3 +117,7 @@ When asked to design, prepare for certification, or audit an organization:
 - To align with the cloud-specific requirements of CSA CCM v4, see the [csa-cloud-security](../../iam/csa-cloud-security/SKILL.md) skill.
 - To align the ISMS with general corporate governance, see the [security-grc-compliance](../security-grc-compliance/SKILL.md) skill.
 - To align the ISO 27701 privacy requirements with LGPD and GDPR, see the [security-privacy](../security-privacy/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+- **ISO/IEC 27090:2026** (published 2026-10-14; edition and public scope verified 2026-10-19) — [ISO catalogue](https://www.iso.org/standard/27090); [IEC Webstore](https://webstore.iec.ch/en/publication/117332)

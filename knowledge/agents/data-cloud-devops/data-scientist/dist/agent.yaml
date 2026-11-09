@@ -31,6 +31,7 @@ instruction: >
   This agent operates using the guidelines and technical standards established in the following skills:
 
   - [python-data-science](knowledge/skills/data/python-data-science/SKILL.md)
+  - [data-science-workflow](knowledge/skills/data/data-science-workflow/SKILL.md)
   - [distributed-ml-scaling](knowledge/skills/data/distributed-ml-scaling/SKILL.md)
   - [explainable-ai](knowledge/skills/domains/industry/explainable-ai/SKILL.md)
   - [computer-vision-deep-learning](knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md)
@@ -58,6 +59,8 @@ instruction: >
 tools:
   - type: skill_integration
     path: ../../../../skills/data/python-data-science/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/data-science-workflow/SKILL.md
   - type: skill_integration
     path: ../../../../skills/data/distributed-ml-scaling/SKILL.md
   - type: skill_integration

@@ -13,6 +13,7 @@ After every addition, run the full gate:
 python3 scripts/coacus.py generate
 python3 scripts/coacus.py validate
 python3 scripts/coacus.py check
+python3 scripts/coacus.py completeness
 python3 -m unittest discover -s tests
 ```
 
@@ -20,19 +21,35 @@ python3 -m unittest discover -s tests
 `[error]` lines before regenerating. `check` must report no drift; CI fails if it
 does not.
 
+## Reuse before extending
+
+Identify the canonical owner before adding a capability. Extend an existing
+skill or agent when it already owns the responsibility; use references and
+cross-links for conditional depth. Create a new artifact when its trigger and
+responsibility fill a demonstrated gap, and document neighboring ownership.
+For example, fixed-timeline audiovisual production belongs to
+[motion graphics production](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md),
+while live interface motion and GPU implementation retain their existing owners.
+
+For native skills, workflows and agent sources, `generate` records authored
+provenance automatically. For copied or adapted upstream files, retain imported
+provenance and license attribution. See [provenance](standards/provenance.md).
+
 ## Add a skill
 
 1. Copy `templates/authoring/skill.template.md` to
    `knowledge/skills/<category>[/<subcategory>]/<name>/SKILL.md`. Use one of the
-   ten categories: `data`, `domains`, `engineering`, `frameworks`,
-   `infrastructure`, `languages`, `mapping`, `platforms`, `roles`, `security`.
+   eleven categories: `architecture`, `data`, `domains`, `engineering`,
+   `frameworks`, `infrastructure`, `languages`, `mapping`, `platforms`, `roles`,
+   `security`.
 2. Set `name` to the kebab-case directory name and write a third-person,
    trigger-oriented `description`.
 3. Prescribe actions only — no harness tool names. Put tool mappings in
    `references/<harness>-tools.md` beside the skill. Put examples in
    `examples/`, runnable helpers in `scripts/`. **All helpers and tooling MUST be
-   authored in Python 3.10+ (stdlib only)**; shell scripts (`.sh`, `.ps1`, `.bat`)
-   are strictly prohibited to preserve cross-platform OS independence.
+   authored in Python 3.10+ (stdlib only). The language gate requires pinned
+   language and lexical analyzers and Python 3.12+; shell scripts (`.sh`, `.ps1`, `.bat`)
+   are strictly prohibited to preserve cross-platform OS independence.**
 4. Keep paths relative and secrets as `{env:VAR}` ([secrets-portability](standards/secrets-portability.md)).
 
 Validator contract (`engine/validators/skills.py`): frontmatter parses; `name`
@@ -40,14 +57,41 @@ is kebab-case and equals the directory; `description` present; the slug is
 globally unique across both skill roots (one flat namespace); placement depth is
 `knowledge/skills/<category>` or `knowledge/skills/<category>/<subcategory>`;
 no nested `SKILL.md`; every local Markdown link resolves. Oversized
-descriptions and non-English markers are warnings, not errors.
+descriptions are blocked by the quality gate, and non-English or unresolved
+language findings are blocked by the repository language gate.
+
+Quality contract (`engine/validators/skill_quality.py`): `name` ≤ 64 chars,
+`description` ≤ 1024 chars and balanced code fences are blocking requirements;
+a body over the word budget and a description-register problem are warnings. The register, progressive-disclosure
+and invocation rules are in [skill-authoring](standards/skill-authoring.md).
+After adding a skill, run the full gate above and obtain a severity-ranked
+review from the `skill-auditor` before publishing.
+
+## Update a skill and its references
+
+1. Locate the canonical entry with `python3 scripts/coacus_skill_search.py show
+   <skill-name>`. Edit that source and its disclosed reference files; keep new
+   branch-specific depth outside the entry body.
+2. Link each new reference from the skill so a reader can discover it. Record
+   evidence with a pinned source and explicit limitations. Promote durable
+   conclusions into `docs/reports/`; keep working plans in ignored `docs/temp/`.
+3. Run `python3 scripts/coacus.py refresh` to reconcile provenance after source
+   edits, then run `generate`, `validate`, `check`, `completeness`, and the
+   deterministic suite shown above.
+4. Review the source and generated diff together. Catalog entries describe skills,
+   not every reference file, so a reference-only edit may leave the catalog bytes
+   unchanged. Never manufacture a catalog change by editing its generated files.
+5. Commit the sources and changed generated artifacts. Installations are a separate
+   step: follow [the installation guide](install.md) and verify the selected
+   harness after installing. Regeneration alone does not update a copied install.
 
 ## Add a workflow (process skill)
 
 Same contract as a skill, but the path is
 `methodology/workflows/<name>/SKILL.md` (depth 1). Imported Superpowers
-workflows are namespaced `superpowers-<name>`. The native entry workflow
-`using-coacus` is the single source of the bootstrap body; if you change how
+workflows use their canonical Coacus names; preserve their provenance and
+attribution when changing them. The native entry workflow `using-coacus` is the
+single source of the bootstrap body; if you change how
 sessions start, edit that skill, not the bootstrap.
 
 ## Add an agent

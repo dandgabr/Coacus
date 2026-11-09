@@ -5,6 +5,139 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Tabler component integration and consumer verification
+
+### Added
+
+- Narrow `framework-tabler` skill with version-matched documentation lookup, client lifecycle guidance and conditional discovery from existing frontend and design QA agents.
+- Consumer-contract procedures for unknown classes, stale exceptions and baseline-first compatibility checks; these are guidance, not new runtime validators.
+- Standalone forced-colors and reduced-motion fixture exercises and focused behavior evaluation scenarios. Static schema checks, live evaluation and browser observations remain separate evidence layers.
+
+## [Unreleased] — Zero external MCP dependencies and primary version resolution
+
+### Removed
+
+- Canonical `context7` MCP definition under `knowledge/mcps/context7/` (`MCP.md`, `dist/mcp.json`, `dist/mcp_config.json`).
+- External MCP recommendation from `README.md` and `docs/install.md`.
+
+### Changed
+
+- `docs/standards/version-freshness.md` and skill `version-freshness`: migrated library and framework version resolution from Context7 to authoritative package registries (npm, PyPI, crates.io, Maven Central) and vendor release sources.
+- Canonical agents (`web-researcher`, `scientific-researcher`, `web-search-specialist`) and entry workflow `using-coacus`: updated instructions to resolve versions via primary registries and publisher release notes.
+- Synchronized generated discovery manifests (`.agents/mcps.json`), catalog indexes (`catalog/catalog.json`, `catalog/INDEX.md`), and python API reference (`docs/reference/python-api.md`).
+
+## [Unreleased] — Session learnings: gate parity and baselines
+
+### Added
+
+- Process conventions: the local gate is what CI runs, linter included, with the
+  declared development tools installed; removing a concept orphans parameters,
+  branches, fixtures and saved identifiers, not only files.
+- Test-driven development: tests pin the environment inputs they read, and a reader of
+  stored data keeps legacy values readable, proven by a test with an old saved value.
+- Verification before completion: measure the baseline on the base revision before
+  attributing a failure, and rebuild generated inputs after switching revisions.
+- `lang-bash`: process control by PID, never by a command-line match from a shell that
+  contains the pattern.
+- `ui-design-craftsmanship`: icon and asset set constraints live in a structural test.
+- `ui-ux-principles`: a display preference must not change alerting or ranking.
+
+## [Unreleased] — Antigravity hooks never deny by omission
+
+### Fixed
+
+- Antigravity: the `coacus-guard` and `coacus-governor` PreToolUse hooks returned
+  an empty object (`{}`) to permit. Antigravity's contract makes `decision`
+  required on that event and reads a decision-less result as a denial
+  (`tool call denied by pre-tool hook:` with an empty reason), so an
+  unopinionated hook blocked every tool call. Both now answer an explicit
+  `{"decision": "allow"}`, including the guard's mechanism-failure path so the
+  fail-open guarantee holds on the one harness where `{}` is a deny.
+- Antigravity: the rendered `coacus-guard` hook now uses the documented
+  `matcher`/`hooks` grouping for tool events instead of a flat handler.
+
+## [Unreleased] — Browser selection policy
+
+### Added
+
+- Install-time browser policy: the installer detects installed browsers
+  (`methodology/lifecycle/browsers.json`), lets the user choose a primary and an
+  optional fallback, and generates a machine-local deny policy for every other
+  known browser (launch and profile read/write). Opt-in (`--browser-policy
+  auto|prompt|off`, `--browser-primary`, `--browser-fallback`,
+  `--browser-policy-dir`); prompts on an interactive terminal, off otherwise.
+- `exec` policies may use `"match": "command"` with a `resource` pattern list to
+  match executable names instead of the whole command string.
+- The runtime guard also loads machine-local policies from the user policy
+  directory (`COACUS_POLICY_DIR`, `$XDG_CONFIG_HOME/coacus/policies`).
+
+### Removed
+
+- The imported `browser-harness` skill: Coacus does not ship or own that tool.
+
+## [Unreleased] — Dynamic per-harness concurrency governor
+
+### Changed
+
+- Concurrency governor (`engine/governor/ledger.py` and `scripts/coacus_governor.py`):
+  Eliminated single shared global cap bottleneck; partitioned disk ledgers into
+  isolated scopes (`ledger-{scope}`). Default caps map to documented limits
+  (Ollama = 2, Command Code = 4, Cursor = 5, OpenCode = 5, Antigravity = 6,
+  Claude Code = 8, Codex = 10, and unlisted/others = 6).
+- Added authoritative `set-max <n> [--scope <scope>]` command to allow dynamic
+  elevation of persisted caps without destroying the ledger.
+- Added hierarchical precedence resolution for model and harness environment
+  variables (`COACUS_MAX_<MODEL>`, `COACUS_MAX_<SCOPE>`,
+  `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY`, `OLLAMA_NUM_PARALLEL`, and `ORCH_MAX_CONCURRENT`).
+
+## [Unreleased] — Shared skills tree (single source of truth)
+
+### Changed
+
+- The installer places real skill files once in the shared `~/.agents/skills` tree
+  and wires a harness that scans its **own** skill home (Claude Code's
+  `~/.claude/skills`) with a symlink per skill, so a consumer that scans several
+  homes at once (Orca's Skills page reads Claude, Codex, Agent Skills and OMP)
+  shows each skill once instead of a duplicate. Adds `--skills-mode {link,copy}`
+  (`link` is the default for `claude-code`; `copy` restores the previous
+  per-harness copies). Uninstall removes only the link, never the shared target.
+- At a harness's real install location the shared `~/.agents/skills` tree is left
+  read-only after install (default; `--no-lock-skills` opts out), so a consumer's
+  own delete/update of a Coacus skill fails instead of silently rewriting it. The
+  next install restores write access before rewriting; `--config-dir` is never locked.
+
+## [Unreleased] — Elfvision lifecycle and discovery lessons
+
+### Changed
+
+- GNOME extension references cover observable preferences actions, signal cleanup,
+  session-turnover recovery, account-preserving updates, and native theme geometry.
+- The skill's discovery description names stale controls, coordination failures
+  and installed-versus-loaded mismatches.
+- README and documentation indexes link the desktop-extension reference map;
+  usage and contribution guidance describe skill discovery and reference updates.
+- The durable [Elfvision learning report](docs/reports/2026-10-08-elfvision-learning-consolidation.md)
+  moved from process scratch into the committed reports directory.
+
+## [Unreleased] — GNOME connector, effects and delivery lessons
+
+### Changed
+
+- GNOME extension guidance routes account identity and deletion, monetary API
+  reporting, native layout/materials and installed-runtime verification into
+  evidence-linked references.
+- Theme guidance distinguishes default backgrounds from supported overrides and
+  native rendering from browser previews; release guidance rejects false or
+  unfinished evaluation results and checks the installed archive and uploaded assets.
+- Security-scanning guidance distinguishes successful analysis jobs from aggregate
+  alert status and addresses incomplete URL assertions in tests.
+
+### Added
+
+- Read-only behavioral scenarios for native delivery evidence and connector/theme
+  contracts, with semantic rubrics distinct from their lightweight output checks.
+- A [consolidation and verification record](docs/reports/2026-10-08-gnome-quota-delivery-learnings.md).
+
 ## [Unreleased] — Codex installer migration fixes
 
 ### Fixed
@@ -183,7 +316,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Changed
 
-- Calibration fixes: diacritics are folded so ``latência`` matches ``latencia``;
+- Calibration fixes: diacritics are folded before router trigger matching;
   multi-word triggers match as phrases (``sistema digital`` no longer matches a
   bare ``sistema``); the curated lexicon was enriched for paraphrase
   (``revisar``/``relatório``/``ameaça``).

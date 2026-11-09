@@ -5,6 +5,8 @@ Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, O
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [gemini-enterprise](../../../../skills/platforms/gemini-enterprise/SKILL.md)
+- [hpc-supercomputing-clusters](../../../../skills/infrastructure/hpc-supercomputing-clusters/SKILL.md)
 - [cloud-aws](../../../../skills/infrastructure/cloud-aws/SKILL.md)
 - [cloud-azure](../../../../skills/infrastructure/cloud-azure/SKILL.md)
 - [cloud-gcp](../../../../skills/infrastructure/cloud-gcp/SKILL.md)
@@ -55,3 +57,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [hpc-supercomputing-clusters](../../../../skills/infrastructure/hpc-supercomputing-clusters/SKILL.md)
+- Consult [gemini-enterprise](../../../../skills/platforms/gemini-enterprise/SKILL.md) when assessing Google Gemini Enterprise integration or governance.

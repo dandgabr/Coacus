@@ -29,3 +29,13 @@ export const CoacusGuardrails = async () => ({
     }
   },
 });
+
+// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped
+export default {
+  id: 'coacus-guardrails',
+  server: CoacusGuardrails,
+  async setup(ctx) {
+    const v1 = await CoacusGuardrails();
+    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before'](e, { args: e.input ?? {} }));
+  },
+};

@@ -65,6 +65,7 @@ $$\log_{10}(P^{sat}) = A - \frac{B}{T + C}$$
 ### 3.2 Electrochemistry and Debye-Hückel-Onsager Conductometry
 - **Nernst Equation for Electrode Potential**:
   $$E = E^\circ - \frac{RT}{nF} \ln Q = E^\circ - \frac{0.05916}{n} \log_{10}\left( \frac{\prod a_{products}^{\nu_p}}{\prod a_{reactants}^{\nu_r}} \right)$$
+  The numerical coefficient is in volts at 25 °C; use the temperature-dependent expression at other temperatures. See the [IUPAC definition](https://goldbook.iupac.org/terms/view/09068).
 - **Onsager Molar Conductivity Limit Equation**:
   $$\Lambda_m = \Lambda_m^\circ - (A + B \Lambda_m^\circ) \sqrt{C}$$
 
@@ -99,6 +100,7 @@ flowchart LR
 ### 4.1 Nuclear Magnetic Resonance ($^1H$ and $^{13}C$ NMR)
 - **Larmor Frequency**: $\nu_0 = \frac{\gamma B_0}{2\pi}$.
 - **Chemical Shift ($\delta$ in ppm)**: $\delta = \frac{\nu_{sample} - \nu_{TMS}}{\nu_{operation}} \times 10^6$.
+- **Spectral processing:** Preserve raw acquisition data and processing history. Verify acquisition axis, frequency sign, reference calibration and any digital-filter treatment; inspect phase and baseline before interpretation. For quantitative NMR, document acquisition and relaxation conditions and validate integration assumptions. A processed synthetic fixture does not establish instrument or assay validation. See the reviewed [upstream NMR workflow](https://github.com/K-Dense-AI/scientific-agent-skills/blob/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/nmrglue/SKILL.md) for its scope.
 - **2D Correlations**:
   - **COSY ($^1H$-$^1H$)**: Vicinal ($^3J_{HH}$) and geminal ($^2J_{HH}$) scalar couplings.
   - **HSQC / HMQC ($^1H$-$^{13}C$)**: Direct C-H connectivities through one bond ($^1J_{CH}$).
@@ -111,12 +113,22 @@ flowchart LR
   $$H = A + \frac{B}{u} + C \cdot u$$
   where $A$ is multi-path (Eddy) diffusion, $B$ is longitudinal molecular diffusion, and $C$ is the mass transfer resistance in the mobile/stationary phase.
 
+### Chemical-kinetics simulation
+
+Record mechanism provenance and its applicable conditions, species and reaction units, reactor constraints and initial state. Check conservation and numerical sensitivity to tolerances or discretization. A converged simulation does not independently validate the reaction mechanism or predict behavior outside its supported domain.
+
+### Molecular-dynamics research
+
+Record molecular structure and preparation, force-field and ligand parameters, solvent, boundaries, ensemble, equilibration, sampling and random seeds. Check numerical stability and convergence across appropriate independent replicas, and report uncertainty and model limitations. A short stable trajectory or an attractive binding pose does not establish binding affinity or experimental validity. This guidance was informed by the [upstream molecular-dynamics workflow](https://github.com/K-Dense-AI/scientific-agent-skills/blob/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/molecular-dynamics/SKILL.md).
+
 ---
 
 ## ⚖️ 5. ISO/IEC 17025 Metrology, GHS Safety, and Chemical Legislation
 
 | Framework / Standard | Core Requirement | Practical Application |
 | :--- | :--- | :--- |
-| **ABNT NBR ISO/IEC 17025:2017** | Technical competence of testing laboratories | Analytical method validation (Linearity $R^2 \ge 0.995$, Precision/Repeatability RSD $< 2\%$, Limit of Detection LoD and Quantification LoQ, Metrological Traceability to the SI, and Expanded Uncertainty Calculation $U = k \cdot u_c$). |
+| **ABNT NBR ISO/IEC 17025:2017** | Technical competence of testing laboratories | Assess method suitability for its intended use, traceability and measurement uncertainty; determine performance criteria from the applicable method and use, rather than assuming universal linearity or precision thresholds. |
 | **ABNT NBR 14725 / GHS** | Globally Harmonized System | Preparation of the SDS (Safety Data Sheet with 16 sections) and Preventive Labeling with physical, health, and environmental hazard pictograms. |
 | **Federal Law No. 2,800/1956 / CFQ** | Professional Regulation | Exclusive attributions of the chemist (RN 36/1974), legal technical responsibility (AFT - Technical Function Annotation), and Federal Police control of chemical precursors (MJSP Ordinance 240/2019). |
+
+For a pharmaceutical analytical procedure, consult the [ICH quality guidelines](https://ich.org/page/quality-guidelines) and applicable local requirements; establish and justify criteria for the intended procedure before evaluating results.

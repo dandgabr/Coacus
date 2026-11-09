@@ -29,6 +29,8 @@ Required: `@FROM`, `@TO`, `@STATUS`, `@CTX`, `@SUMMARY`. Optional: `@FILES`,
   is a line locator, not part of the path.
 - A field MUST NOT carry a secret-shaped literal (access keys, tokens, private
   keys) in any field, including `@SUMMARY` and `@ACTION_NEEDED`.
+- Language: `@SUMMARY` and `@ACTION_NEEDED` MUST be authored in English (`en`)
+  (the technical wire channel), ensuring unambiguous cross-model semantic parsing.
 - Duplicate fields are rejected; each field appears once.
 
 ### Conflict mediation

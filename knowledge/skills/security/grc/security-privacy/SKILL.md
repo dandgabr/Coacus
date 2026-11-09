@@ -92,7 +92,7 @@ print(anonymized_result.text)
 ## ⚖️ 4. Data Subject Rights (DSRs) Management and Retention
 
 1. **Right of Access and Portability**: Structured APIs to issue JSON or an encrypted PDF containing all data linked to the data subject.
-2. **Right to Erasure / Deletion**: Cascading purge of data across transactional databases, logs, and analytical replicas, persisting only immutable audit hashes.
+2. **Right to Erasure / Deletion**: Cascading purge of data across transactional databases, logs, and analytical replicas, retaining only records with a justified purpose and legal basis; subject-linked hashes are not automatically anonymous.
 3. **Record of Processing Activities (ROPA)**: Continuous mapping of purpose, data category, transfers, and legally justifiable retention periods.
 4. **Consent Management**: Granular, revocable consent with proof of capture, honoring Global Privacy Control (GPC) signals and downstream propagation to processors.
 5. **Retention and Disposal**: Defensible disposal schedules with proof of deletion, and legal hold exceptions.
@@ -130,3 +130,7 @@ print(anonymized_result.text)
 | **Anonymization** | No, under reasonable means | No — out of scope | Publication, long-term retention |
 
 > For regulatory requirements on data classification and legal bases (LGPD/GDPR), see [`references/lgpd_gdpr_privacy_by_design.md`](./references/lgpd_gdpr_privacy_by_design.md). For a DPIA/RIPD assessment example, see [`examples/dpia_privacy_assessment.md`](./examples/dpia_privacy_assessment.md).
+
+## Product Applicability and Telemetry Review
+
+For a SaaS or website privacy review, use [applicability and telemetry](references/saas-applicability-and-telemetry.md). Keep legal scope and provider facts here; operational consent and erasure evidence belongs to [consent automation](../consent-dsr-automation/SKILL.md).

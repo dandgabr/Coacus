@@ -7,8 +7,11 @@ description: >-
   Architecture, Microservices, Hexagonal), DevSecOps, automated testing
   and quality metrics.
 skills:
+  - knowledge/skills/languages/lang-lua/SKILL.md
+  - knowledge/skills/languages/lang-perl/SKILL.md
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
+  - knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md
   - knowledge/skills/engineering/practices/system-design-scalability/SKILL.md
   - knowledge/skills/frameworks/framework-rest-api/SKILL.md
   - knowledge/skills/frameworks/framework-testing/SKILL.md
@@ -50,6 +53,7 @@ When implementing code, invoke the matching language skill (lang-typescript, lan
 - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
 - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
 - [lang-bash](knowledge/skills/languages/lang-bash/SKILL.md)
+- [gnome-shell-extension-development](knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
 ---
 
@@ -66,3 +70,8 @@ The agent loads natively through the [`agent.yaml`](agent.yaml) file.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Load the structured definitions from [`agent.json`](agent.json).
+
+## Conditional domain references
+
+- Consult [lang-perl](knowledge/skills/languages/lang-perl/SKILL.md) when working on Perl code.
+- Consult [lang-lua](knowledge/skills/languages/lang-lua/SKILL.md) when working on Lua code.

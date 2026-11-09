@@ -1,0 +1,6 @@
+{
+  "name": "harness-specialist",
+  "version": "0.1.0",
+  "description": "Guides configuration and troubleshooting across supported assistant harnesses, distinguishing vendor behavior from repository installation and session activation.",
+  "entrypoint": "AGENT.md"
+}

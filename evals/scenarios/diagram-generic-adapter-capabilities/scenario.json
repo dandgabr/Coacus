@@ -1,0 +1,19 @@
+{
+  "id": "diagram-generic-adapter-capabilities",
+  "title": "Vendor-neutral editable diagram capabilities",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. A third editor exposes a partial graph and image export, supports only whole-document replacement for edits and no documented undo, revision token, persistent editable save or stable identity across sessions. A plan imports DrawCMS cloud push commands and draw.io page handling as if all editors shared them. Explain what can safely be proposed or verified and how to satisfy an editable deliverable without inventing capabilities. Do not execute or install anything.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(capabil|persist|partial|unknown|limit)",
+      "reason": "Advisory signal only; assess the actual capability decisions through the rubric."
+    }
+  ],
+  "rubric": [
+    "Select operations by actual read/edit/persistence/recovery/concurrency capabilities, not a preferred vendor or universal schema.",
+    "Image export is a preview rather than an editable persistent handoff; do not invent save, stable IDs, undo or revision protection.",
+    "Preserve manual live content and avoid blind whole-document replacement from a partial graph; provide a proposed patch/file in an appropriate supported editable format or name the missing capability, without forcing migration to a named vendor. State unavailable readback/render/reopen evidence."
+  ],
+  "acceptance": "The response generalizes the techniques to the unnamed editor without importing product-specific commands or claiming unsupported persistence, recovery or execution."
+}

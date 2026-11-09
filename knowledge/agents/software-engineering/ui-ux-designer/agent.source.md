@@ -3,7 +3,7 @@ name: ui-ux-designer
 category: software-engineering
 description: >-
   Senior specialist agent in Interface Design (UI), User Experience (UX)
-  and Art Direction, mastering 24 page design styles, the Anti-AI Slop
+  and Art Direction, mastering the page design style library, the Anti-AI Slop
   Manifesto, high-contrast typography, Design System architecture and
   WCAG 2.2 accessibility.
 skills:
@@ -26,7 +26,7 @@ skills:
   - knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md
   - knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md
   - knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md
-  - knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md
+  - knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md
   - knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md
   - knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md
@@ -41,20 +41,64 @@ skills:
   - knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md
   - knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md
-  - knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md
+  - knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md
   - knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md
   - knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md
-  - knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md
   - knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md
   - knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md
   - knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md
+  - knowledge/skills/domains/design/ui-style-art-deco/SKILL.md
+  - knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md
+  - knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md
+  - knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md
+  - knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md
+  - knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md
+  - knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md
+  - knowledge/skills/domains/design/ui-style-constructivism/SKILL.md
+  - knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md
+  - knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dracula/SKILL.md
+  - knowledge/skills/domains/design/ui-style-glitch/SKILL.md
+  - knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md
+  - knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md
+  - knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md
+  - knowledge/skills/domains/design/ui-style-isometric/SKILL.md
+  - knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md
+  - knowledge/skills/domains/design/ui-style-memphis/SKILL.md
+  - knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md
+  - knowledge/skills/domains/design/ui-style-nordic/SKILL.md
+  - knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md
+  - knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md
+  - knowledge/skills/domains/design/ui-style-atompunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-risograph/SKILL.md
+  - knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md
+  - knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md
+  - knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md
+  - knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-synthwave/SKILL.md
+  - knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md
+  - knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md
+  - knowledge/skills/domains/design/ui-style-biopunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md
+  - knowledge/skills/domains/design/ui-style-steampunk/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
+  - knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
 
-Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
+Lead orchestrator for the separated Interface Design (UI) and User Experience (UX) disciplines, owning Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.
 
 ---
 
@@ -75,6 +119,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-hero-sections](knowledge/skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
 - [ui-onboarding-tours](knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md)
+- [ui-scroll-driven-motion](knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md)
+- [ui-state-layout-transitions](knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md)
 - [ui-gpu-graphics-web](knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md)
 - [ui-ux-principles](knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md)
@@ -85,7 +131,7 @@ This agent operates using the guidelines and technical standards established in 
 - [bento-grid](knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md)
 - [card-based-ui](knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md)
 - [claymorphism](knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md)
-- [cyberpunk-hud](knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md)
+- [cyberpunk-hud](knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md)
 - [dark-mode-first](knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md)
 - [editorial-archive-luxury](knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md)
 - [expressive-variable-typography](knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md)
@@ -100,7 +146,7 @@ This agent operates using the guidelines and technical standards established in 
 - [micro-interactions](knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md)
 - [neo-brutalism](knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md)
 - [neumorphism](knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md)
-- [one-page-long-scroll](knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md)
+- [one-page-long-scroll](knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md)
 - [organic-biophilic](knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md)
 - [parallax-scrolling](knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md)
 - [scrollytelling](knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md)
@@ -108,6 +154,42 @@ This agent operates using the guidelines and technical standards established in 
 - [swiss-web-minimalism](knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
 - [web-brutalism](knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md)
 - [y2k-revival](knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md)
+- [art-deco](knowledge/skills/domains/design/ui-style-art-deco/SKILL.md)
+- [art-nouveau](knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md)
+- [arts-and-crafts](knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md)
+- [bauhaus](knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md)
+- [broken-grid](knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md)
+- [calm-quiet-ui](knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md)
+- [collage-scrapbook](knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md)
+- [de-stijl](knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md)
+- [glitch](knowledge/skills/domains/design/ui-style-glitch/SKILL.md)
+- [grain-noise-texture](knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md)
+- [hand-drawn-sketch](knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md)
+- [indie-web-revival](knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md)
+- [isometric](knowledge/skills/domains/design/ui-style-isometric/SKILL.md)
+- [linear-saas](knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md)
+- [memphis](knowledge/skills/domains/design/ui-style-memphis/SKILL.md)
+- [mid-century-modern](knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md)
+- [retro-computing](knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md)
+- [pixel-art](knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md)
+- [retro-futurism-atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)
+- [risograph](knowledge/skills/domains/design/ui-style-risograph/SKILL.md)
+- [zine-independent](knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md)
+- [tactile-brutalism](knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md)
+- [terminal-tui](knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md)
+- [vaporwave](knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md)
+- [synthwave](knowledge/skills/domains/design/ui-style-synthwave/SKILL.md)
+- [atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)
+- [biopunk](knowledge/skills/domains/design/ui-style-biopunk/SKILL.md)
+- [clockpunk](knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md)
+- [cyberpunk](knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md)
+- [dieselpunk](knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md)
+- [gothicpunk](knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md)
+- [lunarpunk](knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md)
+- [nanopunk](knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md)
+- [sandalpunk](knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md)
+- [solarpunk](knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md)
+- [steampunk](knowledge/skills/domains/design/ui-style-steampunk/SKILL.md)
 - [frontend-developer](knowledge/skills/roles/frontend-developer/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [product-owner](knowledge/skills/roles/product-owner/SKILL.md)

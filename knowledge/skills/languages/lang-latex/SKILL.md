@@ -45,7 +45,20 @@ While working under this skill, apply the following patterns strictly:
 
 ### 5. Typographic Formatting Best Practices
 - **Correct Quotes**: Use ``double quotes'' instead of `"single quotes"`.
-- **Hyphen vs. En Dash vs. Em Dash**: Use `-` for compound words, `--` for value ranges (e.g., 10--20), and `---` for explanatory em dashes.
+- **Hyphen vs. En Dash vs. Em Dash**: Use `-` for compound words, `--` for value ranges (e.g., 10--20), and `---` for explanatory em dashes. Note: in structured date ranges for ATS resumes and forms, use single ASCII hyphens (`2021-2024` or `01/2021 - 04/2024`) rather than en-dashes (`--`), as `U+2013` frequently corrupts downstream parsing in automated screening tools.
+
+### 6. PDF Text-Layer & Machine Parseability Safeguards
+When generating resumes, contracts, or machine-read documents in LaTeX:
+- **Unescaped `%` silent truncation trap:** In quantified metrics (e.g. `increased by 40% in Q3`), an unescaped `%` silently comments out the remainder of the line without triggering a LaTeX compile error. Always escape as `\%`.
+- **Accent decomposition defense:** In pdfLaTeX, use `\usepackage[T1]{fontenc}` to prevent composite accents (`e` + `U+0300`) in extracted text streams. Set `\AtEndPreamble{\hypersetup{pdfpagemode=UseNone}}` to avoid opening intrusive sidebars in PDF viewers.
+- **List and bracket hygiene:** Never insert raw `\vspace` between items inside `itemize` or `enumerate` (which breaks paragraph spacing calculations). Wrap literal leading brackets in braces (`\item {[Feature] ...}`) to prevent LaTeX from interpreting them as optional arguments.
+- **Isolated build directory rule:** Always compile through a dedicated `build/` directory (`rm -f document.pdf && mkdir -p build && pdflatex -output-directory=build document.tex && mv build/document.pdf ./`). This prevents stale previous PDFs from masking a failed compilation.
+
+### 7. Geometric Bounding-Box Layout Verification Loop
+Automate post-compilation layout auditing using `pdftotext -bbox` or `pypdf`:
+- **Unbreakable vertical holes:** Check for unexpected vertical gaps (`> 100pt`) caused by unbreakable `tabular` or `\cventry` blocks pushed across page boundaries.
+- **Orphan headings:** Prevent section headers stranded at page bottoms using `\needspace{5\baselineskip}` placed immediately before the entry block (never before the section title itself).
+- **Footer collisions and tail whitespace:** Audit bottom margins against footer collision, and flag final pages with more than 35% unused blank space for re-balancing.
 
 ---
 

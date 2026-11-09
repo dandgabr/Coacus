@@ -29,6 +29,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: bandit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   bandit:
     permissions:
@@ -40,10 +44,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Run Bandit
         run: |
+          if ! command -v bandit >/dev/null 2>&1; then
+            pip install --break-system-packages bandit
+          fi
           bandit -f sarif -o results.sarif -r . --exit-zero -s B404,B603,B607
       - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@b56ba9ba56729163276b6639d63c5a6108151ec8 # v3
         with:
           sarif_file: results.sarif

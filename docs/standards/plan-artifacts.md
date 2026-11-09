@@ -13,8 +13,8 @@ Process artifacts are working documents, not repository content. They live under
 - Implementation plans: `docs/temp/plans/YYYY-MM-DD-<feature-name>.md`.
 - Execution scratch: anywhere else under `docs/temp/`.
 
-- The imported process workflows (`superpowers-brainstorming`,
-  `superpowers-writing-plans`, `superpowers-executing-plans` and the rest) write
+- The imported process workflows (`brainstorming`, `writing-plans`,
+  `executing-plans` and the rest) write
   there. The upstream `docs/superpowers/` default they shipped with is
   superseded; no process artifact is written under the `docs/` root or a
   `docs/superpowers/` directory.

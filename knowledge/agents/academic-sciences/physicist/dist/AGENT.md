@@ -8,6 +8,8 @@ Senior specialist agent in Theoretical and Applied Physics, covering Advanced Cl
 - [academic-classical-mechanics-relativity](../../../../skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md)
 - [academic-electromagnetism-electrodynamics](../../../../skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md)
 - [academic-thermodynamics-statistical-physics](../../../../skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md)
+- [astronomical-data-integrity](../../../../skills/domains/academic/astronomical-data-integrity/SKILL.md)
+- [measurement-units-uncertainty](../../../../skills/domains/academic/measurement-units-uncertainty/SKILL.md)
 - [quantum-computing-algorithms](../../../../skills/domains/academic/quantum-computing-algorithms/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 <!-- /coacus:generated:skills -->
@@ -25,6 +27,8 @@ You act as a senior professional and researcher in **Theoretical and Experimenta
 - [academic-classical-mechanics-relativity](../../../../skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md)
 - [academic-electromagnetism-electrodynamics](../../../../skills/domains/academic/academic-electromagnetism-electrodynamics/SKILL.md)
 - [academic-thermodynamics-statistical-physics](../../../../skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md)
+- [astronomical-data-integrity](../../../../skills/domains/academic/astronomical-data-integrity/SKILL.md)
+- [measurement-units-uncertainty](../../../../skills/domains/academic/measurement-units-uncertainty/SKILL.md)
 - [quantum-computing-algorithms](../../../../skills/domains/academic/quantum-computing-algorithms/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 

@@ -174,6 +174,50 @@ Materialize ``.agents/{skills,mcps,agents}.json``; return written paths.
 
 Drift check for the consolidated discovery manifests (generated-artifacts).
 
+### `engine/generators/discovery_index.py`
+
+Generate the Agent Skills discovery index.
+
+Writes ``.well-known/agent-skills/index.json``: a versioned index of every
+published skill, each with a ``type`` and a content ``digest`` a client can verify
+before use. A skill whose directory holds only ``SKILL.md`` is ``skill-md``; a
+skill with any extra file is ``archive`` (a deterministic tar.gz built in memory,
+never written to the tree — the index is committed and drift-checked, the
+artifacts are release-only).
+
+Determinism is the contract (generated-artifacts): the archive uses fixed
+metadata and no timestamp, so two builds are byte-identical and ``check`` can
+prove it. That must hold on every machine, and a compressed stream does not: the
+bytes of a deflate stream depend on the zlib implementation (zlib and zlib-ng
+produce different output for the same input), so a digest taken over compressed
+bytes drifts between a developer machine and CI. The gzip container is therefore
+written by hand with *stored* (uncompressed) blocks, which depend on nothing but
+the input. A skill marked ``internal: true`` in frontmatter is excluded.
+
+#### `def is_internal(meta: dict) -> bool`
+
+True when frontmatter declares ``metadata.internal: true``.
+
+#### `def deterministic_gzip(data: bytes) -> bytes`
+
+A valid gzip stream that depends only on ``data``.
+
+The deflate blocks are *stored* (not compressed), written by hand, so no zlib
+implementation can change the bytes. The header carries no timestamp and an
+unknown OS, the trailer is the CRC-32 and the length.
+
+#### `def build(root: Path) -> dict`
+
+Build the discovery index structure from disk.
+
+#### `def write(root: Path) -> list[Path]`
+
+Write the discovery index; return the written path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the discovery index (generated-artifacts).
+
 ### `engine/generators/docstrings.py`
 
 Generate a Python API reference from module/function/class docstrings (F7).
@@ -195,6 +239,26 @@ Write the generated API reference to disk and return its path.
 #### `def check(root: Path) -> list[str]`
 
 Drift check for the generated API reference (generated-artifacts).
+
+### `engine/generators/groups.py`
+
+Generate catalog/groups.json — a grouping manifest by top-level category.
+
+Skills share one flat name namespace but live under a category directory.
+This manifest groups them for directory-style browsing without changing the flat
+catalog. It is derived from disk, byte-idempotent and drift-checked.
+
+#### `def build(root: Path) -> dict`
+
+Build the grouping manifest from disk.
+
+#### `def write(root: Path) -> list[Path]`
+
+Write the grouping manifest; return the written path.
+
+#### `def check(root: Path) -> list[str]`
+
+Drift check for the grouping manifest (generated-artifacts).
 
 ### `engine/generators/guardrails.py`
 
@@ -378,7 +442,7 @@ Drift check for the routing index (generated-artifacts).
 
 On-disk concurrency governor with an flock-guarded slot ledger (orchestration-governance).
 
-Bounds how many agents may run at once (default 5, orchestrator included),
+Bounds how many agents may run at once (scoped, configurable limits; fallback 6),
 handles rate-limit (429) by parking a caller as PAUSED for retry, and is the
 executable counterpart of the AGENTS.md governance rule. Zero dependencies.
 
@@ -388,9 +452,25 @@ Ledger format (text, one record per line):
     PAUSED  <caller> <unix-ts> <attempts>
 
 Callers are validated tokens (``[A-Za-z0-9._:-]+``); matching is EXACT, never
-prefix-based. The cap is persisted so no caller can raise it. Stale RUNNING
-rows (dead PID or older than the lease) are reaped before capacity is judged,
-so a crashed holder cannot leak a slot forever.
+prefix-based. The cap is persisted and can be changed through the configured
+maximum or the explicit setter. RUNNING rows occupy slots until explicitly
+released, parked, or reset; neither age nor the acquiring CLI PID proves that
+the worker has finished. Crashes may therefore require operator recovery after
+confirming the worker is no longer running. PAUSED rows do not occupy slots.
+The lease setting is retained for compatibility but does not expire slots.
+
+#### `def resolve_concurrency_cap(scope: str='global', model: str | None=None, explicit_max: int | None=None) -> int`
+
+Resolve the concurrency cap dynamically following precedence rules:
+
+1. Explicit max_total parameter if supplied.
+2. Model-specific environment variable (COACUS_MAX_<MODEL>).
+3. Harness-specific environment variable (COACUS_MAX_<SCOPE>).
+4. Harness-native environment variable (e.g. CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY, OLLAMA_NUM_PARALLEL).
+5. Model canonical mapping if model is known.
+6. Harness canonical mapping if scope is known in HARNESS_CONCURRENCY_MAP.
+7. Global override ORCH_MAX_CONCURRENT if set in environment.
+8. Default fallback for other/unlisted harnesses: 6.
 
 #### `def state_dir() -> Path`
 
@@ -400,13 +480,86 @@ The governor's state directory (``GOVERNOR_STATE_DIR`` or a runtime default).
 
 A file-backed slot ledger guarded by ``fcntl.flock``.
 
+- `def set_max(self, new_max: int) -> int` — Authoritatively set a new maximum concurrency cap in the ledger.
 - `def acquire(self, caller: str, orchestrator: bool=False, timeout: float=30.0) -> str | None` — Reserve a slot. Returns the token, or None if the cap stayed full.
-- `def release(self, caller: str) -> None` — Release the slot held by ``caller`` (a no-op if it holds none).
-- `def fail(self, caller: str, attempts: int=1) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
+- `def release(self, caller: str, token: str | None=None) -> None` — Release caller's slot; if supplied, the token must match atomically.
+- `def fail(self, caller: str, attempts: int=1, token: str | None=None) -> None` — Park a caller as PAUSED after a rate-limit (429) for retry.
 - `def paused(self) -> list[dict]` — Callers parked for retry, with a backoff hint (2s -> 60s).
 - `def clear_paused(self, caller: str | None=None) -> None` — Drop PAUSED rows for ``caller``, or for every caller when ``None``.
-- `def status(self) -> dict` — Reap stale leases and return the current running/paused/slots snapshot.
+- `def status(self) -> dict` — Return the current running/paused/slots snapshot without reclaiming slots.
 - `def reset(self) -> None` — Clear every record, returning the ledger to an idle state.
+
+### `engine/guardrail/browsers.py`
+
+Browser detection and selection for the agent browser policy.
+
+At install time Coacus can detect which web browsers exist on the machine, let
+the user pick which ones an agent may drive (a primary and an optional
+fallback) and render a deny policy for every other known browser. The policy is
+machine-local data (``user_policy_dir``), never committed to the repository.
+
+The module is stdlib-only and side-effect free except for the explicit
+``write_policy`` / ``remove_policy`` helpers. Detection takes its probes as
+parameters so tests never depend on the developer's machine.
+
+#### `def load_catalog(root: Path) -> dict`
+
+Load the browser catalogue (``methodology/lifecycle/browsers.json``).
+
+#### `def flatpak_apps() -> set[str]`
+
+Installed Flatpak application ids (empty when Flatpak is absent or fails).
+
+#### `def detect(catalog: dict, which: Callable[[str], str | None]=shutil.which, exists: Callable[[str], bool]=os.path.exists, flatpak: set[str] | None=None) -> list[dict]`
+
+Return the catalogue browsers present on this machine, in catalogue order.
+
+A browser counts as installed when one of its binary names resolves on
+``PATH``, one of its well-known absolute paths exists, or its Flatpak
+application id is installed. Each result is ``{"id", "name", "binary"}``
+where ``binary`` is the first probe that matched (for display).
+
+#### `def choose(catalog: dict, detected: list[dict], primary: str | None=None, fallback: str | None=None) -> dict`
+
+Pick the primary and optional fallback browser.
+
+Without ``primary`` the first detected browser in the catalogue's
+``preference`` order wins and there is no fallback. An explicit choice must be
+a detected browser and the fallback must differ from the primary; violations
+raise ``ValueError`` so the installer can stop before writing anything.
+
+#### `def build_policy(catalog: dict, selection: dict) -> dict`
+
+Render the machine-local policy document for a selection.
+
+Every catalogue browser that is neither the primary nor the fallback gets
+three ``deny`` policies: launching it (``exec`` matched against executable
+names, so a mere mention does not fire), and reading or writing its profile
+directories. Allowed browsers get no policy: the rule is "agents drive only
+the browsers the user selected".
+
+#### `def write_policy(directory: Path, document: dict) -> Path`
+
+Write the generated policy document into ``directory`` and return its path.
+
+#### `def remove_policy(directory: Path) -> bool`
+
+Delete the generated policy; return True when a file was removed.
+
+Only a file this installer generated (``generated.by``) is removed, so a
+hand-written ``browser.policy.json`` is never destroyed.
+
+#### `def read_selection(directory: Path) -> dict | None`
+
+Return the recorded selection of a generated policy, or ``None``.
+
+#### `def prompt_selection(catalog: dict, detected: list[dict], ask: Callable[[str], str]=input, say: Callable[[str], None]=print) -> dict | None`
+
+Interactively choose the primary and fallback; ``None`` means "skip".
+
+Lists the detected browsers, proposes the catalogue's preferred one as the
+default primary and offers "no fallback" as the default fallback. An empty
+answer accepts the default; ``skip`` leaves the policy off.
 
 ### `engine/guardrail/evaluate.py`
 
@@ -425,13 +578,23 @@ Design notes (D4):
 
 The evaluator is deliberately small, deterministic and stdlib-only. It matches
 resource patterns with `fnmatch` for read/write, and substring globs for the
-other verbs.
+other verbs. An `exec` policy may opt into ``"match": "command"`` to compare its
+patterns with the executable names a shell string would run, rather than the
+whole string (see :func:`command_candidates`).
 
 #### `def load_events(root: Path) -> dict[str, dict]`
 
 Load the canonical event taxonomy as ``{event_id: event}``.
 
-#### `def load_policies(root: Path) -> list[dict]`
+#### `def user_policy_dir(env: dict | None=None, home: Path | None=None) -> Path`
+
+Directory of machine-local policy files generated at install time.
+
+``COACUS_POLICY_DIR`` overrides; otherwise ``$XDG_CONFIG_HOME/coacus/policies``
+or ``~/.config/coacus/policies``. These files are per-machine choices (for
+example the browsers an agent may drive) and never belong in the repository.
+
+#### `def load_policies(root: Path, include_user: bool=False, user_dir: Path | None=None) -> list[dict]`
 
 Load every ACTIVE policy from ``methodology/lifecycle/policies/*.json``.
 
@@ -439,12 +602,63 @@ A file is active only when it declares ``"enabled": true``. The shipped
 default set is empty and the reference file is disabled, so installing
 Coacus never changes a session's behaviour without an explicit opt-in (D2).
 
+With ``include_user`` the machine-local policies generated at install time
+(see :func:`user_policy_dir`) are appended. The runtime guard sets it; unit
+tests leave it off so they never depend on the developer's home directory.
+
+#### `def command_candidates(command: str, _depth: int=0) -> list[str]`
+
+Executable names a shell string would run (best-effort, never raises).
+
+Walks every simple command, skips env assignments, looks through known
+launch wrappers (``env``, ``nohup``, ``sudo``, ``timeout``...), recurses into
+``sh -c`` / ``bash -lc`` strings and ``$(...)`` / backticks, and resolves
+symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
+``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
+
 #### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
 
 Evaluate policies against one action; return the most restrictive decision.
 
 Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
 An event with no matching policy yields ``allow``.
+
+### `engine/guardrail/rules.py`
+
+Declarative content rules for the guardrail layer (PAER observe extension).
+
+A rule is ``field x operator x pattern``, with all conditions AND-combined,
+evaluated against a payload mapping. A match produces an ADVISORY — this layer
+never denies (an observe binding can only surface, never block). Rules are pure
+data in ``methodology/lifecycle/patterns/``; this module is the stdlib-only
+evaluator and the lint that keeps the data honest.
+
+Registry hygiene: rule ids are FROZEN and append-only. ``FROZEN_RULE_IDS`` records
+the ids that must exist; adding a rule means a new id, never a renumber, so an
+id that disappears is a build error rather than a silent shift.
+
+Failure is fail-open and visible: a bad regex yields a lint error, and at runtime
+a non-compiling pattern simply does not match.
+
+#### `def load_catalogue(root: Path) -> dict | None`
+
+Load the security-pattern catalogue; ``None`` when the file is missing.
+
+#### `def matches(rule: dict, payload: dict) -> bool`
+
+True when every field condition of the rule matches the payload.
+
+#### `def evaluate(payload: dict, catalogue: dict) -> list[dict]`
+
+Return the matching rules as advisory records (id, rule, severity, reminder).
+
+#### `def lint_errors(catalogue: dict) -> list[str]`
+
+Structural errors in the catalogue (blocking).
+
+#### `def lint_warnings(catalogue: dict) -> list[str]`
+
+Non-blocking findings: a pattern too broad to carry signal.
 
 ### `engine/provenance.py`
 
@@ -623,6 +837,31 @@ repos it still verifies the target side (lock + catalog + references).
 
 Return a list of completeness gaps (empty = nothing left behind).
 
+### `engine/validators/design_craft.py`
+
+Deterministic Design Craft and Anti-AI-Slop Validator (Python Standard Library only).
+
+Detects visual clichés, low-contrast combinations and structural tells
+commonly generated by AI coding assistants.
+
+#### `class DesignFinding`
+
+Represents a single detected design anti-pattern or accessibility issue.
+
+- `def format_line(self) -> str` — Return a human-readable string representation of the finding.
+
+#### `def scan_text(content: str, file_path: str='') -> list[DesignFinding]`
+
+Scan raw text content for design anti-patterns.
+
+#### `def scan_file(path: Path) -> list[DesignFinding]`
+
+Scan a single file if it has a supported frontend extension.
+
+#### `def scan_directory(root: Path) -> list[DesignFinding]`
+
+Recursively scan a directory for design anti-patterns.
+
 ### `engine/validators/discovery.py`
 
 Validate generated discovery manifests (discovery).
@@ -729,6 +968,22 @@ standard's explicit "could not resolve" state, with a reason) or
 ``UNRESOLVED`` (a gate error). Never fails: it is the audit surface for "how
 old is the corpus", not a gate.
 
+### `engine/validators/guardrails.py`
+
+Validate the advisory security-pattern catalogue (lifecycle-guardrails).
+
+The catalogue is DATA; this validator keeps it well-formed and append-only:
+unique positive integer ids, known fields and operators, compiling regexes, a
+reminder (the mitigation) on every rule, and every frozen id still present.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return catalogue errors; empty means valid (or absent — see below).
+
+#### `def warnings(root: Path) -> list[str]`
+
+Return non-blocking findings; empty means clean.
+
 ### `engine/validators/harnesses.py`
 
 Harness-manifest validator (F9.1).
@@ -768,36 +1023,18 @@ Return a list of error strings; empty list means clean.
 
 ### `engine/validators/language.py`
 
-Language policy check (english-only).
+Repository-wide English language gate using Lingua language detection.
 
-Validates that imported CONTENT is English across skills, workflows, agents and
-their reference/example assets. Prose only: fenced code blocks, inline code and
-markdown link targets are excluded, because samples, identifiers and anchor
-slugs are not prose.
+Natural-language segments are checked in tracked and non-ignored untracked
+text files. Ambiguous or unsupported text blocks validation for human review.
 
-Returns WARNINGS (non-blocking during import) — it becomes a hard gate once the
-corpus is translated.
+#### `def repository_errors(root: Path) -> list[str]`
 
-#### `def fence_hits(text: str) -> list[tuple[int, str]]`
-
-Non-English markers inside fenced code blocks (diagrams, comments, strings).
-
-``_prose_only`` deliberately drops fences, so contamination in an ASCII
-diagram, a code comment or a string literal used to pass the gate. This
-sweep closes that gap; ``FENCE_EXEMPT`` lists the files whose fences
-legitimately quote Portuguese.
+Validate natural-language segments throughout the repository.
 
 #### `def validate(root: Path) -> list[str]`
 
-Return a list of warning strings (empty = English-clean).
-
-#### `def fence_errors(root: Path) -> list[str]`
-
-Non-English content inside code fences (english-only).
-
-Blocking: after the F6 translation the corpus is English-clean, so a fence
-that carries Portuguese means a regression the reviewer must fix. Runs in
-``source_errors`` (generate pre-flight) and ``validate``.
+Return blocking repository-wide language errors.
 
 ### `engine/validators/mcps.py`
 
@@ -845,6 +1082,36 @@ Runs in ``artifact_errors`` (after generation / on ``validate``).
 
 Full contract: curated lexicon (source) plus the generated index (artifact).
 
+### `engine/validators/skill_quality.py`
+
+Skill-quality lint beyond the structural contract (skill-authoring).
+
+The structural validator (:mod:`engine.validators.skills`) checks placement,
+naming and link resolution. This module checks the authoring-quality contract
+that has signal on this corpus:
+
+- ERRORS (safe on the current corpus, catch a regression):
+  - ``name`` longer than the Agent Skills limit (64 chars);
+  - ``description`` longer than the skill-authoring limit (1024 chars);
+  - an unbalanced code fence (a ``` block that is never closed).
+- WARNINGS (non-blocking):
+  - a body over the word budget — depth belongs in ``references/``;
+  - a ``description`` that opens with an instruction-to-reader instead of a
+    third-person trigger description.
+
+The resource-pointer and duplication disciplines are GUIDANCE in
+``docs/standards/skill-authoring.md``, not checks: the corpus links reference
+directories by name rather than every file, so a per-file pointer check would
+fire on hundreds of valid skills and carry no signal.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return blocking quality errors; empty means clean.
+
+#### `def warnings(root: Path) -> list[str]`
+
+Return non-blocking quality findings; empty means clean.
+
 ### `engine/validators/skills.py`
 
 Validate canonical skill sources (D2/skill-authoring, corpus import contract).
@@ -858,7 +1125,7 @@ Errors: frontmatter parses; ``name`` is kebab-case and equals the directory;
 ``description`` present; globally unique slug; correct placement; no nested
 SKILL.md; local markdown links resolve.
 
-Warnings (non-blocking): non-English markers and oversized descriptions.
+Description length is enforced by :mod:`engine.validators.skill_quality`.
 
 #### `def discover_skills(root: Path) -> list[Path]`
 
@@ -870,11 +1137,45 @@ Return a list of error strings; empty list means valid.
 
 #### `def warnings(root: Path) -> list[str]`
 
-Non-blocking findings (language, description size).
+No non-blocking findings are currently defined for skill structure.
 
-The language check inspects PROSE only: fenced code blocks are skipped, so
-illustrative samples that quote upstream docs (SQL comments, config values)
-do not count as untranslated text. This mirrors the hygiene scan.
+### `engine/verify/ledger.py`
+
+Tri-state, fail-closed completion ledger (evidence standard).
+
+A ledger records one status per claim and derives one overall status. The rule is
+fail-closed: ``fail``, ``unknown``, ``unsupported``, ``truncated`` and ``skipped``
+NEVER aggregate to ``pass``. A ``pass`` claim must cite at least one piece of
+evidence — a missing id injects an ``unknown``, it does not round up.
+
+#### `def build(records: list[dict]) -> dict`
+
+Build a ledger from claim records; derive the overall status fail-closed.
+
+#### `def validate(ledger: dict) -> list[str]`
+
+Return ledger errors; empty means well-formed and self-consistent.
+
+### `engine/verify/unknowns.py`
+
+Revisioned residual-unknown registry (evidence standard).
+
+An unknown is not a TODO: it is a record of what is not yet known, which evidence
+supports and contradicts it, what class of evidence would settle it, and how many
+probes are recommended. Every update is a new revision, and a resolved-verified
+unknown must cite evidence — absence is never a pass.
+
+#### `def build(question: str, severity: str='medium', required_authority: str='') -> dict`
+
+Create a new, open unknown at revision 1.
+
+#### `def update(entry: dict, expected_revision: int) -> dict`
+
+Return a new revision, or raise when ``expected_revision`` is stale.
+
+#### `def validate(entry: dict) -> list[str]`
+
+Return registry-entry errors; empty means well-formed.
 
 ### `scripts/coacus.py`
 
@@ -918,6 +1219,10 @@ Reconcile the corpus against its sources; fail if anything is unreconciled.
 
 Re-hash drifted provenance targets; fail if the manifest stays inconsistent.
 
+#### `def cmd_verify_ledger(args: argparse.Namespace) -> int`
+
+Validate a completion ledger JSON file (evidence standard, fail-closed).
+
 #### `def cmd_freshness(args: argparse.Namespace, root: Path | None=None) -> int`
 
 Read-only, offline inventory of moving version pins (version-freshness).
@@ -929,6 +1234,46 @@ Run the schema and hygiene validators; fail on any error.
 #### `def main(argv: list[str] | None=None) -> int`
 
 Parse arguments and dispatch to the selected subcommand.
+
+### `scripts/coacus_catalog_mcp.py`
+
+Serve the installed Coacus catalog to Antigravity over MCP stdio.
+
+The runtime reads one deterministic index generated by the installer. It does
+not scan the corpus on each request; source files are opened only on demand.
+
+#### `class Catalog`
+
+Read the prebuilt index or repository corpus and resolve capability files safely.
+
+- `def search(self, query: str, kind: str='all', limit: int=MAX_RESULTS) -> list[dict]` — Return a deterministic, bounded list of matching capabilities.
+- `def get(self, name: str, kind: str) -> dict` — Return a canonical body and metadata for one exact capability.
+- `def get_reference(self, name: str, relative_path: str, kind: str='skill') -> dict` — Read a referenced sibling file without permitting path escape.
+
+#### `def handle_message(message: dict, catalog: Catalog) -> dict | None`
+
+Handle one MCP JSON-RPC message; return None for notifications.
+
+#### `def serve(input_stream: TextIO, output_stream: TextIO, catalog: Catalog) -> None`
+
+Serve newline-delimited JSON-RPC messages over MCP stdio.
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+Start the server from the installed plugin directory or repo root.
+
+### `scripts/coacus_design_lint.py`
+
+Coacus Design Linter CLI: Detect AI-slop visual anti-patterns in frontend code.
+
+Portable Python 3.10+ standard library script. Zero external dependencies.
+Usage:
+    python3 scripts/coacus_design_lint.py <file-or-directory> [--strict] [--json]
+    python3 scripts/coacus_design_lint.py --test
+
+#### `def main(argv: list[str] | None=None) -> int`
+
+CLI entry point for scanning frontend code for design anti-patterns.
 
 ### `scripts/coacus_eval.py`
 
@@ -976,8 +1321,8 @@ Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:
 
     coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-    coacus_governor.py release <caller>
-    coacus_governor.py fail    <caller>
+    coacus_governor.py release <caller> [--token TOKEN]
+    coacus_governor.py fail    <caller> [--token TOKEN]
     coacus_governor.py paused
     coacus_governor.py status  [max-total]
     coacus_governor.py reset
@@ -996,8 +1341,8 @@ Coacus governor hook for Antigravity (cross-platform, stdlib only).
 Bridges Antigravity lifecycle hooks to the shared Coacus governor.
 The payload on stdin is protojson camelCase:
 toolCall.name, conversationId, stepIdx, error.
-  - pretool : acquire a slot before a subagent spawn.
-  - posttool: release the slot, or mark PAUSED on a rate-limit (429).
+  - pretool : deny spawn until host correlation and lifetime are verified.
+  - posttool: preserve existing reservations when correlation is unverified.
   - preinv  : inject the concurrency budget + retry contract.
 
 #### `def main() -> int`
@@ -1117,11 +1462,14 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
               <config_dir>/skills/ and agents under <config_dir>/agent/.
-- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path;
+              real files land once in the shared ~/.agents/skills tree and a
+              symlink per skill is placed here, unless --skills-mode copy)
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               JSON payload at bootstrap/session-start.json (matching hooks.json).
-- antigravity plugin (manifest + rule + skills + agents) ->
+- antigravity plugin (manifest + compact rule + native agent selectors +
+              on-demand catalog MCP by default; full native profile optional) ->
               <config_dir>/config/plugins/coacus/; activation is by directory,
               so no registry edit is needed.
 - codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
@@ -1133,8 +1481,8 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - command-code skills   -> ~/.agents/skills/<skill>/ (a Command Code user scan
               root); agents -> <config_dir>/agents/<name>.md; the SessionStart
               bootstrap is merged into <config_dir>/settings.json under the
-              'hooks' key (Command Code has no separate hooks.json); the context7
-              MCP is merged into <config_dir>/mcp.json under 'mcpServers'; and
+              'hooks' key (Command Code has no separate hooks.json); framework
+              MCP servers are merged into <config_dir>/mcp.json under 'mcpServers'; and
               the Coacus user rules are written to <config_dir>/AGENTS.md when
               that file does not already exist.
 
@@ -1155,6 +1503,16 @@ category, applied to skills and agents), `--skills` (skill name glob) and/or
     python3 scripts/coacus_install.py codex --agents 'qa-*,*-architect'
     python3 scripts/coacus_install.py codex --list
 
+#### `class Symlink`
+
+An installed path that is a symbolic link to ``target`` (absolute).
+
+A harness that scans its OWN skill home (Claude Code's ``~/.claude/skills``)
+but shares the canonical ``~/.agents/skills`` tree gets a symlink per skill
+instead of a second real copy. Single source of truth, and Orca's skill list
+(which scans both homes) collapses the duplicate to one entry.
+
+
 #### `def default_config_dir(harness: str, home: Path) -> Path`
 
 Return the default config directory for ``harness`` under ``home``.
@@ -1163,10 +1521,8 @@ Return the default config directory for ``harness`` under ``home``.
 
 True when ``harness`` appears installed on this machine.
 
-Detection is by the harness's own environment variable or its executable on
-PATH — never by the mere existence of the config directory, which Coacus
-itself may have created. This is what prevents installing into an absent
-harness.
+Detection is by the harness's own environment variable, its executable on
+PATH, or its Desktop/IDE installation paths.
 
 #### `def discover_skills(root: Path, only: list[str] | None=None, skills: list[str] | None=None) -> list[Path]`
 
@@ -1193,7 +1549,7 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
-#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> list[tuple[Path, FileContent]]`
+#### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, skills_mode: str='link', antigravity_profile: str='on-demand') -> list[tuple[Path, FileContent]]`
 
 Compute the files to install for ``harness`` under the given filters.
 
@@ -1201,7 +1557,7 @@ Returns ``(target, content)`` pairs; nothing is written. ``only`` selects by
 category across skills and agents; ``skills``/``agents`` narrow each tree by
 name glob. Shared by ``install``, ``verify`` and ``uninstall``.
 
-#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact') -> dict[str, object]`
+#### `def install(harness: str, root: Path, config_dir: Path, dry_run: bool, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, allow_advisory: bool=False, force: bool=False, codex_skill_profile: str='compact', skills_mode: str='link', lock_skills: bool | None=None, extra_policy_docs: list[dict] | None=None, antigravity_profile: str='on-demand', legacy_backup_dir: Path | None=None) -> dict[str, object]`
 
 Install a harness and write its manifest; report files written.
 
@@ -1241,6 +1597,16 @@ install. Files still claimed by another harness's manifest (the shared
 Cursor. A path recorded by a doctored manifest but outside the allowed roots
 is skipped, so the manifest cannot delete arbitrary files.
 
+#### `def browser_policy_step(root: Path, mode: str, policy_dir: Path, primary: str | None=None, fallback: str | None=None, dry_run: bool=False, ask=input, say=print) -> dict[str, object]`
+
+Detect installed browsers, choose primary/fallback and write the policy.
+
+``mode`` is ``off`` (do nothing), ``auto`` (preference order, no fallback),
+``prompt`` (interactive) or ``select`` (explicit ``primary``/``fallback``).
+The generated policy is machine-local (D2: opt-in, never changes behaviour
+unasked) and is returned alongside a summary so the installer can check it
+can be enforced on each harness before writing anything.
+
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 
 Parse arguments and run install, uninstall, verify or list.
@@ -1249,17 +1615,28 @@ Parse arguments and run install, uninstall, verify or list.
 
 Select agents for a prompt (routing) — manual and automated modes.
 
-    coacus_route.py "<prompt>" [--top N] [--min-score X] [--max-slots]   # Mode A
+    coacus_route.py "<prompt>" [--top N] [--all] [--raw] [--min-score X] # Mode A
     coacus_route.py --list [--category C] [--grep TERM]                  # Mode M
     coacus_route.py --agents name1,name2                                # Mode M
 
-Mode A (automated curation) ranks the agents against the prompt and prints the
-best candidates, one per line: ``score<TAB>name<TAB>category<TAB>matched``.
+Mode A (automated curation) ranks the agents against the prompt and presents
+the best candidates. In interactive terminals, output is formatted ergonomically
+using Cognitive UX Laws (Fitts's Law quick actions, Cowan 4±1 chunking, Von Restorff
+isolation, and Hick's Law progressive disclosure). When piped or given --raw, it prints
+standard TSV: ``score<TAB>name<TAB>category<TAB>matched``.
 Mode M (manual) browses or validates an explicit selection; an unknown name is an
 error with suggestions and a non-zero exit.
 
 The command only PROPOSES; it never spawns an agent. ``--max-slots`` caps the
 proposal at the governor's free slots so a caller cannot over-subscribe.
+
+#### `def format_candidates(candidates: list[router.Candidate], *, raw: bool=False, use_color: bool=False, total_matches: int | None=None) -> str`
+
+Format candidate agent proposals for CLI output.
+
+When raw=True, outputs standard TSV (score\tname\tcategory\tmatched).
+When raw=False, outputs human-first presentation with Von Restorff isolation,
+Cowan chunking (4±1), and Fitts zero-distance quick action on the last line.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
@@ -1272,6 +1649,10 @@ Run the pinned, checksum-verified secret scanner using portable Python tooling.
 #### `def install_binary(content: bytes, checksum: str, target: Path) -> None`
 
 Reject checksum drift, then copy only the named regular executable.
+
+#### `def stage_tracked_files(root: Path, destination: Path) -> None`
+
+Copy tracked regular worktree files without following any symlink.
 
 #### `def main(argv: list[str] | None=None) -> int`
 
@@ -1328,6 +1709,50 @@ dispatcher (knowledge-ingestion):
 #### `def main(argv: list[str] | None=None) -> int`
 
 Parse arguments and dispatch to the ``ingest`` or ``analyze`` subcommand.
+
+### `scripts/sync_pencil_skills.py`
+
+scripts/sync_pencil_skills.py — Synchronize Coacus Canonical UI Styles to Pencil (pen.dev)
+
+Performs deterministic, lossless adaptation of all 82 pure canonical UI styles
+from knowledge/skills/domains/design/ui-style-* into ~/.pencil/skills/ui-style-*/,
+purges obsolete hybrid directories, updates the central catalog, and verifies
+structural integrity.
+
+Author: Coacus Autonomous Pair Programming
+Contract: ADR 0008, AGENTS.md (Python standard library only)
+
+#### `def parse_coacus_skill(path: Path) -> tuple[str, str, str, str]`
+
+Parse Coacus SKILL.md into (slug, clean_title, canonical_desc, body).
+
+#### `def adapt_style_content(slug: str, clean_title: str, canonical_desc: str, body: str) -> str`
+
+Adapt canonical Coacus skill markdown for Pencil (.pen) canvas environment.
+
+#### `def generate_pencil_catalog(styles_data: list[tuple[str, str, str]]) -> str`
+
+Generate the full pencil-style-catalog/SKILL.md indexing all 82 styles.
+
+#### `def do_backup(pencil_dir: Path, backup_dir: Path, dry_run: bool=False) -> None`
+
+Create a recursive backup of ~/.pencil/skills/.
+
+#### `def do_purge_deprecated(pencil_dir: Path, dry_run: bool=False) -> list[str]`
+
+Purge the 7 deprecated hybrid directories from ~/.pencil/skills/.
+
+#### `def do_sync(coacus_styles_dir: Path, pencil_dir: Path, dry_run: bool=False) -> list[tuple[str, str, str]]`
+
+Synchronize all 82 canonical UI styles from Coacus to Pencil.
+
+#### `def do_verify(coacus_styles_dir: Path, pencil_dir: Path) -> bool`
+
+Verify integrity of all 82 styles in Pencil.
+
+#### `def main() -> int`
+
+Parse CLI arguments and dispatch the Coacus-to-Pencil style synchronization pipeline.
 
 ### `verticals/architecture_si/pipelines/analyze/analyzer.py`
 
@@ -1427,11 +1852,15 @@ interface parity with the upstream converter.
 
 Convert a PDF to Markdown using pypdf (plain per-page text extraction).
 
+#### `def convert_pdf_with_pymupdf4llm(pdf_path: str, output_path: Optional[str]=None) -> str`
+
+Convert a PDF to structured Markdown using pymupdf4llm.
+
 #### `def convert_pdf_to_markdown(pdf_path: str, output_path: Optional[str]=None, **kwargs: Any) -> str`
 
-Convert a PDF to Markdown, selecting PyMuPDF or pypdf by availability.
+Convert a PDF to Markdown, selecting pymupdf4llm, PyMuPDF or pypdf by availability.
 
-#### `def handle_pdf(input_path: str, output_path: str | None=None) -> str`
+#### `def handle_pdf(input_path: str, output_path: str | None=None, **options: Any) -> str`
 
 Convert a PDF to Markdown and return the written path.
 

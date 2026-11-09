@@ -1,0 +1,16 @@
+{
+  "id": "spectral-match-evidence",
+  "title": "Treat spectral matches as candidate evidence",
+  "harness": "opencode",
+  "prompt": "A tandem mass spectrum has a high library similarity score, but precursor and adduct metadata are incomplete and there are multiple plausible compounds. Can the identity be reported as confirmed? Explain the remaining checks. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(candidate|ambig|not confirmed|not proof)" },
+    { "kind": "regex", "value": "(?i)(precursor|adduct|metadata)" }
+  ],
+  "rubric": [
+    "The response treats the high score as candidate evidence rather than confirmed molecular identity.",
+    "It identifies precursor and adduct metadata and the ambiguity among plausible compounds as unresolved.",
+    "It calls for suitable independent confirmation without inventing a result."
+  ],
+  "acceptance": "The response reports a candidate match and identifies the missing evidence needed for confirmation."
+}

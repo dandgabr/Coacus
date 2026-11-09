@@ -1,0 +1,6 @@
+{
+  "name": "skill-auditor",
+  "version": "0.1.0",
+  "description": "Audits an existing skill against the authoring contract and returns a severity-ranked report. Use when reviewing or grading a SKILL.md, when a skill fails validation, or when improving trigger quality, progressive disclosure and token budget before a skill ships.",
+  "entrypoint": "AGENT.md"
+}

@@ -55,7 +55,13 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  - Consult [guardrail-authoring](knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/guardrail-authoring/SKILL.md
   - type: skill_integration
     path: ../../../../skills/domains/industry/conversational-ai-chatbots/SKILL.md
   - type: skill_integration

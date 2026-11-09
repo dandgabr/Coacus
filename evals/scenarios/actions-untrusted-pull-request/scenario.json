@@ -1,0 +1,19 @@
+{
+  "id": "actions-untrusted-pull-request",
+  "title": "Reject privileged execution of untrusted pull request code",
+  "harness": "opencode",
+  "prompt": "A public repository uses pull_request_target, checks out the fork's pull request branch, runs its tests on a persistent self-hosted runner, and exposes deployment secrets. In at most three short lines, identify the trust-boundary problem and a safer design direction.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)pull_request_target.{0,100}(privileg|trusted|untrusted)|(privileg|trusted|untrusted).{0,100}pull_request_target" },
+    { "kind": "regex", "value": "(?i)(self.hosted|persistent).{0,80}(runner|isolat)|(runner|isolat).{0,80}(self.hosted|persistent)" },
+    { "kind": "regex", "value": "(?i)(withhold|withheld|remove|do not expose|no).{0,50}(secret|token|credential)|(secret|token|credential).{0,50}(withhold|withheld|unavailable|not available)" },
+    { "kind": "not_contains", "value": "pull_request_target is safe" }
+  ],
+  "rubric": [
+    "The response identifies that fork-controlled code is untrusted and that pull_request_target is privileged.",
+    "It rejects execution of that code on a persistent self-hosted runner with secrets.",
+    "It recommends separating trusted metadata handling from untrusted execution and withholding credentials.",
+    "No file was modified."
+  ],
+  "acceptance": "The response names the untrusted-code boundary, rejects privileged execution, and proposes isolated credential-free validation."
+}

@@ -1,11 +1,17 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 94,
-    "skills": 370,
+    "agents": 104,
+    "skills": 500,
     "mcps": 1
   },
   "agents": [
+    {
+      "name": "agentic-ai-architect",
+      "category": "data-cloud-devops",
+      "description": "Senior Architecture Agent specialized in Autonomous AI Agents, Multi-Agent Systems, and Multimodal Generative Applications. Guides topology selection (hierarchical, blackboard, peer consensus), agent cognitive loops (ReAct, OODA, reflection), long-term vector/graph memory hierarchies, tool execution sandboxing, and Kubernetes runtime scaling with vLLM and KubeRay.",
+      "source": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md"
+    },
     {
       "name": "ai-ml-architect",
       "category": "architecture",
@@ -21,7 +27,7 @@
     {
       "name": "ai-security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning and OWASP Top 10 for LLM compliance.",
+      "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning, AI-system lifecycle threats under ISO/IEC 27090:2026, and OWASP Top 10 for LLM compliance.",
       "source": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md"
     },
     {
@@ -111,7 +117,7 @@
     {
       "name": "cloudflare-specialist",
       "category": "data-cloud-devops",
-      "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the new cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
+      "description": "Senior specialist agent in the Cloudflare Platform, Edge Computing, the unified cf CLI, Wrangler v3/v4, Tunnels with cloudflared, Serverless Storage (D1, R2, KV, Vectorize, Hyperdrive), WAF and Cloudflare Zero Trust Architecture.",
       "source": "knowledge/agents/data-cloud-devops/cloudflare-specialist/agent.source.md"
     },
     {
@@ -205,15 +211,21 @@
       "source": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md"
     },
     {
+      "name": "design-qa-specialist",
+      "category": "software-engineering",
+      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+      "source": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md"
+    },
+    {
       "name": "devops-engineer",
       "category": "data-cloud-devops",
-      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions and Azure Pipelines) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
       "source": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md"
     },
     {
       "name": "documenter",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+      "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
       "source": "knowledge/agents/software-engineering/documenter/agent.source.md"
     },
     {
@@ -249,7 +261,7 @@
     {
       "name": "frontend-developer",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), natural spring physics (Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
+      "description": "Senior specialist agent in Frontend Engineering and Design Engineering, mastering Tailwind and shadcn/ui de-templatization, tactile textures (SVG noise), spring-based motion implementation with Motion (formerly Framer Motion), Core Web Vitals optimization and strict WCAG 2.2 accessibility.",
       "source": "knowledge/agents/software-engineering/frontend-developer/agent.source.md"
     },
     {
@@ -259,16 +271,28 @@
       "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md"
     },
     {
+      "name": "game-art-director",
+      "category": "specialized-domains",
+      "description": "Audits 2D game character rosters, proportional consistency, mass conservation, handedness asymmetry, and animation motion continuity. Use when reviewing, governing, or approving 2D game visual assets and animation cycles.",
+      "source": "knowledge/agents/specialized-domains/game-art-director/agent.source.md"
+    },
+    {
+      "name": "game-asset-pipeline-engineer",
+      "category": "specialized-domains",
+      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+      "source": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md"
+    },
+    {
       "name": "game-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Game Security and Anti-Cheat, covering engine hardening (Unity/Unreal/Godot), anti-cheat engineering, server-authoritative network design, game economy fraud and esports integrity governance.",
       "source": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md"
     },
     {
-      "name": "general",
-      "category": "core-orchestration",
-      "description": "Multi-Stage Generalist Agent, specialized in orchestration, breaking complex problems into subtasks, coordinating flows and dynamically integrating multiple repository skills.",
-      "source": "knowledge/agents/core-orchestration/general/agent.source.md"
+      "name": "game-sprite-artist",
+      "category": "specialized-domains",
+      "description": "Designs and illustrates consistent 2D game characters, animation frames, and combat poses using anatomical mannequins and head-count proportions. Use when creating, sketching, or detailing 2D game sprites and character lineups.",
+      "source": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md"
     },
     {
       "name": "geoscientist",
@@ -279,7 +303,7 @@
     {
       "name": "github-specialist",
       "category": "software-engineering",
-      "description": "Senior specialist agent in the GitHub Platform, Repository Governance, GHAS Security (CodeQL, Secret Scanning, Dependabot), Automation with the GitHub CLI (gh) and Workflow Engineering with GitHub Actions.",
+      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
       "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md"
     },
     {
@@ -289,10 +313,22 @@
       "source": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md"
     },
     {
+      "name": "growth-marketing-specialist",
+      "category": "specialized-domains",
+      "description": "Specialist Agent in Go-To-Market (GTM) Strategy, Positioning, Conversion Copywriting, CRO, SEO/AEO Engineering, and Revenue Operations. Bridges product capabilities with commercial growth, market positioning, experimentation discipline, and SaaS unit economics.",
+      "source": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md"
+    },
+    {
       "name": "hardware-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
       "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md"
+    },
+    {
+      "name": "harness-specialist",
+      "category": "core-orchestration",
+      "description": "Guides configuration and troubleshooting across supported assistant harnesses, distinguishing vendor behavior from repository installation and session activation.",
+      "source": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md"
     },
     {
       "name": "iam-architect",
@@ -307,6 +343,12 @@
       "source": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md"
     },
     {
+      "name": "incident-response-commander",
+      "category": "cybersecurity",
+      "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
+      "source": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md"
+    },
+    {
       "name": "information-systems-specialist",
       "category": "specialized-domains",
       "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
@@ -317,6 +359,12 @@
       "category": "architecture",
       "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
       "source": "knowledge/agents/architecture/integration-architect/agent.source.md"
+    },
+    {
+      "name": "iot-security-specialist",
+      "category": "cybersecurity",
+      "description": "Specialist Agent in Consumer/Embedded IoT Security, covering device fingerprinting, backdoor-shaped findings (default credentials, unauthenticated management protocols, vendor maintenance daemons), network isolation of untrusted devices, device-side hardening, firmware updates and cloud/P2P egress.",
+      "source": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md"
     },
     {
       "name": "java-enterprise-architect",
@@ -377,6 +425,12 @@
       "category": "specialized-domains",
       "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
       "source": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md"
+    },
+    {
+      "name": "motion-graphics-producer",
+      "category": "specialized-domains",
+      "description": "Produces fixed-timeline motion graphics and exported audiovisual pieces when a request needs a storyboard, scene continuity, pacing, optional audio synchronization and frame-by-frame video delivery. Coordinates the piece while reusing existing visual, interactive-motion and GPU specialties.",
+      "source": "knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md"
     },
     {
       "name": "multi-agent-orchestrator",
@@ -469,10 +523,10 @@
       "source": "knowledge/agents/cybersecurity/security-specialist/agent.source.md"
     },
     {
-      "name": "self",
-      "category": "core-orchestration",
-      "description": "Subagent for Self-Cloning, Delegation and Concurrent Execution / Context Isolation (Self Subagent / Fork Delegate). Fully inherits and replicates the model, workspace tools (read, edit, terminal, search) and guidelines of the parent/caller agent to run complex subtasks in independent conversations or subprocesses on any AI harness or framework.",
-      "source": "knowledge/agents/core-orchestration/self/agent.source.md"
+      "name": "skill-auditor",
+      "category": "specialized-domains",
+      "description": "Audits an existing skill against the authoring contract and returns a severity-ranked report. Use when reviewing or grading a SKILL.md, when a skill fails validation, or when improving trigger quality, progressive disclosure and token budget before a skill ships.",
+      "source": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md"
     },
     {
       "name": "skill-creator",
@@ -535,6 +589,12 @@
       "source": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md"
     },
     {
+      "name": "tui-cli-engineer",
+      "category": "software-engineering",
+      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+      "source": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md"
+    },
+    {
       "name": "ui-designer",
       "category": "software-engineering",
       "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
@@ -543,13 +603,13 @@
     {
       "name": "ui-motion-specialist",
       "category": "software-engineering",
-      "description": "Specialist agent in UI motion engineering, physics-based micro-interactions, dynamic pointer tracking, tactile hover/active states, and guided product onboarding tours. Implements spring dynamics, spotlight cursor shaders, Driver.js walkthrough architectures, and 60/120fps hardware-composited motion adhering strictly to WCAG prefers-reduced-motion standards.",
+      "description": "Specifies, implements and verifies interface motion: pointer and gesture feedback, state and layout transitions (View Transitions, FLIP, accordion auto-height), scroll-driven and scroll-linked effects (CSS scroll timelines, GSAP ScrollTrigger, Lenis, sticky and scroll snap), text effects (split text, scramble, number tickers) and onboarding tours. Delivers a motion spec per effect with timing tokens, interruption behaviour, a reduced-motion variant, a support fallback and performance evidence. Use when a request involves animation, transitions, parallax, scroll-linked motion, springs or reduced motion; delegates WebGL/canvas, visual style and audits to sibling agents.",
       "source": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md"
     },
     {
       "name": "ui-ux-designer",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering 24 page design styles, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
+      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
       "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md"
     },
     {
@@ -561,7 +621,7 @@
     {
       "name": "vcs-repository-specialist",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Version Control Systems (VCS) and Advanced Repository Management, covering low-level Git (DAG, reflog, worktrees, sparse-checkout, LFS, filter-repo), Subversion/SVN (FSFS, trunk/branches/tags, mergeinfo, svnadmin, hooks), Mercurial (Hg), full legacy VCS migrations and branching governance.",
+      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration. Use for shared history changes, repository incidents, large repositories or VCS transitions.",
       "source": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md"
     },
     {
@@ -627,6 +687,10 @@
     {
       "name": "solution-architect",
       "path": "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md"
+    },
+    {
+      "name": "agentic-temporal-knowledge-graphs",
+      "path": "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md"
     },
     {
       "name": "data-intensive-systems",
@@ -789,12 +853,68 @@
       "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md"
     },
     {
+      "name": "animal-welfare-research-evidence",
+      "path": "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md"
+    },
+    {
+      "name": "astronomical-data-integrity",
+      "path": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md"
+    },
+    {
+      "name": "bulk-rna-seq-research",
+      "path": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md"
+    },
+    {
+      "name": "constraint-based-metabolic-research",
+      "path": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md"
+    },
+    {
       "name": "data-science-advanced-math",
       "path": "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md"
     },
     {
+      "name": "flow-cytometry-research",
+      "path": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md"
+    },
+    {
+      "name": "genomic-coordinate-integrity",
+      "path": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md"
+    },
+    {
+      "name": "isotope-flux-research",
+      "path": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md"
+    },
+    {
+      "name": "laboratory-automation-research",
+      "path": "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md"
+    },
+    {
+      "name": "measurement-units-uncertainty",
+      "path": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md"
+    },
+    {
+      "name": "pooled-screen-research",
+      "path": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md"
+    },
+    {
       "name": "quantum-computing-algorithms",
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md"
+    },
+    {
+      "name": "scientific-data-retrieval",
+      "path": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md"
+    },
+    {
+      "name": "single-cell-expression-research",
+      "path": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md"
+    },
+    {
+      "name": "tandem-mass-spectra-research",
+      "path": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md"
+    },
+    {
+      "name": "canvas-spatial-whiteboarding",
+      "path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md"
     },
     {
       "name": "color-contrast-accessibility",
@@ -817,6 +937,26 @@
       "path": "knowledge/skills/domains/design/color-ui-systems/SKILL.md"
     },
     {
+      "name": "deterministic-motion-rendering",
+      "path": "knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md"
+    },
+    {
+      "name": "game-2d-scene-composition",
+      "path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md"
+    },
+    {
+      "name": "game-sprite-design",
+      "path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md"
+    },
+    {
+      "name": "ui-app-layout-architectures",
+      "path": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md"
+    },
+    {
+      "name": "ui-data-tables-dashboards",
+      "path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md"
+    },
+    {
       "name": "ui-hero-sections",
       "path": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md"
     },
@@ -829,6 +969,18 @@
       "path": "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md"
     },
     {
+      "name": "ui-presentation-slides",
+      "path": "knowledge/skills/domains/design/ui-presentation-slides/SKILL.md"
+    },
+    {
+      "name": "ui-scroll-driven-motion",
+      "path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md"
+    },
+    {
+      "name": "ui-state-layout-transitions",
+      "path": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md"
+    },
+    {
       "name": "ui-style-3d-immersive-webgl",
       "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md"
     },
@@ -837,32 +989,120 @@
       "path": "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md"
     },
     {
+      "name": "ui-style-agitprop-poster",
+      "path": "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md"
+    },
+    {
       "name": "ui-style-ai-native-generative-ui",
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md"
+    },
+    {
+      "name": "ui-style-analog-newspaper-broadsheet",
+      "path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md"
+    },
+    {
+      "name": "ui-style-art-deco",
+      "path": "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md"
+    },
+    {
+      "name": "ui-style-art-nouveau",
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md"
+    },
+    {
+      "name": "ui-style-arts-and-crafts",
+      "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md"
+    },
+    {
+      "name": "ui-style-atompunk",
+      "path": "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md"
     },
     {
       "name": "ui-style-aurora-mesh-gradient",
       "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md"
     },
     {
+      "name": "ui-style-bauhaus",
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md"
+    },
+    {
       "name": "ui-style-bento-grid",
       "path": "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md"
+    },
+    {
+      "name": "ui-style-biopunk",
+      "path": "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-blueprint-cad-schematic",
+      "path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md"
+    },
+    {
+      "name": "ui-style-broken-grid",
+      "path": "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md"
+    },
+    {
+      "name": "ui-style-brutalist-monochrome",
+      "path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md"
+    },
+    {
+      "name": "ui-style-calm-quiet-ui",
+      "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md"
     },
     {
       "name": "ui-style-card-based-ui",
       "path": "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md"
     },
     {
+      "name": "ui-style-cassette-futurism",
+      "path": "knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md"
+    },
+    {
       "name": "ui-style-claymorphism",
       "path": "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md"
     },
     {
-      "name": "ui-style-cyberpunk-hud",
-      "path": "knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md"
+      "name": "ui-style-clockpunk",
+      "path": "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-collage-scrapbook",
+      "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md"
+    },
+    {
+      "name": "ui-style-constructivism",
+      "path": "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md"
+    },
+    {
+      "name": "ui-style-cyberpunk",
+      "path": "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-dark-fantasy",
+      "path": "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md"
     },
     {
       "name": "ui-style-dark-mode-first",
       "path": "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md"
+    },
+    {
+      "name": "ui-style-de-stijl",
+      "path": "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md"
+    },
+    {
+      "name": "ui-style-dieselpunk",
+      "path": "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-dracula",
+      "path": "knowledge/skills/domains/design/ui-style-dracula/SKILL.md"
+    },
+    {
+      "name": "ui-style-dreamcore",
+      "path": "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md"
+    },
+    {
+      "name": "ui-style-dungeon-synth",
+      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md"
     },
     {
       "name": "ui-style-editorial-archive-luxury",
@@ -877,6 +1117,10 @@
       "path": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md"
     },
     {
+      "name": "ui-style-fluid-liquid-morph",
+      "path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md"
+    },
+    {
       "name": "ui-style-frutiger-aero",
       "path": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md"
     },
@@ -885,12 +1129,52 @@
       "path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md"
     },
     {
+      "name": "ui-style-glitch",
+      "path": "knowledge/skills/domains/design/ui-style-glitch/SKILL.md"
+    },
+    {
+      "name": "ui-style-gothicpunk",
+      "path": "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md"
+    },
+    {
       "name": "ui-style-gradient-duotone",
       "path": "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md"
     },
     {
+      "name": "ui-style-grain-noise-texture",
+      "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md"
+    },
+    {
+      "name": "ui-style-hand-drawn-sketch",
+      "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md"
+    },
+    {
+      "name": "ui-style-holographic-foil-iridescent",
+      "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md"
+    },
+    {
+      "name": "ui-style-indie-web-revival",
+      "path": "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md"
+    },
+    {
+      "name": "ui-style-isometric",
+      "path": "knowledge/skills/domains/design/ui-style-isometric/SKILL.md"
+    },
+    {
+      "name": "ui-style-kawaii-pastel-soft",
+      "path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md"
+    },
+    {
       "name": "ui-style-kinetic-typography",
       "path": "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md"
+    },
+    {
+      "name": "ui-style-linear-saas",
+      "path": "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md"
+    },
+    {
+      "name": "ui-style-lunarpunk",
+      "path": "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md"
     },
     {
       "name": "ui-style-material-you",
@@ -901,12 +1185,24 @@
       "path": "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md"
     },
     {
+      "name": "ui-style-memphis",
+      "path": "knowledge/skills/domains/design/ui-style-memphis/SKILL.md"
+    },
+    {
       "name": "ui-style-metro-modern-ui",
       "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md"
     },
     {
       "name": "ui-style-micro-interactions",
       "path": "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md"
+    },
+    {
+      "name": "ui-style-mid-century-modern",
+      "path": "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md"
+    },
+    {
+      "name": "ui-style-nanopunk",
+      "path": "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md"
     },
     {
       "name": "ui-style-neo-brutalism",
@@ -917,8 +1213,8 @@
       "path": "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md"
     },
     {
-      "name": "ui-style-one-page-long-scroll",
-      "path": "knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md"
+      "name": "ui-style-nordic",
+      "path": "knowledge/skills/domains/design/ui-style-nordic/SKILL.md"
     },
     {
       "name": "ui-style-organic-biophilic",
@@ -929,24 +1225,88 @@
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md"
     },
     {
+      "name": "ui-style-pixel-art",
+      "path": "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md"
+    },
+    {
+      "name": "ui-style-pop-art-halftone",
+      "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md"
+    },
+    {
+      "name": "ui-style-psychedelic-60s",
+      "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md"
+    },
+    {
+      "name": "ui-style-retro-computing",
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md"
+    },
+    {
+      "name": "ui-style-risograph",
+      "path": "knowledge/skills/domains/design/ui-style-risograph/SKILL.md"
+    },
+    {
+      "name": "ui-style-sandalpunk",
+      "path": "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md"
+    },
+    {
       "name": "ui-style-scrollytelling",
       "path": "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md"
+    },
+    {
+      "name": "ui-style-silkpunk",
+      "path": "knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md"
     },
     {
       "name": "ui-style-skeuomorphism",
       "path": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md"
     },
     {
+      "name": "ui-style-solarpunk",
+      "path": "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md"
+    },
+    {
+      "name": "ui-style-split-screen-dualism",
+      "path": "knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md"
+    },
+    {
+      "name": "ui-style-steampunk",
+      "path": "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md"
+    },
+    {
       "name": "ui-style-swiss-web-minimalism",
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md"
+    },
+    {
+      "name": "ui-style-synthwave",
+      "path": "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md"
+    },
+    {
+      "name": "ui-style-terminal-tui",
+      "path": "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md"
+    },
+    {
+      "name": "ui-style-vaporwave",
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md"
     },
     {
       "name": "ui-style-web-brutalism",
       "path": "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md"
     },
     {
+      "name": "ui-style-weirdcore",
+      "path": "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md"
+    },
+    {
+      "name": "ui-style-windows-xp",
+      "path": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md"
+    },
+    {
       "name": "ui-style-y2k-revival",
       "path": "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md"
+    },
+    {
+      "name": "ui-style-zine-independent",
+      "path": "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md"
     },
     {
       "name": "ai-application-engineering",
@@ -963,6 +1323,10 @@
     {
       "name": "ai-model-evaluation",
       "path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md"
+    },
+    {
+      "name": "ai-multimodal-agentic-systems",
+      "path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md"
     },
     {
       "name": "applied-ai-automation",
@@ -985,6 +1349,14 @@
       "path": "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md"
     },
     {
+      "name": "conversion-copywriting-psychology",
+      "path": "knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md"
+    },
+    {
+      "name": "cro-onboarding-experimentation",
+      "path": "knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md"
+    },
+    {
       "name": "edtech-andragogy",
       "path": "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md"
     },
@@ -997,6 +1369,18 @@
       "path": "knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md"
     },
     {
+      "name": "game-animation-qa-motion",
+      "path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md"
+    },
+    {
+      "name": "game-asset-pipeline",
+      "path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md"
+    },
+    {
+      "name": "gtm-positioning-strategy",
+      "path": "knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md"
+    },
+    {
       "name": "hardware-hacking-embedded-security",
       "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md"
     },
@@ -1005,8 +1389,24 @@
       "path": "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md"
     },
     {
+      "name": "lifecycle-revops-paid-growth",
+      "path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md"
+    },
+    {
+      "name": "llm-observability-otel-langfuse",
+      "path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md"
+    },
+    {
+      "name": "llm-provider-protocol-interoperability",
+      "path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md"
+    },
+    {
       "name": "medical-device-cybersecurity",
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md"
+    },
+    {
+      "name": "seo-aeo-engineering",
+      "path": "knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md"
     },
     {
       "name": "telecom-voice-engineering",
@@ -1041,6 +1441,10 @@
       "path": "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md"
     },
     {
+      "name": "agentic-state-sync-hitl",
+      "path": "knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md"
+    },
+    {
       "name": "api-design",
       "path": "knowledge/skills/engineering/practices/api-design/SKILL.md"
     },
@@ -1057,6 +1461,10 @@
       "path": "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md"
     },
     {
+      "name": "ci-security-scanning",
+      "path": "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md"
+    },
+    {
       "name": "clean-architecture",
       "path": "knowledge/skills/engineering/practices/clean-architecture/SKILL.md"
     },
@@ -1067,6 +1475,10 @@
     {
       "name": "code-review-practices",
       "path": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md"
+    },
+    {
+      "name": "desktop-app-distribution",
+      "path": "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md"
     },
     {
       "name": "distributed-systems",
@@ -1093,6 +1505,14 @@
       "path": "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md"
     },
     {
+      "name": "gnome-shell-extension-development",
+      "path": "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md"
+    },
+    {
+      "name": "guardrail-authoring",
+      "path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md"
+    },
+    {
       "name": "latency-engineering",
       "path": "knowledge/skills/engineering/practices/latency-engineering/SKILL.md"
     },
@@ -1105,8 +1525,24 @@
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md"
     },
     {
+      "name": "repository-artifact-hygiene",
+      "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md"
+    },
+    {
+      "name": "review-findings-pipeline",
+      "path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md"
+    },
+    {
       "name": "system-design-scalability",
       "path": "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+    },
+    {
+      "name": "tui-terminal-engineering",
+      "path": "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md"
+    },
+    {
+      "name": "ui-design-craftsmanship",
+      "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md"
     },
     {
       "name": "ui-gpu-graphics-web",
@@ -1125,8 +1561,20 @@
       "path": "knowledge/skills/engineering/practices/version-freshness/SKILL.md"
     },
     {
+      "name": "web-3d-object-modeling",
+      "path": "knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md"
+    },
+    {
       "name": "web-accessibility-wcag",
       "path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md"
+    },
+    {
+      "name": "web-portal-cli-scaffolding",
+      "path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md"
+    },
+    {
+      "name": "writing-for-agents",
+      "path": "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md"
     },
     {
       "name": "framework-criterion",
@@ -1139,6 +1587,10 @@
     {
       "name": "framework-grpc",
       "path": "knowledge/skills/frameworks/framework-grpc/SKILL.md"
+    },
+    {
+      "name": "framework-langchain",
+      "path": "knowledge/skills/frameworks/framework-langchain/SKILL.md"
     },
     {
       "name": "framework-microprofile-jakarta",
@@ -1165,8 +1617,16 @@
       "path": "knowledge/skills/frameworks/framework-soap/SKILL.md"
     },
     {
+      "name": "framework-spring-ai",
+      "path": "knowledge/skills/frameworks/framework-spring-ai/SKILL.md"
+    },
+    {
       "name": "framework-spring-boot",
       "path": "knowledge/skills/frameworks/framework-spring-boot/SKILL.md"
+    },
+    {
+      "name": "framework-tabler",
+      "path": "knowledge/skills/frameworks/framework-tabler/SKILL.md"
     },
     {
       "name": "framework-testing",
@@ -1211,6 +1671,10 @@
     {
       "name": "hpc-supercomputing-clusters",
       "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md"
+    },
+    {
+      "name": "k8s-genai-workloads",
+      "path": "knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md"
     },
     {
       "name": "linux-kernel-systemd-internals",
@@ -1329,6 +1793,10 @@
       "path": "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md"
     },
     {
+      "name": "editable-diagram-engineering",
+      "path": "knowledge/skills/mapping/editable-diagram-engineering/SKILL.md"
+    },
+    {
       "name": "execution-flow-callgraph",
       "path": "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md"
     },
@@ -1369,16 +1837,40 @@
       "path": "knowledge/skills/platforms/antigravity-guide/SKILL.md"
     },
     {
-      "name": "browser-harness",
-      "path": "knowledge/skills/platforms/browser-harness/SKILL.md"
+      "name": "claude-code-guide",
+      "path": "knowledge/skills/platforms/claude-code-guide/SKILL.md"
+    },
+    {
+      "name": "claude-desktop-guide",
+      "path": "knowledge/skills/platforms/claude-desktop-guide/SKILL.md"
+    },
+    {
+      "name": "codex-guide",
+      "path": "knowledge/skills/platforms/codex-guide/SKILL.md"
+    },
+    {
+      "name": "command-code-guide",
+      "path": "knowledge/skills/platforms/command-code-guide/SKILL.md"
+    },
+    {
+      "name": "cursor-guide",
+      "path": "knowledge/skills/platforms/cursor-guide/SKILL.md"
     },
     {
       "name": "gemini-enterprise",
       "path": "knowledge/skills/platforms/gemini-enterprise/SKILL.md"
     },
     {
+      "name": "opencode-guide",
+      "path": "knowledge/skills/platforms/opencode-guide/SKILL.md"
+    },
+    {
       "name": "power-automate",
       "path": "knowledge/skills/platforms/power-automate/SKILL.md"
+    },
+    {
+      "name": "program-azure-devops",
+      "path": "knowledge/skills/platforms/program-azure-devops/SKILL.md"
     },
     {
       "name": "program-github-actions",
@@ -1417,16 +1909,20 @@
       "path": "knowledge/skills/roles/code-optimizer/SKILL.md"
     },
     {
+      "name": "codebase-exploration",
+      "path": "knowledge/skills/roles/codebase-exploration/SKILL.md"
+    },
+    {
+      "name": "cover-letter-application-drafter",
+      "path": "knowledge/skills/roles/cover-letter-application-drafter/SKILL.md"
+    },
+    {
       "name": "dba-database-administrator",
       "path": "knowledge/skills/roles/dba-database-administrator/SKILL.md"
     },
     {
       "name": "devops-engineer",
       "path": "knowledge/skills/roles/devops-engineer/SKILL.md"
-    },
-    {
-      "name": "explore",
-      "path": "knowledge/skills/roles/explore/SKILL.md"
     },
     {
       "name": "frontend-developer",
@@ -1437,8 +1933,12 @@
       "path": "knowledge/skills/roles/fullstack-developer/SKILL.md"
     },
     {
-      "name": "general",
-      "path": "knowledge/skills/roles/general/SKILL.md"
+      "name": "interview-prep-upskill-tracker",
+      "path": "knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md"
+    },
+    {
+      "name": "job-fit-evaluation-ranking",
+      "path": "knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md"
     },
     {
       "name": "job-hunting-sourcing",
@@ -1575,6 +2075,10 @@
     {
       "name": "secure-sdlc-ssdf",
       "path": "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md"
+    },
+    {
+      "name": "security-assessment-planning",
+      "path": "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md"
     },
     {
       "name": "software-supply-chain-security",
@@ -1765,6 +2269,10 @@
       "path": "knowledge/skills/security/iam/identity-governance-iga/SKILL.md"
     },
     {
+      "name": "identity-security-software-development",
+      "path": "knowledge/skills/security/iam/identity-security-software-development/SKILL.md"
+    },
+    {
       "name": "machine-identity-spiffe-workload",
       "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md"
     },
@@ -1797,6 +2305,10 @@
       "path": "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md"
     },
     {
+      "name": "network-infrastructure-pentest",
+      "path": "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md"
+    },
+    {
       "name": "pentest-cloud-aws-azure-gcp",
       "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md"
     },
@@ -1811,6 +2323,10 @@
     {
       "name": "container-runtime-security",
       "path": "knowledge/skills/security/operations/container-runtime-security/SKILL.md"
+    },
+    {
+      "name": "cybersecurity-ops-bash",
+      "path": "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md"
     },
     {
       "name": "detection-engineering",
@@ -1843,6 +2359,14 @@
     {
       "name": "ids-ips-ndr-engineering",
       "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md"
+    },
+    {
+      "name": "incident-response-blue-team",
+      "path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md"
+    },
+    {
+      "name": "iot-untrusted-device-isolation",
+      "path": "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md"
     },
     {
       "name": "itdr-identity-threat-detection",
@@ -1993,70 +2517,126 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
     },
     {
-      "name": "superpowers-brainstorming",
-      "path": "methodology/workflows/superpowers-brainstorming/SKILL.md"
+      "name": "brainstorming",
+      "path": "methodology/workflows/brainstorming/SKILL.md"
     },
     {
-      "name": "superpowers-diagnosing-superpowers",
-      "path": "methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md"
+      "name": "codebase-design",
+      "path": "methodology/workflows/codebase-design/SKILL.md"
     },
     {
-      "name": "superpowers-dispatching-parallel-agents",
-      "path": "methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md"
+      "name": "diagnosing-agent-sessions",
+      "path": "methodology/workflows/diagnosing-agent-sessions/SKILL.md"
     },
     {
-      "name": "superpowers-executing-plans",
-      "path": "methodology/workflows/superpowers-executing-plans/SKILL.md"
+      "name": "diagnosing-bugs",
+      "path": "methodology/workflows/diagnosing-bugs/SKILL.md"
     },
     {
-      "name": "superpowers-finishing-a-development-branch",
-      "path": "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
+      "name": "dispatching-parallel-agents",
+      "path": "methodology/workflows/dispatching-parallel-agents/SKILL.md"
     },
     {
-      "name": "superpowers-receiving-code-review",
-      "path": "methodology/workflows/superpowers-receiving-code-review/SKILL.md"
+      "name": "domain-modeling",
+      "path": "methodology/workflows/domain-modeling/SKILL.md"
     },
     {
-      "name": "superpowers-requesting-code-review",
-      "path": "methodology/workflows/superpowers-requesting-code-review/SKILL.md"
+      "name": "executing-plans",
+      "path": "methodology/workflows/executing-plans/SKILL.md"
     },
     {
-      "name": "superpowers-subagent-driven-development",
-      "path": "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
+      "name": "finishing-a-development-branch",
+      "path": "methodology/workflows/finishing-a-development-branch/SKILL.md"
     },
     {
-      "name": "superpowers-systematic-debugging",
-      "path": "methodology/workflows/superpowers-systematic-debugging/SKILL.md"
+      "name": "grill-me",
+      "path": "methodology/workflows/grill-me/SKILL.md"
     },
     {
-      "name": "superpowers-test-driven-development",
-      "path": "methodology/workflows/superpowers-test-driven-development/SKILL.md"
+      "name": "grill-with-docs",
+      "path": "methodology/workflows/grill-with-docs/SKILL.md"
     },
     {
-      "name": "superpowers-using-git-worktrees",
-      "path": "methodology/workflows/superpowers-using-git-worktrees/SKILL.md"
+      "name": "grilling",
+      "path": "methodology/workflows/grilling/SKILL.md"
     },
     {
-      "name": "superpowers-verification-before-completion",
-      "path": "methodology/workflows/superpowers-verification-before-completion/SKILL.md"
+      "name": "handoff",
+      "path": "methodology/workflows/handoff/SKILL.md"
     },
     {
-      "name": "superpowers-writing-plans",
-      "path": "methodology/workflows/superpowers-writing-plans/SKILL.md"
+      "name": "implement-spec",
+      "path": "methodology/workflows/implement-spec/SKILL.md"
     },
     {
-      "name": "superpowers-writing-skills",
-      "path": "methodology/workflows/superpowers-writing-skills/SKILL.md"
+      "name": "learning-consolidation",
+      "path": "methodology/workflows/learning-consolidation/SKILL.md"
+    },
+    {
+      "name": "phase-boundaries",
+      "path": "methodology/workflows/phase-boundaries/SKILL.md"
+    },
+    {
+      "name": "prototype",
+      "path": "methodology/workflows/prototype/SKILL.md"
+    },
+    {
+      "name": "receiving-code-review",
+      "path": "methodology/workflows/receiving-code-review/SKILL.md"
+    },
+    {
+      "name": "requesting-code-review",
+      "path": "methodology/workflows/requesting-code-review/SKILL.md"
+    },
+    {
+      "name": "retro",
+      "path": "methodology/workflows/retro/SKILL.md"
+    },
+    {
+      "name": "subagent-driven-development",
+      "path": "methodology/workflows/subagent-driven-development/SKILL.md"
+    },
+    {
+      "name": "test-driven-development",
+      "path": "methodology/workflows/test-driven-development/SKILL.md"
+    },
+    {
+      "name": "to-spec",
+      "path": "methodology/workflows/to-spec/SKILL.md"
+    },
+    {
+      "name": "to-tickets",
+      "path": "methodology/workflows/to-tickets/SKILL.md"
+    },
+    {
+      "name": "two-axis-code-review",
+      "path": "methodology/workflows/two-axis-code-review/SKILL.md"
     },
     {
       "name": "using-coacus",
       "path": "methodology/workflows/using-coacus/SKILL.md"
+    },
+    {
+      "name": "using-git-worktrees",
+      "path": "methodology/workflows/using-git-worktrees/SKILL.md"
+    },
+    {
+      "name": "verification-before-completion",
+      "path": "methodology/workflows/verification-before-completion/SKILL.md"
+    },
+    {
+      "name": "writing-plans",
+      "path": "methodology/workflows/writing-plans/SKILL.md"
+    },
+    {
+      "name": "writing-skills",
+      "path": "methodology/workflows/writing-skills/SKILL.md"
     }
   ],
   "mcps": [
     {
-      "name": "context7",
-      "path": "knowledge/mcps/context7/MCP.md"
+      "name": "coacus-catalog",
+      "path": "knowledge/mcps/coacus-catalog/MCP.md"
     }
   ]
 }

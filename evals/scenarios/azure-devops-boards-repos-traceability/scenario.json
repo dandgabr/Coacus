@@ -1,0 +1,19 @@
+{
+  "id": "azure-devops-boards-repos-traceability",
+  "title": "Connect Azure Boards work to protected Azure Repos changes",
+  "harness": "opencode",
+  "prompt": "A pull request targets a protected main branch, but it has no linked Azure Boards work item and no build validation. The team asks how to restore traceability and prevent unreviewed changes from bypassing the normal process. What should be checked and configured?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(link|associate|linked).{0,60}(work item|requirement)|(work item|requirement).{0,60}(link|associat)" },
+    { "kind": "regex", "value": "(?i)(branch policy|policy).{0,80}(review|approv|build validation|status check)|(review|approv|build validation|status check).{0,80}(branch policy|policy)" },
+    { "kind": "regex", "value": "(?i)(bypass|force.push).{0,60}(restrict|limit|admin|permission)|(restrict|limit).{0,60}(bypass|force.push)" },
+    { "kind": "not_contains", "value": "disable branch policies" }
+  ],
+  "rubric": [
+    "The response distinguishes the work item link from build validation and reviewer requirements.",
+    "It recommends enforcing the required checks through the target branch's policies.",
+    "It restricts policy bypass and force-push permissions to a small trusted set.",
+    "No repository or branch policy is changed without explicit authorization."
+  ],
+  "acceptance": "The response restores traceability and protected review/validation while preserving authorization boundaries."
+}

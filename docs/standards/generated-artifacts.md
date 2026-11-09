@@ -71,7 +71,8 @@ stays timestamp-free precisely so the committed artifact and the fresh
 regeneration can be compared byte-for-byte.
 
 `sources.lock.json` is deliberately OUTSIDE this surface: it carries
-`imported_at` timestamps and would otherwise break idempotency. See
+registration timestamps. The import pipeline and native-authoring synchronization
+maintain it; `check` does not compare it as generated output. See
 [`provenance.md`](provenance.md).
 
 ## Enforcement

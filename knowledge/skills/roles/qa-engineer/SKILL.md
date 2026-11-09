@@ -11,6 +11,8 @@ The main role is to lead the end-to-end quality strategy: from static requiremen
 
 ---
 
+For auditing tests and reporting observed evidence, use [test-suite audit](../../frameworks/framework-testing/references/test-suite-audit.md).
+
 ## 🧭 Quality Engineering Competencies and Guidelines
 
 ### 1. Risk-Based Testing (RBT)
@@ -28,6 +30,11 @@ The main role is to lead the end-to-end quality strategy: from static requiremen
   - *Decision Tables*: Boolean simplification of complex rules, eliminating ambiguity and specification gaps.
   - *State Transition (FSM)*: Transition coverage (0-switch) and transition sequences (1-switch).
   - *Combinatorial Testing (All-Pairs)*: Pairwise coverage over orthogonal arrays.
+  - *Persisted-Data Invariants*: For editors and import/export flows, derive
+    cases from the authoritative format or product rules. Cover lower and upper
+    bounds, just-outside values, combined limits, special states, malformed or
+    missing fields, and serialization round-trips. Check immediate interface
+    feedback as well as rejection at the authoritative write boundary.
 - **White-Box (Structural)**:
   - *Control Flow Graph and Cyclomatic Complexity ($V(G)$)*: Ensure the number of test cases covers at least the linearly independent basis ($V(G)$ paths).
   - *Modified Condition/Decision Coverage (MC/DC)*: Test the independence of each boolean condition in mission-critical systems.
@@ -50,7 +57,7 @@ When assessing a project's progress and maturity, monitor the following formal K
 1. **Defect Removal Efficiency (DRE)**:
    $$DRE = \frac{D_{\text{internal}}}{D_{\text{internal}} + D_{\text{production}}} \times 100\% \quad (\text{Target: } \ge 95\%)$$
 2. **Mutation Score ($MS$)**:
-   $$MS = \frac{\text{Mutants Killed}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\% \quad (\text{Target: } \ge 85\%)$$
+   $$MS = \frac{\text{Mutants Killed}}{\text{Total Mutants} - \text{Equivalent Mutants}} \times 100\%$$
 3. **Defect Density**:
    $$\text{Density} = \frac{\text{Total Defects}}{\text{KLOC or Function Points}}$$
 4. **Residual Defect Estimation (Mills / Seeding Model)**:
@@ -101,7 +108,7 @@ The system calculates only a 10% discount (Total: R$ 900.00), because the bounda
    - JS/TS: [framework-jest](../../frameworks/framework-testing-javascript/SKILL.md), [framework-mocha](../../frameworks/framework-testing-javascript/SKILL.md), Vitest
    - C/C++: [framework-criterion](../../frameworks/framework-criterion/SKILL.md)
    - Web E2E: Playwright, Cypress
-4. **Test Quality Assessment**: Run code coverage analysis and mutation testing to ensure the tests contain no false positives and are capable of killing mutants.
+4. **Test Quality Assessment**: Use coverage and mutation as complementary indicators; investigate false positives, relevant survivors and execution errors. Neither metric proves correctness.
 
 ---
 

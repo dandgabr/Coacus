@@ -8,6 +8,7 @@ and the idempotent attribution footer.
 
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -21,11 +22,67 @@ def _write(path: Path, text: str) -> None:
 
 
 class TestAdaptWorkflowText(unittest.TestCase):
+    def test_normalizers_are_disabled_without_mutation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            target = root / "methodology/workflows/brainstorming/SKILL.md"
+            _write(target, "superpowers:example")
+            with self.assertRaisesRegex(ValueError, "disabled"):
+                coacus_import._normalize_workflow_files(root)
+            self.assertEqual(target.read_text(), "superpowers:example")
+            with self.assertRaisesRegex(ValueError, "disabled"):
+                coacus_import._run_normalize()
+
+    def test_superpowers_apply_refuses_without_touching_curated_workflow(self) -> None:
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "upstream/brainstorming"
+            target = root / "workflows/brainstorming"
+            _write(source / "SKILL.md", "unreviewed")
+            _write(target / "SKILL.md", "curated")
+            action = {"action": "import-workflow", "source": source, "target": target}
+            with patch.object(coacus_import, "ROOT", root):
+                with self.assertRaisesRegex(ValueError, "consultative"):
+                    coacus_import.apply_actions({}, [action])
+            self.assertEqual((target / "SKILL.md").read_text(), "curated")
+
+
+    def test_consolidated_workflow_is_not_reimported(self) -> None:
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _write(root / "skills/systematic-debugging/SKILL.md", "upstream")
+            manifest = {"superpowers": {"target_dir": "methodology/workflows", "consolidated": {"systematic-debugging": "diagnosing-bugs"}}}
+            with patch.object(coacus_import, "_source_dir", return_value=root):
+                actions = coacus_import.plan_superpowers(manifest)
+            self.assertEqual(actions[0]["action"], "exclude")
+            self.assertIn("consultative", actions[0]["reason"])
+
+    def test_plan_uses_manifest_names(self) -> None:
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in ("brainstorming", "diagnosing-superpowers"):
+                _write(root / "skills" / name / "SKILL.md", "---\nname: x\n---\n")
+            manifest = {"superpowers": {"target_dir": "methodology/workflows", "name_fixes": {"diagnosing-superpowers": "diagnosing-agent-sessions"}}}
+            with patch.object(coacus_import, "_source_dir", return_value=root):
+                actions = coacus_import.plan_superpowers(manifest)
+            self.assertEqual({a["name"] for a in actions}, {"brainstorming", "diagnosing-superpowers"})
+            self.assertTrue(all(a["action"] == "exclude" for a in actions))
+
+    def test_exceptional_name_and_flat_namespace(self) -> None:
+        text = "superpowers:diagnosing-superpowers ../diagnosing-superpowers/SKILL.md"
+        self.assertEqual(
+            coacus_import._adapt_workflow_text(text),
+            "diagnosing-agent-sessions ../diagnosing-agent-sessions/SKILL.md",
+        )
+
     def test_colon_namespace_rewritten_to_flat_name(self) -> None:
         out = coacus_import._adapt_workflow_text(
             "Use superpowers:test-driven-development now."
         )
-        self.assertIn("superpowers-test-driven-development", out)
+        self.assertIn("test-driven-development", out)
         self.assertNotIn("superpowers:", out)
 
     def test_urls_are_preserved(self) -> None:
@@ -42,11 +99,10 @@ class TestAdaptWorkflowText(unittest.TestCase):
         self.assertIn("`docs/temp` root", out)
         self.assertNotIn("docs/superpowers", out)
 
-    def test_bare_sibling_workflow_paths_are_prefixed(self) -> None:
+    def test_bare_sibling_workflow_paths_remain_flat(self) -> None:
         text = "Run `../subagent-driven-development/scripts/task-start P 1`."
         out = coacus_import._adapt_workflow_text(text)
-        self.assertIn("../superpowers-subagent-driven-development/scripts/task-start", out)
-        self.assertNotIn("../subagent-driven-development/", out)
+        self.assertIn("../subagent-driven-development/scripts/task-start", out)
 
     def test_using_superpowers_points_at_the_local_mappings(self) -> None:
         out = coacus_import._adapt_workflow_text(
@@ -115,50 +171,6 @@ class TestNormalizeWorkflowFiles(unittest.TestCase):
     def tearDown(self) -> None:
         self._tmp.cleanup()
 
-    def test_adapts_markdown_and_scripts_only_under_superpowers(self) -> None:
-        skill = self.root / "methodology/workflows/superpowers-demo/SKILL.md"
-        _write(
-            skill,
-            "---\nname: superpowers-demo\ndescription: d\n---\n\n"
-            "Use superpowers:test-driven-development. "
-            "Save to docs/superpowers/plans/x.md.\n",
-        )
-        script = self.root / "methodology/workflows/superpowers-demo/scripts/task-start"
-        _write(
-            script,
-            "#!/bin/sh\nsdd=\"$(cd \"$(dirname \"$0\")/../../subagent-driven-development/scripts\" && pwd)\"\n",
-        )
-        sibling = self.root / "methodology/workflows/using-coacus/SKILL.md"
-        _write(
-            sibling,
-            "---\nname: using-coacus\ndescription: d\n---\n\nkeep superpowers:demo\n",
-        )
-
-        changed = coacus_import._normalize_workflow_files(self.root)
-        self.assertEqual(
-            changed,
-            [
-                "methodology/workflows/superpowers-demo/SKILL.md",
-                "methodology/workflows/superpowers-demo/scripts/task-start",
-            ],
-        )
-
-        text = skill.read_text(encoding="utf-8")
-        self.assertIn("superpowers-test-driven-development", text)
-        self.assertIn("docs/temp/plans/x.md", text)
-        self.assertIn(coacus_import._ATTRIBUTION_MARK, text)
-        self.assertIn(
-            "../superpowers-subagent-driven-development/scripts",
-            script.read_text(encoding="utf-8"),
-        )
-
-        # The native entry workflow is outside the superpowers-* glob.
-        sibling_text = sibling.read_text(encoding="utf-8")
-        self.assertNotIn(coacus_import._ATTRIBUTION_MARK, sibling_text)
-        self.assertIn("superpowers:demo", sibling_text)
-
-        # A second pass changes nothing.
-        self.assertEqual(coacus_import._normalize_workflow_files(self.root), [])
 
 
 class TestCorpusIsAdapted(unittest.TestCase):
@@ -185,20 +197,11 @@ class TestCorpusIsAdapted(unittest.TestCase):
         for path in self._superpowers_files():
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("using-superpowers", text, msg=str(path))
-            for bare in (
-                "../subagent-driven-development/",
-                "../requesting-code-review/",
-                "../test-driven-development/",
-                "../systematic-debugging/",
-                "../verification-before-completion/",
-            ):
-                self.assertNotIn(bare, text, msg=f"{path}: {bare}")
+            self.assertNotIn("../superpowers-", text, msg=str(path))
 
     def test_every_workflow_carries_the_attribution_footer(self) -> None:
-        skills = sorted(
-            (self.ROOT / "methodology" / "workflows").glob("superpowers-*/SKILL.md")
-        )
-        self.assertEqual(len(skills), 14)
+        skills = [p for p in self._superpowers_files() if p.name == "SKILL.md"]
+        self.assertTrue(skills)
         for path in skills:
             self.assertIn(
                 coacus_import._ATTRIBUTION_MARK,
@@ -208,10 +211,10 @@ class TestCorpusIsAdapted(unittest.TestCase):
 
     def test_brainstorming_uses_the_local_linguistic_skill(self) -> None:
         text = (
-            self.ROOT / "methodology/workflows/superpowers-brainstorming/SKILL.md"
+            self.ROOT / "methodology/workflows/brainstorming/SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertNotIn("elements-of-style", text)
-        self.assertIn("linguistic-en-us", text)
+        self.assertIn("Design discipline", text)
 
     def test_no_upstream_implementation_skill_names_remain(self) -> None:
         for path in self._superpowers_files():

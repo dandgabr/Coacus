@@ -20,13 +20,15 @@ where $\mu_{max}$ is the maximum growth rate and $K_s$ is the substrate affinity
 
 - **Biomass Variation ($X$) and Substrate Consumption ($S$) in Batch**:
   $$\frac{dX}{dt} = \mu X - k_d X$$
-  $$\frac{dS}{dt} = -\frac{1}{Y_{X/S}} \frac{dX}{dt} - m_s X$$
-  where $Y_{X/S} = \frac{\Delta X}{-\Delta S}$ is the biomass yield factor and $m_s$ is the cell maintenance coefficient ($g_{subs}/g_{bio} \cdot h$).
+  $$\frac{dS}{dt} = -\frac{\mu X}{Y_{X/S}} - m_s X$$
+  where $Y_{X/S}$ is a growth-associated biomass yield and $m_s$ is the cell maintenance coefficient ($g_{subs}/g_{bio} \cdot h$). This expression assumes substrate use scales with gross growth $\mu X$; define and fit the yield consistently with the chosen biomass and decay model.
 
 ### 1.2 Product Formation Kinetics (Luedeking-Piret)
 The product formation rate $q_p = \frac{1}{X}\frac{dP}{dt}$ correlates with growth and maintenance:
 
-$$q_p = \alpha \mu + \beta \implies \frac{dP}{dt} = \alpha \frac{dX}{dt} + \beta X$$
+$$q_p = \alpha \mu + \beta \implies \frac{dP}{dt} = \alpha \mu X + \beta X$$
+
+Here $\mu$ is the gross specific growth rate defined above. When $k_d$ is nonzero, $\mu X$ is not the net biomass derivative; substituting $dX/dt$ changes the model and requires a different definition of the growth-associated term.
 
 - **Product Classification**:
   1. **Growth-Associated ($\beta \approx 0$)**: E.g., ethanol, lactic acid.

@@ -1,0 +1,80 @@
+{
+  "scope": "five priority packages, partial audit; no code executed",
+  "items": [
+    {
+      "name": "uncertainty-and-units",
+      "declared_license": "MIT",
+      "status": "sampled",
+      "coacus_owner": "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
+      "inspected": [
+        "SKILL.md",
+        "references/gum-methodology.md",
+        "references/reporting-rules.md",
+        "scripts/convert_units.py excerpts",
+        "tests/uncertainty-and-units/test_regressions.py excerpts",
+        "Coacus skill and affine evaluation"
+      ],
+      "decision": "retain focused Coacus skill; do not import helpers without full review and tests",
+      "finding": "upstream converter uses central difference and PR 350 flags affine cancellation; static Coacus scenario does not check exact uncertainty"
+    },
+    {
+      "name": "statistical-analysis",
+      "declared_license": "MIT",
+      "status": "sampled",
+      "coacus_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "inspected": [
+        "SKILL.md",
+        "references/assumptions_and_diagnostics.md excerpts",
+        "scripts/assumption_checks.py entry points",
+        "tests/statistical-analysis/test_scripts.py names",
+        "Coacus skill"
+      ],
+      "decision": "extend existing statistics guidance; validate scientific scenarios separately"
+    },
+    {
+      "name": "statistical-power",
+      "declared_license": "MIT",
+      "status": "sampled",
+      "coacus_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "inspected": [
+        "SKILL.md excerpts",
+        "references/simulation_based_power.md excerpts",
+        "scripts/power.py and simulate_power.py entry points",
+        "tests/statistical-power/test_scripts.py names",
+        "Coacus skill"
+      ],
+      "decision": "add design and effect sensitivity and failed-simulation accounting; avoid importing helper untested"
+    },
+    {
+      "name": "pycalphad",
+      "declared_license": "MIT",
+      "status": "sampled",
+      "coacus_owner": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
+      "inspected": [
+        "SKILL.md",
+        "references/model-and-validation.md excerpts",
+        "scripts/equilibrate.py entry points",
+        "tests/pycalphad/test_scripts.py names",
+        "Coacus owner",
+        "helper and tests substantial excerpts; output truncated"
+      ],
+      "decision": "retain as domain gap pending full workflow and license review; avoid treating hypothetical test database as experimental evidence"
+    },
+    {
+      "name": "pybamm",
+      "declared_license": "MIT",
+      "status": "sampled",
+      "coacus_owner": "knowledge/skills/domains/academic/academic-electrical-power-energy-systems/SKILL.md",
+      "inspected": [
+        "SKILL.md excerpts",
+        "references/protocol-and-comparison.md excerpts",
+        "scripts/simulate_battery.py entry points",
+        "tests/pybamm/test_scripts.py names",
+        "Coacus owner",
+        "helper and tests substantial excerpts; output truncated"
+      ],
+      "decision": "retain as battery-modeling gap pending full workflow and runtime review; distinguish convergence and experimental validation"
+    }
+  ],
+  "limits": "Not a complete package, upstream license compatibility or test review; referenced files other than named excerpts remain unexamined; no tests were run."
+}

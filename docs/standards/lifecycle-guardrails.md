@@ -39,6 +39,11 @@ carries each cell's evidence class; a bare boolean is forbidden.
   not decide) defaults to `deny`; `on_mechanism_failure` (the guardrail process
   itself failed) defaults to `allow` plus an advisory. A broken hook MUST NOT
   deny every call.
+- Where a harness requires an explicit decision in order to permit (Antigravity
+  reads a decision-less `PreToolUse` result as a deny), the `allow` render is the
+  harness-native permit and the fail-open path emits it too — `{}` is only a
+  no-opinion permit on harnesses whose contract does not make `decision`
+  mandatory.
 
 ### Installation
 
@@ -47,6 +52,44 @@ carries each cell's evidence class; a bare boolean is forbidden.
 - The installer REFUSES to install a `deny` policy whose bound event is not
   `can_block` on that harness; `--allow-advisory` records the downgrade.
 - A `deny` whose event has no native home is refused, not silently dropped.
+
+### Advisory content rules
+
+Beyond action policies, the guardrail layer evaluates ADVISORY CONTENT RULES:
+`field x operator x pattern`, all conditions AND-combined, authored under
+`methodology/lifecycle/patterns/*.json`. A match produces an advisory, never a
+deny — an observe binding can only surface. Rule ids are FROZEN and append-only:
+`engine/guardrail/rules.py` records the required ids and
+`engine/validators/guardrails.py` fails the build when one disappears. A rule with
+no condition can never match; a non-compiling pattern does not match and is a lint
+error. Every rule carries its mitigation, not just the alert.
+
+### Defense ladder and suppression
+
+Layer defenses: a deterministic pattern, then a single-turn review, then a
+cross-file review; each layer is independently switchable. A deferred review may
+run in the background and wake the agent with findings rather than block the turn.
+Provide an inline-suppression convention (a reviewed / safe-because comment) so a
+false positive is silenced without disabling the layer. When layered rule files
+concatenate under a size cap, drop the tail first so user-wide rules survive.
+
+### Machine-local policies and command matching
+
+Some policies depend on the machine, not on the project. They are GENERATED at
+install time into the user policy directory (`engine/guardrail/evaluate.py:
+user_policy_dir`) and loaded by the runtime guard next to the repository policies;
+the repository never carries them (no machine-specific paths, D2 opt-in). The
+browser policy is the reference case: the installer detects the browsers present
+(`methodology/lifecycle/browsers.json`), the user selects a primary and an
+optional fallback, and `engine/guardrail/browsers.py` renders a `deny` policy for
+every other known browser (launch, and read/write of its profile).
+
+An `exec` policy may declare `"match": "command"` and a list of `resource`
+patterns. The patterns are compared with the executable names the command would
+run (`engine/guardrail/evaluate.py:command_candidates`: wrappers, `sh -c`,
+`$(...)`, symlinks resolved), never with arguments, so a mention of a name inside
+`grep`, `git commit -m` or a path does not fire. Matching is best-effort (shell is
+Turing complete); it narrows accidents, it is not a sandbox.
 
 ## Rationale
 
@@ -66,5 +109,8 @@ silence.
   fails on drift.
 - `scripts/coacus_guard.py` evaluates policies at runtime; the generated hooks
   call it and never re-implement a decision.
+- `engine/guardrail/rules.py` evaluates the advisory content catalogue;
+  `engine/validators/guardrails.py` (via `validate`) checks it is well-formed and
+  append-only.
 - `tests/test_lifecycle.py` covers the render contract, the matrix and the
   validator; `tests/test_guardrail_scripts.py` executes the rendered hook.

@@ -5,6 +5,19 @@ Senior UI designer who owns the interface surface: visual hierarchy and composit
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [ui-app-layout-architectures](../../../../skills/domains/design/ui-app-layout-architectures/SKILL.md)
+- [ui-data-tables-dashboards](../../../../skills/domains/design/ui-data-tables-dashboards/SKILL.md)
+- [ui-presentation-slides](../../../../skills/domains/design/ui-presentation-slides/SKILL.md)
+- [ui-style-analog-newspaper-broadsheet](../../../../skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md)
+- [ui-style-blueprint-cad-schematic](../../../../skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md)
+- [ui-style-cassette-futurism](../../../../skills/domains/design/ui-style-cassette-futurism/SKILL.md)
+- [ui-style-fluid-liquid-morph](../../../../skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md)
+- [ui-style-holographic-foil-iridescent](../../../../skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md)
+- [ui-style-kawaii-pastel-soft](../../../../skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md)
+- [ui-style-pop-art-halftone](../../../../skills/domains/design/ui-style-pop-art-halftone/SKILL.md)
+- [ui-style-psychedelic-60s](../../../../skills/domains/design/ui-style-psychedelic-60s/SKILL.md)
+- [ui-style-silkpunk](../../../../skills/domains/design/ui-style-silkpunk/SKILL.md)
+- [ui-style-split-screen-dualism](../../../../skills/domains/design/ui-style-split-screen-dualism/SKILL.md)
 - [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
 - [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
@@ -20,6 +33,8 @@ Senior UI designer who owns the interface surface: visual hierarchy and composit
 - [ui-style-glassmorphism](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md)
 - [ui-style-bento-grid](../../../../skills/domains/design/ui-style-bento-grid/SKILL.md)
 - [ui-style-swiss-web-minimalism](../../../../skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -52,6 +67,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-designer](../../../../skills/roles/ui-designer/SKILL.md)
 - [ui-hero-sections](../../../../skills/domains/design/ui-hero-sections/SKILL.md)
 - [ui-motion-interaction](../../../../skills/domains/design/ui-motion-interaction/SKILL.md)
+- [ui-state-layout-transitions](../../../../skills/domains/design/ui-state-layout-transitions/SKILL.md)
+- [ui-scroll-driven-motion](../../../../skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 - [frontend-developer](../../../../skills/roles/frontend-developer/SKILL.md)
 - [ui-ux-principles](../../../../skills/engineering/practices/ui-ux-principles/SKILL.md)
 - [web-accessibility-wcag](../../../../skills/engineering/practices/web-accessibility-wcag/SKILL.md)
@@ -61,7 +78,7 @@ This agent operates using the guidelines and technical standards established in 
 - [color ui systems](../../../../skills/domains/design/color-ui-systems/SKILL.md)
 - [color data visualization](../../../../skills/domains/design/color-data-visualization/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
-- [design style library](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md) — 30 `ui-style-*` deep dives
+- [design style library](../../../../skills/domains/design/ui-style-glassmorphism/SKILL.md) — one `ui-style-*` deep dive per style
 
 ---
 
@@ -79,3 +96,21 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [ui-style-split-screen-dualism](../../../../skills/domains/design/ui-style-split-screen-dualism/SKILL.md)
+- [ui-style-silkpunk](../../../../skills/domains/design/ui-style-silkpunk/SKILL.md)
+- [ui-style-psychedelic-60s](../../../../skills/domains/design/ui-style-psychedelic-60s/SKILL.md)
+- [ui-style-pop-art-halftone](../../../../skills/domains/design/ui-style-pop-art-halftone/SKILL.md)
+- [ui-style-kawaii-pastel-soft](../../../../skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md)
+- [ui-style-holographic-foil-iridescent](../../../../skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md)
+- [ui-style-fluid-liquid-morph](../../../../skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md)
+- [ui-style-cassette-futurism](../../../../skills/domains/design/ui-style-cassette-futurism/SKILL.md)
+- [ui-style-blueprint-cad-schematic](../../../../skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md)
+- [ui-style-analog-newspaper-broadsheet](../../../../skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md)
+- [ui-presentation-slides](../../../../skills/domains/design/ui-presentation-slides/SKILL.md)
+- [ui-data-tables-dashboards](../../../../skills/domains/design/ui-data-tables-dashboards/SKILL.md)
+- [ui-app-layout-architectures](../../../../skills/domains/design/ui-app-layout-architectures/SKILL.md)

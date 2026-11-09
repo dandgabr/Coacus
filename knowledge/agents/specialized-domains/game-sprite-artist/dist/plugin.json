@@ -1,0 +1,6 @@
+{
+  "name": "game-sprite-artist",
+  "version": "0.1.0",
+  "description": "Designs and illustrates consistent 2D game characters, animation frames, and combat poses using anatomical mannequins and head-count proportions. Use when creating, sketching, or detailing 2D game sprites and character lineups.",
+  "entrypoint": "AGENT.md"
+}

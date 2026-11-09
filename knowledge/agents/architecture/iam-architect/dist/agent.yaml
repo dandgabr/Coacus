@@ -48,7 +48,15 @@ instruction: >
   The IAM Architect owns the identity control plane and coordinates it with the
   security architect. Handoffs between agents must be compact structured payloads,
   and parallel subagent work must acquire a governor slot first.
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - [identity-security-software-development](knowledge/skills/security/iam/identity-security-software-development/SKILL.md)
 tools:
+  - type: skill_integration
+    path: ../../../../skills/security/iam/identity-security-software-development/SKILL.md
   - type: skill_integration
     path: ../../../../skills/architecture/delivery/iam-architect/SKILL.md
   - type: skill_integration

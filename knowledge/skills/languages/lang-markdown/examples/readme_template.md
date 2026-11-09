@@ -75,4 +75,5 @@ flowchart TD
 
 ## 📄 License
 
-This project is under the MIT license. See the [LICENSE](../../../../LICENSE) file for more details.
+<!-- This README template is intended to be copied to the target project's root. -->
+This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.

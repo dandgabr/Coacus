@@ -2,12 +2,13 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 370 skill(s) · 94 agent(s) · 1 MCP(s)
+**Totals:** 500 skill(s) · 104 agent(s) · 1 MCP(s)
 
 ## Agents
 
 | Agent | Category | Source |
 |---|---|---|
+| agentic-ai-architect | data-cloud-devops | [knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md](../knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md) |
 | ai-ml-architect | architecture | [knowledge/agents/architecture/ai-ml-architect/agent.source.md](../knowledge/agents/architecture/ai-ml-architect/agent.source.md) |
 | ai-product-manager | specialized-domains | [knowledge/agents/specialized-domains/ai-product-manager/agent.source.md](../knowledge/agents/specialized-domains/ai-product-manager/agent.source.md) |
 | ai-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md) |
@@ -41,6 +42,7 @@
 | data-scientist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-scientist/agent.source.md](../knowledge/agents/data-cloud-devops/data-scientist/agent.source.md) |
 | data-security-privacy-specialist | cybersecurity | [knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md](../knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md) |
 | dba-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md) |
+| design-qa-specialist | software-engineering | [knowledge/agents/software-engineering/design-qa-specialist/agent.source.md](../knowledge/agents/software-engineering/design-qa-specialist/agent.source.md) |
 | devops-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md) |
 | documenter | software-engineering | [knowledge/agents/software-engineering/documenter/agent.source.md](../knowledge/agents/software-engineering/documenter/agent.source.md) |
 | domain-architect | architecture | [knowledge/agents/architecture/domain-architect/agent.source.md](../knowledge/agents/architecture/domain-architect/agent.source.md) |
@@ -50,16 +52,22 @@
 | enterprise-architect | architecture | [knowledge/agents/architecture/enterprise-architect/agent.source.md](../knowledge/agents/architecture/enterprise-architect/agent.source.md) |
 | frontend-developer | software-engineering | [knowledge/agents/software-engineering/frontend-developer/agent.source.md](../knowledge/agents/software-engineering/frontend-developer/agent.source.md) |
 | fullstack-developer | software-engineering | [knowledge/agents/software-engineering/fullstack-developer/agent.source.md](../knowledge/agents/software-engineering/fullstack-developer/agent.source.md) |
+| game-art-director | specialized-domains | [knowledge/agents/specialized-domains/game-art-director/agent.source.md](../knowledge/agents/specialized-domains/game-art-director/agent.source.md) |
+| game-asset-pipeline-engineer | specialized-domains | [knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md](../knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md) |
 | game-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/game-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/game-security-specialist/agent.source.md) |
-| general | core-orchestration | [knowledge/agents/core-orchestration/general/agent.source.md](../knowledge/agents/core-orchestration/general/agent.source.md) |
+| game-sprite-artist | specialized-domains | [knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md](../knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md) |
 | geoscientist | academic-sciences | [knowledge/agents/academic-sciences/geoscientist/agent.source.md](../knowledge/agents/academic-sciences/geoscientist/agent.source.md) |
 | github-specialist | software-engineering | [knowledge/agents/software-engineering/github-specialist/agent.source.md](../knowledge/agents/software-engineering/github-specialist/agent.source.md) |
 | grc-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md) |
+| growth-marketing-specialist | specialized-domains | [knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md](../knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md) |
 | hardware-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md) |
+| harness-specialist | core-orchestration | [knowledge/agents/core-orchestration/harness-specialist/agent.source.md](../knowledge/agents/core-orchestration/harness-specialist/agent.source.md) |
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
+| incident-response-commander | cybersecurity | [knowledge/agents/cybersecurity/incident-response-commander/agent.source.md](../knowledge/agents/cybersecurity/incident-response-commander/agent.source.md) |
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
 | integration-architect | architecture | [knowledge/agents/architecture/integration-architect/agent.source.md](../knowledge/agents/architecture/integration-architect/agent.source.md) |
+| iot-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |
 | linguistic-specialist | specialized-domains | [knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md](../knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md) |
 | llvm-compiler-engineer | academic-sciences | [knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md](../knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md) |
@@ -70,6 +78,7 @@
 | medical-device-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md) |
 | mobile-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md) |
 | moodle-specialist | specialized-domains | [knowledge/agents/specialized-domains/moodle-specialist/agent.source.md](../knowledge/agents/specialized-domains/moodle-specialist/agent.source.md) |
+| motion-graphics-producer | specialized-domains | [knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md) |
 | multi-agent-orchestrator | core-orchestration | [knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md](../knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md) |
 | network-architect | architecture | [knowledge/agents/architecture/network-architect/agent.source.md](../knowledge/agents/architecture/network-architect/agent.source.md) |
 | network-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/network-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/network-security-specialist/agent.source.md) |
@@ -85,7 +94,7 @@
 | scientific-researcher | research-discovery | [knowledge/agents/research-discovery/scientific-researcher/agent.source.md](../knowledge/agents/research-discovery/scientific-researcher/agent.source.md) |
 | security-architect | cybersecurity | [knowledge/agents/cybersecurity/security-architect/agent.source.md](../knowledge/agents/cybersecurity/security-architect/agent.source.md) |
 | security-specialist | cybersecurity | [knowledge/agents/cybersecurity/security-specialist/agent.source.md](../knowledge/agents/cybersecurity/security-specialist/agent.source.md) |
-| self | core-orchestration | [knowledge/agents/core-orchestration/self/agent.source.md](../knowledge/agents/core-orchestration/self/agent.source.md) |
+| skill-auditor | specialized-domains | [knowledge/agents/specialized-domains/skill-auditor/agent.source.md](../knowledge/agents/specialized-domains/skill-auditor/agent.source.md) |
 | skill-creator | specialized-domains | [knowledge/agents/specialized-domains/skill-creator/agent.source.md](../knowledge/agents/specialized-domains/skill-creator/agent.source.md) |
 | soc-dfir-specialist | cybersecurity | [knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md](../knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md) |
 | software-architect | software-engineering | [knowledge/agents/software-engineering/software-architect/agent.source.md](../knowledge/agents/software-engineering/software-architect/agent.source.md) |
@@ -96,6 +105,7 @@
 | telecom-engineer | academic-sciences | [knowledge/agents/academic-sciences/telecom-engineer/agent.source.md](../knowledge/agents/academic-sciences/telecom-engineer/agent.source.md) |
 | telecom-voice-specialist | academic-sciences | [knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md](../knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md) |
 | threat-intelligence-specialist | cybersecurity | [knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md](../knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md) |
+| tui-cli-engineer | software-engineering | [knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md](../knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md) |
 | ui-designer | software-engineering | [knowledge/agents/software-engineering/ui-designer/agent.source.md](../knowledge/agents/software-engineering/ui-designer/agent.source.md) |
 | ui-motion-specialist | software-engineering | [knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
 | ui-ux-designer | software-engineering | [knowledge/agents/software-engineering/ui-ux-designer/agent.source.md](../knowledge/agents/software-engineering/ui-ux-designer/agent.source.md) |
@@ -121,6 +131,7 @@
 | domain-architect | [knowledge/skills/architecture/enterprise/domain-architect/SKILL.md](../knowledge/skills/architecture/enterprise/domain-architect/SKILL.md) |
 | enterprise-architect | [knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md](../knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md) |
 | solution-architect | [knowledge/skills/architecture/enterprise/solution-architect/SKILL.md](../knowledge/skills/architecture/enterprise/solution-architect/SKILL.md) |
+| agentic-temporal-knowledge-graphs | [knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md](../knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md) |
 | data-intensive-systems | [knowledge/skills/data/data-intensive-systems/SKILL.md](../knowledge/skills/data/data-intensive-systems/SKILL.md) |
 | data-mesh-governance | [knowledge/skills/data/data-mesh-governance/SKILL.md](../knowledge/skills/data/data-mesh-governance/SKILL.md) |
 | data-science-workflow | [knowledge/skills/data/data-science-workflow/SKILL.md](../knowledge/skills/data/data-science-workflow/SKILL.md) |
@@ -161,61 +172,145 @@
 | academic-solid-state-semiconductors | [knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md](../knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md) |
 | academic-structural-analysis-solid-mechanics | [knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md](../knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md) |
 | academic-thermodynamics-statistical-physics | [knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md](../knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md) |
+| animal-welfare-research-evidence | [knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md](../knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md) |
+| astronomical-data-integrity | [knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md](../knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md) |
+| bulk-rna-seq-research | [knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md](../knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md) |
+| constraint-based-metabolic-research | [knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md](../knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md) |
 | data-science-advanced-math | [knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md](../knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md) |
+| flow-cytometry-research | [knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md](../knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md) |
+| genomic-coordinate-integrity | [knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md](../knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md) |
+| isotope-flux-research | [knowledge/skills/domains/academic/isotope-flux-research/SKILL.md](../knowledge/skills/domains/academic/isotope-flux-research/SKILL.md) |
+| laboratory-automation-research | [knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md](../knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md) |
+| measurement-units-uncertainty | [knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md](../knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md) |
+| pooled-screen-research | [knowledge/skills/domains/academic/pooled-screen-research/SKILL.md](../knowledge/skills/domains/academic/pooled-screen-research/SKILL.md) |
 | quantum-computing-algorithms | [knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md](../knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md) |
+| scientific-data-retrieval | [knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md](../knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md) |
+| single-cell-expression-research | [knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md](../knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md) |
+| tandem-mass-spectra-research | [knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md](../knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md) |
+| canvas-spatial-whiteboarding | [knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md](../knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md) |
 | color-contrast-accessibility | [knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md](../knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md) |
 | color-data-visualization | [knowledge/skills/domains/design/color-data-visualization/SKILL.md](../knowledge/skills/domains/design/color-data-visualization/SKILL.md) |
 | color-harmony-palettes | [knowledge/skills/domains/design/color-harmony-palettes/SKILL.md](../knowledge/skills/domains/design/color-harmony-palettes/SKILL.md) |
 | color-theory-foundations | [knowledge/skills/domains/design/color-theory-foundations/SKILL.md](../knowledge/skills/domains/design/color-theory-foundations/SKILL.md) |
 | color-ui-systems | [knowledge/skills/domains/design/color-ui-systems/SKILL.md](../knowledge/skills/domains/design/color-ui-systems/SKILL.md) |
+| deterministic-motion-rendering | [knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md](../knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md) |
+| game-2d-scene-composition | [knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md](../knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md) |
+| game-sprite-design | [knowledge/skills/domains/design/game-sprite-design/SKILL.md](../knowledge/skills/domains/design/game-sprite-design/SKILL.md) |
+| ui-app-layout-architectures | [knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md](../knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md) |
+| ui-data-tables-dashboards | [knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md](../knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md) |
 | ui-hero-sections | [knowledge/skills/domains/design/ui-hero-sections/SKILL.md](../knowledge/skills/domains/design/ui-hero-sections/SKILL.md) |
 | ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
 | ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |
+| ui-presentation-slides | [knowledge/skills/domains/design/ui-presentation-slides/SKILL.md](../knowledge/skills/domains/design/ui-presentation-slides/SKILL.md) |
+| ui-scroll-driven-motion | [knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md](../knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md) |
+| ui-state-layout-transitions | [knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md](../knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md) |
 | ui-style-3d-immersive-webgl | [knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md](../knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md) |
 | ui-style-acid-anti-design | [knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md](../knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md) |
+| ui-style-agitprop-poster | [knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md](../knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md) |
 | ui-style-ai-native-generative-ui | [knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md) |
+| ui-style-analog-newspaper-broadsheet | [knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md](../knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet/SKILL.md) |
+| ui-style-art-deco | [knowledge/skills/domains/design/ui-style-art-deco/SKILL.md](../knowledge/skills/domains/design/ui-style-art-deco/SKILL.md) |
+| ui-style-art-nouveau | [knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md](../knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md) |
+| ui-style-arts-and-crafts | [knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md](../knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md) |
+| ui-style-atompunk | [knowledge/skills/domains/design/ui-style-atompunk/SKILL.md](../knowledge/skills/domains/design/ui-style-atompunk/SKILL.md) |
 | ui-style-aurora-mesh-gradient | [knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md](../knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md) |
+| ui-style-bauhaus | [knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md](../knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md) |
 | ui-style-bento-grid | [knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md](../knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md) |
+| ui-style-biopunk | [knowledge/skills/domains/design/ui-style-biopunk/SKILL.md](../knowledge/skills/domains/design/ui-style-biopunk/SKILL.md) |
+| ui-style-blueprint-cad-schematic | [knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md](../knowledge/skills/domains/design/ui-style-blueprint-cad-schematic/SKILL.md) |
+| ui-style-broken-grid | [knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md](../knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md) |
+| ui-style-brutalist-monochrome | [knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md](../knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md) |
+| ui-style-calm-quiet-ui | [knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md) |
 | ui-style-card-based-ui | [knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md) |
+| ui-style-cassette-futurism | [knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md](../knowledge/skills/domains/design/ui-style-cassette-futurism/SKILL.md) |
 | ui-style-claymorphism | [knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md) |
-| ui-style-cyberpunk-hud | [knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md](../knowledge/skills/domains/design/ui-style-cyberpunk-hud/SKILL.md) |
+| ui-style-clockpunk | [knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md) |
+| ui-style-collage-scrapbook | [knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md](../knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md) |
+| ui-style-constructivism | [knowledge/skills/domains/design/ui-style-constructivism/SKILL.md](../knowledge/skills/domains/design/ui-style-constructivism/SKILL.md) |
+| ui-style-cyberpunk | [knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md) |
+| ui-style-dark-fantasy | [knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md](../knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md) |
 | ui-style-dark-mode-first | [knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md](../knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md) |
+| ui-style-de-stijl | [knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md](../knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md) |
+| ui-style-dieselpunk | [knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md) |
+| ui-style-dracula | [knowledge/skills/domains/design/ui-style-dracula/SKILL.md](../knowledge/skills/domains/design/ui-style-dracula/SKILL.md) |
+| ui-style-dreamcore | [knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md](../knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md) |
+| ui-style-dungeon-synth | [knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md](../knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md) |
 | ui-style-editorial-archive-luxury | [knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md](../knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md) |
 | ui-style-expressive-variable-typography | [knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md](../knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md) |
 | ui-style-flat-design | [knowledge/skills/domains/design/ui-style-flat-design/SKILL.md](../knowledge/skills/domains/design/ui-style-flat-design/SKILL.md) |
+| ui-style-fluid-liquid-morph | [knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md](../knowledge/skills/domains/design/ui-style-fluid-liquid-morph/SKILL.md) |
 | ui-style-frutiger-aero | [knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md](../knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md) |
 | ui-style-glassmorphism | [knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md) |
+| ui-style-glitch | [knowledge/skills/domains/design/ui-style-glitch/SKILL.md](../knowledge/skills/domains/design/ui-style-glitch/SKILL.md) |
+| ui-style-gothicpunk | [knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md) |
 | ui-style-gradient-duotone | [knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md](../knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md) |
+| ui-style-grain-noise-texture | [knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md](../knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md) |
+| ui-style-hand-drawn-sketch | [knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md](../knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md) |
+| ui-style-holographic-foil-iridescent | [knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md](../knowledge/skills/domains/design/ui-style-holographic-foil-iridescent/SKILL.md) |
+| ui-style-indie-web-revival | [knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md](../knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md) |
+| ui-style-isometric | [knowledge/skills/domains/design/ui-style-isometric/SKILL.md](../knowledge/skills/domains/design/ui-style-isometric/SKILL.md) |
+| ui-style-kawaii-pastel-soft | [knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md](../knowledge/skills/domains/design/ui-style-kawaii-pastel-soft/SKILL.md) |
 | ui-style-kinetic-typography | [knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md](../knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md) |
+| ui-style-linear-saas | [knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md](../knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md) |
+| ui-style-lunarpunk | [knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md) |
 | ui-style-material-you | [knowledge/skills/domains/design/ui-style-material-you/SKILL.md](../knowledge/skills/domains/design/ui-style-material-you/SKILL.md) |
 | ui-style-maximalism | [knowledge/skills/domains/design/ui-style-maximalism/SKILL.md](../knowledge/skills/domains/design/ui-style-maximalism/SKILL.md) |
+| ui-style-memphis | [knowledge/skills/domains/design/ui-style-memphis/SKILL.md](../knowledge/skills/domains/design/ui-style-memphis/SKILL.md) |
 | ui-style-metro-modern-ui | [knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md](../knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md) |
 | ui-style-micro-interactions | [knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md](../knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md) |
+| ui-style-mid-century-modern | [knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md](../knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md) |
+| ui-style-nanopunk | [knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md](../knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md) |
 | ui-style-neo-brutalism | [knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md](../knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md) |
 | ui-style-neumorphism | [knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md) |
-| ui-style-one-page-long-scroll | [knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md](../knowledge/skills/domains/design/ui-style-one-page-long-scroll/SKILL.md) |
+| ui-style-nordic | [knowledge/skills/domains/design/ui-style-nordic/SKILL.md](../knowledge/skills/domains/design/ui-style-nordic/SKILL.md) |
 | ui-style-organic-biophilic | [knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md](../knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md) |
 | ui-style-parallax-scrolling | [knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md](../knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md) |
+| ui-style-pixel-art | [knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md](../knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md) |
+| ui-style-pop-art-halftone | [knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md](../knowledge/skills/domains/design/ui-style-pop-art-halftone/SKILL.md) |
+| ui-style-psychedelic-60s | [knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md](../knowledge/skills/domains/design/ui-style-psychedelic-60s/SKILL.md) |
+| ui-style-retro-computing | [knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md](../knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md) |
+| ui-style-risograph | [knowledge/skills/domains/design/ui-style-risograph/SKILL.md](../knowledge/skills/domains/design/ui-style-risograph/SKILL.md) |
+| ui-style-sandalpunk | [knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md) |
 | ui-style-scrollytelling | [knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md](../knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md) |
+| ui-style-silkpunk | [knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-silkpunk/SKILL.md) |
 | ui-style-skeuomorphism | [knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md](../knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md) |
+| ui-style-solarpunk | [knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md](../knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md) |
+| ui-style-split-screen-dualism | [knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md](../knowledge/skills/domains/design/ui-style-split-screen-dualism/SKILL.md) |
+| ui-style-steampunk | [knowledge/skills/domains/design/ui-style-steampunk/SKILL.md](../knowledge/skills/domains/design/ui-style-steampunk/SKILL.md) |
 | ui-style-swiss-web-minimalism | [knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md](../knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md) |
+| ui-style-synthwave | [knowledge/skills/domains/design/ui-style-synthwave/SKILL.md](../knowledge/skills/domains/design/ui-style-synthwave/SKILL.md) |
+| ui-style-terminal-tui | [knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md](../knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md) |
+| ui-style-vaporwave | [knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md](../knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md) |
 | ui-style-web-brutalism | [knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md](../knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md) |
+| ui-style-weirdcore | [knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md](../knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md) |
+| ui-style-windows-xp | [knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md](../knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md) |
 | ui-style-y2k-revival | [knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md](../knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md) |
+| ui-style-zine-independent | [knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md](../knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md) |
 | ai-application-engineering | [knowledge/skills/domains/industry/ai-application-engineering/SKILL.md](../knowledge/skills/domains/industry/ai-application-engineering/SKILL.md) |
 | ai-drug-discovery | [knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md](../knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md) |
 | ai-llm-engineering-rag | [knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md](../knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md) |
 | ai-model-evaluation | [knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md](../knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md) |
+| ai-multimodal-agentic-systems | [knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md](../knowledge/skills/domains/industry/ai-multimodal-agentic-systems/SKILL.md) |
 | applied-ai-automation | [knowledge/skills/domains/industry/applied-ai-automation/SKILL.md](../knowledge/skills/domains/industry/applied-ai-automation/SKILL.md) |
 | automotive-cybersecurity | [knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/automotive-cybersecurity/SKILL.md) |
 | blockchain-cryptocurrency | [knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md](../knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) |
 | computer-vision-deep-learning | [knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md](../knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md) |
 | conversational-ai-chatbots | [knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md](../knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md) |
+| conversion-copywriting-psychology | [knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md](../knowledge/skills/domains/industry/conversion-copywriting-psychology/SKILL.md) |
+| cro-onboarding-experimentation | [knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md](../knowledge/skills/domains/industry/cro-onboarding-experimentation/SKILL.md) |
 | edtech-andragogy | [knowledge/skills/domains/industry/edtech-andragogy/SKILL.md](../knowledge/skills/domains/industry/edtech-andragogy/SKILL.md) |
 | explainable-ai | [knowledge/skills/domains/industry/explainable-ai/SKILL.md](../knowledge/skills/domains/industry/explainable-ai/SKILL.md) |
 | financial-transaction-processing | [knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md](../knowledge/skills/domains/industry/financial-transaction-processing/SKILL.md) |
+| game-animation-qa-motion | [knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md](../knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md) |
+| game-asset-pipeline | [knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md](../knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md) |
+| gtm-positioning-strategy | [knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md](../knowledge/skills/domains/industry/gtm-positioning-strategy/SKILL.md) |
 | hardware-hacking-embedded-security | [knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md](../knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md) |
 | healthtech-standards-security | [knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md](../knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md) |
+| lifecycle-revops-paid-growth | [knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md](../knowledge/skills/domains/industry/lifecycle-revops-paid-growth/SKILL.md) |
+| llm-observability-otel-langfuse | [knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md](../knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md) |
+| llm-provider-protocol-interoperability | [knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md](../knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md) |
 | medical-device-cybersecurity | [knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md](../knowledge/skills/domains/industry/medical-device-cybersecurity/SKILL.md) |
+| seo-aeo-engineering | [knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md](../knowledge/skills/domains/industry/seo-aeo-engineering/SKILL.md) |
 | telecom-voice-engineering | [knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md](../knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md) |
 | linguistic-en-us | [knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md](../knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md) |
 | linguistic-es-latam | [knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md](../knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md) |
@@ -224,38 +319,53 @@
 | dp-behavioral-patterns | [knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md) |
 | dp-creational-patterns | [knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md) |
 | dp-structural-patterns | [knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md](../knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md) |
+| agentic-state-sync-hitl | [knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md](../knowledge/skills/engineering/practices/agentic-state-sync-hitl/SKILL.md) |
 | api-design | [knowledge/skills/engineering/practices/api-design/SKILL.md](../knowledge/skills/engineering/practices/api-design/SKILL.md) |
 | architecture-ddd | [knowledge/skills/engineering/practices/architecture-ddd/SKILL.md](../knowledge/skills/engineering/practices/architecture-ddd/SKILL.md) |
 | architecture-documentation | [knowledge/skills/engineering/practices/architecture-documentation/SKILL.md](../knowledge/skills/engineering/practices/architecture-documentation/SKILL.md) |
 | c4-model-architecture | [knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md](../knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md) |
+| ci-security-scanning | [knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md](../knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md) |
 | clean-architecture | [knowledge/skills/engineering/practices/clean-architecture/SKILL.md](../knowledge/skills/engineering/practices/clean-architecture/SKILL.md) |
 | clean-code-reusability | [knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md](../knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md) |
 | code-review-practices | [knowledge/skills/engineering/practices/code-review-practices/SKILL.md](../knowledge/skills/engineering/practices/code-review-practices/SKILL.md) |
+| desktop-app-distribution | [knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md](../knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md) |
 | distributed-systems | [knowledge/skills/engineering/practices/distributed-systems/SKILL.md](../knowledge/skills/engineering/practices/distributed-systems/SKILL.md) |
 | documentation-designer | [knowledge/skills/engineering/practices/documentation-designer/SKILL.md](../knowledge/skills/engineering/practices/documentation-designer/SKILL.md) |
 | empirical-software-design | [knowledge/skills/engineering/practices/empirical-software-design/SKILL.md](../knowledge/skills/engineering/practices/empirical-software-design/SKILL.md) |
 | flow-architectures | [knowledge/skills/engineering/practices/flow-architectures/SKILL.md](../knowledge/skills/engineering/practices/flow-architectures/SKILL.md) |
 | functional-concurrent-programming | [knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md](../knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md) |
 | git-conventional-commits | [knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md](../knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md) |
+| gnome-shell-extension-development | [knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md](../knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md) |
+| guardrail-authoring | [knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md](../knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md) |
 | latency-engineering | [knowledge/skills/engineering/practices/latency-engineering/SKILL.md](../knowledge/skills/engineering/practices/latency-engineering/SKILL.md) |
 | llvm-compiler-infrastructure | [knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md](../knowledge/skills/engineering/practices/llvm-compiler-infrastructure/SKILL.md) |
 | python-performance-parallelism | [knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md](../knowledge/skills/engineering/practices/python-performance-parallelism/SKILL.md) |
+| repository-artifact-hygiene | [knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md](../knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md) |
+| review-findings-pipeline | [knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md](../knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md) |
 | system-design-scalability | [knowledge/skills/engineering/practices/system-design-scalability/SKILL.md](../knowledge/skills/engineering/practices/system-design-scalability/SKILL.md) |
+| tui-terminal-engineering | [knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md](../knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md) |
+| ui-design-craftsmanship | [knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md](../knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md) |
 | ui-gpu-graphics-web | [knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md](../knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md) |
 | ui-ux-principles | [knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md](../knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md) |
 | vcs-repository-management | [knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md](../knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md) |
 | version-freshness | [knowledge/skills/engineering/practices/version-freshness/SKILL.md](../knowledge/skills/engineering/practices/version-freshness/SKILL.md) |
+| web-3d-object-modeling | [knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md](../knowledge/skills/engineering/practices/web-3d-object-modeling/SKILL.md) |
 | web-accessibility-wcag | [knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md](../knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md) |
+| web-portal-cli-scaffolding | [knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md](../knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md) |
+| writing-for-agents | [knowledge/skills/engineering/practices/writing-for-agents/SKILL.md](../knowledge/skills/engineering/practices/writing-for-agents/SKILL.md) |
 | framework-criterion | [knowledge/skills/frameworks/framework-criterion/SKILL.md](../knowledge/skills/frameworks/framework-criterion/SKILL.md) |
 | framework-graphql | [knowledge/skills/frameworks/framework-graphql/SKILL.md](../knowledge/skills/frameworks/framework-graphql/SKILL.md) |
 | framework-grpc | [knowledge/skills/frameworks/framework-grpc/SKILL.md](../knowledge/skills/frameworks/framework-grpc/SKILL.md) |
+| framework-langchain | [knowledge/skills/frameworks/framework-langchain/SKILL.md](../knowledge/skills/frameworks/framework-langchain/SKILL.md) |
 | framework-microprofile-jakarta | [knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md](../knowledge/skills/frameworks/framework-microprofile-jakarta/SKILL.md) |
 | framework-qt6 | [knowledge/skills/frameworks/framework-qt6/SKILL.md](../knowledge/skills/frameworks/framework-qt6/SKILL.md) |
 | framework-quarkus-jnosql | [knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md](../knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md) |
 | framework-react | [knowledge/skills/frameworks/framework-react/SKILL.md](../knowledge/skills/frameworks/framework-react/SKILL.md) |
 | framework-rest-api | [knowledge/skills/frameworks/framework-rest-api/SKILL.md](../knowledge/skills/frameworks/framework-rest-api/SKILL.md) |
 | framework-soap | [knowledge/skills/frameworks/framework-soap/SKILL.md](../knowledge/skills/frameworks/framework-soap/SKILL.md) |
+| framework-spring-ai | [knowledge/skills/frameworks/framework-spring-ai/SKILL.md](../knowledge/skills/frameworks/framework-spring-ai/SKILL.md) |
 | framework-spring-boot | [knowledge/skills/frameworks/framework-spring-boot/SKILL.md](../knowledge/skills/frameworks/framework-spring-boot/SKILL.md) |
+| framework-tabler | [knowledge/skills/frameworks/framework-tabler/SKILL.md](../knowledge/skills/frameworks/framework-tabler/SKILL.md) |
 | framework-testing | [knowledge/skills/frameworks/framework-testing/SKILL.md](../knowledge/skills/frameworks/framework-testing/SKILL.md) |
 | framework-testing-javascript | [knowledge/skills/frameworks/framework-testing-javascript/SKILL.md](../knowledge/skills/frameworks/framework-testing-javascript/SKILL.md) |
 | framework-testing-python | [knowledge/skills/frameworks/framework-testing-python/SKILL.md](../knowledge/skills/frameworks/framework-testing-python/SKILL.md) |
@@ -267,6 +377,7 @@
 | cloud-gcp | [knowledge/skills/infrastructure/cloud-gcp/SKILL.md](../knowledge/skills/infrastructure/cloud-gcp/SKILL.md) |
 | cloud-oci | [knowledge/skills/infrastructure/cloud-oci/SKILL.md](../knowledge/skills/infrastructure/cloud-oci/SKILL.md) |
 | hpc-supercomputing-clusters | [knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md](../knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md) |
+| k8s-genai-workloads | [knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md](../knowledge/skills/infrastructure/k8s-genai-workloads/SKILL.md) |
 | linux-kernel-systemd-internals | [knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md](../knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md) |
 | program-containers | [knowledge/skills/infrastructure/program-containers/SKILL.md](../knowledge/skills/infrastructure/program-containers/SKILL.md) |
 | zero-trust-architecture-engineering | [knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md](../knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md) |
@@ -296,6 +407,7 @@
 | cloud-topology-mapping | [knowledge/skills/mapping/cloud-topology-mapping/SKILL.md](../knowledge/skills/mapping/cloud-topology-mapping/SKILL.md) |
 | code-architecture-mapping | [knowledge/skills/mapping/code-architecture-mapping/SKILL.md](../knowledge/skills/mapping/code-architecture-mapping/SKILL.md) |
 | db-schema-reverse-mapping | [knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md](../knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md) |
+| editable-diagram-engineering | [knowledge/skills/mapping/editable-diagram-engineering/SKILL.md](../knowledge/skills/mapping/editable-diagram-engineering/SKILL.md) |
 | execution-flow-callgraph | [knowledge/skills/mapping/execution-flow-callgraph/SKILL.md](../knowledge/skills/mapping/execution-flow-callgraph/SKILL.md) |
 | graph-relationship-mapping | [knowledge/skills/mapping/graph-relationship-mapping/SKILL.md](../knowledge/skills/mapping/graph-relationship-mapping/SKILL.md) |
 | infra-inventory-cmdb | [knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md](../knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md) |
@@ -306,9 +418,15 @@
 | program-windbg | [knowledge/skills/mapping/program-windbg/SKILL.md](../knowledge/skills/mapping/program-windbg/SKILL.md) |
 | uml-diagram-generation | [knowledge/skills/mapping/uml-diagram-generation/SKILL.md](../knowledge/skills/mapping/uml-diagram-generation/SKILL.md) |
 | antigravity-guide | [knowledge/skills/platforms/antigravity-guide/SKILL.md](../knowledge/skills/platforms/antigravity-guide/SKILL.md) |
-| browser-harness | [knowledge/skills/platforms/browser-harness/SKILL.md](../knowledge/skills/platforms/browser-harness/SKILL.md) |
+| claude-code-guide | [knowledge/skills/platforms/claude-code-guide/SKILL.md](../knowledge/skills/platforms/claude-code-guide/SKILL.md) |
+| claude-desktop-guide | [knowledge/skills/platforms/claude-desktop-guide/SKILL.md](../knowledge/skills/platforms/claude-desktop-guide/SKILL.md) |
+| codex-guide | [knowledge/skills/platforms/codex-guide/SKILL.md](../knowledge/skills/platforms/codex-guide/SKILL.md) |
+| command-code-guide | [knowledge/skills/platforms/command-code-guide/SKILL.md](../knowledge/skills/platforms/command-code-guide/SKILL.md) |
+| cursor-guide | [knowledge/skills/platforms/cursor-guide/SKILL.md](../knowledge/skills/platforms/cursor-guide/SKILL.md) |
 | gemini-enterprise | [knowledge/skills/platforms/gemini-enterprise/SKILL.md](../knowledge/skills/platforms/gemini-enterprise/SKILL.md) |
+| opencode-guide | [knowledge/skills/platforms/opencode-guide/SKILL.md](../knowledge/skills/platforms/opencode-guide/SKILL.md) |
 | power-automate | [knowledge/skills/platforms/power-automate/SKILL.md](../knowledge/skills/platforms/power-automate/SKILL.md) |
+| program-azure-devops | [knowledge/skills/platforms/program-azure-devops/SKILL.md](../knowledge/skills/platforms/program-azure-devops/SKILL.md) |
 | program-github-actions | [knowledge/skills/platforms/program-github-actions/SKILL.md](../knowledge/skills/platforms/program-github-actions/SKILL.md) |
 | program-markmap | [knowledge/skills/platforms/program-markmap/SKILL.md](../knowledge/skills/platforms/program-markmap/SKILL.md) |
 | program-moodle | [knowledge/skills/platforms/program-moodle/SKILL.md](../knowledge/skills/platforms/program-moodle/SKILL.md) |
@@ -318,12 +436,14 @@
 | cloud-infrastructure-architect | [knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md](../knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md) |
 | code-mapping-specialist | [knowledge/skills/roles/code-mapping-specialist/SKILL.md](../knowledge/skills/roles/code-mapping-specialist/SKILL.md) |
 | code-optimizer | [knowledge/skills/roles/code-optimizer/SKILL.md](../knowledge/skills/roles/code-optimizer/SKILL.md) |
+| codebase-exploration | [knowledge/skills/roles/codebase-exploration/SKILL.md](../knowledge/skills/roles/codebase-exploration/SKILL.md) |
+| cover-letter-application-drafter | [knowledge/skills/roles/cover-letter-application-drafter/SKILL.md](../knowledge/skills/roles/cover-letter-application-drafter/SKILL.md) |
 | dba-database-administrator | [knowledge/skills/roles/dba-database-administrator/SKILL.md](../knowledge/skills/roles/dba-database-administrator/SKILL.md) |
 | devops-engineer | [knowledge/skills/roles/devops-engineer/SKILL.md](../knowledge/skills/roles/devops-engineer/SKILL.md) |
-| explore | [knowledge/skills/roles/explore/SKILL.md](../knowledge/skills/roles/explore/SKILL.md) |
 | frontend-developer | [knowledge/skills/roles/frontend-developer/SKILL.md](../knowledge/skills/roles/frontend-developer/SKILL.md) |
 | fullstack-developer | [knowledge/skills/roles/fullstack-developer/SKILL.md](../knowledge/skills/roles/fullstack-developer/SKILL.md) |
-| general | [knowledge/skills/roles/general/SKILL.md](../knowledge/skills/roles/general/SKILL.md) |
+| interview-prep-upskill-tracker | [knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md](../knowledge/skills/roles/interview-prep-upskill-tracker/SKILL.md) |
+| job-fit-evaluation-ranking | [knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md](../knowledge/skills/roles/job-fit-evaluation-ranking/SKILL.md) |
 | job-hunting-sourcing | [knowledge/skills/roles/job-hunting-sourcing/SKILL.md](../knowledge/skills/roles/job-hunting-sourcing/SKILL.md) |
 | multi-agent-orchestration-supervision | [knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md](../knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md) |
 | product-owner | [knowledge/skills/roles/product-owner/SKILL.md](../knowledge/skills/roles/product-owner/SKILL.md) |
@@ -358,6 +478,7 @@
 | rasp-runtime-protection | [knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md](../knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md) |
 | sast-code-review | [knowledge/skills/security/appsec/sast-code-review/SKILL.md](../knowledge/skills/security/appsec/sast-code-review/SKILL.md) |
 | secure-sdlc-ssdf | [knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md](../knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md) |
+| security-assessment-planning | [knowledge/skills/security/appsec/security-assessment-planning/SKILL.md](../knowledge/skills/security/appsec/security-assessment-planning/SKILL.md) |
 | software-supply-chain-security | [knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md](../knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md) |
 | web-injection-classes | [knowledge/skills/security/appsec/web-injection-classes/SKILL.md](../knowledge/skills/security/appsec/web-injection-classes/SKILL.md) |
 | cloud-detection-response | [knowledge/skills/security/cloud/cloud-detection-response/SKILL.md](../knowledge/skills/security/cloud/cloud-detection-response/SKILL.md) |
@@ -405,6 +526,7 @@
 | iam-access-oci | [knowledge/skills/security/iam/iam-access-oci/SKILL.md](../knowledge/skills/security/iam/iam-access-oci/SKILL.md) |
 | iam-access-power-platform | [knowledge/skills/security/iam/iam-access-power-platform/SKILL.md](../knowledge/skills/security/iam/iam-access-power-platform/SKILL.md) |
 | identity-governance-iga | [knowledge/skills/security/iam/identity-governance-iga/SKILL.md](../knowledge/skills/security/iam/identity-governance-iga/SKILL.md) |
+| identity-security-software-development | [knowledge/skills/security/iam/identity-security-software-development/SKILL.md](../knowledge/skills/security/iam/identity-security-software-development/SKILL.md) |
 | machine-identity-spiffe-workload | [knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md](../knowledge/skills/security/iam/machine-identity-spiffe-workload/SKILL.md) |
 | pam-privileged-access-management | [knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md](../knowledge/skills/security/iam/pam-privileged-access-management/SKILL.md) |
 | secrets-management-vault | [knowledge/skills/security/iam/secrets-management-vault/SKILL.md](../knowledge/skills/security/iam/secrets-management-vault/SKILL.md) |
@@ -413,10 +535,12 @@
 | bug-bounty-methodology | [knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md](../knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md) |
 | exploit-development-vulnerability-research | [knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md](../knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md) |
 | kubernetes-attack-paths | [knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md](../knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md) |
+| network-infrastructure-pentest | [knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md](../knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md) |
 | pentest-cloud-aws-azure-gcp | [knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md](../knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md) |
 | red-team-infrastructure | [knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md](../knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md) |
 | auth-protocols-mfa | [knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md](../knowledge/skills/security/operations/auth-protocols-mfa/SKILL.md) |
 | container-runtime-security | [knowledge/skills/security/operations/container-runtime-security/SKILL.md](../knowledge/skills/security/operations/container-runtime-security/SKILL.md) |
+| cybersecurity-ops-bash | [knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md](../knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md) |
 | detection-engineering | [knowledge/skills/security/operations/detection-engineering/SKILL.md](../knowledge/skills/security/operations/detection-engineering/SKILL.md) |
 | detection-engineering-yara-sigma | [knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md](../knowledge/skills/security/operations/detection-engineering-yara-sigma/SKILL.md) |
 | devsecops-engineer | [knowledge/skills/security/operations/devsecops-engineer/SKILL.md](../knowledge/skills/security/operations/devsecops-engineer/SKILL.md) |
@@ -425,6 +549,8 @@
 | endpoint-detection-engineering | [knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md](../knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md) |
 | endpoint-forensics | [knowledge/skills/security/operations/endpoint-forensics/SKILL.md](../knowledge/skills/security/operations/endpoint-forensics/SKILL.md) |
 | ids-ips-ndr-engineering | [knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md](../knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md) |
+| incident-response-blue-team | [knowledge/skills/security/operations/incident-response-blue-team/SKILL.md](../knowledge/skills/security/operations/incident-response-blue-team/SKILL.md) |
+| iot-untrusted-device-isolation | [knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md](../knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md) |
 | itdr-identity-threat-detection | [knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md](../knowledge/skills/security/operations/itdr-identity-threat-detection/SKILL.md) |
 | kubernetes-security-posture | [knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md](../knowledge/skills/security/operations/kubernetes-security-posture/SKILL.md) |
 | mobile-enterprise-mdm | [knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md](../knowledge/skills/security/operations/mobile-enterprise-mdm/SKILL.md) |
@@ -462,24 +588,38 @@
 | program-owasp-zap | [knowledge/skills/security/tooling/program-owasp-zap/SKILL.md](../knowledge/skills/security/tooling/program-owasp-zap/SKILL.md) |
 | program-sbom-tooling | [knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md](../knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md) |
 | program-sigstore-cosign | [knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md](../knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md) |
-| superpowers-brainstorming | [methodology/workflows/superpowers-brainstorming/SKILL.md](../methodology/workflows/superpowers-brainstorming/SKILL.md) |
-| superpowers-diagnosing-superpowers | [methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md](../methodology/workflows/superpowers-diagnosing-superpowers/SKILL.md) |
-| superpowers-dispatching-parallel-agents | [methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md](../methodology/workflows/superpowers-dispatching-parallel-agents/SKILL.md) |
-| superpowers-executing-plans | [methodology/workflows/superpowers-executing-plans/SKILL.md](../methodology/workflows/superpowers-executing-plans/SKILL.md) |
-| superpowers-finishing-a-development-branch | [methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md](../methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md) |
-| superpowers-receiving-code-review | [methodology/workflows/superpowers-receiving-code-review/SKILL.md](../methodology/workflows/superpowers-receiving-code-review/SKILL.md) |
-| superpowers-requesting-code-review | [methodology/workflows/superpowers-requesting-code-review/SKILL.md](../methodology/workflows/superpowers-requesting-code-review/SKILL.md) |
-| superpowers-subagent-driven-development | [methodology/workflows/superpowers-subagent-driven-development/SKILL.md](../methodology/workflows/superpowers-subagent-driven-development/SKILL.md) |
-| superpowers-systematic-debugging | [methodology/workflows/superpowers-systematic-debugging/SKILL.md](../methodology/workflows/superpowers-systematic-debugging/SKILL.md) |
-| superpowers-test-driven-development | [methodology/workflows/superpowers-test-driven-development/SKILL.md](../methodology/workflows/superpowers-test-driven-development/SKILL.md) |
-| superpowers-using-git-worktrees | [methodology/workflows/superpowers-using-git-worktrees/SKILL.md](../methodology/workflows/superpowers-using-git-worktrees/SKILL.md) |
-| superpowers-verification-before-completion | [methodology/workflows/superpowers-verification-before-completion/SKILL.md](../methodology/workflows/superpowers-verification-before-completion/SKILL.md) |
-| superpowers-writing-plans | [methodology/workflows/superpowers-writing-plans/SKILL.md](../methodology/workflows/superpowers-writing-plans/SKILL.md) |
-| superpowers-writing-skills | [methodology/workflows/superpowers-writing-skills/SKILL.md](../methodology/workflows/superpowers-writing-skills/SKILL.md) |
+| brainstorming | [methodology/workflows/brainstorming/SKILL.md](../methodology/workflows/brainstorming/SKILL.md) |
+| codebase-design | [methodology/workflows/codebase-design/SKILL.md](../methodology/workflows/codebase-design/SKILL.md) |
+| diagnosing-agent-sessions | [methodology/workflows/diagnosing-agent-sessions/SKILL.md](../methodology/workflows/diagnosing-agent-sessions/SKILL.md) |
+| diagnosing-bugs | [methodology/workflows/diagnosing-bugs/SKILL.md](../methodology/workflows/diagnosing-bugs/SKILL.md) |
+| dispatching-parallel-agents | [methodology/workflows/dispatching-parallel-agents/SKILL.md](../methodology/workflows/dispatching-parallel-agents/SKILL.md) |
+| domain-modeling | [methodology/workflows/domain-modeling/SKILL.md](../methodology/workflows/domain-modeling/SKILL.md) |
+| executing-plans | [methodology/workflows/executing-plans/SKILL.md](../methodology/workflows/executing-plans/SKILL.md) |
+| finishing-a-development-branch | [methodology/workflows/finishing-a-development-branch/SKILL.md](../methodology/workflows/finishing-a-development-branch/SKILL.md) |
+| grill-me | [methodology/workflows/grill-me/SKILL.md](../methodology/workflows/grill-me/SKILL.md) |
+| grill-with-docs | [methodology/workflows/grill-with-docs/SKILL.md](../methodology/workflows/grill-with-docs/SKILL.md) |
+| grilling | [methodology/workflows/grilling/SKILL.md](../methodology/workflows/grilling/SKILL.md) |
+| handoff | [methodology/workflows/handoff/SKILL.md](../methodology/workflows/handoff/SKILL.md) |
+| implement-spec | [methodology/workflows/implement-spec/SKILL.md](../methodology/workflows/implement-spec/SKILL.md) |
+| learning-consolidation | [methodology/workflows/learning-consolidation/SKILL.md](../methodology/workflows/learning-consolidation/SKILL.md) |
+| phase-boundaries | [methodology/workflows/phase-boundaries/SKILL.md](../methodology/workflows/phase-boundaries/SKILL.md) |
+| prototype | [methodology/workflows/prototype/SKILL.md](../methodology/workflows/prototype/SKILL.md) |
+| receiving-code-review | [methodology/workflows/receiving-code-review/SKILL.md](../methodology/workflows/receiving-code-review/SKILL.md) |
+| requesting-code-review | [methodology/workflows/requesting-code-review/SKILL.md](../methodology/workflows/requesting-code-review/SKILL.md) |
+| retro | [methodology/workflows/retro/SKILL.md](../methodology/workflows/retro/SKILL.md) |
+| subagent-driven-development | [methodology/workflows/subagent-driven-development/SKILL.md](../methodology/workflows/subagent-driven-development/SKILL.md) |
+| test-driven-development | [methodology/workflows/test-driven-development/SKILL.md](../methodology/workflows/test-driven-development/SKILL.md) |
+| to-spec | [methodology/workflows/to-spec/SKILL.md](../methodology/workflows/to-spec/SKILL.md) |
+| to-tickets | [methodology/workflows/to-tickets/SKILL.md](../methodology/workflows/to-tickets/SKILL.md) |
+| two-axis-code-review | [methodology/workflows/two-axis-code-review/SKILL.md](../methodology/workflows/two-axis-code-review/SKILL.md) |
 | using-coacus | [methodology/workflows/using-coacus/SKILL.md](../methodology/workflows/using-coacus/SKILL.md) |
+| using-git-worktrees | [methodology/workflows/using-git-worktrees/SKILL.md](../methodology/workflows/using-git-worktrees/SKILL.md) |
+| verification-before-completion | [methodology/workflows/verification-before-completion/SKILL.md](../methodology/workflows/verification-before-completion/SKILL.md) |
+| writing-plans | [methodology/workflows/writing-plans/SKILL.md](../methodology/workflows/writing-plans/SKILL.md) |
+| writing-skills | [methodology/workflows/writing-skills/SKILL.md](../methodology/workflows/writing-skills/SKILL.md) |
 
 ## MCPs
 
 | MCP | Path |
 |---|---|
-| context7 | [knowledge/mcps/context7/MCP.md](../knowledge/mcps/context7/MCP.md) |
+| coacus-catalog | [knowledge/mcps/coacus-catalog/MCP.md](../knowledge/mcps/coacus-catalog/MCP.md) |

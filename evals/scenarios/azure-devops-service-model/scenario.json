@@ -1,0 +1,18 @@
+{
+  "id": "azure-devops-service-model",
+  "title": "Choose an Azure DevOps service model and project boundary",
+  "harness": "opencode",
+  "prompt": "A company is choosing Azure DevOps Services or Azure DevOps Server. Three teams share an identity tenant, but one team must restrict access to its source and work items. What constraints should be established before choosing the service model and organization/project layout?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(Services|Server).{0,120}(data|hosting|identity|network|administr|upgrade)|(data|hosting|identity|network|administr|upgrade).{0,120}(Services|Server)" },
+    { "kind": "regex", "value": "(?i)(organization|collection).{0,80}project|(project).{0,80}(organization|collection)" },
+    { "kind": "regex", "value": "(?i)(access|permission|security).{0,80}(boundary|scope|project|team)|(boundary|scope).{0,80}(access|permission|security)" }
+  ],
+  "rubric": [
+    "The response treats Azure DevOps Services and Server as different hosting and administrative models and asks which constraints drive the choice.",
+    "It distinguishes organization or collection scope from project scope.",
+    "It ties the team's confidentiality requirement to a concrete access boundary instead of choosing a layout from team count alone.",
+    "No live organization or project is created or modified."
+  ],
+  "acceptance": "The response gathers hosting, identity, operational ownership and access-boundary constraints before recommending a service model or project structure."
+}

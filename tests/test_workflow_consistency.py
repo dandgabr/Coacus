@@ -9,12 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 CONVENTIONS = (
     ROOT / "methodology/workflows/using-coacus/references/coacus-process-conventions.md"
 )
-WRITING_PLANS = ROOT / "methodology/workflows/superpowers-writing-plans/SKILL.md"
+WRITING_PLANS = ROOT / "methodology/workflows/writing-plans/SKILL.md"
 SUBAGENT = (
-    ROOT / "methodology/workflows/superpowers-subagent-driven-development/SKILL.md"
+    ROOT / "methodology/workflows/subagent-driven-development/SKILL.md"
 )
 FINISHING = (
-    ROOT / "methodology/workflows/superpowers-finishing-a-development-branch/SKILL.md"
+    ROOT / "methodology/workflows/finishing-a-development-branch/SKILL.md"
+)
+BEHAVIOR_VALIDATION = (
+    ROOT / "methodology/workflows/writing-skills/references/behavior-validation.md"
 )
 ROUTING_STD = ROOT / "docs/standards/routing.md"
 
@@ -70,6 +73,33 @@ class TestShipClaimsAreTrue(unittest.TestCase):
     def test_generated_diff_paths_are_nested(self) -> None:
         # There is no root `dist/`; the generated trees live under knowledge/**/dist/.
         self.assertIn("knowledge/**/dist/", read(CONVENTIONS))
+
+    def test_pr_guidance_captures_summary_evidence_and_risk(self) -> None:
+        text = read(FINISHING).lower()
+        for phrase in ("visual summary", "evidence", "before and after", "blast radius", "merge risk"):
+            with self.subTest(phrase=phrase):
+                self.assertTrue(phrase in text, phrase)
+
+    def test_behavior_validation_separates_activation_fixtures_from_runtime_evidence(self) -> None:
+        text = read(BEHAVIOR_VALIDATION).lower()
+        for phrase in ("positive activation", "near-miss", "runtime activation", "harness exposes", "no-skill control"):
+            with self.subTest(phrase=phrase):
+                self.assertTrue(phrase in text, phrase)
+
+    def test_behavior_benchmark_requires_reproducible_comparison(self) -> None:
+        text = read(BEHAVIOR_VALIDATION).lower()
+        for phrase in (
+            "same task set",
+            "correctness",
+            "safety",
+            "completion",
+            "cost",
+            "repeated samples",
+            "code simplification",
+            "lines changed",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertTrue(phrase in text, phrase)
 
 
 class TestHandoffNamesTheRoster(unittest.TestCase):

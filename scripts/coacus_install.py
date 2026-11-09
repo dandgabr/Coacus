@@ -11,11 +11,14 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - opencode    plugin -> <config_dir>/plugins/coacus.js  (`__COACUS_ROOT__`
               substituted) + governor gate, plus skill trees under
               <config_dir>/skills/ and agents under <config_dir>/agent/.
-- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path)
+- claude-code skills   -> <config_dir>/skills/<skill>/  (documented personal path;
+              real files land once in the shared ~/.agents/skills tree and a
+              symlink per skill is placed here, unless --skills-mode copy)
               agents   -> <config_dir>/agents/<name>.md
               hook     -> plugin staged at <config_dir>/plugins/coacus/ with the
               JSON payload at bootstrap/session-start.json (matching hooks.json).
-- antigravity plugin (manifest + rule + skills + agents) ->
+- antigravity plugin (manifest + compact rule + native agent selectors +
+              on-demand catalog MCP by default; full native profile optional) ->
               <config_dir>/config/plugins/coacus/; activation is by directory,
               so no registry edit is needed.
 - codex       skills   -> ~/.agents/skills/<skill>/  (Codex scans .agents/skills,
@@ -27,8 +30,8 @@ Mechanisms (verified against vendor docs, see docs/install.md):
 - command-code skills   -> ~/.agents/skills/<skill>/ (a Command Code user scan
               root); agents -> <config_dir>/agents/<name>.md; the SessionStart
               bootstrap is merged into <config_dir>/settings.json under the
-              'hooks' key (Command Code has no separate hooks.json); the context7
-              MCP is merged into <config_dir>/mcp.json under 'mcpServers'; and
+              'hooks' key (Command Code has no separate hooks.json); framework
+              MCP servers are merged into <config_dir>/mcp.json under 'mcpServers'; and
               the Coacus user rules are written to <config_dir>/AGENTS.md when
               that file does not already exist.
 
@@ -56,6 +59,7 @@ import argparse
 import ast
 import base64
 import fnmatch
+import hashlib
 import json
 import os
 import re
@@ -63,6 +67,7 @@ import shlex
 import shutil
 import sys
 import tempfile
+from dataclasses import dataclass
 from pathlib import Path
 
 try:  # tomllib entered the standard library in Python 3.11.
@@ -77,8 +82,22 @@ if str(ROOT) not in sys.path:
 MANIFEST_NAME = "coacus-install.json"
 NOTICE_NAME = "THIRD-PARTY-NOTICES.md"
 
-# A planned file's content: text normally, bytes for a binary companion.
-FileContent = str | bytes
+@dataclass(frozen=True)
+class Symlink:
+    """An installed path that is a symbolic link to ``target`` (absolute).
+
+    A harness that scans its OWN skill home (Claude Code's ``~/.claude/skills``)
+    but shares the canonical ``~/.agents/skills`` tree gets a symlink per skill
+    instead of a second real copy. Single source of truth, and Orca's skill list
+    (which scans both homes) collapses the duplicate to one entry.
+    """
+
+    target: str
+
+
+# A planned file's content: text normally, bytes for a binary companion, or a
+# symlink to an absolute target.
+FileContent = str | bytes | Symlink
 SKILL_ROOTS = ("methodology/workflows", "knowledge/skills")
 CODEX_PROFILE_START = "# BEGIN COACUS CODEX SKILL PROFILE"
 CODEX_PROFILE_END = "# END COACUS CODEX SKILL PROFILE"
@@ -272,6 +291,8 @@ def _home() -> Path:
 
 def default_config_dir(harness: str, home: Path) -> Path:
     """Return the default config directory for ``harness`` under ``home``."""
+    if harness == "claude-desktop":
+        harness = "claude-code"
     return {
         "opencode": home / ".config" / "opencode",
         "claude-code": home / ".claude",
@@ -290,20 +311,226 @@ def default_config_dir(harness: str, home: Path) -> Path:
 HARNESS_DETECTION: dict[str, dict[str, list[str]]] = {
     "opencode": {"env": ["OPENCODE_CONFIG_DIR", "OPENCODE"], "bins": ["opencode"]},
     "claude-code": {"env": ["CLAUDE_PLUGIN_ROOT"], "bins": ["claude"]},
+    "claude-desktop": {"env": ["CLAUDE_PLUGIN_ROOT"], "bins": ["claude"]},
     "antigravity": {"env": ["GEMINI_DIR", "ANTIGRAVITY"], "bins": ["agy", "antigravity"]},
     "codex": {"env": ["CODEX_HOME"], "bins": ["codex"]},
     "cursor": {"env": ["CURSOR_TRACE_ID", "CURSOR_PLUGIN_ROOT"], "bins": ["cursor", "cursor-agent"]},
-    "command-code": {"env": ["COMMANDCODE_PROJECT_DIR"], "bins": ["command-code", "cmd"]},
+    "command-code": {"env": ["COMMANDCODE_PROJECT_DIR"], "bins": ["command-code"]},
 }
+
+
+def _detect_desktop(harness: str, home: Path) -> bool:
+    """True when an installation or runtime directory for a Desktop/IDE harness is found on this OS."""
+    candidates: list[Path] = []
+    glob_candidates: list[tuple[Path, str]] = []
+
+    if sys.platform == "win32":
+        app_data_env = os.environ.get("APPDATA")
+        local_app_data_env = os.environ.get("LOCALAPPDATA")
+        program_files_env = os.environ.get("ProgramFiles")
+        program_files_x86_env = os.environ.get("ProgramFiles(x86)")
+
+        local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+        app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+        program_files = Path(program_files_env) if program_files_env else Path("C:/Program Files")
+        program_files_x86 = Path(program_files_x86_env) if program_files_x86_env else Path("C:/Program Files (x86)")
+
+        if harness == "antigravity":
+            candidates.extend([
+                local_app_data / "Programs" / "Antigravity" / "Antigravity.exe",
+                local_app_data / "Programs" / "antigravity-ide" / "Antigravity.exe",
+                program_files / "Antigravity" / "Antigravity.exe",
+                program_files_x86 / "Antigravity" / "Antigravity.exe",
+                app_data / "npm" / "agy.cmd",
+                app_data / "npm" / "antigravity.cmd",
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                local_app_data / "AnthropicClaude" / "claude.exe",
+                local_app_data / "Programs" / "Claude" / "Claude.exe",
+                local_app_data / "Programs" / "claude-code" / "claude.exe",
+                app_data / "Claude" / "claude_desktop_config.json",
+                app_data / "Claude",
+                app_data / "npm" / "claude.cmd",
+            ])
+            glob_candidates.append((local_app_data / "Packages", "Claude_*"))
+        elif harness == "codex":
+            candidates.extend([
+                local_app_data / "Programs" / "Codex" / "Codex.exe",
+                local_app_data / "Programs" / "openai-codex" / "codex.exe",
+                program_files / "Codex" / "Codex.exe",
+                program_files_x86 / "Codex" / "Codex.exe",
+                app_data / "npm" / "codex.cmd",
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+            glob_candidates.append((local_app_data / "Packages", "OpenAI.Codex*"))
+        elif harness == "opencode":
+            candidates.extend([
+                local_app_data / "Programs" / "OpenCode" / "OpenCode.exe",
+                local_app_data / "Programs" / "opencode" / "opencode.exe",
+                program_files / "OpenCode" / "OpenCode.exe",
+                program_files_x86 / "OpenCode" / "OpenCode.exe",
+                app_data / "npm" / "opencode.cmd",
+                app_data / "opencode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                local_app_data / "Programs" / "CommandCode" / "CommandCode.exe",
+                local_app_data / "Programs" / "command-code" / "command-code.exe",
+                program_files / "CommandCode" / "CommandCode.exe",
+                program_files_x86 / "CommandCode" / "CommandCode.exe",
+                app_data / "npm" / "command-code.cmd",
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                local_app_data / "Programs" / "cursor" / "Cursor.exe",
+                local_app_data / "cursor" / "Cursor.exe",
+                program_files / "Cursor" / "Cursor.exe",
+                program_files_x86 / "Cursor" / "Cursor.exe",
+            ])
+    elif sys.platform == "darwin":
+        if harness == "antigravity":
+            candidates.extend([
+                Path("/Applications/Antigravity.app"),
+                Path("/Applications/Antigravity IDE.app"),
+                home / "Applications" / "Antigravity.app",
+                home / "Applications" / "Antigravity IDE.app",
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                Path("/Applications/Claude.app"),
+                home / "Applications" / "Claude.app",
+                home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json",
+                home / "Library" / "Application Support" / "Claude",
+            ])
+        elif harness == "codex":
+            candidates.extend([
+                Path("/Applications/Codex.app"),
+                home / "Applications" / "Codex.app",
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+        elif harness == "opencode":
+            candidates.extend([
+                Path("/Applications/OpenCode.app"),
+                home / "Applications" / "OpenCode.app",
+                home / "Library" / "Application Support" / "opencode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                Path("/Applications/Command Code.app"),
+                Path("/Applications/CommandCode.app"),
+                home / "Applications" / "Command Code.app",
+                home / "Applications" / "CommandCode.app",
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                Path("/Applications/Cursor.app"),
+                home / "Applications" / "Cursor.app",
+            ])
+    else:  # Linux / other posix
+        if harness == "antigravity":
+            candidates.extend([
+                Path("/opt/Antigravity/antigravity"),
+                Path("/usr/share/antigravity/antigravity"),
+                home / ".gemini" / "antigravity",
+                home / ".gemini" / "antigravity-cli",
+            ])
+        elif harness in ("claude-code", "claude-desktop"):
+            candidates.extend([
+                Path("/opt/Claude/claude"),
+                home / ".config" / "Claude" / "claude_desktop_config.json",
+                home / ".config" / "Claude",
+                Path("/var/lib/flatpak/app/com.anthropic.Claude"),
+                home / ".local" / "share" / "flatpak" / "app" / "com.anthropic.Claude",
+            ])
+        elif harness == "codex":
+            candidates.extend([
+                Path("/opt/Codex/codex"),
+                Path("/usr/share/codex/codex"),
+                home / ".codex" / "app-server-control",
+                home / ".codex" / "app-server-daemon",
+            ])
+        elif harness == "opencode":
+            candidates.extend([
+                Path("/opt/OpenCode/opencode"),
+                Path("/usr/share/opencode/opencode"),
+                Path("/var/lib/flatpak/app/ai.opencode.OpenCode"),
+                home / ".local" / "share" / "flatpak" / "app" / "ai.opencode.OpenCode",
+            ])
+        elif harness == "command-code":
+            candidates.extend([
+                Path("/opt/CommandCode/command-code"),
+                Path("/usr/share/command-code/command-code"),
+            ])
+        elif harness == "cursor":
+            candidates.extend([
+                Path("/opt/Cursor/cursor"),
+                Path("/usr/share/cursor/cursor"),
+                Path("/var/lib/flatpak/app/com.todesktop.230313mzl4w4u92"),
+                home / ".local" / "share" / "flatpak" / "app" / "com.todesktop.230313mzl4w4u92",
+            ])
+
+    for c in candidates:
+        try:
+            if c.exists():
+                return True
+        except OSError:
+            pass
+
+    for parent, pattern in glob_candidates:
+        try:
+            if parent.is_dir() and any(parent.glob(pattern)):
+                return True
+        except OSError:
+            pass
+
+    return False
+
+
+def _claude_desktop_config_paths(home: Path) -> list[Path]:
+    """Candidate locations for claude_desktop_config.json on this machine."""
+    paths: list[Path] = []
+    if sys.platform == "win32":
+        app_data_env = os.environ.get("APPDATA")
+        local_app_data_env = os.environ.get("LOCALAPPDATA")
+        app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+        local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+        paths.append(app_data / "Claude" / "claude_desktop_config.json")
+        packages = local_app_data / "Packages"
+        if packages.is_dir():
+            try:
+                for pkg in packages.glob("Claude_*"):
+                    paths.append(pkg / "LocalCache" / "Roaming" / "Claude" / "claude_desktop_config.json")
+            except OSError:
+                pass
+    elif sys.platform == "darwin":
+        paths.append(home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json")
+    else:
+        paths.append(home / ".config" / "Claude" / "claude_desktop_config.json")
+    return paths
+
+
+def _primary_claude_desktop_config_path(home: Path) -> Path:
+    """The canonical primary claude_desktop_config.json path for the current OS."""
+    if sys.platform == "win32":
+        app_data = Path(os.environ.get("APPDATA") or (home / "AppData" / "Roaming"))
+        return app_data / "Claude" / "claude_desktop_config.json"
+    if sys.platform == "darwin":
+        return home / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json"
+    return home / ".config" / "Claude" / "claude_desktop_config.json"
 
 
 def harness_present(harness: str, home: Path | None = None) -> bool:
     """True when ``harness`` appears installed on this machine.
 
-    Detection is by the harness's own environment variable or its executable on
-    PATH — never by the mere existence of the config directory, which Coacus
-    itself may have created. This is what prevents installing into an absent
-    harness.
+    Detection is by the harness's own environment variable, its executable on
+    PATH, or its Desktop/IDE installation paths.
     """
     import os
 
@@ -312,7 +539,10 @@ def harness_present(harness: str, home: Path | None = None) -> bool:
         return True  # unknown harness: do not block a custom adapter
     if any(os.environ.get(var) for var in facts.get("env", [])):
         return True
-    return any(shutil.which(binary) for binary in facts.get("bins", []))
+    if any(shutil.which(binary) for binary in facts.get("bins", [])):
+        return True
+    effective_home = home or _home()
+    return _detect_desktop(harness, effective_home)
 
 
 def _split_filter(value: str | None) -> list[str]:
@@ -436,9 +666,17 @@ def _agent_meta(source: Path) -> dict[str, object]:
     from engine.frontmatter import parse
 
     doc = parse(source.read_text(encoding="utf-8"))
+    paths = doc.meta.get("skills", [])
+    if not isinstance(paths, list):
+        raise ValueError(f"{source}: skills must be a list")
+    for path in paths:
+        if (not isinstance(path, str) or not re.fullmatch(
+                r"(?:knowledge/skills|methodology/workflows)/(?:[a-z0-9]+(?:-[a-z0-9]+)*/)+SKILL\.md", path)):
+            raise ValueError(f"{source}: invalid skill path {path!r}")
     return {
         "name": str(doc.meta.get("name", "")).strip(),
         "description": str(doc.meta.get("description", "")).strip(),
+        "skills": paths,
         "body": doc.body.strip(),
     }
 
@@ -465,9 +703,22 @@ def _allowed_roots(config_dir: Path) -> list[Path]:
     """Roots the installer legitimately writes under.
 
     ``config_dir`` for the harness's own files, plus ``<config_dir>/../.agents``
-    for the shared ``~/.agents/skills`` tree Codex and Cursor scan.
+    for the shared ``~/.agents/skills`` tree Codex and Cursor scan, plus legitimate
+    Desktop config roots for Claude Desktop.
     """
-    return [config_dir, config_dir.parent / ".agents"]
+    home = config_dir.parent
+    roots = [config_dir, home / ".agents"]
+    app_data_env = os.environ.get("APPDATA")
+    local_app_data_env = os.environ.get("LOCALAPPDATA")
+    app_data = Path(app_data_env) if app_data_env else (home / "AppData" / "Roaming")
+    local_app_data = Path(local_app_data_env) if local_app_data_env else (home / "AppData" / "Local")
+    roots.extend([
+        app_data / "Claude",
+        local_app_data / "Packages",
+        home / "Library" / "Application Support" / "Claude",
+        home / ".config" / "Claude",
+    ])
+    return roots
 
 
 def _assert_contained(targets: list[tuple[Path, FileContent]], config_dir: Path) -> None:
@@ -475,6 +726,13 @@ def _assert_contained(targets: list[tuple[Path, FileContent]], config_dir: Path)
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
     for target, _ in targets:
         resolved = target.resolve()
+        lexical_roots = [Path(os.path.abspath(r)) for r in _allowed_roots(config_dir)]
+        absolute = Path(os.path.abspath(target))
+        for parent in absolute.parents:
+            if parent in lexical_roots:
+                break
+            if parent.is_symlink():
+                raise ValueError(f"refusing to install through symlink parent: {parent}")
         if not any(_is_within(resolved, r) for r in roots):
             raise ValueError(
                 f"refusing to install outside {config_dir}: {target} resolves to {resolved}"
@@ -501,6 +759,14 @@ def _yaml_scalar(text: str) -> str:
     return json.dumps(text)
 
 
+def _agent_skill_guidance(meta: dict[str, object]) -> str:
+    names = [path.split("/")[-2] for path in meta["skills"]]
+    if not names:
+        return ""
+    return ("\n\n## Contextual skills\n\nThese skills may not be installed when the installation is filtered. "
+            "Load available relevant skills on demand: " + ", ".join(f"`{name}`" for name in names) + ".")
+
+
 def _render_agent_opencode(source: Path, root: Path) -> str:
     """OpenCode agent markdown: frontmatter description + mode, body as prompt."""
     meta = _agent_meta(source)
@@ -514,7 +780,7 @@ def _render_agent_opencode(source: Path, root: Path) -> str:
         "mode: subagent\n"
         "---\n\n"
         f"<!-- Generated from {rel} (Coacus) -->\n\n"
-        f"{meta['body']}\n"
+        f"{meta['body']}{_agent_skill_guidance(meta)}\n"
     )
 
 
@@ -525,7 +791,7 @@ def _render_agent_named(source: Path) -> str:
     name in frontmatter (OpenCode derives it from the filename instead).
     """
     meta = _agent_meta(source)
-    body = meta["body"]
+    body = meta["body"] + _agent_skill_guidance(meta)
     first = body.lstrip().splitlines()[:1]
     if not first or not first[0].startswith("# "):
         body = f"# {meta['name']}\n\n{body}"
@@ -542,7 +808,7 @@ def _render_agent_codex(source: Path) -> str:
     """Codex agent role TOML: name/description + developer_instructions."""
     meta = _agent_meta(source)
     # TOML basic multiline string: escape backslashes and triple quotes.
-    body = meta["body"].replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
+    body = (meta["body"] + _agent_skill_guidance(meta)).replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
     description = str(meta["description"]).replace("\\", "\\\\").replace('"', '\\"')
     return (
         f'name = "{meta["name"]}"\n'
@@ -571,6 +837,130 @@ def _plan_agents_antigravity(
         name = _safe_agent_name(source)
         plan.append((agents_dir / name / "agent.md", _render_agent_named(source)))
     return plan
+
+
+def _render_antigravity_agent_stub(source: Path) -> str:
+    """Render a native agent selector whose full canonical prompt loads by MCP."""
+    meta = _agent_meta(source)
+    return (
+        "---\n"
+        f"name: {meta['name']}\n"
+        f"description: {_yaml_scalar(str(meta['description']))}\n"
+        "---\n\n"
+        f"# {meta['name']}\n\n"
+        "Load this role's complete canonical instructions with the `get` tool "
+        "from the `coacus-catalog` MCP server, using `kind: agent` and this "
+        f"name: `{meta['name']}`. Load relevant names from the returned "
+        "`associated_skills` list on demand with the same tool and `kind: skill`. Follow "
+        "those instructions and use the host's native tools for the task.\n"
+    )
+
+
+def _antigravity_catalog_files(
+    root: Path,
+    plugin: Path,
+    only: list[str] | None,
+    skills: list[str] | None,
+    agents: list[str] | None,
+) -> list[tuple[Path, FileContent]]:
+    """Install all selected canonical sources as data, outside native scan roots."""
+    from engine.frontmatter import parse
+
+    plan: list[tuple[Path, FileContent]] = []
+    entries: dict[str, list[dict[str, object]]] = {"skills": [], "agents": []}
+    skill_names_by_source: dict[str, str] = {}
+
+    selected_skills = discover_skills(root, only=only, skills=skills)
+    for skill in selected_skills:
+        source = skill / "SKILL.md"
+        doc = parse(source.read_text(encoding="utf-8"))
+        meta = doc.meta
+        name = str(meta.get("name") or skill.name)
+        source_rel = source.relative_to(root).as_posix()
+        if source_rel.startswith("knowledge/skills/"):
+            category = "/".join(source.relative_to(root / "knowledge/skills").parts[:-2])
+        else:
+            category = "workflows"
+        payload_rel = f"catalog/corpus/{source_rel}"
+        entries["skills"].append(
+            {
+                "name": name,
+                "kind": "skill",
+                "category": category,
+                "description": str(meta.get("description") or ""),
+                "source": source_rel,
+                "payload": payload_rel,
+                "fingerprint": hashlib.sha256(source.read_bytes()).hexdigest(),
+            }
+        )
+        skill_names_by_source[source_rel] = name
+        for companion in _skill_files(skill):
+            relative = companion.relative_to(root).as_posix()
+            plan.append((plugin / "catalog" / "corpus" / relative, _read_source(companion)))
+
+    selected_agents = discover_agents(root, only=only, agents=agents)
+    for source in selected_agents:
+        meta = _agent_meta(source)
+        name = str(meta["name"])
+        source_rel = source.relative_to(root).as_posix()
+        skill_paths = meta.get("skills", [])
+        if not isinstance(skill_paths, list):
+            skill_paths = []
+        associated_skills = sorted(
+            {
+                skill_names_by_source[str(path)]
+                for path in skill_paths
+                if str(path) in skill_names_by_source
+            }
+        )
+        payload_rel = f"catalog/corpus/{source_rel}"
+        entries["agents"].append(
+            {
+                "name": name,
+                "kind": "agent",
+                "category": str(source.relative_to(root / "knowledge/agents").parts[0]),
+                "description": str(meta["description"]),
+                "source": source_rel,
+                "payload": payload_rel,
+                "fingerprint": hashlib.sha256(source.read_bytes()).hexdigest(),
+                "skills": associated_skills,
+            }
+        )
+        agent_root = source.parent
+        for companion in sorted(agent_root.rglob("*")):
+            if (
+                companion.is_file()
+                and not companion.is_symlink()
+                and "__pycache__" not in companion.relative_to(agent_root).parts
+                and "dist" not in companion.relative_to(agent_root).parts
+                and companion.suffix not in {".pyc", ".pyo"}
+            ):
+                relative = companion.relative_to(root).as_posix()
+                plan.append((plugin / "catalog" / "corpus" / relative, _read_source(companion)))
+        plan.append(
+            (plugin / "agents" / name / "agent.md", _render_antigravity_agent_stub(source))
+        )
+
+    index = {"schema": 1, "skills": entries["skills"], "agents": entries["agents"]}
+    plan.append((plugin / "catalog" / "index.json", json.dumps(index, indent=2) + "\n"))
+    return plan
+
+
+def _antigravity_catalog_mcp_config(root: Path, plugin: Path) -> str:
+    """Render Antigravity's official MCP schema with installed paths resolved."""
+    from engine.frontmatter import parse
+
+    source = root / "knowledge" / "mcps" / "coacus-catalog" / "MCP.md"
+    if not source.is_file():
+        raise FileNotFoundError(f"canonical MCP source is missing: {source}")
+    meta = parse(source.read_text(encoding="utf-8")).meta
+    name = str(meta.get("name") or "coacus-catalog")
+    executable = getattr(sys, "_base_executable", None) or sys.executable
+    server = plugin / "coacus_catalog_mcp.py"
+    return json.dumps(
+        {"mcpServers": {name: {"command": executable, "args": [str(server.resolve())]}}},
+        indent=2,
+    ) + "\n"
 
 
 def _plan_agents_codex(
@@ -604,7 +994,7 @@ def _render_agent_command_code(source: Path) -> str:
     tool is never grantable, which keeps delegation one level deep.
     """
     meta = _agent_meta(source)
-    body = meta["body"]
+    body = meta["body"] + _agent_skill_guidance(meta)
     first = body.lstrip().splitlines()[:1]
     if not first or not first[0].startswith("# "):
         body = f"# {meta['name']}\n\n{body}"
@@ -679,14 +1069,10 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     base = f"{root.as_posix()}/harnesses/{harness}/bootstrap"
     return {
         f"{base}/session-start.sh", f"{base}/coacus-guard.sh",
-        # Legacy wrappers may refer to a retired checkout. Their harness
-        # namespace identifies ownership independently of that checkout root.
-        f"/harnesses/{harness}/bootstrap/session-start.sh",
-        f"/harnesses/{harness}/bootstrap/coacus-guard.sh",
         f"{base}/session-start.json", f"{base}/coacus-guardrails.js",
-        "/scripts/coacus_session_start.py",
-        "/coacus/coacus-guard.sh", "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
-        f"--harness {harness} --event tool.pre",
+        f"{root.as_posix()}/scripts/coacus_session_start.py",
+        "${CLAUDE_PLUGIN_ROOT:-.}/bootstrap/session-start.sh",
+        f"{root.as_posix()}/scripts/coacus_guard.py",
     }
 
 
@@ -748,25 +1134,46 @@ def _plugin_substitute(text: str, root: Path) -> str:
 
 def _entry_owned(entry: object, markers: set[str]) -> bool:
     """True if a hook entry references any Coacus script (by our markers)."""
-    blob = json.dumps(entry)
-    for encoded in re.findall(r"b64decode\('([A-Za-z0-9+/=]+)'\)", blob):
+    if not isinstance(entry, dict):
+        return False
+    hooks = entry.get("hooks")
+    if hooks is None:
+        command = entry.get("command")
+    elif isinstance(hooks, list) and len(hooks) == 1 and isinstance(hooks[0], dict):
+        command = hooks[0].get("command")
+    else:
+        return False
+    if not isinstance(command, str):
+        return False
+    try:
+        args = shlex.split(command)
+    except ValueError:
+        return False
+    if not args or not re.fullmatch(r"(?:python(?:\d+(?:\.\d+)*)?(?:\.exe)?|bash|sh)", re.split(r"[/\\]", args[0])[-1], re.I):
+        return False
+    if len(args) == 3 and args[1] == "-c":
+        shim = re.fullmatch(
+            r"import base64,json,runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
+            args[2],
+        )
+        if not shim:
+            return False
         try:
-            decoded = json.loads(base64.b64decode(encoded, validate=True))
-            if isinstance(decoded, list) and all(isinstance(arg, str) for arg in decoded):
-                blob += " ".join(decoded)
+            decoded = json.loads(base64.b64decode(shim.group(1), validate=True))
         except (ValueError, UnicodeDecodeError):
+            return False
+        if not isinstance(decoded, list) or not decoded or not all(isinstance(x, str) for x in decoded):
+            return False
+        args = [args[0], *decoded]
+    # Only argv[1] is the executed script; later arguments are user data.
+    for arg in args[1:2]:
+        if arg.startswith("-"):
             continue
-    for marker in markers:
-        if marker not in blob:
-            continue
-        if marker.startswith("/harnesses/") and marker.endswith("/session-start.sh"):
-            # This generic filename also exists in other products. A retired
-            # checkout must retain a Coacus-named path component as evidence.
-            owner = r'/[^/"\\]*\bcoacus\b[^/"\\]*' + re.escape(marker)
-            if re.search(owner, blob, flags=re.IGNORECASE):
+        for marker in markers:
+            if marker.startswith("--"):
+                continue
+            if arg == marker:
                 return True
-        else:
-            return True
     return False
 
 
@@ -868,14 +1275,25 @@ def _guardrail_artifacts(
     return files, fragment
 
 
-def _refuse_unenforceable(root: Path, harness: str) -> list[str]:
+def _refuse_unenforceable(
+    root: Path, harness: str, extra_docs: list[dict] | None = None
+) -> list[str]:
     """Return reasons the guardrail policy cannot be enforced on this harness.
 
     A ``deny`` policy bound to an event the harness cannot block would install as
     advisory while looking successful. Enforcement is refused, not degraded (D3).
+    ``extra_docs`` are policy documents generated during this run (the browser
+    policy) that are not on disk under the repository yet.
     """
     policy_dir = root / "methodology" / "lifecycle" / "policies"
-    if not policy_dir.is_dir():
+    docs: list[dict] = list(extra_docs or [])
+    if policy_dir.is_dir():
+        for path in sorted(policy_dir.glob("*.policy.json")):
+            try:
+                docs.append(json.loads(path.read_text(encoding="utf-8")))
+            except (OSError, json.JSONDecodeError):
+                continue
+    if not docs:
         return []
     manifest = root / "harnesses" / harness / "harness.json"
     try:
@@ -884,11 +1302,7 @@ def _refuse_unenforceable(root: Path, harness: str) -> list[str]:
         return []
     lifecycle = data.get("lifecycle", {})
     reasons: list[str] = []
-    for path in sorted(policy_dir.glob("*.policy.json")):
-        try:
-            doc = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
+    for doc in docs:
         if doc.get("enabled") is not True:
             continue
         for policy in doc.get("policies", []):
@@ -916,15 +1330,21 @@ def _mcp_servers(root: Path) -> dict[str, dict]:
     mcp_root = root / "knowledge" / "mcps"
     if not mcp_root.is_dir():
         return servers
+    executable = getattr(sys, "_base_executable", None) or sys.executable
+    catalog_script = (root / "scripts" / "coacus_catalog_mcp.py").resolve().as_posix()
     for manifest in sorted(mcp_root.glob("*/dist/mcp.json")):
         data = _load_existing_json(manifest)
         name = str(data.get("name") or manifest.parent.parent.name)
         if str(data.get("transport") or "").lower() == "stdio":
             entry: dict = {"transport": "stdio", "enabled": True}
-            if data.get("command"):
-                entry["command"] = data["command"]
-            if data.get("args"):
-                entry["args"] = data["args"]
+            if name == "coacus-catalog":
+                entry["command"] = executable
+                entry["args"] = [catalog_script, "--root", root.resolve().as_posix()]
+            else:
+                if data.get("command"):
+                    entry["command"] = data["command"]
+                if data.get("args"):
+                    entry["args"] = data["args"]
         else:
             entry = {"transport": "http", "enabled": True}
             if data.get("url"):
@@ -987,6 +1407,100 @@ def _plan_skills(
     return plan
 
 
+def _plan_skills_links(
+    root: Path,
+    link_dir: Path,
+    canonical_dir: Path,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+) -> list[tuple[Path, FileContent]]:
+    """Symlink each selected skill from ``link_dir`` to the canonical copy.
+
+    The real skill files are installed once under ``canonical_dir`` (the shared
+    ``~/.agents/skills`` tree). A harness with its OWN skill home receives a
+    symlink per skill here, so there is a single source of truth.
+    """
+    plan: list[tuple[Path, FileContent]] = []
+    for skill in discover_skills(root, only=only, skills=skills):
+        plan.append(
+            (link_dir / skill.name, Symlink((canonical_dir / skill.name).as_posix()))
+        )
+    return plan
+
+
+def _install_symlink(target: Path, destination: str) -> None:
+    """Create ``target`` as a symlink to ``destination``, replacing a stale copy.
+
+    A prior (copy-mode) install may have left a real skill directory in the way;
+    it is removed so the link can take its place. Only a planned skill path is
+    ever passed here, and containment was checked before writing.
+    """
+    if target.is_symlink() or target.exists():
+        if target.is_dir() and not target.is_symlink():
+            shutil.rmtree(target)
+        else:
+            target.unlink()
+    os.symlink(destination, target)
+
+
+# Harnesses that write the canonical shared skills tree (directly or via links).
+CANONICAL_SKILLS_WRITERS = frozenset({"codex", "cursor", "command-code", "claude-code"})
+
+
+def _canonical_skills_dir(config_dir: Path) -> Path:
+    """The shared ``~/.agents/skills`` tree that holds the single real copy."""
+    return config_dir.parent / ".agents" / "skills"
+
+
+def _walk_chmod(path: Path, writable: bool) -> None:
+    """Best-effort add/remove write bits on a tree, never following symlinks.
+
+    Read-only skill directories make a consumer's own delete/update fail (it
+    cannot empty a directory it cannot write), while this installer restores
+    write access just before it needs to rewrite them.
+    """
+    if not path.exists():
+        return
+    targets = [path, *(p for p in path.rglob("*") if not p.is_symlink())] if path.is_dir() else [path]
+    for item in targets:
+        if item.is_symlink():
+            continue
+        try:
+            mode = item.lstat().st_mode & 0o777
+            new_mode = (mode | 0o222) if writable else (mode & ~0o222)
+            if new_mode != mode:
+                os.chmod(item, new_mode)
+        except OSError:
+            pass
+
+
+def _lock_canonical_skills(files: list[tuple[Path, FileContent]], config_dir: Path) -> None:
+    """Mark the canonical Coacus skill directories read-only after an install."""
+    canonical = _canonical_skills_dir(config_dir)
+    try:
+        canonical_resolved = canonical.resolve()
+    except OSError:
+        return
+    for target, content in files:
+        if isinstance(content, Symlink) or target.name != "SKILL.md":
+            continue
+        try:
+            if target.parent.resolve().is_relative_to(canonical_resolved):
+                skill_dir = target.parent
+                for planned, value in files:
+                    if isinstance(value, Symlink) or not planned.is_relative_to(skill_dir):
+                        continue
+                    if planned.is_file() and not planned.is_symlink():
+                        os.chmod(planned, planned.stat().st_mode & ~0o222)
+                    directory = planned.parent
+                    while directory.is_relative_to(skill_dir):
+                        if not directory.is_symlink():
+                            os.chmod(directory, directory.stat().st_mode & ~0o222)
+                        directory = directory.parent
+        except OSError:
+            pass
+
+
 def _read_source(path: Path) -> FileContent:
     """Text for a UTF-8 file, raw bytes for a binary companion (e.g. an image)."""
     try:
@@ -1034,9 +1548,24 @@ def _plan_claude(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    skills_mode: str = "link",
+    is_desktop_target: bool = False,
 ) -> list[tuple[Path, FileContent]]:
-    """Skills + subagents + a hook plugin whose script matches hooks.json."""
-    plan = _plan_skills(root, config_dir / "skills", only, skills)
+    """Skills + subagents + a hook plugin whose script matches hooks.json.
+
+    ``skills_mode="link"`` (default) installs the real skill files once under the
+    shared ``~/.agents/skills`` tree and symlinks them into ``~/.claude/skills``,
+    so a consumer that scans both homes (Orca's skill list) sees a single copy.
+    ``"copy"`` restores the previous per-harness copies.
+    """
+    if skills_mode == "link":
+        canonical_skills = config_dir.parent / ".agents" / "skills"
+        plan = _plan_skills(root, canonical_skills, only, skills)
+        plan += _plan_skills_links(
+            root, config_dir / "skills", canonical_skills, only, skills
+        )
+    else:
+        plan = _plan_skills(root, config_dir / "skills", only, skills)
     # Claude Code subagents load from ~/.claude/agents/<name>.md.
     plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     plugin = config_dir / "plugins" / "coacus"
@@ -1076,6 +1605,30 @@ def _plan_claude(
             ),
         )
     )
+    # Global settings.json hooks (active for CLI, IDE extension and Desktop Code tab)
+    settings_path = config_dir / "settings.json"
+    existing_settings = _load_existing_json(settings_path)
+    merged_settings = _merge_hooks(existing_settings, bootstrap_fragment, markers)
+    if guard_fragment:
+        merged_settings = _merge_hooks(merged_settings, guard_fragment, markers)
+    plan.append((settings_path, json.dumps(merged_settings, indent=2) + "\n"))
+
+    # Claude Desktop MCP configuration
+    servers = _mcp_servers(root)
+    if servers:
+        desktop_candidates = _claude_desktop_config_paths(config_dir.parent)
+        configured_desktop = False
+        for cpath in desktop_candidates:
+            if cpath.parent.is_dir() or cpath.is_file():
+                existing_mcp = _load_existing_json(cpath)
+                merged_mcp = _merge_mcp(existing_mcp, servers)
+                plan.append((cpath, json.dumps(merged_mcp, indent=2) + "\n"))
+                configured_desktop = True
+        if not configured_desktop and is_desktop_target:
+            primary = _primary_claude_desktop_config_path(config_dir.parent)
+            existing_mcp = _load_existing_json(primary)
+            merged_mcp = _merge_mcp(existing_mcp, servers)
+            plan.append((primary, json.dumps(merged_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1085,6 +1638,7 @@ def _plan_antigravity(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    profile: str = "on-demand",
 ) -> list[tuple[Path, FileContent]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
@@ -1093,11 +1647,23 @@ def _plan_antigravity(
     ``rules/`` dir with ``activation: always_on``; no registry edit is required.
     """
     plugin = config_dir / "config" / "plugins" / "coacus"
-    plan = _plan_skills(root, plugin / "skills", only, skills)
-    plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
-    for name in ("plugin.json", "coacus-rule.md"):
+    if profile not in {"full", "on-demand"}:
+        raise ValueError("Antigravity profile must be 'full' or 'on-demand'")
+    if profile == "on-demand":
+        plan = _antigravity_catalog_files(root, plugin, only, skills, agents)
+        plan.append((plugin / "coacus_catalog_mcp.py", _read_source(root / "scripts/coacus_catalog_mcp.py")))
+        rule_source = root / "harnesses/antigravity/coacus-on-demand-rule.md"
+        if not rule_source.is_file():
+            raise FileNotFoundError(f"on-demand Antigravity rule is missing: {rule_source}")
+        plan.append((plugin / "rules" / "coacus.md", _read_source(rule_source)))
+        plan.append((plugin / "mcp_config.json", _antigravity_catalog_mcp_config(root, plugin)))
+    else:
+        plan = _plan_skills(root, plugin / "skills", only, skills)
+        plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
+        plan.append((plugin / "rules" / "coacus.md", _read_source(root / "harnesses/antigravity/bootstrap/coacus-rule.md")))
+    for name in ("plugin.json",):
         source = root / "harnesses/antigravity/bootstrap" / name
-        plan.append((plugin / name, source.read_text(encoding="utf-8")))
+        plan.append((plugin / name, _read_source(source)))
     # Merge the governor wiring and the guardrail fragment into ONE plugin
     # hooks.json (the file the harness reads), keyed by hook-set name.
     hooks_doc = json.loads(_antigravity_hooks_json(root))
@@ -1107,6 +1673,14 @@ def _plan_antigravity(
         hooks_doc.update(guard_fragment)
     if hooks_doc:
         plan.append((plugin / "hooks.json", json.dumps(hooks_doc, indent=2) + "\n"))
+    # Antigravity IDE global MCP configuration
+    antigravity_ide_dir = config_dir / "antigravity"
+    ide_mcp_path = antigravity_ide_dir / "mcp_config.json"
+    servers = _mcp_servers(root)
+    if servers and (antigravity_ide_dir.is_dir() or ide_mcp_path.exists()):
+        existing_ide_mcp = _load_existing_json(ide_mcp_path)
+        merged_ide_mcp = _merge_mcp(existing_ide_mcp, servers)
+        plan.append((ide_mcp_path, json.dumps(merged_ide_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1209,6 +1783,12 @@ def _plan_cursor(
             json.dumps(merged, indent=2) + "\n",
         )
     )
+    servers = _mcp_servers(root)
+    if servers:
+        cursor_mcp = config_dir / "mcp.json"
+        existing_cursor_mcp = _load_existing_json(cursor_mcp)
+        merged_cursor_mcp = _merge_mcp(existing_cursor_mcp, servers)
+        plan.append((cursor_mcp, json.dumps(merged_cursor_mcp, indent=2) + "\n"))
     return plan
 
 
@@ -1292,6 +1872,8 @@ def plan(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    skills_mode: str = "link",
+    antigravity_profile: str = "on-demand",
 ) -> list[tuple[Path, FileContent]]:
     """Compute the files to install for ``harness`` under the given filters.
 
@@ -1301,10 +1883,18 @@ def plan(
     """
     if harness == "opencode":
         return _plan_opencode(root, config_dir, only, skills, agents)
-    if harness == "claude-code":
-        return _plan_claude(root, config_dir, only, skills, agents)
+    if harness in ("claude-code", "claude-desktop"):
+        return _plan_claude(
+            root,
+            config_dir,
+            only,
+            skills,
+            agents,
+            skills_mode,
+            is_desktop_target=(harness == "claude-desktop"),
+        )
     if harness == "antigravity":
-        return _plan_antigravity(root, config_dir, only, skills, agents)
+        return _plan_antigravity(root, config_dir, only, skills, agents, antigravity_profile)
     if harness == "codex":
         return _plan_codex(root, config_dir, only, skills, agents)
     if harness == "cursor":
@@ -1326,6 +1916,11 @@ def _is_default_target(harness: str, config_dir: Path) -> bool:
         return config_dir == default_config_dir(harness, _home())
 
 
+def _install_text_bytes(content: str) -> bytes:
+    """Match the native newline translation of UTF-8 text-mode writes."""
+    return content.replace("\n", os.linesep).encode("utf-8")
+
+
 def install(
     harness: str,
     root: Path,
@@ -1337,6 +1932,11 @@ def install(
     allow_advisory: bool = False,
     force: bool = False,
     codex_skill_profile: str = "compact",
+    skills_mode: str = "link",
+    lock_skills: bool | None = None,
+    extra_policy_docs: list[dict] | None = None,
+    antigravity_profile: str = "on-demand",
+    legacy_backup_dir: Path | None = None,
 ) -> dict[str, object]:
     """Install a harness and write its manifest; report files written.
 
@@ -1362,7 +1962,7 @@ def install(
             "config_dir": config_dir.as_posix(),
             "files": [],
         }
-    refusals = _refuse_unenforceable(root, harness)
+    refusals = _refuse_unenforceable(root, harness, extra_policy_docs)
     if refusals and not allow_advisory:
         return {
             "harness": harness,
@@ -1370,8 +1970,18 @@ def install(
             "refusals": refusals,
             "files": [],
         }
-    files = plan(harness, root, config_dir, only, skills, agents)
-    _assert_contained(files, config_dir)
+    files = plan(
+        harness, root, config_dir, only, skills, agents, skills_mode, antigravity_profile
+    )
+    try:
+        _assert_contained(files, config_dir)
+    except ValueError as exc:
+        return {"harness": harness, "error": str(exc),
+                "conflicts": [str(t) for t, _ in files if t.is_symlink()], "files": []}
+    if lock_skills is None:
+        # Default: protect the shared tree only at a harness's real install
+        # location, never an explicit custom target (tests, staging).
+        lock_skills = _is_default_target(harness, config_dir)
     codex_update = (
         _codex_config_update(root, config_dir, codex_skill_profile)
         if harness == "codex"
@@ -1379,11 +1989,89 @@ def install(
     )
     previous_manifest = config_dir / MANIFEST_NAME
     previous_files: list[str] = []
+    previous_workflows: dict[str, str] = {}
+    previous_fingerprints: dict[str, str] = {}
     if previous_manifest.is_file():
         try:
-            previous_files = _parse_manifest(previous_manifest).get("files", [])
+            previous_data = _parse_manifest(previous_manifest)
+            previous_files = previous_data.get("files", [])
+            previous_workflows = previous_data.get("workflow_fingerprints", {})
+            previous_fingerprints = previous_data.get("file_fingerprints", {})
         except ValueError:
             pass
+    ambiguous_hooks = []
+    for hook_path in _merged_config_paths(harness, config_dir):
+        document = _load_existing_json(hook_path)
+        events = document.get("hooks", {})
+        if not isinstance(events, dict):
+            continue
+        markers = _hook_owner_markers(root, harness)
+        for entries in events.values():
+            if not isinstance(entries, list):
+                continue
+            if any(not _entry_owned(entry, markers) and re.search(
+                    r"(?:coacus_session_start\.py|coacus_guard\.py|/harnesses/[^/]+/bootstrap/(?:session-start|coacus-guard)\.sh)",
+                    json.dumps(entry)) for entry in entries):
+                ambiguous_hooks.append(hook_path.as_posix())
+                break
+    conflicts = []
+    legacy_backup_targets: list[Path] = []
+    legacy_unchanged: dict[Path, str] = {}
+    shared_fingerprints: dict[str, str] = {}
+    for other in config_dir.parent.glob("*/coacus-install.json"):
+        if other == previous_manifest:
+            continue
+        try:
+            data = _parse_manifest(other)
+            shared_fingerprints.update({p: d for p, d in data.get("file_fingerprints", {}).items()
+                                        if p in data.get("files", [])})
+        except (ValueError, AttributeError, TypeError):
+            continue
+    merged_paths = set(_merged_config_paths(harness, config_dir) + _merged_mcp_paths(harness, config_dir))
+    for target, content in files:
+        if not (target.exists() or target.is_symlink()):
+            continue
+        path = target.as_posix()
+        if isinstance(content, Symlink):
+            safe = (path in previous_files and target.is_symlink()
+                    and previous_fingerprints.get(path) in (None, "symlink:" + os.readlink(target))
+                    and os.readlink(target) == content.target)
+        else:
+            digest = previous_fingerprints.get(path) or previous_workflows.get(path) or shared_fingerprints.get(path)
+            target_bytes = target.read_bytes() if not target.is_symlink() and target.is_file() else None
+            expected = _install_text_bytes(content) if isinstance(content, str) else content
+            safe = ((path in previous_files or path in shared_fingerprints) and isinstance(digest, str)
+                    and target_bytes is not None
+                    and (hashlib.sha256(target_bytes).hexdigest() == digest or target_bytes == expected))
+            if (not safe and path in previous_files and digest is None
+                    and target_bytes is not None):
+                safe = target_bytes == expected
+                if safe and target not in merged_paths:
+                    legacy_unchanged[target] = hashlib.sha256(expected).hexdigest()
+                if not safe and legacy_backup_dir is not None and target not in merged_paths:
+                    legacy_backup_targets.append(target)
+                    safe = True
+            if target in merged_paths and not target.is_symlink() and target.is_file():
+                try:
+                    original = json.loads(target.read_text(encoding="utf-8"))
+                    proposed = json.loads(content)
+                    safe = isinstance(original, dict) and isinstance(proposed, dict)
+                    if safe and target in _merged_mcp_paths(harness, config_dir):
+                        old_servers = original.get("mcpServers", {})
+                        new_servers = proposed.get("mcpServers", {})
+                        safe = (isinstance(old_servers, dict) and isinstance(new_servers, dict)
+                                and all(k not in new_servers or new_servers[k] == v
+                                        for k, v in old_servers.items()))
+                except (OSError, ValueError, TypeError):
+                    safe = False
+        if not safe:
+            conflicts.append(path)
+    if conflicts:
+        return {"harness": harness, "error": "install conflicts with existing files",
+                "conflicts": sorted(conflicts), "files": [],
+                "recovery": ("Review and back up each conflicting path. Move or remove it only "
+                             "after deciding it is safe, then rerun installation. Legacy manifests "
+                             "without fingerprints cannot distinguish updates from local edits.")}
     rules_target = config_dir / COMMAND_CODE_RULES_FILE
     rules_source = root / "harnesses" / "command-code" / COMMAND_CODE_RULES_FILE
     rules_pending = (
@@ -1397,19 +2085,122 @@ def install(
             "files": [str(t) for t, _ in files],
             "rules": rules_target.as_posix() if rules_pending else None,
             "dry_run": True,
+            "legacy_backup_targets": [str(p) for p in legacy_backup_targets],
             "only": only or [],
             "skills": skills or [],
             "agents": agents or [],
             **({"codex_skill_profile": codex_skill_profile} if harness == "codex" else {}),
+            **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
         }
+    legacy_backup_digests: dict[Path, str] = {}
+    legacy_live_backups: dict[Path, Path] = {}
+    if legacy_backup_targets:
+        if legacy_backup_dir is None:
+            return {"harness": harness, "error": "legacy backup directory is required", "files": []}
+        try:
+            legacy_backup_dir.mkdir(mode=0o700, parents=False, exist_ok=False)
+            records = []
+            for index, target in enumerate(legacy_backup_targets):
+                content = target.read_bytes()
+                name = str(index)
+                (legacy_backup_dir / name).write_bytes(content)
+                if (legacy_backup_dir / name).read_bytes() != content:
+                    raise OSError("backup verification failed")
+                live_name = name + ".current"
+                records.append({"original": str(target), "backup": name, "preserved_current": live_name,
+                                "sha256": hashlib.sha256(content).hexdigest()})
+                legacy_backup_digests[target] = hashlib.sha256(content).hexdigest()
+                legacy_live_backups[target] = legacy_backup_dir / live_name
+            (legacy_backup_dir / "manifest.json").write_text(
+                json.dumps({"files": records}, indent=2), encoding="utf-8")
+            for target, digest in legacy_backup_digests.items():
+                if (target.is_symlink() or not target.is_file()
+                        or hashlib.sha256(target.read_bytes()).hexdigest() != digest):
+                    return {"harness": harness, "error": "legacy file changed during backup",
+                            "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": []}
+        except OSError as exc:
+            return {"harness": harness, "error": "legacy backup failed", "detail": str(exc), "files": []}
+    # Unlock only directories backed by validated, fingerprinted managed files.
+    managed_dirs: set[Path] = set()
+    canonical = _canonical_skills_dir(config_dir)
+    fingerprints = {**shared_fingerprints, **previous_fingerprints}
+    for path, digest in fingerprints.items():
+        target = Path(path)
+        if (target.is_relative_to(canonical) and not target.is_symlink()
+                and target.is_file() and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            directory = target.parent
+            while directory != canonical and directory.is_relative_to(canonical):
+                if not directory.is_symlink():
+                    managed_dirs.add(directory)
+                directory = directory.parent
+    for target in legacy_backup_targets:
+        if target.is_relative_to(canonical):
+            directory = target.parent
+            while directory != canonical and directory.is_relative_to(canonical):
+                if not directory.is_symlink():
+                    managed_dirs.add(directory)
+                directory = directory.parent
+    modes: dict[Path, int] = {}
     written: list[str] = []
-    for target, content in files:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if isinstance(content, bytes):
-            target.write_bytes(content)
-        else:
-            target.write_text(content, encoding="utf-8")
-        written.append(target.as_posix())
+    legacy_written_expected: dict[Path, str] = {}
+    try:
+        for target, content in files:
+            if target in legacy_unchanged:
+                written.append(target.as_posix())
+                continue
+            if target in legacy_backup_digests and (
+                    target.is_symlink() or not target.is_file()
+                    or hashlib.sha256(target.read_bytes()).hexdigest() != legacy_backup_digests[target]):
+                return {"harness": harness, "error": "legacy file changed after backup",
+                        "conflicts": [str(target)], "legacy_backup": str(legacy_backup_dir), "files": written}
+            for directory in reversed(target.parent.parents):
+                if directory in managed_dirs and directory not in modes:
+                    modes[directory] = directory.stat().st_mode & 0o7777
+                    os.chmod(directory, modes[directory] | 0o200)
+            if target.parent in managed_dirs and target.parent not in modes:
+                modes[target.parent] = target.parent.stat().st_mode & 0o7777
+                os.chmod(target.parent, modes[target.parent] | 0o200)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if (target not in legacy_live_backups and target.is_file() and not target.is_symlink()
+                    and (target.as_posix() in previous_files or target.as_posix() in shared_fingerprints)):
+                os.chmod(target, target.stat().st_mode | 0o200)
+            if target in legacy_live_backups:
+                live_backup = legacy_live_backups[target]
+                try:
+                    # Rename retains the actual inode, including edits made through
+                    # a descriptor opened before this operation. O_EXCL prevents
+                    # replacing a new file created at the original path.
+                    os.rename(target, live_backup)
+                    if live_backup.is_symlink() or not live_backup.is_file():
+                        return {"harness": harness, "error": "legacy file changed type",
+                                "legacy_backup": str(legacy_backup_dir), "files": written}
+                    mode = live_backup.stat().st_mode & 0o777
+                    new_content = _install_text_bytes(content) if isinstance(content, str) else content
+                    fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
+                    try:
+                        stream = os.fdopen(fd, "wb")
+                    except OSError:
+                        os.close(fd)
+                        raise
+                    with stream:
+                        stream.write(new_content)
+                    legacy_written_expected[target] = hashlib.sha256(new_content).hexdigest()
+                except OSError as exc:
+                    return {"harness": harness, "error": "legacy replacement failed",
+                            "detail": str(exc), "legacy_backup": str(legacy_backup_dir), "files": written}
+            elif isinstance(content, Symlink):
+                _install_symlink(target, content.target)
+            elif isinstance(content, bytes):
+                target.write_bytes(content)
+            else:
+                target.write_text(content, encoding="utf-8")
+            written.append(target.as_posix())
+    finally:
+        for directory, mode in reversed(list(modes.items())):
+            os.chmod(directory, mode)
+    if lock_skills and harness in CANONICAL_SKILLS_WRITERS:
+        _lock_canonical_skills(files, config_dir)
     if codex_update is not None:
         updated_config, owned_block, conflicts, config_existed = codex_update
         _write_codex_config(config_dir, updated_config, config_existed)
@@ -1418,14 +2209,75 @@ def install(
     planned = set(written)
     retired = {"session-start.sh", "coacus-guard.sh", "governor-hook.sh"}
     allowed = [directory.resolve() for directory in _allowed_roots(config_dir)]
+    shared = _claimed_elsewhere(config_dir, previous_manifest)
+    retained: list[str] = []
     for old in previous_files:
         target = Path(old)
-        canonical = target.as_posix()
-        replacement = canonical + ".py" in planned
-        if ((target.name in retired or replacement) and canonical not in planned
+        replacement = old + ".py" in planned
+        candidate = (harness == "antigravity" and not (only or skills or agents)) or target.name in retired or replacement
+        if not candidate or old in planned or not (target.exists() or target.is_symlink()):
+            continue
+        digest = previous_fingerprints.get(old) or previous_workflows.get(old)
+        if (old not in shared and not target.is_symlink() and target.is_file()
                 and any(_is_within(target.resolve(), directory) for directory in allowed)
-                and target.is_file()):
+                and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
             target.unlink()
+        else:
+            retained.append(old)
+    if harness == "antigravity":
+        _prune_empty_dirs([p for p in previous_files if p not in planned and p not in retained], allowed)
+    # Retire only removed workflow names, not workflows omitted by filters.
+    workflow_names = {p.name for p in discover_skills(root)
+                      if _is_within(p.resolve(), (root / "methodology/workflows").resolve())}
+    for old, digest in previous_workflows.items():
+        target = Path(old)
+        if (old in previous_files and old not in planned and old not in shared and target.is_file()
+                and not any(part in workflow_names for part in target.parts)
+                and not target.is_symlink()
+                and any(_is_within(target.resolve(), directory) for directory in allowed)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            target.unlink()
+        elif (old not in planned and (target.exists() or target.is_symlink())
+              and not any(part in workflow_names for part in target.parts)
+              and old not in retained):
+            retained.append(old)
+    # Older manifests have no digest; their stale paths cannot be safely retired.
+    for old in previous_files:
+        target = Path(old)
+        if (old not in planned and old not in previous_workflows
+                and old not in previous_fingerprints and old not in retained
+                and (target.exists() or target.is_symlink())):
+            retained.append(old)
+    carried_fingerprints = {}
+    for old, digest in previous_fingerprints.items():
+        target = Path(old)
+        if old not in previous_files or old in planned or not isinstance(digest, str):
+            continue
+        if not any(_is_within(target.parent.resolve(), directory) for directory in allowed):
+            continue
+        if target.is_symlink():
+            matches = digest == "symlink:" + os.readlink(target)
+        else:
+            matches = target.is_file() and hashlib.sha256(target.read_bytes()).hexdigest() == digest
+        if matches:
+            carried_fingerprints[old] = digest
+            written.append(old)
+    workflow_fingerprints = {}
+    for old, digest in previous_workflows.items():
+        target = Path(old)
+        if (old in previous_files and old not in planned and target.is_file() and not target.is_symlink()
+                and any(_is_within(target.resolve(), directory) for directory in allowed)
+                and isinstance(digest, str)
+                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+            workflow_fingerprints[old] = digest
+            if old not in written:
+                written.append(old)
+    for target, content in files:
+        if (not isinstance(content, Symlink) and any(part in workflow_names for part in target.parts)
+                and target.is_file() and not target.is_symlink()):
+            workflow_fingerprints[target.as_posix()] = (legacy_unchanged.get(target) or legacy_written_expected.get(target)
+                                                        or hashlib.sha256(target.read_bytes()).hexdigest())
     rules = _provision_rules(harness, root, config_dir)
     manifest = config_dir / MANIFEST_NAME
     manifest.write_text(
@@ -1433,9 +2285,20 @@ def install(
             {
                 "harness": harness,
                 "files": written,
+                "workflow_fingerprints": workflow_fingerprints,
+                "file_fingerprints": {
+                    **carried_fingerprints,
+                    **{target.as_posix(): ("symlink:" + os.readlink(target) if isinstance(content, Symlink)
+                                        else legacy_unchanged.get(target) or legacy_written_expected.get(target)
+                                        or hashlib.sha256(target.read_bytes()).hexdigest())
+                    for target, content in files
+                    if target.is_symlink() and isinstance(content, Symlink)
+                    or target.is_file() and not target.is_symlink()}
+                },
                 "only": only or [],
                 "skills": skills or [],
                 "agents": agents or [],
+                "skills_mode": skills_mode,
                 **(
                     {
                         "codex_skill_profile": codex_skill_profile,
@@ -1443,6 +2306,11 @@ def install(
                         "codex_config_existed": config_existed,
                     }
                     if codex_update is not None
+                    else {}
+                ),
+                **(
+                    {"antigravity_profile": antigravity_profile}
+                    if harness == "antigravity"
                     else {}
                 ),
             },
@@ -1454,14 +2322,18 @@ def install(
     return {
         "harness": harness,
         "files": written,
+        "retained": sorted(retained),
+        "ambiguous_hooks": sorted(ambiguous_hooks),
         "rules": rules.as_posix() if rules else None,
         "manifest": manifest.as_posix(),
+        "legacy_backup": str(legacy_backup_dir) if legacy_backup_targets else None,
         "advisory_downgrades": refusals if (refusals and allow_advisory) else [],
         **(
             {"codex_skill_profile": codex_skill_profile,
              "codex_skill_conflicts": conflicts}
             if codex_update is not None else {}
         ),
+        **({"antigravity_profile": antigravity_profile} if harness == "antigravity" else {}),
     }
 
 
@@ -1498,17 +2370,68 @@ def _agent_key(target: Path) -> str:
 
 
 def _component_counts(files: list[tuple[Path, FileContent]]) -> dict[str, int]:
-    """Distinct skills/agents plus hook/other file counts, from a plan."""
-    skills = {t.parent.as_posix() for t, _ in files if t.name == "SKILL.md"}
-    agents = {_agent_key(t) for t, _ in files if _classify(t) == "agent"}
-    hooks = [t for t, _ in files if _classify(t) == "hook"]
-    other = [t for t, _ in files if _classify(t) == "other"]
+    """Distinct skills/agents plus hook/other file counts, from a plan.
+
+    Symlink entries are excluded: they point at a canonical copy already counted
+    once, so including them would double-count every shared skill.
+    """
+    real = [(t, c) for t, c in files if not isinstance(c, Symlink)]
+    skills = {t.parent.as_posix() for t, _ in real if t.name == "SKILL.md"}
+    agents = {_agent_key(t) for t, _ in real if _classify(t) == "agent"}
+    hooks = [t for t, _ in real if _classify(t) == "hook"]
+    other = [t for t, _ in real if _classify(t) == "other"]
+    catalog_skills = 0
+    catalog_agents = 0
+    for target, content in real:
+        if target.name != "index.json" or target.parent.name != "catalog" or not isinstance(content, str):
+            continue
+        try:
+            index = json.loads(content)
+        except json.JSONDecodeError:
+            continue
+        catalog_skills = len(index.get("skills", []))
+        catalog_agents = len(index.get("agents", []))
     return {
         "skills": len(skills),
         "agents": len(agents),
         "hook_files": len(hooks),
         "other_files": len(other),
+        "catalog_skills": catalog_skills,
+        "catalog_agents": catalog_agents,
     }
+
+
+def _merged_config_paths(harness: str, config_dir: Path) -> list[Path]:
+    """The user config files Coacus merges its hook entries into for ``harness``."""
+    if harness == "command-code":
+        return [config_dir / COMMAND_CODE_HOOKS_FILE]
+    if harness in ("claude-code", "claude-desktop"):
+        return [config_dir / "settings.json"]
+    return [config_dir / "hooks.json"]
+
+
+def _merged_mcp_paths(harness: str, config_dir: Path) -> list[Path]:
+    """The user MCP configs Coacus merges into, or empty when it installs none."""
+    if harness == "command-code":
+        return [config_dir / COMMAND_CODE_MCP_FILE]
+    if harness == "cursor":
+        return [config_dir / "mcp.json"]
+    if harness == "antigravity":
+        return [config_dir / "antigravity" / "mcp_config.json"]
+    if harness in ("claude-code", "claude-desktop"):
+        return _claude_desktop_config_paths(config_dir.parent)
+    return []
+
+
+def _merged_config_path(harness: str, config_dir: Path) -> Path:
+    """The primary user config file Coacus merges its hook entry into."""
+    return _merged_config_paths(harness, config_dir)[0]
+
+
+def _merged_mcp_path(harness: str, config_dir: Path) -> Path | None:
+    """The primary user MCP config Coacus merges into, or None."""
+    paths = _merged_mcp_paths(harness, config_dir)
+    return paths[0] if paths else None
 
 
 def _installed_state(
@@ -1521,17 +2444,25 @@ def _installed_state(
     install, so drift there means the Coacus entry is gone — not that the bytes
     differ. Every other file is compared verbatim.
     """
-    hooks_path = _merged_config_path(harness, config_dir)
+    hooks_paths = {p.resolve(): p for p in _merged_config_paths(harness, config_dir)}
     markers = _hook_owner_markers(root, harness)
-    mcp_path = _merged_mcp_path(harness, config_dir)
-    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
+    mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
+    mcp_names = set(_mcp_servers(root)) if mcp_paths else set()
     missing: list[str] = []
     drift: list[str] = []
     for target, content in files:
+        if isinstance(content, Symlink):
+            if not target.is_symlink() or os.readlink(target) != content.target:
+                drift.append(target.as_posix())
+            continue
         if not target.is_file():
             missing.append(target.as_posix())
             continue
-        if target == hooks_path:
+        try:
+            target_res = target.resolve()
+        except OSError:
+            target_res = target
+        if target_res in hooks_paths:
             expected_hooks = json.loads(content).get("hooks", {})
             actual_hooks = _load_existing_json(target).get("hooks", {})
             expected_entries = [
@@ -1543,7 +2474,7 @@ def _installed_state(
             ):
                 drift.append(target.as_posix())
             continue
-        if mcp_path is not None and target == mcp_path:
+        if target_res in mcp_paths:
             servers = _load_existing_json(target).get("mcpServers") or {}
             if not any(name in servers for name in mcp_names):
                 drift.append(target.as_posix())
@@ -1581,7 +2512,11 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
-    files = plan(harness, root, config_dir, only, skills, agents)
+    antigravity_profile = data.get("antigravity_profile", "full")
+    files = plan(
+        harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link"),
+        antigravity_profile,
+    )
     missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
     planned = {t.as_posix() for t, _ in files}
@@ -1599,6 +2534,8 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
             "extra_in_manifest": sorted(recorded - planned),
         }
     )
+    if harness == "antigravity":
+        result["antigravity_profile"] = antigravity_profile
     result["ok"] = not missing and not drift and recorded == planned
     if harness == "codex":
         profile = data.get("codex_skill_profile", "legacy-full")
@@ -1654,24 +2591,6 @@ def _claimed_elsewhere(config_dir: Path, own_manifest: Path) -> set[str]:
     return claimed
 
 
-def _merged_config_path(harness: str, config_dir: Path) -> Path:
-    """The user config file Coacus merges its hook entry into for ``harness``.
-
-    Most harnesses keep hooks in ``hooks.json``; Command Code keeps them in its
-    ``settings.json`` (key ``hooks``), so the uninstall strip must target that.
-    """
-    if harness == "command-code":
-        return config_dir / COMMAND_CODE_HOOKS_FILE
-    return config_dir / "hooks.json"
-
-
-def _merged_mcp_path(harness: str, config_dir: Path) -> Path | None:
-    """The user MCP config Coacus merges into, or None when it installs none."""
-    if harness == "command-code":
-        return config_dir / COMMAND_CODE_MCP_FILE
-    return None
-
-
 def uninstall(
     harness: str,
     root: Path,
@@ -1697,29 +2616,24 @@ def uninstall(
         return {"harness": harness, "removed": [], "skipped": [], "error": str(exc)}
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
-    if harness == "codex" and not dry_run and "codex_skill_profile" in data:
+    skipped: list[str] = []
+    if harness == "codex" and "codex_skill_profile" in data:
         config_path = config_dir / "config.toml"
         if config_path.is_file():
-            base, _ = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
-            if not base and not data.get("codex_config_existed", True):
-                config_path.unlink()
-            else:
-                _write_codex_config(config_dir, base, True)
+            base, block = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
+            if block != data.get("codex_profile_block"):
+                skipped.append(config_path.as_posix())
+            elif not dry_run:
+                if not base and not data.get("codex_config_existed", True):
+                    config_path.unlink()
+                else:
+                    _write_codex_config(config_dir, base, True)
     shared = _claimed_elsewhere(config_dir, manifest)
     planned: list[str] = []
-    skipped: list[str] = []
-    hooks_path = _merged_config_path(harness, config_dir)
+    hooks_paths = {p.resolve(): p for p in _merged_config_paths(harness, config_dir)}
     markers = _hook_owner_markers(root, harness)
-    existing_hooks = _load_existing_json(hooks_path) if hooks_path.is_file() else {}
-    had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
-    mcp_path = _merged_mcp_path(harness, config_dir)
-    mcp_names = set(_mcp_servers(root)) if mcp_path else set()
-    mcp_existing = (
-        _load_existing_json(mcp_path) if (mcp_path and mcp_path.is_file()) else {}
-    )
-    had_mcp_entry = bool(mcp_names) and any(
-        name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
-    )
+    mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
+    mcp_names = set(_mcp_servers(root)) if mcp_paths else set()
     for path in data.get("files", []):
         target = Path(path)
         if not any(_is_within(target.resolve(), r) for r in roots):
@@ -1728,32 +2642,73 @@ def uninstall(
         if path in shared:
             skipped.append(path)
             continue
-        if not dry_run and target == hooks_path and had_hooks_entry:
-            # hooks.json / settings.json is a user file we merged into; strip only
-            # our entries and never delete the user's other keys.
-            trimmed = _strip_hooks(_load_existing_json(hooks_path), markers)
-            if trimmed is None:
-                target.unlink()
-            else:
-                target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
-            planned.append(path)
-            continue
-        if not dry_run and mcp_path and target == mcp_path and had_mcp_entry:
-            # mcp.json is a user file we merged into; strip only our servers.
-            trimmed_mcp = _strip_mcp(_load_existing_json(mcp_path), mcp_names)
-            if trimmed_mcp is None:
-                target.unlink()
-            else:
-                target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
-            planned.append(path)
-            continue
-        if target.is_file():
+        fingerprints = data.get("file_fingerprints", {})
+        digest = fingerprints.get(path) or data.get("workflow_fingerprints", {}).get(path)
+        if target.is_symlink():
+            if digest != "symlink:" + os.readlink(target):
+                skipped.append(path)
+                continue
+            # A linked skill lives once in the canonical tree; removing our link
+            # here leaves the real copy (claimed by the shared tree) intact.
             if not dry_run:
                 target.unlink()
             planned.append(path)
+            continue
+        try:
+            target_res = target.resolve()
+        except OSError:
+            target_res = target
+        if target_res in hooks_paths:
+            if not target.is_file() or not isinstance(digest, str) or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+                skipped.append(path)
+                continue
+            if dry_run:
+                planned.append(path)
+                continue
+            existing_hooks = _load_existing_json(target)
+            had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
+            if had_hooks_entry:
+                trimmed = _strip_hooks(existing_hooks, markers)
+                if trimmed is None:
+                    target.unlink()
+                else:
+                    target.write_text(json.dumps(trimmed, indent=2) + "\n", encoding="utf-8")
+            planned.append(path)
+            continue
+        if target_res in mcp_paths:
+            if not target.is_file() or not isinstance(digest, str) or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+                skipped.append(path)
+                continue
+            if dry_run:
+                planned.append(path)
+                continue
+            mcp_existing = _load_existing_json(target)
+            had_mcp_entry = bool(mcp_names) and any(
+                name in (mcp_existing.get("mcpServers") or {}) for name in mcp_names
+            )
+            if had_mcp_entry:
+                trimmed_mcp = _strip_mcp(mcp_existing, mcp_names)
+                if trimmed_mcp is None:
+                    target.unlink()
+                else:
+                    target.write_text(json.dumps(trimmed_mcp, indent=2) + "\n", encoding="utf-8")
+            planned.append(path)
+            continue
+        if target.is_file() and isinstance(digest, str) and hashlib.sha256(target.read_bytes()).hexdigest() == digest:
+            if not dry_run:
+                parent_mode = target.parent.stat().st_mode
+                try:
+                    os.chmod(target.parent, parent_mode | 0o200)
+                    target.unlink()
+                finally:
+                    os.chmod(target.parent, parent_mode)
+            planned.append(path)
+        elif target.exists():
+            skipped.append(path)
     if not dry_run:
         _prune_empty_dirs([str(p) for p in data.get("files", [])], roots)
-        manifest.unlink()
+        if not skipped:
+            manifest.unlink()
     return {"harness": harness, "removed": planned, "skipped": skipped, "dry_run": dry_run}
 
 
@@ -1787,13 +2742,76 @@ def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
             pass  # not empty or already gone
 
 
+def _browser_policy_dir(config_dir_arg: str | None, explicit: str | None) -> Path:
+    """Where the generated browser policy lives.
+
+    An explicit ``--browser-policy-dir`` wins; a custom ``--config-dir`` (staging,
+    tests) keeps the policy beside it instead of touching the real user config;
+    otherwise the runtime guard's user policy directory is used.
+    """
+    from engine.guardrail import evaluate
+
+    if explicit:
+        return Path(explicit).expanduser()
+    if config_dir_arg:
+        return Path(config_dir_arg) / "coacus-policies"
+    return evaluate.user_policy_dir()
+
+
+def browser_policy_step(
+    root: Path,
+    mode: str,
+    policy_dir: Path,
+    primary: str | None = None,
+    fallback: str | None = None,
+    dry_run: bool = False,
+    ask=input,
+    say=print,
+) -> dict[str, object]:
+    """Detect installed browsers, choose primary/fallback and write the policy.
+
+    ``mode`` is ``off`` (do nothing), ``auto`` (preference order, no fallback),
+    ``prompt`` (interactive) or ``select`` (explicit ``primary``/``fallback``).
+    The generated policy is machine-local (D2: opt-in, never changes behaviour
+    unasked) and is returned alongside a summary so the installer can check it
+    can be enforced on each harness before writing anything.
+    """
+    from engine.guardrail import browsers
+
+    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix()}
+    if mode == "off":
+        return summary
+    catalog = browsers.load_catalog(root)
+    detected = browsers.detect(catalog)
+    summary["detected"] = [entry["id"] for entry in detected]
+    try:
+        if mode == "prompt":
+            selection = browsers.prompt_selection(catalog, detected, ask=ask, say=say)
+            if selection is None:
+                summary["status"] = "skipped"
+                return summary
+        else:
+            selection = browsers.choose(catalog, detected, primary=primary, fallback=fallback)
+    except ValueError as exc:
+        summary.update(status="error", error=str(exc))
+        return summary
+    document = browsers.build_policy(catalog, selection)
+    summary.update(selection=selection, policies=len(document["policies"]), document=document)
+    if dry_run:
+        summary["status"] = "dry-run"
+        return summary
+    summary["policy_file"] = browsers.write_policy(policy_dir, document).as_posix()
+    summary["status"] = "written"
+    return summary
+
+
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     """Parse arguments and run install, uninstall, verify or list."""
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
     parser.add_argument(
         "harness",
         nargs="?",
-        choices=["opencode", "claude-code", "antigravity", "codex", "cursor", "command-code", "all"],
+        choices=["opencode", "claude-code", "claude-desktop", "antigravity", "codex", "cursor", "command-code", "all"],
         help="harness to install into (omit with --list)",
     )
     parser.add_argument("--config-dir", help="override the harness config directory")
@@ -1817,6 +2835,33 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="Codex native skill visibility (default: compact; full restores legacy behavior)",
     )
     parser.add_argument(
+        "--antigravity-profile",
+        choices=["on-demand", "full"],
+        default="on-demand",
+        help="Antigravity catalog activation (default: on-demand; full installs all native entries)",
+    )
+    parser.add_argument(
+        "--skills-mode",
+        choices=["link", "copy"],
+        default=None,
+        help="Skills strategy for harnesses with their own skill home (default: link — "
+        "install once in ~/.agents/skills and symlink; copy restores per-harness copies)",
+    )
+    parser.add_argument(
+        "--lock-skills",
+        dest="lock_skills",
+        action="store_true",
+        default=None,
+        help="force the shared ~/.agents/skills tree read-only after install (default: "
+        "on at a harness's real install location, off for --config-dir)",
+    )
+    parser.add_argument(
+        "--no-lock-skills",
+        dest="lock_skills",
+        action="store_false",
+        help="leave the shared ~/.agents/skills tree writable after install",
+    )
+    parser.add_argument(
         "--list",
         dest="list_",
         action="store_true",
@@ -1826,6 +2871,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         "--verify",
         action="store_true",
         help="read-only: compare an installed harness against the repository, then exit non-zero on drift",
+    )
+    parser.add_argument(
+        "--legacy-backup-dir", type=Path,
+        help="back up divergent legacy managed files to a new directory before replacing them",
     )
     parser.add_argument(
         "--verify-after-install", action="store_true",
@@ -1842,6 +2891,26 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         action="store_true",
         help="install even when the harness is not detected on this machine (provision ahead of it)",
     )
+    parser.add_argument(
+        "--browser-policy",
+        choices=["off", "auto", "prompt"],
+        default=None,
+        help="detect installed browsers and restrict agents to the ones you select "
+        "(default: prompt on an interactive terminal, off otherwise; auto picks by "
+        "catalogue preference)",
+    )
+    parser.add_argument(
+        "--browser-primary",
+        help="browser id agents may drive (see methodology/lifecycle/browsers.json); implies a policy",
+    )
+    parser.add_argument(
+        "--browser-fallback",
+        help="optional second browser id agents may drive if the primary is unavailable",
+    )
+    parser.add_argument(
+        "--browser-policy-dir",
+        help="directory for the generated browser policy (default: the user policy directory)",
+    )
     args = parser.parse_args(argv)
     if args.verify_after_install and (args.verify or args.uninstall or args.dry_run or args.list_):
         parser.error("--verify-after-install requires a real installation")
@@ -1856,6 +2925,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     if not args.harness:
         parser.error("a harness is required unless --list is used")
+    if args.legacy_backup_dir and args.harness == "all":
+        parser.error("--legacy-backup-dir requires one harness at a time")
 
     # A filter that matches nothing silently installs only the harness files;
     # surface the typo instead (categories come from --list). `--only` spans
@@ -1885,6 +2956,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     )
     if args.codex_skill_profile and "codex" not in harnesses:
         parser.error("--codex-skill-profile applies only to codex or all")
+    if args.antigravity_profile != "on-demand" and "antigravity" not in harnesses:
+        parser.error("--antigravity-profile applies only to antigravity or all")
     if args.verify:
         results = []
         ok = True
@@ -1895,8 +2968,43 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             report = verify(harness, root or ROOT, config_dir)
             results.append(report)
             ok = ok and bool(report.get("ok"))
+        if results:
+            from engine.guardrail import browsers
+
+            # Opt-in feature: absence is informational, never a verification failure.
+            results[0]["browser_policy"] = {
+                "selection": browsers.read_selection(
+                    _browser_policy_dir(args.config_dir, args.browser_policy_dir)
+                )
+            }
         print(json.dumps(results, indent=2))
         return 0 if ok else 1
+
+    policy_dir = _browser_policy_dir(args.config_dir, args.browser_policy_dir)
+    browser: dict[str, object] = {"mode": "off", "status": "off"}
+    extra_docs: list[dict] | None = None
+    if not args.uninstall:
+        if args.browser_primary or args.browser_fallback:
+            browser_mode = "select"
+        elif args.browser_policy:
+            browser_mode = args.browser_policy
+        elif sys.stdin.isatty() and sys.stdout.isatty() and not args.dry_run:
+            browser_mode = "prompt"
+        else:
+            browser_mode = "off"
+        browser = browser_policy_step(
+            root or ROOT, browser_mode, policy_dir,
+            primary=args.browser_primary, fallback=args.browser_fallback,
+            dry_run=args.dry_run,
+        )
+        if browser.get("status") == "error":
+            print(json.dumps([{"harness": args.harness, "error": browser.get("error"),
+                               "browser_policy": {k: v for k, v in browser.items() if k != "document"}}],
+                             indent=2))
+            return 2
+        document = browser.get("document")
+        extra_docs = [document] if isinstance(document, dict) else None
+        browser = {k: v for k, v in browser.items() if k != "document"}
 
     results = []
     for harness in harnesses:
@@ -1909,8 +3017,20 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
                         allow_advisory=args.allow_advisory, force=args.force,
-                        codex_skill_profile=args.codex_skill_profile or "compact")
+                        codex_skill_profile=args.codex_skill_profile or "compact",
+                        skills_mode=args.skills_mode or "link",
+                        lock_skills=args.lock_skills,
+                        extra_policy_docs=extra_docs,
+                        antigravity_profile=args.antigravity_profile,
+                        legacy_backup_dir=args.legacy_backup_dir)
             )
+    if args.uninstall and args.harness == "all" and not args.dry_run:
+        from engine.guardrail import browsers
+
+        # The policy is machine-wide: only a full uninstall removes it.
+        browser = {"mode": "off", "status": "removed" if browsers.remove_policy(policy_dir) else "absent"}
+    if results:
+        results[0]["browser_policy"] = browser
     if args.verify_after_install:
         for result in results:
             if result.get("skipped") or result.get("error"):

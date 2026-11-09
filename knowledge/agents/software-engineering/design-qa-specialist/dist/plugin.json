@@ -1,0 +1,6 @@
+{
+  "name": "design-qa-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+  "entrypoint": "AGENT.md"
+}

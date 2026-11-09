@@ -5,6 +5,7 @@ Senior Backend Development Agent specialized in designing robust APIs (REST, gRP
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [financial-transaction-processing](../../../../skills/domains/industry/financial-transaction-processing/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [framework-grpc](../../../../skills/frameworks/framework-grpc/SKILL.md)
 - [framework-rest-api](../../../../skills/frameworks/framework-rest-api/SKILL.md)
@@ -74,3 +75,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [financial-transaction-processing](../../../../skills/domains/industry/financial-transaction-processing/SKILL.md) when designing or reviewing payment and financial transaction processing.

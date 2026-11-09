@@ -14,6 +14,9 @@ Status values: **done** (merged), **active** (in progress), **planned**.
 | **F6** | Corpus import: import, translate and organize the full corpus into the 10-category taxonomy. | done (commit `65b9fbc`) |
 | **F7** | Final consolidation: documentation set, corpus-and-taxonomy, changelog, contribution contract; reconcile the README with the shipped corpus. | done |
 | **F8** | Completeness verification: reconcile source repos, `sources.lock.json` and the catalog to prove nothing was left behind. | done |
+| **F9** | Portable lifecycle guardrails: PAER layer over abstract actions and native hook rendering per harness. | done |
+| **F10** | Self-improvement loop: opt-in, fail-open proposer pipeline with episodic sources and runtime ledger. | done |
+| **F11** | Canonical UI styles expansion, 14-part standard, anti-AI Slop governance and showcase integration. | done (commit `eb1fdc9`) |
 
 ## Phase detail
 
@@ -64,16 +67,16 @@ evaluation never blocks CI.
 Imported and translated the corpus using `templates/import/import-manifest.json`
 and `scripts/coacus_import.py`, recorded provenance in `sources.lock.json`, and
 reorganized the material into the ten-category taxonomy. Delivered (as of F6)
-199 knowledge skills, 58 agents, 15 process workflows and one MCP (214 catalog
+199 knowledge skills, 58 agents, 27 process workflows and one MCP (214 catalog
 skill entries: 199 + 15). See [`migration.md`](migration.md) and
 [corpus-and-taxonomy](standards/corpus-and-taxonomy.md).
 
 > Post-F7 the corpus was pruned of components coupled to a specific MCP server
 > (the `ai-memory` skills + `ai-memory-specialist`, and `autodoc-code-explorer`,
 > which drives the AutoDoc MCP). They are deliberately excluded in the import
-> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **355
-> knowledge skills plus 15 process workflows (370 catalog skill entries, the
-> number the installer and `--verify` report)**, 94 agents and one MCP.
+> manifest (`exclude_skills` / `exclude_agents`); the current corpus is **471
+> knowledge skills plus 29 process workflows (500 catalog skill entries, the
+> number the installer and `--verify` report)**, 104 agents and one MCP.
 
 ### F7 — Final consolidation (done)
 
@@ -127,3 +130,18 @@ native profile and locates the full canonical corpus on demand. PRs #60/#61 were
 integrated into `main`; local installations were refreshed and authorized shell
 residues in caches/histories were removed while preserving third-party plugins.
 See the [implementation and verification record](reports/2026-10-02-python-only-migration.md).
+
+### F11 — Canonical UI styles expansion and showcase integration (done)
+
+Expanded the canonical design library to 82 pure, decoupled UI styles, removed
+composite styles, corrected the Atompunk lineage, and added Windows XP, Dracula
+and Nordic. The styles follow the 14-part content architecture in the normative
+standard. The integrated showcase includes Driver.js onboarding, four
+demonstration views and effects with a `mount`/`cleanup` lifecycle. The
+deterministic `coacus_design_lint.py` enforces source-level Anti-AI Slop checks;
+it does not certify rendered accessibility or runtime behavior. The core phase
+delivery was merged in commit `eb1fdc9` (PR #91); subsequent bounded review
+corrections are recorded under `docs/reviews/`.
+Decision: [ADR 0008](decisions/0008-canonical-ui-styles-expansion-and-showcase.md).
+Standards: [`ui-style-architecture`](standards/ui-style-architecture.md),
+[`product-and-design-truth`](standards/product-and-design-truth.md).

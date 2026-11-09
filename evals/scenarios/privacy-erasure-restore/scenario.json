@@ -1,0 +1,19 @@
+{
+  "id": "privacy-erasure-restore",
+  "title": "Erasure retention and restoration",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not claim execution, change files or access real user data. A deletion workflow removes the live account but keeps subject-linked audit hashes forever. Restoring last month's backup makes the account available again. The product operates in Brazil and quotes UK backup guidance as if it were Brazilian law. Review the design.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|observ|context|condition|purpose|unknown)",
+      "reason": "Advisory routing signal; the rubric assesses decisions, not keyword presence."
+    }
+  ],
+  "rubric": [
+    "Justify retention per purpose and applicable law; hashes are not automatically anonymous.",
+    "Define backup expiry/restricted use and restoration handling that reapplies applicable deletion or restriction before exposure.",
+    "Distinguish UK guidance from Brazilian law and communicate deleted, retained and pending outcomes."
+  ],
+  "acceptance": "The response makes justified contextual decisions, proposes discriminating checks and states evidence limits without inventing execution."
+}

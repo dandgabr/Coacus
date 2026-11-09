@@ -1,0 +1,861 @@
+{
+  "scope": "PR positions 0-32: complete submitted patches read, tests inspected where included; no tests executed; relevance mapping remains partial",
+  "head_check": "git ls-remote origin refs/pull/*/head; all captured heads matched at check time",
+  "prs": [
+    {
+      "number": 358,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/358",
+      "captured_head": "93a55dca891b576bcb74920f613d3917d2d78c07",
+      "remote_head": "93a55dca891b576bcb74920f613d3917d2d78c07",
+      "patch_head_match": true,
+      "changed_files": [
+        "README.md",
+        "docs/skills.md",
+        "skills/xdflow/SKILL.md",
+        "skills/xdflow/references/custom-steps.md",
+        "skills/xdflow/references/pipelines-and-tuning.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed. Provider, dependency, model and scientific claims are not independently validated.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH] Add xdflow skill for leakage-safe decoding of"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 357,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/357",
+      "captured_head": "1f0ca2be9fd159a7379d581ecedc326240a696a7",
+      "remote_head": "1f0ca2be9fd159a7379d581ecedc326240a696a7",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pi-agent/SKILL.md",
+        "skills/pi-agent/references/models.md",
+        "skills/pi-agent/references/providers.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH] Add Bifrost gateway example to pi-agent custom models"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 355,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/355",
+      "captured_head": "393e25a2f3114d3547fb45deb22758790dbe28b9",
+      "remote_head": "393e25a2f3114d3547fb45deb22758790dbe28b9",
+      "patch_head_match": true,
+      "changed_files": [
+        "docs/security-triage.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH] docs: align security triage inventory with the current scan"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 354,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/354",
+      "captured_head": "723d13a5f4a0990b84fa4760f6db6b32af026d71",
+      "remote_head": "723d13a5f4a0990b84fa4760f6db6b32af026d71",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pathway-enrichment/scripts/run_enrichment.py",
+        "skills/pathway-enrichment/SKILL.md",
+        "tests/pathway-enrichment/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Inspected identifier cleanup, numeric missing token separation and tests patch excerpt. Literal missing-like gene symbols are retained; full patch and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(pathway-enrichment): preserve literal gene",
+        "[PATCH 2/3] docs(pathway-enrichment): document literal identifier",
+        "[PATCH 3/3] test(pathway-enrichment): cover literal identifiers and"
+      ],
+      "tests_changed": [
+        "tests/pathway-enrichment/test_scripts.py"
+      ]
+    },
+    {
+      "number": 353,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/353",
+      "captured_head": "f739cc4f99432faaea027e4ec80d5e6099acee49",
+      "remote_head": "f739cc4f99432faaea027e4ec80d5e6099acee49",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pkpd-modeling/scripts/_common.py",
+        "skills/pkpd-modeling/SKILL.md",
+        "tests/pkpd-modeling/test_csv_field_counts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Inspected shared reader and CSV field-count test patch excerpt. Nonempty surplus fields trigger InputError; full patch and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(pkpd-modeling): reject surplus delimited fields",
+        "[PATCH 2/3] docs(pkpd-modeling): document surplus-field rejection",
+        "[PATCH 3/3] test(pkpd-modeling): cover malformed field counts and CLI"
+      ],
+      "tests_changed": [
+        "tests/pkpd-modeling/test_csv_field_counts.py"
+      ]
+    },
+    {
+      "number": 352,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/352",
+      "captured_head": "f6b283d05ab3db6e2ba852d5edfc31e891b4f926",
+      "remote_head": "f6b283d05ab3db6e2ba852d5edfc31e891b4f926",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pysam/scripts/alignment_qc.py",
+        "skills/pysam/scripts/filter_alignments.py",
+        "skills/pysam/scripts/inspect_hts.py",
+        "skills/pysam/SKILL.md",
+        "skills/pysam/references/alignment_files.md",
+        "tests/pysam/test_no_sequence_dictionary.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: Unmapped sequential SAM/BAM may legitimately lack a reference dictionary. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/6] fix(pysam): accept unmapped streams in alignment QC",
+        "[PATCH 2/6] fix(pysam): preserve dictionary-free unmapped filtering",
+        "[PATCH 3/6] fix(pysam): inspect headers without a sequence dictionary",
+        "[PATCH 4/6] docs(pysam): describe dictionary-free stream limits",
+        "[PATCH 5/6] docs(pysam): clarify sequence dictionary validation",
+        "[PATCH 6/6] test(pysam): cover unmapped streams and validation"
+      ],
+      "tests_changed": [
+        "tests/pysam/test_no_sequence_dictionary.py"
+      ]
+    },
+    {
+      "number": 351,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/351",
+      "captured_head": "20aa293ad8c824dd60ffcc5d3f2cf34a9b262ba0",
+      "remote_head": "20aa293ad8c824dd60ffcc5d3f2cf34a9b262ba0",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/waypoint-bio/scripts/profiler_to_waypoint.py",
+        "skills/waypoint-bio/scripts/vocab_coverage.py",
+        "skills/waypoint-bio/SKILL.md",
+        "skills/waypoint-bio/references/data-preparation.md",
+        "tests/waypoint-bio/test_sample_identifiers.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no upstream acceptance implied. Tests explicitly encode missing-abundance-to-zero behavior; do not generalize it.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: Sample identifiers need string-preserving parsing separate from numeric missing-value behavior. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/5] fix(waypoint-bio): preserve converter and metadata sample",
+        "[PATCH 2/5] fix(waypoint-bio): retain sample IDs during coverage",
+        "[PATCH 3/5] chore(waypoint-bio): bump version for sample ID fix",
+        "[PATCH 4/5] docs(waypoint-bio): explain literal sample identifier",
+        "[PATCH 5/5] test(waypoint-bio): preserve literal IDs through CLI and"
+      ],
+      "tests_changed": [
+        "tests/waypoint-bio/test_sample_identifiers.py"
+      ]
+    },
+    {
+      "number": 350,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/350",
+      "captured_head": "d4888da36665f3d84ae23af43b734a084be803b1",
+      "remote_head": "d4888da36665f3d84ae23af43b734a084be803b1",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/uncertainty-and-units/scripts/convert_units.py",
+        "skills/uncertainty-and-units/SKILL.md",
+        "tests/uncertainty-and-units/test_affine_uncertainty.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Inspected propagate change and affine uncertainty test patch excerpt. Unit differences are converted without subtracting nearby absolute values; full patch and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(uncertainty-and-units): preserve affine uncertainty",
+        "[PATCH 2/3] chore(uncertainty-and-units): bump skill version for",
+        "[PATCH 3/3] test(uncertainty-and-units): cover affine and scale"
+      ],
+      "tests_changed": [
+        "tests/uncertainty-and-units/test_affine_uncertainty.py"
+      ]
+    },
+    {
+      "number": 349,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/349",
+      "captured_head": "bd5b949a80773d743233178d3f579ad36d345a1f",
+      "remote_head": "bd5b949a80773d743233178d3f579ad36d345a1f",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/analytical-method-validation/scripts/_common.py",
+        "skills/analytical-method-validation/scripts/check_response.py",
+        "skills/analytical-method-validation/SKILL.md",
+        "tests/analytical-method-validation/test_level_identity.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Inspected grouping changes in _common.py and check_response.py plus test_level_identity.py patch excerpt. Rounded concentration grouping is replaced with exact parsed numeric grouping; full patch and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/4] fix(analytical-method-validation): retain nominal levels",
+        "[PATCH 2/4] fix(analytical-method-validation): preserve response",
+        "[PATCH 3/4] docs(analytical-method-validation): define nominal level",
+        "[PATCH 4/4] test(analytical-method-validation): cover nominal level"
+      ],
+      "tests_changed": [
+        "tests/analytical-method-validation/test_level_identity.py"
+      ]
+    },
+    {
+      "number": 348,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/348",
+      "captured_head": "cbc1837ab22c5b4fa8179f3e93196656bd01e4cf",
+      "remote_head": "cbc1837ab22c5b4fa8179f3e93196656bd01e4cf",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/citation-management/scripts/format_bibtex.py",
+        "skills/citation-management/SKILL.md",
+        "tests/citation-management/test_dedup_retained_entries.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: DOI identity should be reserved only for entries retained after citation-key collision checks. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(citation-management): reserve DOIs only for retained",
+        "[PATCH 2/3] chore(citation-management): bump skill version to 2.4",
+        "[PATCH 3/3] test(citation-management): cover retained-entry DOI"
+      ],
+      "tests_changed": [
+        "tests/citation-management/test_dedup_retained_entries.py"
+      ]
+    },
+    {
+      "number": 347,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/347",
+      "captured_head": "c40b130bd6c3394c292c5e03b0d19ffd92b4f430",
+      "remote_head": "c40b130bd6c3394c292c5e03b0d19ffd92b4f430",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/paperclip/references/installation.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Documentation adds manual hash display; no automatic checksum comparison; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH] paperclip: verify the wheel checksum in the uv install route"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 346,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/346",
+      "captured_head": "7e45a8329d27c2cd68b09e6b797d7b2f19fbbb66",
+      "remote_head": "7e45a8329d27c2cd68b09e6b797d7b2f19fbbb66",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/generate-image/SKILL.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "do not adopt claim: documentation contradicts key resolution code",
+      "limits": "Base code inspected; full patch contains documentation only; tests not executed.",
+      "prior_observation": "Read full patch: Documentation alone claims changed key precedence, but base code still prioritizes explicit --api-key; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH] generate-image: prefer the env var over --api-key in the docs"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 345,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/345",
+      "captured_head": "2812fb6a4e120dfedc2409aa74a941f6b18aa9a7",
+      "remote_head": "2812fb6a4e120dfedc2409aa74a941f6b18aa9a7",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/exa-search/SKILL.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/agents/research-discovery/scientific-researcher/agent.source.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Retrieved pages are untrusted input; documentation-only change; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH] exa-search: treat retrieved content as untrusted"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 344,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/344",
+      "captured_head": "28215afde7dfb119ceeaf4a5d1ae475260ef90c9",
+      "remote_head": "28215afde7dfb119ceeaf4a5d1ae475260ef90c9",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/mageck/references/runtime.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Documentation adds tarball checksum command; digest origin independently unverified; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH] mageck: verify the tarball checksum in the install workflow"
+      ],
+      "tests_changed": []
+    },
+    {
+      "number": 343,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/343",
+      "captured_head": "3346592cb29ef59576eabb4d65cfe85efc1c36a8",
+      "remote_head": "3346592cb29ef59576eabb4d65cfe85efc1c36a8",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/bulk-rnaseq/SKILL.md",
+        "skills/bulk-rnaseq/references/counts-and-handoff.md",
+        "skills/bulk-rnaseq/scripts/_tabular.py",
+        "skills/bulk-rnaseq/scripts/build_counts_matrix.py",
+        "skills/bulk-rnaseq/scripts/validate_samplesheet.py",
+        "tests/bulk-rnaseq/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Inspected changes to _tabular.py, read_table callers, and test_scripts.py patch excerpt. Parser warnings become errors to avoid shifted or truncated values; full patch and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/4] chore(bulk-rnaseq): bump version for input parsing fix",
+        "[PATCH 2/4] docs(bulk-rnaseq): explain lossless table validation",
+        "[PATCH 3/4] fix(bulk-rnaseq): prevent implicit input index shifts",
+        "[PATCH 4/4] test(bulk-rnaseq): preserve identifiers and table parsing"
+      ],
+      "tests_changed": [
+        "tests/bulk-rnaseq/test_scripts.py"
+      ]
+    },
+    {
+      "number": 342,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/342",
+      "captured_head": "31fdfe20dcf1aa2632f73820a7bd51163224c29c",
+      "remote_head": "31fdfe20dcf1aa2632f73820a7bd51163224c29c",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pufferlib/SKILL.md",
+        "skills/pufferlib/scripts/validate_plan.py",
+        "tests/pufferlib/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Enum validation checks type before membership to avoid malformed JSON crash; unit and CLI cases; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] chore(pufferlib): bump version for validator fix",
+        "[PATCH 2/3] fix(pufferlib): validate enum types before membership",
+        "[PATCH 3/3] test(pufferlib): cover malformed enum values and JSON"
+      ],
+      "tests_changed": [
+        "tests/pufferlib/test_scripts.py"
+      ]
+    },
+    {
+      "number": 341,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/341",
+      "captured_head": "05eb1d352d0870e85fe924bb5c440d6ec4aa542d",
+      "remote_head": "05eb1d352d0870e85fe924bb5c440d6ec4aa542d",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/scikit-learn/SKILL.md",
+        "skills/scikit-learn/scripts/classification_pipeline.py",
+        "tests/scikit-learn/test_target_containers.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: Binary AUC computation needs elementwise target comparison across array-like containers. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] chore(scikit-learn): bump skill version for target",
+        "[PATCH 2/3] fix(scikit-learn): compare target sequences elementwise",
+        "[PATCH 3/3] test(scikit-learn): cover target container scoring"
+      ],
+      "tests_changed": [
+        "tests/scikit-learn/test_target_containers.py"
+      ]
+    },
+    {
+      "number": 340,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/340",
+      "captured_head": "34219d3f15cda773e3e4ced6939d9a2cf3b01c6d",
+      "remote_head": "34219d3f15cda773e3e4ced6939d9a2cf3b01c6d",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/protocolsio-integration/SKILL.md",
+        "skills/protocolsio-integration/scripts/protocols_read.py",
+        "tests/protocolsio-integration/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Returned output count is separated from collected records and redaction limit; mocked pagination tests; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] docs(protocolsio): distinguish collected from serialized",
+        "[PATCH 2/3] fix(protocolsio): report serialized and collected counts",
+        "[PATCH 3/3] test(protocolsio): preserve bounded output while checking"
+      ],
+      "tests_changed": [
+        "tests/protocolsio-integration/test_scripts.py"
+      ]
+    },
+    {
+      "number": 339,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/339",
+      "captured_head": "b2bb44236d3d6dc1cd4a92ebf1c000ba7c2dc353",
+      "remote_head": "b2bb44236d3d6dc1cd4a92ebf1c000ba7c2dc353",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/geniml/SKILL.md",
+        "skills/geniml/scripts/bed_validator.py",
+        "tests/geniml/test_overlap_order.py",
+        "skills/gtars/SKILL.md",
+        "skills/gtars/scripts/_common.py",
+        "tests/gtars/test_overlap_order.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no standards or live service claims verified.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: Half-open interval overlap counting should not depend on input order; adjacency is not overlap. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/6] docs(geniml): document input-order-independent overlap",
+        "[PATCH 2/6] fix(geniml): count BED overlaps in coordinate order",
+        "[PATCH 3/6] test(geniml): cover BED overlap invariance through the",
+        "[PATCH 4/6] docs(gtars): document input-order-independent overlap",
+        "[PATCH 5/6] fix(gtars): count BED overlaps in coordinate order",
+        "[PATCH 6/6] test(gtars): cover BED overlap invariance through the"
+      ],
+      "tests_changed": [
+        "tests/geniml/test_overlap_order.py",
+        "tests/gtars/test_overlap_order.py"
+      ]
+    },
+    {
+      "number": 338,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/338",
+      "captured_head": "ddab89972627a9e31b9527e9553645cac7efc7ac",
+      "remote_head": "ddab89972627a9e31b9527e9553645cac7efc7ac",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/paper-lookup/SKILL.md",
+        "skills/paper-lookup/scripts/jats_to_text.py",
+        "tests/paper-lookup/test_jats_authors.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no upstream acceptance implied.",
+      "prior_observation": "Read selected Python implementation and test patch excerpts: JATS contributor extraction should distinguish article authors from journal and non-author contributors. Full patch not inspected and tests not independently executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] docs(paper-lookup): describe scoped JATS author selection",
+        "[PATCH 2/3] fix(paper-lookup): filter JATS contributors by article",
+        "[PATCH 3/3] test(paper-lookup): cover author roles and nested JATS"
+      ],
+      "tests_changed": [
+        "tests/paper-lookup/test_jats_authors.py"
+      ]
+    },
+    {
+      "number": 337,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/337",
+      "captured_head": "ae82a141fc39f20d8682deb1ef74d2ce66a486fb",
+      "remote_head": "ae82a141fc39f20d8682deb1ef74d2ce66a486fb",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/scientific-writing/scripts/check_references.py",
+        "skills/scientific-writing/SKILL.md",
+        "tests/scientific-writing/test_reference_titles.py",
+        "skills/scientific-writing/references/cli_reference.md"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no upstream acceptance implied.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH 1/6] fix(scientific-writing): retain Unicode letters in",
+        "[PATCH 2/6] docs(scientific-writing): document Unicode title matching",
+        "[PATCH 3/6] test(scientific-writing): cover Greek and Chinese title",
+        "[PATCH 4/6] fix(scientific-writing): preserve attached Unicode marks",
+        "[PATCH 5/6] test(scientific-writing): cover mark-sensitive titles",
+        "[PATCH 6/6] docs(scientific-writing): explain accent sensitivity"
+      ],
+      "tests_changed": [
+        "tests/scientific-writing/test_reference_titles.py"
+      ]
+    },
+    {
+      "number": 336,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/336",
+      "captured_head": "d877791741a0015d908e0294ecbff0c92eaf6a94",
+      "remote_head": "d877791741a0015d908e0294ecbff0c92eaf6a94",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/ontology-term-resolution/scripts/validate_terms.py",
+        "skills/ontology-term-resolution/SKILL.md",
+        "tests/ontology-term-resolution/test_multiline_labels.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(ontology-term-resolution): preserve quoted label line",
+        "[PATCH 2/3] docs(ontology-term-resolution): document multiline labels",
+        "[PATCH 3/3] test(ontology-term-resolution): cover quoted multiline"
+      ],
+      "tests_changed": [
+        "tests/ontology-term-resolution/test_multiline_labels.py"
+      ]
+    },
+    {
+      "number": 335,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/335",
+      "captured_head": "39bd29712c9bead180dfe2143f223f382e68105d",
+      "remote_head": "39bd29712c9bead180dfe2143f223f382e68105d",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/fictiv/scripts/check_cad_file.py",
+        "skills/fictiv/SKILL.md",
+        "tests/fictiv/test_empty_stl.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(fictiv): reject STL files without mesh triangles",
+        "[PATCH 2/3] docs(fictiv): explain empty STL re-export and bump skill",
+        "[PATCH 3/3] test(fictiv): cover empty ASCII and binary STL without"
+      ],
+      "tests_changed": [
+        "tests/fictiv/test_empty_stl.py"
+      ]
+    },
+    {
+      "number": 334,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/334",
+      "captured_head": "abcae643ec173744102b123778d66a2eed5c3a4c",
+      "remote_head": "abcae643ec173744102b123778d66a2eed5c3a4c",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/genomic-coordinates/scripts/check_contigs.py",
+        "skills/genomic-coordinates/SKILL.md",
+        "tests/genomic-coordinates/test_empty_contigs.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Read full patch: Empty records no longer assert contig conflict; tests preserve header conflicts; no upstream tests executed.",
+      "commit_subjects": [
+        "[PATCH 1/3] fix(genomic-coordinates): ignore empty observed contig",
+        "[PATCH 2/3] docs(genomic-coordinates): document empty observations",
+        "[PATCH 3/3] test(genomic-coordinates): preserve true conflicts while"
+      ],
+      "tests_changed": [
+        "tests/genomic-coordinates/test_empty_contigs.py"
+      ]
+    },
+    {
+      "number": 333,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/333",
+      "captured_head": "66e7dff7c2c38b957419966de1d2b7d019758ae7",
+      "remote_head": "66e7dff7c2c38b957419966de1d2b7d019758ae7",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pandapower/SKILL.md",
+        "skills/pandapower/assets/case-6bus-ring.json",
+        "skills/pandapower/references/case-format.md",
+        "skills/pandapower/scripts/run_power_flow.py",
+        "tests/pandapower/fixtures/case-overload.json",
+        "tests/pandapower/test_scripts.py",
+        "tests/skill-requirements.toml"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed. Provider, dependency, model and scientific claims are not independently validated. Generator reactive-limit behavior requires pinned-version verification.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH 1/2] feat(pandapower): add AC power flow and N-1 screening",
+        "[PATCH 2/2] fix(pandapower): reject non-finite input and undefined"
+      ],
+      "tests_changed": [
+        "tests/pandapower/fixtures/case-overload.json",
+        "tests/pandapower/test_scripts.py",
+        "tests/skill-requirements.toml"
+      ]
+    },
+    {
+      "number": 332,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/332",
+      "captured_head": "1becfd329326397513c6a5e58715e260b3e09a6a",
+      "remote_head": "1becfd329326397513c6a5e58715e260b3e09a6a",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/research-lookup/SKILL.md",
+        "skills/research-lookup/scripts/anonymous_search.py",
+        "skills/research-lookup/scripts/research_lookup.py",
+        "tests/research-lookup/test_anonymous_search.py",
+        "tests/skill-requirements.toml"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed. Provider, dependency, model and scientific claims are not independently validated.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH 1/2] Add optional keyless research lookup with Parallel MCP",
+        "[PATCH 2/2] Enforce keyless response bounds and academic option"
+      ],
+      "tests_changed": [
+        "tests/research-lookup/test_anonymous_search.py",
+        "tests/skill-requirements.toml"
+      ]
+    },
+    {
+      "number": 331,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/331",
+      "captured_head": "a08ee4d80cc9ccfad9f0377f19089991f6ddd170",
+      "remote_head": "a08ee4d80cc9ccfad9f0377f19089991f6ddd170",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pkpd-modeling/SKILL.md",
+        "skills/pkpd-modeling/references/pd-and-exposure-response.md",
+        "skills/pkpd-modeling/scripts/exposure_response.py",
+        "tests/pkpd-modeling/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Full patch inspected: centered-scaled logistic IRLS and Fisher-information errors, with synthetic unit-invariance and CLI tests; tests not run.",
+      "commit_subjects": [
+        "[PATCH] fix(pkpd-modeling): fit logistic exposure-response by IRLS so"
+      ],
+      "tests_changed": [
+        "tests/pkpd-modeling/test_scripts.py"
+      ]
+    },
+    {
+      "number": 329,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/329",
+      "captured_head": "d9e46b46c4280dc2d6885b277448360968e47802",
+      "remote_head": "d9e46b46c4280dc2d6885b277448360968e47802",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/analytical-method-validation/SKILL.md",
+        "skills/analytical-method-validation/references/ich-m10-bioanalytical.md",
+        "skills/analytical-method-validation/references/statistics.md",
+        "skills/analytical-method-validation/scripts/_common.py",
+        "skills/analytical-method-validation/scripts/check_bioanalytical_run.py",
+        "tests/analytical-method-validation/fixtures/ap_truncated_between.csv",
+        "tests/analytical-method-validation/fixtures/m10_isr_on_limit.csv",
+        "tests/analytical-method-validation/fixtures/m10_run_on_limit.csv",
+        "tests/analytical-method-validation/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no standards or live service claims verified.",
+      "prior_observation": "Patch partially inspected: acceptance boundary tolerance and precision degrees of freedom; output was truncated, and standards claims and tests not verified.",
+      "commit_subjects": [
+        "[PATCH] fix(analytical-method-validation): accept M10 results on the"
+      ],
+      "tests_changed": [
+        "tests/analytical-method-validation/fixtures/ap_truncated_between.csv",
+        "tests/analytical-method-validation/fixtures/m10_isr_on_limit.csv",
+        "tests/analytical-method-validation/fixtures/m10_run_on_limit.csv",
+        "tests/analytical-method-validation/test_scripts.py"
+      ]
+    },
+    {
+      "number": 327,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/327",
+      "captured_head": "364f3cb0d9beb1ef2cb35253607ec12571c96897",
+      "remote_head": "364f3cb0d9beb1ef2cb35253607ec12571c96897",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/pathogen-variant-surveillance/SKILL.md",
+        "skills/pathogen-variant-surveillance/references/lapis-api.md",
+        "skills/pathogen-variant-surveillance/scripts/mutation_profile.py",
+        "tests/pathogen-variant-surveillance/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch and added tests read; no tests executed, no standards or live service claims verified.",
+      "prior_observation": "Patch partially inspected: unnamed sequence handling and mocked CLI tests; output truncated and live service not verified.",
+      "commit_subjects": [
+        "[PATCH] fix(pathogen-variant-surveillance): match --gene main on"
+      ],
+      "tests_changed": [
+        "tests/pathogen-variant-surveillance/test_scripts.py"
+      ]
+    },
+    {
+      "number": 325,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/325",
+      "captured_head": "965d383a16f510b32c12b37499989d0d766ada87",
+      "remote_head": "965d383a16f510b32c12b37499989d0d766ada87",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/paper-lookup/SKILL.md",
+        "skills/paper-lookup/references/openalex.md",
+        "skills/paper-lookup/scripts/paginate.py",
+        "tests/paper-lookup/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Full patch inspected: OpenAlex cursor behavior, pricing/rate documentation and URL-construction tests; live provider behavior not verified.",
+      "commit_subjects": [
+        "[PATCH] paper-lookup: correct OpenAlex rate limits and keyless cursor"
+      ],
+      "tests_changed": [
+        "tests/paper-lookup/test_scripts.py"
+      ]
+    },
+    {
+      "number": 323,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/323",
+      "captured_head": "c7fe082550395e81d60af5d32503acbec4d0e743",
+      "remote_head": "c7fe082550395e81d60af5d32503acbec4d0e743",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/citation-management/SKILL.md",
+        "skills/citation-management/scripts/validate_citations.py",
+        "tests/citation-management/test_scripts.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "No integration test or independent confirmation. Owner candidate is a relevance pointer, not evidence of identical implementation.",
+      "prior_observation": "Full patch inspected: explicit LaTeX citation command matcher and synthetic manuscript tests; executable coverage not measured.",
+      "commit_subjects": [
+        "[PATCH] fix(citation-management): recognize biblatex and natbib"
+      ],
+      "tests_changed": [
+        "tests/citation-management/test_scripts.py"
+      ]
+    },
+    {
+      "number": 322,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/322",
+      "captured_head": "101e294f39c8fccd3423a6c9b31b046be9f332bb",
+      "remote_head": "101e294f39c8fccd3423a6c9b31b046be9f332bb",
+      "patch_head_match": true,
+      "changed_files": [
+        "skills/markitdown/SKILL.md",
+        "skills/markitdown/references/file_formats.md",
+        "skills/markitdown/references/mcp_and_plugins.md",
+        "skills/markitdown/references/migration.md",
+        "skills/markitdown/references/security.md",
+        "tests/skill-requirements.toml"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH] fix(markitdown): make the documented uv installs resolve"
+      ],
+      "tests_changed": [
+        "tests/skill-requirements.toml"
+      ]
+    },
+    {
+      "number": 321,
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills/pull/321",
+      "captured_head": "2aa313a4e00ad9cf88d8fc541dea614f7ce29d1e",
+      "remote_head": "2aa313a4e00ad9cf88d8fc541dea614f7ce29d1e",
+      "patch_head_match": true,
+      "changed_files": [
+        "tests/_contract/structure.py"
+      ],
+      "patch_depth": "full patch read",
+      "test_status": "not executed",
+      "owner_candidate": null,
+      "disposition": "retain as reviewed finding, not adoption",
+      "limits": "Full submitted patch read; no tests executed, no upstream acceptance implied, and local owner relevance still needs independent mapping.",
+      "prior_observation": "Patch downloaded and revision matched; only commit subjects and changed-file list sampled; source changes and tests still require review.",
+      "commit_subjects": [
+        "[PATCH] fix(tests): ignore cache files when finding script-bearing"
+      ],
+      "tests_changed": [
+        "tests/_contract/structure.py"
+      ]
+    }
+  ]
+}

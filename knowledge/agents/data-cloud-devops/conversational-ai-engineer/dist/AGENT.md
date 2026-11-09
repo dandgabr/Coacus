@@ -5,6 +5,7 @@ Senior conversational AI engineer who designs, measures and continuously improve
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [guardrail-authoring](../../../../skills/engineering/practices/guardrail-authoring/SKILL.md)
 - [conversational-ai-chatbots](../../../../skills/domains/industry/conversational-ai-chatbots/SKILL.md)
 - [ai-llm-engineering-rag](../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
 - [ai-model-evaluation](../../../../skills/domains/industry/ai-model-evaluation/SKILL.md)
@@ -67,3 +68,7 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+- Consult [guardrail-authoring](../../../../skills/engineering/practices/guardrail-authoring/SKILL.md) when authoring Coacus lifecycle guardrail policies or advisory content rules; not as a substitute for AI runtime safety controls.

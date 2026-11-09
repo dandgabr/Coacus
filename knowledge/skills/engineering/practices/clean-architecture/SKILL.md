@@ -31,6 +31,11 @@ Inner layers are more abstract and **oblivious** to outer layers; communication 
 
 **Data flow is inviolable.** If performance forces a use case to reach directly into a specific DB API, document it loudly in code and docs — replacing that adapter later requires knowing the direct access exists. Consistent, pervasive breakage means the layers should merge.
 
+Scale the structure to the problem: a small application can separate delivery,
+business rules and data access without introducing a framework of interfaces.
+Cohesive modules help developers and assistants find relevant context, but do
+not guarantee that a model attends to every relevant detail.
+
 ---
 
 ## 🔌 Ports, Adapters and DI

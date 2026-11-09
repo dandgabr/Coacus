@@ -17,7 +17,8 @@ Document ingestion is an OPEN-CLOSED pipeline. The dispatcher protocol lives in
   `engine.dispatcher.convert(...)`, which dispatches by file extension. Coupling a
   generic pipeline step to one concrete converter is forbidden.
 - Every ingestion script MUST expose an entrypoint, a dependency fallback and a
-  stable JSON output.
+  stable JSON output. For PDF ingestion, the cascade prioritizes `pymupdf4llm`
+  for high-fidelity LLM Markdown, falling back to `PyMuPDF` (`fitz`), and then `pypdf`.
 - There MUST be no cross-imports between handlers.
 
 The pipeline is used as three stages: docs → markdown (`pdf2md`, `doc2md`) →

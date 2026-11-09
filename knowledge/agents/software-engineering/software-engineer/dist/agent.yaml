@@ -29,6 +29,7 @@ instruction: >
   - [lang-c](knowledge/skills/languages/lang-c/SKILL.md)
   - [lang-cpp](knowledge/skills/languages/lang-cpp/SKILL.md)
   - [lang-bash](knowledge/skills/languages/lang-bash/SKILL.md)
+  - [gnome-shell-extension-development](knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
   ---
 
@@ -45,11 +46,22 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Load the structured definitions from [`agent.json`](agent.json).
+
+  ## Conditional domain references
+
+  - Consult [lang-perl](knowledge/skills/languages/lang-perl/SKILL.md) when working on Perl code.
+  - Consult [lang-lua](knowledge/skills/languages/lang-lua/SKILL.md) when working on Lua code.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/languages/lang-lua/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/lang-perl/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/system-design-scalability/SKILL.md
   - type: skill_integration

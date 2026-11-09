@@ -31,13 +31,13 @@ Small, single-purpose feedback moments around one user action — the style defi
 
 ## 🖱️ Interaction and Motion
 
-- Durations: 150–250 ms for state feedback, ~300 ms ripples (Material guidance); MD3 "emphasized" easing `cubic-bezier(0.2, 0, 0, 1)`; spring damping ≈ 0.7–1.0 (slight overshoot reads as tactile); two-phase press→release; loading→success morph in place (no layout swap); pull-to-refresh loops; haptics (`navigator.vibrate`).
+- Durations and springs: take them from the canonical bands and presets in [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md) (feedback and component-state bands, `spring.snap` for press feedback); Material ripples run longer than plain state feedback by design; two-phase press→release; loading→success morph in place (no layout swap); pull-to-refresh loops; haptics (`navigator.vibrate`).
 
 ---
 
 ## 🛠️ Implementation Notes
 
-- CSS transitions on `transform`/`opacity` only; Motion springs and gesture hooks (`whileHover`, `whileTap`); GSAP Flip for layout-state morphs; View Transitions API for cross-state DOM morphs; `@starting-style` (Chrome 117+) for first-render enter transitions; Rive state machines for designer-authored vectors; WAAPI for one-shots.
+- CSS transitions on `transform`/`opacity` only; Motion springs and gesture hooks (`whileHover`, `whileTap`); layout-state morphs (FLIP, GSAP Flip, Motion `layout`), cross-state DOM swaps (View Transitions) and enter/exit transitions (`@starting-style`, `allow-discrete`) follow the mechanics, support matrix and fallbacks in [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md); Rive state machines for designer-authored vectors; WAAPI for one-shots.
 
 ---
 
@@ -74,4 +74,10 @@ Small, single-purpose feedback moments around one user action — the style defi
 ## 🔗 Integration with Other Skills
 
 - Sibling styles: [ui-style-material-you](../ui-style-material-you/SKILL.md), [ui-style-kinetic-typography](../ui-style-kinetic-typography/SKILL.md).
+- For View Transitions, FLIP and entry/exit mechanics, see [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - For interaction fundamentals, see [ui-ux-principles](../../../engineering/practices/ui-ux-principles/SKILL.md).
+- Newer sibling styles: [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md).
+- For ripple, magnetic and drag mechanics, see [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md).
+## Appearance and Interaction Verification
+
+Distinguish pending from confirmed success; make repeated submit/cancel/owner-change outcomes deterministic and prevent stale completions from changing the current control; retain immediate feedback and static final states independently of animation.

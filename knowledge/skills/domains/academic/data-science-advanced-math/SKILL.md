@@ -78,7 +78,7 @@ $$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1 - \beta_1^t}, \quad \hat{\mathbf{v}
 ## 🌐 5. Iterative Methods for Large-Scale Linear Systems (Solomon)
 
 ### 5.1 Conjugate Gradient (CG) Method
-Solves $\mathbf{A}\mathbf{x} = \mathbf{b}$ for symmetric positive definite (SPD) matrices in at most $n$ iterations, generating $\mathbf{A}$-orthogonal directions ($\mathbf{p}_i^T \mathbf{A} \mathbf{p}_j = 0$ for $i \ne j$):
+For symmetric positive definite (SPD) matrices, conjugate gradient solves $\mathbf{A}\mathbf{x} = \mathbf{b}$ in at most $n$ iterations in exact arithmetic, generating $\mathbf{A}$-orthogonal directions ($\mathbf{p}_i^T \mathbf{A} \mathbf{p}_j = 0$ for $i \ne j$). Floating-point arithmetic can lose conjugacy; check the residual and convergence status in practice:
 $$\alpha_k = \frac{\mathbf{r}_k^T \mathbf{r}_k}{\mathbf{p}_k^T \mathbf{A} \mathbf{p}_k}, \quad \mathbf{x}_{k+1} = \mathbf{x}_k + \alpha_k \mathbf{p}_k, \quad \mathbf{r}_{k+1} = \mathbf{r}_k - \alpha_k \mathbf{A} \mathbf{p}_k$$
 $$\beta_k = \frac{\mathbf{r}_{k+1}^T \mathbf{r}_{k+1}}{\mathbf{r}_k^T \mathbf{r}_k}, \quad \mathbf{p}_{k+1} = \mathbf{r}_{k+1} + \beta_k \mathbf{p}_k$$
 
@@ -90,7 +90,7 @@ $$\beta_k = \frac{\mathbf{r}_{k+1}^T \mathbf{r}_{k+1}}{\mathbf{r}_k^T \mathbf{r}
 - **Isomap**: Preserves geodesic distances computed on $k$-nearest-neighbor ($k$-NN) graphs via Dijkstra + Classical Multidimensional Scaling (MDS).
 - **t-SNE (t-Distributed Stochastic Neighbor Embedding)**: Models neighborhood probabilities in the high-dimensional space with a Gaussian distribution and in the low-dimensional space with a Student's t-distribution (1 degree of freedom), minimizing the Kullback-Leibler divergence:
   $$\text{KL}(P \parallel Q) = \sum_i \sum_j p_{j|i} \log \frac{p_{j|i}}{q_{j|i}}$$
-- **UMAP (Uniform Manifold Approximation and Projection)**: Based on Riemannian geometry and algebraic topology (Fuzzy Simplicial Sets), guaranteeing preservation of both local and global structure.
+- **UMAP (Uniform Manifold Approximation and Projection)**: Uses a fuzzy topological representation to construct an embedding. Parameters trade local and broader structure; neither is guaranteed to be preserved, so assess sensitivity and structure in the original data. See the [UMAP parameter guide](https://umap-learn.readthedocs.io/en/latest/parameters.html).
 
 ---
 

@@ -1,0 +1,19 @@
+{
+  "id": "design-reference-adoption",
+  "title": "Reference evidence and semantic adoption",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not claim execution, change files or access real user data. A reference is a single desktop screenshot. The product already has semantic surface/action tokens and an approved monochrome theme. A proposal guesses an exact font and animation library, introduces raw colors matching the picture, and redesigns the brand while repairing a clipped label. Review the proposal and choose the smallest justified next steps.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|observ|context|condition|purpose|unknown)",
+      "reason": "Advisory routing signal; the rubric assesses decisions, not keyword presence."
+    }
+  ],
+  "rubric": [
+    "Separate observed, inferred and unknown properties; one screenshot does not identify font, library or interaction behavior.",
+    "Preserve the existing theme and token semantics; justify reuse or adaptation rather than cloning a palette.",
+    "Check the label in its actual container with relevant width, zoom and text expansion; do not impose full rediscovery."
+  ],
+  "acceptance": "The response makes justified contextual decisions, proposes discriminating checks and states evidence limits without inventing execution."
+}

@@ -8,6 +8,7 @@ description: >-
   patterns and standards, designing an event backbone, or governing interface
   contracts.
 skills:
+  - knowledge/skills/frameworks/framework-soap/SKILL.md
   - knowledge/skills/architecture/domains/integration-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
@@ -69,3 +70,9 @@ any contract specification version, resolve it in the current session
 The Integration Architect enforces integration standards across all solutions
 inside the enterprise frame. Handoffs between agents must be compact structured
 payloads, and parallel subagent work must acquire a governor slot first.
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [framework-soap](knowledge/skills/frameworks/framework-soap/SKILL.md)

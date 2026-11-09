@@ -1,0 +1,2549 @@
+{
+  "source_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "scope": "Inventory positions 0-88; decisions are provisional and reflect stated evidence depth, not comprehensive package, licensing or execution validation.",
+  "items": [
+    {
+      "index": 0,
+      "name": "13c-metabolic-flux",
+      "source_path": "skills/13c-metabolic-flux/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Source SKILL.md inspected; referenced model, tests and external dependencies not independently checked.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
+      "rationale": "Candidate distinct isotope flux analysis capability: atom maps, tracer assumptions and model identifiability absent from inspected bioprocess owner.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 1,
+      "name": "adaptyv",
+      "source_path": "skills/adaptyv/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Foundry quote confirmation creates an invoice and submission transmits sequences; reviewed SDK examples are mocked and paid laboratory run unverified. Keep as provider reference pending provider contract and rights review.",
+      "unreviewed": "Linked references and all package artifacts listed separately; provider, credentials, permissions, economics and actual Coacus owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/adaptyv/references/api-endpoints.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 2,
+      "name": "aeon",
+      "source_path": "skills/aeon/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and relevant local owner passages inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "The checked owner requires deployment-aligned temporal splits and fold-only preprocessing; the source adds time-series specific overlapping-window leakage, normalization tradeoffs and simple forecasting baselines.",
+      "unreviewed": "Linked package files listed separately; SDK versions, scientific benchmark claims, license and runtime independently unverified.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/aeon/references/anomaly_detection.md",
+        "skills/aeon/references/classification.md",
+        "skills/aeon/references/clustering.md",
+        "skills/aeon/references/datasets_benchmarking.md",
+        "skills/aeon/references/distances.md",
+        "skills/aeon/references/forecasting.md",
+        "skills/aeon/references/networks.md",
+        "skills/aeon/references/regression.md",
+        "skills/aeon/references/segmentation.md",
+        "skills/aeon/references/similarity_search.md",
+        "skills/aeon/references/transformations.md",
+        "tests/aeon/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 3,
+      "name": "alphagenome",
+      "source_path": "skills/alphagenome/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Variant scoring is research-only, with distinct API and artifact terms and build-specific reference allele matching; predictions and tissue-specific ranks are not clinical verdicts. Retain as a reference pending verified provider access and rights.",
+      "unreviewed": "Linked package files listed separately; live access, model terms, service claims and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/alphagenome/references/atlas.md",
+        "skills/alphagenome/references/interpretation.md",
+        "skills/alphagenome/references/model-api.md",
+        "skills/alphagenome/scripts/_common.py",
+        "skills/alphagenome/scripts/atlas_link.py",
+        "skills/alphagenome/scripts/atlas_query.py",
+        "skills/alphagenome/scripts/score_variants.py",
+        "tests/alphagenome/fixtures/variants.csv",
+        "tests/alphagenome/fixtures/variants.tsv",
+        "tests/alphagenome/fixtures/variants.vcf",
+        "tests/alphagenome/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 4,
+      "name": "analytical-method-validation",
+      "source_path": "skills/analytical-method-validation/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Relevant source sections and owner passage inspected, not entire packages or scripts.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Existing chemistry owner now requires fit-for-purpose validation criteria; no universal numerical cutoffs.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 5,
+      "name": "anndata",
+      "source_path": "skills/anndata/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Source SKILL.md inspected; referenced package and interoperability claims not independently checked.",
+      "checked_local_owner": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "Single-cell owner now addresses matrix provenance, missing features and donor replication.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 6,
+      "name": "arbor",
+      "source_path": "skills/arbor/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, state helper and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Hypothesis-tree experiments require a predeclared evaluation protocol and an untouched final set because repeated merge-gate feedback leaks information; its state helper does not verify refs, run evaluators or enforce all budgets. Retain as a reference pending governance and helper review.",
+      "unreviewed": "Linked package files listed separately; experimental claims, helper behavior and runtime independently unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/arbor/references/arbor-upstream.md",
+        "skills/arbor/references/executor-brief.md",
+        "skills/arbor/references/htr-methodology.md",
+        "skills/arbor/references/report-template.md",
+        "skills/arbor/scripts/tree.py",
+        "tests/arbor/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 7,
+      "name": "arboreto",
+      "source_path": "skills/arboreto/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "Single-cell owner can add that inferred regulator-target edges are observational associations and that coverage, stability and independent validation are needed; source uses a restricted compatibility stack.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/arboreto/references/algorithms.md",
+        "skills/arboreto/references/basic_inference.md",
+        "skills/arboreto/references/distributed_computing.md",
+        "skills/arboreto/scripts/basic_grn_inference.py",
+        "tests/arboreto/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 8,
+      "name": "astropy",
+      "source_path": "skills/astropy/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
+      "rationale": "Astronomy owner now covers WCS, FITS context, coordinate frames, times and match ambiguity.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 9,
+      "name": "autoskill",
+      "source_path": "skills/autoskill/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Workflow mining reads sensitive screen history; redaction is incomplete and optional cloud synthesis transmits summaries, so retain as reference pending consent, data flow and code review.",
+      "unreviewed": "Linked package files listed separately; privacy guarantees, cloud transmission, license and runtime independently unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/autoskill/.gitignore",
+        "skills/autoskill/config.yaml",
+        "skills/autoskill/references/api-contracts.md",
+        "skills/autoskill/references/https-proxy.md",
+        "skills/autoskill/references/screenpipe-config.yaml",
+        "skills/autoskill/scripts/autoskill.py",
+        "skills/autoskill/scripts/backends.py",
+        "skills/autoskill/scripts/cluster.py",
+        "skills/autoskill/scripts/doctor.py",
+        "skills/autoskill/scripts/fetch_window.py",
+        "skills/autoskill/scripts/match_skills.py",
+        "skills/autoskill/scripts/promote.py",
+        "skills/autoskill/scripts/redact.py",
+        "skills/autoskill/scripts/run.py",
+        "skills/autoskill/scripts/synthesize.py",
+        "tests/autoskill/conftest.py",
+        "tests/autoskill/smoke_lmstudio.py",
+        "tests/autoskill/test_backends.py",
+        "tests/autoskill/test_cli.py",
+        "tests/autoskill/test_cluster.py",
+        "tests/autoskill/test_doctor.py",
+        "tests/autoskill/test_e2e.py",
+        "tests/autoskill/test_fetch_window.py",
+        "tests/autoskill/test_match_skills.py",
+        "tests/autoskill/test_promote.py",
+        "tests/autoskill/test_redact.py",
+        "tests/autoskill/test_run.py",
+        "tests/autoskill/test_synthesize.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 10,
+      "name": "benchling-integration",
+      "source_path": "skills/benchling-integration/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Benchling tenant operations require credentials, real IDs and permissions; no authenticated mutation or warehouse run was performed by source author. Keep as provider reference pending provider contract and rights review.",
+      "unreviewed": "Linked references and all package artifacts listed separately; provider, credentials, permissions, economics and actual Coacus owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/benchling-integration/references/api_endpoints.md",
+        "skills/benchling-integration/references/authentication.md",
+        "skills/benchling-integration/references/core_capabilities.md",
+        "skills/benchling-integration/references/eventbridge.md",
+        "skills/benchling-integration/references/sdk_reference.md",
+        "tests/benchling-integration/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 11,
+      "name": "bgpt-paper-search",
+      "source_path": "skills/bgpt-paper-search/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Hosted evidence extraction has partial provenance and limited extraction, not a complete review or validated risk-of-bias appraisal; remote schema and paid access are unverified.",
+      "unreviewed": "Linked references and package files listed separately; provider and dependency rights, runtime and local owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 12,
+      "name": "bids",
+      "source_path": "skills/bids/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Reference without importing bundled neuroimaging schemas and converters: source separates indexing from validation and requires true acquisition metadata, while BIDS schema and CC BY attribution require independent verification.",
+      "unreviewed": "All linked references, scripts, assets and tests remain outside this decision; package files are listed separately. Actual Coacus owner not claimed.",
+      "declared_license": "https://creativecommons.org/licenses/by/4.0/",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/bids/references/beps.yml",
+        "skills/bids/references/bids_schema.json",
+        "skills/bids/references/bids_specification.md",
+        "skills/bids/references/conversion_tools.md",
+        "skills/bids/references/core_workflows.md",
+        "skills/bids/references/metadata_fields.md",
+        "skills/bids/scripts/update_schema.py",
+        "tests/bids/test_scripts.py",
+        "tests/bids/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 13,
+      "name": "biopython",
+      "source_path": "skills/biopython/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Biopython main skill spans multiple independently versioned formats and external services; parser and remote recipes are not covered by this text-only inspection.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "Biopython License Agreement",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/biopython/references/advanced.md",
+        "skills/biopython/references/alignment.md",
+        "skills/biopython/references/blast.md",
+        "skills/biopython/references/databases.md",
+        "skills/biopython/references/phylogenetics.md",
+        "skills/biopython/references/review.md",
+        "skills/biopython/references/sequence_io.md",
+        "skills/biopython/references/structure.md",
+        "tests/biopython/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 14,
+      "name": "bioservices",
+      "source_path": "skills/bioservices/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Cross-provider identifier mapping is service- and identifier-dependent, with a GPLv3 source declaration; defer importing its adapters pending rights and live-provider verification.",
+      "unreviewed": "Linked package files listed separately; service behavior, source and dataset rights, and runtime execution not independently verified.",
+      "declared_license": "GPLv3 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/bioservices/references/identifier_mapping.md",
+        "skills/bioservices/references/services_reference.md",
+        "skills/bioservices/references/workflow_patterns.md",
+        "skills/bioservices/scripts/batch_id_converter.py",
+        "skills/bioservices/scripts/compound_cross_reference.py",
+        "skills/bioservices/scripts/pathway_analysis.py",
+        "skills/bioservices/scripts/protein_analysis_workflow.py",
+        "tests/bioservices/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 15,
+      "name": "bulk-rnaseq",
+      "source_path": "skills/bulk-rnaseq/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Source overview and owner excerpt inspected; implementation and package scripts not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+      "rationale": "Bulk RNA owner now covers design confounding, sample provenance and count semantics.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 16,
+      "name": "cantera",
+      "source_path": "skills/cantera/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Chemistry owner can add mechanism condition range, reactor constraints and numerical refinement; a converged ignition calculation alone does not validate a kinetic mechanism.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/cantera/assets/hydrogen-ignition.json",
+        "skills/cantera/references/interpretation.md",
+        "skills/cantera/scripts/ignition_delay.py",
+        "tests/cantera/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 17,
+      "name": "cellprofiler",
+      "source_path": "skills/cellprofiler/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Biomedical owner now covers microscopy acquisition, segmentation overlay QC and biological replication.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 18,
+      "name": "cellxgene-census",
+      "source_path": "skills/cellxgene-census/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+      "rationale": "The Census workflow adds versioned release and dataset-level query provenance to the inspected single-cell guidance, which already addresses feature absence and donor-level replication.",
+      "unreviewed": "Linked package files listed separately; service behavior, source and dataset rights, and runtime execution not independently verified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/cellxgene-census/references/api_access.md",
+        "skills/cellxgene-census/references/census_schema.md",
+        "skills/cellxgene-census/references/common_patterns.md",
+        "skills/cellxgene-census/references/core_workflow_patterns.md",
+        "tests/cellxgene-census/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 19,
+      "name": "cirq",
+      "source_path": "skills/cirq/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Hardware-specific compilation and noise-model experiments require actual target connectivity, calibration, matched dependencies and access; simulated circuits do not establish QPU behavior. Retain provider-specific reference pending runtime and owner review.",
+      "unreviewed": "Linked package files listed separately; exact versions, target availability, license and runtime independently unverified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/cirq/references/building.md",
+        "skills/cirq/references/experiments.md",
+        "skills/cirq/references/hardware.md",
+        "skills/cirq/references/noise.md",
+        "skills/cirq/references/review.md",
+        "skills/cirq/references/simulation.md",
+        "skills/cirq/references/transformation.md",
+        "tests/cirq/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 20,
+      "name": "citation-management",
+      "source_path": "skills/citation-management/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and named local owner passages inspected; linked references and tools not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Research owner already instructs citation/source verification; source adds handling of missing or not-applicable bibliographic fields and untrusted metadata.",
+      "unreviewed": "Linked package files listed separately; claims, versions, privacy properties and runtime unverified.",
+      "declared_license": "MIT License",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/citation-management/assets/bibtex_template.bib",
+        "skills/citation-management/assets/citation_checklist.md",
+        "skills/citation-management/references/api_contracts.md",
+        "skills/citation-management/references/best_practices.md",
+        "skills/citation-management/references/bibtex_formatting.md",
+        "skills/citation-management/references/citation_validation.md",
+        "skills/citation-management/references/core_workflow.md",
+        "skills/citation-management/references/example_workflows.md",
+        "skills/citation-management/references/google_scholar_search.md",
+        "skills/citation-management/references/metadata_extraction.md",
+        "skills/citation-management/references/pubmed_search.md",
+        "skills/citation-management/references/script_reference.md",
+        "skills/citation-management/references/search_strategies.md",
+        "skills/citation-management/scripts/_common.py",
+        "skills/citation-management/scripts/doi_to_bibtex.py",
+        "skills/citation-management/scripts/extract_metadata.py",
+        "skills/citation-management/scripts/format_bibtex.py",
+        "skills/citation-management/scripts/search_google_scholar.py",
+        "skills/citation-management/scripts/search_openalex.py",
+        "skills/citation-management/scripts/search_pubmed.py",
+        "skills/citation-management/scripts/validate_citations.py",
+        "tests/citation-management/test_api_contracts.py",
+        "tests/citation-management/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 21,
+      "name": "clinical-decision-support",
+      "source_path": "skills/clinical-decision-support/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Research-only aggregate clinical evaluation has strict human-review/data gates and versioned regulatory claims; reference without importing unreviewed helpers or implying clinical authorization.",
+      "unreviewed": "All linked references, scripts, assets and tests remain outside this decision; package files are listed separately. Actual Coacus owner not claimed.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/clinical-decision-support/assets/aggregate_cohort_table_template.json",
+        "skills/clinical-decision-support/assets/aggregate_model_evaluation_template.json",
+        "skills/clinical-decision-support/assets/artifact_intended_use_template.json",
+        "skills/clinical-decision-support/assets/decision_logic_traceability_template.json",
+        "skills/clinical-decision-support/assets/deidentification_checklist_template.json",
+        "skills/clinical-decision-support/assets/evidence_profile_template.json",
+        "skills/clinical-decision-support/assets/survival_analysis_plan_template.json",
+        "skills/clinical-decision-support/references/README.md",
+        "skills/clinical-decision-support/references/cohort_evaluation.md",
+        "skills/clinical-decision-support/references/decision_logic_traceability.md",
+        "skills/clinical-decision-support/references/evidence_profiles.md",
+        "skills/clinical-decision-support/references/model_biomarker_evaluation.md",
+        "skills/clinical-decision-support/references/privacy_and_disclosure.md",
+        "skills/clinical-decision-support/references/regulatory_and_governance.md",
+        "skills/clinical-decision-support/references/safety_and_scope.md",
+        "skills/clinical-decision-support/references/security_validation.md",
+        "skills/clinical-decision-support/references/sources.md",
+        "skills/clinical-decision-support/references/study_reporting.md",
+        "skills/clinical-decision-support/references/survival_analysis.md",
+        "skills/clinical-decision-support/scripts/_common.py",
+        "skills/clinical-decision-support/scripts/cohort_table_generator.py",
+        "skills/clinical-decision-support/scripts/decision_logic_traceability.py",
+        "skills/clinical-decision-support/scripts/deidentification_checklist.py",
+        "skills/clinical-decision-support/scripts/evidence_profile_check.py",
+        "skills/clinical-decision-support/scripts/model_biomarker_evaluation.py",
+        "skills/clinical-decision-support/scripts/survival_plan_validator.py",
+        "skills/clinical-decision-support/scripts/validate_cds_artifact.py",
+        "tests/clinical-decision-support/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 22,
+      "name": "clinical-reports",
+      "source_path": "skills/clinical-reports/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Clinical report scaffolds require verified facts and qualified review, while scripts only check structure; reference without importing unreviewed assets or representing output as submission-ready.",
+      "unreviewed": "All linked references, scripts, assets and tests remain outside this decision; package files are listed separately. Actual Coacus owner not claimed.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/clinical-reports/assets/adverse_event_aggregate_input_template.csv",
+        "skills/clinical-reports/assets/case_report_template.json",
+        "skills/clinical-reports/assets/clinical_trial_csr_template.json",
+        "skills/clinical-reports/assets/clinical_trial_results_template.json",
+        "skills/clinical-reports/assets/clinical_trial_safety_aggregate_template.json",
+        "skills/clinical-reports/assets/consistency_manifest_template.json",
+        "skills/clinical-reports/assets/deidentification_process_checklist.json",
+        "skills/clinical-reports/assets/lab_report_template.json",
+        "skills/clinical-reports/assets/pathology_report_template.json",
+        "skills/clinical-reports/assets/provenance_manifest_template.json",
+        "skills/clinical-reports/assets/quality_review_checklist.json",
+        "skills/clinical-reports/assets/radiology_report_template.json",
+        "skills/clinical-reports/assets/research_summary_template.json",
+        "skills/clinical-reports/assets/terminology_manifest_template.json",
+        "skills/clinical-reports/assets/trial_protocol_reporting_checklist.json",
+        "skills/clinical-reports/references/README.md",
+        "skills/clinical-reports/references/case_report_guidelines.md",
+        "skills/clinical-reports/references/clinical_trial_reporting.md",
+        "skills/clinical-reports/references/data_presentation.md",
+        "skills/clinical-reports/references/diagnostic_reports_standards.md",
+        "skills/clinical-reports/references/medical_terminology.md",
+        "skills/clinical-reports/references/privacy_and_deidentification.md",
+        "skills/clinical-reports/references/professional_review.md",
+        "skills/clinical-reports/references/report_type_routing.md",
+        "skills/clinical-reports/references/safety_reporting.md",
+        "skills/clinical-reports/references/sources.md",
+        "skills/clinical-reports/scripts/_common.py",
+        "skills/clinical-reports/scripts/check_deidentification.py",
+        "skills/clinical-reports/scripts/consistency_checker.py",
+        "skills/clinical-reports/scripts/format_adverse_events.py",
+        "skills/clinical-reports/scripts/generate_report_template.py",
+        "skills/clinical-reports/scripts/provenance_validator.py",
+        "skills/clinical-reports/scripts/terminology_validator.py",
+        "skills/clinical-reports/scripts/validate_case_report.py",
+        "skills/clinical-reports/scripts/validate_trial_report.py",
+        "tests/clinical-reports/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 23,
+      "name": "cobrapy",
+      "source_path": "skills/cobrapy/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Constraint-based network analysis has substantive FBA, separately optimized FVA bounds, solver-status handling and feasible-space sampling needs beyond simple growth balances; propose a separate candidate pending full owner overlap and GPL rights review.",
+      "unreviewed": "Linked package files listed separately; actual local owner overlap, GPL rights, solver and runtime independently unverified.",
+      "declared_license": "GPL-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/cobrapy/references/api_quick_reference.md",
+        "skills/cobrapy/references/workflows.md",
+        "tests/cobrapy/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 24,
+      "name": "consciousness-council",
+      "source_path": "skills/consciousness-council/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Simulated archetypes are a presentation of perspectives from one system, not independent experts, independent evidence or validated decision accuracy; further source references not assessed.",
+      "unreviewed": "All linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/consciousness-council/references/advanced-configurations.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 25,
+      "name": "dask",
+      "source_path": "skills/dask/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and relevant local Dask passages inspected; references and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+      "rationale": "Local owner covers Dask but conflates visualize with execution triggers; upstream distinguishes graph rendering, lazy collections and eager futures.",
+      "unreviewed": "Linked package references, tests and runtime behavior unreviewed; package files listed separately.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/dask/references/arrays.md",
+        "skills/dask/references/bags.md",
+        "skills/dask/references/best-practices.md",
+        "skills/dask/references/dataframes.md",
+        "skills/dask/references/futures.md",
+        "skills/dask/references/review.md",
+        "skills/dask/references/schedulers.md",
+        "tests/dask/test_recipes.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 26,
+      "name": "database-lookup",
+      "source_path": "skills/database-lookup/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "rationale": "New scientific retrieval owner addresses provider-specific documentation, pagination, reconciled counts, query provenance and untrusted payload boundaries.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 27,
+      "name": "datalad",
+      "source_path": "skills/datalad/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Scientific data provenance and annex retrieval depend on DataLad/git-annex availability and provider-specific storage; preserve as a reference pending executable and remote verification.",
+      "unreviewed": "Linked package files listed separately; provider behavior, licensing and runtime execution not independently verified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/datalad/references/data-access.md",
+        "skills/datalad/references/provenance.md",
+        "skills/datalad/references/publishing.md",
+        "tests/datalad/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 28,
+      "name": "datamol",
+      "source_path": "skills/datamol/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Molecular standardization changes salts, charge and stereochemistry; package specifies version-dependent representations and remote I/O requires separate authorization.",
+      "unreviewed": "Linked package files listed separately; dependency versions, scientific claims, rights and runtime unverified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/datamol/references/conformers_module.md",
+        "skills/datamol/references/core_api.md",
+        "skills/datamol/references/core_workflows.md",
+        "skills/datamol/references/descriptors_viz.md",
+        "skills/datamol/references/fragments_scaffolds.md",
+        "skills/datamol/references/io_module.md",
+        "skills/datamol/references/reactions_data.md",
+        "skills/datamol/references/review.md",
+        "skills/datamol/references/workflow_patterns.md",
+        "tests/datamol/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 29,
+      "name": "deepchem",
+      "source_path": "skills/deepchem/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "General workflow covers training-fold preprocessing and split semantics; molecular-specific improvement is scaffold or grouped evaluation, identity duplicate checks, label masks and domain limitations.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/deepchem/references/api_reference.md",
+        "skills/deepchem/references/core_capabilities.md",
+        "skills/deepchem/references/review.md",
+        "skills/deepchem/references/typical_workflows.md",
+        "skills/deepchem/references/workflows.md",
+        "skills/deepchem/scripts/_common.py",
+        "skills/deepchem/scripts/graph_neural_network.py",
+        "skills/deepchem/scripts/predict_solubility.py",
+        "skills/deepchem/scripts/transfer_learning.py",
+        "tests/deepchem/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 30,
+      "name": "deepspot-m",
+      "source_path": "skills/deepspot-m/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Slide predictions are not measured gene counts, require physically calibrated tiles and patient-level paired-assay validation; source declares noncommercial code and gated restricted weights. Retain as reference pending separate access and license verification.",
+      "unreviewed": "Linked package files listed separately; gated model, rights, clinical validity and runtime independently unverified.",
+      "declared_license": "PolyForm-Noncommercial-1.0.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/deepspot-m/references/api.md",
+        "skills/deepspot-m/references/whole_slide.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 31,
+      "name": "deeptools",
+      "source_path": "skills/deeptools/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helper scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Sequencing coverage tracks need assay-specific fragment handling, matching assembly, read filtering and normalization; genomic-bin RPKM is not gene expression. Release-specific defects and generated shell workflows require further verification before integration.",
+      "unreviewed": "Linked package files listed separately; backend correctness, package rights and runtime independently unverified.",
+      "declared_license": "BSD license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/deeptools/assets/quick_reference.md",
+        "skills/deeptools/references/core_workflows.md",
+        "skills/deeptools/references/effective_genome_sizes.md",
+        "skills/deeptools/references/normalization_methods.md",
+        "skills/deeptools/references/review.md",
+        "skills/deeptools/references/tools_reference.md",
+        "skills/deeptools/references/workflows.md",
+        "skills/deeptools/scripts/validate_files.py",
+        "skills/deeptools/scripts/workflow_generator.py",
+        "tests/deeptools/test_runtime.py",
+        "tests/deeptools/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 32,
+      "name": "depmap",
+      "source_path": "skills/depmap/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Cancer dependency data require release-specific model identifiers, assay context and separate data terms; use as a source reference while dataset access and rights remain unverified.",
+      "unreviewed": "Linked package files listed separately; service behavior, source and dataset rights, and runtime execution not independently verified.",
+      "declared_license": "CC-BY-4.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/depmap/references/dependency_analysis.md",
+        "skills/depmap/scripts/depmap_data.py",
+        "tests/depmap/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 33,
+      "name": "dhdna-profiler",
+      "source_path": "skills/dhdna-profiler/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked reference not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "The source explicitly calls its DHDNA labels an unvalidated text-annotation rubric rather than psychometric measurement. Defer importing the branded rubric; avoid inferences of stable traits or high-stakes decisions.",
+      "unreviewed": "Linked package files listed separately; cited publications and claimed validity independently unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/dhdna-profiler/references/advanced-profiling.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 34,
+      "name": "diffdock",
+      "source_path": "skills/diffdock/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Docking confidence is not binding affinity; source expressly does not execute pretrained docking, GPU or hosted service and requires old environment and model weights. Reference without import until dependencies and model rights are reviewed.",
+      "unreviewed": "All linked references, scripts, assets and tests remain outside this decision; package files are listed separately. Actual Coacus owner not claimed.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/diffdock/assets/batch_template.csv",
+        "skills/diffdock/assets/custom_inference_config.yaml",
+        "skills/diffdock/references/confidence_and_limitations.md",
+        "skills/diffdock/references/parameters_reference.md",
+        "skills/diffdock/references/workflows_examples.md",
+        "skills/diffdock/scripts/analyze_results.py",
+        "skills/diffdock/scripts/prepare_batch_csv.py",
+        "skills/diffdock/scripts/setup_check.py",
+        "tests/diffdock/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 35,
+      "name": "dnanexus-integration",
+      "source_path": "skills/dnanexus-integration/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "DNAnexus transfers and execution can incur cost or expose controlled data; source identifies no authenticated platform run. Keep as provider reference pending provider contract and rights review.",
+      "unreviewed": "Linked references and all package artifacts listed separately; provider, credentials, permissions, economics and actual Coacus owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/dnanexus-integration/references/app-development.md",
+        "skills/dnanexus-integration/references/authentication.md",
+        "skills/dnanexus-integration/references/configuration.md",
+        "skills/dnanexus-integration/references/data-operations.md",
+        "skills/dnanexus-integration/references/job-execution.md",
+        "skills/dnanexus-integration/references/operations-and-troubleshooting.md",
+        "skills/dnanexus-integration/references/python-sdk.md",
+        "skills/dnanexus-integration/references/sources.md",
+        "skills/dnanexus-integration/references/workflow-languages.md",
+        "skills/dnanexus-integration/scripts/inspect_dxpy.py",
+        "skills/dnanexus-integration/scripts/validate_dxapp.py",
+        "tests/dnanexus-integration/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 36,
+      "name": "esm",
+      "source_path": "skills/esm/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Protein foundation models require checkpoint-specific licensing, expensive inference and homology-aware evaluation; retain as a reference pending reproducible execution and rights verification.",
+      "unreviewed": "Linked package files listed separately; model or provider rights, version claims and runtime execution not independently verified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/esm/references/biohub-platform.md",
+        "skills/esm/references/esm-c-api.md",
+        "skills/esm/references/esm3-api.md",
+        "skills/esm/references/forge-api.md",
+        "skills/esm/references/review.md",
+        "skills/esm/references/workflows.md",
+        "skills/esm/scripts/esm_embeddings.py",
+        "tests/esm/test_sdk_contracts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 37,
+      "name": "etetoolkit",
+      "source_path": "skills/etetoolkit/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Tree manipulation is distinct from inferring a phylogeny: parser choice, rootedness, duplicate tip labels and support scale change interpretation. Retain the GPL-declared toolkit workflow as a reference pending rights and runtime verification.",
+      "unreviewed": "Linked package files listed separately; source license, taxonomy downloads, graphics and runtime independently unverified.",
+      "declared_license": "GPL-3.0-or-later",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/etetoolkit/references/api_reference.md",
+        "skills/etetoolkit/references/migration-ete3-to-ete4.md",
+        "skills/etetoolkit/references/review.md",
+        "skills/etetoolkit/references/taxonomy.md",
+        "skills/etetoolkit/references/visualization.md",
+        "skills/etetoolkit/references/workflows.md",
+        "skills/etetoolkit/scripts/quick_visualize.py",
+        "skills/etetoolkit/scripts/tree_operations.py",
+        "tests/etetoolkit/test_recipes.py",
+        "tests/etetoolkit/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 38,
+      "name": "exa-search",
+      "source_path": "skills/exa-search/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Exa is a provider-specific authenticated search/extraction integration with mocked rather than paid live calls; indexing and result limits do not establish completeness.",
+      "unreviewed": "Linked references and package files listed separately; provider and dependency rights, runtime and local owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/exa-search/references/web-extract.md",
+        "skills/exa-search/references/web-search.md",
+        "skills/exa-search/scripts/exa_extract.py",
+        "skills/exa-search/scripts/exa_search.py",
+        "tests/exa-search/test_exa_search.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 39,
+      "name": "experimental-design",
+      "source_path": "skills/experimental-design/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Data workflow now covers units, blocking, estimands, rank and power assumptions.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 40,
+      "name": "exploratory-data-analysis",
+      "source_path": "skills/exploratory-data-analysis/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and named local owner passages inspected; linked references and tools not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/data/data-science-workflow/SKILL.md",
+      "rationale": "Data workflow includes split-aware preprocessing; EDA source adds data hierarchy, bounded sampling, distinct missingness and diagnostic-not-proof limits.",
+      "unreviewed": "Linked package files listed separately; claims, versions, privacy properties and runtime unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/exploratory-data-analysis/assets/report_template.md",
+        "skills/exploratory-data-analysis/references/bioinformatics_genomics_formats.md",
+        "skills/exploratory-data-analysis/references/chemistry_molecular_formats.md",
+        "skills/exploratory-data-analysis/references/general_scientific_formats.md",
+        "skills/exploratory-data-analysis/references/microscopy_imaging_formats.md",
+        "skills/exploratory-data-analysis/references/proteomics_metabolomics_formats.md",
+        "skills/exploratory-data-analysis/references/spectroscopy_analytical_formats.md",
+        "skills/exploratory-data-analysis/scripts/__init__.py",
+        "skills/exploratory-data-analysis/scripts/_capabilities.py",
+        "skills/exploratory-data-analysis/scripts/_common.py",
+        "skills/exploratory-data-analysis/scripts/_structured.py",
+        "skills/exploratory-data-analysis/scripts/_tabular.py",
+        "skills/exploratory-data-analysis/scripts/capability_manifest.py",
+        "skills/exploratory-data-analysis/scripts/distribution_sensitivity.py",
+        "skills/exploratory-data-analysis/scripts/eda_analyzer.py",
+        "skills/exploratory-data-analysis/scripts/image_inspector.py",
+        "skills/exploratory-data-analysis/scripts/missingness_leakage_audit.py",
+        "skills/exploratory-data-analysis/scripts/report_scaffold.py",
+        "skills/exploratory-data-analysis/scripts/sequence_inspector.py",
+        "skills/exploratory-data-analysis/scripts/tabular_profile.py",
+        "tests/exploratory-data-analysis/test_scripts.py",
+        "tests/exploratory-data-analysis/test_static.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 41,
+      "name": "fictiv",
+      "source_path": "skills/fictiv/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Manufacturing orders and uploads require authenticated vendor access and may commit money or transmit sensitive CAD; preserve as a reference pending verified workflow and authorization controls.",
+      "unreviewed": "Linked package files listed separately; provider behavior, licensing and runtime execution not independently verified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/fictiv/references/capabilities.md",
+        "skills/fictiv/references/checkout-and-payment.md",
+        "skills/fictiv/references/orders-library-teams.md",
+        "skills/fictiv/references/quoting.md",
+        "skills/fictiv/references/troubleshooting.md",
+        "skills/fictiv/references/ui-map.md",
+        "skills/fictiv/scripts/check_cad_file.py",
+        "skills/fictiv/scripts/list_dropdown_options.js",
+        "skills/fictiv/scripts/quote_state.js",
+        "tests/fictiv/fixtures/block_inch.step",
+        "tests/fictiv/fixtures/block_mm.step",
+        "tests/fictiv/fixtures/surface_only.step",
+        "tests/fictiv/fixtures/two_bodies.step",
+        "tests/fictiv/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 42,
+      "name": "flowio",
+      "source_path": "skills/flowio/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Flow cytometry FCS handling requires raw versus scaled data distinction, channel metadata, sensitive fields and validated roundtrips; no runtime or source artifact import assumed.",
+      "unreviewed": "All linked references and package files listed separately, plus exact Coacus ownership, dependencies, rights and runtime remain unverified.",
+      "declared_license": "BSD-3-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/flowio/references/api_reference.md",
+        "skills/flowio/references/fcs_semantics.md",
+        "skills/flowio/references/sources.md",
+        "skills/flowio/references/troubleshooting.md",
+        "skills/flowio/references/workflows.md",
+        "skills/flowio/scripts/inspect_fcs.py",
+        "tests/flowio/test_api_behavior.py",
+        "tests/flowio/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 43,
+      "name": "flowkit",
+      "source_path": "skills/flowkit/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Cytometry analysis requires detector-aligned spillover compensation, correct transform and gate hierarchy, controls and independent sample units; synthetic tests do not validate biology.",
+      "unreviewed": "All linked references and package files listed separately, plus exact Coacus ownership, dependencies, rights and runtime remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/flowkit/references/compensation-and-gating.md",
+        "skills/flowkit/references/workspaces-and-results.md",
+        "skills/flowkit/scripts/analyze_gates.py",
+        "tests/flowkit/fixtures/LICENSE",
+        "tests/flowkit/fixtures/README.md",
+        "tests/flowkit/fixtures/data_set_simple_line_100.fcs",
+        "tests/flowkit/fixtures/simple_poly_and_rect_v2_poly50.wsp",
+        "tests/flowkit/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 44,
+      "name": "fluidsim",
+      "source_path": "skills/fluidsim/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Solver-specific CFD requires stated equations, boundary conditions, independent grid/time refinement, budgets and restart lineage; successful execution is not validation. MPI dependencies and upstream CeCILL rights require review before integration.",
+      "unreviewed": "Linked package files listed separately; physics validation, native runtime, MPI and licensing independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/fluidsim/references/advanced_features.md",
+        "skills/fluidsim/references/installation.md",
+        "skills/fluidsim/references/output_analysis.md",
+        "skills/fluidsim/references/parameters.md",
+        "skills/fluidsim/references/simulation_workflow.md",
+        "skills/fluidsim/references/solvers.md",
+        "skills/fluidsim/scripts/__init__.py",
+        "skills/fluidsim/scripts/_common.py",
+        "skills/fluidsim/scripts/_profiles.py",
+        "skills/fluidsim/scripts/_schema.py",
+        "skills/fluidsim/scripts/budget_summary.py",
+        "skills/fluidsim/scripts/grid_resource_estimator.py",
+        "skills/fluidsim/scripts/output_inventory.py",
+        "skills/fluidsim/scripts/restart_compatibility.py",
+        "skills/fluidsim/scripts/simulation_dry_run.py",
+        "skills/fluidsim/scripts/solver_config_validator.py",
+        "tests/fluidsim/fixtures/analytical_smoke.py",
+        "tests/fluidsim/test_regressions.py",
+        "tests/fluidsim/test_scripts.py",
+        "tests/fluidsim/test_static.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 45,
+      "name": "folklore-variant-evidence",
+      "source_path": "skills/folklore-variant-evidence/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked contract and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Hosted public variant lookup has bounded representation and privacy constraints, explicit ambiguous/unavailable states and source-specific automated interpretations requiring professional review; defer service adapter pending live contract, data handling and rights verification.",
+      "unreviewed": "Linked package files listed separately; clinical accuracy, endpoint behavior, data retention and licensing independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/folklore-variant-evidence/references/mcp-contract.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 46,
+      "name": "generate-image",
+      "source_path": "skills/generate-image/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helper and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "This is a provider-specific billed image generator that uploads reference assets; generated images are conceptual illustrations, not scientific observations. Keep as a reference pending API, data handling and pricing verification.",
+      "unreviewed": "Linked package files listed separately; live provider capabilities, charges, licensing and execution independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/generate-image/references/models.md",
+        "skills/generate-image/scripts/generate_image.py",
+        "tests/generate-image/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 47,
+      "name": "geniml",
+      "source_path": "skills/geniml/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, audit helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Genomic interval ML requires donor-level splits and compatible assembly, token vocabulary, model and training frequency. The source documents release incompatibilities and downloaded serialized artifacts; retain as reference pending validated dependencies and model handling.",
+      "unreviewed": "Linked package files listed separately; model rights, compatibility, data handling and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/geniml/references/bedspace.md",
+        "skills/geniml/references/consensus_peaks.md",
+        "skills/geniml/references/region2vec.md",
+        "skills/geniml/references/scembed.md",
+        "skills/geniml/references/utilities.md",
+        "skills/geniml/scripts/__init__.py",
+        "skills/geniml/scripts/_common.py",
+        "skills/geniml/scripts/bed_validator.py",
+        "skills/geniml/scripts/consensus_plan.py",
+        "skills/geniml/scripts/corpus_auditor.py",
+        "skills/geniml/scripts/embedding_plan.py",
+        "skills/geniml/scripts/model_artifact_inspector.py",
+        "skills/geniml/scripts/tokenizer_compatibility.py",
+        "tests/geniml/test_scripts.py",
+        "tests/geniml/test_upstream_api.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 48,
+      "name": "genomic-coordinates",
+      "source_path": "skills/genomic-coordinates/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Source and owner workflows inspected; no runtime evaluation.",
+      "checked_local_owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "Genomic owner now checks assembly, interval order, contig bounds and variant representation.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 49,
+      "name": "genomic-intelligence",
+      "source_path": "skills/genomic-intelligence/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Hosted sequence prediction involves sending input to an external provider and requires provenance for assembly, strand, TSS and model context; predictions are research-only and service/model access and data retention need verification.",
+      "unreviewed": "Linked package files listed separately; endpoint, retention, scientific model validity and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/genomic-intelligence/references/api-and-auth.md",
+        "skills/genomic-intelligence/references/mcp.md",
+        "skills/genomic-intelligence/references/review.md",
+        "skills/genomic-intelligence/references/sequence-acquisition.md",
+        "skills/genomic-intelligence/references/tasks.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 50,
+      "name": "geomaster",
+      "source_path": "skills/geomaster/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+      "rationale": "Existing GIS owner covers CRS and spatial joins; raster workflows additionally require grid registration, appropriate resampling, nodata and masks, and radiometric calibration.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT License",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/geomaster/README.md",
+        "skills/geomaster/references/advanced-gis.md",
+        "skills/geomaster/references/big-data.md",
+        "skills/geomaster/references/code-examples.md",
+        "skills/geomaster/references/coordinate-systems.md",
+        "skills/geomaster/references/core-libraries.md",
+        "skills/geomaster/references/data-sources.md",
+        "skills/geomaster/references/gis-software.md",
+        "skills/geomaster/references/industry-applications.md",
+        "skills/geomaster/references/machine-learning.md",
+        "skills/geomaster/references/programming-languages.md",
+        "skills/geomaster/references/remote-sensing.md",
+        "skills/geomaster/references/review.md",
+        "skills/geomaster/references/scientific-domains.md",
+        "skills/geomaster/references/specialized-topics.md",
+        "skills/geomaster/references/troubleshooting.md",
+        "skills/geomaster/scripts/raster_workflows.py",
+        "tests/geomaster/test_recipes.py",
+        "tests/geomaster/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 51,
+      "name": "geopandas",
+      "source_path": "skills/geopandas/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Only source opening and selected owner excerpts inspected; runtime, dependencies and full package unverified.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+      "rationale": "Geoscience owner now covers CRS transformation, geometry validity and join cardinality.",
+      "unreviewed": "Full package, helpers and tests not assessed beyond stated scope.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 52,
+      "name": "get-available-resources",
+      "source_path": "skills/get-available-resources/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Host hardware visibility, scheduler/container limits and framework usability are distinct; cross-platform detector and planner have not been independently reviewed or executed.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/get-available-resources/references/resource_semantics.md",
+        "skills/get-available-resources/references/snapshot_schema.md",
+        "skills/get-available-resources/references/sources.md",
+        "skills/get-available-resources/scripts/_common.py",
+        "skills/get-available-resources/scripts/accelerator_diagnostics.py",
+        "skills/get-available-resources/scripts/detect_resources.py",
+        "skills/get-available-resources/scripts/plan_workload.py",
+        "skills/get-available-resources/scripts/snapshot_tools.py",
+        "tests/get-available-resources/fixtures/resource_cases.json",
+        "tests/get-available-resources/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 53,
+      "name": "gget",
+      "source_path": "skills/gget/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/scientific-data-retrieval/SKILL.md",
+      "rationale": "Adapter-specific service contracts, database releases and partial pagination can drift; use general retrieval owner while consulting current provider documentation.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "BSD-2-Clause license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/gget/references/common_workflows.md",
+        "skills/gget/references/database_info.md",
+        "skills/gget/references/module_catalog.md",
+        "skills/gget/references/module_reference.md",
+        "skills/gget/references/workflows.md",
+        "skills/gget/scripts/batch_sequence_analysis.py",
+        "skills/gget/scripts/enrichment_pipeline.py",
+        "skills/gget/scripts/gene_analysis.py",
+        "tests/gget/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 54,
+      "name": "ginkgo-cloud-lab",
+      "source_path": "skills/ginkgo-cloud-lab/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Cloud Lab storefront prices and turnaround are snapshots and submission transmits constructs and creates a paid service order; source states no public order API contract.",
+      "unreviewed": "Linked package files listed separately; live provider, entitlement, pricing, rights and runtime remain unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/ginkgo-cloud-lab/references/cell-free-protein-expression-hibit.md",
+        "skills/ginkgo-cloud-lab/references/cell-free-protein-expression-optimization.md",
+        "skills/ginkgo-cloud-lab/references/cell-free-protein-expression-validation.md",
+        "skills/ginkgo-cloud-lab/references/cfps-expression-purification-quantification.md",
+        "skills/ginkgo-cloud-lab/references/cfps-strep-purification-thermal-shift.md",
+        "skills/ginkgo-cloud-lab/references/cfps-strep-tag-purification-a280.md",
+        "skills/ginkgo-cloud-lab/references/echo-ms-cfps-detection.md",
+        "skills/ginkgo-cloud-lab/references/echo-ms-method-onboarding.md",
+        "skills/ginkgo-cloud-lab/references/ecoli-expression-purification-quantification.md",
+        "skills/ginkgo-cloud-lab/references/ecoli-minibinder-expression-histag-a280.md",
+        "skills/ginkgo-cloud-lab/references/ecoli-protein-expression-hibit.md",
+        "skills/ginkgo-cloud-lab/references/ecoli-protein-expression-histag-a280.md",
+        "skills/ginkgo-cloud-lab/references/fluorescent-pixel-art-generation.md",
+        "skills/ginkgo-cloud-lab/references/ivt-rna-synthesis-qpcr.md",
+        "skills/ginkgo-cloud-lab/references/minibinder-strep-tag-a280.md",
+        "skills/ginkgo-cloud-lab/references/pichia-protein-expression-labchip.md",
+        "skills/ginkgo-cloud-lab/references/plate-reader-assay-onboarding.md",
+        "skills/ginkgo-cloud-lab/references/spr-target-onboarding.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 55,
+      "name": "glycoengineering",
+      "source_path": "skills/glycoengineering/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Source declares Unknown license and explicitly separates sequence motifs, prediction, site occupancy and glycan structure; external predictor and shielding runs unverified.",
+      "unreviewed": "Linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "Unknown",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/glycoengineering/references/glycan_databases.md",
+        "skills/glycoengineering/references/glycoshield.md",
+        "skills/glycoengineering/scripts/glycoengineering_tools.py",
+        "skills/glycoengineering/scripts/glytoucan_lookup.py",
+        "tests/glycoengineering/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 56,
+      "name": "gtars",
+      "source_path": "skills/gtars/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and local owner inspected; linked references, native helpers and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+      "rationale": "The inspected coordinate owner already requires assembly and half-open conventions; source adds operation-specific adjacency, strand loss and overlap/consensus semantics that could prevent misinterpretation.",
+      "unreviewed": "Linked package files listed separately; native code, license discrepancy, provider behavior and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/gtars/references/cli.md",
+        "skills/gtars/references/coverage.md",
+        "skills/gtars/references/overlap.md",
+        "skills/gtars/references/python-api.md",
+        "skills/gtars/references/refget.md",
+        "skills/gtars/references/tokenizers.md",
+        "skills/gtars/scripts/__init__.py",
+        "skills/gtars/scripts/_common.py",
+        "skills/gtars/scripts/artifact_inspector.py",
+        "skills/gtars/scripts/bed_validator.py",
+        "skills/gtars/scripts/coverage_preflight.py",
+        "skills/gtars/scripts/execution_plan.py",
+        "skills/gtars/scripts/refget_digest_plan.py",
+        "skills/gtars/scripts/tokenizer_manifest.py",
+        "tests/gtars/test_scripts.py",
+        "tests/gtars/test_static.py",
+        "tests/gtars/test_upstream.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 57,
+      "name": "histolab",
+      "source_path": "skills/histolab/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Histolab supports WSI tiling but requires native libraries and an older isolated dependency stack; masks and scores are heuristics, not diagnosis. Large cohort validation is unverified.",
+      "unreviewed": "Linked references and package files listed separately; provider and dependency rights, runtime and local owner unverified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/histolab/references/core_capabilities.md",
+        "skills/histolab/references/filters_preprocessing.md",
+        "skills/histolab/references/slide_management.md",
+        "skills/histolab/references/tile_extraction.md",
+        "skills/histolab/references/tissue_masks.md",
+        "skills/histolab/references/typical_workflows.md",
+        "skills/histolab/references/visualization.md",
+        "tests/histolab/test_recipes.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 58,
+      "name": "hugging-science",
+      "source_path": "skills/hugging-science/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, fetcher and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "The catalog is discovery rather than scientific or runtime validation; every selected model and dataset requires verified revision, license, interface, preprocessing and split suitability. Retain as source reference pending live catalog and artifact checks.",
+      "unreviewed": "Linked package files listed separately; live resources, artifact licenses, remote code and runtime independently unverified.",
+      "declared_license": null,
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/hugging-science/references/flagship-resources.md",
+        "skills/hugging-science/references/review.md",
+        "skills/hugging-science/references/topics-and-slugs.md",
+        "skills/hugging-science/references/using-datasets.md",
+        "skills/hugging-science/references/using-models.md",
+        "skills/hugging-science/references/using-spaces.md",
+        "skills/hugging-science/scripts/fetch_catalog.py",
+        "tests/hugging-science/test_current_workflows.py",
+        "tests/hugging-science/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 59,
+      "name": "hypogenic",
+      "source_path": "skills/hypogenic/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "HypoGeniC is a task-prediction tool with old broad dependencies and known hosted wrapper defects; generated patterns do not establish causality or scientific validity.",
+      "unreviewed": "All linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/hypogenic/assets/dataset_manifest.example.json",
+        "skills/hypogenic/assets/result.example.json",
+        "skills/hypogenic/assets/run_config.example.json",
+        "skills/hypogenic/assets/task_config.example.yaml",
+        "skills/hypogenic/references/configuration.md",
+        "skills/hypogenic/references/datasets.md",
+        "skills/hypogenic/references/evaluation.md",
+        "skills/hypogenic/references/security.md",
+        "skills/hypogenic/references/sources.md",
+        "skills/hypogenic/references/upstream.md",
+        "skills/hypogenic/scripts/__init__.py",
+        "skills/hypogenic/scripts/_common.py",
+        "skills/hypogenic/scripts/audit_dataset.py",
+        "skills/hypogenic/scripts/evaluate_local.py",
+        "skills/hypogenic/scripts/inspect_outputs.py",
+        "skills/hypogenic/scripts/plan_run.py",
+        "skills/hypogenic/scripts/validate_config.py",
+        "tests/hypogenic/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 60,
+      "name": "hypothesis-generation",
+      "source_path": "skills/hypothesis-generation/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md inspected and named local owner passage checked when listed; linked references and helpers not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Local research skill distinguishes observation, hypotheses, predictions and rival explanations; upstream adds preregistration timing and discriminating predictions.",
+      "unreviewed": "All linked package files listed separately; implementation, dependencies, scientific claims, rights and runtime unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/hypothesis-generation/assets/evidence_ledger_template.csv",
+        "skills/hypothesis-generation/assets/falsification_controls_template.json",
+        "skills/hypothesis-generation/assets/hypothesis_record_template.json",
+        "skills/hypothesis-generation/assets/operationalization_template.json",
+        "skills/hypothesis-generation/assets/prediction_rival_matrix_template.csv",
+        "skills/hypothesis-generation/assets/preregistration_scaffold_template.md",
+        "skills/hypothesis-generation/assets/search_boundary_template.json",
+        "skills/hypothesis-generation/assets/source_ledger.csv",
+        "skills/hypothesis-generation/references/causal_inference_and_claims.md",
+        "skills/hypothesis-generation/references/concepts_and_workflow.md",
+        "skills/hypothesis-generation/references/ethics_safety_and_ai.md",
+        "skills/hypothesis-generation/references/experimental_design_patterns.md",
+        "skills/hypothesis-generation/references/hypothesis_quality_criteria.md",
+        "skills/hypothesis-generation/references/literature_search_strategies.md",
+        "skills/hypothesis-generation/references/preregistration_and_open_science.md",
+        "skills/hypothesis-generation/references/security_validation.md",
+        "skills/hypothesis-generation/references/source_ledger.md",
+        "skills/hypothesis-generation/references/tool_reference.md",
+        "skills/hypothesis-generation/scripts/_common.py",
+        "skills/hypothesis-generation/scripts/audit_evidence_ledger.py",
+        "skills/hypothesis-generation/scripts/check_falsification_controls.py",
+        "skills/hypothesis-generation/scripts/check_operationalization.py",
+        "skills/hypothesis-generation/scripts/generate_preregistration_scaffold.py",
+        "skills/hypothesis-generation/scripts/lint_causal_claims.py",
+        "skills/hypothesis-generation/scripts/validate_hypothesis_schema.py",
+        "skills/hypothesis-generation/scripts/validate_prediction_matrix.py",
+        "tests/hypothesis-generation/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 61,
+      "name": "imaging-data-commons",
+      "source_path": "skills/imaging-data-commons/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Imaging dataset discovery requires release-pinned identifiers and series-level rather than assumed collection-wide licensing; hosted APIs can truncate or omit data across incompatible index releases. Retain as a provider reference pending live endpoint and rights checks.",
+      "unreviewed": "Linked package files listed separately; current IDC schema, data and licenses, download behavior and runtime independently unverified.",
+      "declared_license": "This skill is provided under the MIT License. IDC data itself has individual licensing (mostly CC-BY, some CC-NC) that must be respected when using the data.",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/imaging-data-commons/references/bigquery_guide.md",
+        "skills/imaging-data-commons/references/cli_guide.md",
+        "skills/imaging-data-commons/references/clinical_data_guide.md",
+        "skills/imaging-data-commons/references/cloud_storage_guide.md",
+        "skills/imaging-data-commons/references/dicomweb_guide.md",
+        "skills/imaging-data-commons/references/digital_pathology_guide.md",
+        "skills/imaging-data-commons/references/index_tables_guide.md",
+        "skills/imaging-data-commons/references/licensing_and_citation.md",
+        "skills/imaging-data-commons/references/mcp_guide.md",
+        "skills/imaging-data-commons/references/parquet_access_guide.md",
+        "skills/imaging-data-commons/references/rest_api_guide.md",
+        "skills/imaging-data-commons/references/sql_patterns.md",
+        "skills/imaging-data-commons/references/use_cases.md",
+        "skills/imaging-data-commons/scripts/check_version.py",
+        "tests/imaging-data-commons/test_check_version.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 62,
+      "name": "infographics",
+      "source_path": "skills/infographics/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helper and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Provider-generated infographic text and geometry require independent source and numerical checking; a model review score cannot prove accuracy, and generation/research uses paid external services. Keep as reference pending service and rights validation.",
+      "unreviewed": "Linked package files listed separately; provider, scientific fidelity, license and runtime independently unverified.",
+      "declared_license": null,
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/infographics/references/color_palettes.md",
+        "skills/infographics/references/design_principles.md",
+        "skills/infographics/references/infographic_type_catalog.md",
+        "skills/infographics/references/infographic_types.md",
+        "skills/infographics/references/iterative_refinement.md",
+        "skills/infographics/scripts/generate_infographic.py",
+        "skills/infographics/scripts/generate_infographic_ai.py",
+        "tests/infographics/test_api.py",
+        "tests/infographics/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 63,
+      "name": "iso-standards-readiness",
+      "source_path": "skills/iso-standards-readiness/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, templates, CLI implementations and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Regulatory evidence preparation has distinct certification, accreditation and inspection lanes; the time-sensitive legal and standards baseline requires publisher verification and authorized human review before any adoption.",
+      "unreviewed": "Linked package files listed separately; current regulatory baseline, licensing and local CLI behavior independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/iso-standards-readiness/assets/templates/capa-record-template.json",
+        "skills/iso-standards-readiness/assets/templates/document-register-template.json",
+        "skills/iso-standards-readiness/assets/templates/evidence-manifest-template.json",
+        "skills/iso-standards-readiness/assets/templates/laboratory-scope-intake-template.json",
+        "skills/iso-standards-readiness/assets/templates/medical-laboratory-scope-intake-template.json",
+        "skills/iso-standards-readiness/assets/templates/procedures/CAPA-procedure-template.md",
+        "skills/iso-standards-readiness/assets/templates/procedures/document-control-procedure-template.md",
+        "skills/iso-standards-readiness/assets/templates/qmsr-transition-template.json",
+        "skills/iso-standards-readiness/assets/templates/quality-manual-template.md",
+        "skills/iso-standards-readiness/assets/templates/scope-intake-template.json",
+        "skills/iso-standards-readiness/assets/templates/supplier-controls-template.json",
+        "skills/iso-standards-readiness/assets/templates/traceability-matrix-template.json",
+        "skills/iso-standards-readiness/references/assurance-lanes.md",
+        "skills/iso-standards-readiness/references/evidence-architecture.md",
+        "skills/iso-standards-readiness/references/gap-analysis-checklist.md",
+        "skills/iso-standards-readiness/references/iso-13485.md",
+        "skills/iso-standards-readiness/references/iso-14971.md",
+        "skills/iso-standards-readiness/references/iso-15189.md",
+        "skills/iso-standards-readiness/references/iso-17025.md",
+        "skills/iso-standards-readiness/references/quality-manual-guide.md",
+        "skills/iso-standards-readiness/references/source-ledger.md",
+        "skills/iso-standards-readiness/scripts/_catalog.py",
+        "skills/iso-standards-readiness/scripts/_common.py",
+        "skills/iso-standards-readiness/scripts/audit_document_records.py",
+        "skills/iso-standards-readiness/scripts/check_capa.py",
+        "skills/iso-standards-readiness/scripts/check_qmsr_transition.py",
+        "skills/iso-standards-readiness/scripts/check_supplier_controls.py",
+        "skills/iso-standards-readiness/scripts/check_traceability.py",
+        "skills/iso-standards-readiness/scripts/gap_analyzer.py",
+        "skills/iso-standards-readiness/scripts/validate_evidence_manifest.py",
+        "skills/iso-standards-readiness/scripts/validate_scope_intake.py",
+        "tests/iso-standards-readiness/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 64,
+      "name": "lab-hardware-cad",
+      "source_path": "skills/lab-hardware-cad/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, standards data, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Lab hardware design relies on sourced mating dimensions, tolerance envelopes, physical process/material suitability and geometry inspection. Parametric model files execute arbitrary Python; retain reference until the tool and current standards are verified.",
+      "unreviewed": "Linked package files listed separately; standards editions, model execution, licenses and physical fit independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/lab-hardware-cad/assets/standards.json",
+        "skills/lab-hardware-cad/references/behavior-rigs.md",
+        "skills/lab-hardware-cad/references/build123d-patterns.md",
+        "skills/lab-hardware-cad/references/fabrication-limits.md",
+        "skills/lab-hardware-cad/references/labware-adapters.md",
+        "skills/lab-hardware-cad/references/microfluidics.md",
+        "skills/lab-hardware-cad/references/optomechanics.md",
+        "skills/lab-hardware-cad/references/validation.md",
+        "skills/lab-hardware-cad/scripts/_common.py",
+        "skills/lab-hardware-cad/scripts/check.py",
+        "skills/lab-hardware-cad/scripts/gen.py",
+        "skills/lab-hardware-cad/scripts/snapshot.py",
+        "tests/lab-hardware-cad/test_geometry.py",
+        "tests/lab-hardware-cad/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 65,
+      "name": "labarchive-integration",
+      "source_path": "skills/labarchive-integration/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "LabArchives ELN and Inventory are distinct signed interfaces with institutional access, mutable vendor documentation and unverified remote writes.",
+      "unreviewed": "Linked package files listed separately; live provider, entitlement, pricing, rights and runtime remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/labarchive-integration/references/api_reference.md",
+        "skills/labarchive-integration/references/authentication_guide.md",
+        "skills/labarchive-integration/references/integrations.md",
+        "skills/labarchive-integration/references/sources.md",
+        "skills/labarchive-integration/scripts/entry_operations.py",
+        "skills/labarchive-integration/scripts/notebook_operations.py",
+        "skills/labarchive-integration/scripts/setup_config.py",
+        "tests/labarchive-integration/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 66,
+      "name": "lamindb",
+      "source_path": "skills/lamindb/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "LaminDB-specific registry and lineage contracts require an independently verified installation and instance; schema validity alone does not establish assay quality. Retain as a reference pending package and runtime review.",
+      "unreviewed": "Linked package files listed separately; model or provider rights, version claims and runtime execution not independently verified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/lamindb/references/annotation-validation.md",
+        "skills/lamindb/references/core-concepts.md",
+        "skills/lamindb/references/data-management.md",
+        "skills/lamindb/references/integrations.md",
+        "skills/lamindb/references/ontologies.md",
+        "skills/lamindb/references/setup-deployment.md",
+        "skills/lamindb/references/sources.md",
+        "tests/lamindb/fixtures/local_workflows.py",
+        "tests/lamindb/test_workflows.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 67,
+      "name": "latchbio-integration",
+      "source_path": "skills/latchbio-integration/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Latch registration, launch and data mutation require account and remote service; source explicitly says no authenticated platform operations were run. Keep as provider reference pending provider contract and rights review.",
+      "unreviewed": "Linked references and all package artifacts listed separately; provider, credentials, permissions, economics and actual Coacus owner unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/latchbio-integration/references/data-management.md",
+        "skills/latchbio-integration/references/latch-mcp.md",
+        "skills/latchbio-integration/references/nextflow-snakemake.md",
+        "skills/latchbio-integration/references/operations-and-debugging.md",
+        "skills/latchbio-integration/references/registry.md",
+        "skills/latchbio-integration/references/resource-configuration.md",
+        "skills/latchbio-integration/references/ui-and-automation.md",
+        "skills/latchbio-integration/references/verified-workflows.md",
+        "skills/latchbio-integration/references/workflow-creation.md",
+        "skills/latchbio-integration/scripts/inspect_latch_sdk.py",
+        "tests/latchbio-integration/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 68,
+      "name": "latex-posters",
+      "source_path": "skills/latex-posters/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, templates and shell helper not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Poster workflow requires real evidence graphics, print-size checks, embedded fonts and visual PDF inspection; source includes shell tooling contrary to local Python-only operations and separately licensed class files. Retain as reference pending template, license and rendering review.",
+      "unreviewed": "Linked package files listed separately; rendering, paid image service, rights and runtime independently unverified.",
+      "declared_license": null,
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/latex-posters/assets/baposter_template.tex",
+        "skills/latex-posters/assets/beamerposter_template.tex",
+        "skills/latex-posters/assets/poster_quality_checklist.md",
+        "skills/latex-posters/assets/tikzposter_template.tex",
+        "skills/latex-posters/references/README.md",
+        "skills/latex-posters/references/ai_graphics_for_posters.md",
+        "skills/latex-posters/references/compilation_and_quality_control.md",
+        "skills/latex-posters/references/latex_poster_packages.md",
+        "skills/latex-posters/references/latex_poster_reference.md",
+        "skills/latex-posters/references/poster_content_guide.md",
+        "skills/latex-posters/references/poster_design_principles.md",
+        "skills/latex-posters/references/poster_layout_design.md",
+        "skills/latex-posters/references/poster_patterns_and_presentation.md",
+        "skills/latex-posters/scripts/generate_schematic.py",
+        "skills/latex-posters/scripts/generate_schematic_ai.py",
+        "skills/latex-posters/scripts/review_poster.sh",
+        "tests/latex-posters/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 69,
+      "name": "liteparse",
+      "source_path": "skills/liteparse/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Layout-aware extraction must verify partial pages, mathematical symbols, bounding-box coordinate systems and OCR output; automatic language-data downloads and optional HTTP OCR have data-flow implications. Retain as reference pending validation.",
+      "unreviewed": "Linked package files listed separately; OCR, runtime, network behavior and licensing independently unverified.",
+      "declared_license": "Apache-2.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/liteparse/references/api_reference.md",
+        "skills/liteparse/references/choosing_a_parser.md",
+        "skills/liteparse/references/cli_reference.md",
+        "skills/liteparse/references/ocr_and_formats.md",
+        "skills/liteparse/references/output_formats.md",
+        "skills/liteparse/scripts/batch_parse_dir.py",
+        "tests/liteparse/test_runtime.py",
+        "tests/liteparse/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 70,
+      "name": "literature-review",
+      "source_path": "skills/literature-review/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and local research provenance passages inspected; references and helpers not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+      "rationale": "Local research owner records queries, screening counts, missing full text and citation verification; source adds record-report-study mapping and duplicate participant cautions.",
+      "unreviewed": "Linked source package references, helpers, live services and validation remain unreviewed; file list retained.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/literature-review/assets/review_template.md",
+        "skills/literature-review/references/citation_styles.md",
+        "skills/literature-review/references/core_workflow.md",
+        "skills/literature-review/references/database_strategies.md",
+        "skills/literature-review/references/example_workflow.md",
+        "skills/literature-review/references/search_and_citation.md",
+        "skills/literature-review/scripts/generate_pdf.py",
+        "skills/literature-review/scripts/generate_schematic.py",
+        "skills/literature-review/scripts/generate_schematic_ai.py",
+        "skills/literature-review/scripts/search_databases.py",
+        "skills/literature-review/scripts/verify_citations.py",
+        "tests/literature-review/test_refresh.py",
+        "tests/literature-review/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 71,
+      "name": "mageck",
+      "source_path": "skills/mageck/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Pooled CRISPR screens need guide and library consistency, replicate-aware contrasts, normalization checks and direction-specific multiplicity; synthetic recovery does not calibrate real screens.",
+      "unreviewed": "All linked references and package files listed separately, plus exact Coacus ownership, dependencies, rights and runtime remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/mageck/references/design.md",
+        "skills/mageck/references/runtime.md",
+        "skills/mageck/scripts/screen_analysis.py",
+        "tests/mageck/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 72,
+      "name": "marine-carbonate-chemistry",
+      "source_path": "skills/marine-carbonate-chemistry/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+      "rationale": "Geoscience owner now records seawater measurements and carbonate equilibrium limits.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 73,
+      "name": "markdown-mermaid-writing",
+      "source_path": "skills/markdown-mermaid-writing/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked style guides, diagrams and templates not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Mermaid structural diagrams require destination-version rendering and accessible text, while measured graphics need plotting tools. Upstream includes separately attributed Apache-derived material; retain reference pending local overlap, attribution and renderer review.",
+      "unreviewed": "Linked package files listed separately; licensing, destination renderers and runtime independently unverified.",
+      "declared_license": "Apache-2.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/markdown-mermaid-writing/assets/examples/example-research-report.md",
+        "skills/markdown-mermaid-writing/references/current-rendering.md",
+        "skills/markdown-mermaid-writing/references/diagrams/architecture.md",
+        "skills/markdown-mermaid-writing/references/diagrams/block.md",
+        "skills/markdown-mermaid-writing/references/diagrams/c4.md",
+        "skills/markdown-mermaid-writing/references/diagrams/class.md",
+        "skills/markdown-mermaid-writing/references/diagrams/complex_examples.md",
+        "skills/markdown-mermaid-writing/references/diagrams/er.md",
+        "skills/markdown-mermaid-writing/references/diagrams/flowchart.md",
+        "skills/markdown-mermaid-writing/references/diagrams/gantt.md",
+        "skills/markdown-mermaid-writing/references/diagrams/git_graph.md",
+        "skills/markdown-mermaid-writing/references/diagrams/kanban.md",
+        "skills/markdown-mermaid-writing/references/diagrams/mindmap.md",
+        "skills/markdown-mermaid-writing/references/diagrams/packet.md",
+        "skills/markdown-mermaid-writing/references/diagrams/pie.md",
+        "skills/markdown-mermaid-writing/references/diagrams/quadrant.md",
+        "skills/markdown-mermaid-writing/references/diagrams/radar.md",
+        "skills/markdown-mermaid-writing/references/diagrams/requirement.md",
+        "skills/markdown-mermaid-writing/references/diagrams/sankey.md",
+        "skills/markdown-mermaid-writing/references/diagrams/sequence.md",
+        "skills/markdown-mermaid-writing/references/diagrams/state.md",
+        "skills/markdown-mermaid-writing/references/diagrams/timeline.md",
+        "skills/markdown-mermaid-writing/references/diagrams/treemap.md",
+        "skills/markdown-mermaid-writing/references/diagrams/user_journey.md",
+        "skills/markdown-mermaid-writing/references/diagrams/xy_chart.md",
+        "skills/markdown-mermaid-writing/references/diagrams/zenuml.md",
+        "skills/markdown-mermaid-writing/references/markdown_style_guide.md",
+        "skills/markdown-mermaid-writing/references/mermaid_style_guide.md",
+        "skills/markdown-mermaid-writing/templates/decision_record.md",
+        "skills/markdown-mermaid-writing/templates/how_to_guide.md",
+        "skills/markdown-mermaid-writing/templates/issue.md",
+        "skills/markdown-mermaid-writing/templates/kanban.md",
+        "skills/markdown-mermaid-writing/templates/presentation.md",
+        "skills/markdown-mermaid-writing/templates/project_documentation.md",
+        "skills/markdown-mermaid-writing/templates/pull_request.md",
+        "skills/markdown-mermaid-writing/templates/research_paper.md",
+        "skills/markdown-mermaid-writing/templates/status_report.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 74,
+      "name": "market-research-reports",
+      "source_path": "skills/market-research-reports/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, templates and validators not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Market sizing needs disjoint scope, common denominator and stock/flow and currency consistency; forecast scenarios are not probabilistic intervals and source ledgers do not prove factual support. Retain as reference pending local owner and helper verification.",
+      "unreviewed": "Linked package files listed separately; actual owner overlap, source credibility, licensing and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/market-research-reports/assets/FORMATTING_GUIDE.md",
+        "skills/market-research-reports/assets/claims_ledger_template.csv",
+        "skills/market-research-reports/assets/competitor_feature_matrix_template.csv",
+        "skills/market-research-reports/assets/consistency_check_template.csv",
+        "skills/market-research-reports/assets/forecast_sensitivity_template.json",
+        "skills/market-research-reports/assets/market_report_template.tex",
+        "skills/market-research-reports/assets/market_research.sty",
+        "skills/market-research-reports/assets/market_sizing_scenarios_template.json",
+        "skills/market-research-reports/assets/report_manifest_template.json",
+        "skills/market-research-reports/assets/source_ledger_template.csv",
+        "skills/market-research-reports/references/data_analysis_patterns.md",
+        "skills/market-research-reports/references/evidence_model.md",
+        "skills/market-research-reports/references/methods_and_ethics.md",
+        "skills/market-research-reports/references/official_data_sources.md",
+        "skills/market-research-reports/references/report_structure_guide.md",
+        "skills/market-research-reports/references/sources.md",
+        "skills/market-research-reports/references/visual_generation_guide.md",
+        "skills/market-research-reports/scripts/_common.py",
+        "skills/market-research-reports/scripts/audit_claim_citations.py",
+        "skills/market-research-reports/scripts/calculate_market_sizing.py",
+        "skills/market-research-reports/scripts/check_unit_consistency.py",
+        "skills/market-research-reports/scripts/forecast_sensitivity.py",
+        "skills/market-research-reports/scripts/generate_report_scaffold.py",
+        "skills/market-research-reports/scripts/validate_competitor_matrix.py",
+        "skills/market-research-reports/scripts/validate_evidence_ledger.py",
+        "tests/market-research-reports/fixtures/README.md",
+        "tests/market-research-reports/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 75,
+      "name": "markitdown",
+      "source_path": "skills/markitdown/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Document-to-Markdown is lossy and may omit scanned text; plugins execute code, URI conversion can fetch remotely, and some OCR/audio sends content externally. Retain as reference pending converter and security-contract validation.",
+      "unreviewed": "Linked package files listed separately; plugin behavior, version, rights and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/markitdown/references/api_reference.md",
+        "skills/markitdown/references/cloud_and_ocr.md",
+        "skills/markitdown/references/file_formats.md",
+        "skills/markitdown/references/mcp_and_plugins.md",
+        "skills/markitdown/references/migration.md",
+        "skills/markitdown/references/security.md",
+        "skills/markitdown/references/workflows.md",
+        "skills/markitdown/scripts/batch_convert.py",
+        "skills/markitdown/scripts/convert_literature.py",
+        "skills/markitdown/scripts/inspect_installation.py",
+        "tests/markitdown/test_current_api.py",
+        "tests/markitdown/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 76,
+      "name": "matchms",
+      "source_path": "skills/matchms/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, scripts, assets and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Tandem-MS spectral matching requires consistent preprocessing, precursor and tolerance semantics and orthogonal identity evidence; scores alone do not establish identification.",
+      "unreviewed": "All linked references and package files listed separately, plus exact Coacus ownership, dependencies, rights and runtime remain unverified.",
+      "declared_license": "Apache-2.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/matchms/references/filtering.md",
+        "skills/matchms/references/importing_exporting.md",
+        "skills/matchms/references/migration.md",
+        "skills/matchms/references/similarity.md",
+        "skills/matchms/references/sources.md",
+        "skills/matchms/references/workflows.md",
+        "skills/matchms/scripts/library_search.py",
+        "tests/matchms/test_api_behaviour.py",
+        "tests/matchms/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "create",
+        "coacus_target": "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 77,
+      "name": "matlab",
+      "source_path": "skills/matlab/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "MATLAB and Octave are distinct runtimes with differing licensing and compatibility; MAT objects, scripts and project actions can execute code. Retain as reference pending exact runtime, product and safe-execution verification.",
+      "unreviewed": "Linked package files listed separately; version/license claims, MAT safety and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/matlab/assets/project_manifest_template.json",
+        "skills/matlab/assets/python_compatibility_r2026a.json",
+        "skills/matlab/assets/reproducibility_manifest_template.json",
+        "skills/matlab/references/data-import-export.md",
+        "skills/matlab/references/executing-scripts.md",
+        "skills/matlab/references/graphics-visualization.md",
+        "skills/matlab/references/mathematics.md",
+        "skills/matlab/references/matrices-arrays.md",
+        "skills/matlab/references/octave-compatibility.md",
+        "skills/matlab/references/programming.md",
+        "skills/matlab/references/python-integration.md",
+        "skills/matlab/scripts/_common.py",
+        "skills/matlab/scripts/generate_function_scaffold.py",
+        "skills/matlab/scripts/inventory_mat_file.py",
+        "skills/matlab/scripts/plan_batch_command.py",
+        "skills/matlab/scripts/plan_python_compatibility.py",
+        "skills/matlab/scripts/reproducibility_report.py",
+        "skills/matlab/scripts/scan_m_code.py",
+        "skills/matlab/scripts/validate_project_manifest.py",
+        "tests/matlab/test_scripts.py",
+        "tests/matlab/test_static.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 78,
+      "name": "matplotlib",
+      "source_path": "skills/matplotlib/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helper scripts and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Accurate scientific plots require defined uncertainty and sampling units, shared normalization for comparative heatmaps and inspection of final-size exports; retain API-specific instructions as reference pending local owner and version verification.",
+      "unreviewed": "Linked package files listed separately; local owner overlap, license, versions and actual rendering independently unverified.",
+      "declared_license": "https://github.com/matplotlib/matplotlib/tree/main/LICENSE",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/matplotlib/references/api_reference.md",
+        "skills/matplotlib/references/common_issues.md",
+        "skills/matplotlib/references/plot_types.md",
+        "skills/matplotlib/references/styling_guide.md",
+        "skills/matplotlib/scripts/plot_template.py",
+        "skills/matplotlib/scripts/style_configurator.py",
+        "tests/matplotlib/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 79,
+      "name": "medchem",
+      "source_path": "skills/medchem/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Medicinal chemistry rules and alerts are context-dependent triage, not assay interference, toxicity, activity, or synthetic feasibility measurements.",
+      "unreviewed": "Linked package files listed separately; dependency versions, scientific claims, rights and runtime unverified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/medchem/references/api_guide.md",
+        "skills/medchem/references/rules_catalog.md",
+        "skills/medchem/scripts/filter_molecules.py",
+        "tests/medchem/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 80,
+      "name": "modal",
+      "source_path": "skills/modal/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Cloud GPU deployment, volumes and sandbox APIs are specific to a paid authenticated provider and its versioned SDK; retain as reference pending cloud execution, current terms and security validation.",
+      "unreviewed": "Linked package files listed separately; cloud execution, provider pricing and version claims independently unverified.",
+      "declared_license": "Apache-2.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/modal/references/api_reference.md",
+        "skills/modal/references/examples.md",
+        "skills/modal/references/functions.md",
+        "skills/modal/references/getting-started.md",
+        "skills/modal/references/gpu.md",
+        "skills/modal/references/images.md",
+        "skills/modal/references/resources.md",
+        "skills/modal/references/scaling.md",
+        "skills/modal/references/scheduled-jobs.md",
+        "skills/modal/references/secrets.md",
+        "skills/modal/references/volumes.md",
+        "skills/modal/references/web-endpoints.md",
+        "tests/modal/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 81,
+      "name": "molecular-dynamics",
+      "source_path": "skills/molecular-dynamics/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Molecular simulation and trajectory analysis need system-specific force-field/ligand parameterization, periodic boundary handling, replicates and convergence; a stable trajectory is insufficient to claim binding energy. Candidate specialist workflow warrants owner overlap and licensing review.",
+      "unreviewed": "Linked package files listed separately; local owner overlap, GPU execution, ligand validity, convergence and license independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/molecular-dynamics/references/mdanalysis_analysis.md",
+        "skills/molecular-dynamics/references/system_preparation.md",
+        "tests/molecular-dynamics/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 82,
+      "name": "molfeat",
+      "source_path": "skills/molfeat/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and helpers not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Molecular featurization needs stable row/label alignment, training-only transforms and versioned models; pretrained inference downloads and model rights remain unverified.",
+      "unreviewed": "Linked package files listed separately; dependency versions, scientific claims, rights and runtime unverified.",
+      "declared_license": "Apache-2.0 license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/molfeat/references/api_reference.md",
+        "skills/molfeat/references/available_featurizers.md",
+        "skills/molfeat/references/choosing_a_featurizer.md",
+        "skills/molfeat/references/examples.md",
+        "tests/molfeat/test_api.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 83,
+      "name": "ncats-arax",
+      "source_path": "skills/ncats-arax/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, client and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Provider-specific graph lookups can expose query metadata; partial responses and multiple aggregators are not independent evidence, and returned edges are hypotheses rather than clinical conclusions. Retain as a reference pending endpoint and client verification.",
+      "unreviewed": "Linked package files listed separately; live API, data rights and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/ncats-arax/references/output-schema.md",
+        "skills/ncats-arax/references/query-contract.md",
+        "skills/ncats-arax/scripts/arax_client.py",
+        "tests/ncats-arax/fixtures/federated_partial_response.json",
+        "tests/ncats-arax/fixtures/missing_auxiliary_graph.json",
+        "tests/ncats-arax/fixtures/missing_publications.json",
+        "tests/ncats-arax/fixtures/no_results.json",
+        "tests/ncats-arax/fixtures/normalization_response.json",
+        "tests/ncats-arax/fixtures/one_hop_provenance.json",
+        "tests/ncats-arax/fixtures/openapi_1_5_minimal.json",
+        "tests/ncats-arax/fixtures/reversed_edge.json",
+        "tests/ncats-arax/fixtures/two_hop_provenance.json",
+        "tests/ncats-arax/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 84,
+      "name": "networkx",
+      "source_path": "skills/networkx/SKILL.md",
+      "disposition": "create-candidate",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Scientific graph analysis needs explicit node and edge semantics, sampling, distance versus strength weights, isolates, graph direction and null-model/partition sensitivity; propose a bounded general network-analysis candidate pending owner overlap and dependency review.",
+      "unreviewed": "Linked package files listed separately; existing owner overlap, library compatibility, rights and runtime independently unverified.",
+      "declared_license": "3-clause BSD license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/networkx/references/algorithms.md",
+        "skills/networkx/references/generators.md",
+        "skills/networkx/references/graph-basics.md",
+        "skills/networkx/references/io.md",
+        "skills/networkx/references/review.md",
+        "skills/networkx/references/visualization.md",
+        "tests/networkx/test_examples.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 85,
+      "name": "neurokit2",
+      "source_path": "skills/neurokit2/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Complete main SKILL.md and relevant owner passages inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+      "rationale": "Existing owner covers physiological signals and instrumentation; research workflow could add time-base and unit contracts, synchronization, explicit detector quality checks and limits on HRV interpretation.",
+      "unreviewed": "Linked package files listed separately; clinical validity, library versions, license and runtime independently unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/neurokit2/references/bio_module.md",
+        "skills/neurokit2/references/complexity.md",
+        "skills/neurokit2/references/ecg_cardiac.md",
+        "skills/neurokit2/references/eda.md",
+        "skills/neurokit2/references/eeg.md",
+        "skills/neurokit2/references/emg.md",
+        "skills/neurokit2/references/eog.md",
+        "skills/neurokit2/references/epochs_events.md",
+        "skills/neurokit2/references/hrv.md",
+        "skills/neurokit2/references/ppg.md",
+        "skills/neurokit2/references/rsp.md",
+        "skills/neurokit2/references/signal_processing.md",
+        "skills/neurokit2/scripts/_common.py",
+        "skills/neurokit2/scripts/ecg_hrv_pipeline.py",
+        "skills/neurokit2/scripts/eda_pipeline.py",
+        "skills/neurokit2/scripts/generate_synthetic.py",
+        "skills/neurokit2/scripts/inspect_signal.py",
+        "skills/neurokit2/scripts/plan_epochs.py",
+        "skills/neurokit2/scripts/validate_multimodal.py",
+        "tests/neurokit2/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 86,
+      "name": "neuropixels-analysis",
+      "source_path": "skills/neuropixels-analysis/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references, helpers and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Spike sorting depends on hardware acquisition calibration and timing, shank-specific referencing and cautious motion correction; automated unit labels require independent review, and pretrained model compatibility is explicitly untested. Retain as reference pending data and tooling validation.",
+      "unreviewed": "Linked package files listed separately; native sorters, real recording, pretrained models, licensing and runtime independently unverified.",
+      "declared_license": "MIT license",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/neuropixels-analysis/assets/analysis_template.py",
+        "skills/neuropixels-analysis/references/AI_CURATION.md",
+        "skills/neuropixels-analysis/references/ANALYSIS.md",
+        "skills/neuropixels-analysis/references/AUTOMATED_CURATION.md",
+        "skills/neuropixels-analysis/references/MOTION_CORRECTION.md",
+        "skills/neuropixels-analysis/references/PREPROCESSING.md",
+        "skills/neuropixels-analysis/references/QUALITY_METRICS.md",
+        "skills/neuropixels-analysis/references/SPIKE_SORTING.md",
+        "skills/neuropixels-analysis/references/api_reference.md",
+        "skills/neuropixels-analysis/references/plotting_guide.md",
+        "skills/neuropixels-analysis/references/standard_workflow.md",
+        "skills/neuropixels-analysis/scripts/_common.py",
+        "skills/neuropixels-analysis/scripts/compute_metrics.py",
+        "skills/neuropixels-analysis/scripts/explore_recording.py",
+        "skills/neuropixels-analysis/scripts/export_to_phy.py",
+        "skills/neuropixels-analysis/scripts/neuropixels_pipeline.py",
+        "skills/neuropixels-analysis/scripts/preprocess_recording.py",
+        "skills/neuropixels-analysis/scripts/run_sorting.py",
+        "tests/neuropixels-analysis/test_runtime_contracts.py",
+        "tests/neuropixels-analysis/test_scripts.py"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 87,
+      "name": "nextflow",
+      "source_path": "skills/nextflow/SKILL.md",
+      "disposition": "reference-without-import",
+      "evidence_depth": "Complete main SKILL.md inspected; linked references and tests not fully reviewed.",
+      "checked_local_owner": null,
+      "rationale": "Version-specific Nextflow and nf-core recipes require Java, Bash, containers, and sometimes service credentials; source explicitly notes smoke tests and resume do not validate scientific results.",
+      "unreviewed": "All linked references, tests, runtime and exact local owner remain unverified; package files listed separately.",
+      "declared_license": "Apache-2.0",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "package_files_not_fully_reviewed": [
+        "skills/nextflow/references/configuration.md",
+        "skills/nextflow/references/containers.md",
+        "skills/nextflow/references/developing.md",
+        "skills/nextflow/references/language.md",
+        "skills/nextflow/references/nf-core-tools.md",
+        "skills/nextflow/references/running-pipelines.md",
+        "skills/nextflow/references/testing.md"
+      ],
+      "reconciliation": {
+        "decision": "reference-no-import",
+        "coacus_target": null,
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    },
+    {
+      "index": 88,
+      "name": "nmrglue",
+      "source_path": "skills/nmrglue/SKILL.md",
+      "disposition": "improve-existing",
+      "evidence_depth": "Full package text and available test source inspected; no tests executed.",
+      "checked_local_owner": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+      "rationale": "Chemistry owner now covers acquisition history, axis calibration, phase and quantitative NMR limits.",
+      "unreviewed": "External services, dependencies, scientific validity and rights remain unverified.",
+      "declared_license": "MIT",
+      "license_and_runtime_caveat": "Declaration only; package, data and dependency rights independently unverified. No runtime tests executed.",
+      "reconciliation": {
+        "decision": "improve-existing",
+        "coacus_target": "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
+        "scope": "Bounded guidance only where a target is named; upstream package functionality, rights and runtime remain unverified."
+      }
+    }
+  ]
+}

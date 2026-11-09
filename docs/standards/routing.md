@@ -33,10 +33,17 @@ agent with none extra (`engine/validators/routing.py`).
 
 ### Concurrency
 
-Routing PROPOSES; it never spawns. `--max-slots` caps the proposal at the
-governor's free slots, so a caller cannot over-subscribe concurrency
-([orchestration-governance](orchestration-governance.md)). The orchestrator routes
-BEFORE delegating ([routing step 0](../../knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md)).
+Routing PROPOSES; it never spawns or reserves a slot. `--max-slots` caps a
+proposal using the governor's reported free slots, a snapshot that can change.
+The main chat routes before delegating specialist work and dispatches independent
+ready tasks up to actual available capacity and any lower applicable limit. Each
+dispatch requires one governor slot; use adapter-managed acquisition where present,
+or manual acquisition otherwise, never both. Queue tasks when capacity is exhausted.
+OpenCode background dispatch is governed via session execution events in OpenCode v2+;
+in environments without event subscription, use supported foreground dispatch.
+If delegation is unavailable, prohibited or cannot be governed, report the blocker
+rather than silently substituting ungoverned work. Routing does not authorize
+approval-gated actions. See [orchestration governance](orchestration-governance.md).
 
 ### Language
 
@@ -57,6 +64,13 @@ it routes the plan's OWN task text and MUST present the candidates for human
 selection — it proposes, it never auto-selects. See
 `../../methodology/workflows/using-coacus/references/coacus-process-conventions.md`
 → "Select agents for a task (roster)".
+
+### Deterministic suggestions
+
+The router's output is deterministic: prefix matching, de-duplicated, sorted
+stably. Every suggestion is a STARTING POINT, never an authorization — selection
+is not consent, and a routed name is validated (`--agents`) before it is relied
+on.
 
 ## Rationale
 

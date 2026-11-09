@@ -55,7 +55,13 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  Consult [framework-qt6](knowledge/skills/frameworks/framework-qt6/SKILL.md) when developing Qt-based C++ applications.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/frameworks/framework-qt6/SKILL.md
   - type: skill_integration
     path: ../../../../skills/languages/lang-cpp/SKILL.md
   - type: skill_integration

@@ -1,86 +1,44 @@
-# MCP Servers (`mcp_config.json`)
+# Antigravity MCP Servers
 
-The Model Context Protocol (MCP) is an open standard that enables developers to
-build secure, two-way integrations between AI models and their data/tools. In
-Antigravity, configuring MCP servers allows you to expose custom tools,
-resources, and prompts to the agent.
+Antigravity supports local `stdio` servers and remote MCP endpoints. MCP servers
+can be configured globally or bundled in an enabled plugin. See the [official MCP guide](https://antigravity.google/docs/mcp)
+for supported fields and surface-specific configuration paths.
 
-MCP servers can be configured globally or packaged within plugins.
+## Configuration
 
---------------------------------------------------------------------------------
-
-## Configuration File (`mcp_config.json`)
-
-MCP servers are defined in a `mcp_config.json` file. The file contains a map of
-server identifiers to their respective configurations.
-
-### Location
-
-*   **Global Configuration**: `~/.gemini/config/mcp_config.json` (applies to all
-    sessions).
-*   **Plugin Configuration**: `plugins/<plugin_name>/mcp_config.json` (active
-    when the plugin is enabled).
-
---------------------------------------------------------------------------------
-
-## Configuration Schema
-
-Antigravity supports two transport mechanisms for MCP: **Stdio** (for local
-command-line tools) and **SSE** (for remote services).
+An MCP config contains an `mcpServers` object. A local process uses `command`
+and optional `args`, `env`, and `cwd`:
 
 ```json
 {
   "mcpServers": {
-    "sqlite-helper": {
-      "command": "sqlite-mcp-server",
-      "args": ["/path/to/database.db"],
-      "env": {
-        "DB_READONLY": "true"
-      }
-    },
-    "remote-service": {
-      "serverUrl": "https://mcp.mycompany.com/sse"
+    "local-catalog": {
+      "command": "python3",
+      "args": ["/path/to/server.py"]
     }
   }
 }
 ```
 
-### 1. Stdio Transport (Local)
+Plugin-level configuration lives in `mcp_config.json`. Use absolute runtime
+paths when a local server needs to run outside the active workspace. Keep
+canonical source files portable; resolve machine-specific paths during
+installation.
 
-Used to run a local executable or script as an MCP server. The Language Server
-spawns the process and communicates with it over standard input/output.
+Remote servers use `serverUrl` and optional supported authentication fields.
+Do not copy legacy `url` examples into current Antigravity MCP configurations.
 
-*   **`command`** (string, required): The executable to run (e.g., `node`,
-    `python3`, or a binary name).
-*   **`args`** (array of strings, optional): Arguments to pass to the command.
-*   **`env`** (object, optional): Environment variables to inject into the
-    server process.
+## Diagnostics and permissions
 
-### 2. SSE Transport (Remote)
+Use `/mcp` in Antigravity CLI to inspect server status and connection logs. The
+App and IDE expose MCP management in their Customizations interfaces. Tool
+access is subject to Antigravity permissions; the default may require approval
+for MCP calls.
 
-Used to connect to a remote MCP server over HTTP using Server-Sent Events (SSE).
+## Coacus catalog server
 
-*   **`serverUrl`** (string, required): The HTTP(S) URL of the remote MCP
-    endpoint.
-
---------------------------------------------------------------------------------
-
-## How the Agent Uses MCP
-
-Once an MCP server is configured and successfully connected:
-
-1.  **Tool Discovery**: The system queries the server for its available tools.
-2.  **Tool Injection**: Discovered tools are automatically added to the agent's
-    toolset and listed in the system prompt.
-3.  **Execution**: When the agent calls an MCP tool, the Language Server routes
-    the request to the MCP server, executes it, and returns the result to the
-    agent.
-
-## Scoping and Scannability
-
-*   **Global Servers**: Active for all conversations.
-*   **Plugin Servers**: Only active when the parent plugin is loaded. Their
-    tools are automatically prefixed or namespaced if necessary to avoid
-    conflicts.
-*   You can inspect active MCP servers and their tools in the UI by navigating
-    to **Additional Options (...) > MCP Servers**.
+Coacus installs a local, standard-library Python MCP server in its Antigravity
+plugin. Its bounded `search` tool returns catalog metadata; `get` returns one
+canonical skill or agent source; `get_reference` returns a supporting file
+inside that capability's directory. The server uses a generated static index
+and does not require the Coacus checkout after installation.

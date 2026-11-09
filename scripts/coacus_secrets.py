@@ -6,7 +6,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import io
+import errno
+import os
 import platform
+import shutil
+import stat
 import subprocess
 import tarfile
 import tempfile
@@ -51,6 +55,45 @@ def install_binary(content: bytes, checksum: str, target: Path) -> None:
     target.chmod(0o700)
 
 
+def stage_tracked_files(root: Path, destination: Path) -> None:
+    """Copy tracked regular worktree files without following any symlink."""
+    if not hasattr(os, "O_NOFOLLOW") or os.open not in os.supports_dir_fd:
+        raise RuntimeError("safe worktree staging is unavailable on this platform")
+    listing = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "-z", "--cached"],
+        check=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+    ).stdout
+    root_fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    try:
+        for raw in set(listing.split(b"\0")) - {b""}:
+            parts = os.fsdecode(raw).split("/")
+            if any(part in ("", ".", "..") for part in parts):
+                raise ValueError("invalid tracked path")
+            directory = os.dup(root_fd)
+            try:
+                try:
+                    for part in parts[:-1]:
+                        child = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory)
+                        os.close(directory)
+                        directory = child
+                    fd = os.open(parts[-1], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
+                except OSError as exc:
+                    if exc.errno in (errno.ENOENT, errno.ENOTDIR, errno.ELOOP):
+                        continue
+                    raise
+                with os.fdopen(fd, "rb") as source:
+                    if not stat.S_ISREG(os.fstat(source.fileno()).st_mode):
+                        continue
+                    output = destination.joinpath(*parts)
+                    output.parent.mkdir(parents=True, exist_ok=True)
+                    with output.open("wb") as target:
+                        shutil.copyfileobj(source, target)
+            finally:
+                os.close(directory)
+    finally:
+        os.close(root_fd)
+
+
 def main(argv: list[str] | None = None) -> int:
     """Download the host's verified scanner and return its scan exit status."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -69,12 +112,29 @@ def main(argv: list[str] | None = None) -> int:
         # URL is the fixed HTTPS publisher release; archive integrity is pinned.
         with urllib.request.urlopen(url, timeout=60) as response:  # nosec B310
             install_binary(response.read(), checksum, target)
-        # Scan the checked-out state that squash-merge ships; redact all matches.
-        return subprocess.run(
-            [str(target), "dir", "--redact", "--no-banner", "--exit-code", "1",
-             "--config", str(args.root / ".gitleaks.toml"), str(args.root)],
-            check=False,
+        # Historical commit metadata can contain secrets even when findings are redacted.
+        history = subprocess.run(
+            [str(target), "git", "--log-opts=--all", "--redact", "--no-banner",
+             "--exit-code", "1", "--config", str(args.root / ".gitleaks.toml"), str(args.root)],
+            check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         ).returncode
+        if history:
+            print("History scan detected findings or failed; inspect privately.")
+        staged = Path(tmp) / "worktree"
+        staged.mkdir()
+        try:
+            stage_tracked_files(args.root, staged)
+        except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError):
+            print("Worktree staging failed; scan incomplete.")
+            return history or 1
+        working = subprocess.run(
+            [str(target), "dir", "--redact", "--no-banner", "--exit-code", "1",
+             "--config", str(args.root.resolve() / ".gitleaks.toml"), str(staged)],
+            check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        ).returncode
+        if working:
+            print("Worktree scan detected findings or failed; inspect privately.")
+        return history or working
 
 
 if __name__ == "__main__":

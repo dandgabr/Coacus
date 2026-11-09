@@ -25,7 +25,7 @@ TOGAF Fundamental Content plus TOGAF Series Guides.
 
 | Framework | Nature | Pin |
 |---|---|---|
-| Zachman | A 6×6 classification ontology; prescribes no method, notation or content | v3.0 reported by secondary sources only — **`unverified`** (publisher page unreachable) |
+| Zachman | A 6×6 classification ontology; prescribes no method, notation or content | v3.0 (2011; publisher source, resolved 2026-10-19) |
 | Gartner EA | A discipline and operating model, not a numbered standard | Cite the definition, not a version |
 
 ## Books
@@ -48,6 +48,10 @@ TOGAF Fundamental Content plus TOGAF Series Guides.
   cross-cutting thread that pervades every other domain.
 - **Network:** a Technology-domain concern (topology, connectivity), not a peer
   domain.
+
+Zachman v3.0 was re-confirmed against [Zachman International's account of the
+Framework evolution](https://zachman-feac.com/resources/ea-articles-reference/175-the-zachman-framework-evolution)
+on 2026-10-19.
 
 ## Governance vocabulary — precise attribution
 

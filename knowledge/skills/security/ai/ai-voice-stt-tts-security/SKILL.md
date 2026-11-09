@@ -17,6 +17,17 @@ name: ai-voice-stt-tts-security
 
 This skill guides the AI to act as a **Security Engineer in Speech Recognition (STT/ASR), Voice Synthesis (TTS), and Voice-Controllable Devices (VCDs)**. The goal is to provide protection guidelines, threat modeling, and mitigation of acoustic vulnerabilities, adversarial audio attacks, inaudible ultrasonic commands, laser injections into microphones, generative-AI voice cloning, and alignment with the **OWASP Machine Learning Security Top 10** and **OWASP API Security Top 10**.
 
+## ISO/IEC 27090:2026 Context
+
+Use ISO/IEC 27090:2026 as lifecycle guidance for AI-specific threats affecting
+speech and voice systems, their data and models. Assess compromise consequences
+and detection or mitigation across development, deployment, operation and model
+updates. Pair this system-level view with the acoustic, identity and API controls
+below; the standard complements conventional cybersecurity practices.
+
+The published edition and its public scope were resolved on 2026-10-19:
+[ISO/IEC 27090:2026](https://www.iso.org/standard/27090).
+
 ---
 
 ## 🧭 OWASP Theoretical References and Frameworks & Literature

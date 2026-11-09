@@ -146,6 +146,7 @@ cosign verify --certificate-identity-regexp "https://github.com/empresa/.*" \
 5. **Protestware and Repo Hijacking**: Pin dependencies, monitor maintainer changes, and treat unexpected telemetry or destructive updates as an incident.
 6. **Build-Cache Poisoning and Forged Provenance**: Isolate build caches per trust boundary and verify provenance with a fixed builder identity; never reuse caches across unreviewed inputs.
 7. **Trusted Publishing**: Replace long-lived registry tokens with OIDC-based trusted publishing (npm, PyPI) so CI mints short-lived credentials bound to the repository identity.
+8. **Agent Workspace Configuration & Hook Poisoning**: Protect developer environments and AI coding agents against malicious repository configurations. Enforce strict allowlists on automated repository lifecycle hooks (`SessionStart`, `PreToolUse`), forbid arbitrary package lifecycle scripts (`preinstall`, `postinstall`, `prepare`), disallow wildcard command grants (`Bash(*)`) in skill frontmatters, and audit order-sensitive `.gitignore` negations to prevent silent exfiltration of PII and credentials.
 
 ---
 

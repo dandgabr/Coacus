@@ -11,7 +11,7 @@ This skill establishes the methodological and operational standard for conductin
 
 ## 🔬 1. Question Formulation Methodology
 
-Before dispatching queries to databases, the research question must be decomposed into a validated conceptual framework:
+Choose a systematic, scoping, narrative, or other review design to fit the request; do not describe a limited search as exhaustive. Select a question framework appropriate to the design and domain. PICO and PECO are useful for many comparative questions, but are not mandatory for every research question.
 
 ### A. PICO / PECO Framework
 - **P (Population / Problem)**: Population, sample, domain, clinical context, or engineering problem under study.
@@ -29,18 +29,20 @@ Before dispatching queries to databases, the research question must be decompose
    - Registration of all records retrieved per academic database and complementary searches (grey literature).
    - Automated or DOI / PMID / arXiv ID-assisted duplicate removal.
 2. **Screening**:
-   - Blind or parallel reading of Titles & Abstracts with explicit inclusion/exclusion criteria.
+   - Screen titles and abstracts against explicit inclusion/exclusion criteria; document reviewer independence and any limits on duplicate screening.
 3. **Eligibility**:
    - Obtaining the Full-Text and detailed verification of methodological variables.
 4. **Inclusion**:
    - Final set of articles submitted to qualitative synthesis or quantitative meta-analysis.
 
+Record the search date, source, exact query, filters, and access limitations for each database. Distinguish records, retrieved reports, and unique studies when reconciling screening counts. Record full-text exclusion reasons and disclose inaccessible full texts; an abstract or search snippet is not full-text assessment. Do not claim systematic coverage when the search or screening was incomplete.
+
 ### B. PRESS (Peer Review of Electronic Search Strategies) Guidelines
-- **Conceptual Translation**: Ensure each PICO component has complete synonyms (free-text terms and controlled terms).
-- **Controlled Vocabularies**: Mandatory use of **MeSH** (Medical Subject Headings) in PubMed, **DeCS** in BVS/SciELO, and the **ACM/IEEE Taxonomy** in computing.
+- **Conceptual Translation**: Identify the search concepts relevant to the question and develop appropriate free-text synonyms and controlled terms where available.
+- **Controlled Vocabularies**: Where the selected database supports an applicable vocabulary, combine its terms with suitable free-text synonyms; record the vocabulary and query syntax actually used.
 - **Strict Boolean Operators**:
   - `OR` intra-concept (synonyms and spelling variants).
-  - `AND` inter-concept (combination of PICO dimensions).
+  - `AND` inter-concept (combination of the selected search concepts).
   - Sparing use of `NOT` to avoid inadvertent exclusion of relevant studies.
 
 ---
@@ -73,6 +75,10 @@ Before dispatching queries to databases, the research question must be decompose
 
 When structuring academic reports and reviews:
 - Present a Table of Study Characteristics (Author, Year, Sample/Dataset, Methodology, Main Metrics, and Limitations).
+- Link multiple reports of the same study and identify overlapping participant samples where evidence permits; do not count correlated reports as independent studies or silently double-count participants.
 - Explicitly report potential biases (Risk of Bias) and the level of evidence (e.g., GRADE).
 - Provide complete formal citations (DOI, journal, volume/issue, and authors).
+- Check bibliographic identifiers and metadata against the actual source or an authoritative registry; record a citation as unverified when lookup fails. Do not invent missing fields, and distinguish unavailable information from fields that do not apply. A valid identifier alone does not establish that the source supports the cited claim.
+- Separate observations, candidate hypotheses, predictions, and rival explanations. State uncertainty and do not infer a causal mechanism or research novelty from a preliminary association or a limited search.
+- Distinguish prospective preregistration from a plan written after results are known; disclose exploratory or post hoc changes rather than presenting them as prespecified.
 - **Verify versions and editions before asserting them** (version-freshness): resolve the current edition of a standard, protocol or tool from the publisher or an indexed publication in the current session; state the edition/revision with its source and resolution date, and mark an unresolved pin `unverified` rather than presenting it as current. Never cite a version from memory.

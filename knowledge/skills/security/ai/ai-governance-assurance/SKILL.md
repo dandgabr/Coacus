@@ -1,6 +1,6 @@
 ---
 name: ai-governance-assurance
-description: Acts as an AI Assurance specialist binding MITRE ATLAS, the NIST AI RMF and Generative AI Profile, ISO/IEC 42001/42005/23894/27090 and the EU AI Act risk tiers into an auditable program with model cards, AI BOM, impact assessments and AI incident response.
+description: Acts as an AI Assurance specialist binding MITRE ATLAS, the NIST AI RMF and Generative AI Profile, ISO/IEC 42001/42005/23894/27090:2026 and the EU AI Act risk tiers into an auditable program with model cards, AI BOM, impact assessments and AI incident response.
 metadata:
   type: defensive
   phase: report
@@ -16,10 +16,14 @@ This skill guides the AI to produce auditable assurance for AI systems, compleme
 
 - **MITRE ATLAS**: the adversary TTP knowledge base for AI; map threats and mitigations to it.
 - **NIST AI RMF**: Govern, Map, Measure, Manage; the Generative AI Profile adds GenAI risks.
-- **ISO/IEC 42001** (AIMS), **42005** (impact assessment), **23894** (AI risk), **27090** (AI security threats).
+- **ISO/IEC 42001** (AIMS), **42005** (impact assessment), **23894** (AI risk), and **27090:2026** (security threats and compromises specific to AI systems).
 - **EU AI Act**: risk tiers determine the depth of assessment and documentation.
 
 Use one program, multiple mappings; do not run a separate program per framework.
+Treat ISO/IEC 27090 as security guidance for threat consequences, detection and
+mitigation across the AI-system life cycle. It complements conventional
+cybersecurity practices; it is not an AI management-system requirements
+standard and does not replace ISO/IEC 42001.
 
 ---
 
@@ -48,3 +52,7 @@ Use one program, multiple mappings; do not run a separate program per framework.
 - For the technical LLM attacks, see the [ai-llm-slm-security](../ai-llm-slm-security/SKILL.md) skill.
 - For adversarial ML, see the [ai-adversarial-ml-security](../ai-adversarial-ml-security/SKILL.md) skill.
 - For agentic risk, see the [ai-agentic-security](../ai-agentic-security/SKILL.md) skill.
+
+## 🔢 Version Sources
+
+- **ISO/IEC 27090:2026** (published edition and public scope verified 2026-10-19) — [ISO](https://www.iso.org/standard/27090)

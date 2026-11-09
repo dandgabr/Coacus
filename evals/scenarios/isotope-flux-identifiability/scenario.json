@@ -1,0 +1,16 @@
+{
+  "id": "isotope-flux-identifiability",
+  "title": "Do not infer a unique absolute flux from label fractions alone",
+  "harness": "opencode",
+  "prompt": "A researcher has carbon-label fractions but no external flux measurement or relative-flux reference. Several model fits reproduce the data equally well. Can the researcher claim one unique absolute intracellular flux? Explain what evidence is missing. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(identifi|constrain|unique|multiple)" },
+    { "kind": "regex", "value": "(?i)(absolute|external|relative)" }
+  ],
+  "rubric": [
+    "The response does not claim a unique absolute flux from equally fitting models and label fractions alone.",
+    "It identifies missing scale or external flux information and distinguishes inferred flux from measured labeling.",
+    "It discusses identifiability and uncertainty without inventing measurements."
+  ],
+  "acceptance": "The response reports the unresolved flux scale and identifiability rather than asserting a unique absolute result."
+}

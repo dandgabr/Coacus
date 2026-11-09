@@ -5,8 +5,8 @@ Mirrors the reference command surface so harness adapters (the OpenCode gate
 plugin) can call it directly:
 
     coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-    coacus_governor.py release <caller>
-    coacus_governor.py fail    <caller>
+    coacus_governor.py release <caller> [--token TOKEN]
+    coacus_governor.py fail    <caller> [--token TOKEN]
     coacus_governor.py paused
     coacus_governor.py status  [max-total]
     coacus_governor.py reset
@@ -33,18 +33,30 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="coacus-governor", description=__doc__)
     parser.add_argument(
         "action",
-        choices=["acquire", "release", "fail", "paused", "status", "health", "reset"],
+        choices=["acquire", "release", "fail", "paused", "status", "health", "reset", "set-max"],
     )
     parser.add_argument("caller", nargs="?", default="")
     parser.add_argument("orchestrator", nargs="?", default="no")
     parser.add_argument("timeout", nargs="?", type=float, default=30.0)
     parser.add_argument("max_total", nargs="?", type=int, default=None)
+    parser.add_argument("--scope", default="global", help="Harness or provider scope (default: global)")
+    parser.add_argument("--model", default=None, help="Active model name (e.g. flash, pro, sonnet)")
+    parser.add_argument("--token", default=None, help="Fence release or fail to this acquisition token")
     args = parser.parse_args(argv)
+    if args.token is not None and args.action not in ("release", "fail"):
+        parser.error("--token is only valid for release or fail")
+    if args.action == "acquire" and not args.caller:
+        parser.error("acquire requires a caller")
 
-    ledger = Ledger(max_total=args.max_total)
+    ledger = Ledger(scope=args.scope, model=args.model, max_total=args.max_total)
+    if args.action == "set-max":
+        val = args.max_total if args.max_total is not None else (int(args.caller) if args.caller.isdigit() else 6)
+        new_cap = ledger.set_max(val)
+        print(f"scope={ledger.scope} max={new_cap}")
+        return 0
     if args.action == "acquire":
         token = ledger.acquire(
-            args.caller or "unknown",
+            args.caller,
             orchestrator=args.orchestrator == "yes",
             timeout=args.timeout,
         )
@@ -53,10 +65,10 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         return 1
     if args.action == "release":
-        ledger.release(args.caller or "unknown")
+        ledger.release(args.caller or "unknown", token=args.token)
         return 0
     if args.action == "fail":
-        ledger.fail(args.caller or "unknown")
+        ledger.fail(args.caller or "unknown", token=args.token)
         return 0
     if args.action == "reset":
         ledger.reset()

@@ -90,7 +90,7 @@ An international XML/JSON standard that replaces legacy text formats and standar
 ## 🔄 4. Cryptographic Resilience, Reconciliation, and Architecture
 
 ### 1. Strict Idempotency
-Guarantee that duplicate requests sent due to network failure never result in double debits:
+Prevent duplicate debits from retried requests, including ambiguous failures:
 
 ```json
 // Mandatory request header in the Payment API
@@ -98,7 +98,7 @@ HTTP/1.1 POST /v1/payments
 Idempotency-Key: ${IDEMPOTENCY_KEY}
 ```
 
-- **Idempotency Engine**: Concurrent locking in Redis/Cache with payload hash verification and idempotency key. If the request has already been processed, the previous result is returned immediately without resending the transaction to the acquirer/bank.
+- **Idempotency Engine**: Atomically claim a durable idempotency key with a payload fingerprint and processing state; return the recorded result for a completed matching request. A cache lock alone is not durable duplicate protection. Use a stable provider idempotency key when supported and reconcile ambiguous external outcomes before retrying when it is not. See [framework-rest-api](../../../frameworks/framework-rest-api/SKILL.md) for retries and recovery.
 
 ### 2. Financial Reconciliation Engine
 - **Triple Reconciliation**:

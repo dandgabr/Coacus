@@ -1,6 +1,6 @@
 ---
 name: "frontend-developer"
-description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Framer Motion (spring physics), Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance."
+description: "Acts as a Senior Frontend Engineer and Design Engineer, mastering interface architecture, bespoke Design Systems, de-templatization of Tailwind and shadcn/ui, analog textures (SVG Perlin noise), animation physics with Motion (formerly Framer Motion) springs, motion lifecycle cleanup in React, Next.js and Vue, Core Web Vitals, and strict WCAG 2.2 AA/AAA compliance. Use when building React, Next.js or Vue interfaces, wiring Motion or GSAP lifecycles, de-templatizing component libraries, or tuning Core Web Vitals."
 ---
 
 # 💻 AI Skill: Senior Frontend Engineer & Design Engineer
@@ -14,9 +14,8 @@ This skill empowers the artificial intelligence to act as a **Senior Frontend So
 The strongest signal of code generated uncritically by AI in the frontend is the use of standardized templates with no customization of design tokens. The Design Engineer breaks this homogenization by applying the following practices:
 
 ### 1.1. De-templatization Rules for Tailwind CSS and shadcn/ui
-1. **Never Import Raw Components Directly Into Pages**:
-   - Do not use the stock `<Button>`, `<Card>`, or `<Badge>` from shadcn directly in final screens.
-   - Build **bespoke product wrappers** (e.g., `<AppButton>`, `<MetricCard>`, `<EditorialHero>`) that encapsulate semantic tokens and brand behaviors.
+1. **Use Product Components Where They Carry Product Decisions**:
+   - Reuse accessible components when their behavior and styling fit. Add product wrappers when they centralize real tokens, semantics or behavior; do not wrap every stock component merely to rename it.
 2. **Total Token Redefinition in `globals.css`**:
    - Override shadcn's `:root` and `.dark` CSS variables. Eliminate default colors like `indigo-500` and the overused rounded radii (`radius: 0.5rem`).
    - Define surfaces by luminance (*Surface Ladders*) and tailor-made palettes:
@@ -42,8 +41,10 @@ The strongest signal of code generated uncritically by AI in the frontend is the
        --radius-base: 2px;
      }
      ```
-3. **Replacing Purple/Blue Gradients with Tactile Monochrome and Single-Accent**:
-   - Adopt solid, clean palettes with a single luminous accent tone (e.g., technical emerald green, phosphor amber, or pure white on a charcoal background).
+3. **Choose the Palette for the Product**:
+   - A restrained task surface may benefit from a small accent budget. A historical, chromatic or expressive style can intentionally use other palettes. Correct unexamined defaults and unreadable paint without converting every interface to monochrome.
+
+For complete surfaces, native controls and appearance states, use [theme surface states](../../domains/design/color-ui-systems/references/theme-surface-states.md). For reversible language changes and async ownership, use [runtime localization](references/runtime-localization.md) and [interface state lifecycle](references/interface-state-lifecycle.md). These procedures apply without requiring a particular component library.
 
 ### 1.2. Performant Implementation of Analog Noise (CSS / SVG Grain)
 Breaking digital sterility comes from applying a light Perlin noise layer that does not tax processing or block user interaction:
@@ -83,37 +84,14 @@ Breaking digital sterility comes from applying a light Perlin noise layer that d
 
 ---
 
-## 🎞️ 2. Animation Physics & Microinteractions with Framer Motion
+## 🎞️ 2. Animation Physics & Microinteractions with Motion (formerly Framer Motion)
 
-Avoid mechanical, standardized transitions based on linear time (`transition: all 0.3s ease`). Adopt **real spring physics**:
+Choose explicit properties and timing appropriate to the interaction. Springs can support interruptible movement; duration-based easing can suit fades and narrative steps. Do not add motion merely to replace a default or override a deliberately static style.
 
 ### 2.1. Calibrating Natural Springs (Spring Physics)
-In professional interfaces, eliminate the excessive "bounce" that conveys a childish feel. Calibrate the critical damping to give motion a firm, fast character:
+Use the canonical spring tokens below; [motion-timing-engines](../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their damping ratios, overshoot, settle times, duration bands and interruption rules — link to it instead of restating values. Only `snap` is bounce-free; reserve `playful` for rare delight. The typed `springPresets` object (the one code copy of the values) lives in [design-engineering-craft-guide](references/design-engineering-craft-guide.md); import it rather than re-declaring numbers:
 ```typescript
-// Canonical firm-spring configuration for professional software
-export const springPresets = {
-  // Firm transition, no bounce, ideal for modals, dropdowns and tabs
-  snappy: {
-    type: "spring",
-    stiffness: 400,
-    damping: 32,
-    mass: 0.8
-  },
-  // Soft, organic touch for cards and scroll reveals
-  gentle: {
-    type: "spring",
-    stiffness: 260,
-    damping: 24,
-    mass: 1
-  },
-  // Tactile button click (sink and immediate return)
-  press: {
-    type: "spring",
-    stiffness: 500,
-    damping: 20,
-    mass: 0.5
-  }
-};
+import { springPresets } from "@/lib/animation/springs"; // snap | smooth | playful
 ```
 
 ### 2.2. Atomic Sequential Orchestration with `staggerChildren`
@@ -135,30 +113,61 @@ export const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: springPresets.snappy
+    transition: springPresets.smooth
   }
 };
 ```
 
-### 2.3. Mandatory Respect for `prefers-reduced-motion`
-Users with vestibular sensitivity or accessibility preferences must receive versions without spatial displacement:
-```typescript
-import { useReducedMotion } from "framer-motion";
+### 2.3. Honouring `prefers-reduced-motion` (House Policy)
+Honouring the user's reduced-motion preference is Coacus house policy and WCAG technique C39 — not a Level AA requirement. The normative obligations (2.2.2 Pause, Stop, Hide; 2.3.1; 2.3.3) live in [web-accessibility-wcag](../../engineering/practices/web-accessibility-wcag/SKILL.md) (section "Motion and Animation").
+
+`useReducedMotion()` returns `null` during SSR and the first client render, then a boolean. Treat `null` as "reduce", start from the no-motion state so server and client HTML match, and never read `window.matchMedia` during render (hydration mismatch). For app-wide defaults, wrap the tree in `<MotionConfig reducedMotion="user">`.
+```tsx
+"use client";
+import { motion, useReducedMotion } from "motion/react";
 
 export function AccessibleAnimatedCard({ children }: { children: React.ReactNode }) {
-  const shouldReduceMotion = useReducedMotion();
+  // null (unknown) and true both mean: no spatial motion
+  const allowMotion = useReducedMotion() === false;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={shouldReduceMotion ? { duration: 0.15 } : springPresets.snappy}
+      initial={false} // SSR HTML is the final, visible state
+      whileHover={allowMotion ? { y: -4 } : undefined}
+      transition={allowMotion ? springPresets.smooth : { duration: 0 }}
     >
       {children}
     </motion.div>
   );
 }
 ```
+
+### 2.4. Motion in Component Lifecycles (React, Next.js, Vue)
+This skill owns the lifecycle contract; motion skills link here.
+
+- **SSR baseline**: never ship content as `opacity: 0` in server HTML when JS may not run. Hide only from script (`gsap.from`, Motion `initial` on client-only trees).
+- **GSAP in React**: use `useGSAP()` (`@gsap/react`) with a `scope` ref; everything created inside reverts on unmount. Wrap later callbacks (events, timers, promises) in `contextSafe`. Create SplitText with `autoSplit` + `onSplit` (re-splits after `document.fonts.ready` and resizes) so it reverts with the context; call `ScrollTrigger.refresh()` after fonts or images change layout.
+```tsx
+"use client";
+const scope = useRef<HTMLDivElement>(null);
+const { contextSafe } = useGSAP(() => {
+  SplitText.create(".title", {
+    type: "words", aria: "auto", autoSplit: true,
+    onSplit: (self) => gsap.from(self.words, { yPercent: 100, stagger: 0.04 })
+  });
+}, { scope });
+const nudge = contextSafe(() => gsap.to(".cta", { x: 4, yoyo: true, repeat: 1 }));
+```
+- **Lenis in Next.js**: instantiate inside a client component (`'use client'`) and destroy on unmount.
+```tsx
+useEffect(() => {
+  const lenis = new Lenis({ autoRaf: true });
+  return () => lenis.destroy();
+}, []);
+```
+- **Motion exits**: `AnimatePresence` direct children need stable, unique `key`s (never array indexes): missing keys stop `exit` from running, and index keys make the wrong element exit.
+- **Vue**: drive JS hooks via `<Transition :css="false" @enter="(el, done) => gsap.from(el, { opacity: 0, onComplete: done })">` (same hooks on `<TransitionGroup>`); in `onBeforeUnmount`, call `ctx.revert()` for a `gsap.context()` and `lenis.destroy()`.
+- **React `<ViewTransition>`**: stable since React 19.3 (see Version Sources); it animates only updates inside `startTransition`, `<Suspense>` reveals or `useDeferredValue`. For earlier React lines, use the fallback in [view-transitions.md](../../domains/design/ui-state-layout-transitions/references/view-transitions.md#framework-integration-snippets).
 
 ---
 
@@ -203,6 +212,9 @@ export function AccessibleAnimatedCard({ children }: { children: React.ReactNode
 - **Service Consumption**: Resilient integration with REST APIs ([framework-rest-api](../../frameworks/framework-rest-api/SKILL.md)) or gRPC-Web ([framework-grpc](../../frameworks/framework-grpc/SKILL.md)).
 - **Code Reuse**: Applies the modularity and non-duplication rules of [clean-code-reusability](../../engineering/practices/clean-code-reusability/SKILL.md).
 - **Code Security**: XSS prevention with rigorous sanitization via [appsec-owasp-asvs](../../security/appsec/appsec-owasp-asvs/SKILL.md).
+- **Scroll Motion**: ScrollTrigger, Lenis, CSS scroll timelines, sticky and snap mechanics in [ui-scroll-driven-motion](../../domains/design/ui-scroll-driven-motion/SKILL.md).
+- **State & Layout Transitions**: View Transitions, FLIP, skeletons and auto-height reveals in [ui-state-layout-transitions](../../domains/design/ui-state-layout-transitions/SKILL.md).
+- **Text Effects**: Accessible SplitText, stagger, scramble, typewriter and ticker recipes in [text-effect-recipes](../../domains/design/ui-motion-interaction/references/text-effect-recipes.md).
 
 ---
 
@@ -223,7 +235,7 @@ One canonical skill per style — visual DNA, motion, CSS techniques, accessibil
 - [bento grid](../../domains/design/ui-style-bento-grid/SKILL.md)
 - [card based ui](../../domains/design/ui-style-card-based-ui/SKILL.md)
 - [claymorphism](../../domains/design/ui-style-claymorphism/SKILL.md)
-- [cyberpunk hud](../../domains/design/ui-style-cyberpunk-hud/SKILL.md)
+- [cyberpunk hud](../../domains/design/ui-style-cyberpunk/SKILL.md)
 - [dark mode first](../../domains/design/ui-style-dark-mode-first/SKILL.md)
 - [editorial archive luxury](../../domains/design/ui-style-editorial-archive-luxury/SKILL.md)
 - [expressive variable typography](../../domains/design/ui-style-expressive-variable-typography/SKILL.md)
@@ -238,7 +250,7 @@ One canonical skill per style — visual DNA, motion, CSS techniques, accessibil
 - [micro interactions](../../domains/design/ui-style-micro-interactions/SKILL.md)
 - [neo brutalism](../../domains/design/ui-style-neo-brutalism/SKILL.md)
 - [neumorphism](../../domains/design/ui-style-neumorphism/SKILL.md)
-- [one page long scroll](../../domains/design/ui-style-one-page-long-scroll/SKILL.md)
+- [one page long scroll](../../domains/design/ui-style-scrollytelling/SKILL.md)
 - [organic biophilic](../../domains/design/ui-style-organic-biophilic/SKILL.md)
 - [parallax scrolling](../../domains/design/ui-style-parallax-scrolling/SKILL.md)
 - [scrollytelling](../../domains/design/ui-style-scrollytelling/SKILL.md)
@@ -258,3 +270,18 @@ Five companion skills cover color end to end — science, palettes, contrast, to
 - [color contrast accessibility](../../domains/design/color-contrast-accessibility/SKILL.md)
 - [color ui systems](../../domains/design/color-ui-systems/SKILL.md)
 - [color data visualization](../../domains/design/color-data-visualization/SKILL.md)
+
+---
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **motion 14.4.0** (verified; React import `motion/react`) — https://motion.dev/changelog
+- **@gsap/react 2.1.2** (verified) — https://registry.npmjs.org/@gsap/react
+- **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap
+- **lenis 1.3.27** (verified) — https://registry.npmjs.org/lenis
+- **React `<ViewTransition>` stable in React 19.3.0** (verified; released 2026-09-09, latest 19.3.1) — https://react.dev/blog/2026/09/09/react-19-3 and https://registry.npmjs.org/react
+
+## Conditional Tabler Integration
+
+For an existing Tabler dependency or an explicit Tabler request, use [framework-tabler](../../frameworks/framework-tabler/SKILL.md). Match component documentation to the installed release and verify client-side initialization and cleanup. A generic dashboard request preserves the project’s existing component library.

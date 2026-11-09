@@ -170,3 +170,12 @@ npx markmap-cli architecture.md -o architecture-mindmap.html --open
 - [ ] **Appropriate Abstraction**: In high-level class diagrams, omit getters/setters and private utility attributes to focus on the domain and essential interactions.
 - [ ] **Consistent Use of Colors and Styles**: Standardize interfaces with colors distinct from concrete classes and use clear stereotypes (`<<entity>>`, `<<value object>>`, `<<aggregate root>>`).
 - [ ] **Living Documentation in the Repository**: Keep `.puml` and `.mermaid` sources in the same repository as the code to enable review in Pull Requests.
+
+## Persistent Editable Outputs
+
+Keep notation and reverse-engineering choices here. When the deliverable must
+remain editable across imports, manual changes or format conversions, use
+[editable diagram engineering](../editable-diagram-engineering/SKILL.md).
+A generated image is not automatically an editable model; conversion to a
+flowchart can lose class, sequence or other notation semantics. Record those
+losses rather than promising arbitrary roundtrip equivalence.

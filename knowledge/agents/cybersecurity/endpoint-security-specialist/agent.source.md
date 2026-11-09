@@ -6,6 +6,7 @@ description: >-
   application control, OS hardening baselines and patch management, macOS
   endpoint security, endpoint detection engineering and host forensics.
 skills:
+  - knowledge/skills/languages/lang-powershell/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md
   - knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md
@@ -66,3 +67,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- Consult [PowerShell engineering](knowledge/skills/languages/lang-powershell/SKILL.md) when the task involves PowerShell.

@@ -6,6 +6,7 @@ description: >-
   21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta
   EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).
 skills:
+  - knowledge/skills/frameworks/framework-spring-ai/SKILL.md
   - knowledge/skills/data/jpa-hibernate-performance/SKILL.md
   - knowledge/skills/engineering/patterns/arch-bce-pattern/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
@@ -76,3 +77,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [framework-spring-ai](knowledge/skills/frameworks/framework-spring-ai/SKILL.md)

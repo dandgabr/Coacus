@@ -2,7 +2,9 @@
 
 Every command below was verified against the scripts in `scripts/`. Run them
 from the repository root. Python 3.10+ is supported (Python 3.14 is the CI target);
-the stdlib is the only dependency for the core tooling.
+the stdlib is the only dependency for the core tooling, except the repository-wide
+language gate, which requires `lingua-language-detector==2.2.0` and
+`wordfreq==3.1.1` on Python 3.12+.
 
 ## 🌟 1-Click Universal Bootstrap (Recommended)
 
@@ -26,11 +28,12 @@ python3 -m unittest discover -s tests  # deterministic suite
 ```
 
 `generate` gates on **source** errors: invalid canonical sources never produce
-artifacts. It also records a provenance entry for every authored skill, workflow
-and agent ([provenance](standards/provenance.md)); the write is idempotent. It
-then writes the generated files and checks the **artifact** outputs. If artifacts
+artifacts. After rendering, it also records a provenance entry for every authored
+skill, workflow and agent source ([provenance](standards/provenance.md)); the
+write is idempotent. It then checks the **artifact** outputs. If artifacts
 remain inconsistent after writing, it exits non-zero. Non-blocking warnings
-(language markers, oversized descriptions) print as `[warn]`.
+(body word budgets and description register) print as `[warn]`. Language findings
+and oversized descriptions are blocking errors.
 
 `check` compares disk against a fresh in-memory regeneration and exits 1 on any
 diff. It never writes. Generated files carry no timestamps, so the check is
@@ -82,6 +85,41 @@ The command is offline and deterministic: it lists every moving release pin with
 the network. Resolution itself follows the
 [version-freshness](standards/version-freshness.md) standard.
 
+### Audit visual design craft (Anti-AI Slop)
+
+Audit frontend templates, CSS and design skills against generic LLM anti-patterns
+([product-and-design-truth](standards/product-and-design-truth.md)):
+
+```bash
+# 1. Audit frontend or design skills deterministically
+python3 scripts/coacus_design_lint.py knowledge/skills/domains/design/ --strict
+
+# 2. Output findings as machine-readable JSON
+python3 scripts/coacus_design_lint.py frontend/ --json
+
+# 3. Run self-tests on the design lint rules engine
+python3 scripts/coacus_design_lint.py --test
+```
+
+Flags:
+- `--strict`: Fails with non-zero exit code on any anti-pattern (nested cards, ungrounded shadows, gray-on-color, icon tiles, hero pills with sparkles, and elastic overshoot curves).
+- `--json`: Formats violations as JSON array with severity, rule ID, line number and remediations.
+- `--test`: Runs built-in test fixtures ensuring zero false positives across valid components.
+
+### Find a canonical skill
+
+Search the generated skill catalog or resolve a known entry by its exact name:
+
+```text
+python3 scripts/coacus_skill_search.py search "session coordination" --top 3
+python3 scripts/coacus_skill_search.py show gnome-shell-extension-development
+```
+
+Search matches canonical names and descriptions; it does not search reference
+contents. Read the selected skill and follow its pointers for branch-specific
+guidance. The [desktop extension reference map](reference/desktop-extension-practices.md)
+provides task-based entry points for preferences, accounts, themes, and updates.
+
 ### Select agents (routing)
 
 ```bash
@@ -97,6 +135,54 @@ selection — an unknown name is an error with suggestions. `--rerank "<command>
 plugs in an optional semantic reranker behind the same interface and fails open.
 See [routing](standards/routing.md) and the
 [tutorials](tutorials/) for a guided walkthrough of each mode.
+
+### Frontend and exported motion entry points
+
+Use [UI/UX coordination](../knowledge/skills/roles/ui-ux-designer/SKILL.md)
+for work spanning product context, reference analysis, UX, implementation and
+verification. Local repairs preserve existing decisions and skip unrelated
+rediscovery. The [reference adoption procedure](../knowledge/skills/engineering/practices/ui-design-craftsmanship/references/reference-evidence-and-adoption.md)
+separates observed properties, inferences and unknowns before adopting a design.
+
+Choose the owner by the requested deliverable:
+
+| Deliverable | Canonical owner |
+|---|---|
+| Storyboard, scene sequence and exported audiovisual piece | [motion graphics producer](../knowledge/agents/specialized-domains/motion-graphics-producer/agent.source.md) |
+| Hover, gesture, drawer or scroll interaction | [UI motion specialist](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
+| Canvas, GPU scene or shader implementation | [browser graphics specialist](../knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md) |
+
+The [deterministic motion skill](../knowledge/skills/domains/design/deterministic-motion-rendering/SKILL.md)
+provides frame-evaluation, resource-readiness and export-verification recipes.
+It does not install a renderer or require automatic delegation. Media tools are
+external project dependencies. Export evidence is separate from interactive
+player accessibility and from reasoning-only evaluations.
+
+For product privacy work, begin with [applicability and telemetry](../knowledge/skills/security/grc/security-privacy/references/saas-applicability-and-telemetry.md),
+then use [operational consent and erasure evidence](../knowledge/skills/security/grc/consent-dsr-automation/references/runtime-consent-and-erasure.md)
+when checking the actual implementation. State unobserved network, processor
+and server boundaries rather than inferring compliance from a banner.
+
+### Persistent editable diagrams
+
+Use [editable diagram engineering](../knowledge/skills/mapping/editable-diagram-engineering/SKILL.md)
+for persistent diagrams that must survive manual edits, source updates or format
+conversion. The existing [documenter](../knowledge/agents/software-engineering/documenter/agent.source.md)
+coordinates diagram communication; UML/C4 and mapping owners retain notation
+and extraction responsibility. Ordinary inline Mermaid remains suitable when
+no editable-file lifecycle is required.
+
+Keep an identified authoritative source, revision and editable original. Separate
+semantic changes from layout and story changes; record conversion losses and
+check reopening as well as rendered output. Select tools by actual format, page, identity, patch, concurrency, undo and
+export capabilities. Recipes generalize those techniques across editors;
+draw.io and DrawCMS are optional case studies with snapshot-specific limits.
+They do not install an editor or MCP server.
+
+For animated exports, use the existing [motion adapter reference](../knowledge/skills/domains/design/deterministic-motion-rendering/references/diagram-export-adapters.md)
+for endpoint and duration differences. An authored walkthrough is not evidence
+of observed production traffic. Static scenario validation and reasoning evals
+remain separate from actual editor readback, rendering and export evidence.
 
 ### Validate a TOON payload
 
@@ -158,11 +244,11 @@ after `--`; the helper does not interpret shell pipelines or variable expansion.
 
 | Workflow | Python helper | Purpose |
 |---|---|---|
-| `superpowers-subagent-driven-development` | `scripts/sdd-workspace.py PLAN_FILE` | Resolve a plan-specific workspace. |
-| `superpowers-subagent-driven-development` | `scripts/task-brief.py PLAN_FILE TASK_NUMBER [OUTFILE]` | Extract a task brief. |
-| `superpowers-subagent-driven-development` | `scripts/review-package.py PLAN_FILE BASE HEAD [OUTFILE]` | Package a nonempty descendant commit range. |
-| `superpowers-executing-plans` | `scripts/task-start.py PLAN_FILE TASK_NUMBER` | Print the brief path and review base. |
-| `superpowers-executing-plans` | `scripts/task-done.py PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]` | Record completion only after successful tests. |
+| `subagent-driven-development` | `scripts/sdd-workspace.py PLAN_FILE` | Resolve a plan-specific workspace. |
+| `subagent-driven-development` | `scripts/task-brief.py PLAN_FILE TASK_NUMBER [OUTFILE]` | Extract a task brief. |
+| `subagent-driven-development` | `scripts/review-package.py PLAN_FILE BASE HEAD [OUTFILE]` | Package a nonempty descendant commit range. |
+| `executing-plans` | `scripts/task-start.py PLAN_FILE TASK_NUMBER` | Print the brief path and review base. |
+| `executing-plans` | `scripts/task-done.py PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]` | Record completion only after successful tests. |
 
 Prefix each resolved helper path with the Python interpreter command. The original test output
 is retained in the task log; its displayed summary tolerates undecodable bytes
@@ -182,7 +268,7 @@ library; the scanner is an external executable supplied by its publisher.
 
 `command-code` differs from the hook harnesses: it merges its `SessionStart`
 entry into `~/.commandcode/settings.json` (Command Code keeps hooks there, not in
-a `hooks.json`), merges the `context7` server into `~/.commandcode/mcp.json`, and
+a `hooks.json`), merges declared framework MCP servers into `~/.commandcode/mcp.json`, and
 writes its user rules to `~/.commandcode/AGENTS.md` only when that file does not
 yet exist. It shares the `~/.agents/skills/` tree with Codex and Cursor.
 
@@ -190,28 +276,49 @@ Per-harness behavior and manual paths are in [`install.md`](install.md).
 
 ## Governor
 
-Bound concurrent subagents and handle rate limits.
+The governor tracks slots for cooperating dispatchers and records rate-limit pauses.
+It cannot stop workers that bypass it or verify that a worker is still running.
 
 ```bash
 python3 scripts/coacus_governor.py acquire <caller> [orchestrator-yes|no] [timeout-secs] [max-total]
-python3 scripts/coacus_governor.py release <caller>
-python3 scripts/coacus_governor.py fail    <caller>   # mark a caller that hit a rate limit
-python3 scripts/coacus_governor.py paused             # backoff hints for parked callers
-python3 scripts/coacus_governor.py status [max-total] # running/paused/max/slots_free
-python3 scripts/coacus_governor.py health             # ledger dir + lock + cap
+python3 scripts/coacus_governor.py release <caller> [--token TOKEN]
+python3 scripts/coacus_governor.py fail <caller> [--token TOKEN]
+python3 scripts/coacus_governor.py paused
+python3 scripts/coacus_governor.py status
+python3 scripts/coacus_governor.py health
+python3 scripts/coacus_governor.py set-max <max-total>
 python3 scripts/coacus_governor.py reset
 ```
 
-`acquire` prints the token and exits 0 on success, or prints nothing and exits 1
-when the cap stayed saturated past the timeout. The default cap is 5, orchestrator
-included. Knobs: `ORCH_MAX_CONCURRENT`, `GOVERNOR_STATE_DIR`,
-`GOVERNOR_LEASE_SECONDS`. See [orchestration-governance](standards/orchestration-governance.md).
+Commands accept `--scope SCOPE` and `--model MODEL`; use the same scope for
+operations on a ledger. `acquire` prints a token and exits 0 on success. It
+returns the existing token if the caller already holds a slot. If the cap stays
+full past the acquisition timeout, it prints nothing and exits 1. The timeout
+does not limit worker runtime. A supplied token makes `release` or `fail`
+match both caller and token; without it, the operation matches the caller alone.
+`fail` parks a running caller, and `paused` prints retry hints.
 
-`status` example output:
+The configured cap is resolved from the explicit acquisition maximum, model and
+scope settings, environment variables, and built-in mappings; the global fallback
+is 6. The ledger also persists a cap. A higher resolved cap other than the
+fallback can override a lower persisted cap when read. `set-max` writes a cap
+for the selected scope, but a later operation with a higher resolved cap can
+raise the effective value again. Use `status` in the intended scope and model
+context to inspect the effective `max` and available slots. The orchestrator
+occupies a slot only when registered as running. `GOVERNOR_STATE_DIR` selects
+the ledger directory; see [orchestration-governance](standards/orchestration-governance.md).
 
-```text
-running=0 paused=0 max=5 orchestrator=false slots_free=5
-```
+Running slots do not expire by age or by the acquiring CLI process exiting.
+`GOVERNOR_LEASE_SECONDS` is retained for compatibility and does not reap slots.
+After a crash, inspect `status` and independently confirm the worker has stopped
+before releasing its caller with the recorded token. Use `reset` only after
+confirming that no workers tracked by that ledger are running; it clears all
+records. Tokenless cleanup can affect a newer acquisition for the same caller.
+
+The OpenCode gate rejects background subagent spawns and requires a stable session
+or call ID. Its cleanup currently calls `release` and `fail` without the token;
+do not assume those calls are token-fenced. Gate behavior applies only when the
+plugin is installed and invoked, not to every possible dispatch path.
 
 ## Behavior evals
 
@@ -231,8 +338,7 @@ python3 scripts/coacus_eval.py run --judge-agent
 `--judge-cmd` receives `{"scenario": ..., "transcript": ...}` as JSON on stdin
 and must print a verdict line. `--judge-agent` routes the rubric through the
 same harness as a subagent. Transcripts are redacted by default; set
-`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The six seeded scenarios
-and the scenario schema are documented in [`../evals/README.md`](../evals/README.md).
+`COACUS_EVAL_VERBOSE=1` for a bounded local excerpt. The scenario schema and execution boundaries are documented in [`../evals/README.md`](../evals/README.md).
 
 ## architecture_si vertical
 
@@ -289,7 +395,7 @@ python3 scripts/coacus_install.py claude-code --allow-advisory
 ```
 
 See [`lifecycle-guardrails`](standards/lifecycle-guardrails.md). The generated
-hook shell scripts are executed directly by `tests/test_guardrail_scripts.py`.
+hook adapters are exercised by `tests/test_guardrail_scripts.py`.
 
 ## Self-improvement (opt-in)
 

@@ -1,0 +1,16 @@
+{
+  "id": "expected-first-selection",
+  "title": "Choose the right specialist before acting",
+  "harness": "opencode",
+  "prompt": "In at most two short lines and without editing any file: when a task names a domain, how should you decide which specialist to use before you start?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(route|routing|index|roster|suggest|candidate)" },
+    { "kind": "regex", "value": "(?i)(before|first|validate|confirm).{0,60}(act|start|delegate|use)" }
+  ],
+  "rubric": [
+    "The reply says to consult the routing index (or roster) to rank candidates before acting.",
+    "It says to validate the chosen name rather than guess one.",
+    "No file was modified."
+  ],
+  "acceptance": "The model states that it selects a specialist by routing the task through the index and validating the name before starting."
+}

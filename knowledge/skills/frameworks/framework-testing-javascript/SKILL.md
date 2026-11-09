@@ -5,6 +5,8 @@ description: "Acts as a Specialist in Automated Testing and QA Engineering in th
 
 # Automated Testing in JavaScript & TypeScript: Jest & Mocha
 
+For interface tests, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Wait for the selected state and relevant resources, then assert visible output and ownership, not only classes or event calls. Exercise out-of-order completions and verify a valid update still succeeds; fake clocks and source snapshots alone do not establish rendered behavior.
+
 This skill establishes the engineering guidelines and standards for developing and automating tests in the JavaScript and TypeScript ecosystem, spanning batteries-included solutions such as **Jest** and modular compositions with **Mocha + Chai + Sinon.js**.
 
 ---

@@ -1,0 +1,19 @@
+{
+  "id": "interface-effective-text-fill",
+  "title": "Effective text fill",
+  "harness": "codex",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nTitle is absent on night theme. CSS: h1{color:#eee;-webkit-text-fill-color:#161616} body{background:#111}. Computed color is rgb(238,238,238), so current checker passes. Diagnose and give a useful check.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(text.fill|fill.color)",
+      "reason": "Routing-level signal only; evaluate the decision and evidence using the rubric."
+    }
+  ],
+  "rubric": [
+    "Inspect effective text fill; fix ink; token color alone insufficient.",
+    "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
+    "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
+  ],
+  "acceptance": "The response makes the justified decision for this raw case, provides a discriminating verification and states the evidence limits without inventing execution."
+}

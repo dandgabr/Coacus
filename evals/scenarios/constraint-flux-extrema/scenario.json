@@ -1,0 +1,17 @@
+{
+  "id": "constraint-flux-extrema",
+  "title": "Distinguish separate metabolic flux extrema",
+  "harness": "opencode",
+  "prompt": "A metabolic flux variability analysis finds a maximum of 10 for reaction A and 10 for reaction B, each optimized separately. Can both maxima be reported as one feasible state or as measured intracellular rates? Explain what is needed. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(separate|independent|simultan|together)" },
+    { "kind": "regex", "value": "(?i)(feasib|constraint|model)" },
+    { "kind": "regex", "value": "(?i)(not|cannot|may not|need not|do not)[^.!?]{0,90}(simultan|together|joint|coexist|feasib)" }
+  ],
+  "rubric": [
+    "The response states that separately optimized extrema need not coexist in one feasible solution.",
+    "It distinguishes constraint-based model predictions from measured intracellular fluxes.",
+    "It asks for a joint feasibility check and reports relevant model assumptions."
+  ],
+  "acceptance": "The response does not present separate maxima as one measured or jointly feasible state without evidence."
+}

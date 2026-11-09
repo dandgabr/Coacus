@@ -1,0 +1,12 @@
+{
+  "name": "coacus-catalog",
+  "description": "Discovers and loads canonical Coacus skills and agent instructions from the installed local catalog without requiring the Coacus repository as a workspace.",
+  "requires": [
+    "Python 3.10+"
+  ],
+  "env_vars": [],
+  "docs": "https://antigravity.google/docs/mcp",
+  "author": "Coacus",
+  "license": "MIT",
+  "version": "1.0.0"
+}

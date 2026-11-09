@@ -2,6 +2,14 @@
   "schema": 1,
   "description": "Curated bilingual (PT-BR + EN) routing lexicon. Maps agent names to trigger terms used by the deterministic router (engine/router.py). Edit this file to tune matching; the generated .agents/routing.json merges it with each agent's canonical name, category, description and skills. Keep terms lowercase; multi-word terms are matched as phrases.",
   "agents": {
+    "motion-graphics-producer": [
+      "motion graphics",
+      "storyboard",
+      "offline animation",
+      "frame-by-frame export",
+      "video production",
+      "deterministic rendering"
+    ],
     "ai-ml-architect": [
       "arquiteto de ia",
       "arquiteto de ml",
@@ -31,6 +39,27 @@
       "shadow deployment",
       "canary",
       "a/b test"
+    ],
+    "growth-marketing-specialist": [
+      "growth marketing",
+      "marketing strategy",
+      "gtm strategy",
+      "go to market",
+      "positioning",
+      "posicionamento",
+      "conversion copywriting",
+      "copywriting",
+      "cro",
+      "conversion rate optimization",
+      "onboarding funnel",
+      "seo",
+      "aeo",
+      "answer engine optimization",
+      "revops",
+      "revenue operations",
+      "cac",
+      "ltv",
+      "unit economics"
     ],
     "ai-security-specialist": [
       "ia",
@@ -175,7 +204,14 @@
       "entrevista",
       "interview",
       "ats",
-      "linkedin"
+      "linkedin",
+      "cover letter",
+      "carta de apresentação",
+      "carta de apresentacao",
+      "job fit",
+      "job ranking",
+      "upskilling",
+      "interview prep"
     ],
     "chemical-engineer": [
       "química",
@@ -456,7 +492,54 @@
       "backstage",
       "sre",
       "observabilidade",
-      "gitops"
+      "gitops",
+      "instalar aplicativo",
+      "install desktop app",
+      "empacotamento",
+      "packaging",
+      "start at login",
+      "iniciar no login",
+      "autostart",
+      "launch at login",
+      "appimage",
+      "desktop entry",
+      "higiene de repositorio",
+      "repository hygiene",
+      "limpeza de repositorio",
+      "repository cleanup",
+      "clean repository",
+      "limpar repositorio",
+      "development artifacts",
+      "artefatos de desenvolvimento",
+      "repository artifacts",
+      "ci security scanning",
+      "security scanning",
+      "varredura de segurança no ci",
+      "varredura de segurança",
+      "secret scanning",
+      "varredura de segredos",
+      "codeql",
+      "gitleaks",
+      "zizmor",
+      "pin actions",
+      "fixar versões de actions",
+      "dependabot",
+      "workflow hardening"
+    ],
+    "design-qa-specialist": [
+      "design qa",
+      "design audit",
+      "ui audit",
+      "design critique",
+      "ui critique",
+      "auditoria de design",
+      "anti-ai-slop",
+      "ui craftsmanship",
+      "visual polish",
+      "heurística de design",
+      "design heuristic",
+      "squint test",
+      "border strip test"
     ],
     "documenter": [
       "documentação",
@@ -467,6 +550,10 @@
       "readme",
       "diagrama",
       "mermaid",
+      "editable diagram",
+      "draw.io",
+      "drawio",
+      "drawcms",
       "adr"
     ],
     "domain-architect": [
@@ -564,15 +651,15 @@
       "game economy",
       "esports"
     ],
-    "general": [
-      "geral",
-      "general",
-      "orquestrar",
-      "orchestrate",
-      "multietapa",
-      "multi-step",
-      "varias tarefas",
-      "várias tarefas"
+    "harness-specialist": [
+      "opencode",
+      "claude code",
+      "claude desktop",
+      "claude cowork",
+      "codex cli",
+      "cursor configuration",
+      "command code",
+      "assistant harness"
     ],
     "geoscientist": [
       "geociências",
@@ -832,6 +919,22 @@
       "sd-wan",
       "segmentação de rede"
     ],
+    "iot-security-specialist": [
+      "iot",
+      "dispositivo iot",
+      "dispositivos iot",
+      "câmera ip",
+      "camera ip",
+      "câmeras ip",
+      "impressora",
+      "impressoras",
+      "onvif",
+      "rtsp",
+      "smart home",
+      "casa inteligente",
+      "firmware de dispositivo",
+      "backdoor de dispositivo"
+    ],
     "network-security-specialist": [
       "rede",
       "network",
@@ -994,13 +1097,19 @@
       "vulnerabilidade",
       "vulnerability"
     ],
-    "self": [
-      "clone",
-      "delegar a si",
-      "subagente próprio",
-      "fork",
-      "contexto isolado",
-      "self subagent"
+    "skill-auditor": [
+      "skill auditor",
+      "auditoria de skill",
+      "auditar skill",
+      "audit skill",
+      "revisar skill",
+      "review skill",
+      "revisao de skill",
+      "skill review",
+      "melhorar skill",
+      "improve skill",
+      "qualidade de skill",
+      "skill quality"
     ],
     "skill-creator": [
       "criar skill",
@@ -1044,7 +1153,15 @@
       "arquitetura limpa",
       "clean architecture",
       "refatoração",
-      "refactoring"
+      "refactoring",
+      "gnome shell",
+      "gnome shell extension",
+      "extensão do gnome",
+      "extensao gnome",
+      "gjs",
+      "libadwaita",
+      "gnome extension",
+      "extensão gnome shell"
     ],
     "solution-architect": [
       "arquiteto de solução",
@@ -1120,6 +1237,27 @@
       "threat",
       "threat intelligence"
     ],
+    "tui-cli-engineer": [
+      "tui",
+      "terminal user interface",
+      "interface de terminal",
+      "cli interativa",
+      "interactive cli",
+      "bubble tea",
+      "bubbletea",
+      "lip gloss",
+      "lipgloss",
+      "charm",
+      "charmbracelet",
+      "textual",
+      "ratatui",
+      "pty",
+      "terminal emulator",
+      "emulador de terminal",
+      "ansi escape",
+      "portal cli",
+      "cli scaffolding"
+    ],
     "ui-designer": [
       "ui design",
       "design de interface",
@@ -1138,7 +1276,9 @@
       "alta fidelidade",
       "mockup",
       "art direction",
-      "direcao de arte"
+      "direcao de arte",
+      "liquid glass",
+      "glassmorphism"
     ],
     "ui-motion-specialist": [
       "motion",
@@ -1166,7 +1306,35 @@
       "driverjs",
       "highlights",
       "walkthrough",
-      "product tour"
+      "product tour",
+      "scroll-driven",
+      "scroll driven animation",
+      "animação de scroll",
+      "animação ligada ao scroll",
+      "scroll timeline",
+      "animation-timeline",
+      "view transitions",
+      "view transition",
+      "transição de página",
+      "gsap",
+      "scrolltrigger",
+      "lenis",
+      "smooth scroll",
+      "parallax",
+      "sticky header",
+      "position sticky",
+      "sticky positioning",
+      "scroll snap",
+      "flip animation",
+      "layout animation",
+      "auto-height",
+      "accordion animation",
+      "text scramble",
+      "number ticker",
+      "split text",
+      "spring physics animation",
+      "ui spring animation",
+      "reduced motion"
     ],
     "ui-ux-designer": [
       "design",
@@ -1229,6 +1397,73 @@
       "source",
       "notícia",
       "news"
+    ],
+    "game-sprite-artist": [
+      "game sprite",
+      "sprite artist",
+      "2d sprite",
+      "pixel art character",
+      "animacao 2d",
+      "desenho de sprite",
+      "model sheet",
+      "pose de combate",
+      "fighting game sprite",
+      "platformer sprite",
+      "desenhar sprite"
+    ],
+    "game-asset-pipeline-engineer": [
+      "sprite pipeline",
+      "asset pipeline",
+      "sprite sheet packing",
+      "atlas packing",
+      "chroma key extraction",
+      "soft alpha",
+      "pixel unfake",
+      "loop repair",
+      "rife interpolation",
+      "aseprite export",
+      "phaser atlas",
+      "flame atlas",
+      "extracao de sprite",
+      "gerador de sprite sheet"
+    ],
+    "game-art-director": [
+      "art director",
+      "game art director",
+      "diretor de arte",
+      "roster review",
+      "lineup review",
+      "motion qa",
+      "seam pop",
+      "handedness audit",
+      "auditoria de animacao",
+      "consistencia de sprites",
+      "revisao de personagens"
+    ],
+    "agentic-ai-architect": [
+      "agentic ai",
+      "agente autonomo",
+      "autonomous agent",
+      "multi-agent systems",
+      "sistemas multiagente",
+      "agentic architecture",
+      "arquiteto de agentes",
+      "multimodal ai",
+      "langgraph",
+      "agent cognitive loop"
+    ],
+    "incident-response-commander": [
+      "incident command",
+      "resposta a incidentes",
+      "blue team",
+      "picerl",
+      "incident commander",
+      "forensics triage",
+      "triage de seguranca",
+      "containment",
+      "live host triage",
+      "rfc 3227",
+      "comando de incidente"
     ]
   }
 }

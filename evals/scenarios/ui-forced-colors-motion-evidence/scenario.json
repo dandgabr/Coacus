@@ -1,0 +1,20 @@
+{
+  "id": "ui-forced-colors-motion-evidence",
+  "title": "Rendered accessibility evidence boundaries",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, access real user data or claim execution. Nominal tokens and a screenshot look acceptable, but a masked close control disappears under forced colors. Reduced-motion styling hides the entire loading status. Dismissing the notice leaves focus without a useful owner. The author claims accessibility conformance from source checks. Review and design discriminating checks.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|contract|verify|baseline|document|scope|client|focus)",
+      "reason": "Advisory signal only; the rubric judges decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Require a visible close affordance, accessible name, keyboard operation and distinguishable focus under forced colors.",
+    "Retain loading information when decorative animation stops, and restore focus after dismissal.",
+    "Pair controlled defect rejection with restored positive cases.",
+    "Distinguish source checks, browser observations and unavailable assistive technology; do not claim conformance from tokens or screenshots alone."
+  ],
+  "acceptance": "The response makes the specified contextual decisions, proposes discriminating observations and states evidence limits without inventing execution."
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Stylized blue mug seen from the front">
+  <rect width="240" height="240" fill="#f5f1e9"/>
+  <path d="M163 92 C219 79 219 165 162 155" fill="none" stroke="#6d9eaa" stroke-width="18"/>
+  <path d="M55 75 L66 180 Q110 195 154 180 L165 75 Z" fill="#6d9eaa"/>
+  <ellipse cx="110" cy="75" rx="55" ry="12" fill="#416e77"/>
+  <ellipse cx="110" cy="74" rx="51" ry="9" fill="none" stroke="#8eb8c1" stroke-width="4"/>
+</svg>

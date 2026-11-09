@@ -1,0 +1,20 @@
+{
+  "id": "git-local-recovery",
+  "title": "Inspect and preserve a candidate lost Git commit",
+  "harness": "opencode",
+  "prompt": "A developer says a local commit disappeared after a reset and there are also staged, unstaged and untracked files. Without changing anything, what should you inspect first and how can you protect a likely recovery candidate?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)reflog" },
+    { "kind": "regex", "value": "(?i)(status|staged|unstaged|untracked)" },
+    { "kind": "regex", "value": "(?i)(inspect|verify|show|examine).{0,60}(candidate|commit|object)|(candidate|commit|object).{0,60}(inspect|verify|show|examine)" },
+    { "kind": "regex", "value": "(?i)(rescue|temporary).{0,40}(branch|ref)|(branch|ref).{0,40}(rescue|temporary)" },
+    { "kind": "not_contains", "value": "reset --hard" }
+  ],
+  "rubric": [
+    "The response inspects repository status and reflog before changing refs.",
+    "It verifies a candidate commit and preserves it with a rescue ref or branch.",
+    "It does not assume a reflog ordinal or recommend another destructive reset.",
+    "No file was modified."
+  ],
+  "acceptance": "The response proposes inspection followed by a reversible rescue ref, preserving the current working state."
+}

@@ -49,6 +49,51 @@ This skill guides the AI to analyze the layer below the operating system, where 
 
 ---
 
+## 🛰️ 4b. Embedded / Consumer-Device Backdoor Triage (defensive)
+
+The same "implant below the OS" problem appears in consumer/embedded firmware as
+**legal-but-hazardous engineering**, not a named implant. Report it with CWE
+vocabulary, not as a deliberate backdoor.
+
+**Indicators to record**
+- Hardcoded/static credentials in the filesystem or binary (**CWE-798**), including
+  accounts compiled into an executable.
+- Undocumented vendor accounts (**CWE-912** Hidden Functionality).
+- A serial/UART console that reaches a shell without credentials — physical access is
+  then persistent access (extract keys/credentials).
+- Unauthenticated management protocols (**CWE-306**): ONVIF, RTSP, UPnP/SSDP,
+  telnet/debug ports answering with data instead of `401`.
+- Device identity used as an authenticator (MAC/serial -> cloud ID) (**CWE-341/291**).
+- Unsigned/unverified boot or update (**CWE-347**) and a plaintext update channel
+  (**CWE-311**) that allows update-server impersonation.
+
+**Known classes to recognise (cite the CVE, link CISA/NVD)**
+- XiongMai/XMEye/ICSee lineage: ONVIF auth bypass (CVE-2025-65856, CISA
+  ICSA-26-113-05), hardcoded plaintext default credentials (CVE-2026-79396),
+  unauthenticated credential disclosure (CVE-2018-9995).
+- The exploited camera/NVR set is dominated by **missing/improper authentication and
+  pre-auth command injection**; check the CISA KEV catalog for the model.
+
+**Response, in order**
+1. **Inventory and identify** the OEM lineage (probe the documented fingerprint),
+   since the same firmware ships under many brands.
+2. **Harden**: replace every default/undocumented credential and the separate
+   RTSP/ONVIF accounts; disable unused services (UPnP/P2P/ONVIF/telnet); expose the
+   minimum ports.
+3. **Contain**: if no fix exists, isolate the device on its own segment with an
+   asymmetric policy and control egress — segmentation is the accepted compensating
+   control (NIST IR 8259 Rev. 1). See the
+   [iot-untrusted-device-isolation](../../operations/iot-untrusted-device-isolation/SKILL.md) skill.
+4. **Decide update vs segment**: patch only if a vendor fix exists, the device is
+   supported and you can verify signature + source; otherwise segment, or retire.
+   Updates can silently re-enable P2P/UPnP, so stage and re-validate the feature set.
+5. **Monitor**: baseline listening ports and outbound destinations; alert on new
+   accounts, firmware changes/downgrades and P2P relay traffic.
+
+**Egress note**: P2P/cloud relays reach the device through NAT with no port
+forwarding, so LAN isolation does not remove vendor-cloud reachability; treat cloud
+egress as a separate trust decision.
+
 ## 🔗 5. Integration with Other Skills
 
 - For hardware extraction techniques, see the [hardware-hacking-embedded-security](../../../domains/industry/hardware-hacking-embedded-security/SKILL.md) skill.

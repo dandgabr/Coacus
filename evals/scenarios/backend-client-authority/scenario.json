@@ -1,0 +1,31 @@
+{
+  "id": "backend-client-authority",
+  "title": "Validate business rules and isolate users",
+  "harness": "opencode",
+  "prompt": "A checkout accepts client prices and reads another user\u2019s order by ID. Explain how the backend should validate the request and how to verify database row-level access. Respond in a few concise lines; do not modify files.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(server|backend)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(authoriz|access control|ownership)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(row.level|rls|polic)"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)\\b(derive|recompute|validate|recalculate)\\w*\\b.{0,35}\\b(prices?|amounts?)"
+    }
+  ],
+  "rubric": [
+    "The answer derives prices and rules from trusted server data and validates quantity.",
+    "It authenticates and authorizes each resource and tests access between two users.",
+    "It verifies row-level policies with the actual application role, including bypass or owner privileges.",
+    "No file was modified."
+  ],
+  "acceptance": "The response satisfies the listed behavioral requirements and makes no changes."
+}

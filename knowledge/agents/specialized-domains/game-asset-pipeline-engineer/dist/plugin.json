@@ -1,0 +1,6 @@
+{
+  "name": "game-asset-pipeline-engineer",
+  "version": "0.1.0",
+  "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+  "entrypoint": "AGENT.md"
+}

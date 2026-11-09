@@ -1,0 +1,19 @@
+{
+  "id": "tabler-scope-routing",
+  "title": "Conditional Tabler discovery",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not change files, access real user data or claim execution. Case A: An existing project uses a non-Tabler component library. The user requests a dashboard. Case B: The user explicitly requests Tabler in a new page. Explain which guidance applies to each.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|contract|verify|baseline|document|scope|client|focus)",
+      "reason": "Advisory signal only; the rubric judges decisions rather than keyword presence."
+    }
+  ],
+  "rubric": [
+    "Preserve the existing component library in case A; a dashboard alone is not a Tabler activation trigger.",
+    "Select framework-tabler for case B and identify the package/documentation contract before implementing.",
+    "Do not install dependencies or claim that skill discovery proves behavior."
+  ],
+  "acceptance": "The response makes the specified contextual decisions, proposes discriminating observations and states evidence limits without inventing execution."
+}

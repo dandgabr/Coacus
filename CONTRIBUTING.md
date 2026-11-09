@@ -40,6 +40,7 @@ Run the full gate before opening a pull request:
 python3 scripts/coacus.py generate     # produce the artifacts your change implies
 python3 scripts/coacus.py validate     # source + artifact contracts
 python3 scripts/coacus.py check        # must report no drift
+python3 scripts/coacus.py completeness # reconcile imported sources, lock and catalog
 python3 -m unittest discover -s tests  # deterministic suite
 ```
 
@@ -78,10 +79,13 @@ These are machine-checked by the validators and the hygiene scan:
    enforces the Python side in CI. Verbatim third-party assets under
    `methodology/` are exempt — they are byte-identical upstream copies recorded in
    `sources.lock.json` and must not be edited.
-6. **kebab-case names; third-person, trigger-oriented descriptions.**
-7. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
-8. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).
+7. **kebab-case names; third-person, trigger-oriented descriptions.**
+8. **Omit `model` in canonical agent sources** ([agent-manifests](docs/standards/agent-manifests.md)).
+9. **Governed parallelism** ([orchestration-governance](docs/standards/orchestration-governance.md)).
    The concurrency cap is 5, orchestrator included; hand off with TOON payloads.
+10. **Design craft and Anti-AI Slop compliance** ([product-and-design-truth](docs/standards/product-and-design-truth.md)).
+    Frontend and design skills must pass `python3 scripts/coacus_design_lint.py --strict`
+    with zero generic clichés, authentic optical physics, and WCAG 2.2 contrast.
 
 ## Commit style
 
@@ -99,7 +103,7 @@ Rules:
 
 - One logical change per commit; keep generated diffs in the same commit as the
   source change that produced them.
-- Reference the phase (F1–F8) in the body or summary when relevant.
+- Reference the relevant phase (F0–F11) in the body or summary when useful.
 - Break behavior changes and scope them with `!` and a `BREAKING CHANGE:` footer.
 
 ## Pull request flow
@@ -108,15 +112,20 @@ Rules:
 2. Make the change; run the full local gate.
 3. Stage only intended files. Commit `generate` output together with its sources.
 4. Open a pull request against `main`.
-5. CI runs the `ci` job (validate → check → completeness → tests) and the `secrets` job
-   (pinned gitleaks in directory mode, scanning the checked-out state). A `main`
-   ruleset makes **both** checks required.
+5. CI runs the `ci` job (validate → check → completeness → tests) and the `secrets` job.
+   The secrets runner scans history reachable from locally available Git refs and
+   temporary copies of tracked regular working-tree files. It excludes untracked
+   files and does not cover unavailable remote refs or unreachable history. Run
+   the scanner in a trusted, quiescent worktree; it does not isolate malicious
+   local actors. See [secrets-portability](docs/standards/secrets-portability.md)
+   for hardlink and concurrent rename limitations. A `main` ruleset makes
+   **both** checks required.
 6. Review the generated diff in the PR. It is the visible proof that source and
    output agree.
 
-Because the repository squashes on merge, the gitleaks scan checks the state
-that ships, not every intermediate commit. Do not rewrite or force-push a branch
-under review.
+The history scan covers intermediate commits reachable from locally available
+refs. It does not establish coverage of commits absent from the checkout. Do not
+rewrite or force-push a branch under review.
 
 ## Adding an ingestion format
 
@@ -128,9 +137,12 @@ Handlers register themselves; the dispatcher never changes
 
 ## Reporting and security
 
-- Bugs and feature requests go through repository issues.
-- Do not open a public issue for a suspected secret or vulnerability. Report it
-  privately to the maintainer, then rotate the credential.
+- Use the repository's structured issue forms for bugs and feature requests.
+- Report suspected vulnerabilities through the private process in
+  [`SECURITY.md`](SECURITY.md). Do not put vulnerability details, exploit steps
+  or proofs of concept in a public issue.
+- If a credential may have been exposed, revoke or rotate it immediately in
+  addition to reporting the incident privately.
 
 ## License
 

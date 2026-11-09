@@ -1,14 +1,17 @@
 # Provenance
 
 **Status:** normative
-**Scope:** every imported artifact and the import pipeline.
+**Scope:** imported artifacts, native canonical sources and their provenance lifecycle.
 
 ## Rule
 
-Every imported file carries a provenance entry. Provenance lives at the repository
-root as `sources.lock.json`, owned by `engine/provenance.py` and populated ONLY by
-the import pipeline. The catalog generator never writes it, and it is never part
-of the `generate`/`check` surface.
+Every imported file carries a provenance entry. Native authored skills, workflows
+and agent sources are registered during `generate`. Provenance lives at the
+repository root as `sources.lock.json`, owned by `engine/provenance.py`. The
+import pipeline records imported origins; `sync_authoring()` records native
+canonical sources. The catalog writer does not own this manifest. `check` remains
+read-only and checks generated outputs; provenance validation runs through
+`validate` and the artifact checks after generation.
 
 The seed is `{"schema": 1, "entries": []}`.
 
@@ -38,6 +41,20 @@ Optional: `aliases` — searchable alternate names created by import-time rename
   REPLACES the entry for a target, so import is idempotent.
 - Drift key: `target_sha256`.
 
+### Native authored sources
+
+`generate` calls `sync_authoring()` for canonical `SKILL.md` files and
+`agent.source.md` files. Missing entries use `source_repo: authoring`,
+`source_commit: native`, matching source/target paths and hashes, and an
+`authored` transform. Existing native entries update their hashes when content
+changes. Unchanged entries retain their registration timestamp. This pass does
+not replace imported provenance or remove entries.
+
+Supporting reference files still need source citations, review dates and any
+required attribution in their content; native registration does not independently
+register every reference file. Actually copied or adapted upstream files retain
+their imported origin and license through the import pipeline.
+
 ### Portable workflow conversions
 
 An imported workflow helper converted to Python keeps the upstream `source_path`
@@ -49,7 +66,7 @@ advancing its source hash. The text normalizer uses the Python helper commands.
 
 ### Location
 
-`sources.lock.json` MUST stay outside the generated surface. It carries
+`sources.lock.json` MUST stay outside timestamp-free generated directories. It carries
 `imported_at`, and a timestamped file inside `catalog/` would make the
 idempotency check fail forever.
 
@@ -64,7 +81,7 @@ generated artifacts.
 
 - `engine/provenance.py` owns the schema, the seed, `validate()` (the required
   keys, the `aliases` list shape, target existence and the `target_sha256` drift
-  key) and `refresh_targets()`. `validate()` runs in
+  key), `sync_authoring()` and `refresh_targets()`. `validate()` runs in
   `python3 scripts/coacus.py validate` and after writing in `generate`; a target
   whose recorded hash no longer matches disk is an error.
 - `python3 scripts/coacus.py refresh` recomputes `target_sha256` from disk for

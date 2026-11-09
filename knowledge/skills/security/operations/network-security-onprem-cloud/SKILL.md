@@ -94,6 +94,34 @@ Network security must guarantee the isolation of broadcast/failure domains, bidi
 
 ---
 
+## 🧯 2b. Containing an Untrusted Device (asymmetric access)
+
+When a device cannot be trusted (consumer IoT, camera, printer, EOL appliance) but
+must stay reachable, contain it with an **asymmetric, stateful** policy rather than
+a flat exception:
+
+- **Segment** the device onto its own VLAN/SSID/subnet; bind a **separate SSID** to
+  that VLAN so wireless devices join it by association.
+- **One-way access**: allow `trusted -> untrusted`; **deny `untrusted -> trusted`
+  initiation**. A stateful firewall permits the reply traffic of allowed sessions
+  (state `Established`) while denying device-initiated (`New`) flows. Ground it in
+  default-deny, stateful policy (NIST SP 800-41 Rev. 1, final — csrc.nist.gov/pubs/sp/800/41/r1/final);
+  in IEC 62443-3-3 terms it is FR 5 "Restricted data flow" on the conduit between zones.
+- **Enforce at the right point**: a gateway ACL only sees traffic traversing the
+  gateway; same-VLAN device traffic needs a switch ACL or AP/port client isolation.
+- **Two boundaries, two decisions**: segmentation controls north-south/east-west on
+  the LAN; **egress control** is separate, because cloud/P2P relays reach the device
+  through NAT without any port forwarding.
+- **Isolation is mitigation, not remediation** — it bounds reachability; the
+  vulnerability remains. Pair it with minimal exposed ports, disabled unused
+  services, and patching where possible.
+
+Vendor features to name (confirm in the controller): Omada *Gateway ACL* (`LAN->LAN`,
+states Auto), UniFi *Network/Client Isolation*, pfSense per-interface stateful rules.
+
+See the [iot-untrusted-device-isolation](../iot-untrusted-device-isolation/SKILL.md)
+skill for the full playbook.
+
 ## 🌐 3. SASE, SSE & Zero Trust Network Access (ZTNA)
 
 The evolution of edge security replaces the traditional "Castle-and-Moat" architecture with cloud-distributed edge services:

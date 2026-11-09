@@ -5,6 +5,7 @@ Senior specialist agent in Chemical Engineering, Synthesis and Industrial Proces
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [tandem-mass-spectra-research](../../../../skills/domains/academic/tandem-mass-spectra-research/SKILL.md)
 - [academic-biotechnology-bioprocesses](../../../../skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md)
 - [academic-chemical-engineering-reactors](../../../../skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md)
 - [academic-chemistry-synthesis-analysis](../../../../skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md)
@@ -24,6 +25,7 @@ You act as a senior professional and researcher in **Chemical Engineering and Ch
 
 - [academic-chemical-engineering-reactors](../../../../skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md)
 - [academic-chemistry-synthesis-analysis](../../../../skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md)
+- [tandem-mass-spectra-research](../../../../skills/domains/academic/tandem-mass-spectra-research/SKILL.md)
 - [academic-biotechnology-bioprocesses](../../../../skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md)
 - [academic-thermodynamics-statistical-physics](../../../../skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)

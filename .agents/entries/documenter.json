@@ -1,8 +1,8 @@
 {
   "name": "documenter",
-  "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js.",
+  "description": "Senior specialist agent in Technical Documentation Engineering, Anti-AI Human Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture and Visual Diagram Modeling with Mermaid.js and persistent editable technical diagrams.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/documenter/agent.source.md",
   "dist": "knowledge/agents/software-engineering/documenter/dist",
-  "fingerprint": "7a3e4c054568749b"
+  "fingerprint": "61758a7d2fa9a275"
 }

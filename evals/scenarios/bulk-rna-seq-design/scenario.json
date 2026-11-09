@@ -1,0 +1,16 @@
+{
+  "id": "bulk-rna-seq-design",
+  "title": "Identify confounding before a bulk RNA sequencing comparison",
+  "harness": "opencode",
+  "prompt": "For a bulk RNA-seq study, every treated sample was sequenced in batch A and every control in batch B. A collaborator asks you to call treatment-specific genes from a normalized expression table. What needs to be resolved before making that claim? Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(confound|cannot distinguish|not separable|inseparable)" },
+    { "kind": "regex", "value": "(?i)(batch|sequenc)" }
+  ],
+  "rubric": [
+    "The response identifies complete confounding of treatment and batch and does not claim treatment-specific effects are identifiable from this design alone.",
+    "It distinguishes normalized expression values from the count representation required by the selected differential-expression method.",
+    "It asks for suitable design or additional data and reports limitations rather than inventing a statistical correction."
+  ],
+  "acceptance": "The response identifies the confounding and the input representation limitation before drawing a treatment-specific conclusion."
+}

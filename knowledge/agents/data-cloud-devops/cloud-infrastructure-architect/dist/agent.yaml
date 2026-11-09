@@ -44,7 +44,18 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - [hpc-supercomputing-clusters](knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md)
+  - Consult [gemini-enterprise](knowledge/skills/platforms/gemini-enterprise/SKILL.md) when assessing Google Gemini Enterprise integration or governance.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/platforms/gemini-enterprise/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/infrastructure/hpc-supercomputing-clusters/SKILL.md
   - type: skill_integration
     path: ../../../../skills/infrastructure/cloud-aws/SKILL.md
   - type: skill_integration

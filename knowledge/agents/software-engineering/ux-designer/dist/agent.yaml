@@ -54,7 +54,15 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - [canvas-spatial-whiteboarding](knowledge/skills/domains/design/canvas-spatial-whiteboarding/SKILL.md)
 tools:
+  - type: skill_integration
+    path: ../../../../skills/domains/design/canvas-spatial-whiteboarding/SKILL.md
   - type: skill_integration
     path: ../../../../skills/roles/ux-designer/SKILL.md
   - type: skill_integration

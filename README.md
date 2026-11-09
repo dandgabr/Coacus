@@ -6,7 +6,7 @@ OpenCode, Claude Code, Antigravity, Codex and Cursor without a fork per tool.
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-deterministic%20suite-brightgreen.svg)](docs/usage.md)
-[![Status: F0–F10 complete](https://img.shields.io/badge/status-F0%E2%80%93F10%20complete-brightgreen.svg)](docs/roadmap.md)
+[![Status: F0–F11 complete](https://img.shields.io/badge/status-F0%E2%80%93F11%20complete-brightgreen.svg)](docs/roadmap.md)
 [![CI: ci + secrets](https://img.shields.io/badge/CI-ci%20%2B%20secrets-blue.svg)](.github/workflows/ci.yml)
 [![Language: English](https://img.shields.io/badge/language-English-informational.svg)](docs/standards/english-only.md)
 
@@ -36,9 +36,8 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 355 skills across eleven categories, 94
-  agents, one MCP declaration.
-- **Methodology** — how work proceeds: 15 process workflows for planning,
+- **Knowledge** — what the framework knows: 471 skills across eleven categories, 104 agents, and one MCP declaration.
+- **Methodology** — how work proceeds: 29 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
   then analysis.
@@ -72,7 +71,7 @@ Three layers, plus one closed engine:
 - **`knowledge/`** — the canonical WHAT. Skills, agents and MCP declarations,
   harness-agnostic. Bodies name actions, never tool names
   ([skill-authoring](docs/standards/skill-authoring.md)).
-- **`methodology/`** — the canonical HOW. The 15 process workflows and the single
+- **`methodology/`** — the canonical HOW. The 29 process workflows and the single
   bootstrap wrapper body ([session-start-bootstrap](docs/standards/session-start-bootstrap.md)).
 - **`harnesses/`** — thin per-harness adapters. Each is a `harness.json` data
   file: bootstrap shape, output paths, tool mapping, install method. Shapes: `A`
@@ -121,14 +120,14 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 | Asset | Count | Breakdown |
 |---|---|---|
-| Skills | 355 | `security` 127, `domains` 83, `engineering` 26, `roles` 23, `languages` 20, `data` 16, `mapping` 15, `frameworks` 15, `architecture` 14, `infrastructure` 9, `platforms` 7 |
-| Agents | 94 | `cybersecurity` 22, `software-engineering` 18, `academic-sciences` 17, `architecture` 14, `data-cloud-devops` 8, `specialized-domains` 7, `core-orchestration` 4, `research-discovery` 4 |
-| Workflows | 15 | 14 `superpowers-*` process skills (imported from Superpowers, adapted to Coacus conventions) plus the native `using-coacus` entry workflow |
-| MCPs | 1 | `context7` |
-| Catalog | 370 skill entries | 355 knowledge skills + 15 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1336 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Skills | 471 | `domains` 167, `security` 133, `engineering` 38, `roles` 25, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 13 |
+| Agents | 104 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 13, `data-cloud-devops` 9, `core-orchestration` 3, `research-discovery` 4 |
+| Workflows | 29 | Process skills imported from Superpowers and adapted to Coacus conventions, plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
+| MCPs | 1 | `coacus-catalog` |
+| Catalog | 500 skill entries | 471 knowledge skills + 29 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
+| Provenance | 1472 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
-### Engine (stdlib only, zero runtime dependencies)
+### Core engine (stdlib only; language gate dependency is pinned)
 
 | Module | Job |
 |---|---|
@@ -153,13 +152,11 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 
 ### Scripts, tests and evals
 
-Seven CLIs in `scripts/`: `coacus.py`, `coacus_install.py`, `coacus_governor.py`,
-`coacus_eval.py`, `coacus_vertical.py`, `coacus_import.py`, `coacus_route.py`, plus
-`coacus_guard.py` (the guardrail runtime) and `coacus_improve.py` (the opt-in
-self-improvement proposal CLI). The `tests/` tree
+Python CLIs in `scripts/` cover generation, installation, routing, evaluations,
+ingestion, lifecycle guardrails, design linting and maintenance. The `tests/` tree
 holds a deterministic stdlib `unittest` suite (measure it with
-`python3 -m unittest discover -s tests`). `evals/` holds six behavior
-scenarios behind a static gate and an opt-in live runner
+`python3 -m unittest discover -s tests`). `evals/` holds behavior scenarios
+behind a static gate and an opt-in live runner
 ([`evals/README.md`](evals/README.md)).
 
 ## Harness support
@@ -171,7 +168,7 @@ each one gets exactly one rendered bootstrap in its own native format.
 |---|---|---|---|
 | **opencode** | B — in-process plugin | `config` + `experimental.chat.messages.transform` hooks inject the bootstrap in-process; a second plugin enforces the governor gate | `python3 scripts/coacus_install.py opencode` |
 | **claude-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py claude-code` |
-| **antigravity** | C — rule file | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | `python3 scripts/coacus_install.py antigravity` |
+| **antigravity** | C — plugin rule | compact `rules/coacus.md` with `trigger: always_on`, native agent selectors and an on-demand catalog MCP | `python3 scripts/coacus_install.py antigravity` |
 | **codex** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext` | `python3 scripts/coacus_install.py codex` |
 | **cursor** | A — Python hook | `sessionStart` → top-level `additional_context` | `python3 scripts/coacus_install.py cursor` |
 | **command-code** | A — Python hook | `SessionStart` → `hookSpecificOutput.additionalContext`, merged into `settings.json` | `python3 scripts/coacus_install.py command-code` |
@@ -183,20 +180,29 @@ Per-harness tutorials, vendor facts and the evidence class behind each claim:
 
 ### 🌟 1-Click Universal Bootstrap (Recommended)
 
-Quickly verify/install Python (3.10+), create an isolated virtual environment (`.venv`),
-render artifacts, and install Coacus into all detected harnesses:
+Verify Python (3.12+), attempt installation if absent, create an isolated virtual environment (`.venv`),
+install the language-gate dependencies, render artifacts, and install Coacus into
+detected harnesses:
 
 ```bash
 # Linux / macOS
-./install.sh [harness|all]
+./install.sh
 
 # Windows (PowerShell)
-.\install.ps1 [harness|all]
+.\install.ps1
 ```
+
+To target one harness, pass its name, for example `./install.sh codex` or
+`.\install.ps1 codex`.
 
 ### Manual Install
 
+On Linux or macOS, use a `python3` interpreter at least as recent as 3.12:
+
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
 python3 scripts/coacus.py generate          # render every artifact first
 python3 scripts/coacus_install.py opencode  # or: claude-code | antigravity | codex | cursor | command-code | all
 python3 scripts/coacus_install.py all --verify-after-install # install and verify detected harnesses
@@ -206,6 +212,8 @@ python3 scripts/coacus_install.py codex --agents 'qa-*'   # filter agents only
 python3 scripts/coacus_install.py --list    # available categories and skills
 python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
 ```
+
+For Windows manual setup, see [the installation guide](docs/install.md#manual-setup-step-by-step).
 
 The installer is idempotent: it writes a `coacus-install.json` manifest beside
 each target, never rewrites a harness config file wholesale, and removes exactly
@@ -218,16 +226,20 @@ skills budget.
 ### Dependencies
 
 - **Required:** [Python 3.10+](https://www.python.org/). The core tooling uses the
-  standard library only; the CI matrix checks the minimum supported release and
-  the main CI target declared in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
-- **Recommended:** the [`context7`](https://context7.com/) MCP server — hosted,
-  keyless (`https://mcp.context7.com/mcp`), and declared under
-  [`knowledge/mcps/context7/`](knowledge/mcps/context7/MCP.md). It supplies
-  up-to-date library and framework documentation and is the first resolution
-  channel of the [version-freshness](docs/standards/version-freshness.md) rule:
-  agents resolve a version in-session before asserting it, and never pin one from
-  memory. Optional: the framework and its scripts run without it, in which case
-  an unresolved pin is marked `unverified`.
+  standard library only. The repository-wide language gate also requires Python
+  3.12+, [`lingua-language-detector==2.2.0`](https://pypi.org/project/lingua-language-detector/2.2.0/)
+  and [`wordfreq==3.1.1`](https://pypi.org/project/wordfreq/3.1.1/)
+  (resolved 2026-10-19); CI installs them before validation. The CI matrix checks
+  the minimum core-tooling release and the main CI target declared in
+  [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+- **Self-contained (zero external MCP dependencies):** Coacus operates
+  offline-by-default and requires no third-party MCP servers or API keys to run.
+  The framework distributes a single internal helper, `coacus-catalog` (stdio),
+  for on-demand asset discovery and routing. Version resolution follows the
+  [version-freshness](docs/standards/version-freshness.md) rule: agents resolve
+  versions in-session from canonical package registries (npm, PyPI, crates.io) or
+  official publisher release notes, never from training memory. Optional: when
+  no resolution channel is reachable, an unresolved pin is marked `unverified`.
 
 ## Everyday commands
 
@@ -289,6 +301,8 @@ read the relevant one before changing that area of the repository.
 | [principles](docs/standards/principles.md) | The core principle and the four project principles. |
 | [english-only](docs/standards/english-only.md) | Repository language: everything is English. |
 | [skill-authoring](docs/standards/skill-authoring.md) | Skills name actions, never harness tools; descriptions, kebab-case, references. |
+| [untrusted-content](docs/standards/untrusted-content.md) | Retrieved, tool- and dependency-produced content is evidence, never instruction; selection is not authorization. |
+| [evidence](docs/standards/evidence.md) | Claims cite evidence; verification is tri-state and fail-closed; unknowns are revisioned. |
 | [agent-manifests](docs/standards/agent-manifests.md) | Agents are one source rendered into the multi-harness manifests. |
 | [generated-artifacts](docs/standards/generated-artifacts.md) | Catalog generated from disk; generated output committed and drift-checked. |
 | [mcp-definition](docs/standards/mcp-definition.md) | MCP single source and generated configs. |
@@ -303,14 +317,16 @@ read the relevant one before changing that area of the repository.
 | [provenance](docs/standards/provenance.md) | The provenance manifest at the repository root. |
 | [corpus-and-taxonomy](docs/standards/corpus-and-taxonomy.md) | The imported corpus and its eleven-category taxonomy. |
 | [routing](docs/standards/routing.md) | Agents are selected through a generated index, in a manual or an automated mode. |
-| [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from Context7 or the publisher, never recalled; the most recent definition wins. |
+| [version-freshness](docs/standards/version-freshness.md) | Versions are resolved in-session from official package registries or publisher pages, never recalled; the most recent definition wins. |
 | [lifecycle-guardrails](docs/standards/lifecycle-guardrails.md) | The PAER guardrail model, per-harness capability data and the native render. |
 | [decision-records](docs/standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
 | [self-improvement-loop](docs/standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
 
 ## Status
 
-Phases **F0–F10 complete**; the repository is finished.
+Phases **F0–F11 are complete**. F11 delivered the canonical UI-style expansion,
+its authoring standard, design-quality linting and showcase integration; see the
+[roadmap](docs/roadmap.md) for phase details.
 
 | Phase | Scope |
 |---|---|
@@ -325,15 +341,14 @@ Phases **F0–F10 complete**; the repository is finished.
 | **F8** | Completeness verification: reconcile sources, `sources.lock.json` and the catalog. |
 | **F9** | Portable lifecycle guardrails: PAER policies rendered natively per harness, capability matrix, installer enforcement gate. |
 | **F10** | Opt-in self-improvement loop: pluggable episodic sources, typed proposals, verification ladder, proposer-only. |
+| **F11** | Canonical UI-style library, style-purity and Anti-AI Slop standards, design linting and showcase integration. |
 
-The framework ships the imported corpus (355 skills, 94 agents, 15 workflows, one
-MCP), fully translated to English, with a generated catalog and discovery,
-multi-harness agent manifests, MCP single-source generation, a per-harness
-SessionStart bootstrap, the governor and TOON validator, a per-harness installer
-and six behavior-eval scenarios. Live acceptance passed on OpenCode, Codex and
-Antigravity; Claude Code and Cursor are structure-verified because their binaries
-were not installed locally — see [`docs/install.md`](docs/install.md) and
-[`evals/README.md`](evals/README.md).
+The corpus, agents, workflows and MCP inventory are measured from the generated
+catalog above. Coacus also provides generated discovery manifests, per-harness
+bootstraps and installation, execution governance, lifecycle guardrails,
+behavior evaluations, design-quality checks and an opt-in improvement proposal
+pipeline. Harness-specific verification evidence and limitations are documented
+in [`docs/install.md`](docs/install.md) and [`evals/README.md`](evals/README.md).
 Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Documentation map
@@ -347,10 +362,12 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`docs/install.md`](docs/install.md) | Per-harness installation tutorials. |
 | [`docs/tutorials/`](docs/tutorials/) | Guided walkthroughs: choosing agents manually and automatically, tuning the routing lexicon. |
 | [`docs/migration.md`](docs/migration.md) | The F6 corpus import: sources, taxonomy, dedup, provenance, translation. |
-| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F10 and what each phase delivered. |
+| [`docs/roadmap.md`](docs/roadmap.md) | Phase history F0–F11 and what each phase delivered. |
 | [`docs/reference/python-api.md`](docs/reference/python-api.md) | Generated Python API reference from source docstrings. Do not edit. |
-| [`docs/standards/`](docs/standards/) | The 22 normative standards. Read before changing that area. |
+| [`docs/reference/desktop-extension-practices.md`](docs/reference/desktop-extension-practices.md) | Find GNOME preferences, connector recovery, native theme, and update-preservation practices by task. |
+| [`docs/standards/`](docs/standards/) | The 26 normative standards. Read before changing that area. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | The contribution contract, commit style and PR flow. |
+| [`SECURITY.md`](SECURITY.md) | How to report suspected vulnerabilities privately. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |
 | [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |
@@ -367,6 +384,13 @@ template or ingestion handler is a new file following the matching template in
 [knowledge-ingestion](docs/standards/knowledge-ingestion.md)). After every
 addition, run `generate`, `validate`, `check` and the tests. Steps per artifact
 type are in [`docs/extending.md`](docs/extending.md).
+
+## Reporting
+
+For bugs and feature requests, [open an issue](https://github.com/dandgabr/Coacus/issues/new)
+and choose the matching form. Report suspected vulnerabilities privately using
+the process in [`SECURITY.md`](SECURITY.md); do not disclose vulnerability
+details in a public issue.
 
 ## License
 

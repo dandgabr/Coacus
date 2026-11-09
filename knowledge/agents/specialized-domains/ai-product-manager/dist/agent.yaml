@@ -56,7 +56,13 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  - Consult [scrum-master](knowledge/skills/roles/scrum-master/SKILL.md) when facilitating Scrum practices for the product team.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/roles/scrum-master/SKILL.md
   - type: skill_integration
     path: ../../../../skills/roles/product-owner/SKILL.md
   - type: skill_integration

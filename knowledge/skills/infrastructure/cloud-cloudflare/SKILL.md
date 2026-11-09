@@ -1,11 +1,11 @@
 ---
 name: "cloud-cloudflare"
-description: "Acts as a specialist on the Cloudflare platform, covering the new unified cf CLI, Wrangler v3/v4, C3 (create-cloudflare), private tunnels with cloudflared, Edge Compute (Workers, Pages, Durable Objects, Workers AI), edge storage (D1, R2, KV, Vectorize, Hyperdrive, Queues), security (WAF Managed Rulesets, Turnstile, Rate Limiting, SSL/TLS), and Cloudflare Zero Trust architecture."
+description: "Acts as a specialist on the Cloudflare platform, covering the unified cf CLI, Wrangler v3/v4, C3 (create-cloudflare), private tunnels with cloudflared, Edge Compute (Workers, Pages, Durable Objects, Workers AI), edge storage (D1, R2, KV, Vectorize, Hyperdrive, Queues), security (WAF Managed Rulesets, Turnstile, Rate Limiting, SSL/TLS), and Cloudflare Zero Trust architecture."
 ---
 
-# ☁️ Skill: Cloudflare Platform, Edge Computing & the New `cf` CLI Specialist
+# ☁️ Skill: Cloudflare Platform, Edge Computing & the Unified `cf` CLI
 
-This skill enables the artificial intelligence to act as a **Senior Cloudflare Engineer and Architect**. Its domain spans the entire Cloudflare global platform, from the development and orchestration of microservices and full-stack applications at the edge (*Edge Computing*) to the governance of Anycast networks, perimeter security (WAF, DDoS, Turnstile), low-latency distributed storage, and complete administration through the **new unified `cf` CLI**, **Wrangler**, **C3**, and **`cloudflared`**.
+This skill enables the artificial intelligence to act as a **Senior Cloudflare Engineer and Architect**. Its domain spans the entire Cloudflare global platform, from the development and orchestration of microservices and full-stack applications at the edge (*Edge Computing*) to the governance of Anycast networks, perimeter security (WAF, DDoS, Turnstile), low-latency distributed storage, and complete administration through the **unified `cf` CLI**, **Wrangler**, **C3**, and **`cloudflared`**.
 
 ---
 
@@ -19,33 +19,39 @@ Cloudflare offers an integrated set of command-line tools for automation, local 
 ├─────────────────────────┬─────────────────────────┬────────────────────────────────────┤
 │ 🚀 Unified `cf` CLI     │ 🛠️ Wrangler CLI (v3/v4) │ 🔒 cloudflared CLI                 │
 ├─────────────────────────┼─────────────────────────┼────────────────────────────────────┤
-│ • npx cf                │ • npx wrangler dev      │ • cloudflared tunnel create        │
+│ • cf                    │ • npx wrangler dev      │ • cloudflared tunnel create        │
 │ • Unified surface       │ • npx wrangler deploy   │ • Zero-port reverse proxy          │
 │ • Designed for Agents/AI│ • npx wrangler types    │ • Private ingress rules            │
 │ • Manages the whole acct│ • Local Miniflare/workerd│ • Zero Trust Access integration   │
 └─────────────────────────┴─────────────────────────┴────────────────────────────────────┘
 ```
 
-### 1.1. The New Unified `cf` CLI (`npx cf`)
-The `cf` CLI is Cloudflare's next-generation command-line interface, designed to consolidate all products and APIs of the platform under a predictable, consistent syntax, purpose-built to be consumed by both engineers and **autonomous AI agents**:
+### 1.1. The Unified `cf` CLI
+The `cf` CLI exposes Cloudflare APIs and project workflows. Its command surface can change, so retrieve and inspect the installed command shape before relying on remembered syntax or running an unfamiliar operation. See the [official `cf` CLI guidance](https://developers.cloudflare.com/cf/).
 
 ```bash
-# Direct execution via npx or global installation
-npx cf --help
-npm install -g cf
+# Inspect the installed CLI and active identity
+cf --version
+cf --help
+cf auth whoami
 
-# Authentication and account context
-cf login
-cf whoami
-cf accounts list
+# Sign in when needed; use the CLI's current help for options
+cf auth login
 
-# Inspection and management of global resources
+# Discover commands and inspect generated API shapes before use
+cf cli search "list DNS records"
 cf zones list
 cf dns records list --zone <zone_id>
+
+# Inspection and management of global resources
 cf workers list
 cf r2 buckets list
 cf d1 databases list
 ```
+
+For an unfamiliar or state-changing command, inspect its `--help` or schema and
+use a documented dry-run/preview when available. Do not infer a command form
+from an older CLI example or assume that another tool's login is shared.
 
 ### 1.2. Wrangler CLI (v3/v4): Developing and Deploying Workers & Pages
 Wrangler is the heart of the development lifecycle for edge applications:
@@ -293,7 +299,49 @@ if (!outcome.success) {
   - *Full (Strict)*: Requires a valid TLS certificate issued by a trusted authority on the origin server.
   - *mTLS (Mutual TLS)*: Mutual authentication with client certificates for APIs and microservice-to-microservice communication.
 
-### 4.4. Cloudflare Zero Trust Architecture (Cloudflare One)
+### 4.4. Diagnose a Cloudflare-fronted static site
+
+Use this path when a site build succeeds but a custom domain is unreachable,
+serves the wrong content, or fails HTTPS. Treat the DNS provider, hosting
+platform, edge proxy and origin as separate layers:
+
+1. Identify the publishing source and expected host: apex or subdomain, branch
+   publishing or workflow artifact, and the hosting provider's required DNS
+   target. When supported, verify ownership first, register/add the custom
+   domain in the hosting platform second, and configure public DNS third.
+2. Inspect the complete record set and proxy state for the exact hostname.
+   Compare equivalent working hostnames as diagnostic evidence, then confirm
+   the target and proxy choice against current provider guidance. A working
+   sibling does not prove every hostname or provider path is compatible.
+3. Check each TLS hop separately: the certificate served to visitors at the
+   edge, the zone's TLS mode, and the origin certificate/hostname expected by
+   the host. Do not change zone-wide TLS settings to fix one hostname. Treat
+   strict origin validation as requiring a certificate valid for that origin.
+4. Query authoritative DNS and at least one independent public resolver, then
+   compare with the local resolver. A stale or negative local cache can outlive
+   a DNS correction; wait for its reported TTL or clear it only when appropriate
+   for the machine, and do not misdiagnose it as a failed deployment.
+5. Verify the deployed revision and request the document and its referenced
+   CSS, JavaScript and image assets over the public hostname. Confirm status,
+   redirects, content type and browser console/network errors. A successful
+   local build alone does not verify publication.
+
+For GitHub Pages, use its current instructions for the chosen domain type and
+publishing source. GitHub recommends verifying ownership, adding the custom
+domain in repository settings, then configuring DNS. A branch-based source may maintain
+a `CNAME` file; a custom Actions workflow does not require one. HTTPS
+certificate readiness and edge TLS termination are separate states. For
+Cloudflare-proxied traffic, confirm that the hosting path supports the proxy;
+Cloudflare's general web-traffic recommendation does not replace the host's
+compatibility guidance.
+
+References: [Cloudflare `cf` CLI](https://developers.cloudflare.com/cf/),
+[Cloudflare proxy status](https://developers.cloudflare.com/dns/proxy-status/),
+[Cloudflare proxy use cases](https://developers.cloudflare.com/dns/proxy-status/use-cases/),
+[GitHub Pages custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site),
+and [GitHub Pages HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https).
+
+### 4.5. Cloudflare Zero Trust Architecture (Cloudflare One)
 - **Cloudflare Access**: Protection of internal applications without a VPN through an authenticated reverse proxy with corporate identity providers (Google Workspace, Okta, Microsoft Entra ID).
 - **Cloudflare Gateway**: Deep inspection of outbound DNS, HTTP/HTTPS, and network traffic with malware filtering and DLP (Data Loss Prevention) policies.
 - **Device Posture**: Access granting conditioned on the health of the user's machine (presence of antivirus, encrypted disk, and OS version).

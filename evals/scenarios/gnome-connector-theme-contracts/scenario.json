@@ -1,0 +1,21 @@
+{
+  "id": "gnome-connector-theme-contracts",
+  "title": "Connector authentication and theme default semantics",
+  "harness": "codex",
+  "prompt": "Use the gnome-shell-extension-development skill. Read-only design diagnosis: after deleting all connectors and adding one, the popup still asks to add another; the user has not authenticated the saved connector. One theme defaults to opaque material and interaction-only motion but supports a frosted override; another has pearlescent background rendering selected by native theme identity outside JSON. Theme icons are intended to describe defaults. A credential lookup resolves after deletion, persistence rejects a write, and cleanup from an older operation completes after a newer one starts. Describe the correct states, theme labels and minimal regression tests. Do not access credentials, run commands or edit files.",
+  "checks": [
+    {"kind": "regex", "value": "(?i)(authenticat|disconnect|connect.{0,25}account)"},
+    {"kind": "regex", "value": "(?i)(default|compatib)"},
+    {"kind": "regex", "value": "(?i)(generation|fenc|ownership|epoch)"},
+    {"kind": "regex", "value": "(?i)(retry|failure|fail|reject)"}
+  ],
+  "rubric": [
+    "Treats saving a connector as configuration, not authentication; directs the primary action to the existing editor and tests delete-add-only-connect transitions.",
+    "Does not show default transparency merely for a compatible frost override or ambient effects merely for interaction motion.",
+    "Includes actual pearlescent decoration through a shared validated renderer/presentation contract; distinguishes static decoration from ambient motion.",
+    "Fences late credential dispatch/persistence, preserves failure and retry on rejected writes, and keeps older cleanup from clearing newer work.",
+    "Requires cross-process atomic coordination where persistence spans clients; does not mistake process-local generations or settings read/modify/write for durable ownership.",
+    "Uses synthetic delayed operations and checks intermediate UI states rather than only the final card."
+  ],
+  "acceptance": "Separates configured, authenticated and paused accounts; labels actual theme defaults and prescribes fault-injected lifecycle tests without real account access."
+}

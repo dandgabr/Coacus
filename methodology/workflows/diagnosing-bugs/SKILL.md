@@ -1,0 +1,106 @@
+---
+name: diagnosing-bugs
+description: Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.
+---
+
+# Diagnosing bugs
+
+A disciplined diagnosis loop for failures and regressions. Work the phases in
+order; do not skip Phase 1. Read errors and stack traces, compare recent changes
+and working examples, and trace data across component boundaries before proposing
+a fix. Use [systematic investigation](systematic-investigation.md) for boundary
+instrumentation, root-cause tracing, failed-fix escalation and related techniques.
+For visual symptoms, establish the evaluated revision and rendered evidence using
+[interface evidence](../verification-before-completion/references/interface-evidence.md).
+If three fixes fail, stop repeated fixes, reassess evidence and escalate the blocker; consider architecture only if the evidence supports it.
+
+## Phase 1 — Build the loop (this is the skill)
+
+A **tight loop** is a signal that goes red on *this* bug and green when it is
+fixed. If you have one, you will find the cause. If you do not, no amount of
+staring at code will save you. Spend disproportionate effort here.
+
+Ranked techniques to build one, roughly cheapest first:
+
+1. A failing test at the right seam.
+2. A direct HTTP request that reproduces it.
+3. A CLI invocation diffed against a known-good snapshot.
+4. A headless browser run for a UI bug.
+5. Replay a captured trace.
+6. A throwaway harness around the suspect unit.
+7. Property-based or fuzz testing when inputs are broad.
+8. A bisection harness over commits.
+9. A differential run: old versus new.
+10. A human-in-the-loop script that walks the manual steps, as a last resort.
+
+**Treat the loop as a product.** Make it faster, sharpen the assertion to the
+specific symptom (not "did not crash"), and make it deterministic by pinning time,
+seeding randomness, isolating the filesystem and freezing the network. A flaky
+30-second loop is barely better than none; a deterministic 2-second loop is a
+superpower.
+
+For a non-deterministic bug the goal is not a clean reproduction but a **higher
+reproduction rate**: a 50% flake is debuggable, a 1% flake is not.
+
+**Hard stop:** do not hypothesise without a loop. Reading code to build a theory
+before the loop exists is the exact failure this skill prevents.
+
+Completion criterion — the loop is red-capable, deterministic, fast and runnable
+by the agent, unattended.
+
+### The 4-Tier Escalation Ladder
+
+If the cheapest reproduction cannot be built, climb the ladder one rung at a time:
+
+1. **Deterministic CLI / unit assertion:** Run the exact command or test assertion with frozen clocks and seeded inputs.
+2. **Headless interface runner:** Spin up a headless execution run against a static fixture or local test server to reproduce DOM or protocol race conditions.
+3. **Tagged instrumentation:** Inject deterministic debug probes tagged with unique markers (`[DEBUG-xxxx]`) across the suspect call chain.
+4. **Interactive human-in-the-loop script:** Present a deterministic CLI prompt script with explicit input sequences as the final fallback before guessing.
+
+### Verifying the Red Signal
+
+Prove the failure signal is genuine before investigating causes:
+- Mutate the test or fixture slightly to verify it toggles cleanly between passing on known-good states and failing on the bug.
+- If the test never passes even on baseline commits, the test harness itself is broken, not the code under test.
+
+### Performance Regressions: The Profiler Branch
+
+Do not debug performance regressions with scattered print statements:
+- Establish a quantitative baseline benchmark ($p50$, $p95$, $p99$ latency or memory footprint).
+- Use an execution profiler or flamegraph to identify hot call sites.
+- Bisect git history against the quantitative baseline to locate the introducing commit.
+
+## Phase 2 — Minimise
+
+Reduce the reproduction to the smallest input and the fewest moving parts before
+changing anything.
+
+## Phase 3 — Hypotheses
+
+Write three to five **falsifiable** hypotheses before testing any. Each carries a
+prediction: if X is the cause, then changing Y will make the bug disappear. If you
+cannot state the prediction, it is a vibe, not a hypothesis.
+
+## Phase 4 — Instrument
+
+Change one variable at a time. One breakpoint beats ten logs. Never log everything
+and grep. Tag every temporary log with a unique marker so cleanup is a single
+search.
+
+## Phase 5 — Fix and lock it down
+
+Write the regression test at the seam **before** the fix. If no correct seam
+exists, that itself is the finding: the architecture is preventing the bug from
+being locked down — report it as a missing architectural seam rather than authoring
+a false-confidence shallow mock test.
+
+## Phase 6 — Clean up
+
+Remove the tagged instrumentation, confirm the loop is green, and state the
+hypothesis that proved correct in the commit or PR message so the next debugger
+learns.
+
+## Secrets
+
+Before building a loop, redact every secret: keep credentials in the environment,
+and quote only the signal-carrying lines.

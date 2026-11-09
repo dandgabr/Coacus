@@ -11,6 +11,14 @@ This skill establishes the methodology for supervision, coordination, and operat
 
 ## 🎯 1. Fundamental Principles of the Supervisor
 
+The main chat may supervise directly; a separate supervisor is not required.
+Delegate substantive specialist work when permitted and available. Dispatched
+workers execute their bounded assignment without recursive orchestration unless
+explicitly asked to coordinate. If delegation is unavailable, prohibited, or
+cannot be governed, report the blocker rather than silently using ungoverned
+work. Respect the user's inline-work instructions and retain human approval for
+approval-gated actions.
+
 1. **Intent Grounding**:
    - Every workflow begins by extracting and fixing the user's original problem into an explicit intent contract.
    - The contract must contain: Primary Objective, Non-Negotiable Constraints, Expected Deliverables, and Stop Criteria.
@@ -100,8 +108,9 @@ Keep a live record of each subagent's state:
 
 ### 5.2 Concurrency Cap
 
-- **Central rule**: never leave more than **5 active agents** at once **counting the supervisor itself** (that is, supervisor + at most **4 subagents** in `ACTIVE`).
-- To delegate, compute `active = 1 (you) + number of ACTIVE subagents`. While `active >= 5`, do **not** spawn new subagents: move the task to `QUEUED` and wait for a `DONE`/`FAILED`/`PAUSED` signal to release the next one from the queue (FIFO).
+- Dispatch independent, non-overlapping ready tasks in parallel up to actual free governor capacity and any lower applicable limit. Queue the remainder until capacity opens.
+- A routing proposal or status snapshot does not reserve a slot. Ensure exactly one acquisition per dispatch: use adapter-managed acquisition where present, or manual acquisition otherwise, never both.
+- OpenCode background dispatch is prohibited until its slot-lifetime fix is verified. Report the limitation and use supported foreground dispatch if permitted.
 
 ### 5.3 Rate-Limit Failure → Kill, Wait, and Relaunch
 
@@ -109,8 +118,8 @@ Rate-limit symptoms: `429`, `HTTP 429`, `Too Many Requests`, `Rate limit`, `Quot
 
 When one of these symptoms is detected on an active subagent:
 1. **Kill** the instance immediately (kill-switch) and mark it `PAUSED`, **preserving** the subtask description and its `@CTX` for retry.
-2. **Wait** while the total active count (you + other ACTIVE) remains at 5; do not relaunch yet.
-3. When the total active count drops **below 5**, **relaunch** the paused task (a fresh zeroed instance) applying *exponential backoff* between attempts: ≈2s on the 1st, 4s, 8s, 16s, 32s, up to a 60s ceiling. Reset the task state to `ACTIVE` on relaunch.
+2. **Wait** until the governor and any lower applicable limit permit another dispatch.
+3. **Relaunch** the paused task with one adapter-managed or manual slot acquisition, applying *exponential backoff* between attempts: approximately 2s on the 1st, 4s, 8s, 16s, 32s, up to a 60s ceiling. Reset the task state to `ACTIVE` on relaunch.
 4. Once a reasonable limit of consecutive attempts is exhausted (e.g., 5), report the definitive `FAILED` to the user and continue with the rest of the queue.
 
 ### 5.4 Retry Scope
@@ -120,20 +129,61 @@ When one of these symptoms is detected on an active subagent:
 
 ### 5.5 Executable Mechanism (not just instructional)
 
-The concurrency cap above is **enforced at runtime** by a slot governor, not merely described in prose:
+The runtime governor is intended to enforce the scope ledger's effective slot limit; actual adapter wiring and live host enforcement must be verified. Other applicable limits may be lower:
 
-- **Governor** (`scripts/coacus_governor.py`): the slot ledger. `acquire` blocks (queues) when the cap is saturated; `fail` marks the caller `PAUSED` for retry. The cap = `ORCH_MAX_CONCURRENT` (default 5, counting the orchestrator). Commands: `acquire|release|fail|paused|status|health|reset`; inspect with `python3 scripts/coacus_governor.py status`.
-- **OpenCode gate** (`~/.config/opencode/plugins/coacus-governor.js`): intercepts `task`, acquires a slot before the spawn, releases/marks it after, and parks a caller as `PAUSED` when it sees a rate limit.
-- **Antigravity hook** (`~/.gemini/config/hooks.json`, key `coacus-governor`): calls `scripts/coacus_governor.py` on the pre-spawn hook of every subagent dispatch and releases on the post-spawn hook.
+- **Governor** (`scripts/coacus_governor.py`): the slot ledger. `acquire` blocks (queues) when the effective cap is saturated; `fail` marks the caller `PAUSED` for retry. Initial limits resolve from model, harness and environment settings; the fallback for an unlisted scope is 6. An existing ledger persists its cap: a higher requested cap can raise it, but lowering configuration alone does not lower it. For a durable decrease, lower the relevant configuration as well as using `set-max`; a later caller with a higher resolved cap can raise it again. Inspect the effective value with `status`.
+- RUNNING slots are not age-reaped. A crash may leave a stale slot; recover it only after independently verifying its worker has stopped. Otherwise retain it and report the blocker. Never reset the ledger or increase its cap merely to clear congestion: either can allow over-cap work.
+- **OpenCode gate** (`~/.config/opencode/plugins/coacus-governor.js`): intercepts dispatch and manages acquisition and release. Background dispatch may release the slot before the worker finishes and is prohibited until a runtime fix is verified.
+- **Antigravity hook**: denies recognized subagent spawn on all platforms until host call identity and worker lifetime are verified. Recognized list and kill operations remain allowed. Live host behavior is unverified; report a blocker rather than dispatching without established governance.
 
 ---
 
-## 📐 6. Escalation Decision Example
+## 🧮 6. Quantitative Tool-Call Caps and Mentor Supervision Loop
 
-Given a queue of 6 independent subtasks and the cap of 5:
+Beyond subagent process counts, the supervisor actively enforces tool-call budgets and sliding-window loop detection:
 
-1. You + 4 subagents started = 5 active. The remaining 2 stay `QUEUED`.
-2. One of the active subagents fails with `429`. You kill it → `PAUSED`. Active = 4.
-3. Release the next `QUEUED` as `ACTIVE` (active = 5) **and** relaunch the `PAUSED` one (active = 6? **no**: apply a new wait until active < 5).
+### 6.1 Differentiated Tool-Call Budgets
+- **Deep Execution Agents** (`backend-developer`, `frontend-developer`, `pentester-agent`): `MAX_GENERAL_AGENT_TOOL_CALLS = 100`.
+- **Auxiliary & Refinement Agents** (`code-explorer`, `web-researcher`, `subtasks-refiner`): `MAX_LIMITED_AGENT_TOOL_CALLS = 20`.
 
-> **Cap adjustment**: the value 5 is the default (`MAX_CONCURRENT = 5`, counting the orchestrator). If the provider in use has a lower limit (e.g., 3 RPM), reduce the cap proportionally. The cap can be parameterized via the `ORCH_MAX_CONCURRENT` environment variable when the harness allows it.
+### 6.2 Sliding-Window Loop Detection
+- **`same_tool_limit` (3–5 calls)**: If an agent invokes the same tool with identical or near-identical arguments 3 to 5 times consecutively without new outputs or error resolution, trigger an immediate Level 1 drift intervention.
+- **`total_tool_limit`**: If an agent consumes 80% of its budget without generating verifiable artifacts or passing tests, pause the agent and evaluate progress using the `<mentor_analysis>` checklist.
+
+### 6.3 The `<mentor_analysis>` Progress Checklist
+Before redelegating a task, approving completion, or releasing an agent:
+```text
+<mentor_analysis>
+1. Artifact Verification: Has the subagent produced physical files, test runs, or concrete evidence?
+2. Loop Check: Is the subagent repeating tool invocations or stuck in an unproductive cycle?
+3. Scope Adherence: Are modified files strictly within the declared bounded context?
+4. Context Completeness: Can the current question or step be resolved immediately from context?
+5. Budget Depletion: Has the agent consumed >80% of its tool budget without measurable progress?
+6. Objective Grounding: Is the proposed next step aligned with the user's root objective?
+</mentor_analysis>
+```
+
+---
+
+## 🌐 7. English-First & Dual-Channel Language Governance
+
+To maintain semantic density, eliminate token waste, and prevent translation loss during cross-agent handoffs and memory retrieval:
+
+1. **Technical Wire & Memory Channel (100% `en`)**:
+   - All TOON handoff fields (`@SUMMARY`, `@ACTION_NEEDED`, `@CTX`), tool call parameters, vector search queries, knowledge graph triples, and internal scratch notes MUST be in **English (`en`)**.
+2. **Human Communication & Reporting Channel (`en` canonical; `en | pt-BR | es` supported)**:
+   - When presenting final executive reports, asking user clarification, or providing status summaries to human stakeholders, the agent standardizes on the three core supported languages: **English (`en`)** as canonical default, **Brazilian Portuguese (`pt-BR`)**, and **Spanish (`es`)**.
+
+---
+
+## 🔐 8. Cryptographic Evidence Receipt Chain Integration
+
+For auditability and non-repudiation in offensive security, GRC, or critical code deliveries, agents emit an Ed25519-signed, hash-linked DAG of execution receipts:
+
+```text
+flow_start -> task_created -> subtask_started -> toolcall_finished -> artifact_recorded -> report_created
+```
+
+- Each receipt records: `receipt_id`, `parent_receipt_ids`, `event_type`, `input_hash` (SHA-256), `output_hash` (SHA-256), and `artifact_hashes`.
+- Offline verification fails closed: any broken link or mismatched payload signature invalidates downstream findings.
+

@@ -20,6 +20,8 @@ The UX discipline: all aspects of the end-user's interaction with a company, its
 
 ## 🧭 Discipline Boundaries
 
+When preferences, language or contextual help change at runtime, define which state is pending, committed or resolved, what cancellation means and where focus returns. Keep item-specific explanations separate from full-product onboarding. Coordinate the implementation with [runtime localization](../frontend-developer/references/runtime-localization.md) and [interface state lifecycle](../frontend-developer/references/interface-state-lifecycle.md); do not treat translated labels or a tour step appearing as proof that the underlying task still works.
+
 - **UX owns the whole journey:** branding, function, usability, acquisition through reflection (IxDF; Norman's "no product is an island"). Deliverables: research reports, personas, journey maps, "how might we" statements, user stories, IA/sitemaps, flows, wireframes, usability and heuristic-evaluation reports.
 - **UI owns the surface** — the canonical handoff is UX wireframes → UI hi-fi craft → dev specs, iterating continuously (see ui-designer).
 - **UX honeycomb** (Morville, 2004): useful, usable, desirable, findable, accessible, credible, valuable — still the standard evaluative model; each facet forces explicit trade-offs.
@@ -51,7 +53,7 @@ The UX discipline: all aspects of the end-user's interaction with a company, its
 ## 📏 Usability and Evaluation
 
 - **Nielsen's 10 heuristics** (1994; refined from Molich & Nielsen 1990): visibility of system status; match with the real world; user control; consistency and standards; error prevention; recognition over recall; flexibility and efficiency; aesthetic and minimalist design; error recognition/recovery; help and documentation. Used for heuristic evaluation (3–5 evaluators).
-- **Interaction laws:** Fitts's law (bigger/closer targets are faster — underpins WCAG 2.5.8); Hick's law (RT grows with equally probable choices — simplify menus, progressive disclosure); cognitive load (intrinsic vs extraneous — minimize clutter, build on existing mental models, offload memory).
+- **Interaction laws:** Fitts's law (bigger/closer targets are faster — underpins WCAG 2.5.8); Hick's law (RT grows with equally probable choices — simplify menus, progressive disclosure); Zeigarnik effect (uncompleted tasks retain cognitive tension); Goal-Gradient effect (effort accelerates near completion); Von Restorff effect (isolation guides attention without alert fatigue); Miller and Cowan's task-dependent memory findings (not a universal item limit); cognitive load (intrinsic vs extraneous — minimize clutter, build on existing mental models, offload memory). For rigorous formulations across GUI, CLI, and multi-agent systems, see [applied cognitive laws](../../engineering/practices/ui-ux-principles/references/applied-cognitive-laws.md).
 - **Metrics:** SUS (10-item, 0–100; corpus average ≈ 68 as the "good" benchmark [standard figure, not re-verified]); Google HEART (Rodden, Hutchinson & Fu, CHI 2010 — happiness, engagement, adoption, retention, task success via goals→signals→metrics); task success and time-on-task as the core usability metrics.
 - **Usability testing** (Moran, NN/g): facilitator + tasks + participant; realistic scenario tasks that don't leak answers; think-aloud as the default protocol; qualitative ~5 users vs quantitative benchmarks; remote moderated/unmoderated; a "discount" study is ~3 days.
 

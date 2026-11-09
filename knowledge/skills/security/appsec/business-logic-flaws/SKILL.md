@@ -30,10 +30,22 @@ For every business flow, ask not only "does it work?" but "how can it be made to
 
 1. **Unrestricted access to sensitive business flows** (OWASP API6:2023): an expensive or sensitive operation can be called at will (scraping, SMS sending, purchasing). Mitigate with server-side rate limits and proof of work.
 2. **Transaction authorization gaps**: the server trusts a client-supplied amount, discount or role. Recompute all security-relevant values on the server.
-3. **Race conditions (TOCTOU)**: concurrent requests pass the same check (double-spend, coupon reuse). Use atomic operations, locking, or idempotency keys.
+3. **Race conditions (TOCTOU)**: concurrent requests pass the same check (double-spend, coupon reuse). Preserve the invariant with atomic operations, constraints, or transactional locking; idempotency keys address duplicate requests separately.
 4. **Replay and idempotency**: a valid request is replayed with profit. Require a nonce or idempotency key and reject duplicates.
 5. **State-machine abuse**: the workflow is walked out of order (skip payment, approve one's own request). Enforce server-side state transitions.
 6. **Parameter tampering on hidden fields**: role, tenant or price hidden in the client. Never trust hidden fields.
+
+For scarce stock, make the availability check and decrement one conditional
+database update and require one affected row; two buyers cannot both consume
+the last unit. Use a unique constraint for uniqueness invariants, or a row
+lock within a transaction when a multi-step decision needs it. Choose suitable
+isolation and keep locks short; use the database before adding queues or caches
+when its atomic operations already preserve the invariant. Idempotency prevents
+duplicate operations; it does not replace concurrency control for distinct buyers.
+
+Derive prices and business rules from trusted server data, validate quantities,
+authenticate the caller and authorize each requested resource. Exercise reads
+and writes as two different users to detect cross-user disclosure or mutation.
 
 ---
 

@@ -43,6 +43,9 @@
       "path": "knowledge/skills/architecture/enterprise/solution-architect"
     },
     {
+      "path": "knowledge/skills/data/agentic-temporal-knowledge-graphs"
+    },
+    {
       "path": "knowledge/skills/data/data-intensive-systems"
     },
     {
@@ -163,10 +166,52 @@
       "path": "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics"
     },
     {
+      "path": "knowledge/skills/domains/academic/animal-welfare-research-evidence"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/astronomical-data-integrity"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/bulk-rna-seq-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/constraint-based-metabolic-research"
+    },
+    {
       "path": "knowledge/skills/domains/academic/data-science-advanced-math"
     },
     {
+      "path": "knowledge/skills/domains/academic/flow-cytometry-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/genomic-coordinate-integrity"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/isotope-flux-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/laboratory-automation-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/measurement-units-uncertainty"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/pooled-screen-research"
+    },
+    {
       "path": "knowledge/skills/domains/academic/quantum-computing-algorithms"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/scientific-data-retrieval"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/single-cell-expression-research"
+    },
+    {
+      "path": "knowledge/skills/domains/academic/tandem-mass-spectra-research"
+    },
+    {
+      "path": "knowledge/skills/domains/design/canvas-spatial-whiteboarding"
     },
     {
       "path": "knowledge/skills/domains/design/color-contrast-accessibility"
@@ -184,6 +229,21 @@
       "path": "knowledge/skills/domains/design/color-ui-systems"
     },
     {
+      "path": "knowledge/skills/domains/design/deterministic-motion-rendering"
+    },
+    {
+      "path": "knowledge/skills/domains/design/game-2d-scene-composition"
+    },
+    {
+      "path": "knowledge/skills/domains/design/game-sprite-design"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-app-layout-architectures"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-data-tables-dashboards"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-hero-sections"
     },
     {
@@ -193,31 +253,106 @@
       "path": "knowledge/skills/domains/design/ui-onboarding-tours"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-presentation-slides"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-scroll-driven-motion"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-state-layout-transitions"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-3d-immersive-webgl"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-acid-anti-design"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-agitprop-poster"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-ai-native-generative-ui"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-analog-newspaper-broadsheet"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-art-deco"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-art-nouveau"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-arts-and-crafts"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-atompunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-bauhaus"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-bento-grid"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-biopunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-blueprint-cad-schematic"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-broken-grid"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-brutalist-monochrome"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-calm-quiet-ui"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-card-based-ui"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-cassette-futurism"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-claymorphism"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-cyberpunk-hud"
+      "path": "knowledge/skills/domains/design/ui-style-clockpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-collage-scrapbook"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-constructivism"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-cyberpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dark-fantasy"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-dark-mode-first"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-de-stijl"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dieselpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dracula"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dreamcore"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-dungeon-synth"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-editorial-archive-luxury"
@@ -229,16 +364,49 @@
       "path": "knowledge/skills/domains/design/ui-style-flat-design"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-fluid-liquid-morph"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-frutiger-aero"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-glassmorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-glitch"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-gothicpunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-gradient-duotone"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-grain-noise-texture"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-hand-drawn-sketch"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-holographic-foil-iridescent"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-indie-web-revival"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-isometric"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-kawaii-pastel-soft"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-kinetic-typography"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-linear-saas"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-lunarpunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-material-you"
@@ -247,10 +415,19 @@
       "path": "knowledge/skills/domains/design/ui-style-maximalism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-memphis"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-metro-modern-ui"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-micro-interactions"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-mid-century-modern"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-nanopunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-neo-brutalism"
@@ -259,7 +436,7 @@
       "path": "knowledge/skills/domains/design/ui-style-neumorphism"
     },
     {
-      "path": "knowledge/skills/domains/design/ui-style-one-page-long-scroll"
+      "path": "knowledge/skills/domains/design/ui-style-nordic"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-organic-biophilic"
@@ -268,19 +445,67 @@
       "path": "knowledge/skills/domains/design/ui-style-parallax-scrolling"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-pixel-art"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-pop-art-halftone"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-psychedelic-60s"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-retro-computing"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-risograph"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-sandalpunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-scrollytelling"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-silkpunk"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-skeuomorphism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-solarpunk"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-split-screen-dualism"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-steampunk"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-swiss-web-minimalism"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-synthwave"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-terminal-tui"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-vaporwave"
     },
     {
       "path": "knowledge/skills/domains/design/ui-style-web-brutalism"
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-weirdcore"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-windows-xp"
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-y2k-revival"
+    },
+    {
+      "path": "knowledge/skills/domains/design/ui-style-zine-independent"
     },
     {
       "path": "knowledge/skills/domains/industry/ai-application-engineering"
@@ -293,6 +518,9 @@
     },
     {
       "path": "knowledge/skills/domains/industry/ai-model-evaluation"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/ai-multimodal-agentic-systems"
     },
     {
       "path": "knowledge/skills/domains/industry/applied-ai-automation"
@@ -310,6 +538,12 @@
       "path": "knowledge/skills/domains/industry/conversational-ai-chatbots"
     },
     {
+      "path": "knowledge/skills/domains/industry/conversion-copywriting-psychology"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/cro-onboarding-experimentation"
+    },
+    {
       "path": "knowledge/skills/domains/industry/edtech-andragogy"
     },
     {
@@ -319,13 +553,34 @@
       "path": "knowledge/skills/domains/industry/financial-transaction-processing"
     },
     {
+      "path": "knowledge/skills/domains/industry/game-animation-qa-motion"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/game-asset-pipeline"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/gtm-positioning-strategy"
+    },
+    {
       "path": "knowledge/skills/domains/industry/hardware-hacking-embedded-security"
     },
     {
       "path": "knowledge/skills/domains/industry/healthtech-standards-security"
     },
     {
+      "path": "knowledge/skills/domains/industry/lifecycle-revops-paid-growth"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/llm-observability-otel-langfuse"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/llm-provider-protocol-interoperability"
+    },
+    {
       "path": "knowledge/skills/domains/industry/medical-device-cybersecurity"
+    },
+    {
+      "path": "knowledge/skills/domains/industry/seo-aeo-engineering"
     },
     {
       "path": "knowledge/skills/domains/industry/telecom-voice-engineering"
@@ -352,6 +607,9 @@
       "path": "knowledge/skills/engineering/patterns/dp-structural-patterns"
     },
     {
+      "path": "knowledge/skills/engineering/practices/agentic-state-sync-hitl"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/api-design"
     },
     {
@@ -364,6 +622,9 @@
       "path": "knowledge/skills/engineering/practices/c4-model-architecture"
     },
     {
+      "path": "knowledge/skills/engineering/practices/ci-security-scanning"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/clean-architecture"
     },
     {
@@ -371,6 +632,9 @@
     },
     {
       "path": "knowledge/skills/engineering/practices/code-review-practices"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/desktop-app-distribution"
     },
     {
       "path": "knowledge/skills/engineering/practices/distributed-systems"
@@ -391,6 +655,12 @@
       "path": "knowledge/skills/engineering/practices/git-conventional-commits"
     },
     {
+      "path": "knowledge/skills/engineering/practices/gnome-shell-extension-development"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/guardrail-authoring"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/latency-engineering"
     },
     {
@@ -400,7 +670,19 @@
       "path": "knowledge/skills/engineering/practices/python-performance-parallelism"
     },
     {
+      "path": "knowledge/skills/engineering/practices/repository-artifact-hygiene"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/review-findings-pipeline"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/system-design-scalability"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/tui-terminal-engineering"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/ui-design-craftsmanship"
     },
     {
       "path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web"
@@ -415,7 +697,16 @@
       "path": "knowledge/skills/engineering/practices/version-freshness"
     },
     {
+      "path": "knowledge/skills/engineering/practices/web-3d-object-modeling"
+    },
+    {
       "path": "knowledge/skills/engineering/practices/web-accessibility-wcag"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/web-portal-cli-scaffolding"
+    },
+    {
+      "path": "knowledge/skills/engineering/practices/writing-for-agents"
     },
     {
       "path": "knowledge/skills/frameworks/framework-criterion"
@@ -425,6 +716,9 @@
     },
     {
       "path": "knowledge/skills/frameworks/framework-grpc"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-langchain"
     },
     {
       "path": "knowledge/skills/frameworks/framework-microprofile-jakarta"
@@ -445,7 +739,13 @@
       "path": "knowledge/skills/frameworks/framework-soap"
     },
     {
+      "path": "knowledge/skills/frameworks/framework-spring-ai"
+    },
+    {
       "path": "knowledge/skills/frameworks/framework-spring-boot"
+    },
+    {
+      "path": "knowledge/skills/frameworks/framework-tabler"
     },
     {
       "path": "knowledge/skills/frameworks/framework-testing"
@@ -479,6 +779,9 @@
     },
     {
       "path": "knowledge/skills/infrastructure/hpc-supercomputing-clusters"
+    },
+    {
+      "path": "knowledge/skills/infrastructure/k8s-genai-workloads"
     },
     {
       "path": "knowledge/skills/infrastructure/linux-kernel-systemd-internals"
@@ -568,6 +871,9 @@
       "path": "knowledge/skills/mapping/db-schema-reverse-mapping"
     },
     {
+      "path": "knowledge/skills/mapping/editable-diagram-engineering"
+    },
+    {
       "path": "knowledge/skills/mapping/execution-flow-callgraph"
     },
     {
@@ -598,13 +904,31 @@
       "path": "knowledge/skills/platforms/antigravity-guide"
     },
     {
-      "path": "knowledge/skills/platforms/browser-harness"
+      "path": "knowledge/skills/platforms/claude-code-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/claude-desktop-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/codex-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/command-code-guide"
+    },
+    {
+      "path": "knowledge/skills/platforms/cursor-guide"
     },
     {
       "path": "knowledge/skills/platforms/gemini-enterprise"
     },
     {
+      "path": "knowledge/skills/platforms/opencode-guide"
+    },
+    {
       "path": "knowledge/skills/platforms/power-automate"
+    },
+    {
+      "path": "knowledge/skills/platforms/program-azure-devops"
     },
     {
       "path": "knowledge/skills/platforms/program-github-actions"
@@ -634,13 +958,16 @@
       "path": "knowledge/skills/roles/code-optimizer"
     },
     {
+      "path": "knowledge/skills/roles/codebase-exploration"
+    },
+    {
+      "path": "knowledge/skills/roles/cover-letter-application-drafter"
+    },
+    {
       "path": "knowledge/skills/roles/dba-database-administrator"
     },
     {
       "path": "knowledge/skills/roles/devops-engineer"
-    },
-    {
-      "path": "knowledge/skills/roles/explore"
     },
     {
       "path": "knowledge/skills/roles/frontend-developer"
@@ -649,7 +976,10 @@
       "path": "knowledge/skills/roles/fullstack-developer"
     },
     {
-      "path": "knowledge/skills/roles/general"
+      "path": "knowledge/skills/roles/interview-prep-upskill-tracker"
+    },
+    {
+      "path": "knowledge/skills/roles/job-fit-evaluation-ranking"
     },
     {
       "path": "knowledge/skills/roles/job-hunting-sourcing"
@@ -752,6 +1082,9 @@
     },
     {
       "path": "knowledge/skills/security/appsec/secure-sdlc-ssdf"
+    },
+    {
+      "path": "knowledge/skills/security/appsec/security-assessment-planning"
     },
     {
       "path": "knowledge/skills/security/appsec/software-supply-chain-security"
@@ -895,6 +1228,9 @@
       "path": "knowledge/skills/security/iam/identity-governance-iga"
     },
     {
+      "path": "knowledge/skills/security/iam/identity-security-software-development"
+    },
+    {
       "path": "knowledge/skills/security/iam/machine-identity-spiffe-workload"
     },
     {
@@ -919,6 +1255,9 @@
       "path": "knowledge/skills/security/offensive/kubernetes-attack-paths"
     },
     {
+      "path": "knowledge/skills/security/offensive/network-infrastructure-pentest"
+    },
+    {
       "path": "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp"
     },
     {
@@ -929,6 +1268,9 @@
     },
     {
       "path": "knowledge/skills/security/operations/container-runtime-security"
+    },
+    {
+      "path": "knowledge/skills/security/operations/cybersecurity-ops-bash"
     },
     {
       "path": "knowledge/skills/security/operations/detection-engineering"
@@ -953,6 +1295,12 @@
     },
     {
       "path": "knowledge/skills/security/operations/ids-ips-ndr-engineering"
+    },
+    {
+      "path": "knowledge/skills/security/operations/incident-response-blue-team"
+    },
+    {
+      "path": "knowledge/skills/security/operations/iot-untrusted-device-isolation"
     },
     {
       "path": "knowledge/skills/security/operations/itdr-identity-threat-detection"
@@ -1066,49 +1414,91 @@
       "path": "knowledge/skills/security/tooling/program-sigstore-cosign"
     },
     {
-      "path": "methodology/workflows/superpowers-brainstorming"
+      "path": "methodology/workflows/brainstorming"
     },
     {
-      "path": "methodology/workflows/superpowers-diagnosing-superpowers"
+      "path": "methodology/workflows/codebase-design"
     },
     {
-      "path": "methodology/workflows/superpowers-dispatching-parallel-agents"
+      "path": "methodology/workflows/diagnosing-agent-sessions"
     },
     {
-      "path": "methodology/workflows/superpowers-executing-plans"
+      "path": "methodology/workflows/diagnosing-bugs"
     },
     {
-      "path": "methodology/workflows/superpowers-finishing-a-development-branch"
+      "path": "methodology/workflows/dispatching-parallel-agents"
     },
     {
-      "path": "methodology/workflows/superpowers-receiving-code-review"
+      "path": "methodology/workflows/domain-modeling"
     },
     {
-      "path": "methodology/workflows/superpowers-requesting-code-review"
+      "path": "methodology/workflows/executing-plans"
     },
     {
-      "path": "methodology/workflows/superpowers-subagent-driven-development"
+      "path": "methodology/workflows/finishing-a-development-branch"
     },
     {
-      "path": "methodology/workflows/superpowers-systematic-debugging"
+      "path": "methodology/workflows/grill-me"
     },
     {
-      "path": "methodology/workflows/superpowers-test-driven-development"
+      "path": "methodology/workflows/grill-with-docs"
     },
     {
-      "path": "methodology/workflows/superpowers-using-git-worktrees"
+      "path": "methodology/workflows/grilling"
     },
     {
-      "path": "methodology/workflows/superpowers-verification-before-completion"
+      "path": "methodology/workflows/handoff"
     },
     {
-      "path": "methodology/workflows/superpowers-writing-plans"
+      "path": "methodology/workflows/implement-spec"
     },
     {
-      "path": "methodology/workflows/superpowers-writing-skills"
+      "path": "methodology/workflows/learning-consolidation"
+    },
+    {
+      "path": "methodology/workflows/phase-boundaries"
+    },
+    {
+      "path": "methodology/workflows/prototype"
+    },
+    {
+      "path": "methodology/workflows/receiving-code-review"
+    },
+    {
+      "path": "methodology/workflows/requesting-code-review"
+    },
+    {
+      "path": "methodology/workflows/retro"
+    },
+    {
+      "path": "methodology/workflows/subagent-driven-development"
+    },
+    {
+      "path": "methodology/workflows/test-driven-development"
+    },
+    {
+      "path": "methodology/workflows/to-spec"
+    },
+    {
+      "path": "methodology/workflows/to-tickets"
+    },
+    {
+      "path": "methodology/workflows/two-axis-code-review"
     },
     {
       "path": "methodology/workflows/using-coacus"
+    },
+    {
+      "path": "methodology/workflows/using-git-worktrees"
+    },
+    {
+      "path": "methodology/workflows/verification-before-completion"
+    },
+    {
+      "path": "methodology/workflows/writing-plans"
+    },
+    {
+      "path": "methodology/workflows/writing-skills"
     }
   ]
 }

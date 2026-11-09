@@ -5,6 +5,8 @@ description: "Acts as a Specialist in Automated Testing and QA Engineering in Py
 
 # Automated Testing in Python: Pytest & Unittest
 
+For browser-backed assertions, use [rendered interface oracles](../framework-testing/references/rendered-ui-oracles.md). Keep fixture roots, fonts/state readiness and temporary storage explicit. Copy required evidence but exclude unrelated captures/tool state; resolve paths against the fixture actually exercised. Synthetic candidate/release data should remain valid after the product inventory grows or is approved.
+
 This skill establishes the engineering standards and methodologies for developing and automating test suites in Python, integrating the advanced **Pytest** ecosystem and the object-oriented standard library **Unittest**.
 
 ---
@@ -135,7 +137,7 @@ def test_payment_with_patch(mocker):
 ## 🧬 5. Mutation Testing (mutmut) and Coverage (pytest-cov)
 
 - **Mutation Score Measurement**:
-  $$MS = \frac{\text{Killed Mutants}}{\text{Total Mutants Generated}} \times 100\%$$
+  Interpret the tool's score using its documented denominator and exclusions; classify equivalent, uncovered, timeout and error outcomes separately. See [test-suite audit](../framework-testing/references/test-suite-audit.md).
 - **Execution Commands**:
   ```bash
   # Coverage with branch coverage

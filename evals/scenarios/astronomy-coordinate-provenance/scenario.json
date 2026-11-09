@@ -1,0 +1,16 @@
+{
+  "id": "astronomy-coordinate-provenance",
+  "title": "Preserve astronomical coordinate provenance",
+  "harness": "opencode",
+  "prompt": "An astronomical image has a WCS header with unknown pixel-origin convention. A catalog has several nearby candidates with different observation epochs. Can you report a unique counterpart from the nearest coordinate alone? Explain what must be checked. Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(origin|pixel)" },
+    { "kind": "regex", "value": "(?i)(epoch|time|motion)" }
+  ],
+  "rubric": [
+    "The response checks the WCS pixel-origin convention rather than assuming it.",
+    "It reports matching ambiguity and accounts for observation epochs and possible motion.",
+    "It does not claim the nearest candidate is automatically a unique physical counterpart."
+  ],
+  "acceptance": "The response preserves coordinate and epoch provenance and does not assert an unsupported unique match."
+}

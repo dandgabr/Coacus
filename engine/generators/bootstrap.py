@@ -189,6 +189,19 @@ def _render_shape_b(harness: dict, text: str, mapping: dict) -> str:
         "    firstUser.parts.unshift({ ...ref, type: 'text', text: BOOTSTRAP });\n"
         "  },\n"
         "});\n"
+        "\n"
+        "// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped\n"
+        "export default {\n"
+        "  id: 'coacus',\n"
+        "  server: CoacusPlugin,\n"
+        "  async setup(ctx) {\n"
+        "    await ctx.session.hook('context', async (event) => {\n"
+        "      if (!Array.isArray(event.system)) return;\n"
+        "      if (event.system.some((p) => (typeof p === 'string' ? p.includes(GUARD) : p?.text?.includes(GUARD)))) return;\n"
+        "      event.system.unshift({ type: 'text', text: BOOTSTRAP });\n"
+        "    });\n"
+        "  },\n"
+        "};\n"
     )
 
 
@@ -198,8 +211,8 @@ def _render_shape_c(harness: dict, text: str) -> dict[str, str]:
     Antigravity's ``plugin.json`` schema is strict (``name`` + ``description``
     only, ``additionalProperties: false``), so the manifest carries no
     ``contextFileName``. Activation comes from a workspace/global
-    ``.agents/rules/*.md`` (``activation: always_on``) or a plugin-bundled
-    ``rules/`` file; rules are capped at 12,000 characters.
+    ``.agents/rules/*.md`` (``trigger: always_on``) or a plugin-bundled
+    ``rules/`` file. Coacus keeps a conservative 12,000-character output cap.
     """
     name = harness["name"]
     files = harness["bootstrap"].get("outputs", [])
@@ -215,7 +228,7 @@ def _render_shape_c(harness: dict, text: str) -> dict[str, str]:
         body = text[:11500].rstrip() + "\n\n<!-- truncated: rule length cap -->\n"
     rule = (
         "---\n"
-        "activation: always_on\n"
+        "trigger: always_on\n"
         "description: Coacus agentic framework bootstrap rule.\n"
         "---\n\n"
         f"{body}\n"

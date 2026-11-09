@@ -22,7 +22,7 @@ flowchart LR
 | Reactor | Operation Type | Differential Design Equation | Integrated Equation |
 | :--- | :--- | :--- | :--- |
 | **Batch** | Transient, uniform mixing | $N_{A0}\frac{dX}{dt} = -r_A V$ | $t = N_{A0} \int_0^X \frac{dX}{-r_A V}$ |
-| **CSTR** | Steady state, homogeneous | $F_{A0} - F_A + r_A V = 0$ | $V = \frac{F_{A0} X}{-r_A(X_{saida})}$ |
+| **CSTR** | Steady state, homogeneous | $F_{A0} - F_A + r_A V = 0$ | $V = \frac{F_{A0} X}{-r_A(X_{outlet})}$ |
 | **PFR** | Steady-state tubular | $\frac{dF_A}{dV} = r_A \iff F_{A0}\frac{dX}{dV} = -r_A$ | $V = F_{A0} \int_0^X \frac{dX}{-r_A}$ |
 | **PBR** | Fixed bed with mass $W$ | $F_{A0}\frac{dX}{dW} = -r_A'$ | $W = F_{A0} \int_0^X \frac{dX}{-r_A'}$ |
 
@@ -75,4 +75,8 @@ where $k$ is the thermal conductivity and $\Phi$ is the viscous dissipation func
   2. Compute the pressure correction $p'$ through the discretized continuity equation.
   3. Correct the face velocities and the pressure field ($p = p^* + \alpha_p p'$).
   4. Solve the energy ($T$) and species ($C_A$) transport equations.
-  5. Iterate until the normalized momentum and mass residuals reach a tolerance $< 10^{-5}$.
+  5. Select and justify solver tolerances for the quantities of interest. Check residuals alongside mass and energy balances, and compare solutions across mesh and time-step refinements. Numerical convergence alone does not establish that the physical model or boundary conditions are valid.
+
+### Measured velocity fields
+
+For particle-image velocimetry, record image pairing, time separation, spatial calibration, coordinate conventions and preprocessing. Preserve flags for rejected vectors when replacing or interpolating them, and report validation and uncertainty before deriving flow statistics. A measured velocity field and a CFD prediction are distinct evidence; agreement requires a matched comparison and does not by itself validate every model condition. This guidance was informed by the [upstream PIV workflow](https://github.com/K-Dense-AI/scientific-agent-skills/blob/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/openpiv/SKILL.md).

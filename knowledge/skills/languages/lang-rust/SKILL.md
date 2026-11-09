@@ -115,9 +115,9 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum ConfigError {
-    #[error("falha de E/S ao ler o arquivo de configuração")]
+    #[error("I/O failure while reading the configuration file")]
     Io(#[from] io::Error),
-    #[error("formato de configuração inválido: {0}")]
+    #[error("invalid configuration format: {0}")]
     InvalidFormat(String),
 }
 
@@ -127,7 +127,7 @@ pub fn read_config(path: &str) -> Result<String, ConfigError> {
     file.read_to_string(&mut content)?;
     
     if content.is_empty() {
-        return Err(ConfigError::InvalidFormat("arquivo vazio".into()));
+        return Err(ConfigError::InvalidFormat("empty file".into()));
     }
     
     Ok(content)
@@ -151,15 +151,15 @@ pub async fn run_pipeline(items: Vec<WorkItem>) {
     for item in items {
         let tx_clone = tx.clone();
         task::spawn(async move {
-            let result = format!("Processado item {}: {}", item.id, item.payload);
+            let result = format!("Processed item {}: {}", item.id, item.payload);
             let _ = tx_clone.send(result).await;
         });
     }
 
-    drop(tx); // Fecha o transmissor original para permitir que o receptor termine quando as tasks concluírem
+    drop(tx); // Drop the original sender so the receiver ends after all tasks finish.
 
     while let Some(message) = rx.recv().await {
-        println!("[+] Recebido: {}", message);
+        println!("[+] Received: {}", message);
     }
 }
 ```
@@ -193,7 +193,7 @@ impl ServerConfigBuilder {
     }
 
     pub fn build(self) -> Result<ServerConfig, &'static str> {
-        let host = self.host.ok_or("host é obrigatório")?;
+        let host = self.host.ok_or("host is required")?;
         let port = self.port.unwrap_or(8080);
         Ok(ServerConfig { host, port })
     }

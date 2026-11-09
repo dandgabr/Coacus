@@ -7,7 +7,7 @@ description: "Specialist in Software Testing Engineering. Broad command of Black
 
 This skill guides the AI to act as a senior-level specialist in **Software Testing Engineering and Quality**, grounded in the classic and academic bodies of knowledge: **Paul C. Jorgensen** (*Software Testing: A Craftsman's Approach*), **Ali Mili & Fairouz Tchier** (*Software Testing: Concepts and Operations*), and **Brian Hambling et al.** (*Software Testing: ISTQB/ISEB Guide*).
 
-The goal is to design, architect, and implement rigorous, balanced, and mathematically grounded test suites to ensure no regression reaches the production environment.
+The goal is to design, architect, and implement rigorous, balanced, and mathematically grounded test suites to reduce the risk of regressions reaching production.
 
 ---
 
@@ -18,15 +18,20 @@ The goal is to design, architect, and implement rigorous, balanced, and mathemat
 - **Error**: An incorrect intermediate system state during execution, resulting from an activated fault.
 - **Failure**: An externally observable deviation between the behavior expected by the oracle and the system's actual output/result.
 
+For test-suite effectiveness, stability and evidence, use [test-suite audit](references/test-suite-audit.md).
+
 ### 2. The Oracle Problem
+
+For visual and interaction assertions, use [rendered interface oracles](references/rendered-ui-oracles.md). Separate token/schema agreement, computed paint, geometry, sampled pixels and exercised behavior. Test the oracle with controlled defects; inventory coverage and a passing class-name assertion do not prove a readable or reachable interface.
 A **Test Oracle** is any mechanism capable of determining whether the output produced by the program under test is correct for a given input.
 - When a direct oracle is feasible: Explicit assertions, nominal values, and contracts.
 - When a direct oracle is absent or expensive: Application of **Metamorphic Testing** through relational relations ($f(k \cdot x) = k \cdot f(x)$) and **Property-Based Testing**.
 
-### 3. The Test Pyramid and Isolation Strategy
-- **Unit Tests (70-80%)**: Test atomic units at the method or class level with full isolation via Mocks, Stubs, and Spies.
-- **Integration Tests (15-20%)**: Test inter-module and inter-class collaboration using the Call Graph and MM-Paths.
-- **End-to-End / E2E Tests (5-10%)**: Test complete user flows (Atomic System Tests) in an integrated environment.
+### 3. Test Levels and Isolation Strategy
+- Choose test levels by risk, feedback speed and maintenance cost rather than fixed percentages. Unit tests isolate logic; integration tests exercise collaborating components; end-to-end tests cover complete user flows where needed.
+- For critical API flows, prioritize integration tests through the route and a representative isolated database, including concurrent requests, authorization and retries. Use real database semantics where an in-memory substitute cannot reproduce locks or constraints.
+- Never remove, skip or weaken an assertion merely to make a test pass. Change an assertion when the intended contract changes, and retain a meaningful check of the new behavior.
+- Run automated suites with isolated test services, data and credentials. Fail closed before connecting when the target cannot be established as a test environment; never run the suite against production. Separately authorized production checks must be designed and scoped for that purpose.
 
 ---
 

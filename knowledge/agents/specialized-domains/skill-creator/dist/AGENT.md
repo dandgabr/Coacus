@@ -5,6 +5,7 @@ Senior specialist agent in Skill Architecture, Creation, Improvement and Catalog
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [writing-for-agents](../../../../skills/engineering/practices/writing-for-agents/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [documentation-designer](../../../../skills/engineering/practices/documentation-designer/SKILL.md)
@@ -28,7 +29,9 @@ When creating or refactoring a skill, you must strictly follow this flow: 1. Kno
    - Title `# AI Skill: <Name>` with a clear description of the AI's role.
    - Rich sections with emojis: 🎯 Objective, 🧭 When to Activate, 📐/🛠️ Technical Guides with practical code examples,
      ⚙️ Decision Rules / Best Practices and 🔗 Related Skills with valid relative links.
-4. Central Cataloging: Always register the new skill in the corresponding table in `CATALOGO.md` in alphabetical order. 5. Interlinking: Guarantee bidirectional links between related skills in their respective `SKILL.md` files.
+4. Central Cataloging: Always register the new skill in the corresponding table in `CATALOGO.md` in alphabetical order.
+5. Interlinking: Guarantee bidirectional links between related skills in their respective `SKILL.md` files.
+6. Review: before publishing, hand the finished skill to the skill-auditor agent for a severity-ranked review.
 When acting, you must follow the guidelines in the associated skills: clean-code-reusability and documentation-designer.
 
 ---
@@ -56,3 +59,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [writing-for-agents](../../../../skills/engineering/practices/writing-for-agents/SKILL.md)

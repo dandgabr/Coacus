@@ -59,93 +59,248 @@ def native_context_json(native_key: str, event_name: str, text: str) -> str:
 
 
 def _opencode_governor_gate() -> str:
-    """The OpenCode governor gate plugin (JS), moved out of bootstrap.py."""
+    """Render the OpenCode governor gate."""
     return (
-        "// Coacus governor gate for opencode (generated — do not edit).\n"
-        "// Install: copy to <harness config>/plugins/coacus-governor.js.\n"
-        "// It intercepts `task` (subagent spawn), acquires a slot from the\n"
-        "// Coacus governor and ABORTS the spawn when no slot is free (the\n"
-        "// cap is enforced, not advisory). A rate-limit (429) in the result\n"
-        "// parks the caller as PAUSED for the orchestrator to retry with\n"
-        "// backoff (orchestration-governance).\n"
-        "\n"
-        "import { execFileSync } from 'node:child_process';\n"
-        "\n"
+        '// Coacus governor gate for opencode (generated — do not edit).\n'
+        '// Install: copy to <harness config>/plugins/coacus-governor.js.\n'
+        '// It intercepts `task` and `subagent` spawns, acquires a slot from the\n'
+        '// Coacus governor and ABORTS the spawn when no slot is free (the\n'
+        '// cap is enforced, not advisory). For foreground spawns, the slot is\n'
+        '// released upon tool completion. For background spawns, the slot is\n'
+        '// retained and tracked until the child session terminal event\n'
+        '// (succeeded, failed, interrupted, or deleted). A rate-limit (429) in\n'
+        '// the result or failure event parks the caller as PAUSED for the\n'
+        '// orchestrator to retry with backoff (orchestration-governance).\n'
+        '\n'
+        "import { execFile } from 'node:child_process';\n"
+        "import { promisify } from 'node:util';\n"
+        "import { createHash, randomBytes } from 'node:crypto';\n"
+        '\n'
         'const COACUS_ROOT = "__COACUS_ROOT__";\n'
         'const PYTHON = "__COACUS_PYTHON__";\n'
         "const GOVERNOR = COACUS_ROOT + '/scripts/coacus_governor.py';\n"
-        "const MAX_TOTAL = String(process.env.ORCH_MAX_CONCURRENT ?? 5);\n"
-        "const MAX_CALLS = 3;\n"
-        "const SPAWN_TOOLS = new Set(['task']);\n"
-        "const RATE_LIMIT_RE = /(429|Too Many Requests|rate.?limit|quota exceeded|RPM|TPM)/i;\n"
-        "\n"
-        "// caller -> {token, calls}; kept on the plugin instance, never in args.\n"
-        "const held = new Map();\n"
-        "\n"
-        "/**\n"
-        " * Invoke the Coacus governor CLI.\n"
-        " *\n"
-        " * @param {string} action - Governor action (acquire, release, fail, ...).\n"
-        " * @param {string} caller - Stable caller identity for the ledger slot.\n"
+        'const MAX_TOTAL = String(process.env.ORCH_MAX_CONCURRENT ?? 5);\n'
+        'const MAX_CALLS = 3;\n'
+        "const SPAWN_TOOLS = new Set(['task', 'subagent']);\n"
+        'const RATE_LIMIT_RE = /(429|Too Many Requests|rate.?limit|quota exceeded|RPM|TPM)/i;\n'
+        '\n'
+        '// caller -> {token, calls, background, childSessionID, completing}; kept on the plugin instance, never in args.\n'
+        'const held = new Map();\n'
+        '// childSessionID -> Array<{caller, token}>\n'
+        'const bgHeld = new Map();\n'
+        'let eventStreamActive = false;\n'
+        'const instanceNonce = randomBytes(32).toString(\'hex\');\n'
+        '\n'
+        'const callerFor = (input) => {\n'
+        "  if (typeof input.sessionID !== 'string' || !input.sessionID ||\n"
+        "      typeof input.callID !== 'string' || !input.callID) return '';\n"
+        "  return 'oc-' + createHash('sha256').update(JSON.stringify([instanceNonce, input.tool, input.sessionID, input.callID])).digest('hex');\n"
+        '};\n'
+        '\n'
+        'const isBackgroundCall = (input, output) => Boolean(\n'
+        '  input?.args?.background ||\n'
+        '  output?.args?.background ||\n'
+        '  input?.input?.background\n'
+        ');\n'
+        '\n'
+        'const extractChildSessionID = (out, input) => {\n'
+        "  if (out && typeof out === 'object') {\n"
+        "    if (typeof out.sessionID === 'string' && out.sessionID) return out.sessionID;\n"
+        "    if (out.output && typeof out.output === 'object') {\n"
+        "      if (typeof out.output.sessionID === 'string' && out.output.sessionID) return out.output.sessionID;\n"
+        "      if (out.output.output && typeof out.output.output === 'object') {\n"
+        "        if (typeof out.output.output.sessionID === 'string' && out.output.output.sessionID) return out.output.output.sessionID;\n"
+        '      }\n'
+        '    }\n'
+        "    if (out.metadata && typeof out.metadata === 'object') {\n"
+        "      if (typeof out.metadata.sessionID === 'string' && out.metadata.sessionID) return out.metadata.sessionID;\n"
+        "      if (typeof out.metadata.childSessionID === 'string' && out.metadata.childSessionID) return out.metadata.childSessionID;\n"
+        '    }\n'
+        '  }\n'
+        "  const raw = typeof out?.output === 'string' ? out.output : JSON.stringify(out ?? '');\n"
+        '  const match = raw.match(/sessionID[:\\s"\']+([a-zA-Z0-9_-]+)/i);\n'
+        '  if (match) return match[1];\n'
+        "  return '';\n"
+        '};\n'
+        '\n'
+        '/**\n'
+        ' * Invoke the Coacus governor CLI.\n'
+        ' *\n'
+        ' * @param {string} action - Governor action (acquire, release, fail, ...).\n'
+        ' * @param {string} caller - Stable caller identity for the ledger slot.\n'
         " * @param {string} [timeout='5'] - Seconds to wait for a free slot.\n"
         " * @param {string} [orchestrator='no'] - 'yes' if the caller orchestrates.\n"
         " * @returns {string} The governor token on success, or '' on failure/cap.\n"
-        " */\n"
-        "const gov = (action, caller, timeout = '5', orchestrator = 'no') => {\n"
-        "  try {\n"
-        "    return execFileSync(\n"
-        "      PYTHON,\n"
-        "      [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL],\n"
-        "      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 70000 },\n"
-        "    ).trim();\n"
-        "  } catch { return ''; }\n"
-        "};\n"
-        "\n"
-        "/**\n"
-        " * Governor gate plugin: enforce the concurrency cap on subagent spawns.\n"
-        " *\n"
-        " * Acquires a ledger slot before a `task` spawn and aborts it when no slot\n"
-        " * is free; releases the slot after, parking the caller as PAUSED on a\n"
-        " * detected rate limit.\n"
-        " *\n"
-        " * @returns {Promise<object>} The plugin hook map.\n"
-        " */\n"
-        "export const CoacusGovernor = async () => ({\n"
-        "  'tool.execute.before': async (input, output) => {\n"
-        "    if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
-        "    const caller = `${input.tool}-${input.sessionID ?? 'sess'}-${input.callID ?? Date.now()}`;\n"
-        "    const token = gov('acquire', caller, '30');\n"
-        "    if (!token) {\n"
-        "      throw new Error(\n"
-        "        'Coacus governor: concurrency cap reached; no slot free. ' +\n"
-        "        'Retry after a running agent completes (cap = ' + MAX_TOTAL + ').',\n"
-        "      );\n"
-        "    }\n"
-        "    held.set(caller, { token, calls: 0 });\n"
-        "    // Do NOT mutate output.args (it would leak into the subagent payload).\n"
-        "  },\n"
-        "  'tool.execute.after': async (input, output) => {\n"
-        "    if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
-        "    const caller = `${input.tool}-${input.sessionID ?? 'sess'}-${input.callID ?? Date.now()}`;\n"
-        "    const entry = held.get(caller) ?? { token: '', calls: 0 };\n"
-        "    const text = `${output.output ?? ''} ${input.args?.prompt ?? ''}`;\n"
-        "    if (RATE_LIMIT_RE.test(text)) {\n"
-        "      held.delete(caller);\n"
-        "      gov('fail', caller);\n"
-        "      output.metadata = output.metadata || {};\n"
-        "      output.metadata.coacus = 'paused_rate_limit';\n"
-        "    } else {\n"
-        "      held.delete(caller);\n"
-        "      gov('release', caller);\n"
-        "    }\n"
-        "  },\n"
-        "  // Safety net: release any slot still held when a new turn begins,\n"
-        "  // so a cancelled/errored spawn (after-hook never ran) cannot leak it.\n"
-        "  'chat.message': async () => {\n"
-        "    for (const [caller] of held) gov('release', caller);\n"
-        "    held.clear();\n"
-        "  },\n"
-        "});\n"
+        ' */\n'
+        '''// Inspect bounded values locally; never log tool output.
+const rateLimited = (value, depth = 0, seen = new Set()) => {
+  if (typeof value === 'string') return RATE_LIMIT_RE.test(value.slice(0, 8192));
+  if (!value || typeof value !== 'object' || depth >= 4 || seen.has(value)) return false;
+  seen.add(value);
+  try {
+    let count = 0;
+    for (const key in value) {
+      if (++count > 64) break;
+      if (Object.hasOwn(value, key) && rateLimited(value[key], depth + 1, seen)) return true;
+    }
+  } catch { return false; }
+  return false;
+};
+'''
+        'const exec = promisify(execFile);\n'
+        "const gov = async (action, caller, timeout = '5', orchestrator = 'no', token = '') => {\n"
+        '  const { stdout } = await exec(PYTHON,\n'
+        "    [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode', ...(token ? ['--token', token] : [])],\n"
+        "    { encoding: 'utf8', timeout: 70000 });\n"
+        '  return stdout.trim();\n'
+        '};\n'
+        '\n'
+        'const handleTerminalSessionEvent = async (event) => {\n'
+        '  const sid = event?.data?.sessionID;\n'
+        '  if (!sid || !bgHeld.has(sid)) return;\n'
+        '  const entries = bgHeld.get(sid) ?? [];\n'
+        '  bgHeld.delete(sid);\n'
+        '  for (const { caller, token } of entries) {\n'
+        '    const entry = held.get(caller);\n'
+        '    if (!entry || entry.completing) continue;\n'
+        '    entry.completing = true;\n'
+        '    try {\n'
+        "      if (event.type === 'session.execution.failed' && rateLimited(event.data?.error)) {\n"
+        "        await gov('fail', caller, '5', 'no', token);\n"
+        '      } else {\n'
+        "        await gov('release', caller, '5', 'no', token);\n"
+        '      }\n'
+        '    } catch {\n'
+        '      entry.completing = false;\n'
+        '    } finally {\n'
+        '      held.delete(caller);\n'
+        '    }\n'
+        '  }\n'
+        '};\n'
+        '\n'
+        'export const startEventListener = (ctx) => {\n'
+        "  if (typeof ctx?.event?.subscribe !== 'function') return false;\n"
+        '  eventStreamActive = true;\n'
+        '  (async () => {\n'
+        '    try {\n'
+        '      const stream = ctx.event.subscribe({\n'
+        '        types: [\n'
+        "          'session.execution.succeeded',\n"
+        "          'session.execution.failed',\n"
+        "          'session.execution.interrupted',\n"
+        "          'session.deleted',\n"
+        '        ],\n'
+        '      });\n'
+        '      for await (const event of stream) {\n'
+        '        await handleTerminalSessionEvent(event);\n'
+        '      }\n'
+        '    } catch {\n'
+        '      // Event stream closed or aborted\n'
+        '    }\n'
+        '  })();\n'
+        '  return true;\n'
+        '};\n'
+        '\n'
+        '/**\n'
+        ' * Governor gate plugin: enforce the concurrency cap on subagent spawns.\n'
+        ' *\n'
+        ' * Acquires a ledger slot before a `task` or `subagent` spawn and aborts it\n'
+        ' * when no slot is free; releases the slot after (or on terminal session event\n'
+        ' * for background spawns), parking the caller as PAUSED on a detected rate limit.\n'
+        ' *\n'
+        ' * @param {object} [ctx] - OpenCode plugin context for event subscription.\n'
+        ' * @returns {Promise<object>} The plugin hook map.\n'
+        ' */\n'
+        'export const CoacusGovernor = async (ctx) => {\n'
+        '  if (ctx) startEventListener(ctx);\n'
+        '  return {\n'
+        "    'tool.execute.before': async (input, output) => {\n"
+        "      if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
+        '      const caller = callerFor(input);\n'
+        "      if (!caller) throw new Error('Coacus governor: missing stable session or call ID; spawn denied.');\n"
+        "      if (held.has(caller)) throw new Error('Coacus governor: duplicate active call ID; spawn denied.');\n"
+        '      const background = isBackgroundCall(input, output);\n'
+        '      if (background && !eventStreamActive) {\n'
+        "        throw new Error('Coacus governor: background subagent spawn requires event subscription support.');\n"
+        '      }\n'
+        '      held.set(caller, { pending: true });\n'
+        '      let token;\n'
+        "      try { token = await gov('acquire', caller, '30'); }\n"
+        "      catch { throw new Error('Coacus governor: slot acquisition failed; spawn denied; state may require reconciliation.'); }\n"
+        '      if (!token) {\n'
+        '        held.delete(caller);\n'
+        '        throw new Error(\n'
+        "          'Coacus governor: concurrency cap reached; no slot free. ' +\n"
+        "          'Retry after a running agent completes (cap = ' + MAX_TOTAL + ').',\n"
+        '        );\n'
+        '      }\n'
+        '      held.set(caller, { token, calls: 0, background });\n'
+        '      // Do NOT mutate output.args (it would leak into the subagent payload).\n'
+        '    },\n'
+        "    'tool.execute.after': async (input, output) => {\n"
+        "      if (!SPAWN_TOOLS.has(input.tool ?? '')) return;\n"
+        '      const caller = callerFor(input);\n'
+        '      const entry = held.get(caller);\n'
+        '      if (!caller || !entry?.token || entry.completing) return;\n'
+        '\n'
+        '      if (entry.background) {\n'
+        "        const isError = Boolean(input.status === 'error' || output.error || (output.output && typeof output.output === 'object' && output.output.status === 'error'));\n"
+        '        const childSessionID = extractChildSessionID(output, input);\n'
+        '        if (isError || !childSessionID) {\n'
+        '          entry.completing = true;\n'
+        '          try {\n'
+        '            if (rateLimited(output.output)) {\n'
+        "              await gov('fail', caller, '5', 'no', entry.token);\n"
+        '              output.metadata = output.metadata || {};\n'
+        "              output.metadata.coacus = 'paused_rate_limit';\n"
+        '            } else {\n'
+        "              await gov('release', caller, '5', 'no', entry.token);\n"
+        '            }\n'
+        '          } finally {\n'
+        '            held.delete(caller);\n'
+        '          }\n'
+        '          return;\n'
+        '        }\n'
+        '        entry.childSessionID = childSessionID;\n'
+        '        const list = bgHeld.get(childSessionID) ?? [];\n'
+        '        list.push({ caller, token: entry.token });\n'
+        '        bgHeld.set(childSessionID, list);\n'
+        '        return;\n'
+        '      }\n'
+        '\n'
+        '      entry.completing = true;\n'
+        '      try {\n'
+        '        if (rateLimited(output.output)) {\n'
+        "          await gov('fail', caller, '5', 'no', entry.token);\n"
+        '          held.delete(caller);\n'
+        '          output.metadata = output.metadata || {};\n'
+        "          output.metadata.coacus = 'paused_rate_limit';\n"
+        '        } else {\n'
+        "          await gov('release', caller, '5', 'no', entry.token);\n"
+        '          held.delete(caller);\n'
+        '        }\n'
+        '      } catch {\n'
+        '        entry.completing = false;\n'
+        "        throw new Error('Coacus governor: completion failed; slot retained for reconciliation.');\n"
+        '      }\n'
+        '    },\n'
+        '  };\n'
+        '};\n'
+        '\n'
+        '// ponytail: dual v1/v2 export; upgrade to pure v2 package directory when v1 dropped\n'
+        'export default {\n'
+        "  id: 'coacus-governor',\n"
+        '  server: CoacusGovernor,\n'
+        '  async setup(ctx) {\n'
+        '    startEventListener(ctx);\n'
+        '    const v1 = await CoacusGovernor(ctx);\n'
+        "    await ctx.tool.hook('execute.before', (e) => v1['tool.execute.before']({ ...e, callID: e.id }, { args: e.input }));\n"
+        "    await ctx.tool.hook('execute.after', (e) => {\n"
+        "      const out = { output: e.status === 'completed' ? e.result : String(e.error ?? ''), metadata: e.metadata };\n"
+        "      return v1['tool.execute.after']({ ...e, callID: e.id, args: e.input, status: e.status }, out);\n"
+        '    });\n'
+        '  },\n'
+        '};\n'
     )
 
 

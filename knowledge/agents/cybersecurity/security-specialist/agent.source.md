@@ -6,6 +6,8 @@ description: >-
   (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory
   compliance (LGPD/GDPR) and threat modeling.
 skills:
+  - knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md
+  - knowledge/skills/security/operations/security-champions/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/security/appsec/api-protocol-security/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
@@ -137,3 +139,10 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [security-champions](knowledge/skills/security/operations/security-champions/SKILL.md)
+- Consult [blockchain-cryptocurrency](knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md) when the solution involves blockchain or cryptocurrency.

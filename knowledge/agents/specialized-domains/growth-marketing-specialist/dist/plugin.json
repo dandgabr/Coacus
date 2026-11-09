@@ -1,0 +1,6 @@
+{
+  "name": "growth-marketing-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Go-To-Market (GTM) Strategy, Positioning, Conversion Copywriting, CRO, SEO/AEO Engineering, and Revenue Operations. Bridges product capabilities with commercial growth, market positioning, experimentation discipline, and SaaS unit economics.",
+  "entrypoint": "AGENT.md"
+}

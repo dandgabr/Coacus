@@ -1,0 +1,6 @@
+{
+  "name": "tui-cli-engineer",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+  "entrypoint": "AGENT.md"
+}

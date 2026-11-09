@@ -1,0 +1,65 @@
+{
+  "scope": "Read-only selective scientific source review",
+  "source_commit": "5f2bc0341354fd5590aef76a533ada1e1e5b4e62",
+  "items": [
+    {
+      "name": "experimental-design",
+      "declared_license": "MIT license in SKILL.md; independently verify attribution and redistribution terms before reuse",
+      "source_files_inspected": [
+        "skills/experimental-design/SKILL.md",
+        "skills/experimental-design/references/design_types.md",
+        "skills/experimental-design/references/factorial_and_doe.md",
+        "skills/experimental-design/references/randomization_and_blocking.md",
+        "skills/experimental-design/references/sequential_and_adaptive.md",
+        "skills/experimental-design/scripts/doe_designs.py",
+        "skills/experimental-design/scripts/randomization.py",
+        "tests/experimental-design/test_scripts.py"
+      ],
+      "local_owner_inspected": [
+        "knowledge/skills/data/data-science-workflow/SKILL.md",
+        "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md"
+      ],
+      "decision": "Create a distinct, scoped experimental-design skill covering allocation concealment, block-restricted randomization, factorial aliasing and preregistered monitoring; existing owner only touches randomized units and clustering.",
+      "finding": "Do not copy the overstatement that randomization alone turns a comparison into a causal claim. The scripts expose reproducible allocation but cannot guarantee concealment. Tests describe design properties, but were not run.",
+      "limits": "Full listed package texts read; dependency versions and rights not independently resolved; no execution, live behavior, external service or clinical validation."
+    },
+    {
+      "name": "marine-carbonate-chemistry",
+      "declared_license": "MIT in SKILL.md; verify source and dependency terms before reuse",
+      "source_files_inspected": [
+        "skills/marine-carbonate-chemistry/SKILL.md",
+        "skills/marine-carbonate-chemistry/references/input-and-results.md",
+        "skills/marine-carbonate-chemistry/references/chemistry-decisions.md",
+        "skills/marine-carbonate-chemistry/scripts/solve_carbonate.py",
+        "tests/marine-carbonate-chemistry/test_scripts.py"
+      ],
+      "local_owner_inspected": [
+        "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
+        "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md"
+      ],
+      "decision": "Create a distinct bounded research capability for seawater carbonate equilibrium, requiring independent inputs, explicit measurement conditions and uncertainty scope; no air-sea flux or carbon-removal claim from equilibrium alone.",
+      "finding": "The local owners lack this specialized calculation; tests are largely solver-internal regressions and cannot establish independent field validation.",
+      "limits": "Full package texts and test file read; no tests executed and solver version, numerical validity, data and license terms not independently verified."
+    },
+    {
+      "name": "cellprofiler",
+      "declared_license": "MIT in SKILL.md; verify upstream asset and dependency terms before reuse",
+      "source_files_inspected": [
+        "skills/cellprofiler/SKILL.md",
+        "skills/cellprofiler/references/runtime-and-qc.md",
+        "skills/cellprofiler/assets/nuclei.cppipe",
+        "skills/cellprofiler/scripts/nuclei_assay.py",
+        "tests/cellprofiler/test_scripts.py"
+      ],
+      "local_owner_inspected": [
+        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
+        "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "knowledge/skills/data/data-science-workflow/SKILL.md"
+      ],
+      "decision": "Create a focused research microscopy workflow for sample metadata, calibration, segmentation quality and independent biological replicates, without implying diagnostic use.",
+      "finding": "The upstream helper separates CSV integrity from real segmentation; its own review says its engine integration was skipped. A successful software check cannot establish microscopy assay accuracy.",
+      "limits": "Full source package and test text read; no test executed; dependency versions, licenses, scientific validity and runtime claims not independently validated."
+    }
+  ],
+  "remaining": "All other scientific source skills require individual full-package and owner reviews."
+}

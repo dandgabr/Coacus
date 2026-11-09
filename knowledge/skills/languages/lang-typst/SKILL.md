@@ -56,6 +56,13 @@ While working under this skill, apply the following patterns strictly:
 - **Native Bibliographies**: Use `#bibliography("works.bib", style: "ieee")` for transparent integration with `.bib` or `.yml` files (Hayagriva).
 - **Typst Universe Packages**: Import official packages with the syntax `#import "@preview/package:version"`.
 
+### 6. Multi-Toolchain Template Packaging & Managed Override Blocks
+When designing reusable document templates (e.g. resumes, cover letters, formal technical briefs) across Typst and LaTeX toolchains:
+- **Profile-agnostic template structure:** Organize templates with a manifest `TEMPLATE.md`, a parameterized template file (`template.typ`) populated with explicit `[PLACEHOLDER]` tokens, and local fonts/assets bundled directly in the template folder.
+- **Isolated build directory rule:** Always run compilations targeting an ephemeral build directory (`rm -f output.pdf && mkdir -p build && typst compile document.typ build/output.pdf && mv build/output.pdf ./`), ensuring that an existing PDF is removed beforehand and a compilation failure never leaves a misleading stale output.
+- **Dummy-data test compilation loop:** Before registering or switching an active template, execute an automated compile run with synthetic dummy data to verify font resolution, margin metrics, and zero compilation warnings.
+- **Managed override blocks:** Use idempotent delimiter comments (`<!-- BEGIN ACTIVE-TEMPLATE -->` ... `<!-- END ACTIVE-TEMPLATE -->`) in downstream documentation and rules to swap default compilation toolchains (e.g., between `typst compile`, `lualatex`, and `xelatex`) without editing immutable structural instructions.
+
 ---
 
 ## 🧰 Recommended Code Patterns

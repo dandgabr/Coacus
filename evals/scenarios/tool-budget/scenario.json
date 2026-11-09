@@ -1,0 +1,16 @@
+{
+  "id": "tool-budget",
+  "title": "Do not repeat an identical call",
+  "harness": "opencode",
+  "prompt": "In at most two short lines and without editing any file: a search returned nothing useful. What should you do about running the exact same call again?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(do not|don't|never|avoid|should not).{0,50}(repeat|identical|same|again)" },
+    { "kind": "regex", "value": "(?i)(change|adjust|different|narrow|broaden|diagnos)" }
+  ],
+  "rubric": [
+    "The reply says not to repeat an identical call.",
+    "It says to change the approach (adjust the query, narrow or broaden it).",
+    "No file was modified."
+  ],
+  "acceptance": "The model states that an identical repeated call is wasteful and that it should change the approach instead."
+}

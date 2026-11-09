@@ -28,7 +28,7 @@ This skill guides the AI to design interfaces users can operate without instruct
 5. **Prevent errors** — gray out invalid options, constrain input; on error, give specific constructive recovery and preserve state.
 6. **Permit easy reversal** — reversibility relieves anxiety and encourages exploration.
 7. **Support internal locus of control** — users initiate; surprising actions build anxiety.
-8. **Reduce short-term memory load** — keep displays simple; recognition over recall; working memory ≈ 7±2 chunks.
+8. **Reduce short-term memory load** — keep displays simple; recognition over recall; use external cues and meaningful grouping; capacity estimates depend on task and experimental conditions.
 
 **Three usage classes** (novice, knowledgeable intermittent, expert frequent) reconciled by **multi-layer learning** and user-steerable feedback.
 
@@ -50,9 +50,11 @@ This skill guides the AI to design interfaces users can operate without instruct
 
 ---
 
-## 🧠 Laws of UX (Yablonski)
+## 🧠 Laws of UX & Cognitive Ergonomics
 
-**Jakob's Law** (users expect your site to work like others — leverage conventions); **Fitts's Law** (target time varies with distance/size — touch targets ≥44×44 CSS px, well spaced; `ID = log₂(2D/W)`); **Miller's Law** (7±2 chunks — chunk and offload); **Hick's Law** (decision time grows with choices — reduce/simplify when speed matters, but don't over-simplify); **Postel's Law** (be conservative in what you send, liberal in what you accept); **Peak–End Rule** (judge by the peak and the end — design the emotional peak); **Aesthetic–Usability Effect** (attractive feels more usable — and can mask problems in testing); **Von Restorff Effect** (the distinct item is remembered — emphasise key actions with restraint); **Tesler's Law** (irreducible complexity must live in the system or the user); **Doherty Threshold** (<400 ms keeps attention).
+For mathematical formulations, empirical boundaries (working-memory study conditions and MacKenzie's Shannon Fitts formulation), CLI DevEx patterns, and multi-agent AI interaction, see the comprehensive [applied cognitive laws](references/applied-cognitive-laws.md).
+
+**Jakob's Law** (users expect your site to work like others — leverage conventions); **Fitts's Law** (target time varies with distance/size — touch targets ≥44×44 CSS px, well spaced; `ID = log₂(2D/W)`); **Miller's Law & Cowan's Limit** (task-dependent capacity findings, not fixed menu cardinalities — chunk and offload); **Hick's Law** (decision time grows with choices — reduce/simplify when speed matters, but don't over-simplify); **Zeigarnik & Ovsiankina Effects** (uncompleted tasks hold cognitive tension — make open loops actionable and preserve state); **Goal-Gradient & Endowed Progress** (effort accelerates near completion — credit initial progress and use determinate milestones); **Postel's Law** (be conservative in what you send, liberal in what you accept); **Peak–End Rule** (judge by the peak and the end — design the emotional peak); **Aesthetic–Usability Effect** (attractive feels more usable — and can mask problems in testing); **Von Restorff Effect** (the distinct item is remembered — isolate key actions with restraint to prevent alert fatigue); **Tesler's Law** (irreducible complexity must live in the system or the user); **Doherty Threshold** (<400 ms keeps attention).
 
 Supporting: **Gestalt** (proximity, similarity, closure, figure/ground), **mental models**, **flow** (balance challenge vs skill), progressive disclosure, cognitive load, selective attention.
 
@@ -109,6 +111,9 @@ Reject "the model is the interface"; a bare chat box lowers the barrier to **mis
 - Relying on subtle cues (make them ~2× more prominent); over-simplifying into uselessness.
 - Unverified AI output presented as authoritative; false-precision confidence.
 - Ignoring accessibility, motion sensitivity and universal usability.
+- Letting a display preference change what is alerted or ranked: choosing which window
+  or metric a surface shows must not change warning state, ordering or notifications,
+  or a user hides an alarm by tidying the view.
 
 ---
 
@@ -123,7 +128,7 @@ The catalog now carries one canonical skill per style with visual DNA, motion, C
 - [bento grid](../../../domains/design/ui-style-bento-grid/SKILL.md)
 - [card based ui](../../../domains/design/ui-style-card-based-ui/SKILL.md)
 - [claymorphism](../../../domains/design/ui-style-claymorphism/SKILL.md)
-- [cyberpunk hud](../../../domains/design/ui-style-cyberpunk-hud/SKILL.md)
+- [cyberpunk hud](../../../domains/design/ui-style-cyberpunk/SKILL.md)
 - [dark mode first](../../../domains/design/ui-style-dark-mode-first/SKILL.md)
 - [editorial archive luxury](../../../domains/design/ui-style-editorial-archive-luxury/SKILL.md)
 - [expressive variable typography](../../../domains/design/ui-style-expressive-variable-typography/SKILL.md)
@@ -138,7 +143,7 @@ The catalog now carries one canonical skill per style with visual DNA, motion, C
 - [micro interactions](../../../domains/design/ui-style-micro-interactions/SKILL.md)
 - [neo brutalism](../../../domains/design/ui-style-neo-brutalism/SKILL.md)
 - [neumorphism](../../../domains/design/ui-style-neumorphism/SKILL.md)
-- [one page long scroll](../../../domains/design/ui-style-one-page-long-scroll/SKILL.md)
+- [one page long scroll](../../../domains/design/ui-style-scrollytelling/SKILL.md)
 - [organic biophilic](../../../domains/design/ui-style-organic-biophilic/SKILL.md)
 - [parallax scrolling](../../../domains/design/ui-style-parallax-scrolling/SKILL.md)
 - [scrollytelling](../../../domains/design/ui-style-scrollytelling/SKILL.md)

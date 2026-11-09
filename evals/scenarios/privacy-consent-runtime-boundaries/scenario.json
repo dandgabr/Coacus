@@ -1,0 +1,19 @@
+{
+  "id": "privacy-consent-runtime-boundaries",
+  "title": "Consent signals and actual collection",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Do not claim execution, change files or access real user data. A site uses advanced Google consent mode. analytics_storage is denied and no cookies appear, but cookieless requests are sent; a first-party proxy logs IPs. After withdrawal a delayed tag fires on client-side navigation. A screenshot of the banner is offered as proof of compliance. What should the reviewer establish and verify?",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(evidence|observ|context|condition|purpose|unknown)",
+      "reason": "Advisory routing signal; the rubric assesses decisions, not keyword presence."
+    }
+  ],
+  "rubric": [
+    "Determine jurisdiction, purpose, legal basis and intended policy; a request without cookies is not automatically lawful or unlawful.",
+    "Inspect observed requests, payloads, storage and proxy boundaries; no-cookie and denied flags do not prove no collection.",
+    "Exercise delayed tags, navigation, reload and withdrawal; identify unobserved server-side processing and avoid claiming execution."
+  ],
+  "acceptance": "The response makes justified contextual decisions, proposes discriminating checks and states evidence limits without inventing execution."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "game-art-director",
+  "description": "Audits 2D game character rosters, proportional consistency, mass conservation, handedness asymmetry, and animation motion continuity. Use when reviewing, governing, or approving 2D game visual assets and animation cycles.",
+  "category": "specialized-domains",
+  "source": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
+  "dist": "knowledge/agents/specialized-domains/game-art-director/dist",
+  "fingerprint": "1586a0166ab3fcd7"
+}

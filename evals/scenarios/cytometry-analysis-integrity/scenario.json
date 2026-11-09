@@ -1,0 +1,16 @@
+{
+  "id": "cytometry-analysis-integrity",
+  "title": "Preserve cytometry compensation and replication context",
+  "harness": "opencode",
+  "prompt": "A collaborator provides cytometry events that may already be compensated and a gating strategy whose channel mapping is unclear. There are thousands of events from each of two samples. What must be checked before comparing conditions? Do not edit files.",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(compensat|spillover)" },
+    { "kind": "regex", "value": "(?i)(sample|replicate)" }
+  ],
+  "rubric": [
+    "The response checks the existing compensation state and detector-to-matrix and gate mappings before transforming or compensating again.",
+    "It identifies independent biological samples, rather than events, as the replication unit for condition-level inference.",
+    "It does not claim a diagnosis or fabricate a gating threshold."
+  ],
+  "acceptance": "The response identifies compensation and channel uncertainty and does not treat events as independent biological replicates."
+}

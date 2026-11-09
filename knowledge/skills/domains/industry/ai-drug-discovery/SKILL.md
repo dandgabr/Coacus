@@ -54,10 +54,13 @@ Stage expensive evaluation last:
 
 - Log-transform binding parameters to stabilize variance and enable valid statistics.
 - Drop descriptors constant across most compounds; drop descriptor pairs with near-unity correlation, iterating on the most-correlated first — and beware leakage when selecting on the full dataset.
-- Lasso-style grid search doubles as feature selection; cap model breadth near five training compounds per descriptor.
-- Accept candidates only with strong fit and predictive scores, significant descriptor coefficients, and a simplicity tie-breaker.
+- Lasso-style grid search can perform feature selection. Assess model complexity against the available independent data, regularization and intended use rather than applying a universal samples-per-descriptor cutoff.
+- Evaluate predictive performance, uncertainty, applicability domain and scientific plausibility against prespecified endpoint-specific criteria; significant individual coefficients are not a universal requirement for predictive models.
 - With tens of ligands, every split is fragile: use repeated or nested cross-validation and report score distributions, never a single split.
-- Gradient boosting is the frequent tabular winner; split by chemical scaffold (project chemistry, then split so train and test cover the same space) to fight scaffold leakage.
+- Choose validation splits to represent the intended deployment: scaffold or temporal splits can probe generalization to new chemistry or future data, while other uses may require different partitions. Keep duplicates and related measurements appropriately grouped, perform feature selection inside training folds, and report the chemical coverage and limitations of each split.
+- For multitask assays, preserve the observed-label mask and endpoint identity; missing assay labels are not negative results. Report endpoint-specific sample counts, split coverage and metrics.
+
+For regulatory assessment, consult the [OECD QSAR assessment resources](https://www.oecd.org/en/topics/sub-issues/assessment-of-chemicals/quantitative-structure-activity-relationships-project.html) and the applicable requirements for the endpoint and intended use.
 
 ---
 

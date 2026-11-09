@@ -11,7 +11,9 @@ merged.
 
 ### Layer 1 — deterministic infrastructure (`tests/`)
 
-- Stdlib `unittest`, ZERO runtime dependencies.
+- Stdlib `unittest`; the repository-wide language integration tests require the
+  pinned `lingua-language-detector==2.2.0` and `wordfreq==3.1.1` packages on
+  Python 3.12+.
 - Runs on every commit as a BLOCKING gate.
 - Covers schemas, generators, idempotency, deduplication, the governor, the TOON
   validator, the installer and the vertical dispatcher.
@@ -35,6 +37,14 @@ Scenarios live at `evals/scenarios/<id>/scenario.json`. The static schema checks
 a known target harness, checks that every check is well-formed, and rejects any
 scenario string carrying a secret or an absolute path.
 
+### Behavioral depth
+
+How deeply a test exercises a behavior is a property of the test, not of its
+location: a test's path or suite name does not establish its behavioral depth. The
+vocabulary — module, composition, boundary, connector-boundary, acceptance,
+conformance, evaluation — names the depth a test aims at, so a shallow test is
+never mistaken for an end-to-end one.
+
 ## Rationale
 
 Structural regressions — schemas, generators, idempotency, dedup — are caught
@@ -45,7 +55,7 @@ infrastructure reasons.
 ## Enforcement
 
 - `.github/workflows/ci.yml` runs `python3 -m unittest discover -s tests` as a
-  blocking step.
+  blocking step after installing the required language detector.
 - `engine/validators/evals.py` runs inside `python3 scripts/coacus.py validate`
   and rejects malformed scenarios; the D12 scan reuses
   `engine/validators/hygiene.py` patterns.

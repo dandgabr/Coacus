@@ -64,3 +64,7 @@ $$\langle n_i \rangle = \frac{1}{e^{\beta(\epsilon_i - \mu)} + a}$$
   $$T_c = \frac{2\pi \hbar^2}{m k_B} \left( \frac{n}{\zeta(3/2)} \right)^{2/3} \approx 3.31 \frac{\hbar^2 n^{2/3}}{m k_B}$$
 - **Planck's Law for Photon Radiation ($\mu = 0$)**:
   $$u(\nu, T) = \frac{8\pi h \nu^3}{c^3} \frac{1}{e^{h\nu/k_B T} - 1}$$
+
+### Computational phase equilibrium
+
+Record the thermodynamic database and its applicability, composition basis, components, allowed and excluded phases, and numerical sampling settings. Check mass balance and sensitivity to sampling, including possible miscibility gaps. A numerically converged equilibrium is conditional on the selected database and phases; compare predictions with independent measurements before claiming material validation. This guidance was informed by the [upstream phase-equilibrium workflow](https://github.com/K-Dense-AI/scientific-agent-skills/blob/5f2bc0341354fd5590aef76a533ada1e1e5b4e62/skills/pycalphad/SKILL.md).

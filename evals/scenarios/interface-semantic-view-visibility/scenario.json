@@ -1,0 +1,19 @@
+{
+  "id": "interface-semantic-view-visibility",
+  "title": "Semantic view visibility",
+  "harness": "codex",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nTabs: <section hidden class=\"panel\"> contains focusable inputs. CSS .workspace .panel{display:grid}. On tab change only hidden is toggled. Review behavior and suggest verification.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(hidden|visibility)",
+      "reason": "Routing-level signal only; evaluate the decision and evidence using the rubric."
+    }
+  ],
+  "rubric": [
+    "Semantic hidden wins over layout CSS; hidden focus/activity removed.",
+    "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
+    "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
+  ],
+  "acceptance": "The response makes the justified decision for this raw case, provides a discriminating verification and states the evidence limits without inventing execution."
+}

@@ -1,0 +1,8 @@
+{
+  "name": "harness-specialist",
+  "description": "Guides configuration and troubleshooting across supported assistant harnesses, distinguishing vendor behavior from repository installation and session activation.",
+  "category": "core-orchestration",
+  "source": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md",
+  "dist": "knowledge/agents/core-orchestration/harness-specialist/dist",
+  "fingerprint": "c120dd67948d1558"
+}

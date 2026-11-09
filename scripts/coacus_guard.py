@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shlex
 import sys
 from pathlib import Path
 
@@ -41,9 +42,15 @@ SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subage
 
 
 def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
-    """First present, non-empty string value among ``keys``."""
+    """First present, non-empty string value among ``keys``.
+
+    An argv list (some harnesses pass ``["bash", "-lc", "cmd"]``) is rendered as
+    one shell string so ``exec`` policies see the real command, not a Python repr.
+    """
     for key in keys:
         value = mapping.get(key)
+        if isinstance(value, (list, tuple)) and value:
+            return shlex.join(str(part) for part in value)
         if value is not None and str(value).strip():
             return str(value)
     return default
@@ -70,6 +77,20 @@ def _action(payload: dict) -> tuple[str, str]:
     return "", ""
 
 
+def _allow(harness: str) -> str:
+    """Render the 'permit, no opinion' effect for a harness.
+
+    On most harnesses an empty object means "no opinion" and the tool proceeds.
+    Antigravity is the exception: its PreToolUse contract makes ``decision``
+    REQUIRED, and an object without it is read as a denial ("tool call denied by
+    pre-tool hook:" with an empty reason). So Coacus must answer ``allow``
+    explicitly there, otherwise an unopinionated guard blocks every tool call.
+    """
+    if harness == "antigravity":
+        return json.dumps({"decision": "allow"})
+    return "{}"
+
+
 def _native(harness: str, decision: str, message: str) -> str:
     """Render the harness-native effect JSON.
 
@@ -77,7 +98,7 @@ def _native(harness: str, decision: str, message: str) -> str:
     harness with no deny render yields ``{}`` (no opinion).
     """
     if decision == "allow":
-        return "{}"
+        return _allow(harness)
     if harness in ("claude-code", "codex", "command-code"):
         return json.dumps(
             {
@@ -104,7 +125,7 @@ def run(harness: str, event: str, payload_text: str, root: Path) -> str:
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
         verb, resource = _action(payload)
-        policies = guard.load_policies(root)
+        policies = guard.load_policies(root, include_user=True)
         result = guard.evaluate(policies, verb, resource) if verb else {
             "decision": "allow", "policy_id": None, "message": ""
         }
@@ -117,7 +138,7 @@ def run(harness: str, event: str, payload_text: str, root: Path) -> str:
             decision = "allow"
         return _native(harness, decision, message)
     except Exception:  # mechanism failure (D4): allow + advisory, never brick.
-        return "{}"
+        return _allow(harness)
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -1,0 +1,6 @@
+{
+  "name": "iot-security-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Consumer/Embedded IoT Security, covering device fingerprinting, backdoor-shaped findings (default credentials, unauthenticated management protocols, vendor maintenance daemons), network isolation of untrusted devices, device-side hardening, firmware updates and cloud/P2P egress.",
+  "entrypoint": "AGENT.md"
+}

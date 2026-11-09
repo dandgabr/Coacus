@@ -82,3 +82,8 @@ Nature-led web design: organic blob and asymmetric shapes, earthy palettes, bota
 
 - Sibling styles: [ui-style-editorial-archive-luxury](../ui-style-editorial-archive-luxury/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md).
 - For sustainable frontend practice, see [frontend-developer](../../../roles/frontend-developer/SKILL.md).
+- Newer sibling styles: [ui-style-grain-noise-texture](../ui-style-grain-noise-texture/SKILL.md), [ui-style-art-nouveau](../ui-style-art-nouveau/SKILL.md).
+- Related -punk styles: [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md), [ui-style-lunarpunk](../ui-style-lunarpunk/SKILL.md), [ui-style-biopunk](../ui-style-biopunk/SKILL.md).
+## Appearance and Interaction Verification
+
+Treat earthy contrast as a candidate pairing to verify, and distinguish low-weight sustainable implementation from texture-heavy decorative variants when discussing performance; retain masks with focus clearance and solid reading zones.

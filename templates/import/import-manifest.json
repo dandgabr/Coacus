@@ -8,7 +8,9 @@
     "skills": "GPL-3.0",
     "superpowers": "MIT"
   },
-  "exclude_import_from": ["{workspace}/agente-arquitetura-si"],
+  "exclude_import_from": [
+    "{workspace}/agente-arquitetura-si"
+  ],
   "category_map": {
     "languages": "languages",
     "framework": "frameworks",
@@ -78,22 +80,41 @@
     "program-ai-memory-learning-maintenance",
     "program-ai-memory-retrieval",
     "program-ai-memory-routing-install",
-    "autodoc-code-explorer"
+    "autodoc-code-explorer",
+    "general"
   ],
-  "exclude_agents": ["ai-memory-specialist"],
+  "exclude_agents": [
+    "ai-memory-specialist",
+    "general",
+    "self"
+  ],
   "name_dir_fixes": {
     "containers": "program-containers",
     "github-actions": "program-github-actions",
     "markmap": "program-markmap",
-    "moodle": "program-moodle"
+    "moodle": "program-moodle",
+    "explore": "codebase-exploration"
   },
   "agent_merges": {
-    "code-explorer": ["explore", "code-researcher"],
-    "security-architect": ["arquiteto-seguranca"],
-    "documenter": ["documentador"]
+    "code-explorer": [
+      "explore",
+      "code-researcher"
+    ],
+    "security-architect": [
+      "arquiteto-seguranca"
+    ],
+    "documenter": [
+      "documentador"
+    ]
   },
   "superpowers": {
     "namespace_prefix": "superpowers-",
-    "target_dir": "methodology/workflows"
+    "target_dir": "methodology/workflows",
+    "name_fixes": {
+      "diagnosing-superpowers": "diagnosing-agent-sessions"
+    },
+    "consolidated": {
+      "systematic-debugging": "diagnosing-bugs"
+    }
   }
 }

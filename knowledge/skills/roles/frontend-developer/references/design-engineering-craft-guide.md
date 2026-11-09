@@ -6,12 +6,14 @@ This guide provides high-fidelity code patterns and production-ready snippets fo
 
 ## 1. De-templating Components: The Authorial Wrapper Pattern
 
-Avoid using the raw shadcn component directly on pages. Build an authorial wrapper that adds tactile states, microinteractions, and semantic tokens:
+Use a product wrapper when it centralizes actual token, semantic or behavior decisions. Reuse a suitable accessible component directly when no wrapper is needed. The following optional motion example is one implementation, not a required treatment for every style:
 
 ```tsx
 // components/craft/AppButton.tsx
+"use client";
 import * as React from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion, HTMLMotionProps, useReducedMotion } from "motion/react";
+import { springPresets } from "@/lib/animation/springs";
 
 export interface AppButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary" | "subtle" | "brutalist";
@@ -21,6 +23,7 @@ export interface AppButtonProps extends HTMLMotionProps<"button"> {
 
 export const AppButton = React.forwardRef<HTMLButtonElement, AppButtonProps>(
   ({ variant = "primary", size = "md", className = "", children, ...props }, ref) => {
+    const reduceMotion = useReducedMotion();
     const sizeClasses = {
       sm: "h-8 px-3 text-xs gap-1.5",
       md: "h-10 px-4 text-sm gap-2",
@@ -41,9 +44,9 @@ export const AppButton = React.forwardRef<HTMLButtonElement, AppButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileTap={variant !== "brutalist" ? { scale: 0.98 } : undefined}
-        transition={{ type: "spring", stiffness: 500, damping: 25 }}
-        className={`inline-flex items-center justify-center rounded-[2px] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#080A0A] disabled:opacity-50 disabled:pointer-events-none ${sizeClasses} ${variantClasses} ${className}`}
+        whileTap={!reduceMotion && variant !== "brutalist" ? { scale: 0.98 } : undefined}
+        transition={springPresets.snap}
+        className={`inline-flex items-center justify-center rounded-[2px] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-ground)] disabled:opacity-50 disabled:pointer-events-none ${sizeClasses} ${variantClasses} ${className}`}
         {...props}
       >
         {children}
@@ -59,7 +62,7 @@ AppButton.displayName = "AppButton";
 
 ## 2. Performant Analog Noise Injection via SVG Data-URI
 
-Add tactile texture that breaks the sterility of the digital canvas without hurting Core Web Vitals:
+Add texture only where it fits the material language. Define its owner and measure its cost and painted effect rather than assuming a small data URI cannot affect performance or contrast:
 
 ```css
 /* styles/craft-textures.css */
@@ -67,16 +70,15 @@ Add tactile texture that breaks the sterility of the digital canvas without hurt
 /* Grain layer with Perlin Noise SVG with no network request */
 .craft-grain-overlay {
   position: relative;
+  isolation: isolate;
 }
 
 .craft-grain-overlay::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   pointer-events: none;
-  z-index: 9999;
+  z-index: -1;
   opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
@@ -85,39 +87,41 @@ Add tactile texture that breaks the sterility of the digital canvas without hurt
 
 ---
 
-## 3. Spring Architecture in Framer Motion (Spring Physics)
+## 3. Spring Architecture in Motion (formerly Framer Motion)
 
-Springs calibrated with mathematical rigor for firm, elegant movement with no template "bounce":
+These objects carry the canonical spring tokens; [motion-timing-engines](../../../domains/design/ui-motion-interaction/references/motion-timing-engines.md) is the single source of truth for their values, damping ratios and interruption rules, so update that file first and mirror it here. Preserve a complete static state under reduced motion and validate choices through actual interaction testing:
 
 ```typescript
-// lib/animation/springs.ts
+// lib/animation/springs.ts — mirrors the canonical tokens (mass 1)
 
-export const springPhysics = {
-  // Spring for modals, dropdowns and tabs (high firmness and no oscillation)
-  interfaceSnappy: {
+export const springPresets = {
+  // spring.smooth: modals, dropdowns, drawers, layout moves (ζ≈0.89, ≈0.2% overshoot)
+  smooth: {
     type: "spring" as const,
-    stiffness: 420,
-    damping: 34,
-    mass: 0.8
+    stiffness: 300,
+    damping: 31,
+    mass: 1
   },
-  // Spring for sequential reveal of cards (soft, fluid)
-  contentGentle: {
+  // spring.snap: press feedback, toggles, small controls (ζ≈1.0, no overshoot)
+  snap: {
     type: "spring" as const,
-    stiffness: 280,
-    damping: 26,
-    mass: 1.0
+    stiffness: 500,
+    damping: 45,
+    mass: 1
   },
-  // Tactile spring for micro-states and buttons
-  microPress: {
+  // spring.playful: celebratory badges, rare delight only (ζ≈0.51, ≈16% overshoot)
+  playful: {
     type: "spring" as const,
-    stiffness: 550,
-    damping: 22,
-    mass: 0.4
+    stiffness: 250,
+    damping: 16,
+    mass: 1
   }
 };
 ```
 
 ---
+
+The button example consumes `--focus-ring` and `--surface-ground` from its host theme; verify that pair on the actual surrounding surface. It does not prescribe white focus ink for all appearances.
 
 ## 4. Card with Hairline Border and Surface Ladder
 
@@ -148,3 +152,10 @@ export function TactileCard({ level = 1, children, className = "" }: TactileCard
   );
 }
 ```
+
+---
+
+## Version Sources
+
+Moving release pins in this file were resolved 2026-10-20:
+- **motion 14.4.0** (verified; React import `motion/react`) — https://motion.dev/changelog

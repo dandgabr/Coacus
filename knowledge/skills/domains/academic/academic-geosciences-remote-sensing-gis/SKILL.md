@@ -20,6 +20,8 @@ flowchart LR
 ```
 
 ### 1.1 Spectral Signatures and Normalized Difference Biophysical Indices
+Before combining bands or dates, verify coordinate systems, grid alignment, resolution, radiometric scale and processing level. Preserve nodata, cloud and quality masks; select resampling appropriate to continuous or categorical data. For normalized indices, handle zero denominators explicitly rather than assigning an invented value.
+
 - **NDVI (Normalized Difference Vegetation Index)**: Vigor of photosynthetically active biomass:
   $$NDVI = \frac{\rho_{NIR} - \rho_{Red}}{\rho_{NIR} + \rho_{Red}}$$
 - **EVI (Enhanced Vegetation Index)**: Optimized for high biomass densities with soil and atmospheric aerosol correction:
@@ -44,6 +46,10 @@ flowchart LR
 - **Universal Transverse Mercator (UTM) Projection**: Conformal projection in 60 zones of $6^\circ$ longitude with central scale factor $k_0 = 0.9996$, central meridian with false easting $X_0 = 500,000\text{ m}$ and false northing $Y_0 = 10,000,000\text{ m}$ (southern hemisphere).
 
 ### 2.2 Geospatial Analysis with PostGIS and GeoPandas
+Verify the source coordinate reference system before use: assigning a label does not transform coordinates. Transform to a suitable system using the correct datum operation and units before measuring distance or area. Check geometry validity and spatial-join cardinality; overlapping features can multiply rows and area totals.
+
+The example below assumes both geometry columns already use the same suitable projected coordinate system with metre units. Without that precondition, dividing the planar area by 10,000 does not produce reliable hectares.
+
 ```sql
 -- Example: Spatial query with buffer and intersection in PostGIS
 SELECT 
@@ -62,6 +68,10 @@ WHERE
 ---
 
 ## 🏔️ 3. Geomorphology, Pedology, and Hydrological Modeling
+
+### Marine carbonate observations
+
+For seawater carbonate calculations, record the measured parameters and units, sample identity and quality flags, pH scale, salinity, nutrients, temperature and pressure at measurement and target conditions. Use an appropriate pair of independent carbonate parameters and document the selected equilibrium assumptions. Compare additional independent measurements against the calculation with their uncertainty rather than hiding disagreements. Equilibrium speciation alone does not establish air-sea flux or atmospheric carbon removal. See [NOAA's carbonate-system overview](https://www.pmel.noaa.gov/co2/story/Laboratory%2BAnalysis) for the measurement context.
 
 ### 3.1 Digital Terrain Modeling (DTM / DEM)
 - **Topographic Wetness Index (TWI)**:

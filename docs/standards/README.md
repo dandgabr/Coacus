@@ -1,47 +1,74 @@
-# Coacus standards
+# Normative Standards
 
-Normative standards for the framework. A standard states a rule and names the
-validator that enforces it. The rule is what governs the repository.
+This directory contains the normative standards governing the generation, authoring and lifecycle of skills, agents, workflows and harness configurations. Each standard states its rules, rationale and enforcement surface.
 
-| Standard | What it governs |
-|---|---|
-| [`principles.md`](principles.md) | The core principle and the four project principles every other standard inherits. |
-| [`english-only.md`](english-only.md) | Repo-wide English-only content, and the translation of imported non-English material. |
-| [`skill-authoring.md`](skill-authoring.md) | `SKILL.md` structure, placement, agnostic bodies and per-harness adapters. |
-| [`agent-manifests.md`](agent-manifests.md) | The single `agent.source.md` source and its generated representations. |
-| [`generated-artifacts.md`](generated-artifacts.md) | Catalog-from-disk, committed generated output and the drift check. |
-| [`mcp-definition.md`](mcp-definition.md) | The single MCP source and its generated harness configs. |
-| [`routing.md`](routing.md) | The agent routing index, the curated bilingual lexicon and the manual/automated selection modes. |
-| [`version-freshness.md`](version-freshness.md) | The rule that versions are resolved from Context7 or an authoritative source, never from memory. |
-| [`discovery.md`](discovery.md) | Generated `.agents/` manifests and the single-scan-per-session rule. |
-| [`orchestration-governance.md`](orchestration-governance.md) | The concurrency governor, the cap, rate-limit handling and orchestrator duties. |
-| [`toon-protocol.md`](toon-protocol.md) | The TOON handoff payload fields, status enum and secret/path rules. |
-| [`session-start-bootstrap.md`](session-start-bootstrap.md) | SessionStart injection and the one-body bootstrap render contract. |
-| [`single-source.md`](single-source.md) | One home per script and template; no unverified copies. |
-| [`testing.md`](testing.md) | The deterministic test gate and the two-tier behavior evals. |
-| [`knowledge-ingestion.md`](knowledge-ingestion.md) | The open-closed ingestion dispatcher and format handlers. |
-| [`secrets-portability.md`](secrets-portability.md) | `{env:VAR}` secrets and the ban on machine-specific absolute paths. |
-| [`provenance.md`](provenance.md) | The `sources.lock.json` schema, dedup key and drift key. |
-| [`corpus-and-taxonomy.md`](corpus-and-taxonomy.md) | The data-driven import manifest, the ten-category taxonomy and the dedup gate. |
-| [`plan-artifacts.md`](plan-artifacts.md) | The gitignored `docs/temp/` home for ephemeral process artifacts (specs, plans, scratch). |
-| [`lifecycle-guardrails.md`](lifecycle-guardrails.md) | The PAER guardrail model: action/policy/event/effect, capability data and the render. |
-| [`decision-records.md`](decision-records.md) | Committed MADR architecture decision records under `docs/decisions/`. |
-| [`self-improvement-loop.md`](self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
+Standards are written in English (see [`english-only.md`](english-only.md)). Enforcement varies: some rules run in generation or validation, others at runtime or as documented conventions.
 
-The documentation index is [`../README.md`](../README.md). Repository-wide rules
-for agents live in [`../../AGENTS.md`](../../AGENTS.md); the contribution contract
-lives in [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md).
+---
 
-## How a standard is enforced
+## Index of Standards
 
-Every standard ends with an `Enforcement` section naming the validator or CI job
-that checks it. The local equivalent of the full gate:
+### 1. Architecture & Core Principles
+
+| Standard | Scope & Mission |
+| :--- | :--- |
+| [`principles.md`](principles.md) | The fundamental architectural axioms of Coacus (D1 through D12): single source of truth, disk as truth, measured counts, and portability across AI harnesses. |
+| [`single-source.md`](single-source.md) | Single-source authoring rules. Canonical sources live in `knowledge/`, `methodology/`, or `harnesses/`; all derived formats in `dist/`, `.agents/`, and `catalog/` are generated. |
+| [`generated-artifacts.md`](generated-artifacts.md) | Contracts for machine-generated code and manifests. Generated files are committed, deterministically reproducible, and guarded against manual editing. |
+| [`session-start-bootstrap.md`](session-start-bootstrap.md) | Specification of the per-harness bootstrap wrapper mechanism (Hook, Plugin, or Instruction Rule) executed at session start. |
+| [`discovery.md`](discovery.md) | Single-scan discovery protocol via `.agents/{skills,agents,mcps}.json` and fast index loading without recursive filesystem scans. |
+| [`routing.md`](routing.md) | Agent and skill routing engine (`scripts/coacus_route.py`), intent matching, and semantic index resolution. |
+
+### 2. Authoring, Corpus & Taxonomy
+
+| Standard | Scope & Mission |
+| :--- | :--- |
+| [`corpus-and-taxonomy.md`](corpus-and-taxonomy.md) | Normalization of the 11 top-level categories under `knowledge/skills/`, dedup gates, flat namespaces, and provenance tracking. |
+| [`skill-authoring.md`](skill-authoring.md) | Canonical contract for `SKILL.md` authoring: frontmatter schema, action-oriented bodies without hardcoded tool names, 3rd-person triggers, and word-count boundaries (<3500 words). |
+| [`agent-manifests.md`](agent-manifests.md) | Canonical agent definition in `agent.source.md`, prohibition of hardcoded models (enforcing `model: inherit`), and generation of `agent.yaml`, `agent.json`, and `plugin.json`. |
+| [`mcp-definition.md`](mcp-definition.md) | Canonical declaration of Model Context Protocol (MCP) servers via the triple: `MCP.md`, `mcp.json`, and `mcp_config.json`. |
+| [`english-only.md`](english-only.md) | Strict English-only mandate across all canonical bodies, code identifiers, frontmatter, and machine manifests. |
+| [`version-freshness.md`](version-freshness.md) | Dynamic resolution and provenance pinning of external libraries, standards, and framework versions via primary package registries and publisher sources. |
+
+### 3. Product, Design & Plan Artifacts
+
+| Standard | Scope & Mission |
+| :--- | :--- |
+| [`product-and-design-truth.md`](product-and-design-truth.md) | Separation of durable business context (`PRODUCT.md`) from visual systems (`DESIGN.md`), 4 surface modes (`Persuade`, `Operate`, `Read`, `Experience`), and Anti-AI Slop Mandate. |
+| [`ui-style-architecture.md`](ui-style-architecture.md) | The 14-part content architecture for canonical UI styles, style-purity boundaries, accessibility and consumer-integration limits. |
+| [`plan-artifacts.md`](plan-artifacts.md) | Lifecycle and location of temporary process artifacts under `docs/temp/`. |
+| [`decision-records.md`](decision-records.md) | Architecture Decision Records (ADRs) authored under `docs/decisions/` using the MADR 3.0 format. |
+
+### 4. Governance, Runtime & Lifecycle Guardrails
+
+| Standard | Scope & Mission |
+| :--- | :--- |
+| [`orchestration-governance.md`](orchestration-governance.md) | Scoped, configurable governor limits, rate-limit backoff and orchestration rules. |
+| [`toon-protocol.md`](toon-protocol.md) | Task-Oriented Object Notation (TOON) payload schema for structured, loss-free handoffs between autonomous agents. |
+| [`lifecycle-guardrails.md`](lifecycle-guardrails.md) | PAER policy runtime (`engine/guardrail/`), fail-open posture, event interception, and native hook rendering per harness. |
+| [`self-improvement-loop.md`](self-improvement-loop.md) | Opt-in, deterministic proposal pipeline (`scripts/coacus_improve.py`) with dry-run ledger audit and fail-open execution. |
+| [`untrusted-content.md`](untrusted-content.md) | Defense-in-depth isolation against prompt injection, indirect context pollution, and unvalidated third-party inputs. |
+| [`secrets-portability.md`](secrets-portability.md) | Portability of environment variables and access keys using `{env:VAR}` syntax, strictly forbidding hardcoded secrets. |
+
+### 5. Provenance, Ingestion & Quality Assurance
+
+| Standard | Scope & Mission |
+| :--- | :--- |
+| [`provenance.md`](provenance.md) | SHA-256 integrity hashing and source commit tracking recorded in `sources.lock.json` for every ingested and native asset. |
+| [`knowledge-ingestion.md`](knowledge-ingestion.md) | Document conversion pipelines, PDF/Markdown normalization, and metadata tagging under `engine/dispatcher/`. |
+| [`testing.md`](testing.md) | Deterministic testing standards using Python standard library `unittest`, the pinned language-detector test dependency and behavioral evals. |
+| [`evidence.md`](evidence.md) | Concrete artifact and telemetry verification requirement: every architectural assertion must be supported by reproducible evidence. |
+
+---
+
+## Machine Enforcement
+
+Source and artifact validators enforce the rules described by their individual standards. Runtime and convention-based rules have separate enforcement surfaces:
 
 ```bash
-python3 scripts/coacus.py validate
-python3 scripts/coacus.py check
-python3 scripts/coacus.py completeness
-python3 -m unittest discover -s tests
-```
+# 1. Regenerate all derived artifacts from canonical sources
+python3 scripts/coacus.py generate
 
-`.github/workflows/ci.yml` runs exactly these four steps and never `generate`.
+# 2. Run the complete validator suite against the standards
+python3 scripts/coacus.py validate
+```

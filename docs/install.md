@@ -24,23 +24,27 @@ evidence class. Do not treat them as equally authoritative.
 
 ## Prerequisites & 1-Click Universal Install
 
-- Python 3.10+ (Python 3.14 is the CI target). The core tooling uses the standard library only.
+- Python 3.10+ for core tooling (Python 3.14 is the CI target). The repository-wide language gate additionally requires Python 3.12+, `lingua-language-detector==2.2.0`, and `wordfreq==3.1.1`.
 - Run every command from the repository root.
 
 ### 🌟 1-Click Universal Bootstrap (Recommended)
 
-To automatically verify Python, install it if missing, create an isolated `.venv`,
-render all artifacts, and install Coacus into all detected harnesses:
+To verify Python, attempt installation if it is missing, create an isolated `.venv`, install the
+language-gate dependencies, render artifacts, and install into detected harnesses:
 
 **Linux / macOS:**
 ```bash
-./install.sh [harness|all]
+./install.sh
 ```
 
 **Windows (PowerShell):**
 ```powershell
-.\install.ps1 [harness|all]
+.\install.ps1
 ```
+
+Pass a harness name to target one installation, for example `./install.sh codex`
+or `.\install.ps1 codex`. Both scripts require Python 3.12 or newer, and may
+need network access to install the language-gate dependencies.
 
 Both entrypoint scripts handle environment detection, virtual environment setup,
 artifact generation (`scripts/coacus.py generate`), and verified installation
@@ -52,15 +56,37 @@ artifact generation (`scripts/coacus.py generate`), and verified installation
 
 If you prefer to run the steps manually:
 
-### Recommended MCP dependency
+Create a virtual environment using Python 3.12 or newer and install the pinned
+language-gate dependencies into that same environment. On Linux or macOS:
 
-The [`context7`](https://context7.com/) MCP server is the framework's recommended
-external dependency. It is hosted, keyless and declared once under
-[`knowledge/mcps/context7/`](../knowledge/mcps/context7/MCP.md); the generator
-derives `dist/mcp.json` and `dist/mcp_config.json` from it. Registering it with a
-harness is optional — the scripts, validators and generated artifacts all work
-without it — but the corpus skills assume current library/framework docs when a
-task needs them, which is what context7 provides.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
+```
+
+On Windows, select an installed Python 3.12+ interpreter. The following example
+uses Python 3.12; replace `-3.12` with another installed compatible version if
+needed:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --disable-pip-version-check lingua-language-detector==2.2.0 wordfreq==3.1.1
+```
+
+The commands below assume this environment is active; use `python` in place of
+`python3` on Windows. If activation is restricted, invoke the interpreter at
+`.venv\Scripts\python.exe` directly.
+
+### External dependencies
+
+Core tooling uses the standard library; generation and validation additionally
+require the language-gate packages listed above. Once dependencies are present,
+the framework requires no third-party MCP servers, hosted endpoints, or API keys.
+The only MCP server distributed with the repository is the internal
+`coacus-catalog` helper (stdio), used for dynamic asset discovery and routing
+in supported harnesses.
 
 ## Step 1 — render the artifacts
 
@@ -79,13 +105,17 @@ You now have `harnesses/<h>/bootstrap/`, the agent `dist/` trees, `.agents/`,
 Two routes exist:
 
 - **Script** — `python3 scripts/coacus_install.py <harness|all>`. Idempotent;
-  `--dry-run` previews targets, `--uninstall` removes exactly what was installed,
+  `--dry-run` previews targets, `--uninstall` removes eligible installed files,
   `--config-dir` installs into a non-default location for testing.
 - **Manual** — perform the same file copies by hand, using the per-harness
   sections below and the tables in [Reference](#reference).
 
-The script writes a `coacus-install.json` manifest beside each target so re-runs
-and uninstalls are exact.
+The script writes a `coacus-install.json` manifest beside each target to track
+ownership. Uninstall skips modified, unverified, shared or out-of-root files and
+retains the manifest when cleanup is incomplete. If a managed hook or MCP config
+file has changed, uninstall preserves the entire file rather than removing its
+Coacus entries. Inspect the uninstall result and retained paths; review ownership
+and contents before any separately authorized manual cleanup.
 
 Operational hooks invoke portable Python directly. The installer records the
 interpreter running the installation and quotes command arguments for the host
@@ -107,10 +137,12 @@ its path. For a bootstrap-managed installation, run
 `.venv\Scripts\python.exe scripts\coacus_install.py <harness> --verify` on Windows.
 Verifying with another interpreter can report command drift.
 
-Reinstalling retires the legacy hook wrappers and extensionless workflow helpers
-recorded in the previous Coacus manifest. Files outside that ownership record
-are preserved. Workflow helpers are now invoked as `python3 scripts/<name>.py`
-(use `python` on Windows when that is the interpreter command).
+Reinstallation retires eligible legacy wrappers and extensionless workflow
+helpers only when ownership and recorded fingerprints establish that removal is
+safe. Modified, shared, unverified or otherwise ineligible files are retained.
+Inspect the install result's `retained` list. Workflow helpers are invoked as
+`python3 scripts/<name>.py` (use `python` on Windows when that is the interpreter
+command).
 
 ```bash
 python3 scripts/coacus_install.py opencode      # one harness
@@ -142,9 +174,51 @@ installed harness, or `all --verify-after-install` to install detected harnesses
 and verify them while skipping undetected ones. Reapply the recorded filters and
 Codex skill profile when refreshing a customized installation.
 
+**Browser policy (opt-in).** The installer can detect the web browsers present on
+the machine (the catalogue is `methodology/lifecycle/browsers.json`: binaries on
+`PATH`, well-known install paths and Flatpak ids), let you choose which one agents
+may drive (a primary and an optional fallback) and generate a deny policy for every
+other known browser: launching it, and reading or writing its profile directory.
+It is machine-local data written to the user policy directory
+(`$COACUS_POLICY_DIR`, else `$XDG_CONFIG_HOME/coacus/policies`, else
+`~/.config/coacus/policies`) and loaded by the runtime guard next to the
+repository policies; nothing is committed to the repository.
+
+- On an interactive terminal the installer prompts (default primary = the
+  catalogue's preferred detected browser, default fallback = none, `skip` to leave
+  the policy off). Without a terminal it stays **off** (D2: no behaviour change
+  without opt-in).
+- `--browser-policy auto` picks the preferred detected browser with no fallback;
+  `--browser-policy prompt|off` force the mode; `--browser-primary <id>` and
+  `--browser-fallback <id>` select explicitly (an id that is not installed stops the
+  run before anything is written, exit code 2).
+- `--browser-policy-dir <dir>` overrides the destination; a custom `--config-dir`
+  keeps the policy beside it (`<config-dir>/coacus-policies`).
+- `--dry-run` reports the selection and the policy count without writing;
+  `--verify` reports the recorded selection under `browser_policy`; only
+  `all --uninstall` attempts to remove the generated file (it is machine-wide),
+  subject to ownership and safety checks.
+- A harness that cannot block `tool.pre` refuses the install like any other
+  `deny` policy (`--allow-advisory` records the downgrade).
+
 Skill sources installed everywhere are `methodology/workflows/**` and
 `knowledge/skills/**`, flattened into one namespace. Each skill installs as
 `<skill>/SKILL.md` plus its companions (`references/`, `examples/`, `scripts/`).
+
+A harness that scans its **own** skill home (Claude Code's `~/.claude/skills`)
+installs the real files once under the shared `~/.agents/skills` tree and places a
+symlink per skill in its own home (`--skills-mode link`, the default). A single
+physical copy is the source of truth, and a consumer that scans several skill homes
+at once — Orca's Skills page reads Claude, Codex, Agent Skills and OMP — shows each
+skill once instead of a duplicate. Pass `--skills-mode copy` to restore the previous
+per-harness copies. Harnesses that already scan `~/.agents/skills` directly (Codex,
+Cursor, Command Code) are unaffected.
+
+At a harness's **real** install location the shared tree is left read-only
+(`--lock-skills`, the default; `--no-lock-skills` opts out), so a consumer's own
+delete or update of a Coacus skill fails rather than silently rewriting the corpus.
+The next install restores write access before rewriting. An explicit `--config-dir`
+(a test or staging target) is never locked.
 
 ### Upgrading a legacy shell installation
 
@@ -156,10 +230,37 @@ Skill sources installed everywhere are `methodology/workflows/**` and
    `missing` and `drifted` arrays, and an empty `extra_in_manifest` array.
 4. Start a new harness session to exercise the updated bootstrap.
 
-The installer removes manifest-owned `session-start.sh`, `coacus-guard.sh` and
-`governor-hook.sh` wrappers and extensionless helpers replaced by `.py` files.
-It normalizes manifest path separators when retiring legacy helpers on Windows
-and skips Python bytecode and `__pycache__` directories when copying skill trees.
+For manifest-owned `session-start.sh`, `coacus-guard.sh`, `governor-hook.sh`
+and extensionless helpers replaced by `.py` files, removal requires a matching
+recorded fingerprint and the installer's ownership, shared-claim, file-type and
+allowed-root checks. Older manifests may lack fingerprints. Files that cannot be
+safely retired appear in `retained`; inspect their ownership and contents before
+any separately authorized cleanup. Never delete them solely because their names
+look old. Files outside the ownership record are not automatically retired.
+
+An unowned or modified file at a planned install destination can produce an
+`install conflicts with existing files` error and a `conflicts` list. Review those
+paths and preserve user changes before deciding how to resolve the conflict;
+`--force` bypasses harness detection, not file-conflict checks. The installer
+does not rewrite a matching fingerprint-free legacy file; it records the expected
+fingerprint so a concurrent user edit is detected as drift on later verification.
+The installer
+can back up and replace divergent regular files recorded in a fingerprint-free
+legacy manifest when explicitly passed `--legacy-backup-dir PATH`. Use a new,
+private directory for each harness on the same filesystem as the files being
+upgraded; review the reported paths first. Its `manifest.json` maps original
+paths to verified initial backups and to `preserved_current` files. The latter
+are the original files moved at replacement time and can contain newer edits;
+they may still change while another process holds an open handle. Stop concurrent
+writers before restoring, and prefer `preserved_current` when it exists. If a
+rename across filesystems is required, replacement fails and the backup remains
+available. Migration across multiple files is not transactional: if an error or
+interruption occurs, inspect the backup manifest and each original path before
+restoring or rerunning. Unowned files,
+symlinks, modified fingerprinted files and merged configuration conflicts are
+not covered by this option. Run a separate command for each harness. The installer
+normalizes manifest path separators when retiring legacy helpers on Windows and
+skips Python bytecode and `__pycache__` directories when copying skill trees.
 
 Removal outside the manifest is a separate operation. Inventory `.sh` files in
 Coacus directories, caches and histories before deleting them. Native harness
@@ -196,7 +297,8 @@ python3 scripts/coacus_install.py --list     # categories and skill names, then 
 - `--agents` matches agent directory names with fnmatch globs. It never narrows
   skills.
 - Tokens are comma-separated; the filters are AND-ed, and the selected files
-  are recorded in the manifest, so `--uninstall` stays exact.
+  are recorded in the manifest for ownership-aware uninstall; retained files
+  still require review.
 
 Every harness installs agents: OpenCode and Cursor as
 `<config>/agent(s)/<name>.md`, Claude Code as `~/.claude/agents/<name>.md`,
@@ -226,7 +328,7 @@ partial install (`--only`/`--skills`).
 - `skills.paths` exists in the official config schema and the plugin's `config`
   hook can set it, but Coacus does not: doing so re-registers the whole repo and
   defeated the partial install (measured: `--only languages` still exposed all
-  370 repo skills). **[verified locally]**
+  repo skills). **[verified locally]**
 - `experimental.chat.messages.transform` is the injection point; the Coacus
   plugin loads and injects the bootstrap. **[verified locally]**
 
@@ -243,6 +345,13 @@ the governor gate: it intercepts subagent spawns, enforces the concurrency cap,
 and parks a caller as PAUSED when it sees a rate limit. Knobs:
 `ORCH_MAX_CONCURRENT` (default 5), `GOVERNOR_STATE_DIR`, `GOVERNOR_LEASE_SECONDS`.
 Inspect the ledger with `python3 scripts/coacus_governor.py status`.
+
+**Background dispatch is governed** in OpenCode v2+ via session execution events
+(`session.execution.succeeded`, `session.execution.failed`, `session.execution.interrupted`,
+`session.deleted`), retaining the ledger slot until child session termination. In
+environments without event subscription support, use supported foreground dispatch.
+Each dispatch requires one slot: use adapter-managed acquisition when available or
+manual acquisition otherwise, never both.
 
 **Manual equivalent.** Copy `harnesses/opencode/bootstrap/coacus.js` and
 `governor-gate.js` to `~/.config/opencode/plugins/`, replacing
@@ -301,16 +410,22 @@ both injects the body twice ([session-start-bootstrap](standards/session-start-b
 **Install**
 
 ```bash
-python3 scripts/coacus_install.py claude-code
+python3 scripts/coacus_install.py claude-code     # installs skills, agents, settings.json hooks, and Claude Desktop MCP
+python3 scripts/coacus_install.py claude-desktop  # alias targeting Claude Desktop and Claude Code
 ```
 
 This mirrors the skills to `~/.claude/skills/<skill>/`, the agents to
-`~/.claude/agents/<name>.md`, and stages the hook plugin at
-`~/.claude/plugins/coacus/` with `.claude-plugin/plugin.json`,
-`hooks/hooks.json` and `bootstrap/session-start.json`. Treat that staging as a
-local helper. For a durable install across machines, publish the repository as a
-Claude Code plugin and install it through the marketplace path, which is the
-supported route. **[documented]**
+`~/.claude/agents/<name>.md`, merges the session hooks into `~/.claude/settings.json`,
+stages the hook plugin at `~/.claude/plugins/coacus/`, and merges the `coacus-catalog`
+MCP server into `claude_desktop_config.json` when Claude Desktop is installed
+(`%APPDATA%/Claude/claude_desktop_config.json` on Windows,
+`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS, and
+`~/.config/Claude/claude_desktop_config.json` on Linux). This configures a
+Desktop MCP server; it does not establish that Desktop runs the Claude Code
+`SessionStart` hook or loads its skills and agents. Fully quit and restart Desktop,
+then check its connectors for `coacus-catalog` as described in the
+[MCP local server guide](https://modelcontextprotocol.io/docs/develop/connect-local-servers).
+Installation verification checks files, not live activation.
 
 **Verify** (structure only; no live Claude Code binary was available here):
 
@@ -325,12 +440,19 @@ context key, not two.
 ## antigravity
 
 **Goal:** Antigravity loads Coacus as a plugin and applies its rule at session
-start.
+start, with the complete capability catalog available on demand.
 
 **How it works.** Antigravity uses an **instructions-file** bootstrap: the adapter
-renders a rule file, `coacus-rule.md`, with frontmatter `activation: always_on`,
-plus the `plugin.json` manifest that packages it. The rule directory is the
-activation unit; there is no shell hook and no in-process module.
+installs a small rule under `rules/coacus.md`, native agent selectors, and a
+local stdio MCP server. Full skill and agent sources are stored under the
+plugin's opaque `catalog/` data directory, outside Antigravity's native
+`skills/` and `agents/` discovery roots. The MCP server reads a generated index
+and returns a selected canonical source only when requested. This does not
+require the Coacus checkout to remain open.
+
+The default `on-demand` profile preserves the complete catalog while keeping
+customization discovery compact. `full` keeps the legacy native installation
+for compatibility and explicit comparison.
 
 **Vendor facts**
 
@@ -347,8 +469,15 @@ activation unit; there is no shell hook and no in-process module.
   directory, not where Coacus installs: this script stages at
   `~/.gemini/config/plugins/coacus/` and never writes
   `~/.gemini/antigravity-cli/`.
-- Plugin components are `skills/`, `agents/`, `rules/`, `mcp_config.json` and
-  `hooks.json`. Rules are capped at 12,000 characters. **[documented]**
+- Plugin components include `skills/`, `agents/`, `rules/`, `mcp_config.json`
+  and `hooks.json`. Rule files require `trigger` frontmatter; supported values
+  include `always_on`, `model_decision`, `glob` and `manual`. **[documented]**
+- The vendor's 20,000-token aggregate budget applies to active rules and is
+  separate from the customization budget. The exact
+  `Customization token budget exceeded` message and its accounting are not
+  documented as a universal 20,000-token customization limit. Use `/context`
+  in Antigravity CLI to inspect categories when diagnosing budget warnings.
+  **[documented / exact error unverified]**
 - There is **no** `~/.gemini/config/plugins.json` registry. Earlier Coacus
   revisions claimed one; that claim was wrong and has been removed. Activation
   is by directory placement alone. **[documented]**
@@ -359,25 +488,52 @@ activation unit; there is no shell hook and no in-process module.
   `ephemeralMessage`, which is a candidate for bootstrap injection on a future
   revision; the current adapter does not use it. **[documented]**
 
-**Install**
+**Install the recommended profile**
 
 ```bash
 python3 scripts/coacus_install.py antigravity
+python3 scripts/coacus_install.py antigravity --verify-after-install
 ```
 
-The script stages the plugin at `~/.gemini/config/plugins/coacus/` with
-`plugin.json`, `coacus-rule.md` and the skills. It does not edit any registry —
-none exists — and it does not invoke `agy plugin install` itself; that command
-expects a plugin or marketplace target and is left to the operator.
+The script stages the plugin at `~/.gemini/config/plugins/coacus/` with the
+compact rule, native agent selectors, complete local catalog data, the MCP
+server and hooks. It does not edit a plugin registry — none exists — and does
+not invoke `agy plugin install` itself.
+
+Use `--only`, `--skills` and `--agents` for intentional partial catalogs. Use
+`--antigravity-profile full` to restore the legacy installation of all selected
+skills and complete native agent prompts.
+
+**Governance limitation.** The Antigravity hook denies recognized subagent spawn
+requests on all platforms until host call identity and worker lifetime are verified.
+Recognized list and kill operations remain allowed. Live host behavior is unverified;
+installation alone does not prove runtime enforcement. The vendor describes CLI
+subagents as [asynchronous background workers](https://antigravity.google/docs/subagents),
+whereas [`PostToolUse`](https://antigravity.google/docs/hooks) reports the tool
+call's completion. A post-tool event alone therefore does not establish that a
+worker has ended, and must not be used by itself to release its reservation. In
+an isolated probe using a synthetic local model and manually reserved governor
+slots, the post-tool event preceded the worker response. Subsequent list output
+showed the same synthetic worker identifier on lines reporting `running` and
+`idle`; this does not prove that an idle worker has ended or cannot be resumed.
 
 **Verify**
 
 ```bash
 agy plugin validate ~/.gemini/config/plugins/coacus   # expect: [ok]
+agy plugin list --json
 ```
 
-If `agy plugin install` is your preferred route, point it at the staged
-directory.
+The plugin validator can succeed while reporting zero hook groups. Check that
+the installed plugin's `hooks.json` contains `coacus-governor`, and inspect
+`/hooks` in a fresh CLI session. A validated manifest or a running `agy`
+process does not prove the governor hook is loaded.
+
+In an Antigravity CLI session, `/context` reports usage by Rules, Skills,
+Subagents, Workflows, Plugins and MCP tools. It is a CLI diagnostic; do not
+assume its output exactly matches Antigravity 2.0's desktop accounting. Compare
+the affected build with the plugin enabled and disabled before attributing a
+budget warning to a specific customization type.
 
 ## codex
 
@@ -427,8 +583,8 @@ python3 scripts/coacus_skill_search.py show db-postgresql
 
 The compact profile is Codex-only. `--skills` still controls which files are
 copied; it does not change the native visibility profile. The installer
-preserves user-owned `config.toml` settings and MCP entries, and `--uninstall`
-removes only its marked profile block. Restart Codex after changing the
+preserves user-owned `config.toml` settings and MCP entries. Uninstall removes
+its marked profile block only when the safety checks permit it. Restart Codex after changing the
 profile. Other skills from repositories, plugins, the user or the system can
 still consume the startup catalog budget.
 
@@ -437,8 +593,9 @@ scans, beside `~/.codex/`, not inside it — and the hook to `~/.codex/hooks.jso
 with `__COACUS_ROOT__` substituted for this repository's path. The bootstrap
 payload remains in `harnesses/codex/bootstrap/session-start.json`. An existing
 `~/.codex/hooks.json` is **merged**, not overwritten: Coacus adds its
-`SessionStart` entry and leaves every other key and event intact. `--uninstall`
-strips only that entry (the file is removed when nothing else remains).
+`SessionStart` entry and leaves every other key and event intact. When the file
+passes uninstall safety checks, uninstall removes that entry and removes the file
+if nothing else remains. Otherwise it preserves the entire file.
 
 **Verify**
 
@@ -496,7 +653,8 @@ The script installs skills to `$HOME/.agents/skills/` — a Cursor scan root —
 agents to `~/.cursor/agents/<name>.md`, and the hook to `~/.cursor/hooks.json`
 with `__COACUS_ROOT__` substituted. The hook reads the generated JSON payload
 directly from this repository. An existing `~/.cursor/hooks.json` is
-merged, not overwritten; `--uninstall` strips only the Coacus entry. For a
+merged, not overwritten; uninstall removes the Coacus entry only if the file
+passes safety checks, otherwise it preserves the entire file. For a
 project install, copy the same artifacts into `<project>/.cursor/` by hand.
 
 **Verify**
@@ -512,9 +670,9 @@ The last command must print `True`. The hook must not emit
 ## command-code
 
 **Goal:** a `SessionStart` hook injects the bootstrap, Command Code discovers the
-Coacus skills and agents natively, and context7 is registered.
+Coacus skills and agents natively, and framework MCP servers are registered.
 
-**How it works.** Command Code has no in-process plugin API. It runs a
+**How it works.** The Coacus adapter uses a native hook. Command Code runs a
 `SessionStart` hook that emits JSON and reads a single native key,
 `hookSpecificOutput.additionalContext` — the same key Claude Code and Codex use.
 The adapter renders `harnesses/command-code/bootstrap/session-start.json` and a
@@ -529,7 +687,20 @@ subagent's toolset). The main agent is therefore the orchestrator; the Coacus
 `multi-agent-orchestrator` agent installs as a coordinator persona, not as a
 spawner. The concurrency governor is **advisory** here — hooks cannot intercept
 the `agent` tool — so the cap is documented in `~/.commandcode/AGENTS.md` and the
-ledger stays available through `python3 scripts/coacus_governor.py`.
+ledger stays available through `python3 scripts/coacus_governor.py`. The main
+agent must follow [orchestration governance](standards/orchestration-governance.md)
+when dispatching; the coordinator persona does not bypass the tool restriction.
+Command Code also exposes an experimental in-process [mods API](https://commandcode.ai/docs/mods),
+but it skips a tool hook that throws. Its [permission rules](https://commandcode.ai/docs/permissions)
+also exempt the `agent` tool, so a mod alone does not establish a fail-closed
+governor. A local fake-model probe of Command Code 1.88.2 (resolved from
+[npm](https://www.npmjs.com/package/command-code/v/1.88.2) on 2026-10-31)
+confirmed this fallback for a synthetic `read_file` call. It did not test agent
+dispatch or the lifetime of a subagent. A separate local probe reserved
+governor slots before issuing one synthetic foreground `agent` call: a blocking
+mod prevented the call, while a throwing mod was skipped and the worker started
+and stopped. This observation does not establish background-worker lifetime or
+fail-closed behavior when a mod fails to load.
 
 **Vendor facts**
 
@@ -566,12 +737,13 @@ The script mirrors the skills to `~/.agents/skills/` (a Command Code user scan
 root, shared with Codex and Cursor), writes agents to
 `~/.commandcode/agents/<name>.md` with `tools: "*"`, uses the generated JSON
 payload in the repository, **merges** the `SessionStart` entry
-into `~/.commandcode/settings.json`, **merges** `context7` into
+into `~/.commandcode/settings.json`, **merges** framework MCP servers into
 `~/.commandcode/mcp.json`, and writes the Coacus user rules to
 `~/.commandcode/AGENTS.md` — only when that file does not already exist, since it
 is your memory. An existing `settings.json` or `mcp.json` is merged, never
-overwritten; `--uninstall` strips only the Coacus entries and keeps the rest. The
-`AGENTS.md` memory file is left in place on uninstall.
+overwritten. Uninstall removes Coacus entries only from files that pass safety
+checks; it preserves an entire modified config file. The `AGENTS.md` memory file
+is left in place on uninstall.
 
 **Verify** (structure only; Command Code's runtime behavior is not exercised in
 CI):
@@ -596,12 +768,13 @@ evals report it as `NO_RUNNER` rather than fail on the missing bootstrap.
 
 | Harness | Shape | Bootstrap mechanism | Install target | Evidence |
 |---|---|---|---|---|
-| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
-| **claude-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; helper plugin at `~/.claude/plugins/coacus/` | vendor plugin route **[documented]**; staging path **[unverified]** |
-| **antigravity** | C (rule file) | `coacus-rule.md` with `activation: always_on`, packaged by `plugin.json` | plugin staged at `~/.gemini/config/plugins/coacus/` (skills + agents + hook); activation by directory | rule + strict schema **[documented]**; `agy plugin validate` **[verified locally]** |
-| **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json` | skill roots + hook framework **[documented]**; install **[verified locally]** |
-| **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context` | skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json` | hook schema + key **[documented]**; install **[verified locally]** |
-| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; context7 merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
+| **opencode** | B (in-process) | `config` + `experimental.chat.messages.transform` hooks | CLI & Desktop: plugin at `~/.config/opencode/plugins/{coacus.js,coacus-governor.js}` + skills at `~/.config/opencode/skills/` + agents at `~/.config/opencode/agent/` | plugin load + native skill discovery **[verified locally]** |
+| **claude-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | skills at `~/.claude/skills/<skill>/` + agents at `~/.claude/agents/<name>.md`; hooks merged into `~/.claude/settings.json`; staged plugin at `~/.claude/plugins/coacus/` | hook payload structure checked; live activation **[unverified]** in this environment |
+| **claude-desktop** | MCP configuration; installer alias for `claude-code` | `coacus-catalog` stdio MCP | Desktop MCP merged into `claude_desktop_config.json` when detected; alias also installs Claude Code artifacts | Desktop config paths and restart procedure **[documented]** in the [MCP local server guide](https://modelcontextprotocol.io/docs/develop/connect-local-servers); Coacus server activation **[unverified]** |
+| **antigravity** | C (plugin rule) | compact `rules/coacus.md` with `trigger: always_on`; local catalog MCP | CLI & App 2.0: plugin staged at `~/.gemini/config/plugins/coacus/` (catalog data + native agent selectors + MCP + hooks); IDE: MCP merged into `~/.gemini/antigravity/mcp_config.json` | plugin schema and MCP config **[documented]**; local `agy plugin validate` **[verified in tests]** |
+| **codex** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext` | CLI & Desktop: skills at `~/.agents/skills/` + agents at `~/.codex/agents/<name>.toml`; hook at `~/.codex/hooks.json`; config at `~/.codex/config.toml` | skill roots + hook framework **[documented]**; install **[verified locally]** |
+| **cursor** | A (Python hook) | `sessionStart` → top-level `additional_context`; `coacus-catalog` stdio MCP | Desktop IDE & CLI: skills at `~/.agents/skills/` + agents at `~/.cursor/agents/<name>.md`; hook at `~/.cursor/hooks.json`; MCP merged into `~/.cursor/mcp.json` | hook schema + key **[documented]**; install **[verified locally]** |
+| **command-code** | A (Python hook) | `SessionStart` → `hookSpecificOutput.additionalContext`; `coacus-catalog` stdio MCP | Desktop/IDE & CLI: skills at `~/.agents/skills/` + agents at `~/.commandcode/agents/<name>.md`; hook merged into `~/.commandcode/settings.json`; framework MCP servers merged into `~/.commandcode/mcp.json`; rules at `~/.commandcode/AGENTS.md` | skill/agent/hook/MCP locations **[documented]**; install **[verified locally]** |
 
 ### Verifying
 

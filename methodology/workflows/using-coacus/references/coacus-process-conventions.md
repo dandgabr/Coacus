@@ -2,7 +2,7 @@
 
 How Coacus adapts the imported Superpowers process workflows, and the local
 conventions every process skill follows. Companion reference for the
-`superpowers-*` workflow family.
+imported workflow family.
 
 ## Artifact locations
 
@@ -31,6 +31,22 @@ python3 -m unittest discover -s tests
 `generate` refuses to write while source validation fails; `check` must report
 no drift. CI runs `validate` → `check` → `completeness` → tests and never
 `generate`, so a drift failure means regenerate locally and commit the result.
+
+**The local gate is what CI runs, linter included.** Read the CI workflow and run each
+step it runs, with the project's declared development tools installed first (the
+package manager's lockfile install, not a global guess). A step that could not run is
+not a step that passed: say so in the pull request instead of leaving it implied. A
+linter that was missing locally let an unused parameter reach CI, which a one-line
+local run would have caught.
+
+## Reproduce the other machine
+
+The gate above passes on the machine that ran it. CI does not: a check that is green
+here can drift there when the two environments differ. When CI disagrees with the local
+gate, clone the pushed commit into a clean directory and run the failing step there
+before changing anything; the difference is usually the environment (a compressor, a
+locale, an ignored file), not the code. An artifact whose bytes depend on any of these
+cannot be drift-checked: build it from normalized inputs and pin one known value.
 
 ## Measure the environment before a command
 
@@ -64,6 +80,47 @@ machine — no apt, no package list, no source at all — where the runtime libr
 were already installed and only the `-devel` halves were missing. One
 `grep /etc/os-release` would have replaced the whole detour.
 
+## Working material is not the committed tree
+
+Curation is part of the work, not a later chore. Before a session's artifacts
+accumulate in the tree, classify every file as source, committed generated output,
+working material or local state, and keep the last two out of the commit.
+
+- Process documents — specs, plans, scratch — live under `docs/temp/`, which is
+  ignored. A durable conclusion is promoted into a committed document or a
+  standard; the working copy stays where it is.
+- Untracked local state is regenerable or ephemeral. It is also a place a **live
+  secret** can hide: a dev harness's session directory may hold a token, a port
+  file or a server key created during a session and never meant to persist.
+  Deleting such state is a security improvement, and it is inspected by metadata,
+  never by printing a value.
+- Removing a file orphans whatever pointed at it. Search the whole tree for each
+  removed path and repair the reference — rewrite it to the document that now
+  holds the rationale, or remove the sentence that needed it.
+- Removing a concept orphans more than files: parameters that only it used, branches
+  it made reachable, fixtures, texts, and identifiers other people already saved.
+  Search the whole tree for its name, then run the linter, which names the parameters
+  and imports nothing else points at any more.
+- The `repository-artifact-hygiene` skill carries the full procedure.
+
+## Work that is not yours
+
+When the tree holds uncommitted work you did not write (another agent's, or the owner's
+in another tool), do not edit, stash or regenerate in place.
+
+- Make a separate worktree on a new branch from the committed head and load a snapshot
+  there: the tracked diff as a patch, and the untracked files copied. The original tree
+  stays exactly as it was.
+- Validate the snapshot as a stranger would: regenerate, refresh the provenance lock,
+  run every gate and the whole suite. Work that was written ahead of its generated
+  artifacts fails the count and drift checks until they are regenerated; that is its
+  normal state, not a defect.
+- Check what the work claims against what it contains: licenses and attribution (measure
+  the longest verbatim overlap with a source it says it paraphrased), the cost of any
+  pattern it runs on every call, and what its commands can write.
+- Open a pull request, let CI judge it, and read the failures: CI found a determinism
+  defect in an artifact that every local check had accepted. If a later authorized merge occurs, tell the owner that the uncommitted copy is redundant; never delete it for them. A PR-only request ends with the reviewable PR.
+
 ## Ship through review
 
 - Branch from `main`; never commit structural change straight onto `main`.
@@ -72,35 +129,10 @@ were already installed and only the `-devel` halves were missing. One
   them.
 - The pull request carries the generated diff; the repository squashes on merge.
 
-After the local gate is green, two steps complete the change:
+After the local gate is green, complete the authorized delivery scope:
 
-- **Push and open the PR.** Push the branch and create the pull request:
-
-  ```bash
-  git push -u origin <branch>
-  gh pr create --title "<type>(<scope>): <summary>" \
-    --body "<what changed; how it was verified; the regenerated diffs>"
-  ```
-
-  The PR body must carry the regenerated diffs (`catalog/`,
-  `knowledge/**/dist/`, `harnesses/*/bootstrap/`, `sources.lock.json`) alongside
-  the source change. `--fill` is not enough: it derives the body from the commit
-  messages and cannot state the diff set or the verification commands.
-
-- **Reinstall locally.** Refresh the artifacts in the harnesses present on this
-  machine, then verify them:
-
-  ```bash
-  python3 scripts/coacus_install.py all
-  python3 scripts/coacus_install.py all --verify
-  ```
-
-  Quote the `--verify` output (canonical component counts, install root, drift).
-  `--verify` exits non-zero on drift AND on a harness with no manifest, so a
-  harness absent from this machine is reported as `harness_present: false` and
-  still fails the run; read the per-harness records rather than the exit code
-  alone. Run `--verify` for the harnesses you actually installed when you want a
-  clean exit.
+- **Push and open the PR when requested.** Push the feature branch and create the PR with a body file describing source changes, regenerated artifacts and actual verification results. Opening a PR does not authorize a merge. For example, run `git push -u origin <branch>` and `gh pr create --title "<summary>" --body-file <description-file>`. Include the actual regenerated diff scope: `catalog/`, `knowledge/**/dist/`, `harnesses/*/bootstrap/` and `sources.lock.json` where changed.
+- **Install only selected, authorized targets.** A skill edit does not imply permission to update user profiles. For an explicitly requested installation, use `python3 scripts/coacus_install.py <harness>` and `python3 scripts/coacus_install.py <harness> --verify`. Quote the per-target result, component counts, root and drift. An absent manifest is distinct from a clean installation. For isolated tests, select an explicit temporary config root and verify it without altering user installations.
 
 ## Reach the local corpus
 
@@ -157,7 +189,7 @@ skill namespace is FLAT, so every reference resolves to the installed name:
 
 | Upstream reference | Coacus skill |
 |---|---|
-| `superpowers:<name>` | `superpowers-<name>` |
+| `superpowers:<name>` | `<name>` (or the canonical renamed workflow) |
 
 The imported bodies were rewritten at import time to use the flat form, so a
 handoff always names a skill that exists. `using-superpowers` is not imported;
@@ -167,20 +199,30 @@ the `using-coacus` skill replaces it.
 
 | Workflow | Use it to |
 |---|---|
-| `superpowers-brainstorming` | explore intent and produce a design spec before building |
-| `superpowers-writing-plans` | turn a spec into a bite-sized implementation plan |
-| `superpowers-executing-plans` | implement a plan task by task in one session |
-| `superpowers-subagent-driven-development` | implement a plan with a fresh subagent per task, plus review |
-| `superpowers-test-driven-development` | write the failing test first, then the minimal code |
-| `superpowers-systematic-debugging` | find a root cause instead of guessing |
-| `superpowers-requesting-code-review` | ask for a review at a defined checkpoint |
-| `superpowers-receiving-code-review` | evaluate and act on review feedback |
-| `superpowers-verification-before-completion` | prove a change works before claiming success |
-| `superpowers-using-git-worktrees` | isolate work in a worktree |
-| `superpowers-finishing-a-development-branch` | close out a branch for integration |
-| `superpowers-dispatching-parallel-agents` | fan out independent work |
-| `superpowers-writing-skills` | author and pressure-test a new skill |
-| `superpowers-diagnosing-superpowers` | diagnose the workflow collection itself |
+| `brainstorming` | explore intent and produce a design spec before building |
+| `writing-plans` | turn a spec into a bite-sized implementation plan |
+| `executing-plans` | implement a plan task by task in one session |
+| `subagent-driven-development` | implement a plan with a fresh subagent per task, plus review |
+| `test-driven-development` | write the failing test first, then the minimal code |
+| `requesting-code-review` | ask for a review at a defined checkpoint |
+| `receiving-code-review` | evaluate and act on review feedback |
+| `verification-before-completion` | prove a change works before claiming success |
+| `using-git-worktrees` | isolate work in a worktree |
+| `finishing-a-development-branch` | close out a branch for integration |
+| `dispatching-parallel-agents` | fan out independent work |
+| `writing-skills` | author and pressure-test a new skill |
+| `diagnosing-agent-sessions` | diagnose the workflow collection itself |
+| `grilling` | interview the user in frontier rounds until the design tree is resolved |
+| `grill-me` / `grill-with-docs` | the grilling interview, plain or with documents |
+| `handoff` | compact a session for the next agent |
+| `domain-modeling` | build and sharpen the glossary; record ADRs sparingly |
+| `diagnosing-bugs` | build a tight feedback loop before any hypothesis |
+| `to-spec` | synthesize a spec and confirm the test seams |
+| `to-tickets` | vertical tracer-bullet tickets with blocking edges |
+| `implement-spec` | parallel implementers over the ready frontier |
+| `two-axis-code-review` | isolated Standards and Spec review |
+| `retro` | turn a session into environment improvements |
+| `phase-boundaries` | decide continue / clear / handoff / subagent / compact |
 
 ## Attribution
 

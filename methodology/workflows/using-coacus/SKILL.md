@@ -12,6 +12,9 @@ description: >-
 <!-- SUBAGENT-STOP -->
 If you were dispatched as a subagent to execute a specific task, skip this
 skill unless that task explicitly asks you to plan, review, or coordinate.
+That exception only makes the skill applicable; it does not grant authority to
+delegate. A review or planning worker remains a leaf unless its assignment
+explicitly authorizes coordination or delegation.
 <!-- /SUBAGENT-STOP -->
 
 ## The rule
@@ -43,6 +46,10 @@ Read `catalog/INDEX.md` and `AGENTS.md` once at the start of the session. Do
 not re-scan directories per turn; rely on the index and the session's memory.
 If the index looks stale, regenerate it once, then continue.
 
+## Canonical source and installed aliases
+
+Resolve an update against the canonical catalog and provenance, then verify the source package. An installed name missing from the current catalog can be a stale alias or removed artifact; do not recreate it as a new canonical source without reconciling the recorded change. A refreshed file on disk does not prove an existing session loaded it.
+
 ## Artifact lifecycle
 
 Every canonical artifact has one source. Work moves through:
@@ -55,7 +62,7 @@ change the source and regenerate.
 
 ## Process workflows
 
-The 14 process workflows under `methodology/workflows/superpowers-*` —
+The imported process workflows under `methodology/workflows/` —
 brainstorming, writing plans, executing plans, test-driven development,
 systematic debugging, code review, worktrees, verification and the rest — are
 imported from Superpowers (MIT) and adapted to Coacus. Their handoffs resolve to
@@ -66,8 +73,18 @@ flow, and how to reach the local skill corpus — live in
 
 ## Coordination
 
-Cap concurrent work at the repository's governor limit and hand off between
-agents with compact TOON payloads. Never spawn ungoverned parallel work.
+The main chat orchestrates and delegates substantive specialist work to routed
+specialists when permitted and available. This is not a delegation mandate for
+leaf workers, including review workers. Dispatch independent ready tasks in
+parallel up to actual free governor capacity and any lower applicable limit; each
+dispatch requires one slot: use adapter-managed acquisition when available, or
+manual acquisition otherwise, never both. OpenCode background dispatch is
+governed via session execution events in OpenCode v2+; in environments without event
+subscription, use supported foreground dispatch. Queue the remainder. Report an explicit blocker if
+delegation is unavailable, prohibited, or cannot be governed; do not silently
+substitute ungoverned work. Respect the user's inline-work instructions and obtain
+required human approvals before approval-gated actions. Handoffs use compact TOON
+payloads. The subagent stop above remains in force.
 
 ## Verification — measure, do not infer
 
@@ -105,12 +122,17 @@ only when a command produced it in this session.
   credential, **redacts first and proves the redaction** — against a synthetic
   payload carrying an address, a UUID and a token — before anyone runs it for real.
 - Never print the credential in an error, an assertion, a `Debug`, or a log line.
+- **Untracked tool state is a candidate store.** A dev harness's session directory
+  can hold a live token or key it created and never intended to persist; treat a
+  cleanup that removes that state as a security improvement, and inspect it by
+  metadata, never by value.
 
 ## Freshness — resolve, do not recall
 
 Before naming a version of a standard, framework, library or regulation, resolve
-it in the current session — Context7 for libraries and frameworks, the
-publisher for standards — and pin the version with its source and date. An
+it in the current session from authoritative primary sources — official documentation
+sites and package registries (npm, PyPI, crates.io) for libraries and frameworks,
+the publisher for standards — and pin the version with its source and date. An
 unresolved pin is marked `unverified`, never presented as current. The
 `version-freshness` skill carries the workflow.
 

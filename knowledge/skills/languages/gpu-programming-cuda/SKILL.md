@@ -64,10 +64,13 @@ cudaEventSynchronize(stopEvent);
 float ms; cudaEventElapsedTime(&ms, startEvent, stopEvent);
 ```
 
-Intra-block barriers use `__syncthreads()`; atomics and shared-memory tree reductions serialize conflicting accumulation:
+Intra-block barriers use `__syncthreads()`. This reduction fragment assumes a one-dimensional, power-of-two block and a shared array of at least `blockDim.x` doubles. Every thread must participate in each barrier:
 
 ```cpp
 extern __shared__ double sharedData[];
+int idx = blockIdx.x * blockDim.x + threadIdx.x;
+sharedData[threadIdx.x] = idx < n ? input[idx] : 0.0;
+__syncthreads();
 for (int s = blockDim.x/2; s > 0; s /= 2) {
   if (threadIdx.x < s) sharedData[threadIdx.x] += sharedData[threadIdx.x + s];
   __syncthreads();
@@ -83,15 +86,15 @@ Hierarchy: global (large, slow, off-chip) → L2 → L1/shared (SM-local) → **
 
 - **Coalescing**: consecutive threads accessing contiguous, aligned addresses maximize DRAM efficiency; strided/column access is the worst case.
 - **Register pressure**: too many locals spill to local memory; building with `-O3` raises register use and collapses time.
-- **Shared-memory tiling** (matmul, `TILE 16`) reuses data across the block:
+- **Shared-memory tiling** (matmul, `TILE 16`) reuses data across the block. This fragment assumes square `TILE × TILE` blocks, a matching two-dimensional grid and square row-major `n × n` matrices:
 
 ```cpp
 __shared__ float Asub[TILE][TILE], Bsub[TILE][TILE];
 int tx=threadIdx.x, ty=threadIdx.y, row=ty+blockIdx.y*blockDim.y, col=tx+blockIdx.x*blockDim.x;
 float sum=0.f;
 for (int i=0; i<(n+blockDim.x-1)/blockDim.x; i++){
-  if (row<n && i*blockDim.x+tx<n) Asub[ty][tx]=A[row*n + i*blockDim.x+tx];
-  if (col<n && i*blockDim.y+ty<n) Bsub[ty][tx]=B[(i*blockDim.y+ty)*n + col];
+  Asub[ty][tx] = (row<n && i*blockDim.x+tx<n) ? A[row*n + i*blockDim.x+tx] : 0.f;
+  Bsub[ty][tx] = (col<n && i*blockDim.y+ty<n) ? B[(i*blockDim.y+ty)*n + col] : 0.f;
   __syncthreads();
   for (int k=0;k<blockDim.x;k++) sum += Asub[ty][k]*Bsub[k][tx];
   __syncthreads();

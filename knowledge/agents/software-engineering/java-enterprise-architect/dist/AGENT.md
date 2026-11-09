@@ -5,6 +5,7 @@ Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS
 ## Skills
 
 <!-- coacus:generated:skills -->
+- [framework-spring-ai](../../../../skills/frameworks/framework-spring-ai/SKILL.md)
 - [jpa-hibernate-performance](../../../../skills/data/jpa-hibernate-performance/SKILL.md)
 - [arch-bce-pattern](../../../../skills/engineering/patterns/arch-bce-pattern/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
@@ -75,3 +76,9 @@ The agent is detected natively through the [`agent.yaml`](agent.yaml) manifest.
 
 ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
 Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+## Conditional domain references
+
+Consult the relevant skill only when its subject is in scope:
+
+- [framework-spring-ai](../../../../skills/frameworks/framework-spring-ai/SKILL.md)

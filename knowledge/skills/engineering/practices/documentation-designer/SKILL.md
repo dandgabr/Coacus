@@ -211,11 +211,62 @@ flowchart LR
 
 ---
 
-## 🔗 6. Integration with Other Skills
+## 🚀 6. High-Impact GitHub README Engineering & Repository Front-Doors
+
+A repository's `README.md` is its front-door and conversion engine. Leading open-source projects (React, Vue, Fastify, Tailwind CSS, uv, Ripgrep) follow rigorous standards:
+
+1. **Time-to-Value Under 60s**: The reader must know what the project is in 5s, see it working above the fold in 15s, and run it via copy-paste in 60s.
+2. **Visual Proof Above the Fold**: Include a product snapshot, UI demo, or terminal recording (SVG/GIF) before the fold.
+3. **Diátaxis Indexing**: The README acts as an index into the 4 Diátaxis quadrants:
+   - **Tutorials**: Links to Getting Started guides.
+   - **How-To**: Quickstart snippet directly in the README.
+   - **Reference**: Table of CLI options, configuration keys, or API links.
+   - **Explanation**: Architecture overview and Mermaid diagrams.
+4. **Anti-AI Tone**: Never use fluff (*"In an ever-evolving world"*, *"A comprehensive paradigm"*). Be direct: *"Fastify is a web framework focused on speed and low overhead"*.
+5. **Curated Badges & Theme Safety**: Keep badges under 6 (CI, Version, License). Ensure graphics render cleanly on both light and dark GitHub themes using `<picture>` or transparent SVGs.
+
+> For complete templates, archetypes (Libraries, CLIs, Fullstack Apps), and markdown patterns, see [`references/github-readme-engineering-guide.md`](./references/github-readme-engineering-guide.md).
+
+---
+
+## 🔍 6.1. Reviewing a documentation set
+
+Review documentation with **two independent lenses** and a mechanical check, then apply
+every finding:
+
+- **Structure and pattern** (the Diátaxis fit, the length of the front door, duplication,
+  facts that contradict the code). Verify each factual claim against the code: a count, a
+  default, a file name, a diagram's edges (compute the real imports instead of drawing
+  what you remember), a table that is missing rows.
+- **Language** (vague words that have a number elsewhere, stacked sentences, one term per
+  concept, one mood per list, abbreviations defined at first use). Ask for a glossary and
+  adopt it.
+- **A script checks what a person misses**: every relative link and anchor resolves, and
+  every repository path the text mentions exists. It found a link that broke when text
+  moved between files.
+- **A decision record reads as the current decision**, with one status vocabulary;
+  history lives in commits and pull requests. Move reference material (a format, a list
+  of pitfalls) out of the front door into its own file, and state each fact once and
+  link to it.
+- Add what a new contributor needs and no one wrote down: how a change is made here, and
+  how to add the common thing (a setting: schema, its classification, the build, the
+  control, the test, the table row).
+
+## 🔗 7. Integration with Other Skills
 
 - **Under [software-architect](../../../roles/software-architect/SKILL.md)**: Applies Diátaxis to ADRs (Architecture Decision Records) and uses the C4 Model to structure system views.
 - **Under [clean-code-reusability](../clean-code-reusability/SKILL.md)**: Ensures clarity and precision in inline documentation (docstrings, JSDoc, GoDoc) while avoiding obvious prolixity.
 - **Under [ui-ux-designer](../../../roles/ui-ux-designer/SKILL.md)**: Documents design tokens, design systems, and screen flows in a way both designers and engineers can understand.
 - **Under [frontend-developer](../../../roles/frontend-developer/SKILL.md)**: Documents component contracts and accessibility specifications (WCAG 2.2).
 
-> For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md).
+> For a complete Mermaid syntax guide, see [`references/mermaid_syntax_complete_guide.md`](./references/mermaid_syntax_complete_guide.md). For diagram examples, see [`examples/mermaid_diagram_samples.md`](./examples/mermaid_diagram_samples.md). For GitHub README engineering and templates, see [`references/github-readme-engineering-guide.md`](./references/github-readme-engineering-guide.md).
+
+## Format Selection for Editable Diagrams
+
+Keep lightweight inline Mermaid when it answers the reader's question. Use
+[editable diagram engineering](../../../mapping/editable-diagram-engineering/SKILL.md)
+when the task requires a persistent visual artifact, incremental editing or
+conversion between formats. Keep prose and document structure here rather than
+duplicating model-sync or editor-specific recipes. Provide a readable textual
+explanation and legend appropriate to the audience; the diagram's motion must
+not be the only carrier of meaning.

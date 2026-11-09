@@ -10,6 +10,19 @@ metadata:
 
 This skill guides the AI to assess predictive and generative models against adversarial manipulation, beyond the vision-only scope of a single CV skill.
 
+## ISO/IEC 27090:2026 Context
+
+Use ISO/IEC 27090:2026 as the broader lifecycle security context for AI-specific
+threats and compromises. For adversarial ML, connect training-data poisoning,
+model compromise or theft, inference-time attacks, their consequences, and
+detection or mitigation to the system's development and operation. Keep the
+attack taxonomy and robustness evidence in this skill; do not present this
+crosswalk as a clause-level or certification mapping. The standard complements
+conventional cybersecurity practices.
+
+The published edition and its public scope were resolved on 2026-10-19:
+[ISO/IEC 27090:2026](https://www.iso.org/standard/27090).
+
 ---
 
 ## 🧭 1. Attack Taxonomy (NIST AI 100-2)

@@ -52,7 +52,15 @@ instruction: >
 
   ### 3. Multi-Agent Frameworks (LangChain, AutoGen, CrewAI, Z.ai)
   Consume the structured specification in [`agent.json`](agent.json) or [`agent.yaml`](agent.yaml).
+
+  ## Conditional domain references
+
+  Consult the relevant skill only when its subject is in scope:
+
+  - Consult [PowerShell engineering](knowledge/skills/languages/lang-powershell/SKILL.md) when the task involves PowerShell.
 tools:
+  - type: skill_integration
+    path: ../../../../skills/languages/lang-powershell/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration

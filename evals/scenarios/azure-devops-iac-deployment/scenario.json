@@ -1,0 +1,22 @@
+{
+  "id": "azure-devops-iac-deployment",
+  "title": "Deploy infrastructure through a constrained Azure pipeline",
+  "harness": "opencode",
+  "prompt": "A team wants Azure Pipelines to deploy Bicep infrastructure to staging and production. Today, every pipeline can use a service connection with a stored client secret and broad subscription permissions. What should change before automating production deployments?",
+  "checks": [
+    { "kind": "regex", "value": "(?i)(Bicep|IaC|infrastructure as code).{0,100}(review|validate|what.if|plan|stage)|(review|validate|what.if|plan|stage).{0,100}(Bicep|IaC|infrastructure)" },
+    { "kind": "regex", "value": "(?i)(workload identity federation|federated credential|managed identity).{0,100}(service connection|pipeline|Azure)|(service connection|pipeline|Azure).{0,100}(workload identity federation|federated credential|managed identity)" },
+    { "kind": "regex", "value": "(?i)(least privilege|scope|resource group).{0,80}(permission|connection|subscription)|(permission|connection).{0,80}(least privilege|scope|resource group)" },
+    { "kind": "regex", "value": "(?i)(approval|check).{0,80}(production|environment)|(production|environment).{0,80}(approval|check)" },
+    { "kind": "not_contains", "value": "authorize all pipelines" },
+    { "kind": "not_contains", "value": "store the client secret in the YAML" }
+  ],
+  "rubric": [
+    "The response requires review and validation of infrastructure changes before deployment.",
+    "It recommends replacing stored long-lived credentials with Microsoft Entra workload identity federation or a supported managed identity option.",
+    "It scopes the service connection to the smallest required Azure scope and pipeline set.",
+    "It protects production with a separate environment and appropriate approval or resource checks.",
+    "No live Azure resource, credential or connection is modified."
+  ],
+  "acceptance": "The response outlines a reviewable, staged IaC deployment with short-lived identity, least privilege and production gates."
+}

@@ -1,0 +1,389 @@
+{
+  "cases": [
+    {
+      "skill": "art-deco",
+      "class": "deco-btn",
+      "appearance": "light",
+      "hover": true,
+      "ink": [
+        13,
+        14,
+        18,
+        255
+      ],
+      "background": [
+        212,
+        175,
+        55,
+        255
+      ],
+      "ratio": 9.17
+    },
+    {
+      "skill": "art-deco",
+      "class": "deco-btn",
+      "appearance": "dark",
+      "hover": true,
+      "ink": [
+        13,
+        14,
+        18,
+        255
+      ],
+      "background": [
+        212,
+        175,
+        55,
+        255
+      ],
+      "ratio": 9.17
+    },
+    {
+      "skill": "art-deco",
+      "class": "deco-card-title",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        13,
+        14,
+        18,
+        255
+      ],
+      "background": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "ratio": 19.29
+    },
+    {
+      "skill": "art-deco",
+      "class": "deco-card-title",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        212,
+        175,
+        55,
+        255
+      ],
+      "background": [
+        20,
+        23,
+        30,
+        255
+      ],
+      "ratio": 8.53
+    },
+    {
+      "skill": "bauhaus",
+      "class": "bauhaus-card-title",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        18,
+        18,
+        18,
+        255
+      ],
+      "background": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "ratio": 18.73
+    },
+    {
+      "skill": "bauhaus",
+      "class": "bauhaus-card-title",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        244,
+        238,
+        219,
+        255
+      ],
+      "background": [
+        30,
+        30,
+        30,
+        255
+      ],
+      "ratio": 14.37
+    },
+    {
+      "skill": "bauhaus",
+      "class": "bauhaus-btn",
+      "appearance": "light",
+      "hover": true,
+      "ink": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "background": [
+        215,
+        38,
+        30,
+        255
+      ],
+      "ratio": 5.02
+    },
+    {
+      "skill": "bauhaus",
+      "class": "bauhaus-btn",
+      "appearance": "dark",
+      "hover": true,
+      "ink": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "background": [
+        215,
+        38,
+        30,
+        255
+      ],
+      "ratio": 5.02
+    },
+    {
+      "skill": "flat-design",
+      "class": "flat-banner-badge",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        44,
+        62,
+        80,
+        255
+      ],
+      "background": [
+        26,
+        188,
+        156,
+        255
+      ],
+      "ratio": 4.56
+    },
+    {
+      "skill": "flat-design",
+      "class": "flat-banner-badge",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        44,
+        62,
+        80,
+        255
+      ],
+      "background": [
+        26,
+        188,
+        156,
+        255
+      ],
+      "ratio": 4.56
+    },
+    {
+      "skill": "pop-art-halftone",
+      "class": "pop-btn pop-btn-cyan",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        17,
+        17,
+        17,
+        255
+      ],
+      "background": [
+        0,
+        174,
+        239,
+        255
+      ],
+      "ratio": 7.46
+    },
+    {
+      "skill": "pop-art-halftone",
+      "class": "pop-btn pop-btn-cyan",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        17,
+        17,
+        17,
+        255
+      ],
+      "background": [
+        0,
+        174,
+        239,
+        255
+      ],
+      "ratio": 7.46
+    },
+    {
+      "skill": "calm-quiet-ui",
+      "class": "calm-btn",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "background": [
+        88,
+        124,
+        95,
+        255
+      ],
+      "ratio": 4.71
+    },
+    {
+      "skill": "calm-quiet-ui",
+      "class": "calm-btn",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        24,
+        37,
+        28,
+        255
+      ],
+      "background": [
+        116,
+        167,
+        126,
+        255
+      ],
+      "ratio": 5.73
+    },
+    {
+      "skill": "nordic",
+      "class": "nordic-label",
+      "appearance": "light",
+      "hover": false,
+      "ink": [
+        216,
+        222,
+        233,
+        255
+      ],
+      "background": [
+        46,
+        52,
+        64,
+        255
+      ],
+      "ratio": 9.25
+    },
+    {
+      "skill": "nordic",
+      "class": "nordic-label",
+      "appearance": "dark",
+      "hover": false,
+      "ink": [
+        216,
+        222,
+        233,
+        255
+      ],
+      "background": [
+        46,
+        52,
+        64,
+        255
+      ],
+      "ratio": 9.25
+    },
+    {
+      "skill": "nordic",
+      "class": "nordic-btn-primary",
+      "appearance": "light",
+      "hover": true,
+      "ink": [
+        46,
+        52,
+        64,
+        255
+      ],
+      "background": [
+        129,
+        161,
+        193,
+        255
+      ],
+      "ratio": 4.64
+    },
+    {
+      "skill": "nordic",
+      "class": "nordic-btn-primary",
+      "appearance": "dark",
+      "hover": true,
+      "ink": [
+        46,
+        52,
+        64,
+        255
+      ],
+      "background": [
+        129,
+        161,
+        193,
+        255
+      ],
+      "ratio": 4.64
+    },
+    {
+      "skill": "frutiger-aero",
+      "class": "aero-label",
+      "appearance": "light",
+      "hover": true,
+      "ink": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "background": [
+        0,
+        37,
+        68,
+        255
+      ],
+      "ratio": 15.58
+    },
+    {
+      "skill": "frutiger-aero",
+      "class": "aero-label",
+      "appearance": "dark",
+      "hover": true,
+      "ink": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "background": [
+        0,
+        37,
+        68,
+        255
+      ],
+      "ratio": 15.58
+    }
+  ],
+  "limitations": [
+    "Targeted component source recipes only; not full style pages.",
+    "Opaque fill/ink pairs after hover; no exhaustive texture, gradient, opacity or focus conformance.",
+    "No cross-engine or assistive technology validation."
+  ]
+}

@@ -42,6 +42,7 @@ Background layers move slower than foreground, creating 2.5D depth purely throug
 - Legacy: scroll listeners writing `transform: translate3d()` inside `requestAnimationFrame`; jQuery+GSAP timelines (ScrollMagic); Keith Clark's pure-CSS 3D approach with `perspective` + `translateZ` (2014).
 - `background-attachment: fixed` is unreliable on mobile Safari.
 - Modern native successor: CSS scroll-driven animations (`animation-timeline`); accessibility gate: `@media (prefers-reduced-motion: reduce)`.
+- Implementation mechanics (named `view()` timelines, the transform + rAF fallback, support matrix): [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 
 ---
 
@@ -79,4 +80,7 @@ Background layers move slower than foreground, creating 2.5D depth purely throug
 
 ## 🔗 Integration with Other Skills
 
-- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md), [ui-style-one-page-long-scroll](../ui-style-one-page-long-scroll/SKILL.md).
+- Sibling styles: [ui-style-scrollytelling](../ui-style-scrollytelling/SKILL.md).
+## Appearance and Interaction Verification
+
+Declare which parallax layers belong to scroll owner versus viewport/content, recompute coverage at resize and narrative end, and supply complete static reading flow before optional depth motion; keep historical scroll-jacking separate from recommended behavior.

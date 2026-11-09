@@ -6,7 +6,7 @@ This guide synthesizes the advanced theory of test-suite evaluation, software re
 
 ## 1. Fundamentals of Mutation Testing
 
-Mutation testing evaluates the real effectiveness of a test suite by injecting deliberate syntactic changes (mutations) into the source code to check whether the existing tests can detect (kill) those anomalies.
+Mutation testing probes the fault-detection capability of a test suite by injecting deliberate syntactic changes (mutations) into the source code to check whether the existing tests can detect (kill) those anomalies.
 
 ### 1.1. Fundamental Theoretical Premises
 1. **Competent Programmer Hypothesis**:
@@ -28,16 +28,16 @@ A mutation operator is a grammatical code-transformation rule.
 | **ROR** | Relational Operator Replacement | Replaces relational operators | `if (x >= limit)` | `if (x > limit)` or `if (x == limit)` |
 | **COR** | Conditional Operator Replacement | Changes boolean operators | `if (a && b)` | `if (a || b)` |
 | **LCR** | Logical Connector Replacement | Inverts boolean values / bits | `flag = !ready;` | `flag = ready;` |
-| **SDL** | Statement Deletion | Deletes an executable statement | `calculate_discount();` | `/* removido */` |
+| **SDL** | Statement Deletion | Deletes an executable statement | `calculate_discount();` | `/* removed */` |
 | **UOI** | Unary Operator Insertion | Inserts unary operators | `return value;` | `return -value;` or `return ++value;` |
 
 ### 2.2. Mutant Classification
 - **Killed Mutant**: A test case in suite $T$ failed when running the mutant (behavior diverged from the original program).
-- **Live/Surviving Mutant**: The entire test suite passed successfully on the mutant (indicates a gap or weakness in the test assertions).
+- **Live/Surviving Mutant**: The test suite passed on the mutant; investigate coverage, relevance, equivalence and assertions before classifying it.
 - **Equivalent Mutant**: The mutant changed the syntax but preserves exactly the same functional semantics as the original (e.g., `i++` vs `++i` in an isolated loop). Determining equivalent mutants automatically is undecidable (Turing's halting problem).
 
 ### 2.3. Calculating the Mutation Score
-The Mutation Score $MS(T, P)$ measures test sufficiency:
+The Mutation Score $MS(T, P)$ summarizes detected mutations under the selected tool and classification; it does not prove sufficiency:
 
 $$MS(T, P) = \frac{K}{M - E} \times 100\%$$
 
@@ -45,6 +45,8 @@ Where:
 - $K$ = Number of killed mutants.
 - $M$ = Total number of mutants generated.
 - $E$ = Number of identified equivalent mutants.
+
+Report uncovered mutants and distinguish assertion kills from timeouts, crashes and execution errors. Document the tool, denominator and exclusions. See [test-suite audit](test-suite-audit.md).
 
 ---
 
@@ -90,4 +92,4 @@ If $f(x)$ computes a function under input $x$, we derive a transformed input $x'
 3. **Cryptographic Functions / Hashes**:
    - *Base input*: Message $M_1$.
    - *Metamorphic input*: Message $M_2 = M_1 \text{ with 1 bit flipped}$.
-   - *Relation (Avalanche Effect)*: $\text{HammingDistance}(Hash(M_1), Hash(M_2)) \approx \frac{\text{Tamanho do Hash}}{2}$.
+   - *Relation (Avalanche Effect)*: $\text{HammingDistance}(Hash(M_1), Hash(M_2)) \approx \frac{\text{Hash Bit Length}}{2}$.
