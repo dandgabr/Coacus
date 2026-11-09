@@ -3380,7 +3380,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:ea7ed551f5fce35c644ec16346b15e2f28b7e202f3b8ba378f8f2188e258c875"
+      "digest": "sha256:00c2b3240510b788312938c147f12c7277195a1c22d340b3792ac1c09b7696ab"
     },
     {
       "name": "using-git-worktrees",

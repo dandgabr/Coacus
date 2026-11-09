@@ -83,7 +83,7 @@ cloud:
   enable: true
   backend_url: "http://openrasp-cloud.empresa.local:8086"
   app_id: "a1b2c3d4e5f6g7h8i9j0"
-  app_secret: "secret-token-generated-in-the-panel"
+  app_secret: "<app-secret>"
   heartbeat_interval: 180
 
 # Protection modes (true = Active Blocking, false = Log Only)

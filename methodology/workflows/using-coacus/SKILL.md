@@ -86,6 +86,29 @@ substitute ungoverned work. Respect the user's inline-work instructions and obta
 required human approvals before approval-gated actions. Handoffs use compact TOON
 payloads. The subagent stop above remains in force.
 
+## Autonomous execution loop — no premature completion
+
+Never stop midway or yield the turn with open tasks, partial diagnoses, or unverified assumptions. When you uncover a diagnostic clue, an unexpected error, or a pending step, you MUST NOT ask the user to execute manual actions (e.g. "restart your session", "run command X manually", or "the next step is to investigate Y") when you possess the tools (`shell`, `read`, `edit`, `write`) to execute those actions yourself. Continue the autonomous loop in the same turn: investigate -> isolate root cause -> implement fix -> test -> verify with evidence -> review.
+
+Stopping mid-task to defer work to the human without an insurmountable blocker is classified as premature completion (sloth) and is strictly forbidden.
+
+## Mandatory review and self-correction gate
+
+Before claiming any task is complete or presenting final results:
+1. **Verification evidence:** Execute concrete test or validation commands and attach their raw output (`exit code 0`). No verbal assertions of success without fresh evidence (`verification-before-completion`).
+2. **Independent peer review:** When permitted by governance and governor capacity, dispatch an independent specialist subagent (`qa-testing-specialist` or `project-reviewer`) with a clean context to review code diffs, root-cause fixes, and acceptance criteria.
+3. **Self-correction loop:** If the reviewer finds defects, regressions, or unaddressed edge cases, automatically enter a repair cycle (up to 5 rounds) to fix the issues and re-verify before finalizing the turn. Do not present broken or unreviewed work to the user.
+
+## Honest human escalation
+
+You may only pause the autonomous loop and request human intervention under four strict conditions:
+1. **Irreversible or destructive operations:** Actions that destroy persistent data, drop databases, or overwrite external environments without rollback capability.
+2. **Missing external credentials or physical authorization:** Actions strictly requiring sudo passwords, 2FA codes, or external API keys not present in the environment or keyring.
+3. **Irreconcilable business ambiguity:** Contradictory product requirements where multiple mutually exclusive designs exist and no authoritative specification settles the conflict.
+4. **Exhaustion of viable technical hypotheses:** At least 3 distinct, documented hypotheses have been tested, proven ineffective with concrete log/error output, and no further automated paths exist without violating premises.
+
+When escalating: NEVER invent, hallucinate, or lie about progress. Clearly state the exact hypotheses tested, the specific command outputs that failed, and the precise, minimal decision or secret needed from the human.
+
 ## Verification — measure, do not infer
 
 When asked whether something is installed, loaded or working, run the command

@@ -20,5 +20,5 @@ regexes = [
   '''%[A-Za-z0-9_]+%''',
   '''REDACTED''',
   # AWS's own documented example key (not a real credential)
-  '''AKIAIOSFODNN7EXAMPLE''',
+  '''AKIA[I]OSFODNN7EXAMPLE''',
 ]

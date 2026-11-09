@@ -125,7 +125,7 @@ def test_payment_with_patch(mocker):
         mock_post.return_value.json.return_value = {"status": "PAID", "tx_id": "tx-123"}
         
         processor = PaymentProcessor()
-        tx = processor.charge(amount=150.0, token="card_tok_abc")
+        tx = processor.charge(amount=150.0, token="<card-token>")
         
         mock_post.assert_called_once()
         assert tx.status == "PAID"

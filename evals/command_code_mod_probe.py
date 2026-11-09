@@ -77,7 +77,7 @@ def main() -> int:
             "models": {"probe-model": {"contextWindow": 32768}}}}}), encoding="utf-8")
         env = {key: os.environ[key] for key in ("PATH", "SYSTEMROOT", "WINDIR") if key in os.environ}
         env.update(HOME=str(home), USERPROFILE=str(home), TMPDIR=str(root), TEMP=str(root), TMP=str(root),
-                   CMD_LOCAL_ONLY="1", DO_NOT_TRACK="1", COMMAND_CODE_API_KEY="synthetic-probe-key")
+                   CMD_LOCAL_ONLY="1", DO_NOT_TRACK="1", COMMAND_CODE_API_KEY="<synthetic-probe-key>")
         failed = False
         try:
             for variant in ("block", "throw"):

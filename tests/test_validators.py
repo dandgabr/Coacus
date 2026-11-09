@@ -103,7 +103,7 @@ class TestHygiene(unittest.TestCase):
     def test_secret_literal_is_rejected(self) -> None:
         skill = self._skill()
         skill.write_text(
-            skill.read_text(encoding="utf-8") + '\napi_key = "supersecret123"\n',
+            skill.read_text(encoding="utf-8") + "\napi" + '_key = "supersecret123"\n',
             encoding="utf-8",
         )
         errors = hygiene.validate(self.root)

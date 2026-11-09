@@ -5967,7 +5967,7 @@
       "source_path": "skills/framework/framework-testing-python/SKILL.md",
       "source_sha256": "4930fd78e9c9b731029e07095f2079892fbde9e8388af762d6f9d20fe592974d",
       "target_path": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "target_sha256": "4ac6f9db299567b0a33847360e9eff59c648ac47246ff1e9aa7e5f0af46d3f6d",
+      "target_sha256": "a9d85ee850c40e402e8cb3952b5561e8ccb3a3aac652d1143e255b1cd04bf6dc",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -15148,7 +15148,7 @@
       "source_path": "skills/programs/program-openrasp/SKILL.md",
       "source_sha256": "e1770f1fb9d257aba8eaa2d5ab47ffb08ac7295112143fff5e90a0d0e38ebed8",
       "target_path": "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
-      "target_sha256": "40f9b830b89530f1cd9c172735f845963dbc4bded1e59a1b9e62ee2075979407",
+      "target_sha256": "20f13cf64bcc5385e562d2a697f7e3858049f43449923a082db381de4d76a0b0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17725,9 +17725,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "702464cac25a1e5724990d3ddff5d05e75d73cbbe95ac8c80912efbb50b43d8d",
+      "source_sha256": "11c2e5c0b9ddf2e084b23e9cce79653816b3b05f4916077fd0d5e36c2d813a54",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "702464cac25a1e5724990d3ddff5d05e75d73cbbe95ac8c80912efbb50b43d8d",
+      "target_sha256": "11c2e5c0b9ddf2e084b23e9cce79653816b3b05f4916077fd0d5e36c2d813a54",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
