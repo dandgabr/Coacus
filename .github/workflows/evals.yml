@@ -6,6 +6,11 @@ name: evals
 # manual static check so scenario drift is caught outside PRs.
 on:
   workflow_dispatch:
+    inputs:
+      runner:
+        description: "Runner to use (e.g. ubuntu-latest, self-hosted)"
+        required: false
+        default: ""
   schedule:
     - cron: '17 6 * * 1'
 
@@ -15,7 +20,7 @@ permissions:
 jobs:
   static:
     name: evals-static
-    runs-on: [self-hosted, linux, arm64]
+    runs-on: ${{ inputs.runner || vars.CI_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
