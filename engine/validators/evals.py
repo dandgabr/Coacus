@@ -104,6 +104,9 @@ def validate(root: Path) -> list[str]:
             elif harness not in harnesses:
                 errors.append(f"{rel}: unknown harness {harness!r}")
 
+        if "judge_required" in data and type(data["judge_required"]) is not bool:
+            errors.append(f"{rel}: 'judge_required' must be a boolean")
+
         checks = data.get("checks", [])
         if not isinstance(checks, list) or not checks:
             errors.append(f"{rel}: 'checks' must be a non-empty list")

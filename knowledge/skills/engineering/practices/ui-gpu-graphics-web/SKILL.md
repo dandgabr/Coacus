@@ -157,6 +157,7 @@ When rendering technical schematics or mechanical apparatus on the GPU:
    - Mark decorative or visual-only canvases with `aria-hidden="true"`.
    - For interactive canvases (e.g., charts or diagrams), provide an accessible HTML fallback (such as an off-screen semantic `<table>` or interactive list) reflecting the canvas state.
 3. **Prefers-Reduced-Motion:** When `@media (prefers-reduced-motion: reduce)` is active, freeze continuous camera rotation, disable particle velocity, and display a tranquil static frame. Pause controls for auto-playing loops and the reduced-motion house policy follow the canonical [web accessibility](../web-accessibility-wcag/SKILL.md) skill.
+4. **Rendered effects and meaning:** For GPU-rendered glyphs, caustics or point clouds, provide a static fallback when graphics are unavailable or motion is reduced. Keep meaningful text in semantic HTML; for informative point clouds provide an equivalent summary or data table. Decorative layers can be hidden from assistive technology. If an effect only communicates a state change, render on that change rather than running a continuous loop; retain the requested effect where continuous motion is essential and provide user controls.
 
 ---
 

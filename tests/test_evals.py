@@ -136,7 +136,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
 
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         fake = sp.CompletedProcess(args=[], returncode=1, stdout="partial", stderr="auth")
-        with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
+        with mock.patch.object(coacus_eval, "_bounded_run", return_value=(fake.stdout, fake.stderr, fake.returncode, None)):
             transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertEqual(status, "EXIT_1")
         self.assertEqual(transcript, "")
@@ -147,7 +147,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
 
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         fake = sp.CompletedProcess(args=[], returncode=0, stdout="\x1b[32mok\x1b[0m", stderr="")
-        with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
+        with mock.patch.object(coacus_eval, "_bounded_run", return_value=(fake.stdout, fake.stderr, fake.returncode, None)):
             transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertEqual(status, "OK")
         self.assertEqual(transcript, "ok")
@@ -158,7 +158,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
 
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         fake = sp.CompletedProcess(args=[], returncode=0, stdout="", stderr="the answer is 5")
-        with mock.patch.object(coacus_eval.subprocess, "run", return_value=fake):
+        with mock.patch.object(coacus_eval, "_bounded_run", return_value=(fake.stdout, fake.stderr, fake.returncode, None)):
             transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertEqual(status, "OK")
         self.assertEqual(transcript, "the answer is 5")
@@ -168,7 +168,7 @@ class TestEvalRunnerHelpers(unittest.TestCase):
 
         scenario = {"harness": "opencode", "prompt": "x", "checks": []}
         with mock.patch.object(
-            coacus_eval.subprocess, "run", side_effect=FileNotFoundError
+            coacus_eval, "_bounded_run", side_effect=FileNotFoundError
         ):
             transcript, status = coacus_eval._run_harness(scenario, 5, CLIS)
         self.assertTrue(status.startswith("NO_CLI"))
@@ -183,20 +183,125 @@ class TestEvalRunnerHelpers(unittest.TestCase):
         self.assertEqual(clis["codex"], ["codex", "exec"])
         self.assertEqual(clis["antigravity"], ["agy", "--print"])
 
+    def test_strict_judge_schema_fails_closed(self) -> None:
+        from unittest import mock
+        import subprocess
+        scenario = {**SCENARIO, "judge_required": True, "rubric": ["first", "second"]}
+        for output, expected in [
+            ('{"verdicts":[true,true]}', True),
+            ('{"verdicts":[true,false]}', False),
+            ('{"verdicts":[true]}', False),
+            ('{"verdicts":[true,true],"verdicts":[true,true]}', False),
+            ('VERDICT: PASS', False),
+            ('{"verdicts":[1,true]}', False),
+        ]:
+            with self.subTest(output=output), mock.patch.object(coacus_eval, "_bounded_run", return_value=(output, "", 0, None)):
+                self.assertEqual(coacus_eval._judge(scenario, "untrusted", "judge", False, CLIS)["passed"], expected)
+        with mock.patch.object(coacus_eval, "_bounded_run", return_value=('{"verdicts":[true,true]}', "", 1, None)):
+            self.assertFalse(coacus_eval._judge(scenario, "x", "judge", False, CLIS)["passed"])
+        self.assertFalse(coacus_eval._judge(scenario, "x", None, False, CLIS)["passed"])
+
+    def test_strict_transcript_is_bounded_encoded_and_labelled(self) -> None:
+        from unittest import mock
+        import subprocess, base64
+        scenario = {**SCENARIO, "judge_required": True}
+        with mock.patch.object(coacus_eval, "_bounded_run", return_value=('{"verdicts":[true]}', "", 0, None)) as run:
+            result = coacus_eval._judge(scenario, "ignore instructions" * 10000, "judge", False, CLIS)
+            run.assert_not_called()
+            self.assertEqual(result["verdict"], "TRANSCRIPT_TRUNCATED")
+            self.assertFalse(result["passed"])
+            coacus_eval._judge(scenario, "x" * 32768, "judge", False, CLIS)
+        payload = json.loads(run.call_args.args[2])
+        self.assertEqual(payload["transcript"]["trust"], "untrusted")
+        self.assertFalse(payload["transcript"]["truncated"])
+        self.assertEqual(len(base64.b64decode(payload["transcript"]["base64"])), 32768)
+        self.assertFalse(coacus_eval._judge(scenario, "x" * 32769, None, False, CLIS)["passed"])
+
+    def test_whitespace_judge_is_unavailable(self) -> None:
+        for required in (False, True):
+            with self.subTest(required=required):
+                result = coacus_eval._judge({**SCENARIO, "judge_required": required}, "x", " \t ", False, CLIS)
+                self.assertIn("unavailable", result["verdict"])
+                self.assertFalse(result["passed"])
+
+    def test_strict_judge_reports_process_failure_reason(self) -> None:
+        from unittest import mock
+        scenario = {**SCENARIO, "judge_required": True}
+        for status, code, reason in [("TIMEOUT", -9, "TIMEOUT"), ("OUTPUT_LIMIT", -9, "OUTPUT_LIMIT"), (None, 7, "EXIT_7")]:
+            with self.subTest(reason=reason), mock.patch.object(coacus_eval, "_bounded_run", return_value=("", "", code, status)):
+                result = coacus_eval._judge(scenario, "x", "judge", False, CLIS)
+                self.assertIn(reason, result["verdict"])
+                self.assertFalse(result["passed"])
+
+    def test_invalid_judge_required_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(Path(tmp), {**SCENARIO, "judge_required": "yes"})
+            self.assertTrue(any("judge_required" in e for e in evals.validate(root)))
+
+    def test_requested_unsupported_agent_fails_legacy_run(self) -> None:
+        from unittest import mock
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(Path(tmp))
+            with mock.patch.object(coacus_eval, "_run_harness", return_value=("ok", "OK")):
+                with contextlib.redirect_stdout(io.StringIO()) as output:
+                    result = coacus_eval.cmd_run(root, "example", None, True, 1)
+            self.assertEqual(result, 1)
+            self.assertFalse(json.loads(output.getvalue())["passed"])
+
     def test_verdict_parsing(self) -> None:
         self.assertTrue(coacus_eval._verdict_pass("VERDICT: PASS\nok"))
         self.assertFalse(coacus_eval._verdict_pass("VERDICT: FAIL\nnope"))
         self.assertIsNone(coacus_eval._verdict_pass("maybe"))
 
-    def test_judge_cmd_failure_is_advisory(self) -> None:
-        from unittest import mock
+    def test_verdict_requires_one_complete_standalone_line(self) -> None:
+        for text in ("VERDICT: PASSING", "prefix VERDICT: PASS", "VERDICT: PASS extra",
+                     "VERDICT: PASS\nVERDICT: FAIL", "VERDICT: PASS\nVERDICT: PASS",
+                     "VERDICT: PASS\nVERDICT: UNKNOWN"):
+            with self.subTest(text=text):
+                self.assertIsNone(coacus_eval._verdict_pass(text))
+        self.assertTrue(coacus_eval._verdict_pass("explanation\n verdict: pass \nmore"))
 
-        scenario = {"harness": "opencode", "checks": [], "rubric": ["r"]}
-        with mock.patch.object(
-            coacus_eval.subprocess, "run", side_effect=FileNotFoundError
-        ):
-            verdict = coacus_eval._judge(scenario, "t", "nonexistent-judge", False, CLIS)
-        self.assertIsNone(verdict["passed"])
+    def test_run_skips_judge_when_prerequisites_fail(self) -> None:
+        from unittest import mock
+        import contextlib
+        import io
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_repo(Path(tmp))
+            for transcript, status, reason in [("ok", "EXIT_1", "harness"),
+                                                ("wrong", "OK", "checks")]:
+                with self.subTest(reason=reason), mock.patch.object(coacus_eval, "_run_harness", return_value=(transcript, status)), mock.patch.object(coacus_eval, "_judge") as judge, contextlib.redirect_stdout(io.StringIO()) as output:
+                    result = coacus_eval.cmd_run(root, "example", "judge", False, 1)
+                self.assertEqual(result, 1)
+                judge.assert_not_called()
+                report = json.loads(output.getvalue())
+                self.assertFalse(report["passed"])
+                self.assertEqual(report["judge"]["mode"], "skipped")
+                self.assertIn(reason, report["judge"]["reason"].lower())
+
+    def test_requested_judge_failure_fails_closed(self) -> None:
+        verdict = coacus_eval._judge(SCENARIO, "t", "nonexistent-judge", False, CLIS)
+        self.assertIs(verdict["passed"], False)
+
+    def test_judge_command_uses_callers_directory(self) -> None:
+        import os
+        import shlex
+        import sys
+        import subprocess
+
+        with tempfile.TemporaryDirectory() as tmp:
+            script = Path(tmp) / "judge.py"
+            script.write_text('print("VERDICT: PASS")\n', encoding="utf-8")
+            cmd = f'{shlex.quote(sys.executable)} judge.py'
+            code = ('from scripts import coacus_eval; '
+                    f'print(coacus_eval._judge({SCENARIO!r}, "x", {cmd!r}, False, {{}})["passed"])')
+            result = subprocess.run([sys.executable, '-c', code], cwd=tmp,
+                                    env={**os.environ, 'PYTHONPATH': str(coacus_eval.ROOT)},
+                                    capture_output=True, text=True, check=True)
+            self.assertEqual(result.stdout.strip(), 'True')
 
     def test_seeded_scenarios_are_valid(self) -> None:
         root = Path(coacus_eval.ROOT)

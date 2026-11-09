@@ -10,6 +10,10 @@ Record the source, capture date, viewport or owner-container dimensions, theme, 
 - **Inferred:** a probable grid, font category or implementation technique, with the evidence supporting it.
 - **Unknown:** unobserved breakpoints, keyboard behavior, exact fonts, animation curves or implementation technology.
 
+Inventory imagery, copy, proof and controls actually present or absent in the inspected view. Absence applies only to that view and state; uninspected sections and states remain unknown. Do not invent missing assets, claims or endorsements to complete a template.
+
+Separate **material** (type, color, imagery, texture and surface treatment) from **composition** (hierarchy, placement, proportions, grouping and flow). Decide independently what to reuse or adapt from each; similar materials do not establish a matching composition.
+
 A screenshot cannot establish hover behavior, a font identity or which rendering library produced an effect. A sampled composite pixel is not necessarily the original color token. Do not fill missing fields with invented precision. If a source is unavailable, report the gap and use an explicitly proposed decision.
 
 For each meaningful transfer, record the observation, product reason, existing token/component, and decision: reuse, adapt or author. Preserve existing semantics rather than introducing a second token merely because a reference uses a different value. General tokens belong to [UI design](../../../../roles/ui-designer/SKILL.md); color roles belong to [color UI systems](../../../../domains/design/color-ui-systems/SKILL.md). `DESIGN.md` remains the visual authority; an optional JSON extraction is analysis evidence, not another design system.
