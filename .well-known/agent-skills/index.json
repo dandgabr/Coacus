@@ -1329,7 +1329,7 @@
       "description": "Acts as a Specialist in Automated Testing and QA Engineering in Python, covering the Pytest ecosystem and the native Unittest framework. Masters modular Fixtures, conftest.py, formal parameterization (BVA/Equivalence Partitioning), subTests, Property-Based Testing (Hypothesis), Mocks (unittest.mock, @patch, MagicMock, pytest-mock), Mutation Testing (mutmut), asynchronous tests (pytest-asyncio), and coverage analysis (pytest-cov).",
       "type": "archive",
       "url": "knowledge/skills/frameworks/framework-testing-python/SKILL.md",
-      "digest": "sha256:6a4cef40ba85811c2e81a2c8f280bb67d237ae21fca9feb31b068cc4f286917b"
+      "digest": "sha256:dd692c9f43a008fd46c8299ab931f0ff361cd50ca2f9e408b7c2cbfa4bcac34f"
     },
     {
       "name": "framework-vue",
@@ -2281,7 +2281,7 @@
       "description": "Provides definitive guidance and engineering standards for Baidu OpenRASP (github.com/baidu/openrasp), covering the open-source Runtime Application Self-Protection (RASP) framework, Java and PHP agent installation, the OpenRASP Cloud panel, JavaScript (V8 engine) detection plugin development, SQLi, RCE, SSRF, and deserialization interception, and SOC/SIEM integration.",
       "type": "archive",
       "url": "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
-      "digest": "sha256:2aa268cc595fb7592f715678ce615fac032b142f47341568bb04246131d0423b"
+      "digest": "sha256:7313664de93e1009fcb092b82de9e911272c7a08ca058824d6bf506c3c90a90e"
     },
     {
       "name": "program-owasp-dependency-check",
