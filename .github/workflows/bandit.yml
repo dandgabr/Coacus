@@ -39,6 +39,6 @@ jobs:
         run: |
           bandit -f sarif -o results.sarif -r . --exit-zero -s B404,B603,B607
       - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@6bb034426ac73a9b003f1a51cd003d45048a62bd # v3
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
