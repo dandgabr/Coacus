@@ -54,12 +54,15 @@ def is_internal(meta: dict) -> bool:
 def _skill_files(skill_dir: Path) -> list[Path]:
     """The files that belong to a skill, in a stable order, without tool leftovers."""
     return sorted(
-        p
-        for p in skill_dir.rglob("*")
-        if p.is_file()
-        and p.name not in _IGNORED_NAMES
-        and p.suffix != ".pyc"
-        and not any(part in _IGNORED_PARTS for part in p.relative_to(skill_dir).parts)
+        (
+            p
+            for p in skill_dir.rglob("*")
+            if p.is_file()
+            and p.name not in _IGNORED_NAMES
+            and p.suffix != ".pyc"
+            and not any(part in _IGNORED_PARTS for part in p.relative_to(skill_dir).parts)
+        ),
+        key=lambda p: p.relative_to(skill_dir).as_posix(),
     )
 
 

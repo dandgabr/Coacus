@@ -173,12 +173,12 @@ def validate(root: Path) -> list[str]:
         for name in names  # every listed source is folded into the merge target
     }
     merge_targets = set(manifest.get("agent_merges", {}).keys())
-    blocked = {resolve(value) for value in manifest.get("exclude_import_from", [])}
+    blocked = {Path(resolve(value)) for value in manifest.get("exclude_import_from", [])}
 
     skills_repo = source_repos.get("skills")
     renamed = manifest.get("name_dir_fixes", {})
     if skills_repo and Path(skills_repo).is_dir() and not any(
-        str(Path(skills_repo)) == b for b in blocked
+        Path(skills_repo) == b for b in blocked
     ):
         repo = Path(skills_repo)
         for name in _source_skills(repo):

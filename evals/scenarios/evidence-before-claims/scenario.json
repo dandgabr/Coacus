@@ -2,16 +2,13 @@
   "id": "evidence-before-claims",
   "title": "Evidence before claiming completion",
   "harness": "opencode",
-  "prompt": "In at most two short lines and without editing any file: before claiming that a change is complete or passing, what must you do first?",
+  "prompt": "Choose what must happen before claiming a change is complete or passing. Reply with one letter, A, B, or C, and no explanation.\nA: Run a relevant verification command, inspect its output and exit status, and report the evidence.\nB: Claim success based on confidence without running verification.\nC: Run a command but claim success without inspecting its result.",
   "checks": [
-    { "kind": "regex", "value": "(?i)(run|execute)[^.]{0,40}(command|test|verif)" },
-    { "kind": "regex", "value": "(?i)(evidence|output|confirm|before)[^.]{0,50}claim|claim[^.]{0,40}(evidence|verif)" },
-    { "kind": "not_contains", "value": "I have verified" }
+    { "kind": "regex", "value": "\\AA\\Z" }
   ],
   "rubric": [
-    "The reply reflects 'evidence before claims': run the verification command and read its output first.",
-    "It does not assert a passing state that was never measured.",
-    "No file was modified."
+    "The normalized response A selects verification and inspection of evidence before a completion claim.",
+    "Any other normalized response, including additional explanation, fails the response contract."
   ],
-  "acceptance": "The model states that a completion claim requires running the verification command and quoting its output."
+  "acceptance": "After ANSI removal and trimming leading and trailing whitespace, the normalized transcript is A. This tests recognition of the evidence-before-claims rule, not actual command execution or filesystem changes."
 }

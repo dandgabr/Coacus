@@ -16,8 +16,14 @@ python3 scripts/coacus_eval.py validate
 
 Live runs are opt-in and execute a real harness CLI. They require the selected
 harness and any credentials it needs, so they run locally rather than in CI.
-Live process execution is supported only on POSIX; on Windows it fails closed
-with `UNSUPPORTED_PLATFORM`. Static validation remains available on Windows.
+Live process execution supports POSIX and Windows. On Windows, the runner uses
+a job object for process cleanup. Batch wrappers, including the npm OpenCode
+shim, reject unsafe arguments with `UNSAFE_CLI_ARGUMENT`. For arbitrary prompts,
+set `COACUS_EVAL_OPENCODE_EXE` to the absolute path of an operator-verified native
+OpenCode `.exe`; this explicitly replaces only the OpenCode command executable.
+The runner never automatically substitutes an adjacent executable. Treat this
+path as trusted code: the runner does not verify the executable's provenance.
+Other platforms fail closed with `UNSUPPORTED_PLATFORM`.
 Examples of live runs:
 
 ```bash
@@ -87,5 +93,5 @@ object `{"verdicts": [true, false]}` with exactly one boolean per rubric item,
 in order, without extra or duplicate keys. All verdicts must be true to pass.
 Truncation, invalid output, command failure or an unavailable judge fails a
 required scenario. Commands have a 600-second deadline and a 1 MiB limit per
-output stream. Process-group cleanup cannot contain deliberately detached
-processes and is not an OS sandbox.
+output stream. POSIX process-group cleanup cannot contain deliberately detached
+processes. Process cleanup is not an OS sandbox on either platform.

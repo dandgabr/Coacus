@@ -32,12 +32,15 @@ from __future__ import annotations
 
 import argparse
 import base64
+import ctypes
 import os
 import json
 import math
+import ntpath
 import signal
 import re
 import shlex
+import shutil
 import subprocess
 import sys
 import threading
@@ -74,7 +77,13 @@ def _live_clis(root: Path) -> dict[str, list[str]]:
                 isinstance(part, str) and part for part in cli
             ):
                 clis[name] = cli
-    return clis or dict(HARNESS_CLI)
+    clis = clis or dict(HARNESS_CLI)
+    native = os.environ.get('COACUS_EVAL_OPENCODE_EXE')
+    if native and os.name == 'nt' and 'opencode' in clis:
+        if not ntpath.isabs(native) or not native.lower().endswith('.exe'):
+            raise ValueError('COACUS_EVAL_OPENCODE_EXE must be an absolute .exe path')
+        clis['opencode'] = [native, *clis['opencode'][1:]]
+    return clis
 
 
 def _redact(text: str) -> str:
@@ -115,18 +124,125 @@ def _apply_checks(scenario: dict, transcript: str) -> list[dict]:
     return results
 
 
+class _JobAccounting(ctypes.Structure):
+    _fields_ = [(name, ctypes.c_int64) for name in (
+        'TotalUserTime', 'TotalKernelTime', 'ThisPeriodTotalUserTime', 'ThisPeriodTotalKernelTime')]
+    _fields_ += [(name, ctypes.c_uint32) for name in (
+        'TotalPageFaultCount', 'TotalProcesses', 'ActiveProcesses', 'TotalTerminatedProcesses')]
+
+
+def _wait_windows_job_empty(kernel, job, timeout):
+    deadline = time.monotonic() + timeout
+    while True:
+        info = _JobAccounting()
+        if not kernel.QueryInformationJobObject(job, 1, ctypes.byref(info), ctypes.sizeof(info), None):
+            raise RuntimeError('QueryInformationJobObject failed')
+        if not info.ActiveProcesses:
+            return
+        if time.monotonic() >= deadline:
+            raise RuntimeError('Windows job still has active processes after cleanup deadline')
+        time.sleep(.01)
+
+
+def _windows_job():
+    import ctypes
+    from ctypes import wintypes
+
+    class Basic(ctypes.Structure):
+        _fields_ = [('PerProcessUserTimeLimit', ctypes.c_longlong), ('PerJobUserTimeLimit', ctypes.c_longlong),
+                    ('LimitFlags', wintypes.DWORD), ('MinimumWorkingSetSize', ctypes.c_size_t),
+                    ('MaximumWorkingSetSize', ctypes.c_size_t), ('ActiveProcessLimit', wintypes.DWORD),
+                    ('Affinity', ctypes.c_size_t), ('PriorityClass', wintypes.DWORD), ('SchedulingClass', wintypes.DWORD)]
+
+    class Io(ctypes.Structure):
+        _fields_ = [(name, ctypes.c_ulonglong) for name in ('ReadOperationCount', 'WriteOperationCount',
+                    'OtherOperationCount', 'ReadTransferCount', 'WriteTransferCount', 'OtherTransferCount')]
+
+    class Extended(ctypes.Structure):
+        _fields_ = [('BasicLimitInformation', Basic), ('IoInfo', Io), ('ProcessMemoryLimit', ctypes.c_size_t),
+                    ('JobMemoryLimit', ctypes.c_size_t), ('PeakProcessMemoryUsed', ctypes.c_size_t),
+                    ('PeakJobMemoryUsed', ctypes.c_size_t)]
+
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.CreateJobObjectW.argtypes = [ctypes.c_void_p, wintypes.LPCWSTR]
+    kernel.CreateJobObjectW.restype = wintypes.HANDLE
+    kernel.SetInformationJobObject.argtypes = [wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD]
+    kernel.AssignProcessToJobObject.argtypes = [wintypes.HANDLE, wintypes.HANDLE]
+    kernel.TerminateJobObject.argtypes = [wintypes.HANDLE, wintypes.UINT]
+    kernel.QueryInformationJobObject.argtypes = [wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p,
+                                                 wintypes.DWORD, ctypes.POINTER(wintypes.DWORD)]
+    kernel.QueryInformationJobObject.restype = wintypes.BOOL
+    kernel.TerminateProcess.argtypes = [wintypes.HANDLE, wintypes.UINT]
+    kernel.TerminateProcess.restype = wintypes.BOOL
+    kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+    job = kernel.CreateJobObjectW(None, None)
+    if not job:
+        raise ctypes.WinError(ctypes.get_last_error())
+    info = Extended()
+    info.BasicLimitInformation.LimitFlags = 0x2000  # KILL_ON_JOB_CLOSE
+    if not kernel.SetInformationJobObject(job, 9, ctypes.byref(info), ctypes.sizeof(info)):
+        error = ctypes.WinError(ctypes.get_last_error())
+        kernel.CloseHandle(job)
+        raise error
+    return kernel, job
+
+
 def _bounded_run(cli: list[str], timeout: float, payload: str | None = None, cwd: Path | None = ROOT):
     """Capture bounded output without waiting indefinitely on inherited pipes."""
     if not math.isfinite(timeout) or timeout <= 0:
         raise ValueError('timeout must be finite and positive')
-    if os.name != 'posix':
+    if os.name not in ('posix', 'nt'):
         return '', '', None, 'UNSUPPORTED_PLATFORM'
-    # ponytail: process groups cannot contain descendants that deliberately detach.
-    # Use an OS sandbox when evaluating untrusted executables.
+    # ponytail: process containment is not a security sandbox for untrusted executables.
     # ponytail: cap each stream at 1 MiB; raise only with an explicit budget review.
     limit = 1024 * 1024
-    proc = subprocess.Popen(cli, cwd=cwd, stdin=subprocess.PIPE if payload is not None else subprocess.DEVNULL,
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
+    kernel = job = None
+    if os.name == 'nt':
+        import ctypes
+        kernel, job = _windows_job()
+    try:
+        proc = subprocess.Popen(cli, cwd=cwd, stdin=subprocess.PIPE if payload is not None else subprocess.DEVNULL,
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=os.name == 'posix',
+                                creationflags=0x4 if os.name == 'nt' else 0)
+    except BaseException:
+        if job:
+            kernel.CloseHandle(job)
+        raise
+    if job:
+        try:
+            if not kernel.AssignProcessToJobObject(job, int(proc._handle)):
+                raise ctypes.WinError(ctypes.get_last_error())
+            ntdll = ctypes.WinDLL('ntdll')
+            ntdll.NtResumeProcess.argtypes = [ctypes.c_void_p]
+            ntdll.NtResumeProcess.restype = ctypes.c_long
+            if ntdll.NtResumeProcess(int(proc._handle)) != 0:
+                raise OSError('Unable to resume contained process')
+        except BaseException as setup_error:
+            try:
+                try:
+                    proc.kill()
+                except OSError as kill_error:
+                    try:
+                        terminated = kernel.TerminateProcess(int(proc._handle), 1)
+                    except OSError:
+                        terminated = False
+                    if not terminated and proc.poll() is None:
+                        raise RuntimeError(
+                            f'Unable to terminate suspended process {proc.pid}; it may still be running'
+                        ) from kill_error
+                try:
+                    proc.wait(timeout=5)
+                except (OSError, subprocess.TimeoutExpired) as wait_error:
+                    raise RuntimeError(
+                        f'Unable to confirm termination of process {proc.pid}; it may still be running'
+                    ) from wait_error
+            finally:
+                kernel.CloseHandle(job)
+                for stream in (proc.stdin, proc.stdout, proc.stderr):
+                    if stream is not None:
+                        stream.close()
+            raise setup_error
     output = [bytearray(), bytearray()]
     exceeded = threading.Event()
 
@@ -176,13 +292,35 @@ def _bounded_run(cli: list[str], timeout: float, payload: str | None = None, cwd
             status = 'OUTPUT_LIMIT'
     finally:
         # The leader can exit successfully while redirected descendants remain alive.
+        cleanup_errors = []
+        if job:
+            try:
+                if not kernel.TerminateJobObject(job, 1):
+                    cleanup_errors.append('TerminateJobObject failed')
+            except OSError as exc:
+                cleanup_errors.append(f'TerminateJobObject failed: {exc}')
+            try:
+                _wait_windows_job_empty(kernel, job, 5)
+            except (OSError, RuntimeError) as exc:
+                cleanup_errors.append(str(exc))
+            try:
+                if not kernel.CloseHandle(job):
+                    cleanup_errors.append('CloseHandle failed')
+            except OSError as exc:
+                cleanup_errors.append(f'CloseHandle failed: {exc}')
+        else:
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
         try:
-            os.killpg(proc.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
-        proc.wait()
+            proc.wait(timeout=5)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            cleanup_errors.append(f'Unable to confirm process termination: {exc}')
         for thread in started:
             thread.join(timeout=1)
+        if cleanup_errors:
+            raise RuntimeError('Process cleanup failed: ' + '; '.join(cleanup_errors))
     if status:
         return '', '', proc.returncode, status
     return (output[0].decode('utf-8', errors='replace'),
@@ -195,8 +333,20 @@ def _run_harness(scenario: dict, timeout: float, clis: dict[str, list[str]]) -> 
     cli = clis.get(harness)
     if not cli:
         return "", f"NO_RUNNER ({harness})"
+    argv = [*cli, scenario["prompt"]]
+    if os.name == 'nt':
+        resolved = shutil.which(cli[0])
+        if resolved and resolved.lower().endswith(('.cmd', '.bat')):
+            # ponytail: restrict batch arguments rather than attempting cmd escaping;
+            # use a native executable for prompts containing shell metacharacters.
+            if any(part.endswith('\\') or re.search(r'["%!?&|<>^\r\n\x00-\x1f]', part)
+                   for part in [resolved, *argv[1:]]):
+                return '', 'UNSAFE_CLI_ARGUMENT'
+            command = ' '.join('"' + part + '"' for part in [resolved, *argv[1:]])
+            cmd = os.path.join(os.environ['SystemRoot'], 'System32', 'cmd.exe')
+            argv = subprocess.list2cmdline([cmd, '/d', '/v:off', '/s', '/c']) + ' "' + command + '"'
     try:
-        out, err, returncode, status = _bounded_run([*cli, scenario["prompt"]], timeout)
+        out, err, returncode, status = _bounded_run(argv, timeout)
     except FileNotFoundError:
         return "", f"NO_CLI ({cli[0]})"
     except OSError as exc:

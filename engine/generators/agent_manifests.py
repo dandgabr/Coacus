@@ -185,7 +185,7 @@ def write_all(root: Path) -> list[str]:
         entry = f".agents/entries/{dist.parent.name}.json"
         def committed(rel: str) -> bytes | None:
             try:
-                result = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=root,
+                result = subprocess.run(["git", "cat-file", "--filters", f"HEAD:{rel}"], cwd=root,
                                         stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, check=False)
                 return result.stdout if result.returncode == 0 else None
             except OSError:
@@ -194,6 +194,8 @@ def write_all(root: Path) -> list[str]:
         old_entry = committed(entry)
         try:
             metadata = json.loads(old_entry) if old_entry else {}
+            if old_source is not None and metadata.get("fingerprint") != hashlib.sha256(old_source).hexdigest()[:16]:
+                old_source = old_source.replace(b"\n", b"\r\n")
             if (old_source is None or metadata.get("source") != source
                     or metadata.get("dist") != dist.relative_to(root).as_posix()
                     or metadata.get("fingerprint") != hashlib.sha256(old_source).hexdigest()[:16]):
@@ -214,13 +216,14 @@ def write_all(root: Path) -> list[str]:
                             target.parent.mkdir(parents=True, exist_ok=True)
                             with tar.extractfile(member) as content:
                                 target.write_bytes(content.read())
+                (Path(tmp) / source).write_bytes(old_source)
                 historical = generate(Path(tmp) / source, Path(tmp))
         except (OSError, ValueError, subprocess.SubprocessError, tarfile.TarError):
             continue
         entry_path = root / entry
         entry_generated = historical.get(entry)
         if (not entry_path.is_symlink() and entry_path.is_file() and entry_generated is not None
-                and old_entry == entry_generated.encode("utf-8") and entry_path.read_bytes() == old_entry):
+                and old_entry.replace(b"\r\n", b"\n") == entry_generated.encode("utf-8") and entry_path.read_bytes() == old_entry):
             entry_path.unlink()
         for name in AGENT_FILES:
             path = dist / name
@@ -229,7 +232,7 @@ def write_all(root: Path) -> list[str]:
             rel = path.relative_to(root).as_posix()
             baseline = committed(rel)
             generated = historical.get(rel)
-            if baseline is not None and generated is not None and baseline == generated.encode("utf-8") and path.read_bytes() == baseline:
+            if baseline is not None and generated is not None and baseline.replace(b"\r\n", b"\n") == generated.encode("utf-8") and path.read_bytes() == baseline:
                 path.unlink()
     for rel, content in expected.items():
         path = root / rel

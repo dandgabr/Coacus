@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import shlex
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -102,7 +104,7 @@ class TestRouterRerank(unittest.TestCase):
         reordered = router.rerank(
             candidates,
             "sample database",
-            "python3 -c \"import json,sys; d=json.load(sys.stdin); "
+            f"{shlex.quote(sys.executable)} -c \"import json,sys; d=json.load(sys.stdin); "
             "[print(c['name']) for c in reversed(d['candidates'])]\"",
         )
         self.assertEqual(reordered[0].name, candidates[-1].name)

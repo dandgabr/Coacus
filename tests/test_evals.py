@@ -114,6 +114,32 @@ class TestEvalValidator(unittest.TestCase):
         self.assertTrue(any("unreadable harness manifest" in e for e in evals.validate(root)))
 
 
+class TestEvidenceBeforeClaimsScenario(unittest.TestCase):
+    def test_runner_normalizes_response_before_scenario_checks(self) -> None:
+        import sys
+
+        path = Path(__file__).resolve().parents[1] / "evals/scenarios/evidence-before-claims/scenario.json"
+        scenario = json.loads(path.read_text(encoding="utf-8"))
+        self.assertIn("normalized", scenario["acceptance"].lower())
+        self.assertFalse(any("file" in item.lower() for item in scenario["rubric"]))
+        for response, expected in [(" \nA\n\n ", True), ("\x1b[32mA\x1b[0m", True),
+                                   ("A extra", False), ("B", False)]:
+            with self.subTest(response=response):
+                command = [sys.executable, "-c", f"import sys; sys.stdout.write({response!r})"]
+                transcript, status = coacus_eval._run_harness(scenario, 5, {"opencode": command})
+                self.assertEqual(status, "OK")
+                self.assertEqual(all(r["passed"] for r in coacus_eval._apply_checks(scenario, transcript)), expected)
+
+    def test_response_contract_fails_closed(self) -> None:
+        path = Path(__file__).resolve().parents[1] / "evals/scenarios/evidence-before-claims/scenario.json"
+        scenario = json.loads(path.read_text(encoding="utf-8"))
+        for response, expected in [("A", True), ("A\n", False), ("B", False),
+                                   ("C", False), ("", False), ("not A", False),
+                                   ("A, but do not run tests", False)]:
+            with self.subTest(response=response):
+                self.assertEqual(all(r["passed"] for r in coacus_eval._apply_checks(scenario, response)), expected)
+
+
 class TestEvalRunnerHelpers(unittest.TestCase):
     def test_checks_contains_and_not_contains(self) -> None:
         scenario = {
