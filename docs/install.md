@@ -131,11 +131,16 @@ shell so repository paths containing `&`, `%` or `!` arrive unchanged. A Windows
 interpreter path containing `%` or `!` is rejected before installation; choose a
 venv path without those characters.
 
-Use the same interpreter to install and verify: installed hook commands contain
-its path. For a bootstrap-managed installation, run
-`.venv/bin/python scripts/coacus_install.py <harness> --verify` on Linux/macOS or
-`.venv\Scripts\python.exe scripts\coacus_install.py <harness> --verify` on Windows.
-Verifying with another interpreter can report command drift.
+The install manifest records the Python interpreter and base interpreter used to
+render hooks and MCP commands. Verification uses those recorded paths, even when
+run with another Python. It fails if either recorded interpreter is missing or not
+executable. Reinstall to record new paths after moving or removing an interpreter.
+Legacy manifests without interpreter fields use the verifier's current interpreter;
+this can report command drift when it differs from the original installation.
+Reinstall to record the original installation's current interpreter paths.
+Verification compares artifacts against paths recorded in the local manifest.
+Coordinated changes to both manifest and artifacts can go undetected; this is a
+drift check, not an independent integrity guarantee.
 
 Reinstallation retires eligible legacy wrappers and extensionless workflow
 helpers only when ownership and recorded fingerprints establish that removal is
