@@ -19,6 +19,19 @@ def transcript(tmp: str, lines: list[dict]) -> Path:
     return path
 
 
+class InMemorySource:
+    name = "fixture"
+
+    def __init__(self, observations):
+        self.observations = observations
+
+    def status(self, root):
+        return "present"
+
+    def read(self, root, options):
+        return self.observations
+
+
 class TestSourceRegistry(unittest.TestCase):
     def test_registry_is_instantiable_and_clearable(self) -> None:
         registry = sources.SourceRegistry()
@@ -259,19 +272,21 @@ class TestLoop(unittest.TestCase):
         from engine.improve import loop
 
         with tempfile.TemporaryDirectory() as tmp:
-            secret = 'alice@example.test 123e4567-e89b-12d3-a456-426614174000 token=SYNTHETIC_SECRET'  # nosec B105  # Synthetic redaction fixture, not a credential.
-            path = transcript(tmp, [
-                {"channel": "human-user-turn", "session_id": session, "text": secret}
+            sample = 'alice@example.test 123e4567-e89b-12d3-a456-426614174000 token=SYNTHETIC_SECRET'  # nosec B105  # Synthetic redaction fixture, not a credential.
+            observations = [
+                {"channel": "human-user-turn", "session_id": session, "text": sample}
                 for session in ("s1", "s2")
-            ])
+            ]
             root = Path(tmp) / "repo"
             root.mkdir()
-            summary = loop.run(root, {"source": "transcript", "transcript": str(path)})
+            registry = sources.SourceRegistry()
+            registry.register(InMemorySource(observations))
+            summary = loop.run(root, {"source": "fixture"}, registry=registry)
             self.assertEqual(len(summary["proposals"]), 1)
             outputs = [json.dumps(summary), (root / ledger.RUNTIME_LEDGER).read_text(),
                        (root / loop.STAGING / "last-run.json").read_text()]
             for output in outputs:
-                for value in (secret, "alice@example.test", "123e4567-e89b-12d3-a456-426614174000", "SYNTHETIC_SECRET"):
+                for value in (sample, "alice@example.test", "123e4567-e89b-12d3-a456-426614174000", "SYNTHETIC_SECRET"):
                     self.assertNotIn(value, output)
             proposal = summary["proposals"][0]
             self.assertEqual(proposal["support"], 2)
@@ -489,9 +504,11 @@ class TestLoop(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "repo"
             root.mkdir()
-            secret = "sensitive observation secret"
-            path = transcript(tmp, [{"channel": "human-user-turn", "session_id": s,
-                                     "text": secret} for s in ("a", "b")])
+            sample = "sensitive observation secret"
+            observations = [{"channel": "human-user-turn", "session_id": s,
+                             "text": sample} for s in ("a", "b")]
+            registry = sources.SourceRegistry()
+            registry.register(InMemorySource(observations))
             real_fsync = os.fsync
             def fail_ledger_fsync(fd):
                 if os.path.samestat(os.fstat(fd), (root / ledger.RUNTIME_LEDGER).stat()):
@@ -503,13 +520,13 @@ class TestLoop(unittest.TestCase):
                     return fail_ledger_fsync(fd)
                 return real_fsync(fd)
             with patch("engine.improve.ledger.os.fsync", side_effect=fsync):
-                result = loop.run(root, {"transcript": str(path)})
+                result = loop.run(root, {"source": "fixture"}, registry=registry)
             written = ledger.read_runtime(root)
             self.assertFalse(result["ok"])
             self.assertEqual(result["publication_status"], "uncertain")
             self.assertEqual(result["reconciliation"], [written[0]])
             self.assertEqual(len(loop.recover(root, result["reconciliation"][0])), 2)
-            self.assertNotIn(secret, json.dumps(result))
+            self.assertNotIn(sample, json.dumps(result))
             self.assertNotIn("sensitive filesystem detail", json.dumps(result))
 
     def test_partial_ledger_failure_reports_only_confirmed_appends(self) -> None:
@@ -605,6 +622,21 @@ class TestLoop(unittest.TestCase):
 
 
 class TestWindowsRefusal(unittest.TestCase):
+    def test_windows_refuses_custom_source_without_reading_or_publishing(self) -> None:
+        from engine.improve import loop
+        from unittest.mock import patch
+
+        registry = sources.SourceRegistry()
+        source = InMemorySource([{"text": "sensitive observation"}])
+        registry.register(source)
+        with tempfile.TemporaryDirectory() as tmp, patch.object(loop, "_windows", return_value=True):
+            root = Path(tmp)
+            with patch.object(source, "read", side_effect=AssertionError("must not read")):
+                result = loop.run(root, {"source": "fixture"}, registry=registry)
+            self.assertFalse(result["ok"])
+            self.assertEqual(result["proposals"], [])
+            self.assertEqual(list(root.iterdir()), [])
+
     def test_unsupported_platform_refuses_source_before_read_but_allows_noop(self) -> None:
         from unittest.mock import patch
         from engine.improve import loop
