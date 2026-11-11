@@ -15,7 +15,16 @@ python3 scripts/coacus_eval.py validate
 ```
 
 Live runs are opt-in and execute a real harness CLI. They require the selected
-harness and any credentials it needs, so they run locally rather than in CI:
+harness and any credentials it needs, so they run locally rather than in CI.
+Live process execution supports POSIX and Windows. On Windows, the runner uses
+a job object for process cleanup. Batch wrappers, including the npm OpenCode
+shim, reject unsafe arguments with `UNSAFE_CLI_ARGUMENT`. For arbitrary prompts,
+set `COACUS_EVAL_OPENCODE_EXE` to the absolute path of an operator-verified native
+OpenCode `.exe`; this explicitly replaces only the OpenCode command executable.
+The runner never automatically substitutes an adjacent executable. Treat this
+path as trusted code: the runner does not verify the executable's provenance.
+Other platforms fail closed with `UNSUPPORTED_PLATFORM`.
+Examples of live runs:
 
 ```bash
 python3 scripts/coacus_eval.py run
@@ -33,6 +42,12 @@ advisory; deterministic scenario checks still run. Transcript output is
 redacted by default. Set `COACUS_EVAL_VERBOSE=1` only when local debugging
 requires an excerpt, and inspect it before sharing because it may contain
 sensitive context.
+
+All scenarios fail closed with `--judge-agent`: the harness
+CLI has not been verified to isolate tools from untrusted transcripts. Use an
+explicit `--judge-cmd` only when the operator trusts that command to handle
+untrusted input safely; Coacus does not sandbox it. If both options are given,
+`--judge-agent` takes precedence and all scenarios fail closed.
 
 The opt-in `python3 evals/command_code_mod_probe.py` checks Command Code's
 tool-hook failure behavior against a fake loopback provider and a synthetic
@@ -53,3 +68,30 @@ The `evals` GitHub Actions workflow runs the static validator on a schedule and
 on manual dispatch. The blocking CI workflow also runs the static gate; it never
 launches a live agent. See [`../docs/standards/testing.md`](../docs/standards/testing.md)
 for how evaluations fit with the deterministic test suite.
+
+### Judge command contracts
+
+`--judge-agent` is unsupported for all scenarios because tool-free isolation is
+not verified. Its result fails both legacy and required scenarios. When both options are supplied, it takes precedence. Judge commands
+are trusted by the operator and are not sandboxed; instructions and base64
+encoding are not security boundaries.
+
+The command receives JSON on stdin. Legacy input is `{"scenario": {...},
+"transcript": "..."}`. An explicit `VERDICT: PASS` or `VERDICT: FAIL` in
+stdout, or stderr if stdout is empty, gates the result only when it is exactly
+one standalone verdict line. Malformed, duplicate or conflicting verdicts,
+command failure or an unavailable judge fail the scenario. Without a configured
+judge, legacy scenarios use deterministic checks only; their rubrics are not judged.
+
+The runner skips the judge when the harness status is not OK or any deterministic
+check fails. The judge report marks it as skipped and gives the reason.
+
+Required scenarios receive `instructions`, `scenario`, and a `transcript` object
+with `trust: "untrusted"`, `encoding: "base64-utf8"`, boolean `truncated`, and
+`base64` encoding at most 32768 transcript bytes. Output must be only a JSON
+object `{"verdicts": [true, false]}` with exactly one boolean per rubric item,
+in order, without extra or duplicate keys. All verdicts must be true to pass.
+Truncation, invalid output, command failure or an unavailable judge fails a
+required scenario. Commands have a 600-second deadline and a 1 MiB limit per
+output stream. POSIX process-group cleanup cannot contain deliberately detached
+processes. Process cleanup is not an OS sandbox on either platform.

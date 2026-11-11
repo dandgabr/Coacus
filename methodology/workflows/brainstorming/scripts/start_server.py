@@ -83,12 +83,16 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     server_id = secrets.token_hex(24)
-    server_id_file.write_text(server_id + "\n", encoding="utf-8")
-    if os.name != "nt":
-        try:
-            os.chmod(server_id_file, 0o600)
-        except Exception:
-            pass
+    try:
+        if os.name == "nt":
+            server_id_file.write_text(server_id + "\n", encoding="utf-8")
+        else:
+            fd = os.open(server_id_file, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            with os.fdopen(fd, "w", encoding="utf-8") as identity:
+                identity.write(server_id + "\n")
+    except OSError:
+        print(json.dumps({"error": "Failed to create server identity"}))
+        return 1
 
     script_dir = Path(__file__).resolve().parent
     env = dict(os.environ)

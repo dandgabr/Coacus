@@ -67,6 +67,8 @@ A named view timeline (`view-timeline: --card block`) is visible to the subject 
 
 When `timeline-scope` is unavailable, restructure so the timeline source is an ancestor of the animated element.
 
+For a sticky scene, put the named view timeline on the taller, scrolling track and consume it on a descendant of the sticky pane. A self `view()` on the stuck pane cannot represent travel through the whole track while the pane is stationary. The default `cover` range includes the track's entry and exit, so it does not generally match the pinned interval. For a track taller than the scrollport and a scrollport-height pane sticking at its top, `animation-range: contain` can align with that interval: it runs while the track covers the scrollport. This alignment depends on geometry; sticky insets, pane height, padding, timeline insets and a track shorter than the scrollport can change the boundaries. Choose an adjusted range or another mechanism when they do not coincide. Verify the actual start and end positions after resize and at short viewport heights, in both scroll directions. Keep the steps readable in normal flow by default; enable pinning and timeline animation only when supported and motion is allowed. Unpin for reduced motion and check focus visibility.
+
 ### The shorthand ordering pitfall
 
 The `animation` shorthand resets `animation-timeline` to `auto`. Declare `animation-timeline` (and `animation-range`) **after** the shorthand, or the element silently falls back to a time-based animation with zero duration. Always use fill mode `both` so the state before and after the range holds.

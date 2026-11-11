@@ -35,7 +35,7 @@ def cmd_run(args: argparse.Namespace) -> int:
     print(json.dumps(summary, indent=2, sort_keys=True))
     for alarm in summary.get("alarms", []):
         print(f"  [alarm] {alarm}", file=sys.stderr)
-    return 0
+    return 0 if summary.get("ok") else 1
 
 
 def cmd_status(args: argparse.Namespace) -> int:

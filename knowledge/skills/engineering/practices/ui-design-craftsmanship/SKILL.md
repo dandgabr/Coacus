@@ -75,18 +75,20 @@ When a UI has multiple themes, responsive layouts, scroll reveals, or dialogs wi
 
 ---
 
-## 🚫 AI Slop Blacklist & Prescribed Antidotes
+## Contextual Design Critique
 
-| Generic AI Tell ("Slop") | Root Cause | Prescribed Craft Antidote |
+Treat these patterns as prompts for inspection, not universal bans. Retain them when they serve the product, selected visual language or reference; change them when evidence shows repetition, weak hierarchy or poor usability.
+
+| Pattern to Inspect | Potential Concern | Contextual Options |
 | :--- | :--- | :--- |
-| **Icon in a rounded pastel box** | Habit of placing an icon tile above every card title | Place the icon inline with text or eliminate it. Rely on strong typographic titles. |
-| **Single italic serif word** | Inserting an italic serif word in a sans-serif headline | Commit to a single typeface family or establish a coherent editorial contrast across the entire header. |
-| **Hero eyebrow pill badge** | Formulaic pill with sparkles/emojis above hero | Replace with a crisp, uppercase tracking kicker or eliminate the redundant badge entirely. |
-| **Gray text on colored fill** | `text-gray-400` on `bg-blue-600` or `bg-slate-900` | Choose verified foreground/background pairs; light or dark ink can be appropriate depending on the actual fill. |
-| **Nested card syndrome** | Card inside card inside card with heavy borders | Eliminate internal cards. Differentiate groupings using subtle background tint shifts or spacing. |
-| **Vague, oversized shadows** | `shadow-2xl` spreading artificial black smudge | Use layered multi-stop shadows (`0 1px 2px rgba(...)`, `0 4px 12px rgba(...)`) with low opacity. |
-| **Monotonous spacing** | `p-6` and `gap-4` used across every container | Use differentiated spacing scale: 8px tight, 16px medium, 32px-48px between major visual zones. |
-| **Default font inertia** | Using Inter/Arial/Roboto for every brief | Select typefaces matching the brand voice (e.g. Plus Jakarta Sans, Geist, Instrument Serif, Outfit). |
+| **Icon in a rounded pastel box** | Repeated icon tiles may weaken hierarchy. | Consider inline icons or stronger titles; retain tiles when they serve the visual language. |
+| **Single italic serif word** | An isolated contrast may feel arbitrary. | Consider a coherent editorial contrast or a single family when appropriate. |
+| **Hero eyebrow pill badge** | A formulaic badge may add noise. | Retain it when useful; otherwise consider a kicker or omission. |
+| **Gray text on colored fill** | Some foreground and background combinations lack contrast. | Verify the actual painted pair and choose a legible foreground. |
+| **Nested cards** | Excessive borders can obscure grouping. | Consider spacing or surface changes where nesting harms clarity. |
+| **Oversized shadows** | A diffuse shadow may obscure the intended depth. | Consider restrained layered shadows when they fit the style. |
+| **Monotonous spacing** | Identical gaps may flatten hierarchy. | Consider varying spacing according to grouping and rhythm. |
+| **Default font inertia** | A familiar typeface may not express the brief. | Evaluate typefaces against brand voice, legibility and availability. |
 
 ---
 

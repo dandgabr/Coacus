@@ -23,8 +23,13 @@ CURATED_LEDGER = "docs/decisions/proposals.jsonl"
 def _append(path: Path, record: dict) -> None:
     """Atomically append one JSON record as a line."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    line = json.dumps(record, sort_keys=True) + "\n"
-    with path.open("a", encoding="utf-8") as fh:
+    line = (json.dumps(record, sort_keys=True) + "\n").encode("utf-8")
+    with path.open("a+b") as fh:
+        fh.seek(0, os.SEEK_END)
+        if fh.tell():
+            fh.seek(-1, os.SEEK_END)
+            if fh.read(1) != b"\n":
+                line = b"\n" + line
         fh.write(line)
         fh.flush()
         os.fsync(fh.fileno())
@@ -43,12 +48,10 @@ def read_runtime(root: Path) -> list[dict]:
     if not path.is_file():
         return []
     records = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        try:
-            records.append(json.loads(line))
-        except json.JSONDecodeError:
-            continue
+    with path.open("rb") as stream:
+        for line in stream:
+            try:
+                records.append(json.loads(line.decode("utf-8")))
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                continue
     return records

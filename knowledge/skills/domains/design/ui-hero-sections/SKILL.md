@@ -35,7 +35,7 @@ The hero section is the cognitive handshake of any web application or digital pr
 - **Best For:** B2B SaaS, developer tools, workflow automation, and productivity suites.
 
 ### 2. Centered Minimal (Product-Led) Layout
-- **Visual Structure:** Single-column centered text stack (eyebrow, prominent H1, concise subcopy, centered CTA pair) directly floating above a full-width high-resolution product mockup or interactive app frame.
+- **Visual Structure:** A centered text stack may sit above a product mockup or interactive app frame; include an eyebrow, subcopy or a second action only when useful.
 - **Cognitive Flow:** Vertical downward momentum. Encourages immediate scrolling toward feature demonstrations while keeping the primary CTA centered within the initial visual cone.
 - **Best For:** Consumer tech, modern AI applications, design software, and mobile-first products.
 
@@ -58,7 +58,7 @@ The hero section is the cognitive handshake of any web application or digital pr
 
 ## 📐 Anatomy and Visual Budgeting
 
-A resilient hero section adheres to a strict six-part anatomical structure:
+The following anatomy is a menu, not a required six-part template. Choose elements and composition for the product, audience and available evidence. When adapting a reference, inventory what is present, absent and unknown using [reference evidence and adoption](../../../engineering/practices/ui-design-craftsmanship/references/reference-evidence-and-adoption.md); do not invent social proof or force a badge, visual or second CTA.
 
 ```
 +-------------------------------------------------------------------------+
@@ -77,9 +77,9 @@ A resilient hero section adheres to a strict six-part anatomical structure:
 +-------------------------------------------------------------------------+
 ```
 
-### 1. Eyebrow Badge (Category Identifier or Social Trigger)
-- Pill format with subtle border, muted background, and high-contrast text.
-- Communicates immediacy (e.g., version releases, SOC2 compliance, benchmark milestones).
+### 1. Optional Eyebrow or Badge
+- When a category or timely announcement helps, use a legible kicker or badge; a pill is one option, not a requirement.
+- Support any release, compliance or benchmark claim with evidence.
 
 ### 2. Outcome-Driven H1 Typography
 - **Word Budget:** 6 to 12 words maximum.
@@ -91,20 +91,20 @@ A resilient hero section adheres to a strict six-part anatomical structure:
 - Font size: `1.125rem` to `1.25rem` (18px–20px) with generous line-height (`1.5` to `1.6`).
 - Explains the mechanism: who it is for, how it works, and what friction is eliminated.
 
-### 4. Dual-CTA Group (Friction Reduction)
+### 4. Actions (When Relevant)
 - **Primary CTA:** High-contrast solid container (e.g., bright accent or crisp monochrome). Benefit-oriented action verb: *"Start Free Trial"*, *"Build Now"*, *"Get Instant Access"*. Avoid passive verbs like *"Submit"* or *"Continue"*.
-- **Secondary CTA:** Low-commitment exploratory action: *"Interactive Demo"*, *"View Documentation"*, *"Watch 2-min Tour"*. Ghost or outline styling.
-- **Friction Reducers:** Microcopy adjacent to CTAs (e.g., *"No credit card required"*, *"Open source • Apache 2.0"*, *"Setup in 3 minutes"*).
+- **Optional secondary CTA:** When a distinct exploratory path is useful, consider: *"Interactive Demo"*, *"View Documentation"*, *"Watch 2-min Tour"*. Ghost or outline styling.
+- **Optional friction reducers:** Evidence-backed microcopy adjacent to CTAs (e.g., *"No credit card required"*, *"Open source • Apache 2.0"*, *"Setup in 3 minutes"*).
 
-### 5. Trust & Social Proof Anchor
-- Displayed above the fold: client logos with normalized opacity (monochrome / desaturated), verified rating stars, or active usage numbers.
-- Reduces existential adoption anxiety before the user begins to scroll.
+### 5. Optional Trust & Social Proof
+- When relevant and substantiated, consider client logos, verified ratings or usage numbers; placement depends on the composition.
+- Omit unsupported claims and unnecessary proof.
 
-### 6. Dynamic Backdrops and Light Beam Architecture
-High-conversion backdrops balance aesthetic immersion with zero impact on LCP:
-- **Directional Animated Beams:** Render sweeping light cones or atmospheric beams using hardware-accelerated CSS pseudo-elements (`conic-gradient`, `linear-gradient`) and 3D transforms (`rotate3d`, `translateZ(0)`). Never rely on heavy unoptimized video textures or non-culled WebGL loops for simple ambient illumination.
+### 6. Optional Backdrops and Light Effects
+Use a backdrop only when it serves the composition; a static treatment is often sufficient. If using effects, measure their performance impact:
+- **Directional beams:** If motion serves the experience, render sweeping light cones or atmospheric beams using hardware-accelerated CSS pseudo-elements (`conic-gradient`, `linear-gradient`) and 3D transforms (`rotate3d`, `translateZ(0)`). Never rely on heavy unoptimized video textures or non-culled WebGL loops for simple ambient illumination.
 - **Pure-CSS Grid Scaffolding:** Layer radial gradients with CSS grid masks (`radial-gradient(circle at center, transparent 0%, var(--bg) 80%)`) to create depth without layout reflows.
-- **Compositor Isolation:** Apply `contain: strict; will-change: transform; pointer-events: none;` to background light effects to eliminate repainting and keep interactions on the primary thread responsive.
+- **Performance:** Profile effects and apply containment or `will-change` only where beneficial; avoid blocking interaction with decorative layers.
 
 ---
 
@@ -112,7 +112,7 @@ High-conversion backdrops balance aesthetic immersion with zero impact on LCP:
 
 - **Viewport Budget:** On desktop (`1440px`), the hero content must reside completely within `800px–900px` height to prevent the primary CTA from falling below the fold on standard laptop displays.
 - **Mobile Reflow (`< 768px`):**
-  - Stacks into a single vertical column: Eyebrow → H1 → Subcopy → CTAs → Social Proof → Product Visual.
+  - Reflow the elements actually present into a coherent single column; preserve reading order.
   - H1 font size scales down gracefully to `2rem–2.5rem`.
   - CTAs stretch to full-width (`w-full`) with touch targets $\ge 48\text{px}$ height and $\ge 8\text{px}$ vertical separation.
   - Heavy interactive canvases degrade into lightweight static images or CSS gradients.
@@ -124,7 +124,7 @@ High-conversion backdrops balance aesthetic immersion with zero impact on LCP:
 1. **LCP Optimization (Largest Contentful Paint):** Never allow heavy 3D canvases, video backgrounds, or client-side JavaScript hydration to delay LCP. Render the H1 text and primary background using static server-rendered HTML and CSS.
 2. **Contrast Ratios (WCAG 2.2 AA/AAA):** Text over gradient backgrounds or video must maintain a contrast ratio of at least $4.5:1$ for normal body text and $3:1$ for display headers. Use darkened overlays (`rgba(0, 0, 0, 0.6)`) or CSS backdrop filters when placing text over graphics.
 3. **Semantic Hierarchy:** Exactly one `<h1>` per page. Subcopy is a `<p>` element; CTAs are either semantic `<button>` elements (for actions) or `<a>` elements (for navigation).
-4. **Motion Safety:** Comply with `prefers-reduced-motion`. Disable auto-playing hero background videos, complex parallax, and rotating typography loops for users with vestibular sensitivities.
+4. **Motion Safety:** For `prefers-reduced-motion`, present a complete static composition: disable decorative animation, autoplaying background video, parallax and rotating typography. Provide a usable pause, stop or hide control for automatically moving content where required; do not rely on the preference alone.
 
 ---
 

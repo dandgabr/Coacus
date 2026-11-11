@@ -15,7 +15,27 @@ from urllib.parse import urlsplit
 SCRIPT = Path(__file__).resolve().parents[1] / 'methodology/workflows/brainstorming/scripts/server.py'
 
 
+SECURE_IO = os.open in os.supports_dir_fd and hasattr(os, 'O_NOFOLLOW') and hasattr(os, 'O_DIRECTORY')
+
+
 class PythonServerTests(unittest.TestCase):
+    def test_unsupported_platform_fails_closed(self):
+        if SECURE_IO:
+            self.skipTest('secure descriptor-relative I/O available')
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('brainstorm_unsupported', SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            module.CONTENT = Path(tmp)
+            module.STATE = Path(tmp)
+            (module.CONTENT / 'screen').write_text('protected')
+            with self.assertRaisesRegex(OSError, 'secure content reads are unavailable'):
+                module.safe_read('screen')
+            with self.assertRaisesRegex(OSError, 'secure state writes are unavailable'):
+                module.safe_state_write('screen', 'replacement')
+            self.assertEqual((module.CONTENT / 'screen').read_text(), 'protected')
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_safe_read_contains_names_and_rejects_links(self):
         import importlib.util
         spec = importlib.util.spec_from_file_location('brainstorm_server_paths', SCRIPT)
@@ -57,6 +77,7 @@ class PythonServerTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 module.safe_read('screen.html')
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_state_writes_reject_links_and_preserve_targets(self):
         import importlib.util
         spec = importlib.util.spec_from_file_location('brainstorm_server_write', SCRIPT)
@@ -92,6 +113,7 @@ class PythonServerTests(unittest.TestCase):
                 self.assertEqual(outside.read_text(), 'protected')
                 target.unlink()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_state_replace_failure_preserves_previous_content(self):
         import importlib.util
         from unittest import mock
@@ -106,6 +128,7 @@ class PythonServerTests(unittest.TestCase):
                     module.safe_state_write('server-info', 'replacement')
             self.assertEqual((module.STATE / 'server-info').read_text(), 'original')
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_configured_output_rejects_links_and_writes_normally(self):
         import importlib.util
         spec = importlib.util.spec_from_file_location('brainstorm_output', SCRIPT)
@@ -141,6 +164,7 @@ class PythonServerTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('BRAINSTORM_DIR is required', result.stderr)
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_first_screen_created_at_readiness_is_detected(self):
         with tempfile.TemporaryDirectory() as tmp:
             code = """import builtins, json, os, runpy, sys
@@ -165,6 +189,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 proc.stdout.close()
                 proc.stderr.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_token_written_when_port_file_write_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             token_path = Path(tmp) / 'token'
@@ -191,7 +216,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
         right.settimeout(3)
         client = module.Client(left)
         try:
-            with mock.patch.object(module.socket, 'MSG_DONTWAIT', None):
+            with mock.patch.object(module.socket, 'MSG_DONTWAIT', None, create=True):
                 with module.lock:
                     module.clients.add(client)
                 module.broadcast()
@@ -209,6 +234,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
             left.close()
             right.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_monitor_survives_directory_error(self):
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, BRAINSTORM_DIR=tmp, BRAINSTORM_PORT='0', BRAINSTORM_TOKEN='a' * 64,
@@ -226,6 +252,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 proc.stdout.close()
                 proc.stderr.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_recreated_screen_preserves_choices_and_same_mtime_update_detected(self):
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / 'content'
@@ -257,6 +284,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 proc.stdout.close()
                 proc.stderr.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_dangling_link_does_not_stop_startup(self):
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / 'content'
@@ -281,6 +309,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 proc.stdout.close()
                 proc.stderr.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_websocket_protocol_validation(self):
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, BRAINSTORM_DIR=tmp, BRAINSTORM_PORT='0', BRAINSTORM_TOKEN='a' * 64)
@@ -307,6 +336,7 @@ runpy.run_path(sys.argv[1], run_name='__main__')
                 proc.stdout.close()
                 proc.stderr.close()
 
+    @unittest.skipUnless(SECURE_IO, 'secure descriptor-relative I/O unavailable')
     def test_http_websocket_and_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, BRAINSTORM_DIR=tmp, BRAINSTORM_PORT='0', BRAINSTORM_TOKEN='a' * 64)

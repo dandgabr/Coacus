@@ -43,9 +43,10 @@ class TestBrainstormServerHelpers(unittest.TestCase):
             ):
                 result = stop_server.main([str(session_dir)])
 
-            self.assertEqual(result, 0)
+            self.assertEqual(result, 0 if hasattr(stop_server.os, 'pidfd_open') and hasattr(stop_server.signal, 'pidfd_send_signal') else 1)
             self.assertTrue(session_dir.is_dir())
 
+    @unittest.skipUnless(hasattr(stop_server.os, 'pidfd_open') and hasattr(stop_server.signal, 'pidfd_send_signal'), 'pidfd unavailable')
     def test_stale_pid_preserves_ephemeral_session_and_marks_stopped(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             session_dir = Path(temp) / "brainstorm-audit-cleanup"

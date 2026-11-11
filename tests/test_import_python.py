@@ -20,7 +20,7 @@ class TestPythonImports(unittest.TestCase):
             target.mkdir(parents=True)
             (source / "SKILL.md").write_text("---\nname: workflow\n---\nEnglish text.\n")
             (source / "helper").write_text("#!/bin/bash\necho legacy\n")
-            (target / "helper.py").write_text("print('portable')\n")
+            (target / "helper.py").write_bytes(b"print('portable')\n")
             lock = {"schema": 1, "entries": [{
                 "source_repo": "superpowers", "source_path": "workflow/helper",
                 "source_sha256": importer._sha256(source / "helper"),

@@ -440,7 +440,7 @@
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "type": "archive",
       "url": "methodology/workflows/brainstorming/SKILL.md",
-      "digest": "sha256:746691c55f60e73b16c0d6ffe56a252e4b30a900c643565451898c095523bc35"
+      "digest": "sha256:c4cdc0cc4c507512009b40fcd4bbf5d2abb2b586e273d7e2f258481e20fb2209"
     },
     {
       "name": "bug-bounty-methodology",
@@ -643,7 +643,7 @@
       "description": "Provides constructive code review practice based on modern review-culture literature, covering review goals, pull-request scope and anatomy, team working agreements, review automation and gate checks, objective comment patterns, emergency playbooks, metric pitfalls and human-AI review collaboration. Use when reviewing pull requests, designing a team review process, or improving review culture and throughput.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-      "digest": "sha256:f8b244d7081c77f464dc36bcac53fc3d2d9cefd5870b16904e9b9d3b8ab95488"
+      "digest": "sha256:6d8a7dd1927476db849574f0f78dfc8e44a1e2cf8a427e791f3584003a557ab6"
     },
     {
       "name": "codebase-design",
@@ -2715,7 +2715,7 @@
       "description": "Provides interface design direction, heuristic critique and rendered verification when designing or refining visual, responsive and interaction quality.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
-      "digest": "sha256:606fa1edbae3f35ba91527aacfc358d7e734fad7080b006cb6e8f2f4eeff2dd5"
+      "digest": "sha256:b6ba267e266315825dc903de58919f26f1bf51ae19b3026b5a7605222d3094b8"
     },
     {
       "name": "ui-designer",
@@ -2729,14 +2729,14 @@
       "description": "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, generative canvases, or high-performance GPU interfaces.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "digest": "sha256:cf071cb75df12db4d59b966ba715c56c3f9d36cef9c4e6621f60d819739bab67"
+      "digest": "sha256:4277b6bdd9e359f67723f12748c43d49dbca24f1f3b3d01c1c8f72464a3bc810"
     },
     {
       "name": "ui-hero-sections",
       "description": "Provides design engineering patterns for high-converting hero sections and above-the-fold interface architectures. Covers canonical layout typologies (split-screen, product-led, live interactive sandbox, metric-driven B2B, 3D canvas backdrop), the 50ms visual judgment rule, F/Z-pattern attention choreography, outcome-driven typography formulas, dual-CTA friction reduction, social proof anchors, and responsive viewport budgeting. Use when designing web application landing pages, SaaS dashboards, or above-the-fold brand moments.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-      "digest": "sha256:6dbf2cef7610d8af10e199f219f495c5b4585d920e2b44fbb9f0ace5ad624f99"
+      "digest": "sha256:21a1e43c19caa3fc545f308126debcae685cb9e43831c3f76436c6b17c7c9e18"
     },
     {
       "name": "ui-motion-interaction",
@@ -2764,7 +2764,7 @@
       "description": "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Use when building scroll animations, scrubbed or pinned scenes, snap carousels, pull-to-refresh or scroll-driven image sequences, when sticky positioning does not stick, or when reviewing scroll motion for browser support, reduced motion or performance.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "digest": "sha256:638fa26d5c8e8e57e56187ffdf9b6c792d147aa555828c4d89a505e640e53b02"
+      "digest": "sha256:cd9afa89928c194deb493059fcf3cd18db444226a06cf4dd56956b47f8d02e3b"
     },
     {
       "name": "ui-state-layout-transitions",

@@ -1172,7 +1172,7 @@ def _entry_owned(entry: object, markers: set[str]) -> bool:
         for marker in markers:
             if marker.startswith("--"):
                 continue
-            if arg == marker:
+            if arg == marker or (os.name == "nt" and arg.replace("\\", "/") == marker.replace("\\", "/")):
                 return True
     return False
 
@@ -2035,7 +2035,7 @@ def install(
         if isinstance(content, Symlink):
             safe = (path in previous_files and target.is_symlink()
                     and previous_fingerprints.get(path) in (None, "symlink:" + os.readlink(target))
-                    and os.readlink(target) == content.target)
+                    and target.resolve() == Path(content.target).resolve())
         else:
             digest = previous_fingerprints.get(path) or previous_workflows.get(path) or shared_fingerprints.get(path)
             target_bytes = target.read_bytes() if not target.is_symlink() and target.is_file() else None
@@ -2452,7 +2452,7 @@ def _installed_state(
     drift: list[str] = []
     for target, content in files:
         if isinstance(content, Symlink):
-            if not target.is_symlink() or os.readlink(target) != content.target:
+            if not target.is_symlink() or target.resolve() != Path(content.target).resolve():
                 drift.append(target.as_posix())
             continue
         if not target.is_file():
@@ -2666,7 +2666,11 @@ def uninstall(
                 planned.append(path)
                 continue
             existing_hooks = _load_existing_json(target)
-            had_hooks_entry = any(marker in json.dumps(existing_hooks) for marker in markers)
+            had_hooks_entry = any(
+                _entry_owned(entry, markers)
+                for entries in existing_hooks.get("hooks", {}).values() if isinstance(entries, list)
+                for entry in entries
+            )
             if had_hooks_entry:
                 trimmed = _strip_hooks(existing_hooks, markers)
                 if trimmed is None:
@@ -2699,6 +2703,8 @@ def uninstall(
                 parent_mode = target.parent.stat().st_mode
                 try:
                     os.chmod(target.parent, parent_mode | 0o200)
+                    if os.name == "nt":
+                        os.chmod(target, target.stat().st_mode | 0o200)
                     target.unlink()
                 finally:
                     os.chmod(target.parent, parent_mode)

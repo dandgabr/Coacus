@@ -151,6 +151,9 @@ class TestInstaller(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
 
@@ -236,6 +239,18 @@ class TestInstaller(unittest.TestCase):
         merged = coacus_install._merge_hooks({"hooks": {"SessionStart": [user]}},
                                              {"hooks": {"SessionStart": []}}, markers)
         self.assertIn(user, merged["hooks"]["SessionStart"])
+
+    def test_windows_hook_marker_accepts_native_separators(self) -> None:
+        import base64
+        argv = [r"C:\Example\scripts\coacus_session_start.py"]
+        encoded = base64.b64encode(json.dumps(argv).encode()).decode()
+        shim = ("import base64,json,runpy,sys;"
+                f"sys.argv=json.loads(base64.b64decode('{encoded}'));"
+                "runpy.run_path(sys.argv[0],run_name='__main__')")
+        entry = {"command": f'"python.exe" -c "{shim}"'}
+        with patch.object(coacus_install.os, "name", "nt"):
+            self.assertTrue(coacus_install._entry_owned(entry, {"C:/Example/scripts/coacus_session_start.py"}))
+            self.assertFalse(coacus_install._entry_owned(entry, {"C:/Other/scripts/coacus_session_start.py"}))
 
     def test_windows_hook_shim_reinstall_and_uninstall(self) -> None:
         import base64
@@ -435,7 +450,7 @@ class TestInstaller(unittest.TestCase):
         with patch.object(coacus_install, "_provision_rules", side_effect=edit_before_manifest):
             coacus_install.install("opencode", self.root, self.config, False, legacy_backup_dir=self.tmp / "backup")
         result = coacus_install.install("opencode", self.root, self.config, False)
-        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertIn(target, [Path(path) for path in result["conflicts"]])
         self.assertEqual(target.read_text(encoding="utf-8"), "newer edit")
 
     @unittest.skipUnless(os.name == "posix", "rename of open files is platform-specific")
@@ -570,11 +585,11 @@ class TestInstaller(unittest.TestCase):
         target = self.config / "skills/using-coacus/SKILL.md"
         target.write_text("local", encoding="utf-8")
         result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
-        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertIn(target, [Path(path) for path in result["conflicts"]])
         self.assertEqual(target.read_text(encoding="utf-8"), "local")
         result = coacus_install.install("opencode", self.root, self.config, dry_run=False,
                                         legacy_backup_dir=self.tmp / "backup")
-        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertIn(target, [Path(path) for path in result["conflicts"]])
         self.assertEqual(target.read_text(encoding="utf-8"), "local")
 
     def test_planned_symlink_does_not_overwrite_destination(self) -> None:
@@ -584,7 +599,7 @@ class TestInstaller(unittest.TestCase):
         victim.write_text("safe", encoding="utf-8")
         target.symlink_to(victim)
         result = coacus_install.install("opencode", self.root, self.config, dry_run=False)
-        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertIn(target, [Path(path) for path in result["conflicts"]])
         self.assertEqual(victim.read_text(encoding="utf-8"), "safe")
 
     def test_link_mode_preserves_unowned_directory_collision(self) -> None:
@@ -593,7 +608,7 @@ class TestInstaller(unittest.TestCase):
         user = target / "user.txt"
         user.write_text("keep", encoding="utf-8")
         result = coacus_install.install("claude-code", self.root, self.config, dry_run=False)
-        self.assertIn(target.as_posix(), result["conflicts"])
+        self.assertIn(target, [Path(path) for path in result["conflicts"]])
         self.assertEqual(user.read_text(encoding="utf-8"), "keep")
 
     def test_filtered_antigravity_preserves_omitted_skills(self) -> None:
@@ -779,7 +794,7 @@ class TestInstaller(unittest.TestCase):
         self.assertTrue((self.config / "hooks.json").is_file())
         hooks = (self.config / "hooks.json").read_text(encoding="utf-8")
         self.assertNotIn("__COACUS_ROOT__", hooks)
-        self.assertIn(self.root.as_posix(), hooks)
+        self.assertTrue(any(coacus_install._entry_owned(entry, coacus_install._hook_owner_markers(self.root, "codex")) for entry in json.loads(hooks)["hooks"]["SessionStart"]))
 
     def test_codex_bootstrap_resolves_skill_search_root(self) -> None:
         from scripts import coacus_session_start
@@ -826,7 +841,7 @@ class TestInstaller(unittest.TestCase):
         add_skill(self.root, "knowledge/skills/security/security-review")
         self.config.mkdir()
         hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
-        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        user = f'[[skills.config]]\npath = "{hidden.as_posix()}"\nenabled = true\n'
         (self.config / "config.toml").write_text(user)
         result = coacus_install.install("codex", self.root, self.config, dry_run=False)
         self.assertEqual((self.config / "config.toml").read_text(), user)
@@ -836,7 +851,7 @@ class TestInstaller(unittest.TestCase):
         add_skill(self.root, "knowledge/skills/security/security-review")
         self.config.mkdir()
         hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
-        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = false\n'
+        user = f'[[skills.config]]\npath = "{hidden.as_posix()}"\nenabled = false\n'
         (self.config / "config.toml").write_text(user)
         result = coacus_install.install("codex", self.root, self.config, dry_run=False)
         self.assertEqual(result["codex_skill_conflicts"], [])
@@ -846,7 +861,7 @@ class TestInstaller(unittest.TestCase):
         add_skill(self.root, "knowledge/skills/security/security-review")
         self.config.mkdir()
         hidden = self.config.parent / ".agents/skills/security-review/SKILL.md"
-        user = f'[[skills.config]]\npath = "{hidden}"\nenabled = true\n'
+        user = f'[[skills.config]]\npath = "{hidden.as_posix()}"\nenabled = true\n'
         (self.config / "config.toml").write_text(user)
         with patch.object(coacus_install, "tomllib", None):
             result = coacus_install.install("codex", self.root, self.config, dry_run=False)
@@ -924,7 +939,7 @@ class TestInstaller(unittest.TestCase):
         user = {"hooks": [{"type": "command", "command": "python /user/session-start.sh"}]}
         existing = {"mySetting": 42, "hooks": {}}
         for event, script in (("SessionStart", "session-start.sh"), ("PreToolUse", "coacus-guard.sh")):
-            command = f'bash "{old_root}/harnesses/codex/bootstrap/{script}"'
+            command = f'bash "{old_root.as_posix()}/harnesses/codex/bootstrap/{script}"'
             existing["hooks"][event] = [{"hooks": [{"type": "command", "command": command}]}, user]
         path = self.config / "hooks.json"
         path.write_text(json.dumps(existing))
@@ -970,7 +985,14 @@ class TestInstaller(unittest.TestCase):
         command = json.loads((plugin / "hooks/hooks.json").read_text())["hooks"][
             "SessionStart"
         ][0]["hooks"][0]["command"]
-        self.assertIn(str(plugin / "bootstrap/session-start.json"), command.replace("${CLAUDE_PLUGIN_ROOT:-.}", plugin.as_posix()))
+        import base64
+        import re
+        import shlex
+        args = shlex.split(command)
+        if len(args) == 3 and args[1] == "-c":
+            encoded = re.search(r"b64decode\('([^']+)'\)", args[2]).group(1)
+            args = json.loads(base64.b64decode(encoded))
+        self.assertIn((plugin / "bootstrap/session-start.json").resolve(), [Path(arg.replace("${CLAUDE_PLUGIN_ROOT:-.}", plugin.as_posix())).resolve() for arg in args])
 
     def test_claude_code_links_skills_into_shared_tree(self) -> None:
         # Default skills_mode="link": the real skill files live once under the
@@ -982,7 +1004,7 @@ class TestInstaller(unittest.TestCase):
         self.assertTrue((canonical / "SKILL.md").is_file())
         self.assertFalse(canonical.is_symlink())
         self.assertTrue(link.is_symlink())
-        self.assertEqual(Path(os.readlink(link)), canonical)
+        self.assertEqual(link.resolve(), canonical.resolve())
         self.assertTrue(coacus_install.verify("claude-code", self.root, self.config)["ok"])
 
     def test_claude_code_copy_mode_keeps_real_directories(self) -> None:
@@ -1019,6 +1041,7 @@ class TestInstaller(unittest.TestCase):
         user_file = canonical / "notes.txt"
         user_file.write_text("keep", encoding="utf-8")
         user_file.chmod(0o640)
+        user_mode = user_file.stat().st_mode & 0o777
         canonical.chmod(0o555)
         reference = self.root / "methodology/workflows/using-coacus/references"
         reference.mkdir(parents=True)
@@ -1027,7 +1050,7 @@ class TestInstaller(unittest.TestCase):
         self.assertNotIn("error", result)
         self.assertEqual((canonical / "references/new.md").read_text(), "new")
         self.assertEqual(canonical.stat().st_mode & 0o777, 0o555)
-        self.assertEqual(user_file.stat().st_mode & 0o777, 0o640)
+        self.assertEqual(user_file.stat().st_mode & 0o777, user_mode)
         self.assertEqual(user_file.read_text(), "keep")
 
     def test_skills_install_includes_references(self) -> None:
@@ -1158,6 +1181,7 @@ class TestInstaller(unittest.TestCase):
             str(coacus_install.uninstall("opencode", self.root, self.config)["error"]),
         )
 
+    @unittest.skipIf(os.name == "nt", "Windows filenames cannot contain quotes")
     def test_hooks_json_survives_a_quote_in_the_repo_path(self) -> None:
         # A naive str.replace would corrupt the JSON when the root has a quote.
         root = make_repo(self.tmp / 'we"ird')
@@ -1175,13 +1199,13 @@ class TestInstaller(unittest.TestCase):
         self.assertEqual(after["mySetting"], 42)
         self.assertIn("UserOwn", after["hooks"])
         marker = coacus_install._hook_owner_marker(self.root, "codex")
-        self.assertTrue(any(marker in json.dumps(e) for e in after["hooks"]["SessionStart"]))
+        self.assertTrue(any(coacus_install._entry_owned(e, coacus_install._hook_owner_markers(self.root, "codex")) for e in after["hooks"]["SessionStart"]))
 
         # Idempotent: re-installing does not duplicate our entry.
         coacus_install.install("codex", self.root, config, dry_run=False)
         again = json.loads((config / "hooks.json").read_text(encoding="utf-8"))
         self.assertEqual(
-            sum(marker in json.dumps(e) for e in again["hooks"]["SessionStart"]), 1
+            sum(coacus_install._entry_owned(e, coacus_install._hook_owner_markers(self.root, "codex")) for e in again["hooks"]["SessionStart"]), 1
         )
 
         # Uninstall strips only our entries, keeping the user's other keys.
@@ -1215,6 +1239,9 @@ class TestPartialInstall(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
         add_skill(self.root, "knowledge/skills/security/grc/security-grc-compliance")
@@ -1384,6 +1411,9 @@ class TestVerify(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
         add_skill(self.root, "knowledge/skills/security/grc/security-grc-compliance")
@@ -1526,6 +1556,9 @@ class TestAgentFiltering(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
         add_agent(self.root, "knowledge/agents/cybersecurity/pentester-agent")
@@ -1620,6 +1653,9 @@ class TestCommandCode(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "home/.commandcode"
         add_agent(self.root, "knowledge/agents/core-orchestration/general")
@@ -1638,10 +1674,10 @@ class TestCommandCode(unittest.TestCase):
         settings = json.loads((self.config / "settings.json").read_text(encoding="utf-8"))
         marker = coacus_install._hook_owner_marker(self.root, "command-code")
         self.assertTrue(
-            any(marker in json.dumps(e) for e in settings["hooks"]["SessionStart"])
+            any(coacus_install._entry_owned(e, coacus_install._hook_owner_markers(self.root, "command-code")) for e in settings["hooks"]["SessionStart"])
         )
         self.assertNotIn("__COACUS_ROOT__", json.dumps(settings))
-        self.assertIn("coacus_session_start.py", (self.config / "settings.json").read_text())
+        self.assertTrue(any(coacus_install._entry_owned(e, coacus_install._hook_owner_markers(self.root, "command-code")) for e in json.loads((self.config / "settings.json").read_text())["hooks"]["SessionStart"]))
         mcp = json.loads((self.config / "mcp.json").read_text(encoding="utf-8"))
         self.assertEqual(mcp["mcpServers"]["mock-mcp"]["url"], "https://mcp.example.com/mcp")
 
@@ -1834,6 +1870,9 @@ class TestHarnessDetection(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         # A non-default config dir so the presence gate (which only guards the
         # real default location) does not apply unless we opt in.
@@ -1847,7 +1886,7 @@ class TestHarnessDetection(unittest.TestCase):
             self.assertTrue(coacus_install.harness_present("claude-code"))
         with mock.patch.dict(os.environ, {}, clear=True):
             with mock.patch("shutil.which", return_value=None):
-                self.assertFalse(coacus_install.harness_present("claude-code"))
+                self.assertFalse(coacus_install.harness_present("claude-code", home=self.tmp))
             with mock.patch("shutil.which", return_value="/usr/bin/cursor"):
                 self.assertTrue(coacus_install.harness_present("cursor"))
 
@@ -1890,6 +1929,9 @@ class TestUninstallPrunesDirs(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.config = self.tmp / "config"
 
@@ -1929,6 +1971,9 @@ class TestDesktopHarnessSupport(unittest.TestCase):
         self._tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self._tmp.cleanup)
         self.tmp = Path(self._tmp.name)
+        env = patch.dict(os.environ, {"APPDATA": str(self.tmp / "appdata"), "LOCALAPPDATA": str(self.tmp / "localappdata")})
+        env.start()
+        self.addCleanup(env.stop)
         self.root = make_repo(self.tmp)
         self.home = self.tmp / "userhome"
         self.home.mkdir()
@@ -1997,7 +2042,7 @@ class TestDesktopHarnessSupport(unittest.TestCase):
     def test_claude_desktop_alias_and_config_provisioning(self) -> None:
         from unittest import mock
         claude_dir = self.home / ".claude"
-        desktop_dir = self.home / ".config" / "Claude"
+        desktop_dir = coacus_install._primary_claude_desktop_config_path(self.home).parent
         desktop_dir.mkdir(parents=True)
         desktop_cfg = desktop_dir / "claude_desktop_config.json"
         desktop_cfg.write_text(json.dumps({"mcpServers": {"user-tool": {"command": "echo"}}}), encoding="utf-8")

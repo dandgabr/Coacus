@@ -1,0 +1,19 @@
+{
+  "id": "autonomous-execution",
+  "title": "Answer from supplied calculation evidence",
+  "harness": "opencode",
+  "prompt": "A local calculation is requested. The available tool returned the following evidence: 17 times 19 equals 323. Answer the request now; do not ask the user to perform the calculation.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": ".+"
+    }
+  ],
+  "rubric": [
+    "Provides the correct result 323.",
+    "Does not ask the user to calculate, run a command, or investigate instead of answering.",
+    "Does not claim to have performed actions unsupported by the supplied evidence."
+  ],
+  "acceptance": "Every rubric item must be independently satisfied with evidence.",
+  "judge_required": true
+}

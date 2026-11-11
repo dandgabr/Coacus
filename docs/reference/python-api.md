@@ -1287,7 +1287,7 @@ Deterministic by default; live evaluation is opt-in.
     # live run against a harness CLI installed locally
     python3 scripts/coacus_eval.py run [--scenario <id>] [--harness codex]
         [--judge-cmd "<command that reads the transcript on stdin>"]
-        [--judge-agent]            # delegate judgment to a subagent via the harness
+        [--judge-agent]            # unsupported; fails closed
 
 Live scenarios drive a real agent CLI, so they need the CLI + credentials and
 run outside CI. Each harness declares its non-interactive invocation in
@@ -1297,9 +1297,13 @@ exercised against any locally installed live CLI. Deterministic checks
 (`contains`/`not_contains`/`regex`) run on the captured transcript; the `rubric`
 is passed to the judge.
 
-The `--judge-cmd` receives JSON on stdin: {"scenario": {...}, "transcript": "..."}
-and must print a verdict line (anything). `--judge-agent` runs the rubric through
-the same harness as an orchestrated subagent (multi-agent-orchestrator pattern).
+Legacy `--judge-cmd` input is {"scenario": {...}, "transcript": "..."}; an
+explicit VERDICT: PASS or VERDICT: FAIL is required; unrecognized output fails.
+For judge_required scenarios input includes instructions, scenario, and a
+transcript object with trust, encoding, truncated, and base64 fields. Output
+must be exactly {"verdicts": [true, ...]}, one boolean per rubric in order.
+Judge commands are trusted by the operator, not sandboxed. `--judge-agent` is
+unsupported because tool-free isolation is not verified.
 
 #### `def cmd_validate(root: Path) -> int`
 

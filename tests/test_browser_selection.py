@@ -211,7 +211,9 @@ class TestGuardArgvCommand(unittest.TestCase):
 class TestInstallerStep(unittest.TestCase):
     def run_main(self, argv: list[str]) -> tuple[int, list[dict]]:
         out = StringIO()
-        with redirect_stdout(out):
+        with tempfile.TemporaryDirectory() as appdata, \
+             patch.dict(os.environ, {"APPDATA": appdata, "LOCALAPPDATA": appdata}), \
+             redirect_stdout(out):
             code = coacus_install.main(argv, REPO)
         return code, json.loads(out.getvalue())
 

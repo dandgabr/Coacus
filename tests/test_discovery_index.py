@@ -74,6 +74,12 @@ class TestDiscoveryIndex(unittest.TestCase):
         with mock.patch.object(zlib, "compressobj", refuse), mock.patch.object(gzip, "compress", refuse):
             self.assertEqual(discovery_index.build(self.root)["skills"][0]["digest"], expected)
 
+    def test_archive_files_sort_by_case_sensitive_posix_path(self) -> None:
+        directory = write_skill(self.root, "ordering")
+        (directory / "alpha.txt").write_bytes(b"data")
+        names = [p.relative_to(directory).as_posix() for p in discovery_index._skill_files(directory)]
+        self.assertEqual(names, ["SKILL.md", "alpha.txt"])
+
     def test_tool_leftovers_are_not_part_of_a_skill(self) -> None:
         directory = write_skill(self.root, "clean")
         before = discovery_index.build(self.root)["skills"][0]
