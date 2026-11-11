@@ -24,7 +24,12 @@ class Source(Protocol):
         ...
 
     def read(self, root: Path, options: dict) -> list[dict]:
-        """Return raw observations for a session (empty list when unavailable)."""
+        """Return JSON-roundtrippable observation dictionaries for a session.
+
+        Custom sources are snapshotted from this result for recovery. They are
+        rejected on platforms without private snapshot storage; an empty list
+        explicitly means no observations are available.
+        """
         ...
 
 
@@ -64,8 +69,13 @@ def load_observations(path: Path) -> list[dict]:
     A malformed file is rejected by the caller (fail-open no-op), never crashed
     on.
     """
+    return parse_observations(path.read_text(encoding="utf-8"))
+
+
+def parse_observations(text: str) -> list[dict]:
+    """Parse the same snapshot used for source integrity verification."""
     observations: list[dict] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in text.splitlines():
         line = line.strip()
         if not line:
             continue

@@ -176,7 +176,7 @@ def generate_pencil_catalog(styles_data: list[tuple[str, str, str]]) -> str:
         "",
         "# Pencil Visual Style Catalog",
         "",
-        f"Use this catalog to browse and compare the {total_count} pure visual styles available in this Pencil collection. "
+        f"Use this catalog to browse and compare the {total_count} pure visual styles available in this Pencil collection. "  # nosec B608  # Markdown text, not a SQL query.
         "When applying a named style, select the matching `ui-style-*` skill from the Pencil skill menu as well; "
         "the catalog is an index, not a substitute for that style’s detailed instructions.",
         "",

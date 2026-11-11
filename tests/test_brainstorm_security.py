@@ -181,6 +181,39 @@ class BrainstormSecurityTests(unittest.TestCase):
                 self.assertEqual((existing / 'user-data').read_text(), 'keep')
                 self.assertEqual(created.parent, Path(tmp))
 
+    @unittest.skipIf(os.name == 'nt', 'requires POSIX permissions')
+    def test_identity_is_created_private_and_exclusive(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(start.subprocess, 'Popen') as popen:
+            popen.return_value.pid = 12345
+            popen.return_value.wait.return_value = 0
+            real_open = os.open
+            calls = []
+            def record_open(path, flags, mode=0o777, **kwargs):
+                if str(path).endswith('server-instance-id'):
+                    calls.append((flags, mode))
+                return real_open(path, flags, mode, **kwargs)
+            with mock.patch.object(start.os, 'open', side_effect=record_open):
+                self.assertEqual(start.main(['--foreground', '--project-dir', tmp]), 0)
+            session = Path(popen.call_args.kwargs['env']['BRAINSTORM_DIR'])
+            identity = session / 'state/server-instance-id'
+            self.assertEqual(identity.stat().st_mode & 0o777, 0o600)
+            self.assertEqual(len(identity.read_text().strip()), 48)
+            self.assertEqual(len(calls), 1)
+            self.assertTrue(calls[0][0] & os.O_EXCL)
+            self.assertEqual(calls[0][1], 0o600)
+
+    @unittest.skipIf(os.name == 'nt', 'requires POSIX permissions')
+    def test_identity_creation_failure_prevents_spawn(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(start.subprocess, 'Popen') as popen:
+            real_open = os.open
+            def fail_identity(path, flags, mode=0o777, **kwargs):
+                if str(path).endswith('server-instance-id'):
+                    raise PermissionError('denied')
+                return real_open(path, flags, mode, **kwargs)
+            with mock.patch.object(start.os, 'open', side_effect=fail_identity):
+                self.assertNotEqual(start.main(['--foreground', '--project-dir', tmp]), 0)
+            popen.assert_not_called()
+
     def test_no_external_image_beacon(self):
         for name in ('helper.js', 'frame-template.html'):
             text = (SCRIPTS / name).read_text()

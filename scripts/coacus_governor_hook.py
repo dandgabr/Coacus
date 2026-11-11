@@ -93,7 +93,7 @@ def main() -> int:
         return 0
 
     if mode == "preinv":
-        status_line = f"running=0 paused=0 max={max_total} slots_free={max_total}"
+        status_line = "unavailable"
         if ledger:
             try:
                 st = ledger.status()
@@ -102,7 +102,7 @@ def main() -> int:
                     f"orchestrator={str(st['orchestrator_present']).lower()} "
                     f"slots_free={st['slots_free']}"
                 )
-            except Exception:
+            except Exception:  # nosec B110  # Advisory status remains unavailable; dispatch stays disabled.
                 pass
         msg = (
             f"[CONCURRENCY GOVERNOR] Antigravity subagent dispatch is disabled until host correlation and worker lifetime are verified. Max concurrent agents counting the orchestrator = {max_total}. "

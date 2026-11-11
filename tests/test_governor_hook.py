@@ -21,6 +21,29 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class TestGovernorHook(unittest.TestCase):
+    def test_preinv_reports_unavailable_ledger_without_exception_details(self) -> None:
+        for failure in ("status", "init"):
+            with self.subTest(failure=failure), \
+                 patch("engine.governor.ledger.Ledger" if failure == "init" else "engine.governor.ledger.Ledger.status", side_effect=RuntimeError("synthetic-secret-token")), \
+                 patch.object(sys, "argv", ["hook", "preinv"]), \
+                 patch.object(sys, "stdout", new_callable=io.StringIO) as output, \
+                 patch.object(sys, "stderr", new_callable=io.StringIO) as errors:
+                self.assertEqual(coacus_governor_hook.main(), 0)
+                message = json.loads(output.getvalue())["injectSteps"][0]["ephemeralMessage"]
+                self.assertIn("Current ledger: unavailable", message)
+                self.assertNotIn("slots_free=", message)
+                self.assertNotIn("synthetic-secret-token", output.getvalue() + errors.getvalue())
+
+    def test_preinv_reports_real_ledger_status(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp, \
+             patch.dict(os.environ, {"GOVERNOR_STATE_DIR": tmp}), \
+             patch.object(sys, "argv", ["hook", "preinv"]), \
+             patch.object(sys, "stdout", new_callable=io.StringIO) as output:
+            self.assertEqual(coacus_governor_hook.main(), 0)
+            message = json.loads(output.getvalue())["injectSteps"][0]["ephemeralMessage"]
+            self.assertIn("slots_free=", message)
+            self.assertNotIn("Current ledger: unavailable", message)
+
     def test_pretool_requires_identifiable_tool_name_without_leaking_payload(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             env = dict(os.environ, GOVERNOR_STATE_DIR=tmp)

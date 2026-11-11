@@ -43,7 +43,7 @@ def _type_of(observation: dict) -> str:
 def consolidate(observations: list[dict]) -> list[dict]:
     """Group observations into typed candidates, deduped by normalized claim."""
     grouped: dict[tuple[str, str], dict] = {}
-    for obs in observations:
+    for index, obs in enumerate(observations, 1):
         claim = _claim(obs)
         if not claim:
             continue
@@ -63,6 +63,7 @@ def consolidate(observations: list[dict]) -> list[dict]:
                 "session_id": session,
                 "claim_hash": key[1],
                 "observation_id": str(obs.get("id", "")),
+                "observation_index": index,
             }
         )
     candidates = list(grouped.values())
