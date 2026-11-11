@@ -2589,7 +2589,7 @@
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
       "url": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "digest": "sha256:b33d0f32984fbdee01f212be804f2cc5908b9969080a2149f8038095cd164dfb"
+      "digest": "sha256:b72ccd05da810f445e3eb4efa05a1d10856cd9cd74dfbe03ee9e93ff3f8bfeec"
     },
     {
       "name": "supply-chain-threat-modeling",
