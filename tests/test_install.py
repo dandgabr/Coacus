@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import sys
 import tempfile
 import tomllib
 import unittest
@@ -1435,6 +1436,94 @@ class TestVerify(unittest.TestCase):
         self.assertEqual(report["missing"], [])
         self.assertEqual(report["drifted"], [])
         self.assertEqual(report["planned_files"], report["recorded_files"])
+
+    def test_verify_uses_install_interpreter_and_detects_real_drift(self) -> None:
+        source = self.root / "harnesses/opencode/bootstrap/coacus.js"
+        source.write_text('const python = "__COACUS_PYTHON__";\n', encoding="utf-8")
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest = json.loads((self.config / "coacus-install.json").read_text())
+        self.assertEqual(manifest["python_executable"], sys.executable)
+        with patch.object(sys, "executable", str(self.tmp / "other-python")):
+            self.assertTrue(coacus_install.verify("opencode", self.root, self.config)["ok"])
+        (self.config / "plugins/coacus.js").write_text("tampered", encoding="utf-8")
+        self.assertFalse(coacus_install.verify("opencode", self.root, self.config)["ok"])
+
+    def test_verify_rejects_missing_or_nonexecutable_interpreter(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest_path = self.config / "coacus-install.json"
+        manifest = json.loads(manifest_path.read_text())
+        for target in (self.tmp / "missing", self.tmp / "not-executable"):
+            if target.name == "not-executable":
+                target.write_text("not executable")
+                target.chmod(0o600)
+            manifest["python_executable"] = str(target)
+            manifest_path.write_text(json.dumps(manifest))
+            report = coacus_install.verify("opencode", self.root, self.config)
+            self.assertFalse(report["ok"])
+            self.assertIn("interpreter", report["error"])
+
+    def test_verify_rejects_null_base_interpreter(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest_path = self.config / "coacus-install.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest["base_executable"] = None
+        manifest_path.write_text(json.dumps(manifest))
+        self.assertIn("base interpreter", coacus_install.verify("opencode", self.root, self.config).get("error", ""))
+
+    def test_verify_managed_mcp_entries_across_harnesses(self) -> None:
+        for name in ("coacus-catalog", "second"):
+            path = self.root / "knowledge/mcps" / name / "dist/mcp.json"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({"name": name, "transport": "stdio", "command": "example"}))
+        for harness, filename in (("cursor", "mcp.json"), ("command-code", coacus_install.COMMAND_CODE_MCP_FILE)):
+            with self.subTest(harness=harness):
+                config = self.tmp / harness
+                coacus_install.install(harness, self.root, config, dry_run=False)
+                path = config / filename
+                data = json.loads(path.read_text())
+                data["mcpServers"]["unmanaged"] = {"command": "custom"}
+                data["custom"] = True
+                path.write_text(json.dumps(data))
+                self.assertTrue(coacus_install.verify(harness, self.root, config)["ok"])
+                original = json.loads(path.read_text())
+                for mutation in ("command", "args", "enabled", "extra", "missing"):
+                    data = json.loads(json.dumps(original))
+                    server = data["mcpServers"]["coacus-catalog"]
+                    if mutation == "missing":
+                        del data["mcpServers"]["coacus-catalog"]
+                    else:
+                        server[mutation] = "tampered"
+                    path.write_text(json.dumps(data))
+                    report = coacus_install.verify(harness, self.root, config)
+                    self.assertIn(path.as_posix(), report["drifted"], mutation)
+                self.assertEqual(json.loads(path.read_text())["mcpServers"]["unmanaged"], {"command": "custom"})
+
+    def test_verify_legacy_manifest_uses_current_interpreter(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest_path = self.config / "coacus-install.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest.pop("python_executable", None)
+        manifest_path.write_text(json.dumps(manifest))
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertTrue(report["ok"])
+        self.assertIn("legacy", report["interpreter_note"])
+
+    def test_verify_partial_legacy_manifest_reports_base_fallback(self) -> None:
+        coacus_install.install("opencode", self.root, self.config, dry_run=False)
+        manifest_path = self.config / "coacus-install.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest.pop("base_executable")
+        manifest_path.write_text(json.dumps(manifest))
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertTrue(report["ok"])
+        self.assertIn("base", report["interpreter_note"])
+        self.assertIn("legacy", report["interpreter_note"])
+        manifest.pop("python_executable")
+        manifest_path.write_text(json.dumps(manifest))
+        report = coacus_install.verify("opencode", self.root, self.config)
+        self.assertTrue(report["ok"])
+        self.assertIn("base", report["interpreter_note"])
+        self.assertIn("legacy", report["interpreter_note"])
 
     def test_verify_counts_are_canonical_not_inferred(self) -> None:
         coacus_install.install("opencode", self.root, self.config, dry_run=False)

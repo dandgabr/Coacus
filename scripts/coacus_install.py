@@ -946,7 +946,7 @@ def _antigravity_catalog_files(
     return plan
 
 
-def _antigravity_catalog_mcp_config(root: Path, plugin: Path) -> str:
+def _antigravity_catalog_mcp_config(root: Path, plugin: Path, base_executable: str | None = None) -> str:
     """Render Antigravity's official MCP schema with installed paths resolved."""
     from engine.frontmatter import parse
 
@@ -955,7 +955,7 @@ def _antigravity_catalog_mcp_config(root: Path, plugin: Path) -> str:
         raise FileNotFoundError(f"canonical MCP source is missing: {source}")
     meta = parse(source.read_text(encoding="utf-8")).meta
     name = str(meta.get("name") or "coacus-catalog")
-    executable = getattr(sys, "_base_executable", None) or sys.executable
+    executable = base_executable or getattr(sys, "_base_executable", None) or sys.executable
     server = plugin / "coacus_catalog_mcp.py"
     return json.dumps(
         {"mcpServers": {name: {"command": executable, "args": [str(server.resolve())]}}},
@@ -1092,11 +1092,11 @@ def _command(argv: list[str]) -> str:
     return f'"{interpreter}" -c "{shim}"'
 
 
-def _hook_substitute(text: str, root: Path, plugin: Path | None = None) -> str:
+def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_executable: str | None = None) -> str:
     """Resolve templates as arguments before quoting the installed command."""
     replacements = {
         "__COACUS_ROOT__": root.as_posix(),
-        "__COACUS_PYTHON__": sys.executable,
+        "__COACUS_PYTHON__": python_executable or sys.executable,
     }
     if plugin is not None:
         replacements["__COACUS_PLUGIN_ROOT__"] = plugin.as_posix()
@@ -1122,10 +1122,10 @@ def _hook_substitute(text: str, root: Path, plugin: Path | None = None) -> str:
     return json.dumps(walk(json.loads(text)), indent=2) + "\n"
 
 
-def _plugin_substitute(text: str, root: Path) -> str:
+def _plugin_substitute(text: str, root: Path, python_executable: str | None = None) -> str:
     """Embed paths as JavaScript string literals without shell interpolation."""
     for placeholder, value in (("__COACUS_ROOT__", root.as_posix()),
-                               ("__COACUS_PYTHON__", sys.executable)):
+                               ("__COACUS_PYTHON__", python_executable or sys.executable)):
         text = text.replace(json.dumps(placeholder), json.dumps(value))
         text = text.replace("'" + placeholder + "'", json.dumps(value))
         text = text.replace(placeholder, value)
@@ -1235,7 +1235,7 @@ def _strip_hooks(existing: dict, markers: set[str]) -> dict | None:
 
 
 def _guardrail_artifacts(
-    root: Path, harness: str, config_dir: Path
+    root: Path, harness: str, config_dir: Path, python_executable: str | None = None
 ) -> tuple[list[tuple[Path, FileContent]], dict | None]:
     """Stage the guardrail script/plugin and return a hook fragment to merge.
 
@@ -1255,13 +1255,13 @@ def _guardrail_artifacts(
         return [], None
     if not data.get("lifecycle", {}).get("supported"):
         return [], None
-    subst = lambda text: _hook_substitute(text, root)  # noqa: E731
+    subst = lambda text: _hook_substitute(text, root, python_executable=python_executable)  # noqa: E731
 
     files: list[tuple[Path, FileContent]] = []
     if harness == "opencode":
         src = root / "harnesses/opencode/bootstrap/coacus-guardrails.js"
         if src.is_file():
-            files.append((config_dir / "plugins" / "coacus-guardrails.js", _plugin_substitute(src.read_text(encoding="utf-8"), root)))
+            files.append((config_dir / "plugins" / "coacus-guardrails.js", _plugin_substitute(src.read_text(encoding="utf-8"), root, python_executable)))
         return files, None
 
     frag_path = root / f"harnesses/{harness}/bootstrap/guardrail-hooks.json"
@@ -1318,7 +1318,7 @@ def _refuse_unenforceable(
     return reasons
 
 
-def _mcp_servers(root: Path) -> dict[str, dict]:
+def _mcp_servers(root: Path, base_executable: str | None = None) -> dict[str, dict]:
     """Coacus MCP servers as ``{name: config}`` for a harness MCP config.
 
     Read from the generated ``knowledge/mcps/*/dist/mcp.json`` manifests. The
@@ -1330,7 +1330,7 @@ def _mcp_servers(root: Path) -> dict[str, dict]:
     mcp_root = root / "knowledge" / "mcps"
     if not mcp_root.is_dir():
         return servers
-    executable = getattr(sys, "_base_executable", None) or sys.executable
+    executable = base_executable or getattr(sys, "_base_executable", None) or sys.executable
     catalog_script = (root / "scripts" / "coacus_catalog_mcp.py").resolve().as_posix()
     for manifest in sorted(mcp_root.glob("*/dist/mcp.json")):
         data = _load_existing_json(manifest)
@@ -1522,22 +1522,24 @@ def _plan_opencode(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Plugin + governor gate + mirrored skill trees for opencode."""
     source = root / "harnesses/opencode/bootstrap/coacus.js"
-    content = _plugin_substitute(source.read_text(encoding="utf-8"), root)
+    content = _plugin_substitute(source.read_text(encoding="utf-8"), root, python_executable)
     plan: list[tuple[Path, FileContent]] = [(config_dir / "plugins" / "coacus.js", content)]
     gate = root / "harnesses/opencode/bootstrap/governor-gate.js"
     if gate.is_file():
         plan.append(
             (
                 config_dir / "plugins" / "coacus-governor.js",
-                _plugin_substitute(gate.read_text(encoding="utf-8"), root),
+                _plugin_substitute(gate.read_text(encoding="utf-8"), root, python_executable),
             )
         )
     plan += _plan_skills(root, config_dir / "skills", only, skills)
     plan += _plan_agents_opencode(root, config_dir / "agent", only, agents)
-    guard_files, _ = _guardrail_artifacts(root, "opencode", config_dir)
+    guard_files, _ = _guardrail_artifacts(root, "opencode", config_dir, python_executable)
     plan += guard_files
     return plan
 
@@ -1550,6 +1552,8 @@ def _plan_claude(
     agents: list[str] | None = None,
     skills_mode: str = "link",
     is_desktop_target: bool = False,
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Skills + subagents + a hook plugin whose script matches hooks.json.
 
@@ -1588,9 +1592,9 @@ def _plan_claude(
     # fragment merges into the SAME plugin hooks.json.
     hooks_path = plugin / "hooks" / "hooks.json"
     bootstrap_fragment = json.loads(
-        _hook_substitute((root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8"), root, plugin)
+        _hook_substitute((root / "harnesses/claude-code/bootstrap/hooks.json").read_text(encoding="utf-8"), root, plugin, python_executable)
     )
-    guard_files, guard_fragment = _guardrail_artifacts(root, "claude-code", config_dir)
+    guard_files, guard_fragment = _guardrail_artifacts(root, "claude-code", config_dir, python_executable)
     plan += guard_files
     markers = _hook_owner_markers(root, "claude-code")
     merged = _merge_hooks(bootstrap_fragment, {}, markers)
@@ -1614,7 +1618,7 @@ def _plan_claude(
     plan.append((settings_path, json.dumps(merged_settings, indent=2) + "\n"))
 
     # Claude Desktop MCP configuration
-    servers = _mcp_servers(root)
+    servers = _mcp_servers(root, base_executable)
     if servers:
         desktop_candidates = _claude_desktop_config_paths(config_dir.parent)
         configured_desktop = False
@@ -1639,6 +1643,8 @@ def _plan_antigravity(
     skills: list[str] | None = None,
     agents: list[str] | None = None,
     profile: str = "on-demand",
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Plugin (manifest + rule + skills) under the global plugins dir.
 
@@ -1656,7 +1662,7 @@ def _plan_antigravity(
         if not rule_source.is_file():
             raise FileNotFoundError(f"on-demand Antigravity rule is missing: {rule_source}")
         plan.append((plugin / "rules" / "coacus.md", _read_source(rule_source)))
-        plan.append((plugin / "mcp_config.json", _antigravity_catalog_mcp_config(root, plugin)))
+        plan.append((plugin / "mcp_config.json", _antigravity_catalog_mcp_config(root, plugin, base_executable)))
     else:
         plan = _plan_skills(root, plugin / "skills", only, skills)
         plan += _plan_agents_antigravity(root, plugin / "agents", only, agents)
@@ -1666,8 +1672,8 @@ def _plan_antigravity(
         plan.append((plugin / name, _read_source(source)))
     # Merge the governor wiring and the guardrail fragment into ONE plugin
     # hooks.json (the file the harness reads), keyed by hook-set name.
-    hooks_doc = json.loads(_antigravity_hooks_json(root))
-    guard_files, guard_fragment = _guardrail_artifacts(root, "antigravity", config_dir)
+    hooks_doc = json.loads(_antigravity_hooks_json(root, python_executable))
+    guard_files, guard_fragment = _guardrail_artifacts(root, "antigravity", config_dir, python_executable)
     plan += guard_files
     if guard_fragment:
         hooks_doc.update(guard_fragment)
@@ -1676,7 +1682,7 @@ def _plan_antigravity(
     # Antigravity IDE global MCP configuration
     antigravity_ide_dir = config_dir / "antigravity"
     ide_mcp_path = antigravity_ide_dir / "mcp_config.json"
-    servers = _mcp_servers(root)
+    servers = _mcp_servers(root, base_executable)
     if servers and (antigravity_ide_dir.is_dir() or ide_mcp_path.exists()):
         existing_ide_mcp = _load_existing_json(ide_mcp_path)
         merged_ide_mcp = _merge_mcp(existing_ide_mcp, servers)
@@ -1684,9 +1690,9 @@ def _plan_antigravity(
     return plan
 
 
-def _antigravity_hooks_json(root: Path) -> str:
+def _antigravity_hooks_json(root: Path, python_executable: str | None = None) -> str:
     """Antigravity plugin hooks.json wiring the governor hook to lifecycle events."""
-    argv = [sys.executable, (root / "scripts/coacus_governor_hook.py").as_posix()]
+    argv = [python_executable or sys.executable, (root / "scripts/coacus_governor_hook.py").as_posix()]
     matcher = "invoke_subagent|manage_subagents|task"
     return (
         json.dumps(
@@ -1721,6 +1727,8 @@ def _plan_codex(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Skills to the documented scan root + the SessionStart hook.
 
@@ -1734,9 +1742,9 @@ def _plan_codex(
     # Codex agent roles live in $CODEX_HOME/agents/*.toml.
     plan += _plan_agents_codex(root, config_dir / "agents", only, agents)
     hooks = (root / "harnesses/codex/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_hook_substitute(hooks, root))
+    fragment = json.loads(_hook_substitute(hooks, root, python_executable=python_executable))
     existing = _load_existing_json(config_dir / "hooks.json")
-    guard_files, guard_fragment = _guardrail_artifacts(root, "codex", config_dir)
+    guard_files, guard_fragment = _guardrail_artifacts(root, "codex", config_dir, python_executable)
     plan += guard_files
     markers = _hook_owner_markers(root, "codex")
     merged = _merge_hooks(existing, fragment, markers)
@@ -1757,6 +1765,8 @@ def _plan_cursor(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Skills to a Cursor scan root + subagents + the sessionStart hook.
 
@@ -1769,9 +1779,9 @@ def _plan_cursor(
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     plan += _plan_agents_named(root, config_dir / "agents", only, agents)
     hooks = (root / "harnesses/cursor/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_hook_substitute(hooks, root))
+    fragment = json.loads(_hook_substitute(hooks, root, python_executable=python_executable))
     existing = _load_existing_json(config_dir / "hooks.json")
-    guard_files, guard_fragment = _guardrail_artifacts(root, "cursor", config_dir)
+    guard_files, guard_fragment = _guardrail_artifacts(root, "cursor", config_dir, python_executable)
     plan += guard_files
     markers = _hook_owner_markers(root, "cursor")
     merged = _merge_hooks(existing, fragment, markers)
@@ -1783,7 +1793,7 @@ def _plan_cursor(
             json.dumps(merged, indent=2) + "\n",
         )
     )
-    servers = _mcp_servers(root)
+    servers = _mcp_servers(root, base_executable)
     if servers:
         cursor_mcp = config_dir / "mcp.json"
         existing_cursor_mcp = _load_existing_json(cursor_mcp)
@@ -1803,6 +1813,8 @@ def _plan_command_code(
     only: list[str] | None = None,
     skills: list[str] | None = None,
     agents: list[str] | None = None,
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Skills (shared tree) + agents + SessionStart hook + MCP for Command Code.
 
@@ -1818,9 +1830,9 @@ def _plan_command_code(
     plan += _plan_skills(root, config_dir.parent / ".agents" / "skills", only, skills)
     plan += _plan_agents_command_code(root, config_dir / "agents", only, agents)
     hooks = (root / "harnesses/command-code/bootstrap/hooks.json").read_text(encoding="utf-8")
-    fragment = json.loads(_hook_substitute(hooks, root))
+    fragment = json.loads(_hook_substitute(hooks, root, python_executable=python_executable))
     existing = _load_existing_json(config_dir / COMMAND_CODE_HOOKS_FILE)
-    guard_files, guard_fragment = _guardrail_artifacts(root, "command-code", config_dir)
+    guard_files, guard_fragment = _guardrail_artifacts(root, "command-code", config_dir, python_executable)
     plan += guard_files
     markers = _hook_owner_markers(root, "command-code")
     merged = _merge_hooks(existing, fragment, markers)
@@ -1832,7 +1844,7 @@ def _plan_command_code(
             json.dumps(merged, indent=2) + "\n",
         )
     )
-    servers = _mcp_servers(root)
+    servers = _mcp_servers(root, base_executable)
     if servers:
         mcp_existing = _load_existing_json(config_dir / COMMAND_CODE_MCP_FILE)
         plan.append(
@@ -1874,6 +1886,8 @@ def plan(
     agents: list[str] | None = None,
     skills_mode: str = "link",
     antigravity_profile: str = "on-demand",
+    python_executable: str | None = None,
+    base_executable: str | None = None,
 ) -> list[tuple[Path, FileContent]]:
     """Compute the files to install for ``harness`` under the given filters.
 
@@ -1882,7 +1896,7 @@ def plan(
     name glob. Shared by ``install``, ``verify`` and ``uninstall``.
     """
     if harness == "opencode":
-        return _plan_opencode(root, config_dir, only, skills, agents)
+        return _plan_opencode(root, config_dir, only, skills, agents, python_executable, base_executable)
     if harness in ("claude-code", "claude-desktop"):
         return _plan_claude(
             root,
@@ -1892,15 +1906,17 @@ def plan(
             agents,
             skills_mode,
             is_desktop_target=(harness == "claude-desktop"),
+            python_executable=python_executable,
+            base_executable=base_executable,
         )
     if harness == "antigravity":
-        return _plan_antigravity(root, config_dir, only, skills, agents, antigravity_profile)
+        return _plan_antigravity(root, config_dir, only, skills, agents, antigravity_profile, python_executable, base_executable)
     if harness == "codex":
-        return _plan_codex(root, config_dir, only, skills, agents)
+        return _plan_codex(root, config_dir, only, skills, agents, python_executable, base_executable)
     if harness == "cursor":
-        return _plan_cursor(root, config_dir, only, skills, agents)
+        return _plan_cursor(root, config_dir, only, skills, agents, python_executable, base_executable)
     if harness == "command-code":
-        return _plan_command_code(root, config_dir, only, skills, agents)
+        return _plan_command_code(root, config_dir, only, skills, agents, python_executable, base_executable)
     return []
 
 
@@ -2284,6 +2300,8 @@ def install(
         json.dumps(
             {
                 "harness": harness,
+                "python_executable": sys.executable,
+                "base_executable": getattr(sys, "_base_executable", None) or sys.executable,
                 "files": written,
                 "workflow_fingerprints": workflow_fingerprints,
                 "file_fingerprints": {
@@ -2475,8 +2493,12 @@ def _installed_state(
                 drift.append(target.as_posix())
             continue
         if target_res in mcp_paths:
-            servers = _load_existing_json(target).get("mcpServers") or {}
-            if not any(name in servers for name in mcp_names):
+            servers = _load_existing_json(target).get("mcpServers")
+            expected = json.loads(content).get("mcpServers", {})
+            if not isinstance(servers, dict) or any(
+                name not in servers or servers[name] != expected[name]
+                for name in mcp_names if name in expected
+            ):
                 drift.append(target.as_posix())
             continue
         if _read_installed(target, content) != content:
@@ -2509,13 +2531,28 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     except ValueError as exc:
         result["error"] = str(exc)
         return result
+    python_executable = data.get("python_executable")
+    if "python_executable" not in data:
+        result["interpreter_note"] = "legacy manifest: using verifier interpreter"
+    elif (not isinstance(python_executable, str) or not python_executable
+          or not Path(python_executable).is_file() or not os.access(python_executable, os.X_OK)):
+        result["error"] = f"installed interpreter is missing or not executable: {python_executable!r}"
+        return result
+    base_executable = data.get("base_executable")
+    if "base_executable" not in data:
+        note = "legacy manifest: using verifier base interpreter"
+        result["interpreter_note"] = f"{result['interpreter_note']}; {note}" if "interpreter_note" in result else note
+    if "base_executable" in data and (not isinstance(base_executable, str)
+            or not Path(base_executable).is_file() or not os.access(base_executable, os.X_OK)):
+        result["error"] = f"installed base interpreter is missing or not executable: {base_executable!r}"
+        return result
     only = data.get("only") or None
     skills = data.get("skills") or None
     agents = data.get("agents") or None
     antigravity_profile = data.get("antigravity_profile", "full")
     files = plan(
         harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link"),
-        antigravity_profile,
+        antigravity_profile, python_executable, base_executable,
     )
     missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
