@@ -212,6 +212,13 @@ Implementers report one of four statuses:
 - **NEEDS_CONTEXT:** Supply missing context and re-dispatch.
 - **BLOCKED:** Assess the blocker. Provide context, break down the task, or ledger plan corrections. Never force retry without changes.
 
+For a reported access or technical blocker, establish attempted actions from an
+observed result or a report; a repository diff is only an indication of changes,
+not proof of an attempt. Assess whether an authorized independent path exists;
+if one does, identify its specific technical question before proceeding. Escalate
+when no safe authorized path remains or approval is required. Reassess after each
+materially different attempt; stop repeating attempts that provide no new evidence.
+
 ### 3. Review the task
 
 Every task requires two verdicts: spec compliance AND task quality. Self-review never replaces task review.
