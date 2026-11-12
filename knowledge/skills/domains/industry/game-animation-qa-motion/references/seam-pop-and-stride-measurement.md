@@ -2,10 +2,6 @@
 
 ## Locomotion Cycle Testing
 
-A locomotion cycle is only game-ready when it loops indefinitely without perceptual disruption:
-
-1. **Seam Pop Testing**: Play the looped animation continuously at target game framerate ($12\text{ fps}$, $24\text{ fps}$, or $60\text{ fps}$). Observe the head top and weapon tip at the wraparound cut frame ($F_{\text{last}} \to F_0$). A jump exceeding 2 pixels indicates an unclosed cycle requiring retake or in-betweening.
-2. **Foot Strike Ground Pinning**: The lead foot must make contact and stay anchored at a constant horizontal position while the torso translates forward. Zero foot-sliding across ground pixels during the stance phase is mandatory.
-3. **Stride Measurement Metric**: Calculate the stride length $L_{\text{stride}}$ in world pixels:
-   $$L_{\text{stride}} = X_{\text{strike,right}} - X_{\text{strike,left}}$$
-   Record this value in the runtime metadata to synchronize game engine movement velocity with the visual footwork rate.
+1. **Seam Pop Testing**: Play the loop continuously at its intended speed. Compare the head, weapon tip and silhouette across the wraparound with neighboring transitions, accounting for each frame's duration and intentional holds. Compare displacement and velocity at the sprite's actual scale; a pixel threshold is a project-specific warning heuristic, not a universal failure.
+2. **Foot Strike Ground Pinning**: Measure contact in world space after applying the per-frame pivot, entity translation and any camera transform needed to convert screen measurements. A planted foot on a moving entity usually travels backwards in sprite-local space. For a moving support, measure the planted foot relative to the support, accounting for its translation and rotation; stationary world coordinates are not the correct target. Check for visible sliding during stance rather than imposing a fixed local coordinate; allow artist-reviewed stylization.
+3. **Stride Measurement**: Measure stride in world units with the chosen strike landmarks and coordinate convention recorded. Synchronize movement speed with the visual contact cadence where the design requires it. Test in-place and root-motion clips at multiple world speeds and record acceptable exceptions.

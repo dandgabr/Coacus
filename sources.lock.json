@@ -19840,9 +19840,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
-      "source_sha256": "1586a0166ab3fcd7d50baa5a2a9c20e2db8bc13d580837e88cce394661749247",
+      "source_sha256": "db856c66bf05866551ef165c54a6fff90d5662c3a2e0c7f3df0a027ba4281776",
       "target_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
-      "target_sha256": "1586a0166ab3fcd7d50baa5a2a9c20e2db8bc13d580837e88cce394661749247",
+      "target_sha256": "db856c66bf05866551ef165c54a6fff90d5662c3a2e0c7f3df0a027ba4281776",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19885,9 +19885,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
-      "source_sha256": "0666b846ccb2de448bd78db861100cc8b070a382638de93cf74cf06e7c9b95b4",
+      "source_sha256": "62b333935d233f13bf7757a6c1862bf7f6fd01132521f940c5c182a6bde6452a",
       "target_path": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
-      "target_sha256": "0666b846ccb2de448bd78db861100cc8b070a382638de93cf74cf06e7c9b95b4",
+      "target_sha256": "62b333935d233f13bf7757a6c1862bf7f6fd01132521f940c5c182a6bde6452a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19900,9 +19900,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
-      "source_sha256": "bda9d414d0ffed39cc78947d8dd234003a6b30f4c562db0d1fc1e238e18b406a",
+      "source_sha256": "451c7d44de0d75b0232650b04f9707aa1d53ce1cddcb1c27b144d6f7e04d91ff",
       "target_path": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
-      "target_sha256": "bda9d414d0ffed39cc78947d8dd234003a6b30f4c562db0d1fc1e238e18b406a",
+      "target_sha256": "451c7d44de0d75b0232650b04f9707aa1d53ce1cddcb1c27b144d6f7e04d91ff",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19915,9 +19915,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
-      "source_sha256": "857b00ceace2bec5663155eb8b0adbf373483bcebfe188fefa3d72a42976e5a9",
+      "source_sha256": "eb393644cdb1b9458f0c97624b274994587e3d7a8fb77adee30eddf27929f640",
       "target_path": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
-      "target_sha256": "857b00ceace2bec5663155eb8b0adbf373483bcebfe188fefa3d72a42976e5a9",
+      "target_sha256": "eb393644cdb1b9458f0c97624b274994587e3d7a8fb77adee30eddf27929f640",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19930,9 +19930,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
-      "source_sha256": "3d5b0b1bdff4d4828139c970da5bd78221c36e2427c7faf73da788c2c03b2d6d",
+      "source_sha256": "792f9c4275d93a1814580c337e971752cf76b8a0ce0ba21b2c829f684ec6972e",
       "target_path": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
-      "target_sha256": "3d5b0b1bdff4d4828139c970da5bd78221c36e2427c7faf73da788c2c03b2d6d",
+      "target_sha256": "792f9c4275d93a1814580c337e971752cf76b8a0ce0ba21b2c829f684ec6972e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

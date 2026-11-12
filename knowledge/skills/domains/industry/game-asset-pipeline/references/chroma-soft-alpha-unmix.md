@@ -1,23 +1,33 @@
 # Chroma Key Selection and Soft-Alpha Unmixing
 
-## The Failure of Hard Chroma Peeling
+## Failure of Hard Chroma Peeling
 
-Traditional naive chroma keying erases pixels whose distance to the key color falls within a threshold, and then strips or "peels" edge boundaries. This destroys:
-- Sub-pixel antialiased hair strands.
-- Semi-transparent weapon glows and smoke effects.
-- 1px dark outlines in pixel art.
+Naive threshold deletion and edge peeling can destroy antialiased hair strands, semi-transparent glows or smoke, and one-pixel outlines. Preserve the original asset and inspect the keyed result over both light and dark backgrounds.
 
-## Soft-Alpha Unmixing Model
+## Soft-Alpha Model and Limits
 
-Instead of binary deletion, decompose boundary transition pixels into foreground RGB and calculated alpha coverage $\alpha \in [0.0, 1.0]$:
+For source-over compositing against an opaque key, `C = alpha * F + (1 - alpha) * K`, where `C` is the observed RGB, `F` is straight foreground RGB, `K` is key RGB, and alpha is coverage. Use the same compositing domain for all three: normally linear-light RGB, or encoded RGB if the source was actually composited there. Record the domain and whether stored output RGB is straight or premultiplied; premultiplied RGB is `alpha * F`. At alpha zero, straight RGB is not recoverable.
 
-$$\alpha = 1.0 - \frac{C_{\text{key}} \cdot (C_{\text{pixel}} - C_{\text{foreground}})}{\|C_{\text{key}}\|^2}$$
+One observed RGB and a key cannot uniquely recover both unknown foreground RGB and alpha: the problem is underdetermined. A deterministic keyer can estimate a matte and despill using explicit assumptions, but cannot guarantee recovery of foreground details, especially when foreground and key colors are similar. Compare with the preserved source and seek artist review.
 
-Transition pixels close to the key boundary are unmixed into despilled RGB and partial alpha, eliminating colored fringes without eroding silhouette borders.
+If both `F` and `K` are independently known, the following least-squares estimate follows from the model. A near-zero denominator is ambiguous, not transparent or opaque by default. The tolerance assumes normalized RGB.
+
+```python
+def estimate_alpha(observed, foreground, key):
+    delta = [f - k for f, k in zip(foreground, key)]
+    denominator = sum(d * d for d in delta)
+    if denominator < 1e-12:
+        return None
+    alpha = sum((c - k) * d for c, k, d in zip(observed, key, delta)) / denominator
+    return max(0.0, min(1.0, alpha))
+```
+
+Validate known opaque, transparent and half-alpha synthetic patches, including the ambiguous foreground-equals-key case. Recompose estimates over light and dark backgrounds; inspect real edges for halos and lost strands. The equation assumes the stated source-over model, not arbitrary color spill or compression.
+
+Source: [W3C source-over compositing](https://www.w3.org/TR/2024/CRD-compositing-1-20240321/#simplealphacompositing).
 
 ## Key Selection Strategy
 
-- **Do Not Default Blindly to Magenta**:
-  - Warm characters (red hair, pink armor, orange clothing, bronze skin) will suffer boundary erosion under magenta (`#FF00FF`). Use **Pure Green** (`#00FF00`) instead.
-  - Cool characters (green clothing, teal scales, olive uniforms) will suffer boundary erosion under green. Use **Magenta** (`#FF00FF`) instead.
-  - When characters feature both red and green elements, use a high-contrast tertiary key (such as **Cobalt Blue** `#0000FF` or **Cyan** `#00FFFF`).
+- Do not default blindly to magenta. Warm characters with red hair, pink armor, orange clothing or bronze skin may be better separated from green.
+- Cool characters with green clothing, teal scales or olive uniforms may be better separated from magenta.
+- When characters feature red and green elements, consider a contrasting tertiary key such as cobalt blue or cyan. Check actual edges and lighting; no key color guarantees separation.

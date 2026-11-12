@@ -1,9 +1,8 @@
 # Motion Continuity and Frame Arc Verification
 
-## Physical Trajectory Continuity
+## Trajectory and spacing
 
-Every animation frame represents a slice of physical motion. To ensure visual fluidity and prevent disorientation:
-
-1. **Center-of-Mass Parabola**: During jumping or launching animations, plot the trajectory of the pelvis/center of mass across sequential frames. The curve must describe a smooth arc without horizontal or vertical hitches.
-2. **Spacing and Acceleration (Slow In & Slow Out)**: Keyframes must reflect acceleration and deceleration. Startup frames cluster closely together, active strike frames exhibit wide spacing, and recovery settles back into dense clustering.
-3. **Smear Frame Validation**: If high-speed action uses smear frames or motion trails, ensure the smear aligns strictly with the direction of the limb's velocity vector.
+1. **Trajectory agreement**: Plot the pelvis or center of mass across frames and compare it with the controller's intended trajectory and timing. Investigate unintended hitches; deliberate holds, stylized motion and changes in acceleration are not defects by themselves. A parabola is appropriate only for the relevant constant-gravity ballistic segment, not every jump, fall or recoil. For example, [Celeste's creator describes reduced gravity near a held jump's apex](https://www.maddymakesgames.com/articles/celeste_and_forgiveness/).
+2. **Spacing and acceleration**: Inspect frame spacing against the intended acceleration, deceleration and action timing. Slow-in and slow-out are useful choices, not mandatory for every action.
+3. **Smear frames**: Check that smears and trails communicate the intended limb motion and remain readable at gameplay speed.
+4. **Impact timing**: Compare the collision event, impact pose, any hold and recovery in the running game. For input and clock interactions, consult [controller and game feel](../../../design/game-sprite-design/references/controller-and-game-feel.md).

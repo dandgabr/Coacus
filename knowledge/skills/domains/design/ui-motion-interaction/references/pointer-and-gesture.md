@@ -40,8 +40,8 @@ Durations below are the duration tokens (`--motion-feedback`, `--motion-state`, 
 Rules for every recipe:
 
 - Filter by `event.pointerType === 'mouse'` inside handlers as well; hybrid devices match `(pointer: fine)` while the user is touching.
-- Animate only `transform` and `opacity` on the moving node. Write custom properties or transforms once per frame from a `requestAnimationFrame` callback, never directly from `pointermove` (it can fire several times per frame).
-- Cache geometry (`getBoundingClientRect()`) on `pointerenter` and invalidate it on `scroll`/`resize`; reading layout on every move forces synchronous layout.
+- Prefer `transform` and `opacity` on the moving node; gradients and masks can require paint. Collect real pointer samples and update logical state on events. Where profiling warrants it, coalesce visual DOM writes to at most one scheduled animation frame; flush the final position on release and cancel pending frames on cancellation or disposal. Preserve sample timestamps for velocity. Library retarget calls are not the same as direct style writes; profile both rather than assuming a frame budget.
+- Cache geometry (`getBoundingClientRect()`) on `pointerenter` and invalidate it on `scroll`/`resize`; interleaved layout reads and writes can force synchronous layout.
 - Keep the hit area fixed. Move an inner wrapper or a pseudo-element, never the element that receives the pointer events.
 - Every mount returns a cleanup that removes listeners, cancels the frame loop and resets inline styles.
 - Reduced motion (Coacus house policy, WCAG technique C39): drop spatial movement and keep a static or colour/opacity state cue.
@@ -85,7 +85,7 @@ function magnetic(btn, strength = 0.3) {          // 0.2–0.4× of the offset
 }
 ```
 
-`gsap.quickTo()` reuses one tween per property and retargets it on each call, so it is cheap inside `pointermove`. With Motion, drive the same offset through a spring (`spring.snap` from [motion-timing-engines.md](motion-timing-engines.md)) so the return carries velocity.
+`gsap.quickTo()` reuses one tween per property and retargets it on each call; measure the resulting work under real input. With Motion, drive the same offset through a spring (`spring.snap` from [motion-timing-engines.md](motion-timing-engines.md)) so the return carries velocity.
 
 Pitfalls:
 
@@ -385,7 +385,9 @@ Pitfalls: creating an `<img>` per move leaks nodes and decode work, so reuse a f
 
 ## Drag, swipe and fling
 
-Direct manipulation needs capture, intent detection, velocity, and a release that hands velocity to a spring or decay.
+For a scrollable gallery or list, start with native overflow and, where appropriate, CSS scroll snap; use custom transform-based drag for non-scroll manipulation or measured needs the native path cannot meet. Native snap physics vary by browser. See [ui-scroll-driven-motion](../../ui-scroll-driven-motion/SKILL.md). Test zoom, wide and tall content, keyboard and focus visibility, both directions, and reachability of intervening content; avoid mandatory snap positions that make content unreachable ([CSS Scroll Snap](https://www.w3.org/TR/css-scroll-snap-1/#snap-strictness)).
+
+Custom direct manipulation needs capture, intent detection, velocity, and a release that hands velocity to a spring or decay.
 
 ```css
 .fx-drag-x { touch-action: pan-y; user-select: none; } /* horizontal drag; vertical scroll stays native */
@@ -393,64 +395,145 @@ Direct manipulation needs capture, intent detection, velocity, and a release tha
 
 ```js
 const SLOP = 8;                                   // px before deciding intent (house default)
-function draggable(el, { min, max, onRelease }) {
-  let id = null, state = 'idle', startX = 0, startY = 0, base = 0, x = 0, samples = [];
-  const rubber = (over, d, c = 0.55) => (1 - 1 / ((Math.abs(over) * c) / d + 1)) * d * Math.sign(over);
+function draggable(el, { min, max, onRelease, reducedMotion = false }) {
+  let suppressClick = null, suppressTimer = 0;
+  let id = null, state = 'idle', startX = 0, startY = 0, base = 0, x = 0, display = 0, baseDisplay = 0, baselineTransform = '', samples = [];
+  const rubber = (over, d, c = 0.55) => d <= 0 ? 0 : (1 - 1 / ((Math.abs(over) * c) / d + 1)) * d * Math.sign(over);
   const clampDisplay = (v) =>
     v < min ? min + rubber(v - min, el.clientWidth) :
     v > max ? max + rubber(v - max, el.clientWidth) : v;
+  const dragDisplay = (dx) => {
+    if (reducedMotion) return Math.max(min, Math.min(max, baseDisplay + dx));
+    if (baseDisplay > max && dx < 0) return Math.min(baseDisplay, Math.max(max, baseDisplay + dx)) + Math.min(0, clampDisplay(baseDisplay + dx) - max);
+    if (baseDisplay < min && dx > 0) return Math.max(baseDisplay, Math.min(min, baseDisplay + dx)) + Math.max(0, clampDisplay(baseDisplay + dx) - min);
+    if (baseDisplay > max && dx >= 0) {
+      const over = baseDisplay - max, d = el.clientWidth;
+      return over >= d ? max + d : max + rubber(over * d / (0.55 * (d - over)) + dx, d);
+    }
+    if (baseDisplay < min && dx <= 0) {
+      const over = min - baseDisplay, d = el.clientWidth;
+      return over >= d ? min - d : min - rubber(over * d / (0.55 * (d - over)) - dx, d);
+    }
+    return clampDisplay(baseDisplay + dx);
+  };
 
-  el.addEventListener('pointerdown', (e) => {
+  const down = (e) => {
     if (e.button !== 0 || id !== null) return;
+    clearTimeout(suppressTimer); suppressClick = null; // a new press cannot be the preceding drag's click
     id = e.pointerId; state = 'pending';
-    startX = e.clientX; startY = e.clientY; base = x;
-    samples = [{ t: e.timeStamp, x: e.clientX }];
-    el.setPointerCapture(id);                    // keep receiving moves outside the element
-  });
-  el.addEventListener('pointermove', (e) => {
+    startX = e.clientX; startY = e.clientY; base = x; baseDisplay = display;
+    baselineTransform = el.style.transform;
+    samples = [{ t: e.timeStamp, x: display }];
+  };
+  const move = (e) => {
     if (e.pointerId !== id) return;
     const dx = e.clientX - startX, dy = e.clientY - startY;
     if (state === 'pending') {
       if (Math.hypot(dx, dy) < SLOP) return;
-      if (Math.abs(dy) > Math.abs(dx)) { end(e); return; } // vertical intent: let it scroll
+      if (Math.abs(dy) > Math.abs(dx)) { cancel(e); return; } // vertical intent: let it scroll
       state = 'dragging';
+      el.setPointerCapture(id);                  // capture only after drag intent is established
     }
-    samples.push({ t: e.timeStamp, x: e.clientX });
-    samples = samples.filter((s) => e.timeStamp - s.t <= 100); // recent window only
     x = base + dx;
-    el.style.transform = `translate3d(${clampDisplay(x)}px, 0, 0)`;
-  });
-  const end = (e) => {
-    if (e.pointerId !== id) return;
+    display = dragDisplay(e.clientX - startX);
+    samples.push({ t: e.timeStamp, x: display });
+    samples = samples.filter((s) => e.timeStamp - s.t <= 100); // recent window only
+    el.style.transform = `translate3d(${display}px, 0, 0)`;
+  };
+  const cleanup = () => {
+    const captured = id;
+    id = null; state = 'idle'; samples = [];      // clear first: capture loss can follow release
+    if (el.hasPointerCapture(captured)) el.releasePointerCapture(captured);
+  };
+  const cancel = (e) => {
+    if (e.pointerId !== id || id === null) return;
+    x = base; display = baseDisplay;
+    el.style.transform = baselineTransform;
+    cleanup();
+  };
+  const up = (e) => {
+    if (e.pointerId !== id || id === null) return;
+    if (state === 'dragging') {
+      x = base + e.clientX - startX;
+      display = dragDisplay(e.clientX - startX);
+      el.style.transform = `translate3d(${display}px, 0, 0)`;
+    }
+    const last = samples.at(-1);
+    samples.push({ t: e.timeStamp, x: display });
+    samples = samples.filter((s) => e.timeStamp - s.t <= 100);
+    if (samples.length === 1 && last && last.x !== display) samples.unshift(last);
     const a = samples[0], b = samples.at(-1);
     const v = b && a && b.t > a.t ? (b.x - a.x) / (b.t - a.t) * 1000 : 0; // px/s
-    if (state === 'dragging') onRelease({ x: clampDisplay(x), velocity: v });
-    if (el.hasPointerCapture(id)) el.releasePointerCapture(id);
-    id = null; state = 'idle';
+    const released = state === 'dragging' ? { x: display, velocity: reducedMotion ? 0 : v } : null;
+    if (released) {
+      suppressClick = id;
+      suppressTimer = setTimeout(() => {
+suppressClick = null;
+if (disposed) window.removeEventListener('click', click, true);
+}, 0);
+    }
+    cleanup();
+    if (released) onRelease(released);
   };
-  el.addEventListener('pointerup', end);
-  el.addEventListener('pointercancel', end);     // browser took over (e.g. native pan)
+  const click = (e) => {
+    if (suppressClick === null || e.detail === 0 || (e.pointerId != null && e.pointerId !== suppressClick)) return;
+    suppressClick = null; clearTimeout(suppressTimer);
+    if (disposed) window.removeEventListener('click', click, true);
+    e.preventDefault(); e.stopImmediatePropagation();
+  };
+  const lost = (e) => { if (e.target === el) cancel(e); }; // ignore child capture transfer
+  el.addEventListener('pointerdown', down);
+  window.addEventListener('pointermove', move);
+  window.addEventListener('pointerup', up);
+  window.addEventListener('click', click, true);
+  window.addEventListener('pointercancel', cancel);
+  el.addEventListener('lostpointercapture', lost);
+  let disposed = false;
+  const sync = (position) => {
+    if (disposed) return;
+    if (id !== null) return; // synchronize only between gestures
+    const overshoot = reducedMotion ? 0 : el.clientWidth;
+    x = display = Math.max(min - overshoot, Math.min(max + overshoot, position));
+    el.style.transform = `translate3d(${display}px, 0, 0)`;
+  }; // synchronize after stopping an external snap or spring
+  sync.dispose = () => {
+    if (disposed) return;
+    disposed = true;
+    if (id !== null) cancel({ pointerId: id });
+    // Keep a pending drag click guard until it fires or its zero-delay timer expires.
+    if (suppressClick === null) window.removeEventListener('click', click, true);
+    el.removeEventListener('pointerdown', down);
+    window.removeEventListener('pointermove', move);
+    window.removeEventListener('pointerup', up);
+    window.removeEventListener('pointercancel', cancel);
+    el.removeEventListener('lostpointercapture', lost);
+  };
+  return sync;
 }
 ```
 
 Mechanics:
 
-- **Capture:** `setPointerCapture()` routes every subsequent event for that pointer to the element, so a fast drag cannot escape it. Handle `pointercancel` and `lostpointercapture`; touch scrolling or a system gesture can end the drag without `pointerup`.
-- **`touch-action`:** declare what the browser keeps. `pan-y` on a horizontal carousel keeps vertical page scroll native; `none` takes everything and must be limited to the draggable surface. Calling `preventDefault()` in `pointermove` does not stop touch panning; only `touch-action` does.
+- **Capture and cancellation:** Window-level pointer listeners track a pending press outside the element. The example explicitly calls `setPointerCapture()` only after horizontal intent; direct-manipulation input can already have implicit capture on its initial target at `pointerdown` ([Pointer Events: implicit capture](https://www.w3.org/TR/2026/REC-pointerevents3-20260630/#implicit-pointer-capture)). Delaying explicit capture alone does not guarantee nested-control click behavior. The capture-phase click guard attempts to cancel a completed drag's click while leaving keyboard and later activations alone; its timer and event ordering require real-browser verification ([click dispatch](https://www.w3.org/TR/2026/REC-pointerevents3-20260630/#the-click-auxclick-and-contextmenu-events)). `setPointerCapture()` keeps drag moves routed to the element. On `pointercancel` or unexpected `lostpointercapture`, restore the pre-drag logical and visual position without committing or flinging. Cleanup must be idempotent when capture loss follows cancellation or release. Successful `pointerup` is separate and must not be rolled back. The returned synchronization function sets both the logical and visual position between gestures, clamping external positions to one element width beyond either bound. Stop any external animation and call it with the current visual position before accepting another drag, including after a snap or an alternative control changes position. Call `sync.dispose()` on unmount to cancel an active gesture, release capture, and remove listeners; repeated disposal is safe. After a completed drag, the click guard remains until the drag click arrives or its zero-delay timer expires, including when `onRelease` disposes synchronously. Use a dedicated translation wrapper; synchronization replaces its inline transform.
+- **`touch-action`:** declare gesture ownership before contact; changes after the gesture starts do not affect that gesture. The browser intersects applicable ancestor values through the relevant scroll container. The example's `pan-y` permits vertical panning but does not promise pinch zoom; consider `pan-y pinch-zoom` when zoom must remain available and test the target engines. Restrict `none` to surfaces that truly need it. Cancelling `pointermove` is not the mechanism for suppressing direct-manipulation panning ([Pointer Events: supported direct manipulation](https://www.w3.org/TR/2026/REC-pointerevents3-20260630/#determining-supported-direct-manipulation-behavior)).
 - **Intent and slop:** wait for a small movement (house default 8 px) before deciding the axis; a press that never exceeds the slop is a tap and must still activate.
-- **Velocity:** compute from samples in the last ~100 ms, not from the last two events, which are noisy and often zero at release.
+- **Velocity:** sample displayed positions, not raw pointer positions, including the release position and timestamp in samples from the last ~100 ms. If release moves after a longer sampling gap, estimate its average velocity from the last known position; a stationary hold decays to zero. For sample-sensitive drawing or velocity estimation, feature-detect `getCoalescedEvents()` in a secure context and use its nonempty actual-sample list or fall back to the dispatched event, without counting both ([Pointer Events: coalesced events](https://www.w3.org/TR/2026/REC-pointerevents3-20260630/#coalesced-events)). This does not guarantee smoother or lower-latency output.
 - **Momentum and decay:** for free scrolling, decay velocity exponentially, `v(t) = v0·e^(−t/τ)`, which lands at `x0 + v0·τ`. Use the projected landing point to choose a snap target.
 - **Rubber-band:** past a bound, display `f(x) = (1 − 1/((x·c/d) + 1))·d` where `x` is the overshoot, `d` the dimension and `c ≈ 0.55`; resistance grows smoothly and never exceeds `d`.
 - **Release into a spring carrying velocity:** pass the measured velocity as the spring's initial velocity so motion is continuous, for example Motion `animate(el, { x: target }, { type: 'spring', velocity, stiffness, damping })`. Take presets and interruption rules from [motion-timing-engines.md](motion-timing-engines.md); a grabbed element that is mid-spring must stop where it is and follow the pointer.
-- **Reduced motion:** keep the drag 1:1 (it is user-driven), but replace the fling and rubber-band settle with a short opacity or instant snap.
-- **Single-pointer alternative (SC 2.5.7):** every drag outcome needs a non-drag path: previous/next buttons, a select control, or arrow keys on the focused item. Swipe-to-dismiss needs a visible dismiss button.
+- **Reduced motion:** pass `reducedMotion: true` when `(prefers-reduced-motion: reduce)` matches. Drag follows the pointer 1:1 inside the bounds and clamps at the edges; synchronization also clamps and release velocity is zero. The caller must skip fling and spatial settle, using an instant snap if needed. The option is fixed per instance: on a media-query change, stop external animation, dispose the instance (which cancels an active gesture), create a new instance with the updated preference, and synchronize its current position. Remove the media-query listener on unmount.
+- **Single-pointer and keyboard alternatives:** provide a non-drag click/tap path for each drag outcome, such as previous/next buttons, a select control, or a visible dismiss button. Independently ensure keyboard operation, including focus and activation; arrow keys alone are not a single-pointer alternative. Wire both paths to the same action and synchronize the position before the next drag.
+
+**Verification limits:** Synthetic event tests do not prove native input routing. On supported browsers and real touch devices, test nested-link tap versus drag, implicit capture and transfer, `pointercancel`, `lostpointercapture`, release outside, consecutive presses, and keyboard activation. Check final move/release ordering and trace frame duration, paint and forced layout on representative hardware. Record unavailable engines and devices as untested.
 
 ## Pure CSS micro-interactions and shimmer text
 
 When high tactile quality is required with zero JavaScript overhead:
 - **Zero-JS Micro-interactions:** Use modern CSS `:has()`, `:hover`, and `:active` combined with transition variables (`transition: transform var(--motion-feedback) var(--ease-squish)`). Never spin up event listeners or animation loops for deterministic button depress, badge pop, or toggle switches.
-- **Hardware-Accelerated Shimmer Text:** Animate text sheen across display typography using `background-clip: text`, `color: transparent`, and a linear gradient translated via `background-position`:
+- **Shimmer Text:** Use a static text sheen by default with `background-clip: text` and a linear gradient:
   ```css
+  .fx-shimmer-text { color: var(--fg); }
+  @supports (background-clip: text) {
   .fx-shimmer-text {
     background: linear-gradient(
       110deg,
@@ -464,11 +547,8 @@ When high tactile quality is required with zero JavaScript overhead:
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: fx-shimmer 3s ease-in-out infinite;
+    background-position: 50% 0;
   }
-  @keyframes fx-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .fx-shimmer-text {
@@ -478,7 +558,7 @@ When high tactile quality is required with zero JavaScript overhead:
     }
   }
   ```
-- **Performance Budget:** Ensure the animation does not cause layout or paint thrashing; verify with DevTools Rendering tab that only compositor properties are animated.
+- **Performance and motion controls:** The default is static. If adding persistent animation, provide a usable pause or stop control and preserve the reduced-motion fallback. Animating `background-position` can require painting; profile representative devices.
 
 ## Version Sources
 

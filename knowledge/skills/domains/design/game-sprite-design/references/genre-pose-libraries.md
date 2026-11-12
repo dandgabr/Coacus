@@ -12,12 +12,13 @@
 STARTUP / ANTICIPATION → ACTIVE FRAMES → RECOVERY
 (Coil back, windup)       (Max extension)  (Weight resets)
 ```
+Align the collision, impact hold, and recovery with the [controller and feedback timeline](controller-and-game-feel.md). The following counts are illustrative examples at 60 simulation frames per second, not universal targets; tune them for the game and its simulation rate.
 - **Light Attacks**: 2-3 startup frames, 2 active, 3-4 recovery.
 - **Heavy Attacks**: 6-10 startup frames, 3-5 active, 12-16 recovery.
 
 ### Hit Reactions
 - **Standing Hitstun**: Head snaps back, spine curves inward, guard breaks.
-- **Knockdown / Juggle**: Parabolic airborne arc with tumbling rotation; hard ground impact frame followed by settle.
+- **Knockdown / Juggle**: An airborne arc with tumbling rotation and a readable ground impact and settle; match the intended gameplay trajectory rather than requiring a parabola.
 
 ---
 
