@@ -1361,17 +1361,17 @@
     },
     {
       "name": "game-2d-scene-composition",
-      "description": "Provides patterns and mathematical models for 2D game scene composition, multi-plane parallax layering, directional projected shadows, contact anchors, and repeating background tile quilting. Use when composing, laying out, or lighting 2D game levels and cinematic scene environments.",
+      "description": "Provides patterns and mathematical models for 2D game scene composition, multi-plane parallax layering, directional projected shadows, contact anchors, and repeating background tile quilting. Use when composing, laying out, or lighting 2D game levels and cinematic scene environments, framing gameplay, or designing camera follow.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md",
-      "digest": "sha256:3912364c40fb7c44eb212ca7626811b148c92c7e6b4ac953fbfa4c9369676ee7"
+      "digest": "sha256:139f0f2c9825806c5f5886b13422f77eb10f42f6af1827adf1021bcf15b5a4f6"
     },
     {
       "name": "game-animation-qa-motion",
       "description": "Provides rigorous quality assurance methodologies for 2D game animations, verifying motion continuity, physical arcs, handedness asymmetry preservation, stride synchronization, and seam pop elimination. Use when auditing, inspecting, or testing 2D character animation loops and gameplay sprite sheets.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/game-animation-qa-motion/SKILL.md",
-      "digest": "sha256:f5b8c73200339c98bb8a495fd6104d8d928f98eb16ce8eafeb3cbc0e2eff5d75"
+      "digest": "sha256:82a4aaf72fcf555a0aaac355bbd7945ceaa1c5f17b87a54882cb9b15b88d896f"
     },
     {
       "name": "game-anticheat-engineering",
@@ -1385,7 +1385,7 @@
       "description": "Provides automated 2D sprite processing, soft-alpha unmixing, pixel art lattice recovery, RIFE frame interpolation, atlas packing, and engine manifest exports. Use when automating, extracting, assembling, or integrating 2D game sprite sheets with engines such as Phaser, Flame, Godot, or Unity.",
       "type": "archive",
       "url": "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
-      "digest": "sha256:ddf6c905e01520f82d507c0934e6d789897456d94b3c14f79060e57cab48c722"
+      "digest": "sha256:9664d012410629e675cf0ab9571beb942a9414fa34184a1cd7579929d4e520f9"
     },
     {
       "name": "game-economy-fraud-security",
@@ -1410,10 +1410,10 @@
     },
     {
       "name": "game-sprite-design",
-      "description": "Provides end-to-end design patterns, anatomical mannequin modeling, head-count proportions, multi-genre pose libraries, and hitbox alignment for consistent 2D game sprites and animation frames. Use when generating, illustrating, or refining 2D game characters and visual gameplay assets.",
+      "description": "Provides end-to-end design patterns, anatomical mannequin modeling, head-count proportions, multi-genre pose libraries, and hitbox alignment for consistent 2D game sprites and animation frames. Use when generating, illustrating, or refining 2D game characters and visual gameplay assets, or aligning character animation with controller timing and feedback.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/game-sprite-design/SKILL.md",
-      "digest": "sha256:8c846da56546fde8983e5264af3ca6e77be87329b815bffc9911743d4b3390ab"
+      "digest": "sha256:ebac49895211698b886665b34401f71133293d49a611196551813552a62b8dfd"
     },
     {
       "name": "gemini-enterprise",
@@ -2743,7 +2743,7 @@
       "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:8659b2747a4a2623e2f543bf22b833992376bd3ef5e05f234343281f3e7d2254"
+      "digest": "sha256:983fe5ea871ccebda45251805c0a4e5478ef1d05fc606a7c02f130236d3247ec"
     },
     {
       "name": "ui-onboarding-tours",

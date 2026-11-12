@@ -4,7 +4,8 @@ description: >-
   Provides patterns and mathematical models for 2D game scene composition,
   multi-plane parallax layering, directional projected shadows, contact anchors,
   and repeating background tile quilting. Use when composing, laying out, or
-  lighting 2D game levels and cinematic scene environments.
+  lighting 2D game levels and cinematic scene environments, framing gameplay,
+  or designing camera follow.
 tags:
   - game-art
   - scene-composition
@@ -26,5 +27,6 @@ Guides the architectural layout and composition of 2D game environments, coordin
 ## Reference Modules
 
 - Consult [planes-and-parallax.md](references/planes-and-parallax.md) for velocity factors, coordinate transforms, and plane hierarchy.
+- Consult [camera-follow-and-comfort.md](references/camera-follow-and-comfort.md) when designing gameplay framing, tracking, or motion comfort.
 - Consult [projected-shadows-and-lighting.md](references/projected-shadows-and-lighting.md) for affine shadow matrices, shear angles, and ambient occlusion rules.
 - Consult [repeating-tiles-quilting.md](references/repeating-tiles-quilting.md) for seamless tile generation and overlap seam minimization.

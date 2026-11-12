@@ -4,7 +4,8 @@ description: >-
   Provides end-to-end design patterns, anatomical mannequin modeling, head-count
   proportions, multi-genre pose libraries, and hitbox alignment for consistent
   2D game sprites and animation frames. Use when generating, illustrating, or
-  refining 2D game characters and visual gameplay assets.
+  refining 2D game characters and visual gameplay assets, or aligning character
+  animation with controller timing and feedback.
 tags:
   - game-art
   - 2d-sprites
@@ -45,3 +46,4 @@ Acts as a specialized 2D Game Art and Sprite Design authority, enforcing absolut
 - Consult [proportions-and-scale.md](references/proportions-and-scale.md) for head-count proportional scaling, world scale anchoring, and roster lineups.
 - Consult [genre-pose-libraries.md](references/genre-pose-libraries.md) for fighting games, platformers, beat 'em ups, and side-view shooters.
 - Consult [hitbox-hurtbox-alignment.md](references/hitbox-hurtbox-alignment.md) for collision box taxonomy and gameplay hit registration rules.
+- Consult [controller-and-game-feel.md](references/controller-and-game-feel.md) when coordinating input grace, hit stop, and accessible feedback with character animation.

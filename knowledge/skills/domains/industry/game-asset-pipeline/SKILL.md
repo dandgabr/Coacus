@@ -18,14 +18,14 @@ Governs the technical automation, image-processing mathematics, and engine integ
 
 ## Core Directives
 
-1. **Deterministic Soft-Alpha Unmix**: Decompose edge color blends into despilled RGB and partial alpha instead of destructive edge peeling.
-2. **Backbone Lattice Alignment**: Recover true pixel-art grids using fractional pitch detection and phase synchronization; never perform naive raster resampling.
-3. **Loop Seam Healing**: Eliminate cycle jumps ("seam pop") in walk and run cycles using optical-flow frame interpolation and foot-anchor locking.
-4. **Runtime Manifest as Single Source of Truth**: Emit explicit absolute bounding boxes (`frame_layout`) to prevent engine-side alpha guessing.
+1. **Soft-Alpha Estimation**: Preserve the source; estimate alpha and despill under explicit compositing assumptions. Unknown foreground and alpha cannot generally be recovered uniquely.
+2. **Backbone Lattice Alignment**: Recover true pixel-art grids using fractional pitch detection and phase synchronization; avoid naive raster resampling.
+3. **Optional Loop Repair**: Inspect playback first; use hand editing or interpolation only when needed, preserving timing and reviewing artifacts and contact points.
+4. **Runtime Manifest**: Record explicit atlas rectangles, trim offsets, source-space pivots and frame durations. Preserve the legacy `frame_layout` contract where applicable and follow the migration guidance.
 
 ## Reference Modules
 
-- Consult [chroma-soft-alpha-unmix.md](references/chroma-soft-alpha-unmix.md) for color-distance bounds, key selection, and despill equations.
+- Consult [chroma-soft-alpha-unmix.md](references/chroma-soft-alpha-unmix.md) for the compositing model, ambiguity, assumptions and key selection.
 - Consult [pixel-unfake-lattice.md](references/pixel-unfake-lattice.md) for pitch detection, median-cut palettes, and integer upscaling.
-- Consult [loop-repair-and-interpolation.md](references/loop-repair-and-interpolation.md) for RIFE neural interpolation and stride synchronization.
-- Consult [runtime-manifest-contracts.md](references/runtime-manifest-contracts.md) for Phaser, Flame, Godot, and Aseprite JSON schemas.
+- Consult [loop-repair-and-interpolation.md](references/loop-repair-and-interpolation.md) for optional interpolation, timing preservation and contact-point review.
+- Consult [runtime-manifest-contracts.md](references/runtime-manifest-contracts.md) for the custom manifest, legacy layout and engine adapter requirements.

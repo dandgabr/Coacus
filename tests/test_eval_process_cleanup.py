@@ -247,21 +247,36 @@ class ProcessCleanupTests(unittest.TestCase):
     @unittest.skipUnless(os.name == 'posix', 'requires POSIX process groups')
     def test_keyboard_interrupt_terminates_and_reaps_process(self):
         processes = []
+        waited = []
         popen = coacus_eval.subprocess.Popen
 
         def start(*args, **kwargs):
             proc = popen(*args, **kwargs)
             processes.append(proc)
+            wait = proc.wait
+
+            def wait_with_fallback(*args, **kwargs):
+                time.sleep(.001)  # Exercise the sleep used by subprocess.wait's fallback.
+                result = wait(*args, **kwargs)
+                waited.append(True)
+                return result
+
+            proc.wait = mock.Mock(side_effect=wait_with_fallback)
             return proc
 
-        with mock.patch.object(coacus_eval.subprocess, 'Popen', side_effect=start), \
-             mock.patch.object(coacus_eval.time, 'sleep', side_effect=KeyboardInterrupt):
-            with self.assertRaises(KeyboardInterrupt):
-                coacus_eval._bounded_run([sys.executable, '-c', 'import time; time.sleep(30)'], 5)
+        eval_time = mock.Mock(wraps=time)
+        eval_time.sleep.side_effect = KeyboardInterrupt
         try:
-            self.assertIsNotNone(processes[0].poll())
+            with mock.patch.object(coacus_eval.subprocess, 'Popen', side_effect=start), \
+                 mock.patch.object(coacus_eval, 'time', eval_time):
+                with self.assertRaises(KeyboardInterrupt):
+                    coacus_eval._bounded_run([sys.executable, '-c', 'import time; time.sleep(30)'], 5)
+            eval_time.sleep.assert_called_once_with(.01)
+            processes[0].wait.assert_called_once_with(timeout=5)
+            self.assertEqual(waited, [True])
+            self.assertIsNotNone(processes[0].returncode)
         finally:
-            if processes[0].poll() is None:
+            if processes and processes[0].poll() is None:
                 os.killpg(processes[0].pid, 9)
                 processes[0].wait()
 

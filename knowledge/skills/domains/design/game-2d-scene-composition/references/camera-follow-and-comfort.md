@@ -1,0 +1,7 @@
+# Camera Follow and Comfort
+
+Design gameplay framing separately from background parallax. Choose a dead zone, directional look-ahead, smoothing, vertical catch-up and world-boundary behavior independently; specify teleport, respawn and camera reset transitions. Tune these choices for the genre and playable space rather than adopting a fixed coefficient. See camera designer [Itay Keren's survey of side-scrolling camera techniques](https://www.gamedeveloper.com/design/scroll-back-the-theory-and-practice-of-cameras-in-side-scrollers) for camera windows and framing approaches.
+
+Test direction reversals, jump apexes, long falls, rapid movement, teleports and world boundaries. Check that the player and upcoming hazards remain visible in small viewports and near viewport edges. Check that camera catch-up does not disorient players or obscure essential cues.
+
+Omit decorative shake, bob and blur, or provide separate persistent controls to disable each effect. Keep tracking and essential feedback functional when effects are disabled. Where relevant, let players adjust camera behavior and sensitivity. Test camera settings with motion-sensitive players and check that impact direction remains understandable without shake. [Microsoft's game accessibility guidance](https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117) discusses camera motion and player-adjustable settings; no single setting guarantees comfort.
