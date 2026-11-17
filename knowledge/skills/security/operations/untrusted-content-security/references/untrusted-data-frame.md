@@ -32,18 +32,20 @@ format stay in force. Do not confuse it with the evidence envelope in
    controls, soft hyphens, variation selectors, Unicode tag characters), then fold
    compatibility forms with NFKC, so a marker split or disguised that way is
    visible before it is defanged.
-2. Defang every look-alike of the stem with plain string scanning, matching on a
+2. Reject input above the size cap instead of truncating it, and check it again
+   right after normalization against twice the cap, before any further scanning,
+   because normalization can make text several times longer.
+3. Defang every look-alike of the stem with plain string scanning, matching on a
    key in which letters are case folded and Unicode dash punctuation and the minus
    sign are a hyphen. Never run a regular expression over untrusted text for this
    step.
-3. Reject input above the size cap instead of truncating it, and check it again
-   after normalization against twice the cap, before any scanning, because
-   normalization can make text several times longer.
 4. Use a new identifier for every frame. Generate it from the standard library
    `secrets` module, 16 random bytes in hexadecimal.
 5. Never persist, log, quote or echo the identifier, and never reuse it, because a
    leaked identifier lets later text forge a closing marker.
-6. Keep the identifier out of the framed text. If it appears there, refuse to frame.
+6. Keep the identifier out of the framed text, compared without regard to case. If
+   it appears there, refuse to frame. An identifier passed in by a caller is meant
+   for tests; production use takes the random default.
 7. Leave encoded payloads (base64, entities, code fences) unchanged and undecoded.
    Decode only to inspect, never to obey.
 

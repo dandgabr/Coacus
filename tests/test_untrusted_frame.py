@@ -184,6 +184,24 @@ class SizeLimit(unittest.TestCase):
         with self.assertRaises(ValueError):
             uf.frame("a" * (uf.MAX_CHARS + 1), "web", token_source=lambda: "tok1")
 
+    def test_oversize_after_normalization_is_rejected_before_a_second_scan(self):
+        seen = []
+        real = uf._strip_hidden
+
+        def spy(text):
+            seen.append(len(text))
+            return real(text)
+
+        with mock.patch.object(uf, "_strip_hidden", spy):
+            with self.assertRaises(ValueError):
+                uf.frame(_c(0xFDFA) * 25_000, "web", token_source=lambda: "tok1")
+        self.assertTrue(seen)
+        self.assertLessEqual(max(seen), uf.MAX_CHARS)
+
+    def test_identifier_collision_ignores_case(self):
+        with self.assertRaises(ValueError):
+            uf.frame("has TOK1 inside", "web", token_source=lambda: "tok1")
+
     def test_normalization_cannot_blow_past_the_limit(self):
         expanding = _c(0xFDFA) * 25_000
         self.assertLessEqual(len(expanding), uf.MAX_CHARS)
