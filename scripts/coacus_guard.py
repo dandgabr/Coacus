@@ -101,6 +101,11 @@ def _allow(harness: str) -> str:
     return "{}"
 
 
+def _word(decision: str) -> str:
+    """Return the native decision word: ``ask`` only for an exact ask, else ``deny``."""
+    return "ask" if decision == "ask" else "deny"
+
+
 def _native(harness: str, decision: str, message: str) -> str:
     """Render the harness-native effect JSON.
 
@@ -114,18 +119,18 @@ def _native(harness: str, decision: str, message: str) -> str:
             {
                 "hookSpecificOutput": {
                     "hookEventName": "PreToolUse",
-                    "permissionDecision": "deny" if decision == "deny" else "ask",
+                    "permissionDecision": _word(decision),
                     "permissionDecisionReason": message,
                 }
             }
         )
     if harness == "cursor":
         return json.dumps(
-            {"permission": "deny" if decision == "deny" else "ask", "user_message": message}
+            {"permission": _word(decision), "user_message": message}
         )
     if harness == "antigravity":
         return json.dumps(
-            {"decision": "deny" if decision == "deny" else "ask", "reason": message}
+            {"decision": _word(decision), "reason": message}
         )
     return "{}"
 
@@ -136,8 +141,12 @@ def _env_on(name: str) -> bool:
 
 
 def _safe_harness_name(harness: str) -> bool:
-    """Return True for a non-empty name of lowercase ASCII letters, digits and dashes."""
-    return bool(harness) and all(
+    """Return True for a name of lowercase ASCII letters, digits and dashes.
+
+    The first character must be a letter or a digit, so a name never looks like a
+    command-line option.
+    """
+    return bool(harness) and harness[0].isalnum() and all(
         ch.isascii() and (ch.islower() or ch.isdigit() or ch == "-") for ch in harness
     )
 
@@ -148,14 +157,15 @@ def _can_ask(root: Path, harness: str, event: str) -> bool:
     Asking needs ``COACUS_GUARD_ASK=1``; ``COACUS_GUARD_NO_ASK`` or a set ``CI``
     answers False first. The capability is read from
     ``harnesses/<harness>/harness.json`` under ``root``. Any doubt (unsafe harness
-    name, missing or unreadable data, a capability without ``can_block``, any error
-    while reading) answers False so the caller degrades instead of asking.
+    name, an event other than ``tool.pre`` (the only one rendered), missing or
+    unreadable data, a capability without ``can_block``, any error while reading)
+    answers False so the caller degrades instead of asking.
     """
     if _env_on("COACUS_GUARD_NO_ASK") or _env_on("CI"):
         return False
     if os.environ.get("COACUS_GUARD_ASK", "").strip() != "1":
         return False
-    if not _safe_harness_name(harness):
+    if event != "tool.pre" or not _safe_harness_name(harness):
         return False
     try:
         data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))

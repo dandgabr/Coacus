@@ -5,6 +5,20 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Guard `ask` capability gating
+
+### Changed
+
+- `scripts/coacus_guard.py` now renders a native `ask` only when the operator sets `COACUS_GUARD_ASK=1`, neither `COACUS_GUARD_NO_ASK` nor `CI` is set to a truthy value, and `harness.json` declares both `can_ask` and `can_block` for `tool.pre`. By default nothing asks, as before: every `ask` still degrades to the policy's `on_ask_unavailable`. See ADR 0010.
+- A missing or invalid `on_ask_unavailable` now fails closed to `deny`. Before this change an unrecognised value was rendered as `ask`; this is a tightening that needs no opt-in.
+- Any error while reading capability data degrades the decision instead of escaping, and harness names are limited to lowercase ASCII letters, digits and dashes that start with a letter or a digit.
+- With the opt-in set, policies can now prompt a person on claude-code, cursor and antigravity instead of denying, which is a relaxation chosen by the operator.
+
+### Known gaps
+
+- On OpenCode the guard renders no effect, so a `deny` does not block a tool call. This predates the change and is tracked separately.
+- The installer does not refuse an `ask` policy on a harness that cannot ask, and the Cursor `can_ask` cell still needs checking against the vendor documentation.
+
 ## [Unreleased] — Tabler component integration and consumer verification
 
 ### Added

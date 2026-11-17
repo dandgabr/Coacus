@@ -36,8 +36,9 @@ carries each cell's evidence class; a bare boolean is forbidden.
   degrade, and the hook payload carries no signal that identifies them, so the
   runtime renders `ask` only on an explicit opt-in (`COACUS_GUARD_ASK=1`) and only
   when `harness.json` declares `can_ask` and `can_block` for the event.
-  `COACUS_GUARD_NO_ASK` and a set `CI` variable always force the degradation, any
-  doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
+  `COACUS_GUARD_NO_ASK` and a `CI` variable set to a truthy value (anything but
+  empty, `0`, `false`, `no` or `off`) always force the degradation, only `tool.pre`
+  can ask, any doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
   closed to `deny`. Rendering `ask` where it was previously degraded relaxes the
   outcome, which is why it needs the opt-in
   ([ADR 0010](../decisions/0010-ask-channel-gating.md)).

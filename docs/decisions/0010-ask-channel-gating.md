@@ -21,19 +21,23 @@ opt-in.
 ## Decision
 
 - The guard renders a native `ask` only when all of these hold: the operator set
-  `COACUS_GUARD_ASK=1`, neither `COACUS_GUARD_NO_ASK` nor `CI` is set, the harness
-  name is a plain lowercase word, and `harnesses/<harness>/harness.json` declares
-  both `can_ask` and `can_block` as exactly `true` for the event.
+  `COACUS_GUARD_ASK=1`, neither `COACUS_GUARD_NO_ASK` nor `CI` is set to a truthy
+  value (anything except empty, `0`, `false`, `no` or `off`; other CI markers such
+  as `GITHUB_ACTIONS` are not checked), the event is `tool.pre`, the harness name is
+  a plain lowercase word, and `harnesses/<harness>/harness.json` declares both
+  `can_ask` and `can_block` as exactly `true` for the event.
 - In every other case, and on any error while reading capability data, `ask`
   degrades to the policy's `on_ask_unavailable`. An absent or invalid value there
-  fails closed to `deny`.
+  fails closed to `deny`. The degraded `deny` is enforced only where the guard has a
+  deny render for the harness; on OpenCode it has no effect today (see Consequences).
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 
 ## Consequences
 
-- No existing behaviour changes without an opt-in, and no shipped enabled policy
-  uses `ask`.
+- No relaxation happens without an opt-in, and no shipped enabled policy uses `ask`.
+  One tightening needs no opt-in: an invalid `on_ask_unavailable` used to be rendered
+  as `ask` and now denies.
 - With the opt-in set, policies on claude-code, cursor and antigravity can prompt a
   person, which is a relaxation compared with degrading to deny. The operator owns
   that choice, and the off switches always win.

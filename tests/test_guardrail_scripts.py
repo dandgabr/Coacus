@@ -7,6 +7,7 @@ deterministically. A live eval would only show that the model reports a denial.
 
 from __future__ import annotations
 
+import atexit
 import json
 import os
 import subprocess
@@ -46,15 +47,16 @@ def enabled_root(tmp: str) -> Path:
 
 
 def run_guard(
-    harness: str, payload: str, root: Path, env: dict[str, str] | None = None
+    harness: str, payload: str, root: Path, env: dict[str, str] | None = None,
+    event: str = "tool.pre",
 ) -> tuple[str, int]:
     proc = subprocess.run(
-        [sys.executable, str(GUARD_CLI), "--harness", harness, "--event", "tool.pre",
+        [sys.executable, str(GUARD_CLI), "--harness", harness, "--event", event,
          "--root", str(root)],
         input=payload,
         capture_output=True,
         text=True,
-        env=env,
+        env=env if env is not None else clean_env(),
     )
     return proc.stdout.strip(), proc.returncode
 
@@ -132,16 +134,26 @@ class TestGuardRuntime(unittest.TestCase):
 ASK_PAYLOAD = json.dumps({"tool": "bash", "tool_input": {"command": "git push origin main"}})
 CAN_ASK = {"can_ask": True, "can_block": True}
 ASK_VARS = ("COACUS_GUARD_ASK", "COACUS_GUARD_NO_ASK", "CI")
+_EMPTY_POLICIES = tempfile.TemporaryDirectory()
+atexit.register(_EMPTY_POLICIES.cleanup)
 
 
 def clean_env(**extra: str) -> dict[str, str]:
-    """Return the process environment without the ask switches, plus ``extra``."""
+    """Return the process environment isolated from the developer's machine.
+
+    The ask switches are removed and machine-local policy discovery points at an
+    empty directory, so results never depend on the developer's own configuration.
+    """
     env = {k: v for k, v in os.environ.items() if k not in ASK_VARS}
+    env["COACUS_POLICY_DIR"] = _EMPTY_POLICIES.name
     env.update(extra)
     return env
 
 
-def ask_root(tmp: str, fallback: str | None = "deny", capabilities: dict | None = None) -> Path:
+def ask_root(
+    tmp: str, fallback: str | None = "deny", capabilities: dict | None = None,
+    extra_policies: list[dict] | None = None,
+) -> Path:
     """Build a root with one enabled `ask` policy and optional harness capability data."""
     root = Path(tmp)
     policies = root / "methodology/lifecycle/policies"
@@ -154,7 +166,7 @@ def ask_root(tmp: str, fallback: str | None = "deny", capabilities: dict | None 
     }
     if fallback is not None:
         entry["on_ask_unavailable"] = fallback
-    policy = {"schema": 1, "enabled": True, "policies": [entry]}
+    policy = {"schema": 1, "enabled": True, "policies": [entry, *(extra_policies or [])]}
     (policies / "ask.policy.json").write_text(json.dumps(policy), encoding="utf-8")
     for harness, capability in (capabilities or {}).items():
         write_harness(root, harness, {"lifecycle": {"events": {"tool.pre": capability}}})
@@ -184,10 +196,12 @@ def decision_of(output: dict) -> str:
 class TestAskCapability(unittest.TestCase):
     """`ask` is rendered only on opt-in and only where the harness has a human channel."""
 
-    def _run(self, harness, fallback="deny", capabilities=None, **env):
+    def _run(self, harness: str, fallback: str | None = "deny", capabilities: dict | None = None,
+             extra_policies: list[dict] | None = None, payload: str = ASK_PAYLOAD,
+             event: str = "tool.pre", **env: str) -> dict:
         with tempfile.TemporaryDirectory() as tmp:
-            root = ask_root(tmp, fallback, capabilities)
-            out, code = run_guard(harness, ASK_PAYLOAD, root, clean_env(**env))
+            root = ask_root(tmp, fallback, capabilities, extra_policies)
+            out, code = run_guard(harness, payload, root, clean_env(**env), event)
         self.assertEqual(code, 0)
         self.assertEqual(out.count("\n"), 0)
         return json.loads(out)
@@ -249,7 +263,69 @@ class TestAskCapability(unittest.TestCase):
                 out = self._run("codex", fallback=fallback, capabilities=caps, COACUS_GUARD_ASK="1")
                 self.assertEqual(decision_of(out), "deny")
 
-    def test_degrade_ask_helper(self) -> None:
+    def test_ask_render_carries_the_policy_message(self) -> None:
+        out = self._run("claude-code", capabilities={"claude-code": CAN_ASK}, COACUS_GUARD_ASK="1")
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecisionReason"], "confirm the push")
+
+    def test_off_values_are_case_insensitive(self) -> None:
+        caps = {"claude-code": CAN_ASK}
+        for value in ("FALSE", "No", "OFF", "False"):
+            with self.subTest(value=value):
+                out = self._run("claude-code", capabilities=caps, COACUS_GUARD_ASK="1", CI=value)
+                self.assertEqual(decision_of(out), "ask")
+
+    def test_only_the_tool_pre_event_can_ask(self) -> None:
+        out = self._run("claude-code", capabilities={"claude-code": CAN_ASK},
+                        event="tool.post", COACUS_GUARD_ASK="1")
+        self.assertEqual(decision_of(out), "deny")
+
+    def test_payload_shapes_reach_the_same_decision(self) -> None:
+        caps = {"claude-code": CAN_ASK}
+        shapes = [
+            {"tool_name": "Bash", "tool_input": {"command": "git push origin main"}},
+            {"tool": "bash", "tool_input": {"command": ["git", "push", "origin", "main"]}},
+        ]
+        for shape in shapes:
+            with self.subTest(shape=sorted(shape)):
+                out = self._run("claude-code", capabilities=caps, payload=json.dumps(shape),
+                                COACUS_GUARD_ASK="1")
+                self.assertEqual(decision_of(out), "ask")
+
+    def test_a_deny_policy_outranks_an_ask_policy(self) -> None:
+        deny = {"id": "no-push", "action": {"verb": "exec", "resource": "git push*"},
+                "decision": "deny", "message": "no pushes"}
+        out = self._run("claude-code", capabilities={"claude-code": CAN_ASK},
+                        extra_policies=[deny], COACUS_GUARD_ASK="1")
+        self.assertEqual(decision_of(out), "deny")
+
+    def test_an_ask_policy_outranks_an_allow_policy(self) -> None:
+        allow = {"id": "ok-push", "action": {"verb": "exec", "resource": "git push*"},
+                 "decision": "allow", "message": "fine"}
+        out = self._run("claude-code", capabilities={"claude-code": CAN_ASK},
+                        extra_policies=[allow], COACUS_GUARD_ASK="1")
+        self.assertEqual(decision_of(out), "ask")
+
+    def test_a_note_policy_renders_as_allow(self) -> None:
+        note = {"id": "note-push", "action": {"verb": "exec", "resource": "git push*"},
+                "decision": "note", "message": "fyi"}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            policies = root / "methodology/lifecycle/policies"
+            policies.mkdir(parents=True)
+            doc = {"schema": 1, "enabled": True, "policies": [note]}
+            (policies / "note.policy.json").write_text(json.dumps(doc), encoding="utf-8")
+            out, code = run_guard("claude-code", ASK_PAYLOAD, root)
+        self.assertEqual((out, code), ("{}", 0))
+
+    def test_native_renders_ask_only_for_an_exact_ask(self) -> None:
+        for harness in ("claude-code", "cursor", "antigravity"):
+            with self.subTest(harness=harness):
+                self.assertEqual(decision_of(json.loads(coacus_guard._native(harness, "ask", "m"))), "ask")
+                for odd in ("deny", "weird", "", "ASK"):
+                    self.assertEqual(
+                        decision_of(json.loads(coacus_guard._native(harness, odd, "m"))), "deny")
+
+    def test_degrade_ask_returns_only_allow_or_deny(self) -> None:
         self.assertEqual(coacus_guard._degrade_ask({}), "deny")
         self.assertEqual(coacus_guard._degrade_ask({"on_ask_unavailable": None}), "deny")
         self.assertEqual(coacus_guard._degrade_ask({"on_ask_unavailable": "note"}), "deny")
@@ -282,6 +358,14 @@ class TestCanAskGate(unittest.TestCase):
         self.assertFalse(can_ask(self.root, "claude-code", "tool.post", COACUS_GUARD_ASK="1"))
         self.assertFalse(can_ask(self.root, "claude-code", "no.such.event", COACUS_GUARD_ASK="1"))
 
+    def test_only_tool_pre_can_ask_even_if_another_event_declares_it(self) -> None:
+        events = {"tool.pre": CAN_ASK, "tool.post": CAN_ASK, "prompt.submit": CAN_ASK}
+        write_harness(self.root, "claude-code", {"lifecycle": {"events": events}})
+        self.assertTrue(can_ask(self.root, "claude-code", "tool.pre", COACUS_GUARD_ASK="1"))
+        for event in ("tool.post", "prompt.submit", "turn.stop"):
+            with self.subTest(event=event):
+                self.assertFalse(can_ask(self.root, "claude-code", event, COACUS_GUARD_ASK="1"))
+
     def test_malformed_capability_files_degrade_without_raising(self) -> None:
         folder = self.root / "harnesses" / "claude-code"
         folder.mkdir(parents=True)
@@ -311,10 +395,21 @@ class TestCanAskGate(unittest.TestCase):
             json.dumps({"lifecycle": {"events": {"tool.pre": CAN_ASK}}}), encoding="utf-8"
         )
         names = ["../claude-code", "claude-code/..", "", "a b", "claude\ncode", "Claude-Code",
-                 "cl" + chr(0xE5) + "ude-code", "claude_code"]
+                 "cl" + chr(0xE5) + "ude-code", "claude_code", "-", "claude.code"]
+        data = {"lifecycle": {"events": {"tool.pre": CAN_ASK}}}
         for name in names:
             with self.subTest(name=name):
+                try:
+                    write_harness(self.root, name, data)
+                except (OSError, ValueError):
+                    pass  # not creatable on this filesystem: the name check still runs
                 self.assertFalse(can_ask(self.root, name, COACUS_GUARD_ASK="1"))
+
+    def test_plain_lowercase_names_with_digits_and_dashes_are_accepted(self) -> None:
+        for name in ("agent-2", "a1", "x-y-z"):
+            with self.subTest(name=name):
+                write_harness(self.root, name, {"lifecycle": {"events": {"tool.pre": CAN_ASK}}})
+                self.assertTrue(can_ask(self.root, name, COACUS_GUARD_ASK="1"))
 
     def test_shipped_capability_data_matches_the_documented_channels(self) -> None:
         expected = {"claude-code": True, "cursor": True, "antigravity": True,
