@@ -7,8 +7,10 @@ in Coacus's own words.
 ## What it is
 
 A frame is a start marker and an end marker around untrusted text, both carrying the
-same fresh random identifier. Any copy of the marker stem found inside the text is
-replaced before framing, so the text cannot open a second frame or close this one.
+same fresh random identifier. Copies of the marker stem found inside the text are
+replaced before framing, which removes the obvious attempts to open a second frame
+or close this one. What actually stops a forged end marker is the identifier: text
+that cannot guess it cannot match the real end marker.
 
 ```
 <<<untrusted-data id=IDENTIFIER source=LABEL>>>
@@ -26,12 +28,15 @@ format stay in force. Do not confuse it with the evidence envelope in
 
 ## Procedure
 
-1. Sanitize: remove zero-width characters, Unicode tag characters and
-   bidirectional controls, then fold compatibility forms with NFKC, so a marker
-   split or disguised that way is visible before it is defanged.
-2. Defang every case variant of the stem with plain string scanning. Never run a
-   regular expression over untrusted text for this step.
-3. Reject input above the size cap instead of truncating it.
+1. Sanitize: remove invisible and format characters (zero-width, bidirectional
+   controls, soft hyphens, variation selectors, Unicode tag characters), then fold
+   compatibility forms with NFKC, so a marker split or disguised that way is
+   visible before it is defanged.
+2. Defang every look-alike of the stem with plain string scanning, matching on a
+   key in which letters are case folded and every dash variant is a hyphen. Never
+   run a regular expression over untrusted text for this step.
+3. Reject input above the size cap instead of truncating it, and check the cap
+   again after normalization, which can make text several times longer.
 4. Use a new identifier for every frame. Generate it from the standard library
    `secrets` module, 16 random bytes in hexadecimal.
 5. Never persist, log, quote or echo the identifier, and never reuse it, because a
@@ -53,7 +58,8 @@ supported way to reuse it.
 - The model decides what to do with framed text; the frame only shows where it
   starts and ends.
 - Sanitizing changes the text it returns. Keep the original when exact bytes matter.
-- Homoglyphs from other scripts are not folded by NFKC. Use the mixed-script check
-  in the skill body for those.
+- Letters borrowed from another script (for example Cyrillic look-alikes) are not
+  folded, so defanging does not catch them. Use the mixed-script check in the skill
+  body for those, and rely on the identifier, not on defanging.
 - A closed judge or any other decision that reads framed text still needs its own
   fixed questions and a code-side decision.

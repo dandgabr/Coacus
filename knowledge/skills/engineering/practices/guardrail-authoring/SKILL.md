@@ -1,6 +1,6 @@
 ---
 name: guardrail-authoring
-description: Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when adding either one.
+description: Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when writing a deny or ask policy, a content rule or a lifecycle hook guard.
 ---
 
 # Guardrail authoring

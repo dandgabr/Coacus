@@ -91,3 +91,4 @@ Match experiment strategy to model maturity: exploratory, dogfooding-flavored te
 - For annotation, golden sets and human evaluation workflows, see [human-in-the-loop-ml](../../../data/human-in-the-loop-ml/SKILL.md).
 - For platform-level monitoring and drift, see [mlops-platform-engineering](../../../data/mlops-platform-engineering/SKILL.md).
 - For adversarial evaluation of model security, see [ai-adversarial-ml-security](../../../security/ai/ai-adversarial-ml-security/SKILL.md).
+- For a model that answers fixed closed questions inside a guard, see [the closed-question judge](../../../engineering/practices/guardrail-authoring/references/closed-question-judge.md).

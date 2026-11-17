@@ -1,4 +1,9 @@
-"""Tests for the untrusted-data frame reference helper (ADR 0009)."""
+"""Tests for the untrusted-data frame reference helper (ADR 0009).
+
+Adapted from patterns recorded in ADR 0009 (see THIRD-PARTY-NOTICES.md, revision
+6337341602be6aa5860b1e83138f03bdd0b78f71, reviewed 2026-11-17). This file is ASCII
+only on purpose: every special character is built from its numeric code.
+"""
 
 import ast
 import builtins
@@ -27,17 +32,27 @@ def _load():
 uf = _load()
 
 
+def _c(code):
+    """Return the character with the given numeric code."""
+    return chr(code)
+
+
 def _fullwidth(text):
     """Map ASCII letters and the hyphen to their full-width forms."""
     out = []
     for ch in text:
         if ch == "-":
-            out.append("－")
+            out.append(_c(0xFF0D))
         elif ch.isascii() and ch.isalpha():
             out.append(chr(ord(ch) + 0xFEE0))
         else:
             out.append(ch)
     return "".join(out)
+
+
+def _split(stem, code):
+    """Return the stem with the given invisible character inserted after 'untr'."""
+    return stem[:4] + _c(code) + stem[4:]
 
 
 def _body(framed):
@@ -67,10 +82,12 @@ class FrameShape(unittest.TestCase):
         self.assertIn("id=tok2", two)
 
     def test_rejects_bad_label_and_identifier(self):
-        for label in ("", "a b", "x" * (uf.MAX_LABEL + 1), "café"):
+        labels = ["", "a b", "x" * (uf.MAX_LABEL + 1), "caf" + _c(0xE9), "line\nbreak",
+                  "x-untrusted-data", "UNTRUSTED-DATA"]
+        for label in labels:
             with self.subTest(label=label), self.assertRaises(ValueError):
                 uf.frame("a", label)
-        for token in ("", "a b", "x" * (uf.MAX_TOKEN + 1)):
+        for token in ("", "a b", "x" * (uf.MAX_TOKEN + 1), "to\nk"):
             with self.subTest(token=token), self.assertRaises(ValueError):
                 uf.frame("a", "web", token_source=lambda t=token: t)
 
@@ -84,10 +101,15 @@ class FrameShape(unittest.TestCase):
 
 
 class Neutralization(unittest.TestCase):
+    def _framed_body(self, text):
+        return _body(uf.frame(text, "web", token_source=lambda: "tok1"))
+
     def _assert_defanged(self, text):
-        body = _body(uf.frame(text, "web", token_source=lambda: "tok1"))
+        body = self._framed_body(text)
+        self.assertIn(uf.DEFANGED, body)
         self.assertNotIn(uf.STEM, body.lower())
         self.assertNotIn(uf.STEM, unicodedata.normalize("NFKC", body).lower())
+        self.assertFalse(any(uf._is_hidden(ch) for ch in body))
         return body
 
     def test_forged_closing_marker_is_defanged(self):
@@ -111,26 +133,45 @@ class Neutralization(unittest.TestCase):
     def test_fullwidth_variant_is_folded_before_defanging(self):
         self._assert_defanged(_fullwidth("untrusted-data"))
 
-    def test_zero_width_split(self):
-        self._assert_defanged("untrus​ted-d‍ata")
+    def test_invisible_characters_cannot_split_the_stem(self):
+        codes = [
+            0x200B, 0x200C, 0x200D, 0x200E, 0x200F, 0x2060, 0x2061, 0x2062,
+            0x00AD, 0x034F, 0x061C, 0x180E, 0xFEFF,
+            0x202A, 0x202E, 0x2066, 0x2069,
+            0xFE0F, 0xE0041, 0xE0100,
+        ]
+        for code in codes:
+            with self.subTest(code=hex(code)):
+                self._assert_defanged(_split(uf.STEM, code))
 
-    def test_unicode_tag_characters(self):
-        self._assert_defanged("untr\U000e0041usted-data")
+    def test_several_invisible_characters_in_one_stem(self):
+        text = "untr" + _c(0x200B) + "us" + _c(0x202E) + "ted-d" + _c(0xE0041) + "ata"
+        self._assert_defanged(text)
 
-    def test_bidirectional_controls(self):
-        self._assert_defanged("untru‮sted-da⁦ta")
+    def test_dash_variants_are_folded(self):
+        for code in (0x2010, 0x2011, 0x2012, 0x2013, 0x2014, 0x2212, 0xFE58, 0xFF0D):
+            with self.subTest(code=hex(code)):
+                self._assert_defanged("untrusted" + _c(code) + "data")
+
+    def test_other_dashes_outside_the_stem_are_kept(self):
+        text = "left " + _c(0x2014) + " right"
+        self.assertEqual(self._framed_body(text), text)
 
     def test_recombination_cannot_recreate_the_stem(self):
         self._assert_defanged("untrusted-untrusted-datadata")
 
     def test_encoded_payload_is_left_unchanged(self):
         encoded = "dW50cnVzdGVkLWRhdGE="
-        body = _body(uf.frame(encoded, "web", token_source=lambda: "tok1"))
-        self.assertEqual(body, encoded)
+        self.assertEqual(self._framed_body(encoded), encoded)
 
     def test_plain_text_is_unchanged(self):
         text = "Ordinary notes about blue labels."
-        self.assertEqual(_body(uf.frame(text, "web", token_source=lambda: "tok1")), text)
+        self.assertEqual(self._framed_body(text), text)
+
+    def test_known_limit_other_script_homoglyphs_are_not_folded(self):
+        # Documented limit: a Cyrillic look-alike is not folded by NFKC.
+        text = "untrusted-data".replace("u", _c(0x0443), 1)
+        self.assertNotIn(uf.DEFANGED, self._framed_body(text))
 
 
 class SizeLimit(unittest.TestCase):
@@ -138,6 +179,12 @@ class SizeLimit(unittest.TestCase):
         uf.frame("a" * uf.MAX_CHARS, "web", token_source=lambda: "tok1")
         with self.assertRaises(ValueError):
             uf.frame("a" * (uf.MAX_CHARS + 1), "web", token_source=lambda: "tok1")
+
+    def test_normalization_cannot_blow_past_the_limit(self):
+        expanding = _c(0xFDFA) * 25_000
+        self.assertLessEqual(len(expanding), uf.MAX_CHARS)
+        with self.assertRaises(ValueError):
+            uf.frame(expanding, "web", token_source=lambda: "tok1")
 
 
 class Purity(unittest.TestCase):
@@ -158,6 +205,11 @@ class Purity(unittest.TestCase):
                 names.add((node.module or "").split(".")[0])
         self.assertLessEqual(names, {"__future__", "secrets", "unicodedata", "typing"})
 
+    def test_source_files_are_ascii_only(self):
+        for path in (HELPER, Path(__file__)):
+            with self.subTest(path=path.name):
+                self.assertTrue(path.read_bytes().isascii())
+
 
 class Containment(unittest.TestCase):
     def test_module_and_functions_have_docstrings(self):
@@ -168,12 +220,14 @@ class Containment(unittest.TestCase):
                 with self.subTest(function=node.name):
                     self.assertTrue(ast.get_docstring(node))
 
-    def test_no_engine_or_script_imports_the_helper(self):
+    def test_no_tracked_python_file_imports_the_helper(self):
+        skip_parts = {"tests", ".git", ".venv", "venv", "node_modules", "__pycache__"}
         offenders = []
-        for folder in ("engine", "scripts"):
-            for path in (ROOT / folder).rglob("*.py"):
-                if "untrusted_frame" in path.read_text(encoding="utf-8", errors="replace"):
-                    offenders.append(str(path.relative_to(ROOT)))
+        for path in ROOT.rglob("*.py"):
+            if path == HELPER or skip_parts.intersection(path.relative_to(ROOT).parts):
+                continue
+            if "untrusted_frame" in path.read_text(encoding="utf-8", errors="replace"):
+                offenders.append(str(path.relative_to(ROOT)))
         self.assertEqual(offenders, [])
 
 
