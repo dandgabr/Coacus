@@ -102,20 +102,29 @@ The supervisor MUST enforce quantitative execution bounds:
 ### Hierarchical budget (advisory)
 
 This rule is advisory: no code enforces it. The unit is tool calls, the same unit as
-`MAX_*_TOOL_CALLS`, and today the hierarchy is one level deep.
+`MAX_*_TOOL_CALLS`, and a child never sub-delegates.
 
-- A child agent receives the smaller of its own budget and the parent's remaining
-  budget minus a reserve.
-- If that amount is below the minimum the task needs, do not dispatch it. Queue it
-  only when capacity is expected to free up; otherwise report `BLOCKED` to the human
-  rather than waiting forever.
-- When a child reaches its budget it gets exactly one final wrap-up round. That round
-  writes resumable state (the `executing-plans` ledger) into a TOON `BLOCKED` or
-  partial `OK` payload and releases the governor slot.
+- A child's own budget is the applicable `MAX_*_TOOL_CALLS`. The parent keeps a
+  reserve for its own wrap-up, 10% by default. A child receives the smaller of its own
+  budget and the parent's remaining budget minus that reserve.
+- The minimum a task needs is declared in its delegation brief. If the amount is below
+  it, report `BLOCKED` to the human at once: a budget only goes down, so waiting does
+  not help. Queue a task only when the shortfall is governor capacity, and only while
+  a slot is expected to free up.
+- A child that reaches its budget gets exactly one wrap-up round. It is the one
+  sanctioned exception to the hard pause at `total_tool_limit`, and its calls come
+  from the reserve, so the cap holds. The round writes resumable state (the
+  `executing-plans` ledger) into a TOON `BLOCKED` payload. The governor slot is
+  released by whoever acquired it, exactly once.
 - The wrap-up runs after the 80% `<mentor_analysis>` check (question 5), never in
   its place.
+- A `BLOCKED` caused by an exhausted budget is not environmental; the
+  [environmental blockers](../../methodology/workflows/diagnosing-bugs/environmental-blockers.md)
+  page applies only when the cause is environmental.
 
-Adapted from patterns recorded in ADR 0009 (revision `6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
+Adapted from patterns recorded in ADR 0009 (revision
+`6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see
+[`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
 
 ### Language policy: English-first and dual-channel
 
