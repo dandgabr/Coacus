@@ -91,13 +91,18 @@ def _valid_token(token: str) -> bool:
     )
 
 
+def _normalize(text: str) -> str:
+    """Strip hidden characters, then apply NFKC normalization (may lengthen the text)."""
+    return unicodedata.normalize("NFKC", _strip_hidden(text))
+
+
 def sanitize(text: str) -> str:
     """Strip hidden characters and apply NFKC normalization.
 
     Hidden characters are removed before and after normalization. This changes the
     text: keep the original when exact characters matter.
     """
-    return _strip_hidden(unicodedata.normalize("NFKC", _strip_hidden(text)))
+    return _strip_hidden(_normalize(text))
 
 
 def neutralize(text: str) -> str:
@@ -157,11 +162,11 @@ def frame(
     token = (token_source or _default_token)()
     if not _valid_token(token):
         raise ValueError("identifier is not a usable ascii word")
-    clean = sanitize(text)
-    if len(clean) > 2 * MAX_CHARS:
+    normalized = _normalize(text)
+    if len(normalized) > 2 * MAX_CHARS:
         raise ValueError("text exceeds the size limit after normalization")
-    body = _defang(clean)
-    if token in body:
+    body = _defang(_strip_hidden(normalized))
+    if token.lower() in body.lower():
         raise ValueError("identifier collides with the framed text")
     return (
         f"<<<{STEM} id={token} source={source}>>>\n"
