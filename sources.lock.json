@@ -15850,7 +15850,7 @@
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
       "target_path": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "target_sha256": "2dc08df2b36205c13f7c811ad92a362af6bccdb12184ca3b6e44ad759acdac05",
+      "target_sha256": "5b41c8e9b0c62f9e21ed026ae27442de4aa10e7967ae0ea7ac6d707e0fb6af6f",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -19990,9 +19990,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "source_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
+      "source_sha256": "6e661870ad486c1c2dd6d1a1d981421b04a85ee4ca6960769a0e350dcb15759d",
       "target_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "target_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
+      "target_sha256": "6e661870ad486c1c2dd6d1a1d981421b04a85ee4ca6960769a0e350dcb15759d",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20005,9 +20005,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "source_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
+      "source_sha256": "5bf6366e9ece83e216bcfff78301c566579ebc40f817713f421d3a3a680d6151",
       "target_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "target_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
+      "target_sha256": "5bf6366e9ece83e216bcfff78301c566579ebc40f817713f421d3a3a680d6151",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20035,9 +20035,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "source_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
+      "source_sha256": "389463ef02cd233261fd6de3c43031f3bf8fbd0b66a311126b94202c9f535ca7",
       "target_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "target_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
+      "target_sha256": "389463ef02cd233261fd6de3c43031f3bf8fbd0b66a311126b94202c9f535ca7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

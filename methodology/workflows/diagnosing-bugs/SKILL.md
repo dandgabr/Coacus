@@ -14,6 +14,25 @@ For visual symptoms, establish the evaluated revision and rendered evidence usin
 [interface evidence](../verification-before-completion/references/interface-evidence.md).
 If three fixes fail, stop repeated fixes, reassess evidence and escalate the blocker; consider architecture only if the evidence supports it.
 
+## Environmental blockers
+
+A blocker is **environmental** when repeating the step cannot change the result: a
+missing credential, binary or service, a denied permission, a sandbox restriction
+or an exhausted quota. Stop at the first such failure. Do not switch tools to route
+around it, and do not install anything to repair it (see the missing-CLI policy in
+[guardrail-authoring](../../../knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md)).
+Report the work as blocked and give the operator one copyable command or one
+decision, never a secret value. In a handoff, use a TOON payload with
+`@STATUS: BLOCKED` and put that command in `@ACTION_NEEDED`.
+
+A **transient** failure (a rate limit, a timeout, an unstable network, a lock)
+follows the governor's backoff instead. When its attempts run out, treat it as
+environmental. Any other blocker keeps the independent-path check in
+[subagent-driven-development](../subagent-driven-development/SKILL.md).
+
+The environmental-blocker rule is adapted from patterns recorded in ADR 0009 (see
+`THIRD-PARTY-NOTICES.md`).
+
 ## Phase 1 — Build the loop (this is the skill)
 
 A **tight loop** is a signal that goes red on *this* bug and green when it is
