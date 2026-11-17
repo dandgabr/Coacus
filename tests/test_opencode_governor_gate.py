@@ -13,6 +13,48 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @unittest.skipUnless(shutil.which('node'), 'Node is required')
 class OpenCodeGovernorGateTests(unittest.TestCase):
+    def test_closed_event_stream_rejects_background_dispatch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            from engine.generators.plugins import _opencode_governor_gate
+            source = _opencode_governor_gate().replace('"__COACUS_ROOT__"', json.dumps(str(ROOT)))
+            source = source.replace('"__COACUS_PYTHON__"', json.dumps(sys.executable))
+            (Path(tmp) / 'gate.mjs').write_text(source)
+            script = '''
+import assert from 'node:assert/strict';
+import { CoacusGovernor } from './gate.mjs';
+const hooks = await CoacusGovernor({event:{subscribe: async function* () {}}});
+await new Promise(resolve => setImmediate(resolve));
+await assert.rejects(hooks['tool.execute.before'](
+  {tool:'subagent', sessionID:'parent', callID:'call', args:{background:true}},
+  {args:{background:true}}
+), /event subscription/);
+'''
+            result = subprocess.run([shutil.which('node'), '--input-type=module', '-e', script],
+                cwd=tmp, env=dict(os.environ, GOVERNOR_STATE_DIR=tmp, ORCH_MAX_CONCURRENT='1'),
+                text=True, capture_output=True, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_failed_event_stream_rejects_background_dispatch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            from engine.generators.plugins import _opencode_governor_gate
+            source = _opencode_governor_gate().replace('"__COACUS_ROOT__"', json.dumps(str(ROOT)))
+            source = source.replace('"__COACUS_PYTHON__"', json.dumps(sys.executable))
+            (Path(tmp) / 'gate.mjs').write_text(source)
+            script = '''
+import assert from 'node:assert/strict';
+import { CoacusGovernor } from './gate.mjs';
+const hooks = await CoacusGovernor({event:{subscribe: async function* () { throw new Error('stream failed'); }}});
+await new Promise(resolve => setImmediate(resolve));
+await assert.rejects(hooks['tool.execute.before'](
+  {tool:'subagent', sessionID:'parent', callID:'call', args:{background:true}},
+  {args:{background:true}}
+), /event subscription/);
+'''
+            result = subprocess.run([shutil.which('node'), '--input-type=module', '-e', script],
+                cwd=tmp, env=dict(os.environ, GOVERNOR_STATE_DIR=tmp, ORCH_MAX_CONCURRENT='1'),
+                text=True, capture_output=True, timeout=20)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_v2_hook_correlates_call_id(self):
         with tempfile.TemporaryDirectory() as tmp:
             from engine.generators.plugins import _opencode_governor_gate

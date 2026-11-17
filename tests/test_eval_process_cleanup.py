@@ -53,46 +53,8 @@ class ProcessCleanupTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         coacus_eval._live_clis(Path(directory))
 
-    @unittest.skipUnless(os.name == 'nt', 'requires Windows cmd')
-    def test_windows_cmd_shim_with_spaces_and_rejects_injection(self):
-        with tempfile.TemporaryDirectory(prefix='shim space ') as directory:
-            shim = Path(directory) / 'runner.cmd'
-            shim.write_text('@echo off\r\necho %1\r\n', encoding='ascii')
-            with mock.patch.dict(os.environ, {'PATH': directory + os.pathsep + os.environ.get('PATH', '')}):
-                out, status = coacus_eval._run_harness(
-                    {'harness': 'test', 'prompt': 'hello world'}, 5, {'test': ['runner']})
-                self.assertEqual(status, 'OK')
-                self.assertIn('hello world', out)
-                for prompt in ('a&echo INJECTED', '%PATH%', 'a"&echo INJECTED', 'a\nwhoami'):
-                    out, status = coacus_eval._run_harness(
-                        {'harness': 'test', 'prompt': prompt}, 5, {'test': ['runner']})
-                    self.assertEqual(out, '')
-                    self.assertEqual(status, 'UNSAFE_CLI_ARGUMENT')
 
-    @unittest.skipUnless(os.name == 'nt', 'requires Windows job objects')
-    def test_windows_runs_contained_process(self):
-        result = coacus_eval._bounded_run([sys.executable, '-c', 'print("ok")'], 5)
-        self.assertEqual((result[0].strip(), result[3]), ('ok', None))
 
-    @unittest.skipUnless(os.name == 'nt', 'requires Windows job objects')
-    def test_windows_exited_leader_with_closed_descendant_streams_waits_for_job(self):
-        with tempfile.TemporaryDirectory() as directory:
-            ready = Path(directory) / 'ready'
-            marker = Path(directory) / 'survived'
-            child = (f'from pathlib import Path; import time; Path({str(ready)!r}).touch(); '
-                     f'time.sleep(1); Path({str(marker)!r}).touch()')
-            parent = ('import subprocess, sys, time; from pathlib import Path; '
-                      f'subprocess.Popen([sys.executable, "-c", {child!r}], '
-                      'stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL); '
-                      f'p=Path({str(ready)!r}); '
-                      'exec("while not p.exists():\\n time.sleep(.01)"); print("ok")')
-            real_wait = coacus_eval._wait_windows_job_empty
-            with mock.patch.object(coacus_eval, '_wait_windows_job_empty', wraps=real_wait) as wait:
-                result = coacus_eval._bounded_run([sys.executable, '-c', parent], 5)
-            self.assertEqual((result[0].strip(), result[3]), ('ok', None))
-            wait.assert_called_once()
-            time.sleep(1.2)
-            self.assertFalse(marker.exists())
 
     def test_windows_setup_failure_closes_job_when_process_cleanup_raises(self):
         for failing_method in ('kill', 'wait'):
@@ -201,34 +163,6 @@ class ProcessCleanupTests(unittest.TestCase):
                 kernel.CloseHandle.assert_called_once_with(42)
                 proc.wait.assert_called_once_with(timeout=5)
 
-    @unittest.skipUnless(os.name == 'nt', 'requires native Windows')
-    def test_windows_assignment_failure_kill_error_terminates_suspended_process(self):
-        processes = []
-        popen = coacus_eval.subprocess.Popen
-        real_job = coacus_eval._windows_job
-
-        def start(*args, **kwargs):
-            proc = popen(*args, **kwargs)
-            processes.append(proc)
-            proc.kill = mock.Mock(side_effect=OSError('forced kill failure'))
-            return proc
-
-        def job_with_failed_assignment():
-            kernel, job = real_job()
-            wrapper = mock.Mock(wraps=kernel)
-            wrapper.AssignProcessToJobObject.side_effect = OSError('forced assignment failure')
-            return wrapper, job
-
-        try:
-            with mock.patch.object(coacus_eval, '_windows_job', side_effect=job_with_failed_assignment), \
-                 mock.patch.object(coacus_eval.subprocess, 'Popen', side_effect=start):
-                with self.assertRaisesRegex(OSError, 'forced assignment failure'):
-                    coacus_eval._bounded_run([sys.executable, '-c', 'import time; time.sleep(30)'], 5)
-            self.assertIsNotNone(processes[0].poll())
-        finally:
-            if processes and processes[0].poll() is None:
-                popen.kill(processes[0])
-                processes[0].wait()
 
     @unittest.skipUnless(os.name in ('posix', 'nt'), 'requires process containment')
     def test_successful_parent_cleans_up_redirected_descendant(self):

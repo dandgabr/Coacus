@@ -17725,9 +17725,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/using-coacus/SKILL.md",
-      "source_sha256": "11c2e5c0b9ddf2e084b23e9cce79653816b3b05f4916077fd0d5e36c2d813a54",
+      "source_sha256": "c408bcb2aed146822a727bc1d5d5da6d088834f58398711d162661426d250dbe",
       "target_path": "methodology/workflows/using-coacus/SKILL.md",
-      "target_sha256": "11c2e5c0b9ddf2e084b23e9cce79653816b3b05f4916077fd0d5e36c2d813a54",
+      "target_sha256": "c408bcb2aed146822a727bc1d5d5da6d088834f58398711d162661426d250dbe",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

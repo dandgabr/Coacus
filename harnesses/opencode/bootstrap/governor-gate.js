@@ -131,7 +131,9 @@ export const startEventListener = (ctx) => {
         await handleTerminalSessionEvent(event);
       }
     } catch {
-      // Event stream closed or aborted
+      // The stream failed; existing leases remain for reconciliation.
+    } finally {
+      eventStreamActive = false;
     }
   })();
   return true;
