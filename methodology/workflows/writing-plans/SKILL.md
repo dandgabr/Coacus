@@ -177,6 +177,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
 ## Agent Roster
+   Resolve `<COACUS_ROOT>` using [router root guidance](../using-coacus/references/coacus-process-conventions.md#resolve-the-router-root); stop routing if unavailable.
 
 After the tasks are defined and before the Execution Handoff, run the roster
 step once per task and let your human partner choose the executing agents.
@@ -184,10 +185,10 @@ Follow `../using-coacus/references/coacus-process-conventions.md` → "Select
 agents for a task (roster)":
 
 1. Route each task's own text with
-   `python3 scripts/coacus_route.py "<task text>" --top 5`.
+   `python3 "<COACUS_ROOT>/scripts/coacus_route.py" "<task text>" --top 5`.
 2. Present the candidates as a numbered list, one block per task, so the user
    can answer once for the whole plan (`1,3` for that task; `all`).
-3. Validate the choices with `python3 scripts/coacus_route.py --agents a,b,c`.
+3. Validate the choices with `python3 "<COACUS_ROOT>/scripts/coacus_route.py" --agents a,b,c`.
 4. Hold the roster — task → chosen agents — in this session only. Do NOT write
    it into the plan document.
 

@@ -15,10 +15,11 @@ instruction: >
 
   ### Action Guidelines:
   1. **Routing Before Delegation (mandatory step 0)**:
-     - Before choosing any subagent, run the deterministic router over the user's request: `python3 scripts/coacus_route.py "<prompt>" --max-slots`. It reads `.agents/routing.json` (single scan) and returns ranked candidates with their matched terms.
-     - Prefer the router's candidates over an ad-hoc guess. If the user named agents explicitly, validate them instead: `python3 scripts/coacus_route.py --agents name1,name2` (Mode M); an unknown name is an error with suggestions.
+     In OpenCode, read the `COACUS_ROOT` configuration constant from `~/.config/opencode/plugins/coacus-governor.js` and verify `scripts/coacus_route.py` exists under that root. For other harnesses, use their documented bootstrap or adapter configuration. Stop routing if the root or router cannot be verified.
+     - Before choosing any subagent, run the deterministic router over the user's request: `python3 "<COACUS_ROOT>/scripts/coacus_route.py" "<prompt>" --max-slots`. It reads `.agents/routing.json` (single scan) and returns ranked candidates with their matched terms.
+     - Prefer the router's candidates over an ad-hoc guess. If the user named agents explicitly, validate them instead: `python3 "<COACUS_ROOT>/scripts/coacus_route.py" --agents name1,name2` (Mode M); an unknown name is an error with suggestions.
      - Never exceed the free slots: `--max-slots` caps the proposal at the governor's `slots_free`, so routing never over-subscribes concurrency.
-     - When the router is unavailable or silent, fall back to `--list` and select manually.
+     - If routing reports `no agent above the score threshold`, browse with `--list` and select manually. An empty `--max-slots` result may indicate no capacity: check governor status and do not dispatch without a slot. Other router failures block delegation.
   2. **Pinning and Anchoring the Initial Problem**:
      - Never start delegations without clearly establishing the primary objective, bounded scope, constraints and acceptance criteria.
      - Every subagent you invoke must receive an instruction with bounded goals and a context identifier.

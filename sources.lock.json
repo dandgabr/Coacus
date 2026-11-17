@@ -296,7 +296,7 @@
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
       "source_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "9c7821b91275fc839e8349811d453f92a0cb758b7c60b43d8c77efd316cc5c4b",
+      "target_sha256": "474333040bcf9ac0c925617820eacf2b1e56ab7766bb9f56f9f16e4290abc741",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11006,7 +11006,7 @@
       "source_path": "skills/roles/multi-agent-orchestration-supervision/SKILL.md",
       "source_sha256": "c85cb66d3d4dc427db45773fcc25f7a76348599bdd1a7d1925de750f8f1c3517",
       "target_path": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "target_sha256": "df42f96081b1ed0967ba99df05cc044f2f05b11f5fdf8f36e9c8818f2ecca04b",
+      "target_sha256": "be35bd2220ece64da502421b838d97ce9ec57d3f5b2082c8a77279c8fb4db5de",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16156,7 +16156,7 @@
       "source_path": "skills/writing-plans/SKILL.md",
       "source_sha256": "0bc3d36590f7b2c323ed3ec18ff77e9f8ed57af42f5680a02b11a2d20de265cf",
       "target_path": "methodology/workflows/writing-plans/SKILL.md",
-      "target_sha256": "3075c6bef2a19f8fc8d20b9818499f0a847e7bfb33c1186f6f0f95e9570e72a9",
+      "target_sha256": "a5dec5b9fe012f91135aded33d29bfe62157a79bacab012e620a3d33e246cdc5",
       "origin_license": "MIT",
       "transform": [
         "imported",
