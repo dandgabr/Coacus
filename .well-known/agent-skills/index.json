@@ -2421,7 +2421,7 @@
       "description": "Filters candidate review findings through adversarial validation, an impact ratio and a confidence threshold before reporting. Use when a review or audit produces many candidate findings.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "digest": "sha256:9c5d7b789313089e10c115b01f4e66b96f77e32192eb84510b1de6403b79f421"
+      "digest": "sha256:988a9f72492cb96c4091322af8c5313dfe722af05ce31f53963d005add0573af"
     },
     {
       "name": "sast-code-review",

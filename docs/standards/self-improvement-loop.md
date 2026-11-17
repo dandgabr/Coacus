@@ -71,6 +71,23 @@ stages a PROPOSAL. It NEVER applies a change: promotion is a human pull request.
   sensitive and handle retention or removal through an authorized process.
   The durable audit trail is committed separately and is NOT generated.
 
+### Conditions for any self-editing loop (advisory)
+
+These conditions are advisory: no validator enforces them today. A loop that edits
+its own rules, skills or policies MUST meet all of them before a change is adopted:
+
+- Rungs 0 to 2 of the verification ladder are green. Rung 3 stays advisory.
+- A human approves the change by pull request. The agent or model that proposed it
+  is never the approver and never the judge.
+- Each adoption can be undone in one step, and the loop is off by default.
+- The loop never edits its protected surfaces: `docs/standards/untrusted-content.md`,
+  `docs/standards/lifecycle-guardrails.md`, `engine/improve/taint.py`, the guardrail
+  policies and `AGENTS.md`. This list lives here only.
+
+Enforcing the protected surfaces (a manifest with digests, a rejection at rung 0 and
+a safety text emitted from an engine constant) is a separate core change that needs
+its own decision record. Adapted from patterns recorded in ADR 0009 (revision `6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
+
 ## Rationale
 
 The self-critique literature is unambiguous: without an external verifier,
