@@ -993,7 +993,7 @@
       "description": "Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.",
       "type": "archive",
       "url": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "digest": "sha256:890415b69bf0e91bf966c6f63cc9815cdcb9c753533d3dd18ae07d56a113c558"
+      "digest": "sha256:15ef8468441b67c6c92cb75bb0c0b218c830594cf77f02e748078cdea04df988"
     },
     {
       "name": "dispatching-parallel-agents",
@@ -1494,10 +1494,10 @@
     },
     {
       "name": "guardrail-authoring",
-      "description": "Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.",
-      "type": "skill-md",
+      "description": "Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when adding either one.",
+      "type": "archive",
       "url": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "digest": "sha256:a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180"
+      "digest": "sha256:9f3017b219de488211949b7c5302e9ec883c56d5d26177cb2ef8ca18bfd7e32c"
     },
     {
       "name": "handoff",
@@ -2418,10 +2418,10 @@
     },
     {
       "name": "review-findings-pipeline",
-      "description": "Use when a review or audit produces many candidate findings, to filter false positives through adversarial validation and a confidence threshold before reporting.",
+      "description": "Filters candidate review findings through adversarial validation, an impact ratio and a confidence threshold before reporting. Use when a review or audit produces many candidate findings.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "digest": "sha256:9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff"
+      "digest": "sha256:5bf6366e9ece83e216bcfff78301c566579ebc40f817713f421d3a3a680d6151"
     },
     {
       "name": "sast-code-review",
@@ -2589,7 +2589,7 @@
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
       "url": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "digest": "sha256:b72ccd05da810f445e3eb4efa05a1d10856cd9cd74dfbe03ee9e93ff3f8bfeec"
+      "digest": "sha256:76c159dcfca4b2bb386e0681149d91ff1ebf1e132fc9bad29a681430e56c6d78"
     },
     {
       "name": "supply-chain-threat-modeling",

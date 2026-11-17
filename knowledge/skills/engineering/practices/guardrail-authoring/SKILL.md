@@ -1,6 +1,6 @@
 ---
 name: guardrail-authoring
-description: Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.
+description: Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when adding either one.
 ---
 
 # Guardrail authoring
@@ -34,6 +34,8 @@ tested and fail-open. See the `lifecycle-guardrails` standard for the model.
   not match (and is a lint error).
 - Separate the failure domains: a decision failure versus a mechanism failure. A
   broken hook must not deny every call.
+- A model-judged decision is not part of Coacus today; the closed-question pattern
+  is described in [the closed-question judge](references/closed-question-judge.md).
 
 ## Ladder and hygiene
 
