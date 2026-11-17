@@ -92,7 +92,7 @@ payloads. The subagent stop above remains in force.
 
 Never stop midway or yield the turn with open tasks, partial diagnoses, or unverified assumptions. When you uncover a diagnostic clue, an unexpected error, or a pending step, you MUST NOT ask the user to execute manual actions (e.g. "restart your session", "run command X manually", or "the next step is to investigate Y") when you possess the tools (`shell`, `read`, `edit`, `write`) to execute those actions yourself. Continue the autonomous loop in the same turn: investigate -> isolate root cause -> implement fix -> test -> verify with evidence -> review.
 
-Stopping mid-task to defer work to the human without an insurmountable blocker is classified as premature completion (sloth) and is strictly forbidden.
+Run all independent, safe checks even when one fails. Investigate failures, retry with a justified alternative, and rerun affected checks after each fix. Record commands, exit codes, unresolved risks, and any checks that could not run. Do not claim that every defect has been eliminated. Treat a suspected blocker as unverified until a relevant check establishes it; an unavailable delegation path does not block authorized inline work when the user permits it. Stop only at an actual authorization gate or when no safe, authorized technical path remains.
 
 ## Mandatory review and self-correction gate
 

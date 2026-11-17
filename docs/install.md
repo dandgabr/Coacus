@@ -356,7 +356,9 @@ Inspect the ledger with `python3 scripts/coacus_governor.py status`.
 `session.deleted`), retaining the ledger slot until child session termination. In
 environments without event subscription support, use supported foreground dispatch.
 Each dispatch requires one slot: use adapter-managed acquisition when available or
-manual acquisition otherwise, never both.
+manual acquisition otherwise, never both. If the event stream closes or fails,
+new background dispatches are rejected; existing leases require reconciliation.
+Ledger health and an installed plugin do not establish that the stream is live.
 
 **Manual equivalent.** Copy `harnesses/opencode/bootstrap/coacus.js` and
 `governor-gate.js` to `~/.config/opencode/plugins/`, replacing
