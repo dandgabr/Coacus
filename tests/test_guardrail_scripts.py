@@ -8,6 +8,7 @@ deterministically. A live eval would only show that the model reports a denial.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -15,6 +16,7 @@ import unittest
 from pathlib import Path
 
 from engine.guardrail import evaluate as guard
+from scripts import coacus_guard
 
 REPO = Path(__file__).resolve().parents[1]
 GUARD_CLI = REPO / "scripts/coacus_guard.py"
@@ -42,13 +44,16 @@ def enabled_root(tmp: str) -> Path:
     return root
 
 
-def run_guard(harness: str, payload: str, root: Path) -> tuple[str, int]:
+def run_guard(
+    harness: str, payload: str, root: Path, env: dict[str, str] | None = None
+) -> tuple[str, int]:
     proc = subprocess.run(
         [sys.executable, str(GUARD_CLI), "--harness", harness, "--event", "tool.pre",
          "--root", str(root)],
         input=payload,
         capture_output=True,
         text=True,
+        env=env,
     )
     return proc.stdout.strip(), proc.returncode
 
@@ -121,6 +126,102 @@ class TestGuardRuntime(unittest.TestCase):
             {"tool": "read", "tool_input": {"filePath": "repo/.env"}}
         ), REPO)
         self.assertEqual(out, "{}")
+
+
+ASK_PAYLOAD = json.dumps({"tool": "bash", "tool_input": {"command": "git push origin main"}})
+CAN_ASK = {"can_ask": True, "can_block": True}
+
+
+def ask_root(tmp: str, fallback: str = "deny", capabilities: dict | None = None) -> Path:
+    """Build a root with one enabled `ask` policy and optional harness capability data."""
+    root = Path(tmp)
+    policies = root / "methodology/lifecycle/policies"
+    policies.mkdir(parents=True)
+    policy = {
+        "schema": 1,
+        "enabled": True,
+        "policies": [{
+            "id": "confirm-push",
+            "action": {"verb": "exec", "resource": "git push*"},
+            "decision": "ask",
+            "on_ask_unavailable": fallback,
+            "message": "confirm the push",
+        }],
+    }
+    (policies / "ask.policy.json").write_text(json.dumps(policy), encoding="utf-8")
+    for harness, capability in (capabilities or {}).items():
+        folder = root / "harnesses" / harness
+        folder.mkdir(parents=True)
+        data = {"lifecycle": {"events": {"tool.pre": capability}}}
+        (folder / "harness.json").write_text(json.dumps(data), encoding="utf-8")
+    return root
+
+
+class TestAskCapability(unittest.TestCase):
+    """`ask` is rendered only where the harness has a human channel (ADR 0002)."""
+
+    def _run(self, harness, fallback="deny", capabilities=None, env=None):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = ask_root(tmp, fallback, capabilities)
+            out, code = run_guard(harness, ASK_PAYLOAD, root, env)
+        self.assertEqual(code, 0)
+        self.assertEqual(out.count("\n"), 0)
+        return json.loads(out)
+
+    def test_capable_harnesses_render_ask(self) -> None:
+        caps = {"claude-code": CAN_ASK, "cursor": CAN_ASK, "antigravity": CAN_ASK}
+        claude = self._run("claude-code", capabilities=caps)
+        self.assertEqual(claude["hookSpecificOutput"]["permissionDecision"], "ask")
+        self.assertEqual(self._run("cursor", capabilities=caps)["permission"], "ask")
+        self.assertEqual(self._run("antigravity", capabilities=caps)["decision"], "ask")
+
+    def test_ask_is_not_degraded_by_the_fallback_when_capable(self) -> None:
+        caps = {"claude-code": CAN_ASK}
+        out = self._run("claude-code", fallback="allow", capabilities=caps)
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "ask")
+
+    def test_incapable_harness_degrades_to_the_policy_fallback(self) -> None:
+        caps = {"codex": {"can_ask": False, "can_block": True}}
+        denied = self._run("codex", fallback="deny", capabilities=caps)
+        self.assertEqual(denied["hookSpecificOutput"]["permissionDecision"], "deny")
+        self.assertEqual(self._run("codex", fallback="allow", capabilities=caps), {})
+
+    def test_missing_capability_data_degrades(self) -> None:
+        out = self._run("claude-code", fallback="deny", capabilities={})
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "deny")
+
+    def test_can_ask_without_can_block_degrades(self) -> None:
+        caps = {"claude-code": {"can_ask": True, "can_block": False}}
+        out = self._run("claude-code", fallback="deny", capabilities=caps)
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "deny")
+
+    def test_operator_switch_forces_degradation(self) -> None:
+        caps = {"claude-code": CAN_ASK}
+        env = {**os.environ, "COACUS_GUARD_NO_ASK": "1"}
+        out = self._run("claude-code", fallback="deny", capabilities=caps, env=env)
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "deny")
+        env["COACUS_GUARD_NO_ASK"] = "0"
+        out = self._run("claude-code", fallback="deny", capabilities=caps, env=env)
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "ask")
+
+    def test_invalid_fallback_fails_closed(self) -> None:
+        caps = {"codex": {"can_ask": False, "can_block": True}}
+        out = self._run("codex", fallback="ask", capabilities=caps)
+        self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "deny")
+
+    def test_unsafe_harness_name_never_reads_outside_the_root(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = ask_root(tmp, capabilities={"claude-code": CAN_ASK})
+            for name in ("../claude-code", "claude-code/..", "", "a b", "claude\ncode"):
+                with self.subTest(name=name):
+                    self.assertFalse(coacus_guard._can_ask(root, name, "tool.pre"))
+
+    def test_shipped_capability_data_matches_the_documented_channels(self) -> None:
+        expected = {"claude-code": True, "cursor": True, "antigravity": True,
+                    "codex": False, "command-code": False, "opencode": False}
+        for harness, can_ask in expected.items():
+            with self.subTest(harness=harness):
+                self.assertIs(coacus_guard._can_ask(REPO, harness, "tool.pre"), can_ask)
 
 
 class TestEvaluator(unittest.TestCase):

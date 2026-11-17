@@ -15,6 +15,14 @@ the matched policy's ``on_decision_failure``; a failure of this process itself
 (no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
 allow) plus an advisory, so a broken guardrail cannot brick a session.
 
+An ``ask`` decision is rendered as ``ask`` only when the harness declares a human
+channel for the event (``can_ask`` and ``can_block`` in ``harness.json``) and
+``COACUS_GUARD_NO_ASK`` is not set. In every other case (no capability data, a
+harness without a human channel, a headless or subagent run the operator flagged)
+it degrades to the matched policy's ``on_ask_unavailable``, which fails closed to
+``deny`` when absent or invalid. The payload carries no headless or subagent
+signal, so the environment variable is the operator's switch for those runs.
+
 Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
 no exit code; Claude's exit-2 path is reserved for the explicit deny render).
 """
@@ -23,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shlex
 import sys
 from pathlib import Path
@@ -120,6 +129,32 @@ def _native(harness: str, decision: str, message: str) -> str:
     return "{}"
 
 
+def _can_ask(root: Path, harness: str, event: str) -> bool:
+    """Return True only when ``harness`` exposes a human channel for ``event``.
+
+    Reads ``harnesses/<harness>/harness.json`` under ``root``. Any doubt (unknown or
+    unsafe harness name, missing or unreadable data, a capability without
+    ``can_block``) answers False so the caller degrades instead of asking. Setting
+    ``COACUS_GUARD_NO_ASK`` to anything but empty or ``0`` also answers False.
+    """
+    if os.environ.get("COACUS_GUARD_NO_ASK", "").strip() not in ("", "0"):
+        return False
+    if not harness or not harness.replace("-", "").isalnum():
+        return False
+    try:
+        data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
+        capability = data["lifecycle"]["events"][event]
+        return capability.get("can_ask") is True and capability.get("can_block") is True
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return False
+
+
+def _degrade_ask(result: dict) -> str:
+    """Return the decision an unavailable ``ask`` degrades to; invalid values deny."""
+    fallback = result.get("on_ask_unavailable", "deny")
+    return fallback if fallback in ("allow", "deny") else "deny"
+
+
 def run(harness: str, event: str, payload_text: str, root: Path) -> str:
     """Evaluate one event and return the native effect JSON (never raises)."""
     try:
@@ -131,9 +166,9 @@ def run(harness: str, event: str, payload_text: str, root: Path) -> str:
         }
         decision = result.get("decision", "allow")
         message = result.get("message", "")
-        if decision == "ask":
-            # On a harness without a human channel, coerce per policy.
-            decision = result.get("on_ask_unavailable", "deny")
+        if decision == "ask" and not _can_ask(root, harness, event):
+            # No human channel for this harness and event: degrade per policy.
+            decision = _degrade_ask(result)
         if decision == "note":
             decision = "allow"
         return _native(harness, decision, message)
