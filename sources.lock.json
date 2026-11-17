@@ -17275,9 +17275,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "source_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
+      "source_sha256": "9d15562e24dc75aeef4e6b408bd96daf1e186432a146f47f56d0eea3f32091f7",
       "target_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "target_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
+      "target_sha256": "9d15562e24dc75aeef4e6b408bd96daf1e186432a146f47f56d0eea3f32091f7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
