@@ -220,8 +220,7 @@ when no safe authorized path remains or approval is required. Reassess after eac
 materially different attempt; stop repeating attempts that provide no new evidence.
 An environmental blocker, such as a missing binary or credential, stops the run and
 asks the operator for one command; see
-[diagnosing-bugs](../diagnosing-bugs/SKILL.md). This independent-path check applies
-to every other blocker.
+[diagnosing-bugs](../diagnosing-bugs/SKILL.md).
 
 ### 3. Review the task
 

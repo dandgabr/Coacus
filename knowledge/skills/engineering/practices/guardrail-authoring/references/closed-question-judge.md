@@ -30,9 +30,12 @@ under review, because content that writes its own questions controls the judge.
 Use the two failure domains already defined in the
 [lifecycle guardrails standard](../../../../../../docs/standards/lifecycle-guardrails.md):
 
-- An answer that is missing, empty, malformed or `unknown` is a **decision failure**.
-  The default for a decision failure is `deny`.
-- The judge process crashing or timing out is a **mechanism failure**. By design a
+- An answer that is missing, empty, malformed or `unknown` is a **decision failure**,
+  and so is a judge that started but returned nothing usable: a timeout, a refusal,
+  a rate limit or an unparseable reply. The content under review can provoke those,
+  so they must never fall back to allow. The default for a decision failure is
+  `deny`.
+- Only the guard process itself crashing is a **mechanism failure**. By design a
   mechanism failure allows the call and surfaces an advisory, so a broken helper
   never blocks a session. Record this as a known residual risk of the pattern.
 - "Ask the human" only works on a harness that can ask. Where it cannot, the
@@ -51,6 +54,7 @@ never authorization by itself.
 - A judge reduces risk; it does not replace a deterministic deny rule. Keep the
   pattern layer first and the judge as a later, switchable layer.
 - Cap the size of what the judge reads. If the arguments are larger than the cap,
-  do not truncate them silently; send the call to the failure rules.
+  do not truncate them silently; treat the oversize call as a decision failure
+  (deny).
 - Test the decision table with a fixed set of answers, including empty, malformed
   and `unknown` ones, and assert the result code-side.
