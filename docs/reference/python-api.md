@@ -1371,13 +1371,14 @@ the matched policy's ``on_decision_failure``; a failure of this process itself
 (no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
 allow) plus an advisory, so a broken guardrail cannot brick a session.
 
-An ``ask`` decision is rendered as ``ask`` only when the harness declares a human
-channel for the event (``can_ask`` and ``can_block`` in ``harness.json``) and
-``COACUS_GUARD_NO_ASK`` is not set. In every other case (no capability data, a
-harness without a human channel, a headless or subagent run the operator flagged)
-it degrades to the matched policy's ``on_ask_unavailable``, which fails closed to
-``deny`` when absent or invalid. The payload carries no headless or subagent
-signal, so the environment variable is the operator's switch for those runs.
+An ``ask`` decision is rendered as ``ask`` only when the operator opted in with
+``COACUS_GUARD_ASK=1`` AND the harness declares a human channel for the event
+(``can_ask`` and ``can_block`` in ``harness.json``). ``COACUS_GUARD_NO_ASK`` and a
+set ``CI`` variable always win and force the degradation. In every other case
+(the default, no capability data, a harness without a human channel) it degrades
+to the matched policy's ``on_ask_unavailable``, which fails closed to ``deny`` when
+absent or invalid. The hook payload carries no headless or subagent signal, so
+asking is opt-in: a run with no human present cannot be detected from here.
 
 Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
 no exit code; Claude's exit-2 path is reserved for the explicit deny render).

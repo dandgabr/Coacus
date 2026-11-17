@@ -15,13 +15,14 @@ the matched policy's ``on_decision_failure``; a failure of this process itself
 (no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
 allow) plus an advisory, so a broken guardrail cannot brick a session.
 
-An ``ask`` decision is rendered as ``ask`` only when the harness declares a human
-channel for the event (``can_ask`` and ``can_block`` in ``harness.json``) and
-``COACUS_GUARD_NO_ASK`` is not set. In every other case (no capability data, a
-harness without a human channel, a headless or subagent run the operator flagged)
-it degrades to the matched policy's ``on_ask_unavailable``, which fails closed to
-``deny`` when absent or invalid. The payload carries no headless or subagent
-signal, so the environment variable is the operator's switch for those runs.
+An ``ask`` decision is rendered as ``ask`` only when the operator opted in with
+``COACUS_GUARD_ASK=1`` AND the harness declares a human channel for the event
+(``can_ask`` and ``can_block`` in ``harness.json``). ``COACUS_GUARD_NO_ASK`` and a
+set ``CI`` variable always win and force the degradation. In every other case
+(the default, no capability data, a harness without a human channel) it degrades
+to the matched policy's ``on_ask_unavailable``, which fails closed to ``deny`` when
+absent or invalid. The hook payload carries no headless or subagent signal, so
+asking is opt-in: a run with no human present cannot be detected from here.
 
 Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
 no exit code; Claude's exit-2 path is reserved for the explicit deny render).
@@ -129,23 +130,38 @@ def _native(harness: str, decision: str, message: str) -> str:
     return "{}"
 
 
-def _can_ask(root: Path, harness: str, event: str) -> bool:
-    """Return True only when ``harness`` exposes a human channel for ``event``.
+def _env_on(name: str) -> bool:
+    """Return True when environment variable ``name`` is set to a truthy value."""
+    return os.environ.get(name, "").strip().lower() not in ("", "0", "false", "no", "off")
 
-    Reads ``harnesses/<harness>/harness.json`` under ``root``. Any doubt (unknown or
-    unsafe harness name, missing or unreadable data, a capability without
-    ``can_block``) answers False so the caller degrades instead of asking. Setting
-    ``COACUS_GUARD_NO_ASK`` to anything but empty or ``0`` also answers False.
+
+def _safe_harness_name(harness: str) -> bool:
+    """Return True for a non-empty name of lowercase ASCII letters, digits and dashes."""
+    return bool(harness) and all(
+        ch.isascii() and (ch.islower() or ch.isdigit() or ch == "-") for ch in harness
+    )
+
+
+def _can_ask(root: Path, harness: str, event: str) -> bool:
+    """Return True only when asking is opted in and ``harness`` has a human channel.
+
+    Asking needs ``COACUS_GUARD_ASK=1``; ``COACUS_GUARD_NO_ASK`` or a set ``CI``
+    answers False first. The capability is read from
+    ``harnesses/<harness>/harness.json`` under ``root``. Any doubt (unsafe harness
+    name, missing or unreadable data, a capability without ``can_block``, any error
+    while reading) answers False so the caller degrades instead of asking.
     """
-    if os.environ.get("COACUS_GUARD_NO_ASK", "").strip() not in ("", "0"):
+    if _env_on("COACUS_GUARD_NO_ASK") or _env_on("CI"):
         return False
-    if not harness or not harness.replace("-", "").isalnum():
+    if os.environ.get("COACUS_GUARD_ASK", "").strip() != "1":
+        return False
+    if not _safe_harness_name(harness):
         return False
     try:
         data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
         capability = data["lifecycle"]["events"][event]
         return capability.get("can_ask") is True and capability.get("can_block") is True
-    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+    except Exception:  # any doubt, including RecursionError on hostile data, degrades
         return False
 
 

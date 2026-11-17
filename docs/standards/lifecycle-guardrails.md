@@ -32,11 +32,15 @@ carries each cell's evidence class; a bare boolean is forbidden.
 
 - The canonical decision set is `allow | deny | ask`. `ask` is valid only where
   the harness exposes a human channel (`can_ask`); elsewhere it degrades by the
-  policy's `on_ask_unavailable`. The runtime reads `can_ask` and `can_block` for
-  the event from `harness.json`, treats any doubt as no channel, and fails closed
-  to `deny` when `on_ask_unavailable` is absent or invalid. The hook payload
-  carries no headless or subagent signal, so an operator sets
-  `COACUS_GUARD_NO_ASK` for those runs to force the degradation.
+  policy's `on_ask_unavailable`. Headless and subagent runs MUST
+  degrade, and the hook payload carries no signal that identifies them, so the
+  runtime renders `ask` only on an explicit opt-in (`COACUS_GUARD_ASK=1`) and only
+  when `harness.json` declares `can_ask` and `can_block` for the event.
+  `COACUS_GUARD_NO_ASK` and a set `CI` variable always force the degradation, any
+  doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
+  closed to `deny`. Rendering `ask` where it was previously degraded relaxes the
+  outcome, which is why it needs the opt-in
+  ([ADR 0010](../decisions/0010-ask-channel-gating.md)).
 - Decisions compose monotonically: `deny > ask > allow`. Adding a hook can only
   make the outcome stricter.
 - Failure domains are split: `on_decision_failure` (the evaluator ran but could
