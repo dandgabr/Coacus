@@ -140,11 +140,21 @@ The process workflows are the method; the local corpus is the knowledge. Every
 process skill should consult it rather than improvise:
 
 - Find the agent or skill a task needs with the routing index:
-  `python3 scripts/coacus_route.py "<task>" --top 4`.
+  `python3 "<COACUS_ROOT>/scripts/coacus_route.py" "<task>" --top 4`.
 - Browse what exists once per session in `catalog/INDEX.md` and `AGENTS.md`.
 - Prefer a local skill over an invented approach: brainstorming routes to the
   design and domain skills, planning cites the standards that constrain the
   change, and test-driven development uses the local gate above.
+
+## Resolve the router root
+
+`<COACUS_ROOT>` is the canonical Coacus checkout, not the current project. In
+OpenCode, inspect the `COACUS_ROOT` constant in
+`~/.config/opencode/plugins/coacus-governor.js` as configuration metadata;
+verify that `scripts/coacus_route.py` exists under that root before use. For
+other harnesses, use their documented bootstrap or adapter configuration. If
+the root or router cannot be verified, report the blocker and do not dispatch
+without governed routing. A successful empty route differs from a failed call.
 
 ## Select agents for a task (roster)
 
@@ -157,11 +167,15 @@ workflow may call the router automatically.
 2. Rank the agents for that text:
 
    ```bash
-   python3 scripts/coacus_route.py "<task text>" --top 5
+   python3 "<COACUS_ROOT>/scripts/coacus_route.py" "<task text>" --top 5
    ```
 
    Add `--max-slots` when a concurrency cap is in play. Each row is
-   `score <TAB> name <TAB> category <TAB> matched`.
+   `score <TAB> name <TAB> category <TAB> matched`. If the router reports
+   `no agent above the score threshold`, browse `--list` and select relevant
+   candidates for validation. An empty `--max-slots` result can mean no free
+   slots or a governor failure: inspect governor status and do not dispatch
+   without a slot. Other failures block routing.
 3. Present a NUMBERED list, one row per candidate, carrying the agent name,
    category, score and `matched` terms. Showing `matched` matters: a lexical
    false positive (a word matched in another sense) is visible and can be
@@ -170,7 +184,7 @@ workflow may call the router automatically.
 5. Validate the choice before relying on it:
 
    ```bash
-   python3 scripts/coacus_route.py --agents <name1>,<name2>
+   python3 "<COACUS_ROOT>/scripts/coacus_route.py" --agents <name1>,<name2>
    ```
 
    An unknown name exits non-zero. When a close match exists it also prints

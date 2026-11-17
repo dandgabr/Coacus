@@ -23,9 +23,10 @@ approval-gated actions.
    - Every workflow begins by extracting and fixing the user's original problem into an explicit intent contract.
    - The contract must contain: Primary Objective, Non-Negotiable Constraints, Expected Deliverables, and Stop Criteria.
 2. **Routing Before Delegation (mandatory)**:
-   - Choose the subagents through the deterministic router, not by guess. Run `python3 scripts/coacus_route.py "<prompt>" --max-slots` and start from the ranked candidates with their matched terms; the `--max-slots` cap ties the proposal to the governor's free slots.
-   - Honor an explicit user selection by validating it: `python3 scripts/coacus_route.py --agents name1,name2`. An unknown name is an error with suggestions, never a silent drop.
-   - When the router returns nothing, browse with `--list` and select manually; never invent an agent name.
+   In OpenCode, read the `COACUS_ROOT` configuration constant from `~/.config/opencode/plugins/coacus-governor.js` and verify `scripts/coacus_route.py` exists under that root. For other harnesses, use their documented bootstrap or adapter configuration. Stop routing if the root or router cannot be verified.
+   - Choose the subagents through the deterministic router, not by guess. Run `python3 "<COACUS_ROOT>/scripts/coacus_route.py" "<prompt>" --max-slots` and start from the ranked candidates with their matched terms; the `--max-slots` cap ties the proposal to the governor's free slots.
+   - Honor an explicit user selection by validating it: `python3 "<COACUS_ROOT>/scripts/coacus_route.py" --agents name1,name2`. An unknown name is an error with suggestions, never a silent drop.
+   - When routing reports `no agent above the score threshold`, use `--list` and select manually; never invent an agent name. An empty result with `--max-slots` may indicate no capacity: check governor status and do not dispatch without a slot. Other routing failures block delegation.
 3. **Active Execution Vigilance (Observation Loop)**:
    - The supervisor does not perform the domain's hands-on work, but monitors the tool calls, messages emitted, and files modified by the subagents.
 4. **Principle of Minimum Efficient Intervention**:

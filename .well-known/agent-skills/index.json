@@ -2029,7 +2029,7 @@
       "description": "Specialist in Orchestration, Supervision, and Governance of Multi-Agent Systems. Focused on anchoring initial objectives, continuously detecting scope drift (Agent Drift and Role Drift), proactive intervention (Self-Correction), gradual containment, and applying kill-switch/safe termination to non-compliant agents.",
       "type": "archive",
       "url": "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
-      "digest": "sha256:91af6c7d745af179beeaf444d49a02dc437aed2f159d7efbfe48cb8f3ee727e8"
+      "digest": "sha256:ac7d12ef97f1e1a3e8da817668452913d0fbc4910b9616fcdb854d042c99b7ed"
     },
     {
       "name": "mutation-fuzzing-testing",
@@ -3380,7 +3380,7 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:54bd13eb670534707aeb75de55c80b20ad42605cf1c9a4bb02daba4b0b9dd389"
+      "digest": "sha256:0eabf4607757adbed5e1b4aa395d887e406892d457d782a1e3ed3e96c2c7c6b7"
     },
     {
       "name": "using-git-worktrees",
@@ -3485,7 +3485,7 @@
       "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
       "type": "archive",
       "url": "methodology/workflows/writing-plans/SKILL.md",
-      "digest": "sha256:698c393b00e96ccd72a9169edb1cb12839fbb7018ad9659023988f92e824ea2c"
+      "digest": "sha256:4c3ee5a7522f80cd56c4fe243f5f9a07467dbafbbb5accd55cb67e7e85b36dec"
     },
     {
       "name": "writing-skills",
