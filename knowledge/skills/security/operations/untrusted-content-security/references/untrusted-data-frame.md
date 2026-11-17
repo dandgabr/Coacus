@@ -33,10 +33,12 @@ format stay in force. Do not confuse it with the evidence envelope in
    compatibility forms with NFKC, so a marker split or disguised that way is
    visible before it is defanged.
 2. Defang every look-alike of the stem with plain string scanning, matching on a
-   key in which letters are case folded and every dash variant is a hyphen. Never
-   run a regular expression over untrusted text for this step.
-3. Reject input above the size cap instead of truncating it, and check the cap
-   again after normalization, which can make text several times longer.
+   key in which letters are case folded and Unicode dash punctuation and the minus
+   sign are a hyphen. Never run a regular expression over untrusted text for this
+   step.
+3. Reject input above the size cap instead of truncating it, and check it again
+   after normalization against twice the cap, before any scanning, because
+   normalization can make text several times longer.
 4. Use a new identifier for every frame. Generate it from the standard library
    `secrets` module, 16 random bytes in hexadecimal.
 5. Never persist, log, quote or echo the identifier, and never reuse it, because a
@@ -58,6 +60,10 @@ supported way to reuse it.
 - The model decides what to do with framed text; the frame only shows where it
   starts and ends.
 - Sanitizing changes the text it returns. Keep the original when exact bytes matter.
+  Removing format characters also drops joiners, which can change emoji sequences
+  and the spelling of some Persian and Indic words.
+- Some look-alikes outside the dash category (for example a modifier minus sign)
+  are not folded either. The identifier, not defanging, is the protection.
 - Letters borrowed from another script (for example Cyrillic look-alikes) are not
   folded, so defanging does not catch them. Use the mixed-script check in the skill
   body for those, and rely on the identifier, not on defanging.

@@ -12,7 +12,9 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Fixed list: a markdown file that gains links later is not covered until it is added.
 SOURCES = [
+    "methodology/workflows/diagnosing-bugs/environmental-blockers.md",
     "docs/standards/untrusted-content.md",
     "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
     "knowledge/skills/security/operations/untrusted-content-security/references/untrusted-data-frame.md",
@@ -25,6 +27,8 @@ SOURCES = [
     "methodology/workflows/subagent-driven-development/SKILL.md",
     "methodology/workflows/using-coacus/references/research-trust-boundary.md",
 ]
+
+TARGET_FILE_MIN_LINKS = 10
 
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 
@@ -67,7 +71,7 @@ class LinkResolution(unittest.TestCase):
                     if anchor and resolved.suffix == ".md":
                         self.assertIn(anchor, _anchors(resolved))
                     checked += 1
-        self.assertGreater(checked, 10)
+        self.assertGreater(checked, TARGET_FILE_MIN_LINKS)
 
     def test_anchors_added_by_this_change_exist(self):
         wanted = {
