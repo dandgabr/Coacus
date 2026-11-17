@@ -56,9 +56,9 @@ ledger status is introduced; each outcome maps onto the existing ones:
 |---|---|
 | A finding was reported | `fail` |
 | Nothing found, with evidence | `pass`, citing at least one evidence id |
-| More investigation is needed | an entry in the residual-unknown registry |
+| More investigation is needed | `unknown` in the ledger, plus an `open` or `investigating` entry in the residual-unknown registry |
 | Not applicable | left out of the ledger; the reason is recorded once in the scope list |
-| Dropped by adversarial validation | the validation record in `review-findings-pipeline`, not a surface status |
+| Dropped by adversarial validation | the validation record in `review-findings-pipeline`; the surface's own status still comes from the other rows |
 
 `skipped` is not used for "not applicable": it never aggregates to `pass`, so one
 such surface would stop the ledger from ever being complete. The ledger belongs to
