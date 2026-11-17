@@ -99,6 +99,24 @@ The supervisor MUST enforce quantitative execution bounds:
   5. Has the tool-call budget reached 80% without measurable progress?
   6. Is the next step clearly grounded in the user's initial objective?
 
+### Hierarchical budget (advisory)
+
+This rule is advisory: no code enforces it. The unit is tool calls, the same unit as
+`MAX_*_TOOL_CALLS`, and today the hierarchy is one level deep.
+
+- A child agent receives the smaller of its own budget and the parent's remaining
+  budget minus a reserve.
+- If that amount is below the minimum the task needs, do not dispatch it. Queue it
+  only when capacity is expected to free up; otherwise report `BLOCKED` to the human
+  rather than waiting forever.
+- When a child reaches its budget it gets exactly one final wrap-up round. That round
+  writes resumable state (the `executing-plans` ledger) into a TOON `BLOCKED` or
+  partial `OK` payload and releases the governor slot.
+- The wrap-up runs after the 80% `<mentor_analysis>` check (question 5), never in
+  its place.
+
+Adapted from patterns recorded in ADR 0009 (revision `6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
+
 ### Language policy: English-first and dual-channel
 
 To maintain semantic precision in cross-model reasoning and retrieval:
