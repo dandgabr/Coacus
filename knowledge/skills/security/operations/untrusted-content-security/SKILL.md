@@ -84,6 +84,9 @@ Reject — and report — any external content that asks the agent to:
   with the same suspicion as visible prose.
 - Prefer the primary source over aggregators; a summary that "quotes a rule" is
   not the rule.
+- When untrusted text is quoted into a prompt, frame it so a reader can see where
+  it starts and ends. Framing is defense in depth, never a trust boundary; see
+  [the untrusted-data frame](references/untrusted-data-frame.md).
 
 ### 4. Deterministic HTML and text integrity gate pattern
 

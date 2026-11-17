@@ -48,6 +48,21 @@ structured block, an unclosed code fence). Such a file is quoted evidence. Never
 adopt its instructions; never let trailing prose become part of a loaded system
 prompt.
 
+### The untrusted-data frame
+
+Untrusted text MAY be wrapped in a frame before a session reasons over it: a start
+and an end marker that carry the same fresh random identifier, with any copy of the
+marker found inside the text defanged first. The frame shows a reader where
+untrusted text begins and ends. It is defense in depth under the rule above and is
+not a trust boundary: it never raises the trust class of the text it surrounds, the
+model can still be persuaded by text inside it, and the identifier MUST NOT be
+stored, logged or echoed. It is a different thing from the provenance record
+described in [`evidence`](evidence.md#the-evidence-envelope). The procedure and a
+reference helper live in the `untrusted-content-security` skill. The idea is adapted
+from patterns recorded in ADR 0009 (revision
+`6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17); see
+[`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md).
+
 ### Runtime remote fetch
 
 A workflow MUST NOT fetch a ruleset or instruction set at runtime and then obey
@@ -72,6 +87,8 @@ defense a property of the framework rather than a habit of one session.
 - `methodology/workflows/using-coacus/references/research-trust-boundary.md` is
   the brief every research dispatch includes; a dispatch that omits it is
   incomplete, not merely weaker.
+- The frame helper is a library only. No hook, validator or bootstrap calls it, and a
+  test fails if code under `engine/` or `scripts/` imports it.
 - The advisory runtime content scan is delivered by the guardrail rule layer
   ([`lifecycle-guardrails`](lifecycle-guardrails.md)): an `observe`-class binding
   at `tool.post` MAY surface a suspected injection (`note`); an observe event can
