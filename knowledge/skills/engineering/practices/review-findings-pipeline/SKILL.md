@@ -83,4 +83,4 @@ exists precisely to prevent a single ranked winner.
   for handing a diff to a reviewer.
 
 The counter-argument checks in stage 2 are adapted from patterns recorded in
-ADR 0009 (see `THIRD-PARTY-NOTICES.md`).
+ADR 0009 (see [THIRD-PARTY-NOTICES.md](../../../../../THIRD-PARTY-NOTICES.md)).

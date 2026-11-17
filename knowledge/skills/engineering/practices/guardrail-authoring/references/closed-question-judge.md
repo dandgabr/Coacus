@@ -32,7 +32,8 @@ Use the two failure domains already defined in the
 
 - An answer that is missing, empty, malformed or `unknown` is a **decision failure**,
   and so is a judge that started but returned nothing usable: a timeout, a refusal,
-  a rate limit or an unparseable reply. The content under review can provoke those,
+  a rate limit, a crash or non-zero exit of the judge process, or an unparseable
+  reply. The content under review can provoke those,
   so they must never fall back to allow. The default for a decision failure is
   `deny`.
 - Only the guard process itself crashing is a **mechanism failure**. By design a
@@ -40,7 +41,8 @@ Use the two failure domains already defined in the
   never blocks a session. Record this as a known residual risk of the pattern.
 - "Ask the human" only works on a harness that can ask. Where it cannot, the
   decision degrades to the policy's `on_ask_unavailable` value, which defaults to
-  `deny`.
+  `deny`. Today every `ask` degrades that way, even on a harness that can ask,
+  until the guard honours the can-ask capability.
 
 ## Handling the text under review
 

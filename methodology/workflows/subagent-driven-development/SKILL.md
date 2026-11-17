@@ -218,9 +218,9 @@ not proof of an attempt. Assess whether an authorized independent path exists;
 if one does, identify its specific technical question before proceeding. Escalate
 when no safe authorized path remains or approval is required. Reassess after each
 materially different attempt; stop repeating attempts that provide no new evidence.
-An environmental blocker, such as a missing binary or credential, stops the run and
-asks the operator for one command; see
-[diagnosing-bugs](../diagnosing-bugs/SKILL.md).
+An environmental blocker, such as a missing binary or credential, stops that task,
+marks it blocked and asks the operator for one command, while independent tasks
+continue; see [environmental blockers](../diagnosing-bugs/environmental-blockers.md).
 
 ### 3. Review the task
 

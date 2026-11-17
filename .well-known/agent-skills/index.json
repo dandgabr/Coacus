@@ -993,7 +993,7 @@
       "description": "Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.",
       "type": "archive",
       "url": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "digest": "sha256:195fb5dce17a44b5b3eeecd721bd8dad32ad835d4bb68c864a3ec1221faa9fce"
+      "digest": "sha256:4ddcf74713d7f084b3e4d9dba1a523fd8c474d4a4cc7a00dbb738e7869854a72"
     },
     {
       "name": "dispatching-parallel-agents",
@@ -1497,7 +1497,7 @@
       "description": "Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when writing a deny or ask policy, a content rule or a lifecycle hook guard.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "digest": "sha256:b01f622f20e8a184aeff8390fe188813c40415ad0ad65393ce2c21299ce8e41a"
+      "digest": "sha256:24f557b729716f31dadd477b1702360fa2d4460e2514401f1baaf91653cbd57e"
     },
     {
       "name": "handoff",
@@ -2421,7 +2421,7 @@
       "description": "Filters candidate review findings through adversarial validation, an impact ratio and a confidence threshold before reporting. Use when a review or audit produces many candidate findings.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "digest": "sha256:6d56f2675c616914990a004803012c50ae3f8f21d940656a3a7adb3dec2bdbe0"
+      "digest": "sha256:9c5d7b789313089e10c115b01f4e66b96f77e32192eb84510b1de6403b79f421"
     },
     {
       "name": "sast-code-review",
@@ -2589,7 +2589,7 @@
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
       "url": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "digest": "sha256:3e88a036d82ed1914a87d2aa7b4fcf5399717d2c5b69c13cfbe1e2a495a6ac1d"
+      "digest": "sha256:ff4f0cacebef82c89c08b6f2ce6da4ef6482b9a884f49fabd364978207e1f306"
     },
     {
       "name": "supply-chain-threat-modeling",
@@ -3373,7 +3373,7 @@
       "description": "Establishes a trust boundary for content retrieved from the open internet, papers, documents and third-party data, so research agents treat it as evidence and never as instructions. Use when fetching web pages, reading PDFs, parsing research papers, or ingesting any external corpus that may contain prompt injection.",
       "type": "archive",
       "url": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "digest": "sha256:b5a12a52af11af9bebb084f2dfed181a839cc83e994d1ce9e87c0ff0206dfb6a"
+      "digest": "sha256:8fb806c06f9b3620c44930249df3b833ac501c5b7b3464ce505760ef2f4ddfc6"
     },
     {
       "name": "using-coacus",

@@ -26,6 +26,7 @@ DEFANGED = "[marker-removed]"
 MAX_CHARS = 200_000
 MAX_LABEL = 64
 MAX_TOKEN = 64
+MIN_TOKEN = 4
 
 # Invisible or default-ignorable code points, as numbers, so no invisible
 # character appears in this source file.
@@ -37,7 +38,9 @@ _HIDDEN_CODES = frozenset({
     0x2066, 0x2067, 0x2068, 0x2069,
     0x3164, 0xFEFF, 0xFFA0,
 })
-_HIDDEN_RANGES = ((0xFE00, 0xFE0F), (0xE0000, 0xE007F), (0xE0100, 0xE01EF))
+_HIDDEN_RANGES = (
+    (0x180B, 0x180F), (0xFE00, 0xFE0F), (0xE0000, 0xE007F), (0xE0100, 0xE01EF),
+)
 _MINUS_SIGN = 0x2212
 
 
@@ -78,6 +81,16 @@ def _valid_word(word: str, limit: int) -> bool:
     return all(ch.isascii() and (ch.isalnum() or ch in "._-") for ch in word)
 
 
+def _valid_token(token: str) -> bool:
+    """Return True for an identifier that is long enough, alphanumeric and stem-free."""
+    return (
+        _valid_word(token, MAX_TOKEN)
+        and len(token) >= MIN_TOKEN
+        and any(ch.isalnum() for ch in token)
+        and STEM not in token.lower()
+    )
+
+
 def sanitize(text: str) -> str:
     """Strip hidden characters and apply NFKC normalization.
 
@@ -88,15 +101,19 @@ def sanitize(text: str) -> str:
 
 
 def neutralize(text: str) -> str:
-    """Return sanitized text in which every look-alike of the marker stem is defanged.
+    """Return sanitized text in which every look-alike of the marker stem is defanged."""
+    return _defang(sanitize(text))
 
-    Matching uses a per-character key (case folded, dash variants folded to a
-    hyphen) while the original sanitized characters are kept everywhere else. Plain
-    string scanning only; no regular expression runs over the untrusted text. The
-    replacement starts and ends with brackets, so neighbouring characters can never
-    recombine into the stem.
+
+def _defang(clean: str) -> str:
+    """Replace every look-alike of the marker stem in already sanitized text.
+
+    Matching uses a per-character key (case folded, Unicode dash punctuation and the
+    minus sign folded to a hyphen) while the original characters are kept everywhere
+    else. Plain string scanning only; no regular expression runs over the untrusted
+    text. The replacement starts and ends with brackets, so neighbouring characters
+    can never recombine into the stem.
     """
-    clean = sanitize(text)
     key = "".join(_fold(ch) for ch in clean)
     width = len(STEM)
     parts: list[str] = []
@@ -138,11 +155,12 @@ def frame(
     if not _valid_word(source, MAX_LABEL) or STEM in source.lower():
         raise ValueError("source label is not a short ascii word")
     token = (token_source or _default_token)()
-    if not _valid_word(token, MAX_TOKEN):
-        raise ValueError("identifier is not a short ascii word")
-    body = neutralize(text)
-    if len(body) > 2 * MAX_CHARS:
+    if not _valid_token(token):
+        raise ValueError("identifier is not a usable ascii word")
+    clean = sanitize(text)
+    if len(clean) > 2 * MAX_CHARS:
         raise ValueError("text exceeds the size limit after normalization")
+    body = _defang(clean)
     if token in body:
         raise ValueError("identifier collides with the framed text")
     return (

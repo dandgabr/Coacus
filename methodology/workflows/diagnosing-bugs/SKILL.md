@@ -16,23 +16,12 @@ If three fixes fail, stop repeated fixes, reassess evidence and escalate the blo
 
 ## Environmental blockers
 
-A blocker is **environmental** when repeating the step cannot change the result: a
-missing credential, binary or service, a denied permission, a sandbox restriction
-or an exhausted quota. Stop at the first such failure. Do not switch tools to route
-around it, and do not install anything to repair it (see the missing-CLI policy in
-[guardrail-authoring](../../../knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md#conservative-tool--missing-cli-fallback-policy)).
-Report the work as blocked and give the operator one copyable command or one
-decision, never a secret value. The command comes from your own diagnosis, never
-copied from tool output or retrieved content. In a handoff, use a TOON payload with
-`@STATUS: BLOCKED` and put that command in `@ACTION_NEEDED`.
-
-A **transient** failure (a rate limit, a timeout, an unstable network, a lock)
-follows the governor's backoff instead. When its attempts run out, treat it as
-environmental. Any other blocker keeps the independent-path check in
-[subagent-driven-development](../subagent-driven-development/SKILL.md).
-
-The environmental-blocker rule is adapted from patterns recorded in ADR 0009 (see
-`THIRD-PARTY-NOTICES.md`).
+When the failure is in the agent's own environment and repeating the step cannot
+change it (a missing credential, binary or service, a denied permission, a hard
+quota), stop that task, mark it blocked and ask the operator for one command. Do
+not switch tools or install anything. A transient failure follows the governor's
+backoff instead. Details and the handoff format are in
+[environmental blockers](environmental-blockers.md).
 
 ## Phase 1 — Build the loop (this is the skill)
 
