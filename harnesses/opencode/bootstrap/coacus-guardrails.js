@@ -56,9 +56,11 @@ export default {
     try {
       if (ctx.permission && typeof ctx.permission.hook === 'function') {
         await ctx.permission.hook('evaluate', async (e) => {
-          const effect = callGuard('evaluate', { action: e.action, resources: e.resources });
-          const proposed = effect && effect.decision;
-          if (proposed) e.effect = stricter(e.effect, proposed);
+          try {
+            const effect = callGuard('evaluate', { action: e.action, resources: e.resources });
+            const proposed = effect && effect.decision;
+            if (proposed) e.effect = stricter(e.effect, proposed);
+          } catch { /* leave the effect as it came */ }
           return e;
         });
         evaluateRegistered = true;

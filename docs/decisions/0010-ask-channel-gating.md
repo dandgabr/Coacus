@@ -35,9 +35,12 @@ opt-in.
   (`default`, `before`, `evaluate`): on a harness with an `ask_channel` it asks only
   on `evaluate`, defers on `before` (the plugin passes it when the hook is
   registered) and degrades on `default`, so a V1 install never turns an `ask` into
-  an allow. The hook may only tighten an effect (deny over ask over allow). This was
-  verified against the OpenCode documentation of 2026-11-18, not against a live V2
-  run, and the capability data records that as a gap.
+  an allow. The hook may only tighten an effect (deny over ask over allow). Only read and write asks are deferred to the hook,
+  because the hook sees a location-relative path while the tool call carries the raw
+  one; a command or a subagent ask degrades to its fallback, and so does a read or
+  write ask that would not hold for the relative form. This was checked against the
+  OpenCode documentation of 2026-11-18, not against a live V2 run, and the capability
+  data records that as a gap.
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 

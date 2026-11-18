@@ -36,14 +36,16 @@ if (scenario.v2) {
 const before = [];
 ctx.tool.hook = async (name, fn) => { before.push(fn); };
 await plugin.setup(ctx);
-const run = async (path) => {
-  try { await before[0]({ tool: 'read', input: { filePath: path } }); return 'passed'; }
+const call = scenario.call || { tool: 'read', input: { filePath: 'repo/.env' } };
+const run = async () => {
+  try { await before[0](call); return 'passed'; }
   catch (e) { return 'blocked'; }
 };
-out.before = await run('repo/.env');
+out.before = await run();
 out.registered = evaluate !== null;
 if (evaluate) {
-  const event = { effect: scenario.incoming, action: 'read', resources: ['repo/.env'] };
+  const event = { effect: scenario.incoming, action: scenario.action || 'read',
+    resources: scenario.resources || ['repo/.env'] };
   const result = await evaluate(event);
   out.effect = event.effect;
   out.returned = result && result.effect;
@@ -91,14 +93,15 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         (directory / "t.policy.json").write_text(json.dumps(document), encoding="utf-8")
 
     def _run(self, *, v2: bool, incoming: str = "allow", opt_in: bool = False,
-             register_throws: bool = False, **env: str) -> dict:
+             register_throws: bool = False, extra: dict | None = None, **env: str) -> dict:
         base = {k: v for k, v in os.environ.items()
                 if k not in ("CI", "COACUS_GUARD_ASK", "COACUS_GUARD_NO_ASK", "COACUS_POLICY_DIR")}
         base["COACUS_POLICY_DIR"] = str(self.root / "no-user-policies")
         if opt_in:
             base["COACUS_GUARD_ASK"] = "1"
         base.update(env)
-        base["SCENARIO"] = json.dumps({"v2": v2, "incoming": incoming, "registerThrows": register_throws})
+        base["SCENARIO"] = json.dumps({"v2": v2, "incoming": incoming,
+                                       "registerThrows": register_throws, **(extra or {})})
         proc = subprocess.run(["node", "driver.mjs"], cwd=self.root, capture_output=True,
                               text=True, env=base, timeout=60)
         self.assertEqual(proc.returncode, 0, proc.stderr)
@@ -154,6 +157,33 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         out = self._run(v2=True, opt_in=True, incoming="allow")
         self.assertEqual(out["before"], "blocked")
         self.assertEqual(out["effect"], "deny")
+
+    # --- only read and write are deferred to the hook -------------------------------
+    def test_a_shell_ask_is_not_deferred_and_follows_its_fallback(self) -> None:
+        self._policies({"id": "ask-shell", "action": {"verb": "exec", "resource": "*deploy*"},
+                        "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
+        call = {"tool": "bash", "input": {"command": "run deploy now"}}
+        out = self._run(v2=True, opt_in=True, extra={
+            "call": call, "action": "shell", "resources": ["run deploy now"]})
+        self.assertEqual(out["before"], "blocked")  # degraded to deny, not allowed
+        self.assertEqual(out["effect"], "ask")      # the hook may still raise it
+
+    def test_a_subagent_ask_is_not_deferred(self) -> None:
+        self._policies({"id": "ask-spawn", "action": {"verb": "spawn", "resource": "*"},
+                        "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
+        out = self._run(v2=True, opt_in=True, extra={
+            "call": {"tool": "task", "input": {"prompt": "do it"}}, "action": "subagent",
+            "resources": ["do it"]})
+        self.assertEqual(out["before"], "blocked")
+
+    def test_an_ask_anchored_on_an_absolute_path_is_not_deferred(self) -> None:
+        # The hook sees a relative path, so an absolute anchor could miss there.
+        self._policies({"id": "ask-abs", "action": {"verb": "read", "resource": "/srv/secret/*"},
+                        "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
+        out = self._run(v2=True, opt_in=True, extra={
+            "call": {"tool": "read", "input": {"filePath": "/srv/secret/key"}},
+            "resources": ["srv/secret/key"]})
+        self.assertEqual(out["before"], "blocked")
 
     # --- the hook never loosens ---------------------------------------------------
     def test_the_hook_never_loosens_an_incoming_effect(self) -> None:
@@ -216,6 +246,27 @@ class TestEvaluateHookWithAStubGuard(unittest.TestCase):
             for incoming in ("allow", "ask", "deny"):
                 with self.subTest(stub=stub, incoming=incoming):
                     self.assertEqual(self._effect(incoming, stub), incoming)
+
+
+class TestPermissionMapping(unittest.TestCase):
+    def setUp(self) -> None:
+        sys.path.insert(0, str(REPO))
+        from scripts import coacus_guard
+        self.guard = coacus_guard
+
+    def test_documented_v2_names_map_to_canonical_verbs(self) -> None:
+        cases = {"read": "read", "edit": "write", "patch": "write", "shell": "exec",
+                 "subagent": "spawn", "bash": "exec", "task": "spawn"}
+        for action, verb in cases.items():
+            with self.subTest(action=action):
+                self.assertEqual(self.guard._permission_actions(
+                    {"action": action, "resources": ["x"]}), [(verb, "x")])
+
+    def test_unmapped_or_malformed_requests_map_to_nothing(self) -> None:
+        for payload in ({"action": "glob", "resources": ["x"]}, {"action": "grep", "resources": ["x"]},
+                        {"action": "read"}, {"action": "read", "resources": "x"}, {}, {"action": 5}):
+            with self.subTest(payload=payload):
+                self.assertEqual(self.guard._permission_actions(payload), [])
 
 
 class TestCapabilityData(unittest.TestCase):

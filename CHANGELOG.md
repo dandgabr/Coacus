@@ -9,12 +9,12 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
-- The OpenCode guardrail plugin registers the V2 permission `evaluate` hook when the API exists. With `COACUS_GUARD_ASK=1` an `ask` policy now prompts a person there; the hook can only tighten an effect (deny over ask over allow) and leaves it unchanged if the guard fails.
+- The OpenCode guardrail plugin registers the V2 permission `evaluate` hook when the API exists. With `COACUS_GUARD_ASK=1` an `ask` policy on a read or write now prompts a person there (a command or a subagent request is not deferred and degrades to its fallback, because the hook sees a different resource shape); the hook can only tighten an effect (deny over ask over allow) and leaves it unchanged if the guard fails.
 - `scripts/coacus_guard.py` takes `--channel default|before|evaluate`. A harness whose capability cell has `ask_channel` asks only on that channel, so a V1 install, or a failed hook registration, degrades an `ask` to its fallback instead of letting it through.
 
 ### Known gaps
 
-- Verified against the OpenCode documentation of 2026-11-18 and a fake `ctx`, not a live V2 run. The permission names, the event shape and the order against `tool.execute.before` are recorded as an unverified gap in the harness data.
+- Checked against the OpenCode documentation of 2026-11-18 and a fake `ctx`, not a live V2 run. Whether OpenCode awaits the hook, how it orders `evaluate` against `tool.execute.before`, and the resource shape for each permission are not verified and are recorded as a gap in the harness data. If the guard cannot run when the hook fires, the effect is left as it came, so the prompt is lost (fail open by design).
 
 ## [Unreleased] — Command walk hardening
 

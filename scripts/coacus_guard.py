@@ -192,9 +192,16 @@ ASK_CHANNELS = ("default", "before", "evaluate")
 # OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
 # run: only the documented hook contract is known, not every permission name.
 _PERMISSION_VERBS = {
-    "read": "read", "edit": "write", "write": "write", "bash": "exec",
-    "webfetch": "network", "task": "spawn",
+    "read": "read", "edit": "write", "write": "write", "patch": "write",
+    "shell": "exec", "bash": "exec", "subagent": "spawn", "task": "spawn",
+    "webfetch": "network",
 }
+
+# Verbs an ask may be deferred to the evaluate hook for. The hook sees a path as a
+# location-relative internal path while a tool call carries the raw one, and only
+# these two have documented, path-shaped resources. A command or a subagent request
+# is not deferred: it degrades to the policy fallback, so it never becomes an allow.
+_DEFERRABLE_VERBS = ("read", "write")
 
 
 def _permission_actions(payload: dict) -> list[tuple[str, str]]:
@@ -246,6 +253,23 @@ def _degrade_ask(result: dict) -> str:
 _RANK = {"allow": 0, "ask": 1, "deny": 2}
 
 
+def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
+    """True when an ask would be raised again with the resource shape the hook sees.
+
+    Only read and write are deferred. The hook receives a path relative to the
+    working directory, so the ask must also hold for that form; if it does not, the
+    hook would let the call through, and the caller degrades instead of deferring.
+    """
+    if verb not in _DEFERRABLE_VERBS or not resource:
+        return False
+    forms = {resource}
+    try:
+        forms.add(os.path.relpath(resource) if os.path.isabs(resource) else resource)
+    except ValueError:
+        return False
+    return all(guard.evaluate(policies, verb, form).get("decision") == "ask" for form in forms)
+
+
 def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resource: str) -> tuple[str, str]:
     """Return ``(decision, message)`` for one canonical action on one channel."""
     policies = guard.load_policies(root, include_user=True)
@@ -255,7 +279,9 @@ def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resou
     decision = result.get("decision", "allow")
     message = result.get("message", "")
     if decision == "ask":
-        if _can_ask(root, harness, event, channel):
+        if _can_ask(root, harness, event, channel) and (
+            channel != "before" or _survives_the_hook(policies, verb, resource)
+        ):
             if channel == "before":
                 decision = "allow"  # left to the evaluate hook, which asks
         else:
