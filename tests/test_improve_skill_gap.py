@@ -118,9 +118,12 @@ class StateDirCase(unittest.TestCase):
         self.addCleanup(patcher.stop)
         self.log = route_miss.log_path()
 
-    def write_log(self, records: list[dict]) -> None:
-        self.log.parent.mkdir(parents=True, exist_ok=True)
-        self.log.write_text("\n".join(json.dumps(x) for x in records) + "\n", encoding="utf-8")
+    def write_log(self, records: list[dict], text: str | None = None) -> None:
+        self.log.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        os.chmod(self.log.parent, 0o700)
+        body = text if text is not None else "\n".join(json.dumps(x) for x in records) + "\n"
+        self.log.write_text(body, encoding="utf-8")
+        os.chmod(self.log, 0o600)
 
     def opt_in(self):
         return mock.patch.dict(os.environ, {route_miss.ENV_SWITCH: "1"})
@@ -202,30 +205,65 @@ class TestEndToEnd(StateDirCase):
         self.assertEqual(len(built), 2)
 
     def test_a_raw_line_separator_inside_a_record_does_not_split_it(self) -> None:
-        self.log.parent.mkdir(parents=True)
         text = "ledger" + chr(0x2028) + "migrations"
-        self.log.write_text(json.dumps(miss("d1", text), ensure_ascii=False) + "\n", encoding="utf-8")
+        self.write_log([], json.dumps(miss("d1", text), ensure_ascii=False) + "\n")
         built = route_miss.RouteMissSource().read(self.repo, {})
         self.assertEqual([o["text"] for o in built], [text])
 
     def test_the_reader_stops_at_its_line_cap_and_byte_cap(self) -> None:
-        self.write_log([miss("d1")] * (route_miss.MAX_LINES + 50))
-        self.assertEqual(len(route_miss.RouteMissSource().read(self.repo, {})), route_miss.MAX_LINES)
-        self.log.write_text(json.dumps(miss("d1", "a")) + "\n" + "x" * (route_miss.MAX_BYTES + 10), encoding="utf-8")
-        self.assertEqual(len(route_miss.RouteMissSource().read(self.repo, {})), 1)
+        records = [miss(f"d{i}") for i in range(route_miss.MAX_LINES + 50)]
+        self.write_log(records)
+        built = route_miss.RouteMissSource().read(self.repo, {})
+        self.assertEqual(len(built), route_miss.MAX_LINES)
+        self.assertEqual(built[-1]["session_id"], f"d{route_miss.MAX_LINES + 49}")  # the newest are kept
+        self.write_log([], json.dumps(miss("d1", "a")) + "\n" + "x" * (route_miss.MAX_BYTES + 10))
+        self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])  # no whole line in the tail
 
     def test_a_symlinked_log_is_not_read(self) -> None:
         real = Path(self._tmp.name) / "elsewhere.jsonl"
         real.write_text(json.dumps(miss("d1")) + "\n", encoding="utf-8")
-        self.log.parent.mkdir(parents=True)
+        os.chmod(real, 0o600)
+        self.log.parent.mkdir(parents=True, mode=0o700)
         self.log.symlink_to(real)
         self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
 
-    def test_a_log_inside_the_scanned_repository_is_never_read(self) -> None:
-        hostile = self.repo / "docs/temp/improvement/route-misses.jsonl"
-        hostile.parent.mkdir(parents=True)
-        hostile.write_text("\n".join(json.dumps(miss(s)) for s in ("d1", "d2", "d3")) + "\n", encoding="utf-8")
+    def test_a_state_location_inside_the_scanned_repository_is_refused(self) -> None:
+        inside = self.repo / "state"
+        with mock.patch.dict(os.environ, {"COACUS_STATE_DIR": str(inside)}):
+            hostile = route_miss.log_path()
+            hostile.parent.mkdir(parents=True, mode=0o700)
+            hostile.write_text("\n".join(json.dumps(miss(s)) for s in ("d1", "d2", "d3")) + "\n", encoding="utf-8")
+            os.chmod(hostile, 0o600)
+            self.assertIsNone(route_miss.log_path(self.repo))
+            self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+            self.assertEqual(self._types(loop.run(self.repo, {"source": "route-miss"})), [])
+
+    def test_a_relative_state_location_is_refused(self) -> None:
+        with mock.patch.dict(os.environ, {"COACUS_STATE_DIR": "relative/dir"}):
+            self.assertIsNone(route_miss.log_path())
+            self.assertEqual(route_miss.RouteMissSource().status(self.repo), "absent_by_config")
+
+    def test_a_log_that_others_can_read_or_write_is_not_trusted(self) -> None:
+        for mode in (0o644, 0o660, 0o606, 0o666):
+            with self.subTest(mode=oct(mode)):
+                self.write_log([miss("d1")])
+                os.chmod(self.log, mode)
+                self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+        self.write_log([miss("d1")])
+        os.chmod(self.log.parent, 0o755)
         self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+
+    def test_a_log_owned_by_someone_else_is_not_trusted(self) -> None:
+        self.write_log([miss("d1")])
+        with mock.patch.object(route_miss.os, "geteuid", return_value=os.geteuid() + 1):
+            self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+
+    def test_a_fifo_in_place_of_the_log_neither_hangs_the_reader_nor_the_writer(self) -> None:
+        self.log.parent.mkdir(parents=True, mode=0o700)
+        os.mkfifo(self.log, 0o600)
+        self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+        with self.opt_in():
+            self.assertFalse(route_miss.record_miss(self.repo, "p", True))
 
     def test_status_distinguishes_a_present_log_from_an_absent_one(self) -> None:
         source = route_miss.RouteMissSource()
@@ -273,7 +311,7 @@ class TestProducer(StateDirCase):
     def test_the_log_is_outside_the_repository_and_private(self) -> None:
         with self.opt_in():
             self.assertTrue(route_miss.record_miss(self.repo, "y" * 900, True))
-        self.assertFalse((self.repo / "docs").exists())
+        self.assertEqual(os.listdir(self.repo), [])
         self.assertEqual(self.log.stat().st_mode & 0o777, 0o600)
         self.assertEqual(self.log.parent.stat().st_mode & 0o777, 0o700)
         record = json.loads(self.log.read_text(encoding="utf-8"))
@@ -302,8 +340,7 @@ class TestProducer(StateDirCase):
                 self.assertFalse(route_miss.record_miss(self.repo, prompt, True))
 
     def test_a_full_log_keeps_the_newest_lines_and_keeps_recording(self) -> None:
-        self.log.parent.mkdir(parents=True)
-        self.log.write_text("".join(json.dumps(miss(f"d{i}")) + "\n" for i in range(route_miss.MAX_LINES)), encoding="utf-8")
+        self.write_log([miss(f"d{i}") for i in range(route_miss.MAX_LINES)])
         with self.opt_in():
             self.assertTrue(route_miss.record_miss(self.repo, "newest", True))
         lines = self.log.read_text(encoding="utf-8").splitlines()
@@ -329,11 +366,81 @@ class TestProducer(StateDirCase):
     def test_a_symlinked_log_is_never_written_through(self) -> None:
         target = Path(self._tmp.name) / "victim.txt"
         target.write_text("keep", encoding="utf-8")
-        self.log.parent.mkdir(parents=True)
+        os.chmod(target, 0o600)
+        self.log.parent.mkdir(parents=True, mode=0o700)
         self.log.symlink_to(target)
         with self.opt_in():
             self.assertFalse(route_miss.record_miss(self.repo, "p", True))
         self.assertEqual(target.read_text(encoding="utf-8"), "keep")
+
+    def test_a_shared_state_directory_is_refused(self) -> None:
+        self.state.mkdir(mode=0o700)
+        os.chmod(self.state, 0o777)
+        with self.opt_in():
+            self.assertFalse(route_miss.record_miss(self.repo, "p", True))
+        self.assertFalse(self.log.exists())
+
+    def test_a_log_with_loose_permissions_is_not_appended_to(self) -> None:
+        self.write_log([miss("d1")])
+        os.chmod(self.log, 0o644)
+        with self.opt_in():
+            self.assertFalse(route_miss.record_miss(self.repo, "p", True))
+
+    def test_concurrent_writers_lose_no_line_and_tear_none(self) -> None:
+        import threading
+        with self.opt_in():
+            workers = [threading.Thread(target=lambda n=n: [route_miss.record_miss(self.repo, f"w{n}-{i}", True) for i in range(40)])
+                       for n in range(6)]
+            for worker in workers:
+                worker.start()
+            for worker in workers:
+                worker.join()
+        texts = [json.loads(line)["text"] for line in self.log.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(sorted(texts), sorted(f"w{n}-{i}" for n in range(6) for i in range(40)))
+
+    def test_a_writer_waits_for_the_lock_held_by_another(self) -> None:
+        import fcntl
+        import threading
+        import time
+        self.state.mkdir(mode=0o700)
+        holder = os.open(self.state / (route_miss.LOG_NAME + ".lock"), os.O_WRONLY | os.O_CREAT, 0o600)
+        fcntl.flock(holder, fcntl.LOCK_EX)
+        try:
+            with self.opt_in():
+                writer = threading.Thread(target=route_miss.record_miss, args=(self.repo, "waiting", True))
+                writer.start()
+                time.sleep(0.4)
+                self.assertFalse(self.log.exists(), "the writer did not wait for the lock")
+                fcntl.flock(holder, fcntl.LOCK_UN)
+                writer.join(timeout=10)
+        finally:
+            os.close(holder)
+        self.assertEqual(json.loads(self.log.read_text(encoding="utf-8"))["text"], "waiting")
+
+    def test_a_harness_session_marker_means_the_run_is_not_interactive(self) -> None:
+        data = self.repo / "harnesses" / "x" / "harness.json"
+        data.parent.mkdir(parents=True)
+        data.write_text(json.dumps({"session_markers": ["COACUS_TEST_SESSION"]}), encoding="utf-8")
+        for marker, expected in ((None, True), ("1", False)):
+            with self.subTest(marker=marker), self.opt_in(), \
+                    mock.patch.object(sys.stdin, "isatty", return_value=True), \
+                    mock.patch.object(sys.stdout, "isatty", return_value=True):
+                env = {k: v for k, v in os.environ.items() if k != "COACUS_TEST_SESSION"}
+                if marker:
+                    env["COACUS_TEST_SESSION"] = marker
+                self.log.unlink(missing_ok=True)
+                with mock.patch.dict(os.environ, env, clear=True):
+                    route_miss.record_miss(self.repo, "p")
+                self.assertIs(json.loads(self.log.read_text(encoding="utf-8"))["interactive"], expected)
+
+    def test_unreadable_harness_data_means_not_interactive(self) -> None:
+        data = self.repo / "harnesses" / "x" / "harness.json"
+        data.parent.mkdir(parents=True)
+        data.write_text("{not json", encoding="utf-8")
+        with self.opt_in(), mock.patch.object(sys.stdin, "isatty", return_value=True), \
+                mock.patch.object(sys.stdout, "isatty", return_value=True):
+            route_miss.record_miss(self.repo, "p")
+        self.assertIs(json.loads(self.log.read_text(encoding="utf-8"))["interactive"], False)
 
     def test_an_unwritable_location_never_raises(self) -> None:
         self.state.write_text("a file, not a directory", encoding="utf-8")

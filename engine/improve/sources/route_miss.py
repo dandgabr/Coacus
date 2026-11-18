@@ -8,20 +8,23 @@ the producer and the reader assign them in code:
   ``COACUS_ROUTE_MISS_LOG=1``, because it keeps a short piece of the user's prompt.
 - ``RouteMissSource.read`` rebuilds every observation itself. The ``kind`` is always
   ``route-miss``. The channel is ``human-user-turn`` only when the router ran with a
-  terminal on both ends; any other run, such as a harness that composed the prompt and
-  ran the router without a terminal, is ``model-assistant`` and can never support a gap.
-  The session is the UTC day of the miss, so a gap needs the same request on three
-  different days. Nothing else in a stored line is read.
+  terminal on both ends and no harness session marker in the environment; any other run
+  is ``model-assistant`` and can never support a gap. The session is the UTC date of the
+  miss, so a gap needs the same request on three different dates. The reader trusts the
+  ``interactive`` and ``session`` values the producer wrote, and nothing else in a line.
 - The log lives in the user's state directory (``COACUS_STATE_DIR``, else
   ``$XDG_STATE_HOME/coacus``, else ``~/.local/state/coacus``), never in a repository:
   a repository someone else wrote cannot ship a log, no ``.gitignore`` has to be right,
-  and the file is private (``0600`` in a ``0700`` directory, no symlink followed).
+  and the file is private: the directory and the file must be owned by the user and not
+  readable or writable by anyone else, and no symlink is followed. A location that is
+  relative, inside the repository being read, or not private is refused, so an
+  environment variable set by a cloned repository cannot point the loop at its own log.
 
 Threat model: this keeps text that an agent was fed from becoming trusted evidence
-without a person at a terminal on three days. It does not stop an agent that has a
-shell and deliberately forges the log (a pseudo-terminal passes the terminal test, and
-the same agent could edit a policy); a person still reviews every proposal and nothing
-is applied. The source needs POSIX; on Windows the producer writes nothing.
+without a person at a terminal on three dates. The terminal test is a heuristic: a harness
+that runs commands under a pseudo-terminal and sets no session marker passes it, and so
+does an agent that forges the log or edits a policy. A person still reviews every
+proposal and nothing is applied. The source needs POSIX; on Windows the producer writes nothing.
 """
 
 from __future__ import annotations
@@ -29,11 +32,18 @@ from __future__ import annotations
 import json
 import os
 import re
+import stat
 import sys
+import tempfile
 import time
 from pathlib import Path
 
 from engine.improve.sources import Source
+
+try:
+    import fcntl
+except ImportError:  # Windows: the producer is off there
+    fcntl = None
 
 ENV_SWITCH = "COACUS_ROUTE_MISS_LOG"
 LOG_NAME = "route-misses.jsonl"
@@ -47,67 +57,130 @@ def _enabled() -> bool:
     return os.environ.get(ENV_SWITCH, "").strip().lower() not in ("", "0", "false", "no", "off")
 
 
-def log_path() -> Path:
-    """The miss log: in the user's state directory, never inside a repository."""
+def log_path(root: Path | None = None) -> Path | None:
+    """The miss log in the user's state directory, or None when the location is refused.
+
+    Refused: a relative path, and any path inside ``root`` (the repository being read).
+    """
     base = os.environ.get("COACUS_STATE_DIR")
     if base:
-        return Path(base) / LOG_NAME
-    state = os.environ.get("XDG_STATE_HOME") or str(Path.home() / ".local" / "state")
-    return Path(state) / "coacus" / LOG_NAME
+        path = Path(base) / LOG_NAME
+    else:
+        state = os.environ.get("XDG_STATE_HOME") or str(Path.home() / ".local" / "state")
+        path = Path(state) / "coacus" / LOG_NAME
+    if not path.is_absolute():
+        return None
+    if root is not None:
+        try:
+            path.resolve().relative_to(Path(root).resolve())
+            return None
+        except ValueError:
+            pass
+    return path
 
 
-def _session_id() -> str:
-    """The UTC day, made in code: a gap needs the same request on three different days."""
-    return "route:" + time.strftime("%Y-%m-%d", time.gmtime())
+def _private(info: os.stat_result, directory: bool) -> bool:
+    """True for an entry owned by this user that no one else can read or write."""
+    kind = stat.S_ISDIR(info.st_mode) if directory else stat.S_ISREG(info.st_mode)
+    return kind and info.st_uid == os.geteuid() and info.st_mode & 0o077 == 0
 
 
-def _lines(path: Path) -> list[bytes]:
-    """Whole lines of the log, from at most the first ``MAX_BYTES`` bytes (a cut last line is dropped)."""
-    with open(path, "rb") as handle:
-        data = handle.read(MAX_BYTES + 1)
+def _directory_ok(directory: Path) -> bool:
+    """Create the state directory private, and refuse a symlink or a shared one."""
+    directory.mkdir(parents=True, exist_ok=True, mode=0o700)
+    return _private(os.lstat(directory), True)
+
+
+def _tail_lines(fd: int) -> list[bytes]:
+    """Whole lines from the last ``MAX_BYTES`` of an open log, newest last, at most ``MAX_LINES``."""
+    size = os.fstat(fd).st_size
+    os.lseek(fd, max(0, size - MAX_BYTES), os.SEEK_SET)
+    data = os.read(fd, MAX_BYTES) if size else b""
     lines = data.split(b"\n")
-    if len(data) > MAX_BYTES or not data.endswith(b"\n"):
-        lines = lines[:-1]
-    return [line for line in lines if line.strip()][:MAX_LINES]
+    if size > MAX_BYTES:
+        lines = lines[1:]  # the first line is cut
+    if not data.endswith(b"\n"):
+        lines = lines[:-1]  # the last line is unfinished
+    return [line for line in lines if line.strip()][-MAX_LINES:]
 
 
-def _open_private(path: Path, flags: int):
-    return os.open(path, flags | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0), 0o600)
+def _open_log(path: Path, flags: int) -> int:
+    """Open without following a symlink or blocking on a FIFO; refuse anything not private."""
+    fd = os.open(path, flags | os.O_NOFOLLOW | os.O_NONBLOCK | getattr(os, "O_CLOEXEC", 0), 0o600)
+    try:
+        if not _private(os.fstat(fd), False):
+            raise OSError("miss log is not a private regular file")
+    except BaseException:
+        os.close(fd)
+        raise
+    return fd
+
+
+def _agent_session(root: Path, environ) -> bool:
+    """True when a harness session marker from the harness data is set in the environment."""
+    try:
+        for data in (Path(root) / "harnesses").glob("*/harness.json"):
+            markers = json.loads(data.read_text(encoding="utf-8")).get("session_markers", [])
+            if isinstance(markers, list) and any(isinstance(m, str) and environ.get(m) for m in markers):
+                return True
+    except (OSError, ValueError):
+        return True  # cannot tell: do not claim a person
+    return False
 
 
 def record_miss(root: Path, prompt: str, interactive: bool | None = None) -> bool:
     """Append one miss to the log; True when written. Never raises, never blocks the router.
 
-    ``root`` is accepted for the caller's convenience and ignored: the log is per user.
+    ``root`` is the Coacus root: the log may not live inside it, and it holds the harness
+    data that names the session markers.
     """
-    if os.name != "posix" or not _enabled() or not isinstance(prompt, str) or not prompt.strip():
+    if os.name != "posix" or fcntl is None or not _enabled() or not isinstance(prompt, str) or not prompt.strip():
         return False
     if interactive is None:
-        interactive = bool(sys.stdin.isatty() and sys.stdout.isatty())
+        interactive = bool(sys.stdin.isatty() and sys.stdout.isatty()) and not _agent_session(root, os.environ)
+    path = log_path(root)
+    if path is None:
+        return False
     line = json.dumps(
-        {"text": prompt.strip()[:MAX_CLAIM], "interactive": bool(interactive), "session": _session_id()},
+        {"text": prompt.strip()[:MAX_CLAIM], "interactive": bool(interactive),
+         "session": "route:" + time.strftime("%Y-%m-%d", time.gmtime())},
         ensure_ascii=False,
     ).encode("utf-8", "replace") + b"\n"
-    path = log_path()
+    temporary = None
     try:
-        path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-        kept: list[bytes] = []
-        if path.exists():
-            kept = _lines(path)
-            size = sum(len(item) + 1 for item in kept) + len(line)
-            if len(kept) >= MAX_LINES or size > MAX_BYTES:
-                # Full: keep the newest half so the log never stops recording or grows without bound.
-                kept = kept[len(kept) // 2:]
-                temporary = path.with_name(path.name + f".{os.getpid()}.tmp")
-                fd = _open_private(temporary, os.O_WRONLY | os.O_CREAT | os.O_TRUNC)
-                with os.fdopen(fd, "wb") as handle:
-                    handle.write(b"".join(item + b"\n" for item in kept))
-                os.replace(temporary, path)
-        fd = _open_private(path, os.O_WRONLY | os.O_APPEND | os.O_CREAT)
-        with os.fdopen(fd, "wb") as handle:
-            handle.write(line)
-    except (OSError, UnicodeError):
+        if not _directory_ok(path.parent):
+            return False
+        lock = os.open(path.parent / (LOG_NAME + ".lock"), os.O_WRONLY | os.O_CREAT | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(lock, "wb"):
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            fd = _open_log(path, os.O_RDWR | os.O_CREAT)
+            try:
+                size = os.fstat(fd).st_size
+                if size + len(line) > MAX_BYTES or size > 0 and len(_tail_lines(fd)) >= MAX_LINES:
+                    kept = _tail_lines(fd)
+                    kept = kept[len(kept) // 2:]  # full: keep the newest half
+                    handle, temporary = tempfile.mkstemp(dir=path.parent, prefix=LOG_NAME + ".")
+                    with os.fdopen(handle, "wb") as out:
+                        out.write(b"".join(item + b"\n" for item in kept))
+                        out.flush()
+                        os.fsync(out.fileno())
+                    os.replace(temporary, path)
+                    temporary = None
+                    os.close(fd)
+                    fd = _open_log(path, os.O_WRONLY | os.O_APPEND)
+                else:
+                    os.lseek(fd, 0, os.SEEK_END)
+                os.write(fd, line)
+            finally:
+                os.close(fd)
+    except (OSError, UnicodeError, ValueError):
         return False
+    finally:
+        if temporary:
+            try:
+                os.unlink(temporary)
+            except OSError:
+                pass
     return True
 
 
@@ -117,16 +190,23 @@ class RouteMissSource(Source):
     name = "route-miss"
 
     def status(self, root: Path) -> str:
-        """``present`` when a log exists; a missing log is a safe skip, not an alarm."""
-        return "present" if log_path().is_file() else "absent_by_config"
+        """``present`` when a readable log exists; a missing one is a safe skip, not an alarm."""
+        path = log_path(root)
+        return "present" if path is not None and path.is_file() else "absent_by_config"
 
     def read(self, root: Path, options: dict) -> list[dict]:
         """Rebuild each logged miss as an observation with code-assigned kind, channel, session."""
-        path = log_path()
+        path = log_path(root)
+        if os.name != "posix" or path is None:
+            return []
         try:
-            if os.name != "posix" or path.is_symlink() or not path.is_file():
+            if not _private(os.lstat(path.parent), True):
                 return []
-            lines = _lines(path)
+            fd = _open_log(path, os.O_RDONLY)
+            try:
+                lines = _tail_lines(fd)
+            finally:
+                os.close(fd)
         except (OSError, UnicodeError):
             return []
         observations: list[dict] = []
