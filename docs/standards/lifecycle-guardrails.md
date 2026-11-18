@@ -129,6 +129,13 @@ outside the session (a sandbox, read-only files, the harness's managed settings)
 own terminal, or sets `"enabled": false` in the installed `self-protection.policy.json`,
 edits, and sets it back to `true`. Every denial message says this.
 
+## Prompts
+
+A `prompt` rule bound to `prompt.submit` blocks a user prompt whose text matches its
+pattern (case-insensitive). Today only Claude Code has the hook, installed while an
+enabled policy binds the event, and a block shows its reason to the user. A prompt is never
+asked about, and a prompt over 100,000 characters matches every prompt rule. See ADR 0016.
+
 ## Which tools a rule can see
 
 The guard classifies a call by the tool's name and reads its arguments from the

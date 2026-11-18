@@ -886,9 +886,10 @@ def _policy_matches(policy: dict, resource: str) -> bool:
         if unresolved:
             return True  # fail closed: the walk cannot say what this command runs
         return any(fnmatch.fnmatchcase(name, pattern) for name in names for pattern in patterns)
-    if _action_of(policy)[0] == "mcp":
+    if _action_of(policy)[0] in ("mcp", "prompt"):
         # Tool names are identifiers, not paths: ``mcp__Server__Tool`` and the lower-case
         # form a harness may send are the same tool, so neither spelling can dodge a rule.
+        # A prompt is prose: the case of a word never decides whether a rule applies.
         resource = resource.lower()
         patterns = [pattern.lower() for pattern in patterns]
     return any(_resource_matches(pattern, resource) for pattern in patterns)

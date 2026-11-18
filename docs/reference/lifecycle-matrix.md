@@ -8,7 +8,7 @@ a `lifecycle` block is a closed capability (no events, nothing installable).
 | Event | Class | antigravity | claude-code | codex | command-code | cursor | opencode |
 |---|---|---|---|---|---|---|---|
 | `tool.pre` | gate | gate / B / decision / documented | gate / B / permissionDecision / documented | gate / B / permissionDecision / documented | gate / B / permissionDecision / documented | gate / B / permission / documented | gate / B / throw / observed |
-| `prompt.submit` | gate | unsupported | gate / B / additionalContext / documented | gate / B / additionalContext / documented | unsupported | gate / B / continue / documented | unsupported |
+| `prompt.submit` | gate | unsupported | gate / B / decision / documented | gate / B / additionalContext / documented | unsupported | gate / B / continue / documented | unsupported |
 | `turn.stop` | gate | gate / B / decision / documented | gate / B / decision / documented | gate / B / decision / documented | gate / B / decision / documented | gate / - / followup_message / documented | none / - / - / documented |
 | `tool.post` | observe | observe / - / none / documented | observe / - / additionalContext / documented | observe / - / additionalContext / documented | observe / - / decision / documented | observe / - / additional_context / documented | observe / - / metadata / documented |
 | `tool.failure` | observe | unsupported | observe / - / additionalContext / documented | observe / - / additionalContext / documented | observe / - / decision / documented | observe / - / additional_context / documented | unsupported |

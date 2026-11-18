@@ -27,7 +27,8 @@ is rendered for them.
 - The guard decides, blocks and asks only on `tool.pre`. Any other event gets "no
   opinion" (`{}`, or an explicit allow where the harness requires one). Observe
   events can never deny (`events.json`), and no other gate event is rendered yet.
-- Rendering hooks for `tool.post`, `prompt.submit` and `turn.stop` is deferred. It
+- Rendering hooks for `tool.post`, `prompt.submit` and `turn.stop` is deferred (ADR 0016
+  renders `prompt.submit` on Claude Code only). It
   needs, per harness, a verified payload shape and a native hook name field in the
   capability data, and it should render only when an enabled policy binds the event,
   so that no process starts for nothing. `prompt.submit` and `turn.stop` also need

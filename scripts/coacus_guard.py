@@ -216,6 +216,17 @@ def _word(decision: str) -> str:
     return "ask" if decision == "ask" else "deny"
 
 
+def _prompt_effect(harness: str, decision: str, message: str) -> str:
+    """Render the answer to ``prompt.submit``: a block with a reason, or no opinion.
+
+    Claude Code stops the prompt with ``{"decision": "block", "reason": ...}`` and shows the
+    reason to the user. A prompt is never asked about: nothing here can reach a human.
+    """
+    if decision == "allow" or harness != "claude-code":
+        return "{}"
+    return json.dumps({"decision": "block", "reason": message or "Blocked by a Coacus guardrail policy."})
+
+
 def _native(harness: str, decision: str, message: str) -> str:
     """Render the harness-native effect JSON.
 
@@ -269,8 +280,12 @@ def _safe_harness_name(harness: str) -> bool:
 
 ASK_CHANNELS = ("default", "before", "evaluate")
 
-# The only event with a rendered hook today (ADR 0012).
+# Events the guard decides on (ADR 0012, ADR 0016). ``prompt.submit`` has a hook only
+# where the harness data names a native hook for it, and only when an enabled policy
+# binds the event; every other event answers "no opinion".
 ENFORCED_EVENT = "tool.pre"
+PROMPT_EVENT = "prompt.submit"
+ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT)
 
 # OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
 # run: only the documented hook contract is known, not every permission name.
@@ -410,11 +425,17 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
     try:
         if channel not in ASK_CHANNELS:
             channel = "default"
-        if event != ENFORCED_EVENT:
+        if event not in ENFORCED_EVENTS:
             # Observe events can never deny (events.json) and no other gate event is
             # rendered yet, so nothing here may block or ask: answer "no opinion".
             return _allow(harness)
         payload = json.loads(payload_text) if payload_text.strip() else {}
+        if event == PROMPT_EVENT:
+            text = payload.get("prompt") if isinstance(payload, dict) else None
+            decision, message = "allow", ""
+            if isinstance(text, str) and text:
+                decision, message = _decide(root, harness, event, "default", "prompt", text)
+            return _prompt_effect(harness, decision, message)
         if channel == "evaluate":
             actions = _permission_actions(payload)
         else:

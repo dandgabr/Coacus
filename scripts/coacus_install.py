@@ -1205,7 +1205,11 @@ def _merge_hooks(existing: dict, fragment: dict, markers: set[str]) -> dict:
     merged_hooks = dict(merged.get("hooks", {})) if isinstance(merged.get("hooks"), dict) else {}
     for event, entries in (fragment.get("hooks") or {}).items():
         kept = [e for e in merged_hooks.get(event, []) if not _entry_owned(e, markers)]
-        merged_hooks[event] = kept + list(entries)
+        combined = kept + list(entries)
+        if combined:
+            merged_hooks[event] = combined
+        else:
+            merged_hooks.pop(event, None)  # nothing of ours and nothing of theirs: no empty event
     merged["hooks"] = merged_hooks
     return merged
 
@@ -1272,7 +1276,53 @@ def _guardrail_artifacts(
             fragment = json.loads(text)
         except json.JSONDecodeError:
             fragment = None
+    if isinstance(fragment, dict):
+        _add_bound_event_hooks(root, data, fragment)
     return files, fragment
+
+
+def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
+    """Events that an enabled policy binds, from the repository, the user directory and ``extra_docs``."""
+    from engine.guardrail import evaluate as guard
+
+    docs = list(extra_docs or [])
+    docs += _enabled_policy_docs(root / "methodology" / "lifecycle" / "policies")
+    docs += _enabled_policy_docs(guard.user_policy_dir(dict(os.environ)))
+    events: set[str] = set()
+    for doc in docs:
+        policies = doc.get("policies") if isinstance(doc, dict) else None
+        for policy in policies if isinstance(policies, list) else []:
+            if isinstance(policy, dict):
+                events.add(str(policy.get("event", "tool.pre")))
+    return events
+
+
+def _add_bound_event_hooks(root: Path, data: dict, fragment: dict) -> None:
+    """Add a hook for each non-``tool.pre`` event the harness names, only while a policy binds it.
+
+    A hook starts one process per event, so an event no enabled policy binds gets none: the
+    entry is added empty, which makes the merge drop a hook an earlier install left behind.
+    The command is the ``tool.pre`` one with its event swapped. Shape A harnesses only.
+    """
+    hooks = fragment.get("hooks")
+    pre = (hooks or {}).get("PreToolUse") if isinstance(hooks, dict) else None
+    try:
+        command = pre[0]["hooks"][0]["command"]
+    except (TypeError, IndexError, KeyError):
+        return
+    if not isinstance(command, str) or "--event tool.pre" not in command:
+        return
+    events = (data.get("lifecycle") or {}).get("events") or {}
+    bound = _bound_events(root)
+    for event, capability in events.items():
+        native = capability.get("native") if isinstance(capability, dict) else None
+        if event == "tool.pre" or not isinstance(native, str) or not native:
+            continue
+        if event in bound and capability.get("can_block") is True:
+            swapped = command.replace("--event tool.pre", f"--event {event}")
+            hooks[native] = [{"hooks": [{"type": "command", "command": swapped}]}]
+        else:
+            hooks[native] = []
 
 
 def _refuse_unenforceable(
