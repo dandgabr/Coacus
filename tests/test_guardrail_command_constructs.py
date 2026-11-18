@@ -31,6 +31,9 @@ WRAPPERS = {
     "eval": lambda c: "eval '" + c.replace("'", "'\\''") + "'",
     "env -S": lambda c: "env -S '" + c.replace("'", "'\\''") + "'",
     "if": lambda c: "if " + c + "; then true; fi",
+    "redirected": lambda c: ">/dev/null " + c,
+    "sudo sh -c": lambda c: "sudo sh -c '" + c.replace("'", "'\\''") + "'",
+    "nohup bash -c": lambda c: "nohup bash -c '" + c.replace("'", "'\\''") + "'",
     "then": lambda c: "if true; then " + c + "; fi",
     "while": lambda c: "while " + c + "; do true; done",
     "negation": lambda c: "! " + c,
@@ -106,10 +109,30 @@ class TestWrappingNeverHidesTheCommand(unittest.TestCase):
 
 
 class TestFailClosedEdges(unittest.TestCase):
-    def test_a_quoted_argument_spanning_lines_is_unresolved_and_denied(self) -> None:
+    def test_a_quoted_argument_spanning_lines_is_read_not_guessed(self) -> None:
         command = "sh -c 'echo x\n" + TARGET + "'"
-        self.assertTrue(guard.resolve_command(command)[1])
-        self.assertTrue(denied(command))
+        names, unresolved = guard.resolve_command(command)
+        self.assertFalse(unresolved)
+        self.assertIn(TARGET, names)
+
+    def test_an_unbalanced_quote_is_unresolved_and_denied(self) -> None:
+        self.assertTrue(guard.resolve_command("echo 'unterminated")[1])
+        self.assertTrue(denied("echo 'unterminated"))
+
+    def test_many_trailing_newlines_do_not_crash_the_matcher(self) -> None:
+        # Only one trailing newline is ignored, and the matcher must not recurse.
+        many = "git push --force" + "\n" * 5000
+        self.assertFalse(guard._resource_matches("*--force", many))
+        self.assertTrue(guard._resource_matches("*--force", "git push --force\n"))
+        policy = {"id": "p", "action": {"verb": "exec", "resource": "*push*--force*"}, "decision": "deny"}
+        self.assertEqual(guard.evaluate([policy], "exec", many)["decision"], "deny")
+
+    def test_a_pathological_wrapper_tree_stops_at_the_step_limit(self) -> None:
+        command = "nice " * 7 + "echo hi"
+        names, unresolved = guard.resolve_command(command)
+        self.assertIsInstance(names, list)
+        big = "; ".join(["sudo sudo sudo sudo sudo sudo sudo sudo nice nice nice true"] * 40)
+        self.assertTrue(guard.resolve_command(big)[1])
 
     def test_scan_marks_the_depth_limit_directly(self) -> None:
         state = {"unresolved": False}

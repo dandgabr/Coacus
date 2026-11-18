@@ -94,6 +94,27 @@ MUST_MATCH = {
     "while condition": f"while {TARGET}; do true; done",
     "function body": f"f(){{ {TARGET}; }}; f",
     "coproc": f"coproc {TARGET}",
+    "variable indirection": f"x={TARGET}; $x",
+    "ansi-c quoting": f"$'{TARGET}' --flag",
+    "ansi-c quoting in sh -c": f"bash -c $'{TARGET}'",
+    "brace expansion": "{" + TARGET + ",}",
+    "pipe into a bare shell": f"echo {TARGET} | sh",
+    "sh -c with double dash": f"bash -c -- {TARGET}",
+    "sudo then sh -c": f"sudo sh -c '{TARGET} --flag'",
+    "nohup then bash -c": f"nohup bash -c '{TARGET} --flag'",
+    "many sudo options": f"sudo -u root -g wheel -E {TARGET}",
+    "leading redirection": f">/dev/null {TARGET}",
+    "leading fd redirection": f"2>&1 {TARGET}",
+    "leading input redirection": f"<in {TARGET}",
+    "busybox sh": f"busybox sh -c {TARGET}",
+    "busybox applet": f"busybox {TARGET}",
+    "builtin exec": f"builtin exec {TARGET}",
+    "su -c": f"su -c {TARGET}",
+    "runuser": f"runuser -u someone -- {TARGET}",
+    "watch": f"watch {TARGET}",
+    "command substitution inside sh -c": f'sh -c "$(echo {TARGET})"',
+    "multi-line sh -c argument": f"sh -c 'echo x\n{TARGET}'",
+    "heredoc into a shell": f"sh <<EOF\n{TARGET}\nEOF",
 }
 
 # Command lines that only mention the name and must not match.
@@ -111,6 +132,10 @@ MUST_NOT_MATCH = {
     "find -name with other exec": f"find . -name {TARGET} -exec ls {{}} ;",
     "if branch echo": f"if true; then echo {TARGET}; fi",
     "here-string echo": f"bash <<< 'echo {TARGET}'",
+    "multi-line commit message": "git commit -m 'a\n\nb'",
+    "heredoc commit message": f"git commit -m \"$(cat <<'EOF'\nsubject\n\n{TARGET} is banned\nEOF\n)\"",
+    "heredoc into cat": f"cat <<EOF\n{TARGET} is banned\nEOF",
+    "variable braces as an argument": f"echo ${{HOME}} {TARGET}",
     "empty": "",
     "blank": "   ",
 }
@@ -125,8 +150,11 @@ KNOWN_FALSE_POSITIVES = {
 
 # Shapes measured as NOT caught today. Each one is a bypass of a command deny rule.
 KNOWN_BYPASSES = {
-    # Undecidable without running the shell: the name only exists after expansion.
-    "variable indirection": f"x={TARGET}; $x",
+    # The name only exists after the shell runs something or after parsing a
+    # construct this walk does not model.
+    "source of a process substitution": f". <(echo {TARGET})",
+    "function keyword definition": f"function f {{ {TARGET}; }}; f",
+    "env with a combined -S option": f"env -vS'{TARGET}'",
 }
 
 
@@ -138,7 +166,8 @@ class TestCommandCorpus(unittest.TestCase):
     def test_golden_positives_resolve_to_the_target(self) -> None:
         for label, command in MUST_MATCH.items():
             with self.subTest(label=label):
-                self.assertIn(TARGET, names(command))
+                found, unresolved = guard.resolve_command(command)
+                self.assertTrue(TARGET in found or unresolved, command)
                 self.assertEqual(guard.evaluate([POLICY], "exec", command)["decision"], "deny")
 
     def test_golden_negatives_do_not_match(self) -> None:

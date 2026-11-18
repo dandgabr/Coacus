@@ -9,8 +9,8 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Fixed
 
-- Command deny rules now look through brace groups, `if`/`then`/`while` and `!`, process substitution, `eval`, here-strings to a shell, `find -exec` and `env -S`. Six of the seven bypasses recorded in the corpus are closed; variable indirection stays a known gap. See ADR 0011.
-- A line the lexer cannot parse (an unbalanced quote, or a quoted argument that spans lines) now counts as unresolved and denies, instead of being guessed. A value over 100,000 characters matches every pattern, and one trailing newline is ignored as before.
+- Command deny rules now look through brace groups, `if`/`then`/`while` and `!`, process substitution, `eval`, here-strings to a shell, `find -exec` and `env -S`. Review then widened it: leading redirections and `--`, a shell behind a wrapper (`sudo sh -c`), `busybox`, `su -c`, `runuser` and `watch`, ANSI-C quoting, brace expansion, an expansion in command position and a pipe into a bare shell now fail closed. Three shapes stay open and are pinned in the corpus. See ADR 0011.
+- An unbalanced quote now counts as unresolved and denies, instead of being guessed; a quoted argument that spans lines still parses, so a multi-line commit message is not denied. A value over 100,000 characters matches every pattern, and exactly one trailing newline is ignored (thousands of them no longer crash the matcher and turn a deny into an allow).
 
 ## [Unreleased] — Strictest ask fallback
 

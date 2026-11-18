@@ -34,12 +34,18 @@ POLICIES_DIR = "methodology/lifecycle/policies"
 DECISIONS = ("allow", "deny", "ask", "note")
 
 _ASSIGN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=")
-_SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish"}
+_SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish", "su"}
 _WRAPPERS = {
     "env", "nohup", "setsid", "sudo", "doas", "timeout", "nice", "ionice", "stdbuf",
     "exec", "command", "time", "xvfb-run", "dbus-run-session", "systemd-run",
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
+    "busybox", "toybox", "builtin", "watch", "runuser",
 }
+_STEP_LIMIT = 5000
+_LOOKAHEAD = 8
+_REDIRECT = re.compile(r"^\d*(?:>>?|<<?|>&|<&|&>)")
+_BARE_REDIRECT = re.compile(r"^\d*(?:>>?|<|>&|<&|&>)$")
+_HEREDOC = re.compile(r"<<-?\s*(['\"]?)([A-Za-z_][A-Za-z0-9_]*)\1")
 _KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
 _FIND_EXEC = {"-exec", "-execdir", "-ok", "-okdir"}
 _PROCESS_SUBST = {"<(", ">("}
@@ -132,6 +138,15 @@ def _star_match(pattern: str, value: str) -> bool:
     return p == len(pattern)
 
 
+def _plain_match(pattern: str, value: str) -> bool:
+    """The matching rules of :func:`_resource_matches` without the newline allowance."""
+    if pattern in ("", "*") or fnmatch.fnmatch(value, pattern):
+        return True
+    if "*" in pattern:
+        return _star_match(pattern, value)
+    return pattern in value
+
+
 def _resource_matches(pattern: str, value: str) -> bool:
     """Match a resource pattern against a concrete resource value.
 
@@ -143,7 +158,7 @@ def _resource_matches(pattern: str, value: str) -> bool:
         return True
     if len(value) > _MAX_COMMAND_CHARS:
         return True
-    if value.endswith("\n") and _resource_matches(pattern, value[:-1]):
+    if value.endswith("\n") and _plain_match(pattern, value[:-1]):
         return True
     if fnmatch.fnmatch(value, pattern):
         return True
@@ -166,6 +181,48 @@ def _names(word: str) -> list[str]:
     return [name for name in names if name]
 
 
+def _logical_lines(command: str) -> list[str]:
+    """Split on newlines that are outside quotes; skip heredoc bodies of non-shells.
+
+    A quoted argument that spans lines stays on one line, so it parses. The body of
+    a here-document is data unless the command that reads it is a shell, which
+    would run it; for a shell the body lines are scanned like any other.
+    """
+    lines: list[str] = []
+    current: list[str] = []
+    quote = ""
+    escaped = False
+    for ch in command:
+        if escaped:
+            escaped = False
+        elif ch == "\\" and quote != "'":
+            escaped = True
+        elif quote:
+            if ch == quote:
+                quote = ""
+        elif ch in "'\"":
+            quote = ch
+        elif ch == "\n":
+            lines.append("".join(current))
+            current = []
+            continue
+        current.append(ch)
+    lines.append("".join(current))
+    out: list[str] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        out.append(line)
+        index += 1
+        marker = _HEREDOC.search(line) if "<<<" not in line else None
+        if marker and not re.search(r"(?:^|[\s;&|(])(?:sh|bash|zsh|dash|ksh)\b", line):
+            tag = marker.group(2)
+            while index < len(lines) and lines[index].strip() != tag:
+                index += 1
+            index += 1  # the terminator
+    return out
+
+
 def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
     """Split one shell line into simple commands (each a list of words).
 
@@ -186,6 +243,19 @@ def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
     for token in tokens:
         if token in _PROCESS_SUBST or (token and set(token) <= set(";&|()")):
             commands.append([])
+        elif token and set(token) <= set(";&|()<>"):
+            # A fused run such as ``(>`` or ``<((``: boundaries, then maybe a redirection.
+            rest = token
+            while rest:
+                if rest[:2] in _PROCESS_SUBST:
+                    rest = rest[2:]
+                elif rest[0] in ";&|()":
+                    rest = rest[1:]
+                else:
+                    break
+                commands.append([])
+            if rest:
+                commands[-1].append(rest)
         else:
             commands[-1].append(token)
     return [words for words in commands if words]
@@ -198,14 +268,29 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         index += 1
     if index >= len(words):
         return []
+    state["steps"] = state.get("steps", 0) + 1
+    if state["steps"] > _STEP_LIMIT:
+        state["unresolved"] = True
+        return []
     rest = words[index:]
-    while rest and rest[0] in _KEYWORDS:
-        rest = rest[1:]
+    while rest and (rest[0] in _KEYWORDS or rest[0] == "--" or _REDIRECT.match(rest[0])
+                    or (rest[0].isdigit() and len(rest) > 1 and _REDIRECT.match(rest[1]))):
         if depth >= _MAX_DEPTH:
             state["unresolved"] = True
             return []
+        if rest[0].isdigit():
+            rest = rest[1:]  # a file descriptor number in front of a redirection
+        elif _BARE_REDIRECT.match(rest[0]):
+            rest = rest[2:]  # the operator and its target
+        else:
+            rest = rest[1:]
     if not rest:
         return []
+    first = rest[0]
+    if first.startswith("$") or ("{" in first and "," in first and not first.startswith("{")) \
+            or (first.startswith("{") and "," in first and first.endswith("}")):
+        # Expansion decides the command name: it cannot be known without a shell.
+        state["unresolved"] = True
     head = os.path.basename(rest[0])
     out = list(_names(rest[0]))
     if head == "eval" and len(rest) > 1:
@@ -219,14 +304,20 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
             out.extend(_scan(rest[rest.index("<<<") + 1], depth + 1, state))
         for position, word in enumerate(rest[1:], start=1):
             if word.startswith("-") and not word.startswith("--") and "c" in word[1:]:
-                if position + 1 < len(rest):
-                    out.extend(_scan(rest[position + 1], depth + 1, state))
+                target = position + 1
+                if target < len(rest) and rest[target] == "--":
+                    target += 1
+                if target < len(rest):
+                    out.extend(_scan(rest[target], depth + 1, state))
                 break
+        else:
+            if head in ("sh", "bash", "zsh", "dash", "ksh") and len(rest) == 1:
+                state["unresolved"] = True  # a bare shell reads its script from stdin
     elif head in _WRAPPERS:
         tail = rest[1:]
         # Option values (``sudo -u root``, ``nice -n 5``) hide the real command a
         # few words later: inspect the next few words and the stripped remainder.
-        for word in tail[:4]:
+        for word in tail[:_LOOKAHEAD]:
             if not word.startswith("-") and not _ASSIGN.match(word):
                 out.extend(_names(word))
         if head == "env":
@@ -237,11 +328,12 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
                     out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
                 elif word.startswith("-S") and len(word) > 2:
                     out.extend(_scan(word[2:], depth + 1, state))
-        stripped = [word for word in tail if not word.startswith("-")]
-        if stripped and depth >= _MAX_DEPTH:
+        starts = [i for i, word in enumerate(tail[:_LOOKAHEAD]) if not word.startswith("-")]
+        if starts and depth >= _MAX_DEPTH:
             state["unresolved"] = True
-        elif stripped:
-            out.extend(_words_candidates(stripped, depth + 1, state))
+        else:
+            for i in starts:
+                out.extend(_words_candidates(tail[i:], depth + 1, state))
     elif head == "flatpak" and "run" in rest:
         after = [word for word in rest[rest.index("run") + 1:] if not word.startswith("-")]
         if after:
@@ -262,7 +354,7 @@ def _scan(command: str, depth: int, state: dict) -> list[str]:
         state["unresolved"] = True
         return []
     out: list[str] = []
-    for line in command.splitlines() or [command]:
+    for line in _logical_lines(command):
         for words in _simple_commands(line, state):
             out.extend(_words_candidates(words, depth, state))
         for match in _SUBSHELL.finditer(line):
