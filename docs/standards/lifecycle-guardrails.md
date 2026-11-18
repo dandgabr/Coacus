@@ -40,7 +40,8 @@ carries each cell's evidence class; a bare boolean is forbidden.
   empty, `0`, `false`, `no` or `off`) always force the degradation, only `tool.pre`
   can ask, any doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
   closed to `deny`. OpenCode asks only through the V2 permission `evaluate` hook
-  (its cell has `ask_channel: evaluate`), and that hook can only tighten an effect.
+  (its cell has `ask_channel: evaluate`), only with the extra opt-in
+  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, and that hook can only tighten an effect.
   When several `ask` policies match one action, the strictest
   `on_ask_unavailable` among them is used, whatever the file order. Rendering `ask` where it was previously degraded relaxes the
   outcome, which is why it needs the opt-in

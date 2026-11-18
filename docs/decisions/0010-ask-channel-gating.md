@@ -31,7 +31,9 @@ opt-in.
   fails closed to `deny`. The degraded `deny` is enforced through the deny render the guard
   has for each harness, including OpenCode (see Consequences).
 - OpenCode can ask only through the V2 permission `evaluate` hook, so its capability
-  cell carries `ask_channel: evaluate`. The guard takes a `--channel` argument
+  cell carries `ask_channel: evaluate`. Because that path was checked against the
+  documentation only, never a live run, it needs a second explicit opt-in,
+  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, on top of `COACUS_GUARD_ASK=1`. The guard takes a `--channel` argument
   (`default`, `before`, `evaluate`): on a harness with an `ask_channel` it asks only
   on `evaluate`, defers on `before` (the plugin passes it when the hook is
   registered) and degrades on `default`, so a V1 install never turns an `ask` into
@@ -43,6 +45,12 @@ opt-in.
   anchored on one shape such as `sub/*` is not deferred. This was checked against the
   OpenCode documentation of 2026-11-18, not against a live V2 run, and the capability
   data records that as a gap.
+- Residual risks of the OpenCode path, all unverified without a live V2 run: the
+  `evaluate` hook may not fire for a tool call (the deferred ask is then an allow), it
+  may receive an action name the guard does not map or an empty `resources`, the guard
+  may time out inside the hook (the effect is left as it came), and a permission mode
+  that approves prompts by itself would turn the ask into an allow. A V1 install, or a
+  failed registration, degrades the ask to its fallback instead.
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 

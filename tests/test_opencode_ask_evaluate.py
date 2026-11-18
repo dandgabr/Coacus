@@ -100,6 +100,7 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         base["COACUS_POLICY_DIR"] = str(self.root / "no-user-policies")
         if opt_in:
             base["COACUS_GUARD_ASK"] = "1"
+            base["COACUS_GUARD_ASK_EXPERIMENTAL"] = "1"
         base.update(env)
         base["SCENARIO"] = json.dumps({"v2": v2, "incoming": incoming,
                                        "registerThrows": register_throws, **(extra or {})})
@@ -292,9 +293,11 @@ class TestCapabilityData(unittest.TestCase):
     def test_opencode_asks_only_on_the_evaluate_channel(self) -> None:
         sys.path.insert(0, str(REPO))
         from scripts import coacus_guard
-        saved = {k: os.environ.get(k) for k in ("COACUS_GUARD_ASK", "COACUS_GUARD_NO_ASK", "CI")}
+        saved = {k: os.environ.get(k) for k in
+                 ("COACUS_GUARD_ASK", "COACUS_GUARD_ASK_EXPERIMENTAL", "COACUS_GUARD_NO_ASK", "CI")}
         try:
             os.environ["COACUS_GUARD_ASK"] = "1"
+            os.environ["COACUS_GUARD_ASK_EXPERIMENTAL"] = "1"
             os.environ.pop("COACUS_GUARD_NO_ASK", None)
             os.environ.pop("CI", None)
             self.assertFalse(coacus_guard._can_ask(REPO, "opencode", "tool.pre", "default"))
@@ -302,6 +305,9 @@ class TestCapabilityData(unittest.TestCase):
             self.assertTrue(coacus_guard._can_ask(REPO, "opencode", "tool.pre", "before"))
             # A harness without an ask channel never asks on the OpenCode-only channels.
             self.assertFalse(coacus_guard._can_ask(REPO, "claude-code", "tool.pre", "evaluate"))
+            os.environ.pop("COACUS_GUARD_ASK_EXPERIMENTAL")
+            self.assertFalse(coacus_guard._can_ask(REPO, "opencode", "tool.pre", "evaluate"))
+            self.assertFalse(coacus_guard._can_ask(REPO, "opencode", "tool.pre", "before"))
             self.assertTrue(coacus_guard._can_ask(REPO, "claude-code", "tool.pre", "default"))
         finally:
             for key, value in saved.items():

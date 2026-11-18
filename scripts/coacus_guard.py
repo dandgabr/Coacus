@@ -239,6 +239,10 @@ def _can_ask(root: Path, harness: str, event: str, channel: str = "default") -> 
         required = capability.get("ask_channel")
         if required is None:
             return channel == "default"
+        # The channel is checked against documentation only, never a live run, so it
+        # needs its own explicit opt-in on top of COACUS_GUARD_ASK=1.
+        if os.environ.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
+            return False
         return channel in ("before", "evaluate") and required == "evaluate"
     except Exception:  # any doubt, including RecursionError on hostile data, degrades
         return False
