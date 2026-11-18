@@ -5,6 +5,14 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Evaluator fails closed
+
+### Fixed
+
+- A resource pattern with several `*` could take exponential time in the regex fallback (about 1.7 s for 50 characters, growing roughly five times per ten more), which made the guard time out and fail open. The fallback is now a bounded two-pointer matcher.
+- A command nested deeper than the depth limit, longer than the size cap, or behind a long wrapper chain used to yield no executable names, so a command deny rule saw nothing to block. It now counts as unresolved and matches every `match: command` policy. The depth limit rose from 4 to 8 so ordinary wrapper chains stay resolved.
+- A policy with an unknown or misspelled `decision` (for example `Deny`) used to rank below `allow` and let the call through. It now denies.
+
 ## [Unreleased] — Guard command corpus
 
 ### Added

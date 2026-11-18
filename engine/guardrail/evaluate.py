@@ -41,7 +41,8 @@ _WRAPPERS = {
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
 }
 _SUBSHELL = re.compile(r"\$\(([^()]*)\)|`([^`]*)`")
-_MAX_DEPTH = 4
+_MAX_DEPTH = 8
+_MAX_COMMAND_CHARS = 100_000
 
 
 def load_events(root: Path) -> dict[str, dict]:
@@ -101,6 +102,33 @@ def load_policies(root: Path, include_user: bool = False, user_dir: Path | None 
     return policies
 
 
+def _star_match(pattern: str, value: str) -> bool:
+    """Match ``pattern`` (only ``*`` is special, matching any run) against all of ``value``.
+
+    A two-pointer scan that remembers only the last star, so the work is bounded
+    by ``len(pattern) * len(value)`` and can never blow up on a hostile input.
+    """
+    p = v = 0
+    star = -1
+    mark = 0
+    while v < len(value):
+        if p < len(pattern) and pattern[p] == "*":
+            star, mark = p, v
+            p += 1
+        elif p < len(pattern) and pattern[p] == value[v]:
+            p += 1
+            v += 1
+        elif star != -1:
+            mark += 1
+            v = mark
+            p = star + 1
+        else:
+            return False
+    while p < len(pattern) and pattern[p] == "*":
+        p += 1
+    return p == len(pattern)
+
+
 def _resource_matches(pattern: str, value: str) -> bool:
     """Match a resource pattern against a concrete resource value."""
     if pattern in ("", "*"):
@@ -109,8 +137,7 @@ def _resource_matches(pattern: str, value: str) -> bool:
         return True
     # Substring form for command/host patterns (e.g. "git push*--force*").
     if "*" in pattern:
-        regex = "^" + re.escape(pattern).replace(r"\*", ".*") + "$"
-        return re.search(regex, value) is not None
+        return _star_match(pattern, value)
     return pattern in value
 
 
@@ -145,7 +172,7 @@ def _simple_commands(line: str) -> list[list[str]]:
     return [words for words in commands if words]
 
 
-def _words_candidates(words: list[str], depth: int) -> list[str]:
+def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     """Candidates for one simple command given as words."""
     index = 0
     while index < len(words) and _ASSIGN.match(words[index]):
@@ -159,7 +186,7 @@ def _words_candidates(words: list[str], depth: int) -> list[str]:
         for position, word in enumerate(rest[1:], start=1):
             if word.startswith("-") and not word.startswith("--") and "c" in word[1:]:
                 if position + 1 < len(rest):
-                    out.extend(command_candidates(rest[position + 1], depth + 1))
+                    out.extend(_scan(rest[position + 1], depth + 1, state))
                 break
     elif head in _WRAPPERS:
         tail = rest[1:]
@@ -169,13 +196,45 @@ def _words_candidates(words: list[str], depth: int) -> list[str]:
             if not word.startswith("-") and not _ASSIGN.match(word):
                 out.extend(_names(word))
         stripped = [word for word in tail if not word.startswith("-")]
-        if stripped and depth < _MAX_DEPTH:
-            out.extend(_words_candidates(stripped, depth + 1))
+        if stripped and depth >= _MAX_DEPTH:
+            state["unresolved"] = True
+        elif stripped:
+            out.extend(_words_candidates(stripped, depth + 1, state))
     elif head == "flatpak" and "run" in rest:
         after = [word for word in rest[rest.index("run") + 1:] if not word.startswith("-")]
         if after:
             out.append(after[0])
     return out
+
+
+def _scan(command: str, depth: int, state: dict) -> list[str]:
+    """Walk ``command`` and collect executable names; mark ``state`` when unresolved.
+
+    A command is unresolved when it is longer than the cap or nests deeper than
+    the depth limit: the walk cannot say what it runs, so the caller must not
+    treat the empty answer as "nothing to block".
+    """
+    if not command or not command.strip():
+        return []
+    if len(command) > _MAX_COMMAND_CHARS or depth > _MAX_DEPTH:
+        state["unresolved"] = True
+        return []
+    out: list[str] = []
+    for line in command.splitlines() or [command]:
+        for words in _simple_commands(line):
+            out.extend(_words_candidates(words, depth, state))
+        for match in _SUBSHELL.finditer(line):
+            out.extend(_scan(match.group(1) or match.group(2) or "", depth + 1, state))
+    return out
+
+
+def resolve_command(command: str) -> tuple[list[str], bool]:
+    """Return ``(executable names, unresolved)`` for a shell string (never raises)."""
+    state = {"unresolved": False}
+    try:
+        return _scan(command, 0, state), state["unresolved"]
+    except Exception:  # best effort: an unexpected parse failure is unresolved
+        return [], True
 
 
 def command_candidates(command: str, _depth: int = 0) -> list[str]:
@@ -186,16 +245,10 @@ def command_candidates(command: str, _depth: int = 0) -> list[str]:
     ``sh -c`` / ``bash -lc`` strings and ``$(...)`` / backticks, and resolves
     symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
     ``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
+    Use :func:`resolve_command` to also learn whether the walk gave up.
     """
-    if _depth > _MAX_DEPTH or not command or not command.strip():
-        return []
-    out: list[str] = []
-    for line in command.splitlines() or [command]:
-        for words in _simple_commands(line):
-            out.extend(_words_candidates(words, _depth))
-        for match in _SUBSHELL.finditer(line):
-            out.extend(command_candidates(match.group(1) or match.group(2) or "", _depth + 1))
-    return out
+    names, _ = resolve_command(command)
+    return names
 
 
 def _action_of(policy: dict) -> tuple[str, str]:
@@ -220,7 +273,9 @@ def _policy_matches(policy: dict, resource: str) -> bool:
     """
     patterns = _patterns_of(policy)
     if policy.get("action", {}).get("match") == "command":
-        names = command_candidates(resource)
+        names, unresolved = resolve_command(resource)
+        if unresolved:
+            return True  # fail closed: the walk cannot say what this command runs
         return any(fnmatch.fnmatchcase(name, pattern) for name in names for pattern in patterns)
     return any(_resource_matches(pattern, resource) for pattern in patterns)
 
@@ -240,6 +295,8 @@ def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
         if not _policy_matches(policy, resource):
             continue
         decision = str(policy.get("decision", "allow"))
+        if decision not in order:
+            decision = "deny"  # an unknown or misspelled decision must not allow
         if order.get(decision, 0) > order.get(best["decision"], 0):
             best = {
                 "decision": decision,

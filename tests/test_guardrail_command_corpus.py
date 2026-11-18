@@ -141,7 +141,7 @@ class TestCommandCorpus(unittest.TestCase):
 
     def test_oversize_command_is_still_read(self) -> None:
         # No timing assertion, so the test cannot flake.
-        huge = "echo " + "a" * 200_000 + f" | {TARGET}"
+        huge = "echo " + "a" * 90_000 + f" | {TARGET}"
         self.assertIn(TARGET, names(huge))
 
     def test_unbalanced_quotes_are_still_read(self) -> None:

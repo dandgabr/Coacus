@@ -606,6 +606,10 @@ With ``include_user`` the machine-local policies generated at install time
 (see :func:`user_policy_dir`) are appended. The runtime guard sets it; unit
 tests leave it off so they never depend on the developer's home directory.
 
+#### `def resolve_command(command: str) -> tuple[list[str], bool]`
+
+Return ``(executable names, unresolved)`` for a shell string (never raises).
+
 #### `def command_candidates(command: str, _depth: int=0) -> list[str]`
 
 Executable names a shell string would run (best-effort, never raises).
@@ -615,6 +619,7 @@ launch wrappers (``env``, ``nohup``, ``sudo``, ``timeout``...), recurses into
 ``sh -c`` / ``bash -lc`` strings and ``$(...)`` / backticks, and resolves
 symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
 ``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
+Use :func:`resolve_command` to also learn whether the walk gave up.
 
 #### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
 
