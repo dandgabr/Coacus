@@ -37,9 +37,9 @@ def _claim(observation: dict) -> str:
 
 
 def _clean(text: str) -> str:
-    """Drop control and format characters (invisible, bidi, tag) and cap the length."""
+    """Drop control and format characters (invisible, bidi, tag) from the whole text."""
     kept = "".join(ch for ch in text if unicodedata.category(ch)[0] != "C" or ch in " \t")
-    return kept.strip()[:MAX_GAP_CLAIM]
+    return kept.strip()
 
 
 def _hash(text: str) -> str:
@@ -75,7 +75,7 @@ def consolidate(observations: list[dict]) -> list[dict]:
         if key not in grouped:
             grouped[key] = {
                 "type": kind,
-                "statement": claim,
+                "statement": claim[:MAX_GAP_CLAIM] if kind == "skill-gap" else claim,
                 "claim_hash": key[1],
                 "evidence": [],
             }

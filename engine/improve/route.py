@@ -57,7 +57,15 @@ def route(root: Path, candidate: dict) -> dict:
         if score > best_score:
             best_name, best_score, best_cover = target.get("name"), score, cover
 
-    if best_score >= T_LEX and best_cover >= T_COVER:
+    gap = candidate.get("type") == "skill-gap"
+    if gap and not (
+        candidate.get("trusted")
+        and taint.trusted_sessions(candidate) >= taint.MIN_SUPPORT["skill-gap"]
+    ):
+        # A gap proposes new work on the strength of a claim: it needs trusted
+        # evidence from enough sessions on every branch, including "improve".
+        decision, reason = "skip", "a skill gap needs trusted evidence from enough sessions"
+    elif best_score >= T_LEX and best_cover >= T_COVER:
         decision, reason = "skip", "already covered by the closest target"
     elif best_score >= T_LEX:
         decision, reason = "improve", "closest target exists but does not cover it"

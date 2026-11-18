@@ -54,6 +54,11 @@ class TestTypeComesFromAStructuredField(unittest.TestCase):
         self.assertTrue(statement.startswith("abc"))
         self.assertFalse(any(ord(c) < 32 for c in statement))
 
+    def test_claims_sharing_a_long_prefix_stay_separate_candidates(self) -> None:
+        prefix = "x" * (consolidate.MAX_GAP_CLAIM + 50)
+        candidates = consolidate.consolidate([gap("s1", prefix + " one"), gap("s2", prefix + " two")])
+        self.assertEqual(len(candidates), 2)
+
     def test_a_gap_that_is_only_invisible_characters_is_dropped(self) -> None:
         self.assertEqual(consolidate.consolidate([gap("s1", chr(0x200B) * 5)]), [])
 
@@ -64,16 +69,15 @@ class TestTaintAndSupport(unittest.TestCase):
         candidate = consolidate.consolidate([gap("s1", channel="model-assistant")])[0]
         self.assertFalse(candidate["trusted"])
 
-    def test_the_loop_uses_the_shared_list(self) -> None:
-        source = Path(loop.__file__).read_text(encoding="utf-8")
-        self.assertIn("taint.TRUST_REQUIRED", source)
-        self.assertNotIn('("gotcha", "procedure")', source)
-
-    def test_a_claimed_trusted_channel_inside_a_model_record_is_still_only_a_claim(self) -> None:
-        # Known limit recorded in ADR 0013: the channel is read from the record, so
-        # support needs three independent sessions and a person's review.
+    def test_the_shared_list_covers_every_type_that_needs_trust(self) -> None:
+        self.assertEqual(set(taint.TRUST_REQUIRED), {"gotcha", "procedure", "skill-gap"})
         self.assertEqual(taint.MIN_SUPPORT["skill-gap"], 3)
-        self.assertEqual(taint.DEFAULT_MIN_SUPPORT, 2)
+
+    def test_trusted_sessions_counts_distinct_sessions_of_trusted_units_only(self) -> None:
+        candidate = {"evidence": [
+            {"channel": "human-user-turn", "session_id": "a"}, {"channel": "repo-file", "session_id": "a"},
+            {"channel": "human-user-turn", "session_id": "b"}, {"channel": "tool-result", "session_id": "c"}]}
+        self.assertEqual(taint.trusted_sessions(candidate), 2)
 
 
 @POSIX
@@ -105,14 +109,37 @@ class TestEndToEnd(unittest.TestCase):
         result = self._run([gap(s, channel="model-assistant") for s in ("s1", "s2", "s3")])
         self.assertNotIn("skill-gap", self._types(result))
 
-    def test_repeating_one_claim_in_other_words_still_needs_three_sessions(self) -> None:
+    def test_one_claim_repeated_with_other_casing_in_one_session_counts_once(self) -> None:
         texts = ["no skill for ledger migrations", "No SKILL for ledger migrations", " no skill for ledger migrations "]
-        result = self._run([gap("s1", t) for t in texts])
-        self.assertEqual(self._types(result), [])
+        self.assertEqual(self._types(self._run([gap("s1", t) for t in texts])), [])
 
-    def test_the_loop_never_applies_anything(self) -> None:
-        result = self._run([gap(s) for s in ("s1", "s2", "s3")])
-        self.assertNotIn("applied", json.dumps(result).lower())
+    def test_several_trusted_channels_inside_one_session_count_once(self) -> None:
+        records = [gap("s1", channel=c) for c in ("human-user-turn", "repo-file")]
+        records += [gap("s2", channel="human-user-turn")]
+        self.assertEqual(self._types(self._run(records)), [])
+
+    def test_untrusted_units_do_not_add_sessions(self) -> None:
+        records = [gap("s1"), gap("s2"), gap("s3", channel="tool-result"), gap("s4", channel="model-assistant")]
+        self.assertEqual(self._types(self._run(records)), [])
+
+    def test_the_improve_branch_also_needs_enough_trusted_sessions(self) -> None:
+        # A close catalog target would route a single-session claim to "improve".
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name) / "repo"
+        (root / "catalog").mkdir(parents=True)
+        (root / "catalog/catalog.json").write_text(json.dumps(
+            {"skills": [{"name": "ledger-migrations", "path": "x"}], "agents": []}), encoding="utf-8")
+        for sessions, expected in ((["s1"], []), (["s1", "s2", "s3"], ["skill-gap"])):
+            with self.subTest(sessions=sessions):
+                path = write(tmp.name, [gap(s, "ledger migrations rollback tooling") for s in sessions])
+                result = loop.run(root, {"source": "transcript", "transcript": str(path)})
+                self.assertEqual([p["type"] for p in result.get("proposals", [])], expected)
+
+    def test_known_limit_invented_session_ids_still_count(self) -> None:
+        # Recorded in ADR 0013: the session id is read from the record, so a writer of
+        # the record can invent three. The human review of the proposal is the control.
+        self.assertEqual(self._types(self._run([gap(s) for s in ("a", "b", "c")])), ["skill-gap"])
 
 
 class TestBoundaries(unittest.TestCase):

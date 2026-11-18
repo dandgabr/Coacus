@@ -9,7 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
-- The improvement loop can propose a `skill-gap` when an observation carries the structured field `kind: "route-miss"`. It needs a trusted-channel unit and three independent sessions, its statement is cleaned and capped, and the stored proposal never keeps the text. Types that need trust now come from one constant, `taint.TRUST_REQUIRED`. See ADR 0013.
+- The improvement loop can propose a `skill-gap` when an observation carries the structured field `kind: "route-miss"`. On every routing branch it needs a trusted-channel unit from three distinct sessions; its claim is cleaned and hashed in full, its statement is capped, and the stored proposal never keeps the text. Types that need trust now come from one constant, `taint.TRUST_REQUIRED`. See ADR 0013.
 
 ## [Unreleased] — Guard events, MCP verb and self-protection
 

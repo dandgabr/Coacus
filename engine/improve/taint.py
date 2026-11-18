@@ -47,6 +47,20 @@ def has_trusted_evidence(candidate: dict) -> bool:
     )
 
 
+def trusted_sessions(candidate: dict) -> int:
+    """Count distinct sessions that contributed a trusted-channel unit.
+
+    Several channels inside one session still count once. The session identifier is
+    read from the record, so this raises the cost of a fabricated gap but is not
+    proof of independence (ADR 0013).
+    """
+    return len({
+        str(u.get("session_id", ""))
+        for u in candidate.get("evidence", [])
+        if str(u.get("channel", "")) in TRUSTED_CHANNELS
+    })
+
+
 def independence(candidate: dict) -> int:
     """Count independent evidence units: distinct channel+session+claim hash.
 
