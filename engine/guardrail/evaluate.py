@@ -61,26 +61,29 @@ _TRIGGERED = {
     "rg": {"--pre"}, "gdb": {"--args"}, "start-stop-daemon": {"--exec", "-x"},
     "i3-msg": {"exec"}, "swaymsg": {"exec"}, "hyprctl": {"exec"}, "xdotool": {"exec"},
     "tmux": {"new-session", "new", "new-window", "neww", "split-window", "splitw", "run-shell",
-             "run", "respawn-pane", "respawn-window", "send-keys", "pipe-pane", "if-shell"},
-    "wezterm": {"start", "--"}, "rsync": {"-e", "--rsh"},
+             "run", "respawn-pane", "respawn-window", "send-keys", "pipe-pane", "if-shell",
+             "display-popup", "popup", "-c"},
+    "wezterm": {"start", "--"},
     **{terminal: {"-e", "--", "-x", "--command", "--execute"} for terminal in (
         "xterm", "uxterm", "urxvt", "rxvt", "st", "alacritty", "konsole", "x-terminal-emulator",
         "terminator", "xfce4-terminal", "mate-terminal", "gnome-terminal", "tilix", "lxterminal")},
 }
 # ``git SUBCOMMAND`` words after which the rest is a command line (``git rebase -x NAME``).
 _GIT_RUNNERS = {"rebase": {"-x", "--exec"}, "difftool": {"-x", "--extcmd"}, "bisect": {"run"},
-                "submodule": {"foreach"}}
+                "submodule": {"foreach"},
+                "filter-branch": {"--tree-filter", "--index-filter", "--msg-filter", "--env-filter",
+                                  "--commit-filter", "--parent-filter", "--tag-name-filter"}}
 # Variables whose value another program runs as a command.
 _COMMAND_VARS = {
     "GIT_SSH_COMMAND", "GIT_SSH", "GIT_EXTERNAL_DIFF", "GIT_ASKPASS", "GIT_PAGER", "GIT_EDITOR",
     "GIT_SEQUENCE_EDITOR", "SSH_ASKPASS", "PAGER", "EDITOR", "VISUAL", "BROWSER", "LESSOPEN",
-    "MANPAGER", "RSYNC_RSH", "SUDO_ASKPASS", "FCEDIT",
+    "MANPAGER", "RSYNC_RSH", "SUDO_ASKPASS", "FCEDIT", "GIT_PROXY_COMMAND", "SUDO_EDITOR", "SYSTEMD_PAGER",
 }
 # ``git -c key=value`` keys whose value is a command line.
-_GIT_COMMAND_KEY = re.compile(r"command|pager|editor|askpass|external|helper|program|textconv|fsmonitor|^alias\.")
-_SSH_COMMAND_OPTION = re.compile(r"^(?:proxycommand|localcommand|knownhostscommand)=", re.I)
+_GIT_COMMAND_KEY = re.compile(r"command|cmd|pager|editor|askpass|external|helper|program|textconv|fsmonitor|smudge|clean|process|driver|proxy|^alias\.")
+_SSH_COMMAND_OPTION = re.compile(r"^(?:proxycommand|localcommand|knownhostscommand)(?:\s*=\s*|\s+)(.+)$", re.I | re.S)
 # Wrappers whose argument is a whole command line in one quoted string.
-_STRING_WRAPPERS = {"watch", "script"}
+_STRING_WRAPPERS = {"watch", "script", "entr", "watchexec", "concurrently", "runuser", "parallel"}
 # Commands that only read a here-document as data. Any other reader (a shell,
 # ``source``, ``eval``, an unknown program) has its body scanned like a script.
 _DATA_READERS = {"cat", "tee", "git", "gh", "echo", "printf", "grep", "sed", "awk",
@@ -535,17 +538,40 @@ def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
     return [words for words in commands if words]
 
 
+def _short_value(words: list[str], position: int, letters: str) -> str | None:
+    """The value of the first of ``letters`` in a short-option cluster, or None.
+
+    Reads ``-o VALUE``, ``-oVALUE`` and clusters such as ``-vo VALUE`` or ``-4oVALUE``.
+    """
+    word = words[position]
+    if len(word) < 2 or word[0] != "-" or word[1] == "-":
+        return None
+    for index, char in enumerate(word[1:], start=1):
+        if char in letters:
+            attached = word[index + 1:]
+            if attached:
+                return attached
+            return words[position + 1] if position + 1 < len(words) else ""
+    return None
+
+
+def _assignment(word: str, depth: int, state: dict) -> list[str]:
+    """Names run through one ``NAME=value`` word (a variable another program runs)."""
+    name, _, value = word.partition("=")
+    name = name.rstrip("+").split("[")[0]
+    if name in _STARTUP_VARS or name.startswith("GIT_CONFIG"):
+        state["unresolved"] = True  # a variable the shell or git runs as code
+    elif name in _COMMAND_VARS and value:
+        return _scan(value, depth + 1, state)
+    return []
+
+
 def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     """Candidates for one simple command given as words."""
     index = 0
     assigned: list[str] = []
     while index < len(words) and _ASSIGN.match(words[index]):
-        name, _, value = words[index].partition("=")
-        name = name.rstrip("+").split("[")[0]
-        if name in _STARTUP_VARS:
-            state["unresolved"] = True  # a variable the shell runs as code
-        elif name in _COMMAND_VARS and value:
-            assigned.extend(_scan(value, depth + 1, state))  # a program runs this value
+        assigned.extend(_assignment(words[index], depth, state))
         index += 1
     if index >= len(words):
         return assigned
@@ -602,7 +628,7 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
             if word == "-C":
                 out.extend(_scan(rest[position + 1], depth + 1, state))
     for word in rest[1:_LOOKAHEAD]:
-        if word.startswith("--command="):
+        if word.startswith(("--command=", "--call=")):
             out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
     if head == "flock":
         for position, word in enumerate(rest[1:-1], start=1):
@@ -614,6 +640,14 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         for position, word in enumerate(rest[:_MAX_WORDS]):
             if word in _FIND_EXEC and position + 1 < len(rest):
                 out.extend(_words_candidates(rest[position + 1:], depth + 1, state))
+    elif head in ("export", "declare", "typeset", "local", "readonly"):
+        for word in rest[1:]:
+            if _ASSIGN.match(word):
+                out.extend(_assignment(word, depth, state))
+    elif head == "sg" and len([w for w in rest[1:] if w not in ("-", "-c")]) > 1:
+        command = [w for w in rest[1:] if w not in ("-", "-c")][1:]
+        out.extend(_words_candidates(command, depth + 1, state))
+        out.extend(_scan(" ".join(command), depth + 1, state))
     elif head in _SHELLS:
         if "<<<" in rest and rest.index("<<<") + 1 < len(rest):
             out.extend(_scan(rest[rest.index("<<<") + 1], depth + 1, state))
@@ -680,30 +714,49 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         if not operands or operands[0].startswith(("/dev/stdin", "/dev/fd/", "/proc/self/fd/")):
             state["unresolved"] = True  # sourced from a pipe or a process substitution
     elif head == "git":
-        for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
-            if word == "-c" and position + 1 < len(rest):
-                key, _, value = rest[position + 1].partition("=")
+        has_clone = "clone" in rest[1:]
+        for position, word in enumerate(rest[1:], start=1):
+            following = rest[position + 1] if position + 1 < len(rest) else ""
+            if word == "-c" or (word.startswith("-c") and "=" in word and not word.startswith("--")):
+                key, _, value = (following if word == "-c" else word[2:]).partition("=")
                 if value and _GIT_COMMAND_KEY.search(key.lower()):
                     out.extend(_scan(value.lstrip("!"), depth + 1, state))
-            elif word.startswith(("--exec=", "--extcmd=")):
+            elif word.startswith(("--exec=", "--extcmd=", "--upload-pack=", "--receive-pack=")):
                 out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
+            elif word in ("--exec", "--extcmd", "--upload-pack", "--receive-pack") or (word == "-u" and has_clone):
+                out.extend(_scan(following, depth + 1, state))
+            elif word.startswith("--config-env"):
+                state["unresolved"] = True  # a config value read from a variable
         for sub, triggers in _GIT_RUNNERS.items():
-            if sub in rest[1:_LOOKAHEAD]:
+            if sub in rest[1:]:
                 at = rest.index(sub, 1)
-                for position, word in enumerate(rest[at + 1:_LOOKAHEAD], start=at + 1):
+                for position, word in enumerate(rest[at + 1:], start=at + 1):
                     if word in triggers:
                         out.extend(_trigger_candidates(rest[position + 1:], depth + 1, state))
+                    elif "-x" in triggers and word.startswith("-x") and len(word) > 2:
+                        out.extend(_scan(word[2:], depth + 1, state))
     elif head in ("ssh", "scp", "sftp"):
-        for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
-            option = rest[position + 1] if word == "-o" and position + 1 < len(rest) else (
-                word[2:] if word.startswith("-o") else "")
-            if _SSH_COMMAND_OPTION.match(option):
-                out.extend(_scan(option.split("=", 1)[1], depth + 1, state))
-            elif word == "-S" and position + 1 < len(rest) and head != "ssh":
-                out.extend(_names(rest[position + 1]))
+        for position in range(1, len(rest)):
+            option = _short_value(rest, position, "o")
+            match = _SSH_COMMAND_OPTION.match(option.strip()) if option else None
+            if match:
+                out.extend(_scan(match.group(1), depth + 1, state))
+            if head != "ssh":
+                program = _short_value(rest, position, "S" if head == "scp" else "SD")
+                if program:
+                    out.extend(_scan(program, depth + 1, state))
+    elif head == "rsync":
+        for position, word in enumerate(rest[1:], start=1):
+            shell = _short_value(rest, position, "e")
+            if word.startswith("--rsh="):
+                shell = word.split("=", 1)[1]
+            elif word == "--rsh":
+                shell = rest[position + 1] if position + 1 < len(rest) else ""
+            if shell:
+                out.extend(_scan(shell, depth + 1, state))
     elif head == "socat":
-        for word in rest[1:_LOOKAHEAD]:
-            for marker in ("EXEC:", "SYSTEM:"):
+        for word in rest[1:]:
+            for marker in ("EXEC:", "SYSTEM:", "SHELL:"):
                 if marker in word.upper():
                     out.extend(_scan(word[word.upper().index(marker) + len(marker):].split(",")[0], depth + 1, state))
     elif head in _TRIGGERED:
@@ -713,6 +766,9 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         triggers = _TRIGGERED[head]
         for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
             flag = word.split("=", 1)[0] if word.startswith("--") else word
+            parts = word.split(None, 1)
+            if len(parts) == 2 and parts[0] in triggers and not word.startswith("-"):
+                out.extend(_scan(parts[1], depth + 1, state))  # ``i3-msg 'exec NAME'``
             if flag in triggers:
                 inline = word.split("=", 1)[1] if word.startswith("--") and "=" in word else ""
                 after = ([inline] if inline else []) + rest[position + 1:]

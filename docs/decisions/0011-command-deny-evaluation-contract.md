@@ -58,6 +58,24 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   Left out on purpose: container and remote runners (`docker run`, `podman run`,
   `kubectl exec`, `ssh host cmd`), because the target there is not a program on this
   host, and `make`, `go run`, `cargo run` and `just`, which run what a project file says.
+- A security review of the launcher change found option shapes that slipped past it and
+  they are now walked: `ssh -o 'ProxyCommand x'`, `ssh -vo` and `-4oVALUE` clusters, `scp -S`,
+  `sftp -D`, `rsync -avze`, `socat SHELL:`, git transport options (`--upload-pack`,
+  `--receive-pack`, `clone -u`), more `git -c` keys, `git rebase -xVALUE`,
+  `git filter-branch` filters, `export NAME=value`, quoted launcher arguments (`entr -s`,
+  `watchexec`, `concurrently`, `runuser -c`, `parallel`, `i3-msg 'exec x'`) and `sg GROUP
+  COMMAND`. The git, ssh, rsync and socat branches read every word (up to the 2000-word cap)
+  instead of the first 64, so padding options cannot push the real one out of view.
+  `git --config-env` and any `GIT_CONFIG_*` assignment make the command unresolved, which
+  a deny rule treats as a match, because git then reads commands from a place the walk
+  cannot see.
+- Known limits of the launcher walk, all over-blocking or out of reach, none a loosening:
+  every non-option word after a trigger is a candidate, so `uv run pytest -k NAME`,
+  `poetry run grep NAME file` and `tmux new -s NAME` match; a trigger launcher with more
+  than 64 words is unresolved and is denied by every command rule; a command set in
+  indirect git configuration (`git config core.sshCommand ...` run earlier) is not read;
+  and `sudo --shell`, `sudo -Es` and `parallel` replacement strings are older gaps this
+  record does not close.
 - A here-document is read the way the shell reads it: its tag is parsed outside quotes
   and arithmetic, its body is consumed before any quote tracking (an apostrophe in the
   body cannot swallow the commands after it), and the body is data only for a known
