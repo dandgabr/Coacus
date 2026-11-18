@@ -38,14 +38,17 @@ opt-in.
 - No relaxation happens without an opt-in, and no shipped enabled policy uses `ask`.
   One tightening needs no opt-in: an invalid `on_ask_unavailable` used to be rendered
   as `ask` and now denies.
-- With the opt-in set, policies on claude-code, cursor and antigravity can prompt a
+- With the opt-in set, policies on claude-code and antigravity can prompt a
   person, which is a relaxation compared with degrading to deny. The operator owns
   that choice, and the off switches always win.
 - Known gaps, tracked separately: the installer does not refuse an `ask` policy on
   a harness that cannot ask; two `ask` policies with different fallbacks degrade by
-  file order; the Cursor `can_ask` cell contradicts the wording of ADR 0002 and still
-  needs checking against the vendor documentation; and on OpenCode no guard decision
-  blocks a tool call today, because the guard renders nothing for that harness.
+  file order; and on OpenCode no guard decision blocks a tool call today, because the
+  guard renders nothing for that harness.
+- Cursor was checked against its hooks documentation on 2026-11-18: the `preToolUse`
+  output says `"ask"` is accepted by the schema but not enforced today, so its
+  `can_ask` cell is `false` and an `ask` there degrades like on any other harness
+  without a channel.
 
 ## Alternatives considered
 

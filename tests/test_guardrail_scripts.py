@@ -412,7 +412,7 @@ class TestCanAskGate(unittest.TestCase):
                 self.assertTrue(can_ask(self.root, name, COACUS_GUARD_ASK="1"))
 
     def test_shipped_capability_data_matches_the_documented_channels(self) -> None:
-        expected = {"claude-code": True, "cursor": True, "antigravity": True,
+        expected = {"claude-code": True, "cursor": False, "antigravity": True,
                     "codex": False, "command-code": False, "opencode": False}
         shipped = {p.name for p in (REPO / "harnesses").iterdir() if p.is_dir()} - {"_template"}
         self.assertEqual(shipped, set(expected), "a new harness must declare its ask channel here")

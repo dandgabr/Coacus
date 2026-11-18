@@ -27,7 +27,7 @@
     "composition": "composable",
     "ordering": "coacus-last",
     "events": {
-      "tool.pre": { "support": "gate", "can_block": true, "can_ask": true, "effect": "permission", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": false, "effect": "permission", "evidence": "documented", "resolved": "2026-11-18", "source": "https://cursor.com/docs/agent/hooks" },
       "prompt.submit": { "support": "gate", "can_block": true, "can_ask": false, "effect": "continue", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
       "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "followup_message", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additional_context", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
