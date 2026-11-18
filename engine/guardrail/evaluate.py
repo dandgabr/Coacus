@@ -280,14 +280,26 @@ def _policy_matches(policy: dict, resource: str) -> bool:
     return any(_resource_matches(pattern, resource) for pattern in patterns)
 
 
+def _fallback_of(policy: dict) -> str:
+    """The ``on_ask_unavailable`` value of a policy; anything but allow or deny is deny."""
+    value = policy.get("on_ask_unavailable", "deny")
+    return value if value in ("allow", "deny") else "deny"
+
+
 def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
     """Evaluate policies against one action; return the most restrictive decision.
 
     Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
-    An event with no matching policy yields ``allow``.
+    An event with no matching policy yields ``allow``. When several ``ask``
+    policies match, the fallback used where nobody can be asked is the strictest
+    of their ``on_ask_unavailable`` values (``deny`` beats ``allow``; a missing or
+    invalid value counts as ``deny``), so the result never depends on file order.
+    The reported ``policy_id`` and ``message`` are those of the first policy that
+    holds the winning fallback.
     """
     order = {"deny": 3, "ask": 2, "allow": 1, "note": 0}
     best = {"decision": "allow", "policy_id": None, "message": ""}
+    asks: list[dict] = []
     for policy in policies:
         p_verb, _ = _action_of(policy)
         if p_verb != verb:
@@ -297,11 +309,21 @@ def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
         decision = str(policy.get("decision", "allow"))
         if decision not in order:
             decision = "deny"  # an unknown or misspelled decision must not allow
+        if decision == "ask":
+            asks.append(policy)
         if order.get(decision, 0) > order.get(best["decision"], 0):
             best = {
                 "decision": decision,
                 "policy_id": policy.get("id"),
                 "message": str(policy.get("message", "")),
-                "on_ask_unavailable": policy.get("on_ask_unavailable", "deny"),
+                "on_ask_unavailable": _fallback_of(policy),
             }
+    if best["decision"] == "ask" and asks:
+        winner = next((p for p in asks if _fallback_of(p) == "deny"), asks[0])
+        best = {
+            "decision": "ask",
+            "policy_id": winner.get("id"),
+            "message": str(winner.get("message", "")),
+            "on_ask_unavailable": _fallback_of(winner),
+        }
     return best

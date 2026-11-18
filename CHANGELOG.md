@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Strictest ask fallback
+
+### Fixed
+
+- Two `ask` policies that match the same action used to take the `on_ask_unavailable` of the first file. The strictest value now wins (`deny` beats `allow`; a missing or invalid value counts as `deny`), so the result no longer depends on file order, and the reported policy is the one that holds the winning fallback.
+
 ## [Unreleased] — Evaluator fails closed
 
 ### Fixed
@@ -39,7 +45,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Known gaps
 
 - On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the first entry.
-- The installer does not refuse an `ask` policy on a harness that cannot ask, and two `ask` policies with different fallbacks degrade by file order.
+- The installer does not refuse an `ask` policy on a harness that cannot ask.
 
 ### Fixed
 

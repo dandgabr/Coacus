@@ -42,9 +42,10 @@ opt-in.
   person, which is a relaxation compared with degrading to deny. The operator owns
   that choice, and the off switches always win.
 - Known gaps, tracked separately: the installer does not refuse an `ask` policy on
-  a harness that cannot ask; two `ask` policies with different fallbacks degrade by
-  file order; and on OpenCode no guard decision blocks a tool call today, because the
-  guard renders nothing for that harness.
+  a harness that cannot ask. Two `ask` policies that match the same action no longer
+  depend on file order: the strictest `on_ask_unavailable` wins (`deny` beats `allow`,
+  and a missing or invalid value counts as `deny`). On OpenCode the guard now renders
+  a `deny`, so a policy blocks a tool call there.
 - Cursor was checked against its hooks documentation on 2026-11-18: the `preToolUse`
   output says `"ask"` is accepted by the schema but not enforced today, so its
   `can_ask` cell is `false` and an `ask` there degrades like on any other harness

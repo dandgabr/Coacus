@@ -626,7 +626,12 @@ Use :func:`resolve_command` to also learn whether the walk gave up.
 Evaluate policies against one action; return the most restrictive decision.
 
 Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
-An event with no matching policy yields ``allow``.
+An event with no matching policy yields ``allow``. When several ``ask``
+policies match, the fallback used where nobody can be asked is the strictest
+of their ``on_ask_unavailable`` values (``deny`` beats ``allow``; a missing or
+invalid value counts as ``deny``), so the result never depends on file order.
+The reported ``policy_id`` and ``message`` are those of the first policy that
+holds the winning fallback.
 
 ### `engine/guardrail/rules.py`
 
