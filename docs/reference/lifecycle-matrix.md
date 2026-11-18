@@ -21,6 +21,7 @@ a `lifecycle` block is a closed capability (no events, nothing installable).
 ## Declared gaps
 
 - **antigravity** `tool.pre` — unverified: the hooks page does not say whether PreToolUse receives MCP tools or under what name (the MCP page names them mcp_<server>_<tool>, which the guard now classifies as mcp by its mcp_ prefix, unproven); an mcp rule may never run here; a live run on 2026-11-18 (agy 1.5.11) was not possible because the account is disabled by the service, so this stays unverified
+- **antigravity** `tool.pre` — unverified: the PreToolUse input is documented as {toolCall: {name, args}} and the guard reads it; only the argument key CommandLine is confirmed, so the capitalised spellings it also tries for a path, a target, a search directory, a URL and a query (AbsolutePath, TargetFile, SearchPath, SearchDirectory, Url, Query) are unverified; a read or write rule sees an empty resource when the real key differs, and an empty resource matches only the patterns '' and '*'
 - **antigravity** `session.start` — unsupported: Antigravity has no SessionStart event; only an always_on rule
 - **antigravity** `session.end` — unsupported: no session-end event
 - **antigravity** `subagent.start` — emulate: only via PreToolUse on the spawn tool

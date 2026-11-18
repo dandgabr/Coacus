@@ -47,13 +47,20 @@ from engine.guardrail import evaluate as guard  # noqa: E402
 
 # Tool names are compared in lower case, so ``Read`` and ``read`` are one tool.
 READ_TOOLS = {"read", "read_file", "view_file", "grep", "glob", "list", "ls", "notebookread",
-              "view", "cat", "search_files", "find_files", "grep_search", "find_by_name"}
+              "view", "cat", "search_files", "find_files", "grep_search", "find_by_name",
+              "list_dir"}
+# Read tools that scan a directory: a rule on a file name never sees the files inside
+# the directory they were pointed at, so the glob they were given is checked as well.
+SEARCH_TOOLS = {"grep", "glob", "grep_search", "find_by_name", "search_files", "find_files"}
+GLOB_KEYS = ("glob", "include", "Includes", "Pattern")
+# For these the ``pattern`` argument is itself a file glob (for ``grep`` it is a regex).
+GLOB_TOOLS = {"glob", "find_by_name", "find_files"}
 WRITE_TOOLS = {"write", "edit", "write_file", "edit_file", "apply_patch", "write_to_file",
                "replace_file_content", "multiedit", "patch", "notebookedit", "str_replace_editor",
-               "create_file", "delete_file"}
+               "create_file", "delete_file", "multi_replace_file_content"}
 EXEC_TOOLS = {"bash", "shell", "shell_command", "run_command", "terminal", "exec", "execute"}
 NETWORK_TOOLS = {"fetch", "webfetch", "web_fetch", "read_url_content", "fetch_url", "websearch",
-                 "web_search"}
+                 "web_search", "search_web"}
 SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subagents", "subagent"}
 # Tools served by an MCP server: Claude Code sends ``mcp__server__tool``, Cursor ``MCP:tool``.
 MCP_PREFIXES = ("mcp_", "mcp:")
@@ -109,13 +116,22 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
     ``<server>_<tool>`` (observed on 2.3.0), so any tool that is not in its exact native
     list is an ``mcp`` action named by that raw tool name.
     """
-    tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
-    args = payload.get("tool_input") or payload.get("args") or payload.get("toolCall") or {}
+    call = payload.get("toolCall")
+    if isinstance(call, dict):
+        # Antigravity: {"toolCall": {"name": ..., "args": {...}}} (its documented PreToolUse input).
+        tool = _first(call, ("name", "tool")).lower()
+        args = call.get("args") or {}
+    else:
+        tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
+        args = payload.get("tool_input") or payload.get("args") or call or {}
     if isinstance(args, str):
         args = {"input": args}
     if not isinstance(args, dict):
         args = {}
-    path = _first(args, ("filePath", "file_path", "path", "target_file", "notebook_path", "pattern"))
+    # The capitalised spellings are Antigravity's style (``CommandLine``); only that one is
+    # confirmed, the rest are unverified (see the antigravity gap in harness.json).
+    path = _first(args, ("filePath", "file_path", "path", "target_file", "notebook_path", "AbsolutePath",
+                         "TargetFile", "SearchPath", "SearchDirectory", "pattern"))
     command = _first(args, ("command", "CommandLine", "cmd"))
     if tool.startswith(MCP_PREFIXES):
         return [("mcp", tool)]  # the tool's own name; its arguments have no common shape
@@ -129,7 +145,12 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
             # itself. A rule can name it as an mcp action; command rules cannot read it.
             return [("exec", command), ("mcp", tool)]
     if tool in READ_TOOLS:
-        return [("read", _norm(path))]
+        found = [("read", _norm(path))]
+        keys = GLOB_KEYS + (("pattern",) if tool in GLOB_TOOLS else ())
+        glob = _first(args, keys) if tool in SEARCH_TOOLS else ""
+        if glob and glob != path:
+            found.append(("read", _norm(posixpath.join(path, glob)) if path and path != glob else glob))
+        return found
     if tool in WRITE_TOOLS:
         patched = _patch_paths(args)
         if patched:
@@ -138,7 +159,7 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
     if tool in EXEC_TOOLS:
         return [("exec", command)]
     if tool in NETWORK_TOOLS:
-        return [("network", _first(args, ("url", "uri", "query")))]
+        return [("network", _first(args, ("url", "uri", "query", "Url", "URL", "Query")))]
     if tool in SPAWN_TOOLS:
         return [("spawn", _first(args, ("prompt", "description", "name")))]
     return [("", "")]

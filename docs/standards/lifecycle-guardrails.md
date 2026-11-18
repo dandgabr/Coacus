@@ -129,6 +129,17 @@ outside the session (a sandbox, read-only files, the harness's managed settings)
 own terminal, or sets `"enabled": false` in the installed `self-protection.policy.json`,
 edits, and sets it back to `true`. Every denial message says this.
 
+## Which tools a rule can see
+
+The guard classifies a call by the tool's name and reads its arguments from the
+harness's documented payload (Antigravity nests them under `toolCall`). A tool with
+no verb, such as a todo list, is never offered to a policy. A search tool that scans a
+directory (`Grep`, `Glob`, `grep_search`, `find_by_name`) is checked against the
+directory and against the glob it was given, never against the files it finds, so a
+rule on one file name does not stop a search that happens to read it. A test reads
+each harness's `tool_mapping` and `tool_denylist` and fails when a documented tool has
+no verb and is not on its short list of exemptions.
+
 ## Rationale
 
 Event names are the least portable axis; the policy is the most portable. Inverting
