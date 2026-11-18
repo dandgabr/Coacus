@@ -903,7 +903,7 @@ def _policy_matches(policy: dict, resource: str) -> bool:
 def _fold_prompt(text: str) -> str:
     """NFKC-fold ``text`` and drop format (``Cf``) characters, then lower-case it."""
     folded = unicodedata.normalize("NFKC", text)
-    return "".join(ch for ch in folded if unicodedata.category(ch) != "Cf").lower()
+    return "".join(ch for ch in folded if unicodedata.category(ch) != "Cf").casefold()
 
 
 def _fallback_of(policy: dict) -> str:

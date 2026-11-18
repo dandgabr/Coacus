@@ -261,5 +261,75 @@ class TestInstall(GuardCase):
         self.assertIn("PreToolUse", settings["hooks"])
 
 
+class TestInstallEdges(GuardCase):
+    def _data(self, **cap) -> dict:
+        base = {"native": "UserPromptSubmit", "can_block": True}
+        return {"lifecycle": {"events": {"prompt.submit": {**base, **cap}, "tool.pre": {"native": "PreToolUse", "can_block": True}}}}
+
+    def _template(self) -> dict:
+        return {"hooks": {"PreToolUse": [{"hooks": [{"type": "command", "command": "py g --event tool.pre"}]}]}}
+
+    def _bound(self):
+        return mock.patch.object(coacus_install, "_bound_events", return_value={"prompt.submit"})
+
+    def test_an_event_that_cannot_block_gets_no_hook(self) -> None:
+        for cap in ({"can_block": False}, {"can_block": None}, {"can_block": "true"}):
+            with self.subTest(cap=cap), self._bound():
+                fragment = self._template()
+                coacus_install._add_bound_event_hooks(REPO, self._data(**cap), fragment)
+                self.assertEqual(fragment["hooks"]["UserPromptSubmit"], [])
+
+    def test_the_tool_pre_guard_is_never_touched_by_the_event_hooks(self) -> None:
+        with mock.patch.object(coacus_install, "_bound_events", return_value=set()):
+            fragment = self._template()
+            coacus_install._add_bound_event_hooks(REPO, self._data(), fragment)
+        self.assertEqual(len(fragment["hooks"]["PreToolUse"]), 1)
+
+    def test_odd_shapes_are_left_alone(self) -> None:
+        for fragment in ({}, {"hooks": []}, {"hooks": {"PreToolUse": []}}, {"hooks": {"PreToolUse": [{"command": "x"}]}},
+                         {"hooks": {"PreToolUse": [{"hooks": [{"command": 5}]}]}}):
+            with self.subTest(fragment=fragment), self._bound():
+                before = json.dumps(fragment)
+                coacus_install._add_bound_event_hooks(REPO, self._data(), fragment)
+                self.assertEqual(json.dumps(fragment), before)
+
+    def test_a_policy_with_no_event_is_a_tool_pre_rule_and_adds_no_prompt_hook(self) -> None:
+        policy = prompt_policy()
+        del policy["event"]
+        self.put(document(policy))
+        self.assertNotIn("prompt.submit", coacus_install._bound_events(REPO))
+
+    def test_the_repository_policy_directory_is_read_too(self) -> None:
+        root = self.base / "repo"
+        folder = root / "methodology" / "lifecycle" / "policies"
+        folder.mkdir(parents=True)
+        (folder / "r.policy.json").write_text(json.dumps(document(prompt_policy())), encoding="utf-8")
+        self.assertIn("prompt.submit", coacus_install._bound_events(root))
+
+    def test_the_plugin_file_carries_the_hook_and_uninstall_removes_only_ours(self) -> None:
+        self.put(document(prompt_policy()))
+        cfg = self.base / "cfg"
+        cfg.mkdir()
+        (cfg / "settings.json").write_text(json.dumps(
+            {"theme": "dark", "hooks": {"UserPromptSubmit": [{"hooks": [{"type": "command", "command": "my-own-hook"}]}]}}),
+            encoding="utf-8")
+        common = ["--config-dir", str(cfg)]
+        quiet = (mock.patch.object(coacus_install, "_is_interactive", return_value=False),
+                 mock.patch.object(coacus_install, "_home", return_value=self.base / "home"))
+        with quiet[0], quiet[1], contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(coacus_install.main(
+                ["claude-code", *common, "--skills", "using-coacus", "--agents", "general", "--browser-policy", "off",
+                 "--skills-mode", "copy", "--force", "--yes"], REPO), 0)
+            plugin = cfg / "plugins" / "coacus" / "hooks" / "hooks.json"
+            self.assertIn("--event prompt.submit", plugin.read_text(encoding="utf-8"))
+            self.assertIn("--event prompt.submit", (cfg / "settings.json").read_text(encoding="utf-8"))
+            coacus_install.main(["claude-code", *common, "--uninstall"], REPO)
+        after = json.loads((cfg / "settings.json").read_text(encoding="utf-8"))
+        self.assertEqual(after["theme"], "dark")
+        text = json.dumps(after)
+        self.assertIn("my-own-hook", text)
+        self.assertNotIn("coacus_guard", text)
+
+
 if __name__ == "__main__":
     unittest.main()

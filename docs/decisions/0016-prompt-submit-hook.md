@@ -55,6 +55,8 @@ deny, so neither is a rule a policy can express with today's verbs.
   model produces are not prompts. The event also fires for scheduled tasks, `/loop`,
   background subagent reports and messages from other sessions, so a deny pattern can end
   those turns. It is a tripwire, not DLP.
+- A pattern is a glob like every other resource: `?` and `[...]` are wildcards, so a prose
+  pattern that needs them literally has to avoid those characters.
 - Enabling a `prompt` policy after installing needs a re-install, because the hook exists
   only while a policy binds the event (`--verify` reports the missing entry). Disabling
   one leaves the hook until the next re-install, which only costs a process per prompt.
