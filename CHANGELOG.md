@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Guard deny for OpenCode
+
+### Fixed
+
+- `scripts/coacus_guard.py` now renders a `deny` for OpenCode. Before this change it printed `{}` for that harness, so the generated plugin never saw a deny and no policy blocked a tool call there. An `ask` also renders as `deny`, because OpenCode has no way to ask. Tests prove the block end to end with the generated plugin under Node.
+
 ## [Unreleased] — Guard `ask` capability gating
 
 ### Changed
@@ -16,7 +22,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Known gaps
 
-- On OpenCode the guard renders no effect, so a `deny` does not block a tool call. This predates the change and is tracked separately.
+- On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the first entry.
 - The installer does not refuse an `ask` policy on a harness that cannot ask, and two `ask` policies with different fallbacks degrade by file order.
 
 ### Fixed

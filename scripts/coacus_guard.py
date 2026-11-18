@@ -132,6 +132,10 @@ def _native(harness: str, decision: str, message: str) -> str:
         return json.dumps(
             {"decision": _word(decision), "reason": message}
         )
+    if harness == "opencode":
+        # OpenCode has no native effect JSON: the generated plugin reads this
+        # object and throws on a deny, which is its only blocking mechanism.
+        return json.dumps({"decision": "deny", "reason": message})
     return "{}"
 
 

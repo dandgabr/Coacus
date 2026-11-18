@@ -10,6 +10,7 @@ from __future__ import annotations
 import atexit
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -419,6 +420,59 @@ class TestCanAskGate(unittest.TestCase):
         for harness, wanted in expected.items():
             with self.subTest(harness=harness):
                 self.assertIs(can_ask(REPO, harness, COACUS_GUARD_ASK="1"), wanted)
+
+
+class TestOpenCodeDeny(unittest.TestCase):
+    """The OpenCode plugin only blocks by throwing, and it throws only on a deny."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.root = enabled_root(self._tmp.name)
+
+    def test_native_renders_a_deny_the_plugin_can_see(self) -> None:
+        for decision in ("deny", "ask", "anything-else"):
+            with self.subTest(decision=decision):
+                out = json.loads(coacus_guard._native("opencode", decision, "blocked"))
+                self.assertEqual(out["decision"], "deny")
+                self.assertEqual(out["reason"], "blocked")
+
+    def test_allow_stays_empty(self) -> None:
+        self.assertEqual(coacus_guard._native("opencode", "allow", "m"), "{}")
+
+    def test_guard_denies_a_secret_read_for_opencode(self) -> None:
+        out, code = run_guard("opencode", json.dumps(
+            {"tool": "read", "tool_input": {"filePath": "repo/.env"}}), self.root)
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(out)["decision"], "deny")
+
+    def test_guard_allows_a_benign_read_for_opencode(self) -> None:
+        out, _ = run_guard("opencode", json.dumps(
+            {"tool": "read", "tool_input": {"filePath": "repo/README.md"}}), self.root)
+        self.assertEqual(json.loads(out), {})
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_generated_plugin_throws_on_deny_and_passes_otherwise(self) -> None:
+        plugin = (REPO / "harnesses/opencode/bootstrap/coacus-guardrails.js").read_text(encoding="utf-8")
+        plugin = plugin.replace("__COACUS_ROOT__", str(self.root)).replace(
+            "__COACUS_PYTHON__", sys.executable)
+        (self.root / "scripts").mkdir(exist_ok=True)
+        shutil.copy(GUARD_CLI, self.root / "scripts/coacus_guard.py")
+        shutil.copytree(REPO / "engine", self.root / "engine", dirs_exist_ok=True)
+        (self.root / "plugin.mjs").write_text(plugin, encoding="utf-8")
+        driver = (
+            "import { CoacusGuardrails } from './plugin.mjs';\n"
+            "const hooks = await CoacusGuardrails();\n"
+            "const run = async (path) => { try {\n"
+            "  await hooks['tool.execute.before']({ tool: 'read' }, { args: { filePath: path } });\n"
+            "  return 'passed'; } catch (e) { return 'blocked'; } };\n"
+            "console.log(JSON.stringify([await run('repo/.env'), await run('repo/README.md')]));\n"
+        )
+        (self.root / "driver.mjs").write_text(driver, encoding="utf-8")
+        proc = subprocess.run(["node", "driver.mjs"], cwd=self.root, capture_output=True,
+                              text=True, env=clean_env(), timeout=60)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(json.loads(proc.stdout.strip()), ["blocked", "passed"])
 
 
 class TestEvaluator(unittest.TestCase):
