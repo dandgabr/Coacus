@@ -46,6 +46,15 @@ def _hash(text: str) -> str:
     return hashlib.sha256(text.strip().lower().encode("utf-8")).hexdigest()[:16]
 
 
+def _gap_hash(text: str) -> str:
+    """Hash of a skill-gap claim after NFKC folding, case folding and whitespace collapse.
+
+    Full-width letters, doubled spaces and capitals of one wording count as one claim.
+    """
+    folded = " ".join(unicodedata.normalize("NFKC", text).split()).casefold()
+    return hashlib.sha256(folded.encode("utf-8")).hexdigest()[:16]
+
+
 def _type_of(observation: dict) -> str:
     if observation.get("kind") == SKILL_GAP_KIND:
         return "skill-gap"
@@ -70,7 +79,7 @@ def consolidate(observations: list[dict]) -> list[dict]:
             claim = _clean(claim)
             if not claim:
                 continue
-        key = (kind, _hash(claim))
+        key = (kind, _gap_hash(claim) if kind == "skill-gap" else _hash(claim))
         session = str(obs.get("session_id", "session"))
         if key not in grouped:
             grouped[key] = {

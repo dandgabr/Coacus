@@ -235,6 +235,7 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
     for candidate in candidates:
         # Taint rule: a rule/procedure needs trusted evidence; else it is a note.
         if candidate["type"] in taint.TRUST_REQUIRED and not candidate["trusted"]:
+            candidate["original_type"] = candidate["type"]
             candidate["type"] = "note"
             candidate["downgraded"] = "externally-tainted evidence"
 
@@ -262,6 +263,9 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
             "verification": result,
             "status": "proposed",
         }
+        if candidate.get("downgraded"):
+            record["downgraded"] = candidate["downgraded"]
+            record["original_type"] = candidate.get("original_type", record["type"])
         proposals.append(record)
 
     if proposals and _windows():

@@ -9,6 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
+- Snapshots are split on newlines only, so a record that carries U+2028 or U+0085 is no longer cut and dropped. A downgraded proposal records `downgraded` and `original_type`, and a gap claim is compared after NFKC folding, case folding and whitespace collapse.
 - The improvement loop can propose a `skill-gap` when an observation carries the structured field `kind: "route-miss"`. On every routing branch it needs a trusted-channel unit from three distinct sessions; its claim is cleaned and hashed in full, its statement is capped, and the stored proposal never keeps the text. Types that need trust now come from one constant, `taint.TRUST_REQUIRED`. See ADR 0013.
 
 ## [Unreleased] — Guard events, MCP verb and self-protection

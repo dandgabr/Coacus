@@ -30,6 +30,14 @@ model output into a request for new skills.
 
 ## Consequences
 
+- Nothing in the repository emits an observation with `kind: "route-miss"` yet, so
+  the type is inert until a producer exists. Whoever adds one must assign the channel
+  and the session in code, not copy them from model output.
+- A claim is compared after NFKC folding, case folding and whitespace collapse, so
+  full-width letters, doubled spaces and capitals of one wording count as one claim; a
+  paraphrase is still a different claim.
+- A gap routed as a `note` because its evidence was not trusted keeps `downgraded` and
+  `original_type` in the stored record, so a reviewer can tell where it started.
 - The `kind`, the `channel` and the `session_id` of an observation are all read from
   the record, so whoever writes the record can write a convincing gap, including
   three invented session ids. Structure keeps free text from choosing the type; it is

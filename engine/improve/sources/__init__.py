@@ -75,7 +75,9 @@ def load_observations(path: Path) -> list[dict]:
 def parse_observations(text: str) -> list[dict]:
     """Parse the same snapshot used for source integrity verification."""
     observations: list[dict] = []
-    for line in text.splitlines():
+    # Split on "\n" only: str.splitlines() also breaks on U+2028, U+0085 and similar,
+    # which would cut a genuine JSON record that carries one of them and drop it.
+    for line in text.split("\n"):
         line = line.strip()
         if not line:
             continue

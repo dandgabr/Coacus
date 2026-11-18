@@ -59,6 +59,13 @@ class TestTypeComesFromAStructuredField(unittest.TestCase):
         candidates = consolidate.consolidate([gap("s1", prefix + " one"), gap("s2", prefix + " two")])
         self.assertEqual(len(candidates), 2)
 
+    def test_variants_of_one_wording_count_as_one_claim(self) -> None:
+        wide = "".join(chr(ord(c) + 0xFEE0) if "a" <= c <= "z" else c for c in "no skill for ledger")
+        texts = ["no skill for ledger", "NO  SKILL for   ledger", wide, " No Skill For Ledger "]
+        candidates = consolidate.consolidate([gap(f"s{i}", t) for i, t in enumerate(texts)])
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0]["support"], len(texts))
+
     def test_a_gap_that_is_only_invisible_characters_is_dropped(self) -> None:
         self.assertEqual(consolidate.consolidate([gap("s1", chr(0x200B) * 5)]), [])
 
@@ -135,6 +142,18 @@ class TestEndToEnd(unittest.TestCase):
                 path = write(tmp.name, [gap(s, "ledger migrations rollback tooling") for s in sessions])
                 result = loop.run(root, {"source": "transcript", "transcript": str(path)})
                 self.assertEqual([p["type"] for p in result.get("proposals", [])], expected)
+
+    def test_a_downgraded_gap_keeps_its_original_type(self) -> None:
+        result = self._run([gap(s, channel="model-assistant") for s in ("s1", "s2", "s3")])
+        for proposal in result.get("proposals", []):
+            self.assertEqual(proposal["downgraded"], "externally-tainted evidence")
+            self.assertEqual(proposal["original_type"], "skill-gap")
+
+    def test_a_record_with_a_unicode_line_separator_is_not_dropped(self) -> None:
+        text = "ledger" + chr(0x2028) + "migrations"
+        parsed = loop.sources.parse_observations(json.dumps(gap("s1", text), ensure_ascii=False) + "\n")
+        self.assertEqual(len(parsed), 1)
+        self.assertEqual(parsed[0]["text"], text)
 
     def test_known_limit_invented_session_ids_still_count(self) -> None:
         # Recorded in ADR 0013: the session id is read from the record, so a writer of
