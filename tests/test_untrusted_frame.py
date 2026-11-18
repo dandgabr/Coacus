@@ -82,7 +82,7 @@ class FrameShape(unittest.TestCase):
         self.assertIn("id=tok2", two)
 
     def test_rejects_bad_label_and_identifier(self):
-        labels = ["", "a b", "x" * (uf.MAX_LABEL + 1), "caf" + _c(0xE9), "line\nbreak",
+        labels = ["", "two words", "x" * (uf.MAX_LABEL + 1), "caf" + _c(0xE9), "line\nbreak",
                   "x-untrusted-data", "UNTRUSTED-DATA"]
         for label in labels:
             with self.subTest(label=label), self.assertRaises(ValueError):
