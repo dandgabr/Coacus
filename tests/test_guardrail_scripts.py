@@ -39,6 +39,10 @@ POLICY = {
 }
 
 
+def _env_truthy(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() not in ("", "0", "false", "no", "off")
+
+
 def enabled_root(tmp: str) -> Path:
     root = Path(tmp)
     policies = root / "methodology/lifecycle/policies"
@@ -451,8 +455,15 @@ class TestOpenCodeDeny(unittest.TestCase):
             {"tool": "read", "tool_input": {"filePath": "repo/README.md"}}), self.root)
         self.assertEqual(json.loads(out), {})
 
-    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def _node_or_fail(self) -> None:
+        """Skip locally without Node, but fail in CI so the check cannot vanish."""
+        if not shutil.which("node"):
+            if _env_truthy("CI"):
+                self.fail("node is required in CI for the OpenCode plugin test")
+            self.skipTest("node is not installed")
+
     def test_generated_plugin_throws_on_deny_and_passes_otherwise(self) -> None:
+        self._node_or_fail()
         plugin = (REPO / "harnesses/opencode/bootstrap/coacus-guardrails.js").read_text(encoding="utf-8")
         plugin = plugin.replace("__COACUS_ROOT__", str(self.root)).replace(
             "__COACUS_PYTHON__", sys.executable)
@@ -474,6 +485,30 @@ class TestOpenCodeDeny(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertEqual(json.loads(proc.stdout.strip()), ["blocked", "passed"])
 
+
+    def test_default_export_setup_path_blocks_too(self) -> None:
+        self._node_or_fail()
+        plugin = (REPO / "harnesses/opencode/bootstrap/coacus-guardrails.js").read_text(encoding="utf-8")
+        plugin = plugin.replace("__COACUS_ROOT__", str(self.root)).replace(
+            "__COACUS_PYTHON__", sys.executable)
+        (self.root / "scripts").mkdir(exist_ok=True)
+        shutil.copy(GUARD_CLI, self.root / "scripts/coacus_guard.py")
+        shutil.copytree(REPO / "engine", self.root / "engine", dirs_exist_ok=True)
+        (self.root / "plugin.mjs").write_text(plugin, encoding="utf-8")
+        driver = (
+            "import plugin from './plugin.mjs';\n"
+            "let hook;\n"
+            "await plugin.setup({ tool: { hook: async (name, fn) => { hook = fn; } } });\n"
+            "const run = async (path) => { try {\n"
+            "  await hook({ tool: 'read', input: { filePath: path } });\n"
+            "  return 'passed'; } catch (e) { return 'blocked'; } };\n"
+            "console.log(JSON.stringify([await run('repo/.env'), await run('repo/README.md')]));\n"
+        )
+        (self.root / "driver2.mjs").write_text(driver, encoding="utf-8")
+        proc = subprocess.run(["node", "driver2.mjs"], cwd=self.root, capture_output=True,
+                              text=True, env=clean_env(), timeout=60)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(json.loads(proc.stdout.strip()), ["blocked", "passed"])
 
 class TestEvaluator(unittest.TestCase):
     def test_precedence_is_monotonic(self) -> None:

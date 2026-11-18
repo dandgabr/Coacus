@@ -36,15 +36,15 @@
         "can_ask": false,
         "effect": "throw",
         "evidence": "documented",
-        "resolved": "2026-09-30",
-        "source": "https://opencode.ai/docs/plugins"
+        "resolved": "2026-11-18",
+        "source": "https://opencode.ai/docs/build/plugins/migrate-v1"
       },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "metadata", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "transform", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "context.precompact": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "context", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "session.end": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "turn.stop": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
-      "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" }
+      "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-11-18", "source": "https://opencode.ai/docs/build/plugins/migrate-v1" }
     }
   },
   "plugins": [
@@ -73,6 +73,6 @@
   ],
   "install": {
     "method": "copy the rendered plugin into the harness plugin directory",
-    "target": "{config_dir}/plugins/coacus.js"
+    "target": "{config_dir}/plugins/ (coacus.js, coacus-governor.js, coacus-guardrails.js)"
   }
 }

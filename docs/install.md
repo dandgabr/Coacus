@@ -343,9 +343,12 @@ partial install (`--only`/`--skills`).
 python3 scripts/coacus_install.py opencode
 ```
 
-The script copies both plugins into `~/.config/opencode/plugins/` with
+The script copies the plugins into `~/.config/opencode/plugins/` with
 `__COACUS_ROOT__` substituted for this repository's path, and mirrors the skills
-under `~/.config/opencode/skills/`. The second plugin, `coacus-governor.js`, is
+under `~/.config/opencode/skills/`. The third plugin, `coacus-guardrails.js`, runs
+the guardrail policies before each tool call and blocks a call by throwing when a
+policy denies it; an `ask` degrades to `deny` there because OpenCode cannot ask. The
+second plugin, `coacus-governor.js`, is
 the governor gate: it intercepts subagent spawns, enforces the concurrency cap,
 and parks a caller as PAUSED when it sees a rate limit. Knobs:
 `ORCH_MAX_CONCURRENT` (default 5), `GOVERNOR_STATE_DIR`, `GOVERNOR_LEASE_SECONDS`.

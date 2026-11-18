@@ -9,7 +9,8 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Fixed
 
-- `scripts/coacus_guard.py` now renders a `deny` for OpenCode. Before this change it printed `{}` for that harness, so the generated plugin never saw a deny and no policy blocked a tool call there. An `ask` also renders as `deny`, because OpenCode has no way to ask. Tests prove the block end to end with the generated plugin under Node.
+- The OpenCode `tool.pre` evidence now cites the current plugin documentation, `install.target` lists all three plugins, and `docs/install.md` describes the guardrail plugin.
+- `scripts/coacus_guard.py` now renders a `deny` for OpenCode. Before this change it printed `{}` for that harness, so the generated plugin never saw a deny and no policy blocked a tool call there. An `ask` also renders as `deny`, because OpenCode has no way to ask. Tests prove the block end to end with the generated plugin under Node, through both the named export and the default export; they skip locally without Node and fail in CI.
 
 ## [Unreleased] — Guard `ask` capability gating
 
