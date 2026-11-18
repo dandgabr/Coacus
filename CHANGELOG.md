@@ -5,6 +5,13 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Guard command corpus
+
+### Added
+
+- `tests/test_guardrail_command_corpus.py` locks how command deny rules read shell lines: wrappers, `sh -c`, command substitution, pipes, symlinks and mere mentions, plus two end-to-end checks of the JSON the guard prints.
+- It also records seven shapes that bypass a command deny rule today, as expected failures: a brace group, process substitution, `eval`, a here-string, `find -exec`, `env -S` and variable indirection. They are not fixed here; each test fails loudly once its shape is fixed, so the mark must then be removed.
+
 ## [Unreleased] — Guard deny for OpenCode
 
 ### Fixed
