@@ -47,7 +47,7 @@ from engine.guardrail import evaluate as guard  # noqa: E402
 
 # Tool names are compared in lower case, so ``Read`` and ``read`` are one tool.
 READ_TOOLS = {"read", "read_file", "view_file", "grep", "glob", "list", "ls", "notebookread",
-              "view", "cat", "search_files", "find_files"}
+              "view", "cat", "search_files", "find_files", "grep_search", "find_by_name"}
 WRITE_TOOLS = {"write", "edit", "write_file", "edit_file", "apply_patch", "write_to_file",
                "replace_file_content", "multiedit", "patch", "notebookedit", "str_replace_editor",
                "create_file", "delete_file"}
