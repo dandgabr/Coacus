@@ -20,11 +20,11 @@ a `lifecycle` block is a closed capability (no events, nothing installable).
 
 ## Declared gaps
 
-- **antigravity** `tool.pre` — unverified: the hooks page does not say whether PreToolUse receives MCP tools or under what name (the MCP page names them mcp_<server>_<tool>, which the guard does not match); an mcp rule may never run here
+- **antigravity** `tool.pre` — unverified: the hooks page does not say whether PreToolUse receives MCP tools or under what name (the MCP page names them mcp_<server>_<tool>, which the guard does not match); an mcp rule may never run here; a live run on 2026-11-18 (agy 1.5.11) was not possible because the account is disabled by the service, so this stays unverified
 - **antigravity** `session.start` — unsupported: Antigravity has no SessionStart event; only an always_on rule
 - **antigravity** `session.end` — unsupported: no session-end event
 - **antigravity** `subagent.start` — emulate: only via PreToolUse on the spawn tool
-- **codex** `tool.pre` — unverified: whether PreToolUse fires for MCP tools, and under what name, is not stated in the pages read; an mcp rule may never run here
+- **codex** `tool.pre` — observed: Codex 0.169.0, run live on 2026-11-18 with an isolated CODEX_HOME: PreToolUse fires for an MCP tool with tool_name mcp__<server>__<tool> and the arguments in tool_input, and a deny from the guard blocked the call (the shell tool arrives as Bash). Not run: other versions. Supported: 0.169.0 and later
 - **codex** `session.end` — advisory: SessionEnd is advisory on Codex; it cannot block
 - **codex** `tool.pre` — trust-gate: Codex refuses to run an untrusted hook until the operator approves it
 - **command-code** `session.start` — never-blocks: SessionStart is non-blocking by design on Command Code

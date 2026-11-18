@@ -24,7 +24,7 @@
       "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://antigravity.google/docs/hooks" }
     },
     "gaps": [
-      { "event": "tool.pre", "status": "unverified", "reason": "the hooks page does not say whether PreToolUse receives MCP tools or under what name (the MCP page names them mcp_<server>_<tool>, which the guard does not match); an mcp rule may never run here" },
+      { "event": "tool.pre", "status": "unverified", "reason": "the hooks page does not say whether PreToolUse receives MCP tools or under what name (the MCP page names them mcp_<server>_<tool>, which the guard does not match); an mcp rule may never run here; a live run on 2026-11-18 (agy 1.5.11) was not possible because the account is disabled by the service, so this stays unverified" },
       { "event": "session.start", "status": "unsupported", "reason": "Antigravity has no SessionStart event; only an always_on rule" },
       { "event": "session.end", "status": "unsupported", "reason": "no session-end event" },
       { "event": "subagent.start", "status": "emulate", "reason": "only via PreToolUse on the spawn tool" }
