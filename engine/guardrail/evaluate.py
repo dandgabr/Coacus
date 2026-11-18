@@ -29,6 +29,11 @@ import shlex
 from pathlib import Path
 
 EVENTS_PATH = "methodology/lifecycle/events.json"
+# The canonical event ids; a test keeps this equal to events.json.
+KNOWN_EVENTS = frozenset({
+    "tool.pre", "prompt.submit", "turn.stop", "tool.post", "tool.failure",
+    "session.start", "session.end", "context.precompact", "subagent.start", "subagent.stop",
+})
 ACTIONS_PATH = "methodology/lifecycle/actions.schema.json"
 POLICIES_DIR = "methodology/lifecycle/policies"
 
@@ -911,8 +916,12 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
             p_verb, _ = _action_of(policy)
             if p_verb != verb:
                 continue
-            if str(policy.get("event", "tool.pre")) != event:
+            bound = policy.get("event", "tool.pre")
+            if isinstance(bound, str) and bound in KNOWN_EVENTS and bound != event:
                 continue
+            # A missing event means tool.pre. An unknown, misspelled or non-string
+            # value is not skipped: the policy applies on every event, so a typo can
+            # never switch a rule off.
             if not _policy_matches(policy, resource):
                 continue
         except Exception:  # a malformed entry must not stop the other policies

@@ -47,6 +47,20 @@ class TestEventBinding(unittest.TestCase):
         self.assertEqual(result["policy_id"], "p-tool.pre")
 
 
+class TestUnknownEventsFailClosed(unittest.TestCase):
+    def test_known_events_equal_the_taxonomy(self) -> None:
+        taxonomy = json.loads((REPO / "methodology/lifecycle/events.json").read_text(encoding="utf-8"))
+        self.assertEqual(guard.KNOWN_EVENTS, {e["id"] for e in taxonomy["events"]})
+
+    def test_a_bad_event_value_never_switches_a_rule_off(self) -> None:
+        for bad in ("PreToolUse", "tool.pre ", "", None, ["tool.pre"], 5, "tool.pr"):
+            with self.subTest(bad=bad):
+                item = policy()
+                item["event"] = bad
+                for current in ("tool.pre", "tool.post"):
+                    self.assertEqual(guard.evaluate([item], "read", "x.env", current)["decision"], "deny")
+
+
 class TestGuardEnforcesOnlyToolPre(unittest.TestCase):
     def _run(self, harness: str, event: str) -> dict:
         with tempfile.TemporaryDirectory() as tmp:

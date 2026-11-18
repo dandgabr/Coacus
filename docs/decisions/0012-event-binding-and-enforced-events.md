@@ -21,6 +21,9 @@ is rendered for them.
 - A policy binds one event through its `event` field; a missing field means
   `tool.pre`. The evaluator skips a policy whose event is not the one being decided,
   so adding a new rendered event can never change what an existing policy does.
+- A missing event means `tool.pre`. An event value that is not one of the canonical
+  ids (a typo, another harness's name, a list, a number) is not skipped: the policy
+  applies on every event, so a mistake can never switch a rule off.
 - The guard decides, blocks and asks only on `tool.pre`. Any other event gets "no
   opinion" (`{}`, or an explicit allow where the harness requires one). Observe
   events can never deny (`events.json`), and no other gate event is rendered yet.
