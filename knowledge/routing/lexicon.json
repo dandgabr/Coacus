@@ -1012,11 +1012,14 @@
       "code audit",
       "code review",
       "conformidade de codigo",
+      "full review",
       "project review",
       "revisao",
+      "revisao de seguranca",
       "revisar arquitetura",
       "revisar codigo",
-      "revisão de projeto"
+      "revisão de projeto",
+      "security review"
     ],
     "qa-testing-specialist": [
       "qa",
@@ -1075,7 +1078,6 @@
       "parecer",
       "parecer técnico",
       "pasta",
-      "revisao de seguranca",
       "risco de arquitetura",
       "sabsa",
       "security architecture",
@@ -1095,7 +1097,9 @@
       "sca",
       "devsecops",
       "vulnerabilidade",
-      "vulnerability"
+      "vulnerability",
+      "security question",
+      "security triage"
     ],
     "skill-auditor": [
       "skill auditor",

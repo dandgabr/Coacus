@@ -483,7 +483,7 @@
     {
       "name": "project-reviewer",
       "category": "software-engineering",
-      "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+      "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review, not for a single-aspect question.",
       "source": "knowledge/agents/software-engineering/project-reviewer/agent.source.md"
     },
     {
@@ -513,13 +513,13 @@
     {
       "name": "security-architect",
       "category": "cybersecurity",
-      "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+      "description": "Acts as the security architect of the project: owns its security architecture, threat models, trust zones, control baseline, security decision records and normative Technical Opinions with P0 to P3 severity and Go-Live gating. Use it for design-level security decisions, not for general security questions or code review.",
       "source": "knowledge/agents/cybersecurity/security-architect/agent.source.md"
     },
     {
       "name": "security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
+      "description": "Answers information-security questions and routes security work to the matching security agent. Use it for a security question, to triage a security request, or when it is unclear which security agent applies.",
       "source": "knowledge/agents/cybersecurity/security-specialist/agent.source.md"
     },
     {

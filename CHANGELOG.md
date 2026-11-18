@@ -5,6 +5,15 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Exclusive roles for three review agents
+
+### Changed
+
+- `security-specialist` now answers security questions and routes work to the agent that owns it. It no longer carries the code-review protocol or runs assessments.
+- `security-architect` is the security architect of the project: threat models, trust zones, control baseline, Technical Opinions and Go-Live gates, with an explicit role boundary.
+- `project-reviewer` is the general reviewer across every aspect. It received the security code-review protocol and its finding schema, and it can dispatch project-defined and catalog agents, read-only and under the governor.
+- Routing terms: `revisao de seguranca` moved from `security-architect` to `project-reviewer`; `security question` and `security triage` route to `security-specialist`.
+
 ## [Unreleased] — Guard events, MCP verb and self-protection
 
 ### Added

@@ -2359,10 +2359,13 @@
     {
       "name": "project-reviewer",
       "category": "software-engineering",
-      "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+      "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review, not for a single-aspect question.",
       "skills": [
         "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-        "knowledge/skills/roles/project-reviewer/SKILL.md"
+        "knowledge/skills/roles/project-reviewer/SKILL.md",
+        "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
+        "methodology/workflows/dispatching-parallel-agents/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
       ],
       "triggers": [
         "auditar",
@@ -2371,11 +2374,14 @@
         "code audit",
         "code review",
         "conformidade de codigo",
+        "full review",
         "project review",
         "revisao",
+        "revisao de seguranca",
         "revisar arquitetura",
         "revisar codigo",
-        "revis\u00e3o de projeto"
+        "revis\u00e3o de projeto",
+        "security review"
       ]
     },
     {
@@ -2484,7 +2490,7 @@
     {
       "name": "security-architect",
       "category": "cybersecurity",
-      "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+      "description": "Acts as the security architect of the project: owns its security architecture, threat models, trust zones, control baseline, security decision records and normative Technical Opinions with P0 to P3 severity and Go-Live gating. Use it for design-level security decisions, not for general security questions or code review.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
@@ -2505,7 +2511,6 @@
         "parecer",
         "parecer t\u00e9cnico",
         "pasta",
-        "revisao de seguranca",
         "risco de arquitetura",
         "sabsa",
         "security architecture",
@@ -2518,7 +2523,7 @@
     {
       "name": "security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Information Security, covering AppSec practices (SAST, DAST, IAST, RASP, SCA), DevSecOps, privacy regulatory compliance (LGPD/GDPR) and threat modeling.",
+      "description": "Answers information-security questions and routes security work to the matching security agent. Use it for a security question, to triage a security request, or when it is unclear which security agent applies.",
       "skills": [
         "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md",
         "knowledge/skills/security/operations/security-champions/SKILL.md",
@@ -2547,7 +2552,9 @@
         "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
         "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
         "knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md",
-        "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md"
+        "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
+        "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
       ],
       "triggers": [
         "appsec",
@@ -2558,6 +2565,8 @@
         "sast",
         "sca",
         "security",
+        "security question",
+        "security triage",
         "seguran\u00e7a",
         "vulnerabilidade",
         "vulnerability"

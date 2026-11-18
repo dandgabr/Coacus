@@ -1,6 +1,6 @@
 {
   "name": "project-reviewer",
   "version": "0.1.0",
-  "description": "Project Review Agent specialized in auditing business rules, technical distribution (Database, Backend, Frontend) and software architecture and security best practices.",
+  "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review, not for a single-aspect question.",
   "entrypoint": "AGENT.md"
 }
