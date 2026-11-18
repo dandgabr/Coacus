@@ -114,6 +114,21 @@ run (`engine/guardrail/evaluate.py:command_candidates`: wrappers, `sh -c`,
 `grep`, `git commit -m` or a path does not fire. Matching is best-effort (shell is
 Turing complete); it narrows accidents, it is not a sandbox.
 
+## Protecting the guard from the session
+
+The guard runs in the session it governs, so an agent can switch it off by editing a
+file instead of dodging a rule. `methodology/lifecycle/policies/self-protection.policy.json`
+denies the write tools on the guard script, the evaluator, the policy directories and each
+harness's hook files. It is disabled by default (ADR 0006); the installer offers it with
+`--self-protection on|off|prompt` (an interactive install asks, and No is the default), see
+[ADR 0015](../decisions/0015-guard-self-protection.md). It does not cover a write made
+through the shell, so it is a tripwire, not a sandbox: for a real barrier use isolation
+outside the session (a sandbox, read-only files, the harness's managed settings).
+
+**To release a legitimate edit**, the person (never the agent) either makes the edit in their
+own terminal, or sets `"enabled": false` in the installed `self-protection.policy.json`,
+edits, and sets it back to `true`. Every denial message says this.
+
 ## Rationale
 
 Event names are the least portable axis; the policy is the most portable. Inverting

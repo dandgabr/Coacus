@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "enabled": false,
+  "description": "Self-protection for the guardrail: denies the agent's file-write tools on the files that configure or run the guard. DISABLED by default (ADR 0006); copy this file into the user policy directory with \"enabled\": true to activate it. It stops an edit through a write tool only, not a shell redirection, so it raises the cost of switching the guard off and makes the attempt visible; it is not a sandbox (ADR 0015).",
+  "policies": [
+    {
+      "id": "guard-policies-dir",
+      "title": "Block writes to the user policy directory",
+      "action": {
+        "verb": "write",
+        "resource": "*coacus/policies/*"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-repo-policies",
+      "title": "Block writes to the shipped policy files",
+      "action": {
+        "verb": "write",
+        "resource": "*methodology/lifecycle/policies/*"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-script",
+      "title": "Block writes to the guard script",
+      "action": {
+        "verb": "write",
+        "resource": "*scripts/coacus_guard.py"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-engine",
+      "title": "Block writes to the guard evaluator",
+      "action": {
+        "verb": "write",
+        "resource": "*engine/guardrail/*"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-claude",
+      "title": "Block writes to Claude Code settings",
+      "action": {
+        "verb": "write",
+        "resource": "*.claude/settings.json"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-claude-local",
+      "title": "Block writes to Claude Code local settings",
+      "action": {
+        "verb": "write",
+        "resource": "*.claude/settings.local.json"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-codex",
+      "title": "Block writes to the Codex hook and config files",
+      "action": {
+        "verb": "write",
+        "resource": "*.codex/hooks.json"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-codex-config",
+      "title": "Block writes to the Codex config",
+      "action": {
+        "verb": "write",
+        "resource": "*.codex/config.toml"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-opencode",
+      "title": "Block writes to the OpenCode plugins",
+      "action": {
+        "verb": "write",
+        "resource": "*opencode/plugins/*"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-cursor",
+      "title": "Block writes to the Cursor hooks",
+      "action": {
+        "verb": "write",
+        "resource": "*.cursor/hooks.json"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    },
+    {
+      "id": "guard-hook-antigravity",
+      "title": "Block writes to the Antigravity plugin hooks",
+      "action": {
+        "verb": "write",
+        "resource": "*config/plugins/*/hooks.json"
+      },
+      "decision": "deny",
+      "on_ask_unavailable": "deny",
+      "on_decision_failure": "deny",
+      "on_mechanism_failure": "allow",
+      "severity": "high",
+      "evidence": "documented",
+      "message": "Blocked by guard-self-protection: this file controls the guardrail itself. If the edit is legitimate, the person (not the agent) releases it: make the edit in their own terminal, or set \"enabled\": false in the active copy of self-protection.policy.json, then enable it again. See docs/standards/lifecycle-guardrails.md#protecting-the-guard-from-the-session."
+    }
+  ]
+}

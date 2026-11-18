@@ -2973,6 +2973,45 @@ def browser_policy_step(
     return summary
 
 
+def self_protection_step(
+    root: Path,
+    mode: str,
+    policy_dir: Path,
+    dry_run: bool = False,
+    ask=None,
+    say=print,
+) -> dict[str, object]:
+    """Decide and write the guard self-protection policy.
+
+    ``mode`` is ``off`` (do nothing), ``on`` or ``prompt`` (an interactive question whose
+    default answer is No). Like every generated policy it is machine-local and opt-in
+    (ADR 0006), and the question says how to release an edit that is legitimate.
+    """
+    from engine.guardrail import selfprotect
+
+    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix()}
+    if mode == "off":
+        return summary
+    if mode == "prompt":
+        say("Guard self-protection: block the agent's file-write tools on the guard, its policies and the "
+            "harness hook files. A shell redirection is not covered. " + selfprotect.RELEASE_HOW)
+        try:
+            answer = (ask or _confirm)("Turn self-protection on? [y/N] ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            answer = ""
+        if answer not in ("y", "yes"):
+            summary["status"] = "skipped"
+            return summary
+    document = selfprotect.build_policy(root, policy_dir)
+    summary.update(policies=len(document["policies"]), document=document)
+    if dry_run:
+        summary["status"] = "dry-run"
+        return summary
+    summary["policy_file"] = selfprotect.write_policy(policy_dir, document).as_posix()
+    summary["status"] = "written"
+    return summary
+
+
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     """Parse arguments and run install, uninstall, verify or list."""
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
@@ -3081,6 +3120,14 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="optional second browser id agents may drive if the primary is unavailable",
     )
     parser.add_argument(
+        "--self-protection",
+        choices=["off", "on", "prompt"],
+        default=None,
+        help="install the policy that stops the agent's write tools from editing the guard, its "
+        "policies and the harness hook files (default: ask on an interactive terminal, with No as "
+        "the answer; off otherwise). It does not stop a shell redirection",
+    )
+    parser.add_argument(
         "--browser-policy-dir",
         help="directory for the generated browser policy (default: the user policy directory)",
     )
@@ -3151,6 +3198,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                 )
             }
             results[0]["ask_warnings"] = ask_warnings(root or ROOT, harnesses)
+            from engine.guardrail import selfprotect
+
+            results[0]["self_protection"] = {
+                "status": selfprotect.status(_browser_policy_dir(args.config_dir, args.browser_policy_dir))}
         print(json.dumps(results, indent=2))
         return 0 if ok else 1
 
@@ -3171,6 +3222,7 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
     policy_dir = _browser_policy_dir(args.config_dir, args.browser_policy_dir)
     browser: dict[str, object] = {"mode": "off", "status": "off"}
+    self_summary: dict[str, object] = {"mode": "off", "status": "off"}
     extra_docs: list[dict] | None = None
     if not args.uninstall:
         if args.browser_primary or args.browser_fallback:
@@ -3194,6 +3246,12 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         document = browser.get("document")
         extra_docs = [document] if isinstance(document, dict) else None
         browser = {k: v for k, v in browser.items() if k != "document"}
+        self_mode = args.self_protection or (
+            "prompt" if sys.stdin.isatty() and sys.stdout.isatty() and not args.dry_run else "off")
+        self_summary = self_protection_step(root or ROOT, self_mode, policy_dir, dry_run=args.dry_run)
+        if self_summary.get("document"):
+            extra_docs = (extra_docs or []) + [self_summary["document"]]
+        self_summary = {k: v for k, v in self_summary.items() if k != "document"}
 
     results = []
     for harness in harnesses:
@@ -3218,8 +3276,13 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
         # The policy is machine-wide: only a full uninstall removes it.
         browser = {"mode": "off", "status": "removed" if browsers.remove_policy(policy_dir) else "absent"}
+    if args.uninstall and args.harness == "all" and not args.dry_run:
+        from engine.guardrail import selfprotect
+
+        self_summary = {"mode": "off", "status": "removed" if selfprotect.remove_policy(policy_dir) else "absent"}
     if results:
         results[0]["browser_policy"] = browser
+        results[0]["self_protection"] = self_summary
         if warnings:
             results[0]["ask_warnings"] = warnings
     if args.verify_after_install:

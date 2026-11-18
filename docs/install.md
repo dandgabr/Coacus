@@ -198,6 +198,12 @@ repository policies; nothing is committed to the repository.
   `--browser-policy prompt|off` force the mode; `--browser-primary <id>` and
   `--browser-fallback <id>` select explicitly (an id that is not installed stops the
   run before anything is written, exit code 2).
+- `--self-protection on|off|prompt` installs the policy that denies the agent's write tools
+  on the guard, its policies and the harness hook files (see
+  [ADR 0015](decisions/0015-guard-self-protection.md)). The default is `prompt` on an
+  interactive terminal, with No as the answer, and `off` elsewhere. To release a legitimate
+  edit, make it in your own terminal or set `"enabled": false` in the installed
+  `self-protection.policy.json`, edit, and turn it back on.
 - `--browser-policy-dir <dir>` overrides the destination; a custom `--config-dir`
   keeps the policy beside it (`<config-dir>/coacus-policies`).
 - `--dry-run` reports the selection and the policy count without writing;

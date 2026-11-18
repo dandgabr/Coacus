@@ -672,6 +672,34 @@ Structural errors in the catalogue (blocking).
 
 Non-blocking findings: a pattern too broad to carry signal.
 
+### `engine/guardrail/selfprotect.py`
+
+The opt-in policy that stops the agent's write tools from editing the guardrail itself.
+
+The shipped source is ``methodology/lifecycle/policies/self-protection.policy.json``
+(disabled, like every shipped policy). The installer writes an enabled, machine-local
+copy into the user policy directory when the person chooses it. It is a speed bump and
+a visible tripwire, not a sandbox: a shell redirection is not a write tool (ADR 0015).
+
+#### `def build_policy(root: Path, policy_dir: Path) -> dict`
+
+Return the enabled policy document, also covering the actual policy directory.
+
+A custom policy directory (``COACUS_POLICY_DIR`` or ``--browser-policy-dir``) would
+otherwise sit outside the shipped patterns.
+
+#### `def write_policy(directory: Path, document: dict) -> Path`
+
+Write the document into ``directory`` and return its path.
+
+#### `def remove_policy(directory: Path) -> bool`
+
+Delete the generated policy; a hand-written file of the same name is kept.
+
+#### `def status(directory: Path) -> str`
+
+``active``, ``disabled`` (file present, not enabled) or ``absent``.
+
 ### `engine/provenance.py`
 
 Provenance manifest for imported artifacts (P4 / provenance).
@@ -1646,6 +1674,14 @@ Detect installed browsers, choose primary/fallback and write the policy.
 The generated policy is machine-local (D2: opt-in, never changes behaviour
 unasked) and is returned alongside a summary so the installer can check it
 can be enforced on each harness before writing anything.
+
+#### `def self_protection_step(root: Path, mode: str, policy_dir: Path, dry_run: bool=False, ask=None, say=print) -> dict[str, object]`
+
+Decide and write the guard self-protection policy.
+
+``mode`` is ``off`` (do nothing), ``on`` or ``prompt`` (an interactive question whose
+default answer is No). Like every generated policy it is machine-local and opt-in
+(ADR 0006), and the question says how to release an edit that is legitimate.
 
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 
