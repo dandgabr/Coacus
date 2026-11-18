@@ -54,9 +54,12 @@ opt-in.
 - Live check, OpenCode 2.3.0 on 2026-11-18 (see ADR 0014): with a policy asking on a
   read, the `evaluate` hook fired for the read, received the action `read` with the
   path in `resources`, and the harness enforced the `ask` that the plugin wrote over
-  an `allow` (the non-interactive run rejected it). The `shell` and `edit` actions
-  arrived under those names. Not run: an interactive approval, other versions, and
-  a permission mode that approves by itself. The second opt-in therefore stays.
+  an `allow`. Run in the terminal UI, the harness showed its permission prompt:
+  "Allow once" ran the read and "Reject" stopped it. With `--auto` the harness
+  approved the same `ask` without a prompt and the read ran, so an `ask` is not a
+  barrier in that mode; only a `deny` is. The `shell` and `edit` actions arrived
+  under those names. Supported: OpenCode 2.3.0 and later. Earlier versions are not
+  tested and not supported. The second opt-in stays, because of `--auto`.
 - Risks that apply to every harness and are not removed by this record: a guard is a
   hook the agent's own session may be able to edit or disable (the harness settings,
   the plugin, the guard script and the user policy directory are ordinary files);
