@@ -26,6 +26,7 @@ import json
 import os
 import re
 import shlex
+import unicodedata
 from pathlib import Path
 
 EVENTS_PATH = "methodology/lifecycle/events.json"
@@ -892,7 +893,17 @@ def _policy_matches(policy: dict, resource: str) -> bool:
         # A prompt is prose: the case of a word never decides whether a rule applies.
         resource = resource.lower()
         patterns = [pattern.lower() for pattern in patterns]
+        if _action_of(policy)[0] == "prompt":
+            # Full-width letters and invisible format characters must not dodge a prompt rule.
+            resource = _fold_prompt(resource)
+            patterns = [_fold_prompt(pattern) for pattern in patterns]
     return any(_resource_matches(pattern, resource) for pattern in patterns)
+
+
+def _fold_prompt(text: str) -> str:
+    """NFKC-fold ``text`` and drop format (``Cf``) characters, then lower-case it."""
+    folded = unicodedata.normalize("NFKC", text)
+    return "".join(ch for ch in folded if unicodedata.category(ch) != "Cf").lower()
 
 
 def _fallback_of(policy: dict) -> str:

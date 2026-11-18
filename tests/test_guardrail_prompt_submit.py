@@ -54,7 +54,9 @@ class TestPromptDecision(GuardCase):
     def test_a_matching_prompt_is_blocked_with_the_reason(self) -> None:
         self.put(document(prompt_policy()))
         out = self._run({"prompt": f"here is my key\n-----{NEEDLE}-----"})
-        self.assertEqual(out, {"decision": "block", "reason": "do not paste keys"})
+        self.assertEqual(out["decision"], "block")
+        self.assertEqual(out["reason"], "do not paste keys")
+        self.assertIs(out["hookSpecificOutput"]["suppressOriginalPrompt"], True)
 
     def test_a_clean_prompt_gets_no_opinion(self) -> None:
         self.put(document(prompt_policy()))
@@ -102,6 +104,22 @@ class TestPromptDecision(GuardCase):
         self.put(document(prompt_policy()))
         huge = "a" * (engine._MAX_COMMAND_CHARS + 1)
         self.assertEqual(self._run({"prompt": huge})["decision"], "block")
+
+    def test_the_oversize_reason_names_the_cap(self) -> None:
+        self.put(document(prompt_policy()))
+        out = self._run({"prompt": "a" * (engine._MAX_COMMAND_CHARS + 1)})
+        self.assertIn(str(engine._MAX_COMMAND_CHARS), out["reason"])
+
+    def test_full_width_and_invisible_characters_do_not_dodge_a_rule(self) -> None:
+        self.put(document(prompt_policy(resource="AKIA")))
+        for text in ("\uff21\uff2b\uff29\uff21123", "A\u200bKIA123", "a\u00adkia"):
+            with self.subTest(text=text):
+                self.assertEqual(self._run({"prompt": text})["decision"], "block")
+
+    def test_a_payload_for_another_event_name_is_not_judged_as_a_prompt(self) -> None:
+        self.put(document(prompt_policy()))
+        self.assertEqual(self._run({"prompt": NEEDLE, "hook_event_name": "UserPromptExpansion"}), {})
+        self.assertEqual(self._run({"prompt": NEEDLE, "hook_event_name": "UserPromptSubmit"})["decision"], "block")
 
     def test_a_disabled_document_blocks_nothing(self) -> None:
         self.put(document(prompt_policy(), enabled=False))
@@ -175,6 +193,29 @@ class TestInstall(GuardCase):
             with self.subTest(doc=doc):
                 self.put(doc)
                 self.assertEqual(self._fragment()["hooks"]["UserPromptSubmit"], [])
+
+    def test_only_a_prompt_rule_that_can_act_adds_the_hook(self) -> None:
+        for policy in (prompt_policy(decision="note"), prompt_policy(verb="exec", resource="*x*"),
+                       prompt_policy(decision="allow")):
+            with self.subTest(policy=policy["decision"] + policy["action"]["verb"]):
+                self.put(document(policy))
+                self.assertEqual(self._fragment()["hooks"]["UserPromptSubmit"], [])
+        self.put(document(prompt_policy(decision="ask")))
+        self.assertEqual(len(self._fragment()["hooks"]["UserPromptSubmit"]), 1)
+
+    def test_the_hook_is_built_on_windows_too(self) -> None:
+        self.put(document(prompt_policy()))
+        with mock.patch.object(coacus_install, "_bound_events", return_value={"prompt.submit"}), \
+                mock.patch.object(coacus_install.os, "name", "nt"):
+            try:
+                entry = self._fragment()["hooks"]["UserPromptSubmit"]
+            except Exception as exc:  # the Windows quoting refuses some interpreter paths
+                self.skipTest(str(exc))
+        self.assertEqual(len(entry), 1)
+        import base64
+        import re
+        encoded = re.search(r"b64decode\('([A-Za-z0-9+/=]+)'\)", entry[0]["hooks"][0]["command"]).group(1)
+        self.assertIn("prompt.submit", json.loads(base64.b64decode(encoded)))
 
     def test_a_harness_with_no_native_name_gets_no_extra_hook(self) -> None:
         self.put(document(prompt_policy()))

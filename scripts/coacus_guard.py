@@ -224,7 +224,13 @@ def _prompt_effect(harness: str, decision: str, message: str) -> str:
     """
     if decision == "allow" or harness != "claude-code":
         return "{}"
-    return json.dumps({"decision": "block", "reason": message or "Blocked by a Coacus guardrail policy."})
+    # By default Claude Code appends the original prompt to the block message and keeps it in
+    # the transcript; suppress the echo so a blocked secret is not printed back.
+    return json.dumps({
+        "decision": "block",
+        "reason": message or "Blocked by a Coacus guardrail policy.",
+        "hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "suppressOriginalPrompt": True},
+    })
 
 
 def _native(harness: str, decision: str, message: str) -> str:
@@ -432,9 +438,13 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
         payload = json.loads(payload_text) if payload_text.strip() else {}
         if event == PROMPT_EVENT:
             text = payload.get("prompt") if isinstance(payload, dict) else None
+            named = payload.get("hook_event_name") if isinstance(payload, dict) else None
             decision, message = "allow", ""
-            if isinstance(text, str) and text:
+            if isinstance(text, str) and text and named in (None, "UserPromptSubmit"):
                 decision, message = _decide(root, harness, event, "default", "prompt", text)
+                if decision != "allow" and len(text) > guard._MAX_COMMAND_CHARS:
+                    message = (f"This prompt is longer than {guard._MAX_COMMAND_CHARS} characters, which a prompt "
+                               f"rule cannot scan, so it is blocked as a whole. {message}").strip()
             return _prompt_effect(harness, decision, message)
         if channel == "evaluate":
             actions = _permission_actions(payload)

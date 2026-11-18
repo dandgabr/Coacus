@@ -32,24 +32,50 @@ deny, so neither is a rule a policy can express with today's verbs.
   event swapped. When no policy binds it the entry is added empty, so a re-install
   removes a hook an earlier run left, and the merge no longer leaves an empty event
   array in a user's settings.
-- A block answers `{"decision": "block", "reason": <policy message>}`; a policy with no
-  message gets a generic reason. A prompt is never asked about: no channel reaches a
+- A block answers `{"decision": "block", "reason": <policy message>}` with
+  `suppressOriginalPrompt`, so Claude Code does not print the blocked text back; a policy
+  with no message gets a generic reason. The text still stays in the transcript and the
+  prompt history, which the vendor documents. A payload whose `hook_event_name` is not
+  `UserPromptSubmit` is not judged.
+- A prompt rule compares after NFKC folding and removal of invisible format characters,
+  so full-width letters and zero-width spaces do not dodge it. A prompt is never asked about: no channel reaches a
   person from this hook, so an `ask` degrades to its `on_ask_unavailable` (deny blocks,
   allow lets the prompt through), as on every harness that cannot ask.
 - The size cap of the evaluator holds: a prompt over 100,000 characters matches every
   `prompt` rule and is blocked by a deny rule, as an oversize value is for every verb.
+  The reason says so and names the cap, because the policy message would point at the
+  wrong cause; the vendor discards a blocked prompt, so the paste is lost.
 
 ## Consequences
 
 - Nothing changes for an installed policy: they were all `tool.pre`, no shipped policy
   binds `prompt.submit`, and the generated `guardrail-hooks.json` files are unchanged.
-- A prompt rule is only as good as its pattern. It reads the text the user typed after
-  the harness expanded nothing: attachments, pasted files read later by a tool and text
-  the model produces are not prompts. It is a tripwire for pasting a secret, not DLP.
+- A prompt rule is only as good as its pattern. The harness expands pasted text before
+  the hook, which helps a secret tripwire; attachments read later by a tool and text the
+  model produces are not prompts. The event also fires for scheduled tasks, `/loop`,
+  background subagent reports and messages from other sessions, so a deny pattern can end
+  those turns. It is a tripwire, not DLP.
+- Enabling a `prompt` policy after installing needs a re-install, because the hook exists
+  only while a policy binds the event (`--verify` reports the missing entry). Disabling
+  one leaves the hook until the next re-install, which only costs a process per prompt.
+- The hook lives in the user-wide settings and runs the guard by its path. If that file is
+  gone (the repository moved or a worktree was removed), Python exits with code 2, which
+  Claude Code reads as a block for this event, and every prompt is refused until the entry
+  is removed by hand or the installer is run again. The `tool.pre` hook has the same fault
+  but leaves the agent able to answer. A mechanism failure inside the guard allows; this
+  one happens before the guard starts.
+- The plugin `hooks.json` and `settings.json` both carry the entry, so the guard may run
+  twice per prompt, as it does for `tool.pre`.
+- A failure or the 30 s default timeout lets the prompt through (D4). The vendor offers
+  `onFailure: "block"` for anyone who wants the opposite.
+- This is an explicit exception to D3: a deny policy bound to `prompt.submit` on a
+  harness with no native hook still installs and is inert there.
 - A deny policy bound to `prompt.submit` on a harness with no native hook still installs
   and is inert there, as ADR 0012 accepted; the installer does not refuse it.
-- Another harness needs its own verified payload and a `native` name; Codex documents a
-  similar event but it was not run live, so it stays out.
+- Another harness needs its own verified payload and a `native` name. Codex documents the
+  same event, payload and answer, so the mechanism would carry over, but Codex ignores a
+  new non-managed hook until the user trusts it in `/hooks`, and it was not run live, so
+  it stays out.
 - `turn.stop` (a block keeps the agent going) and `tool.post` (observe only) need verbs
   and semantics and are still deferred, with the rest of ADR 0012's list.
 

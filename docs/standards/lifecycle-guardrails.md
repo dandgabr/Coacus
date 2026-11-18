@@ -134,7 +134,8 @@ edits, and sets it back to `true`. Every denial message says this.
 A `prompt` rule bound to `prompt.submit` blocks a user prompt whose text matches its
 pattern (case-insensitive). Today only Claude Code has the hook, installed while an
 enabled policy binds the event, and a block shows its reason to the user. A prompt is never
-asked about, and a prompt over 100,000 characters matches every prompt rule. See ADR 0016.
+asked about, and a prompt over 100,000 characters matches every prompt rule. Enabling or
+disabling a prompt policy takes effect at the next install. See ADR 0016.
 
 ## Which tools a rule can see
 

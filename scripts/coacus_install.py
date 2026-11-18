@@ -1271,13 +1271,16 @@ def _guardrail_artifacts(
     frag_path = root / f"harnesses/{harness}/bootstrap/guardrail-hooks.json"
     fragment = None
     if frag_path.is_file():
-        text = subst(frag_path.read_text(encoding="utf-8"))
+        text = frag_path.read_text(encoding="utf-8")
         try:
-            fragment = json.loads(text)
+            template = json.loads(text)
+            if isinstance(template, dict):
+                # On the template, before quoting: the command is still plain words here, so
+                # the swap works the same on POSIX and on Windows (where it becomes a shim).
+                _add_bound_event_hooks(root, data, template)
+            fragment = json.loads(subst(json.dumps(template)))
         except json.JSONDecodeError:
             fragment = None
-    if isinstance(fragment, dict):
-        _add_bound_event_hooks(root, data, fragment)
     return files, fragment
 
 
@@ -1292,8 +1295,13 @@ def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
     for doc in docs:
         policies = doc.get("policies") if isinstance(doc, dict) else None
         for policy in policies if isinstance(policies, list) else []:
-            if isinstance(policy, dict):
-                events.add(str(policy.get("event", "tool.pre")))
+            if not isinstance(policy, dict):
+                continue
+            event = str(policy.get("event", "tool.pre"))
+            action = policy.get("action") if isinstance(policy.get("action"), dict) else {}
+            # An event other than tool.pre gets a hook only for a rule that can act there.
+            if event == "tool.pre" or (action.get("verb") == "prompt" and policy.get("decision") in ("deny", "ask")):
+                events.add(event)
     return events
 
 
