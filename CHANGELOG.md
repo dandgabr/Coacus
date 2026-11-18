@@ -12,7 +12,8 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 - `security-specialist` now answers security questions and routes work to the agent that owns it. It no longer carries the code-review protocol or runs assessments.
 - `security-architect` is the security architect of the project: threat models, trust zones, control baseline, Technical Opinions and Go-Live gates, with an explicit role boundary.
 - `project-reviewer` is the general reviewer across every aspect. It received the security code-review protocol and its finding schema, and it can dispatch project-defined and catalog agents, read-only and under the governor.
-- Routing terms: `revisao de seguranca` moved from `security-architect` to `project-reviewer`; `security question` and `security triage` route to `security-specialist`.
+- A security-only review has an owner: `project-reviewer` takes a review limited to one aspect. Dispatch rules no longer cite a `@CTX` chain, which the TOON protocol does not define; they say never to re-dispatch the agent that handed you the task, and that a delegate returns `NEED_INFO`.
+- Routing terms: `revisao de seguranca` moved from `security-architect` to `project-reviewer`; `security question`, `security triage` and common vulnerability names route to `security-specialist`, and pull-request and threat-model phrases route to `project-reviewer` and `security-architect`.
 
 ## [Unreleased] — Guard events, MCP verb and self-protection
 

@@ -44,7 +44,7 @@ class TestRoleBoundaries(unittest.TestCase):
             text = " ".join(_source(name).split())
             with self.subTest(agent=name):
                 self.assertIn("authorizes coordination", text)
-                self.assertIn("`@CTX` chain", text)
+                self.assertIn("never ", text)
                 self.assertIn("`NEED_INFO`", text)
 
     def test_dispatchers_refuse_agents_defined_inside_the_target(self) -> None:
@@ -58,6 +58,12 @@ class TestRoleBoundaries(unittest.TestCase):
         text = " ".join(_source("project-reviewer").split())
         self.assertIn("read-only tool allowlist", text)
         self.assertIn("unenforced read-only", text)
+
+    def test_a_security_only_review_has_an_owner(self) -> None:
+        reviewer = " ".join(_source("project-reviewer").split())
+        self.assertIn("review limited to one aspect such as security", reviewer)
+        specialist = " ".join(_source("security-specialist").split())
+        self.assertIn("limited to one such as security", specialist)
 
     def test_specialist_names_an_owner_for_running_appsec_tools(self) -> None:
         self.assertIn("`devops-engineer`", _source("security-specialist"))
@@ -78,15 +84,24 @@ class TestRouting(unittest.TestCase):
         self.assertEqual(self._top("full review of this project"), "project-reviewer")
         self.assertEqual(self._top("code review of this change"), "project-reviewer")
 
+    def test_review_and_question_requests_reach_the_right_role(self) -> None:
+        cases = (("review this pull request", "project-reviewer"),
+                 ("security-only review of this change", "project-reviewer"),
+                 ("explain owasp asvs level 2", "security-specialist"),
+                 ("threat model our payment service", "security-architect"))
+        for prompt, expected in cases:
+            with self.subTest(prompt=prompt):
+                names = [c.name for c in router.rank(ROOT, prompt, limit=4)]
+                self.assertIn(expected, names, prompt)
+
     def test_tool_and_review_requests_reach_an_agent_that_can_hand_them_on(self) -> None:
         # The specialist is the front door: it may rank first for these, and its
-        # body names the owner. The test pins that the owner is also in the top 4.
+        # body names the owner. The test pins that the owner is also among the top 6.
         for prompt, owner in (("security review of this api", "project-reviewer"),
                               ("run a dast scan with zap", "devops-engineer"),
                               ("threat model review", "security-architect")):
             with self.subTest(prompt=prompt):
                 top = [c.name for c in router.rank(ROOT, prompt, limit=6)]
-                self.assertIn("security-specialist", top[:6] + ["security-specialist"])
                 self.assertIn(owner, top, prompt)
 
 

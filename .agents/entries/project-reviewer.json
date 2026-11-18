@@ -1,8 +1,8 @@
 {
   "name": "project-reviewer",
-  "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review, not for a single-aspect question.",
+  "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review or for a review limited to one aspect such as security.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
   "dist": "knowledge/agents/software-engineering/project-reviewer/dist",
-  "fingerprint": "390b6ea748807ab4"
+  "fingerprint": "0bf6c0171b0f956d"
 }

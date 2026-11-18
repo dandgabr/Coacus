@@ -1006,6 +1006,7 @@
       "idp"
     ],
     "project-reviewer": [
+      "audit the project",
       "auditar",
       "auditoria de código",
       "boas práticas",
@@ -1014,12 +1015,15 @@
       "conformidade de codigo",
       "full review",
       "project review",
+      "pull request",
+      "pull request review",
       "revisao",
       "revisao de seguranca",
       "revisar arquitetura",
       "revisar codigo",
       "revisão de projeto",
-      "security review"
+      "security review",
+      "security-only review"
     ],
     "qa-testing-specialist": [
       "qa",
@@ -1074,6 +1078,7 @@
     "security-architect": [
       "ameaca",
       "arquitetura de segurança",
+      "go-live",
       "modelagem de ameaças",
       "parecer",
       "parecer técnico",
@@ -1081,25 +1086,32 @@
       "risco de arquitetura",
       "sabsa",
       "security architecture",
+      "security architecture review",
       "stride",
       "threat",
+      "threat model",
       "threat modeling",
       "zero trust architecture"
     ],
     "security-specialist": [
-      "segurança",
-      "security",
       "appsec",
-      "sast",
+      "csrf",
       "dast",
-      "iast",
-      "rasp",
-      "sca",
       "devsecops",
+      "explain security",
+      "iast",
+      "owasp",
+      "rasp",
+      "sast",
+      "sca",
+      "security",
+      "security question",
+      "security triage",
+      "segurança",
+      "sql injection",
       "vulnerabilidade",
       "vulnerability",
-      "security question",
-      "security triage"
+      "xss"
     ],
     "skill-auditor": [
       "skill auditor",
