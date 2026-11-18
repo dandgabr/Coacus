@@ -77,6 +77,23 @@ MUST_MATCH = {
     "dash -c": f"dash -c '{TARGET}'",
     "sh with combined flags": f"sh -ec '{TARGET}'",
     "flatpak run": f"flatpak run {TARGET}",
+    "brace group": "{ " + TARGET + "; }",
+    "process substitution in": f"cat <({TARGET})",
+    "process substitution out": f"tee >({TARGET})",
+    "eval": f"eval {TARGET}",
+    "eval quoted": f"eval '{TARGET} --flag'",
+    "here-string": f"bash <<< {TARGET}",
+    "here-string quoted": f"bash <<< '{TARGET} --flag'",
+    "find -exec": f"find . -exec {TARGET} ;",
+    "find -execdir with placeholder": f"find . -execdir {TARGET} {{}} +",
+    "env -S": f"env -S '{TARGET} --flag'",
+    "env --split-string": f"env --split-string='{TARGET}'",
+    "if condition": f"if {TARGET}; then true; fi",
+    "then branch": f"if true; then {TARGET}; fi",
+    "negation": f"! {TARGET}",
+    "while condition": f"while {TARGET}; do true; done",
+    "function body": f"f(){{ {TARGET}; }}; f",
+    "coproc": f"coproc {TARGET}",
 }
 
 # Command lines that only mention the name and must not match.
@@ -85,6 +102,15 @@ MUST_NOT_MATCH = {
     "commit message": f'git commit -m "{TARGET}"',
     "echo argument": f"echo {TARGET}",
     "similar name": f"{TARGET}-helper --flag",
+    "redirect target": f"echo x > {TARGET}",
+    "redirect source": f"cat < {TARGET}",
+    "here-string to cat": f"cat <<< {TARGET}",
+    "eval echo": f"eval echo {TARGET}",
+    "env -S echo": f"env -S 'echo {TARGET}'",
+    "find -name": f"find . -name {TARGET}",
+    "find -name with other exec": f"find . -name {TARGET} -exec ls {{}} ;",
+    "if branch echo": f"if true; then echo {TARGET}; fi",
+    "here-string echo": f"bash <<< 'echo {TARGET}'",
     "empty": "",
     "blank": "   ",
 }
@@ -99,12 +125,7 @@ KNOWN_FALSE_POSITIVES = {
 
 # Shapes measured as NOT caught today. Each one is a bypass of a command deny rule.
 KNOWN_BYPASSES = {
-    "brace group": "{ " + TARGET + "; }",
-    "process substitution": f"cat <({TARGET})",
-    "eval": f"eval {TARGET}",
-    "here-string": f"bash <<< {TARGET}",
-    "find -exec": f"find . -exec {TARGET} ;",
-    "env -S": f"env -S '{TARGET} --flag'",
+    # Undecidable without running the shell: the name only exists after expansion.
     "variable indirection": f"x={TARGET}; $x",
 }
 
@@ -145,7 +166,11 @@ class TestCommandCorpus(unittest.TestCase):
         self.assertIn(TARGET, names(huge))
 
     def test_unbalanced_quotes_are_still_read(self) -> None:
-        self.assertIn(TARGET, names(f"{TARGET} 'unterminated"))
+        # An unparseable line is unresolved, so a command policy fails closed on it.
+        found, unresolved = guard.resolve_command(f"{TARGET} 'unterminated")
+        self.assertIn(TARGET, found)
+        self.assertTrue(unresolved)
+        self.assertEqual(guard.evaluate([POLICY], "exec", "echo 'unterminated")["decision"], "deny")
 
     def test_non_command_policy_still_matches_the_whole_string(self) -> None:
         plain = {**POLICY, "action": {"verb": "exec", "resource": f"*{TARGET}*"}}

@@ -40,6 +40,9 @@ _WRAPPERS = {
     "exec", "command", "time", "xvfb-run", "dbus-run-session", "systemd-run",
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
 }
+_KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
+_FIND_EXEC = {"-exec", "-execdir", "-ok", "-okdir"}
+_PROCESS_SUBST = {"<(", ">("}
 _SUBSHELL = re.compile(r"\$\(([^()]*)\)|`([^`]*)`")
 _MAX_DEPTH = 8
 _MAX_COMMAND_CHARS = 100_000
@@ -130,8 +133,17 @@ def _star_match(pattern: str, value: str) -> bool:
 
 
 def _resource_matches(pattern: str, value: str) -> bool:
-    """Match a resource pattern against a concrete resource value."""
+    """Match a resource pattern against a concrete resource value.
+
+    A value longer than the command cap matches every pattern (fail closed), so a
+    huge input can neither stall the matcher nor slip past a rule. One trailing
+    newline is ignored, as the earlier regex form did.
+    """
     if pattern in ("", "*"):
+        return True
+    if len(value) > _MAX_COMMAND_CHARS:
+        return True
+    if value.endswith("\n") and _resource_matches(pattern, value[:-1]):
         return True
     if fnmatch.fnmatch(value, pattern):
         return True
@@ -154,18 +166,25 @@ def _names(word: str) -> list[str]:
     return [name for name in names if name]
 
 
-def _simple_commands(line: str) -> list[list[str]]:
-    """Split one shell line into simple commands (each a list of words)."""
+def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
+    """Split one shell line into simple commands (each a list of words).
+
+    A line the lexer cannot parse (an unbalanced quote, or a quoted argument that
+    spans lines) is marked unresolved in ``state`` and split on whitespace, so the
+    caller can fail closed instead of trusting the guess.
+    """
     lexer = shlex.shlex(line, posix=True, punctuation_chars=True)
     lexer.whitespace_split = True
     lexer.commenters = ""
     try:
         tokens = list(lexer)
     except ValueError:
+        if state is not None:
+            state["unresolved"] = True
         tokens = line.split()
     commands: list[list[str]] = [[]]
     for token in tokens:
-        if token and set(token) <= set(";&|()"):
+        if token in _PROCESS_SUBST or (token and set(token) <= set(";&|()")):
             commands.append([])
         else:
             commands[-1].append(token)
@@ -180,9 +199,24 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     if index >= len(words):
         return []
     rest = words[index:]
+    while rest and rest[0] in _KEYWORDS:
+        rest = rest[1:]
+        if depth >= _MAX_DEPTH:
+            state["unresolved"] = True
+            return []
+    if not rest:
+        return []
     head = os.path.basename(rest[0])
     out = list(_names(rest[0]))
-    if head in _SHELLS:
+    if head == "eval" and len(rest) > 1:
+        out.extend(_scan(" ".join(rest[1:]), depth + 1, state))
+    elif head == "find":
+        for position, word in enumerate(rest):
+            if word in _FIND_EXEC and position + 1 < len(rest):
+                out.extend(_words_candidates(rest[position + 1:], depth + 1, state))
+    elif head in _SHELLS:
+        if "<<<" in rest and rest.index("<<<") + 1 < len(rest):
+            out.extend(_scan(rest[rest.index("<<<") + 1], depth + 1, state))
         for position, word in enumerate(rest[1:], start=1):
             if word.startswith("-") and not word.startswith("--") and "c" in word[1:]:
                 if position + 1 < len(rest):
@@ -195,6 +229,14 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         for word in tail[:4]:
             if not word.startswith("-") and not _ASSIGN.match(word):
                 out.extend(_names(word))
+        if head == "env":
+            for position, word in enumerate(tail):
+                if word in ("-S", "--split-string") and position + 1 < len(tail):
+                    out.extend(_scan(tail[position + 1], depth + 1, state))
+                elif word.startswith("--split-string="):
+                    out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
+                elif word.startswith("-S") and len(word) > 2:
+                    out.extend(_scan(word[2:], depth + 1, state))
         stripped = [word for word in tail if not word.startswith("-")]
         if stripped and depth >= _MAX_DEPTH:
             state["unresolved"] = True
@@ -221,7 +263,7 @@ def _scan(command: str, depth: int, state: dict) -> list[str]:
         return []
     out: list[str] = []
     for line in command.splitlines() or [command]:
-        for words in _simple_commands(line):
+        for words in _simple_commands(line, state):
             out.extend(_words_candidates(words, depth, state))
         for match in _SUBSHELL.finditer(line):
             out.extend(_scan(match.group(1) or match.group(2) or "", depth + 1, state))

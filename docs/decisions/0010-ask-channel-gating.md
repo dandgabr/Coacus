@@ -28,8 +28,8 @@ opt-in.
   `can_ask` and `can_block` as exactly `true` for the event.
 - In every other case, and on any error while reading capability data, `ask`
   degrades to the policy's `on_ask_unavailable`. An absent or invalid value there
-  fails closed to `deny`. The degraded `deny` is enforced only where the guard has a
-  deny render for the harness; on OpenCode it has no effect today (see Consequences).
+  fails closed to `deny`. The degraded `deny` is enforced through the deny render the guard
+  has for each harness, including OpenCode (see Consequences).
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 

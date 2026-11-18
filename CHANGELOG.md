@@ -5,6 +5,13 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Command deny bypasses
+
+### Fixed
+
+- Command deny rules now look through brace groups, `if`/`then`/`while` and `!`, process substitution, `eval`, here-strings to a shell, `find -exec` and `env -S`. Six of the seven bypasses recorded in the corpus are closed; variable indirection stays a known gap. See ADR 0011.
+- A line the lexer cannot parse (an unbalanced quote, or a quoted argument that spans lines) now counts as unresolved and denies, instead of being guessed. A value over 100,000 characters matches every pattern, and one trailing newline is ignored as before.
+
 ## [Unreleased] — Strictest ask fallback
 
 ### Fixed

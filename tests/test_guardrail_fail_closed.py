@@ -87,7 +87,8 @@ class TestUnresolvedCommandsFailClosed(unittest.TestCase):
 
     def test_policies_without_command_match_are_not_affected(self) -> None:
         plain = {"id": "p", "action": {"verb": "exec", "resource": "*rm -rf*"}, "decision": "deny"}
-        deep = nested_shell(guard._MAX_DEPTH + 3, "echo hi")
+        deep = " ".join(["nice"] * (guard._MAX_DEPTH + 3)) + " echo hi"
+        self.assertTrue(guard.resolve_command(deep)[1])
         self.assertEqual(guard.evaluate([plain], "exec", deep)["decision"], "allow")
 
     def test_command_candidates_never_raises_on_odd_input(self) -> None:
