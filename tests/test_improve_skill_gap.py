@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -99,164 +102,261 @@ def miss(session: str, text: str = "no skill for ledger migrations", interactive
     return {"text": text, "interactive": interactive, "session": session, **extra}
 
 
+class StateDirCase(unittest.TestCase):
+    """Runs each test with the miss log in a private temporary state directory."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.state = Path(self._tmp.name) / "state"
+        self.repo = Path(self._tmp.name) / "repo"
+        self.repo.mkdir()
+        env = {k: v for k, v in os.environ.items() if k not in (route_miss.ENV_SWITCH, "XDG_STATE_HOME")}
+        env["COACUS_STATE_DIR"] = str(self.state)
+        patcher = mock.patch.dict(os.environ, env, clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.log = route_miss.log_path()
+
+    def write_log(self, records: list[dict]) -> None:
+        self.log.parent.mkdir(parents=True, exist_ok=True)
+        self.log.write_text("\n".join(json.dumps(x) for x in records) + "\n", encoding="utf-8")
+
+    def opt_in(self):
+        return mock.patch.dict(os.environ, {route_miss.ENV_SWITCH: "1"})
+
+
 @POSIX
-class TestEndToEnd(unittest.TestCase):
-    def _root(self) -> Path:
-        tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(tmp.cleanup)
-        root = Path(tmp.name) / "repo"
-        root.mkdir()
-        return root
-
-    def _log(self, root: Path, records: list[dict]) -> None:
-        path = root / route_miss.LOG_PATH
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text("\n".join(json.dumps(x) for x in records) + "\n", encoding="utf-8")
-
-    def _run(self, records: list[dict], root: Path | None = None) -> dict:
-        root = root or self._root()
-        self._log(root, records)
-        return loop.run(root, {"source": "route-miss"})
+class TestEndToEnd(StateDirCase):
+    def _run(self, records: list[dict]) -> dict:
+        self.write_log(records)
+        return loop.run(self.repo, {"source": "route-miss"})
 
     def _types(self, result: dict) -> list[str]:
         return [p["type"] for p in result.get("proposals", [])]
 
     def test_three_interactive_sessions_create_a_proposal_without_the_text(self) -> None:
-        result = self._run([miss(s) for s in ("s1", "s2", "s3")])
+        result = self._run([miss(s) for s in ("d1", "d2", "d3")])
         self.assertEqual(self._types(result), ["skill-gap"])
         proposal = result["proposals"][0]
         self.assertEqual(proposal["statement"], "[observation withheld]")
         self.assertNotIn("ledger migrations", json.dumps(proposal))
 
     def test_two_sessions_are_not_enough(self) -> None:
-        self.assertEqual(self._types(self._run([miss("s1"), miss("s2")])), [])
+        self.assertEqual(self._types(self._run([miss("d1"), miss("d2")])), [])
 
     def test_the_same_session_repeated_counts_once(self) -> None:
-        self.assertEqual(self._types(self._run([miss("s1")] * 5)), [])
+        self.assertEqual(self._types(self._run([miss("d1")] * 5)), [])
 
-    def test_a_miss_from_a_non_interactive_run_is_staged_as_a_note_at_most(self) -> None:
-        result = self._run([miss(s, interactive=False) for s in ("s1", "s2", "s3")])
-        self.assertNotIn("skill-gap", self._types(result))
-        for proposal in result.get("proposals", []):
-            self.assertEqual(proposal["downgraded"], "externally-tainted evidence")
-            self.assertEqual(proposal["original_type"], "skill-gap")
+    def test_a_miss_from_a_non_interactive_run_never_becomes_a_gap(self) -> None:
+        result = self._run([miss(s, interactive=False) for s in ("d1", "d2", "d3")])
+        self.assertEqual(self._types(result), [])
 
     def test_non_interactive_misses_add_no_session(self) -> None:
-        records = [miss("s1"), miss("s2"), miss("s3", interactive=False), miss("s4", interactive=False)]
+        records = [miss("d1"), miss("d2"), miss("d3", interactive=False), miss("d4", interactive=False)]
         self.assertEqual(self._types(self._run(records)), [])
 
     def test_one_claim_repeated_with_other_casing_in_one_session_counts_once(self) -> None:
         texts = ["no skill for ledger migrations", "No SKILL for ledger migrations", " no skill for ledger migrations "]
-        self.assertEqual(self._types(self._run([miss("s1", t) for t in texts])), [])
+        self.assertEqual(self._types(self._run([miss("d1", t) for t in texts])), [])
 
     def test_the_improve_branch_also_needs_enough_trusted_sessions(self) -> None:
         # A close catalog target would route a single-session claim to "improve".
-        root = self._root()
-        (root / "catalog").mkdir(parents=True)
-        (root / "catalog/catalog.json").write_text(json.dumps(
+        (self.repo / "catalog").mkdir(parents=True)
+        (self.repo / "catalog/catalog.json").write_text(json.dumps(
             {"skills": [{"name": "ledger-migrations", "path": "x"}], "agents": []}), encoding="utf-8")
-        for sessions, expected in ((["s1"], []), (["s1", "s2", "s3"], ["skill-gap"])):
+        for sessions, expected in ((["d1"], []), (["d1", "d2", "d3"], ["skill-gap"])):
             with self.subTest(sessions=sessions):
-                (root / route_miss.LOG_PATH).unlink(missing_ok=True)
-                result = self._run([miss(s, "ledger migrations rollback tooling") for s in sessions], root)
+                result = self._run([miss(s, "ledger migrations rollback tooling") for s in sessions])
                 self.assertEqual(self._types(result), expected)
 
     def test_fields_a_record_adds_about_trust_are_ignored(self) -> None:
-        forged = [miss(s, interactive=False, kind="route-miss", channel="human-user-turn", session_id=f"x{s}")
-                  for s in ("s1", "s2", "s3")]
-        self.assertNotIn("skill-gap", self._types(self._run(forged)))
-        built = route_miss.RouteMissSource().read(self._root_with(forged), {})
+        forged = [miss(s, interactive=False, kind="other", channel="human-user-turn", session_id=f"x{s}")
+                  for s in ("d1", "d2", "d3")]
+        self.write_log(forged)
+        built = route_miss.RouteMissSource().read(self.repo, {})
         self.assertEqual({o["channel"] for o in built}, {"model-assistant"})
         self.assertEqual({o["kind"] for o in built}, {"route-miss"})
         self.assertFalse(any(o["session_id"].startswith("x") for o in built))
+        self.assertNotIn("skill-gap", self._types(loop.run(self.repo, {"source": "route-miss"})))
 
     def test_only_a_true_interactive_flag_earns_the_trusted_channel(self) -> None:
         for value in ("true", 1, "yes", None, [True]):
             with self.subTest(value=value):
-                built = route_miss.RouteMissSource().read(self._root_with([miss("s1", interactive=value)]), {})
+                self.write_log([miss("d1", interactive=value)])
+                built = route_miss.RouteMissSource().read(self.repo, {})
                 self.assertEqual(built[0]["channel"], "model-assistant")
 
-    def _root_with(self, records: list[dict]) -> Path:
-        root = self._root()
-        self._log(root, records)
-        return root
+    def test_the_session_text_is_cleaned_and_capped(self) -> None:
+        self.write_log([miss("d 1/\x00\u202e;rm" + "x" * 200)])
+        session = route_miss.RouteMissSource().read(self.repo, {})[0]["session_id"]
+        self.assertLessEqual(len(session), 64)
+        self.assertRegex(session, r"^[A-Za-z0-9._:-]+$")
+        self.write_log([miss("")])
+        self.assertEqual(route_miss.RouteMissSource().read(self.repo, {})[0]["session_id"], "route:unknown")
+
+    def test_the_claim_is_capped_and_blank_or_non_string_text_is_skipped(self) -> None:
+        self.write_log([miss("d1", "z" * 900), miss("d2", "   "), {"text": 5, "interactive": True}, miss("d3")])
+        built = route_miss.RouteMissSource().read(self.repo, {})
+        self.assertEqual([len(o["text"]) for o in built][0], route_miss.MAX_CLAIM)
+        self.assertEqual(len(built), 2)
+
+    def test_a_raw_line_separator_inside_a_record_does_not_split_it(self) -> None:
+        self.log.parent.mkdir(parents=True)
+        text = "ledger" + chr(0x2028) + "migrations"
+        self.log.write_text(json.dumps(miss("d1", text), ensure_ascii=False) + "\n", encoding="utf-8")
+        built = route_miss.RouteMissSource().read(self.repo, {})
+        self.assertEqual([o["text"] for o in built], [text])
+
+    def test_the_reader_stops_at_its_line_cap_and_byte_cap(self) -> None:
+        self.write_log([miss("d1")] * (route_miss.MAX_LINES + 50))
+        self.assertEqual(len(route_miss.RouteMissSource().read(self.repo, {})), route_miss.MAX_LINES)
+        self.log.write_text(json.dumps(miss("d1", "a")) + "\n" + "x" * (route_miss.MAX_BYTES + 10), encoding="utf-8")
+        self.assertEqual(len(route_miss.RouteMissSource().read(self.repo, {})), 1)
+
+    def test_a_symlinked_log_is_not_read(self) -> None:
+        real = Path(self._tmp.name) / "elsewhere.jsonl"
+        real.write_text(json.dumps(miss("d1")) + "\n", encoding="utf-8")
+        self.log.parent.mkdir(parents=True)
+        self.log.symlink_to(real)
+        self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+
+    def test_a_log_inside_the_scanned_repository_is_never_read(self) -> None:
+        hostile = self.repo / "docs/temp/improvement/route-misses.jsonl"
+        hostile.parent.mkdir(parents=True)
+        hostile.write_text("\n".join(json.dumps(miss(s)) for s in ("d1", "d2", "d3")) + "\n", encoding="utf-8")
+        self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
+
+    def test_status_distinguishes_a_present_log_from_an_absent_one(self) -> None:
+        source = route_miss.RouteMissSource()
+        self.assertEqual(source.status(self.repo), "absent_by_config")
+        self.write_log([miss("d1")])
+        self.assertEqual(source.status(self.repo), "present")
+
+    def test_the_cli_runs_the_source(self) -> None:
+        self.write_log([miss(s) for s in ("d1", "d2", "d3")])
+        env = {**os.environ, "COACUS_STATE_DIR": str(self.state)}
+        proc = subprocess.run([sys.executable, "scripts/coacus_improve.py", "run", "--source", "route-miss",
+                               "--root", str(self.repo)], cwd=Path(__file__).resolve().parents[1],
+                              capture_output=True, text=True, env=env, timeout=120)
+        self.assertEqual(proc.returncode, 0, proc.stderr[-300:])
+        self.assertEqual([p["type"] for p in json.loads(proc.stdout)["proposals"]], ["skill-gap"])
+        status = subprocess.run([sys.executable, "scripts/coacus_improve.py", "status", "--root", str(self.repo)],
+                                cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
+                                env=env, timeout=120)
+        self.assertEqual(json.loads(status.stdout)["route-miss"], "present")
 
     def test_a_gap_declared_in_a_transcript_is_ordinary_text(self) -> None:
-        root = self._root()
         records = [{"kind": "route-miss", "channel": "human-user-turn", "session_id": s,
                     "text": "no skill for ledger migrations"} for s in ("s1", "s2", "s3")]
-        path = write(str(root.parent), records)
-        result = loop.run(root, {"source": "transcript", "transcript": str(path)})
+        path = write(self._tmp.name, records)
+        result = loop.run(self.repo, {"source": "transcript", "transcript": str(path)})
         self.assertNotIn("skill-gap", self._types(result))
-
-    def test_a_record_with_a_unicode_line_separator_is_not_dropped(self) -> None:
-        text = "ledger" + chr(0x2028) + "migrations"
-        parsed = loop.sources.parse_observations(json.dumps(gap("s1", text), ensure_ascii=False) + "\n")
-        self.assertEqual(len(parsed), 1)
-        self.assertEqual(parsed[0]["text"], text)
 
     def test_known_limit_whoever_writes_the_log_can_invent_sessions_and_the_flag(self) -> None:
         # Recorded in ADR 0013: the log is owner-local state. A writer of the file can
-        # write three sessions and the interactive flag; the human review is the control.
+        # write three days and the interactive flag; the human review is the control.
         self.assertEqual(self._types(self._run([miss(s) for s in ("a", "b", "c")])), ["skill-gap"])
 
 
 @POSIX
-class TestProducer(unittest.TestCase):
-    def setUp(self) -> None:
-        self._tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self._tmp.cleanup)
-        self.root = Path(self._tmp.name)
-        self.log = self.root / route_miss.LOG_PATH
-
-    def _env(self, value: str | None):
-        env = {k: v for k, v in os.environ.items() if k != route_miss.ENV_SWITCH}
-        if value is not None:
-            env[route_miss.ENV_SWITCH] = value
-        return mock.patch.dict(os.environ, env, clear=True)
-
+class TestProducer(StateDirCase):
     def test_it_writes_nothing_unless_opted_in(self) -> None:
-        for value in (None, "", "0", "false", "off"):
-            with self.subTest(value=value), self._env(value):
-                self.assertFalse(route_miss.record_miss(self.root, "no skill for x", True))
+        for value in (None, "", "0", "false", "no", "off"):
+            env = {k: v for k, v in os.environ.items() if k != route_miss.ENV_SWITCH}
+            if value is not None:
+                env[route_miss.ENV_SWITCH] = value
+            with self.subTest(value=value), mock.patch.dict(os.environ, env, clear=True):
+                self.assertFalse(route_miss.record_miss(self.repo, "no skill for x", True))
                 self.assertFalse(self.log.exists())
 
-    def test_opted_in_it_writes_one_capped_line_with_a_code_made_session(self) -> None:
-        with self._env("1"):
-            self.assertTrue(route_miss.record_miss(self.root, "y" * 900, True))
+    def test_the_log_is_outside_the_repository_and_private(self) -> None:
+        with self.opt_in():
+            self.assertTrue(route_miss.record_miss(self.repo, "y" * 900, True))
+        self.assertFalse((self.repo / "docs").exists())
+        self.assertEqual(self.log.stat().st_mode & 0o777, 0o600)
+        self.assertEqual(self.log.parent.stat().st_mode & 0o777, 0o700)
         record = json.loads(self.log.read_text(encoding="utf-8"))
         self.assertEqual(len(record["text"]), route_miss.MAX_CLAIM)
         self.assertIs(record["interactive"], True)
-        self.assertTrue(record["session"].startswith("route:"))
+        self.assertRegex(record["session"], r"^route:\d{4}-\d{2}-\d{2}$")
 
-    def test_without_a_terminal_the_run_is_recorded_as_not_interactive(self) -> None:
-        with self._env("1"), mock.patch.object(sys.stdin, "isatty", return_value=False):
-            route_miss.record_miss(self.root, "p")
-        self.assertIs(json.loads(self.log.read_text(encoding="utf-8"))["interactive"], False)
+    def test_the_default_location_follows_the_state_home(self) -> None:
+        env = {k: v for k, v in os.environ.items() if k != "COACUS_STATE_DIR"}
+        env["XDG_STATE_HOME"] = str(self.state)
+        with mock.patch.dict(os.environ, env, clear=True):
+            self.assertEqual(route_miss.log_path(), self.state / "coacus" / route_miss.LOG_NAME)
+
+    def test_the_run_is_interactive_only_with_a_terminal_on_both_ends(self) -> None:
+        for stdin, stdout, expected in ((True, True, True), (True, False, False), (False, True, False), (False, False, False)):
+            with self.subTest(stdin=stdin, stdout=stdout), self.opt_in(), \
+                    mock.patch.object(sys.stdin, "isatty", return_value=stdin), \
+                    mock.patch.object(sys.stdout, "isatty", return_value=stdout):
+                self.log.unlink(missing_ok=True)
+                route_miss.record_miss(self.repo, "p")
+                self.assertIs(json.loads(self.log.read_text(encoding="utf-8"))["interactive"], expected)
 
     def test_blank_and_non_string_prompts_are_not_recorded(self) -> None:
-        with self._env("1"):
+        with self.opt_in():
             for prompt in ("", "   ", None, 5):
-                self.assertFalse(route_miss.record_miss(self.root, prompt, True))
+                self.assertFalse(route_miss.record_miss(self.repo, prompt, True))
 
-    def test_the_log_stops_growing_at_its_line_limit(self) -> None:
+    def test_a_full_log_keeps_the_newest_lines_and_keeps_recording(self) -> None:
         self.log.parent.mkdir(parents=True)
-        self.log.write_text("{}\n" * route_miss.MAX_LINES, encoding="utf-8")
-        with self._env("1"):
-            self.assertFalse(route_miss.record_miss(self.root, "one more", True))
+        self.log.write_text("".join(json.dumps(miss(f"d{i}")) + "\n" for i in range(route_miss.MAX_LINES)), encoding="utf-8")
+        with self.opt_in():
+            self.assertTrue(route_miss.record_miss(self.repo, "newest", True))
+        lines = self.log.read_text(encoding="utf-8").splitlines()
+        self.assertLess(len(lines), route_miss.MAX_LINES)
+        self.assertEqual(json.loads(lines[-1])["text"], "newest")
+        self.assertEqual(json.loads(lines[0])["session"], f"d{route_miss.MAX_LINES // 2}")
+
+    def test_the_byte_cap_never_leaves_a_log_the_reader_rejects(self) -> None:
+        wide = "\u4e00" * route_miss.MAX_CLAIM
+        with self.opt_in():
+            for _ in range(route_miss.MAX_LINES + 20):
+                route_miss.record_miss(self.repo, wide, True)
+        self.assertLessEqual(self.log.stat().st_size, route_miss.MAX_BYTES)
+        self.assertGreater(len(route_miss.RouteMissSource().read(self.repo, {})), 0)
+
+    def test_a_prompt_that_cannot_be_encoded_never_raises_or_leaves_a_broken_line(self) -> None:
+        with self.opt_in():
+            route_miss.record_miss(self.repo, "bad \udcff byte", True)
+        if self.log.exists():
+            for line in self.log.read_text(encoding="utf-8").splitlines():
+                json.loads(line)
+
+    def test_a_symlinked_log_is_never_written_through(self) -> None:
+        target = Path(self._tmp.name) / "victim.txt"
+        target.write_text("keep", encoding="utf-8")
+        self.log.parent.mkdir(parents=True)
+        self.log.symlink_to(target)
+        with self.opt_in():
+            self.assertFalse(route_miss.record_miss(self.repo, "p", True))
+        self.assertEqual(target.read_text(encoding="utf-8"), "keep")
 
     def test_an_unwritable_location_never_raises(self) -> None:
-        (self.root / "docs").write_text("a file, not a directory", encoding="utf-8")
-        with self._env("1"):
-            self.assertFalse(route_miss.record_miss(self.root, "p", True))
+        self.state.write_text("a file, not a directory", encoding="utf-8")
+        with self.opt_in():
+            self.assertFalse(route_miss.record_miss(self.repo, "p", True))
 
-    def test_the_router_records_a_miss_only_when_nothing_matches(self) -> None:
+    def test_the_router_writes_a_line_on_a_miss_and_nothing_on_a_match(self) -> None:
         import scripts.coacus_route as router_cli
-        with mock.patch("engine.router.rank", return_value=[]), mock.patch.object(router_cli, "_log_miss") as logged:
-            args = router_cli.argparse.Namespace(prompt="zzz", raw=True, top=None, all=False, max_slots=0,
-                                                 min_score=1.0, rerank=None)
-            self.assertEqual(router_cli._cmd_rank(args, self.root), 1)
-        logged.assert_called_once_with(self.root, "zzz")
+        root = Path(__file__).resolve().parents[1]
+        args = router_cli.argparse.Namespace(prompt="", raw=True, top=None, all=False, max_slots=0,
+                                             min_score=router_cli.router.DEFAULT_MIN_SCORE, rerank=None)
+        with self.opt_in(), contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            args.prompt = "security architecture threat model review"
+            self.assertEqual(router_cli._cmd_rank(args, root), 0)
+            self.assertFalse(self.log.exists())
+            args.prompt = "qqqqzzzz xxkkjj wwvvuu"
+            self.assertEqual(router_cli._cmd_rank(args, root), 1)
+        self.assertEqual(json.loads(self.log.read_text(encoding="utf-8"))["text"], "qqqqzzzz xxkkjj wwvvuu")
+
+    def test_a_failure_while_logging_never_changes_the_router_result(self) -> None:
+        import scripts.coacus_route as router_cli
+        with mock.patch("engine.improve.sources.route_miss.record_miss", side_effect=RuntimeError("x")):
+            router_cli._log_miss(self.repo, "p")
 
 
 class TestBoundaries(unittest.TestCase):

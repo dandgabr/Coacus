@@ -22,23 +22,19 @@ model output into a request for new skills.
 - The `route-miss` source (`engine/improve/sources/route_miss.py`) rebuilds every
   observation in code from the router's own log. The kind is fixed; the channel is
   `human-user-turn` only when the log line says the router ran with a terminal on both
-  ends, and `model-assistant` otherwise, so a prompt composed by an agent can never
-  support a gap; the session comes from the producer. Nothing else in a stored line is
-  read.
+  ends, and `model-assistant` otherwise; the session is the UTC day of the miss, so a
+  gap needs the same request on three different days. Nothing else in a stored line
+  is read, and a non-interactive miss never reaches a proposal at all.
 - The producer is `scripts/coacus_route.py`: when no agent matches, it appends a line
-  to `docs/temp/improvement/route-misses.jsonl` (git-ignored). It is off unless
-  `COACUS_ROUTE_MISS_LOG=1`, because the line keeps the first 200 characters of the
-  prompt; the log stops growing at 2000 lines or 1 MB, and a write failure never
-  affects the router.
-- It needs a trusted-channel unit like a `gotcha` or `procedure`; otherwise it is
-  staged as a `note`. The list of types that need trust is one constant,
-  `taint.TRUST_REQUIRED`, used by the loop.
-- On every routing branch, including "improve", a gap needs a trusted unit from at
-  least three distinct sessions (`taint.MIN_SUPPORT`, `taint.trusted_sessions`).
-  Several channels inside one session count once, and untrusted units add nothing.
-- The claim is stripped of control and format characters and hashed in full; only the
-  statement is capped at 200 characters. Like every other proposal, the stored record
-  keeps `[observation withheld]`, never the text.
+  to the log. It is off unless `COACUS_ROUTE_MISS_LOG=1`, because the line keeps the
+  first 200 characters of the prompt. On POSIX only.
+- The log lives in the user's state directory (`COACUS_STATE_DIR`, else
+  `$XDG_STATE_HOME/coacus`, else `~/.local/state/coacus`), never in a repository. A
+  repository someone else wrote cannot ship a log for `--root` to trust, no `.gitignore`
+  has to be right, and the file is private: `0600` in a `0700` directory, opened without
+  following a symlink. When it reaches 2000 lines or 1 MB the oldest half is dropped, so
+  it keeps recording and the reader never rejects it.
+
 - A skill-gap is an ordinary proposal. The loop still never applies anything, and
   promotion stays a human pull request (ADR 0005). No promote command is added.
 
@@ -51,13 +47,17 @@ model output into a request for new skills.
   paraphrase is still a different claim.
 - A gap routed as a `note` because its evidence was not trusted keeps `downgraded` and
   `original_type` in the stored record, so a reviewer can tell where it started.
-- The log is owner-local state. A record can no longer claim a channel or a kind it did
-  not earn, but whoever can write the log file can still write three sessions and the
-  interactive flag. Structure keeps free text from choosing the type; it is not a
-  security control against the owner. The controls are that nothing is applied and that
-  a person reviews every proposal.
-- The session is the day and the parent process id, so three terminals on one day are
-  three sessions, and one terminal reused over several days counts once per day.
+- Threat model: this keeps text an agent was fed, and a record in some other source,
+  from becoming trusted evidence without a person at a terminal on three days. It does
+  not stop an agent that has a shell and means to forge: a pseudo-terminal passes the
+  terminal test, the environment switch is the agent's to set, and it could append to the
+  log or edit a policy just as well. The controls against that are that nothing is
+  applied and that a person reviews every proposal.
+- The session is the day, so the same request typed in one terminal over three days
+  counts as three, and a burst of misses in one day counts once.
+- The log keeps a raw prefix of a prompt and nothing redacts a secret typed into one;
+  that is why it is opt-in, short, private and capped. Running the loop twice over one
+  log proposes the same gap twice, as it does for any source read twice.
 - Only the router produces gaps. Other signals of a missing skill (an agent that says it
   found nothing) are not a source and would need their own, with the channel again
   assigned in code.
