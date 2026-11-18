@@ -62,6 +62,10 @@ not look through (brace groups, process substitution, `eval`, here-strings,
 
 ## Consequences
 
+- A shell-name rule cannot see inside another interpreter. `python3 -c 'os.system(...)'`,
+  `perl -e`, `ruby -e`, `node -e` and similar run any program without a shell word the
+  walk can read, and `ssh host 'cmd'` runs it elsewhere. Those need their own rule on
+  the interpreter or an allow-list; this record does not claim to cover them.
 - A command deny rule is best-effort, never a sandbox. This record narrows the gap;
   it does not close it. Two classes stay out of reach by design: a launcher the walk
   does not know (any program that runs another program from its arguments) and a tool

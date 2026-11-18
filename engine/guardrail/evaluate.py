@@ -41,19 +41,25 @@ _WRAPPERS = {
     "exec", "command", "time", "xvfb-run", "dbus-run-session", "systemd-run",
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
     "busybox", "toybox", "builtin", "watch", "runuser", "chroot", "unshare",
-    "nsenter", "strace", "ltrace", "setpriv", "prlimit", "bwrap", "firejail",
+    "nsenter", "strace", "ltrace", "setpriv", "prlimit", "bwrap", "firejail", "parallel",
 }
 # Wrappers whose argument is a whole command line in one quoted string.
 _STRING_WRAPPERS = {"watch", "script"}
 # Commands that only read a here-document as data. Any other reader (a shell,
 # ``source``, ``eval``, an unknown program) has its body scanned like a script.
 _DATA_READERS = {"cat", "tee", "git", "gh", "echo", "printf", "grep", "sed", "awk",
-                 "wc", "sort", "head", "tail", "diff", "read", "uniq", "cut", "tr"}
+                 "wc", "sort", "head", "tail", "diff", "read", "uniq", "cut", "tr",
+                 "psql", "mysql", "sqlite3", "jq", "ssh", "kubectl"}
+# Interpreters read a here-document as their own language, not as shell.
+_INTERPRETER = re.compile(r"^(?:python|node|nodejs|ruby|perl|php|lua|deno|bun)[\d.]*$")
 _SCRIPT_WORD = re.compile(r"(?:^|[\s;&|(`])(?:\S*/)?(?:sh|bash|zsh|dash|ksh|source|eval|su|\.)(?=\s|$)")
 _MAX_WORDS = 2000
 _SAFE_PREFIX = re.compile(r"^(?:\$HOME|\$\{HOME\}|\$PWD|\$\{PWD\}|~)(?=/)")
 _STEP_LIMIT = 5000
-_LOOKAHEAD = 8
+_LOOKAHEAD = 64
+_STARTUP_VARS = {"BASH_ENV", "ENV", "PROMPT_COMMAND", "PS4", "LD_PRELOAD"}
+_SHELL_OPTS_WITH_VALUE = {"-o", "+o", "-O", "+O"}
+_SHELL_OPTS_RUNNING = {"--rcfile", "--init-file"}
 _REDIRECT = re.compile(r"^\d*(?:>>?|<<?|>&|<&|&>)")
 _BARE_REDIRECT = re.compile(r"^\d*(?:>>?|<|>&|<&|&>)$")
 _KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
@@ -206,6 +212,8 @@ def _heredoc_tag(text: str, index: int) -> tuple[str, int]:
     """
     while index < len(text) and text[index] in " \t":
         index += 1
+    if text.startswith("$'", index) or text.startswith('$"', index):
+        index += 1  # $'EOF' is the tag EOF
     tag: list[str] = []
     quote = ""
     while index < len(text):
@@ -233,17 +241,82 @@ def _reads_as_script(line: str) -> bool:
     if _SCRIPT_WORD.search(line):
         return True
     head = re.match(r"\s*(?:[A-Za-z_][A-Za-z0-9_]*=\S*\s+)*([^\s;&|()<>]+)", line)
-    return not head or os.path.basename(head.group(1)) not in _DATA_READERS
+    if not head:
+        return True
+    name = os.path.basename(head.group(1))
+    return name not in _DATA_READERS and not _INTERPRETER.match(name)
 
 
-def _logical_lines(command: str) -> list[str]:
+def _match_paren(command: str, start: int) -> int:
+    """Index just past the ``)`` that closes a ``$(`` whose body starts at ``start``.
+
+    Quotes, nested ``$(`` and here-documents inside the substitution are skipped the
+    way the shell skips them, so a quote or a ``<<`` in the body cannot confuse the
+    caller. Returns -1 when the substitution is never closed.
+    """
+    index, size, depth = start, len(command), 1
+    quote = ""
+    pending: list[tuple[str, bool]] = []
+    while index < size:
+        ch = command[index]
+        if ch == "\\" and quote != "'":
+            index += 2
+            continue
+        if quote:
+            if ch == quote:
+                quote = ""
+            elif ch == "$" and quote == '"' and command.startswith("$(", index):
+                end = _match_paren(command, index + 2)
+                if end < 0:
+                    return -1
+                index = end
+                continue
+            index += 1
+            continue
+        if ch in "'\"":
+            quote = ch
+        elif command.startswith("$(", index):
+            depth += 1
+            index += 2
+            continue
+        elif command.startswith("<<", index) and not command.startswith("<<<", index):
+            strip = command.startswith("<<-", index)
+            tag, index = _heredoc_tag(command, index + (3 if strip else 2))
+            if tag:
+                pending.append((tag, strip))
+            continue
+        elif ch == "\n" and pending:
+            index += 1
+            for tag, strip in pending:
+                while index < size:
+                    end = command.find("\n", index)
+                    end = size if end == -1 else end
+                    text = command[index:end]
+                    index = end + 1
+                    if (text.lstrip("\t") if strip else text) == tag:
+                        break
+            pending = []
+            continue
+        elif ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+            if depth == 0:
+                return index + 1
+        index += 1
+    return -1
+
+
+def _logical_lines(command: str, state: dict | None = None) -> list[str]:
     """Split on newlines that are outside quotes, handling here-documents.
 
     A quoted argument that spans lines stays on one line, so it parses. A here-document
-    is detected where the shell detects it (outside quotes and arithmetic, with the tag
-    read the way the shell reads it), and its body is consumed before any quote
-    tracking, so an apostrophe in the body cannot swallow the commands after it. The
-    body is data for a known data reader and a script for anything else.
+    is detected where the shell detects it (outside quotes, comments and arithmetic,
+    with the tag read the way the shell reads it), and its body is consumed before any
+    quote tracking, so an apostrophe in the body cannot swallow the commands after it.
+    The body is data for a known data reader and a script for anything else. A command
+    substitution is skipped as a unit, so quotes inside it do not leak into the outer
+    quote state. A comment is dropped up to the end of its line.
     """
     command = command.replace("\\\n", "")  # line continuation
     lines: list[str] = []
@@ -258,6 +331,21 @@ def _logical_lines(command: str) -> list[str]:
             current.append(ch + command[index + 1])
             index += 2
             continue
+        if quote == "'":
+            if ch == "'":
+                quote = ""
+            current.append(ch)
+            index += 1
+            continue
+        if ch == "$" and command.startswith("$(", index) and not command.startswith("$((", index):
+            end = _match_paren(command, index + 2)
+            if end < 0:
+                if state is not None:
+                    state["unresolved"] = True
+                end = size
+            current.append(command[index:end])
+            index = end
+            continue
         if quote:
             if ch == quote:
                 quote = ""
@@ -266,6 +354,10 @@ def _logical_lines(command: str) -> list[str]:
             continue
         if ch in "'\"":
             quote = ch
+        elif ch == "#" and (not current or current[-1] in " \t;&|("):
+            while index < size and command[index] != "\n":
+                index += 1  # a comment: the shell ignores it, including a << inside it
+            continue
         elif command.startswith("$((", index) or command.startswith("((", index):
             arith += 2
             step = 3 if command.startswith("$((", index) else 2
@@ -333,6 +425,42 @@ def _substitutions(line: str) -> list[str]:
     return found
 
 
+def _mask_substitutions(line: str) -> str:
+    """Replace every ``$(...)`` and backtick substitution with the word ``$__SUBST__``.
+
+    The lexer must not see a quote that belongs to a substitution (``"$(cat <<EOF`` with
+    a ``"`` in the body), and the substitution itself is walked separately. The
+    placeholder starts with ``$`` so a substitution used as a command name is still an
+    expansion in command position.
+    """
+    out: list[str] = []
+    index, size = 0, len(line)
+    single = False
+    while index < size:
+        ch = line[index]
+        if single:
+            single = ch != "'"
+        elif ch == "\\" and index + 1 < size:
+            out.append(line[index:index + 2])
+            index += 2
+            continue
+        elif ch == "'":
+            single = True
+        elif line.startswith("$(", index) and not line.startswith("$((", index):
+            end = _match_paren(line, index + 2)
+            out.append("$__SUBST__")
+            index = size if end < 0 else end
+            continue
+        elif ch == "`":
+            end = line.find("`", index + 1)
+            out.append("$__SUBST__")
+            index = size if end < 0 else end + 1
+            continue
+        out.append(ch)
+        index += 1
+    return "".join(out)
+
+
 def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
     """Split one shell line into simple commands (each a list of words).
 
@@ -340,7 +468,7 @@ def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
     spans lines) is marked unresolved in ``state`` and split on whitespace, so the
     caller can fail closed instead of trusting the guess.
     """
-    lexer = shlex.shlex(line, posix=True, punctuation_chars=True)
+    lexer = shlex.shlex(_mask_substitutions(line), posix=True, punctuation_chars=True)
     lexer.whitespace_split = True
     lexer.commenters = ""
     try:
@@ -375,6 +503,8 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     """Candidates for one simple command given as words."""
     index = 0
     while index < len(words) and _ASSIGN.match(words[index]):
+        if words[index].split("=", 1)[0].rstrip("+").split("[")[0] in _STARTUP_VARS:
+            state["unresolved"] = True  # a variable the shell runs as code
         index += 1
     if index >= len(words):
         return []
@@ -388,6 +518,8 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     rest = words[index:]
     if rest and rest[0] == "function":
         rest = rest[2:]  # ``function name {``: the name is not a command
+    if len(rest) > 2 and rest[0] == "coproc" and rest[2] in ("{", "("):
+        rest = rest[2:]  # ``coproc NAME { ...; }``: the name is not a command
     while rest and (rest[0] in _KEYWORDS or rest[0] == "--" or _REDIRECT.match(rest[0])
                     or (rest[0].isdigit() and len(rest) > 1 and _REDIRECT.match(rest[1]))):
         if depth >= _MAX_DEPTH:
@@ -413,6 +545,28 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         state["unresolved"] = True
     head = os.path.basename(rest[0])
     out = list(_names(rest[0]))
+    if head in ("command", "type", "which") and any(w in ("-v", "-V") for w in rest[1:3]):
+        return []  # a lookup, not an execution
+    if head == "trap":
+        operands = [w for w in rest[1:] if not w.startswith("-")]
+        if operands:
+            out.extend(_scan(operands[0], depth + 1, state))
+        return out
+    if head in ("at", "batch"):
+        state["unresolved"] = True  # a job whose commands are read from stdin
+    if head in ("alias", "shopt") or (head == "hash" and "-p" in rest[1:]):
+        state["unresolved"] = True  # a later word may now name any program
+    if head in ("mapfile", "readarray"):
+        for position, word in enumerate(rest[1:-1], start=1):
+            if word == "-C":
+                out.extend(_scan(rest[position + 1], depth + 1, state))
+    for word in rest[1:_LOOKAHEAD]:
+        if word.startswith("--command="):
+            out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
+    if head == "flock":
+        for position, word in enumerate(rest[1:-1], start=1):
+            if word in ("-c", "--command"):
+                out.extend(_scan(rest[position + 1], depth + 1, state))
     if head == "eval" and len(rest) > 1:
         out.extend(_scan(" ".join(rest[1:]), depth + 1, state))
     elif head == "find":
@@ -431,11 +585,21 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
                     out.extend(_scan(rest[target], depth + 1, state))
                 break
         else:
-            operands = [w for w in rest[1:] if not w.startswith("-")]
+            operands: list[str] = []
+            skip = False
+            for word in rest[1:]:
+                if skip:
+                    skip = False
+                elif word in _SHELL_OPTS_WITH_VALUE:
+                    skip = True
+                elif not word.startswith(("-", "+")):
+                    operands.append(word)
             if head in ("sh", "bash", "zsh", "dash", "ksh") and "<<<" not in rest and (
                 not operands or "-s" in rest[1:] or "-" in rest[1:]
             ):
                 state["unresolved"] = True  # a shell that reads its script from stdin
+            if any(w in _SHELL_OPTS_RUNNING for w in rest[1:]):
+                state["unresolved"] = True  # a startup file the shell runs
     elif head in _WRAPPERS:
         tail = rest[1:]
         # Option values (``sudo -u root``, ``nice -n 5``) hide the real command a
@@ -463,6 +627,8 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
                     elif cluster and position + 1 < len(tail):
                         out.extend(_scan(tail[position + 1], depth + 1, state))
         starts = [i for i, word in enumerate(tail[:_LOOKAHEAD]) if not word.startswith("-")]
+        if len(tail) > _LOOKAHEAD:
+            state["unresolved"] = True  # the command may sit beyond the words inspected
         if starts and depth >= _MAX_DEPTH:
             state["unresolved"] = True
         else:
@@ -492,8 +658,10 @@ def _scan(command: str, depth: int, state: dict) -> list[str]:
     if len(command) > _MAX_COMMAND_CHARS or depth > _MAX_DEPTH or state["steps"] > _STEP_LIMIT:
         state["unresolved"] = True
         return []
+    if "$(" in command and re.search(r"\bcase\b", command):
+        state["unresolved"] = True  # a case pattern's ``)`` ends a substitution early
     out: list[str] = []
-    for line in _logical_lines(command):
+    for line in _logical_lines(command, state):
         for words in _simple_commands(line, state):
             out.extend(_words_candidates(words, depth, state))
         for inner in _substitutions(line):
