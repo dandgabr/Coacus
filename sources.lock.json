@@ -415,7 +415,7 @@
       "source_path": "agents/cybersecurity/security-architect/AGENT.md",
       "source_sha256": "1271fb74006514f8ce9dd622b916547c9cb6a24f9f63b3ec9dbfa55bab27e7f9",
       "target_path": "knowledge/agents/cybersecurity/security-architect/agent.source.md",
-      "target_sha256": "8ff228c338f39ccfb513270ce1a34d789a587d698905c9b086d223fd4e631e3f",
+      "target_sha256": "9713346ba4d28c6ca3c43e2e39f094487458e4079bdc0d106966615ec8395245",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -432,7 +432,7 @@
       "source_path": "agents/cybersecurity/security-specialist/AGENT.md",
       "source_sha256": "a72af0d6d283095ba6a3cbdaf71d2251d77dc2deba595091075a104f87cde4ee",
       "target_path": "knowledge/agents/cybersecurity/security-specialist/agent.source.md",
-      "target_sha256": "6e941c55d899d273e8eec72f52928c078296689299f5bea349c7a497c61d349c",
+      "target_sha256": "7d8cb7689996be4ffa1aacbc0adbe4bbeb90573071b73cd6f03b1098edf4c579",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -742,7 +742,7 @@
       "source_path": "agents/software-engineering/project-reviewer/AGENT.md",
       "source_sha256": "220c530ff5bfcf6040914722f967a2c1517669ddc37b031ddd597bb790915d30",
       "target_path": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
-      "target_sha256": "2a1de1a34fc64df14733d5d251d4ab468797f7f76714d9ccf8900d5f7682acd2",
+      "target_sha256": "390b6ea748807ab44571af33ab3628c291d97596270291203f4a80df1f960f19",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

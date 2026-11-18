@@ -2365,7 +2365,11 @@
         "knowledge/skills/roles/project-reviewer/SKILL.md",
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",
         "methodology/workflows/dispatching-parallel-agents/SKILL.md",
-        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md"
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
+        "knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md",
+        "knowledge/skills/security/appsec/web-injection-classes/SKILL.md",
+        "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
+        "knowledge/skills/security/appsec/sast-code-review/SKILL.md"
       ],
       "triggers": [
         "auditar",
