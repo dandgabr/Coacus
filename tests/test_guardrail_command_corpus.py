@@ -7,10 +7,12 @@ current behaviour of ``engine/guardrail/evaluate.py`` so a change cannot weaken 
 deny rule unnoticed.
 
 Only deny rules are covered. The shapes in ``KNOWN_BYPASSES`` are real gaps found
-by measuring the evaluator: each is marked ``expectedFailure`` so the suite stays
-green today and fails loudly (an unexpected success) once a shape is fixed, which
-forces the mark to be removed. Two end-to-end tests assert the JSON the guard
-prints, because the guard always exits with code 0 and the exit code proves nothing.
+by measuring the evaluator. Each is pinned to today's result (``allow``), so the
+suite stays green now and fails the moment a shape is fixed; the failure message
+says to move the shape into ``MUST_MATCH``. They are plain assertions rather than
+``expectedFailure`` marks because that mark also hides a crash. Two end-to-end
+tests assert the JSON the guard prints, because the guard always exits with code
+0 and the exit code proves nothing.
 
 ``tool.post`` is never evaluated by the guard today; nothing here relies on it.
 """
@@ -65,6 +67,16 @@ MUST_MATCH = {
     "quoted name": f"'{TARGET}'",
     "backslash name": f"\\{TARGET}",
     "xargs": f"echo x | xargs {TARGET}",
+    "setsid": f"setsid {TARGET}",
+    "doas": f"doas {TARGET}",
+    "timeout with duration": f"timeout 5 {TARGET}",
+    "nice with value": f"nice -n 5 {TARGET}",
+    "stdbuf": f"stdbuf -oL {TARGET}",
+    "wrapper chain": f"sudo env FOO=1 nohup {TARGET}",
+    "zsh -c": f"zsh -c '{TARGET}'",
+    "dash -c": f"dash -c '{TARGET}'",
+    "sh with combined flags": f"sh -ec '{TARGET}'",
+    "flatpak run": f"flatpak run {TARGET}",
 }
 
 # Command lines that only mention the name and must not match.
@@ -75,6 +87,14 @@ MUST_NOT_MATCH = {
     "similar name": f"{TARGET}-helper --flag",
     "empty": "",
     "blank": "   ",
+}
+
+# Mentions that a command deny rule wrongly matches today (a false positive): the
+# wrapper scan reads arguments. Pinned to today's result; when fixed, move to
+# MUST_NOT_MATCH.
+KNOWN_FALSE_POSITIVES = {
+    "sudo grep argument": f"sudo grep {TARGET} notes",
+    "xargs grep argument": f"echo x | xargs grep {TARGET}",
 }
 
 # Shapes measured as NOT caught today. Each one is a bypass of a command deny rule.
@@ -119,56 +139,44 @@ class TestCommandCorpus(unittest.TestCase):
                 self.skipTest("symlinks cannot be created here")
             self.assertIn(TARGET, names(str(link)))
 
-    def test_oversize_command_returns_without_raising(self) -> None:
-        # Behaviour only: no timing assertion, so the test cannot flake.
+    def test_oversize_command_is_still_read(self) -> None:
+        # No timing assertion, so the test cannot flake.
         huge = "echo " + "a" * 200_000 + f" | {TARGET}"
-        self.assertIsInstance(names(huge), list)
+        self.assertIn(TARGET, names(huge))
 
-    def test_unbalanced_quotes_do_not_raise(self) -> None:
-        self.assertIsInstance(names(f"echo 'unterminated {TARGET}"), list)
+    def test_unbalanced_quotes_are_still_read(self) -> None:
+        self.assertIn(TARGET, names(f"{TARGET} 'unterminated"))
 
     def test_non_command_policy_still_matches_the_whole_string(self) -> None:
         plain = {**POLICY, "action": {"verb": "exec", "resource": f"*{TARGET}*"}}
         self.assertEqual(guard.evaluate([plain], "exec", f"grep {TARGET} notes.txt")["decision"], "deny")
 
 
-class TestKnownBypasses(unittest.TestCase):
-    """Each test passes only once its shape is fixed; remove the mark then."""
+class TestKnownGaps(unittest.TestCase):
+    """Pin today's wrong answers so a fix is noticed and a crash still fails."""
 
-    def _assert_denied(self, command: str) -> None:
-        self.assertEqual(guard.evaluate([POLICY], "exec", command)["decision"], "deny")
+    def _decision(self, command: str) -> str:
+        return guard.evaluate([POLICY], "exec", command)["decision"]
 
-    @unittest.expectedFailure
-    def test_brace_group(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["brace group"])
+    def test_every_known_bypass_is_still_allowed(self) -> None:
+        for label, command in KNOWN_BYPASSES.items():
+            with self.subTest(label=label):
+                self.assertEqual(
+                    self._decision(command), "allow",
+                    f"{label!r} is now denied: move it from KNOWN_BYPASSES into MUST_MATCH",
+                )
 
-    @unittest.expectedFailure
-    def test_process_substitution(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["process substitution"])
+    def test_every_known_false_positive_is_still_denied(self) -> None:
+        for label, command in KNOWN_FALSE_POSITIVES.items():
+            with self.subTest(label=label):
+                self.assertEqual(
+                    self._decision(command), "deny",
+                    f"{label!r} is now allowed: move it from KNOWN_FALSE_POSITIVES into MUST_NOT_MATCH",
+                )
 
-    @unittest.expectedFailure
-    def test_eval(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["eval"])
-
-    @unittest.expectedFailure
-    def test_here_string(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["here-string"])
-
-    @unittest.expectedFailure
-    def test_find_exec(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["find -exec"])
-
-    @unittest.expectedFailure
-    def test_env_split_string(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["env -S"])
-
-    @unittest.expectedFailure
-    def test_variable_indirection(self) -> None:
-        self._assert_denied(KNOWN_BYPASSES["variable indirection"])
-
-    def test_every_listed_bypass_has_a_test(self) -> None:
-        marked = {name for name in dir(self) if name.startswith("test_") and name != "test_every_listed_bypass_has_a_test"}
-        self.assertEqual(len(marked), len(KNOWN_BYPASSES))
+    def test_the_gap_lists_do_not_overlap_the_golden_sets(self) -> None:
+        gaps = set(KNOWN_BYPASSES.values()) | set(KNOWN_FALSE_POSITIVES.values())
+        self.assertFalse(gaps & (set(MUST_MATCH.values()) | set(MUST_NOT_MATCH.values())))
 
 
 class TestGuardEndToEnd(unittest.TestCase):
@@ -201,6 +209,10 @@ class TestGuardEndToEnd(unittest.TestCase):
                 self.assertEqual(out["hookSpecificOutput"]["permissionDecision"], "deny")
 
     def test_a_mere_mention_is_allowed_in_the_printed_json(self) -> None:
+        # The same policy denies the real command in this very root, so an empty
+        # object here is an allow and not a guard that failed to load anything.
+        denied, _ = self._run(MUST_MATCH["plain"])
+        self.assertEqual(denied["hookSpecificOutput"]["permissionDecision"], "deny")
         out, code = self._run(MUST_NOT_MATCH["commit message"])
         self.assertEqual(code, 0)
         self.assertEqual(out, {})

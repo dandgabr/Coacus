@@ -10,7 +10,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Added
 
 - `tests/test_guardrail_command_corpus.py` locks how command deny rules read shell lines: wrappers, `sh -c`, command substitution, pipes, symlinks and mere mentions, plus two end-to-end checks of the JSON the guard prints.
-- It also records seven shapes that bypass a command deny rule today, as expected failures: a brace group, process substitution, `eval`, a here-string, `find -exec`, `env -S` and variable indirection. They are not fixed here; each test fails loudly once its shape is fixed, so the mark must then be removed.
+- It also records seven shapes that bypass a command deny rule today (a brace group, process substitution, `eval`, a here-string, `find -exec`, `env -S` and variable indirection) and two false positives (`sudo grep NAME` and `xargs grep NAME`). They are pinned to today's answer, so the suite fails when one is fixed and says where to move it. Plain assertions are used instead of `expectedFailure`, which would also hide a crash.
 
 ## [Unreleased] — Guard deny for OpenCode
 
