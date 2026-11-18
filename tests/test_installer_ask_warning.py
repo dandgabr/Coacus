@@ -95,6 +95,37 @@ class TestAskWarnings(unittest.TestCase):
         self._write(doc)
         self.assertEqual(self._warn(["codex"]), [])
 
+    def test_malformed_policies_values_never_crash(self) -> None:
+        for bad in (None, 5, "x", {"a": 1}, [1, "x", None]):
+            self._write({"schema": 1, "enabled": True, "policies": bad})
+            with self.subTest(bad=bad):
+                self.assertEqual(self._warn(["codex"]), [])
+
+    def test_the_off_switches_are_named(self) -> None:
+        self._write(ask_doc())
+        for name in ("CI", "COACUS_GUARD_NO_ASK"):
+            with self.subTest(switch=name):
+                warnings = self._warn(["claude-code"], {"COACUS_GUARD_ASK": "1", name: "1"})
+                self.assertEqual(len(warnings), 1)
+                self.assertIn("switched off", warnings[0]["reason"])
+
+    def test_falsy_off_switch_values_do_not_warn(self) -> None:
+        self._write(ask_doc())
+        for value in ("", "0", "false", "No", "OFF"):
+            with self.subTest(value=value):
+                self.assertEqual(self._warn(["claude-code"], {"COACUS_GUARD_ASK": "1", "CI": value}), [])
+
+    def test_opencode_warns_for_an_ask_it_cannot_defer(self) -> None:
+        shell = {"schema": 1, "enabled": True, "policies": [
+            {"id": "ask-shell", "action": {"verb": "exec", "resource": "*deploy*"},
+             "decision": "ask", "on_ask_unavailable": "allow"}]}
+        self._write(shell)
+        warnings = self._warn(["opencode"], {"COACUS_GUARD_ASK": "1"})
+        self.assertEqual(len(warnings), 1)
+        self.assertTrue(warnings[0]["fails_open"])
+        self.assertIn("only for a read or a write", warnings[0]["reason"])
+        self.assertEqual(self._warn(["claude-code"], {"COACUS_GUARD_ASK": "1"}), [])
+
     def test_unreadable_policy_files_are_skipped(self) -> None:
         (self.user_dir / "broken.policy.json").write_text("{not json", encoding="utf-8")
         self.assertEqual(self._warn(["codex"]), [])
@@ -163,6 +194,7 @@ class TestInstallerConfirmation(unittest.TestCase):
     def test_eof_and_interrupt_count_as_no(self) -> None:
         for exc in (EOFError, KeyboardInterrupt):
             with self.subTest(exc=exc.__name__):
+                before = tree_hash(Path(self._tmp.name))
                 with mock.patch.object(coacus_install, "_confirm", side_effect=exc), \
                         mock.patch.object(coacus_install, "_is_interactive", return_value=True), \
                         mock.patch.dict(os.environ, self.env, clear=True), \
@@ -172,6 +204,8 @@ class TestInstallerConfirmation(unittest.TestCase):
                         ["codex", "--config-dir", str(self.config), "--skills", "using-coacus",
                          "--agents", "general", "--browser-policy", "off", "--force"], REPO)
                 self.assertEqual(code, 2)
+                self.assertEqual(json.loads(out.getvalue())[0]["error"], "installation cancelled")
+                self.assertEqual(tree_hash(Path(self._tmp.name)), before)
 
     def test_no_ask_policy_means_no_prompt_and_no_warning(self) -> None:
         (self.policies / "a.policy.json").unlink()
@@ -191,8 +225,20 @@ class TestInstallerConfirmation(unittest.TestCase):
         with mock.patch.dict(os.environ, self.env, clear=True), \
                 mock.patch.object(coacus_install, "_home", return_value=Path(self._tmp.name) / "home"), \
                 contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = coacus_install.main(["codex", "--config-dir", str(self.config), "--verify"], REPO)
+        report = json.loads(out.getvalue())
+        self.assertIn("ask_warnings", report[0])
+        self.assertEqual(code, 0 if all(item.get("ok") for item in report) else 1)
+
+    def test_verify_with_a_malformed_policy_file_still_prints_json(self) -> None:
+        (self.policies / "bad.policy.json").write_text(
+            json.dumps({"schema": 1, "enabled": True, "policies": None}), encoding="utf-8")
+        out = io.StringIO()
+        with mock.patch.dict(os.environ, self.env, clear=True), \
+                mock.patch.object(coacus_install, "_home", return_value=Path(self._tmp.name) / "home"), \
+                contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):
             coacus_install.main(["codex", "--config-dir", str(self.config), "--verify"], REPO)
-        self.assertIn("ask_warnings", json.loads(out.getvalue())[0])
+        json.loads(out.getvalue())
 
 
 if __name__ == "__main__":

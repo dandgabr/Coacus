@@ -1354,26 +1354,41 @@ def ask_warnings(
     docs: list[dict] = list(extra_docs or [])
     docs += _enabled_policy_docs(root / "methodology" / "lifecycle" / "policies")
     docs += _enabled_policy_docs(user_dir or guard.user_policy_dir(dict(env)))
-    asks = [
-        policy for doc in docs if doc.get("enabled") is True
-        for policy in doc.get("policies", [])
-        if isinstance(policy, dict) and policy.get("decision") == "ask"
-    ]
+    asks = []
+    for doc in docs:
+        policies = doc.get("policies") if isinstance(doc, dict) else None
+        if doc.get("enabled") is not True or not isinstance(policies, list):
+            continue
+        asks += [p for p in policies if isinstance(p, dict) and p.get("decision") == "ask"]
     if not asks:
         return []
-    opted_in = env.get("COACUS_GUARD_ASK", "").strip() == "1"
+
+    def truthy(name: str) -> bool:
+        return env.get(name, "").strip().lower() not in ("", "0", "false", "no", "off")
+
+    switched_off = truthy("CI") or truthy("COACUS_GUARD_NO_ASK")
+    opted_in = env.get("COACUS_GUARD_ASK", "").strip() == "1" and not switched_off
     warnings: list[dict] = []
     for harness in harnesses:
+        channel = None
         try:
             data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
             cap = data["lifecycle"]["events"]["tool.pre"]
             can_ask = cap.get("can_ask") is True and cap.get("can_block") is True
+            channel = cap.get("ask_channel")
         except Exception:
             can_ask = False
-        if opted_in and can_ask:
-            continue
-        reason = "the harness cannot ask" if not can_ask else "asking is off (set COACUS_GUARD_ASK=1)"
         for policy in asks:
+            if not can_ask:
+                reason = "the harness cannot ask"
+            elif switched_off:
+                reason = "asking is switched off (CI or COACUS_GUARD_NO_ASK)"
+            elif not opted_in:
+                reason = "asking is off (set COACUS_GUARD_ASK=1)"
+            elif channel and str((policy.get("action") or {}).get("verb")) not in ("read", "write"):
+                reason = f"{harness} asks only for a read or a write, through its permission hook"
+            else:
+                continue
             fallback = policy.get("on_ask_unavailable", "deny")
             fallback = fallback if fallback in ("allow", "deny") else "deny"
             warnings.append({

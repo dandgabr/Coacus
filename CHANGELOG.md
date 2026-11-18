@@ -9,7 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
-- `coacus_install.py` warns on stderr about each enabled `ask` policy that will not prompt anyone (the harness cannot ask, or `COACUS_GUARD_ASK=1` is not set) and marks a fallback of `allow` as failing open. On a terminal it asks "Continue with the installation? [y/N]" before writing anything; any answer but yes, EOF or Ctrl-C cancels with exit code 2. `--yes` skips the question, a non-interactive run only warns, and `--dry-run` never asks. The warnings are also in the JSON result and in `--verify`.
+- `coacus_install.py` warns on stderr about each enabled `ask` policy that will not prompt anyone (the harness cannot ask, or `COACUS_GUARD_ASK=1` is not set) and marks a fallback of `allow` as failing open. On a terminal it asks "Continue with the installation? [y/N]" before writing anything; any answer but yes, EOF or Ctrl-C cancels with exit code 2. `--yes` skips the question, a non-interactive run only warns, and `--dry-run` never asks. It also names the off switches (`CI`, `COACUS_GUARD_NO_ASK`) and, on OpenCode, any `ask` that is not a read or a write, which that harness cannot defer. The warnings are also in the JSON result and in `--verify`, and a malformed policy file no longer crashes either.
 
 ## [Unreleased] — OpenCode ask through the evaluate hook
 
