@@ -10,6 +10,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Fixed
 
 - The installer warning no longer crashes on a policy whose `action` is not an object or on a non-object policy document, and it warns when an OpenCode read or write `ask` is anchored on one path shape (for example `sub/*`), which the guard does not defer.
+- A mechanism failure in the guard now writes a one-line advisory on stderr (without the payload) while still allowing the call, as ADR 0002 says. ADR 0010 now lists the risks that apply to every harness: a guard the session can edit, tools the guard cannot classify, permission modes that auto-approve, and asks inside a subagent.
 - New tests guard fail-closed branches that mutation testing showed were unprotected: the value of `ask_channel`, the relative path forms, the step limit, the depth cap of the keyword loop, an internal error in the walk, and the two-terminal rule of the installer prompt.
 
 ## [Unreleased] — Event binding

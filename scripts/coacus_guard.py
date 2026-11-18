@@ -344,7 +344,8 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
             if _RANK.get(one, 2) > _RANK[decision]:
                 decision, message = one, text
         return _native(harness, decision, message)
-    except Exception:  # mechanism failure (D4): allow + advisory, never brick.
+    except Exception as exc:  # mechanism failure (D4): allow + advisory, never brick.
+        sys.stderr.write(f"coacus-guard: mechanism failure ({type(exc).__name__}); allowing\n")
         return _allow(harness)
 
 

@@ -51,6 +51,16 @@ opt-in.
   may time out inside the hook (the effect is left as it came), and a permission mode
   that approves prompts by itself would turn the ask into an allow. A V1 install, or a
   failed registration, degrades the ask to its fallback instead.
+- Risks that apply to every harness and are not removed by this record: a guard is a
+  hook the agent's own session may be able to edit or disable (the harness settings,
+  the plugin, the guard script and the user policy directory are ordinary files);
+  tools the guard cannot classify, such as MCP tools, have no verb and so no policy;
+  a permission mode that approves prompts by itself can turn a rendered `ask` into an
+  allow; and the guard fails open on a crash or timeout, now with a one-line advisory
+  on stderr that some harnesses show and some discard. With the opt-in set an `ask` can
+  also be raised inside a subagent, which ADR 0002 forbids, because the hook payload
+  does not say so. Shipping an enabled deny on the policy and hook paths would break
+  the inert default of ADR 0006, so it stays an operator choice.
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 
