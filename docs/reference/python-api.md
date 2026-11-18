@@ -1393,9 +1393,13 @@ asking is opt-in: a run with no human present cannot be detected from here.
 Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
 no exit code; Claude's exit-2 path is reserved for the explicit deny render).
 
-#### `def run(harness: str, event: str, payload_text: str, root: Path) -> str`
+#### `def run(harness: str, event: str, payload_text: str, root: Path, channel: str='default') -> str`
 
 Evaluate one event and return the native effect JSON (never raises).
+
+``channel`` is ``default`` except for OpenCode, whose plugin calls the guard
+from ``tool.execute.before`` (``before`` when an evaluate hook is registered) and
+from the permission ``evaluate`` hook (``evaluate``).
 
 #### `def main(argv: list[str] | None=None) -> int`
 

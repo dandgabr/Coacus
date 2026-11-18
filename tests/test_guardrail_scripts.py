@@ -435,10 +435,10 @@ class TestOpenCodeDeny(unittest.TestCase):
         self.root = enabled_root(self._tmp.name)
 
     def test_native_renders_a_deny_the_plugin_can_see(self) -> None:
-        for decision in ("deny", "ask", "anything-else"):
+        for decision, expected in (("deny", "deny"), ("ask", "ask"), ("anything-else", "deny")):
             with self.subTest(decision=decision):
                 out = json.loads(coacus_guard._native("opencode", decision, "blocked"))
-                self.assertEqual(out["decision"], "deny")
+                self.assertEqual(out["decision"], expected)
                 self.assertEqual(out["reason"], "blocked")
 
     def test_allow_stays_empty(self) -> None:

@@ -30,3 +30,4 @@ a `lifecycle` block is a closed capability (no events, nothing installable).
 - **command-code** `subagent.start` — unsupported: the agent tool cannot be intercepted by a hook
 - **command-code** `tool.pre` — plan-mode-skip: hooks are skipped entirely in plan mode
 - **cursor** `tool.pre` — unverified: project vs user hooks.json precedence is unverified; a user-scope deny must be probed before trust
+- **opencode** `tool.pre` — unverified: ask works only through the V2 permission evaluate hook; its event shape, the permission names it receives and its order against tool.execute.before are documented but not verified by a live V2 run

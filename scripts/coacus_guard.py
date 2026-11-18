@@ -164,8 +164,10 @@ def _native(harness: str, decision: str, message: str) -> str:
         )
     if harness == "opencode":
         # OpenCode has no native effect JSON: the generated plugin reads this
-        # object and throws on a deny, which is its only blocking mechanism.
-        return json.dumps({"decision": "deny", "reason": message})
+        # object. It throws on a deny (its only blocking mechanism) and only the
+        # permission ``evaluate`` hook can turn an ask into a prompt; the plugin
+        # never loosens a decision it was given.
+        return json.dumps({"decision": _word(decision), "reason": message})
     return "{}"
 
 
@@ -185,7 +187,26 @@ def _safe_harness_name(harness: str) -> bool:
     )
 
 
-def _can_ask(root: Path, harness: str, event: str) -> bool:
+ASK_CHANNELS = ("default", "before", "evaluate")
+
+# OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
+# run: only the documented hook contract is known, not every permission name.
+_PERMISSION_VERBS = {
+    "read": "read", "edit": "write", "write": "write", "bash": "exec",
+    "webfetch": "network", "task": "spawn",
+}
+
+
+def _permission_actions(payload: dict) -> list[tuple[str, str]]:
+    """Map an OpenCode permission request (``action`` + ``resources``) to canonical actions."""
+    verb = _PERMISSION_VERBS.get(str(payload.get("action", "")).lower(), "")
+    resources = payload.get("resources")
+    if not verb or not isinstance(resources, (list, tuple)):
+        return []
+    return [(verb, str(item)) for item in resources if isinstance(item, (str, int, float))]
+
+
+def _can_ask(root: Path, harness: str, event: str, channel: str = "default") -> bool:
     """Return True only when asking is opted in and ``harness`` has a human channel.
 
     Asking needs ``COACUS_GUARD_ASK=1``; ``COACUS_GUARD_NO_ASK`` or a set ``CI``
@@ -204,7 +225,14 @@ def _can_ask(root: Path, harness: str, event: str) -> bool:
     try:
         data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
         capability = data["lifecycle"]["events"][event]
-        return capability.get("can_ask") is True and capability.get("can_block") is True
+        if capability.get("can_ask") is not True or capability.get("can_block") is not True:
+            return False
+        # A harness that can ask only through one channel (OpenCode's permission
+        # ``evaluate`` hook) never asks on any other, or the call would slip past.
+        required = capability.get("ask_channel")
+        if required is None:
+            return channel == "default"
+        return channel in ("before", "evaluate") and required == "evaluate"
     except Exception:  # any doubt, including RecursionError on hostile data, degrades
         return False
 
@@ -215,28 +243,49 @@ def _degrade_ask(result: dict) -> str:
     return fallback if fallback in ("allow", "deny") else "deny"
 
 
-_RANK = {"allow": 0, "note": 0, "ask": 1, "deny": 2}
+_RANK = {"allow": 0, "ask": 1, "deny": 2}
 
 
-def run(harness: str, event: str, payload_text: str, root: Path) -> str:
-    """Evaluate one event and return the native effect JSON (never raises)."""
-    try:
-        payload = json.loads(payload_text) if payload_text.strip() else {}
-        policies = guard.load_policies(root, include_user=True)
-        result = {"decision": "allow", "policy_id": None, "message": ""}
-        for verb, resource in _actions(payload):
-            if not verb:
-                continue
-            one = guard.evaluate(policies, verb, resource)
-            if _RANK.get(one.get("decision", "allow"), 2) > _RANK.get(result["decision"], 0):
-                result = one
-        decision = result.get("decision", "allow")
-        message = result.get("message", "")
-        if decision == "ask" and not _can_ask(root, harness, event):
-            # No human channel for this harness and event: degrade per policy.
+def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resource: str) -> tuple[str, str]:
+    """Return ``(decision, message)`` for one canonical action on one channel."""
+    policies = guard.load_policies(root, include_user=True)
+    result = guard.evaluate(policies, verb, resource) if verb else {
+        "decision": "allow", "policy_id": None, "message": ""
+    }
+    decision = result.get("decision", "allow")
+    message = result.get("message", "")
+    if decision == "ask":
+        if _can_ask(root, harness, event, channel):
+            if channel == "before":
+                decision = "allow"  # left to the evaluate hook, which asks
+        else:
+            # No human channel for this harness, event and channel: degrade per policy.
             decision = _degrade_ask(result)
-        if decision == "note":
-            decision = "allow"
+    if decision == "note":
+        decision = "allow"
+    return decision, message
+
+
+def run(harness: str, event: str, payload_text: str, root: Path, channel: str = "default") -> str:
+    """Evaluate one event and return the native effect JSON (never raises).
+
+    ``channel`` is ``default`` except for OpenCode, whose plugin calls the guard
+    from ``tool.execute.before`` (``before`` when an evaluate hook is registered) and
+    from the permission ``evaluate`` hook (``evaluate``).
+    """
+    try:
+        if channel not in ASK_CHANNELS:
+            channel = "default"
+        payload = json.loads(payload_text) if payload_text.strip() else {}
+        if channel == "evaluate":
+            actions = _permission_actions(payload)
+        else:
+            actions = _actions(payload)
+        decision, message = "allow", ""
+        for verb, resource in actions or [("", "")]:
+            one, text = _decide(root, harness, event, channel, verb, resource)
+            if _RANK.get(one, 2) > _RANK[decision]:
+                decision, message = one, text
         return _native(harness, decision, message)
     except Exception:  # mechanism failure (D4): allow + advisory, never brick.
         return _allow(harness)
@@ -248,9 +297,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--harness", required=True)
     parser.add_argument("--event", required=True)
     parser.add_argument("--root", default=str(ROOT))
+    parser.add_argument("--channel", default="default", choices=ASK_CHANNELS)
     args = parser.parse_args(argv)
     payload = sys.stdin.read()
-    print(run(args.harness, args.event, payload, Path(args.root)))
+    print(run(args.harness, args.event, payload, Path(args.root), args.channel))
     return 0
 
 

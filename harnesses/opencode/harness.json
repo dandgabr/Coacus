@@ -33,11 +33,12 @@
       "tool.pre": {
         "support": "gate",
         "can_block": true,
-        "can_ask": false,
+        "can_ask": true,
+        "ask_channel": "evaluate",
         "effect": "throw",
         "evidence": "documented",
         "resolved": "2026-11-18",
-        "source": "https://opencode.ai/docs/build/plugins/migrate-v1"
+        "source": "https://opencode.ai/docs/build/plugins/server"
       },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "metadata", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "transform", "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
@@ -45,7 +46,10 @@
       "session.end": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "turn.stop": { "support": "none", "can_block": false, "can_ask": false, "effect": null, "evidence": "documented", "resolved": "2026-09-30", "source": "https://opencode.ai/docs/plugins" },
       "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-11-18", "source": "https://opencode.ai/docs/build/plugins/migrate-v1" }
-    }
+    },
+    "gaps": [
+      { "event": "tool.pre", "status": "unverified", "reason": "ask works only through the V2 permission evaluate hook; its event shape, the permission names it receives and its order against tool.execute.before are documented but not verified by a live V2 run" }
+    ]
   },
   "plugins": [
     {

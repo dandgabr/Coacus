@@ -30,6 +30,14 @@ opt-in.
   degrades to the policy's `on_ask_unavailable`. An absent or invalid value there
   fails closed to `deny`. The degraded `deny` is enforced through the deny render the guard
   has for each harness, including OpenCode (see Consequences).
+- OpenCode can ask only through the V2 permission `evaluate` hook, so its capability
+  cell carries `ask_channel: evaluate`. The guard takes a `--channel` argument
+  (`default`, `before`, `evaluate`): on a harness with an `ask_channel` it asks only
+  on `evaluate`, defers on `before` (the plugin passes it when the hook is
+  registered) and degrades on `default`, so a V1 install never turns an `ask` into
+  an allow. The hook may only tighten an effect (deny over ask over allow). This was
+  verified against the OpenCode documentation of 2026-11-18, not against a live V2
+  run, and the capability data records that as a gap.
 - The default is unchanged from before: nothing asks. Opting in is an operator
   decision for interactive use.
 
