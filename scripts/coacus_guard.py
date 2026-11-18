@@ -51,6 +51,7 @@ READ_TOOLS = {"read", "read_file", "view_file", "grep", "glob", "list", "ls", "n
               "list_dir"}
 # Read tools that scan a directory: a rule on a file name never sees the files inside
 # the directory they were pointed at, so the glob they were given is checked as well.
+PATCH_TOOLS = {"apply_patch", "patch"}
 SEARCH_TOOLS = {"grep", "glob", "grep_search", "find_by_name", "search_files", "find_files"}
 GLOB_KEYS = ("glob", "include", "Includes", "Pattern")
 # For these the ``pattern`` argument is itself a file glob (for ``grep`` it is a regex).
@@ -98,8 +99,23 @@ def _norm(path: str) -> str:
     return posixpath.normpath(path) if path and "\\" not in path else path
 
 
+def _globs(args: dict, keys: tuple[str, ...]) -> list[str]:
+    """Every glob a search call carries: a string, or each entry of a list of strings."""
+    out: list[str] = []
+    for key in keys:
+        value = args.get(key)
+        for item in value if isinstance(value, (list, tuple)) else [value]:
+            if isinstance(item, str) and item.strip() and item not in out:
+                out.append(item)
+    return out
+
+
 def _patch_paths(args: dict) -> list[str]:
-    """File paths named inside an ``apply_patch`` style patch text, in order."""
+    """File paths named inside an ``apply_patch`` style patch text, in order.
+
+    Only for the patch tools: a ``write`` or ``edit`` carries file content, and content
+    that spells a patch header must never replace the path the tool really writes.
+    """
     for value in args.values():
         if isinstance(value, str):
             found = [(a or b).strip() for a, b in _PATCH_FILE.findall(value)]
@@ -117,21 +133,26 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
     list is an ``mcp`` action named by that raw tool name.
     """
     call = payload.get("toolCall")
+    tool = ""
     if isinstance(call, dict):
         # Antigravity: {"toolCall": {"name": ..., "args": {...}}} (its documented PreToolUse input).
-        tool = _first(call, ("name", "tool")).lower()
+        tool = _first(call, ("name", "tool")).strip().lower()
         args = call.get("args") or {}
-    else:
-        tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
+    if not tool:
+        tool = _first(payload, ("tool", "tool_name", "toolName", "name")).strip().lower()
         args = payload.get("tool_input") or payload.get("args") or call or {}
     if isinstance(args, str):
-        args = {"input": args}
+        try:
+            decoded = json.loads(args)
+        except ValueError:
+            decoded = None
+        args = decoded if isinstance(decoded, dict) else {"input": args}
     if not isinstance(args, dict):
         args = {}
     # The capitalised spellings are Antigravity's style (``CommandLine``); only that one is
     # confirmed, the rest are unverified (see the antigravity gap in harness.json).
     path = _first(args, ("filePath", "file_path", "path", "target_file", "notebook_path", "AbsolutePath",
-                         "TargetFile", "SearchPath", "SearchDirectory", "pattern"))
+                         "TargetFile", "SearchPath", "SearchDirectory", "DirectoryPath", "pattern"))
     command = _first(args, ("command", "CommandLine", "cmd"))
     if tool.startswith(MCP_PREFIXES):
         return [("mcp", tool)]  # the tool's own name; its arguments have no common shape
@@ -146,13 +167,19 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
             return [("exec", command), ("mcp", tool)]
     if tool in READ_TOOLS:
         found = [("read", _norm(path))]
-        keys = GLOB_KEYS + (("pattern",) if tool in GLOB_TOOLS else ())
-        glob = _first(args, keys) if tool in SEARCH_TOOLS else ""
-        if glob and glob != path:
-            found.append(("read", _norm(posixpath.join(path, glob)) if path and path != glob else glob))
+        if tool in SEARCH_TOOLS:
+            keys = GLOB_KEYS + (("pattern",) if tool in GLOB_TOOLS else ())
+            for glob in _globs(args, keys):
+                if glob == path:
+                    continue
+                # A search glob is relative to the directory searched, even with a leading
+                # slash (ripgrep reads ``/.env`` as ``<dir>/.env``); a find tool's absolute
+                # pattern is absolute, so that one is kept as given.
+                rooted = glob if tool in GLOB_TOOLS and glob.startswith("/") else glob.lstrip("/")
+                found.append(("read", _norm(posixpath.join(path, rooted)) if path and path != glob else rooted))
         return found
     if tool in WRITE_TOOLS:
-        patched = _patch_paths(args)
+        patched = _patch_paths(args) if tool in PATCH_TOOLS else []
         if patched:
             return [("write", _norm(item)) for item in patched]
         return [("write", _norm(path))]

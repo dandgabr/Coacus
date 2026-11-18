@@ -39,7 +39,8 @@ NO_VERB = {
     "command-code": {"todo_write", "agent_output"},
     "opencode": {"todowrite"},
 }
-HARNESSES = ("antigravity", "claude-code", "codex", "cursor", "opencode", "command-code")
+HARNESSES = tuple(sorted(
+    d.name for d in (REPO / "harnesses").iterdir() if (d / "harness.json").is_file() and not d.name.startswith("_")))
 
 
 def data(harness: str) -> dict:
@@ -49,7 +50,11 @@ def data(harness: str) -> dict:
 def names(text: str) -> list[str]:
     """Tool names in one mapping cell: ``a / b``, with any parenthetical dropped."""
     cell = re.sub(r"\([^)]*\)", "", text)
-    return [part.strip().strip("`") for part in cell.split("/") if re.fullmatch(r"[`A-Za-z0-9_ -]+", part.strip())]
+    parts = [part.strip().strip("`") for part in cell.split("/")]
+    kept = [part for part in parts if re.fullmatch(r"[A-Za-z0-9_ -]+", part)]
+    if len(kept) != len(parts):
+        return []  # a cell with prose or a command is not a list of tool names
+    return kept
 
 
 def call(tool: str, harness: str) -> list[tuple[str, str]]:
@@ -98,6 +103,45 @@ class TestDocumentedToolNames(unittest.TestCase):
         self.assertEqual(found, [("read", "/home/u")])
 
 
+    def test_a_patch_header_inside_written_content_never_replaces_the_target(self) -> None:
+        cases = [
+            ({"toolCall": {"name": "write_to_file", "args": {"TargetFile": "/w/.env",
+                                                           "CodeContent": "*** Update File: /tmp/ok\n"}}}, "antigravity"),
+            ({"tool": "Write", "tool_input": {"file_path": "/w/.env", "content": "*** Add File: /tmp/ok"}}, "claude-code"),
+            ({"tool": "edit", "tool_input": {"filePath": "/w/.env", "newString": "*** Move to: /tmp/ok"}}, "opencode"),
+        ]
+        for payload, harness in cases:
+            with self.subTest(harness=harness):
+                self.assertEqual(guard._actions(payload, harness), [("write", "/w/.env")])
+
+    def test_a_real_patch_still_yields_one_write_per_file(self) -> None:
+        text = "*** Begin Patch\n*** Update File: /a\n*** Move to: /b\n*** Delete File: /c\n"
+        found = guard._actions({"tool": "apply_patch", "tool_input": {"input": text}}, "codex")
+        self.assertEqual(found, [("write", "/a"), ("write", "/b"), ("write", "/c")])
+
+    def test_a_list_of_globs_gives_one_read_per_entry(self) -> None:
+        payload = {"toolCall": {"name": "grep_search", "args": {"SearchPath": "/h", "Includes": ["*.env", "*.py"]}}}
+        self.assertEqual(guard._actions(payload, "antigravity"),
+                         [("read", "/h"), ("read", "/h/*.env"), ("read", "/h/*.py")])
+
+    def test_an_absolute_grep_glob_stays_under_the_searched_directory(self) -> None:
+        found = guard._actions({"tool": "Grep", "tool_input": {"pattern": "x", "path": "/home/u", "glob": "/.env"}})
+        self.assertIn(("read", "/home/u/.env"), found)
+
+    def test_a_glob_tool_keeps_an_absolute_pattern_absolute(self) -> None:
+        found = guard._actions({"tool": "find_by_name", "tool_input": {"SearchDirectory": "/h", "Pattern": "/etc/.env"}})
+        self.assertIn(("read", "/etc/.env"), found)
+
+    def test_a_rule_fires_for_a_glob_that_names_the_file(self) -> None:
+        from engine.guardrail import evaluate as engine
+        policy = {"id": "p", "action": {"verb": "read", "resource": "*/.env"}, "decision": "deny"}
+        for payload in ({"tool": "Glob", "tool_input": {"pattern": ".env", "path": "/home/u"}},
+                        {"tool": "Grep", "tool_input": {"pattern": "x", "path": "/home/u", "glob": ".env"}}):
+            decisions = [engine.evaluate([policy], verb, resource)["decision"] for verb, resource in guard._actions(payload)]
+            with self.subTest(tool=payload["tool"]):
+                self.assertIn("deny", decisions)
+
+
 class TestAntigravityPayload(unittest.TestCase):
     """The documented PreToolUse input: ``{"toolCall": {"name": ..., "args": {...}}}``."""
 
@@ -109,16 +153,30 @@ class TestAntigravityPayload(unittest.TestCase):
             ("multi_replace_file_content", {"TargetFile": "/w/a"}, [("write", "/w/a")]),
             ("read_url_content", {"Url": "http://x"}, [("network", "http://x")]),
             ("search_web", {"Query": "q"}, [("network", "q")]),
+            ("list_dir", {"DirectoryPath": "/home/u/.ssh"}, [("read", "/home/u/.ssh")]),
         ]
         for tool, args, expected in cases:
             with self.subTest(tool=tool):
                 found = guard._actions({"toolCall": {"name": tool, "args": args}}, "antigravity")
                 self.assertEqual(found, expected)
 
-    def test_a_malformed_tool_call_never_raises(self) -> None:
-        for call_value in (None, 5, "x", [], {"name": 5}, {"name": "view_file", "args": "x"}):
+    def test_arguments_sent_as_a_json_string_are_decoded(self) -> None:
+        payload = {"toolCall": {"name": "view_file", "args": json.dumps({"AbsolutePath": "/w/.env"})}}
+        self.assertEqual(guard._actions(payload, "antigravity"), [("read", "/w/.env")])
+
+    def test_odd_names_and_a_nameless_tool_call_still_find_the_tool(self) -> None:
+        self.assertEqual(guard._actions({"tool": " view_file\n", "tool_input": {"path": "/a"}}), [("read", "/a")])
+        both = {"tool_name": "Read", "tool_input": {"file_path": "/a"}, "toolCall": {}}
+        self.assertEqual(guard._actions(both), [("read", "/a")])
+
+    def test_unreadable_arguments_leave_an_empty_resource_not_a_crash(self) -> None:
+        payload = {"toolCall": {"name": "view_file", "args": "x"}}
+        self.assertEqual(guard._actions(payload, "antigravity"), [("read", "")])
+
+    def test_a_malformed_tool_call_has_no_verb_and_never_raises(self) -> None:
+        for call_value in (None, 5, "x", [], {"name": 5}):
             with self.subTest(call=call_value):
-                guard._actions({"toolCall": call_value}, "antigravity")
+                self.assertEqual(guard._actions({"toolCall": call_value}, "antigravity"), [("", "")])
 
     def test_the_script_denies_a_documented_payload(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

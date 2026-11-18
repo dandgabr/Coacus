@@ -135,8 +135,10 @@ The guard classifies a call by the tool's name and reads its arguments from the
 harness's documented payload (Antigravity nests them under `toolCall`). A tool with
 no verb, such as a todo list, is never offered to a policy. A search tool that scans a
 directory (`Grep`, `Glob`, `grep_search`, `find_by_name`) is checked against the
-directory and against the glob it was given, never against the files it finds, so a
-rule on one file name does not stop a search that happens to read it. A test reads
+directory and, best effort, against each glob it was given joined under that directory,
+never against the files it finds. A rule that names one file by a pattern such as
+`*/.env` can still miss a search that reads it, for example through a bracket or brace
+glob, so a file-level read rule is not a barrier against search tools. A test reads
 each harness's `tool_mapping` and `tool_denylist` and fails when a documented tool has
 no verb and is not on its short list of exemptions.
 
