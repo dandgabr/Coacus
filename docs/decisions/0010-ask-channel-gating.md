@@ -62,8 +62,11 @@ opt-in.
 - With the opt-in set, policies on claude-code and antigravity can prompt a
   person, which is a relaxation compared with degrading to deny. The operator owns
   that choice, and the off switches always win.
-- Known gaps, tracked separately: the installer does not refuse an `ask` policy on
-  a harness that cannot ask. Two `ask` policies that match the same action no longer
+- The installer warns, on stderr, about every enabled `ask` policy that will degrade
+  (the harness cannot ask, or `COACUS_GUARD_ASK=1` is not set), flags a fallback of
+  `allow` as failing open, and on a terminal asks whether to continue before it
+  writes anything. `--yes` skips the question and a non-interactive run only warns.
+  It never refuses, because the degradation is already safe. Two `ask` policies that match the same action no longer
   depend on file order: the strictest `on_ask_unavailable` wins (`deny` beats `allow`,
   and a missing or invalid value counts as `deny`). On OpenCode the guard now renders
   a `deny`, so a policy blocks a tool call there.

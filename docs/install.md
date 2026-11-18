@@ -193,6 +193,7 @@ repository policies; nothing is committed to the repository.
   catalogue's preferred detected browser, default fallback = none, `skip` to leave
   the policy off). Without a terminal it stays **off** (D2: no behaviour change
   without opt-in).
+- **Ask policies.** When an enabled `ask` policy will degrade on the target harness (it cannot ask, or `COACUS_GUARD_ASK=1` is not set), the installer prints a warning on stderr and, on a terminal, asks whether to continue before it writes anything. `--yes` skips the question; a run without a terminal only warns.
 - `--browser-policy auto` picks the preferred detected browser with no fallback;
   `--browser-policy prompt|off` force the mode; `--browser-primary <id>` and
   `--browser-fallback <id>` select explicitly (an id that is not installed stops the

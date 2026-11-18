@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Installer ask warning
+
+### Added
+
+- `coacus_install.py` warns on stderr about each enabled `ask` policy that will not prompt anyone (the harness cannot ask, or `COACUS_GUARD_ASK=1` is not set) and marks a fallback of `allow` as failing open. On a terminal it asks "Continue with the installation? [y/N]" before writing anything; any answer but yes, EOF or Ctrl-C cancels with exit code 2. `--yes` skips the question, a non-interactive run only warns, and `--dry-run` never asks. The warnings are also in the JSON result and in `--verify`.
+
 ## [Unreleased] — OpenCode ask through the evaluate hook
 
 ### Added
@@ -73,7 +79,6 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Known gaps
 
 - On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the first entry.
-- The installer does not refuse an `ask` policy on a harness that cannot ask.
 
 ### Fixed
 

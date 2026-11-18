@@ -1318,6 +1318,96 @@ def _refuse_unenforceable(
     return reasons
 
 
+def _enabled_policy_docs(directory: Path) -> list[dict]:
+    """Enabled policy documents under ``directory`` (missing or unreadable files skipped)."""
+    docs: list[dict] = []
+    if directory.is_dir():
+        for path in sorted(directory.glob("*.policy.json")):
+            try:
+                doc = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if isinstance(doc, dict) and doc.get("enabled") is True:
+                docs.append(doc)
+    return docs
+
+
+def ask_warnings(
+    root: Path,
+    harnesses: list[str],
+    extra_docs: list[dict] | None = None,
+    user_dir: Path | None = None,
+    environ: dict[str, str] | None = None,
+) -> list[dict]:
+    """Return one warning per enabled ``ask`` policy that will degrade on a harness.
+
+    The directories read are the ones the runtime guard loads: the repository
+    policies, the machine-local policy directory (``COACUS_POLICY_DIR`` or the
+    per-user default) and ``extra_docs`` generated during this run. An ``ask``
+    degrades to its ``on_ask_unavailable`` when asking is off (``COACUS_GUARD_ASK``
+    is not ``1``) or the harness cannot ask for ``tool.pre``. A degradation to
+    ``allow`` is flagged because it fails open. Only enabled policies count.
+    """
+    from engine.guardrail import evaluate as guard
+
+    env = os.environ if environ is None else environ
+    docs: list[dict] = list(extra_docs or [])
+    docs += _enabled_policy_docs(root / "methodology" / "lifecycle" / "policies")
+    docs += _enabled_policy_docs(user_dir or guard.user_policy_dir(dict(env)))
+    asks = [
+        policy for doc in docs if doc.get("enabled") is True
+        for policy in doc.get("policies", [])
+        if isinstance(policy, dict) and policy.get("decision") == "ask"
+    ]
+    if not asks:
+        return []
+    opted_in = env.get("COACUS_GUARD_ASK", "").strip() == "1"
+    warnings: list[dict] = []
+    for harness in harnesses:
+        try:
+            data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
+            cap = data["lifecycle"]["events"]["tool.pre"]
+            can_ask = cap.get("can_ask") is True and cap.get("can_block") is True
+        except Exception:
+            can_ask = False
+        if opted_in and can_ask:
+            continue
+        reason = "the harness cannot ask" if not can_ask else "asking is off (set COACUS_GUARD_ASK=1)"
+        for policy in asks:
+            fallback = policy.get("on_ask_unavailable", "deny")
+            fallback = fallback if fallback in ("allow", "deny") else "deny"
+            warnings.append({
+                "harness": harness,
+                "policy": str(policy.get("id")),
+                "reason": reason,
+                "degrades_to": fallback,
+                "fails_open": fallback == "allow",
+            })
+    return warnings
+
+
+def _format_ask_warnings(warnings: list[dict]) -> str:
+    """Human text for ``ask_warnings`` output."""
+    lines = ["Some ask policies will not prompt anyone and degrade to their fallback:"]
+    for item in warnings:
+        tail = " (fails open)" if item["fails_open"] else ""
+        lines.append(f"  - {item['policy']} on {item['harness']}: {item['reason']}; "
+                     f"degrades to {item['degrades_to']}{tail}")
+    return "\n".join(lines)
+
+
+def _is_interactive() -> bool:
+    """True when both stdin and stdout are terminals."""
+    return sys.stdin.isatty() and sys.stdout.isatty()
+
+
+def _confirm(prompt: str) -> str:
+    """Read one answer from the user; the prompt goes to stderr so stdout stays JSON."""
+    sys.stderr.write(prompt)
+    sys.stderr.flush()
+    return sys.stdin.readline()
+
+
 def _mcp_servers(root: Path, base_executable: str | None = None) -> dict[str, dict]:
     """Coacus MCP servers as ``{name: config}`` for a harness MCP config.
 
@@ -2930,6 +3020,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="record a guardrail downgrade instead of refusing to install an unenforceable deny",
     )
     parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="do not ask for confirmation when an ask policy will degrade (the warning is still printed)",
+    )
+    parser.add_argument(
         "--force",
         action="store_true",
         help="install even when the harness is not detected on this machine (provision ahead of it)",
@@ -3020,8 +3115,24 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                     _browser_policy_dir(args.config_dir, args.browser_policy_dir)
                 )
             }
+            results[0]["ask_warnings"] = ask_warnings(root or ROOT, harnesses)
         print(json.dumps(results, indent=2))
         return 0 if ok else 1
+
+    warnings: list[dict] = []
+    if not args.uninstall:
+        warnings = ask_warnings(root or ROOT, harnesses)
+        if warnings:
+            sys.stderr.write(_format_ask_warnings(warnings) + "\n")
+            if not args.dry_run and not args.yes and _is_interactive():
+                try:
+                    answer = _confirm("Continue with the installation? [y/N] ").strip().lower()
+                except (EOFError, KeyboardInterrupt):
+                    answer = ""
+                if answer not in ("y", "yes"):
+                    print(json.dumps([{"harness": args.harness, "error": "installation cancelled",
+                                       "ask_warnings": warnings}], indent=2))
+                    return 2
 
     policy_dir = _browser_policy_dir(args.config_dir, args.browser_policy_dir)
     browser: dict[str, object] = {"mode": "off", "status": "off"}
@@ -3074,6 +3185,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         browser = {"mode": "off", "status": "removed" if browsers.remove_policy(policy_dir) else "absent"}
     if results:
         results[0]["browser_policy"] = browser
+        if warnings:
+            results[0]["ask_warnings"] = warnings
     if args.verify_after_install:
         for result in results:
             if result.get("skipped") or result.get("error"):

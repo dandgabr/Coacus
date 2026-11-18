@@ -1576,6 +1576,17 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
+#### `def ask_warnings(root: Path, harnesses: list[str], extra_docs: list[dict] | None=None, user_dir: Path | None=None, environ: dict[str, str] | None=None) -> list[dict]`
+
+Return one warning per enabled ``ask`` policy that will degrade on a harness.
+
+The directories read are the ones the runtime guard loads: the repository
+policies, the machine-local policy directory (``COACUS_POLICY_DIR`` or the
+per-user default) and ``extra_docs`` generated during this run. An ``ask``
+degrades to its ``on_ask_unavailable`` when asking is off (``COACUS_GUARD_ASK``
+is not ``1``) or the harness cannot ask for ``tool.pre``. A degradation to
+``allow`` is flagged because it fails open. Only enabled policies count.
+
 #### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, skills_mode: str='link', antigravity_profile: str='on-demand', python_executable: str | None=None, base_executable: str | None=None) -> list[tuple[Path, FileContent]]`
 
 Compute the files to install for ``harness`` under the given filters.
