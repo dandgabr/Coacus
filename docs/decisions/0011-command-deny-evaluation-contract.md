@@ -17,7 +17,8 @@ not look through (brace groups, process substitution, `eval`, here-strings,
 
 ## Decision
 
-- Resource matching never uses a backtracking regex. `*` is matched by a two-pointer
+- Resource matching has no regex of its own. `fnmatch` is tried first (its translation
+  is bounded on supported Pythons) and `*` is otherwise matched by a two-pointer
   scan whose work is bounded by pattern length times value length. A value longer
   than 100,000 characters matches every pattern, and one trailing newline is ignored.
 - A command is **unresolved** when it exceeds that size, nests deeper than the depth

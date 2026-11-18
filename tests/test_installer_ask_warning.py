@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 def ask_doc(fallback="deny", enabled=True, policy_id="ask-env") -> dict:
     return {"schema": 1, "enabled": enabled, "policies": [
-        {"id": policy_id, "action": {"verb": "read", "resource": "**/.env"},
+        {"id": policy_id, "action": {"verb": "read", "resource": "*.env"},
          "decision": "ask", "on_ask_unavailable": fallback}]}
 
 
@@ -129,6 +129,44 @@ class TestAskWarnings(unittest.TestCase):
         self.assertIn("only for a read or a write", warnings[0]["reason"])
         self.assertEqual(self._warn(["claude-code"], {"COACUS_GUARD_ASK": "1"}), [])
 
+    def test_a_policy_with_a_non_object_action_never_crashes(self) -> None:
+        bad = {"schema": 1, "enabled": True, "policies": [
+            {"id": "x", "action": "read", "decision": "ask"}, {"id": "y", "action": None, "decision": "ask"}]}
+        self._write(bad)
+        env = {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}
+        self.assertEqual(self._warn(["opencode"], env), [])
+        self.assertEqual(self._warn(["codex"], env, extra=["not a dict", {"enabled": True, "policies": [1]}]), [])
+
+    def test_opencode_warns_for_an_ask_anchored_on_one_path_shape(self) -> None:
+        env = {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}
+        for pattern, expected in (("sub/*", 1), ("*/.env", 1), (".env", 1), ("*.env", 0), ("*secret*", 0)):
+            doc = ask_doc()
+            doc["policies"][0]["action"]["resource"] = pattern
+            self._write(doc)
+            with self.subTest(pattern=pattern):
+                self.assertEqual(len(self._warn(["opencode"], env)), expected)
+
+    def test_a_harness_that_can_ask_but_cannot_block_still_warns(self) -> None:
+        import shutil
+        fake = Path(self._tmp.name) / "repo"
+        shutil.copytree(REPO / "harnesses", fake / "harnesses")
+        path = fake / "harnesses/claude-code/harness.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["lifecycle"]["events"]["tool.pre"]["can_block"] = False
+        path.write_text(json.dumps(data), encoding="utf-8")
+        self._write(ask_doc())
+        warnings = coacus_install.ask_warnings(fake, ["claude-code"], None, self.user_dir,
+                                               {"COACUS_GUARD_ASK": "1"})
+        self.assertEqual([w["reason"] for w in warnings], ["the harness cannot ask"])
+
+    def test_is_interactive_needs_both_streams(self) -> None:
+        for stdin_tty, stdout_tty, expected in ((True, True, True), (True, False, False),
+                                                (False, True, False), (False, False, False)):
+            with self.subTest(stdin=stdin_tty, stdout=stdout_tty):
+                with mock.patch.object(coacus_install.sys, "stdin", mock.Mock(isatty=lambda v=stdin_tty: v)), \
+                        mock.patch.object(coacus_install.sys, "stdout", mock.Mock(isatty=lambda v=stdout_tty: v)):
+                    self.assertIs(coacus_install._is_interactive(), expected)
+
     def test_unreadable_policy_files_are_skipped(self) -> None:
         (self.user_dir / "broken.policy.json").write_text("{not json", encoding="utf-8")
         self.assertEqual(self._warn(["codex"]), [])
@@ -144,7 +182,8 @@ class TestInstallerConfirmation(unittest.TestCase):
         self.policies = base / "policies"
         self.policies.mkdir()
         (self.policies / "a.policy.json").write_text(json.dumps(ask_doc()), encoding="utf-8")
-        self.env = {k: v for k, v in os.environ.items() if k not in ("CI", "COACUS_GUARD_ASK")}
+        self.env = {k: v for k, v in os.environ.items() if k not in ("CI", "COACUS_GUARD_ASK", "COACUS_GUARD_NO_ASK",
+                                                              "COACUS_GUARD_ASK_EXPERIMENTAL")}
         self.env["COACUS_POLICY_DIR"] = str(self.policies)
 
     def _run(self, extra=None, *, interactive: bool, answer="") -> tuple[int, str, str, mock.Mock]:

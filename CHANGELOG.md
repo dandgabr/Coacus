@@ -5,6 +5,13 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Final review findings
+
+### Fixed
+
+- The installer warning no longer crashes on a policy whose `action` is not an object or on a non-object policy document, and it warns when an OpenCode read or write `ask` is anchored on one path shape (for example `sub/*`), which the guard does not defer.
+- New tests guard fail-closed branches that mutation testing showed were unprotected: the value of `ask_channel`, the relative path forms, the step limit, the depth cap of the keyword loop, an internal error in the walk, and the two-terminal rule of the installer prompt.
+
 ## [Unreleased] — Event binding
 
 ### Fixed
@@ -85,7 +92,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Known gaps
 
-- On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the first entry.
+- On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the "Guard deny for OpenCode" entry.
 
 ### Fixed
 

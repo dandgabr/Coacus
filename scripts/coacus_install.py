@@ -1356,10 +1356,13 @@ def ask_warnings(
     docs += _enabled_policy_docs(user_dir or guard.user_policy_dir(dict(env)))
     asks = []
     for doc in docs:
-        policies = doc.get("policies") if isinstance(doc, dict) else None
-        if doc.get("enabled") is not True or not isinstance(policies, list):
+        if not isinstance(doc, dict) or doc.get("enabled") is not True:
             continue
-        asks += [p for p in policies if isinstance(p, dict) and p.get("decision") == "ask"]
+        policies = doc.get("policies")
+        if not isinstance(policies, list):
+            continue
+        asks += [p for p in policies
+                 if isinstance(p, dict) and p.get("decision") == "ask" and isinstance(p.get("action"), dict)]
     if not asks:
         return []
 
@@ -1387,8 +1390,11 @@ def ask_warnings(
                 reason = "asking is off (set COACUS_GUARD_ASK=1)"
             elif channel and env.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
                 reason = f"asking on {harness} also needs COACUS_GUARD_ASK_EXPERIMENTAL=1 (not verified live)"
-            elif channel and str((policy.get("action") or {}).get("verb")) not in ("read", "write"):
+            elif channel and str(policy["action"].get("verb")) not in ("read", "write"):
                 reason = f"{harness} asks only for a read or a write, through its permission hook"
+            elif channel and not _shape_independent(policy["action"].get("resource")):
+                reason = (f"the pattern of this ask is anchored to one path shape, so {harness} "
+                          f"does not defer it to its permission hook")
             else:
                 continue
             fallback = policy.get("on_ask_unavailable", "deny")
@@ -1401,6 +1407,18 @@ def ask_warnings(
                 "fails_open": fallback == "allow",
             })
     return warnings
+
+
+def _shape_independent(resource: object) -> bool:
+    """Heuristic: a suffix pattern with no directory part holds for any path shape.
+
+    The guard decides this exactly for a concrete path at run time; the installer has
+    no path, so it only recognises the obviously safe form (``*.env``, ``*secret*``).
+    """
+    patterns = resource if isinstance(resource, list) else [resource]
+    return bool(patterns) and all(
+        isinstance(p, str) and p.startswith("*") and "/" not in p for p in patterns
+    )
 
 
 def _format_ask_warnings(warnings: list[dict]) -> str:
