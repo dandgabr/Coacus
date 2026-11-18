@@ -462,7 +462,7 @@ class TestProducer(StateDirCase):
 
     def test_a_failure_while_logging_never_changes_the_router_result(self) -> None:
         import scripts.coacus_route as router_cli
-        with mock.patch("engine.improve.sources.route_miss.record_miss", side_effect=RuntimeError("x")):
+        with mock.patch("engine.improve.sources.route_miss.record_miss", side_effect=RuntimeError("simulated failure")):
             router_cli._log_miss(self.repo, "p")
 
 
