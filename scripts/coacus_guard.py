@@ -55,7 +55,15 @@ NETWORK_TOOLS = {"fetch", "webfetch", "web_fetch", "read_url_content", "fetch_ur
                  "web_search"}
 SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subagents", "subagent"}
 # Tools served by an MCP server: Claude Code sends ``mcp__server__tool``, Cursor ``MCP:tool``.
-MCP_PREFIXES = ("mcp__", "mcp:")
+MCP_PREFIXES = ("mcp_", "mcp:")
+# OpenCode names an MCP tool ``<server>_<tool>``, so its own tools are told apart by exact
+# name, never by the shared tables: a server called ``web`` serving ``fetch`` arrives as
+# ``web_fetch``, which the shared tables would call a network tool. ``apply_patch`` is the
+# one native name with an underscore.
+OPENCODE_NATIVE = {"read", "grep", "glob", "list", "write", "edit", "patch", "apply_patch",
+                   "multiedit", "shell", "bash", "execute", "webfetch", "websearch", "task"}
+# OpenCode tools that are not MCP and have no verb here (no rule can name them).
+OPENCODE_UNCLASSIFIED = {"todowrite", "todoread", "skill", "question", "lsp", "batch"}
 _PATCH_FILE = re.compile(r"^\*\*\* (?:Add|Update|Delete) File: (.+)$", re.MULTILINE)
 
 
@@ -89,8 +97,8 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
 
     Usually one. A patch that touches several files yields one write per file, so a
     policy on any of them is consulted. On OpenCode an MCP tool arrives as
-    ``<server>_<tool>`` (observed on 2.3.0), so any tool that is not a native one is
-    an ``mcp`` action named by that raw tool name.
+    ``<server>_<tool>`` (observed on 2.3.0), so any tool that is not in its exact native
+    list is an ``mcp`` action named by that raw tool name.
     """
     tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
     args = payload.get("tool_input") or payload.get("args") or payload.get("toolCall") or {}
@@ -102,6 +110,15 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
     command = _first(args, ("command", "CommandLine", "cmd"))
     if tool.startswith(MCP_PREFIXES):
         return [("mcp", tool)]  # the tool's own name; its arguments have no common shape
+    if harness == "opencode" and tool:
+        if tool in OPENCODE_UNCLASSIFIED:
+            return [("", "")]
+        if tool not in OPENCODE_NATIVE:
+            return [("mcp", tool)]
+        if tool == "execute":
+            # Code mode: it carries code, not a command, and the code can reach the network
+            # itself. A rule can name it as an mcp action; command rules cannot read it.
+            return [("exec", command), ("mcp", tool)]
     if tool in READ_TOOLS:
         return [("read", path)]
     if tool in WRITE_TOOLS:
@@ -115,8 +132,6 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
         return [("network", _first(args, ("url", "uri", "query")))]
     if tool in SPAWN_TOOLS:
         return [("spawn", _first(args, ("prompt", "description", "name")))]
-    if harness == "opencode" and tool:
-        return [("mcp", tool)]
     return [("", "")]
 
 
@@ -250,8 +265,9 @@ def _can_ask(root: Path, harness: str, event: str, channel: str = "default") -> 
         required = capability.get("ask_channel")
         if required is None:
             return channel == "default"
-        # The channel is checked against documentation only, never a live run, so it
-        # needs its own explicit opt-in on top of COACUS_GUARD_ASK=1.
+        # The channel was seen live on OpenCode 2.3.0 only (and that harness approves an
+        # ask by itself under --auto), so it needs its own explicit opt-in on top of
+        # COACUS_GUARD_ASK=1.
         if os.environ.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
             return False
         return channel in ("before", "evaluate") and required == "evaluate"

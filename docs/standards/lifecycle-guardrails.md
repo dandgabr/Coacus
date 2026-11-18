@@ -11,6 +11,13 @@ A guardrail is authored once and rendered natively per harness. The model is
 - **Action** — the portable subject: `verb` (`exec`, `read`, `write`, `network`,
   `spawn`, `mcp`, `delegate`) plus a normalized `resource`. Defined in
   `methodology/lifecycle/actions.schema.json`.
+  An `mcp` resource is the tool name as the harness sends it, so the pattern is per
+  harness: `mcp__server__tool` on Claude Code and Codex, `server_tool` on OpenCode and
+  `MCP:tool` on Cursor (no server name). Write `*server*` to span them. A tool the guard
+  cannot classify has no verb, so no rule sees it: remove it from the harness configuration.
+  On OpenCode the code tool `execute` is an `exec` action with no command and also an
+  `mcp` action named `execute`; code run through it can reach the network without a hook
+  seeing it, so deny `execute` itself when that matters.
 - **Policy** — authored once in `methodology/lifecycle/policies/*.policy.json`.
 - **Event** — when the policy is consulted; the canonical taxonomy lives in
   `methodology/lifecycle/events.json`. An event has a `class`:

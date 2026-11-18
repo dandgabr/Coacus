@@ -99,7 +99,7 @@ not look through (brace groups, process substitution, `eval`, here-strings,
 - A command deny rule is best-effort, never a sandbox. This record narrows the gap;
   it does not close it. Two classes stay out of reach by design: a launcher the walk
   does not know (any program that runs another program from its arguments) and a tool
-  the guard cannot classify (an MCP tool, for example), which has no verb and so no
+  the guard cannot classify (a tool no table knows, for example), which has no verb and so no
   policy. A fresh review found no shape beyond those after the fixes above.
 - Two known false positives remain: a prefix wrapper reads its first words as
   candidates, so `sudo grep NAME file` still matches. They are pinned in the corpus.

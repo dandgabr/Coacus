@@ -28,15 +28,27 @@ The guard cannot know what an arbitrary MCP tool does, so mapping each one to `r
 ## Consequences
 
 - Claude Code documents `mcp__<server>__<tool>` for its PreToolUse hook, and Cursor
-  documents `MCP:<tool>` for HTTP MCP servers. Codex and Antigravity are
-  recorded as `unverified` gaps in their `harness.json`: the pages read do not say
-  whether the hook fires for MCP tools, so a rule may never run there.
+  documents `MCP:<tool>` for HTTP MCP servers. Codex 0.169.0 was run live (2026-11-18,
+  isolated `CODEX_HOME`): the hook fires for an MCP tool as `mcp__<server>__<tool>` and a
+  deny from the guard blocked it. Antigravity is a `unverified` gap: the account was
+  disabled by the service during the attempt, so no run was possible. Its documentation
+  names MCP tools `mcp_<server>_<tool>`, which the `mcp_` prefix now classifies, but that
+  is unproven.
 - OpenCode was run live (2.3.0, 2026-11-18, isolated project, stub MCP server). An MCP
-  tool reaches both hooks as `<server>_<tool>` (`probe_echo`), not `mcp__...`, so for
-  OpenCode the guard treats every tool outside its native lists as an `mcp` action named
-  by the raw tool name, and a rule such as `probe_*` denied it, including a call made
-  from inside the `execute` code tool (the nested call is guarded on its own; the
-  `execute` call itself carries code, not a command, and matches no command rule).
+  tool reaches both hooks as `<server>_<tool>` (`probe_echo`), not `mcp__...`. The guard
+  therefore decides native or MCP on OpenCode by an exact list of its own tool names
+  (`OPENCODE_NATIVE` in `scripts/coacus_guard.py`), never by the shared tables: a server
+  named `web` serving `fetch` arrives as `web_fetch`, which the shared tables would call a
+  network tool and skip every `mcp` rule. Every name outside that list is an `mcp` action
+  named by the raw tool name, except a few native tools with no verb (`todowrite`, `skill`,
+  `question`, `lsp`, `batch`), which stay unclassified so a broad `mcp` rule does not
+  block them; `lsp` and `skill` can read files and no `read` rule sees them. A rule such as
+  `probe_*` denied the stub, including a call made from inside the `execute` code tool
+  (the nested call is guarded on its own). The `execute` call itself carries code, not a
+  command, so it is both an `exec` action with no command and an `mcp` action named
+  `execute`, and a rule can deny it by that name. The installed tool description says
+  that code can also call `fetch` directly, which no hook sees, so a `network` rule is
+  not a barrier against code run through `execute`; deny `execute` when that matters.
   Native names there are `read`, `write` and `shell`, and `edit` as a permission name.
 - A plugin whose `id` equals that of an already installed plugin is skipped without a
   message: a project copy of `coacus-guardrails` never loaded beside the global one

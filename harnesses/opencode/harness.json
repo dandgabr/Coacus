@@ -36,7 +36,7 @@
         "can_ask": true,
         "ask_channel": "evaluate",
         "effect": "throw",
-        "evidence": "documented",
+        "evidence": "observed",
         "resolved": "2026-11-18",
         "source": "https://opencode.ai/docs/build/plugins/server"
       },
@@ -48,8 +48,8 @@
       "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-11-18", "source": "https://opencode.ai/docs/build/plugins/migrate-v1" }
     },
     "gaps": [
-      { "event": "tool.pre", "status": "observed", "reason": "OpenCode 2.3.0, run live on 2026-11-18: an MCP tool reaches tool.execute.before and the permission evaluate hook as <server>_<tool> (not mcp__), so the guard treats every non-native tool as an mcp action; a nested call made through the execute code tool is guarded on its own, and the execute call itself has no command to match" },
-      { "event": "tool.pre", "status": "observed", "reason": "OpenCode 2.3.0, run live on 2026-11-18: a thrown error from tool.execute.before blocks the call, and the evaluate hook turned an allow into an ask that the harness enforced (read, edit and shell arrive as read, edit and shell). Interactive approval works (allow once runs, reject stops). With --auto the harness approves an ask without a prompt, so only a deny holds. Supported: 2.3.0 and later; earlier versions are not tested. A plugin whose id equals another installed plugin's id is skipped without a message" }
+      { "event": "tool.pre", "status": "observed", "reason": "OpenCode 2.3.0, run live on 2026-11-18: an MCP tool reaches tool.execute.before and the permission evaluate hook as <server>_<tool> (not mcp__), so the guard treats every tool outside an exact list of OpenCode's own names as an mcp action (a few native tools with no verb, such as todowrite and skill, stay unclassified); a nested call made through the execute code tool is guarded on its own, and the execute call itself has no command to match" },
+      { "event": "tool.pre", "status": "observed", "reason": "OpenCode 2.3.0, run live on 2026-11-18: a thrown error from tool.execute.before blocks the call, and the evaluate hook turned an allow into an ask that the harness enforced (read, edit and shell arrive as read, edit and shell). Interactive approval works (allow once runs, reject stops). With --auto the harness approves an ask without a prompt, so only a deny holds. Minimum supported version: 2.3.0 (the one tested); earlier versions are not supported. A plugin whose id equals another installed plugin's id is skipped without a message" }
     ]
   },
   "plugins": [

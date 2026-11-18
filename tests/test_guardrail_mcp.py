@@ -34,7 +34,8 @@ class TestClassification(unittest.TestCase):
         self.assertEqual(coacus_guard._actions({"tool": "Bash", "tool_input": {"command": "ls"}})[0][0], "exec")
         self.assertEqual(coacus_guard._actions({"tool": "Read", "tool_input": {"path": "a"}})[0][0], "read")
         self.assertEqual(coacus_guard._actions({"tool": "mcpish", "tool_input": {}})[0], ("", ""))
-        self.assertEqual(coacus_guard._actions({"tool": "mcp_single_underscore"})[0], ("", ""))
+        # Antigravity documents mcp_<server>_<tool>; the prefix is classified though unproven.
+        self.assertEqual(coacus_guard._actions({"tool": "mcp_probe_echo"})[0], ("mcp", "mcp_probe_echo"))
 
 
 class TestOpenCodeNames(unittest.TestCase):
@@ -51,6 +52,46 @@ class TestOpenCodeNames(unittest.TestCase):
                                  ("write", {"path": "a", "content": "x"}, "write")):
             with self.subTest(tool=tool):
                 self.assertEqual(coacus_guard._actions({"tool": tool, "tool_input": args}, "opencode")[0][0], verb)
+
+    def test_the_fallback_names_the_tool_not_a_constant(self) -> None:
+        for tool in ("other_tool", "web_fetch", "files_read", "docs_search"):
+            with self.subTest(tool=tool):
+                self.assertEqual(coacus_guard._actions({"tool": tool}, "opencode"), [("mcp", tool)])
+
+    def test_an_mcp_tool_named_like_a_native_one_still_gets_its_mcp_rule(self) -> None:
+        # A server called ``web`` serving ``fetch`` arrives as web_fetch, which the shared
+        # tables call a network tool; a ``shell``-like server tool as ``run_command``.
+        for tool in ("web_fetch", "web_search", "run_command", "read_file", "write_file", "str_replace_editor"):
+            with self.subTest(tool=tool):
+                self.assertEqual(coacus_guard._actions({"tool": tool, "tool_input": {"url": "x"}}, "opencode"),
+                                 [("mcp", tool)])
+                self.assertNotEqual(coacus_guard._actions({"tool": tool, "tool_input": {}}, "claude-code")[0][0], "mcp")
+
+    def test_native_tools_without_a_verb_are_not_mcp(self) -> None:
+        for tool in sorted(coacus_guard.OPENCODE_UNCLASSIFIED):
+            with self.subTest(tool=tool):
+                self.assertEqual(coacus_guard._actions({"tool": tool, "tool_input": {}}, "opencode"), [("", "")])
+
+    def test_every_native_name_keeps_the_verb_the_shared_tables_give_it(self) -> None:
+        for tool in sorted(coacus_guard.OPENCODE_NATIVE - {"execute"}):
+            with self.subTest(tool=tool):
+                self.assertNotEqual(coacus_guard._actions({"tool": tool, "tool_input": {}}, "opencode")[0][0], "mcp")
+
+    def test_execute_is_both_exec_and_a_nameable_mcp_action(self) -> None:
+        actions = coacus_guard._actions({"tool": "execute", "tool_input": {"code": "return 1"}}, "opencode")
+        self.assertEqual(actions, [("exec", ""), ("mcp", "execute")])
+        self.assertEqual(guard.evaluate([policy("execute")], "mcp", "execute")["decision"], "deny")
+
+    def test_only_opencode_gets_the_fallback(self) -> None:
+        payload = {"tool": "other_tool"}
+        for harness in ("claude-code", "codex", "cursor", "antigravity", "command-code", ""):
+            with self.subTest(harness=harness):
+                self.assertEqual(coacus_guard._actions(payload, harness), [("", "")])
+
+    def test_an_mcp_permission_on_the_evaluate_channel_maps_to_nothing(self) -> None:
+        # The deny holds through the before hook; an ask on an mcp tool falls back to its
+        # on_ask_unavailable value because only a read or a write is deferred to evaluate.
+        self.assertEqual(coacus_guard._permission_actions({"action": "probe_echo", "resources": ["x"]}), [])
 
     def test_an_empty_tool_name_stays_without_a_verb(self) -> None:
         self.assertEqual(coacus_guard._actions({"tool_input": {}}, "opencode"), [("", "")])
@@ -96,8 +137,19 @@ class TestMatching(unittest.TestCase):
         self.assertEqual(guard.evaluate([read_rule], "mcp", "mcp__x__y")["decision"], "allow")
 
     def test_case_folding_is_limited_to_the_mcp_verb(self) -> None:
-        rule = {"id": "w", "action": {"verb": "write", "resource": "SECRET.txt"}, "decision": "deny"}
-        self.assertEqual(guard.evaluate([rule], "write", "secret.txt")["decision"], "allow")
+        for verb in ("write", "read", "exec", "network", "spawn"):
+            with self.subTest(verb=verb):
+                rule = {"id": "w", "action": {"verb": verb, "resource": "SECRET.txt"}, "decision": "deny"}
+                self.assertEqual(guard.evaluate([rule], verb, "secret.txt")["decision"], "allow")
+
+    def test_a_star_server_star_pattern_spans_the_harness_naming_schemes(self) -> None:
+        rule = policy("*playwright*")
+        for tool in ("mcp__playwright__browser_click", "playwright_browser_click", "mcp_playwright_browser_click"):
+            with self.subTest(tool=tool):
+                self.assertEqual(self.decide(rule, tool), "deny")
+        # Cursor sends no server name, so a rule cannot tell servers apart there.
+        self.assertEqual(self.decide(rule, "MCP:browser_click"), "allow")
+        self.assertEqual(self.decide(policy("mcp__playwright__*"), "playwright_browser_click"), "allow")
 
     def test_ask_falls_back_where_nobody_can_be_asked(self) -> None:
         result = guard.evaluate([policy("mcp__x__*", "ask")], "mcp", "mcp__x__y")

@@ -50,7 +50,7 @@
       "subagent.stop": { "support": "lifecycle", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" }
     },
     "gaps": [
-      { "event": "tool.pre", "status": "observed", "reason": "Codex 0.169.0, run live on 2026-11-18 with an isolated CODEX_HOME: PreToolUse fires for an MCP tool with tool_name mcp__<server>__<tool> and the arguments in tool_input, and a deny from the guard blocked the call (the shell tool arrives as Bash). Not run: other versions. Supported: 0.169.0 and later" },
+      { "event": "tool.pre", "status": "observed", "reason": "Codex 0.169.0, run live on 2026-11-18 with an isolated CODEX_HOME: PreToolUse fires for an MCP tool with tool_name mcp__<server>__<tool> and the arguments in tool_input, and a deny from the guard blocked the call (the shell tool arrives as Bash). Minimum supported version: 0.169.0 (the one tested); earlier versions are not supported" },
       { "event": "session.end", "status": "advisory", "reason": "SessionEnd is advisory on Codex; it cannot block" },
       { "event": "tool.pre", "status": "trust-gate", "reason": "Codex refuses to run an untrusted hook until the operator approves it" }
     ]
