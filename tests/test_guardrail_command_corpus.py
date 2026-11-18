@@ -115,6 +115,34 @@ MUST_MATCH = {
     "command substitution inside sh -c": f'sh -c "$(echo {TARGET})"',
     "multi-line sh -c argument": f"sh -c 'echo x\n{TARGET}'",
     "heredoc into a shell": f"sh <<EOF\n{TARGET}\nEOF",
+    "source of a process substitution": f". <(echo {TARGET})",
+    "source of stdin": f"source /dev/stdin <<EOF\n{TARGET}\nEOF",
+    "function keyword definition": f"function f {{ {TARGET}; }}; f",
+    "env with a combined -S option": f"env -vS'{TARGET}'",
+    "env with a split option and value": f"env -S '{TARGET} --flag'",
+    "apostrophe in a heredoc body": f"cat <<EOF\nIt's here\nEOF\n{TARGET}",
+    "marker inside double quotes": f'echo "<<X"\n{TARGET}',
+    "shift operator in arithmetic": f"echo $((1<<X))\n{TARGET}",
+    "quoted heredoc tag": f"cat <<'EOF'\nbody\nEOF\n{TARGET}",
+    "escaped heredoc tag": f"cat <<E\\OF\nbody\nEOF\n{TARGET}",
+    "absolute shell heredoc": f"/bin/bash <<EOF\n{TARGET}\nEOF",
+    "bash -s from a pipe": f"echo {TARGET} | bash -s",
+    "bash dash from a pipe": f"echo {TARGET} | bash -",
+    "sudo -s": f"echo {TARGET} | sudo -s",
+    "xargs replace into sh": f"echo {TARGET} | xargs -I{{}} sh -c '{{}}'",
+    "expansion inside the word": "blocked${x}bin",
+    "command substitution inside the word": "blocked$(true)bin",
+    "backtick inside the word": "blocked`true`bin",
+    "glob star": "/usr/bin/blocked*",
+    "glob question mark": "blockedbi?",
+    "line continuation": "blocked\\\nbin",
+    "append assignment prefix": f"A+=1 {TARGET}",
+    "array assignment prefix": f"a[0]=x {TARGET}",
+    "nested parens in a quoted substitution": f'echo "$( ({TARGET}) )"',
+    "watch with a string": f"watch '{TARGET} -a'",
+    "script with a string": f"script -qc '{TARGET}'",
+    "chroot": f"chroot /srv {TARGET}",
+    "strace": f"strace -f {TARGET}",
 }
 
 # Command lines that only mention the name and must not match.
@@ -136,6 +164,10 @@ MUST_NOT_MATCH = {
     "heredoc commit message": f"git commit -m \"$(cat <<'EOF'\nsubject\n\n{TARGET} is banned\nEOF\n)\"",
     "heredoc into cat": f"cat <<EOF\n{TARGET} is banned\nEOF",
     "variable braces as an argument": f"echo ${{HOME}} {TARGET}",
+    "home-relative command path": f"$HOME/.local/bin/tool --{TARGET}",
+    "test builtin": f"[ -f {TARGET} ] && echo ok",
+    "bash with a script file": f"bash scripts/run.sh {TARGET}",
+    "heredoc into cat with an apostrophe": f"cat <<EOF\nIt's {TARGET}\nEOF",
     "empty": "",
     "blank": "   ",
 }
@@ -149,12 +181,9 @@ KNOWN_FALSE_POSITIVES = {
 }
 
 # Shapes measured as NOT caught today. Each one is a bypass of a command deny rule.
-KNOWN_BYPASSES = {
-    # The name only exists after the shell runs something or after parsing a
-    # construct this walk does not model.
-    "source of a process substitution": f". <(echo {TARGET})",
-    "function keyword definition": f"function f {{ {TARGET}; }}; f",
-    "env with a combined -S option": f"env -vS'{TARGET}'",
+KNOWN_BYPASSES: dict[str, str] = {
+    # Nothing is known to slip through at the moment. A shape found later is added
+    # here, pinned to "allow", until it is fixed and moved into MUST_MATCH.
 }
 
 

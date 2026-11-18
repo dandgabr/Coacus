@@ -21,6 +21,7 @@ whole string (see :func:`command_candidates`).
 from __future__ import annotations
 
 import fnmatch
+import functools
 import json
 import os
 import re
@@ -33,23 +34,31 @@ POLICIES_DIR = "methodology/lifecycle/policies"
 
 DECISIONS = ("allow", "deny", "ask", "note")
 
-_ASSIGN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=")
+_ASSIGN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(?:\[[^\]]*\])?\+?=")
 _SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish", "su"}
 _WRAPPERS = {
     "env", "nohup", "setsid", "sudo", "doas", "timeout", "nice", "ionice", "stdbuf",
     "exec", "command", "time", "xvfb-run", "dbus-run-session", "systemd-run",
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
-    "busybox", "toybox", "builtin", "watch", "runuser",
+    "busybox", "toybox", "builtin", "watch", "runuser", "chroot", "unshare",
+    "nsenter", "strace", "ltrace", "setpriv", "prlimit", "bwrap", "firejail",
 }
+# Wrappers whose argument is a whole command line in one quoted string.
+_STRING_WRAPPERS = {"watch", "script"}
+# Commands that only read a here-document as data. Any other reader (a shell,
+# ``source``, ``eval``, an unknown program) has its body scanned like a script.
+_DATA_READERS = {"cat", "tee", "git", "gh", "echo", "printf", "grep", "sed", "awk",
+                 "wc", "sort", "head", "tail", "diff", "read", "uniq", "cut", "tr"}
+_SCRIPT_WORD = re.compile(r"(?:^|[\s;&|(`])(?:\S*/)?(?:sh|bash|zsh|dash|ksh|source|eval|su|\.)(?=\s|$)")
+_MAX_WORDS = 2000
+_SAFE_PREFIX = re.compile(r"^(?:\$HOME|\$\{HOME\}|\$PWD|\$\{PWD\}|~)(?=/)")
 _STEP_LIMIT = 5000
 _LOOKAHEAD = 8
 _REDIRECT = re.compile(r"^\d*(?:>>?|<<?|>&|<&|&>)")
 _BARE_REDIRECT = re.compile(r"^\d*(?:>>?|<|>&|<&|&>)$")
-_HEREDOC = re.compile(r"<<-?\s*(['\"]?)([A-Za-z_][A-Za-z0-9_]*)\1")
 _KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
 _FIND_EXEC = {"-exec", "-execdir", "-ok", "-okdir"}
 _PROCESS_SUBST = {"<(", ">("}
-_SUBSHELL = re.compile(r"\$\(([^()]*)\)|`([^`]*)`")
 _MAX_DEPTH = 8
 _MAX_COMMAND_CHARS = 100_000
 
@@ -78,19 +87,27 @@ def user_policy_dir(env: dict | None = None, home: Path | None = None) -> Path:
 
 
 def _load_dir(base: Path) -> list[dict]:
-    """Load every enabled ``*.policy.json`` under ``base`` (missing dir -> none)."""
+    """Load every enabled ``*.policy.json`` under ``base`` (missing dir -> none).
+
+    One bad file, or one bad entry, is skipped on its own: it must never switch the
+    other policies off. Only well-formed policy dictionaries are returned.
+    """
     policies: list[dict] = []
     if not base.is_dir():
         return policies
     for path in sorted(base.glob("*.policy.json")):
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
+        except (OSError, ValueError):  # includes JSONDecodeError and bad UTF-8
             continue
-        if data.get("enabled") is not True:
+        if not isinstance(data, dict) or data.get("enabled") is not True:
             continue
-        for policy in data.get("policies", []):
-            policies.append(policy)
+        entries = data.get("policies")
+        if not isinstance(entries, list):
+            continue
+        for policy in entries:
+            if isinstance(policy, dict) and isinstance(policy.get("action"), dict):
+                policies.append(policy)
     return policies
 
 
@@ -181,46 +198,139 @@ def _names(word: str) -> list[str]:
     return [name for name in names if name]
 
 
-def _logical_lines(command: str) -> list[str]:
-    """Split on newlines that are outside quotes; skip heredoc bodies of non-shells.
+def _heredoc_tag(text: str, index: int) -> tuple[str, int]:
+    """Read a here-document tag starting at ``index``; return ``(tag, next_index)``.
 
-    A quoted argument that spans lines stays on one line, so it parses. The body of
-    a here-document is data unless the command that reads it is a shell, which
-    would run it; for a shell the body lines are scanned like any other.
+    Quotes and backslashes are dropped from the tag, as the shell does, and the tag
+    ends at whitespace or an operator character.
     """
-    lines: list[str] = []
-    current: list[str] = []
+    while index < len(text) and text[index] in " \t":
+        index += 1
+    tag: list[str] = []
     quote = ""
-    escaped = False
-    for ch in command:
-        if escaped:
-            escaped = False
-        elif ch == "\\" and quote != "'":
-            escaped = True
-        elif quote:
+    while index < len(text):
+        ch = text[index]
+        if quote:
             if ch == quote:
                 quote = ""
+            else:
+                tag.append(ch)
         elif ch in "'\"":
             quote = ch
+        elif ch == "\\" and index + 1 < len(text):
+            index += 1
+            tag.append(text[index])
+        elif ch in " \t\n;&|<>()":
+            break
+        else:
+            tag.append(ch)
+        index += 1
+    return "".join(tag), index
+
+
+def _reads_as_script(line: str) -> bool:
+    """True when the program that reads a here-document on ``line`` may run it."""
+    if _SCRIPT_WORD.search(line):
+        return True
+    head = re.match(r"\s*(?:[A-Za-z_][A-Za-z0-9_]*=\S*\s+)*([^\s;&|()<>]+)", line)
+    return not head or os.path.basename(head.group(1)) not in _DATA_READERS
+
+
+def _logical_lines(command: str) -> list[str]:
+    """Split on newlines that are outside quotes, handling here-documents.
+
+    A quoted argument that spans lines stays on one line, so it parses. A here-document
+    is detected where the shell detects it (outside quotes and arithmetic, with the tag
+    read the way the shell reads it), and its body is consumed before any quote
+    tracking, so an apostrophe in the body cannot swallow the commands after it. The
+    body is data for a known data reader and a script for anything else.
+    """
+    command = command.replace("\\\n", "")  # line continuation
+    lines: list[str] = []
+    current: list[str] = []
+    pending: list[tuple[str, bool]] = []
+    quote = ""
+    arith = 0
+    index, size = 0, len(command)
+    while index < size:
+        ch = command[index]
+        if ch == "\\" and quote != "'" and index + 1 < size:
+            current.append(ch + command[index + 1])
+            index += 2
+            continue
+        if quote:
+            if ch == quote:
+                quote = ""
+            current.append(ch)
+            index += 1
+            continue
+        if ch in "'\"":
+            quote = ch
+        elif command.startswith("$((", index) or command.startswith("((", index):
+            arith += 2
+            step = 3 if command.startswith("$((", index) else 2
+            current.append(command[index:index + step])
+            index += step
+            continue
+        elif arith and ch in "()":
+            arith += 1 if ch == "(" else -1
+        elif command.startswith("<<", index) and not arith and not command.startswith("<<<", index):
+            strip = command.startswith("<<-", index)
+            tag, nxt = _heredoc_tag(command, index + (3 if strip else 2))
+            if tag:
+                pending.append((tag, strip))
+            current.append(command[index:nxt])
+            index = nxt
+            continue
         elif ch == "\n":
-            lines.append("".join(current))
+            line = "".join(current)
+            lines.append(line)
             current = []
+            index += 1
+            for tag, strip in pending:
+                body: list[str] = []
+                while index <= size:
+                    end = command.find("\n", index)
+                    end = size if end == -1 else end
+                    text = command[index:end]
+                    index = end + 1
+                    if (text.lstrip("\t") if strip else text) == tag:
+                        break
+                    body.append(text)
+                    if end == size:
+                        break
+                if _reads_as_script(line):
+                    lines.extend(body)
+            pending = []
             continue
         current.append(ch)
-    lines.append("".join(current))
-    out: list[str] = []
-    index = 0
-    while index < len(lines):
-        line = lines[index]
-        out.append(line)
         index += 1
-        marker = _HEREDOC.search(line) if "<<<" not in line else None
-        if marker and not re.search(r"(?:^|[\s;&|(])(?:sh|bash|zsh|dash|ksh)\b", line):
-            tag = marker.group(2)
-            while index < len(lines) and lines[index].strip() != tag:
-                index += 1
-            index += 1  # the terminator
-    return out
+    lines.append("".join(current))
+    return lines
+
+
+def _substitutions(line: str) -> list[str]:
+    """Inner text of every ``$(...)`` (balanced) and backtick substitution in ``line``."""
+    found: list[str] = []
+    index = 0
+    while index < len(line):
+        if line.startswith("$(", index) and not line.startswith("$((", index):
+            depth, start = 1, index + 2
+            cursor = start
+            while cursor < len(line) and depth:
+                depth += {"(": 1, ")": -1}.get(line[cursor], 0)
+                cursor += 1
+            found.append(line[start:cursor - 1 if depth == 0 else cursor])
+            index = cursor  # nested substitutions are found by the recursive walk
+            continue
+        if line[index] == "`":
+            end = line.find("`", index + 1)
+            end = len(line) if end == -1 else end
+            found.append(line[index + 1:end])
+            index = end + 1
+            continue
+        index += 1
+    return found
 
 
 def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
@@ -272,7 +382,12 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     if state["steps"] > _STEP_LIMIT:
         state["unresolved"] = True
         return []
+    if len(words) > _MAX_WORDS:
+        state["unresolved"] = True
+        return []
     rest = words[index:]
+    if rest and rest[0] == "function":
+        rest = rest[2:]  # ``function name {``: the name is not a command
     while rest and (rest[0] in _KEYWORDS or rest[0] == "--" or _REDIRECT.match(rest[0])
                     or (rest[0].isdigit() and len(rest) > 1 and _REDIRECT.match(rest[1]))):
         if depth >= _MAX_DEPTH:
@@ -287,16 +402,21 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     if not rest:
         return []
     first = rest[0]
-    if first.startswith("$") or ("{" in first and "," in first and not first.startswith("{")) \
-            or (first.startswith("{") and "," in first and first.endswith("}")):
-        # Expansion decides the command name: it cannot be known without a shell.
+    literal = _SAFE_PREFIX.sub("", first, count=1)
+    if (
+        "$" in literal or "`" in literal
+        or (first not in ("[", "[[") and any(ch in first for ch in "*?["))
+        or ("{" in first and "," in first)
+    ):
+        # An expansion or a glob decides the command name: it cannot be known
+        # without running a shell.
         state["unresolved"] = True
     head = os.path.basename(rest[0])
     out = list(_names(rest[0]))
     if head == "eval" and len(rest) > 1:
         out.extend(_scan(" ".join(rest[1:]), depth + 1, state))
     elif head == "find":
-        for position, word in enumerate(rest):
+        for position, word in enumerate(rest[:_MAX_WORDS]):
             if word in _FIND_EXEC and position + 1 < len(rest):
                 out.extend(_words_candidates(rest[position + 1:], depth + 1, state))
     elif head in _SHELLS:
@@ -311,8 +431,11 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
                     out.extend(_scan(rest[target], depth + 1, state))
                 break
         else:
-            if head in ("sh", "bash", "zsh", "dash", "ksh") and len(rest) == 1:
-                state["unresolved"] = True  # a bare shell reads its script from stdin
+            operands = [w for w in rest[1:] if not w.startswith("-")]
+            if head in ("sh", "bash", "zsh", "dash", "ksh") and "<<<" not in rest and (
+                not operands or "-s" in rest[1:] or "-" in rest[1:]
+            ):
+                state["unresolved"] = True  # a shell that reads its script from stdin
     elif head in _WRAPPERS:
         tail = rest[1:]
         # Option values (``sudo -u root``, ``nice -n 5``) hide the real command a
@@ -320,20 +443,35 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         for word in tail[:_LOOKAHEAD]:
             if not word.startswith("-") and not _ASSIGN.match(word):
                 out.extend(_names(word))
+            if head in _STRING_WRAPPERS and " " in word and not word.startswith("-"):
+                out.extend(_scan(word, depth + 1, state))
+        if head in ("sudo", "doas") and ("-s" in tail or "-i" in tail):
+            state["unresolved"] = True  # a login or interactive shell
+        if head == "xargs" and any(w.startswith(("-I", "-i", "-J")) for w in tail[:_LOOKAHEAD]) \
+                and any(os.path.basename(w) in _SHELLS for w in tail[:_LOOKAHEAD]):
+            state["unresolved"] = True  # the shell script is built from input
         if head == "env":
-            for position, word in enumerate(tail):
-                if word in ("-S", "--split-string") and position + 1 < len(tail):
-                    out.extend(_scan(tail[position + 1], depth + 1, state))
-                elif word.startswith("--split-string="):
+            for position, word in enumerate(tail[:_LOOKAHEAD]):
+                if word.startswith("--split-string="):
                     out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
-                elif word.startswith("-S") and len(word) > 2:
-                    out.extend(_scan(word[2:], depth + 1, state))
+                elif word == "--split-string" and position + 1 < len(tail):
+                    out.extend(_scan(tail[position + 1], depth + 1, state))
+                else:
+                    cluster = re.match(r"^-[A-Za-z]*S(.*)$", word) if not word.startswith("--") else None
+                    if cluster and cluster.group(1):
+                        out.extend(_scan(cluster.group(1), depth + 1, state))
+                    elif cluster and position + 1 < len(tail):
+                        out.extend(_scan(tail[position + 1], depth + 1, state))
         starts = [i for i, word in enumerate(tail[:_LOOKAHEAD]) if not word.startswith("-")]
         if starts and depth >= _MAX_DEPTH:
             state["unresolved"] = True
         else:
             for i in starts:
                 out.extend(_words_candidates(tail[i:], depth + 1, state))
+    elif head in (".", "source"):
+        operands = [w for w in rest[1:] if not w.startswith("-")]
+        if not operands or operands[0].startswith(("/dev/stdin", "/dev/fd/", "/proc/self/fd/")):
+            state["unresolved"] = True  # sourced from a pipe or a process substitution
     elif head == "flatpak" and "run" in rest:
         after = [word for word in rest[rest.index("run") + 1:] if not word.startswith("-")]
         if after:
@@ -350,25 +488,33 @@ def _scan(command: str, depth: int, state: dict) -> list[str]:
     """
     if not command or not command.strip():
         return []
-    if len(command) > _MAX_COMMAND_CHARS or depth > _MAX_DEPTH:
+    state["steps"] = state.get("steps", 0) + 1
+    if len(command) > _MAX_COMMAND_CHARS or depth > _MAX_DEPTH or state["steps"] > _STEP_LIMIT:
         state["unresolved"] = True
         return []
     out: list[str] = []
     for line in _logical_lines(command):
         for words in _simple_commands(line, state):
             out.extend(_words_candidates(words, depth, state))
-        for match in _SUBSHELL.finditer(line):
-            out.extend(_scan(match.group(1) or match.group(2) or "", depth + 1, state))
+        for inner in _substitutions(line):
+            out.extend(_scan(inner, depth + 1, state))
     return out
+
+
+@functools.lru_cache(maxsize=256)
+def _resolve_cached(command: str) -> tuple[tuple[str, ...], bool]:
+    """Memoized walk: a rule set evaluates the same command once per policy."""
+    state = {"unresolved": False, "steps": 0}
+    try:
+        return tuple(_scan(command, 0, state)), state["unresolved"]
+    except Exception:  # best effort: an unexpected parse failure is unresolved
+        return (), True
 
 
 def resolve_command(command: str) -> tuple[list[str], bool]:
     """Return ``(executable names, unresolved)`` for a shell string (never raises)."""
-    state = {"unresolved": False}
-    try:
-        return _scan(command, 0, state), state["unresolved"]
-    except Exception:  # best effort: an unexpected parse failure is unresolved
-        return [], True
+    names, unresolved = _resolve_cached(command)
+    return list(names), unresolved
 
 
 def command_candidates(command: str, _depth: int = 0) -> list[str]:
@@ -435,10 +581,11 @@ def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
     best = {"decision": "allow", "policy_id": None, "message": ""}
     asks: list[dict] = []
     for policy in policies:
-        p_verb, _ = _action_of(policy)
-        if p_verb != verb:
-            continue
-        if not _policy_matches(policy, resource):
+        try:
+            p_verb, _ = _action_of(policy)
+            if p_verb != verb or not _policy_matches(policy, resource):
+                continue
+        except Exception:  # a malformed entry must not stop the other policies
             continue
         decision = str(policy.get("decision", "allow"))
         if decision not in order:

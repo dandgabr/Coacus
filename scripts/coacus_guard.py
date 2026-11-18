@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shlex
 import sys
 from pathlib import Path
@@ -43,12 +44,17 @@ if str(ROOT) not in sys.path:
 
 from engine.guardrail import evaluate as guard  # noqa: E402
 
-READ_TOOLS = {"read", "read_file", "Read", "view_file"}
-WRITE_TOOLS = {"write", "edit", "write_file", "edit_file", "apply_patch", "Write", "Edit",
-               "write_to_file", "replace_file_content"}
-EXEC_TOOLS = {"bash", "shell", "shell_command", "run_command", "terminal", "Bash"}
-NETWORK_TOOLS = {"fetch", "webfetch", "web_fetch", "read_url_content", "fetch_url"}
-SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subagents"}
+# Tool names are compared in lower case, so ``Read`` and ``read`` are one tool.
+READ_TOOLS = {"read", "read_file", "view_file", "grep", "glob", "list", "ls", "notebookread",
+              "view", "cat", "search_files", "find_files"}
+WRITE_TOOLS = {"write", "edit", "write_file", "edit_file", "apply_patch", "write_to_file",
+               "replace_file_content", "multiedit", "patch", "notebookedit", "str_replace_editor",
+               "create_file", "delete_file"}
+EXEC_TOOLS = {"bash", "shell", "shell_command", "run_command", "terminal", "exec", "execute"}
+NETWORK_TOOLS = {"fetch", "webfetch", "web_fetch", "read_url_content", "fetch_url", "websearch",
+                 "web_search"}
+SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subagents", "subagent"}
+_PATCH_FILE = re.compile(r"^\*\*\* (?:Add|Update|Delete) File: (.+)$", re.MULTILINE)
 
 
 def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
@@ -66,25 +72,49 @@ def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
     return default
 
 
-def _action(payload: dict) -> tuple[str, str]:
-    """Map a native payload to a canonical (verb, resource)."""
-    tool = _first(payload, ("tool", "tool_name", "toolName", "name"))
+def _patch_paths(args: dict) -> list[str]:
+    """File paths named inside an ``apply_patch`` style patch text, in order."""
+    for value in args.values():
+        if isinstance(value, str):
+            found = [p.strip() for p in _PATCH_FILE.findall(value)]
+            if found:
+                return found
+    return []
+
+
+def _actions(payload: dict) -> list[tuple[str, str]]:
+    """Map a native payload to canonical ``(verb, resource)`` pairs.
+
+    Usually one. A patch that touches several files yields one write per file, so a
+    policy on any of them is consulted.
+    """
+    tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
     args = payload.get("tool_input") or payload.get("args") or payload.get("toolCall") or {}
+    if isinstance(args, str):
+        args = {"input": args}
     if not isinstance(args, dict):
         args = {}
-    path = _first(args, ("filePath", "file_path", "path", "target_file"))
+    path = _first(args, ("filePath", "file_path", "path", "target_file", "notebook_path", "pattern"))
     command = _first(args, ("command", "CommandLine", "cmd"))
     if tool in READ_TOOLS:
-        return "read", path
+        return [("read", path)]
     if tool in WRITE_TOOLS:
-        return "write", path
+        patched = _patch_paths(args)
+        if patched:
+            return [("write", item) for item in patched]
+        return [("write", path)]
     if tool in EXEC_TOOLS:
-        return "exec", command
+        return [("exec", command)]
     if tool in NETWORK_TOOLS:
-        return "network", _first(args, ("url", "uri"))
+        return [("network", _first(args, ("url", "uri", "query")))]
     if tool in SPAWN_TOOLS:
-        return "spawn", _first(args, ("prompt", "description", "name"))
-    return "", ""
+        return [("spawn", _first(args, ("prompt", "description", "name")))]
+    return [("", "")]
+
+
+def _action(payload: dict) -> tuple[str, str]:
+    """Map a native payload to its first canonical (verb, resource)."""
+    return _actions(payload)[0]
 
 
 def _allow(harness: str) -> str:
@@ -185,15 +215,21 @@ def _degrade_ask(result: dict) -> str:
     return fallback if fallback in ("allow", "deny") else "deny"
 
 
+_RANK = {"allow": 0, "note": 0, "ask": 1, "deny": 2}
+
+
 def run(harness: str, event: str, payload_text: str, root: Path) -> str:
     """Evaluate one event and return the native effect JSON (never raises)."""
     try:
         payload = json.loads(payload_text) if payload_text.strip() else {}
-        verb, resource = _action(payload)
         policies = guard.load_policies(root, include_user=True)
-        result = guard.evaluate(policies, verb, resource) if verb else {
-            "decision": "allow", "policy_id": None, "message": ""
-        }
+        result = {"decision": "allow", "policy_id": None, "message": ""}
+        for verb, resource in _actions(payload):
+            if not verb:
+                continue
+            one = guard.evaluate(policies, verb, resource)
+            if _RANK.get(one.get("decision", "allow"), 2) > _RANK.get(result["decision"], 0):
+                result = one
         decision = result.get("decision", "allow")
         message = result.get("message", "")
         if decision == "ask" and not _can_ask(root, harness, event):

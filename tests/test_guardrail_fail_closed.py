@@ -97,6 +97,69 @@ class TestUnresolvedCommandsFailClosed(unittest.TestCase):
                 self.assertIsInstance(guard.command_candidates(command), list)
 
 
+class TestHostileInputsAreBounded(unittest.TestCase):
+    """Inputs found to hang or exhaust the walk return quickly and fail closed."""
+
+    def _quick(self, command: str) -> tuple[list[str], bool]:
+        start = time.monotonic()
+        result = guard.resolve_command(command)
+        self.assertLess(time.monotonic() - start, 3.0, command[:30])
+        return result
+
+    def test_long_env_and_find_chains_are_unresolved(self) -> None:
+        for command in ("env " * 24000 + "x", "find -exec " * 8000 + "x", "nice " * 9000 + "x"):
+            with self.subTest(command=command[:12]):
+                self.assertTrue(self._quick(command)[1])
+
+    def test_unbalanced_nested_substitutions_return_quickly(self) -> None:
+        for command in ("$(" * 50, "$(" * 500, "`" * 500, "$($(" * 100 + "x"):
+            with self.subTest(size=len(command)):
+                self._quick(command)
+
+    def test_many_policies_share_one_walk(self) -> None:
+        command = "env " * 3000 + "x"
+        policies = [{"id": f"p{i}", "action": {"verb": "exec", "resource": "blockedbin", "match": "command"},
+                     "decision": "deny"} for i in range(40)]
+        start = time.monotonic()
+        guard.evaluate(policies, "exec", command)
+        self.assertLess(time.monotonic() - start, 5.0)
+
+
+class TestMalformedPoliciesDoNotSwitchOthersOff(unittest.TestCase):
+    GOOD = {"id": "good", "action": {"verb": "read", "resource": "*.env"}, "decision": "deny"}
+
+    def _load(self, files: dict[str, bytes]) -> list[dict]:
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            for name, data in files.items():
+                (base / name).write_bytes(data)
+            return guard._load_dir(base)
+
+    def test_each_kind_of_bad_file_is_skipped_alone(self) -> None:
+        import json
+        good = json.dumps({"enabled": True, "policies": [self.GOOD]}).encode()
+        bad = {
+            "a.policy.json": b"[]", "b.policy.json": b"null", "c.policy.json": b"\xff\xfe not utf8",
+            "d.policy.json": json.dumps({"enabled": True, "policies": None}).encode(),
+            "e.policy.json": json.dumps({"enabled": True, "policies": "x"}).encode(),
+            "f.policy.json": json.dumps({"enabled": True, "policies": [1, "x", None, {"action": "exec"},
+                                                                      {"action": None}]}).encode(),
+        }
+        for name, data in bad.items():
+            with self.subTest(bad=name):
+                loaded = self._load({name: data, "z.policy.json": good})
+                self.assertEqual([p["id"] for p in loaded], ["good"])
+
+    def test_evaluation_survives_a_policy_that_raises(self) -> None:
+        broken = {"id": "broken", "action": {"verb": "read", "resource": {"x": 1}}, "decision": "deny"}
+        for first in (True, False):
+            policies = [broken, self.GOOD] if first else [self.GOOD, broken]
+            with self.subTest(broken_first=first):
+                self.assertEqual(guard.evaluate(policies, "read", "a.env")["decision"], "deny")
+
+
 class TestUnknownDecisionsDeny(unittest.TestCase):
     def test_misspelled_or_unknown_decisions_deny(self) -> None:
         for decision in ("Deny", "block", "", "DENY ", "permit"):

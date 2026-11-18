@@ -39,15 +39,34 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   random inputs lose no executable name except the bracket tokens that are now
   separators.
 - An unknown or misspelled `decision` value denies.
-- Variable indirection (`x=name; $x`) now fails closed because the command name is an
-  expansion. Three shapes remain open and are pinned in the corpus: sourcing a process
-  substitution (`. <(...)`), the `function name { ...; }` definition, and `env` with a
-  combined `-S` option such as `-vS'...'`.
+- Variable indirection (`x=name; $x`), an expansion or a glob anywhere in the command
+  word (`blocked${x}bin`, `/usr/bin/blocked*`), a shell that reads its script from
+  stdin (`| bash -s`, `| sudo -s`, `xargs -I{} sh -c`) and `source` of a pipe or a
+  process substitution fail closed. `$HOME/`, `${HOME}/`, `$PWD/` and `~/` prefixes
+  are read as literal so `$HOME/.local/bin/tool` is not denied.
+- The `function name { ... }` form, assignment prefixes such as `A+=1` and `a[0]=x`,
+  line continuations, `env -vS'...'`, a string argument given to `watch` or `script`,
+  and `chroot`, `unshare`, `nsenter`, `strace` and similar launchers are walked.
+- A here-document is read the way the shell reads it: its tag is parsed outside quotes
+  and arithmetic, its body is consumed before any quote tracking (an apostrophe in the
+  body cannot swallow the commands after it), and the body is data only for a known
+  data reader (`cat`, `git`, `gh`, `tee`, `echo` and the like); for a shell, `source`,
+  `eval` or any unknown reader it is scanned as a script.
+- Policies are loaded one entry at a time: a file or an entry that is malformed is
+  skipped alone and can no longer switch the other policies off, and a policy that
+  raises while matching is skipped on its own. The walk is memoized and capped
+  (5,000 steps, 2,000 words) so a hostile command cannot stall or exhaust the hook.
+- Tool names are compared without regard to case, `Grep`, `Glob`, `MultiEdit`,
+  `NotebookEdit`, `patch` and `WebSearch` are classified, and a multi-file patch is
+  checked for every file it names.
 
 ## Consequences
 
 - A command deny rule is best-effort, never a sandbox. This record narrows the gap;
-  it does not close it.
+  it does not close it. Two classes stay out of reach by design: a launcher the walk
+  does not know (any program that runs another program from its arguments) and a tool
+  the guard cannot classify (an MCP tool, for example), which has no verb and so no
+  policy. A fresh review found no shape beyond those after the fixes above.
 - Two known false positives remain: a prefix wrapper reads its first words as
   candidates, so `sudo grep NAME file` still matches. They are pinned in the corpus.
 - The tests in `tests/test_guardrail_command_corpus.py`,

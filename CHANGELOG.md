@@ -5,6 +5,15 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Command walk hardening
+
+### Fixed
+
+- A second security review ran each input against a real bash and found 13 classes that a command deny rule let through. All are closed: an apostrophe or a `<<` inside a here-document or quotes, a here-document read by an absolute-path shell or by `source`, shells that read a script from a pipe, expansions and globs inside the command word, line continuations, `A+=1` and array assignment prefixes, the `function` keyword, nested parentheses in a substitution, and launchers such as `chroot`, `strace`, `watch 'cmd'` and `script -qc 'cmd'`. See ADR 0011.
+- One malformed policy file or entry (`[]`, `"policies": null`, a string, bad UTF-8, a non-object `action`) used to make the guard allow everything. Each file and entry is now skipped alone, and a policy that raises while matching is skipped on its own.
+- A very long chain (`env env env ...`, `find -exec ...`, thousands of unbalanced `$(`) took seconds to minutes and hundreds of megabytes; the walk is now memoized and capped and fails closed beyond the cap.
+- Tool names are matched without regard to case; `Grep`, `Glob`, `MultiEdit`, `NotebookEdit`, `patch` and `WebSearch` are classified, and a patch that touches several files is checked for each file.
+
 ## [Unreleased] — Command deny bypasses
 
 ### Fixed
