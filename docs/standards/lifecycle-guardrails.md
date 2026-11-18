@@ -42,6 +42,9 @@ carries each cell's evidence class; a bare boolean is forbidden.
   closed to `deny`. OpenCode asks only through the V2 permission `evaluate` hook
   (its cell has `ask_channel: evaluate`), only with the extra opt-in
   `COACUS_GUARD_ASK_EXPERIMENTAL=1`, and that hook can only tighten an effect.
+  An `ask` is not a barrier when the person runs OpenCode with `--auto`: the harness
+  then approves it without a prompt, and the person who chose that mode accepts it.
+  Only a `deny` holds there, so a rule that must always hold is written as `deny`.
   When several `ask` policies match one action, the strictest
   `on_ask_unavailable` among them is used, whatever the file order. Rendering `ask` where it was previously degraded relaxes the
   outcome, which is why it needs the opt-in
