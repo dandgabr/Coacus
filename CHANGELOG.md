@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Skill-gap candidate type
+
+### Added
+
+- The improvement loop can propose a `skill-gap` when an observation carries the structured field `kind: "route-miss"`. It needs a trusted-channel unit and three independent sessions, its statement is cleaned and capped, and the stored proposal never keeps the text. Types that need trust now come from one constant, `taint.TRUST_REQUIRED`. See ADR 0013.
+
 ## [Unreleased] — Guard events, MCP verb and self-protection
 
 ### Added

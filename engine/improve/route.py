@@ -11,6 +11,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from engine.improve import taint
+
 CATALOG = "catalog/catalog.json"
 
 
@@ -59,7 +61,9 @@ def route(root: Path, candidate: dict) -> dict:
         decision, reason = "skip", "already covered by the closest target"
     elif best_score >= T_LEX:
         decision, reason = "improve", "closest target exists but does not cover it"
-    elif candidate.get("support", 0) >= 2 and candidate.get("trusted"):
+    elif candidate.get("support", 0) >= taint.MIN_SUPPORT.get(
+        candidate.get("type"), taint.DEFAULT_MIN_SUPPORT
+    ) and candidate.get("trusted"):
         decision, reason = "create", "no close target and the evidence generalizes"
     else:
         decision, reason = "skip", "no close target and the evidence is single-session or tainted"

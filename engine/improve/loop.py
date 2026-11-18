@@ -24,7 +24,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-from engine.improve import consolidate, ledger, route as router, sources, verify
+from engine.improve import consolidate, ledger, route as router, sources, taint, verify
 
 STAGING = "docs/temp/improvement"
 # ponytail: cap snapshots at 10 MiB; use streaming ingestion if larger inputs are needed.
@@ -234,7 +234,7 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
     proposals: list[dict] = []
     for candidate in candidates:
         # Taint rule: a rule/procedure needs trusted evidence; else it is a note.
-        if candidate["type"] in ("gotcha", "procedure") and not candidate["trusted"]:
+        if candidate["type"] in taint.TRUST_REQUIRED and not candidate["trusted"]:
             candidate["type"] = "note"
             candidate["downgraded"] = "externally-tainted evidence"
 
