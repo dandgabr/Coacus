@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import copy
 import json
+import os
+import tempfile
 from pathlib import Path
 
 SOURCE = "methodology/lifecycle/policies/self-protection.policy.json"
@@ -22,31 +24,60 @@ RELEASE_HOW = (
 )
 
 
-def build_policy(root: Path, policy_dir: Path) -> dict:
-    """Return the enabled policy document, also covering the actual policy directory.
+def _extra(template: dict, identifier: str, title: str, resource: str) -> dict:
+    extra = copy.deepcopy(template)
+    extra.update(id=identifier, title=title)
+    extra["action"] = {"verb": "write", "resource": resource}
+    return extra
 
-    A custom policy directory (``COACUS_POLICY_DIR`` or ``--browser-policy-dir``) would
-    otherwise sit outside the shipped patterns.
+
+def build_policy(root: Path, policy_dir: Path) -> dict:
+    """Return the enabled policy document.
+
+    The shipped file is checked first: every rule must be a ``deny`` on ``write``, so an
+    edited source cannot install a protection that does nothing. Two rules are added for
+    this machine: the policy directory actually in use (a custom ``COACUS_POLICY_DIR`` or
+    ``--browser-policy-dir`` sits outside the shipped patterns) and the top of the Coacus
+    tree, where a module named like a standard one would shadow it when the guard starts.
     """
-    document = json.loads((root / SOURCE).read_text(encoding="utf-8"))
-    document = copy.deepcopy(document)
+    document = copy.deepcopy(json.loads((root / SOURCE).read_text(encoding="utf-8")))
+    policies = document.get("policies")
+    if not isinstance(policies, list) or not policies:
+        raise ValueError("the shipped self-protection policy has no rules")
+    for policy in policies:
+        action = policy.get("action") if isinstance(policy, dict) else None
+        if not isinstance(action, dict) or action.get("verb") != "write" or policy.get("decision") != "deny":
+            raise ValueError("every self-protection rule must deny a write")
     document["enabled"] = True
     document["generated"] = {"by": GENERATED_BY}
-    resource = policy_dir.resolve().as_posix().rstrip("/") + "/*"
-    template = document["policies"][0]
-    if all(p["action"]["resource"] != resource for p in document["policies"]):
-        extra = copy.deepcopy(template)
-        extra.update(id="guard-policy-dir-actual", title="Block writes to the policy directory in use")
-        extra["action"] = {"verb": "write", "resource": resource}
-        document["policies"].append(extra)
+    template = policies[0]
+    wanted = [
+        ("guard-policy-dir-actual", "Block writes to the policy directory in use",
+         policy_dir.resolve().as_posix().rstrip("/") + "/*"),
+        ("guard-root-modules", "Block writes to modules at the top of the Coacus tree",
+         root.resolve().as_posix().rstrip("/") + "/*.py"),
+    ]
+    for identifier, title, resource in wanted:
+        if all(p["action"]["resource"] != resource for p in policies):
+            policies.append(_extra(template, identifier, title, resource))
     return document
 
 
 def write_policy(directory: Path, document: dict) -> Path:
-    """Write the document into ``directory`` and return its path."""
+    """Write the document into ``directory`` atomically and return its path."""
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / POLICY_FILE
-    path.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
+    handle, temporary = tempfile.mkstemp(dir=directory, suffix=".tmp")
+    try:
+        with os.fdopen(handle, "w", encoding="utf-8") as stream:
+            stream.write(json.dumps(document, indent=2) + "\n")
+        os.replace(temporary, path)
+    except BaseException:
+        try:
+            os.unlink(temporary)
+        except OSError:
+            pass
+        raise
     return path
 
 
@@ -69,4 +100,6 @@ def status(directory: Path) -> str:
         data = json.loads((directory / POLICY_FILE).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return "absent"
-    return "active" if isinstance(data, dict) and data.get("enabled") is True else "disabled"
+    if not isinstance(data, dict) or data.get("enabled") is not True:
+        return "disabled"
+    return "active" if isinstance(data.get("policies"), list) and data["policies"] else "disabled"

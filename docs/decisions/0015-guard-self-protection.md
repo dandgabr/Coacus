@@ -16,8 +16,10 @@ any of those paths.
 
 - Coacus ships `methodology/lifecycle/policies/self-protection.policy.json`: `deny` rules
   on the `write` verb for the policy directories, `scripts/coacus_guard.py`,
-  `engine/guardrail/`, and the hook files of Claude Code, Codex, OpenCode, Cursor and
-  Antigravity. It is disabled, like every shipped policy (ADR 0006).
+  `scripts/*.py` (the guard imports from there), `engine/guardrail/`, the generated hook
+  sources and `harness.json` files, and the hook files of Claude Code, Codex, OpenCode,
+  Cursor, Antigravity and Command Code. Paths are normalised (`./`, `//`, `x/../`) before
+  matching, and a Codex patch that moves a file is read at its destination. It is disabled, like every shipped policy (ADR 0006).
 - The installer takes `--self-protection on|off|prompt`. The default is `prompt` on an
   interactive terminal, where the default answer is No, and `off` otherwise. So installing
   never turns it on silently. When chosen, the installer writes an enabled, machine-local
@@ -28,10 +30,22 @@ any of those paths.
 - Every denial message tells the person how to release a legitimate edit: make it in their
   own terminal (the guard governs the agent's tools, not the person's shell), or set
   `"enabled": false` in the installed policy, edit, and turn it back on. The agent cannot
-  do this itself, because the policy file is one of the protected paths.
+  do this through a write tool, because the policy file is one of the protected paths. A
+  shell command could (see the consequences).
 
 ## Consequences
 
+- Installing it twice is safe, and `--self-protection off` (or answering No) leaves an
+  existing copy alone and reports it as `existing`; remove it with `uninstall all` or by
+  deleting the file. The shipped rules are checked before the copy is written (every rule must
+  deny a write), and the file is written atomically. With a custom `--config-dir` the copy is
+  staged beside it, where the running guard does not read it; the summary says so in
+  `read_by_guard`.
+- Not covered, and said here so nobody relies on them: letter case on a case-insensitive
+  filesystem, symlinks, files the guard imports from outside the tree, and the fact that the
+  hook starts Python without `-I`, so a module planted next to the guard shadows a standard
+  one. The rules over `scripts/*.py` and the top of the tree deny the write tools on those
+  paths, which is as far as a policy can go.
 - This is a speed bump and a tripwire, not a sandbox. A write through the shell (`sed -i`,
   a redirection, `tee`) is an `exec` action, not a `write`, and is not covered; command
   rules over editing programs are easy to evade (ADR 0011). On a harness that approves

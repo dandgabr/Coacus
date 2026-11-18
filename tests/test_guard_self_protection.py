@@ -30,12 +30,18 @@ PROTECTED = [
     "/home/u/.codex/hooks.json", "/home/u/.codex/config.toml",
     "/home/u/.config/opencode/plugins/coacus-guardrails.js", "/proj/.opencode/plugins/x.js",
     "/home/u/.cursor/hooks.json", "/home/u/.gemini/config/plugins/coacus/hooks.json",
-    "/stage/coacus-policies/self-protection.policy.json",
+    "/stage/coacus-policies/self-protection.policy.json", "scripts/shlex.py", "/home/u/Code/Coacus/scripts/fnmatch.py",
+    "/home/u/.commandcode/settings.json", "engine/__init__.py", "coacus_guard.py",
+    "/home/u/Code/Coacus/harnesses/codex/bootstrap/guardrail-hooks.json",
+    "/home/u/Code/Coacus/harnesses/opencode/bootstrap/coacus-guardrails.js",
+    "/home/u/Code/Coacus/harnesses/codex/harness.json",
 ]
 UNPROTECTED = [
     "README.md", "/home/u/proj/src/app.py", "/home/u/.claude/CLAUDE.md", "/home/u/.claude/settings.json.bak",
     "/home/u/.codex/AGENTS.md", "/home/u/Code/Coacus/docs/usage.md", "/home/u/Code/Coacus/tests/test_x.py",
-    "/home/u/.config/other/policies/a.json", "scripts/other_tool.py",
+    "/home/u/.config/other/policies/a.json", "/proj/src/config/plugins/auth/hooks.json",
+    "/work/opencode/plugins/README.md", "/proj/my-coacus/policies/a.json", "/proj/game-engine/guardrail/x.c",
+    "/proj/scripts/build.sh", "/proj/engine/render.py", "/home/u/.gemini/GEMINI.md",
 ]
 
 
@@ -98,6 +104,68 @@ class TestCoverage(unittest.TestCase):
         self.assertIs(shipped()["enabled"], False)
 
 
+class TestSpellings(unittest.TestCase):
+    """A path is normalised before it is matched, and a moved file counts at its destination."""
+
+    def decide(self, tool: str, args: dict, harness: str = "claude-code") -> str:
+        from scripts import coacus_guard
+
+        policies = enabled()
+        decisions = [guard.evaluate(policies, verb, resource)["decision"]
+                     for verb, resource in coacus_guard._actions({"tool": tool, "tool_input": args}, harness)]
+        return "deny" if "deny" in decisions else "allow"
+
+    def test_other_spellings_of_a_protected_path_are_denied(self) -> None:
+        for path in ("/r/scripts/./coacus_guard.py", "/r/scripts//coacus_guard.py", "/r/scripts/x/../coacus_guard.py",
+                     "/r/engine//guardrail/evaluate.py", "/home/u/.claude//settings.json",
+                     "/home/u/.config/coacus/./policies/x.policy.json", "/home/u/.claude/x/../settings.json"):
+            with self.subTest(path=path):
+                self.assertEqual(self.decide("Write", {"file_path": path}), "deny")
+
+    def test_a_patch_that_moves_a_file_onto_a_protected_path_is_denied(self) -> None:
+        patch = "*** Begin Patch\n*** Update File: notes.txt\n*** Move to: scripts/coacus_guard.py\n*** End Patch"
+        self.assertEqual(self.decide("apply_patch", {"input": patch}, "codex"), "deny")
+        plain = "*** Begin Patch\n*** Update File: notes.txt\n*** End Patch"
+        self.assertEqual(self.decide("apply_patch", {"input": plain}, "codex"), "allow")
+
+    def test_normalising_does_not_change_ordinary_paths(self) -> None:
+        from scripts import coacus_guard
+
+        for path, expected in (("a/b.txt", "a/b.txt"), ("/a//b/./c", "/a/b/c"), ("", ""), (".env", ".env")):
+            with self.subTest(path=path):
+                self.assertEqual(coacus_guard._norm(path), expected)
+        self.assertEqual(coacus_guard._norm("C:\\x\\y"), "C:\\x\\y")
+
+
+class TestBuild(unittest.TestCase):
+    def test_a_weakened_source_is_refused(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / SHIPPED.parent.relative_to(REPO)).mkdir(parents=True)
+            for bad in ({"policies": []}, {"policies": [{"action": {"verb": "write", "resource": "*"}, "decision": "note"}]},
+                        {"policies": [{"action": {"verb": "read", "resource": "*"}, "decision": "deny"}]},
+                        {"policies": "x"}):
+                (root / selfprotect.SOURCE).write_text(json.dumps({"schema": 1, **bad}), encoding="utf-8")
+                with self.subTest(bad=bad):
+                    with self.assertRaises(ValueError):
+                        selfprotect.build_policy(root, root / "p")
+
+    def test_the_top_of_the_tree_is_covered_for_shadowing_modules(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / SHIPPED.parent.relative_to(REPO)).mkdir(parents=True)
+            (root / selfprotect.SOURCE).write_text(SHIPPED.read_text(encoding="utf-8"), encoding="utf-8")
+            document = selfprotect.build_policy(root, root / "p")
+            self.assertEqual(guard.evaluate(document["policies"], "write", str(root.resolve() / "fnmatch.py"))["decision"],
+                             "deny")
+
+    def test_the_write_leaves_no_temporary_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            selfprotect.write_policy(directory, selfprotect.build_policy(REPO, directory))
+            self.assertEqual([p.name for p in directory.iterdir()], [selfprotect.POLICY_FILE])
+
+
 class TestEndToEnd(unittest.TestCase):
     def test_the_guard_denies_a_write_tool_with_the_release_message(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -135,6 +203,10 @@ class TestStatusAndRemoval(unittest.TestCase):
         document["enabled"] = False
         selfprotect.write_policy(self.dir, document)
         self.assertEqual(selfprotect.status(self.dir), "disabled")
+        document["enabled"] = True
+        document["policies"] = []
+        selfprotect.write_policy(self.dir, document)
+        self.assertEqual(selfprotect.status(self.dir), "disabled")
         (self.dir / selfprotect.POLICY_FILE).write_text("{bad", encoding="utf-8")
         self.assertEqual(selfprotect.status(self.dir), "absent")
 
@@ -169,6 +241,15 @@ class TestInstallerStep(unittest.TestCase):
         result = self.step("on")
         self.assertEqual(result["status"], "written")
         self.assertEqual(selfprotect.status(self.dir), "active")
+
+    def test_off_and_no_leave_an_existing_copy_and_report_it(self) -> None:
+        self.step("on")
+        self.assertEqual(self.step("off")["existing"], "active")
+        self.assertEqual(self.step("prompt", "n")["existing"], "active")
+        self.assertEqual(selfprotect.status(self.dir), "active")
+
+    def test_a_directory_the_guard_does_not_read_is_reported(self) -> None:
+        self.assertIs(self.step("on")["read_by_guard"], False)
 
     def test_dry_run_writes_nothing(self) -> None:
         self.assertEqual(self.step("on", dry_run=True)["status"], "dry-run")

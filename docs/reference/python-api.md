@@ -683,14 +683,17 @@ a visible tripwire, not a sandbox: a shell redirection is not a write tool (ADR 
 
 #### `def build_policy(root: Path, policy_dir: Path) -> dict`
 
-Return the enabled policy document, also covering the actual policy directory.
+Return the enabled policy document.
 
-A custom policy directory (``COACUS_POLICY_DIR`` or ``--browser-policy-dir``) would
-otherwise sit outside the shipped patterns.
+The shipped file is checked first: every rule must be a ``deny`` on ``write``, so an
+edited source cannot install a protection that does nothing. Two rules are added for
+this machine: the policy directory actually in use (a custom ``COACUS_POLICY_DIR`` or
+``--browser-policy-dir`` sits outside the shipped patterns) and the top of the Coacus
+tree, where a module named like a standard one would shadow it when the guard starts.
 
 #### `def write_policy(directory: Path, document: dict) -> Path`
 
-Write the document into ``directory`` and return its path.
+Write the document into ``directory`` atomically and return its path.
 
 #### `def remove_policy(directory: Path) -> bool`
 

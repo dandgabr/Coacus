@@ -2987,9 +2987,11 @@ def self_protection_step(
     default answer is No). Like every generated policy it is machine-local and opt-in
     (ADR 0006), and the question says how to release an edit that is legitimate.
     """
-    from engine.guardrail import selfprotect
+    from engine.guardrail import evaluate, selfprotect
 
-    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix()}
+    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix(),
+                                  "existing": selfprotect.status(policy_dir),
+                                  "read_by_guard": policy_dir.resolve() == evaluate.user_policy_dir().resolve()}
     if mode == "off":
         return summary
     if mode == "prompt":
@@ -3002,7 +3004,11 @@ def self_protection_step(
         if answer not in ("y", "yes"):
             summary["status"] = "skipped"
             return summary
-    document = selfprotect.build_policy(root, policy_dir)
+    try:
+        document = selfprotect.build_policy(root, policy_dir)
+    except (OSError, ValueError) as exc:
+        summary.update(status="error", error=str(exc))
+        return summary
     summary.update(policies=len(document["policies"]), document=document)
     if dry_run:
         summary["status"] = "dry-run"
@@ -3252,6 +3258,10 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         if self_summary.get("document"):
             extra_docs = (extra_docs or []) + [self_summary["document"]]
         self_summary = {k: v for k, v in self_summary.items() if k != "document"}
+        if self_summary.get("status") == "error":
+            print(json.dumps([{"harness": args.harness, "error": self_summary.get("error"),
+                               "self_protection": self_summary}], indent=2))
+            return 2
 
     results = []
     for harness in harnesses:

@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import posixpath
 import re
 import shlex
 import sys
@@ -64,7 +65,7 @@ OPENCODE_NATIVE = {"read", "grep", "glob", "list", "write", "edit", "patch", "ap
                    "multiedit", "shell", "bash", "execute", "webfetch", "websearch", "task"}
 # OpenCode tools that are not MCP and have no verb here (no rule can name them).
 OPENCODE_UNCLASSIFIED = {"todowrite", "todoread", "skill", "question", "lsp", "batch"}
-_PATCH_FILE = re.compile(r"^\*\*\* (?:Add|Update|Delete) File: (.+)$", re.MULTILINE)
+_PATCH_FILE = re.compile(r"^\*\*\* (?:Add|Update|Delete) File: (.+)$|^\*\*\* Move to: (.+)$", re.MULTILINE)
 
 
 def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
@@ -82,11 +83,19 @@ def _first(mapping: dict, keys: tuple[str, ...], default: str = "") -> str:
     return default
 
 
+def _norm(path: str) -> str:
+    """Collapse ``./``, ``//`` and ``x/../`` so a spelling cannot dodge a path pattern.
+
+    Symlinks and letter case are not resolved: a pattern sees the path as the tool sent it.
+    """
+    return posixpath.normpath(path) if path and "\\" not in path else path
+
+
 def _patch_paths(args: dict) -> list[str]:
     """File paths named inside an ``apply_patch`` style patch text, in order."""
     for value in args.values():
         if isinstance(value, str):
-            found = [p.strip() for p in _PATCH_FILE.findall(value)]
+            found = [(a or b).strip() for a, b in _PATCH_FILE.findall(value)]
             if found:
                 return found
     return []
@@ -120,12 +129,12 @@ def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
             # itself. A rule can name it as an mcp action; command rules cannot read it.
             return [("exec", command), ("mcp", tool)]
     if tool in READ_TOOLS:
-        return [("read", path)]
+        return [("read", _norm(path))]
     if tool in WRITE_TOOLS:
         patched = _patch_paths(args)
         if patched:
-            return [("write", item) for item in patched]
-        return [("write", path)]
+            return [("write", _norm(item)) for item in patched]
+        return [("write", _norm(path))]
     if tool in EXEC_TOOLS:
         return [("exec", command)]
     if tool in NETWORK_TOOLS:
