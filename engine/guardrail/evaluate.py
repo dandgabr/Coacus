@@ -890,7 +890,7 @@ def _fallback_of(policy: dict) -> str:
     return value if value in ("allow", "deny") else "deny"
 
 
-def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
+def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.pre") -> dict:
     """Evaluate policies against one action; return the most restrictive decision.
 
     Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
@@ -899,7 +899,9 @@ def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
     of their ``on_ask_unavailable`` values (``deny`` beats ``allow``; a missing or
     invalid value counts as ``deny``), so the result never depends on file order.
     The reported ``policy_id`` and ``message`` are those of the first policy that
-    holds the winning fallback.
+    holds the winning fallback. A policy binds one event (``"event"``, default
+    ``tool.pre``) and is skipped when ``event`` is a different one, so a rule
+    written for a tool call never fires on a prompt or a stop.
     """
     order = {"deny": 3, "ask": 2, "allow": 1, "note": 0}
     best = {"decision": "allow", "policy_id": None, "message": ""}
@@ -907,7 +909,11 @@ def evaluate(policies: list[dict], verb: str, resource: str) -> dict:
     for policy in policies:
         try:
             p_verb, _ = _action_of(policy)
-            if p_verb != verb or not _policy_matches(policy, resource):
+            if p_verb != verb:
+                continue
+            if str(policy.get("event", "tool.pre")) != event:
+                continue
+            if not _policy_matches(policy, resource):
                 continue
         except Exception:  # a malformed entry must not stop the other policies
             continue

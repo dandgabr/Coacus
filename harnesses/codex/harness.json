@@ -39,7 +39,7 @@
     "ordering": "coacus-last",
     "events": {
       "tool.pre": { "support": "gate", "can_block": true, "can_ask": false, "effect": "permissionDecision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
-      "prompt.submit": { "support": "gate", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
+      "prompt.submit": { "support": "gate", "can_block": true, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-11-18", "source": "https://developers.openai.com/codex/hooks" },
       "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },
       "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "derived": true, "from": "tool.post", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" },

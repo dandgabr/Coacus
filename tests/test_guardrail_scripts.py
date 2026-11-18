@@ -280,9 +280,12 @@ class TestAskCapability(unittest.TestCase):
                 self.assertEqual(decision_of(out), "ask")
 
     def test_only_the_tool_pre_event_can_ask(self) -> None:
-        out = self._run("claude-code", capabilities={"claude-code": CAN_ASK},
-                        event="tool.post", COACUS_GUARD_ASK="1")
-        self.assertEqual(decision_of(out), "deny")
+        # Another event is never rendered and never decides: no opinion, not a deny.
+        for event in ("tool.post", "prompt.submit", "turn.stop", "session.start"):
+            with self.subTest(event=event):
+                out = self._run("claude-code", capabilities={"claude-code": CAN_ASK},
+                                event=event, COACUS_GUARD_ASK="1")
+                self.assertEqual(decision_of(out), "none")
 
     def test_payload_shapes_reach_the_same_decision(self) -> None:
         caps = {"claude-code": CAN_ASK}

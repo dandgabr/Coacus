@@ -621,7 +621,7 @@ symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
 ``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
 Use :func:`resolve_command` to also learn whether the walk gave up.
 
-#### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
+#### `def evaluate(policies: list[dict], verb: str, resource: str, event: str='tool.pre') -> dict`
 
 Evaluate policies against one action; return the most restrictive decision.
 
@@ -631,7 +631,9 @@ policies match, the fallback used where nobody can be asked is the strictest
 of their ``on_ask_unavailable`` values (``deny`` beats ``allow``; a missing or
 invalid value counts as ``deny``), so the result never depends on file order.
 The reported ``policy_id`` and ``message`` are those of the first policy that
-holds the winning fallback.
+holds the winning fallback. A policy binds one event (``"event"``, default
+``tool.pre``) and is skipped when ``event`` is a different one, so a rule
+written for a tool call never fires on a prompt or a stop.
 
 ### `engine/guardrail/rules.py`
 

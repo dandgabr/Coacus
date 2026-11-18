@@ -5,6 +5,13 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Event binding
+
+### Fixed
+
+- The evaluator now honours a policy's `event` (default `tool.pre`), so a rule written for a tool call never fires on another event. The guard decides, blocks and asks only on `tool.pre` and answers "no opinion" on any other event. Hooks for `tool.post`, `prompt.submit` and `turn.stop` are still not rendered; see ADR 0012.
+- Three capability cells now match the vendor documentation (2026-11-18): claude-code `prompt.submit` cannot ask, codex `prompt.submit` can block, cursor `turn.stop` cannot block.
+
 ## [Unreleased] — Installer ask warning
 
 ### Added

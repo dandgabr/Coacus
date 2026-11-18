@@ -189,6 +189,9 @@ def _safe_harness_name(harness: str) -> bool:
 
 ASK_CHANNELS = ("default", "before", "evaluate")
 
+# The only event with a rendered hook today (ADR 0012).
+ENFORCED_EVENT = "tool.pre"
+
 # OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
 # run: only the documented hook contract is known, not every permission name.
 _PERMISSION_VERBS = {
@@ -277,7 +280,7 @@ def _path_forms(resource: str) -> set[str]:
     return forms
 
 
-def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
+def _survives_the_hook(policies: list[dict], verb: str, resource: str, event: str = "tool.pre") -> bool:
     """True when an ask would be raised again whatever shape the hook sees.
 
     Only read and write are deferred. The hook receives a path in a shape this guard
@@ -289,7 +292,7 @@ def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
     if verb not in _DEFERRABLE_VERBS or not resource:
         return False
     return all(
-        guard.evaluate(policies, verb, form).get("decision") == "ask"
+        guard.evaluate(policies, verb, form, event).get("decision") == "ask"
         for form in _path_forms(resource)
     )
 
@@ -297,14 +300,14 @@ def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
 def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resource: str) -> tuple[str, str]:
     """Return ``(decision, message)`` for one canonical action on one channel."""
     policies = guard.load_policies(root, include_user=True)
-    result = guard.evaluate(policies, verb, resource) if verb else {
+    result = guard.evaluate(policies, verb, resource, event) if verb else {
         "decision": "allow", "policy_id": None, "message": ""
     }
     decision = result.get("decision", "allow")
     message = result.get("message", "")
     if decision == "ask":
         if _can_ask(root, harness, event, channel) and (
-            channel != "before" or _survives_the_hook(policies, verb, resource)
+            channel != "before" or _survives_the_hook(policies, verb, resource, event)
         ):
             if channel == "before":
                 decision = "allow"  # left to the evaluate hook, which asks
@@ -326,6 +329,10 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
     try:
         if channel not in ASK_CHANNELS:
             channel = "default"
+        if event != ENFORCED_EVENT:
+            # Observe events can never deny (events.json) and no other gate event is
+            # rendered yet, so nothing here may block or ask: answer "no opinion".
+            return _allow(harness)
         payload = json.loads(payload_text) if payload_text.strip() else {}
         if channel == "evaluate":
             actions = _permission_actions(payload)
