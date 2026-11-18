@@ -253,21 +253,41 @@ def _degrade_ask(result: dict) -> str:
 _RANK = {"allow": 0, "ask": 1, "deny": 2}
 
 
-def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
-    """True when an ask would be raised again with the resource shape the hook sees.
+def _path_forms(resource: str) -> set[str]:
+    """Every shape a hook might report for ``resource``, as far as can be known here.
 
-    Only read and write are deferred. The hook receives a path relative to the
-    working directory, so the ask must also hold for that form; if it does not, the
-    hook would let the call through, and the caller degrades instead of deferring.
+    The raw string, its absolute form, its form relative to the working directory and
+    to each of that directory's nearest ancestors (the project root is not known to
+    the guard), and its last component.
+    """
+    forms = {resource, os.path.basename(resource)}
+    absolute = os.path.abspath(resource)
+    forms.add(absolute)
+    here = Path.cwd()
+    for base in [here, *list(here.parents)[:6]]:
+        try:
+            forms.add(os.path.relpath(absolute, base))
+        except ValueError:
+            continue
+    forms.discard("")
+    return forms
+
+
+def _survives_the_hook(policies: list[dict], verb: str, resource: str) -> bool:
+    """True when an ask would be raised again whatever shape the hook sees.
+
+    Only read and write are deferred. The hook receives a path in a shape this guard
+    cannot know (relative to the project, to the working directory, or absolute), so
+    the ask must hold for every plausible form; a policy anchored on one shape (for
+    example ``sub/*`` or ``*/.env``) is not deferred and degrades to its fallback,
+    which never turns it into an allow.
     """
     if verb not in _DEFERRABLE_VERBS or not resource:
         return False
-    forms = {resource}
-    try:
-        forms.add(os.path.relpath(resource) if os.path.isabs(resource) else resource)
-    except ValueError:
-        return False
-    return all(guard.evaluate(policies, verb, form).get("decision") == "ask" for form in forms)
+    return all(
+        guard.evaluate(policies, verb, form).get("decision") == "ask"
+        for form in _path_forms(resource)
+    )
 
 
 def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resource: str) -> tuple[str, str]:

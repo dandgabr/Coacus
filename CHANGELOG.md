@@ -9,7 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
-- The OpenCode guardrail plugin registers the V2 permission `evaluate` hook when the API exists. With `COACUS_GUARD_ASK=1` an `ask` policy on a read or write now prompts a person there (a command or a subagent request is not deferred and degrades to its fallback, because the hook sees a different resource shape); the hook can only tighten an effect (deny over ask over allow) and leaves it unchanged if the guard fails.
+- The OpenCode guardrail plugin registers the V2 permission `evaluate` hook when the API exists. With `COACUS_GUARD_ASK=1` an `ask` policy on a read or write whose pattern holds for every plausible shape of the path (for example `*.env`) now prompts a person there; a command, a subagent request or a policy anchored on one path shape is not deferred and degrades to its fallback, because the hook sees a resource shape the guard cannot know; the hook can only tighten an effect (deny over ask over allow) and leaves it unchanged if the guard fails.
 - `scripts/coacus_guard.py` takes `--channel default|before|evaluate`. A harness whose capability cell has `ask_channel` asks only on that channel, so a V1 install, or a failed hook registration, degrades an `ask` to its fallback instead of letting it through.
 
 ### Known gaps

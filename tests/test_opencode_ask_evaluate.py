@@ -55,7 +55,8 @@ console.log(JSON.stringify(out));
 
 
 def ask_policy(fallback: str) -> dict:
-    return {"id": "ask-env", "action": {"verb": "read", "resource": "**/.env"},
+    # A suffix pattern holds for any path shape the hook may report.
+    return {"id": "ask-env", "action": {"verb": "read", "resource": "*.env"},
             "decision": "ask", "on_ask_unavailable": fallback, "message": "needs a person"}
 
 
@@ -175,6 +176,24 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
             "call": {"tool": "task", "input": {"prompt": "do it"}}, "action": "subagent",
             "resources": ["do it"]})
         self.assertEqual(out["before"], "blocked")
+
+    def test_an_ask_anchored_on_one_path_shape_is_not_deferred(self) -> None:
+        for pattern, path in (("sub/*", "sub/.env"), ("*/.env", "w/.env"), ("*/sub/*", "a/sub/.env")):
+            with self.subTest(pattern=pattern):
+                self._policies({"id": "ask-shape", "action": {"verb": "read", "resource": pattern},
+                                "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
+                out = self._run(v2=True, opt_in=True, extra={
+                    "call": {"tool": "read", "input": {"filePath": path}}, "resources": [path]})
+                self.assertEqual(out["before"], "blocked")
+
+    def test_a_shape_independent_ask_is_deferred(self) -> None:
+        self._policies({"id": "ask-any", "action": {"verb": "read", "resource": "*.env"},
+                        "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
+        out = self._run(v2=True, opt_in=True, extra={
+            "call": {"tool": "read", "input": {"filePath": "w/sub/prod.env"}},
+            "resources": ["prod.env"]})
+        self.assertEqual(out["before"], "passed")
+        self.assertEqual(out["effect"], "ask")
 
     def test_an_ask_anchored_on_an_absolute_path_is_not_deferred(self) -> None:
         # The hook sees a relative path, so an absolute anchor could miss there.
