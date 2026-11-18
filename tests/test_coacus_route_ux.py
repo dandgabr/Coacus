@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from engine.router import Candidate
-from scripts.coacus_route import DEFAULT_INTERACTIVE_TOP, format_candidates, main
+from scripts.coacus_route import DEFAULT_INTERACTIVE_TOP, detect_harness, format_candidates, main
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -125,3 +125,27 @@ class TestCoacusRouteUX(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestQuickActionHarness(unittest.TestCase):
+    """The Quick action names the detected harness, never a fixed one."""
+
+    def _candidates(self):
+        return [Candidate(name="software-architect", category="x", score=9.0, matched=["a"], description="d")]
+
+    def test_unknown_harness_uses_a_placeholder(self) -> None:
+        out = format_candidates(self._candidates(), raw=False, use_color=False)
+        self.assertEqual(out.splitlines()[-1],
+                         "Quick action: python3 scripts/coacus_install.py <harness> --agents software-architect")
+
+    def test_detected_harness_is_used(self) -> None:
+        out = format_candidates(self._candidates(), raw=False, use_color=False, harness="codex")
+        self.assertIn("coacus_install.py codex --agents", out.splitlines()[-1])
+        self.assertNotIn("antigravity", out)
+
+    def test_detect_harness_needs_exactly_one_match(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        self.assertEqual(detect_harness(root, {"CODEX_HOME": "/x"}), "codex")
+        self.assertIsNone(detect_harness(root, {}))
+        self.assertIsNone(detect_harness(root, {"CODEX_HOME": "/x", "CURSOR_TRACE_ID": "1"}))
+

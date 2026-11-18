@@ -1721,7 +1721,15 @@ error with suggestions and a non-zero exit.
 The command only PROPOSES; it never spawns an agent. ``--max-slots`` caps the
 proposal at the governor's free slots so a caller cannot over-subscribe.
 
-#### `def format_candidates(candidates: list[router.Candidate], *, raw: bool=False, use_color: bool=False, total_matches: int | None=None) -> str`
+#### `def detect_harness(root: Path, environ: 'os._Environ[str] | dict[str, str]') -> str | None`
+
+Return the harness whose detection variables are set, or None.
+
+Reads ``harnesses/<name>/harness.json`` under ``root``. Only an unambiguous
+match (exactly one harness) is returned; zero or several matches yield None,
+so the caller never guesses. Unreadable data is skipped.
+
+#### `def format_candidates(candidates: list[router.Candidate], *, raw: bool=False, use_color: bool=False, total_matches: int | None=None, harness: str | None=None) -> str`
 
 Format candidate agent proposals for CLI output.
 
