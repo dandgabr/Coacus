@@ -109,7 +109,7 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         return json.loads(proc.stdout.strip())
 
-    # V1: no permission API.
+    # Without the permission API an ask cannot be deferred to the evaluate hook.
     def test_v1_ask_with_deny_fallback_is_blocked_even_when_opted_in(self) -> None:
         self._policies(ask_policy("deny"))
         out = self._run(v2=False, opt_in=True)
@@ -126,7 +126,7 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         self.assertEqual(out["before"], "blocked")
         self.assertFalse(out["registered"])
 
-    # V2 with the evaluate hook.
+    # With the evaluate hook an ask is deferred to the permission prompt.
     def test_v2_opted_in_ask_defers_to_the_hook_and_prompts(self) -> None:
         self._policies(ask_policy("deny"))
         out = self._run(v2=True, opt_in=True, incoming="allow")
@@ -160,7 +160,7 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
         self.assertEqual(out["before"], "blocked")
         self.assertEqual(out["effect"], "deny")
 
-    # only read and write are deferred to the hook.
+    # Only a read and a write are deferred to the evaluate hook.
     def test_a_shell_ask_is_not_deferred_and_follows_its_fallback(self) -> None:
         self._policies({"id": "ask-shell", "action": {"verb": "exec", "resource": "*deploy*"},
                         "decision": "ask", "on_ask_unavailable": "deny", "message": "m"})
@@ -205,7 +205,7 @@ class TestOpenCodeAskEvaluate(unittest.TestCase):
             "resources": ["srv/secret/key"]})
         self.assertEqual(out["before"], "blocked")
 
-    # the hook never loosens.
+    # The evaluate hook never loosens a decision it was given.
     def test_the_hook_never_loosens_an_incoming_effect(self) -> None:
         self._policies(ask_policy("allow"))  # the guard says allow when nobody can be asked
         for incoming in ("deny", "ask", "allow"):
