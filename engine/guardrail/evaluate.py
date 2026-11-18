@@ -35,14 +35,50 @@ POLICIES_DIR = "methodology/lifecycle/policies"
 DECISIONS = ("allow", "deny", "ask", "note")
 
 _ASSIGN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(?:\[[^\]]*\])?\+?=")
-_SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish", "su"}
+_SHELLS = {"sh", "bash", "zsh", "dash", "ksh", "fish", "su", "sg"}
 _WRAPPERS = {
     "env", "nohup", "setsid", "sudo", "doas", "timeout", "nice", "ionice", "stdbuf",
     "exec", "command", "time", "xvfb-run", "dbus-run-session", "systemd-run",
     "unbuffer", "chrt", "taskset", "flock", "script", "xargs",
     "busybox", "toybox", "builtin", "watch", "runuser", "chroot", "unshare",
     "nsenter", "strace", "ltrace", "setpriv", "prlimit", "bwrap", "firejail", "parallel",
+    "pkexec", "run0", "fakeroot", "fakechroot", "faketime", "eatmydata", "torsocks",
+    "proxychains", "proxychains4", "chronic", "catchsegv", "valgrind", "perf", "nsjail",
+    "dbus-launch", "sshpass", "rlwrap", "setarch", "linux32", "linux64", "i386", "x86_64",
+    "systemd-cat", "runcon", "cpulimit", "numactl", "screen", "dtach", "abduco", "entr",
+    "watchexec", "kitty", "foot", "flatpak-spawn", "bunx", "npx", "uvx", "concurrently",
 }
+# Programs that run a command only after a given word or flag. Every word after the
+# trigger is read as a command line, so ``npm exec -- NAME`` and ``xterm -e NAME`` match.
+_TRIGGERED = {
+    "npm": {"exec", "x"}, "pnpm": {"exec", "dlx", "x"}, "yarn": {"exec", "dlx"}, "bun": {"x"},
+    "pipx": {"run"}, "uv": {"run"}, "poetry": {"run"}, "pipenv": {"run"}, "pdm": {"run"},
+    "hatch": {"run"}, "conda": {"run"}, "mamba": {"run"}, "micromamba": {"run"},
+    "bundle": {"exec"}, "rbenv": {"exec"}, "pyenv": {"exec"}, "asdf": {"exec"},
+    "mise": {"exec", "x"}, "direnv": {"exec"}, "gem": {"exec"}, "guix": {"--"},
+    "nix": {"run", "-c", "--command", "--"}, "nix-shell": {"--run", "--command"},
+    "cargo": {"-s", "--shell"}, "nodemon": {"--exec", "-x"}, "fd": {"-x", "--exec", "-X", "--exec-batch"},
+    "rg": {"--pre"}, "gdb": {"--args"}, "start-stop-daemon": {"--exec", "-x"},
+    "i3-msg": {"exec"}, "swaymsg": {"exec"}, "hyprctl": {"exec"}, "xdotool": {"exec"},
+    "tmux": {"new-session", "new", "new-window", "neww", "split-window", "splitw", "run-shell",
+             "run", "respawn-pane", "respawn-window", "send-keys", "pipe-pane", "if-shell"},
+    "wezterm": {"start", "--"}, "rsync": {"-e", "--rsh"},
+    **{terminal: {"-e", "--", "-x", "--command", "--execute"} for terminal in (
+        "xterm", "uxterm", "urxvt", "rxvt", "st", "alacritty", "konsole", "x-terminal-emulator",
+        "terminator", "xfce4-terminal", "mate-terminal", "gnome-terminal", "tilix", "lxterminal")},
+}
+# ``git SUBCOMMAND`` words after which the rest is a command line (``git rebase -x NAME``).
+_GIT_RUNNERS = {"rebase": {"-x", "--exec"}, "difftool": {"-x", "--extcmd"}, "bisect": {"run"},
+                "submodule": {"foreach"}}
+# Variables whose value another program runs as a command.
+_COMMAND_VARS = {
+    "GIT_SSH_COMMAND", "GIT_SSH", "GIT_EXTERNAL_DIFF", "GIT_ASKPASS", "GIT_PAGER", "GIT_EDITOR",
+    "GIT_SEQUENCE_EDITOR", "SSH_ASKPASS", "PAGER", "EDITOR", "VISUAL", "BROWSER", "LESSOPEN",
+    "MANPAGER", "RSYNC_RSH", "SUDO_ASKPASS", "FCEDIT",
+}
+# ``git -c key=value`` keys whose value is a command line.
+_GIT_COMMAND_KEY = re.compile(r"command|pager|editor|askpass|external|helper|program|textconv|fsmonitor|^alias\.")
+_SSH_COMMAND_OPTION = re.compile(r"^(?:proxycommand|localcommand|knownhostscommand)=", re.I)
 # Wrappers whose argument is a whole command line in one quoted string.
 _STRING_WRAPPERS = {"watch", "script"}
 # Commands that only read a here-document as data. Any other reader (a shell,
@@ -502,12 +538,17 @@ def _simple_commands(line: str, state: dict | None = None) -> list[list[str]]:
 def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     """Candidates for one simple command given as words."""
     index = 0
+    assigned: list[str] = []
     while index < len(words) and _ASSIGN.match(words[index]):
-        if words[index].split("=", 1)[0].rstrip("+").split("[")[0] in _STARTUP_VARS:
+        name, _, value = words[index].partition("=")
+        name = name.rstrip("+").split("[")[0]
+        if name in _STARTUP_VARS:
             state["unresolved"] = True  # a variable the shell runs as code
+        elif name in _COMMAND_VARS and value:
+            assigned.extend(_scan(value, depth + 1, state))  # a program runs this value
         index += 1
     if index >= len(words):
-        return []
+        return assigned
     state["steps"] = state.get("steps", 0) + 1
     if state["steps"] > _STEP_LIMIT:
         state["unresolved"] = True
@@ -544,7 +585,7 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         # without running a shell.
         state["unresolved"] = True
     head = os.path.basename(rest[0])
-    out = list(_names(rest[0]))
+    out = assigned + list(_names(rest[0]))
     if head in ("command", "type", "which") and any(w in ("-v", "-V") for w in rest[1:3]):
         return []  # a lookup, not an execution
     if head == "trap":
@@ -638,10 +679,69 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         operands = [w for w in rest[1:] if not w.startswith("-")]
         if not operands or operands[0].startswith(("/dev/stdin", "/dev/fd/", "/proc/self/fd/")):
             state["unresolved"] = True  # sourced from a pipe or a process substitution
+    elif head == "git":
+        for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
+            if word == "-c" and position + 1 < len(rest):
+                key, _, value = rest[position + 1].partition("=")
+                if value and _GIT_COMMAND_KEY.search(key.lower()):
+                    out.extend(_scan(value.lstrip("!"), depth + 1, state))
+            elif word.startswith(("--exec=", "--extcmd=")):
+                out.extend(_scan(word.split("=", 1)[1], depth + 1, state))
+        for sub, triggers in _GIT_RUNNERS.items():
+            if sub in rest[1:_LOOKAHEAD]:
+                at = rest.index(sub, 1)
+                for position, word in enumerate(rest[at + 1:_LOOKAHEAD], start=at + 1):
+                    if word in triggers:
+                        out.extend(_trigger_candidates(rest[position + 1:], depth + 1, state))
+    elif head in ("ssh", "scp", "sftp"):
+        for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
+            option = rest[position + 1] if word == "-o" and position + 1 < len(rest) else (
+                word[2:] if word.startswith("-o") else "")
+            if _SSH_COMMAND_OPTION.match(option):
+                out.extend(_scan(option.split("=", 1)[1], depth + 1, state))
+            elif word == "-S" and position + 1 < len(rest) and head != "ssh":
+                out.extend(_names(rest[position + 1]))
+    elif head == "socat":
+        for word in rest[1:_LOOKAHEAD]:
+            for marker in ("EXEC:", "SYSTEM:"):
+                if marker in word.upper():
+                    out.extend(_scan(word[word.upper().index(marker) + len(marker):].split(",")[0], depth + 1, state))
+    elif head in _TRIGGERED:
+        if depth >= _MAX_DEPTH:
+            state["unresolved"] = True
+            return out
+        triggers = _TRIGGERED[head]
+        for position, word in enumerate(rest[1:_LOOKAHEAD], start=1):
+            flag = word.split("=", 1)[0] if word.startswith("--") else word
+            if flag in triggers:
+                inline = word.split("=", 1)[1] if word.startswith("--") and "=" in word else ""
+                after = ([inline] if inline else []) + rest[position + 1:]
+                out.extend(_trigger_candidates(after, depth + 1, state))
+        if len(rest) > _LOOKAHEAD:
+            state["unresolved"] = True
     elif head == "flatpak" and "run" in rest:
         after = [word for word in rest[rest.index("run") + 1:] if not word.startswith("-")]
         if after:
             out.append(after[0])
+    return out
+
+
+def _trigger_candidates(words: list[str], depth: int, state: dict) -> list[str]:
+    """Names run by the words after a trigger.
+
+    A quoted command line is scanned; plain words are read from each non-option word
+    in turn, because an option value (``tmux -c DIR``) can hide the real command.
+    """
+    out: list[str] = []
+    stripped = [w for w in words if w != "--"]
+    for position, word in enumerate(stripped[:_LOOKAHEAD]):
+        if word.startswith("-"):
+            continue
+        if any(ch in word for ch in " ;|&$`"):
+            out.extend(_scan(word, depth, state))
+        out.extend(_words_candidates(stripped[position:], depth, state))
+    if len(stripped) > _LOOKAHEAD:
+        state["unresolved"] = True
     return out
 
 

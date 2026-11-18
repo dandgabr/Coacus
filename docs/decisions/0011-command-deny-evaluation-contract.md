@@ -47,6 +47,17 @@ not look through (brace groups, process substitution, `eval`, here-strings,
 - The `function name { ... }` form, assignment prefixes such as `A+=1` and `a[0]=x`,
   line continuations, `env -vS'...'`, a string argument given to `watch` or `script`,
   and `chroot`, `unshare`, `nsenter`, `strace` and similar launchers are walked.
+- The launcher list was extended by measurement: 99 common launchers were run through the
+  walk, and 13 were read before the change. Prefix launchers (`pkexec`, `fakeroot`,
+  `valgrind`, `dbus-launch`, `setarch`, `systemd-cat`, `screen`...), subcommand launchers
+  (`npx`, `npm exec`, `uv run`, `bundle exec`, `mise exec`, terminals with `-e`, `tmux`
+  new-session and similar, `fd -x`, `git rebase -x`, `git bisect run`), `git -c` keys and
+  `ssh -o` options that hold a command, `socat EXEC:` and variables other programs run
+  (`GIT_SSH_COMMAND`, `GIT_PAGER`, `EDITOR`...) are now walked. Fifteen of these were
+  executed for real and ran the target; the rest follow the tool's documented behaviour.
+  Left out on purpose: container and remote runners (`docker run`, `podman run`,
+  `kubectl exec`, `ssh host cmd`), because the target there is not a program on this
+  host, and `make`, `go run`, `cargo run` and `just`, which run what a project file says.
 - A here-document is read the way the shell reads it: its tag is parsed outside quotes
   and arithmetic, its body is consumed before any quote tracking (an apostrophe in the
   body cannot swallow the commands after it), and the body is data only for a known
@@ -75,7 +86,7 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   candidates, so `sudo grep NAME file` still matches. They are pinned in the corpus.
 - The tests in `tests/test_guardrail_command_corpus.py`,
   `tests/test_guardrail_command_constructs.py` and
-  `tests/test_guardrail_fail_closed.py` lock the contract, including the shipped
+  `tests/test_guardrail_fail_closed.py` and `tests/test_guardrail_launchers.py` lock the contract, including the shipped
   browser policy over the real catalogue.
 
 ## Alternatives considered
