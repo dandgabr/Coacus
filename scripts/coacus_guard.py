@@ -84,11 +84,13 @@ def _patch_paths(args: dict) -> list[str]:
     return []
 
 
-def _actions(payload: dict) -> list[tuple[str, str]]:
+def _actions(payload: dict, harness: str = "") -> list[tuple[str, str]]:
     """Map a native payload to canonical ``(verb, resource)`` pairs.
 
     Usually one. A patch that touches several files yields one write per file, so a
-    policy on any of them is consulted.
+    policy on any of them is consulted. On OpenCode an MCP tool arrives as
+    ``<server>_<tool>`` (observed on 2.3.0), so any tool that is not a native one is
+    an ``mcp`` action named by that raw tool name.
     """
     tool = _first(payload, ("tool", "tool_name", "toolName", "name")).lower()
     args = payload.get("tool_input") or payload.get("args") or payload.get("toolCall") or {}
@@ -113,6 +115,8 @@ def _actions(payload: dict) -> list[tuple[str, str]]:
         return [("network", _first(args, ("url", "uri", "query")))]
     if tool in SPAWN_TOOLS:
         return [("spawn", _first(args, ("prompt", "description", "name")))]
+    if harness == "opencode" and tool:
+        return [("mcp", tool)]
     return [("", "")]
 
 
@@ -341,7 +345,7 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
         if channel == "evaluate":
             actions = _permission_actions(payload)
         else:
-            actions = _actions(payload)
+            actions = _actions(payload, harness)
         decision, message = "allow", ""
         for verb, resource in actions or [("", "")]:
             one, text = _decide(root, harness, event, channel, verb, resource)

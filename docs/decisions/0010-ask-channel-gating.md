@@ -51,6 +51,12 @@ opt-in.
   may time out inside the hook (the effect is left as it came), and a permission mode
   that approves prompts by itself would turn the ask into an allow. A V1 install, or a
   failed registration, degrades the ask to its fallback instead.
+- Live check, OpenCode 2.3.0 on 2026-11-18 (see ADR 0014): with a policy asking on a
+  read, the `evaluate` hook fired for the read, received the action `read` with the
+  path in `resources`, and the harness enforced the `ask` that the plugin wrote over
+  an `allow` (the non-interactive run rejected it). The `shell` and `edit` actions
+  arrived under those names. Not run: an interactive approval, other versions, and
+  a permission mode that approves by itself. The second opt-in therefore stays.
 - Risks that apply to every harness and are not removed by this record: a guard is a
   hook the agent's own session may be able to edit or disable (the harness settings,
   the plugin, the guard script and the user policy directory are ordinary files);

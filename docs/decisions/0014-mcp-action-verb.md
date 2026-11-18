@@ -28,9 +28,19 @@ The guard cannot know what an arbitrary MCP tool does, so mapping each one to `r
 ## Consequences
 
 - Claude Code documents `mcp__<server>__<tool>` for its PreToolUse hook, and Cursor
-  documents `MCP:<tool>` for HTTP MCP servers. Codex, OpenCode and Antigravity are
+  documents `MCP:<tool>` for HTTP MCP servers. Codex and Antigravity are
   recorded as `unverified` gaps in their `harness.json`: the pages read do not say
   whether the hook fires for MCP tools, so a rule may never run there.
+- OpenCode was run live (2.3.0, 2026-11-18, isolated project, stub MCP server). An MCP
+  tool reaches both hooks as `<server>_<tool>` (`probe_echo`), not `mcp__...`, so for
+  OpenCode the guard treats every tool outside its native lists as an `mcp` action named
+  by the raw tool name, and a rule such as `probe_*` denied it, including a call made
+  from inside the `execute` code tool (the nested call is guarded on its own; the
+  `execute` call itself carries code, not a command, and matches no command rule).
+  Native names there are `read`, `write` and `shell`, and `edit` as a permission name.
+- A plugin whose `id` equals that of an already installed plugin is skipped without a
+  message: a project copy of `coacus-guardrails` never loaded beside the global one
+  until the `id` changed. Install one copy of the guard per harness.
 - An MCP tool with no `mcp` rule is still unconstrained, and a tool whose name the
   guard does not recognise (a harness that prefixes it differently) is too. A rule on
   what an MCP tool does inside (a URL or a path in its arguments) is not possible here.

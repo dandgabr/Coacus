@@ -37,6 +37,41 @@ class TestClassification(unittest.TestCase):
         self.assertEqual(coacus_guard._actions({"tool": "mcp_single_underscore"})[0], ("", ""))
 
 
+class TestOpenCodeNames(unittest.TestCase):
+    """OpenCode 2.3.0 sends an MCP tool as ``<server>_<tool>``, observed in a live run."""
+
+    def test_a_non_native_tool_is_an_mcp_action_on_opencode_only(self) -> None:
+        payload = {"tool": "probe_echo", "tool_input": {"text": "hi"}}
+        self.assertEqual(coacus_guard._actions(payload, "opencode"), [("mcp", "probe_echo")])
+        self.assertEqual(coacus_guard._actions(payload, "claude-code"), [("", "")])
+        self.assertEqual(coacus_guard._actions(payload), [("", "")])
+
+    def test_native_opencode_tools_keep_their_verbs(self) -> None:
+        for tool, args, verb in (("shell", {"command": "ls"}, "exec"), ("read", {"path": "a"}, "read"),
+                                 ("write", {"path": "a", "content": "x"}, "write")):
+            with self.subTest(tool=tool):
+                self.assertEqual(coacus_guard._actions({"tool": tool, "tool_input": args}, "opencode")[0][0], verb)
+
+    def test_an_empty_tool_name_stays_without_a_verb(self) -> None:
+        self.assertEqual(coacus_guard._actions({"tool_input": {}}, "opencode"), [("", "")])
+
+    def test_the_cli_denies_an_opencode_mcp_tool(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            directory = root / "methodology/lifecycle/policies"
+            directory.mkdir(parents=True)
+            (directory / "a.policy.json").write_text(
+                json.dumps({"schema": 1, "enabled": True, "policies": [policy("probe_*")]}), encoding="utf-8")
+            env = {k: v for k, v in os.environ.items() if k not in ("COACUS_POLICY_DIR", "CI")}
+            env["COACUS_POLICY_DIR"] = str(root / "none")
+            proc = subprocess.run(
+                [sys.executable, str(GUARD_CLI), "--harness", "opencode", "--event", "tool.pre",
+                 "--channel", "before", "--root", str(root)],
+                input=json.dumps({"tool": "probe_echo", "tool_input": {}}),
+                capture_output=True, text=True, env=env, timeout=60)
+            self.assertEqual(json.loads(proc.stdout)["decision"], "deny")
+
+
 class TestMatching(unittest.TestCase):
     def decide(self, rule: dict, tool: str) -> str:
         return guard.evaluate([rule], "mcp", tool)["decision"]
