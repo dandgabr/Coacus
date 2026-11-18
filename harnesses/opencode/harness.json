@@ -48,6 +48,7 @@
       "subagent.start": { "support": "gate", "can_block": true, "can_ask": false, "effect": "throw", "derived": true, "from": "tool.pre", "evidence": "documented", "resolved": "2026-11-18", "source": "https://opencode.ai/docs/build/plugins/migrate-v1" }
     },
     "gaps": [
+      { "event": "tool.pre", "status": "unverified", "reason": "whether tool.execute.before runs for MCP tools, and under what name, is not documented in the pages read; an mcp rule may never run here" },
       { "event": "tool.pre", "status": "unverified", "reason": "ask works only through the V2 permission evaluate hook; its event shape, the permission names it receives and its order against tool.execute.before are documented but not verified by a live V2 run" }
     ]
   },

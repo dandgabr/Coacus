@@ -50,6 +50,7 @@
       "subagent.stop": { "support": "lifecycle", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://developers.openai.com/codex/hooks" }
     },
     "gaps": [
+      { "event": "tool.pre", "status": "unverified", "reason": "whether PreToolUse fires for MCP tools, and under what name, is not stated in the pages read; an mcp rule may never run here" },
       { "event": "session.end", "status": "advisory", "reason": "SessionEnd is advisory on Codex; it cannot block" },
       { "event": "tool.pre", "status": "trust-gate", "reason": "Codex refuses to run an untrusted hook until the operator approves it" }
     ]

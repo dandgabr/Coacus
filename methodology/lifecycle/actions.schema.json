@@ -7,6 +7,7 @@
     { "id": "write", "resource": "path glob", "title": "Create, edit or delete a file" },
     { "id": "network", "resource": "host or scheme+host", "title": "Reach the network" },
     { "id": "spawn", "resource": "subagent name pattern", "title": "Spawn a subagent" },
+    { "id": "mcp", "resource": "MCP tool name glob, case-insensitive (mcp__server__tool)", "title": "Call a tool provided by an MCP server" },
     { "id": "delegate", "resource": "handoff payload shape", "title": "Hand a task off (TOON payload)" }
   ],
   "excluded": [

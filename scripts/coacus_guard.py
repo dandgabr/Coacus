@@ -54,6 +54,8 @@ EXEC_TOOLS = {"bash", "shell", "shell_command", "run_command", "terminal", "exec
 NETWORK_TOOLS = {"fetch", "webfetch", "web_fetch", "read_url_content", "fetch_url", "websearch",
                  "web_search"}
 SPAWN_TOOLS = {"task", "agent", "spawn_agent", "invoke_subagent", "manage_subagents", "subagent"}
+# Tools served by an MCP server: Claude Code sends ``mcp__server__tool``, Cursor ``MCP:tool``.
+MCP_PREFIXES = ("mcp__", "mcp:")
 _PATCH_FILE = re.compile(r"^\*\*\* (?:Add|Update|Delete) File: (.+)$", re.MULTILINE)
 
 
@@ -96,6 +98,8 @@ def _actions(payload: dict) -> list[tuple[str, str]]:
         args = {}
     path = _first(args, ("filePath", "file_path", "path", "target_file", "notebook_path", "pattern"))
     command = _first(args, ("command", "CommandLine", "cmd"))
+    if tool.startswith(MCP_PREFIXES):
+        return [("mcp", tool)]  # the tool's own name; its arguments have no common shape
     if tool in READ_TOOLS:
         return [("read", path)]
     if tool in WRITE_TOOLS:

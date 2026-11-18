@@ -9,7 +9,7 @@ A guardrail is authored once and rendered natively per harness. The model is
 **PAER** — Policy over Action, Event binding, Rendering effect:
 
 - **Action** — the portable subject: `verb` (`exec`, `read`, `write`, `network`,
-  `spawn`, `delegate`) plus a normalized `resource`. Defined in
+  `spawn`, `mcp`, `delegate`) plus a normalized `resource`. Defined in
   `methodology/lifecycle/actions.schema.json`.
 - **Policy** — authored once in `methodology/lifecycle/policies/*.policy.json`.
 - **Event** — when the policy is consulted; the canonical taxonomy lives in

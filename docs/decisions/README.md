@@ -17,3 +17,4 @@ the repository. The convention is normative in
 | [0010](0010-ask-channel-gating.md) | Ask channel gating | accepted |
 | [0011](0011-command-deny-evaluation-contract.md) | Command deny evaluation contract | accepted |
 | [0012](0012-event-binding-and-enforced-events.md) | Event binding and enforced events | accepted |
+| [0014](0014-mcp-action-verb.md) | MCP action verb | accepted |

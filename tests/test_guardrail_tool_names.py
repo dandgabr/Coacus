@@ -37,7 +37,7 @@ class TestToolNames(unittest.TestCase):
                 self.assertEqual(actions, [("write", "a.py"), ("write", "secret.env")])
 
     def test_unknown_tools_have_no_verb(self) -> None:
-        self.assertEqual(coacus_guard._actions({"tool": "mcp__x__y", "tool_input": {}}), [("", "")])
+        self.assertEqual(coacus_guard._actions({"tool": "some_unlisted_tool", "tool_input": {}}), [("", "")])
 
 
 class TestGuardEndToEnd(unittest.TestCase):

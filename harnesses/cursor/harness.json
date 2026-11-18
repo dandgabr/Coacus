@@ -39,6 +39,7 @@
       "subagent.stop": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "advisory", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" }
     },
     "gaps": [
+      { "event": "tool.pre", "status": "unverified", "reason": "preToolUse is documented to fire for HTTP MCP servers with the name MCP:<tool>; stdio MCP servers are not stated" },
       { "event": "tool.pre", "status": "unverified", "reason": "project vs user hooks.json precedence is unverified; a user-scope deny must be probed before trust" }
     ]
   },

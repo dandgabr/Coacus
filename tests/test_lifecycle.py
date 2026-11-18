@@ -28,7 +28,7 @@ class TestLifecycleData(unittest.TestCase):
         data = json.loads(path.read_text(encoding="utf-8"))
         verbs = {v["id"] for v in data["verbs"]}
         self.assertEqual(
-            verbs, {"exec", "read", "write", "network", "spawn", "delegate"}
+            verbs, {"exec", "read", "write", "network", "spawn", "mcp", "delegate"}
         )
 
     def test_default_policy_set_is_empty(self) -> None:
