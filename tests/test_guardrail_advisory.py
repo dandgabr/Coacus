@@ -16,7 +16,7 @@ REPO = Path(__file__).resolve().parents[1]
 class TestMechanismFailureAdvisory(unittest.TestCase):
     def test_a_crash_allows_and_writes_an_advisory(self) -> None:
         err = io.StringIO()
-        with mock.patch.object(coacus_guard.guard, "load_policies", side_effect=RuntimeError("boom")), \
+        with mock.patch.object(coacus_guard.guard, "load_policies", side_effect=RuntimeError("simulated failure")), \
                 redirect_stderr(err):
             out = coacus_guard.run("claude-code", "tool.pre", "{}", REPO)
         self.assertEqual(out, "{}")

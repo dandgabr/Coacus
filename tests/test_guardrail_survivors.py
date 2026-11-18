@@ -92,7 +92,7 @@ class TestWalkLimits(unittest.TestCase):
 
     def test_an_internal_error_in_the_walk_is_unresolved(self) -> None:
         guard._resolve_cached.cache_clear()
-        with mock.patch.object(guard, "_scan", side_effect=RuntimeError("boom")):
+        with mock.patch.object(guard, "_scan", side_effect=RuntimeError("simulated failure")):
             self.assertEqual(guard.resolve_command("anything at all"), ([], True))
         guard._resolve_cached.cache_clear()
 
