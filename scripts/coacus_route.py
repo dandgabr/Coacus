@@ -44,11 +44,13 @@ def _free_slots() -> int:
 
 
 def detect_harness(root: Path, environ: "os._Environ[str] | dict[str, str]") -> str | None:
-    """Return the harness whose detection variables are set, or None.
+    """Return the harness whose session marker is set, or None.
 
-    Reads ``harnesses/<name>/harness.json`` under ``root``. Only an unambiguous
-    match (exactly one harness) is returned; zero or several matches yield None,
-    so the caller never guesses. Unreadable data is skipped.
+    Reads the ``session_markers`` list of ``harnesses/<name>/harness.json`` under
+    ``root``: variables the harness sets inside a running session. The ``detection``
+    list is not used, because those variables can be exported shell-wide and would
+    name the wrong harness. Only an unambiguous match (exactly one harness) is
+    returned, and unreadable data is skipped.
     """
     found: list[str] = []
     base = root / "harnesses"
@@ -59,10 +61,10 @@ def detect_harness(root: Path, environ: "os._Environ[str] | dict[str, str]") -> 
         if name.startswith("_"):
             continue
         try:
-            variables = json.loads(path.read_text(encoding="utf-8")).get("detection", [])
+            markers = json.loads(path.read_text(encoding="utf-8")).get("session_markers", [])
         except (OSError, ValueError, AttributeError):
             continue
-        if any(isinstance(v, str) and environ.get(v) for v in variables):
+        if any(isinstance(v, str) and environ.get(v) for v in markers):
             found.append(name)
     return found[0] if len(found) == 1 else None
 
@@ -125,7 +127,7 @@ def format_candidates(
 
     # Immediate action on very last line (Fitts's Law / KLM)
     lines.append("")
-    target = harness or "<harness>"
+    target = harness or "HARNESS"
     lines.append(f"Quick action: python3 scripts/coacus_install.py {target} --agents {top.name}")
 
     return "\n".join(lines)

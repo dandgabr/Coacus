@@ -1723,11 +1723,13 @@ proposal at the governor's free slots so a caller cannot over-subscribe.
 
 #### `def detect_harness(root: Path, environ: 'os._Environ[str] | dict[str, str]') -> str | None`
 
-Return the harness whose detection variables are set, or None.
+Return the harness whose session marker is set, or None.
 
-Reads ``harnesses/<name>/harness.json`` under ``root``. Only an unambiguous
-match (exactly one harness) is returned; zero or several matches yield None,
-so the caller never guesses. Unreadable data is skipped.
+Reads the ``session_markers`` list of ``harnesses/<name>/harness.json`` under
+``root``: variables the harness sets inside a running session. The ``detection``
+list is not used, because those variables can be exported shell-wide and would
+name the wrong harness. Only an unambiguous match (exactly one harness) is
+returned, and unreadable data is skipped.
 
 #### `def format_candidates(candidates: list[router.Candidate], *, raw: bool=False, use_color: bool=False, total_matches: int | None=None, harness: str | None=None) -> str`
 
