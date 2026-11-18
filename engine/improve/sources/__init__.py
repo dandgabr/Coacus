@@ -93,7 +93,9 @@ def parse_observations(text: str) -> list[dict]:
 def register_builtin(registry: SourceRegistry) -> None:
     """Register the built-in sources (transcript default; ai-memory optional)."""
     from engine.improve.sources.ai_memory import AiMemorySource
+    from engine.improve.sources.route_miss import RouteMissSource
     from engine.improve.sources.transcript import TranscriptSource
 
     registry.register(TranscriptSource())
     registry.register(AiMemorySource())
+    registry.register(RouteMissSource())

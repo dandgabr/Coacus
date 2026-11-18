@@ -227,7 +227,9 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
         }
 
     try:
-        candidates = consolidate.consolidate(observations)
+        from engine.improve.sources.route_miss import RouteMissSource
+
+        candidates = consolidate.consolidate(observations, allow_gaps=type(source) is RouteMissSource)
     except UnicodeError:
         return {"ok": False, "reason": "source unavailable or invalid", "alarms": alarms, "proposals": []}
     run_id = uuid.uuid4().hex

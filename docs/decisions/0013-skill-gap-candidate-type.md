@@ -15,7 +15,21 @@ model output into a request for new skills.
 ## Decision
 
 - A candidate is a `skill-gap` only when its observation carries the structured field
-  `kind: "route-miss"`. Words in the text never choose the type.
+  `kind: "route-miss"` **and** it comes from the `route-miss` source. For any other
+  source (a transcript, an ai-memory export, a custom one) the field is ignored and the
+  record is typed like any other, so a record cannot declare itself a gap. Words in the
+  text never choose the type.
+- The `route-miss` source (`engine/improve/sources/route_miss.py`) rebuilds every
+  observation in code from the router's own log. The kind is fixed; the channel is
+  `human-user-turn` only when the log line says the router ran with a terminal on both
+  ends, and `model-assistant` otherwise, so a prompt composed by an agent can never
+  support a gap; the session comes from the producer. Nothing else in a stored line is
+  read.
+- The producer is `scripts/coacus_route.py`: when no agent matches, it appends a line
+  to `docs/temp/improvement/route-misses.jsonl` (git-ignored). It is off unless
+  `COACUS_ROUTE_MISS_LOG=1`, because the line keeps the first 200 characters of the
+  prompt; the log stops growing at 2000 lines or 1 MB, and a write failure never
+  affects the router.
 - It needs a trusted-channel unit like a `gotcha` or `procedure`; otherwise it is
   staged as a `note`. The list of types that need trust is one constant,
   `taint.TRUST_REQUIRED`, used by the loop.
@@ -30,20 +44,23 @@ model output into a request for new skills.
 
 ## Consequences
 
-- Nothing in the repository emits an observation with `kind: "route-miss"` yet, so
-  the type is inert until a producer exists. Whoever adds one must assign the channel
-  and the session in code, not copy them from model output.
+- The type stays inert until someone sets `COACUS_ROUTE_MISS_LOG=1` and runs the
+  improvement loop with `--source route-miss`.
 - A claim is compared after NFKC folding, case folding and whitespace collapse, so
   full-width letters, doubled spaces and capitals of one wording count as one claim; a
   paraphrase is still a different claim.
 - A gap routed as a `note` because its evidence was not trusted keeps `downgraded` and
   `original_type` in the stored record, so a reviewer can tell where it started.
-- The `kind`, the `channel` and the `session_id` of an observation are all read from
-  the record, so whoever writes the record can write a convincing gap, including
-  three invented session ids. Structure keeps free text from choosing the type; it is
-  not a security control. The controls are that nothing is applied and that a person
-  reviews every proposal. Assigning channel and session in code at capture is a
-  separate change to every source and is recorded as a gap.
+- The log is owner-local state. A record can no longer claim a channel or a kind it did
+  not earn, but whoever can write the log file can still write three sessions and the
+  interactive flag. Structure keeps free text from choosing the type; it is not a
+  security control against the owner. The controls are that nothing is applied and that
+  a person reviews every proposal.
+- The session is the day and the parent process id, so three terminals on one day are
+  three sessions, and one terminal reused over several days counts once per day.
+- Only the router produces gaps. Other signals of a missing skill (an agent that says it
+  found nothing) are not a source and would need their own, with the channel again
+  assigned in code.
 - The private snapshot under `.ai-memory/improve-sources/` keeps the raw
   observations, as it does for every type; that is owner-only and unchanged. The
   routing record names the closest catalogue target, which can hint at the subject.

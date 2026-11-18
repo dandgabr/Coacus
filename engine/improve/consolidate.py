@@ -55,8 +55,10 @@ def _gap_hash(text: str) -> str:
     return hashlib.sha256(folded.encode("utf-8")).hexdigest()[:16]
 
 
-def _type_of(observation: dict) -> str:
-    if observation.get("kind") == SKILL_GAP_KIND:
+def _type_of(observation: dict, allow_gaps: bool = False) -> str:
+    # Only the route-miss source may declare a gap: it sets kind, channel and session
+    # in code. The same field in any other source's record is ordinary text.
+    if allow_gaps and observation.get("kind") == SKILL_GAP_KIND:
         return "skill-gap"
     status = str(observation.get("status", "")).lower()
     text = _claim(observation).lower()
@@ -67,14 +69,18 @@ def _type_of(observation: dict) -> str:
     return "fact"
 
 
-def consolidate(observations: list[dict]) -> list[dict]:
-    """Group observations into typed candidates, deduped by normalized claim."""
+def consolidate(observations: list[dict], *, allow_gaps: bool = False) -> list[dict]:
+    """Group observations into typed candidates, deduped by normalized claim.
+
+    ``allow_gaps`` is True only for the route-miss source; for any other source a
+    ``kind: "route-miss"`` field is ignored and the record is typed like any other.
+    """
     grouped: dict[tuple[str, str], dict] = {}
     for index, obs in enumerate(observations, 1):
         claim = _claim(obs)
         if not claim:
             continue
-        kind = _type_of(obs)
+        kind = _type_of(obs, allow_gaps)
         if kind == "skill-gap":
             claim = _clean(claim)
             if not claim:
