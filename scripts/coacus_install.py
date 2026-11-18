@@ -1385,6 +1385,8 @@ def ask_warnings(
                 reason = "asking is switched off (CI or COACUS_GUARD_NO_ASK)"
             elif not opted_in:
                 reason = "asking is off (set COACUS_GUARD_ASK=1)"
+            elif channel and env.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
+                reason = f"asking on {harness} also needs COACUS_GUARD_ASK_EXPERIMENTAL=1 (not verified live)"
             elif channel and str((policy.get("action") or {}).get("verb")) not in ("read", "write"):
                 reason = f"{harness} asks only for a read or a write, through its permission hook"
             else:

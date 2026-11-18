@@ -61,11 +61,14 @@ class TestAskWarnings(unittest.TestCase):
         self.assertEqual(len(off), 1)
         self.assertIn("COACUS_GUARD_ASK=1", off[0]["reason"])
 
-    def test_cursor_cannot_ask_and_opencode_can_through_its_channel(self) -> None:
+    def test_cursor_cannot_ask_and_opencode_needs_its_extra_opt_in(self) -> None:
         self._write(ask_doc())
         env = {"COACUS_GUARD_ASK": "1"}
         self.assertEqual(len(self._warn(["cursor"], env)), 1)
-        self.assertEqual(self._warn(["opencode"], env), [])
+        without = self._warn(["opencode"], env)
+        self.assertEqual(len(without), 1)
+        self.assertIn("COACUS_GUARD_ASK_EXPERIMENTAL=1", without[0]["reason"])
+        self.assertEqual(self._warn(["opencode"], {**env, "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}), [])
 
     def test_an_allow_fallback_is_flagged_as_failing_open(self) -> None:
         self._write(ask_doc(fallback="allow"))
@@ -120,7 +123,7 @@ class TestAskWarnings(unittest.TestCase):
             {"id": "ask-shell", "action": {"verb": "exec", "resource": "*deploy*"},
              "decision": "ask", "on_ask_unavailable": "allow"}]}
         self._write(shell)
-        warnings = self._warn(["opencode"], {"COACUS_GUARD_ASK": "1"})
+        warnings = self._warn(["opencode"], {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"})
         self.assertEqual(len(warnings), 1)
         self.assertTrue(warnings[0]["fails_open"])
         self.assertIn("only for a read or a write", warnings[0]["reason"])
