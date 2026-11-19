@@ -918,7 +918,8 @@ def _applies(policy: dict, verb: str, resource: str, event: str) -> bool:
         p_verb, _ = _action_of(policy)
         if p_verb != verb:
             return False
-        bound = policy.get("event", "tool.pre")
+        # An output rule means something on tool.post only, so it defaults there.
+        bound = policy.get("event", "tool.post" if p_verb == "output" else "tool.pre")
         if isinstance(bound, str) and bound in KNOWN_EVENTS and bound != event:
             return False
         # A missing event means tool.pre. An unknown, misspelled or non-string
@@ -936,7 +937,7 @@ def notes(policies: list[dict], verb: str, resource: str, event: str) -> list[st
     effect is a note reads them here.
     """
     return [str(p.get("message", "")) for p in policies
-            if str(p.get("decision", "")) == "note" and _applies(p, verb, resource, event)]
+            if isinstance(p, dict) and str(p.get("decision", "")) == "note" and _applies(p, verb, resource, event)]
 
 
 def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.pre") -> dict:

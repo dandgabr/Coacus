@@ -1078,8 +1078,8 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
 
 OPTIONAL = "@optional"
 # Runs the script in argv[1] when it exists and exits 0 when it does not, so a hook whose
-# script was removed cannot lock the user out of a prompt. The only caller is an event that
-# blocks a prompt; a missing tool.pre guard stays fail-closed on purpose.
+# script was removed cannot lock the user out of a prompt. The callers are the events that
+# can only block a prompt or add a note; a missing tool.pre guard stays fail-closed on purpose.
 _OPTIONAL_SHIM = (
     "import os,sys,runpy;p=sys.argv[1];"
     "os.path.isfile(p) or (sys.stderr.write('coacus: guard script missing, hook skipped\\n'),sys.exit(0));"
@@ -1329,8 +1329,14 @@ def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
         for policy in policies if isinstance(policies, list) else []:
             if not isinstance(policy, dict):
                 continue
-            event = str(policy.get("event", "tool.pre"))
             action = policy.get("action") if isinstance(policy.get("action"), dict) else {}
+            # An output rule only means something on tool.post, so an omitted or misspelled
+            # event is read as that rather than as a rule that never runs.
+            event = str(policy.get("event", "tool.pre"))
+            if action.get("verb") == "output" and event not in guard.KNOWN_EVENTS:
+                event = "tool.post"
+            if action.get("verb") == "output" and "event" not in policy:
+                event = "tool.post"
             # An event other than tool.pre gets a hook only for a rule that can act there.
             verb, decision = action.get("verb"), policy.get("decision")
             if (event == "tool.pre" or (verb == "prompt" and decision in ("deny", "ask"))
@@ -1362,7 +1368,7 @@ def _add_bound_event_hooks(root: Path, data: dict, fragment: dict) -> None:
             continue
         if event in bound and (capability.get("can_block") is True or capability.get("effect") == "additionalContext"):
             swapped = command.replace("--event tool.pre", f"--event {event}")
-            # Only a prompt block can lock the user out; tool.pre stays fail-closed.
+            # These events can only block a prompt or add a note; tool.pre stays fail-closed.
             guard = ' "__COACUS_ROOT__/scripts/coacus_guard.py"'
             swapped = swapped.replace(guard, f" {OPTIONAL}{guard}", 1)
             hooks[native] = [{"hooks": [{"type": "command", "command": swapped}]}]

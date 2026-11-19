@@ -20,8 +20,12 @@ has already run.
   as `prompt`.
 - Only the decision `note` is rendered, as `additionalContext`. `note` ranks below `allow`
   in `evaluate`, so `engine.guardrail.evaluate.notes` reads the matching notes directly and
-  `evaluate` is unchanged. A `deny` or `ask` on `tool.post` is refused at install by the
-  existing `can_block` check, and a runtime guard that meets one still only adds the note.
+  `evaluate` is unchanged. A `deny` on `tool.post` is refused at install by the
+  existing `can_block` check (an `ask` or a policy in the user directory is not checked
+  there). At run time only `note` renders; any other decision adds nothing.
+- An `output` rule with no `event`, or a misspelled one, is read as bound to `tool.post`.
+- The text is folded first and then read in overlapping windows of just under the match
+  cap (a value over the cap matches every pattern), up to 8,000,000 characters.
 - The installer adds the `PostToolUse` hook only while an enabled policy binds the event,
   like `UserPromptSubmit`, through the same launcher that skips a missing guard script.
 - `turn.stop` stays deferred: a block there means "keep going" and needs a loop limit.
@@ -31,7 +35,8 @@ has already run.
 - The note is advice to the model that read the output; a model that was already steered
   by that output may ignore it. It is a tripwire, not a control.
 - The shape of `tool_response` is documented only for Bash. Other tools are scanned as JSON
-  text, so a pattern can match a key name, and a long response keeps only its head and tail.
+  text, so a pattern can match a key name and cannot contain a quote or a newline. A
+  homoglyph, a doubled space or a paraphrase evades a pattern.
 - Hook output is the policy author's text. Matching text from the tool is never copied into
   the note.
 - Not run live: the payload and the answer come from the vendor documentation, as for

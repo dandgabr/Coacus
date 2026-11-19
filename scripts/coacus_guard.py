@@ -234,15 +234,17 @@ def _prompt_effect(harness: str, decision: str, message: str) -> str:
 
 
 OUTPUT_NOTE_CHARS = 2000
-OUTPUT_SCAN_CHARS = guard._MAX_COMMAND_CHARS - 10  # a longer value would match every pattern
+OUTPUT_WINDOW_CHARS = guard._MAX_COMMAND_CHARS - 10  # a longer value would match every pattern
+OUTPUT_WINDOW_OVERLAP = 4096  # a marker up to this long cannot fall between two windows
+OUTPUT_MAX_CHARS = 8_000_000  # beyond this the rest of an output is not read
 
 
 def _output_text(payload: object) -> str:
     """The text a tool returned, from the ``tool_response`` of a ``PostToolUse`` payload.
 
     The shape differs per tool and the documentation gives only Bash (``stdout`` and
-    ``stderr``). Any other value is scanned as its JSON text. A long value keeps its head
-    and its tail, because a marker is as likely at the end of an output as at the start.
+    ``stderr``). Any other value is scanned as its JSON text, which escapes quotes and
+    newlines, so a pattern that needs those does not match there.
     """
     response = payload.get("tool_response") if isinstance(payload, dict) else None
     if isinstance(response, dict) and any(isinstance(response.get(k), str) for k in ("stdout", "stderr")):
@@ -253,10 +255,14 @@ def _output_text(payload: object) -> str:
         text = ""
     else:
         text = json.dumps(response, ensure_ascii=False, sort_keys=True, default=str)
-    if len(text) > OUTPUT_SCAN_CHARS:
-        half = OUTPUT_SCAN_CHARS // 2
-        text = text[:half] + "\n" + text[-half:]
     return text
+
+
+def _output_windows(text: str) -> list[str]:
+    """Split a folded output into overlapping windows that each fit under the match cap."""
+    text = guard._fold_prompt(text)[:OUTPUT_MAX_CHARS]
+    step = OUTPUT_WINDOW_CHARS - OUTPUT_WINDOW_OVERLAP
+    return [text[start:start + OUTPUT_WINDOW_CHARS] for start in range(0, max(len(text), 1), step)]
 
 
 def _output_effect(harness: str, decision: str, message: str) -> str:
@@ -266,7 +272,7 @@ def _output_effect(harness: str, decision: str, message: str) -> str:
     ``additionalContext`` next to the tool result; anything but an allow becomes that note.
     """
     if decision == "allow" or harness != "claude-code":
-        return "{}"
+        return _allow(harness)
     note = (message or "A Coacus guardrail policy matched this tool output.")[:OUTPUT_NOTE_CHARS]
     return json.dumps({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": note}})
 
@@ -491,7 +497,11 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
             decision, message = "allow", ""
             if text:
                 policies = guard.load_policies(root, include_user=True)
-                found = guard.notes(policies, "output", text, event)
+                found = []
+                for window in _output_windows(text):
+                    found = guard.notes(policies, "output", window, event)
+                    if found:
+                        break
                 if found:
                     decision, message = "note", " ".join(m for m in found if m)
             return _output_effect(harness, decision, message)
