@@ -1,0 +1,38 @@
+{
+  "id": "editorial-en-us-report",
+  "title": "Editorial review of an incident report in American English",
+  "harness": "codex",
+  "prompt": "Write a short incident report for the on-call lead. Draft: It is worth highlighting that our investigation holds significant implications. The checkout dashboard recorded 23 HTTP 503 responses from 10:00 to 10:05 UTC. Cache saturation is suspected, but has not been confirmed. Evidence: logs/checkout.txt. Write the deliverable in American English. Return only the requested prose. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "23"
+    },
+    {
+      "kind": "contains",
+      "value": "503"
+    },
+    {
+      "kind": "contains",
+      "value": "10:00"
+    },
+    {
+      "kind": "contains",
+      "value": "10:05"
+    },
+    {
+      "kind": "contains",
+      "value": "UTC"
+    },
+    {
+      "kind": "contains",
+      "value": "logs/checkout.txt"
+    }
+  ],
+  "rubric": [
+    "Lead with the recorded incident. Preserve the time window, count, evidence path, and unconfirmed status of the cache hypothesis.",
+    "The prose reads naturally in American English and makes the next step or finding easy to locate."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

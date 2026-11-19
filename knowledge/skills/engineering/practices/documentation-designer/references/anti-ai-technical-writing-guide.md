@@ -1,46 +1,36 @@
-# ✍️ Canonical Guide to Human Technical Prose & Anti-AI Writing (Craft Docs)
+# Editorial Review for Technical Prose
 
-This practical guide provides editorial rules, comparative transformation tables ("Before vs After"), and an audit checklist to eliminate "AI Idiolect" and produce technical documentation that is human, direct, and high-density.
+## Choose the language of the deliverable
 
----
+1. Follow an explicit target language or regional variant, subject to the destination repository's artifact rules. A request to revise prose implies keeping its language unless translation is requested.
+2. For edits and additions inside an existing section, inherit that section's language and established variant. In mixed-language documents, apply this per section. Preserve intentional language changes, quotations, and technical literals. Choose the language of the conversation separately.
+3. For a new document, follow the destination project's convention when the request leaves the language open. Otherwise use the request language. For Portuguese, English, and Spanish with no regional convention, use Brazilian Portuguese, American English, and neutral Latin American Spanish respectively.
+4. Apply the relevant language skill to the deliverable. For varieties without dedicated guidance, use the shared review and follow any regional conventions supplied by the author, project, or reader.
 
-## 1. Comparison Table: Turning AI Slop into Human Prose
+## Revise for the reader
 
-| Before (AI Tic / AI Slop) | After (Human Prose / Craft Writing) | Why the Change Works |
-| :--- | :--- | :--- |
-| *"No mundo dinâmico e em constante evolução do desenvolvimento de software, é crucial alavancar uma abordagem holística para mitigar riscos."* | *"Para evitar falhas em produção, teste cada integração antes do deploy."* | Removes empty buzzwords (*mundo dinâmico*, *alavancar*, *holístico*, *crucial*). Goes straight to the action and the real consequence. |
-| *"Este framework não é apenas uma biblioteca utilitária; é um testemunho vivo do poder transformador da arquitetura orientada a microsserviços."* | *"O framework fornece mensageria assíncrona com confirmação de entrega via RabbitMQ."* | Removes the *Contrastive Reframe* and the hyperbolic adjectives (*testemunho vivo*, *poder transformador*). Describes the exact technical fact. |
-| *"Mergulhe a fundo na tapeçaria intrincada de nossos endpoints RESTful para desbloquear sinergias sem precedentes."* | *"Consulte os endpoints em `/v1/orders` para criar e cancelar pedidos."* | Removes grandiose metaphors (*mergulhe a fundo*, *tapeçaria*, *sinergias*). Uses direct, accessible language. |
-| *"É importante ressaltar e ter em mente que o arquivo de configuração `.env` deve ser mantido em absoluto segredo para garantir a segurança."* | *"Nunca versione o arquivo `.env`. Adicione-o ao `.gitignore`."* | Cuts the loose preamble (*é importante ressaltar que*). Uses a command in the direct imperative. |
-| *"Em suma, pudemos concluir ao longo deste abrangente documento que a ferramenta desempenha um papel fundamental para os desenvolvedores."* | *(Removed entirely)* | Technical documentation does not need a school-essay conclusion. When the technical instruction ends, the text ends. |
+1. Identify what the reader needs to know or do. Lead with the finding in a report, the prerequisite and action in a how-to, or the failed assertion in a test summary. A decision record leads with the decision and the reason recorded for it.
+2. Cut setup that delays the point, generic praise, redundant endings, and explanations the intended reader already has. Vary sentence length where it clarifies how facts fit together. Keep deliberate repetition when it helps the reader follow a procedure or compare results.
+3. Compare the final prose with the source. Keep meaning, scope, attribution, severity, and uncertainty. Preserve filenames, identifiers, commands, flags, link destinations, error messages, units, counts, and test states. Keep quoted material, code blocks, frontmatter, and raw output intact during a prose edit. Use details supplied by the evidence. If the evidence is incomplete, keep the uncertainty visible.
 
----
+For a procedure with a copyable command, give the prerequisite first and put
+the command on its own line. Use a fenced code block in Markdown. Put the
+expected output after the command so the reader can check success.
 
-## 2. The Law of Rhythm in Practice (Gary Provost)
+For a report, attribute observations to their source. When evidence supports
+investigating a possible cause, state what it might explain and whether it has
+been confirmed. If the reader needs to open a log or other evidence, give its
+reference a short sentence or line of its own. Describe the contents only
+when the source establishes them.
 
-### ❌ Example of Monotonous AI Rhythm (Sentences of the Same Length):
-> *"O gateway de pagamentos recebe a requisição criptografada do cliente web. O serviço de autenticação valida os cabeçalhos de segurança do token JWT. O motor de risco calcula a pontuação probabilística de fraude da transação. O banco de dados relacional registra o evento de autorização financeira. A resposta formatada em JSON retorna para a aplicação consumidora."*
-*(Every sentence runs about 15 words. The reader switches off from rhythmic boredom.)*
+## Examples with source facts
 
-### ✅ Example of Human Rhythm with Dynamic Variation:
-> *"A requisição chega. O gateway intercepta o payload, valida o JWT e delega o scoring ao antifraude em menos de 10ms. Se o risco for aceitável, o banco grava a transação e a API responde imediatamente com `201 Created`. Caso contrário, o pagamento é recusado antes de onerar os serviços centrais."*
-*(A surgical alternation between short three-word sentences, mid-length flow sentences, and compound conditional sentences. The reading flows with music and energy.)*
+| Deliverable | Source facts | Revised prose |
+| --- | --- | --- |
+| Report | The queue reached 80 jobs at 09:00 UTC. An upstream slowdown is suspected. | The queue reached 80 jobs at 09:00 UTC. An upstream slowdown remains a hypothesis. |
+| Guide | The service must be running. The operator then runs `demo check --read-only`. | Start with the service running. Run `demo check --read-only`. |
+| Tests | The export suite recorded 12 passed, 1 failed, 3 skipped. `test_empty_export` expected an empty file and received a header row. Browser tests were outside the run. | `test_empty_export` failed. It expected an empty file and received a header row. Twelve export tests passed and three were skipped. Browser tests were outside the run. |
 
----
+Before publishing, also check that the document serves its intended Diátaxis purpose, code examples include their prerequisites, and diagrams render with their existing labels.
 
-## 3. Anti-AI Audit Checklist for Documentation
-
-Before publishing any documentation, run this inspection checklist:
-
-1. **[ ] Does the first paragraph start immediately with technical value?**
-   - Remove any introduction such as: *"Neste documento abordaremos..."* or *"Com a crescente complexidade dos sistemas..."*.
-2. **[ ] Has the blacklist of AI words been banned?**
-   - Zero occurrences of: *delve*, *leverage*, *streamline*, *tapestry*, *landscape*, *crucial*, *vital*, *holistic*, *paradigm*, *foster*, *unleash*, *synergy*, *alavancar*, *cenário atual*, *fundamental*.
-3. **[ ] Is there conscious variation in sentence length?**
-   - Check that there are no more than three consecutive sentences with the same word count.
-4. **[ ] Does the document respect the purity of Diátaxis?**
-   - If it is a **How-To**, does it give clear steps without giant theoretical explanations?
-   - If it is a **Reference**, are the parameters organized neutrally, without prolix narrative?
-5. **[ ] Are the code examples 100% testable and free of magic placeholders?**
-   - Are all imports and variables needed to run the snippet declared?
-6. **[ ] Do the Mermaid diagrams quote labels containing special characters and avoid a bare `end` word?**
+The reader-focused revision and final comparison with the source were informed by [Humanizer at revision a48c60c2a3f7a0f6ecc8f9b8d2b1ef71c7927155](https://github.com/blader/humanizer/blob/a48c60c2a3f7a0f6ecc8f9b8d2b1ef71c7927155/SKILL.md). Reviewed on 2026-11-19.

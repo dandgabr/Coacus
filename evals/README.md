@@ -83,6 +83,25 @@ on manual dispatch. The blocking CI workflow also runs the static gate; it never
 launches a live agent. See [`../docs/standards/testing.md`](../docs/standards/testing.md)
 for how evaluations fit with the deterministic test suite.
 
+### Multilingual editorial pilot
+
+The `editorial-*` scenarios cover a report, a guide, and test results in each
+of Brazilian Portuguese, American English, and neutral Latin American Spanish.
+Four additional scenarios check document-language inheritance, mixed-language
+sections, a requested regional variant, and a language without a dedicated skill.
+
+For a comparison, capture one response per scenario from each revision in a
+fresh session with the same model, harness, prompt, and source facts. Give a
+fluent independent evaluator the two texts in random order and the scenario
+rubric. Record factual fidelity for both versions before asking which text
+makes the finding or action easier to locate, or whether they tie. Within each
+language, the candidate must preserve the source in all three texts, win at
+least twice, and match or win the remaining comparison. Score the four language
+selection cases independently against their rubrics.
+
+The live runner can check a single response with a trusted `--judge-cmd`.
+The paired evaluation uses the blinded texts and is reported separately.
+
 ### Judge command contracts
 
 `--judge-agent` is unsupported for all scenarios because tool-free isolation is

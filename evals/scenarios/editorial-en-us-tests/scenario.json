@@ -1,0 +1,26 @@
+{
+  "id": "editorial-en-us-tests",
+  "title": "Editorial review of a test summary in American English",
+  "harness": "codex",
+  "prompt": "Write a test summary for the maintainer. Output: Auth unit suite only. 47 passed, 1 failed, 2 skipped. test_expired_token expected HTTP 401 and got HTTP 200. Integration tests were outside the run. Write the deliverable in American English. Return only the requested prose. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "test_expired_token"
+    },
+    {
+      "kind": "regex",
+      "value": "\\b401\\b"
+    },
+    {
+      "kind": "regex",
+      "value": "\\b200\\b"
+    }
+  ],
+  "rubric": [
+    "Lead with the failed test. Bind each count to its correct status and distinguish the skipped tests from the integration suite outside the run.",
+    "The prose reads naturally in American English and makes the next step or finding easy to locate."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

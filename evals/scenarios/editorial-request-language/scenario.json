@@ -1,0 +1,18 @@
+{
+  "id": "editorial-request-language",
+  "title": "Technical editorial review request-language",
+  "harness": "codex",
+  "prompt": "Revise este texto.\n\nIt is worth noting that the worker reads config.toml at startup.\n\nReturn only the revised document. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "config.toml"
+    }
+  ],
+  "rubric": [
+    "The document stays in English. Preserve the file name and startup timing.",
+    "The text uses a direct technical register for its intended reader."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

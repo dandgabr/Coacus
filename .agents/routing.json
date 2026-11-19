@@ -2215,6 +2215,7 @@
       "category": "software-engineering",
       "description": "Acts as the general reviewer of a project, change or design across every aspect: business rules, architecture, code quality, tests, performance, accessibility, documentation and security. It can dispatch project-defined and catalog agents for the aspects it cannot judge alone. Use it for a full review or for a review limited to one aspect such as security.",
       "skills": [
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
         "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
         "knowledge/skills/roles/project-reviewer/SKILL.md",
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md",

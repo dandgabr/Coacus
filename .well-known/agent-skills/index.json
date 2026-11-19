@@ -1035,7 +1035,7 @@
       "description": "Acts as a specialist in Technical Documentation Engineering, Human Anti-AI Prose (Anti-AI Writing Manifesto), Di\u00e1taxis Architecture, and Visual Diagram Modeling with Mermaid.js.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "digest": "sha256:ec76c2ecb2d7fc77fa535c01e0ee3e5c8dc248aeed3a26a60b14f0634b700a2f"
+      "digest": "sha256:57fadff393602e62ad176dd536f0bc06685eecf178bc50edc96672e8add0d7f5"
     },
     {
       "name": "domain-architect",
@@ -1896,21 +1896,21 @@
       "description": "Specialist in American English (EN-US) linguistic editing and technical copyediting, adhering to the Chicago Manual of Style, eliminating AI idiolect, resolving syntax ambiguities, and ensuring clear human communication.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md",
-      "digest": "sha256:442dbd8c7f6ef39016e3f0603e8019188ec905e92156b7c0fada4ad2a96e2fd6"
+      "digest": "sha256:86dbd3bb77a93c2d10fd321f8c21c7aea5a5ce3fb3ee474d3d8c1075f3db6f40"
     },
     {
       "name": "linguistic-es-latam",
-      "description": "Specializes in editing and writing Neutral Latin American Spanish (ES-LATAM), focused on technical clarity, RAE/ASALE norms, syntactic disambiguation, opening punctuation marks (\u00bf?, \u00a1!), diacritical accents, and eradication of AI clich\u00e9s.",
+      "description": "Specializes in editing and writing Neutral Latin American Spanish (ES-LATAM), focused on technical clarity, RAE/ASALE norms, syntactic disambiguation, opening punctuation marks (\u00bf?, \u00a1!), diacritical accents, and contextual editing of formulaic prose.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "digest": "sha256:50f0fd2741cf5c389868214be2a809319e22d1589f453680f13322c5ca707e69"
+      "digest": "sha256:dba78bce95b766203c9ab718b6297239cb20dd7ede705e6e138aa6dfe5615a36"
     },
     {
       "name": "linguistic-pt-br",
-      "description": "Specializes in editing and writing Brazilian Portuguese (PT-BR), focused on technical clarity, semantic precision, contemporary standard usage, elimination of ambiguities, eradication of AI tics, and adaptation to a human audience.",
+      "description": "Specializes in editing and writing Brazilian Portuguese (PT-BR), focused on technical clarity, semantic precision, contemporary standard usage, elimination of ambiguities, contextual editing of formulaic prose, and adaptation to a human audience.",
       "type": "archive",
       "url": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "digest": "sha256:8791a1149e7ada2b24495b458291c346b7979dc6afa72877a6b6eee7a10d3827"
+      "digest": "sha256:3f13b38acfde10416870ec3f5092356310d57cfe6d8e88cf5683dbd0eb773065"
     },
     {
       "name": "linux-kernel-systemd-internals",
@@ -2351,7 +2351,7 @@
       "description": "Acts as a Senior QA (Quality Assurance) Engineer, mastering risk-based strategies (RBT), formal test design techniques (ISTQB, BVA, Decision Tables, MC/DC), multi-framework test automation, effectiveness measurement (DRE, Mutation Score), and defect management.",
       "type": "archive",
       "url": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "digest": "sha256:0faec8c0b9c527f731890c8114451ab7353caf00ef9192dd97206ab872568549"
+      "digest": "sha256:924078c0083cb88394066ac159b368a183bf973b5c96768ad4e895c47968641d"
     },
     {
       "name": "quantitative-risk-fair",

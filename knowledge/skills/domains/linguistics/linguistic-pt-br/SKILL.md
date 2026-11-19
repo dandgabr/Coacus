@@ -1,6 +1,6 @@
 ---
 name: "linguistic-pt-br"
-description: "Specializes in editing and writing Brazilian Portuguese (PT-BR), focused on technical clarity, semantic precision, contemporary standard usage, elimination of ambiguities, eradication of AI tics, and adaptation to a human audience."
+description: "Specializes in editing and writing Brazilian Portuguese (PT-BR), focused on technical clarity, semantic precision, contemporary standard usage, elimination of ambiguities, contextual editing of formulaic prose, and adaptation to a human audience."
 ---
 
 # 🇧🇷 Skill: Linguistic Editor & Editorial Specialist in Brazilian Portuguese (PT-BR)
@@ -19,28 +19,9 @@ This skill equips the agent to act as a **Senior Linguistic Editor and Editorial
 
 ---
 
-## 🚫 2. Banishment of the AI Idiolect in Portuguese
+## 2. Contextual Editorial Review
 
-Language models have recognizable probabilistic patterns that generate cold, artificial, and repetitive text. When reviewing or producing any PT-BR text, **apply an absolute veto** to the patterns below:
-
-### 2.1. Table of Forbidden Expressions and Clichés
-| Banned AI Expression | Reason for the Ban | Direct Human Alternative |
-| :--- | :--- | :--- |
-| *"No cenário atual..."* / *"No mundo dinâmico de hoje..."* | Empty cliché preamble that delays reading. | Get straight to the point or contextualize with objective data. |
-| *"É crucial destacar que..."* / *"Vale ressaltar que..."* | Transition crutch that weakens the message. | Drop the introductory phrase and state the fact directly. |
-| *"Mergulhar em..."* (translation of *delve into*) | Literal calque and worn-out AI metaphor. | *Analisar, examinar, detalhar, estudar, inspecionar.* |
-| *"Alavancar"* (blind translation of *leverage*) | Vague and overused corporate jargon. | *Usar, aplicar, aproveitar, otimizar, acelerar.* |
-| *"Tapeçaria"* (translation of *tapestry*) | Stylistic hallucination of English models. | *Conjunto, rede, ecossistema, composição, estrutura.* |
-| *"Desempenha um papel fundamental..."* | Prolix filler. | *É essencial para, viabiliza, sustenta, controla.* |
-| *"Em suma..."* / *"Podemos concluir que..."* | Obvious and bureaucratic conclusion of school writing. | Finish when the instructional content ends. |
-| *"Um divisor de águas..."* / *"Revolucionário"* | Unfounded hyperbole. | Present the metric or real engineering gain. |
-| *"Robusto e escalável"* (used together without metrics) | AI marketing cliché pair. | Describe the real limits: *tolerante a falhas, suporta 10k rps*. |
-| *"Vamos estar analisando..."* (gerundism) | Unnecessary syntactic tic. | *"Analisaremos"* or *"Análise técnica do módulo..."*. |
-
-### 2.2. Veto of Artificial Syntactic Formulas
-- ❌ **Contrastive Reframe**: *"Não se trata apenas de um banco de dados, mas de uma verdadeira revolução..."* -> State what the technology is: *"O PostgreSQL é um banco relacional focado em conformidade ACID"*.
-- ❌ **Flattering Opening**: *"Com certeza! Ficarei feliz em ajudar com esta excelente pergunta..."* -> Start immediately with the requested technical answer.
-- ❌ **Legalese and Sterile Archaisms**: Avoid *"no que tange a"*, *"no tocante a"*, *"outrossim"*, *"destarte"*, *"em sede de"*. Prefer *"sobre"*, *"quanto a"*, *"além disso"*, *"portanto"*.
+Apply this guidance to prose intended for Brazilian Portuguese. Look for gerund chains, unnecessary formality, and corporate jargon. Replace them where they delay the action or weaken a technical statement. Preserve meaningful repetition, intentional voice, quotations, and technical literals. Follow the technical prose guide in the `documentation-designer` skill (`references/anti-ai-technical-writing-guide.md`) for language selection and the final evidence check.
 
 ---
 
@@ -117,5 +98,5 @@ Crase is the fusion of the preposition *a* with the feminine definite article *a
 1. **Step 1 - Objective Diagnosis**: What is the concrete action the reader needs to carry out or understand? Eliminate everything that does not contribute to that goal.
 2. **Step 2 - Structural Pruning**: Remove flattering preambles, redundant conclusions, and corporate filler phrases.
 3. **Step 3 - Disambiguation & Grammar**: Check pronominal antecedents (*seu, ele, este*), agreements, regence, and apply crase rigorously.
-4. **Step 4 - Anti-AI Filter**: Replace inflated verbs (*alavancar*, *mergulhar*) and clichés (*cenário atual*, *divisor de águas*) with concrete nouns and action verbs.
+4. **Step 4 - Style review**: Replace formulaic phrasing where it delays the action or weakens a technical statement.
 5. **Step 5 - Rhythm Equalization**: Read the text aloud mentally. If the sentences are all exactly the same length, fragment long sentences or join telegraphic ones to create human musicality.
