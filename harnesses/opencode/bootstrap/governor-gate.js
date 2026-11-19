@@ -86,7 +86,7 @@ const rateLimited = (value, depth = 0, seen = new Set()) => {
 const exec = promisify(execFile);
 const gov = async (action, caller, timeout = '5', orchestrator = 'no', token = '') => {
   const { stdout } = await exec(PYTHON,
-    [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode', ...(token ? ['--token', token] : [])],
+    ['-I', GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode', ...(token ? ['--token', token] : [])],
     { encoding: 'utf8', timeout: 70000 });
   return stdout.trim();
 };
