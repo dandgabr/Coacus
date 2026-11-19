@@ -28,6 +28,7 @@
     ]
   },
   "detection": ["CLAUDE_PLUGIN_ROOT"],
+  "session_markers": ["CLAUDECODE"],
   "lifecycle": {
     "schema": 1,
     "supported": true,

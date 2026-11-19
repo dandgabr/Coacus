@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from engine.router import Candidate
-from scripts.coacus_route import DEFAULT_INTERACTIVE_TOP, format_candidates, main
+from scripts.coacus_route import DEFAULT_INTERACTIVE_TOP, detect_harness, format_candidates, main
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -121,6 +121,58 @@ class TestCoacusRouteUX(unittest.TestCase):
         first_line = output.splitlines()[0]
         parts = first_line.split("\t")
         self.assertGreaterEqual(len(parts), 3)
+
+
+class TestQuickActionHarness(unittest.TestCase):
+    """The Quick action names the detected harness, never a fixed one."""
+
+    def _candidates(self):
+        return [Candidate(name="software-architect", category="x", score=9.0, matched=["a"], description="Designs software architecture.")]
+
+    def test_unknown_harness_uses_a_placeholder(self) -> None:
+        out = format_candidates(self._candidates(), raw=False, use_color=False)
+        self.assertEqual(out.splitlines()[-1],
+                         "Quick action: python3 scripts/coacus_install.py HARNESS --agents software-architect")
+
+    def test_detected_harness_is_used(self) -> None:
+        out = format_candidates(self._candidates(), raw=False, use_color=False, harness="codex")
+        self.assertIn("coacus_install.py codex --agents", out.splitlines()[-1])
+        self.assertNotIn("antigravity", out)
+
+    def _root(self, markers: dict[str, list[str]], extra: dict[str, dict] | None = None) -> Path:
+        import json
+        import tempfile
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        base = Path(tmp.name)
+        for name, values in markers.items():
+            (base / "harnesses" / name).mkdir(parents=True)
+            (base / "harnesses" / name / "harness.json").write_text(
+                json.dumps({"name": name, "session_markers": values, "detection": ["SHELL_WIDE"]}),
+                encoding="utf-8")
+        return base
+
+    def test_detect_harness_needs_exactly_one_match(self) -> None:
+        root = self._root({"one": ["MARK_ONE"], "two": ["MARK_TWO"]})
+        self.assertEqual(detect_harness(root, {"MARK_ONE": "1"}), "one")
+        self.assertIsNone(detect_harness(root, {}))
+        self.assertIsNone(detect_harness(root, {"MARK_ONE": "1", "MARK_TWO": "1"}))
+
+    def test_empty_value_and_shell_wide_variables_do_not_count(self) -> None:
+        root = self._root({"one": ["MARK_ONE"]})
+        self.assertIsNone(detect_harness(root, {"MARK_ONE": ""}))
+        self.assertIsNone(detect_harness(root, {"SHELL_WIDE": "1"}))
+
+    def test_template_and_unreadable_data_are_skipped(self) -> None:
+        root = self._root({"_template": ["MARK_T"], "one": ["MARK_ONE"]})
+        (root / "harnesses" / "broken").mkdir()
+        (root / "harnesses" / "broken" / "harness.json").write_text("{not json", encoding="utf-8")
+        self.assertIsNone(detect_harness(root, {"MARK_T": "1"}))
+        self.assertEqual(detect_harness(root, {"MARK_ONE": "1"}), "one")
+
+    def test_claude_code_is_detected_from_its_session_marker(self) -> None:
+        self.assertEqual(detect_harness(ROOT, {"CLAUDECODE": "1"}), "claude-code")
+        self.assertIsNone(detect_harness(ROOT, {"CODEX_HOME": "/x"}))
 
 
 if __name__ == "__main__":

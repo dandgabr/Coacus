@@ -20,6 +20,7 @@ proposal at the governor's free slots so a caller cannot over-subscribe.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 from pathlib import Path
@@ -42,12 +43,39 @@ def _free_slots() -> int:
         return 0
 
 
+def detect_harness(root: Path, environ: "os._Environ[str] | dict[str, str]") -> str | None:
+    """Return the harness whose session marker is set, or None.
+
+    Reads the ``session_markers`` list of ``harnesses/<name>/harness.json`` under
+    ``root``: variables the harness sets inside a running session. The ``detection``
+    list is not used, because those variables can be exported shell-wide and would
+    name the wrong harness. Only an unambiguous match (exactly one harness) is
+    returned, and unreadable data is skipped.
+    """
+    found: list[str] = []
+    base = root / "harnesses"
+    if not base.is_dir():
+        return None
+    for path in sorted(base.glob("*/harness.json")):
+        name = path.parent.name
+        if name.startswith("_"):
+            continue
+        try:
+            markers = json.loads(path.read_text(encoding="utf-8")).get("session_markers", [])
+        except (OSError, ValueError, AttributeError):
+            continue
+        if any(isinstance(v, str) and environ.get(v) for v in markers):
+            found.append(name)
+    return found[0] if len(found) == 1 else None
+
+
 def format_candidates(
     candidates: list[router.Candidate],
     *,
     raw: bool = False,
     use_color: bool = False,
     total_matches: int | None = None,
+    harness: str | None = None,
 ) -> str:
     """Format candidate agent proposals for CLI output.
 
@@ -99,7 +127,8 @@ def format_candidates(
 
     # Immediate action on very last line (Fitts's Law / KLM)
     lines.append("")
-    lines.append(f"Quick action: python3 scripts/coacus_install.py antigravity --agents {top.name}")
+    target = harness or "HARNESS"
+    lines.append(f"Quick action: python3 scripts/coacus_install.py {target} --agents {top.name}")
 
     return "\n".join(lines)
 
@@ -148,6 +177,7 @@ def _cmd_rank(args: argparse.Namespace, root: Path) -> int:
         raw=is_raw,
         use_color=use_color,
         total_matches=total_matches,
+        harness=detect_harness(root, os.environ),
     )
     print(output)
     return 0
