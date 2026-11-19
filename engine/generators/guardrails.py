@@ -97,7 +97,7 @@ def _opencode_plugin() -> str:
         "/** Run the guard once; return its parsed effect, or null on any failure. */\n"
         "function callGuard(channel, payload) {\n"
         "  try {\n"
-        "    const out = execFileSync(PYTHON, [GUARD, '--harness', 'opencode', '--event', 'tool.pre',\n"
+        "    const out = execFileSync(PYTHON, ['-I', GUARD, '--harness', 'opencode', '--event', 'tool.pre',\n"
         "      '--channel', channel, '--root', COACUS_ROOT], { input: JSON.stringify(payload),\n"
         "      encoding: 'utf8', timeout: 5000, stdio: ['pipe', 'pipe', 'ignore'] }).trim();\n"
         "    const parsed = JSON.parse(out || '{}');\n"
