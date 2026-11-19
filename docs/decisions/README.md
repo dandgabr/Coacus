@@ -4,7 +4,7 @@ Committed Architecture Decision Records (MADR 3.0), one per decision that binds
 the repository. The convention is normative in
 [`docs/standards/decision-records.md`](../standards/decision-records.md).
 
-Numbers 0009, 0013 and 0017 belong to records on other branches that are not merged yet,
+Numbers 0013 and 0017 belong to records on other branches that are not merged yet,
 so they are absent from the table below.
 
 | ADR | Title | Status |
@@ -17,6 +17,7 @@ so they are absent from the table below.
 | [0006](0006-default-policy-posture.md) | Default guardrail policy posture | accepted |
 | [0007](0007-cross-platform-os-independence.md) | Cross-Platform OS Independence and Python-Exclusive Scripting | accepted |
 | [0008](0008-canonical-ui-styles-expansion-and-showcase.md) | Canonical UI Styles Expansion (82 Pure Styles), Decoupling and Showcase Integration | accepted |
+| [0009](0009-absorb-external-agent-patterns-as-native-content.md) | Absorb external agent patterns as Coacus-native content | accepted |
 | [0010](0010-ask-channel-gating.md) | Ask channel gating | accepted |
 | [0011](0011-command-deny-evaluation-contract.md) | Command deny evaluation contract | accepted |
 | [0012](0012-event-binding-and-enforced-events.md) | Event binding and enforced events | accepted |

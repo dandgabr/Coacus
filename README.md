@@ -370,7 +370,7 @@ Phase history: [`docs/roadmap.md`](docs/roadmap.md).
 | [`SECURITY.md`](SECURITY.md) | How to report suspected vulnerabilities privately. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Notable changes, grouped by phase. |
 | [`docs/decisions/`](docs/decisions/) | Committed MADR architecture decision records. |
-| [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses of imported components (MIT / GPL-3.0). |
+| [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) | Licenses and attributions of imported or adapted components. |
 | [`AGENTS.md`](AGENTS.md) | Routing and single-scan rules for any agent in this repository. |
 | [`evals/README.md`](evals/README.md) | Behavior-eval tiers, scenario schema and the live runner. |
 | [`catalog/INDEX.md`](catalog/INDEX.md) | Generated human index of every skill, agent and MCP. |
