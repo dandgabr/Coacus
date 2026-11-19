@@ -1,6 +1,6 @@
 ---
 name: guardrail-authoring
-description: Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.
+description: Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when writing a deny or ask policy, a content rule or a lifecycle hook guard.
 ---
 
 # Guardrail authoring
@@ -34,6 +34,8 @@ tested and fail-open. See the `lifecycle-guardrails` standard for the model.
   not match (and is a lint error).
 - Separate the failure domains: a decision failure versus a mechanism failure. A
   broken hook must not deny every call.
+- A model-judged decision is not part of Coacus today; the closed-question pattern
+  is described in [the closed-question judge](references/closed-question-judge.md).
 
 ## Ladder and hygiene
 
@@ -60,7 +62,9 @@ When an autonomous agent encounters a missing CLI binary or tool failure:
   - `wget_pipe_shell` (`wget -O- ... | sh`)
   - `untrusted_repository` (adding random third-party PPAs or unverified git URLs)
   - `model_generated_unverified_command` (executing hallucinated multi-line install scripts without user gating).
-- **Fallback Result Transparency**: When a fallback mechanism or alternative tool is used, the report must preserve the primary tool's failure log alongside the fallback outcome, preventing silent degradation.
+- **Fallback Result Transparency**: When a fallback mechanism or alternative tool is used, the report must preserve the primary tool's failure log alongside the fallback outcome, preventing silent degradation. Under an environmental blocker (see
+  [environmental blockers](../../../../../methodology/workflows/diagnosing-bugs/environmental-blockers.md)),
+  no fallback tool is used.
 
 ## Agent Workspace Permission Surface & Supply-Chain Auditing
 

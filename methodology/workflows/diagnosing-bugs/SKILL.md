@@ -14,6 +14,15 @@ For visual symptoms, establish the evaluated revision and rendered evidence usin
 [interface evidence](../verification-before-completion/references/interface-evidence.md).
 If three fixes fail, stop repeated fixes, reassess evidence and escalate the blocker; consider architecture only if the evidence supports it.
 
+## Environmental blockers
+
+When the failure is in the agent's own environment and repeating the step cannot
+change it (a missing credential, binary or service, a denied permission, a hard
+quota), stop that task, mark it blocked and ask the operator for one command. Do
+not switch tools or install anything. A transient failure follows the governor's
+backoff instead. Details and the handoff format are in
+[environmental blockers](environmental-blockers.md).
+
 ## Phase 1 — Build the loop (this is the skill)
 
 A **tight loop** is a signal that goes red on *this* bug and green when it is

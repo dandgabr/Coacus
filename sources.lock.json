@@ -15850,7 +15850,7 @@
       "source_path": "skills/subagent-driven-development/SKILL.md",
       "source_sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
       "target_path": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "target_sha256": "2dc08df2b36205c13f7c811ad92a362af6bccdb12184ca3b6e44ad759acdac05",
+      "target_sha256": "cc5cd343929773707f3a216d9d5cb3a21a51fe4f6c4c398b9709ffe7886290e8",
       "origin_license": "MIT",
       "transform": [
         "imported",
@@ -16315,9 +16315,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
-      "source_sha256": "996566e66cedd2d94fafb6c789abe4b99de64c03a36dc97031ed2f1a5ec182ac",
+      "source_sha256": "1ea3231ded2c6ecdacb3a4793e9eb9d5e0c6f23f43c497a6ae7845b9793de6d6",
       "target_path": "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
-      "target_sha256": "996566e66cedd2d94fafb6c789abe4b99de64c03a36dc97031ed2f1a5ec182ac",
+      "target_sha256": "1ea3231ded2c6ecdacb3a4793e9eb9d5e0c6f23f43c497a6ae7845b9793de6d6",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17275,9 +17275,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "source_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
+      "source_sha256": "9d15562e24dc75aeef4e6b408bd96daf1e186432a146f47f56d0eea3f32091f7",
       "target_path": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "target_sha256": "e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e",
+      "target_sha256": "9d15562e24dc75aeef4e6b408bd96daf1e186432a146f47f56d0eea3f32091f7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18130,9 +18130,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
-      "source_sha256": "33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572",
+      "source_sha256": "171a2d0b654ae0b1e18eaa1ad2f323aba57b843c08176b87b0e76f42c9de1f81",
       "target_path": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
-      "target_sha256": "33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572",
+      "target_sha256": "171a2d0b654ae0b1e18eaa1ad2f323aba57b843c08176b87b0e76f42c9de1f81",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19990,9 +19990,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "source_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
+      "source_sha256": "035c2900141bde362c38dc28d1946e931c4f847a13cfe4f3ca234c2fc00c1e1f",
       "target_path": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "target_sha256": "a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180",
+      "target_sha256": "035c2900141bde362c38dc28d1946e931c4f847a13cfe4f3ca234c2fc00c1e1f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20005,9 +20005,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "source_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
+      "source_sha256": "9c5d7b789313089e10c115b01f4e66b96f77e32192eb84510b1de6403b79f421",
       "target_path": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "target_sha256": "9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff",
+      "target_sha256": "9c5d7b789313089e10c115b01f4e66b96f77e32192eb84510b1de6403b79f421",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20035,9 +20035,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "source_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
+      "source_sha256": "7844d778f2248a147b2bdf83886a9697a3b802360ed570807e3833798cd9f195",
       "target_path": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "target_sha256": "6fdebac8a1f3e413281f7db8c95d4ebbba3466ee5c7046157421d1ac45659a55",
+      "target_sha256": "7844d778f2248a147b2bdf83886a9697a3b802360ed570807e3833798cd9f195",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
