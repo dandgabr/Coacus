@@ -35,8 +35,8 @@ stages a PROPOSAL. It NEVER applies a change: promotion is a human pull request.
 
 - Improve-vs-create is a deterministic, auditable procedure (retrieval-first,
   default IMPROVE) in `engine/improve/route.py`.
-- Verification is a ladder: rung 0 structural (the repository's own gates), rung 0a protected surfaces,
-  rung 0b freshness (a version pin needs an anchor), rung 1 coverage, rung 2
+- Verification is a ladder: rung 0 structural (the repository's own gates), rung 0a
+  protected surfaces, rung 0b freshness (a version pin needs an anchor), rung 1 coverage, rung 2
   retrieval, rung 3 ablation (advisory), rung 4 human. The loop's own critique is
   never the acceptance criterion.
 - Proposals are appended to a runtime ledger (`docs/temp/`, gitignored) and the

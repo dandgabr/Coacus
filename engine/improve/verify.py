@@ -12,7 +12,7 @@ A candidate is verified before staging, cheapest rung first:
 - rung 3  ablation: advisory only (the evaluator is the verifier, not the loop);
 - rung 4  human: the promotion gate.
 
-This module implements rungs 0b–2 deterministically; rung 0 is the repo's own
+This module implements rungs 0a–2 deterministically; rung 0 is the repo's own
 ``validate``/``check`` run by the CLI; rungs 3–4 are out of band.
 """
 
@@ -37,7 +37,10 @@ def freshness_ok(candidate: dict) -> tuple[bool, str]:
 
 def protected_ok(root: Path, candidate: dict, routing: dict) -> tuple[bool, str]:
     """Rung 0a: reject a candidate that names, or routes to, a protected surface."""
-    named = protected.mentions(str(candidate.get("statement", "")))
+    statement = str(candidate.get("statement", ""))
+    if len(statement) > protected.MAX_STATEMENT_CHARS:
+        return False, "candidate is too long to check against the protected surfaces"
+    named = protected.mentions(statement)
     if named:
         return False, f"candidate names a protected surface ({named})"
     target = routing.get("target")
