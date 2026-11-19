@@ -1,6 +1,6 @@
 {
   "name": "java-enterprise-architect",
   "version": "0.1.0",
-  "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+  "description": "Specialist Agent in Enterprise Java Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus, MicroProfile/Jakarta EE, JPA/Hibernate performance, Project Loom Virtual Threads and Boundary-Control-Entity code structure). Implements and tunes Java services; it is not a solution or enterprise architecture role.",
   "entrypoint": "AGENT.md"
 }

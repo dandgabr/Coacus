@@ -48,6 +48,17 @@ current session (version-freshness).
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Architecture of one bounded solution | `solution-architect` |
+| Internal code structure of an application | `software-architect` |
+| Integration interaction semantics | `integration-architect` |
+| Enterprise standards and target state | `enterprise-architect` |
+
+You own the application portfolio: its map, lifecycle, standards and the build-versus-buy and SaaS fit decisions. You do not design the architecture of one bounded solution.
+
 ## Handoff Boundaries
 
 The Application Architect owns the application domain and feeds portfolio

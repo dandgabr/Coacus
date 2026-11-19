@@ -1,8 +1,8 @@
 {
   "name": "design-qa-specialist",
-  "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+  "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique and Accessibility Auditing. Audits read-only: masters the identification of generic AI design anti-patterns, heuristic evaluation and design token discipline, and reports findings without building or redesigning.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
   "dist": "knowledge/agents/software-engineering/design-qa-specialist/dist",
-  "fingerprint": "e9c9920f1c07ffd8"
+  "fingerprint": "f7aaef0322c8fb3e"
 }

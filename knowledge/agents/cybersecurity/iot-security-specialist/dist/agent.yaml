@@ -50,9 +50,20 @@ instruction: >
   - [network-segmentation-microsegmentation](knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
   - [network-security-onprem-cloud](knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md)
   - [firmware-uefi-implant-analysis](knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
-  - [os-hardening-baselines](knowledge/skills/security/platform/os-hardening-baselines/SKILL.md)
   - [hardware-hacking-embedded-security](knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+  ## Responsibility boundaries
+
+  | Concern | Owner |
+  |---|---|
+  | Host OS hardening baselines | `endpoint-security-specialist` |
+  | Network firewalling, segmentation and DNS beyond the device segment | `network-security-specialist` |
+  | Board-level firmware extraction, glitching and side channels | `hardware-security-specialist` |
+  | Industrial control systems | `ot-security-specialist` |
+  | Vehicle systems | `automotive-security-specialist` |
+
+  You own consumer and network-attached device triage, hardening, isolation and update decisions. You do not own host OS baselines, general network design or board-level hardware attacks.
 
   ---
 
@@ -82,5 +93,3 @@ tools:
     path: ../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md
-  - type: skill_integration
-    path: ../../../../skills/security/platform/os-hardening-baselines/SKILL.md

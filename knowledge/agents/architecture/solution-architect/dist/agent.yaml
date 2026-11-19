@@ -46,6 +46,17 @@ instruction: >
   - [architecture-documentation](knowledge/skills/engineering/practices/architecture-documentation/SKILL.md)
   - [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
 
+  ## Responsibility boundaries
+
+  | Concern | Owner |
+  |---|---|
+  | Internal code structure, DDD and design patterns | `software-architect` |
+  | Application portfolio and build-versus-buy | `application-architect` |
+  | Whole-system, cyber-physical scope | `systems-architect` |
+  | Enterprise standards and arbitration | `enterprise-architect` |
+
+  You own the architecture of one bounded solution inside the enterprise guardrails. You do not design its internal code structure or decide the application portfolio.
+
   ## Handoff Boundaries
 
   The Solution Architect proves that a delivery is true within the enterprise

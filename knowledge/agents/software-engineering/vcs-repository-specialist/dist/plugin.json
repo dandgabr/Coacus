@@ -1,6 +1,6 @@
 {
   "name": "vcs-repository-specialist",
   "version": "0.1.0",
-  "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration. Use for shared history changes, repository incidents, large repositories or VCS transitions.",
+  "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration, and triages upstream fork drift by patch-ID comparison. Use for shared history changes, repository incidents, large repositories, VCS transitions or fork-drift and patch triage.",
   "entrypoint": "AGENT.md"
 }

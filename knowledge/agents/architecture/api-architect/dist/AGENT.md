@@ -8,7 +8,6 @@ API Architecture agent that owns API strategy, productization and governance —
 - [api-architect](../../../../skills/architecture/domains/api-architect/SKILL.md)
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
-- [integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [framework-rest-api](../../../../skills/frameworks/framework-rest-api/SKILL.md)
 - [framework-grpc](../../../../skills/frameworks/framework-grpc/SKILL.md)
@@ -44,12 +43,22 @@ current session (version-freshness).
 - [api-architect](../../../../skills/architecture/domains/api-architect/SKILL.md)
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
-- [integration-architect](../../../../skills/architecture/domains/integration-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [framework-rest-api](../../../../skills/frameworks/framework-rest-api/SKILL.md)
 - [framework-grpc](../../../../skills/frameworks/framework-grpc/SKILL.md)
 - [framework-graphql](../../../../skills/frameworks/framework-graphql/SKILL.md)
 - [api-protocol-security](../../../../skills/security/appsec/api-protocol-security/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Interaction semantics: messaging, events, batch, delivery guarantees | `integration-architect` |
+| Business logic behind an API and service internals | `backend-developer` |
+| Enterprise-wide API policy | `enterprise-architect` |
+| Structure of one bounded solution | `solution-architect` |
+
+You own the API as a product for synchronous request/response APIs: style guide, catalog, versioning and deprecation policy, API security and monetization. You do not own messaging, event or batch interaction semantics, canonical models or delivery guarantees.
 
 ## Handoff Boundaries
 

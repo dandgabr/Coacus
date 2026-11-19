@@ -1,6 +1,6 @@
 {
   "name": "software-architect",
   "version": "0.1.0",
-  "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+  "description": "Software Architecture Agent for code-level design: applies DDD, SOLID, design patterns and clean architecture to class, module and layer structure within one codebase. It differs from solution-architect, which designs one bounded solution across components and technologies, and from application-architect, which governs the application portfolio.",
   "entrypoint": "AGENT.md"
 }

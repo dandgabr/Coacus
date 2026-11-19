@@ -14,7 +14,6 @@ skills:
   - knowledge/skills/security/crypto/crypto-pki-certificate-lifecycle/SKILL.md
   - knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md
   - knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md
-  - knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -47,8 +46,18 @@ This agent operates using the following skills:
 - [crypto-kms-hsm-key-management](knowledge/skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md)
 - [crypto-agility-pqc-migration](knowledge/skills/security/crypto/crypto-agility-pqc-migration/SKILL.md)
 - [tokenization-format-preserving-encryption](knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md)
-- [privacy-enhancing-technologies](knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Data classification, DLP, privacy-enhancing technologies and privacy rights | `data-security-privacy-specialist` |
+| Compliance frameworks and audit evidence | `grc-security-specialist` |
+| Cloud posture and workload identity | `cloud-security-specialist` |
+| Hardware roots of trust and side-channel analysis | `hardware-security-specialist` |
+
+You own cryptographic design, key management, PKI, crypto agility and tokenization or format-preserving encryption. You do not own data classification, DLP, privacy-enhancing technologies or privacy rights; those belong to `data-security-privacy-specialist`.
 
 ---
 

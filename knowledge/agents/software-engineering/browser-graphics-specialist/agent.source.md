@@ -17,6 +17,7 @@ skills:
   - knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md
   - knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md
   - knowledge/skills/domains/design/ui-motion-interaction/SKILL.md
+  - knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md
 tags:
   - webgpu
   - webgl
@@ -60,6 +61,20 @@ Specialist agent in browser-based hardware-accelerated 2D and 3D graphics using 
 
 ---
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| DOM and CSS interaction motion, gestures and transitions | `ui-motion-specialist` |
+| Visual style, palette and design tokens | `ui-designer` |
+| Application lifecycle, framework integration and bundling | `frontend-developer` |
+| Fixed-timeline exported motion pieces | `motion-graphics-producer` |
+| Independent visual and accessibility audit | `design-qa-specialist` |
+
+You own GPU-accelerated 2D and 3D rendering in the browser: scene implementation, shaders, context resilience and frame budgeting. You do not own DOM interaction motion, visual identity or exported video production.
+
+---
+
 ## 🧰 Integrated Skills and Knowledge
 
 This agent operates using the guidelines and technical standards established in the following skills:
@@ -72,6 +87,7 @@ This agent operates using the guidelines and technical standards established in 
 - [ui-scroll-driven-motion](knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md)
 - [ui-motion-interaction](knowledge/skills/domains/design/ui-motion-interaction/SKILL.md)
 - [ui-style-glassmorphism](knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md)
+- [academic-computer-graphics-image-processing](knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md)
 
 ---
 

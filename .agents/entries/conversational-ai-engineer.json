@@ -1,8 +1,8 @@
 {
   "name": "conversational-ai-engineer",
-  "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+  "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants, including the LLM/RAG application builder role for assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
   "category": "data-cloud-devops",
   "source": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
   "dist": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/dist",
-  "fingerprint": "e7fb0d968fb0c2bd"
+  "fingerprint": "e78e7842e599360b"
 }

@@ -1,8 +1,8 @@
 {
   "name": "fullstack-developer",
-  "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+  "description": "Full Stack Development Agent specialized in the integration seam of a web application: API contracts (REST, gRPC), authentication flows and the end-to-end wiring of one vertical slice across frontend and backend, while ensuring clean, secure code. Delegates deep backend work to backend-developer and UI implementation to frontend-developer.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md",
   "dist": "knowledge/agents/software-engineering/fullstack-developer/dist",
-  "fingerprint": "7c07dff0aef624cf"
+  "fingerprint": "78c80d09409754f7"
 }

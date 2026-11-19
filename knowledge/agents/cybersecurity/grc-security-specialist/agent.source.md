@@ -11,7 +11,6 @@ skills:
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md
   - knowledge/skills/security/grc/cis-controls/SKILL.md
-  - knowledge/skills/security/grc/consent-dsr-automation/SKILL.md
   - knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md
   - knowledge/skills/security/grc/eu-digital-resilience-regulation/SKILL.md
   - knowledge/skills/security/grc/fedramp-cmmc-cloud-gov-assurance/SKILL.md
@@ -21,11 +20,11 @@ skills:
   - knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md
   - knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md
   - knowledge/skills/security/grc/pci-dss-compliance/SKILL.md
-  - knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md
   - knowledge/skills/security/grc/security-grc-compliance/SKILL.md
   - knowledge/skills/security/grc/security-manager-samm/SKILL.md
   - knowledge/skills/security/grc/soc2-trust-services/SKILL.md
   - knowledge/skills/security/grc/third-party-risk-management/SKILL.md
+  - knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -69,7 +68,18 @@ This agent operates using the following skills:
 - [ai-governance-iso-42001](knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md)
 - [third-party-risk-management](knowledge/skills/security/grc/third-party-risk-management/SKILL.md)
 - [quantitative-risk-fair](knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md)
-- [consent-dsr-automation](knowledge/skills/security/grc/consent-dsr-automation/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| AI system threat assessment and red teaming | `ai-security-specialist` |
+| Consent and data subject request operations | `data-security-privacy-specialist` |
+| Design-level threat models and security decisions | `security-architect` |
+| Technical control implementation in the cloud | `cloud-security-specialist` |
+| Incident handling | `soc-dfir-specialist` |
+
+You own control frameworks, compliance mapping, management systems (including the ISO/IEC 42001 scope), evidence automation and third-party risk. You do not assess threats to AI systems, which belongs to `ai-security-specialist`.
 
 ---
 

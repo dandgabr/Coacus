@@ -99,7 +99,7 @@
     {
       "name": "cloud-infrastructure-architect",
       "category": "data-cloud-devops",
-      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework and FinOps.",
       "source": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md"
     },
     {
@@ -117,7 +117,7 @@
     {
       "name": "code-explorer",
       "category": "research-discovery",
-      "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+      "description": "Specialist Subagent in read-only repository investigation: rapid codebase exploration, pattern and symbol search, conventions and technical debt findings, and understanding of existing project structures.",
       "source": "knowledge/agents/research-discovery/code-explorer/agent.source.md"
     },
     {
@@ -129,7 +129,7 @@
     {
       "name": "code-optimizer",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio) and data-intensive system architecture.",
+      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio), following a profile-then-fix methodology across languages.",
       "source": "knowledge/agents/software-engineering/code-optimizer/agent.source.md"
     },
     {
@@ -141,7 +141,7 @@
     {
       "name": "computer-scientist",
       "category": "academic-sciences",
-      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures, Theory of Computation and Automata (Sipser), Compiler Engineering (Dragon Book) and Computer Graphics.",
+      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures and Theory of Computation and Automata (Sipser).",
       "source": "knowledge/agents/academic-sciences/computer-scientist/agent.source.md"
     },
     {
@@ -153,7 +153,7 @@
     {
       "name": "conversational-ai-engineer",
       "category": "data-cloud-devops",
-      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants, including the LLM/RAG application builder role for assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
       "source": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md"
     },
     {
@@ -189,25 +189,25 @@
     {
       "name": "data-security-privacy-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
       "source": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md"
     },
     {
       "name": "dba-specialist",
       "category": "data-cloud-devops",
-      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering engine-level physical design, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
       "source": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md"
     },
     {
       "name": "design-qa-specialist",
       "category": "software-engineering",
-      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique and Accessibility Auditing. Audits read-only: masters the identification of generic AI design anti-patterns, heuristic evaluation and design token discipline, and reports findings without building or redesigning.",
       "source": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md"
     },
     {
       "name": "devops-engineer",
       "category": "data-cloud-devops",
-      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions and Azure Pipelines) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Packer), Backstage as developer-portal tooling, container orchestration (Docker, Podman, CRI-O, Kubernetes, GitOps) and Azure DevOps and Azure Pipelines delivery with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
       "source": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md"
     },
     {
@@ -225,7 +225,7 @@
     {
       "name": "endpoint-security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security and endpoint detection engineering.",
       "source": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md"
     },
     {
@@ -243,7 +243,7 @@
     {
       "name": "fullstack-developer",
       "category": "software-engineering",
-      "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+      "description": "Full Stack Development Agent specialized in the integration seam of a web application: API contracts (REST, gRPC), authentication flows and the end-to-end wiring of one vertical slice across frontend and backend, while ensuring clean, secure code. Delegates deep backend work to backend-developer and UI implementation to frontend-developer.",
       "source": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md"
     },
     {
@@ -255,7 +255,7 @@
     {
       "name": "game-asset-pipeline-engineer",
       "category": "specialized-domains",
-      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, RIFE-style frame interpolation, parallax multi-plane scene assembly and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
       "source": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md"
     },
     {
@@ -279,7 +279,7 @@
     {
       "name": "github-specialist",
       "category": "software-engineering",
-      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
+      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls, and diagnoses GitHub Pages deployment (publishing source, custom domain, DNS and TLS). Sole owner of GitHub Actions and Pages. Use for GitHub platform configuration, workflow security, delivery automation or Pages deployment problems.",
       "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md"
     },
     {
@@ -297,7 +297,7 @@
     {
       "name": "hardware-security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+      "description": "Specialist in Physical Hardware Auditing, Embedded Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
       "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md"
     },
     {
@@ -321,13 +321,13 @@
     {
       "name": "information-systems-specialist",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM/BI and Power Platform operations, and ITIL 4 and COBIT 2019 service governance.",
       "source": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md"
     },
     {
       "name": "integration-architect",
       "category": "architecture",
-      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
       "source": "knowledge/agents/architecture/integration-architect/agent.source.md"
     },
     {
@@ -339,7 +339,7 @@
     {
       "name": "java-enterprise-architect",
       "category": "software-engineering",
-      "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+      "description": "Specialist Agent in Enterprise Java Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus, MicroProfile/Jakarta EE, JPA/Hibernate performance, Project Loom Virtual Threads and Boundary-Control-Entity code structure). Implements and tunes Java services; it is not a solution or enterprise architecture role.",
       "source": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md"
     },
     {
@@ -357,7 +357,7 @@
     {
       "name": "malware-analyst",
       "category": "cybersecurity",
-      "description": "Specialist in Malware Analysis, Binary Reverse Engineering, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
+      "description": "Specialist in Malware Analysis, behavior and IoC extraction, YARA authoring, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
       "source": "knowledge/agents/cybersecurity/malware-analyst/agent.source.md"
     },
     {
@@ -393,7 +393,7 @@
     {
       "name": "moodle-specialist",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
+      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and caching infrastructure (MUC) through theme and plugin development, integrations (LTI, SCORM, xAPI) and andragogy-based course design.",
       "source": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md"
     },
     {
@@ -429,13 +429,13 @@
     {
       "name": "pentester-agent",
       "category": "cybersecurity",
-      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, Active Directory, Kubernetes, LLMs and Red Team Infrastructure) using CLI utilities and custom scripts.",
+      "description": "Ethical Pentester Agent specialized in offensive audits of web applications (OWASP WSTG, DAST with OWASP ZAP), APIs, networks, cloud accounts (scoped penetration testing, not posture management), Active Directory and Red Team Infrastructure, using CLI utilities and custom scripts.",
       "source": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md"
     },
     {
       "name": "physical-engineer",
       "category": "academic-sciences",
-      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors.",
+      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors. Covers applied nanotechnology and device work, not fundamental theory.",
       "source": "knowledge/agents/academic-sciences/physical-engineer/agent.source.md"
     },
     {
@@ -471,7 +471,7 @@
     {
       "name": "reverse-engineer-agent",
       "category": "cybersecurity",
-      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine), memory-corruption and exploitability assessment.",
       "source": "knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md"
     },
     {
@@ -501,7 +501,7 @@
     {
       "name": "skill-creator",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
+      "description": "Senior specialist agent in Skill Architecture, Creation and Improvement for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
       "source": "knowledge/agents/specialized-domains/skill-creator/agent.source.md"
     },
     {
@@ -513,7 +513,7 @@
     {
       "name": "software-architect",
       "category": "software-engineering",
-      "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+      "description": "Software Architecture Agent for code-level design: applies DDD, SOLID, design patterns and clean architecture to class, module and layer structure within one codebase. It differs from solution-architect, which designs one bounded solution across components and technologies, and from application-architect, which governs the application portfolio.",
       "source": "knowledge/agents/software-engineering/software-architect/agent.source.md"
     },
     {
@@ -531,7 +531,7 @@
     {
       "name": "technology-architect",
       "category": "architecture",
-      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, networking, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
+      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
       "source": "knowledge/agents/architecture/technology-architect/agent.source.md"
     },
     {
@@ -555,13 +555,13 @@
     {
       "name": "tui-cli-engineer",
       "category": "software-engineering",
-      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools. Scope also includes portal-to-CLI scaffolding: reverse-engineering public web portals into self-contained agent-contract CLI tools.",
       "source": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md"
     },
     {
       "name": "ui-designer",
       "category": "software-engineering",
-      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the full design style library, color theory and accessibility conformance, and hands tokens and components to engineering without building the application.",
       "source": "knowledge/agents/software-engineering/ui-designer/agent.source.md"
     },
     {
@@ -579,7 +579,7 @@
     {
       "name": "vcs-repository-specialist",
       "category": "software-engineering",
-      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration. Use for shared history changes, repository incidents, large repositories or VCS transitions.",
+      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration, and triages upstream fork drift by patch-ID comparison. Use for shared history changes, repository incidents, large repositories, VCS transitions or fork-drift and patch triage.",
       "source": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md"
     },
     {

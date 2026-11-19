@@ -10,8 +10,6 @@ skills:
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md
   - knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md
-  - knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md
-  - knowledge/skills/roles/devops-engineer/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -65,9 +63,21 @@ This agent operates using the guidelines and technical standards established in 
 
 - [cloud-cloudflare](knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md)
 - [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
-- [devops-engineer](knowledge/skills/roles/devops-engineer/SKILL.md)
-- [cloud-infrastructure-architect](knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+---
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Generic CI/CD pipelines and IaC beyond Cloudflare | `devops-engineer` |
+| Multi-cloud architecture and FinOps | `cloud-infrastructure-architect` |
+| Enterprise zero-trust security architecture | `security-architect` |
+| Network security assessment beyond the Cloudflare edge | `network-security-specialist` |
+| Relational engine tuning behind Hyperdrive | `dba-specialist` |
+
+You own work on the Cloudflare platform: Workers, storage, tunnels, WAF and Zero Trust configuration. You do not own generic pipeline or IaC engineering, multi-cloud architecture or the enterprise security architecture.
 
 ---
 

@@ -8,8 +8,6 @@ Senior specialist agent in the Cloudflare Platform, Edge Computing, the unified 
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [cloud-cloudflare](../../../../skills/infrastructure/cloud-cloudflare/SKILL.md)
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
-- [devops-engineer](../../../../skills/roles/devops-engineer/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -63,9 +61,21 @@ This agent operates using the guidelines and technical standards established in 
 
 - [cloud-cloudflare](../../../../skills/infrastructure/cloud-cloudflare/SKILL.md)
 - [zero-trust-architecture-engineering](../../../../skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
-- [devops-engineer](../../../../skills/roles/devops-engineer/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+---
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Generic CI/CD pipelines and IaC beyond Cloudflare | `devops-engineer` |
+| Multi-cloud architecture and FinOps | `cloud-infrastructure-architect` |
+| Enterprise zero-trust security architecture | `security-architect` |
+| Network security assessment beyond the Cloudflare edge | `network-security-specialist` |
+| Relational engine tuning behind Hyperdrive | `dba-specialist` |
+
+You own work on the Cloudflare platform: Workers, storage, tunnels, WAF and Zero Trust configuration. You do not own generic pipeline or IaC engineering, multi-cloud architecture or the enterprise security architecture.
 
 ---
 

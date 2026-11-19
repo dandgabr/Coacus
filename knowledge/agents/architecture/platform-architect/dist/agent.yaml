@@ -30,13 +30,22 @@ instruction: >
   ## Integrated Skills and Knowledge
 
   - [platform-architect](knowledge/skills/architecture/delivery/platform-architect/SKILL.md)
-  - [technology-architect](knowledge/skills/architecture/domains/technology-architect/SKILL.md)
   - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
   - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
   - [program-containers](knowledge/skills/infrastructure/program-containers/SKILL.md)
-  - [cloud-infrastructure-architect](knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md)
   - [observability-correlation](knowledge/skills/mapping/observability-correlation/SKILL.md)
   - [software-supply-chain-security](knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md)
+
+  ## Responsibility boundaries
+
+  | Concern | Owner |
+  |---|---|
+  | Infrastructure standards and the underlying technology platform | `technology-architect` |
+  | IaC and GitOps pipelines | `devops-engineer` |
+  | Cloud landing zones | `cloud-infrastructure-architect` |
+  | Network topology | `network-architect` |
+
+  You own the internal developer platform as a product: capabilities, golden paths, self-service, tenancy and cost-to-serve. You do not set infrastructure standards or build the IaC and GitOps pipelines.
 
   ## Handoff Boundaries
 
@@ -48,15 +57,11 @@ tools:
   - type: skill_integration
     path: ../../../../skills/architecture/delivery/platform-architect/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/architecture/domains/technology-architect/SKILL.md
-  - type: skill_integration
     path: ../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md
   - type: skill_integration
     path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
   - type: skill_integration
     path: ../../../../skills/infrastructure/program-containers/SKILL.md
-  - type: skill_integration
-    path: ../../../../skills/roles/cloud-infrastructure-architect/SKILL.md
   - type: skill_integration
     path: ../../../../skills/mapping/observability-correlation/SKILL.md
   - type: skill_integration
