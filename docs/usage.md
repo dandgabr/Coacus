@@ -399,6 +399,8 @@ prompt) and `tool.post` (an `output` rule with the decision `note` adds a note t
 result). Both hooks are added at install time only while an enabled policy binds them, and
 the install must be repeated after enabling or disabling one. `--self-protection on` adds a
 policy that keeps the session's write tools away from the guard and its hook files.
+A `stop` rule on `turn.stop` asks Claude Code or Codex to keep going once when it tries to
+stop, and Codex also renders `prompt.submit`; a Codex hook must be trusted in `/hooks`.
 
 ```bash
 # A prompt rule and an output note, as machine-local policies:

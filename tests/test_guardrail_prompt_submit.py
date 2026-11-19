@@ -89,9 +89,14 @@ class TestPromptDecision(GuardCase):
         self.put(document(prompt_policy(decision="note")))
         self.assertEqual(self._run({"prompt": NEEDLE}), {})
 
-    def test_only_claude_code_renders_a_block(self) -> None:
+    def test_codex_blocks_with_a_reason_and_no_claude_only_field(self) -> None:
         self.put(document(prompt_policy()))
-        for harness in ("codex", "cursor", "opencode", "antigravity", "command-code"):
+        out = self._run({"prompt": NEEDLE}, "codex")
+        self.assertEqual(out, {"decision": "block", "reason": "do not paste keys"})
+
+    def test_only_claude_code_and_codex_render_a_block(self) -> None:
+        self.put(document(prompt_policy()))
+        for harness in ("cursor", "opencode", "antigravity", "command-code"):
             with self.subTest(harness=harness):
                 self.assertIn(self._run({"prompt": NEEDLE}, harness), ({}, {"decision": "allow"}))
 
@@ -165,11 +170,12 @@ class TestHarnessData(unittest.TestCase):
             for event, cap in events.items():
                 if isinstance(cap, dict) and "native" in cap:
                     named[(path.parent.name, event)] = cap
-        self.assertEqual(set(named), {("claude-code", "prompt.submit"), ("claude-code", "tool.post")})
+        self.assertEqual(set(named), {("claude-code", "prompt.submit"), ("claude-code", "tool.post"),
+                                      ("claude-code", "turn.stop"), ("codex", "prompt.submit"), ("codex", "turn.stop")})
         self.assertIs(named[("claude-code", "prompt.submit")]["can_block"], True)
         self.assertIs(named[("claude-code", "tool.post")]["can_block"], False)
         for cap in named.values():
-            self.assertEqual(cap["evidence"], "documented")
+            self.assertIn(cap["evidence"], ("documented", "observed"))
             self.assertTrue(cap["source"].startswith("https://"))
 
 
@@ -223,11 +229,17 @@ class TestInstall(GuardCase):
 
     def test_a_harness_with_no_native_name_gets_no_extra_hook(self) -> None:
         self.put(document(prompt_policy()))
-        for harness in ("codex", "cursor", "antigravity"):
+        for harness in ("cursor", "antigravity"):
             with self.subTest(harness=harness):
                 _, fragment = coacus_install._guardrail_artifacts(REPO, harness, self.base / "cfg")
                 text = json.dumps(fragment)
                 self.assertNotIn("prompt.submit", text)
+
+    def test_codex_gets_the_prompt_hook_under_its_own_event_name(self) -> None:
+        self.put(document(prompt_policy()))
+        _, fragment = coacus_install._guardrail_artifacts(REPO, "codex", self.base / "cfg")
+        command = fragment["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"]
+        self.assertIn("--harness codex --event prompt.submit", command)
 
     def test_the_merge_drops_a_stale_hook_and_keeps_the_users_own(self) -> None:
         marker = f"{REPO.as_posix()}/scripts/coacus_guard.py"

@@ -43,7 +43,7 @@
     "events": {
       "tool.pre": { "support": "gate", "can_block": true, "can_ask": true, "effect": "permissionDecision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
       "prompt.submit": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "native": "UserPromptSubmit", "payload": "prompt", "evidence": "documented", "resolved": "2026-11-18", "source": "https://code.claude.com/docs/en/hooks" },
-      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
+      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "decision", "native": "Stop", "payload": "last_assistant_message", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "native": "PostToolUse", "payload": "tool_response", "evidence": "documented", "resolved": "2026-11-18", "source": "https://code.claude.com/docs/en/hooks" },
       "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },
       "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additionalContext", "evidence": "documented", "resolved": "2026-09-30", "source": "https://docs.claude.com/en/docs/claude-code/hooks" },

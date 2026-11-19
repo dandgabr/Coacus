@@ -887,13 +887,13 @@ def _policy_matches(policy: dict, resource: str) -> bool:
         if unresolved:
             return True  # fail closed: the walk cannot say what this command runs
         return any(fnmatch.fnmatchcase(name, pattern) for name in names for pattern in patterns)
-    if _action_of(policy)[0] in ("mcp", "prompt", "output"):
+    if _action_of(policy)[0] in ("mcp", "prompt", "output", "stop"):
         # Tool names are identifiers, not paths: ``mcp__Server__Tool`` and the lower-case
         # form a harness may send are the same tool, so neither spelling can dodge a rule.
         # A prompt is prose: the case of a word never decides whether a rule applies.
         resource = resource.lower()
         patterns = [pattern.lower() for pattern in patterns]
-        if _action_of(policy)[0] in ("prompt", "output"):
+        if _action_of(policy)[0] in ("prompt", "output", "stop"):
             # Full-width letters and invisible format characters must not dodge a prose rule.
             resource = _fold_prompt(resource)
             patterns = [_fold_prompt(pattern) for pattern in patterns]
@@ -918,8 +918,9 @@ def _applies(policy: dict, verb: str, resource: str, event: str) -> bool:
         p_verb, _ = _action_of(policy)
         if p_verb != verb:
             return False
-        # An output rule means something on tool.post only, so it defaults there.
-        bound = policy.get("event", "tool.post" if p_verb == "output" else "tool.pre")
+        # An output rule means something on tool.post only, and a stop rule on turn.stop only,
+        # so each defaults there.
+        bound = policy.get("event", {"output": "tool.post", "stop": "turn.stop"}.get(p_verb, "tool.pre"))
         if isinstance(bound, str) and bound in KNOWN_EVENTS and bound != event:
             return False
         # A missing event means tool.pre. An unknown, misspelled or non-string
