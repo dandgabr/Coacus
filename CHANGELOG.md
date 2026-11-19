@@ -11,6 +11,19 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 - `scripts/coacus_guard.py` joins the surfaces the improvement loop may not propose to change. Only `engine/guardrail/` was listed, so a proposal could name the guard script, which decides every hook call, and pass rung 0a. The constant in `engine/improve/protected.py` and the sentence in `docs/standards/self-improvement-loop.md` stay equal, and a bare module name (`scripts.coacus_guard`) is matched too. It is still a text match on a proposal, and the human approval stays the real gate.
 
+## [Unreleased] — Assignments after a control word in command rules
+
+### Fixed
+
+- A command rule (`"match": "command"`, such as the browser policy) no longer misses a program that follows an assignment after a control word. `if true; then X=1 prog; fi`, `for b in a; do X=1 prog; done`, `{ X=1 prog; }` and `! X=1 prog` hid `prog` from the rule; the assignment was read as the command name.
+- The same cause denied harmless commands: `for b in a; do t=$(ls); done` was held as "unresolved" under every command rule, because an assignment with a substitution after `do` or `then` looked like a program name built from a variable.
+- A command rule no longer misses a program behind a redirection written as `<<< word`, `<>file`, `>|file`, `{fd}>file`, `<< TAG` or `<<- TAG`. The operator's target was read as the command name.
+- A denial for a command the evaluator could not read now says so and names the policy, instead of repeating the first policy's own message (for example a browser rule's text on a plain git command).
+
+### Changed
+
+- `evaluate` marks a `deny` or `ask` result with `unresolved: true` when every policy holding the command does so only because it could not be read and no program name matched. The key is absent otherwise, and the decision does not change. ADR 0011 and the lifecycle standard describe it.
+
 ## [Unreleased] — Stop rules and the Codex prompt hook
 
 ### Added
