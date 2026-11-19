@@ -26,7 +26,7 @@ stages a PROPOSAL. It NEVER applies a change: promotion is a human pull request.
   not transcripts.
 - Every observation carries a SOURCE CHANNEL. `human-user-turn` and `repo-file`
   are trusted; `tool-result`, `external-content` and `model-assistant` are
-  tainted. A `gotcha` or `procedure` requires at least one trusted unit;
+  tainted. A `gotcha`, `procedure` or `skill-gap` requires at least one trusted unit;
   otherwise it is downgraded to a `note`.
 - Evidence independence is computed (distinct channel + session + claim hash),
   not counted.

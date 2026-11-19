@@ -24,7 +24,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-from engine.improve import consolidate, ledger, route as router, sources, verify
+from engine.improve import consolidate, ledger, route as router, sources, taint, verify
 
 STAGING = "docs/temp/improvement"
 # ponytail: cap snapshots at 10 MiB; use streaming ingestion if larger inputs are needed.
@@ -227,14 +227,17 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
         }
 
     try:
-        candidates = consolidate.consolidate(observations)
+        from engine.improve.sources.route_miss import RouteMissSource
+
+        candidates = consolidate.consolidate(observations, allow_gaps=type(source) is RouteMissSource)
     except UnicodeError:
         return {"ok": False, "reason": "source unavailable or invalid", "alarms": alarms, "proposals": []}
     run_id = uuid.uuid4().hex
     proposals: list[dict] = []
     for candidate in candidates:
         # Taint rule: a rule/procedure needs trusted evidence; else it is a note.
-        if candidate["type"] in ("gotcha", "procedure") and not candidate["trusted"]:
+        if candidate["type"] in taint.TRUST_REQUIRED and not candidate["trusted"]:
+            candidate["original_type"] = candidate["type"]
             candidate["type"] = "note"
             candidate["downgraded"] = "externally-tainted evidence"
 
@@ -265,6 +268,9 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
             "verification": result,
             "status": "proposed",
         }
+        if candidate.get("downgraded"):
+            record["downgraded"] = candidate["downgraded"]
+            record["original_type"] = candidate.get("original_type", record["type"])
         proposals.append(record)
 
     if proposals and _windows():

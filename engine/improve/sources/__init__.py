@@ -75,7 +75,9 @@ def load_observations(path: Path) -> list[dict]:
 def parse_observations(text: str) -> list[dict]:
     """Parse the same snapshot used for source integrity verification."""
     observations: list[dict] = []
-    for line in text.splitlines():
+    # Split on "\n" only: str.splitlines() also breaks on U+2028, U+0085 and similar,
+    # which would cut a genuine JSON record that carries one of them and drop it.
+    for line in text.split("\n"):
         line = line.strip()
         if not line:
             continue
@@ -91,7 +93,9 @@ def parse_observations(text: str) -> list[dict]:
 def register_builtin(registry: SourceRegistry) -> None:
     """Register the built-in sources (transcript default; ai-memory optional)."""
     from engine.improve.sources.ai_memory import AiMemorySource
+    from engine.improve.sources.route_miss import RouteMissSource
     from engine.improve.sources.transcript import TranscriptSource
 
     registry.register(TranscriptSource())
     registry.register(AiMemorySource())
+    registry.register(RouteMissSource())
