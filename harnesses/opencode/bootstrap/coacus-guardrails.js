@@ -16,7 +16,7 @@ let evaluateRegistered = false;
 /** Run the guard once; return its parsed effect, or null on any failure. */
 function callGuard(channel, payload) {
   try {
-    const out = execFileSync(PYTHON, [GUARD, '--harness', 'opencode', '--event', 'tool.pre',
+    const out = execFileSync(PYTHON, ['-I', GUARD, '--harness', 'opencode', '--event', 'tool.pre',
       '--channel', channel, '--root', COACUS_ROOT], { input: JSON.stringify(payload),
       encoding: 'utf8', timeout: 5000, stdio: ['pipe', 'pipe', 'ignore'] }).trim();
     const parsed = JSON.parse(out || '{}');

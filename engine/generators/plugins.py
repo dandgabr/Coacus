@@ -150,7 +150,7 @@ const rateLimited = (value, depth = 0, seen = new Set()) => {
         'const exec = promisify(execFile);\n'
         "const gov = async (action, caller, timeout = '5', orchestrator = 'no', token = '') => {\n"
         '  const { stdout } = await exec(PYTHON,\n'
-        "    [GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode', ...(token ? ['--token', token] : [])],\n"
+        "    ['-I', GOVERNOR, action, caller, orchestrator, timeout, MAX_TOTAL, '--scope', 'opencode', ...(token ? ['--token', token] : [])],\n"
         "    { encoding: 'utf8', timeout: 70000 });\n"
         '  return stdout.trim();\n'
         '};\n'

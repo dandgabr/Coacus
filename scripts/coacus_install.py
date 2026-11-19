@@ -1096,11 +1096,16 @@ def _command(argv: list[str]) -> str:
 
     ``argv[1] == OPTIONAL`` marks a hook that must do nothing when its script is gone.
     """
+    isolated = len(argv) > 1 and argv[1] == "-I"
+    if isolated:
+        argv = [argv[0], *argv[2:]]
     optional = len(argv) > 1 and argv[1] == OPTIONAL
     if optional:
         argv = [argv[0], *argv[2:]]
     if os.name != "nt":
-        return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
+        if optional:
+            return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]])
+        return shlex.join([argv[0], "-I", *argv[1:]] if isolated else argv)
     # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
     # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
     interpreter = argv[0]
@@ -1113,9 +1118,8 @@ def _command(argv: list[str]) -> str:
         f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
         "runpy.run_path(sys.argv[0],run_name='__main__')")
     # -I keeps the working directory and the user site off sys.path, so a file named like a
-    # standard module in the project a hook runs from cannot shadow it. The plain launcher
-    # keeps its shape until the same hardening is decided for every hook.
-    flag = " -I" if optional else ""
+    # standard module in the project a hook runs from cannot shadow it.
+    flag = " -I" if optional or isolated else ""
     return f'"{interpreter}"{flag} -c "{shim}"'
 
 
@@ -1142,7 +1146,12 @@ def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_e
             return [walk(v) for v in value]
         if isinstance(value, str):
             if key == "command":
-                return _command([replace(arg) for arg in shlex.split(value)])
+                args = [replace(arg) for arg in shlex.split(value)]
+                # Every hook that runs one of our scripts runs it isolated: no working
+                # directory or user site on sys.path (the scripts add the repository root).
+                if re.match(r"__COACUS_PYTHON__\s", value) and len(args) > 1 and not args[1].startswith("-"):
+                    args.insert(1, "-I")
+                return _command(args)
             return replace(value)
         return value
 
@@ -1493,13 +1502,22 @@ def ask_warnings(
                 reason = "asking is switched off (CI or COACUS_GUARD_NO_ASK)"
             elif not opted_in:
                 reason = "asking is off (set COACUS_GUARD_ASK=1)"
-            elif channel and env.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
-                reason = f"asking on {harness} also needs COACUS_GUARD_ASK_EXPERIMENTAL=1 (not verified live)"
             elif channel and str(policy["action"].get("verb")) not in ("read", "write"):
                 reason = f"{harness} asks only for a read or a write, through its permission hook"
             elif channel and not _shape_independent(policy["action"].get("resource")):
                 reason = (f"the pattern of this ask is anchored to one path shape, so {harness} "
                           f"does not defer it to its permission hook")
+            elif channel:
+                # It will prompt, except when the person started the harness with --auto, which
+                # approves an ask by itself and which the hook cannot detect (ADR 0010).
+                warnings.append({
+                    "harness": harness,
+                    "policy": str(policy.get("id")),
+                    "reason": f"{harness} approves this ask without a prompt when it runs with --auto; only a deny holds there",
+                    "degrades_to": "allow under --auto",
+                    "fails_open": True,
+                })
+                continue
             else:
                 continue
             fallback = policy.get("on_ask_unavailable", "deny")
@@ -1922,7 +1940,7 @@ def _plan_antigravity(
 
 def _antigravity_hooks_json(root: Path, python_executable: str | None = None) -> str:
     """Antigravity plugin hooks.json wiring the governor hook to lifecycle events."""
-    argv = [python_executable or sys.executable, (root / "scripts/coacus_governor_hook.py").as_posix()]
+    argv = [python_executable or sys.executable, "-I", (root / "scripts/coacus_governor_hook.py").as_posix()]
     matcher = "invoke_subagent|manage_subagents|task"
     return (
         json.dumps(
@@ -2736,6 +2754,71 @@ def _installed_state(
     return missing, drift
 
 
+_SHIM_ARGS = re.compile(r"b64decode\('([A-Za-z0-9+/=]+)'\)")
+
+
+def _hook_script(command: object) -> str | None:
+    """The absolute ``.py`` path a hook command runs, or None (Windows shim decoded)."""
+    if not isinstance(command, str):
+        return None
+    try:
+        args = shlex.split(command)
+    except ValueError:
+        return None
+    if len(args) > 1 and args[1] == "-I":
+        args = [args[0], *args[2:]]
+    if len(args) > 3 and args[1] == "-c" and args[2].startswith(_OPTIONAL_SHIM_PREFIX):
+        args = [args[0], *args[3:]]
+    elif len(args) == 3 and args[1] == "-c":
+        found = _SHIM_ARGS.search(args[2])
+        try:
+            decoded = json.loads(base64.b64decode(found.group(1), validate=True)) if found else None
+        except (ValueError, UnicodeDecodeError):
+            return None
+        if not isinstance(decoded, list) or not decoded or not all(isinstance(x, str) for x in decoded):
+            return None
+        args = [args[0], *decoded]
+    script = next((a for a in args[1:2] if not a.startswith("-")), None)
+    return script if script and script.endswith(".py") and Path(script).is_absolute() else None
+
+
+# The scripts a Coacus hook runs. A hook is recognised by these names under a ``scripts``
+# directory, not by the current checkout, because the case that matters is a hook that still
+# names a checkout that has moved or been removed.
+HOOK_SCRIPT_NAMES = ("coacus_guard.py", "coacus_session_start.py", "coacus_governor_hook.py")
+
+
+def _missing_hook_scripts(root: Path, harness: str, targets: list[Path]) -> list[str]:
+    """Scripts that an installed Coacus hook names but that are no longer on disk.
+
+    The hook files the install wrote are read; a plugin that embeds the path as source
+    (OpenCode) is not covered. ``root`` and ``harness`` are kept for callers that pass them.
+    """
+    del root, harness
+    missing: set[str] = set()
+    for target in targets:
+        if target.suffix != ".json" or not target.is_file():
+            continue
+        try:
+            data = json.loads(target.read_text(encoding="utf-8"))
+        except (OSError, ValueError, RecursionError):
+            continue
+        stack = [data]
+        while stack:
+            node = stack.pop()
+            if isinstance(node, dict):
+                command = node.get("command")
+                script = _hook_script(command) if command is not None else None
+                if script:
+                    path = Path(script)
+                    if path.name in HOOK_SCRIPT_NAMES and path.parent.name == "scripts" and not path.is_file():
+                        missing.add(script)
+                stack.extend(node.values())
+            elif isinstance(node, list):
+                stack.extend(node)
+    return sorted(missing)
+
+
 def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     """Compare an installed harness against the repository, read-only.
 
@@ -2799,11 +2882,12 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
             "missing": missing,
             "drifted": drift,
             "extra_in_manifest": sorted(recorded - planned),
+            "hook_scripts_missing": _missing_hook_scripts(root, harness, [t for t, _ in files]),
         }
     )
     if harness == "antigravity":
         result["antigravity_profile"] = antigravity_profile
-    result["ok"] = not missing and not drift and recorded == planned
+    result["ok"] = not missing and not drift and recorded == planned and not result["hook_scripts_missing"]
     if harness == "codex":
         profile = data.get("codex_skill_profile", "legacy-full")
         result["codex_skill_profile"] = profile

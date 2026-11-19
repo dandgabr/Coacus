@@ -49,8 +49,9 @@ carries each cell's evidence class; a bare boolean is forbidden.
   empty, `0`, `false`, `no` or `off`) always force the degradation, only `tool.pre`
   can ask, any doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
   closed to `deny`. OpenCode asks only through the V2 permission `evaluate` hook
-  (its cell has `ask_channel: evaluate`), only with the extra opt-in
-  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, and that hook can only tighten an effect.
+  (its cell has `ask_channel: evaluate`), with the same `COACUS_GUARD_ASK=1` opt-in as
+  any harness, and that hook can only tighten an effect. The earlier extra opt-in
+  `COACUS_GUARD_ASK_EXPERIMENTAL` was retired after a live run (ADR 0010) and is ignored.
   An `ask` is not a barrier when the person runs OpenCode with `--auto`: the harness
   then approves it without a prompt, and the person who chose that mode accepts it.
   Only a `deny` holds there, so a rule that must always hold is written as `deny`.

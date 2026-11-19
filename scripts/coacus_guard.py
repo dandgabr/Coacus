@@ -17,8 +17,8 @@ allow) plus an advisory, so a broken guardrail cannot brick a session.
 
 Events: ``tool.pre`` decides, blocks and may ask; ``prompt.submit`` can block a prompt;
 ``tool.post`` can only add a note for the model (ADR 0016, ADR 0018); any other event
-answers "no opinion". On OpenCode an ``ask`` for a read or write also needs
-``COACUS_GUARD_ASK_EXPERIMENTAL=1`` and is decided through the permission ``evaluate`` hook.
+answers "no opinion". On OpenCode an ``ask`` for a read or write is decided through the permission ``evaluate``
+hook, and the harness approves it by itself under ``--auto``.
 
 An ``ask`` decision is rendered as ``ask`` only when the operator opted in with
 ``COACUS_GUARD_ASK=1`` AND the harness declares a human channel for the event
@@ -410,11 +410,8 @@ def _can_ask(root: Path, harness: str, event: str, channel: str = "default") -> 
         required = capability.get("ask_channel")
         if required is None:
             return channel == "default"
-        # The channel was seen live on OpenCode 2.3.0 only (and that harness approves an
-        # ask by itself under --auto), so it needs its own explicit opt-in on top of
-        # COACUS_GUARD_ASK=1.
-        if os.environ.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
-            return False
+        # Seen live on OpenCode 2.3.0 (ADR 0010). Under --auto that harness approves an ask
+        # by itself, which this process cannot detect, so only a deny is a barrier there.
         return channel in ("before", "evaluate") and required == "evaluate"
     except Exception:  # any doubt, including RecursionError on hostile data, degrades
         return False
