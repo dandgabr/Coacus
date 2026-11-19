@@ -1113,8 +1113,10 @@ def _command(argv: list[str]) -> str:
         f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
         "runpy.run_path(sys.argv[0],run_name='__main__')")
     # -I keeps the working directory and the user site off sys.path, so a file named like a
-    # standard module in the project a hook runs from cannot shadow it.
-    return f'"{interpreter}" -I -c "{shim}"'
+    # standard module in the project a hook runs from cannot shadow it. The plain launcher
+    # keeps its shape until the same hardening is decided for every hook.
+    flag = " -I" if optional else ""
+    return f'"{interpreter}"{flag} -c "{shim}"'
 
 
 def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_executable: str | None = None) -> str:
