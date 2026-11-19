@@ -1498,13 +1498,22 @@ def ask_warnings(
                 reason = "asking is switched off (CI or COACUS_GUARD_NO_ASK)"
             elif not opted_in:
                 reason = "asking is off (set COACUS_GUARD_ASK=1)"
-            elif channel and env.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
-                reason = f"asking on {harness} also needs COACUS_GUARD_ASK_EXPERIMENTAL=1 (not verified live)"
             elif channel and str(policy["action"].get("verb")) not in ("read", "write"):
                 reason = f"{harness} asks only for a read or a write, through its permission hook"
             elif channel and not _shape_independent(policy["action"].get("resource")):
                 reason = (f"the pattern of this ask is anchored to one path shape, so {harness} "
                           f"does not defer it to its permission hook")
+            elif channel:
+                # It will prompt, except when the person started the harness with --auto, which
+                # approves an ask by itself and which the hook cannot detect (ADR 0010).
+                warnings.append({
+                    "harness": harness,
+                    "policy": str(policy.get("id")),
+                    "reason": f"{harness} approves this ask without a prompt when it runs with --auto; only a deny holds there",
+                    "degrades_to": "allow under --auto",
+                    "fails_open": True,
+                })
+                continue
             else:
                 continue
             fallback = policy.get("on_ask_unavailable", "deny")
