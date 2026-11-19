@@ -9,7 +9,8 @@ A guardrail is authored once and rendered natively per harness. The model is
 **PAER** — Policy over Action, Event binding, Rendering effect:
 
 - **Action** — the portable subject: `verb` (`exec`, `read`, `write`, `network`,
-  `spawn`, `mcp`, `delegate`) plus a normalized `resource`. Defined in
+  `spawn`, `mcp`, `prompt`, `output`, `delegate`) plus a normalized `resource`. `prompt`
+  and `output` are bound to `prompt.submit` and `tool.post` (see Prompts and Tool output). Defined in
   `methodology/lifecycle/actions.schema.json`.
   An `mcp` resource is the tool name as the harness sends it, so the pattern is per
   harness: `mcp__server__tool` on Claude Code and Codex, `server_tool` on OpenCode and

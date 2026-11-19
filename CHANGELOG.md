@@ -5,6 +5,27 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Guard events, MCP verb and self-protection
+
+### Added
+
+- A `prompt` verb and a `prompt.submit` hook on Claude Code (`UserPromptSubmit`): a policy can block a prompt whose text matches a case-insensitive pattern, with the reason shown to the user and the original prompt not echoed. The hook exists only while an enabled policy binds the event; a prompt over 100,000 characters matches every prompt rule. See ADR 0016.
+- An `output` verb and a `tool.post` hook on Claude Code (`PostToolUse`): a `note` policy attaches its message to the result of a tool that already ran. It never blocks; a `deny` on `tool.post` is refused at install. The output is read whole, in overlapping windows, after folding. See ADR 0018.
+- An `mcp` verb, so a policy can constrain an MCP tool by the name the harness sends (`mcp__server__tool`, `server_tool`, `MCP:tool`), and OpenCode tools outside its native list are classified as `mcp`. See ADR 0014.
+- An opt-in self-protection policy that denies the session's write tools on the guard, its policies and the harness hook files, with `coacus_install.py --self-protection on|off|prompt` (default `prompt` on a terminal, answer No). See ADR 0015 and `docs/install.md`.
+- Antigravity payloads (`toolCall.name` and `toolCall.args`) are now read, and `grep_search`, `find_by_name`, `list_dir`, `multi_replace_file_content` and `search_web` are classified; a search tool also checks the glob it was given. The argument names other than `CommandLine` are unverified and marked so in `harness.json`.
+
+### Changed
+
+- The hook for `prompt.submit` and `tool.post` runs through a launcher that skips a missing guard script instead of letting Claude Code read the exit code 2 as a block, and runs with `python -I` so a file in the project's working directory cannot shadow a standard module. `tool.pre` keeps its plain command and still blocks when the guard is missing.
+- `tool.post` and `prompt.submit` hooks are added to or removed from the user's hook file on every install according to whether an enabled policy binds the event, so enabling or disabling one takes effect at the next install.
+
+### Known limits
+
+- `turn.stop` is not rendered: a block there means "keep going" and needs a repetition limit.
+- Codex documents the same events but ignores a new hook until it is trusted in `/hooks`; it was not run live, so it stays out.
+- The Antigravity argument names, the `tool_response` shape of tools other than Bash, and the stderr visibility of a skipped hook are unverified.
+
 ## [Unreleased] — Final review findings
 
 ### Fixed
@@ -17,7 +38,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Fixed
 
-- The evaluator now honours a policy's `event` (default `tool.pre`), so a rule written for a tool call never fires on another event. A policy whose `event` is not a canonical id applies everywhere instead of silently stopping. The guard decides, blocks and asks only on `tool.pre` and answers "no opinion" on any other event. Hooks for `tool.post`, `prompt.submit` and `turn.stop` are still not rendered; see ADR 0012.
+- The evaluator now honours a policy's `event` (default `tool.pre`), so a rule written for a tool call never fires on another event. A policy whose `event` is not a canonical id applies everywhere instead of silently stopping. The guard decides, blocks and asks only on `tool.pre` and answers "no opinion" on any other event. At that point no hook was rendered for `tool.post`, `prompt.submit` or `turn.stop`; `prompt.submit` and `tool.post` have one now (see below) and `turn.stop` is still deferred. See ADR 0012.
 - Three capability cells now match the vendor documentation (2026-11-18): claude-code `prompt.submit` cannot ask, codex `prompt.submit` can block, cursor `turn.stop` cannot block.
 
 ## [Unreleased] — Installer ask warning

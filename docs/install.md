@@ -204,6 +204,13 @@ repository policies; nothing is committed to the repository.
   interactive terminal, with No as the answer, and `off` elsewhere. `off` and No leave an existing copy in place; the report shows it as `existing`. To release a legitimate
   edit, make it in your own terminal or set `"enabled": false` in the installed
   `self-protection.policy.json`, edit, and turn it back on.
+- **Event hooks.** On Claude Code the installer also writes a `UserPromptSubmit` hook
+  while an enabled policy binds `prompt.submit` with a deny or ask, and a `PostToolUse`
+  hook while one binds `tool.post` with a `note` (ADR 0016 and ADR 0018). With no such
+  policy the entries are removed. Their command runs the guard through a launcher that does
+  nothing when the guard file is gone, so moving the repository does not refuse every
+  prompt; `--verify` does not yet report that case, so run the installer again after
+  moving it.
 - `--browser-policy-dir <dir>` overrides the destination; a custom `--config-dir`
   keeps the policy beside it (`<config-dir>/coacus-policies`).
 - `--dry-run` reports the selection and the policy count without writing;
