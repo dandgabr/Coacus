@@ -34,7 +34,6 @@ instruction: >
   - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
   - [program-containers](knowledge/skills/infrastructure/program-containers/SKILL.md)
   - [observability-correlation](knowledge/skills/mapping/observability-correlation/SKILL.md)
-  - [software-supply-chain-security](knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md)
 
   ## Responsibility boundaries
 
@@ -44,6 +43,7 @@ instruction: >
   | IaC and GitOps pipelines | `devops-engineer` |
   | Cloud landing zones | `cloud-infrastructure-architect` |
   | Network topology | `network-architect` |
+  | Software supply-chain assurance and SBOM | `appsec-specialist` |
 
   You own the internal developer platform as a product: capabilities, golden paths, self-service, tenancy and cost-to-serve. You do not set infrastructure standards or build the IaC and GitOps pipelines.
 
@@ -64,5 +64,3 @@ tools:
     path: ../../../../skills/infrastructure/program-containers/SKILL.md
   - type: skill_integration
     path: ../../../../skills/mapping/observability-correlation/SKILL.md
-  - type: skill_integration
-    path: ../../../../skills/security/appsec/software-supply-chain-security/SKILL.md

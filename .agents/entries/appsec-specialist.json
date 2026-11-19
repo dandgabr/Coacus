@@ -1,0 +1,8 @@
+{
+  "name": "appsec-specialist",
+  "description": "Application Security Specialist that owns the secure development lifecycle of an application: secure SDLC and NIST SSDF practices, SAST and manual secure code review practice, IAST and RASP strategy, SBOM and software supply-chain assurance, and the AppSec tool strategy that delivery then runs. Use it to decide what application security controls and tests a codebase needs, not to wire them into delivery or to attack a target.",
+  "category": "cybersecurity",
+  "source": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md",
+  "dist": "knowledge/agents/cybersecurity/appsec-specialist/dist",
+  "fingerprint": "143746677326c277"
+}

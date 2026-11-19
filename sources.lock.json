@@ -415,7 +415,7 @@
       "source_path": "agents/cybersecurity/security-specialist/AGENT.md",
       "source_sha256": "a72af0d6d283095ba6a3cbdaf71d2251d77dc2deba595091075a104f87cde4ee",
       "target_path": "knowledge/agents/cybersecurity/security-specialist/agent.source.md",
-      "target_sha256": "4d0b69deb500bd16bdced5607010f773a6544409f94b1f0f7cd94a8d8d303a92",
+      "target_sha256": "297766be98b247c6e493cbc2994f41bb339dea656d1bfc0ca1e54ac250309ea3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -501,7 +501,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "ec3ad949e3f0e313352f62ff04c0c218f79177ae1e5c70718478242ddf77ee40",
+      "target_sha256": "fa8bad2bdbc3b821378a1960ceacfc5298461e02aea899d38defb70b006ece8b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -18840,9 +18840,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "source_sha256": "e567237b84470bc23e08cc595bcc79cd224bf76b72eac0922b2a4c477f4bf3b1",
+      "source_sha256": "82a3ff24b8f3099572d1e2db4b1fb096978f039322bbd026d2a02a2dcdea5fa7",
       "target_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "target_sha256": "e567237b84470bc23e08cc595bcc79cd224bf76b72eac0922b2a4c477f4bf3b1",
+      "target_sha256": "82a3ff24b8f3099572d1e2db4b1fb096978f039322bbd026d2a02a2dcdea5fa7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21400,6 +21400,21 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-11-19T15:13:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md",
+      "source_sha256": "143746677326c27745d91028488037deba8b3fa1c9eeda4c604d5dbfda5b0da7",
+      "target_path": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md",
+      "target_sha256": "143746677326c27745d91028488037deba8b3fa1c9eeda4c604d5dbfda5b0da7",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-19T16:22:18Z"
     }
   ]
 }
