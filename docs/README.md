@@ -20,6 +20,7 @@ Index of the repository's documentation. Each file has one job.
 | [`reference/lifecycle-matrix.md`](reference/lifecycle-matrix.md) | GENERATED harness lifecycle capability matrix (one evidence class per cell). Do not edit. |
 | [`reference/desktop-extension-practices.md`](reference/desktop-extension-practices.md) | Task-based pointers to GNOME preferences, accounts, themes, and update-preservation guidance. |
 | [`reports/2026-10-08-elfvision-learning-consolidation.md`](reports/2026-10-08-elfvision-learning-consolidation.md) | Source evidence, behavioral evaluation, and limits of the Elfvision learning transfer. |
+| [`superpowers-consultative-review.md`](superpowers-consultative-review.md) | Review reference for the upstream Superpowers release; not the source of historical imports. |
 | [`decisions/`](decisions/) | Committed Architecture Decision Records (MADR) for structural choices. |
 | [`standards/`](standards/) | The normative standards (English). Read the relevant one before changing that area. |
 | Process artifacts (`temp/`) | Ephemeral design specs and implementation plans written by the process workflows; ignored by version control ([`standards/plan-artifacts.md`](standards/plan-artifacts.md)). |

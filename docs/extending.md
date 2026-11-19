@@ -98,18 +98,24 @@ sessions start, edit that skill, not the bootstrap.
 
 1. Copy `templates/authoring/agent.source.template.md` to
    `knowledge/agents/<category>/<name>/agent.source.md`. Existing categories:
-   `academic-sciences`, `core-orchestration`, `cybersecurity`,
+   `academic-sciences`, `architecture`, `core-orchestration`, `cybersecurity`,
    `data-cloud-devops`, `research-discovery`, `software-engineering`,
    `specialized-domains`.
 2. Set `name` to the directory name, `category` to the parent directory name,
    and list every skill in `skills:` as a **repository-root-relative** path
    (`knowledge/skills/.../SKILL.md`).
-3. Omit `model`. The generated `agent.yaml` uses `model: inherit`; harnesses
+3. Add a `## Responsibility boundaries` section: a `| Concern | Owner |` table of
+   the neighbouring duties the agent does not own, each naming an existing agent
+   in backticks ([agent-roles](standards/agent-roles.md)).
+4. Omit `model`. The generated `agent.yaml` uses `model: inherit`; harnesses
    resolve the real model ([agent-manifests](standards/agent-manifests.md)).
 
 Validator contract (`engine/validators/agents.py`): `name` kebab-case and equal
 to the directory; `category` equal to the parent directory; `description`
 required; instruction body non-empty; every `skills:` path exists; names unique.
+Role contract (`engine/validators/specialty.py`): the boundary section exists,
+every owner it names is an existing agent, and no agent holds 90% or more of a
+smaller agent's skills ([agent-roles](standards/agent-roles.md)).
 
 Then add bilingual routing triggers for the new agent to
 `knowledge/routing/lexicon.json` ([routing](standards/routing.md)). The routing

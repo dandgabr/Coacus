@@ -321,6 +321,10 @@ read the relevant one before changing that area of the repository.
 | [lifecycle-guardrails](docs/standards/lifecycle-guardrails.md) | The PAER guardrail model, per-harness capability data and the native render. |
 | [decision-records](docs/standards/decision-records.md) | Committed MADR decision records under `docs/decisions/`. |
 | [self-improvement-loop](docs/standards/self-improvement-loop.md) | The opt-in, fail-open end-of-session improvement loop and its one-way boundary. |
+| [agent-roles](docs/standards/agent-roles.md) | One role per agent: required responsibility boundaries, existing owners and a ceiling on skill overlap. |
+| [plan-artifacts](docs/standards/plan-artifacts.md) | Lifecycle and location of temporary process artifacts under `docs/temp/`. |
+| [product-and-design-truth](docs/standards/product-and-design-truth.md) | Durable business context (`PRODUCT.md`) kept apart from visual systems (`DESIGN.md`), and the Anti-AI Slop Mandate. |
+| [ui-style-architecture](docs/standards/ui-style-architecture.md) | The 14-part content architecture for canonical UI styles and its accessibility limits. |
 
 ## Status
 

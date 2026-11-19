@@ -5,6 +5,17 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — The AppSec specialist
+
+### Added
+
+- `appsec-specialist` owns the application security program: secure SDLC (NIST SSDF), secure code review practice, IAST and RASP strategy, and supply-chain assurance. It carries six AppSec skills no agent owned and takes `software-supply-chain-security` from `platform-architect`. It does not act live with IAST or RASP without approval.
+
+### Changed
+
+- `devops-engineer` keeps pipeline wiring, pipeline DAST and the deployment of IAST and RASP agents; routing terms send SAST-in-pipeline prompts there.
+- The agent authoring template and `docs/extending.md` now require the `## Responsibility boundaries` section, the `architecture` category is listed, and the README standards table lists every standard.
+
 ## [Unreleased] — The installer retires what left the corpus
 
 ### Added
