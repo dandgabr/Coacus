@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — The guard script is a protected surface
+
+### Changed
+
+- `scripts/coacus_guard.py` joins the surfaces the improvement loop may not propose to change. Only `engine/guardrail/` was listed, so a proposal could name the guard script, which decides every hook call, and pass rung 0a. The constant in `engine/improve/protected.py` and the sentence in `docs/standards/self-improvement-loop.md` stay equal, and a bare module name (`scripts.coacus_guard`) is matched too. It is still a text match on a proposal, and the human approval stays the real gate.
+
 ## [Unreleased] — Stop rules and the Codex prompt hook
 
 ### Added

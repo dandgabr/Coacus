@@ -83,8 +83,8 @@ its own rules, skills or policies should meet all of them before a change is ado
 - The loop never edits its protected surfaces: `docs/standards/self-improvement-loop.md`,
   `docs/standards/evidence.md`, `docs/standards/untrusted-content.md`,
   `docs/standards/lifecycle-guardrails.md`, `engine/improve/`, `engine/guardrail/`,
-  `engine/verify/`, `scripts/coacus_eval.py`, `evals/scenarios/`,
-  `harnesses/*/bootstrap/guardrail-hooks.json` and `AGENTS.md`. The list is
+  `engine/verify/`, `scripts/coacus_eval.py`, `scripts/coacus_guard.py`,
+  `evals/scenarios/`, `harnesses/*/bootstrap/guardrail-hooks.json` and `AGENTS.md`. The list is
   `engine/improve/protected.py`; a test keeps this sentence equal to it.
 
 Rung 0a of the ladder enforces part of this: a candidate whose statement names a

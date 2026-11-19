@@ -32,6 +32,7 @@ PROTECTED: tuple[str, ...] = (
     "engine/guardrail/",
     "engine/verify/",
     "scripts/coacus_eval.py",
+    "scripts/coacus_guard.py",
     "evals/scenarios/",
     "harnesses/*/bootstrap/guardrail-hooks.json",
     "AGENTS.md",
