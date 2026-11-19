@@ -233,6 +233,44 @@ def _prompt_effect(harness: str, decision: str, message: str) -> str:
     })
 
 
+OUTPUT_NOTE_CHARS = 2000
+OUTPUT_SCAN_CHARS = guard._MAX_COMMAND_CHARS - 10  # a longer value would match every pattern
+
+
+def _output_text(payload: object) -> str:
+    """The text a tool returned, from the ``tool_response`` of a ``PostToolUse`` payload.
+
+    The shape differs per tool and the documentation gives only Bash (``stdout`` and
+    ``stderr``). Any other value is scanned as its JSON text. A long value keeps its head
+    and its tail, because a marker is as likely at the end of an output as at the start.
+    """
+    response = payload.get("tool_response") if isinstance(payload, dict) else None
+    if isinstance(response, dict) and any(isinstance(response.get(k), str) for k in ("stdout", "stderr")):
+        text = "\n".join(str(response.get(k) or "") for k in ("stdout", "stderr"))
+    elif isinstance(response, str):
+        text = response
+    elif response is None:
+        text = ""
+    else:
+        text = json.dumps(response, ensure_ascii=False, sort_keys=True, default=str)
+    if len(text) > OUTPUT_SCAN_CHARS:
+        half = OUTPUT_SCAN_CHARS // 2
+        text = text[:half] + "\n" + text[-half:]
+    return text
+
+
+def _output_effect(harness: str, decision: str, message: str) -> str:
+    """Render the answer to ``tool.post``: a note for the model, never a block.
+
+    The tool has already run, so there is nothing to refuse. Claude Code puts
+    ``additionalContext`` next to the tool result; anything but an allow becomes that note.
+    """
+    if decision == "allow" or harness != "claude-code":
+        return "{}"
+    note = (message or "A Coacus guardrail policy matched this tool output.")[:OUTPUT_NOTE_CHARS]
+    return json.dumps({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": note}})
+
+
 def _native(harness: str, decision: str, message: str) -> str:
     """Render the harness-native effect JSON.
 
@@ -291,7 +329,8 @@ ASK_CHANNELS = ("default", "before", "evaluate")
 # binds the event; every other event answers "no opinion".
 ENFORCED_EVENT = "tool.pre"
 PROMPT_EVENT = "prompt.submit"
-ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT)
+OUTPUT_EVENT = "tool.post"
+ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT, OUTPUT_EVENT)
 
 # OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
 # run: only the documented hook contract is known, not every permission name.
@@ -446,6 +485,16 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
                     message = (f"This prompt is longer than {guard._MAX_COMMAND_CHARS} characters, which a prompt "
                                f"rule cannot scan, so it is blocked as a whole. {message}").strip()
             return _prompt_effect(harness, decision, message)
+        if event == OUTPUT_EVENT:
+            named = payload.get("hook_event_name") if isinstance(payload, dict) else None
+            text = _output_text(payload) if named in (None, "PostToolUse") else ""
+            decision, message = "allow", ""
+            if text:
+                policies = guard.load_policies(root, include_user=True)
+                found = guard.notes(policies, "output", text, event)
+                if found:
+                    decision, message = "note", " ".join(m for m in found if m)
+            return _output_effect(harness, decision, message)
         if channel == "evaluate":
             actions = _permission_actions(payload)
         else:

@@ -8,6 +8,7 @@
     { "id": "network", "resource": "host or scheme+host", "title": "Reach the network" },
     { "id": "spawn", "resource": "subagent name pattern", "title": "Spawn a subagent" },
     { "id": "mcp", "resource": "MCP tool name as the harness sends it, glob, case-insensitive (mcp__server__tool on Claude Code and Codex, server_tool on OpenCode, MCP:tool on Cursor); write *server* to span harnesses", "title": "Call a tool provided by an MCP server" },
+    { "id": "output", "resource": "pattern over the text a tool returned, case-insensitive; bound to the tool.post event only, where it can only add a note", "title": "Read what a tool returned" },
     { "id": "prompt", "resource": "pattern over the text of a user prompt, case-insensitive; bound to the prompt.submit event only", "title": "Submit a prompt to the agent" },
     { "id": "delegate", "resource": "handoff payload shape", "title": "Hand a task off (TOON payload)" }
   ],

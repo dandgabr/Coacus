@@ -621,6 +621,13 @@ symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
 ``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
 Use :func:`resolve_command` to also learn whether the walk gave up.
 
+#### `def notes(policies: list[dict], verb: str, resource: str, event: str) -> list[str]`
+
+Messages of the ``note`` policies that match one action, in policy order.
+
+``evaluate`` never reports a note (it ranks below allow), so an event whose only
+effect is a note reads them here.
+
 #### `def evaluate(policies: list[dict], verb: str, resource: str, event: str='tool.pre') -> dict`
 
 Evaluate policies against one action; return the most restrictive decision.

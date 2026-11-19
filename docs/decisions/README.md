@@ -20,3 +20,4 @@ the repository. The convention is normative in
 | [0014](0014-mcp-action-verb.md) | MCP action verb | accepted |
 | [0015](0015-guard-self-protection.md) | Guard self-protection | accepted |
 | [0016](0016-prompt-submit-hook.md) | Prompt-submit hook on Claude Code | accepted |
+| [0018](0018-tool-post-note-hook.md) | Note policies on tool output (`tool.post`) | accepted |

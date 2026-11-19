@@ -158,16 +158,17 @@ class TestEventAndVerbStayApart(GuardCase):
 
 
 class TestHarnessData(unittest.TestCase):
-    def test_a_native_hook_is_named_only_where_the_event_can_block_and_is_documented(self) -> None:
+    def test_a_native_hook_is_named_only_for_the_documented_events(self) -> None:
         named = {}
         for path in sorted((REPO / "harnesses").glob("*/harness.json")):
             events = json.loads(path.read_text(encoding="utf-8")).get("lifecycle", {}).get("events", {})
             for event, cap in events.items():
                 if isinstance(cap, dict) and "native" in cap:
                     named[(path.parent.name, event)] = cap
-        self.assertEqual(set(named), {("claude-code", "prompt.submit")})
+        self.assertEqual(set(named), {("claude-code", "prompt.submit"), ("claude-code", "tool.post")})
+        self.assertIs(named[("claude-code", "prompt.submit")]["can_block"], True)
+        self.assertIs(named[("claude-code", "tool.post")]["can_block"], False)
         for cap in named.values():
-            self.assertIs(cap["can_block"], True)
             self.assertEqual(cap["evidence"], "documented")
             self.assertTrue(cap["source"].startswith("https://"))
 

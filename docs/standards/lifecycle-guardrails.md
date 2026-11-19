@@ -137,6 +137,17 @@ enabled policy binds the event, and a block shows its reason to the user. A prom
 asked about, and a prompt over 100,000 characters matches every prompt rule. Enabling or
 disabling a prompt policy takes effect at the next install. See ADR 0016.
 
+## Tool output
+
+An `output` rule bound to `tool.post` with the decision `note` attaches its message to the
+result of a tool call that has already run, so the model reads it next to that result.
+It never blocks, never asks and changes nothing the tool returned. A `deny` or `ask`
+on `tool.post` is refused at install, as for any event that cannot block. Only Claude Code
+has the hook, installed while an enabled `note` policy binds the event. The text scanned is
+`stdout` and `stderr` for Bash and the JSON text of the response for every other tool; the
+first and last 50,000 characters of a longer one. The note is cut at 2,000 characters.
+Enabling or disabling the policy takes effect at the next install. See ADR 0018.
+
 ## Which tools a rule can see
 
 The guard classifies a call by the tool's name and reads its arguments from the

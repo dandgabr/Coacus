@@ -887,14 +887,14 @@ def _policy_matches(policy: dict, resource: str) -> bool:
         if unresolved:
             return True  # fail closed: the walk cannot say what this command runs
         return any(fnmatch.fnmatchcase(name, pattern) for name in names for pattern in patterns)
-    if _action_of(policy)[0] in ("mcp", "prompt"):
+    if _action_of(policy)[0] in ("mcp", "prompt", "output"):
         # Tool names are identifiers, not paths: ``mcp__Server__Tool`` and the lower-case
         # form a harness may send are the same tool, so neither spelling can dodge a rule.
         # A prompt is prose: the case of a word never decides whether a rule applies.
         resource = resource.lower()
         patterns = [pattern.lower() for pattern in patterns]
-        if _action_of(policy)[0] == "prompt":
-            # Full-width letters and invisible format characters must not dodge a prompt rule.
+        if _action_of(policy)[0] in ("prompt", "output"):
+            # Full-width letters and invisible format characters must not dodge a prose rule.
             resource = _fold_prompt(resource)
             patterns = [_fold_prompt(pattern) for pattern in patterns]
     return any(_resource_matches(pattern, resource) for pattern in patterns)
@@ -910,6 +910,33 @@ def _fallback_of(policy: dict) -> str:
     """The ``on_ask_unavailable`` value of a policy; anything but allow or deny is deny."""
     value = policy.get("on_ask_unavailable", "deny")
     return value if value in ("allow", "deny") else "deny"
+
+
+def _applies(policy: dict, verb: str, resource: str, event: str) -> bool:
+    """True when ``policy`` is for this verb and event and its pattern matches ``resource``."""
+    try:
+        p_verb, _ = _action_of(policy)
+        if p_verb != verb:
+            return False
+        bound = policy.get("event", "tool.pre")
+        if isinstance(bound, str) and bound in KNOWN_EVENTS and bound != event:
+            return False
+        # A missing event means tool.pre. An unknown, misspelled or non-string
+        # value is not skipped: the policy applies on every event, so a typo can
+        # never switch a rule off.
+        return _policy_matches(policy, resource)
+    except Exception:  # a malformed entry must not stop the other policies
+        return False
+
+
+def notes(policies: list[dict], verb: str, resource: str, event: str) -> list[str]:
+    """Messages of the ``note`` policies that match one action, in policy order.
+
+    ``evaluate`` never reports a note (it ranks below allow), so an event whose only
+    effect is a note reads them here.
+    """
+    return [str(p.get("message", "")) for p in policies
+            if str(p.get("decision", "")) == "note" and _applies(p, verb, resource, event)]
 
 
 def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.pre") -> dict:
@@ -929,19 +956,7 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
     best = {"decision": "allow", "policy_id": None, "message": ""}
     asks: list[dict] = []
     for policy in policies:
-        try:
-            p_verb, _ = _action_of(policy)
-            if p_verb != verb:
-                continue
-            bound = policy.get("event", "tool.pre")
-            if isinstance(bound, str) and bound in KNOWN_EVENTS and bound != event:
-                continue
-            # A missing event means tool.pre. An unknown, misspelled or non-string
-            # value is not skipped: the policy applies on every event, so a typo can
-            # never switch a rule off.
-            if not _policy_matches(policy, resource):
-                continue
-        except Exception:  # a malformed entry must not stop the other policies
+        if not _applies(policy, verb, resource, event):
             continue
         decision = str(policy.get("decision", "allow"))
         if decision not in order:

@@ -1332,7 +1332,9 @@ def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
             event = str(policy.get("event", "tool.pre"))
             action = policy.get("action") if isinstance(policy.get("action"), dict) else {}
             # An event other than tool.pre gets a hook only for a rule that can act there.
-            if event == "tool.pre" or (action.get("verb") == "prompt" and policy.get("decision") in ("deny", "ask")):
+            verb, decision = action.get("verb"), policy.get("decision")
+            if (event == "tool.pre" or (verb == "prompt" and decision in ("deny", "ask"))
+                    or (verb == "output" and decision == "note")):
                 events.add(event)
     return events
 
@@ -1358,7 +1360,7 @@ def _add_bound_event_hooks(root: Path, data: dict, fragment: dict) -> None:
         native = capability.get("native") if isinstance(capability, dict) else None
         if event == "tool.pre" or not isinstance(native, str) or not native:
             continue
-        if event in bound and capability.get("can_block") is True:
+        if event in bound and (capability.get("can_block") is True or capability.get("effect") == "additionalContext"):
             swapped = command.replace("--event tool.pre", f"--event {event}")
             # Only a prompt block can lock the user out; tool.pre stays fail-closed.
             guard = ' "__COACUS_ROOT__/scripts/coacus_guard.py"'
