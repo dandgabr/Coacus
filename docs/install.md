@@ -105,8 +105,10 @@ You now have `harnesses/<h>/bootstrap/`, the agent `dist/` trees, `.agents/`,
 Two routes exist:
 
 - **Script** — `python3 scripts/coacus_install.py <harness|all>`. Idempotent;
-  `--dry-run` previews targets, `--uninstall` removes eligible installed files,
-  `--config-dir` installs into a non-default location for testing.
+  `--dry-run` previews targets, `--uninstall` (alias `--remove`) removes eligible
+  installed files, `--config-dir` installs into a non-default location for testing.
+  With `--skills`, `--agents` or `--only`, removal is partial: it removes only the
+  matching recorded files and leaves the rest of the install in place.
 - **Manual** — perform the same file copies by hand, using the per-harness
   sections below and the tables in [Reference](#reference).
 
@@ -144,7 +146,12 @@ drift check, not an independent integrity guarantee.
 
 Reinstallation retires eligible legacy wrappers and extensionless workflow
 helpers only when ownership and recorded fingerprints establish that removal is
-safe. Modified, shared, unverified or otherwise ineligible files are retained.
+safe. A full (unfiltered) reinstall also retires the agent, skill and catalog files
+that Coacus installed earlier and that the repository no longer provides, under
+the same checks; merged configuration such as `hooks.json` or `settings.json` is
+never retired this way. A filtered install (`--skills`, `--agents`, `--only`)
+retires nothing, because a file missing from its plan was filtered out rather than
+removed. Modified, shared, unverified or otherwise ineligible files are retained.
 Inspect the install result's `retained` list. Workflow helpers are invoked as
 `python3 scripts/<name>.py` (use `python` on Windows when that is the interpreter
 command).
@@ -155,6 +162,8 @@ python3 scripts/coacus_install.py all           # every harness detected on this
 python3 scripts/coacus_install.py all --verify-after-install # install and verify detected harnesses
 python3 scripts/coacus_install.py opencode --dry-run
 python3 scripts/coacus_install.py opencode --uninstall
+python3 scripts/coacus_install.py opencode --remove --agents 'qa-*'   # partial: only matching agents
+python3 scripts/coacus_install.py opencode --remove --skills 'lang-*' # partial: only matching skills
 python3 scripts/coacus_install.py opencode --verify   # read-only: compare with the repo
 python3 scripts/coacus_install.py claude-code --force # install despite no detection
 ```

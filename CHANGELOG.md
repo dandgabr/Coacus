@@ -5,6 +5,16 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — The installer retires what left the corpus
+
+### Added
+
+- `--remove` (alias of `--uninstall`) now takes `--skills`, `--agents` and `--only`: with a filter it removes only the matching recorded files, keeps the rest of the install and records the removal in the manifest so `--verify` does not report it as missing. A name that has since left the repository can still be removed. Without a filter it removes everything, as before.
+
+### Fixed
+
+- A full reinstall left the agent, skill and catalog files of anything the repository had dropped (the seven agents retired by the one-role-per-agent change stayed installed and made `--verify` fail with `extra_in_manifest`). It now retires them when the file is unchanged since the install, not claimed by another harness and inside an allowed root; edited files are kept and listed in `retained`. A filtered install retires nothing, and merged configuration such as `hooks.json` is never retired.
+
 ## [Unreleased] — One role per agent
 
 ### Added

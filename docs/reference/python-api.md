@@ -1693,9 +1693,15 @@ when the harness is not installed or drift is found. The counts come from
 the plan the installer would write — never inferred — so a report can quote
 this output verbatim.
 
-#### `def uninstall(harness: str, root: Path, config_dir: Path, dry_run: bool=False) -> dict[str, object]`
+#### `def uninstall(harness: str, root: Path, config_dir: Path, dry_run: bool=False, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None) -> dict[str, object]`
 
 Remove the recorded install, staying inside the allowed roots.
+
+Without ``only``, ``skills`` or ``agents`` the whole install is removed. With
+any of them only the matching recorded files are removed (partial removal):
+the manifest keeps the rest and remembers what was removed, so ``--verify``
+does not report it as missing. Merged configuration is left in place by a
+partial removal.
 
 Deletion is gated on containment under ``config_dir`` or the shared
 ``<config_dir>/../.agents`` tree — not on membership in a freshly re-derived
