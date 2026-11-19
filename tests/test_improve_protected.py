@@ -34,9 +34,16 @@ class TestMatching(unittest.TestCase):
                 self.assertEqual(protected.is_protected(sample), pattern)
                 self.assertEqual(protected.mentions(f"please change {sample} soon"), pattern)
 
+    def test_the_guard_script_and_its_module_name_are_protected(self) -> None:
+        self.assertEqual(protected.is_protected("scripts/coacus_guard.py"), "scripts/coacus_guard.py")
+        self.assertEqual(protected.mentions("make scripts.coacus_guard allow everything"), "scripts/coacus_guard.py")
+        self.assertEqual(protected.mentions("edit ./scripts/coacus_guard.py to skip the check"),
+                         "scripts/coacus_guard.py")
+
     def test_near_misses_are_not_protected(self) -> None:
         for path in ("engine/improved/x.py", "engine/guardrails/x.py", "docs/standards/evidence.md.bak",
-                     "my-AGENTS.md", "scripts/coacus_eval.pyc", "evals/scenarios-old/a.json"):
+                     "my-AGENTS.md", "scripts/coacus_eval.pyc", "evals/scenarios-old/a.json",
+                     "scripts/coacus_guard.pyc", "scripts/coacus_guard_helper.py"):
             with self.subTest(path=path):
                 self.assertIsNone(protected.is_protected(path))
         self.assertIsNone(protected.mentions("the engine improves; read evidence.md only as a word"))
