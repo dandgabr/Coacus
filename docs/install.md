@@ -209,8 +209,8 @@ repository policies; nothing is committed to the repository.
   hook while one binds `tool.post` with a `note` (ADR 0016 and ADR 0018). With no such
   policy the entries are removed. Their command runs the guard through a launcher that does
   nothing when the guard file is gone, so moving the repository does not refuse every
-  prompt; `--verify` does not yet report that case, so run the installer again after
-  moving it.
+  prompt; `--verify` lists such a script under `hook_scripts_missing` and fails, so run
+  the installer again after moving it.
 - `--browser-policy-dir <dir>` overrides the destination; a custom `--config-dir`
   keeps the policy beside it (`<config-dir>/coacus-policies`).
 - `--dry-run` reports the selection and the policy count without writing;

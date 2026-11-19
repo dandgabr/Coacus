@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Verify reports a missing hook script
+
+### Changed
+
+- `coacus_install.py --verify` now reads the hook files an install wrote and lists, under `hook_scripts_missing`, any Coacus hook whose script is no longer on disk (a moved repository or a removed worktree). A non-empty list fails the verification. A plugin that embeds its path as source, such as the OpenCode one, is not covered.
+
 ## [Unreleased] — OpenCode ask without the experimental opt-in
 
 ### Changed

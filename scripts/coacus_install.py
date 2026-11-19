@@ -2750,6 +2750,71 @@ def _installed_state(
     return missing, drift
 
 
+_SHIM_ARGS = re.compile(r"b64decode\('([A-Za-z0-9+/=]+)'\)")
+
+
+def _hook_script(command: object) -> str | None:
+    """The absolute ``.py`` path a hook command runs, or None (Windows shim decoded)."""
+    if not isinstance(command, str):
+        return None
+    try:
+        args = shlex.split(command)
+    except ValueError:
+        return None
+    if len(args) > 1 and args[1] == "-I":
+        args = [args[0], *args[2:]]
+    if len(args) > 3 and args[1] == "-c" and args[2].startswith(_OPTIONAL_SHIM_PREFIX):
+        args = [args[0], *args[3:]]
+    elif len(args) == 3 and args[1] == "-c":
+        found = _SHIM_ARGS.search(args[2])
+        try:
+            decoded = json.loads(base64.b64decode(found.group(1), validate=True)) if found else None
+        except (ValueError, UnicodeDecodeError):
+            return None
+        if not isinstance(decoded, list) or not decoded or not all(isinstance(x, str) for x in decoded):
+            return None
+        args = [args[0], *decoded]
+    script = next((a for a in args[1:2] if not a.startswith("-")), None)
+    return script if script and script.endswith(".py") and Path(script).is_absolute() else None
+
+
+# The scripts a Coacus hook runs. A hook is recognised by these names under a ``scripts``
+# directory, not by the current checkout, because the case that matters is a hook that still
+# names a checkout that has moved or been removed.
+HOOK_SCRIPT_NAMES = ("coacus_guard.py", "coacus_session_start.py", "coacus_governor_hook.py")
+
+
+def _missing_hook_scripts(root: Path, harness: str, targets: list[Path]) -> list[str]:
+    """Scripts that an installed Coacus hook names but that are no longer on disk.
+
+    The hook files the install wrote are read; a plugin that embeds the path as source
+    (OpenCode) is not covered. ``root`` and ``harness`` are kept for callers that pass them.
+    """
+    del root, harness
+    missing: set[str] = set()
+    for target in targets:
+        if target.suffix != ".json" or not target.is_file():
+            continue
+        try:
+            data = json.loads(target.read_text(encoding="utf-8"))
+        except (OSError, ValueError, RecursionError):
+            continue
+        stack = [data]
+        while stack:
+            node = stack.pop()
+            if isinstance(node, dict):
+                command = node.get("command")
+                script = _hook_script(command) if command is not None else None
+                if script:
+                    path = Path(script)
+                    if path.name in HOOK_SCRIPT_NAMES and path.parent.name == "scripts" and not path.is_file():
+                        missing.add(script)
+                stack.extend(node.values())
+            elif isinstance(node, list):
+                stack.extend(node)
+    return sorted(missing)
+
+
 def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
     """Compare an installed harness against the repository, read-only.
 
@@ -2813,11 +2878,12 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
             "missing": missing,
             "drifted": drift,
             "extra_in_manifest": sorted(recorded - planned),
+            "hook_scripts_missing": _missing_hook_scripts(root, harness, [t for t, _ in files]),
         }
     )
     if harness == "antigravity":
         result["antigravity_profile"] = antigravity_profile
-    result["ok"] = not missing and not drift and recorded == planned
+    result["ok"] = not missing and not drift and recorded == planned and not result["hook_scripts_missing"]
     if harness == "codex":
         profile = data.get("codex_skill_profile", "legacy-full")
         result["codex_skill_profile"] = profile

@@ -38,6 +38,10 @@ def make_repo(tmp: Path) -> Path:
     (plugin / "coacus.js").write_text(
         "const COACUS_ROOT = '__COACUS_ROOT__';\n", encoding="utf-8"
     )
+    # The hooks name this script, and --verify reports a hook whose script is not on disk.
+    (root / "scripts").mkdir()
+    for name in ("coacus_session_start.py", "coacus_governor_hook.py"):
+        (root / "scripts" / name).write_text("", encoding="utf-8")
     for harness in ("claude-code", "codex", "cursor", "command-code"):
         base = root / f"harnesses/{harness}/bootstrap"
         base.mkdir(parents=True)
