@@ -24,5 +24,5 @@ the repository. The convention is normative in
 | [0016](0016-prompt-submit-hook.md) | Prompt-submit hook on Claude Code | accepted |
 | [0017](0017-protected-surfaces-rung.md) | Reject proposals that touch the loop's protected surfaces | accepted |
 | [0018](0018-tool-post-note-hook.md) | Note policies on tool output (`tool.post`) | accepted |
-| [0020](0020-turn-stop-and-codex-prompt-hooks.md) | A stop rule for `turn.stop`, and the prompt hook on Codex | accepted |
 | [0019](0019-isolated-hook-python.md) | Run every hook script with `python -I` | accepted |
+| [0020](0020-turn-stop-and-codex-prompt-hooks.md) | A stop rule for `turn.stop`, and the prompt hook on Codex | accepted |
