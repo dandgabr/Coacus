@@ -7,7 +7,12 @@ user of ``"match": "command"``, so it is exercised through the real catalog.
 
 from __future__ import annotations
 
+import json
+import os
 import random
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -53,6 +58,9 @@ PREFIXES = {
     "sudo": lambda c: "sudo " + c,
     "nohup": lambda c: "nohup " + c,
     "timeout": lambda c: "timeout 5 " + c,
+    "assignment": lambda c: "X=1 " + c,
+    "two assignments": lambda c: "X=1 Y=2 " + c,
+    "assignment with substitution": lambda c: "X=$(true) " + c,
 }
 
 # Known false positive (see KNOWN_FALSE_POSITIVES in the corpus): a prefix wrapper
@@ -185,6 +193,149 @@ class TestShippedBrowserPolicy(unittest.TestCase):
                 with self.subTest(browser=entry["id"], command=command):
                     decision = guard.evaluate(self._exec_policies(), "exec", command)
                     self.assertEqual(decision["decision"], "allow")
+
+
+# Each template puts ``@`` where the shell starts a command, right after a control word.
+OPENERS = {
+    "then": "if true; then @; fi",
+    "else": "if false; then true; else @; fi",
+    "elif": "if false; then true; elif true; then @; fi",
+    "for do": "for b in a; do @; done",
+    "while do": "while true; do @; done",
+    "until do": "until false; do @; done",
+    "brace group": "{ @; }",
+    "negation": "! @",
+    "if condition": "if @; then true; fi",
+    "while condition": "while @; do true; done",
+    "coproc": "coproc @",
+}
+ASSIGNMENTS = ["X=1 ", "X=1 Y=2 ", "X+=1 ", "arr[0]=1 ", "X=$(true) ", "X=`true` ", 'X="a b" ', "X='a b' "]
+GUARD_SCRIPT = ROOT / "scripts" / "coacus_guard.py"
+
+
+class TestAssignmentAfterAControlWord(unittest.TestCase):
+    """A ``NAME=value`` prefix after ``then``, ``do``, ``{`` and the rest never hides the command."""
+
+    def test_the_command_behind_an_assignment_is_always_seen(self) -> None:
+        for opener, template in OPENERS.items():
+            for assignment in ASSIGNMENTS:
+                command = template.replace("@", assignment + TARGET + " --flag")
+                with self.subTest(opener=opener, assignment=assignment):
+                    names, unresolved = guard.resolve_command(command)
+                    self.assertIn(TARGET, names, command)
+                    self.assertFalse(unresolved, command)
+                    self.assertTrue(denied(command), command)
+
+    def test_an_assignment_alone_is_not_a_command_name(self) -> None:
+        for opener, template in OPENERS.items():
+            for body in ("t=$(ls)", "t=`ls`", "t=1"):
+                command = template.replace("@", body)
+                with self.subTest(opener=opener, body=body):
+                    names, unresolved = guard.resolve_command(command)
+                    self.assertFalse(unresolved, command)
+                    self.assertNotIn(body, names)
+                    self.assertFalse(denied(command), command)
+
+    def test_the_substitution_inside_an_assignment_is_still_examined(self) -> None:
+        for opener, template in OPENERS.items():
+            for body in (f"t=$({TARGET})", f"t=`{TARGET}`"):
+                command = template.replace("@", body)
+                with self.subTest(opener=opener, body=body):
+                    self.assertTrue(denied(command), command)
+
+    def test_a_mention_behind_an_assignment_is_not_a_match(self) -> None:
+        for opener, template in OPENERS.items():
+            for assignment in ASSIGNMENTS:
+                command = template.replace("@", assignment + "echo " + TARGET)
+                with self.subTest(opener=opener, assignment=assignment):
+                    self.assertFalse(denied(command), command)
+
+    def test_several_control_words_in_a_row_are_peeled_in_turn(self) -> None:
+        for command in (f"if true; then ! X=1 {TARGET}; fi", f"while true; do {{ X=1 Y=2 {TARGET}; }}; done",
+                        f"if true; then ! ! X=1 {TARGET}; fi"):
+            with self.subTest(command=command):
+                self.assertTrue(denied(command), command)
+
+    def test_the_peeling_loop_always_ends(self) -> None:
+        for command in ("then " * 500 + "X=1 " * 500, "X=1 " * 3000, "! " * 3000 + TARGET):
+            with self.subTest(size=len(command)):
+                names, unresolved = guard.resolve_command(command)
+                self.assertIsInstance(names, list)
+                self.assertIsInstance(unresolved, bool)
+
+
+class TestShippedBrowserPolicyWithAssignments(unittest.TestCase):
+    """The real catalog policy, which is what a user hits, handles loops with assignments."""
+
+    def setUp(self) -> None:
+        catalog = browsers.load_catalog(ROOT)
+        entries = catalog["browsers"]
+        policy = browsers.build_policy(catalog, {"primary": entries[0]["id"]})
+        self.policies = [p for p in policy["policies"] if p["action"]["verb"] == "exec"]
+        self.blocked = next(e for e in entries[1:] if e.get("binaries"))["binaries"][0]
+
+    def test_a_loop_that_only_assigns_is_allowed(self) -> None:
+        for command in ("for b in a; do t=$(ls); done",
+                        "if true; then t=$(git rev-parse HEAD); echo $t; fi",
+                        "while true; do t=`date`; break; done"):
+            with self.subTest(command=command):
+                self.assertEqual(guard.evaluate(self.policies, "exec", command)["decision"], "allow")
+
+    def test_a_blocked_browser_behind_an_assignment_is_denied(self) -> None:
+        for command in (f"if true; then X=1 {self.blocked} --flag; fi", f"for b in a; do X=1 {self.blocked}; done",
+                        f"{{ X=1 {self.blocked}; }}", f"! X=1 {self.blocked}"):
+            with self.subTest(command=command):
+                self.assertEqual(guard.evaluate(self.policies, "exec", command)["decision"], "deny")
+
+
+class TestUnresolvedCommandIsNamedAsSuch(unittest.TestCase):
+    """A command the walk cannot read is held under the rule, but the reason says so."""
+
+    def test_evaluate_marks_only_a_hold_that_no_name_explains(self) -> None:
+        held = guard.evaluate([POLICY], "exec", "echo 'unterminated")
+        self.assertEqual(held["decision"], "deny")
+        self.assertTrue(held.get("unresolved"))
+        real = guard.evaluate([POLICY], "exec", TARGET + " --flag")
+        self.assertEqual(real["decision"], "deny")
+        self.assertNotIn("unresolved", real)
+        mixed = guard.evaluate([POLICY], "exec", TARGET + " --flag; eval \"$x\"")
+        self.assertEqual(mixed["decision"], "deny")
+        self.assertNotIn("unresolved", mixed)
+        self.assertNotIn("unresolved", guard.evaluate([POLICY], "exec", "ls"))
+
+    def test_a_text_policy_hold_is_never_marked(self) -> None:
+        text = {"id": "no-force", "action": {"verb": "exec", "resource": "*--force*"}, "decision": "deny"}
+        self.assertNotIn("unresolved", guard.evaluate([text, POLICY], "exec", "git push --force"))
+
+    def _run_guard(self, command: str) -> dict:
+        with tempfile.TemporaryDirectory() as directory:
+            policy = dict(POLICY, message="Policy text that must not be blamed.")
+            Path(directory, "t.policy.json").write_text(
+                json.dumps({"schema": 1, "enabled": True, "policies": [policy]}), encoding="utf-8")
+            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}}
+            run = subprocess.run(
+                [sys.executable, "-I", str(GUARD_SCRIPT), "--harness", "claude-code", "--event", "tool.pre",
+                 "--root", str(ROOT)],
+                input=json.dumps(payload), capture_output=True, text=True, timeout=60,
+                env=dict(os.environ, COACUS_POLICY_DIR=directory))
+        self.assertEqual(run.returncode, 0, run.stderr)
+        return json.loads(run.stdout or "{}").get("hookSpecificOutput", {})
+
+    def test_the_guard_names_the_cause_and_the_rule_for_an_unreadable_command(self) -> None:
+        out = self._run_guard("echo 'unterminated")
+        self.assertEqual(out.get("permissionDecision"), "deny")
+        reason = out.get("permissionDecisionReason", "")
+        self.assertIn("could not tell", reason)
+        self.assertIn(POLICY["id"], reason)
+        self.assertNotIn("must not be blamed", reason)
+
+    def test_the_guard_keeps_the_rule_message_for_a_real_match(self) -> None:
+        out = self._run_guard("if true; then X=1 " + TARGET + "; fi")
+        self.assertEqual(out.get("permissionDecision"), "deny")
+        self.assertEqual(out.get("permissionDecisionReason"), "Policy text that must not be blamed.")
+
+    def test_the_guard_allows_a_loop_that_only_assigns(self) -> None:
+        self.assertEqual(self._run_guard("for b in a; do t=$(ls); done"), {})
 
 
 if __name__ == "__main__":

@@ -117,6 +117,14 @@ run (`engine/guardrail/evaluate.py:command_candidates`: wrappers, `sh -c`,
 `grep`, `git commit -m` or a path does not fire. Matching is best-effort (shell is
 Turing complete); it narrows accidents, it is not a sandbox.
 
+A `NAME=value` word is read as an assignment wherever a command may start: at the
+head of a line and right after a control word (`then`, `else`, `do`, `{`, `!`), so
+`if x; then FOO=1 prog; fi` still runs `prog` and `for b in a; do t=$(ls); done`
+runs only what the substitution runs. When the walk cannot say what a command runs
+(an unbalanced quote, a program name built from a variable, a nesting limit) the
+rule holds it, which fails closed; the denial then says the command could not be
+read and names the policy, instead of repeating the policy's own text.
+
 ## Protecting the guard from the session
 
 The guard runs in the session it governs, so an agent can switch it off by editing a

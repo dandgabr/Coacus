@@ -593,19 +593,32 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
         rest = rest[2:]  # ``function name {``: the name is not a command
     if len(rest) > 2 and rest[0] == "coproc" and rest[2] in ("{", "("):
         rest = rest[2:]  # ``coproc NAME { ...; }``: the name is not a command
-    while rest and (rest[0] in _KEYWORDS or rest[0] == "--" or _REDIRECT.match(rest[0])
-                    or (rest[0].isdigit() and len(rest) > 1 and _REDIRECT.match(rest[1]))):
-        if depth >= _MAX_DEPTH:
-            state["unresolved"] = True
-            return []
-        if rest[0].isdigit():
-            rest = rest[1:]  # a file descriptor number in front of a redirection
-        elif _BARE_REDIRECT.match(rest[0]):
-            rest = rest[2:]  # the operator and its target
+    # Peel what stands in front of the command name. A control word (``then``, ``do``, ``{``, ``!``)
+    # opens a new command position, so an assignment may follow it (``then X=1 prog``) just as it
+    # may open the line: it is read here too, never taken for the command name. Every pass
+    # consumes at least one word, so the loop ends.
+    pos = 0
+    while pos < len(rest):
+        word = rest[pos]
+        if (word in _KEYWORDS or word == "--" or _REDIRECT.match(word)
+                or (word.isdigit() and pos + 1 < len(rest) and _REDIRECT.match(rest[pos + 1]))):
+            if depth >= _MAX_DEPTH:
+                state["unresolved"] = True
+                return []
+            if word.isdigit():
+                pos += 1  # a file descriptor number in front of a redirection
+            elif _BARE_REDIRECT.match(word):
+                pos += 2  # the operator and its target
+            else:
+                pos += 1
+        elif _ASSIGN.match(word):
+            assigned.extend(_assignment(word, depth, state))
+            pos += 1
         else:
-            rest = rest[1:]
+            break
+    rest = rest[pos:]
     if not rest:
-        return []
+        return assigned
     first = rest[0]
     literal = _SAFE_PREFIX.sub("", first, count=1)
     if (
@@ -941,6 +954,23 @@ def notes(policies: list[dict], verb: str, resource: str, event: str) -> list[st
             if isinstance(p, dict) and str(p.get("decision", "")) == "note" and _applies(p, verb, resource, event)]
 
 
+def _held_unresolved(policy: dict, verb: str, resource: str) -> bool:
+    """True when a command-match policy holds ``resource`` only because the walk could not read it.
+
+    The hold is a fail-closed guess, not a finding, so the caller can say so instead of
+    repeating a message that describes a program the command may never run.
+    """
+    try:
+        action = policy.get("action", {})
+        if verb != "exec" or action.get("match") != "command":
+            return False
+        names, unresolved = resolve_command(resource)
+        patterns = _patterns_of(policy)
+        return unresolved and not any(fnmatch.fnmatchcase(name, p) for name in names for p in patterns)
+    except Exception:  # a malformed entry stays a plain hold
+        return False
+
+
 def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.pre") -> dict:
     """Evaluate policies against one action; return the most restrictive decision.
 
@@ -956,6 +986,7 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
     """
     order = {"deny": 3, "ask": 2, "allow": 1, "note": 0}
     best = {"decision": "allow", "policy_id": None, "message": ""}
+    best_policy: dict | None = None
     asks: list[dict] = []
     for policy in policies:
         if not _applies(policy, verb, resource, event):
@@ -966,6 +997,7 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
         if decision == "ask":
             asks.append(policy)
         if order.get(decision, 0) > order.get(best["decision"], 0):
+            best_policy = policy
             best = {
                 "decision": decision,
                 "policy_id": policy.get("id"),
@@ -974,10 +1006,13 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
             }
     if best["decision"] == "ask" and asks:
         winner = next((p for p in asks if _fallback_of(p) == "deny"), asks[0])
+        best_policy = winner
         best = {
             "decision": "ask",
             "policy_id": winner.get("id"),
             "message": str(winner.get("message", "")),
             "on_ask_unavailable": _fallback_of(winner),
         }
+    if best_policy is not None and best["decision"] in ("deny", "ask") and _held_unresolved(best_policy, verb, resource):
+        best["unresolved"] = True
     return best

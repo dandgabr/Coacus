@@ -471,6 +471,12 @@ def _decide(root: Path, harness: str, event: str, channel: str, verb: str, resou
     }
     decision = result.get("decision", "allow")
     message = result.get("message", "")
+    if result.get("unresolved") and decision in ("deny", "ask"):
+        # The rule did not find a program it forbids; the walk could not read the command, so
+        # it holds it. Say that, and name the rule, instead of repeating the rule's own text.
+        message = (f"Coacus could not tell what this command runs, so policy "
+                   f"'{result.get('policy_id')}' holds it. Write the command in a simpler form "
+                   f"(no program name built from a variable, no unbalanced quote) to continue.")
     if decision == "ask":
         if _can_ask(root, harness, event, channel) and (
             channel != "before" or _survives_the_hook(policies, verb, resource, event)
