@@ -3,6 +3,8 @@
 A candidate is verified before staging, cheapest rung first:
 
 - rung 0  structural: the proposal must not violate the repository's own gates;
+- rung 0a protected: the proposal must not name or route to a surface the loop may not
+  change (``engine.improve.protected``);
 - rung 0b freshness: a version-like pin must carry a resolved anchor or be marked
   unverified (version-freshness);
 - rung 1  coverage: an ``already covered`` candidate is not staged as new;
@@ -19,7 +21,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from engine.improve import route as router
+from engine.improve import protected, route as router
 
 VERSION_PIN = re.compile(r"\bv?\d+\.\d+(?:\.\d+)?\b")
 RESOLVED_ANCHOR = re.compile(r"(resolved\s+\d{4}-\d{2}-\d{2}|unverified)", re.IGNORECASE)
@@ -30,6 +32,18 @@ def freshness_ok(candidate: dict) -> tuple[bool, str]:
     text = candidate.get("statement", "")
     if VERSION_PIN.search(text) and not RESOLVED_ANCHOR.search(text):
         return False, "version pin without a resolved anchor (version-freshness)"
+    return True, ""
+
+
+def protected_ok(root: Path, candidate: dict, routing: dict) -> tuple[bool, str]:
+    """Rung 0a: reject a candidate that names, or routes to, a protected surface."""
+    named = protected.mentions(str(candidate.get("statement", "")))
+    if named:
+        return False, f"candidate names a protected surface ({named})"
+    target = routing.get("target")
+    for entry in router._load_catalog(root) if target else []:
+        if entry.get("name") == target and protected.is_protected(str(entry.get("path") or "")):
+            return False, "candidate routes to a protected surface"
     return True, ""
 
 
@@ -55,6 +69,7 @@ def verify(root: Path, candidate: dict, routing: dict) -> dict:
     """Run the deterministic rungs; return a per-rung result."""
     results: dict[str, dict] = {}
     for name, (ok, reason) in (
+        ("protected", protected_ok(root, candidate, routing)),
         ("freshness", freshness_ok(candidate)),
         ("coverage", coverage_ok(routing)),
         ("retrieval", retrieval_ok(root, candidate)),
