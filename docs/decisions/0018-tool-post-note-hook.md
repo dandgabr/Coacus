@@ -21,8 +21,9 @@ has already run.
 - Only the decision `note` is rendered, as `additionalContext`. `note` ranks below `allow`
   in `evaluate`, so `engine.guardrail.evaluate.notes` reads the matching notes directly and
   `evaluate` is unchanged. A `deny` on `tool.post` is refused at install by the
-  existing `can_block` check (an `ask` or a policy in the user directory is not checked
-  there). At run time only `note` renders; any other decision adds nothing.
+  existing `can_block` check when it is in a repository policy that names the event (an
+  `ask`, a policy in the user directory and a `deny` without an explicit event are not
+  checked there). At run time only `note` renders; any other decision adds nothing.
 - An `output` rule with no `event`, or a misspelled one, is read as bound to `tool.post`.
 - The text is folded first and then read in overlapping windows of just under the match
   cap (a value over the cap matches every pattern), up to 8,000,000 characters.
@@ -43,7 +44,7 @@ has already run.
   ADR 0016. Codex documents `PostToolUse` too but needs hook trust through `/hooks`, so it
   stays out until it can be tested.
 
-## Alternatives
+## Alternatives considered
 
 - Let `note` surface through `evaluate`: it would change the composition law that every
   caller relies on.

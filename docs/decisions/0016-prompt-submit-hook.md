@@ -12,9 +12,9 @@ a rule that no process starts for nothing. `prompt.submit` is the one gate event
 meaning is clear: block the prompt, or let it through. Claude Code documents it
 (https://code.claude.com/docs/en/hooks, resolved 2026-11-18): the stdin JSON carries
 the text in `prompt`, `{"decision": "block", "reason": "..."}` stops the prompt and
-shows the reason to the user, and the event takes no matcher. `turn.stop` and
-`tool.post` stay deferred: a stop block means "keep going", and an observe event cannot
-deny, so neither is a rule a policy can express with today's verbs.
+shows the reason to the user, and the event takes no matcher. `turn.stop` stays
+deferred: a stop block means "keep going". `tool.post` was deferred here because an observe
+event cannot deny, and is rendered since ADR 0018 for a note only.
 
 ## Decision
 
@@ -55,6 +55,8 @@ deny, so neither is a rule a policy can express with today's verbs.
   model produces are not prompts. The event also fires for scheduled tasks, `/loop`,
   background subagent reports and messages from other sessions, so a deny pattern can end
   those turns. It is a tripwire, not DLP.
+- A `prompt` rule must name `"event": "prompt.submit"`; with no event it binds `tool.pre`
+  and never fires, unlike `output` (ADR 0018), which defaults to `tool.post`.
 - A pattern is a glob like every other resource: `?` and `[...]` are wildcards, so a prose
   pattern that needs them literally has to avoid those characters.
 - Enabling a `prompt` policy after installing needs a re-install, because the hook exists
@@ -78,16 +80,14 @@ deny, so neither is a rule a policy can express with today's verbs.
   twice per prompt, as it does for `tool.pre`.
 - A failure or the 30 s default timeout lets the prompt through (D4). The vendor offers
   `onFailure: "block"` for anyone who wants the opposite.
-- This is an explicit exception to D3: a deny policy bound to `prompt.submit` on a
-  harness with no native hook still installs and is inert there.
 - A deny policy bound to `prompt.submit` on a harness with no native hook still installs
   and is inert there, as ADR 0012 accepted; the installer does not refuse it.
 - Another harness needs its own verified payload and a `native` name. Codex documents the
   same event, payload and answer, so the mechanism would carry over, but Codex ignores a
   new non-managed hook until the user trusts it in `/hooks`, and it was not run live, so
   it stays out.
-- `turn.stop` (a block keeps the agent going) and `tool.post` (observe only) need verbs
-  and semantics and are still deferred, with the rest of ADR 0012's list.
+- `turn.stop` (a block keeps the agent going) needs a verb, semantics and a repetition
+  limit, and is still deferred. `tool.post` is rendered since ADR 0018.
 
 ## Alternatives considered
 

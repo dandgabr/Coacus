@@ -18,6 +18,10 @@ is rendered for them.
 
 ## Decision
 
+*Amended by ADR 0016 (`prompt.submit` is rendered on Claude Code) and ADR 0018 (`tool.post`
+is rendered for a note, and an `output` rule with no event defaults to `tool.post`). The
+bullets below describe the first decision.*
+
 - A policy binds one event through its `event` field; a missing field means
   `tool.pre`. The evaluator skips a policy whose event is not the one being decided,
   so adding a new rendered event can never change what an existing policy does.

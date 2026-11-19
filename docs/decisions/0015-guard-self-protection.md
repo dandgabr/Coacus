@@ -43,7 +43,8 @@ any of those paths.
   `read_by_guard`.
 - Not covered, and said here so nobody relies on them: letter case on a case-insensitive
   filesystem, symlinks, files the guard imports from outside the tree, and the fact that the
-  hook starts Python without `-I`, so a module planted next to the guard shadows a standard
+  `tool.pre` hook starts Python without `-I` (the `prompt.submit` and `tool.post` launchers
+  use it, ADR 0016), so a module planted next to the guard shadows a standard
   one. The rules over `scripts/*.py` and the top of the tree deny the write tools on those
   paths, which is as far as a policy can go.
 - This is a speed bump and a tripwire, not a sandbox. A write through the shell (`sed -i`,

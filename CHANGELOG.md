@@ -10,7 +10,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Added
 
 - A `prompt` verb and a `prompt.submit` hook on Claude Code (`UserPromptSubmit`): a policy can block a prompt whose text matches a case-insensitive pattern, with the reason shown to the user and the original prompt not echoed. The hook exists only while an enabled policy binds the event; a prompt over 100,000 characters matches every prompt rule. See ADR 0016.
-- An `output` verb and a `tool.post` hook on Claude Code (`PostToolUse`): a `note` policy attaches its message to the result of a tool that already ran. It never blocks; a `deny` on `tool.post` is refused at install. The output is read whole, in overlapping windows, after folding. See ADR 0018.
+- An `output` verb and a `tool.post` hook on Claude Code (`PostToolUse`): a `note` policy attaches its message to the result of a tool that already ran. It never blocks; a `deny` on `tool.post` in a repository policy that names the event is refused at install, and at run time only a `note` renders. The output is read whole, in overlapping windows, after folding. See ADR 0018.
 - An `mcp` verb, so a policy can constrain an MCP tool by the name the harness sends (`mcp__server__tool`, `server_tool`, `MCP:tool`), and OpenCode tools outside its native list are classified as `mcp`. See ADR 0014.
 - An opt-in self-protection policy that denies the session's write tools on the guard, its policies and the harness hook files, with `coacus_install.py --self-protection on|off|prompt` (default `prompt` on a terminal, answer No). See ADR 0015 and `docs/install.md`.
 - Antigravity payloads (`toolCall.name` and `toolCall.args`) are now read, and `grep_search`, `find_by_name`, `list_dir`, `multi_replace_file_content` and `search_web` are classified; a search tool also checks the glob it was given. The argument names other than `CommandLine` are unverified and marked so in `harness.json`.
@@ -23,7 +23,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 ### Known limits
 
 - `turn.stop` is not rendered: a block there means "keep going" and needs a repetition limit.
-- Codex documents the same events but ignores a new hook until it is trusted in `/hooks`; it was not run live, so it stays out.
+- Codex documents the same events but ignores a new hook until it is trusted in `/hooks`; it was not run live for `prompt.submit` or `tool.post`, so it stays out.
 - The Antigravity argument names, the `tool_response` shape of tools other than Bash, and the stderr visibility of a skipped hook are unverified.
 
 ## [Unreleased] — Final review findings

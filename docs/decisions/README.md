@@ -4,6 +4,9 @@ Committed Architecture Decision Records (MADR 3.0), one per decision that binds
 the repository. The convention is normative in
 [`docs/standards/decision-records.md`](../standards/decision-records.md).
 
+Numbers 0009, 0013 and 0017 belong to records on other branches that are not merged yet,
+so they are absent from the table below.
+
 | ADR | Title | Status |
 |---|---|---|
 | [0001](0001-guardrail-model-action-vs-event.md) | Guardrails are policies over actions (PAER), not events | accepted |

@@ -201,7 +201,7 @@ repository policies; nothing is committed to the repository.
 - `--self-protection on|off|prompt` installs the policy that denies the agent's write tools
   on the guard, its policies and the harness hook files (see
   [ADR 0015](decisions/0015-guard-self-protection.md)). The default is `prompt` on an
-  interactive terminal, with No as the answer, and `off` elsewhere. `off` and No leave an existing copy in place; the report shows it as `existing`. To release a legitimate
+  interactive terminal, with No as the answer, and `off` elsewhere (a `--dry-run` included). `off` and No leave an existing copy in place; the report shows it as `existing`. To release a legitimate
   edit, make it in your own terminal or set `"enabled": false` in the installed
   `self-protection.policy.json`, edit, and turn it back on.
 - **Event hooks.** On Claude Code the installer also writes a `UserPromptSubmit` hook

@@ -136,19 +136,22 @@ A `prompt` rule bound to `prompt.submit` blocks a user prompt whose text matches
 pattern (case-insensitive). Today only Claude Code has the hook, installed while an
 enabled policy binds the event, and a block shows its reason to the user. A prompt is never
 asked about, and a prompt over 100,000 characters matches every prompt rule. Enabling or
-disabling a prompt policy takes effect at the next install. See ADR 0016.
+disabling a prompt policy takes effect at the next install. A `prompt` rule must set
+`"event": "prompt.submit"`: without it the rule binds `tool.pre` and never fires (an
+`output` rule, unlike it, defaults to `tool.post`). See ADR 0016.
 
 ## Tool output
 
 An `output` rule bound to `tool.post` with the decision `note` attaches its message to the
 result of a tool call that has already run, so the model reads it next to that result.
 It never blocks, never asks and changes nothing the tool returned. A `deny`
-on `tool.post` is refused at install, as for any event that cannot block, and at run time
-only a `note` renders. Only Claude Code
+on `tool.post` in a repository policy that names `"event": "tool.post"` is refused at
+install, as for any event that cannot block; one in the user directory or without an
+explicit event is not checked. At run time only a `note` renders. Only Claude Code
 has the hook, installed while an enabled `note` policy binds the event. The text scanned is
-`stdout` and `stderr` for Bash and the JSON text of the response for every other tool; the
-all of a longer one up to 8,000,000 characters, in overlapping windows. The note is cut at
-2,000 characters.
+`stdout` and `stderr` for Bash and the JSON text of the response for every other tool. The
+text is folded and read whole, a longer one in overlapping windows up to 8,000,000
+characters. The note is cut at 2,000 characters.
 Enabling or disabling the policy takes effect at the next install. See ADR 0018.
 
 ## Which tools a rule can see

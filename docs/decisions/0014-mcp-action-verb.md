@@ -16,8 +16,9 @@ The guard cannot know what an arbitrary MCP tool does, so mapping each one to `r
 ## Decision
 
 - ADR 0001's vocabulary gains the verb `mcp`. Its resource is the tool name, and the
-  guard classifies a call as `mcp` when the name starts with `mcp__` (Claude Code) or
-  `mcp:` (Cursor). Arguments are not inspected: they have no shared shape.
+  guard classifies a call as `mcp` when the name starts with `mcp_` (which covers Claude
+  Code and Codex `mcp__` and Antigravity `mcp_`) or `mcp:` (Cursor), and, on OpenCode, when
+  it is outside that harness's native tool list. Arguments are not inspected: they have no shared shape.
 - A policy on `mcp` names the tool it constrains, for example `mcp__playwright__*`.
   Matching is case-insensitive on both sides, because a tool name is an identifier and
   a harness may send it in either case. An operator writes the rule; Coacus ships none,
@@ -30,8 +31,8 @@ The guard cannot know what an arbitrary MCP tool does, so mapping each one to `r
 - Claude Code documents `mcp__<server>__<tool>` for its PreToolUse hook, and Cursor
   documents `MCP:<tool>` for HTTP MCP servers. Codex 0.169.0 was run live (2026-11-18,
   isolated `CODEX_HOME`): the hook fires for an MCP tool as `mcp__<server>__<tool>` and a
-  deny from the guard blocked it. Antigravity is a `unverified` gap: the account was
-  disabled by the service during the attempt, so no run was possible. Its documentation
+  deny from the guard blocked it. Antigravity is a `unverified` gap: a live
+  run was not possible. Its documentation
   names MCP tools `mcp_<server>_<tool>`, which the `mcp_` prefix now classifies, but that
   is unproven.
 - OpenCode was run live (2.3.0, 2026-11-18, isolated project, stub MCP server). An MCP

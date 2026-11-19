@@ -102,9 +102,9 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   the guard cannot classify (a tool no table knows, for example), which has no verb and so no
   policy. A fresh review found no shape beyond those after the fixes above.
 - Two known false positives remain: a prefix wrapper reads its first words as
-  candidates, so `sudo grep NAME file` still matches. They are pinned in the corpus.
+  candidates, so `sudo grep NAME file` and `xargs grep NAME` still match. They are pinned in the corpus.
 - The tests in `tests/test_guardrail_command_corpus.py`,
-  `tests/test_guardrail_command_constructs.py` and
+  `tests/test_guardrail_command_constructs.py`,
   `tests/test_guardrail_fail_closed.py` and `tests/test_guardrail_launchers.py` lock the contract, including the shipped
   browser policy over the real catalogue.
 

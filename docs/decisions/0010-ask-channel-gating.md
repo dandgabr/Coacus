@@ -63,7 +63,8 @@ opt-in.
 - Risks that apply to every harness and are not removed by this record: a guard is a
   hook the agent's own session may be able to edit or disable (the harness settings,
   the plugin, the guard script and the user policy directory are ordinary files);
-  tools the guard cannot classify, such as MCP tools, have no verb and so no policy;
+  tools the guard cannot classify (a tool no table knows; MCP tools have the `mcp` verb since
+  ADR 0014) have no verb and so no policy;
   a permission mode that approves prompts by itself can turn a rendered `ask` into an
   allow; and the guard fails open on a crash or timeout, now with a one-line advisory
   on stderr that some harnesses show and some discard. With the opt-in set an `ask` can

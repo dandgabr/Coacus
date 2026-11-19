@@ -15,6 +15,11 @@ the matched policy's ``on_decision_failure``; a failure of this process itself
 (no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
 allow) plus an advisory, so a broken guardrail cannot brick a session.
 
+Events: ``tool.pre`` decides, blocks and may ask; ``prompt.submit`` can block a prompt;
+``tool.post`` can only add a note for the model (ADR 0016, ADR 0018); any other event
+answers "no opinion". On OpenCode an ``ask`` for a read or write also needs
+``COACUS_GUARD_ASK_EXPERIMENTAL=1`` and is decided through the permission ``evaluate`` hook.
+
 An ``ask`` decision is rendered as ``ask`` only when the operator opted in with
 ``COACUS_GUARD_ASK=1`` AND the harness declares a human channel for the event
 (``can_ask`` and ``can_block`` in ``harness.json``). ``COACUS_GUARD_NO_ASK`` and a
@@ -368,7 +373,7 @@ def _can_ask(root: Path, harness: str, event: str, channel: str = "default") -> 
     Asking needs ``COACUS_GUARD_ASK=1``; ``COACUS_GUARD_NO_ASK`` or a set ``CI``
     answers False first. The capability is read from
     ``harnesses/<harness>/harness.json`` under ``root``. Any doubt (unsafe harness
-    name, an event other than ``tool.pre`` (the only one rendered), missing or
+    name, an event other than ``tool.pre`` (rendered, with prompt.submit and tool.post), missing or
     unreadable data, a capability without ``can_block``, any error while reading)
     answers False so the caller degrades instead of asking.
     """
