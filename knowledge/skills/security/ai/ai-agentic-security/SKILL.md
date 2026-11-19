@@ -67,6 +67,7 @@ a separate agent protocol or replace conventional security practices.
 
 - For LLM/model-level risks, see the [ai-llm-slm-security](../ai-llm-slm-security/SKILL.md) skill.
 - For the content trust boundary in research workflows, see the [untrusted-content-security](../../operations/untrusted-content-security/SKILL.md) skill.
+- For marking where untrusted text starts and ends inside a prompt, see [the untrusted-data frame](../../operations/untrusted-content-security/references/untrusted-data-frame.md); it is defense in depth, never a trust boundary.
 - For AI governance and assurance, see the [ai-governance-assurance](../ai-governance-assurance/SKILL.md) skill.
 - For adversarial ML in predictive models, see the [ai-adversarial-ml-security](../ai-adversarial-ml-security/SKILL.md) skill.
 

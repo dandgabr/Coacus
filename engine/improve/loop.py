@@ -246,6 +246,9 @@ def run(root: Path, options: dict, registry: sources.SourceRegistry | None = Non
             continue
         result = verify.verify(root, candidate, routing)
         if not result["passed"]:
+            if not result["protected"]["ok"]:
+                # Content-free: the reason names a protected pattern, never the statement.
+                alarms.append(f"rung 0a rejected a candidate: {result['protected']['reason']}")
             continue
         record = {
             "type": candidate["type"],

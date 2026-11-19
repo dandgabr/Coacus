@@ -202,7 +202,7 @@
       "description": "Acts as an Agentic AI Security specialist covering the lethal trifecta (untrusted data, tool access, exfiltration channel), goal hijacking, tool and function-call validation independent of the model, MCP and A2A protocol risks, memory poisoning, multi-agent trust and the OWASP Top 10 for Agentic Applications 2026.",
       "type": "skill-md",
       "url": "knowledge/skills/security/ai/ai-agentic-security/SKILL.md",
-      "digest": "sha256:996566e66cedd2d94fafb6c789abe4b99de64c03a36dc97031ed2f1a5ec182ac"
+      "digest": "sha256:1ea3231ded2c6ecdacb3a4793e9eb9d5e0c6f23f43c497a6ae7845b9793de6d6"
     },
     {
       "name": "ai-application-engineering",
@@ -265,7 +265,7 @@
       "description": "Provides AI model evaluation discipline based on production ML and LLM evaluation practice, covering offline evaluation anatomy (inputs, design, outputs), counterfactual evaluation with propensity logging, A/B testing with exit criteria and guardrail metrics, reward hacking and Goodhart defenses, LLM-as-a-judge design contracts and calibration, segment analysis and online-metric blind spots. Use when designing offline or online evaluations for models and LLM applications, building judge pipelines, or interpreting experiment results.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
-      "digest": "sha256:33f0655c265fd27842bb827c6bb4321b055ff04cedebbb7617e5ed9881d60572"
+      "digest": "sha256:171a2d0b654ae0b1e18eaa1ad2f323aba57b843c08176b87b0e76f42c9de1f81"
     },
     {
       "name": "ai-multimodal-agentic-systems",
@@ -993,7 +993,7 @@
       "description": "Guides root-cause investigation for bugs, test failures, unexpected behavior and performance regressions, using a reproducible feedback loop before changes.",
       "type": "archive",
       "url": "methodology/workflows/diagnosing-bugs/SKILL.md",
-      "digest": "sha256:890415b69bf0e91bf966c6f63cc9815cdcb9c753533d3dd18ae07d56a113c558"
+      "digest": "sha256:06b96e44e32e7636be424d00f6e048e719fa98eb0057f12ea931d7fea6e2dcf0"
     },
     {
       "name": "dispatching-parallel-agents",
@@ -1494,10 +1494,10 @@
     },
     {
       "name": "guardrail-authoring",
-      "description": "Use when adding a guardrail policy or an advisory content rule, to keep the rule precise, tested, and fail-open.",
-      "type": "skill-md",
+      "description": "Guides authoring a guardrail policy or an advisory content rule so it stays precise, tested and fail-open. Use when writing a deny or ask policy, a content rule or a lifecycle hook guard.",
+      "type": "archive",
       "url": "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
-      "digest": "sha256:a197349dc40613d6edc26865427968a5dde694aec7b580d574a288425bd38180"
+      "digest": "sha256:eddd5bf73326a6b716c479b1ad488253b7a157bd89858f3ab674353ff768d5b5"
     },
     {
       "name": "handoff",
@@ -2418,10 +2418,10 @@
     },
     {
       "name": "review-findings-pipeline",
-      "description": "Use when a review or audit produces many candidate findings, to filter false positives through adversarial validation and a confidence threshold before reporting.",
+      "description": "Filters candidate review findings through adversarial validation, an impact ratio and a confidence threshold before reporting. Use when a review or audit produces many candidate findings.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/review-findings-pipeline/SKILL.md",
-      "digest": "sha256:9a994609d7bb51e31807de66ab5a1797e6eadde10c8cc1056ef24d14f67662ff"
+      "digest": "sha256:988a9f72492cb96c4091322af8c5313dfe722af05ce31f53963d005add0573af"
     },
     {
       "name": "sast-code-review",
@@ -2589,7 +2589,7 @@
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "type": "archive",
       "url": "methodology/workflows/subagent-driven-development/SKILL.md",
-      "digest": "sha256:b72ccd05da810f445e3eb4efa05a1d10856cd9cd74dfbe03ee9e93ff3f8bfeec"
+      "digest": "sha256:ff4f0cacebef82c89c08b6f2ce6da4ef6482b9a884f49fabd364978207e1f306"
     },
     {
       "name": "supply-chain-threat-modeling",
@@ -3371,16 +3371,16 @@
     {
       "name": "untrusted-content-security",
       "description": "Establishes a trust boundary for content retrieved from the open internet, papers, documents and third-party data, so research agents treat it as evidence and never as instructions. Use when fetching web pages, reading PDFs, parsing research papers, or ingesting any external corpus that may contain prompt injection.",
-      "type": "skill-md",
+      "type": "archive",
       "url": "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
-      "digest": "sha256:e79b69f973b2e734a7ae04767d76fdfc7689168e597c2e0cd3184066ccc2290e"
+      "digest": "sha256:0b164bce187e411246f2653366b72a6c26ccea84d7ef136f7284783ca3ec02c4"
     },
     {
       "name": "using-coacus",
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:0eabf4607757adbed5e1b4aa395d887e406892d457d782a1e3ed3e96c2c7c6b7"
+      "digest": "sha256:eeda8814c56cafaa5b230fda5f1ccdcc86ec77fbc1a0eaf611e72218eb3f702f"
     },
     {
       "name": "using-git-worktrees",

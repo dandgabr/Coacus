@@ -4,9 +4,6 @@ Committed Architecture Decision Records (MADR 3.0), one per decision that binds
 the repository. The convention is normative in
 [`docs/standards/decision-records.md`](../standards/decision-records.md).
 
-Number 0017 belongs to a record on another branch that is not merged yet,
-so it is absent from the table below.
-
 | ADR | Title | Status |
 |---|---|---|
 | [0001](0001-guardrail-model-action-vs-event.md) | Guardrails are policies over actions (PAER), not events | accepted |
@@ -25,4 +22,5 @@ so it is absent from the table below.
 | [0014](0014-mcp-action-verb.md) | MCP action verb | accepted |
 | [0015](0015-guard-self-protection.md) | Guard self-protection | accepted |
 | [0016](0016-prompt-submit-hook.md) | Prompt-submit hook on Claude Code | accepted |
+| [0017](0017-protected-surfaces-rung.md) | Reject proposals that touch the loop's protected surfaces | accepted |
 | [0018](0018-tool-post-note-hook.md) | Note policies on tool output (`tool.post`) | accepted |

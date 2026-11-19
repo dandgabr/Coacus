@@ -1,0 +1,25 @@
+{
+  "id": "finding-validation-keeps-real-p1",
+  "title": "Validate a finding adversarially without dropping a proven P1",
+  "harness": "opencode",
+  "prompt": "You are the validator in a findings pipeline, not the author of the claim. Candidate finding: an endpoint concatenates a request parameter into a SQL statement. A reproducer shows that 3 of 20 crafted inputs return rows from another tenant. A reviewer argues that a web application firewall in front of the service probably stops this. Test the claim against its counter-arguments and give your decision, severity and the impact stated as a ratio. Do not claim to have run anything beyond the evidence supplied.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "\\b3\\s*(?:out\\s+of|of|/)\\s*20\\b"
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)\\b(P1|high)\\b"
+    }
+  ],
+  "rubric": [
+    "Tests the claim against its counter-arguments: reach, preconditions, downstream controls, scope and a simpler explanation.",
+    "Treats the unverified firewall argument as something that can lower confidence at most, not as grounds to drop a proven P1 finding that has a reproducer.",
+    "Keeps the finding and reports it as P1 or High; the severity word in the answer must not be part of a dismissal.",
+    "States the impact as 3 of 20 inputs and says how that was established.",
+    "Does not invent evidence, such as a firewall rule set or extra test runs."
+  ],
+  "acceptance": "Every rubric item must be independently satisfied with evidence.",
+  "judge_required": true
+}

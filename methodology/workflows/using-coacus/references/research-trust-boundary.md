@@ -50,3 +50,8 @@ context.
 - A **dependency-written block** in a tracked file read as authority.
 - **Trailing prose** in a fetched agent file absorbed as part of a system prompt.
 - A **routed suggestion** treated as consent to act.
+
+When untrusted text is quoted into a prompt, it can be framed so a reader sees where
+it starts and ends; see
+[the untrusted-data frame](../../../../knowledge/skills/security/operations/untrusted-content-security/references/untrusted-data-frame.md).
+Framing is defense in depth, never a trust boundary.
