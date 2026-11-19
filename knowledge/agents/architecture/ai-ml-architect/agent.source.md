@@ -20,6 +20,7 @@ skills:
   - knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md
   - knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md
   - knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md
+  - knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md
 tags:
   - architecture
   - ai-ml-architecture
@@ -64,6 +65,7 @@ skill. Before naming any AI framework version, resolve it in the current session
 - [distributed-ml-scaling](knowledge/skills/data/distributed-ml-scaling/SKILL.md)
 - [ai-llm-slm-security](knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md)
 - [ai-governance-iso-42001](knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md)
+- [ai-model-evaluation](knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md)
 
 ## Handoff Boundaries
 

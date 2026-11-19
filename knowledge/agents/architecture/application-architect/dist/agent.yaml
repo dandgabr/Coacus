@@ -37,10 +37,7 @@ instruction: >
   - [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
   - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
   - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
-  - [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
-  - [architecture-ddd](knowledge/skills/engineering/practices/architecture-ddd/SKILL.md)
   - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)
-  - [system-design-scalability](knowledge/skills/engineering/practices/system-design-scalability/SKILL.md)
 
   ## Handoff Boundaries
 
@@ -58,10 +55,4 @@ tools:
   - type: skill_integration
     path: ../../../../skills/engineering/practices/version-freshness/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/roles/software-architect/SKILL.md
-  - type: skill_integration
-    path: ../../../../skills/engineering/practices/architecture-ddd/SKILL.md
-  - type: skill_integration
     path: ../../../../skills/engineering/practices/c4-model-architecture/SKILL.md
-  - type: skill_integration
-    path: ../../../../skills/engineering/practices/system-design-scalability/SKILL.md

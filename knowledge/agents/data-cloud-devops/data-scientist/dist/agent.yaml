@@ -39,6 +39,8 @@ instruction: >
   - [ai-llm-engineering-rag](knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
   - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
   - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
+  - [human-in-the-loop-ml](knowledge/skills/data/human-in-the-loop-ml/SKILL.md)
+  - [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
 
   ---
 
@@ -75,3 +77,7 @@ tools:
     path: ../../../../skills/engineering/practices/clean-code-reusability/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/security-privacy/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/data/human-in-the-loop-ml/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/languages/gpu-programming-cuda/SKILL.md

@@ -36,7 +36,7 @@ one file and the generated output follows.
 
 Three sources feed the library:
 
-- **Knowledge** — what the framework knows: 471 skills across eleven categories, 104 agents, and one MCP declaration.
+- **Knowledge** — what the framework knows: 471 skills across eleven categories, 97 agents, and one MCP declaration.
 - **Methodology** — how work proceeds: 29 process workflows for planning,
   debugging, review and verification.
 - **Verticals** — domain pipelines, currently `architecture_si`: document ingest
@@ -121,11 +121,11 @@ Full treatment: [`docs/architecture.md`](docs/architecture.md).
 | Asset | Count | Breakdown |
 |---|---|---|
 | Skills | 471 | `domains` 167, `security` 133, `engineering` 38, `roles` 25, `languages` 20, `frameworks` 18, `data` 17, `mapping` 16, `architecture` 14, `infrastructure` 10, `platforms` 13 |
-| Agents | 104 | `cybersecurity` 24, `software-engineering` 20, `academic-sciences` 17, `architecture` 14, `specialized-domains` 13, `data-cloud-devops` 9, `core-orchestration` 3, `research-discovery` 4 |
+| Agents | 97 | `cybersecurity` 23, `software-engineering` 18, `academic-sciences` 17, `architecture` 13, `specialized-domains` 12, `data-cloud-devops` 8, `core-orchestration` 2, `research-discovery` 4 |
 | Workflows | 29 | Process skills imported from Superpowers and adapted to Coacus conventions, plus native engineering/governance workflows, including `using-coacus` and `learning-consolidation` |
 | MCPs | 1 | `coacus-catalog` |
 | Catalog | 500 skill entries | 471 knowledge skills + 29 workflows, generated from disk (`catalog/catalog.json` + `catalog/INDEX.md`) |
-| Provenance | 1472 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
+| Provenance | 1465 entries | `sources.lock.json` ([provenance](docs/standards/provenance.md)) |
 
 ### Core engine (stdlib only; language gate dependency is pinned)
 

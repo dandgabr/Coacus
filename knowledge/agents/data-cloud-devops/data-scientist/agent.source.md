@@ -17,6 +17,8 @@ skills:
   - knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/data/human-in-the-loop-ml/SKILL.md
+  - knowledge/skills/languages/gpu-programming-cuda/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -55,6 +57,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ai-llm-engineering-rag](knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
+- [human-in-the-loop-ml](knowledge/skills/data/human-in-the-loop-ml/SKILL.md)
+- [gpu-programming-cuda](knowledge/skills/languages/gpu-programming-cuda/SKILL.md)
 
 ---
 

@@ -11,16 +11,11 @@ Solution Architecture agent that designs one bounded solution inside the enterpr
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
-- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
 - [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
 - [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
 - [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [architecture-documentation](../../../../skills/engineering/practices/architecture-documentation/SKILL.md)
-- [dp-creational-patterns](../../../../skills/engineering/patterns/dp-creational-patterns/SKILL.md)
-- [dp-structural-patterns](../../../../skills/engineering/patterns/dp-structural-patterns/SKILL.md)
-- [dp-behavioral-patterns](../../../../skills/engineering/patterns/dp-behavioral-patterns/SKILL.md)
 - [security-architecture-patterns](../../../../skills/security/operations/security-architecture-patterns/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -60,16 +55,11 @@ current session (version-freshness) and pin it with its source and date.
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
-- [clean-architecture](../../../../skills/engineering/practices/clean-architecture/SKILL.md)
 - [api-design](../../../../skills/engineering/practices/api-design/SKILL.md)
 - [distributed-systems](../../../../skills/engineering/practices/distributed-systems/SKILL.md)
 - [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [architecture-documentation](../../../../skills/engineering/practices/architecture-documentation/SKILL.md)
-- [dp-creational-patterns](../../../../skills/engineering/patterns/dp-creational-patterns/SKILL.md)
-- [dp-structural-patterns](../../../../skills/engineering/patterns/dp-structural-patterns/SKILL.md)
-- [dp-behavioral-patterns](../../../../skills/engineering/patterns/dp-behavioral-patterns/SKILL.md)
 - [security-architecture-patterns](../../../../skills/security/operations/security-architecture-patterns/SKILL.md)
 
 ## Handoff Boundaries

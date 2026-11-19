@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 104,
+    "agents": 97,
     "skills": 500,
     "mcps": 1
   },
@@ -29,12 +29,6 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Artificial Intelligence, LLM, Computer Vision and Voice Security, covering AI Red Teaming, Prompt Injection, data poisoning, AI-system lifecycle threats under ISO/IEC 27090:2026, and OWASP Top 10 for LLM compliance.",
       "source": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md"
-    },
-    {
-      "name": "antigravity-agent",
-      "category": "core-orchestration",
-      "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
-      "source": "knowledge/agents/core-orchestration/antigravity-agent/agent.source.md"
     },
     {
       "name": "api-architect",
@@ -175,12 +169,6 @@
       "source": "knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md"
     },
     {
-      "name": "data-ai-engineer",
-      "category": "data-cloud-devops",
-      "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
-      "source": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md"
-    },
-    {
       "name": "data-architect",
       "category": "architecture",
       "description": "Data Architecture agent that owns the enterprise data asset \u2014 conceptual and logical models, governance, lineage, quality, master and reference data \u2014 and aligns it with business and application architecture. Use when defining enterprise data models, setting data governance and quality standards, or planning master data strategy.",
@@ -229,22 +217,10 @@
       "source": "knowledge/agents/software-engineering/documenter/agent.source.md"
     },
     {
-      "name": "domain-architect",
-      "category": "architecture",
-      "description": "Domain Architecture agent that owns the reference architecture and standards for one business or technical domain at near-enterprise scope, delegating from the enterprise architect and governing domain-level decisions across many solutions. Use when defining a domain reference architecture, maintaining a domain roadmap, or deciding within a domain that spans many initiatives.",
-      "source": "knowledge/agents/architecture/domain-architect/agent.source.md"
-    },
-    {
       "name": "electrical-power-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
       "source": "knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md"
-    },
-    {
-      "name": "embedded-systems-specialist",
-      "category": "specialized-domains",
-      "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
-      "source": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md"
     },
     {
       "name": "endpoint-security-specialist",
@@ -341,12 +317,6 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
       "source": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md"
-    },
-    {
-      "name": "incident-response-commander",
-      "category": "cybersecurity",
-      "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
-      "source": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md"
     },
     {
       "name": "information-systems-specialist",
@@ -537,7 +507,7 @@
     {
       "name": "soc-dfir-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
+      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), live incident command and containment, detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
       "source": "knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md"
     },
     {
@@ -545,12 +515,6 @@
       "category": "software-engineering",
       "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
       "source": "knowledge/agents/software-engineering/software-architect/agent.source.md"
-    },
-    {
-      "name": "software-engineer",
-      "category": "software-engineering",
-      "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
-      "source": "knowledge/agents/software-engineering/software-engineer/agent.source.md"
     },
     {
       "name": "solution-architect",
@@ -605,12 +569,6 @@
       "category": "software-engineering",
       "description": "Specifies, implements and verifies interface motion: pointer and gesture feedback, state and layout transitions (View Transitions, FLIP, accordion auto-height), scroll-driven and scroll-linked effects (CSS scroll timelines, GSAP ScrollTrigger, Lenis, sticky and scroll snap), text effects (split text, scramble, number tickers) and onboarding tours. Delivers a motion spec per effect with timing tokens, interruption behaviour, a reduced-motion variant, a support fallback and performance evidence. Use when a request involves animation, transitions, parallax, scroll-linked motion, springs or reduced motion; delegates WebGL/canvas, visual style and audits to sibling agents.",
       "source": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md"
-    },
-    {
-      "name": "ui-ux-designer",
-      "category": "software-engineering",
-      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
-      "source": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md"
     },
     {
       "name": "ux-designer",

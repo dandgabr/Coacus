@@ -98,6 +98,7 @@ Senior specialist agent in Frontend Engineering and Design Engineering, masterin
 - [ui-style-solarpunk](../../../../skills/domains/design/ui-style-solarpunk/SKILL.md)
 - [ui-style-steampunk](../../../../skills/domains/design/ui-style-steampunk/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [gnome-shell-extension-development](../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -185,10 +186,8 @@ This agent operates using the guidelines and technical standards established in 
 - [terminal-tui](../../../../skills/domains/design/ui-style-terminal-tui/SKILL.md)
 - [vaporwave](../../../../skills/domains/design/ui-style-vaporwave/SKILL.md)
 - [synthwave](../../../../skills/domains/design/ui-style-synthwave/SKILL.md)
-- [atompunk](../../../../skills/domains/design/ui-style-atompunk/SKILL.md)
 - [biopunk](../../../../skills/domains/design/ui-style-biopunk/SKILL.md)
 - [clockpunk](../../../../skills/domains/design/ui-style-clockpunk/SKILL.md)
-- [cyberpunk](../../../../skills/domains/design/ui-style-cyberpunk/SKILL.md)
 - [dieselpunk](../../../../skills/domains/design/ui-style-dieselpunk/SKILL.md)
 - [gothicpunk](../../../../skills/domains/design/ui-style-gothicpunk/SKILL.md)
 - [lunarpunk](../../../../skills/domains/design/ui-style-lunarpunk/SKILL.md)
@@ -201,6 +200,7 @@ This agent operates using the guidelines and technical standards established in 
 - [lang-typescript](../../../../skills/languages/lang-typescript/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [appsec-owasp-asvs](../../../../skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [gnome-shell-extension-development](../../../../skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
 ---
 

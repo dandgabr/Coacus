@@ -14,6 +14,8 @@ Senior data scientist who turns data into decisions: exploratory analysis and st
 - [ai-llm-engineering-rag](../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [human-in-the-loop-ml](../../../../skills/data/human-in-the-loop-ml/SKILL.md)
+- [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -52,6 +54,8 @@ This agent operates using the guidelines and technical standards established in 
 - [ai-llm-engineering-rag](../../../../skills/domains/industry/ai-llm-engineering-rag/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [human-in-the-loop-ml](../../../../skills/data/human-in-the-loop-ml/SKILL.md)
+- [gpu-programming-cuda](../../../../skills/languages/gpu-programming-cuda/SKILL.md)
 
 ---
 

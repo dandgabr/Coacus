@@ -15,16 +15,11 @@ skills:
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/roles/software-architect/SKILL.md
-  - knowledge/skills/engineering/practices/architecture-ddd/SKILL.md
-  - knowledge/skills/engineering/practices/clean-architecture/SKILL.md
   - knowledge/skills/engineering/practices/api-design/SKILL.md
   - knowledge/skills/engineering/practices/distributed-systems/SKILL.md
   - knowledge/skills/engineering/practices/system-design-scalability/SKILL.md
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
   - knowledge/skills/engineering/practices/architecture-documentation/SKILL.md
-  - knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md
-  - knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md
-  - knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md
   - knowledge/skills/security/operations/security-architecture-patterns/SKILL.md
 tags:
   - architecture
@@ -69,16 +64,11 @@ current session (version-freshness) and pin it with its source and date.
 - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
 - [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](knowledge/skills/engineering/practices/architecture-ddd/SKILL.md)
-- [clean-architecture](knowledge/skills/engineering/practices/clean-architecture/SKILL.md)
 - [api-design](knowledge/skills/engineering/practices/api-design/SKILL.md)
 - [distributed-systems](knowledge/skills/engineering/practices/distributed-systems/SKILL.md)
 - [system-design-scalability](knowledge/skills/engineering/practices/system-design-scalability/SKILL.md)
 - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)
 - [architecture-documentation](knowledge/skills/engineering/practices/architecture-documentation/SKILL.md)
-- [dp-creational-patterns](knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md)
-- [dp-structural-patterns](knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md)
-- [dp-behavioral-patterns](knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md)
 - [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
 
 ## Handoff Boundaries

@@ -15,13 +15,9 @@ skills:
   - knowledge/skills/engineering/practices/architecture-ddd/SKILL.md
   - knowledge/skills/engineering/practices/architecture-documentation/SKILL.md
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
-  - knowledge/skills/engineering/practices/distributed-systems/SKILL.md
-  - knowledge/skills/engineering/practices/system-design-scalability/SKILL.md
   - knowledge/skills/security/operations/security-architect-sabsa/SKILL.md
   - knowledge/skills/security/operations/security-architecture-patterns/SKILL.md
   - knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md
-  - knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md
-  - knowledge/skills/roles/software-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/business-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/solution-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
@@ -70,6 +66,10 @@ skill as your behavior contract. Your responsibilities:
    target, decide and record the rationale as a traceable decision.
 6. Represent the enterprise architecture with C4 and architecture-documentation
    artefacts, keeping every framework version pinned with a resolved source.
+7. Check domain conformance: when a solution spans several domains, confirm it
+   follows each domain's reference architecture and roadmap, using the
+   domain-architect skill as the checklist. The domain's own architect still
+   decides domain content.
 
 Respect these non-negotiable placements: security is a cross-cutting thread over
 all four domains, not a peer domain; network is part of the Technology domain.
@@ -84,13 +84,9 @@ yourself. Before naming any framework version, resolve it in the current session
 - [architecture-ddd](knowledge/skills/engineering/practices/architecture-ddd/SKILL.md)
 - [architecture-documentation](knowledge/skills/engineering/practices/architecture-documentation/SKILL.md)
 - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [distributed-systems](knowledge/skills/engineering/practices/distributed-systems/SKILL.md)
-- [system-design-scalability](knowledge/skills/engineering/practices/system-design-scalability/SKILL.md)
 - [security-architect-sabsa](knowledge/skills/security/operations/security-architect-sabsa/SKILL.md)
 - [security-architecture-patterns](knowledge/skills/security/operations/security-architecture-patterns/SKILL.md)
 - [zero-trust-architecture-engineering](knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md)
-- [cloud-infrastructure-architect](knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md)
-- [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
 - [business-architect](knowledge/skills/architecture/enterprise/business-architect/SKILL.md)
 - [solution-architect](knowledge/skills/architecture/enterprise/solution-architect/SKILL.md)
 - [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)

@@ -9,10 +9,7 @@ Application Architecture agent that owns the application portfolio — its map a
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
-- [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## Description and Purpose
@@ -49,10 +46,7 @@ current session (version-freshness).
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
-- [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 
 ## Handoff Boundaries
 

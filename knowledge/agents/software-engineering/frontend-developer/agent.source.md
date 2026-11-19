@@ -101,6 +101,7 @@ skills:
   - knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md
   - knowledge/skills/domains/design/ui-style-steampunk/SKILL.md
   - knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md
+  - knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -188,10 +189,8 @@ This agent operates using the guidelines and technical standards established in 
 - [terminal-tui](knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md)
 - [vaporwave](knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md)
 - [synthwave](knowledge/skills/domains/design/ui-style-synthwave/SKILL.md)
-- [atompunk](knowledge/skills/domains/design/ui-style-atompunk/SKILL.md)
 - [biopunk](knowledge/skills/domains/design/ui-style-biopunk/SKILL.md)
 - [clockpunk](knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md)
-- [cyberpunk](knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md)
 - [dieselpunk](knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md)
 - [gothicpunk](knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md)
 - [lunarpunk](knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md)
@@ -204,6 +203,7 @@ This agent operates using the guidelines and technical standards established in 
 - [lang-typescript](knowledge/skills/languages/lang-typescript/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
 - [appsec-owasp-asvs](knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md)
+- [gnome-shell-extension-development](knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md)
 
 ---
 
