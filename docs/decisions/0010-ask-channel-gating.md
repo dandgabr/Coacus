@@ -31,9 +31,9 @@ opt-in.
   fails closed to `deny`. The degraded `deny` is enforced through the deny render the guard
   has for each harness, including OpenCode (see Consequences).
 - OpenCode can ask only through the V2 permission `evaluate` hook, so its capability
-  cell carries `ask_channel: evaluate`. Because that path was checked against the
-  documentation only, never a live run, it needs a second explicit opt-in,
-  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, on top of `COACUS_GUARD_ASK=1`. The guard takes a `--channel` argument
+  cell carries `ask_channel: evaluate`. *(It first needed a second opt-in,
+  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, because the path was checked against the documentation
+  only. The live check below removed it; the variable is now ignored.)* The guard takes a `--channel` argument
   (`default`, `before`, `evaluate`): on a harness with an `ask_channel` it asks only
   on `evaluate`, defers on `before` (the plugin passes it when the hook is
   registered) and degrades on `default`, so a V1 install never turns an `ask` into
@@ -59,7 +59,9 @@ opt-in.
   approved the same `ask` without a prompt and the read ran, so an `ask` is not a
   barrier in that mode; only a `deny` is. The `shell` and `edit` actions arrived
   under those names. Minimum supported version: OpenCode 2.3.0, the one tested. Earlier
-  versions are not supported. The second opt-in stays, because of `--auto`.
+  versions are not supported. The second opt-in was removed after this
+  check: `COACUS_GUARD_ASK=1` is enough on OpenCode, and the `--auto` limit above is the
+  documented cost, since the hook payload carries no signal for that mode.
 - Risks that apply to every harness and are not removed by this record: a guard is a
   hook the agent's own session may be able to edit or disable (the harness settings,
   the plugin, the guard script and the user policy directory are ordinary files);

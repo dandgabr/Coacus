@@ -33,7 +33,7 @@ def fake_root(channel) -> Path:
 
 
 class TestAskChannelValue(unittest.TestCase):
-    ENV = {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}
+    ENV = {"COACUS_GUARD_ASK": "1"}
 
     def test_only_the_evaluate_channel_value_is_recognised(self) -> None:
         with mock.patch.dict(os.environ, self.ENV, clear=True):

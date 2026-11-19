@@ -17,7 +17,7 @@ from scripts import coacus_install
 REPO = Path(__file__).resolve().parents[1]
 
 
-def ask_doc(fallback="deny", enabled=True, policy_id="ask-env") -> dict:
+def ask_doc(fallback="deny", enabled=True, policy_id="ask-env", resource="**/.env") -> dict:
     return {"schema": 1, "enabled": enabled, "policies": [
         {"id": policy_id, "action": {"verb": "read", "resource": "*.env"},
          "decision": "ask", "on_ask_unavailable": fallback}]}
@@ -61,14 +61,14 @@ class TestAskWarnings(unittest.TestCase):
         self.assertEqual(len(off), 1)
         self.assertIn("COACUS_GUARD_ASK=1", off[0]["reason"])
 
-    def test_cursor_cannot_ask_and_opencode_needs_its_extra_opt_in(self) -> None:
-        self._write(ask_doc())
+    def test_cursor_cannot_ask_and_opencode_needs_no_extra_opt_in(self) -> None:
+        self._write(ask_doc(resource="*.env"))
         env = {"COACUS_GUARD_ASK": "1"}
         self.assertEqual(len(self._warn(["cursor"], env)), 1)
-        without = self._warn(["opencode"], env)
-        self.assertEqual(len(without), 1)
-        self.assertIn("COACUS_GUARD_ASK_EXPERIMENTAL=1", without[0]["reason"])
+        self.assertEqual(self._warn(["opencode"], env), [])
+        # The retired COACUS_GUARD_ASK_EXPERIMENTAL changes nothing either way.
         self.assertEqual(self._warn(["opencode"], {**env, "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}), [])
+        self.assertEqual(len(self._warn(["opencode"], {})), 1)
 
     def test_an_allow_fallback_is_flagged_as_failing_open(self) -> None:
         self._write(ask_doc(fallback="allow"))
@@ -123,7 +123,7 @@ class TestAskWarnings(unittest.TestCase):
             {"id": "ask-shell", "action": {"verb": "exec", "resource": "*deploy*"},
              "decision": "ask", "on_ask_unavailable": "allow"}]}
         self._write(shell)
-        warnings = self._warn(["opencode"], {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"})
+        warnings = self._warn(["opencode"], {"COACUS_GUARD_ASK": "1"})
         self.assertEqual(len(warnings), 1)
         self.assertTrue(warnings[0]["fails_open"])
         self.assertIn("only for a read or a write", warnings[0]["reason"])
@@ -133,12 +133,12 @@ class TestAskWarnings(unittest.TestCase):
         bad = {"schema": 1, "enabled": True, "policies": [
             {"id": "x", "action": "read", "decision": "ask"}, {"id": "y", "action": None, "decision": "ask"}]}
         self._write(bad)
-        env = {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}
+        env = {"COACUS_GUARD_ASK": "1"}
         self.assertEqual(self._warn(["opencode"], env), [])
         self.assertEqual(self._warn(["codex"], env, extra=["not a dict", {"enabled": True, "policies": [1]}]), [])
 
     def test_opencode_warns_for_an_ask_anchored_on_one_path_shape(self) -> None:
-        env = {"COACUS_GUARD_ASK": "1", "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}
+        env = {"COACUS_GUARD_ASK": "1"}
         for pattern, expected in (("sub/*", 1), ("*/.env", 1), (".env", 1), ("*.env", 0), ("*secret*", 0)):
             doc = ask_doc()
             doc["policies"][0]["action"]["resource"] = pattern
