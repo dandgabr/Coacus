@@ -4,8 +4,8 @@ Committed Architecture Decision Records (MADR 3.0), one per decision that binds
 the repository. The convention is normative in
 [`docs/standards/decision-records.md`](../standards/decision-records.md).
 
-Numbers 0013 and 0017 belong to records on other branches that are not merged yet,
-so they are absent from the table below.
+Number 0017 belongs to a record on another branch that is not merged yet,
+so it is absent from the table below.
 
 | ADR | Title | Status |
 |---|---|---|
@@ -21,6 +21,7 @@ so they are absent from the table below.
 | [0010](0010-ask-channel-gating.md) | Ask channel gating | accepted |
 | [0011](0011-command-deny-evaluation-contract.md) | Command deny evaluation contract | accepted |
 | [0012](0012-event-binding-and-enforced-events.md) | Event binding and enforced events | accepted |
+| [0013](0013-skill-gap-candidate-type.md) | Skill-gap candidate type | accepted |
 | [0014](0014-mcp-action-verb.md) | MCP action verb | accepted |
 | [0015](0015-guard-self-protection.md) | Guard self-protection | accepted |
 | [0016](0016-prompt-submit-hook.md) | Prompt-submit hook on Claude Code | accepted |
