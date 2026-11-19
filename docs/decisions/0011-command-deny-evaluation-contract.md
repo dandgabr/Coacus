@@ -27,7 +27,16 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   starts with `$`, `$'...'` quoting, brace expansion such as `{a,b}`), or pipes into a
   bare shell that reads its script from stdin. An unresolved command matches every
   `match: command` policy, so a deny rule fails closed. The cost is a false deny on
-  such a command; the message names the policy that matched.
+  such a command. When no policy found a program it forbids, the denial says the
+  command could not be read and names the policy (`unresolved: true` in the
+  `evaluate` result); otherwise the message is the policy's own.
+- An assignment (`NAME=value`) is read wherever a command may start, including right
+  after a control word (`then X=1 prog`), so it is neither the command name nor a
+  reason to call the command unresolved. Redirection operators with a file descriptor,
+  a named descriptor (`{fd}>f`), `<<<`, `<>`, `>|` and a here-document tag are peeled
+  with their target. The lexer splits `<<- TAG` into `<<`, `-` and the tag, which is
+  also what `<< - prog` gives (the tag is `-`), so the walk lists the program under both
+  readings.
 - Newlines inside quotes do not split a command, so a multi-line commit message
   parses. The body of a here-document is data unless the command that reads it is a
   shell, in which case it is scanned.
