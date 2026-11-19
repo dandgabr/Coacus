@@ -35,8 +35,8 @@ stages a PROPOSAL. It NEVER applies a change: promotion is a human pull request.
 
 - Improve-vs-create is a deterministic, auditable procedure (retrieval-first,
   default IMPROVE) in `engine/improve/route.py`.
-- Verification is a ladder: rung 0 structural (the repository's own gates),
-  rung 0b freshness (a version pin needs an anchor), rung 1 coverage, rung 2
+- Verification is a ladder: rung 0 structural (the repository's own gates), rung 0a
+  protected surfaces, rung 0b freshness (a version pin needs an anchor), rung 1 coverage, rung 2
   retrieval, rung 3 ablation (advisory), rung 4 human. The loop's own critique is
   never the acceptance criterion.
 - Proposals are appended to a runtime ledger (`docs/temp/`, gitignored) and the
@@ -84,12 +84,14 @@ its own rules, skills or policies should meet all of them before a change is ado
   `docs/standards/evidence.md`, `docs/standards/untrusted-content.md`,
   `docs/standards/lifecycle-guardrails.md`, `engine/improve/`, `engine/guardrail/`,
   `engine/verify/`, `scripts/coacus_eval.py`, `evals/scenarios/`,
-  `harnesses/*/bootstrap/guardrail-hooks.json` and `AGENTS.md`. This list lives here
-  only.
+  `harnesses/*/bootstrap/guardrail-hooks.json` and `AGENTS.md`. The list is
+  `engine/improve/protected.py`; a test keeps this sentence equal to it.
 
-Enforcing the protected surfaces (a manifest with digests, a rejection at rung 0 and
-a safety text emitted from an engine constant) is a separate core change that needs
-its own decision record. Adapted from patterns recorded in ADR 0009 (revision
+Rung 0a of the ladder enforces part of this: a candidate whose statement names a
+protected surface, or that routes to a catalog target on one, is rejected before it is
+staged ([ADR 0017](../decisions/0017-protected-surfaces-rung.md)). It is a text match on
+a proposal, not a check of any file, so the human approval above stays the real gate. A
+digest manifest and a safety text emitted from the engine are not built. Adapted from patterns recorded in ADR 0009 (revision
 `6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see
 [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
 
