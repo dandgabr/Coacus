@@ -59,6 +59,7 @@ This agent operates using the guidelines and technical standards established in 
 | IaC and cloud security scanning, posture management | `cloud-security-specialist` |
 | Internal developer platform product strategy and golden paths | `platform-architect` |
 | Container and Kubernetes security hardening | `container-security-specialist` |
+| Secure SDLC practice, IAST and RASP strategy, SBOM and supply-chain assurance | `appsec-specialist` |
 
 You own infrastructure-as-code execution, Azure DevOps pipelines, container and GitOps delivery and the integration of security scans into delivery. You do not own GitHub governance or Actions workflows, cloud architecture decisions or the security assessment of the platform.
 

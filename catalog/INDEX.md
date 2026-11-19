@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 500 skill(s) · 99 agent(s) · 1 MCP(s)
+**Totals:** 500 skill(s) · 100 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -14,6 +14,7 @@
 | ai-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md) |
 | api-architect | architecture | [knowledge/agents/architecture/api-architect/agent.source.md](../knowledge/agents/architecture/api-architect/agent.source.md) |
 | application-architect | architecture | [knowledge/agents/architecture/application-architect/agent.source.md](../knowledge/agents/architecture/application-architect/agent.source.md) |
+| appsec-specialist | cybersecurity | [knowledge/agents/cybersecurity/appsec-specialist/agent.source.md](../knowledge/agents/cybersecurity/appsec-specialist/agent.source.md) |
 | automotive-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md) |
 | backend-developer | software-engineering | [knowledge/agents/software-engineering/backend-developer/agent.source.md](../knowledge/agents/software-engineering/backend-developer/agent.source.md) |
 | bioinformatics-research-analyst | academic-sciences | [knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md](../knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md) |

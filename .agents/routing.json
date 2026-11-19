@@ -180,6 +180,42 @@
       ]
     },
     {
+      "name": "appsec-specialist",
+      "category": "cybersecurity",
+      "description": "Application Security Specialist that owns the secure development lifecycle of an application: secure SDLC and NIST SSDF practices, SAST and manual secure code review practice, IAST and RASP strategy, SBOM and software supply-chain assurance, and the AppSec tool strategy that a delivery pipeline then runs. Use it to decide what application security controls and tests a codebase needs, not to wire them into a pipeline or to attack a target.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md",
+        "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
+        "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
+        "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md",
+        "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
+        "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md",
+        "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
+        "knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md"
+      ],
+      "triggers": [
+        "application security",
+        "appsec",
+        "cadeia de suprimentos",
+        "dongtai",
+        "iast",
+        "openrasp",
+        "rasp",
+        "revis\u00e3o de c\u00f3digo seguro",
+        "sast",
+        "sbom",
+        "sdlc seguro",
+        "secure code review",
+        "secure sdlc",
+        "seguran\u00e7a de aplica\u00e7\u00e3o",
+        "seguran\u00e7a de aplica\u00e7\u00f5es",
+        "software supply chain",
+        "ssdf",
+        "supply chain"
+      ]
+    },
+    {
       "name": "automotive-security-specialist",
       "category": "cybersecurity",
       "description": "Specialist Agent in Automotive Cybersecurity, covering ISO/SAE 21434, UNECE WP.29 R155/R156, TARA, in-vehicle network security and secure OTA update and vehicle lifecycle protection.",
@@ -2156,8 +2192,7 @@
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/infrastructure/program-containers/SKILL.md",
-        "knowledge/skills/mapping/observability-correlation/SKILL.md",
-        "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md"
+        "knowledge/skills/mapping/observability-correlation/SKILL.md"
       ],
       "triggers": [
         "arquiteto de plataforma",
@@ -2358,15 +2393,11 @@
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
       ],
       "triggers": [
-        "appsec",
         "csrf",
         "dast",
         "devsecops",
         "explain security",
-        "iast",
         "owasp",
-        "rasp",
-        "sast",
         "sca",
         "security",
         "security question",

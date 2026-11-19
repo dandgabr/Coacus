@@ -10,7 +10,6 @@ Platform Architecture agent that owns the internal developer platform as a produ
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
 - [observability-correlation](../../../../skills/mapping/observability-correlation/SKILL.md)
-- [software-supply-chain-security](../../../../skills/security/appsec/software-supply-chain-security/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## Description and Purpose
@@ -44,7 +43,6 @@ component version, resolve it in the current session (version-freshness).
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
 - [observability-correlation](../../../../skills/mapping/observability-correlation/SKILL.md)
-- [software-supply-chain-security](../../../../skills/security/appsec/software-supply-chain-security/SKILL.md)
 
 ## Responsibility boundaries
 
@@ -54,6 +52,7 @@ component version, resolve it in the current session (version-freshness).
 | IaC and GitOps pipelines | `devops-engineer` |
 | Cloud landing zones | `cloud-infrastructure-architect` |
 | Network topology | `network-architect` |
+| Software supply-chain assurance and SBOM | `appsec-specialist` |
 
 You own the internal developer platform as a product: capabilities, golden paths, self-service, tenancy and cost-to-serve. You do not set infrastructure standards or build the IaC and GitOps pipelines.
 

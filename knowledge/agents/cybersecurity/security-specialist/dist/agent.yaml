@@ -24,7 +24,8 @@ instruction: >
   |---|---|
   | Security architecture of the project, threat models, trust zones, formal Technical Opinions, Go-Live gates | `security-architect` |
   | Review of a project, a change or a design, across all aspects or limited to one such as security (business rules, architecture, code, tests, security) | `project-reviewer` |
-  | Running or wiring AppSec tools (SAST, SCA, DAST, IAST, RASP) in a delivery pipeline | `devops-engineer` |
+  | Secure SDLC, SAST and secure code review practice, IAST and RASP strategy, SBOM and supply-chain assurance | `appsec-specialist` |
+  | Wiring and running AppSec tools (SAST, SCA, DAST) in a delivery pipeline | `devops-engineer` |
   | AI, LLM and agent security | `ai-security-specialist` |
   | Cloud posture, IaC scanning, cloud secrets | `cloud-security-specialist` |
   | Kubernetes and container security | `container-security-specialist` |

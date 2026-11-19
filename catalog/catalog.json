@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 99,
+    "agents": 100,
     "skills": 500,
     "mcps": 1
   },
@@ -41,6 +41,12 @@
       "category": "architecture",
       "description": "Application Architecture agent that owns the application portfolio \u2014 its map and lifecycle, standards, reference architectures and integration coherence \u2014 and the build-versus-buy and SaaS fit decisions. Use when rationalizing an application portfolio, defining application standards, or guiding modernization.",
       "source": "knowledge/agents/architecture/application-architect/agent.source.md"
+    },
+    {
+      "name": "appsec-specialist",
+      "category": "cybersecurity",
+      "description": "Application Security Specialist that owns the secure development lifecycle of an application: secure SDLC and NIST SSDF practices, SAST and manual secure code review practice, IAST and RASP strategy, SBOM and software supply-chain assurance, and the AppSec tool strategy that a delivery pipeline then runs. Use it to decide what application security controls and tests a codebase needs, not to wire them into a pipeline or to attack a target.",
+      "source": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md"
     },
     {
       "name": "automotive-security-specialist",
