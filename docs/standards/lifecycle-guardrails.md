@@ -9,8 +9,9 @@ A guardrail is authored once and rendered natively per harness. The model is
 **PAER** — Policy over Action, Event binding, Rendering effect:
 
 - **Action** — the portable subject: `verb` (`exec`, `read`, `write`, `network`,
-  `spawn`, `mcp`, `prompt`, `output`, `delegate`) plus a normalized `resource`. `prompt`
-  and `output` are bound to `prompt.submit` and `tool.post` (see Prompts and Tool output). Defined in
+  `spawn`, `mcp`, `prompt`, `output`, `stop`, `delegate`) plus a normalized `resource`.
+  `prompt`, `output` and `stop` are bound to `prompt.submit`, `tool.post` and `turn.stop`
+  (see Prompts, Tool output and Stopping). Defined in
   `methodology/lifecycle/actions.schema.json`.
   An `mcp` resource is the tool name as the harness sends it, so the pattern is per
   harness: `mcp__server__tool` on Claude Code and Codex, `server_tool` on OpenCode and
@@ -133,8 +134,8 @@ edits, and sets it back to `true`. Every denial message says this.
 ## Prompts
 
 A `prompt` rule bound to `prompt.submit` blocks a user prompt whose text matches its
-pattern (case-insensitive). Today only Claude Code has the hook, installed while an
-enabled policy binds the event, and a block shows its reason to the user. A prompt is never
+pattern (case-insensitive). Claude Code and Codex have the hook (Codex under its own trust rules, below), installed while
+an enabled policy binds the event, and a block shows its reason to the user. A prompt is never
 asked about, and a prompt over 100,000 characters matches every prompt rule. Enabling or
 disabling a prompt policy takes effect at the next install. A `prompt` rule must set
 `"event": "prompt.submit"`: without it the rule binds `tool.pre` and never fires (an
@@ -153,6 +154,20 @@ has the hook, installed while an enabled `note` policy binds the event. The text
 text is folded and read whole, a longer one in overlapping windows up to 8,000,000
 characters. The note is cut at 2,000 characters.
 Enabling or disabling the policy takes effect at the next install. See ADR 0018.
+
+## Stopping
+
+A `stop` rule bound to `turn.stop` with the decision `deny` (or an `ask`, which has no human
+to reach and degrades to its fallback) asks the agent to keep going when it tries to stop:
+the hook answers `{"decision": "block", "reason": <message>}`, and the message becomes the
+agent's next instruction. The pattern is read from the final message of the turn,
+case-insensitively, from its last 99,990 characters; `*` therefore means "ask once at the end
+of every turn", for example to require a verification step. It asks **once per turn**: when
+the payload says the agent is already continuing because of a stop hook (`stop_hook_active`),
+the guard allows, and Claude Code also ends the turn after eight consecutive continuations.
+A `stop` rule with no `event`, or a misspelled one, is read as bound to `turn.stop`. Claude
+Code and Codex render it; enabling or disabling the policy takes effect at the next install.
+See ADR 0020.
 
 ## Which tools a rule can see
 

@@ -1330,17 +1330,16 @@ def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
             if not isinstance(policy, dict):
                 continue
             action = policy.get("action") if isinstance(policy.get("action"), dict) else {}
-            # An output rule only means something on tool.post, so an omitted or misspelled
-            # event is read as that rather than as a rule that never runs.
             event = str(policy.get("event", "tool.pre"))
-            if action.get("verb") == "output" and event not in guard.KNOWN_EVENTS:
-                event = "tool.post"
-            if action.get("verb") == "output" and "event" not in policy:
-                event = "tool.post"
             # An event other than tool.pre gets a hook only for a rule that can act there.
             verb, decision = action.get("verb"), policy.get("decision")
+            # An output rule only means something on tool.post and a stop rule on turn.stop, so an
+            # omitted or misspelled event is read as that.
+            if verb in ("output", "stop") and ("event" not in policy or event not in guard.KNOWN_EVENTS):
+                event = "tool.post" if verb == "output" else "turn.stop"
             if (event == "tool.pre" or (verb == "prompt" and decision in ("deny", "ask"))
-                    or (verb == "output" and decision == "note")):
+                    or (verb == "output" and decision == "note")
+                    or (verb == "stop" and decision in ("deny", "ask"))):
                 events.add(event)
     return events
 

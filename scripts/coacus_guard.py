@@ -227,15 +227,27 @@ def _prompt_effect(harness: str, decision: str, message: str) -> str:
     Claude Code stops the prompt with ``{"decision": "block", "reason": ...}`` and shows the
     reason to the user. A prompt is never asked about: nothing here can reach a human.
     """
-    if decision == "allow" or harness != "claude-code":
+    if decision == "allow" or harness not in PROMPT_HARNESSES:
         return "{}"
-    # By default Claude Code appends the original prompt to the block message and keeps it in
-    # the transcript; suppress the echo so a blocked secret is not printed back.
-    return json.dumps({
-        "decision": "block",
-        "reason": message or "Blocked by a Coacus guardrail policy.",
-        "hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "suppressOriginalPrompt": True},
-    })
+    answer: dict = {"decision": "block", "reason": message or "Blocked by a Coacus guardrail policy."}
+    if harness == "claude-code":
+        # By default Claude Code appends the original prompt to the block message and keeps it
+        # in the transcript; suppress the echo so a blocked secret is not printed back.
+        answer["hookSpecificOutput"] = {"hookEventName": "UserPromptSubmit", "suppressOriginalPrompt": True}
+    return json.dumps(answer)
+
+
+def _stop_effect(harness: str, decision: str, message: str) -> str:
+    """Render the answer to ``turn.stop``: ask the agent to keep going once, or no opinion.
+
+    ``{"decision": "block", "reason": ...}`` stops the agent from stopping and hands it the
+    reason as its next instruction (Claude Code and Codex document the same answer).
+    """
+    if harness not in STOP_HARNESSES:
+        return _allow(harness)
+    if decision == "allow":
+        return "{}"
+    return json.dumps({"decision": "block", "reason": message or "A Coacus guardrail policy asks you to continue."})
 
 
 OUTPUT_NOTE_CHARS = 2000
@@ -340,8 +352,13 @@ ASK_CHANNELS = ("default", "before", "evaluate")
 # binds the event; every other event answers "no opinion".
 ENFORCED_EVENT = "tool.pre"
 PROMPT_EVENT = "prompt.submit"
+STOP_EVENT = "turn.stop"
+# Harnesses whose hook answers these events as ``{"decision": "block", "reason": ...}``.
+PROMPT_HARNESSES = ("claude-code", "codex")
+STOP_HARNESSES = ("claude-code", "codex")
+STOP_MAX_CHARS = 100000 - 10  # a longer value would match every pattern
 OUTPUT_EVENT = "tool.post"
-ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT, OUTPUT_EVENT)
+ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT, OUTPUT_EVENT, STOP_EVENT)
 
 # OpenCode permission names to canonical verbs. Unverified against a live OpenCode V2
 # run: only the documented hook contract is known, not every permission name.
@@ -496,6 +513,17 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
                     message = (f"This prompt is longer than {guard._MAX_COMMAND_CHARS} characters, which a prompt "
                                f"rule cannot scan, so it is blocked as a whole. {message}").strip()
             return _prompt_effect(harness, decision, message)
+        if event == STOP_EVENT:
+            data = payload if isinstance(payload, dict) else {}
+            named = data.get("hook_event_name")
+            # stop_hook_active means the agent is already continuing because of a stop hook:
+            # never ask twice, or a rule that always matches would hold the agent forever.
+            if data.get("stop_hook_active") is True or named not in (None, "Stop"):
+                return _stop_effect(harness, "allow", "")
+            last = data.get("last_assistant_message")
+            text = last[-STOP_MAX_CHARS:] if isinstance(last, str) else ""
+            decision, message = _decide(root, harness, event, "default", "stop", text)
+            return _stop_effect(harness, decision, message)
         if event == OUTPUT_EVENT:
             named = payload.get("hook_event_name") if isinstance(payload, dict) else None
             text = _output_text(payload) if named in (None, "PostToolUse") else ""

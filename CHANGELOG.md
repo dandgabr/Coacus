@@ -5,6 +5,17 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Stop rules and the Codex prompt hook
+
+### Added
+
+- A `stop` verb and a `turn.stop` hook on Claude Code and Codex (`Stop`): a `deny` policy asks the agent to keep going, with the policy message as its next instruction, when the final message matches the pattern (`*` matches every turn). It asks once per turn, because the guard allows when the payload says the agent is already continuing. See ADR 0020.
+- The `prompt.submit` hook on Codex (`UserPromptSubmit`): a `prompt` rule blocks a prompt there too. Run live on Codex 0.169.0 with hook trust bypassed for the run; Codex still needs the hook trusted in `/hooks` in normal use.
+
+### Known limits
+
+- The Stop hook was not run live on either harness (it needs a finished model turn) and Codex `tool.post` is not rendered; ADR 0020 explains both.
+
 ## [Unreleased] — Exclusive roles for three review agents
 
 ### Changed
