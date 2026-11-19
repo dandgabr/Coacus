@@ -17,9 +17,9 @@ from scripts import coacus_install
 REPO = Path(__file__).resolve().parents[1]
 
 
-def ask_doc(fallback="deny", enabled=True, policy_id="ask-env", resource="**/.env") -> dict:
+def ask_doc(fallback="deny", enabled=True, policy_id="ask-env", resource="*.env") -> dict:
     return {"schema": 1, "enabled": enabled, "policies": [
-        {"id": policy_id, "action": {"verb": "read", "resource": "*.env"},
+        {"id": policy_id, "action": {"verb": "read", "resource": resource},
          "decision": "ask", "on_ask_unavailable": fallback}]}
 
 
@@ -65,9 +65,13 @@ class TestAskWarnings(unittest.TestCase):
         self._write(ask_doc(resource="*.env"))
         env = {"COACUS_GUARD_ASK": "1"}
         self.assertEqual(len(self._warn(["cursor"], env)), 1)
-        self.assertEqual(self._warn(["opencode"], env), [])
+        deferred = self._warn(["opencode"], env)
+        self.assertEqual(len(deferred), 1)
+        self.assertIn("--auto", deferred[0]["reason"])
+        self.assertTrue(deferred[0]["fails_open"])
+        self.assertNotIn("EXPERIMENTAL", deferred[0]["reason"])
         # The retired COACUS_GUARD_ASK_EXPERIMENTAL changes nothing either way.
-        self.assertEqual(self._warn(["opencode"], {**env, "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}), [])
+        self.assertEqual(self._warn(["opencode"], {**env, "COACUS_GUARD_ASK_EXPERIMENTAL": "1"}), deferred)
         self.assertEqual(len(self._warn(["opencode"], {})), 1)
 
     def test_an_allow_fallback_is_flagged_as_failing_open(self) -> None:
@@ -139,12 +143,14 @@ class TestAskWarnings(unittest.TestCase):
 
     def test_opencode_warns_for_an_ask_anchored_on_one_path_shape(self) -> None:
         env = {"COACUS_GUARD_ASK": "1"}
-        for pattern, expected in (("sub/*", 1), ("*/.env", 1), (".env", 1), ("*.env", 0), ("*secret*", 0)):
-            doc = ask_doc()
-            doc["policies"][0]["action"]["resource"] = pattern
-            self._write(doc)
+        for pattern, anchored in (("sub/*", True), ("*/.env", True), (".env", True), ("*.env", False), ("*secret*", False)):
+            self._write(ask_doc(resource=pattern))
+            warnings = self._warn(["opencode"], env)
             with self.subTest(pattern=pattern):
-                self.assertEqual(len(self._warn(["opencode"], env)), expected)
+                self.assertEqual(len(warnings), 1)
+                # An anchored pattern degrades; one that holds for every shape is deferred, and
+                # only the --auto note remains.
+                self.assertEqual("--auto" in warnings[0]["reason"], not anchored)
 
     def test_a_harness_that_can_ask_but_cannot_block_still_warns(self) -> None:
         import shutil

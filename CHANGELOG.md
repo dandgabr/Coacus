@@ -9,7 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Changed
 
-- An `ask` policy on an OpenCode read or write is now decided through the permission `evaluate` hook with `COACUS_GUARD_ASK=1` alone. `COACUS_GUARD_ASK_EXPERIMENTAL` is retired and ignored, and the installer no longer warns about it. The path was run live on OpenCode 2.3.0 (interactive "Allow once" and "Reject"). Under `--auto` the harness still approves an ask by itself, so only a `deny` is a barrier there; see ADR 0010.
+- An `ask` policy on an OpenCode read or write is now decided through the permission `evaluate` hook with `COACUS_GUARD_ASK=1` alone. `COACUS_GUARD_ASK_EXPERIMENTAL` is retired and ignored, and the installer no longer asks for it. Instead it warns, for each OpenCode ask that will be deferred, that `--auto` approves the ask without a prompt. The path was run live on OpenCode 2.3.0 (interactive "Allow once" and "Reject"). Under `--auto` the harness still approves an ask by itself, so only a `deny` is a barrier there; see ADR 0010.
 
 ## [Unreleased] — Exclusive roles for three review agents
 

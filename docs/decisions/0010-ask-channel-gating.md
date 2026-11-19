@@ -42,10 +42,9 @@ opt-in.
   subagent ask degrades to its fallback, and so does a read or write ask that does
   not hold for every plausible shape of the path (raw, absolute, relative to the
   working directory and its nearest ancestors, and the last component), so a policy
-  anchored on one shape such as `sub/*` is not deferred. This was checked against the
-  OpenCode documentation of 2026-11-18, not against a live V2 run, and the capability
-  data records that as a gap.
-- Residual risks of the OpenCode path, all unverified without a live V2 run: the
+  anchored on one shape such as `sub/*` is not deferred. The path was then run live
+  (see the check below).
+- Residual risks of the OpenCode path, not removed by that single run: the
   `evaluate` hook may not fire for a tool call (the deferred ask is then an allow), it
   may receive an action name the guard does not map or an empty `resources`, the guard
   may time out inside the hook (the effect is left as it came), and a permission mode

@@ -1494,6 +1494,17 @@ def ask_warnings(
             elif channel and not _shape_independent(policy["action"].get("resource")):
                 reason = (f"the pattern of this ask is anchored to one path shape, so {harness} "
                           f"does not defer it to its permission hook")
+            elif channel:
+                # It will prompt, except when the person started the harness with --auto, which
+                # approves an ask by itself and which the hook cannot detect (ADR 0010).
+                warnings.append({
+                    "harness": harness,
+                    "policy": str(policy.get("id")),
+                    "reason": f"{harness} approves this ask without a prompt when it runs with --auto; only a deny holds there",
+                    "degrades_to": "allow under --auto",
+                    "fails_open": True,
+                })
+                continue
             else:
                 continue
             fallback = policy.get("on_ask_unavailable", "deny")
