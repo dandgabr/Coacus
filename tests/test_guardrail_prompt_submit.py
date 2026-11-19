@@ -381,11 +381,54 @@ class TestMissingGuardScript(GuardCase):
         merged = coacus_install._merge_hooks(old, old, {marker})
         self.assertEqual(len(merged["hooks"]["UserPromptSubmit"]), 1)
 
+    def test_a_file_named_like_a_standard_module_in_the_working_directory_is_not_imported(self) -> None:
+        planted = self.base / "project"
+        planted.mkdir()
+        (planted / "json.py").write_text("raise SystemExit('PLANTED')\n", encoding="utf-8")
+        command = self._command()
+        resolved = json.loads(coacus_install._hook_substitute(
+            json.dumps({"command": command}), REPO, python_executable=sys.executable))["command"]
+        result = subprocess.run(shlex.split(resolved), input=json.dumps({"prompt": NEEDLE}), capture_output=True,
+                                text=True, cwd=planted, timeout=60)
+        self.assertNotIn("PLANTED", result.stdout + result.stderr)
+        self.assertEqual(json.loads(result.stdout)["decision"], "block")
+
+    def test_an_entry_from_before_the_isolated_launcher_is_still_ours(self) -> None:
+        root = REPO.as_posix()
+        marker = f"{root}/scripts/coacus_guard.py"
+        old = shlex.join([sys.executable, "-c", coacus_install._OPTIONAL_SHIM, marker, "--event", "prompt.submit"])
+        self.assertTrue(coacus_install._entry_owned({"hooks": [{"type": "command", "command": old}]}, {marker}))
+
+    def test_a_plain_entry_from_an_older_install_is_replaced_not_duplicated(self) -> None:
+        root = REPO.as_posix()
+        marker = f"{root}/scripts/coacus_guard.py"
+        plain = shlex.join([sys.executable, marker, "--event", "prompt.submit"])
+        new = coacus_install._command([sys.executable, "@optional", marker, "--event", "prompt.submit"])
+        existing = {"hooks": {"UserPromptSubmit": [{"hooks": [{"type": "command", "command": plain}]}]}}
+        fragment = {"hooks": {"UserPromptSubmit": [{"hooks": [{"type": "command", "command": new}]}]}}
+        merged = coacus_install._merge_hooks(existing, fragment, {marker})
+        self.assertEqual([e["hooks"][0]["command"] for e in merged["hooks"]["UserPromptSubmit"]], [new])
+
+    def test_a_foreign_command_with_the_same_launcher_is_not_ours(self) -> None:
+        foreign = shlex.join([sys.executable, "-I", "-c", coacus_install._OPTIONAL_SHIM, "/home/u/other/tool.py"])
+        self.assertFalse(coacus_install._entry_owned({"hooks": [{"type": "command", "command": foreign}]},
+                                                      {f"{REPO.as_posix()}/scripts/coacus_guard.py"}))
+
+    def test_tool_pre_stays_fail_closed_when_the_script_is_missing(self) -> None:
+        result = subprocess.run([sys.executable, str(self.base / "gone" / "coacus_guard.py")], capture_output=True,
+                                text=True, timeout=60)
+        self.assertEqual(result.returncode, 2)
+        command = coacus_install._command([sys.executable, str(self.base / "gone" / "coacus_guard.py")])
+        self.assertNotIn("@optional", command)
+        self.assertNotIn("isfile", command)
+
     def test_the_windows_form_checks_the_script_too(self) -> None:
         with mock.patch.object(coacus_install.os, "name", "nt"):
             command = coacus_install._command(["python", "@optional", "C:/x/coacus_guard.py", "--event", "prompt.submit"])
         shim = re.search(r'-c "(.*)"$', command).group(1)
-        self.assertIn("os.path.isfile(sys.argv[0]) or sys.exit(0)", shim)
+        self.assertIn("os.path.isfile(sys.argv[0])", shim)
+        self.assertIn("guard script missing", shim)
+        self.assertIn(' -I -c ', command)
         encoded = re.search(r"b64decode\('([^']+)'\)", shim).group(1)
         self.assertEqual(json.loads(base64.b64decode(encoded))[0], "C:/x/coacus_guard.py")
         entry = {"hooks": [{"type": "command", "command": command}]}

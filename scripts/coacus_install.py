@@ -1087,6 +1087,10 @@ _OPTIONAL_SHIM = (
 )
 
 
+# Entries written by an earlier install keep matching while the launcher text changes.
+_OPTIONAL_SHIM_PREFIX = "import os,sys,runpy;p=sys.argv[1];"
+
+
 def _command(argv: list[str]) -> str:
     """Quote arguments for the host's command parser, including the interpreter.
 
@@ -1096,18 +1100,21 @@ def _command(argv: list[str]) -> str:
     if optional:
         argv = [argv[0], *argv[2:]]
     if os.name != "nt":
-        return shlex.join([argv[0], "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
+        return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
     # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
     # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
     interpreter = argv[0]
     if any(char in interpreter for char in '%!"\r\n'):
         raise ValueError("Windows hook interpreter path contains unsupported shell expansion characters")
     encoded = base64.b64encode(json.dumps(argv[1:]).encode("utf-8")).decode("ascii")
-    check = "os.path.isfile(sys.argv[0]) or sys.exit(0);" if optional else ""
+    check = ("os.path.isfile(sys.argv[0]) or (sys.stderr.write('coacus: guard script missing, hook skipped\\n'),sys.exit(0));"
+             if optional else "")
     shim = ("import base64,json,os,runpy,sys;" if optional else "import base64,json,runpy,sys;") + (
         f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
         "runpy.run_path(sys.argv[0],run_name='__main__')")
-    return f'"{interpreter}" -c "{shim}"'
+    # -I keeps the working directory and the user site off sys.path, so a file named like a
+    # standard module in the project a hook runs from cannot shadow it.
+    return f'"{interpreter}" -I -c "{shim}"'
 
 
 def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_executable: str | None = None) -> str:
@@ -1169,12 +1176,14 @@ def _entry_owned(entry: object, markers: set[str]) -> bool:
         return False
     if not args or not re.fullmatch(r"(?:python(?:\d+(?:\.\d+)*)?(?:\.exe)?|bash|sh)", re.split(r"[/\\]", args[0])[-1], re.I):
         return False
-    if len(args) > 3 and args[1] == "-c" and args[2] == _OPTIONAL_SHIM:
+    if len(args) > 1 and args[1] == "-I":
+        args = [args[0], *args[2:]]
+    if len(args) > 3 and args[1] == "-c" and args[2].startswith(_OPTIONAL_SHIM_PREFIX):
         args = [args[0], *args[3:]]
     elif len(args) == 3 and args[1] == "-c":
         shim = re.fullmatch(
             r"import base64,json,(?:os,)?runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);"
-            r"(?:os\.path\.isfile\(sys\.argv\[0\]\) or sys\.exit\(0\);)?runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
+            r"(?:os\.path\.isfile\(sys\.argv\[0\]\) or \(sys\.stderr\.write\('[^']*'\),sys\.exit\(0\)\);)?runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
             args[2],
         )
         if not shim:
