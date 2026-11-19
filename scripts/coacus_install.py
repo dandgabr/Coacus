@@ -1149,7 +1149,7 @@ def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_e
                 args = [replace(arg) for arg in shlex.split(value)]
                 # Every hook that runs one of our scripts runs it isolated: no working
                 # directory or user site on sys.path (the scripts add the repository root).
-                if value.startswith("__COACUS_PYTHON__ ") and len(args) > 1 and not args[1].startswith("-"):
+                if re.match(r"__COACUS_PYTHON__\s", value) and len(args) > 1 and not args[1].startswith("-"):
                     args.insert(1, "-I")
                 return _command(args)
             return replace(value)
@@ -1927,7 +1927,7 @@ def _plan_antigravity(
 
 def _antigravity_hooks_json(root: Path, python_executable: str | None = None) -> str:
     """Antigravity plugin hooks.json wiring the governor hook to lifecycle events."""
-    argv = [python_executable or sys.executable, (root / "scripts/coacus_governor_hook.py").as_posix()]
+    argv = [python_executable or sys.executable, "-I", (root / "scripts/coacus_governor_hook.py").as_posix()]
     matcher = "invoke_subagent|manage_subagents|task"
     return (
         json.dumps(

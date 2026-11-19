@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import re
 import shlex
 import subprocess
@@ -55,6 +56,18 @@ class TestInstalledCommands(unittest.TestCase):
             with self.subTest(plugin=name):
                 self.assertRegex(text, r"\[\s*'-I', (GUARD|GOVERNOR)")
 
+    def test_the_antigravity_governor_hook_is_isolated_too(self) -> None:
+        text = coacus_install._antigravity_hooks_json(REPO, sys.executable)
+        commands = re.findall(r'"command": "([^"]+)"', text)
+        self.assertTrue(commands)
+        for command in commands:
+            self.assertEqual(shlex.split(command)[1], "-I")
+
+    def test_a_tab_after_the_placeholder_is_still_isolated(self) -> None:
+        rendered = coacus_install._hook_substitute(
+            json.dumps({"command": '__COACUS_PYTHON__\t"__COACUS_ROOT__/scripts/x.py"'}), REPO, None, sys.executable)
+        self.assertEqual(shlex.split(json.loads(rendered)["command"])[1], "-I")
+
     def test_a_command_that_already_has_a_flag_is_left_alone(self) -> None:
         rendered = coacus_install._hook_substitute(
             json.dumps({"command": '__COACUS_PYTHON__ -S "__COACUS_ROOT__/scripts/x.py"'}), REPO, None, sys.executable)
@@ -68,7 +81,8 @@ class TestRunsIsolated(unittest.TestCase):
         command = rendered["hooks"]["SessionStart"][0]["hooks"][0]["command"]
         with tempfile.TemporaryDirectory() as tmp:
             Path(tmp, "json.py").write_text("raise SystemExit('PLANTED')\n", encoding="utf-8")
-            result = subprocess.run(shlex.split(command), capture_output=True, text=True, cwd=tmp, timeout=60)
+            env = {**os.environ, "PYTHONPATH": tmp}
+            result = subprocess.run(shlex.split(command), capture_output=True, text=True, cwd=tmp, env=env, timeout=60)
         self.assertNotIn("PLANTED", result.stdout + result.stderr)
         self.assertEqual(result.returncode, 0)
         json.loads(result.stdout)
@@ -79,8 +93,11 @@ class TestRunsIsolated(unittest.TestCase):
         command = rendered["hooks"]["PreToolUse"][0]["hooks"][0]["command"]
         with tempfile.TemporaryDirectory() as tmp:
             Path(tmp, "json.py").write_text("raise SystemExit('PLANTED')\n", encoding="utf-8")
-            result = subprocess.run(shlex.split(command), input="{}", capture_output=True, text=True, cwd=tmp, timeout=60)
+            env = {**os.environ, "PYTHONPATH": tmp}
+            result = subprocess.run(shlex.split(command), input="{}", capture_output=True, text=True, cwd=tmp, env=env,
+                                    timeout=60)
         self.assertNotIn("PLANTED", result.stdout + result.stderr)
+        self.assertEqual(result.returncode, 0)
         json.loads(result.stdout)
 
 
