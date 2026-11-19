@@ -175,6 +175,7 @@ class TestAntigravityOnDemandInstall(unittest.TestCase):
         )
         (self.root / "scripts").mkdir()
         (self.root / "scripts/coacus_catalog_mcp.py").write_text("# runtime\n", encoding="utf-8")
+        (self.root / "scripts/coacus_governor_hook.py").write_text("", encoding="utf-8")
         mcp = self.root / "knowledge/mcps/coacus-catalog"
         mcp.mkdir(parents=True)
         (mcp / "MCP.md").write_text(
