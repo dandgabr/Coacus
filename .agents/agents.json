@@ -1,6 +1,9 @@
 {
   "entries": [
     {
+      "path": "knowledge/agents/academic-sciences/bioinformatics-research-analyst"
+    },
+    {
       "path": "knowledge/agents/academic-sciences/biomedical-engineer"
     },
     {
@@ -67,9 +70,6 @@
       "path": "knowledge/agents/architecture/data-architect"
     },
     {
-      "path": "knowledge/agents/architecture/domain-architect"
-    },
-    {
       "path": "knowledge/agents/architecture/enterprise-architect"
     },
     {
@@ -92,9 +92,6 @@
     },
     {
       "path": "knowledge/agents/architecture/technology-architect"
-    },
-    {
-      "path": "knowledge/agents/core-orchestration/antigravity-agent"
     },
     {
       "path": "knowledge/agents/core-orchestration/harness-specialist"
@@ -134,9 +131,6 @@
     },
     {
       "path": "knowledge/agents/cybersecurity/iam-specialist"
-    },
-    {
-      "path": "knowledge/agents/cybersecurity/incident-response-commander"
     },
     {
       "path": "knowledge/agents/cybersecurity/iot-security-specialist"
@@ -187,9 +181,6 @@
       "path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer"
     },
     {
-      "path": "knowledge/agents/data-cloud-devops/data-ai-engineer"
-    },
-    {
       "path": "knowledge/agents/data-cloud-devops/data-engineer-specialist"
     },
     {
@@ -206,6 +197,9 @@
     },
     {
       "path": "knowledge/agents/research-discovery/code-mapping-specialist"
+    },
+    {
+      "path": "knowledge/agents/research-discovery/infrastructure-mapping-specialist"
     },
     {
       "path": "knowledge/agents/research-discovery/scientific-researcher"
@@ -253,9 +247,6 @@
       "path": "knowledge/agents/software-engineering/software-architect"
     },
     {
-      "path": "knowledge/agents/software-engineering/software-engineer"
-    },
-    {
       "path": "knowledge/agents/software-engineering/tui-cli-engineer"
     },
     {
@@ -263,9 +254,6 @@
     },
     {
       "path": "knowledge/agents/software-engineering/ui-motion-specialist"
-    },
-    {
-      "path": "knowledge/agents/software-engineering/ui-ux-designer"
     },
     {
       "path": "knowledge/agents/software-engineering/ux-designer"
@@ -278,9 +266,6 @@
     },
     {
       "path": "knowledge/agents/specialized-domains/career-coach-job-hunter"
-    },
-    {
-      "path": "knowledge/agents/specialized-domains/embedded-systems-specialist"
     },
     {
       "path": "knowledge/agents/specialized-domains/game-art-director"

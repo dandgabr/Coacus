@@ -9,11 +9,9 @@ description: >-
   opinionation against team autonomy.
 skills:
   - knowledge/skills/architecture/delivery/platform-architect/SKILL.md
-  - knowledge/skills/architecture/domains/technology-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/infrastructure/program-containers/SKILL.md
-  - knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md
   - knowledge/skills/mapping/observability-correlation/SKILL.md
   - knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md
 tags:
@@ -50,13 +48,22 @@ component version, resolve it in the current session (version-freshness).
 ## Integrated Skills and Knowledge
 
 - [platform-architect](knowledge/skills/architecture/delivery/platform-architect/SKILL.md)
-- [technology-architect](knowledge/skills/architecture/domains/technology-architect/SKILL.md)
 - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
 - [program-containers](knowledge/skills/infrastructure/program-containers/SKILL.md)
-- [cloud-infrastructure-architect](knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [observability-correlation](knowledge/skills/mapping/observability-correlation/SKILL.md)
 - [software-supply-chain-security](knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Infrastructure standards and the underlying technology platform | `technology-architect` |
+| IaC and GitOps pipelines | `devops-engineer` |
+| Cloud landing zones | `cloud-infrastructure-architect` |
+| Network topology | `network-architect` |
+
+You own the internal developer platform as a product: capabilities, golden paths, self-service, tenancy and cost-to-serve. You do not set infrastructure standards or build the IaC and GitOps pipelines.
 
 ## Handoff Boundaries
 

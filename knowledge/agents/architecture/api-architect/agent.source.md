@@ -10,7 +10,6 @@ skills:
   - knowledge/skills/architecture/domains/api-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
-  - knowledge/skills/architecture/domains/integration-architect/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
   - knowledge/skills/frameworks/framework-rest-api/SKILL.md
   - knowledge/skills/frameworks/framework-grpc/SKILL.md
@@ -51,12 +50,22 @@ current session (version-freshness).
 - [api-architect](knowledge/skills/architecture/domains/api-architect/SKILL.md)
 - [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
-- [integration-architect](knowledge/skills/architecture/domains/integration-architect/SKILL.md)
 - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
 - [framework-rest-api](knowledge/skills/frameworks/framework-rest-api/SKILL.md)
 - [framework-grpc](knowledge/skills/frameworks/framework-grpc/SKILL.md)
 - [framework-graphql](knowledge/skills/frameworks/framework-graphql/SKILL.md)
 - [api-protocol-security](knowledge/skills/security/appsec/api-protocol-security/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Interaction semantics: messaging, events, batch, delivery guarantees | `integration-architect` |
+| Business logic behind an API and service internals | `backend-developer` |
+| Enterprise-wide API policy | `enterprise-architect` |
+| Structure of one bounded solution | `solution-architect` |
+
+You own the API as a product for synchronous request/response APIs: style guide, catalog, versioning and deprecation policy, API security and monetization. You do not own messaging, event or batch interaction semantics, canonical models or delivery guarantees.
 
 ## Handoff Boundaries
 

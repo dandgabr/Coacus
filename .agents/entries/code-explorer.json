@@ -1,8 +1,8 @@
 {
   "name": "code-explorer",
-  "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+  "description": "Specialist Subagent in read-only repository investigation: rapid codebase exploration, pattern and symbol search, conventions and technical debt findings, and understanding of existing project structures.",
   "category": "research-discovery",
   "source": "knowledge/agents/research-discovery/code-explorer/agent.source.md",
   "dist": "knowledge/agents/research-discovery/code-explorer/dist",
-  "fingerprint": "11505f94fe86e158"
+  "fingerprint": "ad88ec76fe719759"
 }

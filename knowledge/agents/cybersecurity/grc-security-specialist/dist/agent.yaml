@@ -44,7 +44,18 @@ instruction: >
   - [ai-governance-iso-42001](knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md)
   - [third-party-risk-management](knowledge/skills/security/grc/third-party-risk-management/SKILL.md)
   - [quantitative-risk-fair](knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md)
-  - [consent-dsr-automation](knowledge/skills/security/grc/consent-dsr-automation/SKILL.md)
+
+  ## Responsibility boundaries
+
+  | Concern | Owner |
+  |---|---|
+  | AI system threat assessment and red teaming | `ai-security-specialist` |
+  | Consent and data subject request operations | `data-security-privacy-specialist` |
+  | Design-level threat models and security decisions | `security-architect` |
+  | Technical control implementation in the cloud | `cloud-security-specialist` |
+  | Incident handling | `soc-dfir-specialist` |
+
+  You own control frameworks, compliance mapping, management systems (including the ISO/IEC 42001 scope), evidence automation and third-party risk. You do not assess threats to AI systems, which belongs to `ai-security-specialist`.
 
   ---
 
@@ -70,8 +81,6 @@ tools:
   - type: skill_integration
     path: ../../../../skills/security/grc/cis-controls/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/security/grc/consent-dsr-automation/SKILL.md
-  - type: skill_integration
     path: ../../../../skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/eu-digital-resilience-regulation/SKILL.md
@@ -90,8 +99,6 @@ tools:
   - type: skill_integration
     path: ../../../../skills/security/grc/pci-dss-compliance/SKILL.md
   - type: skill_integration
-    path: ../../../../skills/security/grc/quantitative-risk-fair/SKILL.md
-  - type: skill_integration
     path: ../../../../skills/security/grc/security-grc-compliance/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/security-manager-samm/SKILL.md
@@ -99,3 +106,5 @@ tools:
     path: ../../../../skills/security/grc/soc2-trust-services/SKILL.md
   - type: skill_integration
     path: ../../../../skills/security/grc/third-party-risk-management/SKILL.md
+  - type: skill_integration
+    path: ../../../../skills/security/grc/quantitative-risk-fair/SKILL.md

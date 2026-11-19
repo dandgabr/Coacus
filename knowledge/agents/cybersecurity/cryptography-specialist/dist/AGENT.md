@@ -12,7 +12,6 @@ Specialist Agent in Cryptographic Engineering, covering PQC standards (FIPS 203/
 - [crypto-pki-certificate-lifecycle](../../../../skills/security/crypto/crypto-pki-certificate-lifecycle/SKILL.md)
 - [cryptography-pqc-standards](../../../../skills/security/crypto/cryptography-pqc-standards/SKILL.md)
 - [tokenization-format-preserving-encryption](../../../../skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md)
-- [privacy-enhancing-technologies](../../../../skills/security/data/privacy-enhancing-technologies/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -45,8 +44,18 @@ This agent operates using the following skills:
 - [crypto-kms-hsm-key-management](../../../../skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md)
 - [crypto-agility-pqc-migration](../../../../skills/security/crypto/crypto-agility-pqc-migration/SKILL.md)
 - [tokenization-format-preserving-encryption](../../../../skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md)
-- [privacy-enhancing-technologies](../../../../skills/security/data/privacy-enhancing-technologies/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Data classification, DLP, privacy-enhancing technologies and privacy rights | `data-security-privacy-specialist` |
+| Compliance frameworks and audit evidence | `grc-security-specialist` |
+| Cloud posture and workload identity | `cloud-security-specialist` |
+| Hardware roots of trust and side-channel analysis | `hardware-security-specialist` |
+
+You own cryptographic design, key management, PKI, crypto agility and tokenization or format-preserving encryption. You do not own data classification, DLP, privacy-enhancing technologies or privacy rights; those belong to `data-security-privacy-specialist`.
 
 ---
 

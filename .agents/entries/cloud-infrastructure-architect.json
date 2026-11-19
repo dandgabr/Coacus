@@ -1,8 +1,8 @@
 {
   "name": "cloud-infrastructure-architect",
-  "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+  "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework and FinOps.",
   "category": "data-cloud-devops",
   "source": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md",
   "dist": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/dist",
-  "fingerprint": "b43ed583125a3c56"
+  "fingerprint": "5825c78fbffd3fef"
 }

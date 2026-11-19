@@ -1,8 +1,8 @@
 {
   "name": "github-specialist",
-  "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
+  "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls, and diagnoses GitHub Pages deployment (publishing source, custom domain, DNS and TLS). Sole owner of GitHub Actions and Pages. Use for GitHub platform configuration, workflow security, delivery automation or Pages deployment problems.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
   "dist": "knowledge/agents/software-engineering/github-specialist/dist",
-  "fingerprint": "6f20be8ce6bf3a71"
+  "fingerprint": "89e9d2896f3ea3b9"
 }

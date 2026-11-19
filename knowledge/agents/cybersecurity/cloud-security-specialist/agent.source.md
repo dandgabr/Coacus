@@ -13,7 +13,6 @@ skills:
   - knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md
   - knowledge/skills/security/cloud/iac-security-scanning/SKILL.md
   - knowledge/skills/security/cloud/serverless-security/SKILL.md
-  - knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md
   - knowledge/skills/security/iam/csa-cloud-security/SKILL.md
 ---
 
@@ -48,9 +47,20 @@ This agent operates using the following skills:
 - [cloud-workload-identity-federation](knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md)
 - [cloud-detection-response](knowledge/skills/security/cloud/cloud-detection-response/SKILL.md)
 - [serverless-security](knowledge/skills/security/cloud/serverless-security/SKILL.md)
-- [ciem-cloud-entitlements](knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md)
 - [csa-cloud-security](knowledge/skills/security/iam/csa-cloud-security/SKILL.md)
 - [clean-code-reusability](knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| IAM, PAM and cloud entitlements (CIEM) | `iam-specialist` |
+| Kubernetes and container security | `container-security-specialist` |
+| Cloud penetration testing | `pentester-agent` |
+| Cloud architecture and FinOps | `cloud-infrastructure-architect` |
+| Compliance frameworks | `grc-security-specialist` |
+
+You own cloud posture, IaC security, cloud secrets, workload identity federation, cloud detection and serverless security. You do not own IAM, PAM or entitlement review, Kubernetes, offensive testing or cloud architecture.
 
 ---
 

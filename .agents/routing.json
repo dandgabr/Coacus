@@ -44,7 +44,8 @@
         "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
         "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md",
         "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md",
-        "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md"
+        "knowledge/skills/domains/industry/llm-provider-protocol-interoperability/SKILL.md",
+        "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md"
       ],
       "triggers": [
         "ai architect",
@@ -56,6 +57,7 @@
         "arquitetura de ml",
         "genai architecture",
         "ml architect",
+        "mlops",
         "mlops architect"
       ]
     },
@@ -121,24 +123,6 @@
       ]
     },
     {
-      "name": "antigravity-agent",
-      "category": "core-orchestration",
-      "description": "Lead Agent for Autonomous Pair Programming and Engineering in the Google Antigravity ecosystem. Specialized in end-to-end development, refactoring, troubleshooting, command execution and extensibility through customizations (Skills, Rules, Plugins, Hooks and MCP).",
-      "skills": [
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
-        "knowledge/skills/platforms/program-github-actions/SKILL.md"
-      ],
-      "triggers": [
-        "agy",
-        "antigravity",
-        "antigravity cli",
-        "google antigravity",
-        "pair programmer",
-        "pair programming"
-      ]
-    },
-    {
       "name": "api-architect",
       "category": "architecture",
       "description": "API Architecture agent that owns API strategy, productization and governance \u2014 design-first style guides, versioning policy, security, the API catalog and lifecycle, and consumer experience. Use when setting API standards, governing the API lifecycle, defining API security, or assessing API monetization.",
@@ -146,7 +130,6 @@
         "knowledge/skills/architecture/domains/api-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
-        "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
         "knowledge/skills/frameworks/framework-grpc/SKILL.md",
@@ -183,10 +166,7 @@
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-        "knowledge/skills/roles/software-architect/SKILL.md",
-        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
-        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md"
+        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md"
       ],
       "triggers": [
         "application architect",
@@ -236,7 +216,6 @@
         "knowledge/skills/languages/lang-rust/SKILL.md",
         "knowledge/skills/languages/lang-typescript/SKILL.md",
         "knowledge/skills/roles/backend-developer/SKILL.md",
-        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
         "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
         "knowledge/skills/engineering/practices/api-design/SKILL.md",
         "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
@@ -257,13 +236,40 @@
       ]
     },
     {
+      "name": "bioinformatics-research-analyst",
+      "category": "academic-sciences",
+      "description": "Specialist Agent in Biological Data Analysis for research: bulk and single-cell expression, flow cytometry, pooled screens, genomic coordinates, constraint-based metabolic models and isotope flux, with animal-welfare evidence for study design. Use it to analyze a dataset, not to run a bioprocess.",
+      "skills": [
+        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+        "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+        "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+        "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+        "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+        "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+        "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "bioinformatics",
+        "bioinform\u00e1tica",
+        "citometria de fluxo",
+        "c\u00e9lula \u00fanica",
+        "express\u00e3o g\u00eanica",
+        "flow cytometry",
+        "gene expression",
+        "omics",
+        "rna-seq",
+        "single cell"
+      ]
+    },
+    {
       "name": "biomedical-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biomedical Engineering, covering biosignal processing (ECG, EEG, EMG), medical instrumentation with isolation amplifiers (IA), medical imaging physics (CT, MRI, ultrasound) and interoperability with DICOM and HL7/FHIR.",
       "skills": [
         "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
         "knowledge/skills/domains/industry/healthtech-standards-security/SKILL.md",
-        "knowledge/skills/domains/industry/ai-drug-discovery/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -282,17 +288,8 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
       "skills": [
-        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
         "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
-        "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
-        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
-        "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
-        "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
-        "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
         "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
-        "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
-        "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
-        "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
         "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
@@ -321,7 +318,8 @@
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
         "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md"
+        "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
+        "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md"
       ],
       "triggers": [
         "2d graphics",
@@ -424,7 +422,6 @@
       "description": "Senior specialist agent in Chemical Engineering, Synthesis and Industrial Processes, covering mass and energy balances, chemical kinetics, reactor design (CSTR, PFR, PBR), organic/inorganic synthesis, instrumental analysis (HPLC/GC/NMR), solution thermodynamics and transport phenomena.",
       "skills": [
         "knowledge/skills/domains/academic/tandem-mass-spectra-research/SKILL.md",
-        "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
         "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
         "knowledge/skills/domains/academic/academic-chemistry-synthesis-analysis/SKILL.md",
         "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
@@ -465,7 +462,7 @@
     {
       "name": "cloud-infrastructure-architect",
       "category": "data-cloud-devops",
-      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework, FinOps and secure IaC automation.",
+      "description": "Specialist Agent in Multi-Cloud Architecture and Engineering (AWS, Azure, GCP, OCI), Well-Architected Framework and FinOps.",
       "skills": [
         "knowledge/skills/platforms/gemini-enterprise/SKILL.md",
         "knowledge/skills/infrastructure/hpc-supercomputing-clusters/SKILL.md",
@@ -474,8 +471,7 @@
         "knowledge/skills/infrastructure/cloud-gcp/SKILL.md",
         "knowledge/skills/infrastructure/cloud-oci/SKILL.md",
         "knowledge/skills/security/iam/csa-cloud-security/SKILL.md",
-        "knowledge/skills/security/iam/iam-access-management/SKILL.md",
-        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
+        "knowledge/skills/security/iam/iam-access-management/SKILL.md"
       ],
       "triggers": [
         "arquitetura de nuvem",
@@ -503,7 +499,6 @@
         "knowledge/skills/security/cloud/cloud-workload-identity-federation/SKILL.md",
         "knowledge/skills/security/cloud/iac-security-scanning/SKILL.md",
         "knowledge/skills/security/cloud/serverless-security/SKILL.md",
-        "knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md",
         "knowledge/skills/security/iam/csa-cloud-security/SKILL.md"
       ],
       "triggers": [
@@ -524,9 +519,7 @@
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/infrastructure/cloud-cloudflare/SKILL.md",
-        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
-        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
-        "knowledge/skills/roles/devops-engineer/SKILL.md"
+        "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md"
       ],
       "triggers": [
         "cloudflare",
@@ -542,10 +535,9 @@
     {
       "name": "code-explorer",
       "category": "research-discovery",
-      "description": "Specialist Subagent in Rapid Codebase Exploration, pattern search, architecture analysis, dependency mapping and understanding of existing project structures.",
+      "description": "Specialist Subagent in read-only repository investigation: rapid codebase exploration, pattern and symbol search, conventions and technical debt findings, and understanding of existing project structures.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
         "knowledge/skills/roles/codebase-exploration/SKILL.md",
         "knowledge/skills/roles/software-architect/SKILL.md"
       ],
@@ -562,23 +554,16 @@
     {
       "name": "code-mapping-specialist",
       "category": "research-discovery",
-      "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+      "description": "Specialist Agent in Source and Architecture Mapping: module and layer structure, execution flows and call graphs, API and service-mesh contracts, database schemas and dependency graphs, rendered as UML and graph diagrams.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
         "knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md",
-        "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
-        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
-        "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
         "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
         "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md",
         "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md",
         "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
-        "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
-        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
-        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
-        "knowledge/skills/mapping/observability-correlation/SKILL.md",
         "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
         "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
       ],
@@ -589,16 +574,14 @@
         "depend\u00eancias",
         "mapeamento",
         "mapping",
-        "topologia",
         "uml"
       ]
     },
     {
       "name": "code-optimizer",
       "category": "software-engineering",
-      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio) and data-intensive system architecture.",
+      "description": "Senior specialist agent in Code and Architecture Optimization, covering profiling and bottleneck elimination (CPU, memory, I/O, latency, contention), economical Tidy First refactoring, persistence optimization (N+1, caching), concurrency (Java Virtual Threads, C# async, Python multiprocessing/asyncio), following a profile-then-fix methodology across languages.",
       "skills": [
-        "knowledge/skills/data/data-intensive-systems/SKILL.md",
         "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/empirical-software-design/SKILL.md",
@@ -625,7 +608,9 @@
         "otimizar",
         "performance",
         "profiling",
-        "refatorar performance"
+        "refactoring",
+        "refatorar performance",
+        "refatora\u00e7\u00e3o"
       ]
     },
     {
@@ -641,25 +626,33 @@
         "knowledge/skills/languages/lang-cpp/SKILL.md"
       ],
       "triggers": [
+        "device tree",
         "embarcado",
+        "embedded",
+        "firmware",
         "fpga",
         "hardware",
+        "microcontrolador",
+        "microcontroller",
         "microprocessador",
         "microprocessor",
+        "rtos",
         "sistema digital",
+        "spi",
+        "uart",
         "verilog",
         "vhdl",
-        "vlsi"
+        "vlsi",
+        "yocto",
+        "zephyr"
       ]
     },
     {
       "name": "computer-scientist",
       "category": "academic-sciences",
-      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures, Theory of Computation and Automata (Sipser), Compiler Engineering (Dragon Book) and Computer Graphics.",
+      "description": "Senior specialist agent in Theoretical Computer Science and Advanced Algorithms, covering rigorous asymptotic analysis (CLRS), balanced data structures and Theory of Computation and Automata (Sipser).",
       "skills": [
         "knowledge/skills/domains/academic/academic-algorithms-data-structures/SKILL.md",
-        "knowledge/skills/domains/academic/academic-compilers-language-processors/SKILL.md",
-        "knowledge/skills/domains/academic/academic-computer-graphics-image-processing/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -701,7 +694,7 @@
     {
       "name": "conversational-ai-engineer",
       "category": "data-cloud-devops",
-      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
+      "description": "Senior conversational AI engineer who designs, measures and continuously improves chatbots and LLM-backed assistants, including the LLM/RAG application builder role for assistants: bot archetypes, intent and RAG architectures, layered evaluation, guardrail ladders, generative data augmentation and human handoff design. Applies conversational AI, LLM engineering, model evaluation and AI security practices.",
       "skills": [
         "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
         "knowledge/skills/domains/industry/conversational-ai-chatbots/SKILL.md",
@@ -729,6 +722,7 @@
         "intencao",
         "intent",
         "nlu",
+        "rag",
         "transferencia para humano",
         "virtual assistant"
       ]
@@ -787,8 +781,7 @@
         "knowledge/skills/security/crypto/crypto-kms-hsm-key-management/SKILL.md",
         "knowledge/skills/security/crypto/crypto-pki-certificate-lifecycle/SKILL.md",
         "knowledge/skills/security/crypto/cryptography-pqc-standards/SKILL.md",
-        "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md",
-        "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md"
+        "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md"
       ],
       "triggers": [
         "assinatura digital",
@@ -802,43 +795,6 @@
         "post-quantum",
         "pqc",
         "p\u00f3s-qu\u00e2ntica"
-      ]
-    },
-    {
-      "name": "data-ai-engineer",
-      "category": "data-cloud-devops",
-      "description": "Senior specialist agent in Data Engineering, Big Data and Artificial Intelligence, covering distributed pipelines (Spark, Airflow), real-time streaming (Kafka, Flink, Pinot), Data Mesh architectures, Deep Learning, MLOps and LLM/RAG Engineering.",
-      "skills": [
-        "knowledge/skills/data/data-mesh-governance/SKILL.md",
-        "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
-        "knowledge/skills/data/vector-databases/SKILL.md",
-        "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
-        "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
-        "knowledge/skills/languages/gpu-programming-cuda/SKILL.md",
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md",
-        "knowledge/skills/data/python-data-science/SKILL.md",
-        "knowledge/skills/data/distributed-ml-scaling/SKILL.md",
-        "knowledge/skills/domains/industry/computer-vision-deep-learning/SKILL.md",
-        "knowledge/skills/domains/industry/explainable-ai/SKILL.md",
-        "knowledge/skills/domains/industry/ai-application-engineering/SKILL.md",
-        "knowledge/skills/domains/industry/ai-model-evaluation/SKILL.md",
-        "knowledge/skills/data/mlops-platform-engineering/SKILL.md",
-        "knowledge/skills/data/human-in-the-loop-ml/SKILL.md",
-        "knowledge/skills/data/agentic-temporal-knowledge-graphs/SKILL.md",
-        "knowledge/skills/domains/industry/llm-observability-otel-langfuse/SKILL.md"
-      ],
-      "triggers": [
-        "airflow",
-        "dados e ia",
-        "data and ai",
-        "data pipeline",
-        "deep learning",
-        "machine learning",
-        "mlops",
-        "pipeline de dados",
-        "rag",
-        "spark"
       ]
     },
     {
@@ -875,20 +831,22 @@
       "description": "Specialist in Data Engineering, Data Mesh, Real-Time Streaming (Kafka, Pinot, Flink), Federated Governance and Data Anonymization Pipelines.",
       "skills": [
         "knowledge/skills/data/data-mesh-governance/SKILL.md",
-        "knowledge/skills/data/db-postgresql/SKILL.md",
         "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/roles/dba-database-administrator/SKILL.md",
         "knowledge/skills/security/grc/security-privacy/SKILL.md"
       ],
       "triggers": [
+        "airflow",
         "data engineering",
         "data mesh",
+        "data pipeline",
         "engenharia de dados",
         "etl",
         "flink",
         "kafka",
         "lakehouse",
+        "pipeline de dados",
+        "spark",
         "streaming"
       ]
     },
@@ -905,7 +863,9 @@
         "knowledge/skills/domains/academic/data-science-advanced-math/SKILL.md",
         "knowledge/skills/domains/industry/ai-llm-engineering-rag/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/data/human-in-the-loop-ml/SKILL.md",
+        "knowledge/skills/languages/gpu-programming-cuda/SKILL.md"
       ],
       "triggers": [
         "ab testing",
@@ -920,6 +880,7 @@
         "cross-validation",
         "data science",
         "data scientist",
+        "deep learning",
         "eda",
         "estatistica",
         "explicabilidade",
@@ -941,10 +902,9 @@
     {
       "name": "data-security-privacy-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, tokenization, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/security/crypto/tokenization-format-preserving-encryption/SKILL.md",
         "knowledge/skills/security/data/data-classification-dspm/SKILL.md",
         "knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md",
         "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md",
@@ -967,7 +927,7 @@
     {
       "name": "dba-specialist",
       "category": "data-cloud-devops",
-      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering modeling, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
+      "description": "Specialist Agent in Database Administration (DBA) for SQL and NoSQL, covering engine-level physical design, performance tuning (EXPLAIN), high availability, replication and security on PostgreSQL, MariaDB, SQLite and MongoDB.",
       "skills": [
         "knowledge/skills/data/db-mariadb/SKILL.md",
         "knowledge/skills/data/db-mongodb/SKILL.md",
@@ -995,15 +955,13 @@
     {
       "name": "design-qa-specialist",
       "category": "software-engineering",
-      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique, Accessibility Auditing and Frontend Craftsmanship. Masters the elimination of generic AI design anti-patterns, heuristic evaluation and design token discipline.",
+      "description": "Specialist Agent in UI/UX Design Quality Assurance, Visual Critique and Accessibility Auditing. Audits read-only: masters the identification of generic AI design anti-patterns, heuristic evaluation and design token discipline, and reports findings without building or redesigning.",
       "skills": [
         "knowledge/skills/frameworks/framework-tabler/SKILL.md",
         "knowledge/skills/engineering/practices/ui-design-craftsmanship/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
-        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-        "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
         "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
         "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md"
@@ -1021,20 +979,19 @@
         "ui audit",
         "ui craftsmanship",
         "ui critique",
-        "visual polish"
+        "visual polish",
+        "wcag"
       ]
     },
     {
       "name": "devops-engineer",
       "category": "data-cloud-devops",
-      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Backstage), container orchestration (Docker, Podman, CRI-O, Kubernetes), GitHub governance and CI/CD pipelines (GitHub Actions and Azure Pipelines) with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
+      "description": "DevOps, Platform Engineering and DevSecOps Agent focused on infrastructure-as-code automation (Terraform, Ansible, Vagrant, Packer), Backstage as developer-portal tooling, container orchestration (Docker, Podman, CRI-O, Kubernetes, GitOps) and Azure DevOps and Azure Pipelines delivery with integrated security (Opengrep SAST, OWASP ZAP DAST and OWASP Dependency-Check SCA).",
       "skills": [
-        "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
         "knowledge/skills/engineering/practices/desktop-app-distribution/SKILL.md",
         "knowledge/skills/engineering/practices/repository-artifact-hygiene/SKILL.md",
         "knowledge/skills/infrastructure/program-containers/SKILL.md",
         "knowledge/skills/platforms/program-azure-devops/SKILL.md",
-        "knowledge/skills/platforms/program-github-actions/SKILL.md",
         "knowledge/skills/roles/devops-engineer/SKILL.md",
         "knowledge/skills/security/grc/cis-controls/SKILL.md",
         "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
@@ -1118,29 +1075,6 @@
       ]
     },
     {
-      "name": "domain-architect",
-      "category": "architecture",
-      "description": "Domain Architecture agent that owns the reference architecture and standards for one business or technical domain at near-enterprise scope, delegating from the enterprise architect and governing domain-level decisions across many solutions. Use when defining a domain reference architecture, maintaining a domain roadmap, or deciding within a domain that spans many initiatives.",
-      "skills": [
-        "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
-        "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
-        "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
-        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-        "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
-        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md"
-      ],
-      "triggers": [
-        "arquiteto de dom\u00ednio",
-        "arquiteto de dom\u00ednios",
-        "arquitetura de dom\u00ednio",
-        "arquitetura de refer\u00eancia de dom\u00ednio",
-        "domain architect",
-        "domain architecture",
-        "domain reference architecture"
-      ]
-    },
-    {
       "name": "electrical-power-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Electric Power Systems (EPS), Smart Grids, Generation, Transmission and Distribution, covering load flow, short-circuit analysis, IEC 61850 digital protection, electric machines, transformers, power electronics (SVPWM, SiC/GaN inverters) and NBR 5410/14039 compliance.",
@@ -1165,45 +1099,14 @@
       ]
     },
     {
-      "name": "embedded-systems-specialist",
-      "category": "specialized-domains",
-      "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
-      "skills": [
-        "knowledge/skills/domains/academic/academic-digital-systems-vlsi/SKILL.md",
-        "knowledge/skills/domains/academic/academic-microprocessors-embedded-systems/SKILL.md",
-        "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
-        "knowledge/skills/languages/lang-c/SKILL.md",
-        "knowledge/skills/languages/lang-cpp/SKILL.md",
-        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-        "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
-      ],
-      "triggers": [
-        "device tree",
-        "embarcado",
-        "embedded",
-        "firmware",
-        "microcontrolador",
-        "microcontroller",
-        "rtos",
-        "spi",
-        "uart",
-        "yocto",
-        "zephyr"
-      ]
-    },
-    {
       "name": "endpoint-security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security, endpoint detection engineering and host forensics.",
+      "description": "Specialist Agent in Endpoint and Platform Security, covering EDR/XDR, application control, OS hardening baselines and patch management, macOS endpoint security and endpoint detection engineering.",
       "skills": [
         "knowledge/skills/languages/lang-powershell/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/infrastructure/linux-kernel-systemd-internals/SKILL.md",
         "knowledge/skills/security/operations/endpoint-detection-engineering/SKILL.md",
-        "knowledge/skills/security/operations/endpoint-forensics/SKILL.md",
-        "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
         "knowledge/skills/security/platform/endpoint-application-control/SKILL.md",
         "knowledge/skills/security/platform/macos-endpoint-security/SKILL.md",
         "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md",
@@ -1231,13 +1134,9 @@
         "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
         "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
         "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-        "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
-        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
         "knowledge/skills/security/operations/security-architect-sabsa/SKILL.md",
         "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md",
         "knowledge/skills/infrastructure/zero-trust-architecture-engineering/SKILL.md",
-        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
-        "knowledge/skills/roles/software-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/business-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/solution-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
@@ -1258,8 +1157,15 @@
         "architecture governance",
         "architecture review board",
         "arquiteto corporativo",
+        "arquiteto de dom\u00ednio",
+        "arquiteto de dom\u00ednios",
         "arquitetura corporativa",
+        "arquitetura de dom\u00ednio",
+        "arquitetura de refer\u00eancia de dom\u00ednio",
         "arquitetura empresarial",
+        "domain architect",
+        "domain architecture",
+        "domain reference architecture",
         "enterprise architect",
         "enterprise architecture",
         "estado alvo",
@@ -1282,92 +1188,14 @@
         "knowledge/skills/frameworks/framework-vue/SKILL.md",
         "knowledge/skills/languages/lang-typescript/SKILL.md",
         "knowledge/skills/roles/frontend-developer/SKILL.md",
-        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-        "knowledge/skills/roles/ui-designer/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
         "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
         "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
         "knowledge/skills/languages/javascript-high-performance/SKILL.md",
         "knowledge/skills/frameworks/framework-testing-javascript/SKILL.md",
-        "knowledge/skills/domains/design/color-theory-foundations/SKILL.md",
-        "knowledge/skills/domains/design/color-harmony-palettes/SKILL.md",
-        "knowledge/skills/domains/design/color-contrast-accessibility/SKILL.md",
-        "knowledge/skills/domains/design/color-ui-systems/SKILL.md",
-        "knowledge/skills/domains/design/color-data-visualization/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
-        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
+        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
+        "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md"
       ],
       "triggers": [
         "accessibility",
@@ -1375,8 +1203,16 @@
         "component",
         "componente",
         "css",
+        "extensao gnome",
+        "extens\u00e3o do gnome",
+        "extens\u00e3o gnome shell",
         "front-end",
         "frontend",
+        "gjs",
+        "gnome extension",
+        "gnome shell",
+        "gnome shell extension",
+        "libadwaita",
         "react",
         "tailwind",
         "ui",
@@ -1387,22 +1223,17 @@
     {
       "name": "fullstack-developer",
       "category": "software-engineering",
-      "description": "Full Stack Development Agent specialized in building end-to-end web applications, integrating backend logic (REST, gRPC), frontend (React, Vue) and databases (DBA) while ensuring clean, secure code.",
+      "description": "Full Stack Development Agent specialized in the integration seam of a web application: API contracts (REST, gRPC), authentication flows and the end-to-end wiring of one vertical slice across frontend and backend, while ensuring clean, secure code. Delegates deep backend work to backend-developer and UI implementation to frontend-developer.",
       "skills": [
         "knowledge/skills/roles/fullstack-developer/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/frameworks/framework-grpc/SKILL.md",
         "knowledge/skills/frameworks/framework-react/SKILL.md",
         "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-        "knowledge/skills/languages/lang-csharp/SKILL.md",
-        "knowledge/skills/languages/lang-go/SKILL.md",
         "knowledge/skills/languages/lang-java/SKILL.md",
         "knowledge/skills/languages/lang-python/SKILL.md",
-        "knowledge/skills/languages/lang-rust/SKILL.md",
         "knowledge/skills/languages/lang-typescript/SKILL.md",
-        "knowledge/skills/roles/backend-developer/SKILL.md",
         "knowledge/skills/roles/dba-database-administrator/SKILL.md",
-        "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md"
       ],
       "triggers": [
@@ -1440,7 +1271,7 @@
     {
       "name": "game-asset-pipeline-engineer",
       "category": "specialized-domains",
-      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
+      "description": "Automates 2D game asset processing, soft-alpha extraction, pixel art lattice recovery, sprite sheet packing, RIFE-style frame interpolation, parallax multi-plane scene assembly and engine manifest generation. Use when extracting, assembling, or exporting 2D sprite sheets for Phaser, Flame, Godot, or Unity.",
       "skills": [
         "knowledge/skills/domains/industry/game-asset-pipeline/SKILL.md",
         "knowledge/skills/domains/design/game-2d-scene-composition/SKILL.md"
@@ -1513,7 +1344,6 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Geosciences and Remote Sensing, covering structural geology, geophysics, digital cartography, GIS/QGIS geoprocessing and multispectral satellite image spectrometry.",
       "skills": [
-        "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
         "knowledge/skills/domains/academic/academic-geosciences-remote-sensing-gis/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
@@ -1533,17 +1363,14 @@
     {
       "name": "github-specialist",
       "category": "software-engineering",
-      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls. Use for GitHub platform configuration, workflow security or delivery automation.",
+      "description": "Designs and reviews GitHub repository governance, GitHub Actions workflows, CI/CD, runner operations and software-supply-chain controls, and diagnoses GitHub Pages deployment (publishing source, custom domain, DNS and TLS). Sole owner of GitHub Actions and Pages. Use for GitHub platform configuration, workflow security, delivery automation or Pages deployment problems.",
       "skills": [
         "knowledge/skills/engineering/practices/ci-security-scanning/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
         "knowledge/skills/engineering/practices/code-review-practices/SKILL.md",
-        "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
         "methodology/workflows/finishing-a-development-branch/SKILL.md",
         "methodology/workflows/verification-before-completion/SKILL.md",
-        "knowledge/skills/platforms/program-github-actions/SKILL.md",
-        "knowledge/skills/roles/devops-engineer/SKILL.md"
+        "knowledge/skills/platforms/program-github-actions/SKILL.md"
       ],
       "triggers": [
         "actions",
@@ -1566,7 +1393,6 @@
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md",
         "knowledge/skills/security/grc/cis-controls/SKILL.md",
-        "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
         "knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md",
         "knowledge/skills/security/grc/eu-digital-resilience-regulation/SKILL.md",
         "knowledge/skills/security/grc/fedramp-cmmc-cloud-gov-assurance/SKILL.md",
@@ -1576,11 +1402,11 @@
         "knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md",
         "knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md",
         "knowledge/skills/security/grc/pci-dss-compliance/SKILL.md",
-        "knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md",
         "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
         "knowledge/skills/security/grc/security-manager-samm/SKILL.md",
         "knowledge/skills/security/grc/soc2-trust-services/SKILL.md",
-        "knowledge/skills/security/grc/third-party-risk-management/SKILL.md"
+        "knowledge/skills/security/grc/third-party-risk-management/SKILL.md",
+        "knowledge/skills/security/grc/quantitative-risk-fair/SKILL.md"
       ],
       "triggers": [
         "audit",
@@ -1638,14 +1464,11 @@
     {
       "name": "hardware-security-specialist",
       "category": "cybersecurity",
-      "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+      "description": "Specialist in Physical Hardware Auditing, Embedded Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
       "skills": [
         "knowledge/skills/domains/industry/hardware-hacking-embedded-security/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md",
-        "knowledge/skills/security/platform/edr-evasion-endpoint-security/SKILL.md",
-        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-        "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md"
       ],
       "triggers": [
         "canal lateral",
@@ -1673,6 +1496,9 @@
         "knowledge/skills/platforms/antigravity-guide/SKILL.md"
       ],
       "triggers": [
+        "agy",
+        "antigravity",
+        "antigravity cli",
         "assistant harness",
         "claude code",
         "claude cowork",
@@ -1680,6 +1506,7 @@
         "codex cli",
         "command code",
         "cursor configuration",
+        "google antigravity",
         "opencode"
       ]
     },
@@ -1719,7 +1546,6 @@
       "description": "Specialist Agent in Identity and Access Management (IAM/PAM), Identity Governance, Zero Trust Architecture, Entra ID, Power Platform, AWS, Azure, GCP and OCI IAM.",
       "skills": [
         "knowledge/skills/security/iam/ciem-cloud-entitlements/SKILL.md",
-        "knowledge/skills/security/iam/csa-cloud-security/SKILL.md",
         "knowledge/skills/security/iam/iam-access-aws/SKILL.md",
         "knowledge/skills/security/iam/iam-access-azure/SKILL.md",
         "knowledge/skills/security/iam/iam-access-gcp/SKILL.md",
@@ -1750,41 +1576,17 @@
       ]
     },
     {
-      "name": "incident-response-commander",
-      "category": "cybersecurity",
-      "description": "Senior Defensive Security and Incident Commander Agent specialized in the PICERL incident lifecycle, evidence preservation under RFC 3227, live Linux/Windows triage, volatile memory analysis, bash ops automation, active containment strategies, and forensic root cause analysis.",
-      "skills": [
-        "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
-        "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md",
-        "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
-        "knowledge/skills/security/operations/dfir-forensics/SKILL.md",
-        "knowledge/skills/security/operations/threat-hunting/SKILL.md"
-      ],
-      "triggers": [
-        "blue team",
-        "comando de incidente",
-        "containment",
-        "forensics triage",
-        "incident command",
-        "incident commander",
-        "live host triage",
-        "picerl",
-        "resposta a incidentes",
-        "rfc 3227",
-        "triage de seguranca"
-      ]
-    },
-    {
       "name": "information-systems-specialist",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM systems, IT service governance (ITIL 4, COBIT 2019), Business Intelligence and systems auditing.",
+      "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM/BI and Power Platform operations, and ITIL 4 and COBIT 2019 service governance.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/data/power-bi/SKILL.md",
         "knowledge/skills/domains/academic/academic-enterprise-information-systems/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/platforms/power-automate/SKILL.md",
-        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md"
+        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md",
+        "knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md"
       ],
       "triggers": [
         "bpmn",
@@ -1799,19 +1601,47 @@
       ]
     },
     {
+      "name": "infrastructure-mapping-specialist",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Runtime and Infrastructure Mapping: application and dependency discovery, network flows, Kubernetes and container topology, multi-cloud topology, CMDB inventory and observability correlation. Use it to map what is running, not how the source is structured.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+        "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
+        "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
+        "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
+        "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
+        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
+        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
+        "knowledge/skills/mapping/observability-correlation/SKILL.md",
+        "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
+        "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
+      ],
+      "triggers": [
+        "cloud topology",
+        "cmdb",
+        "dependency discovery",
+        "descoberta de depend\u00eancias",
+        "fluxo de rede",
+        "infrastructure mapping",
+        "kubernetes topology",
+        "mapeamento de infraestrutura",
+        "network flow",
+        "topologia",
+        "topologia de nuvem"
+      ]
+    },
+    {
       "name": "integration-architect",
       "category": "architecture",
-      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, APIs, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
+      "description": "Integration Architecture agent that owns how systems talk \u2014 messaging, events, batch and streaming, canonical data models and interface contracts \u2014 plus integration governance and versioning. Use when defining integration patterns and standards, designing an event backbone, or governing interface contracts.",
       "skills": [
-        "knowledge/skills/frameworks/framework-soap/SKILL.md",
         "knowledge/skills/architecture/domains/integration-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-        "knowledge/skills/architecture/domains/api-architect/SKILL.md",
         "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-        "knowledge/skills/frameworks/framework-grpc/SKILL.md",
-        "knowledge/skills/frameworks/framework-graphql/SKILL.md",
         "knowledge/skills/data/realtime-streaming-event-driven/SKILL.md",
         "knowledge/skills/engineering/practices/distributed-systems/SKILL.md"
       ],
@@ -1837,8 +1667,7 @@
         "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
         "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
         "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
-        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md",
-        "knowledge/skills/security/platform/os-hardening-baselines/SKILL.md"
+        "knowledge/skills/security/platform/firmware-uefi-implant-analysis/SKILL.md"
       ],
       "triggers": [
         "backdoor de dispositivo",
@@ -1860,7 +1689,7 @@
     {
       "name": "java-enterprise-architect",
       "category": "software-engineering",
-      "description": "Specialist Agent in Enterprise Java Architecture and Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus Cloud-Native, MicroProfile/Jakarta EE, Project Loom Virtual Threads, JPA/Hibernate and BCE Architecture).",
+      "description": "Specialist Agent in Enterprise Java Engineering (Java 21/25 LTS, Spring Boot 3.x, Quarkus, MicroProfile/Jakarta EE, JPA/Hibernate performance, Project Loom Virtual Threads and Boundary-Control-Entity code structure). Implements and tunes Java services; it is not a solution or enterprise architecture role.",
       "skills": [
         "knowledge/skills/frameworks/framework-spring-ai/SKILL.md",
         "knowledge/skills/data/jpa-hibernate-performance/SKILL.md",
@@ -1870,7 +1699,6 @@
         "knowledge/skills/frameworks/framework-quarkus-jnosql/SKILL.md",
         "knowledge/skills/frameworks/framework-spring-boot/SKILL.md",
         "knowledge/skills/languages/lang-java/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
         "knowledge/skills/data/high-performance-java-persistence/SKILL.md",
         "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
         "knowledge/skills/engineering/practices/functional-concurrent-programming/SKILL.md"
@@ -1962,7 +1790,7 @@
     {
       "name": "malware-analyst",
       "category": "cybersecurity",
-      "description": "Specialist in Malware Analysis, Binary Reverse Engineering, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
+      "description": "Specialist in Malware Analysis, behavior and IoC extraction, YARA authoring, EDR Evasion and Forensic Analysis of Executable Code on Windows, Linux, Android and macOS.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/languages/lang-assembly-x64/SKILL.md",
@@ -2017,7 +1845,6 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Mechanical Engineering, covering solid mechanics, mechanics of materials (Von Mises, Mohr), fluid mechanics and CFD (Navier-Stokes), heat transfer and mechanical system dynamics.",
       "skills": [
-        "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
         "knowledge/skills/domains/academic/academic-classical-mechanics-relativity/SKILL.md",
         "knowledge/skills/domains/academic/academic-structural-analysis-solid-mechanics/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
@@ -2109,13 +1936,13 @@
     {
       "name": "moodle-specialist",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and database modeling (DBA) through theme design (UI/UX), plugin development, caching infrastructure (MUC), integrations (LTI, SCORM, xAPI) and application of Andragogy methodologies.",
+      "description": "Senior specialist agent in Moodle LMS and EdTech. Works from server architecture and caching infrastructure (MUC) through theme and plugin development, integrations (LTI, SCORM, xAPI) and andragogy-based course design.",
       "skills": [
         "knowledge/skills/domains/industry/edtech-andragogy/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/platforms/program-moodle/SKILL.md",
         "knowledge/skills/roles/dba-database-administrator/SKILL.md",
-        "knowledge/skills/roles/ui-ux-designer/SKILL.md"
+        "knowledge/skills/roles/ui-designer/SKILL.md"
       ],
       "triggers": [
         "ava",
@@ -2154,7 +1981,6 @@
       "description": "Orchestrator and Supervisor Agent for Multi-Agent Systems. Specialized in problem decomposition, anchoring initial objectives, continuous monitoring of subagents, detecting scope drift (Agent Drift / Role Drift), proactive real-time correction and kill-switch/safe termination.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/platforms/antigravity-guide/SKILL.md",
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
       ],
       "triggers": [
@@ -2179,7 +2005,6 @@
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
         "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
         "knowledge/skills/mapping/network-flow-discovery/SKILL.md"
       ],
       "triggers": [
@@ -2204,10 +2029,8 @@
         "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
         "knowledge/skills/security/operations/dns-security-protective-dns/SKILL.md",
         "knowledge/skills/security/operations/ids-ips-ndr-engineering/SKILL.md",
-        "knowledge/skills/security/operations/iot-untrusted-device-isolation/SKILL.md",
         "knowledge/skills/security/operations/network-segmentation-microsegmentation/SKILL.md",
-        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md",
-        "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md"
+        "knowledge/skills/security/operations/network-security-onprem-cloud/SKILL.md"
       ],
       "triggers": [
         "dns security",
@@ -2252,12 +2075,11 @@
     {
       "name": "pentester-agent",
       "category": "cybersecurity",
-      "description": "Ethical Pentester Agent specialized in offensive audits (OWASP WSTG, DAST with OWASP ZAP, API Security, Cloud, Active Directory, Kubernetes, LLMs and Red Team Infrastructure) using CLI utilities and custom scripts.",
+      "description": "Ethical Pentester Agent specialized in offensive audits of web applications (OWASP WSTG, DAST with OWASP ZAP), APIs, networks, cloud accounts (scoped penetration testing, not posture management), Active Directory and Red Team Infrastructure, using CLI utilities and custom scripts.",
       "skills": [
         "knowledge/skills/security/offensive/bug-bounty-methodology/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/security/ai/ai-llm-slm-security/SKILL.md",
         "knowledge/skills/security/appsec/dast-application-testing/SKILL.md",
         "knowledge/skills/security/appsec/pentest-scripter-python-bash-go/SKILL.md",
         "knowledge/skills/security/appsec/pentest-web-application-modern/SKILL.md",
@@ -2265,9 +2087,6 @@
         "knowledge/skills/security/appsec/pentester-owasp-wstg/SKILL.md",
         "knowledge/skills/security/appsec/security-assessment-planning/SKILL.md",
         "knowledge/skills/security/offensive/active-directory-attack-paths/SKILL.md",
-        "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md",
-        "knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md",
-        "knowledge/skills/security/offensive/kubernetes-attack-paths/SKILL.md",
         "knowledge/skills/security/offensive/pentest-cloud-aws-azure-gcp/SKILL.md",
         "knowledge/skills/security/offensive/red-team-infrastructure/SKILL.md",
         "knowledge/skills/security/offensive/network-infrastructure-pentest/SKILL.md",
@@ -2288,10 +2107,9 @@
     {
       "name": "physical-engineer",
       "category": "academic-sciences",
-      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors.",
+      "description": "Senior specialist agent in Engineering Physics and Nanotechnology, covering solid-state physics, semiconductors, cleanroom microfabrication processes, synthesis of carbon nanomaterials (graphene, nanotubes), quantum dots and quantum sensors. Covers applied nanotechnology and device work, not fundamental theory.",
       "skills": [
         "knowledge/skills/domains/academic/academic-solid-state-semiconductors/SKILL.md",
-        "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -2315,7 +2133,6 @@
         "knowledge/skills/domains/academic/academic-thermodynamics-statistical-physics/SKILL.md",
         "knowledge/skills/domains/academic/astronomical-data-integrity/SKILL.md",
         "knowledge/skills/domains/academic/measurement-units-uncertainty/SKILL.md",
-        "knowledge/skills/domains/academic/quantum-computing-algorithms/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -2336,11 +2153,9 @@
       "description": "Platform Architecture agent that owns the internal developer platform as a product \u2014 platform capabilities, golden paths, self-service provisioning, tenancy, reliability and cost-to-serve. Use when defining a developer platform, designing golden paths and self-service, or balancing platform opinionation against team autonomy.",
       "skills": [
         "knowledge/skills/architecture/delivery/platform-architect/SKILL.md",
-        "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/infrastructure/program-containers/SKILL.md",
-        "knowledge/skills/roles/cloud-infrastructure-architect/SKILL.md",
         "knowledge/skills/mapping/observability-correlation/SKILL.md",
         "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md"
       ],
@@ -2446,15 +2261,14 @@
     {
       "name": "reverse-engineer-agent",
       "category": "cybersecurity",
-      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine) and code security against exploitation.",
+      "description": "Reverse Engineering and Low-Level Analysis Agent, specialized in process debugging, binary analysis, memory manipulation (Cheat Engine), memory-corruption and exploitability assessment.",
       "skills": [
         "knowledge/skills/mapping/program-cheat-engine/SKILL.md",
         "knowledge/skills/mapping/program-windbg/SKILL.md",
-        "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
-        "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
         "knowledge/skills/security/offensive/binary-symbolic-execution-fuzzing/SKILL.md",
         "knowledge/skills/security/offensive/exploit-development-vulnerability-research/SKILL.md",
-        "knowledge/skills/security/platform/memory-manipulation/SKILL.md"
+        "knowledge/skills/security/platform/memory-manipulation/SKILL.md",
+        "knowledge/skills/mapping/binary-app-reverse-mapping/SKILL.md"
       ],
       "triggers": [
         "debug de bin\u00e1rio",
@@ -2536,34 +2350,10 @@
       "category": "cybersecurity",
       "description": "Answers information-security questions and routes security work to the matching security agent. Use it for a security question, to triage a security request, or when it is unclear which security agent applies.",
       "skills": [
-        "knowledge/skills/domains/industry/blockchain-cryptocurrency/SKILL.md",
         "knowledge/skills/security/operations/security-champions/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
-        "knowledge/skills/security/appsec/api-protocol-security/SKILL.md",
         "knowledge/skills/security/appsec/appsec-owasp-asvs/SKILL.md",
-        "knowledge/skills/security/appsec/business-logic-flaws/SKILL.md",
-        "knowledge/skills/security/appsec/dast-application-testing/SKILL.md",
-        "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
         "knowledge/skills/security/appsec/owasp-top-10-2025/SKILL.md",
-        "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md",
-        "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
-        "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md",
-        "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
-        "knowledge/skills/security/appsec/web-injection-classes/SKILL.md",
-        "knowledge/skills/security/grc/security-grc-compliance/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md",
-        "knowledge/skills/security/iam/iam-access-management/SKILL.md",
-        "knowledge/skills/security/iam/iam-access-power-platform/SKILL.md",
-        "knowledge/skills/security/operations/devsecops-engineer/SKILL.md",
-        "knowledge/skills/security/operations/supply-chain-threat-modeling/SKILL.md",
-        "knowledge/skills/security/operations/threat-modeler/SKILL.md",
-        "knowledge/skills/security/tooling/program-dongtai-iast/SKILL.md",
-        "knowledge/skills/security/tooling/program-opengrep/SKILL.md",
-        "knowledge/skills/security/tooling/program-openrasp/SKILL.md",
-        "knowledge/skills/security/tooling/program-owasp-dependency-check/SKILL.md",
-        "knowledge/skills/security/tooling/program-owasp-zap/SKILL.md",
-        "knowledge/skills/security/tooling/program-sbom-tooling/SKILL.md",
-        "knowledge/skills/security/tooling/program-sigstore-cosign/SKILL.md",
         "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
         "knowledge/skills/roles/multi-agent-orchestration-supervision/SKILL.md"
       ],
@@ -2615,7 +2405,7 @@
     {
       "name": "skill-creator",
       "category": "specialized-domains",
-      "description": "Senior specialist agent in Skill Architecture, Creation, Improvement and Cataloging for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
+      "description": "Senior specialist agent in Skill Architecture, Creation and Improvement for AI assistants. Masters converting PDF books/documents into structured Markdown, writing production-standard SKILL.md files, interlinking skills and repository governance.",
       "skills": [
         "knowledge/skills/engineering/practices/writing-for-agents/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
@@ -2635,7 +2425,7 @@
     {
       "name": "soc-dfir-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
+      "description": "Specialist Agent in Security Operations, SOC and DFIR, covering the incident lifecycle (NIST SP 800-61r3, PICERL), live incident command and containment, detection engineering, threat hunting, SIEM/SOAR operations, digital forensics and evidence handling.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
@@ -2647,30 +2437,40 @@
         "knowledge/skills/security/operations/secops-incident-responder/SKILL.md",
         "knowledge/skills/security/operations/soc-operations-maturity/SKILL.md",
         "knowledge/skills/security/operations/threat-hunting/SKILL.md",
-        "knowledge/skills/security/platform/memory-forensics/SKILL.md"
+        "knowledge/skills/security/platform/memory-forensics/SKILL.md",
+        "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
+        "knowledge/skills/security/operations/cybersecurity-ops-bash/SKILL.md"
       ],
       "triggers": [
+        "blue team",
+        "comando de incidente",
+        "containment",
         "detection",
         "detec\u00e7\u00e3o",
         "dfir",
         "forense",
         "forensics",
+        "forensics triage",
+        "incident command",
+        "incident commander",
         "incident response",
+        "live host triage",
+        "picerl",
         "resposta a incidente",
+        "resposta a incidentes",
+        "rfc 3227",
         "siem",
         "soar",
         "soc",
-        "threat hunting"
+        "threat hunting",
+        "triage de seguranca"
       ]
     },
     {
       "name": "software-architect",
       "category": "software-engineering",
-      "description": "Software Architecture Agent that applies DDD, SOLID and Design Pattern orchestration to guide project design.",
+      "description": "Software Architecture Agent for code-level design: applies DDD, SOLID, design patterns and clean architecture to class, module and layer structure within one codebase. It differs from solution-architect, which designs one bounded solution across components and technologies, and from application-architect, which governs the application portfolio.",
       "skills": [
-        "knowledge/skills/languages/lang-c/SKILL.md",
-        "knowledge/skills/languages/lang-cpp/SKILL.md",
-        "knowledge/skills/languages/lang-csharp/SKILL.md",
         "knowledge/skills/languages/lang-go/SKILL.md",
         "knowledge/skills/languages/lang-java/SKILL.md",
         "knowledge/skills/languages/lang-python/SKILL.md",
@@ -2688,56 +2488,16 @@
         "adr",
         "architecture",
         "arquitetura",
+        "arquitetura limpa",
         "clean architecture",
         "ddd",
         "design pattern",
         "microservices",
         "microservi\u00e7os",
         "padr\u00e3o de projeto",
-        "solid"
-      ]
-    },
-    {
-      "name": "software-engineer",
-      "category": "software-engineering",
-      "description": "Senior specialist agent in Software Engineering, covering formal requirements engineering, modular and distributed architectures (Clean Architecture, Microservices, Hexagonal), DevSecOps, automated testing and quality metrics.",
-      "skills": [
-        "knowledge/skills/languages/lang-lua/SKILL.md",
-        "knowledge/skills/languages/lang-perl/SKILL.md",
-        "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/engineering/practices/gnome-shell-extension-development/SKILL.md",
-        "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
-        "knowledge/skills/frameworks/framework-rest-api/SKILL.md",
-        "knowledge/skills/frameworks/framework-testing/SKILL.md",
-        "knowledge/skills/languages/lang-bash/SKILL.md",
-        "knowledge/skills/languages/lang-c/SKILL.md",
-        "knowledge/skills/languages/lang-cpp/SKILL.md",
-        "knowledge/skills/languages/lang-csharp/SKILL.md",
-        "knowledge/skills/languages/lang-go/SKILL.md",
-        "knowledge/skills/languages/lang-java/SKILL.md",
-        "knowledge/skills/languages/lang-python/SKILL.md",
-        "knowledge/skills/languages/lang-rust/SKILL.md",
-        "knowledge/skills/languages/lang-typescript/SKILL.md",
-        "knowledge/skills/roles/backend-developer/SKILL.md"
-      ],
-      "triggers": [
-        "arquitetura limpa",
-        "clean architecture",
-        "engenharia de software",
-        "extensao gnome",
-        "extens\u00e3o do gnome",
-        "extens\u00e3o gnome shell",
-        "gjs",
-        "gnome extension",
-        "gnome shell",
-        "gnome shell extension",
-        "libadwaita",
-        "refactoring",
-        "refatora\u00e7\u00e3o",
         "requirements",
         "requisitos",
-        "software engineering"
+        "solid"
       ]
     },
     {
@@ -2751,16 +2511,11 @@
         "knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md",
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/roles/software-architect/SKILL.md",
-        "knowledge/skills/engineering/practices/architecture-ddd/SKILL.md",
-        "knowledge/skills/engineering/practices/clean-architecture/SKILL.md",
         "knowledge/skills/engineering/practices/api-design/SKILL.md",
         "knowledge/skills/engineering/practices/distributed-systems/SKILL.md",
         "knowledge/skills/engineering/practices/system-design-scalability/SKILL.md",
         "knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md",
         "knowledge/skills/engineering/practices/architecture-documentation/SKILL.md",
-        "knowledge/skills/engineering/patterns/dp-creational-patterns/SKILL.md",
-        "knowledge/skills/engineering/patterns/dp-structural-patterns/SKILL.md",
-        "knowledge/skills/engineering/patterns/dp-behavioral-patterns/SKILL.md",
         "knowledge/skills/security/operations/security-architecture-patterns/SKILL.md"
       ],
       "triggers": [
@@ -2803,7 +2558,7 @@
     {
       "name": "technology-architect",
       "category": "architecture",
-      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, networking, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
+      "description": "Technology Architecture agent that owns the technology domain \u2014 compute, storage, virtualization, facilities \u2014 plus technology standards, reference architectures, capacity and resilience planning. Use when defining infrastructure standards and topologies, planning capacity or disaster recovery, or aligning the platform with application and data needs.",
       "skills": [
         "knowledge/skills/architecture/domains/technology-architect/SKILL.md",
         "knowledge/skills/architecture/enterprise/domain-architect/SKILL.md",
@@ -2831,7 +2586,6 @@
       "description": "Senior specialist agent in Telecommunications Engineering, covering Shannon information theory, advanced digital modulations (QAM, OFDM), optical fiber propagation (WDM/DWDM), 5G/6G cellular networks, satellite communications and Radio Frequency.",
       "skills": [
         "knowledge/skills/domains/academic/academic-digital-communications-signals/SKILL.md",
-        "knowledge/skills/domains/industry/telecom-voice-engineering/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
       "triggers": [
@@ -2877,7 +2631,6 @@
       "category": "cybersecurity",
       "description": "Specialist Agent in Cyber Threat Intelligence, covering the intelligence lifecycle, MITRE ATT&CK and D3FEND mapping, the Diamond Model and Kill Chain, STIX 2.1/TAXII 2.1/MISP exchange, structured analytic techniques and estimative reporting.",
       "skills": [
-        "knowledge/skills/domains/academic/academic-scientific-research/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
         "knowledge/skills/security/cti/cti-mitre-attack/SKILL.md",
@@ -2905,7 +2658,7 @@
     {
       "name": "tui-cli-engineer",
       "category": "software-engineering",
-      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools.",
+      "description": "Specialist Agent in Terminal User Interface (TUI) and Interactive CLI Engineering. Designs and implements terminal applications using the MVU pattern (Charm.sh Bubble Tea, Lip Gloss, Bubbles, Huh, Textual, Ratatui), terminal emulators, interactive wizards, and accessible command-line tools. Scope also includes portal-to-CLI scaffolding: reverse-engineering public web portals into self-contained agent-contract CLI tools.",
       "skills": [
         "knowledge/skills/engineering/practices/tui-terminal-engineering/SKILL.md",
         "knowledge/skills/engineering/practices/web-portal-cli-scaffolding/SKILL.md",
@@ -2940,7 +2693,7 @@
     {
       "name": "ui-designer",
       "category": "software-engineering",
-      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the full design style library, color theory and accessibility conformance, and hands tokens and components to engineering without building the application.",
       "skills": [
         "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
         "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md",
@@ -2958,7 +2711,6 @@
         "knowledge/skills/roles/ui-designer/SKILL.md",
         "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
         "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-        "knowledge/skills/roles/frontend-developer/SKILL.md",
         "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
         "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
         "knowledge/skills/domains/design/color-theory-foundations/SKILL.md",
@@ -2971,7 +2723,76 @@
         "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
         "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
         "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-        "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md"
+        "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
+        "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md"
       ],
       "triggers": [
         "alta fidelidade",
@@ -2985,6 +2806,7 @@
         "direcao de arte",
         "glassmorphism",
         "hi-fi",
+        "identidade visual",
         "interface design",
         "liquid glass",
         "mockup",
@@ -3068,113 +2890,6 @@
       ]
     },
     {
-      "name": "ui-ux-designer",
-      "category": "software-engineering",
-      "description": "Senior specialist agent in Interface Design (UI), User Experience (UX) and Art Direction, mastering the page design style library, the Anti-AI Slop Manifesto, high-contrast typography, Design System architecture and WCAG 2.2 accessibility.",
-      "skills": [
-        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
-        "knowledge/skills/roles/frontend-developer/SKILL.md",
-        "knowledge/skills/roles/product-owner/SKILL.md",
-        "knowledge/skills/roles/ui-ux-designer/SKILL.md",
-        "knowledge/skills/roles/ui-designer/SKILL.md",
-        "knowledge/skills/roles/ux-designer/SKILL.md",
-        "knowledge/skills/domains/design/ui-hero-sections/SKILL.md",
-        "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-        "knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md",
-        "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-        "knowledge/skills/engineering/practices/ui-ux-principles/SKILL.md",
-        "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-3d-immersive-webgl/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-acid-anti-design/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-ai-native-generative-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-aurora-mesh-gradient/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-bento-grid/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-card-based-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-claymorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-cyberpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dark-mode-first/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-editorial-archive-luxury/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-gradient-duotone/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-kinetic-typography/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-maximalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-micro-interactions/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-neo-brutalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-neumorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-scrollytelling/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-parallax-scrolling/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-swiss-web-minimalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-web-brutalism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-y2k-revival/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-art-deco/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-art-nouveau/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-arts-and-crafts/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-bauhaus/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-broken-grid/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-calm-quiet-ui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-collage-scrapbook/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-constructivism/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-agitprop-poster/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-de-stijl/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dracula/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-glitch/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-grain-noise-texture/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-hand-drawn-sketch/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-indie-web-revival/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-isometric/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-linear-saas/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-memphis/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-mid-century-modern/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-nordic/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-pixel-art/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-atompunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-risograph/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-zine-independent/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-brutalist-monochrome/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-terminal-tui/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-vaporwave/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-synthwave/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-weirdcore/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dreamcore/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dungeon-synth/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dark-fantasy/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-biopunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-clockpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-dieselpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-gothicpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-lunarpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-nanopunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-sandalpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-solarpunk/SKILL.md",
-        "knowledge/skills/domains/design/ui-style-steampunk/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md",
-        "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-        "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md"
-      ],
-      "triggers": [
-        "design",
-        "design system",
-        "identidade visual",
-        "prototipagem",
-        "prototype",
-        "tipografia",
-        "ui design",
-        "usabilidade",
-        "usability",
-        "ux design",
-        "wcag"
-      ]
-    },
-    {
       "name": "ux-designer",
       "category": "software-engineering",
       "description": "Senior UX designer who owns the experience end to end: discovery and research method selection, information architecture, flows and journey maps, usability evaluation with heuristics and metrics (SUS, HEART), and ethical design governance. Applies the full UX discipline from ISO 9241-210 framing to deceptive-pattern review.",
@@ -3201,6 +2916,8 @@
         "nielsen heuristics",
         "persona",
         "pesquisa com usuario",
+        "prototipagem",
+        "prototype",
         "teste de usabilidade",
         "tree testing",
         "usabilidade",
@@ -3215,12 +2932,11 @@
     {
       "name": "vcs-repository-specialist",
       "category": "software-engineering",
-      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration. Use for shared history changes, repository incidents, large repositories or VCS transitions.",
+      "description": "Diagnoses and guides Git, Subversion, Mercurial and Perforce repository operations, recovery, collaboration, scaling and migration, and triages upstream fork drift by patch-ID comparison. Use for shared history changes, repository incidents, large repositories, VCS transitions or fork-drift and patch triage.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/git-conventional-commits/SKILL.md",
-        "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md",
-        "knowledge/skills/roles/devops-engineer/SKILL.md"
+        "knowledge/skills/engineering/practices/vcs-repository-management/SKILL.md"
       ],
       "triggers": [
         "branch",

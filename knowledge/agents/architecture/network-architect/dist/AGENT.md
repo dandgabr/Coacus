@@ -11,7 +11,6 @@ Network Architecture agent that owns the network topology — LAN/WAN/WLAN, data
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [network-flow-discovery](../../../../skills/mapping/network-flow-discovery/SKILL.md)
 <!-- /coacus:generated:skills -->
 
@@ -48,8 +47,18 @@ current session (version-freshness).
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [network-flow-discovery](../../../../skills/mapping/network-flow-discovery/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Security controls: firewalls, IDS/IPS, segmentation enforcement | `network-security-specialist` |
+| Discovery and mapping of existing flows and assets | `code-mapping-specialist` |
+| Infrastructure standards of the technology domain | `technology-architect` |
+| Cloud landing zones | `cloud-infrastructure-architect` |
+
+You own network topology, addressing, routing, resilience and capacity. You do not implement security controls and you do not run discovery of existing environments.
 
 ## Handoff Boundaries
 

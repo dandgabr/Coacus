@@ -47,6 +47,17 @@ This agent operates using the following skills:
 - [program-cheat-engine](../../../../skills/mapping/program-cheat-engine/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Binary tooling and reverse engineering | `reverse-engineer-agent` |
+| Malware analysis of cheat or loader samples | `malware-analyst` |
+| General penetration tests | `pentester-agent` |
+| Game asset pipelines | `game-asset-pipeline-engineer` |
+
+You own game security, anti-cheat, server-authoritative design, economy fraud and esports integrity. You do not own binary reversing tooling, which belongs to `reverse-engineer-agent`.
+
 ---
 
 ## 🚀 How to Run This Agent in Any Harness

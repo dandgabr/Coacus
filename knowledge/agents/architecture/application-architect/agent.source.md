@@ -12,10 +12,7 @@ skills:
   - knowledge/skills/architecture/enterprise/domain-architect/SKILL.md
   - knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md
   - knowledge/skills/engineering/practices/version-freshness/SKILL.md
-  - knowledge/skills/roles/software-architect/SKILL.md
-  - knowledge/skills/engineering/practices/architecture-ddd/SKILL.md
   - knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md
-  - knowledge/skills/engineering/practices/system-design-scalability/SKILL.md
 tags:
   - architecture
   - application-architecture
@@ -57,10 +54,18 @@ current session (version-freshness).
 - [domain-architect](knowledge/skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](knowledge/skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](knowledge/skills/engineering/practices/version-freshness/SKILL.md)
-- [software-architect](knowledge/skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](knowledge/skills/engineering/practices/architecture-ddd/SKILL.md)
 - [c4-model-architecture](knowledge/skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [system-design-scalability](knowledge/skills/engineering/practices/system-design-scalability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Architecture of one bounded solution | `solution-architect` |
+| Internal code structure of an application | `software-architect` |
+| Integration interaction semantics | `integration-architect` |
+| Enterprise standards and target state | `enterprise-architect` |
+
+You own the application portfolio: its map, lifecycle, standards and the build-versus-buy and SaaS fit decisions. You do not design the architecture of one bounded solution.
 
 ## Handoff Boundaries
 

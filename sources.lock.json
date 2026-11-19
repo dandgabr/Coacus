@@ -7,7 +7,7 @@
       "source_path": "agents/academic-sciences/biomedical-engineer/AGENT.md",
       "source_sha256": "f735cb2367129c710e1621601ecf8f22ed44bb6c8a5aa0ea824e79958c018264",
       "target_path": "knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md",
-      "target_sha256": "20e96504d2adfaeac1e101c61f4c84bd147a9668d4f1996114e2c1fe204d3a54",
+      "target_sha256": "318f1932bf8cc2c9f08146b49dfb5bfd9ba53ba691156c5c4d40bf81de76d99d",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -24,7 +24,7 @@
       "source_path": "agents/academic-sciences/biotechnologist/AGENT.md",
       "source_sha256": "fec3c03fbfb321d9439ee4f226d1bfa81b16fe68d71c4ca2cee52b858475270f",
       "target_path": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md",
-      "target_sha256": "5e16815c8511f458c3b061ba0121dc97f7d9c73aefbc486709af98e8385746ac",
+      "target_sha256": "4f299d5e8a282ee67177f9c19cd94b0c0e88e17e4f2c33f0ffb9e9e4865f99fb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -41,7 +41,7 @@
       "source_path": "agents/academic-sciences/chemical-engineer/AGENT.md",
       "source_sha256": "b761b36aada3a6977a9d93aaf33a613db6ff28789745bf966e83fe00ccff9a2c",
       "target_path": "knowledge/agents/academic-sciences/chemical-engineer/agent.source.md",
-      "target_sha256": "2fd178ad91974c7baa5d0e52c581787df06624a58b342f7b1e6ff4969d85c824",
+      "target_sha256": "8363764d81cccac809d1b87b1a4afaa25814f00ec8f0740bf344b78d5c7428db",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -58,7 +58,7 @@
       "source_path": "agents/academic-sciences/civil-engineer/AGENT.md",
       "source_sha256": "26973f3ebaa9b21db6b489d3824c1eb12a43f60ac21b0c1dfd093dda3c5dc591",
       "target_path": "knowledge/agents/academic-sciences/civil-engineer/agent.source.md",
-      "target_sha256": "991e03db568edefbc53551dc713a540336852a94dd782fa40ddde6f5a076db9f",
+      "target_sha256": "afd7e52d377d710137d0d314baf2bf2ebad93438d8b1ad9bd948dc7be929a639",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -75,7 +75,7 @@
       "source_path": "agents/academic-sciences/computer-engineer/AGENT.md",
       "source_sha256": "4533c1fea50f7b3385c7c3a61fbabb16fb3d6fcf4281fbb6ae0e74faf73ecd82",
       "target_path": "knowledge/agents/academic-sciences/computer-engineer/agent.source.md",
-      "target_sha256": "2dc7f70bdcb52fb0505ddd106940a0cf5d4a1c5c5e95bfa7482c51c729a3948c",
+      "target_sha256": "e1b938b4fa34b759033af88a1c72742039ee01e25f4c5859d247961c40392a27",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -92,7 +92,7 @@
       "source_path": "agents/academic-sciences/computer-scientist/AGENT.md",
       "source_sha256": "36ac1116375be024b797e935f90d30e85cbaf174be74f9c546fbcd3bf82222ac",
       "target_path": "knowledge/agents/academic-sciences/computer-scientist/agent.source.md",
-      "target_sha256": "bc9d4828a278eb2fc008c8a55acc286f8b800cf740a9cc7ce93f55d3a68c54f4",
+      "target_sha256": "6af9698f9bb4f9a7726fd156d127e25b38c0ae44f819e23261487ee46838ea11",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -109,7 +109,7 @@
       "source_path": "agents/academic-sciences/electrical-power-engineer/AGENT.md",
       "source_sha256": "2ec0c039b1d55d7b9cae69e0f378172cb9a4c59df03bc4cb54e502d108091bd0",
       "target_path": "knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md",
-      "target_sha256": "52e98d48f912f429f74cf7d5cf596fb2b42784a6129378660b36ae8fb9640f9d",
+      "target_sha256": "6b19d64a423927c301d3280036dddf924c8d37c12a664922477832358a2999d5",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -126,7 +126,7 @@
       "source_path": "agents/academic-sciences/geoscientist/AGENT.md",
       "source_sha256": "d78bce800608813c4bdd03d770e7b604be2f059fc668a6969f8e6013c35aaef8",
       "target_path": "knowledge/agents/academic-sciences/geoscientist/agent.source.md",
-      "target_sha256": "77d53f0d0394233bc265cb1b39926dfc32ffbcc9d826b7b97d5bf429bf6c563a",
+      "target_sha256": "25ec3c458aba03a8c1336c8d95050cd52339e20ff04b1031c984ee9d571b536e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -143,7 +143,7 @@
       "source_path": "agents/academic-sciences/mathematician/AGENT.md",
       "source_sha256": "6b672a899ef3fe90155de41df0950b319a511804a62e6e1b514547104a731765",
       "target_path": "knowledge/agents/academic-sciences/mathematician/agent.source.md",
-      "target_sha256": "52ca02d9ddf003aec1836401de7b6744cca675def56a2a5de4afc1369915cfd8",
+      "target_sha256": "ece7166c04c0c3cc723bcb61ba0fe6aed9504e5776f7c462ab3155998557a599",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -160,7 +160,7 @@
       "source_path": "agents/academic-sciences/mechanical-engineer/AGENT.md",
       "source_sha256": "1f4ea537fab5c607a664fdd755056fb8eb7d066440e0c6f05df1d8fdf4c75c04",
       "target_path": "knowledge/agents/academic-sciences/mechanical-engineer/agent.source.md",
-      "target_sha256": "a0cd1fd90c3371ab79317dab5de40da0b4977062ba56e4a1e447520701c44195",
+      "target_sha256": "e59369aeea03b489b8096cfad616795537888f269fd0bea6533f3ef61abd0e69",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -177,7 +177,7 @@
       "source_path": "agents/academic-sciences/mechatronics-engineer/AGENT.md",
       "source_sha256": "1b4bb57dbe688d9e299cd226133905f86770d421bf559588d01207bc63605eb4",
       "target_path": "knowledge/agents/academic-sciences/mechatronics-engineer/agent.source.md",
-      "target_sha256": "9eb276ba5e3763a55f917c3991ff5aa6d90d9b51406f48255865a3f6fe6b341e",
+      "target_sha256": "44c7e779018338df5b507488682ceb7f97c81d333ace85d4ea9d9a049389f234",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -194,7 +194,7 @@
       "source_path": "agents/academic-sciences/physical-engineer/AGENT.md",
       "source_sha256": "11ade79b57622ccc9341a07a0cd6248ec9bfcbb8c540a71f4ead3d1dc13141d5",
       "target_path": "knowledge/agents/academic-sciences/physical-engineer/agent.source.md",
-      "target_sha256": "4ea77c748856f5b04433dc119c6845f281a8732dfa48a95d41743bbca2230d7b",
+      "target_sha256": "b60af6407430bab058737da43fa653b0f8ffa16a96a3fddc78abc003c88dc7fc",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -211,7 +211,7 @@
       "source_path": "agents/academic-sciences/physicist/AGENT.md",
       "source_sha256": "014599c8221bc0f2a896633ae51ddae3e61a501df88237e55b8b5ce82410be10",
       "target_path": "knowledge/agents/academic-sciences/physicist/agent.source.md",
-      "target_sha256": "15591b06557fdabbbe6924015b437ed3a28715b8628bbe02453dda895b21eb4a",
+      "target_sha256": "b57f51510b18e195bdf558d536f2fac1b01d7238019595940cd7b0c6f8c86288",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -228,7 +228,7 @@
       "source_path": "agents/academic-sciences/quantum-computing-specialist/AGENT.md",
       "source_sha256": "1132831bb2500b5390ed41f720d12a3c3ca4c86217eef5c317ed33c983781062",
       "target_path": "knowledge/agents/academic-sciences/quantum-computing-specialist/agent.source.md",
-      "target_sha256": "bd693ea9c0e5722d39ad478c3a1847dad2c9310d841863ed508ec3d48b3c47ac",
+      "target_sha256": "149c4409a502c49236e8ab986c4f42285aefbe95190a109e5aff7e6217ed5876",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -245,7 +245,7 @@
       "source_path": "agents/academic-sciences/telecom-engineer/AGENT.md",
       "source_sha256": "32c4a23e32eeb8991edd93b4195203466126be3a4f1064f123c75ff5159f2358",
       "target_path": "knowledge/agents/academic-sciences/telecom-engineer/agent.source.md",
-      "target_sha256": "25e39813257201d6df6ecfa442e614ba28515d47da7e5e867a4d39f63563b182",
+      "target_sha256": "a200fecbc1fc5f4489ed6e35ebd24c133ff68ff0fcff42559a1bb4fdf32b9cc0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -262,24 +262,7 @@
       "source_path": "agents/academic-sciences/telecom-voice-specialist/AGENT.md",
       "source_sha256": "48e8d592aa80199d7724b3c86e28ea511f185e06d88177310b956c10eeeb020f",
       "target_path": "knowledge/agents/academic-sciences/telecom-voice-specialist/agent.source.md",
-      "target_sha256": "1d47fbbf8cde7b53103ab0f2123fcd712cd87862dea03aca5431fa8ea65d2630",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/core-orchestration/antigravity-agent/AGENT.md",
-      "source_sha256": "3058c8013a60b82835d9660cb46917d5d1681c2389ab71ff3820cce18d23526e",
-      "target_path": "knowledge/agents/core-orchestration/antigravity-agent/agent.source.md",
-      "target_sha256": "a2e41b21c29d23bd6c2238cba07f7ca3e0853ebf6f3021737531669b6c21de81",
+      "target_sha256": "aad2d75fde5a40ba81813445e263c19188aa4f8c2fd440ae706ebae6d477dc4c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -296,7 +279,7 @@
       "source_path": "agents/core-orchestration/multi-agent-orchestrator/AGENT.md",
       "source_sha256": "d59e667f95cfbea3efc50ed65558aed7076b53cda6475348d6d2e45476506475",
       "target_path": "knowledge/agents/core-orchestration/multi-agent-orchestrator/agent.source.md",
-      "target_sha256": "474333040bcf9ac0c925617820eacf2b1e56ab7766bb9f56f9f16e4290abc741",
+      "target_sha256": "b5a497a9906909c675b1c45e73a8fb8da9780e4a80c37bd6128687b59aeede8c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -313,7 +296,7 @@
       "source_path": "agents/cybersecurity/ai-security-specialist/AGENT.md",
       "source_sha256": "9b78d9ed610c04dabeb8af151ae7996dfa92a7e9f4526ccc2d1a94d2a040577f",
       "target_path": "knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md",
-      "target_sha256": "cc57af0c54e459038e9a91dd85680599e9be7f7246876bc78d1c9baea6f2c130",
+      "target_sha256": "4372368cb9e9e6a4a6468899ebdc8bcb5e13e23112f21c68c1b2293f9726b8a9",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -330,7 +313,7 @@
       "source_path": "agents/cybersecurity/hardware-security-specialist/AGENT.md",
       "source_sha256": "ee357dc480e7c30ae5395bb5821b1593f959d864381b3a6697acb6df389232a6",
       "target_path": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md",
-      "target_sha256": "ee357dc480e7c30ae5395bb5821b1593f959d864381b3a6697acb6df389232a6",
+      "target_sha256": "8df0485aaf4f193c76e01d52731f1ec07261fe8483607ee5e20b3a9fa1610e51",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -347,7 +330,7 @@
       "source_path": "agents/cybersecurity/iam-specialist/AGENT.md",
       "source_sha256": "e714ee28a7d673a039c576f8f63efe57766f9826e2b5638dedffe42afa3558d5",
       "target_path": "knowledge/agents/cybersecurity/iam-specialist/agent.source.md",
-      "target_sha256": "e714ee28a7d673a039c576f8f63efe57766f9826e2b5638dedffe42afa3558d5",
+      "target_sha256": "3a85302d99fe109d0d5a2f6c148b46552a98168d4fd199fc58260c6b64e42963",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -364,7 +347,7 @@
       "source_path": "agents/cybersecurity/malware-analyst/AGENT.md",
       "source_sha256": "93aadd9e9bb78f3854e763d49a5858f491802086ecdf90e7d1ffc9cd555a62da",
       "target_path": "knowledge/agents/cybersecurity/malware-analyst/agent.source.md",
-      "target_sha256": "93aadd9e9bb78f3854e763d49a5858f491802086ecdf90e7d1ffc9cd555a62da",
+      "target_sha256": "5ea08dd2777ee47c7188ceca000ad4528b98c5b40c3e7c6cfa371cf91aa49ec7",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -381,7 +364,7 @@
       "source_path": "agents/cybersecurity/pentester-agent/AGENT.md",
       "source_sha256": "ea1e6a9c0a26f2e67378aff13e152d74d55f82771db6aa96f4d033b0491f3d82",
       "target_path": "knowledge/agents/cybersecurity/pentester-agent/agent.source.md",
-      "target_sha256": "7cb98a4361bc671ade30244b9053869860465b5b0b7b47ba2313b297cf79a542",
+      "target_sha256": "9170908bc31d9e8f2a3dccb6b3789f518dd6338f98a8f1de2ddbc7ceeaaaf1e8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -398,7 +381,7 @@
       "source_path": "agents/cybersecurity/reverse-engineer-agent/AGENT.md",
       "source_sha256": "2f892a40242687ad964e0774caccdb48b8f7a3bf54814209859a5baaf82b03f0",
       "target_path": "knowledge/agents/cybersecurity/reverse-engineer-agent/agent.source.md",
-      "target_sha256": "2f892a40242687ad964e0774caccdb48b8f7a3bf54814209859a5baaf82b03f0",
+      "target_sha256": "3e02cbfd6b141713430ff73b3ef504fa10cb85268e012f232ba217358abd5f8e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -415,7 +398,7 @@
       "source_path": "agents/cybersecurity/security-architect/AGENT.md",
       "source_sha256": "1271fb74006514f8ce9dd622b916547c9cb6a24f9f63b3ec9dbfa55bab27e7f9",
       "target_path": "knowledge/agents/cybersecurity/security-architect/agent.source.md",
-      "target_sha256": "2adbb37ac6ae9e7ea91b7da2b7598eac109fda09621abeae805736c5be6da9b9",
+      "target_sha256": "937e3a592082a9ef0b1fbaea08033cf7db2338108671eed62795748601b86db3",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -432,7 +415,7 @@
       "source_path": "agents/cybersecurity/security-specialist/AGENT.md",
       "source_sha256": "a72af0d6d283095ba6a3cbdaf71d2251d77dc2deba595091075a104f87cde4ee",
       "target_path": "knowledge/agents/cybersecurity/security-specialist/agent.source.md",
-      "target_sha256": "99a8abc5ea3916784ae6397bb018e481541c87cb4731ba4445189f6d15af3ba1",
+      "target_sha256": "4d0b69deb500bd16bdced5607010f773a6544409f94b1f0f7cd94a8d8d303a92",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -450,7 +433,7 @@
       "source_path": "agents/data-cloud-devops/cloud-infrastructure-architect/AGENT.md",
       "source_sha256": "9ed10c3fe7cc342374cfa869c3f6464ca6ac26afa04beeb04aa83bfb87ee138a",
       "target_path": "knowledge/agents/data-cloud-devops/cloud-infrastructure-architect/agent.source.md",
-      "target_sha256": "b43ed583125a3c56be67d6f3cf29b93025e363be73e9fdff7443ed8ac1281aff",
+      "target_sha256": "5825c78fbffd3fef53867fb766fb5e78c81f548eeb157359decf6a874761e86c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -467,24 +450,7 @@
       "source_path": "agents/data-cloud-devops/cloudflare-specialist/AGENT.md",
       "source_sha256": "66878a2225791bf7f917754256475bd9c77340c42a6c2df8bc63e78fd7954328",
       "target_path": "knowledge/agents/data-cloud-devops/cloudflare-specialist/agent.source.md",
-      "target_sha256": "dcd6170b6c4d7cbf8c3bcee481e21939eff9f934a213a3fc49459a3894e9fc71",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/data-cloud-devops/data-ai-engineer/AGENT.md",
-      "source_sha256": "bfd0b5d3af2fdb9e6661240c1f6b7638505d44b6cfcc1c76199b589a53f71aeb",
-      "target_path": "knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md",
-      "target_sha256": "40ddafb8f2c615a568a8f6cdffcd368bcef6ecf0469a452e07bffdd9c6f02f10",
+      "target_sha256": "945e71471f1f55078a44d3bba1c9c4beff6ffd31a226069aee689bcdee90ddf0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -501,7 +467,7 @@
       "source_path": "agents/data-cloud-devops/data-engineer-specialist/AGENT.md",
       "source_sha256": "724375e5b4a4cfd52ef015fe1c57b49a2821fd349ec949c7af268933cb1c8343",
       "target_path": "knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md",
-      "target_sha256": "f81cfac7659d8767e5cec24f4ede126b4f432eda91ab8e1b09a6213f383c7913",
+      "target_sha256": "277ac4a3cf5d5fc0c60a578345d6025dce52685f840f89ed2176dd8105385335",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -518,7 +484,7 @@
       "source_path": "agents/data-cloud-devops/dba-specialist/AGENT.md",
       "source_sha256": "3592056c60a49264489c1d7c2fcc27f2bcc8fedebddf33cc002cdaa5b0ae1beb",
       "target_path": "knowledge/agents/data-cloud-devops/dba-specialist/agent.source.md",
-      "target_sha256": "e8ce55e16fd73e4fbc0791a4c78e40a9fc87a4f60a043f6c7fcfee3d318eb96a",
+      "target_sha256": "5cfbb5b31c35a3730c46ad6c0ca969a10b0aa0da8b024e68876a0975636441bb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -535,7 +501,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "60ec32a83b52f69be3d3651ef3fbc768b77d77474761326404931b30dfc6d043",
+      "target_sha256": "ec3ad949e3f0e313352f62ff04c0c218f79177ae1e5c70718478242ddf77ee40",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -552,7 +518,7 @@
       "source_path": "agents/research-discovery/explore/AGENT.md",
       "source_sha256": "27ea74bafe15cec0abc8797a12b884f67dbf5ec532b45c2e3a8768f9e3a8a2cc",
       "target_path": "knowledge/agents/research-discovery/code-explorer/agent.source.md",
-      "target_sha256": "11505f94fe86e158e1154ab92c74644128433c9a9aab1c78e0d84058ee1edbd6",
+      "target_sha256": "ad88ec76fe719759097b5374d438ab0375f656c74f920300fc081c2ad7b47ef6",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -572,7 +538,7 @@
       "source_path": "agents/research-discovery/code-mapping-specialist/AGENT.md",
       "source_sha256": "898ee60fdbdf2687374106ccf7f01892e20c328d0b34ab6656ec544b883d5ff5",
       "target_path": "knowledge/agents/research-discovery/code-mapping-specialist/agent.source.md",
-      "target_sha256": "2ecc2a73f4e1bb73a10dd47d091d777e668b1b2a148522274254cc986685cdec",
+      "target_sha256": "382b2a654431cb9d7bb7167d3ac1b89ac8ca6e1b3b727c75d603c0e7244ba164",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -589,7 +555,7 @@
       "source_path": "agents/research-discovery/scientific-researcher/AGENT.md",
       "source_sha256": "208a17fec24b62663cadc3f26290ccbdef8a582ffc774c8c355bbdb297b3c97b",
       "target_path": "knowledge/agents/research-discovery/scientific-researcher/agent.source.md",
-      "target_sha256": "241aedb80a516b1859d049d941108b73988acf32ffc0aacd5e286d41656b0aa2",
+      "target_sha256": "2fb81d23c97b22b19235b202503e49fb754163922fd2fc738ffff4acb8bc849c",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -606,7 +572,7 @@
       "source_path": "agents/research-discovery/web-researcher/AGENT.md",
       "source_sha256": "57c732022056b3f04c3dba62b1208fab8fd7cfa962b78b4d143d4ac4090fd859",
       "target_path": "knowledge/agents/research-discovery/web-researcher/agent.source.md",
-      "target_sha256": "978a08c9f82d8083bb9852b7b97e0c30c9946b8f9c3e007d23c23288e1d20931",
+      "target_sha256": "74f20f30033e8e0074280c598e9f44b9b0d42d4a100454d84d6c570c34960081",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -623,7 +589,7 @@
       "source_path": "agents/software-engineering/backend-developer/AGENT.md",
       "source_sha256": "3d1ad2591e09c769a854ff5f10481ea02320d6fabdeb484d0e1faf837583eece",
       "target_path": "knowledge/agents/software-engineering/backend-developer/agent.source.md",
-      "target_sha256": "fe0c1e8644274892bef6d3bf95dceb65752feda87f770b9493d2f43b5fee7cb3",
+      "target_sha256": "1b3421367af87c17789a4138db2545ac1aae9b3222f027d963c5c5f40b096e96",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -640,7 +606,7 @@
       "source_path": "agents/software-engineering/code-optimizer/AGENT.md",
       "source_sha256": "b34c2e3157739d43cbeccf88f18e59f8cc873101b02344b7971827027c67db88",
       "target_path": "knowledge/agents/software-engineering/code-optimizer/agent.source.md",
-      "target_sha256": "d4de8950bd3d66faa9bda046166e43a8422d1bc954cc66379da0a979f0a8067d",
+      "target_sha256": "211c2f01ce71c6db73e3237d21741ad288b42777ac943b6e9f2c745939320a47",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -657,7 +623,7 @@
       "source_path": "agents/software-engineering/documenter/AGENT.md",
       "source_sha256": "eac2de60990f318ddcbccb52425c8cb8a80edb70c336d7f51d94f7ee889c2bf8",
       "target_path": "knowledge/agents/software-engineering/documenter/agent.source.md",
-      "target_sha256": "61758a7d2fa9a275e146925a8887167b79cc0d3cf990a38c860213611531c60b",
+      "target_sha256": "e3cb5f8f758fe538ac534443dc9866fd0e6778528ccc2aa5d243d2a6bfce2cc5",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -674,7 +640,7 @@
       "source_path": "agents/software-engineering/frontend-developer/AGENT.md",
       "source_sha256": "ac8941cf7d4ae7d25511fb1889f086a216c22236e87ca5fd3592701d9d3bacbb",
       "target_path": "knowledge/agents/software-engineering/frontend-developer/agent.source.md",
-      "target_sha256": "416d55ba87b8dae30ab4608fb94d8978b4a4e13951fd3905ca4089e73e436d2a",
+      "target_sha256": "9424ca72ee84796baa24fa17eea884ea036771ecc6bd422cb8d0f3ef49418c79",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -691,7 +657,7 @@
       "source_path": "agents/software-engineering/fullstack-developer/AGENT.md",
       "source_sha256": "4ed5cb2137a0e280bf20c693a85ede791e850a0d16d6614ccb7b6f338dc46649",
       "target_path": "knowledge/agents/software-engineering/fullstack-developer/agent.source.md",
-      "target_sha256": "7c07dff0aef624cfd5368cd647bf465ed8fed4535c2bdd41c00db9384fbe6e7a",
+      "target_sha256": "78c80d09409754f74646f92f4f40271ac141d785856089ba918e724772c60247",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -708,7 +674,7 @@
       "source_path": "agents/software-engineering/github-specialist/AGENT.md",
       "source_sha256": "0e22e60d5b8d9f33d85295e8545a4c25ea964b296c5580fd4f56ba3086b790da",
       "target_path": "knowledge/agents/software-engineering/github-specialist/agent.source.md",
-      "target_sha256": "6f20be8ce6bf3a71f358493ab9bfeb1e1def4d4a3bd7e87ca080df48ec9a33e1",
+      "target_sha256": "89e9d2896f3ea3b91a8a278636f877a2aa477c836f1b31ea4642ad98a9864644",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -725,7 +691,7 @@
       "source_path": "agents/software-engineering/java-enterprise-architect/AGENT.md",
       "source_sha256": "a841f6db6ced267ea8efa9ffd209bdc160dc1029227be640d3cd5448177497bd",
       "target_path": "knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md",
-      "target_sha256": "e256cb8e9e648a34ee442b9a666edbc9be9863f1e7396b92f1408b0ed3d72a39",
+      "target_sha256": "45a20589fd1013102e1b8ece5fa4b089b16607ac2936d11f83ea7f3ccd041283",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -742,7 +708,7 @@
       "source_path": "agents/software-engineering/project-reviewer/AGENT.md",
       "source_sha256": "220c530ff5bfcf6040914722f967a2c1517669ddc37b031ddd597bb790915d30",
       "target_path": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
-      "target_sha256": "0bf6c0171b0f956de47033d38691ee76072ffef6db4f2ab8a48ea08b3595883c",
+      "target_sha256": "983fd51b81399ccf5cc4597c870cb8869a5e7a4a80e6f8c046071a36d214531b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -759,7 +725,7 @@
       "source_path": "agents/software-engineering/qa-testing-specialist/AGENT.md",
       "source_sha256": "c091fd618bb7d4921ed8a9000c5e15e368caf64260bd30e5e208c4182b980fc0",
       "target_path": "knowledge/agents/software-engineering/qa-testing-specialist/agent.source.md",
-      "target_sha256": "c54f961ecc161062f59965758557cdce875141e551eeeacb375fe6d52c203248",
+      "target_sha256": "5ef994a770d93846783607f2d0b9b50447a002be4f4dcf82dc8b7d58b5683edb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -776,41 +742,7 @@
       "source_path": "agents/software-engineering/software-architect/AGENT.md",
       "source_sha256": "7c22af03d3c0120cd73472b2586f89babcc4aad647d3d947926797a9f7e7db4b",
       "target_path": "knowledge/agents/software-engineering/software-architect/agent.source.md",
-      "target_sha256": "6659933b62a64b783129d6078322de18f249142cde05cb3926ee4c19da0a9aba",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/software-engineering/software-engineer/AGENT.md",
-      "source_sha256": "94974db977861878bf6b7bc659e00326678ec3af4f1102d9d50cb5830a5e79af",
-      "target_path": "knowledge/agents/software-engineering/software-engineer/agent.source.md",
-      "target_sha256": "8e332c5277a11b2f0afaa11a39e6194e6d83915441965e99aa43ea715b565c83",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/software-engineering/ui-ux-designer/AGENT.md",
-      "source_sha256": "5b6835e763f285cab044a57a1c7270243f35d1978aac80c2b82ab5624bed2f0e",
-      "target_path": "knowledge/agents/software-engineering/ui-ux-designer/agent.source.md",
-      "target_sha256": "b30d6a378b2712f93b63452c6e007063e1b7a5317ea2249bdb76bda20e6f5958",
+      "target_sha256": "31166e7a7096db6d322b4a08d4324713157ebab09f6096b50bd70531fc6e95c0",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -827,7 +759,7 @@
       "source_path": "agents/software-engineering/vcs-repository-specialist/AGENT.md",
       "source_sha256": "1169c2f5418a5ac8b72761ace55c5e682deb606c9c2edae646f6c72ae3bd4b29",
       "target_path": "knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md",
-      "target_sha256": "f915d20f8ab1e96c86e9c04c11f586c6a702395e0b6ae3ccc401d9a1be835cb0",
+      "target_sha256": "4ab51d5b52d009782d8cf32ea497209def25e93c0befffe1769aec35f7b75523",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -844,24 +776,7 @@
       "source_path": "agents/specialized-domains/career-coach-job-hunter/AGENT.md",
       "source_sha256": "a59a8805e39769ac35adbe69d724720d7227e05b7f7ba64a7ead3c432896eaaa",
       "target_path": "knowledge/agents/specialized-domains/career-coach-job-hunter/agent.source.md",
-      "target_sha256": "5c9ffc40554b8150bcd85f942473c9b91ebf61c4cb32fd0ef8ecbdd2379f9f8a",
-      "origin_license": "GPL-3.0",
-      "transform": [
-        "imported",
-        "converted:agent.source.md",
-        "translated"
-      ],
-      "aliases": [],
-      "import_run_id": "20260920T022214Z",
-      "imported_at": "2026-09-20T02:22:15Z"
-    },
-    {
-      "source_repo": "skills",
-      "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
-      "source_path": "agents/specialized-domains/embedded-systems-specialist/AGENT.md",
-      "source_sha256": "97a7f2cdff9a3742663bbf6a897792ee2d7e5f474aada07dff18709f9c6b92b8",
-      "target_path": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md",
-      "target_sha256": "97a7f2cdff9a3742663bbf6a897792ee2d7e5f474aada07dff18709f9c6b92b8",
+      "target_sha256": "7598718d010d31478c8ff7007cc2de79c16d2dddb2f7a698dab58df847d89bfa",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -878,7 +793,7 @@
       "source_path": "agents/specialized-domains/information-systems-specialist/AGENT.md",
       "source_sha256": "67107fea225e90202b4e9e9668cb7a59a2e809c060c8b672b8e629e5d1c5940b",
       "target_path": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md",
-      "target_sha256": "67107fea225e90202b4e9e9668cb7a59a2e809c060c8b672b8e629e5d1c5940b",
+      "target_sha256": "7feab94ac31fda319c13780daf89989ccc4a6237998909c0da06fdbb37461a0b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -895,7 +810,7 @@
       "source_path": "agents/specialized-domains/linguistic-specialist/AGENT.md",
       "source_sha256": "cdd361d98dfa3ac457b1ca60f3c1498cf0e2938aeca8d6e04b4165011b59b4aa",
       "target_path": "knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md",
-      "target_sha256": "1574f8d7a58647082fc75fd90c7777698b4d2246fe3c4bd06bca8b7b605c1cb3",
+      "target_sha256": "a45fca2e60c3886379e2af588833d82f9a709dcbdbe674b29390487711fdafdb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -912,7 +827,7 @@
       "source_path": "agents/specialized-domains/moodle-specialist/AGENT.md",
       "source_sha256": "9c68056d21967fdbde468118f028c8df30afaa47bae678f5953a674c3eb2fd9d",
       "target_path": "knowledge/agents/specialized-domains/moodle-specialist/agent.source.md",
-      "target_sha256": "b40a84a1ef78ce51ae601268574dc1defd495335382edeaf6fee1cb0e4ea36e2",
+      "target_sha256": "ca33e1fa793345b53d1f4faa6742b780258d206f4d94e09282cc870ca54fd662",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -929,7 +844,7 @@
       "source_path": "agents/specialized-domains/skill-creator/AGENT.md",
       "source_sha256": "94ee1b38efcfff4e67ab9943fdb22b00e8c390068d00ba4170019126c1ffaa5d",
       "target_path": "knowledge/agents/specialized-domains/skill-creator/agent.source.md",
-      "target_sha256": "f5f90dd0d260d18c8cbd6a40c220064f4e2dd9e2825c8a69fc837dd292150c3b",
+      "target_sha256": "942648cb73e6d20c8786100a51d500bf44cd72cc7f744a08679bf01eb2422cb8",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -17455,9 +17370,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md",
-      "source_sha256": "0f1c6bd6654972c42e4664e7a05ed31dea76f7d58e6b47b591fb9cb6f38fce2d",
+      "source_sha256": "55b5633058c36fca8baa47f3ad7495383c254bd48bd9d0a7778f790b17ac1a49",
       "target_path": "knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md",
-      "target_sha256": "0f1c6bd6654972c42e4664e7a05ed31dea76f7d58e6b47b591fb9cb6f38fce2d",
+      "target_sha256": "55b5633058c36fca8baa47f3ad7495383c254bd48bd9d0a7778f790b17ac1a49",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17470,9 +17385,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md",
-      "source_sha256": "32a1738e3505622dc56aa1e623ee3390a20b82c1c643009e04f51e22cd3b323b",
+      "source_sha256": "169260bee92a50edef7b56995702bfb2f4b4e3ff224676cade01f92e369aa1cf",
       "target_path": "knowledge/agents/cybersecurity/medical-device-security-specialist/agent.source.md",
-      "target_sha256": "32a1738e3505622dc56aa1e623ee3390a20b82c1c643009e04f51e22cd3b323b",
+      "target_sha256": "169260bee92a50edef7b56995702bfb2f4b4e3ff224676cade01f92e369aa1cf",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17485,9 +17400,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/ot-security-specialist/agent.source.md",
-      "source_sha256": "5e931b6e5548b4cda4629a259a4b4a9040bf906f799ccd24c40609d54153a3fb",
+      "source_sha256": "17a68622ce6cf9215c44d857bd74cf61549cbc6813513b38af28e45e7ad55029",
       "target_path": "knowledge/agents/cybersecurity/ot-security-specialist/agent.source.md",
-      "target_sha256": "5e931b6e5548b4cda4629a259a4b4a9040bf906f799ccd24c40609d54153a3fb",
+      "target_sha256": "17a68622ce6cf9215c44d857bd74cf61549cbc6813513b38af28e45e7ad55029",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17500,9 +17415,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/cloud-security-specialist/agent.source.md",
-      "source_sha256": "589e4b4de1d1ea5ee72e4e5c5886e291e22ffbb744f2bc6e74a6834f8a3943a6",
+      "source_sha256": "0bcb63b0f2e9c2f6e74ff89c57db775991b0b2d57f742d20aea1b83268e05357",
       "target_path": "knowledge/agents/cybersecurity/cloud-security-specialist/agent.source.md",
-      "target_sha256": "589e4b4de1d1ea5ee72e4e5c5886e291e22ffbb744f2bc6e74a6834f8a3943a6",
+      "target_sha256": "0bcb63b0f2e9c2f6e74ff89c57db775991b0b2d57f742d20aea1b83268e05357",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17515,9 +17430,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/container-security-specialist/agent.source.md",
-      "source_sha256": "5c4690a37c28fd79cba7b569e285b7d8cc38a07d7dac1f53ac65ed0879b8104a",
+      "source_sha256": "f5296ca88060ad02ec075b1ef27061a404bcffbcfb53c61fc062dabc33ce8767",
       "target_path": "knowledge/agents/cybersecurity/container-security-specialist/agent.source.md",
-      "target_sha256": "5c4690a37c28fd79cba7b569e285b7d8cc38a07d7dac1f53ac65ed0879b8104a",
+      "target_sha256": "f5296ca88060ad02ec075b1ef27061a404bcffbcfb53c61fc062dabc33ce8767",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17530,9 +17445,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md",
-      "source_sha256": "430950d973711efa7e87d222e9d5a8e7f5beccc10d36f69ec5a89f9cc47a9050",
+      "source_sha256": "70e786d858aeb95b5289a8e901c6bf71f3368f6f179f76db17188baf106ebf21",
       "target_path": "knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md",
-      "target_sha256": "430950d973711efa7e87d222e9d5a8e7f5beccc10d36f69ec5a89f9cc47a9050",
+      "target_sha256": "70e786d858aeb95b5289a8e901c6bf71f3368f6f179f76db17188baf106ebf21",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17545,9 +17460,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md",
-      "source_sha256": "275842aace9d8a784a284ccd7efa5c527637fa09be5c2fb37944e7f9494976b3",
+      "source_sha256": "05f90b77ed3a9f90bdfed0d89690124d4960d7299ea1df5cfaf9a113ab0825a2",
       "target_path": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md",
-      "target_sha256": "275842aace9d8a784a284ccd7efa5c527637fa09be5c2fb37944e7f9494976b3",
+      "target_sha256": "05f90b77ed3a9f90bdfed0d89690124d4960d7299ea1df5cfaf9a113ab0825a2",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17560,9 +17475,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md",
-      "source_sha256": "783319b11b87c7c1a85fdd4f15a732f4e0ab79808565a24a7970a0414afd3c35",
+      "source_sha256": "f4e9f6903da923e045e45f7b1ef7a4e41c6445438e27ab58a159f417f719771b",
       "target_path": "knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md",
-      "target_sha256": "783319b11b87c7c1a85fdd4f15a732f4e0ab79808565a24a7970a0414afd3c35",
+      "target_sha256": "f4e9f6903da923e045e45f7b1ef7a4e41c6445438e27ab58a159f417f719771b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17575,9 +17490,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md",
-      "source_sha256": "0f9a58ca6d28a83f83b3b7838e057960f3ffe8c1cd1a80b089ce710d70409d4b",
+      "source_sha256": "3b1e36a3e19c43b2dd62d4ea448cabeaaf4513affab7b5151f49649bf88cf03d",
       "target_path": "knowledge/agents/cybersecurity/game-security-specialist/agent.source.md",
-      "target_sha256": "0f9a58ca6d28a83f83b3b7838e057960f3ffe8c1cd1a80b089ce710d70409d4b",
+      "target_sha256": "3b1e36a3e19c43b2dd62d4ea448cabeaaf4513affab7b5151f49649bf88cf03d",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17590,9 +17505,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md",
-      "source_sha256": "e58daa7049dc167f29ecc102b7314ea295c75dcc33dbc1278e3191a8d2ac0f2a",
+      "source_sha256": "ed0137ac9780bdcd3be507165efb862dea8b5c77db309bb1e478472fe4e8b738",
       "target_path": "knowledge/agents/cybersecurity/grc-security-specialist/agent.source.md",
-      "target_sha256": "e58daa7049dc167f29ecc102b7314ea295c75dcc33dbc1278e3191a8d2ac0f2a",
+      "target_sha256": "ed0137ac9780bdcd3be507165efb862dea8b5c77db309bb1e478472fe4e8b738",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17605,9 +17520,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md",
-      "source_sha256": "9a3eb280bc9a22819c1fc1a5a26e249931241e1d8e08265078e594dd01126203",
+      "source_sha256": "08230a29906c1809344a7c0252019a615bd0c79891dd9257c23c7195b5b728ca",
       "target_path": "knowledge/agents/cybersecurity/mobile-security-specialist/agent.source.md",
-      "target_sha256": "9a3eb280bc9a22819c1fc1a5a26e249931241e1d8e08265078e594dd01126203",
+      "target_sha256": "08230a29906c1809344a7c0252019a615bd0c79891dd9257c23c7195b5b728ca",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17620,9 +17535,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "source_sha256": "fad7b5433cb944adf3b6e86703ad9ad3cf4d85911eeb3d6eddf4ef9930b92d7e",
+      "source_sha256": "4334a5646da62c3d261b3fa0dcf33d3c166e3ee48f75b9d884d7b76144cf23f8",
       "target_path": "knowledge/agents/cybersecurity/network-security-specialist/agent.source.md",
-      "target_sha256": "fad7b5433cb944adf3b6e86703ad9ad3cf4d85911eeb3d6eddf4ef9930b92d7e",
+      "target_sha256": "4334a5646da62c3d261b3fa0dcf33d3c166e3ee48f75b9d884d7b76144cf23f8",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17635,9 +17550,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md",
-      "source_sha256": "30ab0a7a2b4cd56efcbd74634bceceadd50bf22a6cb74d8e44e48be0284a0931",
+      "source_sha256": "b8f9fe826f0efad6b729373fdd3a0f29772dda43b34ccd958590f92c8646489f",
       "target_path": "knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md",
-      "target_sha256": "30ab0a7a2b4cd56efcbd74634bceceadd50bf22a6cb74d8e44e48be0284a0931",
+      "target_sha256": "b8f9fe826f0efad6b729373fdd3a0f29772dda43b34ccd958590f92c8646489f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17650,9 +17565,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md",
-      "source_sha256": "98b47f3949f7e5796eab4029606f5063989b815f2a91c9dd12223feadf9072af",
+      "source_sha256": "24354533fb36c08b43209c4f0985ddf10c4cf9bed20dce0a06cd270af4731312",
       "target_path": "knowledge/agents/cybersecurity/threat-intelligence-specialist/agent.source.md",
-      "target_sha256": "98b47f3949f7e5796eab4029606f5063989b815f2a91c9dd12223feadf9072af",
+      "target_sha256": "24354533fb36c08b43209c4f0985ddf10c4cf9bed20dce0a06cd270af4731312",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17740,9 +17655,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md",
-      "source_sha256": "a70af1ebcd3deace0ab09648753224b9045020a4abc637eea83aa0247286f447",
+      "source_sha256": "4f6dbad95b26b4f54b7ae24fef12c09ce8391289bf32915afb5a902e71453986",
       "target_path": "knowledge/agents/academic-sciences/llvm-compiler-engineer/agent.source.md",
-      "target_sha256": "a70af1ebcd3deace0ab09648753224b9045020a4abc637eea83aa0247286f447",
+      "target_sha256": "4f6dbad95b26b4f54b7ae24fef12c09ce8391289bf32915afb5a902e71453986",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17755,9 +17670,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
-      "source_sha256": "e93340b86e1b9d0bf556acac7979072b594292b4517d493b38416f1bf3b53819",
+      "source_sha256": "0805c46b0da0bd2476dcc8cf06dd54c6c270f00b938109efc56e8a1179544467",
       "target_path": "knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md",
-      "target_sha256": "e93340b86e1b9d0bf556acac7979072b594292b4517d493b38416f1bf3b53819",
+      "target_sha256": "0805c46b0da0bd2476dcc8cf06dd54c6c270f00b938109efc56e8a1179544467",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17830,9 +17745,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
-      "source_sha256": "fca9713802a40ea9a320f717474660d1d6adba3b8fa06da4e60e3652c2534373",
+      "source_sha256": "43322e258116a76aa7b4e905355dcd869f02c7240e458848e848c28767249c5a",
       "target_path": "knowledge/agents/data-cloud-devops/data-scientist/agent.source.md",
-      "target_sha256": "fca9713802a40ea9a320f717474660d1d6adba3b8fa06da4e60e3652c2534373",
+      "target_sha256": "43322e258116a76aa7b4e905355dcd869f02c7240e458848e848c28767249c5a",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18190,9 +18105,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
-      "source_sha256": "e7fb0d968fb0c2bd7e156cf440abd16bdf9e2712eb37e9c9414a74aa72ce2fe7",
+      "source_sha256": "e78e7842e599360ba121a97ca2d938df22538e8000883ca95620e3d6d982a20b",
       "target_path": "knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md",
-      "target_sha256": "e7fb0d968fb0c2bd7e156cf440abd16bdf9e2712eb37e9c9414a74aa72ce2fe7",
+      "target_sha256": "e78e7842e599360ba121a97ca2d938df22538e8000883ca95620e3d6d982a20b",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18205,9 +18120,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
-      "source_sha256": "1756038f8d620d65e5f6eb25ec8e72b7d419b7fc6e2b5d1c53381004ce2b315c",
+      "source_sha256": "2ac85c746b9c2e1848db70c6d063656f7f4ae5f8a3979825fc3bb6ccfd67732e",
       "target_path": "knowledge/agents/specialized-domains/ai-product-manager/agent.source.md",
-      "target_sha256": "1756038f8d620d65e5f6eb25ec8e72b7d419b7fc6e2b5d1c53381004ce2b315c",
+      "target_sha256": "2ac85c746b9c2e1848db70c6d063656f7f4ae5f8a3979825fc3bb6ccfd67732e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18670,9 +18585,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "source_sha256": "abd56bffa00ec47f2f43104e4e47b5a2502bfa54c76fcfeb67d3c5f79cef9d0e",
+      "source_sha256": "b21a7ba65b022bbeee95e42fab747beaa7ec5ce346917097e03135ff7b38cbdd",
       "target_path": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
-      "target_sha256": "abd56bffa00ec47f2f43104e4e47b5a2502bfa54c76fcfeb67d3c5f79cef9d0e",
+      "target_sha256": "b21a7ba65b022bbeee95e42fab747beaa7ec5ce346917097e03135ff7b38cbdd",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18685,9 +18600,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
-      "source_sha256": "234ece7d21bb1b241078a1c5612dc4a08c74efa8ab2274dde978fe67883cfc08",
+      "source_sha256": "5c19ad71019a7a1275cb7d6b3066004392f6f1cc606392367534e255b194add7",
       "target_path": "knowledge/agents/software-engineering/ux-designer/agent.source.md",
-      "target_sha256": "234ece7d21bb1b241078a1c5612dc4a08c74efa8ab2274dde978fe67883cfc08",
+      "target_sha256": "5c19ad71019a7a1275cb7d6b3066004392f6f1cc606392367534e255b194add7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18775,9 +18690,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
-      "source_sha256": "527fcc62a90ea2011f915f3b6e26caa2a1e0e6eeac08272fde6bbf76317aebb8",
+      "source_sha256": "3a1b2d1b3b21b3eb0fbec0b3b3f78433e75813c09977a55721f9b781ff191540",
       "target_path": "knowledge/agents/architecture/enterprise-architect/agent.source.md",
-      "target_sha256": "527fcc62a90ea2011f915f3b6e26caa2a1e0e6eeac08272fde6bbf76317aebb8",
+      "target_sha256": "3a1b2d1b3b21b3eb0fbec0b3b3f78433e75813c09977a55721f9b781ff191540",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18805,9 +18720,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "source_sha256": "90ae63f1cb932d68c0af50e5c5da2bac2971150dcd68906cbc34ea593ef7a83a",
+      "source_sha256": "e42046af016213b989427aba2ec715ff520b882e64d448a099c35b52fd051b28",
       "target_path": "knowledge/agents/architecture/ai-ml-architect/agent.source.md",
-      "target_sha256": "90ae63f1cb932d68c0af50e5c5da2bac2971150dcd68906cbc34ea593ef7a83a",
+      "target_sha256": "e42046af016213b989427aba2ec715ff520b882e64d448a099c35b52fd051b28",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18820,9 +18735,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/api-architect/agent.source.md",
-      "source_sha256": "c612f490b9bfb8927a810a6a76b68b9d9a6297444f992f659283f21e5707dd70",
+      "source_sha256": "f2b17936be3af5f10554c96733f702efc5d62247be94d61009895d496c563bc1",
       "target_path": "knowledge/agents/architecture/api-architect/agent.source.md",
-      "target_sha256": "c612f490b9bfb8927a810a6a76b68b9d9a6297444f992f659283f21e5707dd70",
+      "target_sha256": "f2b17936be3af5f10554c96733f702efc5d62247be94d61009895d496c563bc1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18835,9 +18750,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/application-architect/agent.source.md",
-      "source_sha256": "757a66e272a66e20c20b5f81fe848e4ee46e546e591b1ef8cc6829eaa4866a7a",
+      "source_sha256": "355dbab8694523537bfe0c16f949c82f4849b6c8c76139202b20c8ef57b94469",
       "target_path": "knowledge/agents/architecture/application-architect/agent.source.md",
-      "target_sha256": "757a66e272a66e20c20b5f81fe848e4ee46e546e591b1ef8cc6829eaa4866a7a",
+      "target_sha256": "355dbab8694523537bfe0c16f949c82f4849b6c8c76139202b20c8ef57b94469",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18850,9 +18765,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/business-architect/agent.source.md",
-      "source_sha256": "258dde100cc72fd2a7f4e9e2a5da0db0d8cf4d71e63c2a7d513058e671b79811",
+      "source_sha256": "8cb506fb191e9ad7a6ce6b74c629c8bf748a7d3ec670a7de064f6c93fd0a5b37",
       "target_path": "knowledge/agents/architecture/business-architect/agent.source.md",
-      "target_sha256": "258dde100cc72fd2a7f4e9e2a5da0db0d8cf4d71e63c2a7d513058e671b79811",
+      "target_sha256": "8cb506fb191e9ad7a6ce6b74c629c8bf748a7d3ec670a7de064f6c93fd0a5b37",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18865,24 +18780,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/data-architect/agent.source.md",
-      "source_sha256": "f5af3382f96680bab0affcd96dca4431812c93d05dd152cbf4d35e87df99750a",
+      "source_sha256": "9ddc374b83d0cb5c5be7d43819829276cd726cf749fc854c7ed88197064554fe",
       "target_path": "knowledge/agents/architecture/data-architect/agent.source.md",
-      "target_sha256": "f5af3382f96680bab0affcd96dca4431812c93d05dd152cbf4d35e87df99750a",
-      "origin_license": "AGPL-3.0",
-      "transform": [
-        "authored"
-      ],
-      "aliases": [],
-      "import_run_id": "authored-sync",
-      "imported_at": "2026-09-28T14:54:13Z"
-    },
-    {
-      "source_repo": "authoring",
-      "source_commit": "native",
-      "source_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
-      "source_sha256": "8aec2ef6e2dce1cdf1d21ca208d369b2a68e545ac0a9cc07c2b8adb76ece2135",
-      "target_path": "knowledge/agents/architecture/domain-architect/agent.source.md",
-      "target_sha256": "8aec2ef6e2dce1cdf1d21ca208d369b2a68e545ac0a9cc07c2b8adb76ece2135",
+      "target_sha256": "9ddc374b83d0cb5c5be7d43819829276cd726cf749fc854c7ed88197064554fe",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18895,9 +18795,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "source_sha256": "c2114ed1e9190ef17fcb908f5b16b99ab61117912528fde9e9c2ba78c448571e",
+      "source_sha256": "4ed5c900ba7c5fed7b4c95596e062803718318457777bbf538c4b48fcf006323",
       "target_path": "knowledge/agents/architecture/iam-architect/agent.source.md",
-      "target_sha256": "c2114ed1e9190ef17fcb908f5b16b99ab61117912528fde9e9c2ba78c448571e",
+      "target_sha256": "4ed5c900ba7c5fed7b4c95596e062803718318457777bbf538c4b48fcf006323",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18910,9 +18810,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "source_sha256": "dc554a51470999979826c226dd3f9498a9e7017c5a5fe57f9d61d407b5089e3b",
+      "source_sha256": "0fe72c7cc2384b0afacd0f2837ac8269ca2967d5791cd3a24ef146595936b792",
       "target_path": "knowledge/agents/architecture/integration-architect/agent.source.md",
-      "target_sha256": "dc554a51470999979826c226dd3f9498a9e7017c5a5fe57f9d61d407b5089e3b",
+      "target_sha256": "0fe72c7cc2384b0afacd0f2837ac8269ca2967d5791cd3a24ef146595936b792",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18925,9 +18825,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/network-architect/agent.source.md",
-      "source_sha256": "9c39bc1c9e211ee5a34b854c788042fbfba2f897d12d69150d1aad7c59af0eb4",
+      "source_sha256": "7129fb0942e5a161db4cb6a7f14ccac6734457a389f17319539bcbbc809579e2",
       "target_path": "knowledge/agents/architecture/network-architect/agent.source.md",
-      "target_sha256": "9c39bc1c9e211ee5a34b854c788042fbfba2f897d12d69150d1aad7c59af0eb4",
+      "target_sha256": "7129fb0942e5a161db4cb6a7f14ccac6734457a389f17319539bcbbc809579e2",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18940,9 +18840,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "source_sha256": "83a644de2cc0571431a5c1ddb9c131e0ddabc0f059f70e6779066926d3a040f3",
+      "source_sha256": "e567237b84470bc23e08cc595bcc79cd224bf76b72eac0922b2a4c477f4bf3b1",
       "target_path": "knowledge/agents/architecture/platform-architect/agent.source.md",
-      "target_sha256": "83a644de2cc0571431a5c1ddb9c131e0ddabc0f059f70e6779066926d3a040f3",
+      "target_sha256": "e567237b84470bc23e08cc595bcc79cd224bf76b72eac0922b2a4c477f4bf3b1",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18955,9 +18855,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "source_sha256": "c9405ef25123491373be7571662df279c9e8b45977ecc81c566a41bb2f31c7f9",
+      "source_sha256": "579e9aa0cda02a397f24166cc356a195f0f385f66021fd50b8dab0832f884560",
       "target_path": "knowledge/agents/architecture/solution-architect/agent.source.md",
-      "target_sha256": "c9405ef25123491373be7571662df279c9e8b45977ecc81c566a41bb2f31c7f9",
+      "target_sha256": "579e9aa0cda02a397f24166cc356a195f0f385f66021fd50b8dab0832f884560",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18970,9 +18870,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
-      "source_sha256": "66d518fac7c6156855279ed95bc1f951a3507d9e9ee0bad120ee09215d9db6e7",
+      "source_sha256": "95bc6b66375fd05dfea8e5ddee10923f21b5a39559aa9e5fec08720872d5c9ae",
       "target_path": "knowledge/agents/architecture/systems-architect/agent.source.md",
-      "target_sha256": "66d518fac7c6156855279ed95bc1f951a3507d9e9ee0bad120ee09215d9db6e7",
+      "target_sha256": "95bc6b66375fd05dfea8e5ddee10923f21b5a39559aa9e5fec08720872d5c9ae",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18985,9 +18885,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
-      "source_sha256": "bd17feecf50d22f865687cd2bce65aade98b7bfc8368e3e5b81e1670c01f1f41",
+      "source_sha256": "629dee93c02a1c05b265b4fb660a71c331012b5706bb92268af510e82366351f",
       "target_path": "knowledge/agents/architecture/technology-architect/agent.source.md",
-      "target_sha256": "bd17feecf50d22f865687cd2bce65aade98b7bfc8368e3e5b81e1670c01f1f41",
+      "target_sha256": "629dee93c02a1c05b265b4fb660a71c331012b5706bb92268af510e82366351f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19195,9 +19095,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "source_sha256": "e304f287dd29faf97f694e779906664c2dcf571070763e31b88643da22ece2e0",
+      "source_sha256": "60f1f46ac8f96a37fe0f0c10994eafea8738497933652627c9ad5b36c2f980a0",
       "target_path": "knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md",
-      "target_sha256": "e304f287dd29faf97f694e779906664c2dcf571070763e31b88643da22ece2e0",
+      "target_sha256": "60f1f46ac8f96a37fe0f0c10994eafea8738497933652627c9ad5b36c2f980a0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19210,9 +19110,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
-      "source_sha256": "98ba9c6e4d9d5be8259f94166cfa4f2b538689cd5896ec3b738812abcb61c0de",
+      "source_sha256": "c43741e9e6bd7ba62885a9fc4c97d3707bb0d29e0fd7c1f26cadb30bac3b6b81",
       "target_path": "knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md",
-      "target_sha256": "98ba9c6e4d9d5be8259f94166cfa4f2b538689cd5896ec3b738812abcb61c0de",
+      "target_sha256": "c43741e9e6bd7ba62885a9fc4c97d3707bb0d29e0fd7c1f26cadb30bac3b6b81",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19840,9 +19740,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
-      "source_sha256": "db856c66bf05866551ef165c54a6fff90d5662c3a2e0c7f3df0a027ba4281776",
+      "source_sha256": "d2a205a7dca42e8bbbed9313ae5f60a525f6150d35830370a60ab2f200645077",
       "target_path": "knowledge/agents/specialized-domains/game-art-director/agent.source.md",
-      "target_sha256": "db856c66bf05866551ef165c54a6fff90d5662c3a2e0c7f3df0a027ba4281776",
+      "target_sha256": "d2a205a7dca42e8bbbed9313ae5f60a525f6150d35830370a60ab2f200645077",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19855,9 +19755,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md",
-      "source_sha256": "a54803d158b61980be22e8832a2e6a87dceb50d86b5ff52b57575d849469bdf9",
+      "source_sha256": "a666650669987bcf7439b664cede08b43b656fac73fa3548e3e1479d03c82dfc",
       "target_path": "knowledge/agents/specialized-domains/game-asset-pipeline-engineer/agent.source.md",
-      "target_sha256": "a54803d158b61980be22e8832a2e6a87dceb50d86b5ff52b57575d849469bdf9",
+      "target_sha256": "a666650669987bcf7439b664cede08b43b656fac73fa3548e3e1479d03c82dfc",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19870,9 +19770,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md",
-      "source_sha256": "e32458033cbb5125d40572e943fe6815c73f807f3f9b9177059e1278a0de9d08",
+      "source_sha256": "caa16ad816819f6c71fab25ff281c3e9f92ceee621634478d68ecdd1b7a726fa",
       "target_path": "knowledge/agents/specialized-domains/game-sprite-artist/agent.source.md",
-      "target_sha256": "e32458033cbb5125d40572e943fe6815c73f807f3f9b9177059e1278a0de9d08",
+      "target_sha256": "caa16ad816819f6c71fab25ff281c3e9f92ceee621634478d68ecdd1b7a726fa",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19975,9 +19875,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md",
-      "source_sha256": "b644204b34b2e9878b6dd2c77c9345bf869acd6d0e4eedbe298e1e3a564fc088",
+      "source_sha256": "f0d1aabf04513e09f2d2fe6893580c805e8f923c503ce7cfccb4c8265fbaea8c",
       "target_path": "knowledge/agents/specialized-domains/skill-auditor/agent.source.md",
-      "target_sha256": "b644204b34b2e9878b6dd2c77c9345bf869acd6d0e4eedbe298e1e3a564fc088",
+      "target_sha256": "f0d1aabf04513e09f2d2fe6893580c805e8f923c503ce7cfccb4c8265fbaea8c",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20304,25 +20204,10 @@
     {
       "source_repo": "authoring",
       "source_commit": "native",
-      "source_path": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md",
-      "source_sha256": "5369d8d94b241e09bf85e2559527fce20d38106ca51998df393582420556cea8",
-      "target_path": "knowledge/agents/cybersecurity/incident-response-commander/agent.source.md",
-      "target_sha256": "5369d8d94b241e09bf85e2559527fce20d38106ca51998df393582420556cea8",
-      "origin_license": "AGPL-3.0",
-      "transform": [
-        "authored"
-      ],
-      "aliases": [],
-      "import_run_id": "authored-sync",
-      "imported_at": "2026-10-11T20:45:51Z"
-    },
-    {
-      "source_repo": "authoring",
-      "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "source_sha256": "cca3c21a9662df44fa9cd488e11a117a335bcebbc443e83d54a834d7ae393efc",
+      "source_sha256": "35c5e70291f97ef1a6396ad2cb24fc9072814776be4ef42c2c070a9d026e3834",
       "target_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "target_sha256": "cca3c21a9662df44fa9cd488e11a117a335bcebbc443e83d54a834d7ae393efc",
+      "target_sha256": "35c5e70291f97ef1a6396ad2cb24fc9072814776be4ef42c2c070a9d026e3834",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20440,9 +20325,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
-      "source_sha256": "e9c9920f1c07ffd854a49acff08943934fa3b8db675bfa6f2d21d15f0eefd520",
+      "source_sha256": "f7aaef0322c8fb3e1b62ef61592131598674518b27e986ce877028246c942b17",
       "target_path": "knowledge/agents/software-engineering/design-qa-specialist/agent.source.md",
-      "target_sha256": "e9c9920f1c07ffd854a49acff08943934fa3b8db675bfa6f2d21d15f0eefd520",
+      "target_sha256": "f7aaef0322c8fb3e1b62ef61592131598674518b27e986ce877028246c942b17",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20470,9 +20355,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md",
-      "source_sha256": "31bc868c97f6405990bdd875d148b70b106f5f7f233beed68593c336ac69d23f",
+      "source_sha256": "e2a9130af5e7d05f6a10d3fac9739c6ad14680a91fb700a9f3955c9c36397ff4",
       "target_path": "knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md",
-      "target_sha256": "31bc868c97f6405990bdd875d148b70b106f5f7f233beed68593c336ac69d23f",
+      "target_sha256": "e2a9130af5e7d05f6a10d3fac9739c6ad14680a91fb700a9f3955c9c36397ff4",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20815,9 +20700,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
-      "source_sha256": "dfb665a08c9ca5b51d0072b6d6b21942ad35cf3bd5d25d69c0e9f804e43fc53b",
+      "source_sha256": "729c43fe151f3fbd99b6053f4b78c5a6386cfa85f197d6d1db58b21ad21208be",
       "target_path": "knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md",
-      "target_sha256": "dfb665a08c9ca5b51d0072b6d6b21942ad35cf3bd5d25d69c0e9f804e43fc53b",
+      "target_sha256": "729c43fe151f3fbd99b6053f4b78c5a6386cfa85f197d6d1db58b21ad21208be",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21265,9 +21150,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md",
-      "source_sha256": "5dfacb7c0a72f8edcc9158fe5f508d143aae49d47855ff1b63639efb6ebbde6a",
+      "source_sha256": "923e7155ae447bcdb9b6d9e13b6ab6a9022d9a50e971ceea67db90020a469a44",
       "target_path": "knowledge/agents/specialized-domains/growth-marketing-specialist/agent.source.md",
-      "target_sha256": "5dfacb7c0a72f8edcc9158fe5f508d143aae49d47855ff1b63639efb6ebbde6a",
+      "target_sha256": "923e7155ae447bcdb9b6d9e13b6ab6a9022d9a50e971ceea67db90020a469a44",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21385,9 +21270,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md",
-      "source_sha256": "c120dd67948d1558e9e2146ccbd1d323898b0adbb995aebf37415e7e612aa28b",
+      "source_sha256": "b27eda1ae1b981212d1ed4be9c52ce3dfdae05c374a5b13229303275dc5349ca",
       "target_path": "knowledge/agents/core-orchestration/harness-specialist/agent.source.md",
-      "target_sha256": "c120dd67948d1558e9e2146ccbd1d323898b0adbb995aebf37415e7e612aa28b",
+      "target_sha256": "b27eda1ae1b981212d1ed4be9c52ce3dfdae05c374a5b13229303275dc5349ca",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21485,6 +21370,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md",
+      "source_sha256": "ef637e8f8bc752eeffcbf454fc2b3f25c61bdf86d583a6d67a38a23f59d61d25",
+      "target_path": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md",
+      "target_sha256": "ef637e8f8bc752eeffcbf454fc2b3f25c61bdf86d583a6d67a38a23f59d61d25",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-19T15:13:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md",
+      "source_sha256": "44d2768790674bdf5dccec4afd26b02a69797e46dabb84591df9dc94a31d677c",
+      "target_path": "knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md",
+      "target_sha256": "44d2768790674bdf5dccec4afd26b02a69797e46dabb84591df9dc94a31d677c",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-19T15:13:52Z"
     }
   ]
 }

@@ -54,6 +54,17 @@ version, resolve it in the current session (version-freshness).
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
 - [data-classification-dspm](../../../../skills/security/data/data-classification-dspm/SKILL.md)
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Database engine storage, tuning and operations | `dba-specialist` |
+| Data pipelines and streaming implementation | `data-engineer-specialist` |
+| Data security and privacy controls | `data-security-privacy-specialist` |
+| ML data and feature pipelines | `ai-ml-architect` |
+
+You own the enterprise data asset: models, governance, lineage, quality and master data. You do not administer database engines or build data pipelines.
+
 ## Handoff Boundaries
 
 The Data Architect owns the information domain and its governance. Handoffs

@@ -26,6 +26,7 @@ Standards are written in English (see [`english-only.md`](english-only.md)). Enf
 | [`corpus-and-taxonomy.md`](corpus-and-taxonomy.md) | Normalization of the 11 top-level categories under `knowledge/skills/`, dedup gates, flat namespaces, and provenance tracking. |
 | [`skill-authoring.md`](skill-authoring.md) | Canonical contract for `SKILL.md` authoring: frontmatter schema, action-oriented bodies without hardcoded tool names, 3rd-person triggers, and word-count boundaries (<3500 words). |
 | [`agent-manifests.md`](agent-manifests.md) | Canonical agent definition in `agent.source.md`, prohibition of hardcoded models (enforcing `model: inherit`), and generation of `agent.yaml`, `agent.json`, and `plugin.json`. |
+| [`agent-roles.md`](agent-roles.md) | One role per agent: required responsibility boundaries, existing owners, exclusive skills and a ceiling on skill overlap between agents. |
 | [`mcp-definition.md`](mcp-definition.md) | Canonical declaration of Model Context Protocol (MCP) servers via the triple: `MCP.md`, `mcp.json`, and `mcp_config.json`. |
 | [`english-only.md`](english-only.md) | Strict English-only mandate across all canonical bodies, code identifiers, frontmatter, and machine manifests. |
 | [`version-freshness.md`](version-freshness.md) | Dynamic resolution and provenance pinning of external libraries, standards, and framework versions via primary package registries and publisher sources. |

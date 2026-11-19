@@ -1,8 +1,8 @@
 {
   "name": "ui-designer",
-  "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the design style library and accessibility conformance to ship pixel-faithful, token-driven interfaces.",
+  "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the full design style library, color theory and accessibility conformance, and hands tokens and components to engineering without building the application.",
   "category": "software-engineering",
   "source": "knowledge/agents/software-engineering/ui-designer/agent.source.md",
   "dist": "knowledge/agents/software-engineering/ui-designer/dist",
-  "fingerprint": "abd56bffa00ec47f"
+  "fingerprint": "b21a7ba65b022bbe"
 }

@@ -20,7 +20,8 @@
       "arquitetura de ml",
       "mlops architect",
       "genai architecture",
-      "arquitetura de ia"
+      "arquitetura de ia",
+      "mlops"
     ],
     "ai-product-manager": [
       "ai product",
@@ -71,14 +72,6 @@
       "modelo de ia",
       "adversarial ml",
       "jailbreak"
-    ],
-    "antigravity-agent": [
-      "antigravity",
-      "google antigravity",
-      "agy",
-      "pair programming",
-      "pair programmer",
-      "antigravity cli"
     ],
     "api-architect": [
       "arquiteto de api",
@@ -283,7 +276,6 @@
       "call graph",
       "dependências",
       "dependency graph",
-      "topologia",
       "arquitetura de código",
       "uml"
     ],
@@ -300,7 +292,9 @@
       "otimizar",
       "performance",
       "profiling",
-      "refatorar performance"
+      "refatorar performance",
+      "refatoração",
+      "refactoring"
     ],
     "computer-engineer": [
       "hardware",
@@ -311,7 +305,17 @@
       "vhdl",
       "verilog",
       "embarcado",
-      "sistema digital"
+      "sistema digital",
+      "embedded",
+      "firmware",
+      "rtos",
+      "zephyr",
+      "yocto",
+      "microcontrolador",
+      "microcontroller",
+      "device tree",
+      "uart",
+      "spi"
     ],
     "computer-scientist": [
       "algoritmo",
@@ -350,7 +354,8 @@
       "transferencia para humano",
       "faq bot",
       "atendimento automatizado",
-      "customer service bot"
+      "customer service bot",
+      "rag"
     ],
     "cpp-systems-engineer": [
       "cpp",
@@ -390,18 +395,6 @@
       "hsm",
       "assinatura digital"
     ],
-    "data-ai-engineer": [
-      "dados e ia",
-      "data and ai",
-      "pipeline de dados",
-      "data pipeline",
-      "mlops",
-      "machine learning",
-      "spark",
-      "airflow",
-      "rag",
-      "deep learning"
-    ],
     "data-architect": [
       "arquiteto de dados",
       "arquiteto de dados corporativo",
@@ -422,7 +415,11 @@
       "kafka",
       "flink",
       "etl",
-      "lakehouse"
+      "lakehouse",
+      "pipeline de dados",
+      "data pipeline",
+      "spark",
+      "airflow"
     ],
     "data-scientist": [
       "cientista de dados",
@@ -452,7 +449,8 @@
       "explicabilidade",
       "shap",
       "lime",
-      "jupyter notebook"
+      "jupyter notebook",
+      "deep learning"
     ],
     "data-security-privacy-specialist": [
       "privacidade",
@@ -539,7 +537,8 @@
       "heurística de design",
       "design heuristic",
       "squint test",
-      "border strip test"
+      "border strip test",
+      "wcag"
     ],
     "documenter": [
       "documentação",
@@ -556,15 +555,6 @@
       "drawcms",
       "adr"
     ],
-    "domain-architect": [
-      "arquiteto de domínio",
-      "arquiteto de domínios",
-      "domain architect",
-      "domain architecture",
-      "arquitetura de domínio",
-      "arquitetura de referência de domínio",
-      "domain reference architecture"
-    ],
     "electrical-power-engineer": [
       "energia",
       "power",
@@ -576,19 +566,6 @@
       "transformador",
       "inversor",
       "nbr 5410"
-    ],
-    "embedded-systems-specialist": [
-      "embarcado",
-      "embedded",
-      "firmware",
-      "rtos",
-      "zephyr",
-      "yocto",
-      "microcontrolador",
-      "microcontroller",
-      "device tree",
-      "uart",
-      "spi"
     ],
     "endpoint-security-specialist": [
       "endpoint",
@@ -616,7 +593,14 @@
       "estado alvo",
       "architecture governance",
       "governança de arquitetura",
-      "roadmap de arquitetura"
+      "roadmap de arquitetura",
+      "arquiteto de domínio",
+      "arquiteto de domínios",
+      "domain architect",
+      "domain architecture",
+      "arquitetura de domínio",
+      "arquitetura de referência de domínio",
+      "domain reference architecture"
     ],
     "frontend-developer": [
       "frontend",
@@ -630,7 +614,15 @@
       "componente",
       "component",
       "acessibilidade",
-      "accessibility"
+      "accessibility",
+      "gnome shell",
+      "gnome shell extension",
+      "extensão do gnome",
+      "extensao gnome",
+      "gjs",
+      "libadwaita",
+      "gnome extension",
+      "extensão gnome shell"
     ],
     "fullstack-developer": [
       "fullstack",
@@ -659,7 +651,11 @@
       "codex cli",
       "cursor configuration",
       "command code",
-      "assistant harness"
+      "assistant harness",
+      "antigravity",
+      "google antigravity",
+      "agy",
+      "antigravity cli"
     ],
     "geoscientist": [
       "geociências",
@@ -1147,7 +1143,18 @@
       "soar",
       "threat hunting",
       "detecção",
-      "detection"
+      "detection",
+      "incident command",
+      "resposta a incidentes",
+      "blue team",
+      "picerl",
+      "incident commander",
+      "forensics triage",
+      "triage de seguranca",
+      "containment",
+      "live host triage",
+      "rfc 3227",
+      "comando de incidente"
     ],
     "software-architect": [
       "arquitetura",
@@ -1159,25 +1166,10 @@
       "clean architecture",
       "microserviços",
       "microservices",
-      "adr"
-    ],
-    "software-engineer": [
-      "engenharia de software",
-      "software engineering",
-      "requisitos",
-      "requirements",
+      "adr",
       "arquitetura limpa",
-      "clean architecture",
-      "refatoração",
-      "refactoring",
-      "gnome shell",
-      "gnome shell extension",
-      "extensão do gnome",
-      "extensao gnome",
-      "gjs",
-      "libadwaita",
-      "gnome extension",
-      "extensão gnome shell"
+      "requisitos",
+      "requirements"
     ],
     "solution-architect": [
       "arquiteto de solução",
@@ -1294,7 +1286,8 @@
       "art direction",
       "direcao de arte",
       "liquid glass",
-      "glassmorphism"
+      "glassmorphism",
+      "identidade visual"
     ],
     "ui-motion-specialist": [
       "motion",
@@ -1352,19 +1345,6 @@
       "ui spring animation",
       "reduced motion"
     ],
-    "ui-ux-designer": [
-      "design",
-      "ui design",
-      "ux design",
-      "design system",
-      "prototipagem",
-      "prototype",
-      "usabilidade",
-      "usability",
-      "wcag",
-      "tipografia",
-      "identidade visual"
-    ],
     "ux-designer": [
       "ux design",
       "design de experiencia",
@@ -1386,7 +1366,9 @@
       "card sorting",
       "tree testing",
       "double diamond",
-      "job to be done"
+      "job to be done",
+      "prototipagem",
+      "prototype"
     ],
     "vcs-repository-specialist": [
       "git",
@@ -1468,18 +1450,30 @@
       "langgraph",
       "agent cognitive loop"
     ],
-    "incident-response-commander": [
-      "incident command",
-      "resposta a incidentes",
-      "blue team",
-      "picerl",
-      "incident commander",
-      "forensics triage",
-      "triage de seguranca",
-      "containment",
-      "live host triage",
-      "rfc 3227",
-      "comando de incidente"
+    "infrastructure-mapping-specialist": [
+      "topologia",
+      "mapeamento de infraestrutura",
+      "infrastructure mapping",
+      "fluxo de rede",
+      "network flow",
+      "cmdb",
+      "kubernetes topology",
+      "topologia de nuvem",
+      "cloud topology",
+      "descoberta de dependências",
+      "dependency discovery"
+    ],
+    "bioinformatics-research-analyst": [
+      "bioinformática",
+      "bioinformatics",
+      "rna-seq",
+      "single cell",
+      "célula única",
+      "citometria de fluxo",
+      "flow cytometry",
+      "expressão gênica",
+      "gene expression",
+      "omics"
     ]
   }
 }

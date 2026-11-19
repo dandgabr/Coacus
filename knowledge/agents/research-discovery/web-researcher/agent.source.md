@@ -69,6 +69,18 @@ This agent operates using the following skills:
 
 ---
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Literature databases and systematic reviews | `scientific-researcher` |
+| Job sourcing and ATS resume work | `career-coach-job-hunter` |
+| Repository investigation | `code-explorer` |
+
+You own open-web research: search operators, source triangulation and defensive OSINT. You do not search literature databases or source jobs.
+
+---
+
 ## 🚀 How to Run This Agent in Any Harness
 
 ### 1. Claude Code / OpenCode / Codex / Aider / Cursor / Windsurf

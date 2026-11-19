@@ -5,6 +5,26 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — One role per agent
+
+### Added
+
+- `docs/standards/agent-roles.md` and `engine/validators/specialty.py`: every agent source needs a `## Responsibility boundaries` section, every owner it names in backticks must be an existing agent, and no agent may hold 90% or more of a smaller agent's skills (at least five, baseline practice skills excluded).
+- `infrastructure-mapping-specialist` (runtime, network, Kubernetes, cloud and CMDB mapping) and `bioinformatics-research-analyst` (expression, cytometry, screen and flux data analysis), split from `code-mapping-specialist` and `biotechnologist`, which now keep source and architecture mapping and bioprocess engineering.
+
+### Changed
+
+- Every agent now declares what it does not own and who does. Skills moved to the single agent that owns the specialty: the whole visual style library to `ui-designer` (and out of `frontend-developer`), tokenization to `cryptography-specialist`, GitHub Actions to `github-specialist`, offensive tooling out of the pentester, and router-only skills for `security-specialist`.
+- Descriptions that promised more than the body delivered were narrowed, and generic stub bodies (`information-systems-specialist`, `moodle-specialist`, `agentic-ai-architect`) were replaced with real duties.
+
+### Removed
+
+- Seven overlapping agents were retired and their roles folded into an owner: `incident-response-commander` into `soc-dfir-specialist`, `data-ai-engineer` into the data and AI agents, `domain-architect` (its skill stays) into `enterprise-architect`, `antigravity-agent` into `harness-specialist`, `embedded-systems-specialist` into `computer-engineer`, `software-engineer`, and `ui-ux-designer` (its skill stays) into `ui-designer` and `ux-designer`.
+
+### Fixed
+
+- `code-explorer` carried a second, duplicated persona from an old merge; `skill-creator` told authors to hand-edit the generated catalog.
+
 ## [Unreleased] — The guard script is a protected surface
 
 ### Changed

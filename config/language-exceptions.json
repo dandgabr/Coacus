@@ -129,8 +129,8 @@
     {
       "path": "knowledge/routing/lexicon.json",
       "scope": "file",
-      "sha256": "5ba37e4dbfe0e411a23baa1a0d9760fbf573372f3f924564fa55a697a4b40e22",
-      "reason": "Reviewed existing approved bilingual terms unchanged; added English editable diagram terminology and product identifiers to the existing documentation owner. Added English review-scope terms for the security review roles; the bilingual terms are unchanged. Exact file digest preserves the bilingual routing contract."
+      "sha256": "1041e11436896c2cbe502d04ebad526f28404311e4f72865fcce676271a54ede",
+      "reason": "Reviewed existing approved bilingual terms unchanged; added English editable diagram terminology and product identifiers to the existing documentation owner. Added English review-scope terms for the security review roles; the bilingual terms are unchanged. Reassigned the already approved terms of seven retired agents to the agents that absorbed their roles, without adding any new term. Added bilingual trigger terms for the two agents created by splitting an over-broad agent (infrastructure mapping, biological data analysis). Exact file digest preserves the bilingual routing contract."
     },
     {
       "path": "knowledge/skills/data/data-intensive-systems/SKILL.md",

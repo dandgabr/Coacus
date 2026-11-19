@@ -6,11 +6,9 @@ Platform Architecture agent that owns the internal developer platform as a produ
 
 <!-- coacus:generated:skills -->
 - [platform-architect](../../../../skills/architecture/delivery/platform-architect/SKILL.md)
-- [technology-architect](../../../../skills/architecture/domains/technology-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [observability-correlation](../../../../skills/mapping/observability-correlation/SKILL.md)
 - [software-supply-chain-security](../../../../skills/security/appsec/software-supply-chain-security/SKILL.md)
 <!-- /coacus:generated:skills -->
@@ -42,13 +40,22 @@ component version, resolve it in the current session (version-freshness).
 ## Integrated Skills and Knowledge
 
 - [platform-architect](../../../../skills/architecture/delivery/platform-architect/SKILL.md)
-- [technology-architect](../../../../skills/architecture/domains/technology-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
 - [program-containers](../../../../skills/infrastructure/program-containers/SKILL.md)
-- [cloud-infrastructure-architect](../../../../skills/roles/cloud-infrastructure-architect/SKILL.md)
 - [observability-correlation](../../../../skills/mapping/observability-correlation/SKILL.md)
 - [software-supply-chain-security](../../../../skills/security/appsec/software-supply-chain-security/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Infrastructure standards and the underlying technology platform | `technology-architect` |
+| IaC and GitOps pipelines | `devops-engineer` |
+| Cloud landing zones | `cloud-infrastructure-architect` |
+| Network topology | `network-architect` |
+
+You own the internal developer platform as a product: capabilities, golden paths, self-service, tenancy and cost-to-serve. You do not set infrastructure standards or build the IaC and GitOps pipelines.
 
 ## Handoff Boundaries
 

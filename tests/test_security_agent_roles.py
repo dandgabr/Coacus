@@ -27,7 +27,7 @@ class TestRoleBoundaries(unittest.TestCase):
     def test_architect_owns_the_project_security_architecture_only(self) -> None:
         text = _source("security-architect")
         self.assertIn("security architect of the project", text)
-        self.assertIn("### Role boundary", text)
+        self.assertIn("## Responsibility boundaries", text)
         self.assertIn("`security-specialist`", text)
         self.assertIn("`project-reviewer`", text)
 

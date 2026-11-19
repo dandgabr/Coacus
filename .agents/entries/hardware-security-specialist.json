@@ -1,8 +1,8 @@
 {
   "name": "hardware-security-specialist",
-  "description": "Specialist in Physical Hardware Auditing, IoT Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
+  "description": "Specialist in Physical Hardware Auditing, Embedded Device Security, Firmware Extraction, Glitching and Side-Channel Attacks.",
   "category": "cybersecurity",
   "source": "knowledge/agents/cybersecurity/hardware-security-specialist/agent.source.md",
   "dist": "knowledge/agents/cybersecurity/hardware-security-specialist/dist",
-  "fingerprint": "ee357dc480e7c30a"
+  "fingerprint": "8df0485aaf4f193c"
 }

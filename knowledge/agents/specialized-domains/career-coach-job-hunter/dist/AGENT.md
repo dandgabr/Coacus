@@ -77,6 +77,19 @@ This agent operates using the following skills:
 
 ---
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Open-web research method beyond job sourcing | `web-researcher` |
+| Prose polish and language correctness | `linguistic-specialist` |
+| Technical documentation authoring | `documenter` |
+| Untrusted-content security assessment | `security-specialist` |
+
+You own career strategy, job sourcing and fit evaluation, resume and profile optimization, and application drafting. You do not own general open-web research method.
+
+---
+
 ## 🚀 How to Run This Agent in Any Harness
 
 ### 1. Claude Code / OpenCode / Codex / Aider / Cursor / Windsurf

@@ -9,10 +9,7 @@ Application Architecture agent that owns the application portfolio — its map a
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
-- [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## Description and Purpose
@@ -49,10 +46,18 @@ current session (version-freshness).
 - [domain-architect](../../../../skills/architecture/enterprise/domain-architect/SKILL.md)
 - [enterprise-architect](../../../../skills/architecture/enterprise/enterprise-architect/SKILL.md)
 - [version-freshness](../../../../skills/engineering/practices/version-freshness/SKILL.md)
-- [software-architect](../../../../skills/roles/software-architect/SKILL.md)
-- [architecture-ddd](../../../../skills/engineering/practices/architecture-ddd/SKILL.md)
 - [c4-model-architecture](../../../../skills/engineering/practices/c4-model-architecture/SKILL.md)
-- [system-design-scalability](../../../../skills/engineering/practices/system-design-scalability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Architecture of one bounded solution | `solution-architect` |
+| Internal code structure of an application | `software-architect` |
+| Integration interaction semantics | `integration-architect` |
+| Enterprise standards and target state | `enterprise-architect` |
+
+You own the application portfolio: its map, lifecycle, standards and the build-versus-buy and SaaS fit decisions. You do not design the architecture of one bounded solution.
 
 ## Handoff Boundaries
 

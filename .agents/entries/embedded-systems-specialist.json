@@ -1,8 +1,0 @@
-{
-  "name": "embedded-systems-specialist",
-  "description": "Specialist in Embedded Systems, RTOS (Zephyr), Embedded Linux (Yocto Project), C/C++ Firmware and Hardware Description (Verilog/VHDL).",
-  "category": "specialized-domains",
-  "source": "knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md",
-  "dist": "knowledge/agents/specialized-domains/embedded-systems-specialist/dist",
-  "fingerprint": "97a7f2cdff9a3742"
-}

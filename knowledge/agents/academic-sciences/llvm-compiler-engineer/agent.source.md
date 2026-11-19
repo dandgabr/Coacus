@@ -40,6 +40,18 @@ When acting, follow the guidelines in the associated skills: llvm-compiler-infra
 
 ---
 
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| C++ language engineering | cpp-systems-engineer |
+| Computability and formal-language theory | computer-scientist |
+| Hardware and microarchitecture design | computer-engineer |
+
+You own LLVM-based compiler and toolchain engineering. You do not own C++ language engineering beyond the host code, or the theory of computation; hand those to the owners above.
+
+---
+
 ## 🧰 Integrated Skills and Knowledge
 
 This agent operates using the guidelines and technical standards established in the following skills:

@@ -1,8 +1,8 @@
 {
   "name": "code-mapping-specialist",
-  "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+  "description": "Specialist Agent in Source and Architecture Mapping: module and layer structure, execution flows and call graphs, API and service-mesh contracts, database schemas and dependency graphs, rendered as UML and graph diagrams.",
   "category": "research-discovery",
   "source": "knowledge/agents/research-discovery/code-mapping-specialist/agent.source.md",
   "dist": "knowledge/agents/research-discovery/code-mapping-specialist/dist",
-  "fingerprint": "2ecc2a73f4e1bb73"
+  "fingerprint": "382b2a654431cb9d"
 }

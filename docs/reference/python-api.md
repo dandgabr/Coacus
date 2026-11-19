@@ -1195,6 +1195,25 @@ Return a list of error strings; empty list means valid.
 
 No non-blocking findings are currently defined for skill structure.
 
+### `engine/validators/specialty.py`
+
+Validate that every canonical agent has one exclusive specialty (agent-roles).
+
+An agent is one role on one domain. Three machine-checkable consequences:
+
+- the body carries a ``## Responsibility boundaries`` section, so a reader and a
+  router can tell what the agent does not own;
+- every owner named in backticks in that section is an agent that exists, so a
+  retired or renamed agent cannot linger as an owner;
+- no agent's skills are (almost) wholly contained in another agent's skills,
+  which is how two roles that should be one (or one a subset of the other)
+  show up in the data. Baseline practice skills that nearly every agent loads
+  do not count towards the overlap.
+
+#### `def validate(root: Path) -> list[str]`
+
+Return a list of error strings; empty list means valid.
+
 ### `engine/verify/ledger.py`
 
 Tri-state, fail-closed completion ledger (evidence standard).

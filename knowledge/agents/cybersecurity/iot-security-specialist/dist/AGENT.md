@@ -11,7 +11,6 @@ Specialist Agent in Consumer/Embedded IoT Security, covering device fingerprinti
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
 - [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
-- [os-hardening-baselines](../../../../skills/security/platform/os-hardening-baselines/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -61,9 +60,20 @@ This agent operates using the following skills:
 - [network-segmentation-microsegmentation](../../../../skills/security/operations/network-segmentation-microsegmentation/SKILL.md)
 - [network-security-onprem-cloud](../../../../skills/security/operations/network-security-onprem-cloud/SKILL.md)
 - [firmware-uefi-implant-analysis](../../../../skills/security/platform/firmware-uefi-implant-analysis/SKILL.md)
-- [os-hardening-baselines](../../../../skills/security/platform/os-hardening-baselines/SKILL.md)
 - [hardware-hacking-embedded-security](../../../../skills/domains/industry/hardware-hacking-embedded-security/SKILL.md)
 - [clean-code-reusability](../../../../skills/engineering/practices/clean-code-reusability/SKILL.md)
+
+## Responsibility boundaries
+
+| Concern | Owner |
+|---|---|
+| Host OS hardening baselines | `endpoint-security-specialist` |
+| Network firewalling, segmentation and DNS beyond the device segment | `network-security-specialist` |
+| Board-level firmware extraction, glitching and side channels | `hardware-security-specialist` |
+| Industrial control systems | `ot-security-specialist` |
+| Vehicle systems | `automotive-security-specialist` |
+
+You own consumer and network-attached device triage, hardening, isolation and update decisions. You do not own host OS baselines, general network design or board-level hardware attacks.
 
 ---
 

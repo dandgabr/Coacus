@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 500 skill(s) · 104 agent(s) · 1 MCP(s)
+**Totals:** 500 skill(s) · 99 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -12,11 +12,11 @@
 | ai-ml-architect | architecture | [knowledge/agents/architecture/ai-ml-architect/agent.source.md](../knowledge/agents/architecture/ai-ml-architect/agent.source.md) |
 | ai-product-manager | specialized-domains | [knowledge/agents/specialized-domains/ai-product-manager/agent.source.md](../knowledge/agents/specialized-domains/ai-product-manager/agent.source.md) |
 | ai-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/ai-security-specialist/agent.source.md) |
-| antigravity-agent | core-orchestration | [knowledge/agents/core-orchestration/antigravity-agent/agent.source.md](../knowledge/agents/core-orchestration/antigravity-agent/agent.source.md) |
 | api-architect | architecture | [knowledge/agents/architecture/api-architect/agent.source.md](../knowledge/agents/architecture/api-architect/agent.source.md) |
 | application-architect | architecture | [knowledge/agents/architecture/application-architect/agent.source.md](../knowledge/agents/architecture/application-architect/agent.source.md) |
 | automotive-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md) |
 | backend-developer | software-engineering | [knowledge/agents/software-engineering/backend-developer/agent.source.md](../knowledge/agents/software-engineering/backend-developer/agent.source.md) |
+| bioinformatics-research-analyst | academic-sciences | [knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md](../knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md) |
 | biomedical-engineer | academic-sciences | [knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md](../knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md) |
 | biotechnologist | academic-sciences | [knowledge/agents/academic-sciences/biotechnologist/agent.source.md](../knowledge/agents/academic-sciences/biotechnologist/agent.source.md) |
 | browser-graphics-specialist | software-engineering | [knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md](../knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md) |
@@ -36,7 +36,6 @@
 | conversational-ai-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/conversational-ai-engineer/agent.source.md) |
 | cpp-systems-engineer | software-engineering | [knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md](../knowledge/agents/software-engineering/cpp-systems-engineer/agent.source.md) |
 | cryptography-specialist | cybersecurity | [knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md](../knowledge/agents/cybersecurity/cryptography-specialist/agent.source.md) |
-| data-ai-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/data-ai-engineer/agent.source.md) |
 | data-architect | architecture | [knowledge/agents/architecture/data-architect/agent.source.md](../knowledge/agents/architecture/data-architect/agent.source.md) |
 | data-engineer-specialist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md](../knowledge/agents/data-cloud-devops/data-engineer-specialist/agent.source.md) |
 | data-scientist | data-cloud-devops | [knowledge/agents/data-cloud-devops/data-scientist/agent.source.md](../knowledge/agents/data-cloud-devops/data-scientist/agent.source.md) |
@@ -45,9 +44,7 @@
 | design-qa-specialist | software-engineering | [knowledge/agents/software-engineering/design-qa-specialist/agent.source.md](../knowledge/agents/software-engineering/design-qa-specialist/agent.source.md) |
 | devops-engineer | data-cloud-devops | [knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md](../knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md) |
 | documenter | software-engineering | [knowledge/agents/software-engineering/documenter/agent.source.md](../knowledge/agents/software-engineering/documenter/agent.source.md) |
-| domain-architect | architecture | [knowledge/agents/architecture/domain-architect/agent.source.md](../knowledge/agents/architecture/domain-architect/agent.source.md) |
 | electrical-power-engineer | academic-sciences | [knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md](../knowledge/agents/academic-sciences/electrical-power-engineer/agent.source.md) |
-| embedded-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/embedded-systems-specialist/agent.source.md) |
 | endpoint-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/endpoint-security-specialist/agent.source.md) |
 | enterprise-architect | architecture | [knowledge/agents/architecture/enterprise-architect/agent.source.md](../knowledge/agents/architecture/enterprise-architect/agent.source.md) |
 | frontend-developer | software-engineering | [knowledge/agents/software-engineering/frontend-developer/agent.source.md](../knowledge/agents/software-engineering/frontend-developer/agent.source.md) |
@@ -64,8 +61,8 @@
 | harness-specialist | core-orchestration | [knowledge/agents/core-orchestration/harness-specialist/agent.source.md](../knowledge/agents/core-orchestration/harness-specialist/agent.source.md) |
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
-| incident-response-commander | cybersecurity | [knowledge/agents/cybersecurity/incident-response-commander/agent.source.md](../knowledge/agents/cybersecurity/incident-response-commander/agent.source.md) |
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
+| infrastructure-mapping-specialist | research-discovery | [knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md](../knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md) |
 | integration-architect | architecture | [knowledge/agents/architecture/integration-architect/agent.source.md](../knowledge/agents/architecture/integration-architect/agent.source.md) |
 | iot-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |
@@ -98,7 +95,6 @@
 | skill-creator | specialized-domains | [knowledge/agents/specialized-domains/skill-creator/agent.source.md](../knowledge/agents/specialized-domains/skill-creator/agent.source.md) |
 | soc-dfir-specialist | cybersecurity | [knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md](../knowledge/agents/cybersecurity/soc-dfir-specialist/agent.source.md) |
 | software-architect | software-engineering | [knowledge/agents/software-engineering/software-architect/agent.source.md](../knowledge/agents/software-engineering/software-architect/agent.source.md) |
-| software-engineer | software-engineering | [knowledge/agents/software-engineering/software-engineer/agent.source.md](../knowledge/agents/software-engineering/software-engineer/agent.source.md) |
 | solution-architect | architecture | [knowledge/agents/architecture/solution-architect/agent.source.md](../knowledge/agents/architecture/solution-architect/agent.source.md) |
 | systems-architect | architecture | [knowledge/agents/architecture/systems-architect/agent.source.md](../knowledge/agents/architecture/systems-architect/agent.source.md) |
 | technology-architect | architecture | [knowledge/agents/architecture/technology-architect/agent.source.md](../knowledge/agents/architecture/technology-architect/agent.source.md) |
@@ -108,7 +104,6 @@
 | tui-cli-engineer | software-engineering | [knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md](../knowledge/agents/software-engineering/tui-cli-engineer/agent.source.md) |
 | ui-designer | software-engineering | [knowledge/agents/software-engineering/ui-designer/agent.source.md](../knowledge/agents/software-engineering/ui-designer/agent.source.md) |
 | ui-motion-specialist | software-engineering | [knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md](../knowledge/agents/software-engineering/ui-motion-specialist/agent.source.md) |
-| ui-ux-designer | software-engineering | [knowledge/agents/software-engineering/ui-ux-designer/agent.source.md](../knowledge/agents/software-engineering/ui-ux-designer/agent.source.md) |
 | ux-designer | software-engineering | [knowledge/agents/software-engineering/ux-designer/agent.source.md](../knowledge/agents/software-engineering/ux-designer/agent.source.md) |
 | vcs-repository-specialist | software-engineering | [knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md](../knowledge/agents/software-engineering/vcs-repository-specialist/agent.source.md) |
 | web-researcher | research-discovery | [knowledge/agents/research-discovery/web-researcher/agent.source.md](../knowledge/agents/research-discovery/web-researcher/agent.source.md) |
