@@ -1,6 +1,6 @@
 {
   "name": "security-architect",
   "version": "0.1.0",
-  "description": "Specialist Agent in System Security Architecture, SABSA/Zero Trust governance, threat modeling (STRIDE/PASTA/LINDDUN), issuance of normative Technical Opinions with P0 to P3 severity, Go-Live gating and auditing of OWASP ASVS controls and privacy (LGPD/GDPR).",
+  "description": "Acts as the security architect of the project: owns its security architecture, threat models, trust zones, control baseline, security decision records and normative Technical Opinions with P0 to P3 severity and Go-Live gating. Use it for design-level security decisions, not for general security questions or code review.",
   "entrypoint": "AGENT.md"
 }
