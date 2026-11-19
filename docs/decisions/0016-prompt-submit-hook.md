@@ -60,12 +60,13 @@ deny, so neither is a rule a policy can express with today's verbs.
 - Enabling a `prompt` policy after installing needs a re-install, because the hook exists
   only while a policy binds the event (`--verify` reports the missing entry). Disabling
   one leaves the hook until the next re-install, which only costs a process per prompt.
-- The hook lives in the user-wide settings and runs the guard by its path. If that file is
-  gone (the repository moved or a worktree was removed), Python exits with code 2, which
-  Claude Code reads as a block for this event, and every prompt is refused until the entry
-  is removed by hand or the installer is run again. The `tool.pre` hook has the same fault
-  but leaves the agent able to answer. A mechanism failure inside the guard allows; this
-  one happens before the guard starts.
+- The hook lives in the user-wide settings and runs the guard by its path. The prompt
+  command goes through a small launcher (`@optional` in the template) that runs the guard
+  when the file exists and exits 0 with a warning on stderr when it does not, so a moved
+  repository or a removed worktree cannot refuse every prompt. The `tool.pre` hook keeps
+  the plain command on purpose: a missing guard there blocks the tool, which is the safe
+  side for a tool call, and the agent can still answer. A guard that exists but fails
+  inside still follows D4 and allows.
 - The plugin `hooks.json` and `settings.json` both carry the entry, so the guard may run
   twice per prompt, as it does for `tool.pre`.
 - A failure or the 30 s default timeout lets the prompt through (D4). The vendor offers

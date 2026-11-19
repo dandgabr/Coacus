@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import contextlib
+import base64
 import io
 import json
 import os
+import re
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -329,6 +332,64 @@ class TestInstallEdges(GuardCase):
         text = json.dumps(after)
         self.assertIn("my-own-hook", text)
         self.assertNotIn("coacus_guard", text)
+
+
+class TestMissingGuardScript(GuardCase):
+    """A prompt hook whose script was removed must not lock the user out of every prompt."""
+
+    def _command(self) -> str:
+        self.put(document(prompt_policy()))
+        text = (REPO / "harnesses/claude-code/bootstrap/guardrail-hooks.json").read_text(encoding="utf-8")
+        template = json.loads(text)
+        coacus_install._add_bound_event_hooks(REPO, json.loads((REPO / "harnesses/claude-code/harness.json").read_text(encoding="utf-8")), template)
+        return template["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"]
+
+    def _run(self, command: str, script: str, stdin: str = "{}") -> subprocess.CompletedProcess:
+        resolved = json.loads(coacus_install._hook_substitute(
+            json.dumps({"command": command}), REPO, python_executable=sys.executable))["command"]
+        parts = [script if part.endswith("scripts/coacus_guard.py") else part for part in shlex.split(resolved)]
+        return subprocess.run(parts, input=stdin, capture_output=True, text=True, timeout=60)
+
+    def test_the_prompt_command_carries_the_optional_marker_and_tool_pre_does_not(self) -> None:
+        self.assertIn("@optional", self._command())
+        pre = json.loads((REPO / "harnesses/claude-code/bootstrap/guardrail-hooks.json").read_text(encoding="utf-8"))
+        self.assertNotIn("@optional", json.dumps(pre))
+
+    def test_a_missing_script_exits_zero_with_a_warning(self) -> None:
+        result = self._run(self._command(), str(self.base / "gone" / "coacus_guard.py"))
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.stdout, "")
+        self.assertIn("guard script missing", result.stderr)
+
+    def test_a_present_script_still_blocks(self) -> None:
+        result = self._run(self._command(), str(REPO / "scripts" / "coacus_guard.py"),
+                           json.dumps({"hook_event_name": "UserPromptSubmit", "prompt": NEEDLE}))
+        self.assertEqual(json.loads(result.stdout)["decision"], "block")
+
+    def test_the_wrapped_command_is_still_recognised_as_ours(self) -> None:
+        root = REPO.as_posix()
+        command = coacus_install._command([sys.executable, "@optional", f"{root}/scripts/coacus_guard.py", "--event", "prompt.submit"])
+        entry = {"hooks": [{"type": "command", "command": command}]}
+        self.assertTrue(coacus_install._entry_owned(entry, {f"{root}/scripts/coacus_guard.py"}))
+        self.assertFalse(coacus_install._entry_owned(entry, {"/other/script.py"}))
+
+    def test_a_reinstall_replaces_the_wrapped_entry_instead_of_duplicating_it(self) -> None:
+        root = REPO.as_posix()
+        marker = f"{root}/scripts/coacus_guard.py"
+        command = coacus_install._command([sys.executable, "@optional", marker, "--event", "prompt.submit"])
+        old = {"hooks": {"UserPromptSubmit": [{"hooks": [{"type": "command", "command": command}]}]}}
+        merged = coacus_install._merge_hooks(old, old, {marker})
+        self.assertEqual(len(merged["hooks"]["UserPromptSubmit"]), 1)
+
+    def test_the_windows_form_checks_the_script_too(self) -> None:
+        with mock.patch.object(coacus_install.os, "name", "nt"):
+            command = coacus_install._command(["python", "@optional", "C:/x/coacus_guard.py", "--event", "prompt.submit"])
+        shim = re.search(r'-c "(.*)"$', command).group(1)
+        self.assertIn("os.path.isfile(sys.argv[0]) or sys.exit(0)", shim)
+        encoded = re.search(r"b64decode\('([^']+)'\)", shim).group(1)
+        self.assertEqual(json.loads(base64.b64decode(encoded))[0], "C:/x/coacus_guard.py")
+        entry = {"hooks": [{"type": "command", "command": command}]}
+        self.assertTrue(coacus_install._entry_owned(entry, {"C:/x/coacus_guard.py"}))
 
 
 if __name__ == "__main__":

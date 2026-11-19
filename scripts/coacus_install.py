@@ -1076,19 +1076,37 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     }
 
 
+OPTIONAL = "@optional"
+# Runs the script in argv[1] when it exists and exits 0 when it does not, so a hook whose
+# script was removed cannot lock the user out of a prompt. The only caller is an event that
+# blocks a prompt; a missing tool.pre guard stays fail-closed on purpose.
+_OPTIONAL_SHIM = (
+    "import os,sys,runpy;p=sys.argv[1];"
+    "os.path.isfile(p) or (sys.stderr.write('coacus: guard script missing, hook skipped\\n'),sys.exit(0));"
+    "sys.argv=sys.argv[1:];runpy.run_path(p,run_name='__main__')"
+)
+
+
 def _command(argv: list[str]) -> str:
-    """Quote arguments for the host's command parser, including the interpreter."""
+    """Quote arguments for the host's command parser, including the interpreter.
+
+    ``argv[1] == OPTIONAL`` marks a hook that must do nothing when its script is gone.
+    """
+    optional = len(argv) > 1 and argv[1] == OPTIONAL
+    if optional:
+        argv = [argv[0], *argv[2:]]
     if os.name != "nt":
-        return shlex.join(argv)
+        return shlex.join([argv[0], "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
     # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
     # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
     interpreter = argv[0]
     if any(char in interpreter for char in '%!"\r\n'):
         raise ValueError("Windows hook interpreter path contains unsupported shell expansion characters")
     encoded = base64.b64encode(json.dumps(argv[1:]).encode("utf-8")).decode("ascii")
-    shim = ("import base64,json,runpy,sys;"
-            f"sys.argv=json.loads(base64.b64decode('{encoded}'));"
-            "runpy.run_path(sys.argv[0],run_name='__main__')")
+    check = "os.path.isfile(sys.argv[0]) or sys.exit(0);" if optional else ""
+    shim = ("import base64,json,os,runpy,sys;" if optional else "import base64,json,runpy,sys;") + (
+        f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
+        "runpy.run_path(sys.argv[0],run_name='__main__')")
     return f'"{interpreter}" -c "{shim}"'
 
 
@@ -1151,9 +1169,12 @@ def _entry_owned(entry: object, markers: set[str]) -> bool:
         return False
     if not args or not re.fullmatch(r"(?:python(?:\d+(?:\.\d+)*)?(?:\.exe)?|bash|sh)", re.split(r"[/\\]", args[0])[-1], re.I):
         return False
-    if len(args) == 3 and args[1] == "-c":
+    if len(args) > 3 and args[1] == "-c" and args[2] == _OPTIONAL_SHIM:
+        args = [args[0], *args[3:]]
+    elif len(args) == 3 and args[1] == "-c":
         shim = re.fullmatch(
-            r"import base64,json,runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
+            r"import base64,json,(?:os,)?runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);"
+            r"(?:os\.path\.isfile\(sys\.argv\[0\]\) or sys\.exit\(0\);)?runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
             args[2],
         )
         if not shim:
@@ -1328,6 +1349,9 @@ def _add_bound_event_hooks(root: Path, data: dict, fragment: dict) -> None:
             continue
         if event in bound and capability.get("can_block") is True:
             swapped = command.replace("--event tool.pre", f"--event {event}")
+            # Only a prompt block can lock the user out; tool.pre stays fail-closed.
+            guard = ' "__COACUS_ROOT__/scripts/coacus_guard.py"'
+            swapped = swapped.replace(guard, f" {OPTIONAL}{guard}", 1)
             hooks[native] = [{"hooks": [{"type": "command", "command": swapped}]}]
         else:
             hooks[native] = []
