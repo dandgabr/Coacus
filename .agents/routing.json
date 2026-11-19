@@ -236,6 +236,34 @@
       ]
     },
     {
+      "name": "bioinformatics-research-analyst",
+      "category": "academic-sciences",
+      "description": "Specialist Agent in Biological Data Analysis for research: bulk and single-cell expression, flow cytometry, pooled screens, genomic coordinates, constraint-based metabolic models and isotope flux, with animal-welfare evidence for study design. Use it to analyze a dataset, not to run a bioprocess.",
+      "skills": [
+        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
+        "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
+        "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
+        "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
+        "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
+        "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
+        "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
+        "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
+      ],
+      "triggers": [
+        "bioinformatics",
+        "bioinform\u00e1tica",
+        "citometria de fluxo",
+        "c\u00e9lula \u00fanica",
+        "express\u00e3o g\u00eanica",
+        "flow cytometry",
+        "gene expression",
+        "omics",
+        "rna-seq",
+        "single cell"
+      ]
+    },
+    {
       "name": "biomedical-engineer",
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biomedical Engineering, covering biosignal processing (ECG, EEG, EMG), medical instrumentation with isolation amplifiers (IA), medical imaging physics (CT, MRI, ultrasound) and interoperability with DICOM and HL7/FHIR.",
@@ -260,17 +288,8 @@
       "category": "academic-sciences",
       "description": "Senior specialist agent in Biotechnology, Bioprocess Engineering and Biomanufacturing, covering cell culture, bioreactors (STR, airlift, single-use), upstream and downstream processing, enzymology, recombinant DNA technology, immunobiologicals, biosafety (CTNBio/ANVISA) and GLP compliance.",
       "skills": [
-        "knowledge/skills/domains/academic/academic-biomedical-instrumentation-signals/SKILL.md",
         "knowledge/skills/domains/academic/academic-biotechnology-bioprocesses/SKILL.md",
-        "knowledge/skills/domains/academic/animal-welfare-research-evidence/SKILL.md",
-        "knowledge/skills/domains/academic/bulk-rna-seq-research/SKILL.md",
-        "knowledge/skills/domains/academic/constraint-based-metabolic-research/SKILL.md",
-        "knowledge/skills/domains/academic/flow-cytometry-research/SKILL.md",
-        "knowledge/skills/domains/academic/genomic-coordinate-integrity/SKILL.md",
         "knowledge/skills/domains/academic/laboratory-automation-research/SKILL.md",
-        "knowledge/skills/domains/academic/isotope-flux-research/SKILL.md",
-        "knowledge/skills/domains/academic/pooled-screen-research/SKILL.md",
-        "knowledge/skills/domains/academic/single-cell-expression-research/SKILL.md",
         "knowledge/skills/domains/academic/academic-chemical-engineering-reactors/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md"
       ],
@@ -535,22 +554,16 @@
     {
       "name": "code-mapping-specialist",
       "category": "research-discovery",
-      "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+      "description": "Specialist Agent in Source and Architecture Mapping: module and layer structure, execution flows and call graphs, API and service-mesh contracts, database schemas and dependency graphs, rendered as UML and graph diagrams.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
         "knowledge/skills/mapping/api-service-mesh-mapping/SKILL.md",
-        "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
-        "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
         "knowledge/skills/mapping/code-architecture-mapping/SKILL.md",
         "knowledge/skills/mapping/db-schema-reverse-mapping/SKILL.md",
         "knowledge/skills/mapping/execution-flow-callgraph/SKILL.md",
         "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
-        "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
-        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
-        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
-        "knowledge/skills/mapping/observability-correlation/SKILL.md",
         "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
         "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
       ],
@@ -561,7 +574,6 @@
         "depend\u00eancias",
         "mapeamento",
         "mapping",
-        "topologia",
         "uml"
       ]
     },
@@ -1586,6 +1598,38 @@
         "itil",
         "processo de neg\u00f3cio",
         "sistemas de informa\u00e7\u00e3o"
+      ]
+    },
+    {
+      "name": "infrastructure-mapping-specialist",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Runtime and Infrastructure Mapping: application and dependency discovery, network flows, Kubernetes and container topology, multi-cloud topology, CMDB inventory and observability correlation. Use it to map what is running, not how the source is structured.",
+      "skills": [
+        "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
+        "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
+        "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
+        "knowledge/skills/mapping/app-dependency-discovery/SKILL.md",
+        "knowledge/skills/mapping/cloud-topology-mapping/SKILL.md",
+        "knowledge/skills/mapping/graph-relationship-mapping/SKILL.md",
+        "knowledge/skills/mapping/infra-inventory-cmdb/SKILL.md",
+        "knowledge/skills/mapping/k8s-container-mapping/SKILL.md",
+        "knowledge/skills/mapping/network-flow-discovery/SKILL.md",
+        "knowledge/skills/mapping/observability-correlation/SKILL.md",
+        "knowledge/skills/mapping/uml-diagram-generation/SKILL.md",
+        "knowledge/skills/roles/code-mapping-specialist/SKILL.md"
+      ],
+      "triggers": [
+        "cloud topology",
+        "cmdb",
+        "dependency discovery",
+        "descoberta de depend\u00eancias",
+        "fluxo de rede",
+        "infrastructure mapping",
+        "kubernetes topology",
+        "mapeamento de infraestrutura",
+        "network flow",
+        "topologia",
+        "topologia de nuvem"
       ]
     },
     {

@@ -37,6 +37,14 @@ SAMPLE_AGENT = (
     "# Sample Agent\n"
     "\n"
     "Sample instruction body.\n"
+    "\n"
+    "## Responsibility boundaries\n"
+    "\n"
+    "| Concern | Owner |\n"
+    "|---|---|\n"
+    "| Anything outside sampling | the default coding agent |\n"
+    "\n"
+    "You own sampling. You do not own anything else.\n"
 )
 
 EXPECTED_SKILL_REL = "knowledge/skills/roles/sample-skill/SKILL.md"

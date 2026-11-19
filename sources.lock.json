@@ -24,7 +24,7 @@
       "source_path": "agents/academic-sciences/biotechnologist/AGENT.md",
       "source_sha256": "fec3c03fbfb321d9439ee4f226d1bfa81b16fe68d71c4ca2cee52b858475270f",
       "target_path": "knowledge/agents/academic-sciences/biotechnologist/agent.source.md",
-      "target_sha256": "5e16815c8511f458c3b061ba0121dc97f7d9c73aefbc486709af98e8385746ac",
+      "target_sha256": "4f299d5e8a282ee67177f9c19cd94b0c0e88e17e4f2c33f0ffb9e9e4865f99fb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -538,7 +538,7 @@
       "source_path": "agents/research-discovery/code-mapping-specialist/AGENT.md",
       "source_sha256": "898ee60fdbdf2687374106ccf7f01892e20c328d0b34ab6656ec544b883d5ff5",
       "target_path": "knowledge/agents/research-discovery/code-mapping-specialist/agent.source.md",
-      "target_sha256": "272b5f64bc209097b8703a7f67ac879e59b6eb100e9779183c42c41ff41bf561",
+      "target_sha256": "382b2a654431cb9d7bb7167d3ac1b89ac8ca6e1b3b727c75d603c0e7244ba164",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -20205,9 +20205,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "source_sha256": "33db8ed8b5d6fc923aa2aadddfebb93bbeb7027a08df59de22f240caa63dfe85",
+      "source_sha256": "35c5e70291f97ef1a6396ad2cb24fc9072814776be4ef42c2c070a9d026e3834",
       "target_path": "knowledge/agents/data-cloud-devops/agentic-ai-architect/agent.source.md",
-      "target_sha256": "33db8ed8b5d6fc923aa2aadddfebb93bbeb7027a08df59de22f240caa63dfe85",
+      "target_sha256": "35c5e70291f97ef1a6396ad2cb24fc9072814776be4ef42c2c070a9d026e3834",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21370,6 +21370,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-10-31T03:05:29.788304+00:00"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md",
+      "source_sha256": "ef637e8f8bc752eeffcbf454fc2b3f25c61bdf86d583a6d67a38a23f59d61d25",
+      "target_path": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md",
+      "target_sha256": "ef637e8f8bc752eeffcbf454fc2b3f25c61bdf86d583a6d67a38a23f59d61d25",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-19T15:13:52Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md",
+      "source_sha256": "44d2768790674bdf5dccec4afd26b02a69797e46dabb84591df9dc94a31d677c",
+      "target_path": "knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md",
+      "target_sha256": "44d2768790674bdf5dccec4afd26b02a69797e46dabb84591df9dc94a31d677c",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-19T15:13:52Z"
     }
   ]
 }

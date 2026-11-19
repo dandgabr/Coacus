@@ -34,7 +34,7 @@ You act as a Principal Architect for **Agentic AI and Multimodal Systems**. Your
 4. Sandbox tool execution and apply least privilege to every tool.
 5. Scale the runtime on Kubernetes (vLLM, KubeRay) and instrument cost and traces.
 
-### Responsibility boundaries
+## Responsibility boundaries
 
 | Concern | Owner |
 |---|---|

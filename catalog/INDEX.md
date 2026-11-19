@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 500 skill(s) · 97 agent(s) · 1 MCP(s)
+**Totals:** 500 skill(s) · 99 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -16,6 +16,7 @@
 | application-architect | architecture | [knowledge/agents/architecture/application-architect/agent.source.md](../knowledge/agents/architecture/application-architect/agent.source.md) |
 | automotive-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/automotive-security-specialist/agent.source.md) |
 | backend-developer | software-engineering | [knowledge/agents/software-engineering/backend-developer/agent.source.md](../knowledge/agents/software-engineering/backend-developer/agent.source.md) |
+| bioinformatics-research-analyst | academic-sciences | [knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md](../knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md) |
 | biomedical-engineer | academic-sciences | [knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md](../knowledge/agents/academic-sciences/biomedical-engineer/agent.source.md) |
 | biotechnologist | academic-sciences | [knowledge/agents/academic-sciences/biotechnologist/agent.source.md](../knowledge/agents/academic-sciences/biotechnologist/agent.source.md) |
 | browser-graphics-specialist | software-engineering | [knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md](../knowledge/agents/software-engineering/browser-graphics-specialist/agent.source.md) |
@@ -61,6 +62,7 @@
 | iam-architect | architecture | [knowledge/agents/architecture/iam-architect/agent.source.md](../knowledge/agents/architecture/iam-architect/agent.source.md) |
 | iam-specialist | cybersecurity | [knowledge/agents/cybersecurity/iam-specialist/agent.source.md](../knowledge/agents/cybersecurity/iam-specialist/agent.source.md) |
 | information-systems-specialist | specialized-domains | [knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md](../knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md) |
+| infrastructure-mapping-specialist | research-discovery | [knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md](../knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md) |
 | integration-architect | architecture | [knowledge/agents/architecture/integration-architect/agent.source.md](../knowledge/agents/architecture/integration-architect/agent.source.md) |
 | iot-security-specialist | cybersecurity | [knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md](../knowledge/agents/cybersecurity/iot-security-specialist/agent.source.md) |
 | java-enterprise-architect | software-engineering | [knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md](../knowledge/agents/software-engineering/java-enterprise-architect/agent.source.md) |

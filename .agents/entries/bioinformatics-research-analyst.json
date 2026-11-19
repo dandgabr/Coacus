@@ -1,0 +1,8 @@
+{
+  "name": "bioinformatics-research-analyst",
+  "description": "Specialist Agent in Biological Data Analysis for research: bulk and single-cell expression, flow cytometry, pooled screens, genomic coordinates, constraint-based metabolic models and isotope flux, with animal-welfare evidence for study design. Use it to analyze a dataset, not to run a bioprocess.",
+  "category": "academic-sciences",
+  "source": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md",
+  "dist": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/dist",
+  "fingerprint": "ef637e8f8bc752ee"
+}

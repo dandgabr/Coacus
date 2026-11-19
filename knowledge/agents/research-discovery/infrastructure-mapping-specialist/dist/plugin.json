@@ -1,0 +1,6 @@
+{
+  "name": "infrastructure-mapping-specialist",
+  "version": "0.1.0",
+  "description": "Specialist Agent in Runtime and Infrastructure Mapping: application and dependency discovery, network flows, Kubernetes and container topology, multi-cloud topology, CMDB inventory and observability correlation. Use it to map what is running, not how the source is structured.",
+  "entrypoint": "AGENT.md"
+}

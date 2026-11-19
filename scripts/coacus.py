@@ -50,12 +50,14 @@ from engine.validators import mcps as mcp_validator  # noqa: E402
 from engine.validators import routing as routing_validator  # noqa: E402
 from engine.validators import skill_quality as skill_quality_validator  # noqa: E402
 from engine.validators import skills as skill_validator  # noqa: E402
+from engine.validators import specialty as specialty_validator  # noqa: E402
 
 
 def source_errors(root: Path) -> list[str]:
     """Canonical-source contract violations (block generation)."""
     return (
         agent_validator.validate(root)
+        + specialty_validator.validate(root)
         + skill_validator.validate(root)
         + skill_quality_validator.validate(root)
         + mcp_validator.validate(root)

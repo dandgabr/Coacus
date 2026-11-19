@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "counts": {
-    "agents": 97,
+    "agents": 99,
     "skills": 500,
     "mcps": 1
   },
@@ -53,6 +53,12 @@
       "category": "software-engineering",
       "description": "Senior Backend Development Agent specialized in designing robust APIs (REST, gRPC, GraphQL), integrating efficient databases (SQL/NoSQL), applying safe concurrency, resilient asynchronous processing and writing integration tests, while ensuring clean, secure, performant code.",
       "source": "knowledge/agents/software-engineering/backend-developer/agent.source.md"
+    },
+    {
+      "name": "bioinformatics-research-analyst",
+      "category": "academic-sciences",
+      "description": "Specialist Agent in Biological Data Analysis for research: bulk and single-cell expression, flow cytometry, pooled screens, genomic coordinates, constraint-based metabolic models and isotope flux, with animal-welfare evidence for study design. Use it to analyze a dataset, not to run a bioprocess.",
+      "source": "knowledge/agents/academic-sciences/bioinformatics-research-analyst/agent.source.md"
     },
     {
       "name": "biomedical-engineer",
@@ -123,7 +129,7 @@
     {
       "name": "code-mapping-specialist",
       "category": "research-discovery",
-      "description": "Specialist Agent in End-to-End Mapping of Code, Applications, Execution Flows, Infrastructure, Kubernetes, Cloud and Dependency Graphs.",
+      "description": "Specialist Agent in Source and Architecture Mapping: module and layer structure, execution flows and call graphs, API and service-mesh contracts, database schemas and dependency graphs, rendered as UML and graph diagrams.",
       "source": "knowledge/agents/research-discovery/code-mapping-specialist/agent.source.md"
     },
     {
@@ -323,6 +329,12 @@
       "category": "specialized-domains",
       "description": "Senior specialist agent in Enterprise Information Systems, covering BPMN 2.0 process modeling, ERP/CRM/BI and Power Platform operations, and ITIL 4 and COBIT 2019 service governance.",
       "source": "knowledge/agents/specialized-domains/information-systems-specialist/agent.source.md"
+    },
+    {
+      "name": "infrastructure-mapping-specialist",
+      "category": "research-discovery",
+      "description": "Specialist Agent in Runtime and Infrastructure Mapping: application and dependency discovery, network flows, Kubernetes and container topology, multi-cloud topology, CMDB inventory and observability correlation. Use it to map what is running, not how the source is structured.",
+      "source": "knowledge/agents/research-discovery/infrastructure-mapping-specialist/agent.source.md"
     },
     {
       "name": "integration-architect",

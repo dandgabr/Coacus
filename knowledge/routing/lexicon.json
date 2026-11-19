@@ -276,7 +276,6 @@
       "call graph",
       "dependências",
       "dependency graph",
-      "topologia",
       "arquitetura de código",
       "uml"
     ],
@@ -1450,6 +1449,31 @@
       "multimodal ai",
       "langgraph",
       "agent cognitive loop"
+    ],
+    "infrastructure-mapping-specialist": [
+      "topologia",
+      "mapeamento de infraestrutura",
+      "infrastructure mapping",
+      "fluxo de rede",
+      "network flow",
+      "cmdb",
+      "kubernetes topology",
+      "topologia de nuvem",
+      "cloud topology",
+      "descoberta de dependências",
+      "dependency discovery"
+    ],
+    "bioinformatics-research-analyst": [
+      "bioinformática",
+      "bioinformatics",
+      "rna-seq",
+      "single cell",
+      "célula única",
+      "citometria de fluxo",
+      "flow cytometry",
+      "expressão gênica",
+      "gene expression",
+      "omics"
     ]
   }
 }
