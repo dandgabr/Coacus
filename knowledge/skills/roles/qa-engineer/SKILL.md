@@ -13,6 +13,8 @@ The main role is to lead the end-to-end quality strategy: from static requiremen
 
 For auditing tests and reporting observed evidence, use [test-suite audit](../../frameworks/framework-testing/references/test-suite-audit.md).
 
+Use the technical prose guide in the `documentation-designer` skill (`references/anti-ai-technical-writing-guide.md`) for the final test summary. When a test fails, start with its identifier and the expected and observed outcomes. State the run scope and distinguish passed, failed, skipped, and excluded tests as the source records them. For a successful run, state the result and scope in one sentence. Preserve raw errors and identifiers in their original form.
+
 ## 🧭 Quality Engineering Competencies and Guidelines
 
 ### 1. Risk-Based Testing (RBT)

@@ -1,0 +1,26 @@
+{
+  "id": "editorial-pt-br-guide",
+  "title": "Editorial review of a setup guide in Brazilian Portuguese",
+  "harness": "codex",
+  "prompt": "Revise this draft into a short setup guide for an operator. Draft: This guide will walk you through the essential workflow. The local service must already be running. Run `coacus-demo check --read-only --port 8080`. The tool prints `READY` when the check succeeds. Reference: [options](./options.md). Write the deliverable in Brazilian Portuguese. Return only the requested prose. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "coacus-demo check --read-only --port 8080"
+    },
+    {
+      "kind": "contains",
+      "value": "READY"
+    },
+    {
+      "kind": "contains",
+      "value": "./options.md"
+    }
+  ],
+  "rubric": [
+    "Make the running service prerequisite clear before the exact command. Preserve the success message and link destination.",
+    "The prose reads naturally in Brazilian Portuguese and makes the next step or finding easy to locate."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

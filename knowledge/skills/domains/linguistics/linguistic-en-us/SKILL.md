@@ -19,30 +19,9 @@ This skill equips the agent to act as a **Senior American English Copyeditor and
 
 ---
 
-## 🚫 2. Radical Purge of the AI Idiolect (Banned AI Vocabulary)
+## 2. Contextual Editorial Review
 
-LLMs exhibit marked statistical over-indexing on specific Latinate buzzwords and pompous phrases. When reviewing or drafting US English copy, **enforce a strict ban** on the following tokens:
-
-### 2.1. The Blacklist of AI Tropes
-| Banned AI Token / Phrase | Why It Is Flagged | Human Direct Replacement |
-| :--- | :--- | :--- |
-| *Delve / Delving into* | The primary calling card of synthetic text. | *Explore, examine, inspect, review, analyze, look at.* |
-| *Tapestry / Rich tapestry* | Absurdly overused metaphor in non-literary text. | *Structure, collection, set, system, architecture.* |
-| *Leverage* (as verb) | Overused corporate jargon. | *Use, apply, run, adopt, build on.* |
-| *Foster / Cultivate* | Weak pedagogical cliché. | *Encourage, support, build, develop, maintain.* |
-| *Empower / Unleash* | Empty marketing hyperbole. | *Enable, allow, provide, let.* |
-| *Crucial / Pivotal / Paramount* | False urgency and inflated significance. | *Essential, critical, required, necessary* (or state consequence). |
-| *Testament / A testament to* | Dramatic cliché unsuited for engineering. | *Proof, evidence, demonstrates, reflects.* |
-| *Holistic / Synergy / Paradigm* | Vague consultant fluff. | Be specific: *system-wide, cross-functional, architecture.* |
-| *Seamless / Seamlessly* | Almost always inaccurate marketing boast. | Describe the mechanism: *automated, without restart.* |
-| *At its core / In essence* | Unnecessary throat-clearing transition. | State the fact directly without preamble. |
-| *In conclusion / To summarize* | Stiff academic boilerplate. | Cut entirely. Stop when the explanation is finished. |
-| *Moreover / Furthermore* | Overused connective crutches. | Omit or use *also, and, additionally* sparingly. |
-
-### 2.2. Forbidden Structural Patterns
-- ❌ **The Contrastive Reframe**: *"It's not just a framework; it's a paradigm shift in how we..."* -> Cut the frame: *"The framework optimizes memory allocation for concurrent workers"*.
-- ❌ **Sycophantic Chatbot Salutations**: *"Certainly! I would be delighted to help you write..."* -> Start immediately with the answer or technical deliverable.
-- ❌ **Inflated Adverbial Modifiers**: Avoid *meticulously designed, undeniably critical, fundamentally transformative*. State the objective benchmark instead.
+Apply this guidance to prose intended for American English. Look for nominalizations that hide the actor or action, staged openings, and stock transitions. Keep established terms and useful connective language. Preserve meaningful repetition, intentional voice, quotations, and technical literals. Follow the technical prose guide in the `documentation-designer` skill (`references/anti-ai-technical-writing-guide.md`) for language selection and the final evidence check.
 
 ---
 

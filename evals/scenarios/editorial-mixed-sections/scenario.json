@@ -1,0 +1,30 @@
+{
+  "id": "editorial-mixed-sections",
+  "title": "Technical editorial review mixed-sections",
+  "harness": "codex",
+  "prompt": "Copyedit the following guide. Keep the headings.\n\n## Setup\nIt is worth noting that the operator runs `demo check`.\n\n## Diagnostico\nCabe señalar que el operador debe buscar `READY`.\n\nReturn only the revised document. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "Setup"
+    },
+    {
+      "kind": "contains",
+      "value": "Diagnostico"
+    },
+    {
+      "kind": "contains",
+      "value": "demo check"
+    },
+    {
+      "kind": "contains",
+      "value": "READY"
+    }
+  ],
+  "rubric": [
+    "Setup prose is English and Diagnostico prose is Spanish. The headings and literals remain exact.",
+    "The text uses a direct technical register for its intended reader."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

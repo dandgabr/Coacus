@@ -1,6 +1,6 @@
 ---
 name: "linguistic-es-latam"
-description: "Specializes in editing and writing Neutral Latin American Spanish (ES-LATAM), focused on technical clarity, RAE/ASALE norms, syntactic disambiguation, opening punctuation marks (¿?, ¡!), diacritical accents, and eradication of AI clichés."
+description: "Specializes in editing and writing Neutral Latin American Spanish (ES-LATAM), focused on technical clarity, RAE/ASALE norms, syntactic disambiguation, opening punctuation marks (¿?, ¡!), diacritical accents, and contextual editing of formulaic prose."
 ---
 
 # 🌎 Skill: Linguistic Editor & Editorial Specialist in Latin American Spanish (ES-LATAM)
@@ -19,28 +19,12 @@ This skill equips the agent to act as a **Senior Linguistic Editor and Style Cop
 
 ---
 
-## 🚫 2. Eradication of the AI Idiolect in Spanish
+## 2. Contextual Editorial Review
 
-Language models tend to reflexively translate trite English structures and metaphors. Apply a **strict veto** to the following patterns:
-
-### 2.1. Blacklist of AI Formulas and Filler Phrases
-| Banned AI Formula | Reason for the Veto | Direct Human Alternative |
-| :--- | :--- | :--- |
-| *"En el dinámico panorama actual..."* / *"En el mundo acelerado de hoy..."* | Predictable filler preamble with no technical value. | Start directly with the concrete concept or problem. |
-| *"Es crucial destacar que..."* / *"Vale la pena señalar..."* | Artificial transition crutch. | Drop the introduction and state the fact directly. |
-| *"Sumergirse en..."* (calque of *delve into*) | Worn-out metaphor typical of mechanical translation. | *Analizar, examinar, detallar, revisar, estudiar.* |
-| *"Apalancar"* (calque of *leverage*) | Unnecessary barbarism from corporate English. | *Aprovechar, utilizar, aplicar, emplear, potenciar.* |
-| *"Tapiz"* (calque of *tapestry*) | Metaphorical hallucination unacceptable in engineering. | *Ecosistema, arquitectura, conjunto, estructura.* |
-| *"Juega un papel fundamental..."* | Long, empty statement. | *Es esencial para, sustenta, habilita, controla.* |
-| *"En resumen..."* / *"A modo de conclusión..."* | Redundant closing typical of school writing. | Stop when the technical instructions end. |
-| *"Un antes y un después..."* / *"Revolucionario"* | Empty hyperbole with no empirical backing. | State the metric or technical result achieved. |
-| *"Facilitar"* / *"Empoderar"* (used without a clear object) | Inflated marketing jargon. | *Permitir, posibilitar, brindar herramientas a.* |
-| *"Performar"* (barbarism for *perform*) | Unacceptable deformation. | *Rendir, funcionar, ejecutar, desempeñarse.* |
-
-### 2.2. Forbidden Structural Formulas
-- ❌ **Contrastive Reframe**: *"No es solo un framework, es una verdadera revolución en la manera de concebir..."* -> State precisely what the tool does: *"El framework optimiza la concurrencia de hilos de trabajo"*.
-- ❌ **Servile Chatbot Greetings**: *"¡Por supuesto! Con gusto te ayudaré con esta excelente duda..."* -> Immediately deliver the technical solution required.
-- ❌ **False Conditional of Excessive Courtesy**: Replace *"Podrías considerar ejecutar el comando"* with *"Ejecuta el comando"* or *"Se recomienda ejecutar el comando"*.
+Apply this guidance to prose intended for neutral Latin American Spanish. Check English calques, false cognates, and regional expressions against the intended audience. Keep established technical terms and agreed local terminology. For a simple prerequisite, attach the condition directly to the instruction.
+Introduce a command once and put it on its own line. In incident reports,
+state a suspected cause and its uncertainty in one sentence. Make the
+evidence path easy to spot without repeating the finding. Preserve meaningful repetition, intentional voice, quotations, and technical literals. Follow the technical prose guide in the `documentation-designer` skill (`references/anti-ai-technical-writing-guide.md`) for language selection and the final evidence check.
 
 ---
 
@@ -99,5 +83,5 @@ In Spanish it is a serious error to omit the opening question (`¿`) and exclama
 1. **Phase 1 - Purpose**: Determine the objective the reader must carry out. Remove collateral concepts that distract attention.
 2. **Phase 2 - Filler Pruning**: Remove empty introductions, obvious justifications, and redundant epilogues.
 3. **Phase 3 - Disambiguation & RAE**: Review antecedents of the pronoun *su*, `¿?` and `¡!` marks, diacritical accents, and false friends.
-4. **Phase 4 - Anti-AI Filter**: Track down and eradicate inflated verbs (*apalancar*, *sumergirse*, *empoderar*) and template clichés.
+4. **Phase 4 - Style review**: Revise formulaic phrasing when it obscures the action or adds no information.
 5. **Phase 5 - Cadence Tuning**: Modulate sentence length to achieve agile, precise, and human prose.

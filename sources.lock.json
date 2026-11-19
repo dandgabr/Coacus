@@ -623,7 +623,7 @@
       "source_path": "agents/software-engineering/documenter/AGENT.md",
       "source_sha256": "eac2de60990f318ddcbccb52425c8cb8a80edb70c336d7f51d94f7ee889c2bf8",
       "target_path": "knowledge/agents/software-engineering/documenter/agent.source.md",
-      "target_sha256": "e3cb5f8f758fe538ac534443dc9866fd0e6778528ccc2aa5d243d2a6bfce2cc5",
+      "target_sha256": "daff3ea30906b5bc05638a5b126414f5a5d8741804682fa62bf99302c81784bd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -708,7 +708,7 @@
       "source_path": "agents/software-engineering/project-reviewer/AGENT.md",
       "source_sha256": "220c530ff5bfcf6040914722f967a2c1517669ddc37b031ddd597bb790915d30",
       "target_path": "knowledge/agents/software-engineering/project-reviewer/agent.source.md",
-      "target_sha256": "983fd51b81399ccf5cc4597c870cb8869a5e7a4a80e6f8c046071a36d214531b",
+      "target_sha256": "d62119e1a7fc6c13cfa795f8e5e88cdfb9e161d2867aac1f036173b66924b2b4",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -810,7 +810,7 @@
       "source_path": "agents/specialized-domains/linguistic-specialist/AGENT.md",
       "source_sha256": "cdd361d98dfa3ac457b1ca60f3c1498cf0e2938aeca8d6e04b4165011b59b4aa",
       "target_path": "knowledge/agents/specialized-domains/linguistic-specialist/agent.source.md",
-      "target_sha256": "a45fca2e60c3886379e2af588833d82f9a709dcbdbe674b29390487711fdafdb",
+      "target_sha256": "5d1f390e9242eed351f23df1cdd6275dd34a7168bbb3c480f7ab91791a3e3464",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -3841,9 +3841,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/linguistics/linguistic-en-us/SKILL.md",
-      "source_sha256": "71985fde93775a28ad0077f630083f3e31bcdc3bdb0969fa4b755cfefa43c276",
+      "source_sha256": "5c2f43efdf1de18d42668f6aa1a5fda77ebf5b9d389737bec59ee11f7656b933",
       "target_path": "knowledge/skills/domains/linguistics/linguistic-en-us/SKILL.md",
-      "target_sha256": "71985fde93775a28ad0077f630083f3e31bcdc3bdb0969fa4b755cfefa43c276",
+      "target_sha256": "5c2f43efdf1de18d42668f6aa1a5fda77ebf5b9d389737bec59ee11f7656b933",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -3913,7 +3913,7 @@
       "source_path": "skills/linguistics/linguistic-es-latam/SKILL.md",
       "source_sha256": "18e0ccd42e1cce463634cc6ddf1dc44f62a2d435fc1ac627155a4c2d1c8218c1",
       "target_path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "target_sha256": "9ada97b14f5edcb637beb1d4a4bbdd1d6129108e933b555d6597671c83f6d2b3",
+      "target_sha256": "2223e11d16c6519abc3ff408354de1a6b8d948353c3db9789444509d10e788c1",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported"
@@ -3983,7 +3983,7 @@
       "source_path": "skills/linguistics/linguistic-pt-br/SKILL.md",
       "source_sha256": "e84120be893a1751d4dbb5f66f27c53d3db6cfa8fa294dd80dac1b1504078d5e",
       "target_path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "target_sha256": "877807dd8d0f6e2ad41248fb4b7612da487a29494b6ea3eb9a16ef4cecbaec81",
+      "target_sha256": "20e87d597aa5937dacbb690752261f5c3cc4fbf7a0941373e4c9e2370d887a7e",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4626,7 +4626,7 @@
       "source_path": "skills/engineering-practices/documentation-designer/SKILL.md",
       "source_sha256": "993f43e958ba9459281ccb66b6882c38c4f1f3249d38910b6680bcf1ca880123",
       "target_path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "target_sha256": "20b5cdef8b3f2ab3688e3fc1214d5db5fb36db8aa5b7b7dbbde87045a009a924",
+      "target_sha256": "6b352b6eaa54e2099d340654e041fc8e97c0ce3d0052c1ec1dde4353c56de3bd",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -4686,7 +4686,7 @@
       "source_path": "skills/engineering-practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
       "source_sha256": "a0ba8fb31f6e5c23d74030d6308be161b6349a900a1bd937a5cd922858d91365",
       "target_path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "target_sha256": "c1bf537fe16076c9b05b5f97b0edf76ed518babc145a679e46cbac4ced4e14d0",
+      "target_sha256": "635a601a1fa03685f4cd361d9bc1c5601318b0510b3024fcecc6e7e466712eee",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -11139,7 +11139,7 @@
       "source_path": "skills/roles/qa-engineer/SKILL.md",
       "source_sha256": "dd37cd987a10ad5c4bed8b7ac3db2e83baf28c6a50a087ed36356831e4ad7e7f",
       "target_path": "knowledge/skills/roles/qa-engineer/SKILL.md",
-      "target_sha256": "99f3ac13583a97bf0fdefa42c456b2bcf3b418a4d7b45cd4e92139c4c1fed588",
+      "target_sha256": "7dd7082d7d846aee5c2cc35665b0246f751baa6436f59f125c25323a3b01a2dc",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",

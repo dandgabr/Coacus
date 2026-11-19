@@ -1,0 +1,22 @@
+{
+  "id": "editorial-fallback",
+  "title": "Technical editorial review fallback",
+  "harness": "codex",
+  "prompt": "Write a short operator note in French. The service reads cache.toml at startup and prints READY. Keep those two literals intact. Return only the requested prose. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "cache.toml"
+    },
+    {
+      "kind": "contains",
+      "value": "READY"
+    }
+  ],
+  "rubric": [
+    "Use clear French while preserving the original timing and both literals.",
+    "The text uses a direct technical register for its intended reader."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

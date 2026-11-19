@@ -1,0 +1,22 @@
+{
+  "id": "editorial-regional-variant",
+  "title": "Technical editorial review regional-variant",
+  "harness": "codex",
+  "prompt": "Write a short operator note in British English. Explain that the colour profile is selected in the settings panel and that the option is named --color-profile. Return only the requested prose. Do not change files.",
+  "checks": [
+    {
+      "kind": "contains",
+      "value": "colour"
+    },
+    {
+      "kind": "contains",
+      "value": "--color-profile"
+    }
+  ],
+  "rubric": [
+    "Use British English in the prose and preserve the American spelling inside the option.",
+    "The text uses a direct technical register for its intended reader."
+  ],
+  "acceptance": "All factual and language rubric items hold. Literal checks cover selected source details.",
+  "judge_required": true
+}

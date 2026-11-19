@@ -363,18 +363,6 @@
     {
       "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
       "scope": "segment",
-      "sha256": "1ea22c6ee99f2572ee1400f6d27c10e4cb3f706942c26facc2e0a32c2d13a29e",
-      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "scope": "segment",
-      "sha256": "23c416d1cc1cc94e8185693f9e4a53b93bf7512b97f2f87c6fbd5602531dff3c",
-      "reason": "Reviewed language-specific teaching content retained in the language specialist source; exact segment hash pins this exception."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "scope": "segment",
       "sha256": "68ff16508d576fc213fefd6398da429c69c0fa8236296ddc2bd1be745aaf7f48",
       "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
     },
@@ -382,12 +370,6 @@
       "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
       "scope": "segment",
       "sha256": "935f450d8b16aa6e2ff85c276dd0b6fce9dc672e595a3c84a82ff1dde48d9020",
-      "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-es-latam/SKILL.md",
-      "scope": "segment",
-      "sha256": "a0ffd6a2f4cd66a06c1c421af57656bbae443c309ebfb3c125cf74772159f149",
       "reason": "Exact Spanish teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
     },
     {
@@ -423,12 +405,6 @@
     {
       "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
       "scope": "segment",
-      "sha256": "4680e6010000ad5a745a7f7bca598d16710953a8c472cd4bd9f52ff88981a527",
-      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "scope": "segment",
       "sha256": "4cb09c5ce8729c72460e7f2c585d1bf7ea5c77c906f20e4bc37d64ea5715c0c7",
       "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
     },
@@ -436,12 +412,6 @@
       "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
       "scope": "segment",
       "sha256": "5f7d0e255ec144b0ac30dee3e518592d641db7e09450f719bee2e65606168491",
-      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "scope": "segment",
-      "sha256": "8922143869ddeed3afff0e987fdaddcd6290070bbbc0f2986bd325f025b5bb85",
       "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
     },
     {
@@ -465,18 +435,6 @@
     {
       "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
       "scope": "segment",
-      "sha256": "b5156b662955c9d85148067a62f7744ae1f5e8b2a6b4652e1b35ea9c76d23091",
-      "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "scope": "segment",
-      "sha256": "e9c0706f1303339bea8026bcd88079546ed655b2f46cbbfa490d4ae553f8f762",
-      "reason": "Exact Brazilian Portuguese teaching examples are retained in the linguistic-specialist reference; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/domains/linguistics/linguistic-pt-br/SKILL.md",
-      "scope": "segment",
       "sha256": "faac355a1a9270b477de7be820fc6632c2909662b92c8c2e34e2a68b0ae9c5f2",
       "reason": "Approved Portuguese example teaches a PT-BR language rule; exact segment hash limits this exception."
     },
@@ -495,12 +453,6 @@
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
       "scope": "segment",
-      "sha256": "0e38dde9166d0bac563647fb95a1d2055df1f018360b5f35496340d81eef952e",
-      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "scope": "segment",
       "sha256": "11d1cf210dbc28e8a899001815847521458b9d1c713b99bbfeb7b08c17ed5d3c",
       "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
     },
@@ -513,12 +465,6 @@
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
       "scope": "segment",
-      "sha256": "294dab55aac4bc558c43303017dae8e5ddbe04eee1924d35a07a0125eacb1fdc",
-      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "scope": "segment",
       "sha256": "412e648df0a9a24f710a00c6af7ae9d0c4fc1d09f2a3c35a48061eea71045c81",
       "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
     },
@@ -527,12 +473,6 @@
       "scope": "segment",
       "sha256": "4367457af2243ceb2d7fde1046cf080cd006620aa870bea4f1a93bc63865abd5",
       "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "scope": "segment",
-      "sha256": "4bfed7494f3c615c8f0146f885a80e86af019db98dcc742622ff6164d8cbe358",
-      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
     },
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
@@ -569,12 +509,6 @@
       "scope": "segment",
       "sha256": "9e3d8d198b5535b47cbc1fccb0afbf67bd68fa50c6db457405c845118a4c557f",
       "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
-      "scope": "segment",
-      "sha256": "b653b7d3bbe18f3b09c5fee716b3a1e2d07677999b3360519a90b8ec062fa25f",
-      "reason": "Exact Portuguese examples are retained to demonstrate documentation style guidance; reviewed during repository language audit."
     },
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer/SKILL.md",
@@ -617,90 +551,6 @@
       "scope": "segment",
       "sha256": "e6d3305a064ba752c6b7d0f4745bd1be8c1f7109908b8f25731568aae8deb3f7",
       "reason": "Reviewed localized diagram or prose example retained as a functional documentation teaching sample; exact segment hash pins this exception."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "02de7152f3f7c655c6b952821a9048de5b52ff49ea1ca4edb3953e4c176d259a",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "164e72a92637001bb045d16caca4f628e170dae0e7fd549e4a5660b51a2729e2",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "19e6c7e4587b1fb916c006fab62bcf6f6f67e258e9b5233b5739e4d197f40bcc",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "2803cdb958d742a5ee23f7af33131f737d4a888da5953a730ec88aaba2ee8cd5",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "2c99557bc9427e4539ba72308284889750e1e20f5d25148d4205f7180c7ca51a",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "44f99b100178064570536f4dd4f97c2d4b70cd82d894335d216af8b6f997767c",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "4c4a82513212265aa4766a07f94b5fe45f6d298e6c47320c31b71112d1f2d24e",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "53a0c8b991efef608778f4fbbf362fb0655d92de3d604824b7f112a957138445",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "5e2e2f3201ed568c59a9c615e76f378b00b6bb5de90194824b29f0ca67a1f9f0",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "5fc506cd428d6b5030b9877e183905bf775d622b6d392ed07d9a72aef9cb5d6a",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "68e1bf9cd6568af215e6a5f68ebbf97f44a8268e8c28c7578c2d84cea83bcff7",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "875958acaf63d7f2bfa0fb87d79607ec8b6bf898d3f9624f4a1585652e0fcd0e",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "90f27692f7cf250853aa0e96f4a70073bce35142586666a8b22ccfc1a29f26d3",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
-    },
-    {
-      "path": "knowledge/skills/engineering/practices/documentation-designer/references/anti-ai-technical-writing-guide.md",
-      "scope": "segment",
-      "sha256": "b93383e60091db3e8084aa0e233a31a92ac5ad2580c06334794650775b420b0b",
-      "reason": "Exact Portuguese before/after examples are retained as teaching material; reviewed during repository language audit."
     },
     {
       "path": "knowledge/skills/engineering/practices/documentation-designer/references/github-readme-engineering-guide.md",
@@ -1145,6 +995,18 @@
       "scope": "file",
       "sha256": "f3b725411fb1fda8ef1003133f566c4b56bd155c9ec7cc0b27e69be8356c60f4",
       "reason": "Approved PT-BR prompts are paired with English near-miss and positive activation fixtures for the documented bilingual routing behavior; this exact file hash pins the examples."
+    },
+    {
+      "path": "evals/scenarios/editorial-request-language/scenario.json",
+      "scope": "segment",
+      "sha256": "3e494e13995f24584e38069664d82aae90945a6f717af8a721a5647f42db0f85",
+      "reason": "Exact Portuguese request used to check that an existing English document keeps its language."
+    },
+    {
+      "path": "evals/scenarios/editorial-mixed-sections/scenario.json",
+      "scope": "segment",
+      "sha256": "b77d52c562fe3fc9f10bcd8babb5f8709d259564e88307aa4585ba3e8c81e59c",
+      "reason": "Exact bilingual editing fixture used to check that English and Spanish sections keep their respective languages."
     }
   ]
 }
