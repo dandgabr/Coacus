@@ -27,9 +27,9 @@
     "composition": "composable",
     "ordering": "coacus-last",
     "events": {
-      "tool.pre": { "support": "gate", "can_block": true, "can_ask": true, "effect": "permission", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
+      "tool.pre": { "support": "gate", "can_block": true, "can_ask": false, "effect": "permission", "evidence": "documented", "resolved": "2026-11-18", "source": "https://cursor.com/docs/agent/hooks" },
       "prompt.submit": { "support": "gate", "can_block": true, "can_ask": false, "effect": "continue", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
-      "turn.stop": { "support": "gate", "can_block": true, "can_ask": false, "effect": "followup_message", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
+      "turn.stop": { "support": "gate", "can_block": false, "can_ask": false, "effect": "followup_message", "evidence": "documented", "resolved": "2026-11-18", "source": "https://cursor.com/docs/agent/hooks" },
       "tool.post": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additional_context", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
       "tool.failure": { "support": "observe", "can_block": false, "can_ask": false, "effect": "additional_context", "derived": true, "from": "tool.post", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
       "session.start": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "additional_context", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" },
@@ -39,6 +39,7 @@
       "subagent.stop": { "support": "lifecycle", "can_block": false, "can_ask": false, "effect": "advisory", "evidence": "documented", "resolved": "2026-09-30", "source": "https://cursor.com/docs/agent/hooks" }
     },
     "gaps": [
+      { "event": "tool.pre", "status": "unverified", "reason": "preToolUse is documented to fire for HTTP MCP servers with the name MCP:<tool>; stdio MCP servers are not stated" },
       { "event": "tool.pre", "status": "unverified", "reason": "project vs user hooks.json precedence is unverified; a user-scope deny must be probed before trust" }
     ]
   },

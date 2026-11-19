@@ -9,8 +9,16 @@ A guardrail is authored once and rendered natively per harness. The model is
 **PAER** — Policy over Action, Event binding, Rendering effect:
 
 - **Action** — the portable subject: `verb` (`exec`, `read`, `write`, `network`,
-  `spawn`, `delegate`) plus a normalized `resource`. Defined in
+  `spawn`, `mcp`, `prompt`, `output`, `delegate`) plus a normalized `resource`. `prompt`
+  and `output` are bound to `prompt.submit` and `tool.post` (see Prompts and Tool output). Defined in
   `methodology/lifecycle/actions.schema.json`.
+  An `mcp` resource is the tool name as the harness sends it, so the pattern is per
+  harness: `mcp__server__tool` on Claude Code and Codex, `server_tool` on OpenCode and
+  `MCP:tool` on Cursor (no server name). Write `*server*` to span them. A tool the guard
+  cannot classify has no verb, so no rule sees it: remove it from the harness configuration.
+  On OpenCode the code tool `execute` is an `exec` action with no command and also an
+  `mcp` action named `execute`; code run through it can reach the network without a hook
+  seeing it, so deny `execute` itself when that matters.
 - **Policy** — authored once in `methodology/lifecycle/policies/*.policy.json`.
 - **Event** — when the policy is consulted; the canonical taxonomy lives in
   `methodology/lifecycle/events.json`. An event has a `class`:
@@ -32,7 +40,23 @@ carries each cell's evidence class; a bare boolean is forbidden.
 
 - The canonical decision set is `allow | deny | ask`. `ask` is valid only where
   the harness exposes a human channel (`can_ask`); elsewhere it degrades by the
-  policy's `on_ask_unavailable`.
+  policy's `on_ask_unavailable`. Headless and subagent runs MUST
+  degrade, and the hook payload carries no signal that identifies them, so the
+  runtime renders `ask` only on an explicit opt-in (`COACUS_GUARD_ASK=1`) and only
+  when `harness.json` declares `can_ask` and `can_block` for the event.
+  `COACUS_GUARD_NO_ASK` and a `CI` variable set to a truthy value (anything but
+  empty, `0`, `false`, `no` or `off`) always force the degradation, only `tool.pre`
+  can ask, any doubt counts as no channel, and a missing or invalid `on_ask_unavailable` fails
+  closed to `deny`. OpenCode asks only through the V2 permission `evaluate` hook
+  (its cell has `ask_channel: evaluate`), only with the extra opt-in
+  `COACUS_GUARD_ASK_EXPERIMENTAL=1`, and that hook can only tighten an effect.
+  An `ask` is not a barrier when the person runs OpenCode with `--auto`: the harness
+  then approves it without a prompt, and the person who chose that mode accepts it.
+  Only a `deny` holds there, so a rule that must always hold is written as `deny`.
+  When several `ask` policies match one action, the strictest
+  `on_ask_unavailable` among them is used, whatever the file order. Rendering `ask` where it was previously degraded relaxes the
+  outcome, which is why it needs the opt-in
+  ([ADR 0010](../decisions/0010-ask-channel-gating.md)).
 - Decisions compose monotonically: `deny > ask > allow`. Adding a hook can only
   make the outcome stricter.
 - Failure domains are split: `on_decision_failure` (the evaluator ran but could
@@ -90,6 +114,58 @@ run (`engine/guardrail/evaluate.py:command_candidates`: wrappers, `sh -c`,
 `$(...)`, symlinks resolved), never with arguments, so a mention of a name inside
 `grep`, `git commit -m` or a path does not fire. Matching is best-effort (shell is
 Turing complete); it narrows accidents, it is not a sandbox.
+
+## Protecting the guard from the session
+
+The guard runs in the session it governs, so an agent can switch it off by editing a
+file instead of dodging a rule. `methodology/lifecycle/policies/self-protection.policy.json`
+denies the write tools on the guard script, the evaluator, the policy directories and each
+harness's hook files. It is disabled by default (ADR 0006); the installer offers it with
+`--self-protection on|off|prompt` (an interactive install asks, and No is the default), see
+[ADR 0015](../decisions/0015-guard-self-protection.md). It does not cover a write made
+through the shell, so it is a tripwire, not a sandbox: for a real barrier use isolation
+outside the session (a sandbox, read-only files, the harness's managed settings).
+
+**To release a legitimate edit**, the person (never the agent) either makes the edit in their
+own terminal, or sets `"enabled": false` in the installed `self-protection.policy.json`,
+edits, and sets it back to `true`. Every denial message says this.
+
+## Prompts
+
+A `prompt` rule bound to `prompt.submit` blocks a user prompt whose text matches its
+pattern (case-insensitive). Today only Claude Code has the hook, installed while an
+enabled policy binds the event, and a block shows its reason to the user. A prompt is never
+asked about, and a prompt over 100,000 characters matches every prompt rule. Enabling or
+disabling a prompt policy takes effect at the next install. A `prompt` rule must set
+`"event": "prompt.submit"`: without it the rule binds `tool.pre` and never fires (an
+`output` rule, unlike it, defaults to `tool.post`). See ADR 0016.
+
+## Tool output
+
+An `output` rule bound to `tool.post` with the decision `note` attaches its message to the
+result of a tool call that has already run, so the model reads it next to that result.
+It never blocks, never asks and changes nothing the tool returned. A `deny`
+on `tool.post` in a repository policy that names `"event": "tool.post"` is refused at
+install, as for any event that cannot block; one in the user directory or without an
+explicit event is not checked. At run time only a `note` renders. Only Claude Code
+has the hook, installed while an enabled `note` policy binds the event. The text scanned is
+`stdout` and `stderr` for Bash and the JSON text of the response for every other tool. The
+text is folded and read whole, a longer one in overlapping windows up to 8,000,000
+characters. The note is cut at 2,000 characters.
+Enabling or disabling the policy takes effect at the next install. See ADR 0018.
+
+## Which tools a rule can see
+
+The guard classifies a call by the tool's name and reads its arguments from the
+harness's documented payload (Antigravity nests them under `toolCall`). A tool with
+no verb, such as a todo list, is never offered to a policy. A search tool that scans a
+directory (`Grep`, `Glob`, `grep_search`, `find_by_name`) is checked against the
+directory and, best effort, against each glob it was given joined under that directory,
+never against the files it finds. A rule that names one file by a pattern such as
+`*/.env` can still miss a search that reads it, for example through a bracket or brace
+glob, so a file-level read rule is not a barrier against search tools. A test reads
+each harness's `tool_mapping` and `tool_denylist` and fails when a documented tool has
+no verb and is not on its short list of exemptions.
 
 ## Rationale
 

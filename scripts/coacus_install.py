@@ -1076,20 +1076,47 @@ def _hook_owner_markers(root: Path, harness: str) -> set[str]:
     }
 
 
+OPTIONAL = "@optional"
+# Runs the script in argv[1] when it exists and exits 0 when it does not, so a hook whose
+# script was removed cannot lock the user out of a prompt. The callers are the events that
+# can only block a prompt or add a note; a missing tool.pre guard stays fail-closed on purpose.
+_OPTIONAL_SHIM = (
+    "import os,sys,runpy;p=sys.argv[1];"
+    "os.path.isfile(p) or (sys.stderr.write('coacus: guard script missing, hook skipped\\n'),sys.exit(0));"
+    "sys.argv=sys.argv[1:];runpy.run_path(p,run_name='__main__')"
+)
+
+
+# Entries written by an earlier install keep matching while the launcher text changes.
+_OPTIONAL_SHIM_PREFIX = "import os,sys,runpy;p=sys.argv[1];"
+
+
 def _command(argv: list[str]) -> str:
-    """Quote arguments for the host's command parser, including the interpreter."""
+    """Quote arguments for the host's command parser, including the interpreter.
+
+    ``argv[1] == OPTIONAL`` marks a hook that must do nothing when its script is gone.
+    """
+    optional = len(argv) > 1 and argv[1] == OPTIONAL
+    if optional:
+        argv = [argv[0], *argv[2:]]
     if os.name != "nt":
-        return shlex.join(argv)
+        return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
     # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
     # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
     interpreter = argv[0]
     if any(char in interpreter for char in '%!"\r\n'):
         raise ValueError("Windows hook interpreter path contains unsupported shell expansion characters")
     encoded = base64.b64encode(json.dumps(argv[1:]).encode("utf-8")).decode("ascii")
-    shim = ("import base64,json,runpy,sys;"
-            f"sys.argv=json.loads(base64.b64decode('{encoded}'));"
-            "runpy.run_path(sys.argv[0],run_name='__main__')")
-    return f'"{interpreter}" -c "{shim}"'
+    check = ("os.path.isfile(sys.argv[0]) or (sys.stderr.write('coacus: guard script missing, hook skipped\\n'),sys.exit(0));"
+             if optional else "")
+    shim = ("import base64,json,os,runpy,sys;" if optional else "import base64,json,runpy,sys;") + (
+        f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
+        "runpy.run_path(sys.argv[0],run_name='__main__')")
+    # -I keeps the working directory and the user site off sys.path, so a file named like a
+    # standard module in the project a hook runs from cannot shadow it. The plain launcher
+    # keeps its shape until the same hardening is decided for every hook.
+    flag = " -I" if optional else ""
+    return f'"{interpreter}"{flag} -c "{shim}"'
 
 
 def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_executable: str | None = None) -> str:
@@ -1151,9 +1178,14 @@ def _entry_owned(entry: object, markers: set[str]) -> bool:
         return False
     if not args or not re.fullmatch(r"(?:python(?:\d+(?:\.\d+)*)?(?:\.exe)?|bash|sh)", re.split(r"[/\\]", args[0])[-1], re.I):
         return False
-    if len(args) == 3 and args[1] == "-c":
+    if len(args) > 1 and args[1] == "-I":
+        args = [args[0], *args[2:]]
+    if len(args) > 3 and args[1] == "-c" and args[2].startswith(_OPTIONAL_SHIM_PREFIX):
+        args = [args[0], *args[3:]]
+    elif len(args) == 3 and args[1] == "-c":
         shim = re.fullmatch(
-            r"import base64,json,runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
+            r"import base64,json,(?:os,)?runpy,sys;sys\.argv=json\.loads\(base64\.b64decode\('([A-Za-z0-9+/=]+)'\)\);"
+            r"(?:os\.path\.isfile\(sys\.argv\[0\]\) or \(sys\.stderr\.write\('[^']*'\),sys\.exit\(0\)\);)?runpy\.run_path\(sys\.argv\[0\],run_name='__main__'\)",
             args[2],
         )
         if not shim:
@@ -1205,7 +1237,11 @@ def _merge_hooks(existing: dict, fragment: dict, markers: set[str]) -> dict:
     merged_hooks = dict(merged.get("hooks", {})) if isinstance(merged.get("hooks"), dict) else {}
     for event, entries in (fragment.get("hooks") or {}).items():
         kept = [e for e in merged_hooks.get(event, []) if not _entry_owned(e, markers)]
-        merged_hooks[event] = kept + list(entries)
+        combined = kept + list(entries)
+        if combined:
+            merged_hooks[event] = combined
+        else:
+            merged_hooks.pop(event, None)  # nothing of ours and nothing of theirs: no empty event
     merged["hooks"] = merged_hooks
     return merged
 
@@ -1267,12 +1303,77 @@ def _guardrail_artifacts(
     frag_path = root / f"harnesses/{harness}/bootstrap/guardrail-hooks.json"
     fragment = None
     if frag_path.is_file():
-        text = subst(frag_path.read_text(encoding="utf-8"))
+        text = frag_path.read_text(encoding="utf-8")
         try:
-            fragment = json.loads(text)
+            template = json.loads(text)
+            if isinstance(template, dict):
+                # On the template, before quoting: the command is still plain words here, so
+                # the swap works the same on POSIX and on Windows (where it becomes a shim).
+                _add_bound_event_hooks(root, data, template)
+            fragment = json.loads(subst(json.dumps(template)))
         except json.JSONDecodeError:
             fragment = None
     return files, fragment
+
+
+def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
+    """Events that an enabled policy binds, from the repository, the user directory and ``extra_docs``."""
+    from engine.guardrail import evaluate as guard
+
+    docs = list(extra_docs or [])
+    docs += _enabled_policy_docs(root / "methodology" / "lifecycle" / "policies")
+    docs += _enabled_policy_docs(guard.user_policy_dir(dict(os.environ)))
+    events: set[str] = set()
+    for doc in docs:
+        policies = doc.get("policies") if isinstance(doc, dict) else None
+        for policy in policies if isinstance(policies, list) else []:
+            if not isinstance(policy, dict):
+                continue
+            action = policy.get("action") if isinstance(policy.get("action"), dict) else {}
+            # An output rule only means something on tool.post, so an omitted or misspelled
+            # event is read as that rather than as a rule that never runs.
+            event = str(policy.get("event", "tool.pre"))
+            if action.get("verb") == "output" and event not in guard.KNOWN_EVENTS:
+                event = "tool.post"
+            if action.get("verb") == "output" and "event" not in policy:
+                event = "tool.post"
+            # An event other than tool.pre gets a hook only for a rule that can act there.
+            verb, decision = action.get("verb"), policy.get("decision")
+            if (event == "tool.pre" or (verb == "prompt" and decision in ("deny", "ask"))
+                    or (verb == "output" and decision == "note")):
+                events.add(event)
+    return events
+
+
+def _add_bound_event_hooks(root: Path, data: dict, fragment: dict) -> None:
+    """Add a hook for each non-``tool.pre`` event the harness names, only while a policy binds it.
+
+    A hook starts one process per event, so an event no enabled policy binds gets none: the
+    entry is added empty, which makes the merge drop a hook an earlier install left behind.
+    The command is the ``tool.pre`` one with its event swapped. Shape A harnesses only.
+    """
+    hooks = fragment.get("hooks")
+    pre = (hooks or {}).get("PreToolUse") if isinstance(hooks, dict) else None
+    try:
+        command = pre[0]["hooks"][0]["command"]
+    except (TypeError, IndexError, KeyError):
+        return
+    if not isinstance(command, str) or "--event tool.pre" not in command:
+        return
+    events = (data.get("lifecycle") or {}).get("events") or {}
+    bound = _bound_events(root)
+    for event, capability in events.items():
+        native = capability.get("native") if isinstance(capability, dict) else None
+        if event == "tool.pre" or not isinstance(native, str) or not native:
+            continue
+        if event in bound and (capability.get("can_block") is True or capability.get("effect") == "additionalContext"):
+            swapped = command.replace("--event tool.pre", f"--event {event}")
+            # These events can only block a prompt or add a note; tool.pre stays fail-closed.
+            guard = ' "__COACUS_ROOT__/scripts/coacus_guard.py"'
+            swapped = swapped.replace(guard, f" {OPTIONAL}{guard}", 1)
+            hooks[native] = [{"hooks": [{"type": "command", "command": swapped}]}]
+        else:
+            hooks[native] = []
 
 
 def _refuse_unenforceable(
@@ -1316,6 +1417,131 @@ def _refuse_unenforceable(
                     f"cannot block it (can_block=false)"
                 )
     return reasons
+
+
+def _enabled_policy_docs(directory: Path) -> list[dict]:
+    """Enabled policy documents under ``directory`` (missing or unreadable files skipped)."""
+    docs: list[dict] = []
+    if directory.is_dir():
+        for path in sorted(directory.glob("*.policy.json")):
+            try:
+                doc = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if isinstance(doc, dict) and doc.get("enabled") is True:
+                docs.append(doc)
+    return docs
+
+
+def ask_warnings(
+    root: Path,
+    harnesses: list[str],
+    extra_docs: list[dict] | None = None,
+    user_dir: Path | None = None,
+    environ: dict[str, str] | None = None,
+) -> list[dict]:
+    """Return one warning per enabled ``ask`` policy that will degrade on a harness.
+
+    The directories read are the ones the runtime guard loads: the repository
+    policies, the machine-local policy directory (``COACUS_POLICY_DIR`` or the
+    per-user default) and ``extra_docs`` generated during this run. An ``ask``
+    degrades to its ``on_ask_unavailable`` when asking is off (``COACUS_GUARD_ASK``
+    is not ``1``) or the harness cannot ask for ``tool.pre``. A degradation to
+    ``allow`` is flagged because it fails open. Only enabled policies count.
+    """
+    from engine.guardrail import evaluate as guard
+
+    env = os.environ if environ is None else environ
+    docs: list[dict] = list(extra_docs or [])
+    docs += _enabled_policy_docs(root / "methodology" / "lifecycle" / "policies")
+    docs += _enabled_policy_docs(user_dir or guard.user_policy_dir(dict(env)))
+    asks = []
+    for doc in docs:
+        if not isinstance(doc, dict) or doc.get("enabled") is not True:
+            continue
+        policies = doc.get("policies")
+        if not isinstance(policies, list):
+            continue
+        asks += [p for p in policies
+                 if isinstance(p, dict) and p.get("decision") == "ask" and isinstance(p.get("action"), dict)]
+    if not asks:
+        return []
+
+    def truthy(name: str) -> bool:
+        return env.get(name, "").strip().lower() not in ("", "0", "false", "no", "off")
+
+    switched_off = truthy("CI") or truthy("COACUS_GUARD_NO_ASK")
+    opted_in = env.get("COACUS_GUARD_ASK", "").strip() == "1" and not switched_off
+    warnings: list[dict] = []
+    for harness in harnesses:
+        channel = None
+        try:
+            data = json.loads((root / "harnesses" / harness / "harness.json").read_text(encoding="utf-8"))
+            cap = data["lifecycle"]["events"]["tool.pre"]
+            can_ask = cap.get("can_ask") is True and cap.get("can_block") is True
+            channel = cap.get("ask_channel")
+        except Exception:
+            can_ask = False
+        for policy in asks:
+            if not can_ask:
+                reason = "the harness cannot ask"
+            elif switched_off:
+                reason = "asking is switched off (CI or COACUS_GUARD_NO_ASK)"
+            elif not opted_in:
+                reason = "asking is off (set COACUS_GUARD_ASK=1)"
+            elif channel and env.get("COACUS_GUARD_ASK_EXPERIMENTAL", "").strip() != "1":
+                reason = f"asking on {harness} also needs COACUS_GUARD_ASK_EXPERIMENTAL=1 (not verified live)"
+            elif channel and str(policy["action"].get("verb")) not in ("read", "write"):
+                reason = f"{harness} asks only for a read or a write, through its permission hook"
+            elif channel and not _shape_independent(policy["action"].get("resource")):
+                reason = (f"the pattern of this ask is anchored to one path shape, so {harness} "
+                          f"does not defer it to its permission hook")
+            else:
+                continue
+            fallback = policy.get("on_ask_unavailable", "deny")
+            fallback = fallback if fallback in ("allow", "deny") else "deny"
+            warnings.append({
+                "harness": harness,
+                "policy": str(policy.get("id")),
+                "reason": reason,
+                "degrades_to": fallback,
+                "fails_open": fallback == "allow",
+            })
+    return warnings
+
+
+def _shape_independent(resource: object) -> bool:
+    """Heuristic: a suffix pattern with no directory part holds for any path shape.
+
+    The guard decides this exactly for a concrete path at run time; the installer has
+    no path, so it only recognises the obviously safe form (``*.env``, ``*secret*``).
+    """
+    patterns = resource if isinstance(resource, list) else [resource]
+    return bool(patterns) and all(
+        isinstance(p, str) and p.startswith("*") and "/" not in p for p in patterns
+    )
+
+
+def _format_ask_warnings(warnings: list[dict]) -> str:
+    """Human text for ``ask_warnings`` output."""
+    lines = ["Some ask policies will not prompt anyone and degrade to their fallback:"]
+    for item in warnings:
+        tail = " (fails open)" if item["fails_open"] else ""
+        lines.append(f"  - {item['policy']} on {item['harness']}: {item['reason']}; "
+                     f"degrades to {item['degrades_to']}{tail}")
+    return "\n".join(lines)
+
+
+def _is_interactive() -> bool:
+    """True when both stdin and stdout are terminals."""
+    return sys.stdin.isatty() and sys.stdout.isatty()
+
+
+def _confirm(prompt: str) -> str:
+    """Read one answer from the user; the prompt goes to stderr so stdout stays JSON."""
+    sys.stderr.write(prompt)
+    sys.stderr.flush()
+    return sys.stdin.readline()
 
 
 def _mcp_servers(root: Path, base_executable: str | None = None) -> dict[str, dict]:
@@ -2848,6 +3074,51 @@ def browser_policy_step(
     return summary
 
 
+def self_protection_step(
+    root: Path,
+    mode: str,
+    policy_dir: Path,
+    dry_run: bool = False,
+    ask=None,
+    say=print,
+) -> dict[str, object]:
+    """Decide and write the guard self-protection policy.
+
+    ``mode`` is ``off`` (do nothing), ``on`` or ``prompt`` (an interactive question whose
+    default answer is No). Like every generated policy it is machine-local and opt-in
+    (ADR 0006), and the question says how to release an edit that is legitimate.
+    """
+    from engine.guardrail import evaluate, selfprotect
+
+    summary: dict[str, object] = {"mode": mode, "status": "off", "policy_dir": policy_dir.as_posix(),
+                                  "existing": selfprotect.status(policy_dir),
+                                  "read_by_guard": policy_dir.resolve() == evaluate.user_policy_dir().resolve()}
+    if mode == "off":
+        return summary
+    if mode == "prompt":
+        say("Guard self-protection: block the agent's file-write tools on the guard, its policies and the "
+            "harness hook files. A shell redirection is not covered. " + selfprotect.RELEASE_HOW)
+        try:
+            answer = (ask or _confirm)("Turn self-protection on? [y/N] ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            answer = ""
+        if answer not in ("y", "yes"):
+            summary["status"] = "skipped"
+            return summary
+    try:
+        document = selfprotect.build_policy(root, policy_dir)
+    except (OSError, ValueError) as exc:
+        summary.update(status="error", error=str(exc))
+        return summary
+    summary.update(policies=len(document["policies"]), document=document)
+    if dry_run:
+        summary["status"] = "dry-run"
+        return summary
+    summary["policy_file"] = selfprotect.write_policy(policy_dir, document).as_posix()
+    summary["status"] = "written"
+    return summary
+
+
 def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     """Parse arguments and run install, uninstall, verify or list."""
     parser = argparse.ArgumentParser(prog="coacus-install", description=__doc__)
@@ -2930,6 +3201,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         help="record a guardrail downgrade instead of refusing to install an unenforceable deny",
     )
     parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="do not ask for confirmation when an ask policy will degrade (the warning is still printed)",
+    )
+    parser.add_argument(
         "--force",
         action="store_true",
         help="install even when the harness is not detected on this machine (provision ahead of it)",
@@ -2949,6 +3225,14 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     parser.add_argument(
         "--browser-fallback",
         help="optional second browser id agents may drive if the primary is unavailable",
+    )
+    parser.add_argument(
+        "--self-protection",
+        choices=["off", "on", "prompt"],
+        default=None,
+        help="install the policy that stops the agent's write tools from editing the guard, its "
+        "policies and the harness hook files (default: ask on an interactive terminal, with No as "
+        "the answer; off otherwise). It does not stop a shell redirection",
     )
     parser.add_argument(
         "--browser-policy-dir",
@@ -3020,11 +3304,32 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
                     _browser_policy_dir(args.config_dir, args.browser_policy_dir)
                 )
             }
+            results[0]["ask_warnings"] = ask_warnings(root or ROOT, harnesses)
+            from engine.guardrail import selfprotect
+
+            results[0]["self_protection"] = {
+                "status": selfprotect.status(_browser_policy_dir(args.config_dir, args.browser_policy_dir))}
         print(json.dumps(results, indent=2))
         return 0 if ok else 1
 
+    warnings: list[dict] = []
+    if not args.uninstall:
+        warnings = ask_warnings(root or ROOT, harnesses)
+        if warnings:
+            sys.stderr.write(_format_ask_warnings(warnings) + "\n")
+            if not args.dry_run and not args.yes and _is_interactive():
+                try:
+                    answer = _confirm("Continue with the installation? [y/N] ").strip().lower()
+                except (EOFError, KeyboardInterrupt):
+                    answer = ""
+                if answer not in ("y", "yes"):
+                    print(json.dumps([{"harness": args.harness, "error": "installation cancelled",
+                                       "ask_warnings": warnings}], indent=2))
+                    return 2
+
     policy_dir = _browser_policy_dir(args.config_dir, args.browser_policy_dir)
     browser: dict[str, object] = {"mode": "off", "status": "off"}
+    self_summary: dict[str, object] = {"mode": "off", "status": "off"}
     extra_docs: list[dict] | None = None
     if not args.uninstall:
         if args.browser_primary or args.browser_fallback:
@@ -3048,6 +3353,16 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
         document = browser.get("document")
         extra_docs = [document] if isinstance(document, dict) else None
         browser = {k: v for k, v in browser.items() if k != "document"}
+        self_mode = args.self_protection or (
+            "prompt" if sys.stdin.isatty() and sys.stdout.isatty() and not args.dry_run else "off")
+        self_summary = self_protection_step(root or ROOT, self_mode, policy_dir, dry_run=args.dry_run)
+        if self_summary.get("document"):
+            extra_docs = (extra_docs or []) + [self_summary["document"]]
+        self_summary = {k: v for k, v in self_summary.items() if k != "document"}
+        if self_summary.get("status") == "error":
+            print(json.dumps([{"harness": args.harness, "error": self_summary.get("error"),
+                               "self_protection": self_summary}], indent=2))
+            return 2
 
     results = []
     for harness in harnesses:
@@ -3072,8 +3387,15 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
 
         # The policy is machine-wide: only a full uninstall removes it.
         browser = {"mode": "off", "status": "removed" if browsers.remove_policy(policy_dir) else "absent"}
+    if args.uninstall and args.harness == "all" and not args.dry_run:
+        from engine.guardrail import selfprotect
+
+        self_summary = {"mode": "off", "status": "removed" if selfprotect.remove_policy(policy_dir) else "absent"}
     if results:
         results[0]["browser_policy"] = browser
+        results[0]["self_protection"] = self_summary
+        if warnings:
+            results[0]["ask_warnings"] = warnings
     if args.verify_after_install:
         for result in results:
             if result.get("skipped") or result.get("error"):

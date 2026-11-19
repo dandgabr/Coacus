@@ -193,10 +193,24 @@ repository policies; nothing is committed to the repository.
   catalogue's preferred detected browser, default fallback = none, `skip` to leave
   the policy off). Without a terminal it stays **off** (D2: no behaviour change
   without opt-in).
+- **Ask policies.** When an enabled `ask` policy will degrade on the target harness (it cannot ask, or `COACUS_GUARD_ASK=1` is not set), the installer prints a warning on stderr and, on a terminal, asks whether to continue before it writes anything. `--yes` skips the question; a run without a terminal only warns.
 - `--browser-policy auto` picks the preferred detected browser with no fallback;
   `--browser-policy prompt|off` force the mode; `--browser-primary <id>` and
   `--browser-fallback <id>` select explicitly (an id that is not installed stops the
   run before anything is written, exit code 2).
+- `--self-protection on|off|prompt` installs the policy that denies the agent's write tools
+  on the guard, its policies and the harness hook files (see
+  [ADR 0015](decisions/0015-guard-self-protection.md)). The default is `prompt` on an
+  interactive terminal, with No as the answer, and `off` elsewhere (a `--dry-run` included). `off` and No leave an existing copy in place; the report shows it as `existing`. To release a legitimate
+  edit, make it in your own terminal or set `"enabled": false` in the installed
+  `self-protection.policy.json`, edit, and turn it back on.
+- **Event hooks.** On Claude Code the installer also writes a `UserPromptSubmit` hook
+  while an enabled policy binds `prompt.submit` with a deny or ask, and a `PostToolUse`
+  hook while one binds `tool.post` with a `note` (ADR 0016 and ADR 0018). With no such
+  policy the entries are removed. Their command runs the guard through a launcher that does
+  nothing when the guard file is gone, so moving the repository does not refuse every
+  prompt; `--verify` does not yet report that case, so run the installer again after
+  moving it.
 - `--browser-policy-dir <dir>` overrides the destination; a custom `--config-dir`
   keeps the policy beside it (`<config-dir>/coacus-policies`).
 - `--dry-run` reports the selection and the policy count without writing;
@@ -343,9 +357,12 @@ partial install (`--only`/`--skills`).
 python3 scripts/coacus_install.py opencode
 ```
 
-The script copies both plugins into `~/.config/opencode/plugins/` with
+The script copies the plugins into `~/.config/opencode/plugins/` with
 `__COACUS_ROOT__` substituted for this repository's path, and mirrors the skills
-under `~/.config/opencode/skills/`. The second plugin, `coacus-governor.js`, is
+under `~/.config/opencode/skills/`. The third plugin, `coacus-guardrails.js`, runs
+the guardrail policies before each tool call and blocks a call by throwing when a
+policy denies it; an `ask` degrades to `deny` there because OpenCode cannot ask. The
+second plugin, `coacus-governor.js`, is
 the governor gate: it intercepts subagent spawns, enforces the concurrency cap,
 and parks a caller as PAUSED when it sees a rate limit. Knobs:
 `ORCH_MAX_CONCURRENT` (default 5), `GOVERNOR_STATE_DIR`, `GOVERNOR_LEASE_SECONDS`.

@@ -606,6 +606,10 @@ With ``include_user`` the machine-local policies generated at install time
 (see :func:`user_policy_dir`) are appended. The runtime guard sets it; unit
 tests leave it off so they never depend on the developer's home directory.
 
+#### `def resolve_command(command: str) -> tuple[list[str], bool]`
+
+Return ``(executable names, unresolved)`` for a shell string (never raises).
+
 #### `def command_candidates(command: str, _depth: int=0) -> list[str]`
 
 Executable names a shell string would run (best-effort, never raises).
@@ -615,13 +619,28 @@ launch wrappers (``env``, ``nohup``, ``sudo``, ``timeout``...), recurses into
 ``sh -c`` / ``bash -lc`` strings and ``$(...)`` / backticks, and resolves
 symlinks. Arguments are never candidates, so ``grep chrome notes.txt`` or
 ``git commit -m "mention chrome"`` do not match a policy on ``chrome``.
+Use :func:`resolve_command` to also learn whether the walk gave up.
 
-#### `def evaluate(policies: list[dict], verb: str, resource: str) -> dict`
+#### `def notes(policies: list[dict], verb: str, resource: str, event: str) -> list[str]`
+
+Messages of the ``note`` policies that match one action, in policy order.
+
+``evaluate`` never reports a note (it ranks below allow), so an event whose only
+effect is a note reads them here.
+
+#### `def evaluate(policies: list[dict], verb: str, resource: str, event: str='tool.pre') -> dict`
 
 Evaluate policies against one action; return the most restrictive decision.
 
 Precedence is monotonic (the composition law): ``deny > ask > allow > note``.
-An event with no matching policy yields ``allow``.
+An event with no matching policy yields ``allow``. When several ``ask``
+policies match, the fallback used where nobody can be asked is the strictest
+of their ``on_ask_unavailable`` values (``deny`` beats ``allow``; a missing or
+invalid value counts as ``deny``), so the result never depends on file order.
+The reported ``policy_id`` and ``message`` are those of the first policy that
+holds the winning fallback. A policy binds one event (``"event"``, default
+``tool.pre``) and is skipped when ``event`` is a different one, so a rule
+written for a tool call never fires on a prompt or a stop.
 
 ### `engine/guardrail/rules.py`
 
@@ -659,6 +678,37 @@ Structural errors in the catalogue (blocking).
 #### `def lint_warnings(catalogue: dict) -> list[str]`
 
 Non-blocking findings: a pattern too broad to carry signal.
+
+### `engine/guardrail/selfprotect.py`
+
+The opt-in policy that stops the agent's write tools from editing the guardrail itself.
+
+The shipped source is ``methodology/lifecycle/policies/self-protection.policy.json``
+(disabled, like every shipped policy). The installer writes an enabled, machine-local
+copy into the user policy directory when the person chooses it. It is a speed bump and
+a visible tripwire, not a sandbox: a shell redirection is not a write tool (ADR 0015).
+
+#### `def build_policy(root: Path, policy_dir: Path) -> dict`
+
+Return the enabled policy document.
+
+The shipped file is checked first: every rule must be a ``deny`` on ``write``, so an
+edited source cannot install a protection that does nothing. Two rules are added for
+this machine: the policy directory actually in use (a custom ``COACUS_POLICY_DIR`` or
+``--browser-policy-dir`` sits outside the shipped patterns) and the top of the Coacus
+tree, where a module named like a standard one would shadow it when the guard starts.
+
+#### `def write_policy(directory: Path, document: dict) -> Path`
+
+Write the document into ``directory`` atomically and return its path.
+
+#### `def remove_policy(directory: Path) -> bool`
+
+Delete the generated policy; a hand-written file of the same name is kept.
+
+#### `def status(directory: Path) -> str`
+
+``active``, ``disabled`` (file present, not enabled) or ``absent``.
 
 ### `engine/provenance.py`
 
@@ -1371,12 +1421,30 @@ the matched policy's ``on_decision_failure``; a failure of this process itself
 (no python3, malformed payload) degrades to ``on_mechanism_failure`` (default
 allow) plus an advisory, so a broken guardrail cannot brick a session.
 
+Events: ``tool.pre`` decides, blocks and may ask; ``prompt.submit`` can block a prompt;
+``tool.post`` can only add a note for the model (ADR 0016, ADR 0018); any other event
+answers "no opinion". On OpenCode an ``ask`` for a read or write also needs
+``COACUS_GUARD_ASK_EXPERIMENTAL=1`` and is decided through the permission ``evaluate`` hook.
+
+An ``ask`` decision is rendered as ``ask`` only when the operator opted in with
+``COACUS_GUARD_ASK=1`` AND the harness declares a human channel for the event
+(``can_ask`` and ``can_block`` in ``harness.json``). ``COACUS_GUARD_NO_ASK`` and a
+set ``CI`` variable always win and force the degradation. In every other case
+(the default, no capability data, a harness without a human channel) it degrades
+to the matched policy's ``on_ask_unavailable``, which fails closed to ``deny`` when
+absent or invalid. The hook payload carries no headless or subagent signal, so
+asking is opt-in: a run with no human present cannot be detected from here.
+
 Always exits 0: the decision travels in the JSON, not the exit code (OpenCode has
 no exit code; Claude's exit-2 path is reserved for the explicit deny render).
 
-#### `def run(harness: str, event: str, payload_text: str, root: Path) -> str`
+#### `def run(harness: str, event: str, payload_text: str, root: Path, channel: str='default') -> str`
 
 Evaluate one event and return the native effect JSON (never raises).
+
+``channel`` is ``default`` except for OpenCode, whose plugin calls the guard
+from ``tool.execute.before`` (``before`` when an evaluate hook is registered) and
+from the permission ``evaluate`` hook (``evaluate``).
 
 #### `def main(argv: list[str] | None=None) -> int`
 
@@ -1553,6 +1621,17 @@ keeps agents whose directory name matches one of the given fnmatch globs.
 Both filters are OR-ed within their own list and AND-ed with each other; an
 empty filter is no filter. ``--skills`` never narrows agents.
 
+#### `def ask_warnings(root: Path, harnesses: list[str], extra_docs: list[dict] | None=None, user_dir: Path | None=None, environ: dict[str, str] | None=None) -> list[dict]`
+
+Return one warning per enabled ``ask`` policy that will degrade on a harness.
+
+The directories read are the ones the runtime guard loads: the repository
+policies, the machine-local policy directory (``COACUS_POLICY_DIR`` or the
+per-user default) and ``extra_docs`` generated during this run. An ``ask``
+degrades to its ``on_ask_unavailable`` when asking is off (``COACUS_GUARD_ASK``
+is not ``1``) or the harness cannot ask for ``tool.pre``. A degradation to
+``allow`` is flagged because it fails open. Only enabled policies count.
+
 #### `def plan(harness: str, root: Path, config_dir: Path, only: list[str] | None=None, skills: list[str] | None=None, agents: list[str] | None=None, skills_mode: str='link', antigravity_profile: str='on-demand', python_executable: str | None=None, base_executable: str | None=None) -> list[tuple[Path, FileContent]]`
 
 Compute the files to install for ``harness`` under the given filters.
@@ -1610,6 +1689,14 @@ Detect installed browsers, choose primary/fallback and write the policy.
 The generated policy is machine-local (D2: opt-in, never changes behaviour
 unasked) and is returned alongside a summary so the installer can check it
 can be enforced on each harness before writing anything.
+
+#### `def self_protection_step(root: Path, mode: str, policy_dir: Path, dry_run: bool=False, ask=None, say=print) -> dict[str, object]`
+
+Decide and write the guard self-protection policy.
+
+``mode`` is ``off`` (do nothing), ``on`` or ``prompt`` (an interactive question whose
+default answer is No). Like every generated policy it is machine-local and opt-in
+(ADR 0006), and the question says how to release an edit that is legitimate.
 
 #### `def main(argv: list[str] | None=None, root: Path | None=None) -> int`
 

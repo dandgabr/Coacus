@@ -51,7 +51,7 @@ Two subsystems sit on top of the adaptation layer, both opt-in:
 
 - **Guardrails** ([lifecycle-guardrails](standards/lifecycle-guardrails.md)) use
   PAER — *Policy over Action, Event binding, Rendering effect*. A policy is
-  authored once over an abstract action (`exec`/`read`/`write`/`network`/`spawn`/
+  authored once over an abstract action (`exec`/`read`/`write`/`network`/`spawn`/`mcp`/
   `delegate` + resource) and bound to a lifecycle event; `engine/generators/guardrails.py`
   renders the harness-native artifact and `scripts/coacus_guard.py` evaluates it at
   runtime. The capability matrix (`docs/reference/lifecycle-matrix.md`) is

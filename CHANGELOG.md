@@ -5,6 +5,121 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Guard events, MCP verb and self-protection
+
+### Added
+
+- A `prompt` verb and a `prompt.submit` hook on Claude Code (`UserPromptSubmit`): a policy can block a prompt whose text matches a case-insensitive pattern, with the reason shown to the user and the original prompt not echoed. The hook exists only while an enabled policy binds the event; a prompt over 100,000 characters matches every prompt rule. See ADR 0016.
+- An `output` verb and a `tool.post` hook on Claude Code (`PostToolUse`): a `note` policy attaches its message to the result of a tool that already ran. It never blocks; a `deny` on `tool.post` in a repository policy that names the event is refused at install, and at run time only a `note` renders. The output is read whole, in overlapping windows, after folding. See ADR 0018.
+- An `mcp` verb, so a policy can constrain an MCP tool by the name the harness sends (`mcp__server__tool`, `server_tool`, `MCP:tool`), and OpenCode tools outside its native list are classified as `mcp`. See ADR 0014.
+- An opt-in self-protection policy that denies the session's write tools on the guard, its policies and the harness hook files, with `coacus_install.py --self-protection on|off|prompt` (default `prompt` on a terminal, answer No). See ADR 0015 and `docs/install.md`.
+- Antigravity payloads (`toolCall.name` and `toolCall.args`) are now read, and `grep_search`, `find_by_name`, `list_dir`, `multi_replace_file_content` and `search_web` are classified; a search tool also checks the glob it was given. The argument names other than `CommandLine` are unverified and marked so in `harness.json`.
+
+### Changed
+
+- The hook for `prompt.submit` and `tool.post` runs through a launcher that skips a missing guard script instead of letting Claude Code read the exit code 2 as a block, and runs with `python -I` so a file in the project's working directory cannot shadow a standard module. `tool.pre` keeps its plain command and still blocks when the guard is missing.
+- `tool.post` and `prompt.submit` hooks are added to or removed from the user's hook file on every install according to whether an enabled policy binds the event, so enabling or disabling one takes effect at the next install.
+
+### Known limits
+
+- `turn.stop` is not rendered: a block there means "keep going" and needs a repetition limit.
+- Codex documents the same events but ignores a new hook until it is trusted in `/hooks`; it was not run live for `prompt.submit` or `tool.post`, so it stays out.
+- The Antigravity argument names, the `tool_response` shape of tools other than Bash, and the stderr visibility of a skipped hook are unverified.
+
+## [Unreleased] — Final review findings
+
+### Fixed
+
+- The installer warning no longer crashes on a policy whose `action` is not an object or on a non-object policy document, and it warns when an OpenCode read or write `ask` is anchored on one path shape (for example `sub/*`), which the guard does not defer.
+- A mechanism failure in the guard now writes a one-line advisory on stderr (without the payload) while still allowing the call, as ADR 0002 says. ADR 0010 now lists the risks that apply to every harness: a guard the session can edit, tools the guard cannot classify, permission modes that auto-approve, and asks inside a subagent.
+- New tests guard fail-closed branches that mutation testing showed were unprotected: the value of `ask_channel`, the relative path forms, the step limit, the depth cap of the keyword loop, an internal error in the walk, and the two-terminal rule of the installer prompt.
+
+## [Unreleased] — Event binding
+
+### Fixed
+
+- The evaluator now honours a policy's `event` (default `tool.pre`), so a rule written for a tool call never fires on another event. A policy whose `event` is not a canonical id applies everywhere instead of silently stopping. The guard decides, blocks and asks only on `tool.pre` and answers "no opinion" on any other event. At that point no hook was rendered for `tool.post`, `prompt.submit` or `turn.stop`; `prompt.submit` and `tool.post` have one now (see below) and `turn.stop` is still deferred. See ADR 0012.
+- Three capability cells now match the vendor documentation (2026-11-18): claude-code `prompt.submit` cannot ask, codex `prompt.submit` can block, cursor `turn.stop` cannot block.
+
+## [Unreleased] — Installer ask warning
+
+### Added
+
+- `coacus_install.py` warns on stderr about each enabled `ask` policy that will not prompt anyone (the harness cannot ask, or `COACUS_GUARD_ASK=1` is not set) and marks a fallback of `allow` as failing open. On a terminal it asks "Continue with the installation? [y/N]" before writing anything; any answer but yes, EOF or Ctrl-C cancels with exit code 2. `--yes` skips the question, a non-interactive run only warns, and `--dry-run` never asks. It also names the off switches (`CI`, `COACUS_GUARD_NO_ASK`) and, on OpenCode, any `ask` that is not a read or a write, which that harness cannot defer. The warnings are also in the JSON result and in `--verify`, and a malformed policy file no longer crashes either.
+
+## [Unreleased] — OpenCode ask through the evaluate hook
+
+### Added
+
+- The OpenCode guardrail plugin registers the V2 permission `evaluate` hook when the API exists. With `COACUS_GUARD_ASK=1` and the explicit `COACUS_GUARD_ASK_EXPERIMENTAL=1` an `ask` policy on a read or write whose pattern holds for every plausible shape of the path (for example `*.env`) now prompts a person there; a command, a subagent request or a policy anchored on one path shape is not deferred and degrades to its fallback, because the hook sees a resource shape the guard cannot know; the hook can only tighten an effect (deny over ask over allow) and leaves it unchanged if the guard fails.
+- `scripts/coacus_guard.py` takes `--channel default|before|evaluate`. A harness whose capability cell has `ask_channel` asks only on that channel, so a V1 install, or a failed hook registration, degrades an `ask` to its fallback instead of letting it through.
+
+### Known gaps
+
+- Checked against the OpenCode documentation of 2026-11-18 and a fake `ctx`, not a live V2 run. Whether OpenCode awaits the hook, how it orders `evaluate` against `tool.execute.before`, and the resource shape for each permission are not verified and are recorded as a gap in the harness data. If the guard cannot run when the hook fires, the effect is left as it came, so the prompt is lost (fail open by design).
+
+## [Unreleased] — Command walk hardening
+
+### Fixed
+
+- A final adversarial pass, again checked against a real bash, found 18 more inputs; all are closed: a comment that hides a here-document marker, more than eight option words in front of a wrapped command, `trap`, `flock -c`, `su`/`script --command=`, `mapfile -C`, `alias`, `hash -p`, `BASH_ENV` and other startup variables, `bash -o posix` and `--rcfile`, a named `coproc`, a `case` pattern inside a substitution, a `$'EOF'` here-document tag, a quote inside a nested here-document, `at`, `batch` and `parallel`. Substitutions are now skipped as a unit, so a stray quote in a commit-message heredoc no longer causes a false deny, and an interpreter here-document (`python3 - <<EOF`) is read as data. Interpreters that run a program themselves (`python3 -c`, `perl -e`) are out of scope and now said so in ADR 0011.
+- A second security review ran each input against a real bash and found 13 classes that a command deny rule let through. All are closed: an apostrophe or a `<<` inside a here-document or quotes, a here-document read by an absolute-path shell or by `source`, shells that read a script from a pipe, expansions and globs inside the command word, line continuations, `A+=1` and array assignment prefixes, the `function` keyword, nested parentheses in a substitution, and launchers such as `chroot`, `strace`, `watch 'cmd'` and `script -qc 'cmd'`. See ADR 0011.
+- One malformed policy file or entry (`[]`, `"policies": null`, a string, bad UTF-8, a non-object `action`) used to make the guard allow everything. Each file and entry is now skipped alone, and a policy that raises while matching is skipped on its own.
+- A very long chain (`env env env ...`, `find -exec ...`, thousands of unbalanced `$(`) took seconds to minutes and hundreds of megabytes; the walk is now memoized and capped and fails closed beyond the cap.
+- Tool names are matched without regard to case; `Grep`, `Glob`, `MultiEdit`, `NotebookEdit`, `patch` and `WebSearch` are classified, and a patch that touches several files is checked for each file.
+
+## [Unreleased] — Command deny bypasses
+
+### Fixed
+
+- Command deny rules now look through brace groups, `if`/`then`/`while` and `!`, process substitution, `eval`, here-strings to a shell, `find -exec` and `env -S`. Review then widened it: leading redirections and `--`, a shell behind a wrapper (`sudo sh -c`), `busybox`, `su -c`, `runuser` and `watch`, ANSI-C quoting, brace expansion, an expansion in command position and a pipe into a bare shell now fail closed. Three shapes stay open and are pinned in the corpus. See ADR 0011.
+- An unbalanced quote now counts as unresolved and denies, instead of being guessed; a quoted argument that spans lines still parses, so a multi-line commit message is not denied. A value over 100,000 characters matches every pattern, and exactly one trailing newline is ignored (thousands of them no longer crash the matcher and turn a deny into an allow).
+
+## [Unreleased] — Strictest ask fallback
+
+### Fixed
+
+- Two `ask` policies that match the same action used to take the `on_ask_unavailable` of the first file. The strictest value now wins (`deny` beats `allow`; a missing or invalid value counts as `deny`), so the result no longer depends on file order, and the reported policy is the one that holds the winning fallback.
+
+## [Unreleased] — Evaluator fails closed
+
+### Fixed
+
+- A resource pattern with several `*` could take exponential time in the regex fallback (about 1.7 s for 50 characters, growing roughly five times per ten more), which made the guard time out and fail open. The fallback is now a bounded two-pointer matcher.
+- A command nested deeper than the depth limit, longer than the size cap, or behind a long wrapper chain used to yield no executable names, so a command deny rule saw nothing to block. It now counts as unresolved and matches every `match: command` policy. The depth limit rose from 4 to 8 so ordinary wrapper chains stay resolved.
+- A policy with an unknown or misspelled `decision` (for example `Deny`) used to rank below `allow` and let the call through. It now denies.
+
+## [Unreleased] — Guard command corpus
+
+### Added
+
+- `tests/test_guardrail_command_corpus.py` locks how command deny rules read shell lines: wrappers, `sh -c`, command substitution, pipes, symlinks and mere mentions, plus two end-to-end checks of the JSON the guard prints.
+- It also records seven shapes that bypass a command deny rule today (a brace group, process substitution, `eval`, a here-string, `find -exec`, `env -S` and variable indirection) and two false positives (`sudo grep NAME` and `xargs grep NAME`). They are pinned to today's answer, so the suite fails when one is fixed and says where to move it. Plain assertions are used instead of `expectedFailure`, which would also hide a crash.
+
+## [Unreleased] — Guard deny for OpenCode
+
+### Fixed
+
+- The OpenCode `tool.pre` evidence now cites the current plugin documentation, `install.target` lists all three plugins, and `docs/install.md` describes the guardrail plugin.
+- `scripts/coacus_guard.py` now renders a `deny` for OpenCode. Before this change it printed `{}` for that harness, so the generated plugin never saw a deny and no policy blocked a tool call there. An `ask` also renders as `deny`, because OpenCode has no way to ask. Tests prove the block end to end with the generated plugin under Node, through both the named export and the default export; they skip locally without Node and fail in CI.
+
+## [Unreleased] — Guard `ask` capability gating
+
+### Changed
+
+- `scripts/coacus_guard.py` now renders a native `ask` only when the operator sets `COACUS_GUARD_ASK=1`, neither `COACUS_GUARD_NO_ASK` nor `CI` is set to a truthy value, and `harness.json` declares both `can_ask` and `can_block` for `tool.pre`. By default nothing asks, as before: every `ask` still degrades to the policy's `on_ask_unavailable`. See ADR 0010.
+- A missing or invalid `on_ask_unavailable` now fails closed to `deny`. Before this change an unrecognised value was rendered as `ask`; this is a tightening that needs no opt-in.
+- Any error while reading capability data degrades the decision instead of escaping, and harness names are limited to lowercase ASCII letters, digits and dashes that start with a letter or a digit.
+- With the opt-in set, policies can now prompt a person on claude-code and antigravity instead of denying, which is a relaxation chosen by the operator.
+
+### Known gaps
+
+- On OpenCode the guard rendered no effect, so a `deny` did not block a tool call. Fixed in the "Guard deny for OpenCode" entry.
+
+### Fixed
+
+- The Cursor `tool.pre` cell now says `can_ask: false`. Its hooks documentation says `"ask"` is accepted by the schema but not enforced for `preToolUse`, so an opted-in `ask` would not have prompted anyone there.
+
 ## [Unreleased] — Tabler component integration and consumer verification
 
 ### Added
