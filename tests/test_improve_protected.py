@@ -57,7 +57,7 @@ class TestDocumentStaysInSync(unittest.TestCase):
     def test_the_standard_lists_exactly_the_engine_constant(self) -> None:
         text = (REPO / "docs/standards/self-improvement-loop.md").read_text(encoding="utf-8")
         section = text[text.index("The loop never edits its protected surfaces"):]
-        section = section[:section.index("\n\n")]
+        section = section[:section.index("The list is")]
         listed = set(re.findall(r"`([^`]+)`", section))
         self.assertEqual(listed, set(protected.PROTECTED))
 
