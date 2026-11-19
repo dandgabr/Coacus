@@ -11,6 +11,12 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 - An `ask` policy on an OpenCode read or write is now decided through the permission `evaluate` hook with `COACUS_GUARD_ASK=1` alone. `COACUS_GUARD_ASK_EXPERIMENTAL` is retired and ignored, and the installer no longer asks for it. Instead it warns, for each OpenCode ask that will be deferred, that `--auto` approves the ask without a prompt. The path was run live on OpenCode 2.3.0 (interactive "Allow once" and "Reject"). Under `--auto` the harness still approves an ask by itself, so only a `deny` is a barrier there; see ADR 0010.
 
+## [Unreleased] — Isolated Python for every hook
+
+### Changed
+
+- Every installed hook that runs a Coacus script (the session-start bootstrap and the guard on all harnesses, and the OpenCode guard and governor plugins) now starts Python with `-I`, so a file named like a standard module in the working directory or the user site cannot be imported in its place. Entries from an earlier install are still recognised and replaced when the installer runs again. The scripts add the repository root themselves, so nothing else changes. See ADR 0019.
+
 ## [Unreleased] — Exclusive roles for three review agents
 
 ### Changed
