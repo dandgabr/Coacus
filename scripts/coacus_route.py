@@ -110,7 +110,7 @@ def _log_miss(root: Path, prompt: str) -> None:
         from engine.improve.sources.route_miss import record_miss
 
         record_miss(root, prompt)
-    except Exception:
+    except Exception:  # nosec B110  # Best effort: a failed log write must never break routing.
         pass
 
 

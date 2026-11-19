@@ -250,7 +250,7 @@ class TestEndToEnd(StateDirCase):
                 os.chmod(self.log, mode)
                 self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
         self.write_log([miss("d1")])
-        os.chmod(self.log.parent, 0o755)
+        os.chmod(self.log.parent, 0o755)  # nosec B103  # Test fixture that builds an open directory on purpose.
         self.assertEqual(route_miss.RouteMissSource().read(self.repo, {}), [])
 
     def test_a_log_owned_by_someone_else_is_not_trusted(self) -> None:
@@ -375,7 +375,7 @@ class TestProducer(StateDirCase):
 
     def test_a_shared_state_directory_is_refused(self) -> None:
         self.state.mkdir(mode=0o700)
-        os.chmod(self.state, 0o777)
+        os.chmod(self.state, 0o777)  # nosec B103  # Test fixture that builds a world-writable directory on purpose.
         with self.opt_in():
             self.assertFalse(route_miss.record_miss(self.repo, "p", True))
         self.assertFalse(self.log.exists())
