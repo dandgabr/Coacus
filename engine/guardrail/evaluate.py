@@ -105,8 +105,12 @@ _LOOKAHEAD = 64
 _STARTUP_VARS = {"BASH_ENV", "ENV", "PROMPT_COMMAND", "PS4", "LD_PRELOAD"}
 _SHELL_OPTS_WITH_VALUE = {"-o", "+o", "-O", "+O"}
 _SHELL_OPTS_RUNNING = {"--rcfile", "--init-file"}
-_REDIRECT = re.compile(r"^\d*(?:>>?|<<?|>&|<&|&>)")
-_BARE_REDIRECT = re.compile(r"^\d*(?:>>?|<|>&|<&|&>)$")
+# A redirection may start with a descriptor number or a named descriptor such as {fd}.
+# When a word is the operator alone, the word after it is the target or the here-document tag.
+_FD = r"(?:\d+|\{[A-Za-z_][A-Za-z0-9_]*\})?"
+_FD_ONLY = re.compile(r"^(?:\d+|\{[A-Za-z_][A-Za-z0-9_]*\})$")
+_REDIRECT = re.compile(r"^" + _FD + r"(?:>>?|>\||<<<|<<-?|<>|<|>&|<&|&>>?)")
+_BARE_REDIRECT = re.compile(r"^" + _FD + r"(?:>>?|>\||<<<|<<-?|<>|<|>&|<&|&>>?)$")
 _KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
 _FIND_EXEC = {"-exec", "-execdir", "-ok", "-okdir"}
 _PROCESS_SUBST = {"<(", ">("}
@@ -601,16 +605,13 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
     while pos < len(rest):
         word = rest[pos]
         if (word in _KEYWORDS or word == "--" or _REDIRECT.match(word)
-                or (word.isdigit() and pos + 1 < len(rest) and _REDIRECT.match(rest[pos + 1]))):
+                or (_FD_ONLY.match(word) and pos + 1 < len(rest) and _REDIRECT.match(rest[pos + 1]))):
             if depth >= _MAX_DEPTH:
                 state["unresolved"] = True
                 return []
-            if word.isdigit():
-                pos += 1  # a file descriptor number in front of a redirection
-            elif _BARE_REDIRECT.match(word):
-                pos += 2  # the operator and its target
-            else:
-                pos += 1
+            # A bare operator takes its target (or here-document tag) with it. A file descriptor
+            # (``2`` or ``{fd}``) stands alone in front of its redirection and is one word.
+            pos += 2 if _BARE_REDIRECT.match(word) else 1
         elif _ASSIGN.match(word):
             assigned.extend(_assignment(word, depth, state))
             pos += 1
@@ -983,10 +984,16 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
     holds the winning fallback. A policy binds one event (``"event"``, default
     ``tool.pre``) and is skipped when ``event`` is a different one, so a rule
     written for a tool call never fires on a prompt or a stop.
+
+    A ``deny`` or ``ask`` result carries ``"unresolved": True`` when every policy holding
+    the command does so only because the walk could not read it (an unbalanced quote, a
+    program name built from a variable, a nesting limit) and no program name matched. The
+    key is absent otherwise, and the decision is the same either way: it only lets the
+    caller say why.
     """
     order = {"deny": 3, "ask": 2, "allow": 1, "note": 0}
     best = {"decision": "allow", "policy_id": None, "message": ""}
-    best_policy: dict | None = None
+    matched: list[tuple[dict, str]] = []
     asks: list[dict] = []
     for policy in policies:
         if not _applies(policy, verb, resource, event):
@@ -994,10 +1001,10 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
         decision = str(policy.get("decision", "allow"))
         if decision not in order:
             decision = "deny"  # an unknown or misspelled decision must not allow
+        matched.append((policy, decision))
         if decision == "ask":
             asks.append(policy)
         if order.get(decision, 0) > order.get(best["decision"], 0):
-            best_policy = policy
             best = {
                 "decision": decision,
                 "policy_id": policy.get("id"),
@@ -1006,13 +1013,15 @@ def evaluate(policies: list[dict], verb: str, resource: str, event: str = "tool.
             }
     if best["decision"] == "ask" and asks:
         winner = next((p for p in asks if _fallback_of(p) == "deny"), asks[0])
-        best_policy = winner
         best = {
             "decision": "ask",
             "policy_id": winner.get("id"),
             "message": str(winner.get("message", "")),
             "on_ask_unavailable": _fallback_of(winner),
         }
-    if best_policy is not None and best["decision"] in ("deny", "ask") and _held_unresolved(best_policy, verb, resource):
-        best["unresolved"] = True
+    if best["decision"] in ("deny", "ask"):
+        # Say "could not read" only when no rule at the winning level found a program it forbids.
+        holders = [p for p, d in matched if d == best["decision"]]
+        if holders and all(_held_unresolved(p, verb, resource) for p in holders):
+            best["unresolved"] = True
     return best

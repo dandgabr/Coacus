@@ -264,6 +264,68 @@ class TestAssignmentAfterAControlWord(unittest.TestCase):
                 self.assertIsInstance(unresolved, bool)
 
 
+    def test_a_command_variable_after_a_control_word_is_still_scanned(self) -> None:
+        # PAGER names a program that git runs, so its value is a command like any other.
+        for opener, template in OPENERS.items():
+            with self.subTest(opener=opener):
+                self.assertTrue(denied(template.replace("@", f"PAGER={TARGET} git log")))
+                self.assertTrue(denied(template.replace("@", f"PAGER={TARGET}")))
+                self.assertTrue(guard.resolve_command(template.replace("@", "LD_PRELOAD=/x true"))[1])
+
+    def test_a_bare_number_at_the_end_is_not_a_redirection(self) -> None:
+        for command in ("if true; then 5; fi", "then 2", "2", "do 7 8"):
+            with self.subTest(command=command):
+                names, unresolved = guard.resolve_command(command)
+                self.assertIsInstance(names, list)
+                self.assertFalse(denied(command), command)
+
+    def test_the_depth_limit_still_holds_behind_an_assignment(self) -> None:
+        command = "if true; then X=1 " + TARGET + "; fi"
+        for _ in range(guard._MAX_DEPTH + 1):
+            command = WRAPPERS["sh -c"](command)
+        self.assertTrue(denied(command))
+
+    def test_other_shapes_that_put_an_assignment_in_front(self) -> None:
+        shapes = (
+            f"time X=1 {TARGET}", f"! time X=1 {TARGET}", f"case x in a) X=1 {TARGET};; esac",
+            f"case x in (a) X=1 {TARGET};; esac", f"select s in a; do X=1 {TARGET}; done",
+            f"if true; then >f X=1 {TARGET}; fi", f"if true; then 2>/dev/null X=1 {TARGET}; fi",
+            f"X=1 >f {TARGET}", f"if a; then while b; do X=1 {TARGET}; done; fi",
+            f"{{ X=1 {{ X=2 {TARGET}; }}; }}", f"if true; then echo `X=1 {TARGET}`; fi",
+            f"if true; then X=1 env {TARGET}; fi", f"if true; then X=1 command {TARGET}; fi",
+            f"if true; then X=1 sudo {TARGET}; fi", f"if true; then X=1 \\\n{TARGET}; fi",
+        )
+        for command in shapes:
+            with self.subTest(command=command):
+                self.assertTrue(denied(command), command)
+
+    def test_the_redirection_patterns_read_descriptors_and_operators(self) -> None:
+        for word in ("{fd}>file", "3>file", ">|file", "<<<word", "<>file", "<<EOF", "<<-EOF", "&>>log", "2>&1"):
+            with self.subTest(word=word):
+                self.assertTrue(guard._REDIRECT.match(word))
+        for word in ("{fd}>", "3>", ">|", "<<<", "<>", "<<", "<<-", "&>>", ">", "<", ">>"):
+            with self.subTest(bare=word):
+                self.assertTrue(guard._BARE_REDIRECT.match(word))
+        for word in ("{fd}>file", ">|file", "<<EOF", "prog", "X=1", "{fd}"):
+            with self.subTest(not_bare=word):
+                self.assertFalse(guard._BARE_REDIRECT.match(word))
+
+    def test_a_redirection_operator_takes_its_target_with_it(self) -> None:
+        redirections = ("<<< word", "<>file", "<> file", ">|file", ">| file", "{fd}>file", "{fd}> file",
+                        "2>&1", "&>>log", "<< EOF", "<<-EOF", "<<EOF", ">&2", "<&0")
+        for redirection in redirections:
+            for template in ("@", "if true; then @; fi", "for b in a; do @; done"):
+                for assignment in ("", "X=1 "):
+                    command = template.replace("@", f"{redirection} {assignment}{TARGET} --flag")
+                    with self.subTest(command=command):
+                        names, _ = guard.resolve_command(command)
+                        self.assertIn(TARGET, names, command)
+                        self.assertTrue(denied(command), command)
+                    mention = template.replace("@", f"{redirection} {assignment}echo {TARGET}")
+                    with self.subTest(command=mention):
+                        self.assertFalse(denied(mention), mention)
+
+
 class TestShippedBrowserPolicyWithAssignments(unittest.TestCase):
     """The real catalog policy, which is what a user hits, handles loops with assignments."""
 
@@ -291,8 +353,10 @@ class TestShippedBrowserPolicyWithAssignments(unittest.TestCase):
 class TestUnresolvedCommandIsNamedAsSuch(unittest.TestCase):
     """A command the walk cannot read is held under the rule, but the reason says so."""
 
+    UNREADABLE = "echo 'unterminated"
+
     def test_evaluate_marks_only_a_hold_that_no_name_explains(self) -> None:
-        held = guard.evaluate([POLICY], "exec", "echo 'unterminated")
+        held = guard.evaluate([POLICY], "exec", self.UNREADABLE)
         self.assertEqual(held["decision"], "deny")
         self.assertTrue(held.get("unresolved"))
         real = guard.evaluate([POLICY], "exec", TARGET + " --flag")
@@ -303,13 +367,40 @@ class TestUnresolvedCommandIsNamedAsSuch(unittest.TestCase):
         self.assertNotIn("unresolved", mixed)
         self.assertNotIn("unresolved", guard.evaluate([POLICY], "exec", "ls"))
 
-    def test_a_text_policy_hold_is_never_marked(self) -> None:
-        text = {"id": "no-force", "action": {"verb": "exec", "resource": "*--force*"}, "decision": "deny"}
-        self.assertNotIn("unresolved", guard.evaluate([text, POLICY], "exec", "git push --force"))
+    def test_a_text_policy_that_really_matches_is_never_marked(self) -> None:
+        text = {"id": "no-unterminated", "action": {"verb": "exec", "resource": "*unterminated*"},
+                "decision": "deny"}
+        self.assertEqual(guard.evaluate([text], "exec", self.UNREADABLE)["decision"], "deny")
+        self.assertNotIn("unresolved", guard.evaluate([text], "exec", self.UNREADABLE))
 
-    def _run_guard(self, command: str) -> dict:
+    def test_one_rule_that_really_matches_keeps_the_hold_unmarked(self) -> None:
+        text = {"id": "no-unterminated", "action": {"verb": "exec", "resource": "*unterminated*"},
+                "decision": "deny"}
+        for policies in ([POLICY, text], [text, POLICY]):
+            with self.subTest(order=[p["id"] for p in policies]):
+                result = guard.evaluate(policies, "exec", self.UNREADABLE)
+                self.assertEqual(result["decision"], "deny")
+                self.assertNotIn("unresolved", result)
+
+    def test_an_ask_hold_is_marked_too(self) -> None:
+        asking = dict(POLICY, decision="ask")
+        result = guard.evaluate([asking], "exec", self.UNREADABLE)
+        self.assertEqual((result["decision"], result.get("unresolved")), ("ask", True))
+        self.assertNotIn("unresolved", guard.evaluate([asking], "exec", TARGET))
+
+    def test_the_mark_never_changes_the_decision(self) -> None:
+        expected = {self.UNREADABLE: True, TARGET: True, "ls": False, "$X run": True}
+        for decision in ("deny", "ask"):
+            policy = dict(POLICY, decision=decision)
+            for command, held in expected.items():
+                with self.subTest(decision=decision, command=command):
+                    result = guard.evaluate([policy], "exec", command)
+                    self.assertEqual(result["decision"], decision if held else "allow")
+
+    def _run_guard(self, command: str, **policy_fields) -> dict:
+        env = {k: v for k, v in os.environ.items() if k not in ("CI", "COACUS_GUARD_ASK", "COACUS_GUARD_NO_ASK")}
         with tempfile.TemporaryDirectory() as directory:
-            policy = dict(POLICY, message="Policy text that must not be blamed.")
+            policy = dict(POLICY, message="Policy text that must not be blamed.", **policy_fields)
             Path(directory, "t.policy.json").write_text(
                 json.dumps({"schema": 1, "enabled": True, "policies": [policy]}), encoding="utf-8")
             payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}}
@@ -317,20 +408,26 @@ class TestUnresolvedCommandIsNamedAsSuch(unittest.TestCase):
                 [sys.executable, "-I", str(GUARD_SCRIPT), "--harness", "claude-code", "--event", "tool.pre",
                  "--root", str(ROOT)],
                 input=json.dumps(payload), capture_output=True, text=True, timeout=60,
-                env=dict(os.environ, COACUS_POLICY_DIR=directory))
+                env=dict(env, COACUS_POLICY_DIR=directory))
         self.assertEqual(run.returncode, 0, run.stderr)
-        return json.loads(run.stdout or "{}").get("hookSpecificOutput", {})
+        return json.loads(run.stdout)
 
     def test_the_guard_names_the_cause_and_the_rule_for_an_unreadable_command(self) -> None:
-        out = self._run_guard("echo 'unterminated")
+        out = self._run_guard(self.UNREADABLE)["hookSpecificOutput"]
+        self.assertEqual(out.get("hookEventName"), "PreToolUse")
         self.assertEqual(out.get("permissionDecision"), "deny")
         reason = out.get("permissionDecisionReason", "")
         self.assertIn("could not tell", reason)
         self.assertIn(POLICY["id"], reason)
         self.assertNotIn("must not be blamed", reason)
 
+    def test_an_ask_rule_degrades_to_a_denial_that_names_the_cause(self) -> None:
+        out = self._run_guard(self.UNREADABLE, decision="ask")["hookSpecificOutput"]
+        self.assertEqual(out.get("permissionDecision"), "deny")
+        self.assertIn("could not tell", out.get("permissionDecisionReason", ""))
+
     def test_the_guard_keeps_the_rule_message_for_a_real_match(self) -> None:
-        out = self._run_guard("if true; then X=1 " + TARGET + "; fi")
+        out = self._run_guard("if true; then X=1 " + TARGET + "; fi")["hookSpecificOutput"]
         self.assertEqual(out.get("permissionDecision"), "deny")
         self.assertEqual(out.get("permissionDecisionReason"), "Policy text that must not be blamed.")
 

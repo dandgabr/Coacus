@@ -642,6 +642,12 @@ holds the winning fallback. A policy binds one event (``"event"``, default
 ``tool.pre``) and is skipped when ``event`` is a different one, so a rule
 written for a tool call never fires on a prompt or a stop.
 
+A ``deny`` or ``ask`` result carries ``"unresolved": True`` when every policy holding
+the command does so only because the walk could not read it (an unbalanced quote, a
+program name built from a variable, a nesting limit) and no program name matched. The
+key is absent otherwise, and the decision is the same either way: it only lets the
+caller say why.
+
 ### `engine/guardrail/rules.py`
 
 Declarative content rules for the guardrail layer (PAER observe extension).
