@@ -74,8 +74,8 @@ event cannot deny, and is rendered since ADR 0018 for a note only.
   has it too. The plain `tool.pre` launcher on Windows (`python -c`) does not yet, and the
   decision to harden every hook is still open. The cost: when the guard is gone the prompt rules stop without
   any message the user is likely to see, because Claude Code may show the stderr of a hook
-  that exits 0 only in verbose mode (not verified). `--verify` does not yet report a hook
-  whose guard file is missing.
+  that exits 0 only in verbose mode (not verified). `--verify` reports a hook whose
+  guard file is missing and fails, so run it after moving the repository.
 - The plugin `hooks.json` and `settings.json` both carry the entry, so the guard may run
   twice per prompt, as it does for `tool.pre`.
 - A failure or the 30 s default timeout lets the prompt through (D4). The vendor offers
