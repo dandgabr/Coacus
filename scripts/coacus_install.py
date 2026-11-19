@@ -1096,11 +1096,16 @@ def _command(argv: list[str]) -> str:
 
     ``argv[1] == OPTIONAL`` marks a hook that must do nothing when its script is gone.
     """
+    isolated = len(argv) > 1 and argv[1] == "-I"
+    if isolated:
+        argv = [argv[0], *argv[2:]]
     optional = len(argv) > 1 and argv[1] == OPTIONAL
     if optional:
         argv = [argv[0], *argv[2:]]
     if os.name != "nt":
-        return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]] if optional else argv)
+        if optional:
+            return shlex.join([argv[0], "-I", "-c", _OPTIONAL_SHIM, *argv[1:]])
+        return shlex.join([argv[0], "-I", *argv[1:]] if isolated else argv)
     # cmd.exe expands %VAR% even inside quotes, and CRT quoting alone leaves
     # ampersands unquoted. Keep dynamic script paths/arguments out of the shell.
     interpreter = argv[0]
@@ -1113,9 +1118,8 @@ def _command(argv: list[str]) -> str:
         f"sys.argv=json.loads(base64.b64decode('{encoded}'));{check}"
         "runpy.run_path(sys.argv[0],run_name='__main__')")
     # -I keeps the working directory and the user site off sys.path, so a file named like a
-    # standard module in the project a hook runs from cannot shadow it. The plain launcher
-    # keeps its shape until the same hardening is decided for every hook.
-    flag = " -I" if optional else ""
+    # standard module in the project a hook runs from cannot shadow it.
+    flag = " -I" if optional or isolated else ""
     return f'"{interpreter}"{flag} -c "{shim}"'
 
 
@@ -1142,7 +1146,12 @@ def _hook_substitute(text: str, root: Path, plugin: Path | None = None, python_e
             return [walk(v) for v in value]
         if isinstance(value, str):
             if key == "command":
-                return _command([replace(arg) for arg in shlex.split(value)])
+                args = [replace(arg) for arg in shlex.split(value)]
+                # Every hook that runs one of our scripts runs it isolated: no working
+                # directory or user site on sys.path (the scripts add the repository root).
+                if value.startswith("__COACUS_PYTHON__ ") and len(args) > 1 and not args[1].startswith("-"):
+                    args.insert(1, "-I")
+                return _command(args)
             return replace(value)
         return value
 

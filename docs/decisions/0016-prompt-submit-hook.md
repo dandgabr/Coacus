@@ -70,9 +70,8 @@ event cannot deny, and is rendered since ADR 0018 for a note only.
   side for a tool call, and the agent can still answer. A guard that exists but fails
   inside still follows D4 and allows.
   The launcher runs `python -I`, so a file named like a standard module in the project
-  the hook starts from cannot be imported in its place; the Windows launcher of this hook
-  has it too. The plain `tool.pre` launcher on Windows (`python -c`) does not yet, and the
-  decision to harden every hook is still open. The cost: when the guard is gone the prompt rules stop without
+  the hook starts from cannot be imported in its place; every installed hook
+  has it since ADR 0019. The cost: when the guard is gone the prompt rules stop without
   any message the user is likely to see, because Claude Code may show the stderr of a hook
   that exits 0 only in verbose mode (not verified). `--verify` does not yet report a hook
   whose guard file is missing.

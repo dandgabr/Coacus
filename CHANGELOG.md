@@ -5,6 +5,12 @@ All notable changes to Coacus are documented here. The format follows
 development phase (F0–F8) because the repository has not yet cut version tags.
 The repository adheres to [Semantic Versioning](https://semver.org/) once it does.
 
+## [Unreleased] — Isolated Python for every hook
+
+### Changed
+
+- Every installed hook that runs a Coacus script (the session-start bootstrap and the guard on all harnesses, and the OpenCode guard and governor plugins) now starts Python with `-I`, so a file named like a standard module in the working directory or the user site cannot be imported in its place. Entries from an earlier install are still recognised and replaced when the installer runs again. The scripts add the repository root themselves, so nothing else changes. See ADR 0019.
+
 ## [Unreleased] — Exclusive roles for three review agents
 
 ### Changed
