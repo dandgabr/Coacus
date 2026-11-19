@@ -46,6 +46,25 @@ an unknown.
 status; `complete` is true only when every claim passes and at least one exists.
 `python3 scripts/coacus.py verify-ledger <path>` validates a ledger file.
 
+### Mapping coverage outcomes onto the ledger
+
+An audit or review that declares a list of surfaces (endpoints, modules, controls)
+reports an outcome per surface so that "no finding" never reads as "clean". No new
+ledger status is introduced; each outcome maps onto the existing ones:
+
+| Outcome | Where it goes |
+|---|---|
+| A finding was reported | `fail` |
+| Nothing found, with evidence | `pass`, citing at least one evidence id |
+| More investigation is needed | `unknown` in the ledger, plus an `open` or `investigating` entry in the residual-unknown registry |
+| Not applicable | left out of the ledger; the reason is recorded once in the scope list |
+| Dropped by adversarial validation | the validation record in `review-findings-pipeline`; the surface's own status still comes from the other rows |
+
+`skipped` is not used for "not applicable": it never aggregates to `pass`, so one
+such surface would stop the ledger from ever being complete. The ledger belongs to
+one run and is not persisted into memory. The scope list fixes the granularity of a
+surface. Adapted from patterns recorded in ADR 0009 (revision `6337341602be6aa5860b1e83138f03bdd0b78f71`, reviewed 2026-11-17; see [`THIRD-PARTY-NOTICES.md`](../../THIRD-PARTY-NOTICES.md)).
+
 ### The residual-unknown registry
 
 `engine/verify/unknowns.py` records what is not yet known as a revisioned entry:

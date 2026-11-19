@@ -74,13 +74,14 @@ class LinkResolution(unittest.TestCase):
         self.assertGreater(checked, TARGET_FILE_MIN_LINKS)
 
     def test_anchors_added_by_this_change_exist(self):
-        wanted = {
-            "docs/standards/evidence.md": "the-evidence-envelope",
-            "knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md":
-                "conservative-tool--missing-cli-fallback-policy",
-        }
-        for relative, anchor in wanted.items():
-            with self.subTest(file=relative):
+        wanted = [
+            ("docs/standards/evidence.md", "the-evidence-envelope"),
+            ("docs/standards/evidence.md", "mapping-coverage-outcomes-onto-the-ledger"),
+            ("knowledge/skills/engineering/practices/guardrail-authoring/SKILL.md",
+             "conservative-tool--missing-cli-fallback-policy"),
+        ]
+        for relative, anchor in wanted:
+            with self.subTest(file=relative, anchor=anchor):
                 self.assertIn(anchor, _anchors(ROOT / relative))
 
 
