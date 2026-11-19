@@ -16,11 +16,10 @@
       "iast",
       "rasp",
       "sbom",
-      "supply chain",
-      "cadeia de suprimentos",
       "software supply chain",
       "dongtai",
-      "openrasp"
+      "openrasp",
+      "cadeia de suprimentos de software"
     ],
     "motion-graphics-producer": [
       "motion graphics",
@@ -542,7 +541,11 @@
       "pin actions",
       "fixar versões de actions",
       "dependabot",
-      "workflow hardening"
+      "workflow hardening",
+      "sast pipeline",
+      "azure pipeline sast",
+      "sast in ci",
+      "sast no pipeline"
     ],
     "design-qa-specialist": [
       "design qa",

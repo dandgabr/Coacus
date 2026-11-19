@@ -501,7 +501,7 @@
       "source_path": "agents/data-cloud-devops/devops-engineer/AGENT.md",
       "source_sha256": "b930150e6bd44c613b5f3329c4cbf1111bb4946d8a530972e9191a851256464a",
       "target_path": "knowledge/agents/data-cloud-devops/devops-engineer/agent.source.md",
-      "target_sha256": "21db7d1f1b5e25563e247f707bef7b38d5ea33d2fbcf9721ad5f67fed1f8e634",
+      "target_sha256": "fa8bad2bdbc3b821378a1960ceacfc5298461e02aea899d38defb70b006ece8b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -21405,9 +21405,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md",
-      "source_sha256": "8cca5a9122ae5f19beb6b27e452ab936a383d3771d4d9eac0e5c8b61b3da655d",
+      "source_sha256": "143746677326c27745d91028488037deba8b3fa1c9eeda4c604d5dbfda5b0da7",
       "target_path": "knowledge/agents/cybersecurity/appsec-specialist/agent.source.md",
-      "target_sha256": "8cca5a9122ae5f19beb6b27e452ab936a383d3771d4d9eac0e5c8b61b3da655d",
+      "target_sha256": "143746677326c27745d91028488037deba8b3fa1c9eeda4c604d5dbfda5b0da7",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"

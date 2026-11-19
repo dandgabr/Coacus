@@ -182,11 +182,12 @@
     {
       "name": "appsec-specialist",
       "category": "cybersecurity",
-      "description": "Application Security Specialist that owns the secure development lifecycle of an application: secure SDLC and NIST SSDF practices, SAST and manual secure code review practice, IAST and RASP strategy, SBOM and software supply-chain assurance, and the AppSec tool strategy that a delivery pipeline then runs. Use it to decide what application security controls and tests a codebase needs, not to wire them into a pipeline or to attack a target.",
+      "description": "Application Security Specialist that owns the secure development lifecycle of an application: secure SDLC and NIST SSDF practices, SAST and manual secure code review practice, IAST and RASP strategy, SBOM and software supply-chain assurance, and the AppSec tool strategy that delivery then runs. Use it to decide what application security controls and tests a codebase needs, not to wire them into delivery or to attack a target.",
       "skills": [
         "knowledge/skills/engineering/practices/version-freshness/SKILL.md",
         "knowledge/skills/security/appsec/secure-sdlc-ssdf/SKILL.md",
         "knowledge/skills/security/appsec/sast-code-review/SKILL.md",
+        "knowledge/skills/security/operations/untrusted-content-security/SKILL.md",
         "knowledge/skills/security/appsec/iast-interactive-testing/SKILL.md",
         "knowledge/skills/security/appsec/rasp-runtime-protection/SKILL.md",
         "knowledge/skills/security/appsec/software-supply-chain-security/SKILL.md",
@@ -197,7 +198,7 @@
       "triggers": [
         "application security",
         "appsec",
-        "cadeia de suprimentos",
+        "cadeia de suprimentos de software",
         "dongtai",
         "iast",
         "openrasp",
@@ -211,8 +212,7 @@
         "seguran\u00e7a de aplica\u00e7\u00e3o",
         "seguran\u00e7a de aplica\u00e7\u00f5es",
         "software supply chain",
-        "ssdf",
-        "supply chain"
+        "ssdf"
       ]
     },
     {
@@ -1040,6 +1040,7 @@
         "appimage",
         "artefatos de desenvolvimento",
         "autostart",
+        "azure pipeline sast",
         "backstage",
         "ci security scanning",
         "ci/cd",
@@ -1068,6 +1069,9 @@
         "repository artifacts",
         "repository cleanup",
         "repository hygiene",
+        "sast in ci",
+        "sast no pipeline",
+        "sast pipeline",
         "secret scanning",
         "security scanning",
         "sre",
