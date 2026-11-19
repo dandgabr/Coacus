@@ -2475,21 +2475,31 @@ def install(
     allowed = [directory.resolve() for directory in _allowed_roots(config_dir)]
     shared = _claimed_elsewhere(config_dir, previous_manifest)
     retained: list[str] = []
+    # A filtered install plans only part of the corpus, so a file missing from its
+    # plan was filtered out, not removed from the corpus.
+    full_install = not (only or skills or agents)
     for old in previous_files:
         target = Path(old)
         replacement = old + ".py" in planned
-        candidate = (harness == "antigravity" and not (only or skills or agents)) or target.name in retired or replacement
+        candidate = ((harness == "antigravity" and full_install) or target.name in retired or replacement
+                     or (full_install and _is_artifact_path(target, allowed)))
         if not candidate or old in planned or not (target.exists() or target.is_symlink()):
             continue
         digest = previous_fingerprints.get(old) or previous_workflows.get(old)
-        if (old not in shared and not target.is_symlink() and target.is_file()
-                and any(_is_within(target.resolve(), directory) for directory in allowed)
-                and isinstance(digest, str)
-                and hashlib.sha256(target.read_bytes()).hexdigest() == digest):
+        if target.is_symlink():
+            removable = (old not in shared and isinstance(digest, str)
+                         and digest == "symlink:" + os.readlink(target)
+                         and any(_is_within(target.parent.resolve(), directory) for directory in allowed))
+        else:
+            removable = (old not in shared and target.is_file()
+                         and any(_is_within(target.resolve(), directory) for directory in allowed)
+                         and isinstance(digest, str)
+                         and hashlib.sha256(target.read_bytes()).hexdigest() == digest)
+        if removable:
             target.unlink()
         else:
             retained.append(old)
-    if harness == "antigravity":
+    if harness == "antigravity" or full_install:
         _prune_empty_dirs([p for p in previous_files if p not in planned and p not in retained], allowed)
     # Retire only removed workflow names, not workflows omitted by filters.
     workflow_names = {p.name for p in discover_skills(root)
@@ -2867,6 +2877,9 @@ def verify(harness: str, root: Path, config_dir: Path) -> dict[str, object]:
         harness, root, config_dir, only, skills, agents, data.get("skills_mode", "link"),
         antigravity_profile, python_executable, base_executable,
     )
+    # A partial removal records what it deleted on purpose; that is not "missing".
+    removed_on_purpose = set(data.get("removed") or [])
+    files = [(t, c) for t, c in files if t.as_posix() not in removed_on_purpose]
     missing, drift = _installed_state(files, harness, root, config_dir)
     recorded = set(data.get("files", []))
     planned = {t.as_posix() for t, _ in files}
@@ -2942,13 +2955,71 @@ def _claimed_elsewhere(config_dir: Path, own_manifest: Path) -> set[str]:
     return claimed
 
 
+AGENT_DIR_FILES = frozenset({"agent.md", "AGENT.md", "agent.source.md"})
+
+
+def _select_for_removal(
+    harness: str,
+    root: Path,
+    config_dir: Path,
+    recorded: list[str],
+    only: list[str] | None,
+    skills: list[str] | None,
+    agents: list[str] | None,
+) -> set[str]:
+    """Recorded files that a partial removal selects.
+
+    Matching is by name against what was recorded, not against a freshly derived
+    plan, so an agent or skill that has since left the repository can still be
+    removed. A skill or an agent that owns a directory (SKILL.md, agent.md,
+    agent.source.md) selects every recorded file inside that directory; a flat
+    agent file (``<agents>/<name>.md`` or ``.toml``) is selected by its stem; a
+    linked skill is selected by its link name. ``only`` selects skill categories
+    through the current plan, because the installed layout is flat.
+    """
+    def matches(name: str, globs: list[str] | None) -> bool:
+        return bool(globs) and any(fnmatch.fnmatch(name, pattern) for pattern in globs)
+
+    selected: set[str] = set()
+    skill_dirs: list[Path] = []
+    agent_dirs: list[Path] = []
+    for raw in recorded:
+        path = Path(raw)
+        if path.name == "SKILL.md" and matches(path.parent.name, skills):
+            skill_dirs.append(path.parent)
+        elif path.name in AGENT_DIR_FILES and matches(path.parent.name, agents):
+            agent_dirs.append(path.parent)
+        elif path.is_symlink() and path.parent.name == "skills" and matches(path.name, skills):
+            selected.add(raw)
+        elif path.parent.name in ("agent", "agents") and path.suffix in (".md", ".toml") \
+                and path.name not in AGENT_DIR_FILES and matches(path.stem, agents):
+            selected.add(raw)
+    for raw in recorded:
+        path = Path(raw)
+        if any(_is_within(path, directory) for directory in skill_dirs + agent_dirs):
+            selected.add(raw)
+    if only:
+        from_plan = {t.as_posix() for t, _ in plan(harness, root, config_dir, only=only)}
+        selected |= from_plan & set(recorded)
+    return selected
+
+
 def uninstall(
     harness: str,
     root: Path,
     config_dir: Path,
     dry_run: bool = False,
+    only: list[str] | None = None,
+    skills: list[str] | None = None,
+    agents: list[str] | None = None,
 ) -> dict[str, object]:
     """Remove the recorded install, staying inside the allowed roots.
+
+    Without ``only``, ``skills`` or ``agents`` the whole install is removed. With
+    any of them only the matching recorded files are removed (partial removal):
+    the manifest keeps the rest and remembers what was removed, so ``--verify``
+    does not report it as missing. Merged configuration is left in place by a
+    partial removal.
 
     Deletion is gated on containment under ``config_dir`` or the shared
     ``<config_dir>/../.agents`` tree — not on membership in a freshly re-derived
@@ -2968,7 +3039,15 @@ def uninstall(
 
     roots = [r.resolve() for r in _allowed_roots(config_dir)]
     skipped: list[str] = []
-    if harness == "codex" and "codex_skill_profile" in data:
+    partial = bool(only or skills or agents)
+    recorded = [str(p) for p in data.get("files", [])]
+    if partial:
+        chosen = _select_for_removal(harness, root, config_dir, recorded, only, skills, agents)
+        if not chosen:
+            return {"harness": harness, "removed": [], "skipped": [], "partial": True,
+                    "dry_run": dry_run, "note": "nothing recorded matches the selection"}
+        recorded = [p for p in recorded if p in chosen]
+    if harness == "codex" and "codex_skill_profile" in data and not partial:
         config_path = config_dir / "config.toml"
         if config_path.is_file():
             base, block = _strip_codex_profile(config_path.read_text(encoding="utf-8"))
@@ -2985,7 +3064,7 @@ def uninstall(
     markers = _hook_owner_markers(root, harness)
     mcp_paths = {p.resolve(): p for p in _merged_mcp_paths(harness, config_dir)}
     mcp_names = set(_mcp_servers(root)) if mcp_paths else set()
-    for path in data.get("files", []):
+    for path in recorded:
         target = Path(path)
         if not any(_is_within(target.resolve(), r) for r in roots):
             skipped.append(path)
@@ -3063,10 +3142,52 @@ def uninstall(
         elif target.exists():
             skipped.append(path)
     if not dry_run:
-        _prune_empty_dirs([str(p) for p in data.get("files", [])], roots)
-        if not skipped:
+        _prune_empty_dirs(recorded, roots)
+        if partial:
+            _shrink_manifest(manifest, set(planned))
+        elif not skipped:
             manifest.unlink()
-    return {"harness": harness, "removed": planned, "skipped": skipped, "dry_run": dry_run}
+    return {"harness": harness, "removed": planned, "skipped": skipped,
+            "partial": partial, "dry_run": dry_run}
+
+
+def _shrink_manifest(manifest: Path, removed: set[str]) -> None:
+    """Drop ``removed`` from the manifest and remember them in ``removed``.
+
+    The remembered list lets ``--verify`` subtract a deliberate removal from the
+    plan. The next full install rewrites the manifest and clears it. When no file
+    is left the manifest itself is removed.
+    """
+    if not removed:
+        return
+    data = json.loads(manifest.read_text(encoding="utf-8"))
+    data["files"] = [p for p in data.get("files", []) if p not in removed]
+    for key in ("file_fingerprints", "workflow_fingerprints"):
+        if isinstance(data.get(key), dict):
+            data[key] = {p: d for p, d in data[key].items() if p not in removed}
+    if not data["files"]:
+        manifest.unlink()
+        return
+    data["removed"] = sorted(set(data.get("removed", [])) | removed)
+    manifest.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+# Directory names whose files are whole Coacus artifacts (agents, skills, the
+# catalog corpus). Merged configuration (hooks.json, settings.json, config.toml)
+# sits at the config root and is never retired just because a plan stopped
+# listing it: a merged file may hold the user's own content.
+ARTIFACT_DIRS = frozenset({"agents", "agent", "skills", "catalog"})
+
+
+def _is_artifact_path(target: Path, roots: list[Path]) -> bool:
+    """True when ``target`` lies in an artifact subtree below an allowed root."""
+    for root in roots:
+        try:
+            relative = target.relative_to(root)
+        except ValueError:
+            continue
+        return any(part in ARTIFACT_DIRS for part in relative.parts[:-1])
+    return False
 
 
 def _prune_empty_dirs(paths: list[str], roots: list[Path]) -> None:
@@ -3218,7 +3339,11 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
     )
     parser.add_argument("--config-dir", help="override the harness config directory")
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--uninstall", action="store_true")
+    parser.add_argument(
+        "--uninstall", "--remove", dest="uninstall", action="store_true",
+        help="remove the recorded install; with --skills, --agents or --only remove only "
+             "the matching files (partial removal), otherwise remove everything",
+    )
     parser.add_argument(
         "--only",
         help="comma-separated categories to install (e.g. security,engineering)",
@@ -3458,7 +3583,8 @@ def main(argv: list[str] | None = None, root: Path | None = None) -> int:
             harness, _home()
         )
         if args.uninstall:
-            results.append(uninstall(harness, root or ROOT, config_dir, dry_run=args.dry_run))
+            results.append(uninstall(harness, root or ROOT, config_dir, dry_run=args.dry_run,
+                                     only=only, skills=skills, agents=agents))
         else:
             results.append(
                 install(harness, root or ROOT, config_dir, args.dry_run, only, skills, agents,
