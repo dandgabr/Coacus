@@ -2760,29 +2760,36 @@ def _hook_script(command: object) -> str | None:
     return script if script and script.endswith(".py") and Path(script).is_absolute() else None
 
 
+# The scripts a Coacus hook runs. A hook is recognised by these names under a ``scripts``
+# directory, not by the current checkout, because the case that matters is a hook that still
+# names a checkout that has moved or been removed.
+HOOK_SCRIPT_NAMES = ("coacus_guard.py", "coacus_session_start.py", "coacus_governor_hook.py")
+
+
 def _missing_hook_scripts(root: Path, harness: str, targets: list[Path]) -> list[str]:
     """Scripts that an installed Coacus hook names but that are no longer on disk.
 
-    Only hook entries that are ours are read, from the JSON files the install wrote. A
-    plugin that embeds the path as source (OpenCode) is not covered.
+    The hook files the install wrote are read; a plugin that embeds the path as source
+    (OpenCode) is not covered. ``root`` and ``harness`` are kept for callers that pass them.
     """
-    markers = _hook_owner_markers(root, harness)
+    del root, harness
     missing: set[str] = set()
     for target in targets:
         if target.suffix != ".json" or not target.is_file():
             continue
         try:
             data = json.loads(target.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
+        except (OSError, ValueError, RecursionError):
             continue
         stack = [data]
         while stack:
             node = stack.pop()
             if isinstance(node, dict):
                 command = node.get("command")
-                if command is not None and _entry_owned({"command": command}, markers):
-                    script = _hook_script(command)
-                    if script and not Path(script).is_file():
+                script = _hook_script(command) if command is not None else None
+                if script:
+                    path = Path(script)
+                    if path.name in HOOK_SCRIPT_NAMES and path.parent.name == "scripts" and not path.is_file():
                         missing.add(script)
                 stack.extend(node.values())
             elif isinstance(node, list):

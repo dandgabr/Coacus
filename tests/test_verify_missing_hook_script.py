@@ -40,6 +40,27 @@ class TestMissingHookScripts(unittest.TestCase):
         self.write(self.command("--event", "tool.pre"))
         self.assertEqual(self.missing(), [self.guard.as_posix()])
 
+    def test_a_hook_for_a_checkout_other_than_the_current_one_is_reported(self) -> None:
+        # The case that matters: verify runs from a checkout that exists, the hook names one that is gone.
+        self.write(self.command("--event", "tool.pre"))
+        self.assertEqual(coacus_install._missing_hook_scripts(REPO, "claude-code", [self.settings]), [self.guard.as_posix()])
+
+    def test_the_governor_and_session_start_hooks_are_covered(self) -> None:
+        names = ("coacus_session_start.py", "coacus_governor_hook.py")
+        self.write(*(coacus_install._command([sys.executable, "-I", (self.root / "scripts" / n).as_posix()]) for n in names))
+        self.assertEqual(self.missing(), sorted((self.root / "scripts" / n).as_posix() for n in names))
+
+    def test_a_script_with_another_name_or_folder_is_not_ours(self) -> None:
+        self.write(coacus_install._command([sys.executable, (self.root / "scripts" / "other.py").as_posix()]),
+                   coacus_install._command([sys.executable, (self.root / "tools" / "coacus_guard.py").as_posix()]))
+        self.assertEqual(self.missing(), [])
+
+    def test_hostile_json_never_raises(self) -> None:
+        self.settings.write_bytes(b"\xff\xfe{")
+        self.assertEqual(self.missing(), [])
+        self.settings.write_text("[" * 200000, encoding="utf-8")
+        self.assertEqual(self.missing(), [])
+
     def test_a_present_script_is_not_reported(self) -> None:
         self.guard.parent.mkdir(parents=True)
         self.guard.write_text("", encoding="utf-8")
