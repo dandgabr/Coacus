@@ -104,6 +104,16 @@ def format_candidates(
     return "\n".join(lines)
 
 
+def _log_miss(root: Path, prompt: str) -> None:
+    """Record an unmatched request for the improvement loop; off unless opted in, never fatal."""
+    try:
+        from engine.improve.sources.route_miss import record_miss
+
+        record_miss(root, prompt)
+    except Exception:  # nosec B110  # Best effort: a failed log write must never break routing.
+        pass
+
+
 def _cmd_rank(args: argparse.Namespace, root: Path) -> int:
     prompt = args.prompt
     is_tty = sys.stdout.isatty()
@@ -123,6 +133,7 @@ def _cmd_rank(args: argparse.Namespace, root: Path) -> int:
     # Fetch candidates with optional limit
     all_candidates = router.rank(root, prompt, limit=None, min_score=args.min_score)
     if not all_candidates:
+        _log_miss(root, prompt)
         print("no agent above the score threshold", file=sys.stderr if not is_raw else sys.stdout)
         return 1
 

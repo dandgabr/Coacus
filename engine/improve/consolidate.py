@@ -5,7 +5,9 @@ candidate is one of:
 
 - ``gotcha``    — an error or difficulty (negative knowledge);
 - ``procedure`` — a confirmed successful approach;
-- ``fact``      — a durable fact not derivable from the code.
+- ``fact``      — a durable fact not derivable from the code;
+- ``skill-gap`` — a request no skill or agent matched, declared by an observation
+  with ``kind: "route-miss"`` (never inferred from text).
 
 Candidates are typed deterministically from observation signals; no LLM is
 required for v1. Each candidate carries its evidence units (channel, session,
@@ -15,6 +17,7 @@ claim hash) so the taint and independence rules can be enforced downstream.
 from __future__ import annotations
 
 import hashlib
+import unicodedata
 
 from engine.improve import taint
 
@@ -22,15 +25,41 @@ ERROR_MARKERS = ("error", "failed", "failure", "exception", "traceback", "denied
 SUCCESS_MARKERS = ("passed", "succeeded", "fixed", "resolved", "worked")
 
 
+# A skill gap is declared by a structured field set by the producer, never inferred
+# from words in free text, which anyone can write. The statement is short and clean:
+# it is withheld from the proposal anyway, and only its hash and counts are kept.
+SKILL_GAP_KIND = "route-miss"
+MAX_GAP_CLAIM = 200
+
+
 def _claim(observation: dict) -> str:
     return str(observation.get("text") or observation.get("summary") or "").strip()
+
+
+def _clean(text: str) -> str:
+    """Drop control and format characters (invisible, bidi, tag) from the whole text."""
+    kept = "".join(ch for ch in text if unicodedata.category(ch)[0] != "C" or ch in " \t")
+    return kept.strip()
 
 
 def _hash(text: str) -> str:
     return hashlib.sha256(text.strip().lower().encode("utf-8")).hexdigest()[:16]
 
 
-def _type_of(observation: dict) -> str:
+def _gap_hash(text: str) -> str:
+    """Hash of a skill-gap claim after NFKC folding, case folding and whitespace collapse.
+
+    Full-width letters, doubled spaces and capitals of one wording count as one claim.
+    """
+    folded = " ".join(unicodedata.normalize("NFKC", text).split()).casefold()
+    return hashlib.sha256(folded.encode("utf-8")).hexdigest()[:16]
+
+
+def _type_of(observation: dict, allow_gaps: bool = False) -> str:
+    # Only the route-miss source may declare a gap: it sets kind, channel and session
+    # in code. The same field in any other source's record is ordinary text.
+    if allow_gaps and observation.get("kind") == SKILL_GAP_KIND:
+        return "skill-gap"
     status = str(observation.get("status", "")).lower()
     text = _claim(observation).lower()
     if status in ("error", "failure") or any(m in text for m in ERROR_MARKERS):
@@ -40,20 +69,28 @@ def _type_of(observation: dict) -> str:
     return "fact"
 
 
-def consolidate(observations: list[dict]) -> list[dict]:
-    """Group observations into typed candidates, deduped by normalized claim."""
+def consolidate(observations: list[dict], *, allow_gaps: bool = False) -> list[dict]:
+    """Group observations into typed candidates, deduped by normalized claim.
+
+    ``allow_gaps`` is True only for the route-miss source; for any other source a
+    ``kind: "route-miss"`` field is ignored and the record is typed like any other.
+    """
     grouped: dict[tuple[str, str], dict] = {}
     for index, obs in enumerate(observations, 1):
         claim = _claim(obs)
         if not claim:
             continue
-        kind = _type_of(obs)
-        key = (kind, _hash(claim))
+        kind = _type_of(obs, allow_gaps)
+        if kind == "skill-gap":
+            claim = _clean(claim)
+            if not claim:
+                continue
+        key = (kind, _gap_hash(claim) if kind == "skill-gap" else _hash(claim))
         session = str(obs.get("session_id", "session"))
         if key not in grouped:
             grouped[key] = {
                 "type": kind,
-                "statement": claim,
+                "statement": claim[:MAX_GAP_CLAIM] if kind == "skill-gap" else claim,
                 "claim_hash": key[1],
                 "evidence": [],
             }

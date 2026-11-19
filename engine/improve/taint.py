@@ -14,6 +14,14 @@ of the untrusted-content boundary (OWASP LLM01/LLM04).
 from __future__ import annotations
 
 TRUSTED_CHANNELS = {"human-user-turn", "repo-file"}
+
+# Candidate types that need at least one trusted-channel unit, or they are staged as
+# a ``note``. One list, used by the loop, so a new type cannot forget the rule.
+TRUST_REQUIRED = ("gotcha", "procedure", "skill-gap")
+
+# Independent units a type needs before routing may propose creating something.
+MIN_SUPPORT = {"skill-gap": 3}
+DEFAULT_MIN_SUPPORT = 2
 TAINTED_CHANNELS = {"tool-result", "external-content", "model-assistant"}
 
 
@@ -37,6 +45,20 @@ def has_trusted_evidence(candidate: dict) -> bool:
         str(u.get("channel", "")) in TRUSTED_CHANNELS
         for u in candidate.get("evidence", [])
     )
+
+
+def trusted_sessions(candidate: dict) -> int:
+    """Count distinct sessions that contributed a trusted-channel unit.
+
+    Several channels inside one session still count once. The session identifier is
+    read from the record, so this raises the cost of a fabricated gap but is not
+    proof of independence (ADR 0013).
+    """
+    return len({
+        str(u.get("session_id", ""))
+        for u in candidate.get("evidence", [])
+        if str(u.get("channel", "")) in TRUSTED_CHANNELS
+    })
 
 
 def independence(candidate: dict) -> int:

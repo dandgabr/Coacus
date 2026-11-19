@@ -101,6 +101,20 @@ skill are adapted — paraphrased, not copied — from the `mattpocock/skills`
 collection by Matt Pocock (<https://github.com/mattpocock/skills>), MIT-licensed.
 The MIT text reproduced under "Skill-authoring references — MIT" governs them.
 
+## ARTEX patterns — upstream AGPL-3.0 (ideas only)
+
+Some Coacus standards, references, eval scenarios and tests adapt design patterns
+observed in the `ARTEX` repository at commit
+`6337341602be6aa5860b1e83138f03bdd0b78f71`
+(`https://github.com/BaaRai/ARTEX/tree/6337341602be6aa5860b1e83138f03bdd0b78f71`),
+whose `LICENSE` at that commit is the GNU Affero General Public License v3.0. They
+are rewritten in Coacus's own words; no code or prose is reproduced,
+and each is checked for reused text before it merges. The URL is for attribution
+only and must not be fetched by agents. The repository reports that it descends from
+project `Autumn-27/ARTEX` (not fetched); the lineage and the original license are
+reported, not verified, as of 2026-11-17. ADR 0009 records which ideas were taken and under which Coacus
+names. Files that carry such an adaptation must cite this section.
+
 ## Skills corpus — GPL-3.0
 
 The skills under `knowledge/skills/**` and the agents under `knowledge/agents/**`

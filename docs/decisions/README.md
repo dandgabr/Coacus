@@ -4,8 +4,8 @@ Committed Architecture Decision Records (MADR 3.0), one per decision that binds
 the repository. The convention is normative in
 [`docs/standards/decision-records.md`](../standards/decision-records.md).
 
-Numbers 0009, 0013 and 0017 belong to records on other branches that are not merged yet,
-so they are absent from the table below.
+Number 0017 belongs to a record on another branch that is not merged yet,
+so it is absent from the table below.
 
 | ADR | Title | Status |
 |---|---|---|
@@ -17,9 +17,11 @@ so they are absent from the table below.
 | [0006](0006-default-policy-posture.md) | Default guardrail policy posture | accepted |
 | [0007](0007-cross-platform-os-independence.md) | Cross-Platform OS Independence and Python-Exclusive Scripting | accepted |
 | [0008](0008-canonical-ui-styles-expansion-and-showcase.md) | Canonical UI Styles Expansion (82 Pure Styles), Decoupling and Showcase Integration | accepted |
+| [0009](0009-absorb-external-agent-patterns-as-native-content.md) | Absorb external agent patterns as Coacus-native content | accepted |
 | [0010](0010-ask-channel-gating.md) | Ask channel gating | accepted |
 | [0011](0011-command-deny-evaluation-contract.md) | Command deny evaluation contract | accepted |
 | [0012](0012-event-binding-and-enforced-events.md) | Event binding and enforced events | accepted |
+| [0013](0013-skill-gap-candidate-type.md) | Skill-gap candidate type | accepted |
 | [0014](0014-mcp-action-verb.md) | MCP action verb | accepted |
 | [0015](0015-guard-self-protection.md) | Guard self-protection | accepted |
 | [0016](0016-prompt-submit-hook.md) | Prompt-submit hook on Claude Code | accepted |

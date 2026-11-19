@@ -15,6 +15,14 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 - A security-only review has an owner: `project-reviewer` takes a review limited to one aspect. Dispatch rules no longer cite a `@CTX` chain, which the TOON protocol does not define; they say never to re-dispatch the agent that handed you the task, and that a delegate returns `NEED_INFO`.
 - Routing terms: `revisao de seguranca` moved from `security-architect` to `project-reviewer`; `security question`, `security triage` and common vulnerability names route to `security-specialist`, and pull-request and threat-model phrases route to `project-reviewer` and `security-architect`.
 
+## [Unreleased] — Skill-gap candidate type
+
+### Added
+
+- Snapshots are split on newlines only, so a record that carries U+2028 or U+0085 is no longer cut and dropped. A downgraded proposal records `downgraded` and `original_type`, and a gap claim is compared after NFKC folding, case folding and whitespace collapse.
+- The improvement loop can propose a `skill-gap` when an observation carries the structured field `kind: "route-miss"`. On every routing branch it needs a trusted-channel unit from three distinct sessions; its claim is cleaned and hashed in full, its statement is capped, and the stored proposal never keeps the text. Types that need trust now come from one constant, `taint.TRUST_REQUIRED`. See ADR 0013.
+- A `skill-gap` can only come from the new `route-miss` source, which `scripts/coacus_route.py` feeds when no agent matches and `COACUS_ROUTE_MISS_LOG=1` is set, in a private per-user state file outside any repository, with the UTC day as the session. The source sets the kind, channel and session in code, so a transcript or export record can no longer declare a gap, and a prompt typed without a terminal never counts as trusted evidence.
+
 ## [Unreleased] — Guard events, MCP verb and self-protection
 
 ### Added
