@@ -109,6 +109,7 @@ _SHELL_OPTS_RUNNING = {"--rcfile", "--init-file"}
 # When a word is the operator alone, the word after it is the target or the here-document tag.
 _FD = r"(?:\d+|\{[A-Za-z_][A-Za-z0-9_]*\})?"
 _FD_ONLY = re.compile(r"^(?:\d+|\{[A-Za-z_][A-Za-z0-9_]*\})$")
+_HEREDOC_WORD = re.compile(r"^" + _FD + r"<<$")
 _REDIRECT = re.compile(r"^" + _FD + r"(?:>>?|>\||<<<|<<-?|<>|<|>&|<&|&>>?)")
 _BARE_REDIRECT = re.compile(r"^" + _FD + r"(?:>>?|>\||<<<|<<-?|<>|<|>&|<&|&>>?)$")
 _KEYWORDS = {"{", "}", "if", "then", "elif", "else", "do", "while", "until", "!", "coproc"}
@@ -609,9 +610,20 @@ def _words_candidates(words: list[str], depth: int, state: dict) -> list[str]:
             if depth >= _MAX_DEPTH:
                 state["unresolved"] = True
                 return []
-            # A bare operator takes its target (or here-document tag) with it. A file descriptor
-            # (``2`` or ``{fd}``) stands alone in front of its redirection and is one word.
-            pos += 2 if _BARE_REDIRECT.match(word) else 1
+            if _HEREDOC_WORD.match(word) and rest[pos + 1:pos + 2] == ["-"]:
+                # The lexer splits ``<<- TAG`` into ``<<``, ``-`` and the tag, and ``<< - prog`` (the
+                # tag is ``-``) gives the same words. Read both: the tag may be skipped, or the
+                # command may start right after the dash.
+                assigned.extend(_words_candidates(rest[pos + 2:], depth + 1, state))
+                pos += 3
+            elif _FD_ONLY.match(word):
+                # A descriptor stands alone in front of its redirection and is one word. A word
+                # spaced from the operator is a program name, so it stays a candidate.
+                assigned.extend(_names(word))
+                pos += 1
+            else:
+                # A bare operator takes its target (or here-document tag) with it.
+                pos += 2 if _BARE_REDIRECT.match(word) else 1
         elif _ASSIGN.match(word):
             assigned.extend(_assignment(word, depth, state))
             pos += 1

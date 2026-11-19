@@ -34,7 +34,9 @@ not look through (brace groups, process substitution, `eval`, here-strings,
   after a control word (`then X=1 prog`), so it is neither the command name nor a
   reason to call the command unresolved. Redirection operators with a file descriptor,
   a named descriptor (`{fd}>f`), `<<<`, `<>`, `>|` and a here-document tag are peeled
-  with their target.
+  with their target. The lexer splits `<<- TAG` into `<<`, `-` and the tag, which is
+  also what `<< - prog` gives (the tag is `-`), so the walk lists the program under both
+  readings.
 - Newlines inside quotes do not split a command, so a multi-line commit message
   parses. The body of a here-document is data unless the command that reads it is a
   shell, in which case it is scanned.

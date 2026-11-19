@@ -310,9 +310,29 @@ class TestAssignmentAfterAControlWord(unittest.TestCase):
             with self.subTest(not_bare=word):
                 self.assertFalse(guard._BARE_REDIRECT.match(word))
 
+    def test_a_dash_after_a_here_document_operator_is_read_both_ways(self) -> None:
+        # ``<<- EOF prog`` skips the tag; ``<< - prog`` has the tag ``-`` and runs ``prog``.
+        # The lexer gives the same words for both, so neither reading may hide the program.
+        for command in (f"<<- EOF {TARGET} --flag\nEOF", f"<< - {TARGET} --flag", f"<<- {TARGET} {TARGET}",
+                        f"if true; then << - {TARGET}; fi", f"X=1 <<- EOF {TARGET}",
+                        f"<<- A <<- B {TARGET}", f"<< - <<- A {TARGET}"):
+            with self.subTest(command=command):
+                self.assertTrue(denied(command), command)
+
+    def test_a_long_run_of_dash_operators_ends_and_fails_closed(self) -> None:
+        command = "<<- A " * 2000 + TARGET
+        names, unresolved = guard.resolve_command(command)
+        self.assertTrue(TARGET in names or unresolved)
+
+    def test_a_descriptor_spaced_from_its_operator_stays_a_candidate(self) -> None:
+        names, _ = guard.resolve_command(f"{{fd}} > f {TARGET}")
+        self.assertIn("{fd}", names)
+        self.assertIn(TARGET, names)
+
     def test_a_redirection_operator_takes_its_target_with_it(self) -> None:
         redirections = ("<<< word", "<>file", "<> file", ">|file", ">| file", "{fd}>file", "{fd}> file",
-                        "2>&1", "&>>log", "<< EOF", "<<-EOF", "<<EOF", ">&2", "<&0")
+                        "2>&1", "&>>log", "<< EOF", "<<-EOF", "<<EOF", ">&2", "<&0",
+                        "<<- EOF", "<<- 'EOF'", "2<<- EOF", "{fd}<<- EOF")
         for redirection in redirections:
             for template in ("@", "if true; then @; fi", "for b in a; do @; done"):
                 for assignment in ("", "X=1 "):
