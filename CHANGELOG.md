@@ -9,7 +9,7 @@ The repository adheres to [Semantic Versioning](https://semver.org/) once it doe
 
 ### Added
 
-- A `stop` verb and a `turn.stop` hook on Claude Code and Codex (`Stop`): a `deny` policy asks the agent to keep going, with the policy message as its next instruction, when the final message matches the pattern (`*` matches every turn). It asks once per turn, because the guard allows when the payload says the agent is already continuing. See ADR 0020.
+- A `stop` verb and a `turn.stop` hook on Claude Code and Codex (`Stop`): a `deny` policy asks the agent to keep going, with the policy message as its next instruction, when the final message matches the pattern (`*` matches every turn). It asks once per turn: the guard evaluates only when the payload says `"stop_hook_active": false` and allows on anything else. See ADR 0020.
 - The `prompt.submit` hook on Codex (`UserPromptSubmit`): a `prompt` rule blocks a prompt there too. Run live on Codex 0.169.0 with hook trust bypassed for the run; Codex still needs the hook trusted in `/hooks` in normal use.
 
 ### Known limits

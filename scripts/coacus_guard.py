@@ -247,7 +247,7 @@ def _stop_effect(harness: str, decision: str, message: str) -> str:
         return _allow(harness)
     if decision == "allow":
         return "{}"
-    return json.dumps({"decision": "block", "reason": message or "A Coacus guardrail policy asks you to continue."})
+    return json.dumps({"decision": "block", "reason": message or "A guardrail policy asks you to check your work against it before you stop, then finish."})
 
 
 OUTPUT_NOTE_CHARS = 2000
@@ -356,7 +356,7 @@ STOP_EVENT = "turn.stop"
 # Harnesses whose hook answers these events as ``{"decision": "block", "reason": ...}``.
 PROMPT_HARNESSES = ("claude-code", "codex")
 STOP_HARNESSES = ("claude-code", "codex")
-STOP_MAX_CHARS = 100000 - 10  # a longer value would match every pattern
+STOP_MAX_CHARS = guard._MAX_COMMAND_CHARS - 10  # a longer value would match every pattern
 OUTPUT_EVENT = "tool.post"
 ENFORCED_EVENTS = (ENFORCED_EVENT, PROMPT_EVENT, OUTPUT_EVENT, STOP_EVENT)
 
@@ -518,10 +518,14 @@ def run(harness: str, event: str, payload_text: str, root: Path, channel: str = 
             named = data.get("hook_event_name")
             # stop_hook_active means the agent is already continuing because of a stop hook:
             # never ask twice, or a rule that always matches would hold the agent forever.
-            if data.get("stop_hook_active") is True or named not in (None, "Stop"):
+            # Anything but an explicit false is doubt (a missing field, a string, a number), and
+            # doubt allows, so a harness that does not send the flag can never be held.
+            if data.get("stop_hook_active") is not False or named not in (None, "Stop"):
                 return _stop_effect(harness, "allow", "")
             last = data.get("last_assistant_message")
-            text = last[-STOP_MAX_CHARS:] if isinstance(last, str) else ""
+            # Fold first, then cut: folding can lengthen text, and a value over the cap matches
+            # every pattern.
+            text = guard._fold_prompt(last)[-STOP_MAX_CHARS:] if isinstance(last, str) else ""
             decision, message = _decide(root, harness, event, "default", "stop", text)
             return _stop_effect(harness, decision, message)
         if event == OUTPUT_EVENT:

@@ -53,8 +53,21 @@ class TestStopDecision(Case):
         self.put(document(stop_policy()))
         for harness in ("claude-code", "codex"):
             with self.subTest(harness=harness):
-                out = self.run_guard({"hook_event_name": "Stop", "last_assistant_message": "All done."}, harness)
+                out = self.run_guard({"hook_event_name": "Stop", "stop_hook_active": False, "last_assistant_message": "All done."}, harness)
                 self.assertEqual(out, {"decision": "block", "reason": "Run the tests before you finish."})
+
+    def test_anything_but_an_explicit_false_is_doubt_and_allows(self) -> None:
+        self.put(document(stop_policy()))
+        for flag in (True, None, "true", "false", 1, 0, []):
+            for harness in ("claude-code", "codex"):
+                with self.subTest(flag=flag, harness=harness):
+                    self.assertEqual(self.run_guard({"stop_hook_active": flag, "last_assistant_message": "x"}, harness), {})
+        self.assertEqual(self.run_guard({"last_assistant_message": "x"}, "codex"), {})
+
+    def test_text_that_grows_when_folded_does_not_match_every_rule(self) -> None:
+        self.put(document(stop_policy(resource="*tests failed*")))
+        message = "All good. " + "\ufdfa" * 6000
+        self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": message}), {})
 
     def test_it_asks_only_once_per_turn(self) -> None:
         self.put(document(stop_policy()))
@@ -62,35 +75,37 @@ class TestStopDecision(Case):
 
     def test_the_pattern_reads_the_final_message_case_insensitively(self) -> None:
         self.put(document(stop_policy(resource="*all done*")))
-        self.assertIn("decision", self.run_guard({"last_assistant_message": "ALL DONE here"}))
-        self.assertEqual(self.run_guard({"last_assistant_message": "still working"}), {})
+        self.assertIn("decision", self.run_guard({"stop_hook_active": False, "last_assistant_message": "ALL DONE here"}))
+        self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": "still working"}), {})
 
     def test_a_catch_all_rule_also_matches_a_missing_or_odd_message(self) -> None:
         self.put(document(stop_policy()))
-        for payload in ({}, {"last_assistant_message": None}, {"last_assistant_message": 5}, {"last_assistant_message": ""}):
+        for message in (None, 5, ""):
+            payload = {"stop_hook_active": False, "last_assistant_message": message}
             with self.subTest(payload=payload):
                 self.assertIn("decision", self.run_guard(payload))
+        self.assertIn("decision", self.run_guard({"stop_hook_active": False}))
 
     def test_a_very_long_message_is_read_from_its_end(self) -> None:
         self.put(document(stop_policy(resource="*needle")))
-        self.assertIn("decision", self.run_guard({"last_assistant_message": "a" * 300000 + "needle"}))
-        self.assertEqual(self.run_guard({"last_assistant_message": "needle" + "a" * 300000}), {})
+        self.assertIn("decision", self.run_guard({"stop_hook_active": False, "last_assistant_message": "a" * 300000 + "needle"}))
+        self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": "needle" + "a" * 300000}), {})
 
     def test_an_ask_degrades_to_its_fallback(self) -> None:
         self.put(document(stop_policy(decision="ask", on_ask_unavailable="deny")))
-        self.assertIn("decision", self.run_guard({"last_assistant_message": "x"}))
+        self.assertIn("decision", self.run_guard({"stop_hook_active": False, "last_assistant_message": "x"}))
         self.put(document(stop_policy(decision="ask", on_ask_unavailable="allow")))
-        self.assertEqual(self.run_guard({"last_assistant_message": "x"}), {})
+        self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": "x"}), {})
 
     def test_note_allow_disabled_and_other_events_say_nothing(self) -> None:
         for doc in (document(stop_policy(decision="note")), document(stop_policy(decision="allow")),
                     document(stop_policy(), enabled=False)):
             self.put(doc)
-            self.assertEqual(self.run_guard({"last_assistant_message": "x"}), {})
+            self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": "x"}), {})
 
     def test_another_event_name_is_ignored(self) -> None:
         self.put(document(stop_policy()))
-        self.assertEqual(self.run_guard({"hook_event_name": "SubagentStop", "last_assistant_message": "x"}), {})
+        self.assertEqual(self.run_guard({"hook_event_name": "SubagentStop", "stop_hook_active": False, "last_assistant_message": "x"}), {})
 
     def test_a_harness_without_the_hook_gets_the_explicit_allow_it_expects(self) -> None:
         self.put(document(stop_policy()))
@@ -109,7 +124,7 @@ class TestEventAndVerbStayApart(Case):
         policy = stop_policy()
         del policy["event"]
         self.put(document(policy))
-        self.assertIn("decision", self.run_guard({"last_assistant_message": "x"}))
+        self.assertIn("decision", self.run_guard({"stop_hook_active": False, "last_assistant_message": "x"}))
 
     def test_a_stop_rule_never_fires_on_a_tool_call_or_a_prompt(self) -> None:
         self.put(document(stop_policy(event="tool.pre")))
@@ -121,7 +136,7 @@ class TestEventAndVerbStayApart(Case):
         policy = stop_policy()
         policy["action"] = {"verb": "exec", "resource": "*"}
         self.put(document(policy))
-        self.assertEqual(self.run_guard({"last_assistant_message": "x"}), {})
+        self.assertEqual(self.run_guard({"stop_hook_active": False, "last_assistant_message": "x"}), {})
 
     def test_evaluate_matches_by_verb_and_event(self) -> None:
         self.assertEqual(engine.evaluate([stop_policy()], "stop", "x", "turn.stop")["decision"], "deny")
@@ -131,7 +146,7 @@ class TestEventAndVerbStayApart(Case):
         self.put(document(stop_policy()))
         proc = subprocess.run(
             [sys.executable, str(REPO / "scripts/coacus_guard.py"), "--harness", "claude-code", "--event", "turn.stop",
-             "--root", str(REPO)], input=json.dumps({"last_assistant_message": "x"}), capture_output=True, text=True,
+             "--root", str(REPO)], input=json.dumps({"stop_hook_active": False, "last_assistant_message": "x"}), capture_output=True, text=True,
             env=dict(os.environ), timeout=60)
         self.assertEqual(proc.returncode, 0)
         self.assertEqual(json.loads(proc.stdout)["decision"], "block")
@@ -171,6 +186,36 @@ class TestInstall(Case):
             with self.subTest(event=event):
                 self.put(document(policy))
                 self.assertEqual(len(self._fragment()["hooks"]["Stop"]), 1)
+
+    def test_a_rule_on_the_wrong_event_or_a_misspelled_decision(self) -> None:
+        wrong = stop_policy(event="prompt.submit")
+        self.put(document(wrong))
+        self.assertEqual(self._fragment()["hooks"]["Stop"], [])
+        self.assertEqual(self._fragment()["hooks"]["UserPromptSubmit"], [])
+        self.put(document(stop_policy(decision="Deny")))
+        self.assertEqual(len(self._fragment()["hooks"]["Stop"]), 1)
+
+    def test_a_deny_with_no_event_is_refused_where_the_harness_cannot_block_a_stop(self) -> None:
+        policy = stop_policy()
+        del policy["event"]
+        for harness in ("opencode", "cursor"):
+            with self.subTest(harness=harness):
+                reasons = coacus_install._refuse_unenforceable(REPO, harness, [document(policy)])
+                self.assertTrue(any("turn.stop" in r for r in reasons))
+        self.assertEqual(coacus_install._refuse_unenforceable(REPO, "claude-code", [document(policy)]), [])
+
+    def test_disabling_the_policy_removes_both_codex_hooks(self) -> None:
+        marker = f"{REPO.as_posix()}/scripts/coacus_guard.py"
+        self.put(document(stop_policy(), {**stop_policy(), "id": "p", "event": "prompt.submit",
+                                          "action": {"verb": "prompt", "resource": "*x*"}}))
+        on = self._fragment("codex")["hooks"]
+        self.assertEqual((len(on["Stop"]), len(on["UserPromptSubmit"])), (1, 1))
+        installed = {"hooks": {"Stop": on["Stop"], "UserPromptSubmit": on["UserPromptSubmit"]}}
+        self.put(document(stop_policy(), enabled=False))
+        off = self._fragment("codex")
+        merged = coacus_install._merge_hooks(installed, off, {marker})
+        self.assertEqual(merged["hooks"].get("Stop", []), [])
+        self.assertEqual(merged["hooks"].get("UserPromptSubmit", []), [])
 
     def test_other_harnesses_get_no_stop_hook(self) -> None:
         self.put(document(stop_policy()))

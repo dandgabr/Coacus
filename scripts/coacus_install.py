@@ -1337,9 +1337,13 @@ def _bound_events(root: Path, extra_docs: list[dict] | None = None) -> set[str]:
             # omitted or misspelled event is read as that.
             if verb in ("output", "stop") and ("event" not in policy or event not in guard.KNOWN_EVENTS):
                 event = "tool.post" if verb == "output" else "turn.stop"
-            if (event == "tool.pre" or (verb == "prompt" and decision in ("deny", "ask"))
-                    or (verb == "output" and decision == "note")
-                    or (verb == "stop" and decision in ("deny", "ask"))):
+            # Each of these verbs means something on one event only, so a rule bound elsewhere
+            # gets no hook. For prompt and stop any decision but allow or note acts as a deny at
+            # run time (an unknown word is a deny), so it counts here too.
+            acts = ((verb == "prompt" and event == "prompt.submit" and decision not in ("allow", "note"))
+                    or (verb == "output" and event == "tool.post" and decision == "note")
+                    or (verb == "stop" and event == "turn.stop" and decision not in ("allow", "note")))
+            if event == "tool.pre" or acts:
                 events.add(event)
     return events
 
@@ -1408,7 +1412,8 @@ def _refuse_unenforceable(
         for policy in doc.get("policies", []):
             if policy.get("decision") != "deny":
                 continue
-            event = str(policy.get("event", "tool.pre"))
+            verb = policy.get("action", {}).get("verb") if isinstance(policy.get("action"), dict) else None
+            event = str(policy.get("event", {"output": "tool.post", "stop": "turn.stop"}.get(verb, "tool.pre")))
             cap = (lifecycle.get("events", {}) or {}).get(event)
             if not cap or not cap.get("can_block"):
                 reasons.append(

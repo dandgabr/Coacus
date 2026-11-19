@@ -161,12 +161,16 @@ A `stop` rule bound to `turn.stop` with the decision `deny` (or an `ask`, which 
 to reach and degrades to its fallback) asks the agent to keep going when it tries to stop:
 the hook answers `{"decision": "block", "reason": <message>}`, and the message becomes the
 agent's next instruction. The pattern is read from the final message of the turn,
-case-insensitively, from its last 99,990 characters; `*` therefore means "ask once at the end
+case-insensitively, after folding, from its last 99,990 characters; `*` therefore means "ask once at the end
 of every turn", for example to require a verification step. It asks **once per turn**: when
-the payload says the agent is already continuing because of a stop hook (`stop_hook_active`),
-the guard allows, and Claude Code also ends the turn after eight consecutive continuations.
+the payload does not say `"stop_hook_active": false` (it says true, or sends nothing, or
+something else), the guard allows, and Claude Code also ends the turn after eight
+consecutive continuations. Write a `message` that asks for something checkable, because it is
+the agent's whole next instruction.
 A `stop` rule with no `event`, or a misspelled one, is read as bound to `turn.stop`. Claude
-Code and Codex render it; enabling or disabling the policy takes effect at the next install.
+Code and Codex have the hook (documented, not run live; Codex also needs it trusted), and a
+deny on another harness is refused where it cannot block a stop and otherwise inert, as for
+prompts. Enabling or disabling the policy takes effect at the next install.
 See ADR 0020.
 
 ## Which tools a rule can see

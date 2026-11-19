@@ -21,8 +21,15 @@ it is trusted (`/hooks`, or `--dangerously-bypass-hook-trust` for one run).
 - A new verb `stop`, bound to `turn.stop` (it defaults there), matched case-insensitively
   against the end of `last_assistant_message`. `deny` renders the block answer; `ask` has no
   human to reach and degrades to its fallback; `note` and `allow` render nothing.
-- The guard allows whenever `stop_hook_active` is true, so a rule asks at most once per
-  turn, whatever its pattern.
+- The guard evaluates only when the payload says `"stop_hook_active": false` and allows on
+  anything else (true, missing, a string, a number), so a rule asks at most once per turn,
+  whatever its pattern, and a harness that never sends the field is never held.
+- The message is folded before it is cut to its last 99,990 characters, because folding can
+  lengthen text and a value over the cap matches every pattern.
+- The installer reads a `stop` or `output` rule with no event as bound to its own event when it
+  checks `deny` against `can_block`, and adds a hook only when the rule is bound to the
+  event that verb means. A `stop` deny on a harness with no native name for it stays inert,
+  the same exception ADR 0016 made for prompts.
 - Claude Code and Codex gain the `Stop` hook, and Codex gains `UserPromptSubmit`, both added
   at install time only while an enabled policy binds the event, through the isolated,
   missing-script-tolerant launcher. Codex gets the prompt answer without the Claude-only
