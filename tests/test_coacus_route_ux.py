@@ -127,7 +127,7 @@ class TestQuickActionHarness(unittest.TestCase):
     """The Quick action names the detected harness, never a fixed one."""
 
     def _candidates(self):
-        return [Candidate(name="software-architect", category="x", score=9.0, matched=["a"], description="d")]
+        return [Candidate(name="software-architect", category="x", score=9.0, matched=["a"], description="Designs software architecture.")]
 
     def test_unknown_harness_uses_a_placeholder(self) -> None:
         out = format_candidates(self._candidates(), raw=False, use_color=False)
