@@ -51,6 +51,7 @@ A vendor's subcontractors inherit your data. Ask for the vendor's own TPRM proce
 ## 🔗 5. Integration with Other Skills
 
 - For cloud assurance, see the [csa-cloud-security](../../iam/csa-cloud-security/SKILL.md) skill.
+- For Brazilian vendor roles, contract evidence and transfer mechanisms, use the supplier procedure in `lgpd-privacy-engineering`.
 - For DORA obligations, see the [eu-digital-resilience-regulation](../eu-digital-resilience-regulation/SKILL.md) skill.
 - For supply-chain software risk, see the [supply-chain-threat-modeling](../../operations/supply-chain-threat-modeling/SKILL.md) skill.
 - For the risk scoring methodology, see the [quantitative-risk-fair](../quantitative-risk-fair/SKILL.md) skill.

@@ -1,0 +1,25 @@
+{
+  "id": "privacy-brazil-incident-deadlines",
+  "title": "Brazilian personal data incident timing",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. A Brazilian processor flagged a suspected incident Tuesday. On Wednesday, the controller learned that exposed authentication data can be used to impersonate customers and block access to their accounts. An employee says the organization can double every deadline because it is small, and that a data subject request log already covers the incident. Describe the first actions, decision, clock, draft audiences and evidence. Do not perform operational actions or send notices.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(three|3) business days",
+      "reason": "Look for the normal notice window."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(twenty|20) business days",
+      "reason": "Look for the separate supplemental window."
+    }
+  ],
+  "rubric": [
+    "Escalate defensively and preserve evidence. Apply the conjunctive significant-effects and qualifying-category test. Identify Wednesday's controller knowledge rather than the processor's suspicion as the clock anchor.",
+    "Distinguish the three-business-day initial notices from the 20-business-day ANPD supplement from the communication date. Verify eligible small-agent status and applicable special legislation before doubling.",
+    "Describe separate drafts for ANPD and affected people. Record the incident and decision under Resolution 15/2024 Article 10 independently of rights request logs. Leave submissions to the authorized controller."
+  ],
+  "acceptance": "The response identifies the legal threshold, distinct clocks and audiences, and the evidence needed for defensible decisions.",
+  "judge_required": true
+}

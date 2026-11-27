@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 500 skill(s) · 100 agent(s) · 1 MCP(s)
+**Totals:** 502 skill(s) · 100 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -495,6 +495,7 @@
 | dlp-data-loss-prevention | [knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md](../knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md) |
 | privacy-enhancing-technologies | [knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md](../knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md) |
 | ai-governance-iso-42001 | [knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md](../knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md) |
+| brazil-eca-digital | [knowledge/skills/security/grc/brazil-eca-digital/SKILL.md](../knowledge/skills/security/grc/brazil-eca-digital/SKILL.md) |
 | cis-controls | [knowledge/skills/security/grc/cis-controls/SKILL.md](../knowledge/skills/security/grc/cis-controls/SKILL.md) |
 | consent-dsr-automation | [knowledge/skills/security/grc/consent-dsr-automation/SKILL.md](../knowledge/skills/security/grc/consent-dsr-automation/SKILL.md) |
 | enterprise-it-governance-cobit-itil | [knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md](../knowledge/skills/security/grc/enterprise-it-governance-cobit-itil/SKILL.md) |
@@ -504,6 +505,7 @@
 | grc-automation-oscal | [knowledge/skills/security/grc/grc-automation-oscal/SKILL.md](../knowledge/skills/security/grc/grc-automation-oscal/SKILL.md) |
 | isc2-cissp-csslp-standards | [knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md](../knowledge/skills/security/grc/isc2-cissp-csslp-standards/SKILL.md) |
 | iso-27000-series | [knowledge/skills/security/grc/iso-27000-series/SKILL.md](../knowledge/skills/security/grc/iso-27000-series/SKILL.md) |
+| lgpd-privacy-engineering | [knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md](../knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md) |
 | nis2-cra-compliance | [knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md](../knowledge/skills/security/grc/nis2-cra-compliance/SKILL.md) |
 | nist-frameworks-csf | [knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md](../knowledge/skills/security/grc/nist-frameworks-csf/SKILL.md) |
 | pci-dss-compliance | [knowledge/skills/security/grc/pci-dss-compliance/SKILL.md](../knowledge/skills/security/grc/pci-dss-compliance/SKILL.md) |

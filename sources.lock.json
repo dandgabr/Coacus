@@ -13221,9 +13221,9 @@
       "source_repo": "skills",
       "source_commit": "b23ec7f988fe47ba47ca1b304329dcc85929abec+dirty",
       "source_path": "skills/security/grc-compliance/security-privacy/SKILL.md",
-      "source_sha256": "a5ba4292b0fbb02b12529ba2ea6eb0e47c5033dc013d430cc6c97b3183126933",
+      "source_sha256": "1148462add89841987d97dedb4a78640ad7896643b6dd73b71bdddb639a31e0b",
       "target_path": "knowledge/skills/security/grc/security-privacy/SKILL.md",
-      "target_sha256": "a5ba4292b0fbb02b12529ba2ea6eb0e47c5033dc013d430cc6c97b3183126933",
+      "target_sha256": "1148462add89841987d97dedb4a78640ad7896643b6dd73b71bdddb639a31e0b",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -13281,7 +13281,7 @@
       "source_path": "skills/security/grc-compliance/security-privacy/references/lgpd_gdpr_privacy_by_design.md",
       "source_sha256": "ef72ba056a6b1bd87f33b128f28f1de9be4208ead8f186eb7ccd3691e3c2c464",
       "target_path": "knowledge/skills/security/grc/security-privacy/references/lgpd_gdpr_privacy_by_design.md",
-      "target_sha256": "31a5b545d15625aa4ccdec49c91acb0a42be7f8312a437d42840ff88ac668df4",
+      "target_sha256": "94e28550dfbbb1c250abd1fd57954078f2fe21b2cee74e251ac89edbde3574eb",
       "origin_license": "GPL-3.0",
       "transform": [
         "imported",
@@ -16620,9 +16620,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "source_sha256": "8c1d3a5716450af388604637b7a6ece9e3cfd3f5a38a95cb02e03b7384246a1f",
+      "source_sha256": "b885cdf776eef4d12fd0c1a87d07b79afda67dcc735157d19fd03dd165adcdcf",
       "target_path": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "target_sha256": "8c1d3a5716450af388604637b7a6ece9e3cfd3f5a38a95cb02e03b7384246a1f",
+      "target_sha256": "b885cdf776eef4d12fd0c1a87d07b79afda67dcc735157d19fd03dd165adcdcf",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -16755,9 +16755,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/grc/third-party-risk-management/SKILL.md",
-      "source_sha256": "aceb31414994454014eb8f021a61d4c9ba63e185d1c9ba59f95b2c8df6e0c536",
+      "source_sha256": "42dcbd8bd33b9ae2048384b621b413c47b5912e0a29162757a40c0c2b9dbd301",
       "target_path": "knowledge/skills/security/grc/third-party-risk-management/SKILL.md",
-      "target_sha256": "aceb31414994454014eb8f021a61d4c9ba63e185d1c9ba59f95b2c8df6e0c536",
+      "target_sha256": "42dcbd8bd33b9ae2048384b621b413c47b5912e0a29162757a40c0c2b9dbd301",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -17460,9 +17460,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md",
-      "source_sha256": "05f90b77ed3a9f90bdfed0d89690124d4960d7299ea1df5cfaf9a113ab0825a2",
+      "source_sha256": "e953f88634a839e9f056cd7f5f1dde006eff1a27dda37bfe74774cc61da0753f",
       "target_path": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md",
-      "target_sha256": "05f90b77ed3a9f90bdfed0d89690124d4960d7299ea1df5cfaf9a113ab0825a2",
+      "target_sha256": "e953f88634a839e9f056cd7f5f1dde006eff1a27dda37bfe74774cc61da0753f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20310,9 +20310,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
-      "source_sha256": "e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04",
+      "source_sha256": "b87c9637bc0dcaa95e6a34fab9a7d9b4ab9471e248fe1745c3e39f56c8192cb9",
       "target_path": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
-      "target_sha256": "e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04",
+      "target_sha256": "b87c9637bc0dcaa95e6a34fab9a7d9b4ab9471e248fe1745c3e39f56c8192cb9",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21415,6 +21415,36 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-11-19T16:22:18Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/grc/brazil-eca-digital/SKILL.md",
+      "source_sha256": "d3bde2b09fca43e53ce01efe686779f8eecc1ed3655c93da2faa5ad2603e0b3e",
+      "target_path": "knowledge/skills/security/grc/brazil-eca-digital/SKILL.md",
+      "target_sha256": "d3bde2b09fca43e53ce01efe686779f8eecc1ed3655c93da2faa5ad2603e0b3e",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-27T18:02:11Z"
+    },
+    {
+      "source_repo": "authoring",
+      "source_commit": "native",
+      "source_path": "knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md",
+      "source_sha256": "29577ade146c24bfe6528ff210decd034c7c6e4953bb83143c9d45474f4f7da4",
+      "target_path": "knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md",
+      "target_sha256": "29577ade146c24bfe6528ff210decd034c7c6e4953bb83143c9d45474f4f7da4",
+      "origin_license": "AGPL-3.0",
+      "transform": [
+        "authored"
+      ],
+      "aliases": [],
+      "import_run_id": "authored-sync",
+      "imported_at": "2026-11-27T18:02:11Z"
     }
   ]
 }

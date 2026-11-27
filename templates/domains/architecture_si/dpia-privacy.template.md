@@ -1,54 +1,44 @@
-# Data Protection Impact Assessment Report Template (DPIA)
+# Data Protection Impact Assessment (DPIA / RIPD)
 
-**Initiative:** `[Project / Module Name]`  
-**Date:** `[MM/DD/YYYY]`  
-**Data Controller:** `[Legal Entity Name]`  
-**Processor / Vendor:** `[Partner Name]`  
-**DPO / Data Protection Officer:** `[DPO Name]`  
+- **Initiative and scope** — [Product, feature and environments]
+- **Activity ID and revision** — [Processing record reference and date]
+- **Controller, processors and privacy contact** — [Parties and roles]
+- **Assessment owner and status** — [Owner, draft or reviewed]
+- **Reason and authority** — [Regulatory request, applicable requirement, risk assessment or preventive review. Record the source and how it applies.]
 
----
+For a Brazilian RIPD, check the [ANPD guidance](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
+for applicable triggers and minimum content. For other jurisdictions, identify
+the applicable assessment rule and record any differences.
 
-## 1. Description of Personal Data Processing
+## Processing and use of data
 
-* **Processing Purpose**: `[Why the data is being collected and processed]`
-* **Legal Basis (LGPD Art. 7 or Art. 11)**: `[Consent / Contract Performance / Health Protection / Legal Compliance]`
-* **Data Lifecycle**:
-  * *Collection*: `[Form, API, medical device, mobile app]`
-  * *Storage*: `[Database, retention for X years]`
-  * *Sharing*: `[Third-party partners, cloud vendors]`
-  * *Deletion / Disposal*: `[Automated expiration and secure purge procedure]`
+- **Purpose, proposed legal basis and rights** — [Per activity, including the path to exercise rights]
+- **Collection and processing methods** — [Sources, collection, storage, use and inference, transfers and disposal]
+- **People and data** — [Categories, sensitivity, scale, groups at risk and rationale]
+- **Security methods and coverage** — [Measures, evidence references and unknowns]
 
----
+| Activity ID and category | System and recipient | Purpose and basis | Retention period, source and starting event | Disposal or justified exception |
+| --- | --- | --- | --- | --- |
+| [ACT-01, category] | [Store, processor, location] | [Purpose, legal basis and decision] | [Period, specific authority and trigger] | [Method and evidence] |
 
-## 2. Categories of Data Subjects and Processed Data
+## Necessity and proportionality
 
-| Data Category | Type (Common / Sensitive) | Specific Attributes | Specific Purpose | Retention Period |
-| :--- | :--- | :--- | :--- | :--- |
-| **Civil Identification** | Common (Art. 5, I) | Full name, CPF, RG, Email | Authentication and registration | 5 years after termination |
-| **Health Data / PHI**| Sensitive (Art. 11) | Test history, diagnoses, medical reports | Medical diagnosis issuance | 20 years (CFM regulation) |
-| **Telemetry / Access** | Common | IP, User-Agent, Timestamp | Auditing and security | 6 months (Brazilian Internet Bill of Rights) |
+- **Options considered** — [Less intrusive alternatives and grounds for selecting the design]
+- **Data minimization and privacy by default** — [Collected fields and defaults per purpose]
+- **Consent where applicable** — [Choice, evidence, withdrawal and propagation]
+- **Identifiers and logs** — [Why collection is necessary, access controls, redaction and retention]
+- **Additional context** — [Best interests, automated decisions and AI risks where relevant]
 
----
+## Risks and safeguards
 
-## 3. Necessity and Proportionality Assessment (Privacy by Design)
+| Risk and activity | Impact on people | Likelihood and severity | Planned and verified controls | Residual risk and owner |
+| --- | --- | --- | --- | --- |
+| [PR-01, ACT-01 and relevant privacy threat] | [Harm to rights or people] | [Assessment and rationale] | [Measures, evidence and unknowns] | [Rating, rationale and owner] |
 
-- [ ] **Minimization**: Are only the data strictly necessary for the operation collected? `[Yes / No]`
-- [ ] **Privacy by Default**: Do the default settings prioritize privacy and require active consent (*opt-in*)? `[Yes / No]`
-- [ ] **Pseudonymization**: Are direct identifiers isolated from diagnostic data in analytics? `[Yes / No]`
-- [ ] **Log Masking**: Is there an assurance that no personal data is recorded in application logs? `[Yes / No]`
+## Decision and follow-up
 
----
-
-## 4. Privacy Risk and Safeguards Matrix
-
-| ID | Privacy Threat (LINDDUN) | Risk to the Data Subject | Technical and Administrative Safeguards | Residual Risk |
-| :--- | :--- | :--- | :--- | :---: |
-| **PR-01** | `Disclosure of Information` | Leakage of sensitive medical records | AES-256 column encryption in the database + Tenant Segregation | LOW |
-| **PR-02** | `Linkability` | Correlation of logs with patient identity | CPF masking in SIEM logs + Deterministic hashing | LOW |
-| **PR-03** | `Unawareness` | Data subject not informed about sharing | Privacy Policy update + Consent Form | LOW |
-
----
-
-## 5. Concluding Opinion of the DPO / Privacy Specialist
-
-**Conclusion:** `[The data processing was deemed adequate and proportional, provided the listed technical safeguards are implemented.]`
+- **Stakeholder input** — [Consulted parties, dates and unresolved concerns]
+- **Privacy officer input where applicable** — [Opinion, conditions and evidence]
+- **Controller decision** — [Proceed, change design, escalate or stop, with rationale and approver]
+- **Review trigger** — [Changed purpose, scale, supplier, model, control, incident or legal source]
+- **Review owner and date** — [Owner and next check]

@@ -1,0 +1,25 @@
+{
+  "id": "privacy-brazil-digital-eca-staging",
+  "title": "Digital ECA product scope and reporting stage",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise as of 27 November 2026. A game offered in Brazil has public chat, a youth audience, a general mode and an adult-only product feature. The team uses an app-store age signal for all controls, retains document images after extracting age and repurposes birth dates for audience analytics, and says the first NIDUS ordinance lets it delay action until January 2027. It detected a reportable event after March 17, with no evidence of an applicable exception. Assess applicability, safeguards, child impact, registration and reporting. Use synthetic case identifiers only.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(NIDUS|CNCA)",
+      "reason": "Look for the relevant reporting channel."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(second stage|phase two|separate act)",
+      "reason": "Look for the separate reporting activation."
+    }
+  ],
+  "rubric": [
+    "Assess targeted and likely access and the applicable product roles. Require independent provider protections and reliable verification at each covered restricted access. Apply protective handling of conflicting signals and immediate irreversible deletion of document captures after necessary age information is extracted. Reject repurposing age data.",
+    "Identify the separate child safety and health assessment, public summary, and the conditional Article 31 transparency threshold. Avoid applying the social-network guardian-link rule from chat alone.",
+    "Recognize phase-one registration and a separate phase-two PF act. Keep current Article 27 communication, removal and preservation duties active. Distinguish preliminary ANPD guidance and a monitoring timetable from a blanket enforcement deferral and keep the LGPD breach path separate."
+  ],
+  "acceptance": "The response gives a role-specific decision and explains the current duties separately from activation, limits and reporting evidence.",
+  "judge_required": true
+}

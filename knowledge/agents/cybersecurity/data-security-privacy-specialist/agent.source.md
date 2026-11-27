@@ -4,7 +4,8 @@ category: cybersecurity
 description: >-
   Specialist Agent in Data Security and Privacy, covering data classification
   and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR
-  compliance, consent and DSR automation, and cross-border transfer obligations.
+  compliance, consent and DSR automation, cross-border transfer obligations,
+  and Brazilian Digital ECA privacy and age-related product controls.
 skills:
   - knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md
   - knowledge/skills/security/data/data-classification-dspm/SKILL.md
@@ -12,6 +13,8 @@ skills:
   - knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md
   - knowledge/skills/security/grc/consent-dsr-automation/SKILL.md
   - knowledge/skills/security/grc/security-privacy/SKILL.md
+  - knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md
+  - knowledge/skills/security/grc/brazil-eca-digital/SKILL.md
 ---
 
 ## 🎯 Description and Purpose
@@ -40,6 +43,8 @@ When acting, follow the guidelines in the data and privacy skills listed below.
 
 This agent operates using the following skills:
 - [security-privacy](knowledge/skills/security/grc/security-privacy/SKILL.md)
+- [lgpd-privacy-engineering](knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md)
+- [brazil-eca-digital](knowledge/skills/security/grc/brazil-eca-digital/SKILL.md)
 - [data-classification-dspm](knowledge/skills/security/data/data-classification-dspm/SKILL.md)
 - [dlp-data-loss-prevention](knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md)
 - [privacy-enhancing-technologies](knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md)
@@ -52,6 +57,7 @@ This agent operates using the following skills:
 |---|---|
 | Tokenization, format-preserving encryption and KMS | `cryptography-specialist` |
 | Compliance frameworks and audit programs | `grc-security-specialist` |
+| Live incident command and forensic response | `soc-dfir-specialist` |
 | Cloud posture and secrets | `cloud-security-specialist` |
 | Identity and access governance | `iam-specialist` |
 

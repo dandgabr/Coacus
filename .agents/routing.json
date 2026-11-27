@@ -938,23 +938,29 @@
     {
       "name": "data-security-privacy-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, cross-border transfer obligations, and Brazilian Digital ECA privacy and age-related product controls.",
       "skills": [
         "knowledge/skills/engineering/practices/clean-code-reusability/SKILL.md",
         "knowledge/skills/security/data/data-classification-dspm/SKILL.md",
         "knowledge/skills/security/data/dlp-data-loss-prevention/SKILL.md",
         "knowledge/skills/security/data/privacy-enhancing-technologies/SKILL.md",
         "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-        "knowledge/skills/security/grc/security-privacy/SKILL.md"
+        "knowledge/skills/security/grc/security-privacy/SKILL.md",
+        "knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md",
+        "knowledge/skills/security/grc/brazil-eca-digital/SKILL.md"
       ],
       "triggers": [
         "anonymization",
         "classifica\u00e7\u00e3o de dados",
+        "cnca",
         "data protection",
+        "digital eca",
         "dlp",
         "dsr",
+        "eca digital",
         "gdpr",
         "lgpd",
+        "nidus",
         "privacidade",
         "privacy",
         "prote\u00e7\u00e3o de dados"

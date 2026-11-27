@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 100,
-    "skills": 500,
+    "skills": 502,
     "mcps": 1
   },
   "agents": [
@@ -201,7 +201,7 @@
     {
       "name": "data-security-privacy-specialist",
       "category": "cybersecurity",
-      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.",
+      "description": "Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, cross-border transfer obligations, and Brazilian Digital ECA privacy and age-related product controls.",
       "source": "knowledge/agents/cybersecurity/data-security-privacy-specialist/agent.source.md"
     },
     {
@@ -2137,6 +2137,10 @@
       "path": "knowledge/skills/security/grc/ai-governance-iso-42001/SKILL.md"
     },
     {
+      "name": "brazil-eca-digital",
+      "path": "knowledge/skills/security/grc/brazil-eca-digital/SKILL.md"
+    },
+    {
       "name": "cis-controls",
       "path": "knowledge/skills/security/grc/cis-controls/SKILL.md"
     },
@@ -2171,6 +2175,10 @@
     {
       "name": "iso-27000-series",
       "path": "knowledge/skills/security/grc/iso-27000-series/SKILL.md"
+    },
+    {
+      "name": "lgpd-privacy-engineering",
+      "path": "knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md"
     },
     {
       "name": "nis2-cra-compliance",

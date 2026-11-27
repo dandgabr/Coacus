@@ -40,6 +40,7 @@ Deletion must reach transactional databases, logs, analytics replicas, caches an
 
 ## 🔗 4. Integration with Other Skills
 
+- For Brazilian access deadlines, small-agent eligibility and retention decisions, use the data subject request procedure in `lgpd-privacy-engineering`.
 - For the privacy program, see the [security-privacy](../../grc/security-privacy/SKILL.md) skill.
 - For data discovery across systems, see the [data-classification-dspm](../../data/data-classification-dspm/SKILL.md) skill.
 - For the retention and disposal schedule, see the [data-mesh-governance](../../../data/data-mesh-governance/SKILL.md) skill.

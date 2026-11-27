@@ -1,0 +1,25 @@
+{
+  "id": "privacy-brazil-processing-evidence",
+  "title": "Brazilian processing evidence and transfer boundaries",
+  "harness": "codex",
+  "prompt": "Read-only reasoning exercise. Review an established Brazilian SaaS for LGPD. The source shows an optional analytics SDK and a first-party proxy, but production events and the executed vendor agreement are unavailable. The vendor has an Irish endpoint and its published subprocessor list mentions US support. A separate foreign service collects data directly from the user. The SaaS claims a small-agent exception without supporting facts and has received a complete access request. Explain the records, evidence, legal decisions and deadline review you would produce. Use no real user data and do not claim tool execution.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(activity|processing).{0,20}(id|record)",
+      "reason": "Look for activity-level traceability. The rubric evaluates reasoning."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)(onward|subprocessor|remote access)",
+      "reason": "Look for separate assessment of the support flow."
+    }
+  ],
+  "rubric": [
+    "Link the data map, per-purpose proposed basis, ROPA and any justified LIA or RIPD using stable activity IDs. Mark source evidence, declarations and unknown production or contract facts.",
+    "Assess any Irish adequacy basis and the US remote or onward flow separately. Distinguish international collection from an inter-agent transfer, and distinguish lawful processing basis from transfer mechanism.",
+    "Require evidence of small-agent eligibility, distinguish ordinary and eligible access timelines, and cite the exact provisions. Do not generalize those deadlines to all rights or assert that high risk automatically creates a universal RIPD duty."
+  ],
+  "acceptance": "The response gives traceable, source-specific decisions and an evidence request list without claiming compliance or observed live traffic.",
+  "judge_required": true
+}

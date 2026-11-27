@@ -129,3 +129,12 @@ Any redistribution of Coacus, in whole or in part, must retain this file
 alongside the imported components. The installer writes a copy to the skills
 root of each harness it targets, so an installed corpus carries the same
 notices as the repository.
+
+## Brazilian privacy workflow research
+
+The Brazilian privacy workflows and templates are Coacus-authored syntheses of
+the cited Brazilian official sources and existing Coacus guidance. The
+workflow and artifact selection were informed by
+[`goul4rt/lgpd-skills`](https://github.com/goul4rt/lgpd-skills/tree/65e625daf56f84a2c8d9b8b063d1d70481abba3d),
+reviewed at commit `65e625daf56f84a2c8d9b8b063d1d70481abba3d`.
+The [original project is MIT licensed](https://github.com/goul4rt/lgpd-skills/blob/65e625daf56f84a2c8d9b8b063d1d70481abba3d/LICENSE).
