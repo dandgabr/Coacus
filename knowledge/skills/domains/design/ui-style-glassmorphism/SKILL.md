@@ -251,6 +251,10 @@ A small glowing orb featuring chromatic dispersion along its specular glass peri
 - **Gradient & Optical Peers:** [ui-style-aurora-mesh-gradient](../ui-style-aurora-mesh-gradient/SKILL.md), [ui-style-holographic-foil-iridescent](../ui-style-holographic-foil-iridescent/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md).
 - **Refraction Neighbours:** [ui-style-fluid-liquid-morph](../ui-style-fluid-liquid-morph/SKILL.md) (metaball goo, a different technique), [ui-gpu-graphics-web](../../../engineering/practices/ui-gpu-graphics-web/SKILL.md) (refraction and dispersion shaders).
 - **Pointer & Timing Mechanics:** cursor-tracked specular sweep and 3D tilt in [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md); spring presets and duration tokens for elevation and modal reveals in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
+## Historical Guide Application
+
+Treat early Aqua button material, Vista-era frame glass, and iOS 7 content layering as separate precedents. Sample the actual composited backdrop across scroll, state changes, and media. Give text and focus an opaque backing when the worst backdrop fails the relevant contrast requirement. [Apple, Adopting the Aqua Interface, Standard Push Buttons and Text Input Field Dimensions, 2000](https://aresluna.org/ui-style-guides/Apple%20Mac/Adopting%20the%20Aqua%20Interface%20%282000%29.pdf), [Microsoft, Windows 7 and Vista UX Guidelines, Glass section, 2010](https://aresluna.org/ui-style-guides/Windows/User%20Experience%20Interaction%20Guidelines%20for%20Windows%207%20and%20Windows%20Vista%20%282010%29.pdf), [Apple, iOS Human Interface Guidelines, Designing for iOS 7, 2013](https://aresluna.org/ui-style-guides/Apple%20iPhone/iOS%20Human%20Interface%20Guidelines%20%282013%29.pdf).
+
 ## Appearance and Interaction Verification
 
 Add an explicit reading scrim to the example and pair its ink with light/dark glass; verify the composite over changing backdrop and the opaque no-backdrop-filter fallback, retaining frosted rim and spatial depth around the reading field.

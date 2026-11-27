@@ -355,6 +355,10 @@ M3 specifies a rigorous 15-role typographic system:
 - Direct successor to [ui-style-flat-design](../ui-style-flat-design/SKILL.md) (Flat 2.0).
 - Contrasts with [ui-style-swiss-web-minimalism](../ui-style-swiss-web-minimalism/SKILL.md) and [ui-style-linear-saas](../ui-style-linear-saas/SKILL.md) by trading monochrome discipline for organic, playful personalization.
 - **Motion Mechanics:** state-layer ripple in [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md); Material 3 Expressive springs, easing and duration tokens in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md); container morphing from card or FAB into a detail view in [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
+## Historical Guide Application
+
+The 2015 Android Design mirror covers Material Design's initial Android generation, and the 2018 guide documents a later generation. Date screenshots before using them to justify a palette. Resolve current Material You color roles from the maintained Material documentation and test the resulting semantic pairs independently of the historical examples. Use the [mobile and tablet profile](../ui-device-interface-patterns/references/mobile-tablet.md) for form-factor and input changes. Compare the documented scope in [Google, Android Design, 2015](https://aresluna.org/ui-style-guides/Android/Android%20Design%20%282015%29/design/get-started/principles.html) and [Google, Material Design v2, 2018](https://aresluna.org/ui-style-guides/Android/Material%20Design%20%282018%29/design/introduction.html).
+
 ## Appearance and Interaction Verification
 
 Label hand-picked OKLCH values as illustrative rather than HCT-generated guarantees; complete secondary/tertiary/on-state role pairs in requested appearances and verify tinted/ripple layers and chips in rendered states.

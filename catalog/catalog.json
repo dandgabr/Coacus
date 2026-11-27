@@ -2,7 +2,7 @@
   "schema": 1,
   "counts": {
     "agents": 100,
-    "skills": 502,
+    "skills": 503,
     "mcps": 1
   },
   "agents": [
@@ -579,7 +579,7 @@
     {
       "name": "ui-designer",
       "category": "software-engineering",
-      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the full design style library, color theory and accessibility conformance, and hands tokens and components to engineering without building the application.",
+      "description": "Senior UI designer who owns the interface surface: visual hierarchy and composition, 8pt systems, type scales, semantic color tokens, component state design, design tokens and handoff, dark mode and touch-target standards. Applies UI craft, the full design style library, color theory and accessibility conformance, including interaction patterns for desktop, mobile, stylus, wearables, TV, tabletop, and spatial interfaces. Hands tokens and components to engineering without building the application.",
       "source": "knowledge/agents/software-engineering/ui-designer/agent.source.md"
     },
     {
@@ -931,6 +931,10 @@
     {
       "name": "ui-data-tables-dashboards",
       "path": "knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md"
+    },
+    {
+      "name": "ui-device-interface-patterns",
+      "path": "knowledge/skills/domains/design/ui-device-interface-patterns/SKILL.md"
     },
     {
       "name": "ui-hero-sections",

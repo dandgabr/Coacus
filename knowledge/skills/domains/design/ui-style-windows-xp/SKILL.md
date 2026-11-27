@@ -240,6 +240,10 @@ Windows XP represents the definitive consumer transition from the flat grey boxe
 
 - Microsoft Corporation, *Windows XP Visual Guidelines* (Redmond, WA, 2001).
 - Raymond Chen, *The Old New Thing: Practical Development in Windows* (Addison-Wesley, 2006).
+## Historical Guide Application
+
+The Microsoft visual guide’s Color Schemes section identifies Blue, Olive Green, and Silver as the release-era schemes. Treat Royale as a separate later appearance. When specifying another scheme, account for window frame, client area, focused and pressed controls, and command text. Verify each role over the actual painted surface. [Microsoft, Windows XP Visual Guidelines, 2001](https://aresluna.org/ui-style-guides/Windows/Windows%20XP%20Visual%20Guidelines%20%282001%29/whatsnew.htm). Apply the [desktop profile](../ui-device-interface-patterns/references/desktop.md) to window activation and keyboard focus.
+
 ## Appearance and Interaction Verification
 
 Reconcile titlebar foreground claims with the actual white ink over every Luna highlight stop; map client/task-pane/control states explicitly for requested Luna variants, and allow fixed task pane/window controls to fit expanded labels and real touch hit areas.

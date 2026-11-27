@@ -4,6 +4,8 @@ Use this branch when the user requests a light retro desktop. Choose the referen
 
 ## Source and scope
 
+Commodore’s period guide discusses focus and state feedback, then treats windows and requesters as separate subjects. For an Amiga-inspired workspace, identify the active window, selected object, and active requester separately. Keep keyboard focus locally visible even when the window frame signals which workspace is active. [Commodore, Amiga User Interface Style Guide, Focus and Feedback and Windows and Requesters, 1991](https://aresluna.org/ui-style-guides/Commodore%20Amiga/Amiga%20User%20Interface%20Style%20Guide%20%281991%29.pdf). Use the [desktop profile](../../ui-device-interface-patterns/references/desktop.md) for command and keyboard verification.
+
 The AmigaOS manual describes Workbench through screens, menus, windows, gadgets, icons and requesters. It describes selected window frames changing color and gadgets appearing raised or depressed. Those interaction and material cues support a desktop adaptation. They do not establish one exact palette for every Workbench release.
 
 Primary documentation: [AmigaOS Manual: Workbench Fundamentals](https://wiki.amigaos.net/wiki/AmigaOS_Manual:_Workbench_Fundamentals), sections Windows and Gadgets, accessed 2026-10-19. Verify release-specific screenshots or manuals before calling a palette an exact historical reproduction. The values below are a proposed accessible adaptation, not sampled historical colors.

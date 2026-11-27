@@ -26,6 +26,8 @@ An application layout is the structural skeleton that supports all user interact
 
 ---
 
+When a device or input affects the task, select a [device interface profile](../ui-device-interface-patterns/SKILL.md) before choosing the shell. Use its input and accessibility requirements to choose panes, navigation, and focus transitions.
+
 ## 🏗️ Canonical Web App Shell Topologies
 
 ### 1. The Standard Vertical Sidebar Layout

@@ -24,7 +24,7 @@ Flat Design represents the defining aesthetic watershed of digital interface his
 ## 🕰️ Definition, Lineage, and Timeline
 
 - **2010–2012 (The Pre-Flat Awakening):** Microsoft leads with Windows Phone 7 Metro UI (2010); Google introduces Android 4.0 "Holo" (2011) under Matías Duarte, discarding faux-wood and leather.
-- **June 10, 2013 (The iOS 7 Rupture):** Apple announces iOS 7 at WWDC. Jony Ive replaces Steve Jobs and Scott Forstall's skeuomorphism with ultra-thin typography (Helvetica Neue Ultra Light), neon gradients, and flat translucent planes. The tech industry pivots overnight.
+- **June 10, 2013 (The iOS 7 Rupture):** Apple announces iOS 7 at WWDC. Its guide emphasizes content, clarity, and visual depth through layering and motion.
 - **August 19, 2013 (Bootstrap 3):** Twitter Bootstrap releases Bootstrap 3 (blog.getbootstrap.com), stripping all default gradients and establishing a flat 4-tier responsive grid. Designmodo popularizes "Flat UI Colors" (turquoise, emerald, peter river, amethyst, wet asphalt).
 - **2014–2015 (The NN/g Signifier Crisis & Flat 2.0):** Usability research by Jakob Nielsen and Raluca Budiu reveals that users are **22% slower** navigating pure Flat 1.0 interfaces due to missing affordance cues ("ghost buttons" mistaken for disabled inputs). Google responds at Google I/O 2014 with **Material Design ("Flat 2.0")**, systematically re-introducing subtle elevation shadows and ripple states.
 
@@ -293,6 +293,10 @@ Flat design popularized clean geometric and humanist sans-serifs:
 
 - Historical bridge between [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md) (which it rejected) and [ui-style-material-you](../ui-style-material-you/SKILL.md) (which evolved from Flat 2.0).
 - Contrasts with [ui-style-neo-brutalism](../ui-style-neo-brutalism/SKILL.md) by pursuing polished, harmonious digital simplicity rather than subversive punk dissonance.
+## Historical Guide Application
+
+Apple’s iOS 7 guide uses content-first hierarchy alongside depth and motion. A simplified surface can still communicate grouping and state through a stable boundary, label, or visible focus outline. Keep an affordance visible when a control’s role would otherwise depend on motion, hover, or an ambiguous plain-text label. [Apple, iOS Human Interface Guidelines, Designing for iOS 7, 2013](https://aresluna.org/ui-style-guides/Apple%20iPhone/iOS%20Human%20Interface%20Guidelines%20%282013%29.pdf).
+
 ## Appearance and Interaction Verification
 
 Change badge foreground to the prescribed navy role and review all solid/ghost hover pairs; choose a visible focus ring against the actual surrounding surface while retaining flat fills, simple geometry and explicit signifiers.

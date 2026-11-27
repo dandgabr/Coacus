@@ -2715,7 +2715,7 @@
       "description": "Provides structural interface patterns for modern Web App Shells and Mobile application layouts. Covers navigation topologies (collapsible sidebars, nav rails, top navigation, bottom bar tab bars), multi-pane patterns (Master-Detail, Split-View, Inspector Drawers), responsive density transitions, viewport budgeting, safe-area mobile insets (env(safe-area-inset-*)), and touch ergonomics. Use when designing web application shells, desktop software, mobile apps, or multi-panel productivity suites.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md",
-      "digest": "sha256:27c29193fa40dbf0477982962f8c071b1381ec3e061c24ef8360ee80c3eed5a3"
+      "digest": "sha256:eb5c0fa6b272f46920a4d5882350237b4025c1d23d996852cb563e0dd598e647"
     },
     {
       "name": "ui-data-tables-dashboards",
@@ -2737,6 +2737,13 @@
       "type": "skill-md",
       "url": "knowledge/skills/roles/ui-designer/SKILL.md",
       "digest": "sha256:1066d50f4ee007e9a1538669130bd805305cf683a03887910e13271ac7abda5a"
+    },
+    {
+      "name": "ui-device-interface-patterns",
+      "description": "Designs interfaces for desktop, phones, tablets, foldables, stylus devices, smartwatches, smart TVs, interactive tabletops, AR, VR, and motion-controlled systems. Use when a UI must adapt to device posture, viewing distance, touch, pen, keyboard, remote or D-pad, rotating bezel, multi-user touch, gaze, or tracked motion.",
+      "type": "archive",
+      "url": "knowledge/skills/domains/design/ui-device-interface-patterns/SKILL.md",
+      "digest": "sha256:8fa5ee63300da0961d28e26f3ece8a31c1557066832ff7a905b48fa6d5444403"
     },
     {
       "name": "ui-gpu-graphics-web",
@@ -3023,7 +3030,7 @@
       "description": "Provides the flat design 1.0 style (2012-2015): minimalist flat-color UI that reacted against skeuomorphism, covering the iOS 7 rupture, Bootstrap 3 and Material milestones, the signifier crisis documented by NN/g (22% slower flat UI) and flat 2.0's corrective depth. Use when designing minimal UI or teaching the flat-design usability lessons.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-flat-design/SKILL.md",
-      "digest": "sha256:fa57dc8d86cef8c29341f68258ddf5b612377a5a52b2c58f2cc384788b12cd6f"
+      "digest": "sha256:0ab097e03a9c58aeddd729c37182fc781f4f557a77811dac92607147bd2054fd"
     },
     {
       "name": "ui-style-fluid-liquid-morph",
@@ -3037,14 +3044,14 @@
       "description": "Provides the Frutiger Aero and Web 2.0 Gloss UI style (2004-2013): glossy skeuomorphic nature-tech interfaces, 50% specular splits, glass translucency, design tokens, pure CSS components, and WCAG 2.2 accessibility. Use when designing retro-optimistic marketing campaigns, casual games, media players, or analyzing pre-flat glossy ergonomics.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-frutiger-aero/SKILL.md",
-      "digest": "sha256:1c30d062888284ca36d7e3fe653695dff9c91825213546108369a6b2e04ad6ff"
+      "digest": "sha256:f92d1714dc70e7040bd7e81684e7820827a07fb9a3f61c24c7f2862e2bf3c37b"
     },
     {
       "name": "ui-style-glassmorphism",
       "description": "Provides the canonical Glassmorphism & Spatial UI style (2020-present): multi-layered frosted glass surfaces, backdrop-filter optical blur, 1px specular white border highlights, subtle drop shadows, and spatial depth inspired by macOS Big Sur and visionOS. Covers contrast remediation, layered scrim fallbacks, design tokens, and WCAG 2.2 compliance. Use when designing premium fintech dashboards, spatial computing interfaces, or modern operating system shells.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "digest": "sha256:eb0660eccebfa97f41d9472b113bea75266ff4778a7802678c3cfe6036dd9233"
+      "digest": "sha256:da5ebcdd68bfdeb3a095724866c3b4f13ebf9aeea7d1e43c97ac1b5a918c0919"
     },
     {
       "name": "ui-style-glitch",
@@ -3135,7 +3142,7 @@
       "description": "Provides Material Design 3 / Material You (2021-present): Google's dynamic-color design system with HCT tonal palettes, shape and type tokens, tonal elevation and expressive motion, covering the token architecture, material-color-utilities engine, web theming strategy and the dynamic-color trade-offs. Use when implementing M3 theming on the web or in Flutter, or evaluating dynamic color for a product.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-material-you/SKILL.md",
-      "digest": "sha256:39b7f5bb09b34aad19fe533b6f8ca3c7fe06f48c6658231f170f20e40971dde6"
+      "digest": "sha256:de7a82e88a642db104fb55dab99e31dd0f3f18b1ee2baa092cde2fefcf4249fe"
     },
     {
       "name": "ui-style-maximalism",
@@ -3156,7 +3163,7 @@
       "description": "Provides the Metro / Microsoft Design Language style (2010-2015): typography-first flat design with content-before-chrome, live tiles and motion as a first-class principle, covering the Zune-to-Windows-8 lineage, Segoe type identity, Nielsen's Windows 8 usability verdict and CSS reconstruction. Use when designing typography-led dashboards or studying flat design's true origin.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-metro-modern-ui/SKILL.md",
-      "digest": "sha256:be2e28a526985808bbfc0d3572f5941fd4d6271d4722a4563b4d7e3ed1d93f0f"
+      "digest": "sha256:0388f5cc8d3b333607b110c408841b983cc8edce1aaba9e4c91c4725fc16ed32"
     },
     {
       "name": "ui-style-micro-interactions",
@@ -3237,10 +3244,10 @@
     },
     {
       "name": "ui-style-retro-computing",
-      "description": "Provides the authentic Retro Computing UI style (1970s-1980s microcomputer and terminal hardware): monochrome P1 green and P3 amber phosphor CRTs, 80x25 character grid cells, blinking block cursors, ANSI/ASCII box-drawing dialogs, and vintage beige plastic chassis accents. Use when designing developer tools, low-level system emulators, retro command centers, or hardware nostalgia archives.",
+      "description": "Provides the authentic Retro Computing UI style (1970s-1980s microcomputer and terminal hardware): monochrome P1 green and P3 amber phosphor CRTs, 80x25 character grid cells, blinking block cursors, ANSI/ASCII box-drawing dialogs, and vintage beige plastic chassis accents. Use when designing developer tools, low-level system emulators, retro command centers, hardware nostalgia archives, or an Amiga Workbench-inspired retro desktop.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-retro-computing/SKILL.md",
-      "digest": "sha256:69b75e2b2cbbcd0ce4c0c55875095eea502e6c5afaf2796faf9ee541b3e9daaf"
+      "digest": "sha256:180ac35ed6d57c2a65082adf81c846e3847722d9262a3e74e2c58353391ea2eb"
     },
     {
       "name": "ui-style-risograph",
@@ -3275,7 +3282,7 @@
       "description": "Provides the canonical Skeuomorphism & Tactile Physical UI style (2007-present): real-world tactile physical metaphors, stitched leather, brushed aluminum, rotary knurled dials, early-2000s Mac OS X Aqua jelly gloss, and debossed letterpress typography. Covers Apple iOS 1-6 lineage, modern audio plugin interfaces, tactile affordance ergonomics, design tokens, and WCAG 2.2 accessibility. Use when designing tactile audio plugins, musical instrument software, physical hardware emulations, or metaphor-first onboarding interfaces.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-skeuomorphism/SKILL.md",
-      "digest": "sha256:e24f0f1916cc2af048d7b41662099e57e3e90deee8eb686c29c51f66cfd4375b"
+      "digest": "sha256:d7525999648bacf6108aae28277bd465d85ad5199a85e0c65c826e35ad6b5589"
     },
     {
       "name": "ui-style-solarpunk",
@@ -3345,7 +3352,7 @@
       "description": "Provides the authentic Windows XP Luna Blue & Royale UI style (2001\u20132006): molded plastic aesthetics, bevels, drop shadows, glossy jelly buttons, the iconic emerald Start button, Tahoma typography, asymmetrical title bars, and Bliss rolling hills. Use when building early-2000s skeuomorphic operating system mockups, nostalgic desktop applications, devtools, or retro web applications.",
       "type": "skill-md",
       "url": "knowledge/skills/domains/design/ui-style-windows-xp/SKILL.md",
-      "digest": "sha256:77ff894124829e382bd39fe3d6ef45f6f3710fa63f38b1ff60e93707c05eea66"
+      "digest": "sha256:1925b4739e5fe16654c48f3e4d1334944a6a23c6458e0443aab419bee714132e"
     },
     {
       "name": "ui-style-y2k-revival",
