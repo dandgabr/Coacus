@@ -9,6 +9,11 @@ This skill formalizes operational frameworks and triage procedures for incident 
 
 ---
 
+For a Brazilian personal data incident, use the security incident procedure in
+`lgpd-privacy-engineering` alongside containment and evidence preservation.
+Record when the controller knew personal data were affected and route any
+regulatory and affected-person communications to the authorized owner.
+
 ## 🛡️ 1. Incident Handling Lifecycle (PICERL)
 
 ```mermaid

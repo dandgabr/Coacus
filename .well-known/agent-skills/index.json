@@ -443,6 +443,13 @@
       "digest": "sha256:c4cdc0cc4c507512009b40fcd4bbf5d2abb2b586e273d7e2f258481e20fb2209"
     },
     {
+      "name": "brazil-eca-digital",
+      "description": "Assesses products under Brazil's Digital ECA when children or adolescents are intended or likely users, or age-restricted features are in scope. Use for age assurance, protective defaults, parental supervision, child safety impact assessment or CNCA and NIDUS reporting readiness.",
+      "type": "archive",
+      "url": "knowledge/skills/security/grc/brazil-eca-digital/SKILL.md",
+      "digest": "sha256:6b2b55a865695da6d68ca2f741bf8c3e31b41fb46cb7d9e892180febad9d9c81"
+    },
+    {
       "name": "bug-bounty-methodology",
       "description": "Acts as a Specialist in Bug Bounty and Large-Scale Vulnerability Hunting methodologies based on Bug Bounty Bootcamp (Vickie Li). Covers active/passive subdomain reconnaissance, hidden asset discovery, distributed port scanning, parameter fuzzing automation, logic flaw exploitation, and structuring professional impact reports (PoC, CVSS v3.1/v4.0, remediation).",
       "type": "archive",
@@ -720,7 +727,7 @@
       "description": "Acts as a Consent and Data Subject Request automation specialist covering consent capture and lifecycle, Global Privacy Control, DSR/DSAR orchestration, identity verification, cascading erasure and the audit evidence required by LGPD and GDPR.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/consent-dsr-automation/SKILL.md",
-      "digest": "sha256:e3a0cdba310b6d3186e17af4e4859fd50a31c29e4838a49082f8eb5c36a9b9be"
+      "digest": "sha256:e8c6a72775057adddb201187e63677da749d1ac1206ab0ec2a8fca1feaeeeba6"
     },
     {
       "name": "constraint-based-metabolic-research",
@@ -1637,7 +1644,7 @@
       "description": "Operational methodologies and playbooks for defensive cybersecurity and incident response, based on Don Murdoch's Blue Team Handbook: Incident Response Edition. Covers the NIST SP 800-61 / PICERL lifecycle (Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned), evidence preservation, triage scoping, memory and host indicators of compromise (IOCs), live system response, network traffic anomaly detection, and post-incident reporting.",
       "type": "skill-md",
       "url": "knowledge/skills/security/operations/incident-response-blue-team/SKILL.md",
-      "digest": "sha256:e6f9dc38eab8cb8c9fcb8920421dfc58cc912fd169fa9bb051d2bc4db029bd04"
+      "digest": "sha256:b87c9637bc0dcaa95e6a34fab9a7d9b4ab9471e248fe1745c3e39f56c8192cb9"
     },
     {
       "name": "infra-inventory-cmdb",
@@ -1883,6 +1890,13 @@
       "type": "skill-md",
       "url": "methodology/workflows/learning-consolidation/SKILL.md",
       "digest": "sha256:0d396f1e1479c2b767d7cc936abfcc3cf82db63ca4336c6b41b9f345dda94b19"
+    },
+    {
+      "name": "lgpd-privacy-engineering",
+      "description": "Guides Brazilian LGPD software assessments from evidence collection to a personal data map, processing records (ROPA), lawful basis review, legitimate interest assessment (LIA) and impact report (RIPD). Use for Brazilian privacy design, legacy audits, small processing agent eligibility, data subject rights, cross-border data flows or a suspected personal data incident.",
+      "type": "archive",
+      "url": "knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md",
+      "digest": "sha256:ee8aa20532b741583c5d648f0a886b29b1767b133dd397bec52dcc0b3c0e3309"
     },
     {
       "name": "lifecycle-revops-paid-growth",
@@ -2519,7 +2533,7 @@
       "description": "Acts as a Data Privacy, PII Governance, and De-identification/Anonymization Engineering Specialist. Covers compliance with LGPD, GDPR, HIPAA, ISO/IEC 27701:2025, and the NIST Privacy Framework, the 7 principles of Privacy by Design, formal mathematical de-identification models (k-anonymity, l-diversity, t-closeness, epsilon-DP differential privacy with Laplace/Gauss noise), tokenization vs masking vs pseudonymization, Privacy-Enhancing Technologies (FHE, SMPC, TEE, federated learning, DP-SGD), DSR (Data Subject Request) automation, cross-border transfers, breach notification, and anonymization pipelines with Microsoft Presidio and Faker.",
       "type": "archive",
       "url": "knowledge/skills/security/grc/security-privacy/SKILL.md",
-      "digest": "sha256:5c4ac1b1a42fdf168ab82877beb70b75c2d88af464f905d49cb3a0631bf3a9a9"
+      "digest": "sha256:5c9073c2467849328757e045dfe63cc62a91d85c3c225a900f9271d5c4879053"
     },
     {
       "name": "security-technical-opinion",
@@ -2645,7 +2659,7 @@
       "description": "Acts as a Third-Party Risk Management specialist covering vendor due diligence, SIG and CAIQ questionnaires, CSA STAR, ISO/IEC 27036, contractual security requirements, the DORA Register of Information, continuous monitoring and fourth-party (subprocessor) risk.",
       "type": "skill-md",
       "url": "knowledge/skills/security/grc/third-party-risk-management/SKILL.md",
-      "digest": "sha256:aceb31414994454014eb8f021a61d4c9ba63e185d1c9ba59f95b2c8df6e0c536"
+      "digest": "sha256:42dcbd8bd33b9ae2048384b621b413c47b5912e0a29162757a40c0c2b9dbd301"
     },
     {
       "name": "threat-hunting",

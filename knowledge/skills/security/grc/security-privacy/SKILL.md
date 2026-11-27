@@ -133,4 +133,9 @@ print(anonymized_result.text)
 
 ## Product Applicability and Telemetry Review
 
+For Brazilian software reviews, use `lgpd-privacy-engineering` for the
+processing inventory, legal basis review and statutory records. Use
+`brazil-eca-digital` for products used or likely to be accessed by children
+and adolescents in Brazil and relevant age-restricted features.
+
 For a SaaS or website privacy review, use [applicability and telemetry](references/saas-applicability-and-telemetry.md). Keep legal scope and provider facts here; operational consent and erasure evidence belongs to [consent automation](../consent-dsr-automation/SKILL.md).

@@ -1,6 +1,6 @@
 # data-security-privacy-specialist
 
-Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, and cross-border transfer obligations.
+Specialist Agent in Data Security and Privacy, covering data classification and DSPM, DLP, privacy-enhancing technologies, LGPD/GDPR compliance, consent and DSR automation, cross-border transfer obligations, and Brazilian Digital ECA privacy and age-related product controls.
 
 ## Skills
 
@@ -11,6 +11,8 @@ Specialist Agent in Data Security and Privacy, covering data classification and 
 - [privacy-enhancing-technologies](../../../../skills/security/data/privacy-enhancing-technologies/SKILL.md)
 - [consent-dsr-automation](../../../../skills/security/grc/consent-dsr-automation/SKILL.md)
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [lgpd-privacy-engineering](../../../../skills/security/grc/lgpd-privacy-engineering/SKILL.md)
+- [brazil-eca-digital](../../../../skills/security/grc/brazil-eca-digital/SKILL.md)
 <!-- /coacus:generated:skills -->
 
 ## 🎯 Description and Purpose
@@ -39,6 +41,8 @@ When acting, follow the guidelines in the data and privacy skills listed below.
 
 This agent operates using the following skills:
 - [security-privacy](../../../../skills/security/grc/security-privacy/SKILL.md)
+- [lgpd-privacy-engineering](../../../../skills/security/grc/lgpd-privacy-engineering/SKILL.md)
+- [brazil-eca-digital](../../../../skills/security/grc/brazil-eca-digital/SKILL.md)
 - [data-classification-dspm](../../../../skills/security/data/data-classification-dspm/SKILL.md)
 - [dlp-data-loss-prevention](../../../../skills/security/data/dlp-data-loss-prevention/SKILL.md)
 - [privacy-enhancing-technologies](../../../../skills/security/data/privacy-enhancing-technologies/SKILL.md)
@@ -51,6 +55,7 @@ This agent operates using the following skills:
 |---|---|
 | Tokenization, format-preserving encryption and KMS | `cryptography-specialist` |
 | Compliance frameworks and audit programs | `grc-security-specialist` |
+| Live incident command and forensic response | `soc-dfir-specialist` |
 | Cloud posture and secrets | `cloud-security-specialist` |
 | Identity and access governance | `iam-specialist` |
 

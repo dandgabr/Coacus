@@ -1147,6 +1147,9 @@
       "path": "knowledge/skills/security/grc/ai-governance-iso-42001"
     },
     {
+      "path": "knowledge/skills/security/grc/brazil-eca-digital"
+    },
+    {
       "path": "knowledge/skills/security/grc/cis-controls"
     },
     {
@@ -1172,6 +1175,9 @@
     },
     {
       "path": "knowledge/skills/security/grc/iso-27000-series"
+    },
+    {
+      "path": "knowledge/skills/security/grc/lgpd-privacy-engineering"
     },
     {
       "path": "knowledge/skills/security/grc/nis2-cra-compliance"

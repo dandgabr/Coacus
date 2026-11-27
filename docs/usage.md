@@ -163,6 +163,15 @@ then use [operational consent and erasure evidence](../knowledge/skills/security
 when checking the actual implementation. State unobserved network, processor
 and server boundaries rather than inferring compliance from a banner.
 
+For Brazilian projects, use the [LGPD privacy engineering skill](../knowledge/skills/security/grc/lgpd-privacy-engineering/SKILL.md)
+from discovery through the legal basis and impact review. Its templates cover the
+[personal data map](../templates/domains/architecture_si/personal-data-map.template.md),
+[processing record](../templates/domains/architecture_si/ropa.template.md),
+[legitimate interest assessment](../templates/domains/architecture_si/legitimate-interest-assessment.template.md)
+and [impact assessment](../templates/domains/architecture_si/dpia-privacy.template.md).
+Use the [Digital ECA skill](../knowledge/skills/security/grc/brazil-eca-digital/SKILL.md)
+for age-related product scope, protective controls and reporting readiness.
+
 ### Persistent editable diagrams
 
 Use [editable diagram engineering](../knowledge/skills/mapping/editable-diagram-engineering/SKILL.md)

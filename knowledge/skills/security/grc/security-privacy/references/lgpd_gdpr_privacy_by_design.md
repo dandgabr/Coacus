@@ -1,6 +1,7 @@
 # Privacy Engineering and LGPD / GDPR Guide
 
-Regulatory requirements for software architecture compliant with the LGPD (Brazilian General Data Protection Law, Law 13.709/2018).
+For Brazilian software reviews, use `lgpd-privacy-engineering` to verify the
+current law, identify applicable obligations and document the evidence.
 
 ## 1. Classification of Personal Data (LGPD Art. 5 and Art. 11)
 
@@ -11,4 +12,4 @@ Regulatory requirements for software architecture compliant with the LGPD (Brazi
 - **Consent**: Requires a record of unequivocal acceptance and an endpoint for easy withdrawal.
 - **Performance of a Contract**: Data strictly necessary to provide the contracted service.
 - **Health Protection**: Exclusive to health professionals and health services in medical procedures.
-- **Compliance with a Legal / Regulatory Obligation**: For example, retention of connection logs for 6 months (Brazilian Civil Rights Framework for the Internet) or medical records for 20 years (CFM).
+- **Compliance with a legal or regulatory obligation** applies only within the specific record class, provider role and retention rule. Under the [Marco Civil](https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm) (resolved 2026-11-27), Article 13 addresses connection records and Article 15 addresses qualifying application-access records. Verify other retention rules against the applicable authority.
