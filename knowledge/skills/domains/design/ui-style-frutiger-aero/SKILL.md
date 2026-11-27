@@ -245,6 +245,10 @@ For glossy buttons and window chassis, use [the component recipes](references/gl
 - Eco counterpart: [ui-style-solarpunk](../ui-style-solarpunk/SKILL.md).
 - Modern successor: [ui-style-metro-modern-ui](../ui-style-metro-modern-ui/SKILL.md).
 - Timing tokens behind the 180ms spring-like tactile transitions: [motion-timing-engines](../ui-motion-interaction/references/motion-timing-engines.md).
+## Historical Guide Application
+
+Choose the historical reference for each surface before specifying it. Microsoft shows selective use of glass for a structural frame and warns that glass can distract when used as the main window background. Apple’s early Aqua guide shows colored default-button treatment separately from the keyboard focus indicator. Preserve the two conventions as distinct references and give reading-heavy client surfaces stable contrast. [Microsoft, Windows 7 and Vista UX Guidelines, Glass section, 2010](https://aresluna.org/ui-style-guides/Windows/User%20Experience%20Interaction%20Guidelines%20for%20Windows%207%20and%20Windows%20Vista%20%282010%29.pdf), [Apple, Adopting the Aqua Interface, Standard Push Buttons and Text Input Field Dimensions, 2000](https://aresluna.org/ui-style-guides/Apple%20Mac/Adopting%20the%20Aqua%20Interface%20%282000%29.pdf).
+
 ## Appearance and Interaction Verification
 
 Preserve split gloss and belly light on chassis, but protect button/tab label ink at every split/hover/pressed position with an unfiltered label layer and sufficient local backing. Use the content sanctuary, [component recipes](references/gloss-components.md) and [subgenre guide](references/subgenres.md) without losing the historical bibliography below.

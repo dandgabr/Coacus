@@ -336,6 +336,10 @@ Metro's core soul is **Segoe UI** (authored by Steve Matteson):
 - Direct ancestor of [ui-style-flat-design](../ui-style-flat-design/SKILL.md) and contemporary foil to [ui-style-skeuomorphism](../ui-style-skeuomorphism/SKILL.md).
 - Contrasts with [ui-style-windows-xp](../ui-style-windows-xp/SKILL.md) by eliminating all bevels, drop shadows, and glossy plastic gradients.
 - Takes its tile flip and tilt durations, easing curves and choreography tokens from [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md).
+## Historical Guide Application
+
+Microsoft treats Panorama and Pivot as separate controls in the Windows Phone 7 guide. Use Panorama as a broad browsing experience across related sections. Use Pivot to move between peer views or filtered subsets. In a contemporary adaptation, expose section names and explicit controls and preserve selection and back position. Keep neighboring-content previews supplementary to a complete navigation path. [Microsoft, UI Design and Interaction Guide for Windows Phone 7, Panorama p. 164 and Pivot p. 174, 2010](https://aresluna.org/ui-style-guides/Windows%20Mobile/UI%20Design%20and%20Interaction%20Guide%20for%20Windows%20Phone%207%20%282.0,%202010%29.pdf), [mobile and tablet profile](../ui-device-interface-patterns/references/mobile-tablet.md).
+
 ## Appearance and Interaction Verification
 
 Use accent-specific on-colors in tile examples, especially orange; allow tile grids and panorama tabs to reflow or remain reachable in narrow/short owners, and preserve exactly one semantic active panel while flipping decorative tile faces.

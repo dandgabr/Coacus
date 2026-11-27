@@ -2,7 +2,7 @@
 
 > GENERATED from disk by `scripts/coacus.py generate` — do not edit.
 
-**Totals:** 502 skill(s) · 100 agent(s) · 1 MCP(s)
+**Totals:** 503 skill(s) · 100 agent(s) · 1 MCP(s)
 
 ## Agents
 
@@ -194,6 +194,7 @@
 | game-sprite-design | [knowledge/skills/domains/design/game-sprite-design/SKILL.md](../knowledge/skills/domains/design/game-sprite-design/SKILL.md) |
 | ui-app-layout-architectures | [knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md](../knowledge/skills/domains/design/ui-app-layout-architectures/SKILL.md) |
 | ui-data-tables-dashboards | [knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md](../knowledge/skills/domains/design/ui-data-tables-dashboards/SKILL.md) |
+| ui-device-interface-patterns | [knowledge/skills/domains/design/ui-device-interface-patterns/SKILL.md](../knowledge/skills/domains/design/ui-device-interface-patterns/SKILL.md) |
 | ui-hero-sections | [knowledge/skills/domains/design/ui-hero-sections/SKILL.md](../knowledge/skills/domains/design/ui-hero-sections/SKILL.md) |
 | ui-motion-interaction | [knowledge/skills/domains/design/ui-motion-interaction/SKILL.md](../knowledge/skills/domains/design/ui-motion-interaction/SKILL.md) |
 | ui-onboarding-tours | [knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md](../knowledge/skills/domains/design/ui-onboarding-tours/SKILL.md) |

@@ -226,6 +226,10 @@ A mechanical lever toggle mounted in a recessed dark bezel.
 - **Sibling Material Styles:** [ui-style-neumorphism](../ui-style-neumorphism/SKILL.md), [ui-style-claymorphism](../ui-style-claymorphism/SKILL.md), [ui-style-glassmorphism](../ui-style-glassmorphism/SKILL.md).
 - **Tactile & Operating System Peers:** [ui-style-windows-xp](../ui-style-windows-xp/SKILL.md), [ui-style-frutiger-aero](../ui-style-frutiger-aero/SKILL.md), [ui-style-steampunk](../ui-style-steampunk/SKILL.md).
 - **Motion Mechanics:** damped toggle springs and duration tokens in [motion-timing-engines.md](../ui-motion-interaction/references/motion-timing-engines.md); knob drag tracking in [pointer-and-gesture.md](../ui-motion-interaction/references/pointer-and-gesture.md).
+## Historical Guide Application
+
+Choose the metaphors that explain the action. Early iPhone guidance emphasizes the primary task and familiar touch behavior. Early Aqua distinguishes the default push button and its keyboard activation from the separate focus treatment. For a tactile control, carry its label, value, keyboard interaction, and focus through the material treatment. [Apple, iPhone Human Interface Guidelines, Focus on the Primary Task and Support Gestures Appropriately, 2008](https://aresluna.org/ui-style-guides/Apple%20iPhone/iPhone%20Human%20Interface%20Guidelines%20%282008%29.pdf), [Apple, Adopting the Aqua Interface, Standard Push Buttons and Text Input Field Dimensions, 2000](https://aresluna.org/ui-style-guides/Apple%20Mac/Adopting%20the%20Aqua%20Interface%20%282000%29.pdf).
+
 ## Appearance and Interaction Verification
 
 Verify label ink across the entire Aqua gloss and hover/pressed gradients, with stable text backing where needed; expose actual dial/switch value and keyboard/step control independently of pointer drag and physical travel.

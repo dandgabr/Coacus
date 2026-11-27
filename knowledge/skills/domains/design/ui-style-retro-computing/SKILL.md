@@ -1,6 +1,6 @@
 ---
 name: "ui-style-retro-computing"
-description: "Provides the authentic Retro Computing UI style (1970s-1980s microcomputer and terminal hardware): monochrome P1 green and P3 amber phosphor CRTs, 80x25 character grid cells, blinking block cursors, ANSI/ASCII box-drawing dialogs, and vintage beige plastic chassis accents. Use when designing developer tools, low-level system emulators, retro command centers, or hardware nostalgia archives."
+description: "Provides the authentic Retro Computing UI style (1970s-1980s microcomputer and terminal hardware): monochrome P1 green and P3 amber phosphor CRTs, 80x25 character grid cells, blinking block cursors, ANSI/ASCII box-drawing dialogs, and vintage beige plastic chassis accents. Use when designing developer tools, low-level system emulators, retro command centers, hardware nostalgia archives, or an Amiga Workbench-inspired retro desktop."
 ---
 
 # UI Style: Retro Computing (Phosphor CRT, 80x25 Character Grid & BIOS Metaphors)
