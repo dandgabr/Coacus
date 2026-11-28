@@ -103,8 +103,9 @@ git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/d
 path="$LOCATION/$BRANCH_NAME"
 
 git worktree add "$path" -b "$BRANCH_NAME"
-cd "$path"
 ```
+
+After `git worktree add` succeeds, run `python3 <this-skill-directory>/scripts/pr-worktree.py mark <worktree-path>` with the path just created, then enter the new worktree. The helper writes an ownership record in Git's per-worktree administrative directory. Record only worktrees created by this native Git path. If marking fails, report that automatic PR cleanup is unavailable for this worktree and continue setup.
 
 **Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
 

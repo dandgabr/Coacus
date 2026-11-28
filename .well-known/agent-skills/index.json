@@ -1203,7 +1203,7 @@
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
       "type": "skill-md",
       "url": "methodology/workflows/finishing-a-development-branch/SKILL.md",
-      "digest": "sha256:5f5e5dc849fe56257873164170446ed69081ac8a6e902d06baa5f9c50f5bb0ed"
+      "digest": "sha256:b3c87a3441d6310abb4cc46a849c07b0c9d5616537819f5d9894026f94ba3891"
     },
     {
       "name": "firmware-uefi-implant-analysis",
@@ -3401,14 +3401,14 @@
       "description": "Establishes how to work inside a Coacus repository: consult the skill catalog before acting, scan the index once per session, and follow the artifact lifecycle. Use when starting any conversation or task in a Coacus workspace.",
       "type": "archive",
       "url": "methodology/workflows/using-coacus/SKILL.md",
-      "digest": "sha256:eeda8814c56cafaa5b230fda5f1ccdcc86ec77fbc1a0eaf611e72218eb3f702f"
+      "digest": "sha256:3e890f24a34e3282d805d7d77d2ed4f5569f2bef626b6f271edaa2ead092f59a"
     },
     {
       "name": "using-git-worktrees",
       "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-      "type": "skill-md",
+      "type": "archive",
       "url": "methodology/workflows/using-git-worktrees/SKILL.md",
-      "digest": "sha256:490d3282093b0739d44371a81c20e49e93c4ef3c4e9f7253722aad08d3c7f5e7"
+      "digest": "sha256:73535c5076444fc260ead884e9450c95eb9dc296da34942c9f97b0064fb01663"
     },
     {
       "name": "ux-designer",

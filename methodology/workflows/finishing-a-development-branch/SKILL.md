@@ -154,14 +154,22 @@ git push -u origin <feature-branch>
 Then create the pull/merge request against <base-branch> with the forge's
 tooling — its CLI if one is available, or the creation URL most forges
 print when you push — following the repo's PR template and conventions if
-present, and report the URL to your human partner.
+present. After a successful push, reuse an existing open request for the same
+delivery when resuming. Check the actual PR in the forge and report its URL to
+your human partner. A link to the PR creation form is insufficient.
 
 This is the "Push and open the PR" step of
 `../using-coacus/references/coacus-process-conventions.md`; run its
 "Reinstall locally" step (`python3 scripts/coacus_install.py <harness> --verify`)
 once the change is merged into a branch the harnesses consume.
 
-Keep the worktree — your human partner iterates on PR feedback there.
+For a final delivery, verify that the open PR targets the intended repository
+and base branch and that its source repository, branch, and full head commit
+match the push destination, feature branch, and local HEAD. For GitHub, query the
+specific PR by URL with `gh pr view <pr-url> --json url,state,baseRefName,headRepository,headRepositoryOwner,headRefName,headRefOid`.
+Use the equivalent forge metadata when available. If the push or PR cannot be
+verified, or the owner requested keeping the workspace, retain the worktree and
+report the reason. Otherwise follow the PR cleanup path in Step 6.
 
 ### Option 3: Keep As-Is
 
@@ -196,11 +204,31 @@ git branch -D <feature-branch>
 
 ## Step 6: Cleanup Workspace
 
-**Runs for Option 1 and confirmed discards.** Options 2 and 3 always
-preserve the worktree. Both callers have already changed directory to the
-main repo root — worktree removal must run from outside the worktree —
-and use the `GIT_DIR`/`GIT_COMMON`/`WORKTREE_PATH` values captured in
-Step 2, from before that directory change.
+### After a confirmed PR
+
+For a named-branch linked worktree, finish all work in that checkout before
+cleanup, including any background jobs that can write there. Run the helper
+from the main checkout, outside the worktree being removed. Resolve the helper
+under the canonical or installed `using-git-worktrees` skill directory:
+
+```text
+python3 <using-git-worktrees-skill-directory>/scripts/pr-worktree.py cleanup <worktree-path> --remote <push-remote> --head-ref refs/heads/<pr-source-branch> --head-oid <confirmed-pr-head-commit>
+```
+
+Use the absolute `WORKTREE_PATH` captured in Step 2. The helper requires a
+Coacus ownership record, checks the published and local commits, and leaves
+blocked worktrees and local files in place. It reports the reason when cleanup
+is skipped. Keep the worktree if the helper is unavailable or the session
+cannot safely leave the workspace. Report the PR URL and the removal or
+preservation result. The local and remote branches remain available for review
+follow-up. From the main checkout, recreate a worktree with
+`git worktree add <new-path> <feature-branch>` if needed.
+
+### After a local merge or confirmed discard
+
+The caller has already changed directory to the main repo root. Use the
+`GIT_DIR`/`GIT_COMMON`/`WORKTREE_PATH` values captured in Step 2, from before that
+directory change. Option 3 preserves the worktree.
 
 **If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
 
@@ -243,7 +271,7 @@ place. If your platform provides a workspace-exit tool, use it.
 | Option | Merge | Push | Keep Worktree | Cleanup Branch |
 |--------|-------|------|---------------|----------------|
 | 1. Merge locally | yes | - | - | yes |
-| 2. Create PR | - | yes | yes | - |
+| 2. Create PR | - | yes | only when cleanup is skipped | - |
 | 3. Keep as-is | - | - | yes | - |
 | Discard (explicit request only) | - | - | - | yes (force) |
 
@@ -255,8 +283,8 @@ place. If your platform provides a workspace-exit tool, use it.
 | "They obviously want it merged" | Integration is your human partner's decision. Present the menu and wait. |
 | "They seem done with this feature — I'll offer to discard it" | The menu is complete as written. Discard happens only when your human partner asks for it in so many words. |
 | "'Yeah, get rid of it' counts as confirmation" | Only the typed word `discard` authorizes deletion. |
-| "The PR is up, so the worktree is clutter now" | PR feedback gets fixed in that worktree. It stays until the work lands. |
-| "This other worktree looks stale — I'll clean it too" | Clean up only worktrees under `.worktrees/` or `worktrees/`. Everything else belongs to the host. |
+| "The push printed a PR link, so cleanup can run" | Confirm the open PR and its source commit first. |
+| "This other worktree looks stale — I'll clean it too" | Cleanup applies only to the worktree used for this delivery. |
 | "Removal refused — `--force` is just finishing the cleanup" | The refusal means files exist only in that worktree. `--force` destroys them permanently. Show your human partner and ask. |
 | "The merged-result failure is probably flaky" | A failing merged result stops everything. Branch and worktree stay put while you investigate. |
 | "The base branch is obviously main" | Confirm the fork point or ask. Merging into the wrong base is expensive to undo. |
