@@ -45,7 +45,7 @@ A long page is not a deck, and a scene class changing does not prove a transitio
 
 ## 🌳 Decision Tree
 
-1. **Fires once when an element arrives?** IntersectionObserver: toggle a class, then `unobserve`.
+1. **Plays a timed entrance when an element arrives?** Use CSS animation triggers when supported, or IntersectionObserver. Choose once or repeat explicitly. See [threshold triggers](references/css-scroll-timelines.md#threshold-triggers-once-or-repeat).
 2. **Tied continuously to progress (scrub, parallax, progress bar)?**
    - Only `transform`, `opacity` or `filter`, and a static result is acceptable where unsupported: CSS `scroll()` / `view()` timelines behind `@supports`.
    - Needs sequencing, pinning, callbacks or identical behavior in every engine: GSAP ScrollTrigger.
@@ -56,10 +56,10 @@ A long page is not a deck, and a scene class changing does not prove a transitio
 | --- | --- | --- | --- | --- |
 | Output | One-shot state change | Progress-linked keyframes | Progress-linked timelines, pins, callbacks | Replaces wheel scrolling |
 | Thread | Main (callback only) | Compositor for transform/opacity/filter | Main | Main, every frame |
-| Support | Universal | Limited | Universal (library) | Universal (library) |
+| Support | Widely available | Newly available for core timelines | Library | Library |
 | Cost of failure | Content must still be visible | Static fallback | Content must still be visible | Breaks scrolling itself |
 
-Recipes for all four live in [CSS scroll timelines](references/css-scroll-timelines.md).
+For a selected item after scrolling settles, use [snap selection](references/sticky-snap-overscroll.md#tracking-the-current-item). For each motion engine, see [CSS scroll timelines](references/css-scroll-timelines.md).
 
 ---
 
@@ -68,9 +68,10 @@ Recipes for all four live in [CSS scroll timelines](references/css-scroll-timeli
 | Feature | Status | Browsers | Fallback |
 | --- | --- | --- | --- |
 | IntersectionObserver | Baseline widely available | All current | None needed (base path) |
-| `animation-timeline` with `scroll()` / `view()`, `animation-range` | Limited | Chrome 115, Safari 26; Firefox preview only | IntersectionObserver class toggle or static layout |
-| `timeline-scope` | Limited | Chrome 116, Safari 26 | Make the timeline source an ancestor |
-| Scroll-triggered animations (`animation-trigger`) | Limited | Chrome 146 only | IntersectionObserver |
+| `animation-timeline` with `scroll()` / `view()`, `animation-range` | Baseline newly available 2026-10-27 | Chrome 115, Firefox 159, Safari 26 | Static layout or a deliberate progress fallback |
+| `timeline-scope` with named timelines | Baseline newly available 2026-10-27 | Chrome 116, Firefox 159, Safari 26 | Make the timeline source an ancestor |
+| WAAPI `ScrollTimeline()` and `ViewTimeline()` | Baseline newly available 2026-10-27 | Chrome 115, Firefox 159, Safari 26 | Detect each constructor used. Keep static content. |
+| CSS `animation-trigger` and `timeline-trigger` | Limited | Chrome 146 | IntersectionObserver |
 | `position: sticky` | Baseline widely available | All current | Static flow |
 | `overflow: clip` | Baseline widely available (2025-03-12) | All current | Move clipping off the sticky ancestor chain |
 | Scroll-state container queries | Limited | Chrome 133 (`scrolled` 144) | No stuck styling, or a sentinel observer |
@@ -172,7 +173,9 @@ Exercise forward and back gestures, keyboard, a scene taller than the screen, fo
 
 ## Version Sources
 
-Moving release pins in this file were resolved 2026-10-20:
+Scroll timeline and trigger rows reviewed 2026-11-27 against [web-features 3.48.0](https://www.npmjs.com/package/web-features/v/3.48.0) and [MDN browser-compat-data 8.1.11](https://www.npmjs.com/package/@mdn/browser-compat-data/v/8.1.11), both published 2026-11-26. [Mozilla released Firefox 159](https://www.firefox.com/en-US/firefox/159.0/releasenotes/) on 2026-10-27 with core CSS and WAAPI scroll-driven animations. Earlier desktop targets still need the fallback.
+
+Other release pins were resolved 2026-10-20:
 
 - **web-features 3.43.0** (verified) — https://registry.npmjs.org/web-features (Baseline statuses and dates in the support matrix)
 - **@mdn/browser-compat-data 8.1.6** (verified) — https://registry.npmjs.org/@mdn/browser-compat-data (browser versions in the support matrix)

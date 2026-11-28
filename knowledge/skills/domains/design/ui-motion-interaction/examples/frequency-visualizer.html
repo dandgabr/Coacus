@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frequency visualizer</title>
+<style>
+  :root { color-scheme: light dark; font: 100%/1.5 system-ui, sans-serif; }
+  body { margin: 2rem auto; padding: 0 1rem; max-width: 40rem; }
+  button { min-block-size: 2.75rem; padding-inline: .85rem; font: inherit; }
+  canvas { display: block; inline-size: 100%; block-size: auto; background: #132841; }
+  canvas[hidden] { display: none; }
+  label { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+</style>
+<main>
+  <h1>Frequency visualizer</h1>
+  <spectrum-demo>
+    <p>The sample repeats a 440 Hz tone for 1 second, then silence for 0.75 seconds.</p>
+    <div hidden data-enhancement>
+      <p>
+        <button type="button" data-start>Play sample</button>
+        <button type="button" data-pause disabled>Pause sample</button>
+        <button type="button" data-stop disabled>Stop sample</button>
+      </p>
+      <p role="status">Sample ready</p>
+      <p><label><input type="checkbox"> Sound cues during playback</label></p>
+    </div>
+    <p hidden data-marker><button type="button" data-add>Add marker</button> <span aria-live="polite">Markers: 0</span></p>
+    <canvas width="640" height="144" aria-hidden="true" hidden></canvas>
+  </spectrum-demo>
+</main>
+<script type="module">
+  function mount(demo) {
+    const canvas = demo.querySelector('canvas');
+    const drawing = canvas.getContext('2d');
+    const audioSupported = Boolean(drawing && window.AudioContext);
+    const enhancement = demo.querySelector('[data-enhancement]');
+    const markerControl = demo.querySelector('[data-marker]');
+    const startButton = demo.querySelector('[data-start]');
+    const pauseButton = demo.querySelector('[data-pause]');
+    const stopButton = demo.querySelector('[data-stop]');
+    const status = demo.querySelector('[role="status"]');
+    const sounds = demo.querySelector('input');
+    const markers = demo.querySelector('[aria-live]');
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const listeners = new AbortController();
+    const {signal} = listeners;
+    const toneSeconds = 1;
+    const sampleSeconds = 1.75;
+    const toneHz = 440;
+    const displayInterval = 1000 / 30;
+    const bars = 24;
+    let graph, source, cue, frame;
+    let state = 'idle';
+    let revision = 0;
+    let offset = 0;
+    let startedAt = 0;
+    let lastDraw = -Infinity;
+    let markerCount = 0;
+
+    function makeGraph() {
+      const context = new AudioContext();
+      context.addEventListener('statechange', () => {
+        if (state !== 'playing' || context.state === 'running') return;
+        if (context.state === 'closed') {
+          halt('idle', 'Audio closed. Play the sample to start again.');
+          graph = undefined;
+        } else {
+          halt('paused', 'Audio was interrupted. Resume the sample to continue.');
+        }
+      }, {signal});
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 2048;
+      analyser.minDecibels = -80;
+      analyser.smoothingTimeConstant = 0.4;
+      const sampleGain = context.createGain();
+      sampleGain.gain.value = 0.18;
+      analyser.connect(sampleGain).connect(context.destination);
+
+      const buffer = context.createBuffer(1, Math.round(sampleSeconds * context.sampleRate), context.sampleRate);
+      const samples = buffer.getChannelData(0);
+      const toneSamples = context.sampleRate * toneSeconds;
+      const ramp = context.sampleRate * 0.01;
+      for (let i = 0; i < toneSamples; i++) {
+        const envelope = Math.min(1, i / ramp, (toneSamples - 1 - i) / ramp);
+        samples[i] = envelope * Math.sin(2 * Math.PI * toneHz * i / context.sampleRate);
+      }
+      return {context, analyser, buffer, bins: new Uint8Array(analyser.frequencyBinCount)};
+    }
+
+    function renderState(message) {
+      const focused = document.activeElement;
+      startButton.disabled = state === 'playing';
+      if (state === 'starting') startButton.setAttribute('aria-disabled', 'true');
+      else startButton.removeAttribute('aria-disabled');
+      startButton.textContent = state === 'paused' ? 'Resume sample' : 'Play sample';
+      pauseButton.disabled = state !== 'playing';
+      stopButton.disabled = state === 'idle';
+      status.textContent = message;
+      if (focused === startButton && startButton.disabled) pauseButton.focus();
+      if ((focused === pauseButton && pauseButton.disabled) ||
+          (focused === stopButton && stopButton.disabled)) startButton.focus();
+    }
+
+    function draw(now) {
+      if (now - lastDraw >= displayInterval) {
+        lastDraw = now;
+        const {analyser, bins} = graph;
+        analyser.getByteFrequencyData(bins);
+        drawing.clearRect(0, 0, canvas.width, canvas.height);
+        drawing.fillStyle = '#9ee8ff';
+        const step = canvas.width / bars;
+        const maxBin = Math.min(bins.length, Math.ceil(4000 * analyser.fftSize / graph.context.sampleRate));
+        for (let bar = 0; bar < bars; bar++) {
+          const first = Math.floor(bar * maxBin / bars);
+          const end = Math.floor((bar + 1) * maxBin / bars);
+          let peak = 0;
+          for (let bin = first; bin < end; bin++) peak = Math.max(peak, bins[bin]);
+          const height = 2 + (canvas.height - 2) * peak / 255;
+          drawing.fillRect(bar * step, canvas.height - height, step - 3, height);
+        }
+      }
+      frame = requestAnimationFrame(draw);
+    }
+
+    function syncDrawing() {
+      if (frame !== undefined) cancelAnimationFrame(frame);
+      frame = undefined;
+      canvas.hidden = state !== 'playing' || graph.context.state !== 'running' ||
+        preference.matches || document.hidden;
+      if (!canvas.hidden) {
+        lastDraw = -Infinity;
+        frame = requestAnimationFrame(draw);
+      }
+    }
+
+    async function start() {
+      if (state === 'starting' || state === 'playing') return;
+      const previousState = state;
+      const request = ++revision;
+      state = 'starting';
+      renderState('Starting audio…');
+      try {
+        graph ??= makeGraph();
+        await graph.context.resume();
+        if (request !== revision) return;
+        if (graph.context.state !== 'running') throw new Error('Audio context is not running');
+        source = graph.context.createBufferSource();
+        source.buffer = graph.buffer;
+        source.loop = true;
+        source.connect(graph.analyser);
+        startedAt = graph.context.currentTime;
+        source.start(startedAt, offset);
+        state = 'playing';
+        renderState('Sample playing');
+        syncDrawing();
+      } catch {
+        if (request !== revision) return;
+        source?.disconnect();
+        source = undefined;
+        state = previousState;
+        renderState('Could not start audio. Try again or read the sample description.');
+      }
+    }
+
+    function stopCue() {
+      if (!cue) return;
+      cue.oscillator.stop();
+      cue.oscillator.disconnect();
+      cue.gain.disconnect();
+      cue = undefined;
+    }
+
+    function halt(nextState, message) {
+      revision++;
+      if (source) {
+        if (nextState === 'paused') {
+          offset = (offset + graph.context.currentTime - startedAt) % sampleSeconds;
+        }
+        source.stop();
+        source.disconnect();
+        source = undefined;
+      }
+      stopCue();
+      if (nextState === 'idle') offset = 0;
+      state = nextState;
+      renderState(message);
+      syncDrawing();
+    }
+
+    function addMarker() {
+      markers.textContent = `Markers: ${++markerCount}`;
+      if (!sounds.checked || state !== 'playing' || graph.context.state !== 'running') return;
+      stopCue();
+      const {context} = graph;
+      const now = context.currentTime;
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.frequency.value = 660;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.08, now + 0.01);
+      gain.gain.linearRampToValueAtTime(0, now + 0.13);
+      oscillator.connect(gain).connect(context.destination);
+      cue = {oscillator, gain};
+      oscillator.onended = () => {
+        oscillator.disconnect();
+        gain.disconnect();
+        if (cue?.oscillator === oscillator) cue = undefined;
+      };
+      oscillator.start(now);
+      oscillator.stop(now + 0.13);
+    }
+
+    function dispose() {
+      if (signal.aborted) return;
+      listeners.abort();
+      halt('idle', 'Sample ready');
+      sounds.checked = false;
+      markers.textContent = 'Markers: 0';
+      enhancement.hidden = true;
+      markerControl.hidden = true;
+      if (graph) void graph.context.close().catch(() => {});
+    }
+
+    enhancement.hidden = !audioSupported;
+    markerControl.hidden = false;
+    startButton.addEventListener('click', start, {signal});
+    pauseButton.addEventListener('click', () => halt('paused', 'Sample paused'), {signal});
+    stopButton.addEventListener('click', () => halt('idle', 'Sample stopped'), {signal});
+    sounds.addEventListener('change', () => { if (!sounds.checked) stopCue(); }, {signal});
+    demo.querySelector('[data-add]').addEventListener('click', addMarker, {signal});
+    preference.addEventListener('change', syncDrawing, {signal});
+    document.addEventListener('visibilitychange', syncDrawing, {signal});
+    window.addEventListener('pagehide', event => {
+      halt('idle', 'Sample stopped');
+      if (!event.persisted) dispose();
+    }, {signal});
+    return dispose;
+  }
+
+  customElements.define('spectrum-demo', class extends HTMLElement {
+    connectedCallback() { this.dispose = mount(this); }
+    disconnectedCallback() { this.dispose?.(); }
+  });
+</script>
+</html>

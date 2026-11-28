@@ -139,7 +139,14 @@ Decoding the whole sequence up front is the most common cause of crashes. Keep c
 
 ## 5. Video scrubbing instead of frames
 
-A muted, inline `<video>` with `currentTime = progress × duration` set from the rAF loop is far smaller to download.
+Use muted, inline `<video>` and set `currentTime = progress × duration`
+from the rAF loop. Compare video and image sequences at the same display
+resolution, duration and visual-quality target. Measure transferred bytes,
+peak decoded memory on the target device, and seek-to-present latency for
+representative forward and backward jumps. Compression can reduce transfer
+while frequent keyframes increase bytes and change seek latency. The decoded
+memory estimate above applies to retained image bitmaps. Measure the video
+player's decoder and presentation surfaces separately.
 
 - Seeking lands on a keyframe and decodes forward, so long GOPs make scrubbing stutter. Encode all-intra or with a short GOP:
 
@@ -150,7 +157,13 @@ A muted, inline `<video>` with `currentTime = progress × duration` set from the
   `-g 1` makes every frame a keyframe (largest file, smoothest seek); `-g 5` to `-g 10` trades size for smoothness.
 - Do not issue a new seek while one is pending: remember the latest target and apply it on `seeked`.
 - `video.requestVideoFrameCallback()` reports when a frame is actually presented, which helps verify sync.
-- Use `muted playsinline preload="auto"` and never autoplay it as a substitute for the scrub.
+- Keep the scrub muted and inline. Choose the preload policy for the page's
+  transfer budget. Keep an accessible static summary or stills available and
+  provide a way to stop movement or switch to the static view.
+- Keep optional sound under a separate, explicit playback control. Route
+  live analysis and sound cues to [audio-reactive visuals](../../ui-motion-interaction/references/audio-reactive-visuals.md).
+  Route timed annotations and native caption coordination to
+  [media-clock overlays](../../ui-motion-interaction/references/media-clock-overlays.md).
 
 ### Frame-exact decoding with WebCodecs
 

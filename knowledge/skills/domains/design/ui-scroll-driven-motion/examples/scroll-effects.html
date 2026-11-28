@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coastal field notes</title>
+<script>
+  const options = new URLSearchParams(location.search);
+  if (options.has('plain')) document.documentElement.classList.add('plain');
+  if (options.has('fallback')) document.documentElement.classList.add('fallback');
+</script>
+<style>
+  :root { color: #183439; background: #f6f4e9; --motion-state: 200ms; --ease-enter: cubic-bezier(.2, 0, 0, 1); font: 100%/1.55 system-ui; }
+  body { max-inline-size: 46rem; margin: 2rem auto; padding-inline: 1rem; }
+  :focus-visible { outline: .2rem solid currentColor; outline-offset: .2rem; }
+  nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-block: 1rem; }
+  nav a[aria-current] { font-weight: bold; text-decoration-thickness: .2em; }
+  .reader { position: relative; }
+  .chapters, .stack-scroll { border: 1px solid; }
+  .stack-scroll, .reading .chapters { overflow: auto; }
+  .reading .chapters { block-size: clamp(14rem, 56vh, 26rem); }
+  .chapters > section {
+    min-block-size: 100%;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    scroll-snap-align: start;
+  }
+  .chapters > section + section { border-block-start: 1px solid; }
+  .reading #marsh { min-block-size: max(38rem, 100%); display: flex; flex-direction: column; }
+  .marsh-end { margin-block-start: auto; scroll-margin-block: 0.75rem; }
+  .progress { display: none; }
+  .marker { display: inline-block; margin-inline-start: .5em; color: #855322; }
+  .stack-scroll { block-size: 19rem; }
+  .stack { margin: 0; padding: 1rem 1rem 12rem; list-style: none; }
+  .stack > li { margin-block-end: 2rem; --ledge: 1rem; }
+  .stack > li:nth-child(2) { --ledge: 2rem; }
+  .stack > li:nth-child(3) { --ledge: 3rem; }
+  .sheet {
+    min-block-size: 10rem;
+    box-sizing: border-box;
+    padding: 1rem;
+    background: #e2ebe1;
+    border: 1px solid;
+    transform-origin: center top;
+  }
+  @keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes mark { from { transform: translateY(.4em); opacity: .45; } }
+  @keyframes recede { to { transform: scale(.82); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .reading:not(.deep-fragment) .chapters { scroll-snap-type: y proximity; }
+    @supports (animation-timeline: scroll()) and (animation-range: entry 0% exit 0%) and (timeline-scope: --reading) {
+      :root:not(.plain, .fallback) .chapters { scroll-timeline: --reading block; }
+      :root:not(.plain, .fallback) .reader { timeline-scope: --reading; }
+      :root:not(.plain, .fallback) .progress {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        inset: 0 0 auto;
+        block-size: .25rem;
+        background: #246e70;
+        pointer-events: none;
+        transform-origin: left;
+        animation: progress linear both;
+        animation-timeline: --reading;
+      }
+      @media (min-height: 30.01rem) {
+        :root:not(.plain, .fallback) .stack > li {
+          position: sticky;
+          inset-block-start: var(--ledge);
+        }
+        /* Each stationary sheet follows the next card's traveling arrival. */
+        :root:not(.plain, .fallback) .stack {
+          timeline-scope: --second-card, --third-card;
+        }
+        :root:not(.plain, .fallback) .stack > li:nth-child(2) { view-timeline: --second-card block; }
+        :root:not(.plain, .fallback) .stack > li:nth-child(3) { view-timeline: --third-card block; }
+        :root:not(.plain, .fallback) .stack > li:not(:last-child) .sheet {
+          animation: recede linear both;
+          animation-range: entry 0% entry 90%;
+        }
+        :root:not(.plain, .fallback) .stack > li:nth-child(1) .sheet {
+          animation-timeline: --second-card;
+        }
+        :root:not(.plain, .fallback) .stack > li:nth-child(2) .sheet {
+          animation-timeline: --third-card;
+        }
+      }
+    }
+    @supports (animation-trigger: --marsh play-once none) and (timeline-trigger: --marsh view() entry 0% exit 0%) {
+      :root:not(.plain, .fallback) #marsh { timeline-trigger: --marsh view() entry 0% exit 0%; }
+      :root:not(.plain, .fallback) #marsh:not(.seen) .marker {
+        animation: mark var(--motion-state) var(--ease-enter) both;
+        animation-trigger: --marsh play-once none;
+      }
+    }
+    #marsh.arrive .marker { animation: mark var(--motion-state) var(--ease-enter) both; }
+  }
+  @media (prefers-reduced-motion: reduce), (max-height: 30rem) {
+    .stack { padding-block-end: 1rem; }
+  }
+</style>
+
+<main>
+  <h1>Coastal field notes</h1>
+  <nav aria-label="Chapters">
+    <a href="#headland">Headland</a>
+    <a href="#marsh">Walk through the marsh</a>
+    <a href="#dunes">Explore the dunes</a>
+  </nav>
+  <div class="reader">
+    <div id="chapters" class="chapters" role="region" tabindex="0" aria-label="Field notes">
+      <section id="headland" tabindex="-1">
+        <h2>Headland</h2>
+        <p>At dawn the rock pools hold the color of the sky. Look along the dry edge for salt crystals.</p>
+      </section>
+      <section id="marsh" tabindex="-1">
+        <h2>Along the marsh boardwalk <span class="marker" aria-hidden="true">✦</span></h2>
+        <p>Follow the boardwalk past the reeds to the high tide line.
+          <a href="#marsh-end">Jump to the end of the marsh notes</a>
+        </p>
+        <p class="marsh-end" id="marsh-end" tabindex="-1">The orange post marks the edge of the restoration area.
+          <a href="#dunes">Continue to the dune notes</a>
+        </p>
+      </section>
+      <section id="dunes" tabindex="-1">
+        <h2>Beyond the dune fence</h2>
+        <p>Sand collects behind the fence. Leave the sheltered shoots undisturbed.</p>
+      </section>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+
+  <h2 id="stack-label">Field notebook</h2>
+  <div class="stack-scroll" role="region" tabindex="0" aria-labelledby="stack-label">
+    <ol class="stack">
+      <li><div class="sheet">Keep to the boardwalk.</div></li>
+      <li><div class="sheet">Leave plants and shells where you find them.</div></li>
+      <li><div class="sheet">Check the tide before returning.</div></li>
+    </ol>
+  </div>
+</main>
+
+<script>
+  const scroller = document.querySelector('#chapters');
+  const chapters = [...scroller.querySelectorAll('section')];
+  const links = [...document.querySelectorAll('nav a')];
+  const marsh = document.querySelector('#marsh');
+  const marker = marsh.querySelector('.marker');
+  const motion = matchMedia('(prefers-reduced-motion: no-preference)');
+  const nativeTrigger = !options.has('fallback') &&
+    CSS.supports('animation-trigger: --marsh play-once none') &&
+    CSS.supports('timeline-trigger: --marsh view() entry 0% exit 0%');
+
+  let stop;
+  function start() {
+    if (options.has('plain')) return;
+
+    const root = document.documentElement;
+    root.classList.add('reading');
+    const controller = new AbortController();
+    const { signal } = controller;
+    let timer;
+    let snapTarget;
+    let observer;
+    let fired = marsh.classList.contains('seen');
+
+    function select(chapter) {
+      for (const link of links) {
+        if (link.hash === '#' + chapter.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+    }
+
+    function settle() {
+      const leadingEdge = scroller.getBoundingClientRect().top + scroller.clientTop;
+      const visible = chapters.filter(chapter => {
+        const { top, bottom } = chapter.getBoundingClientRect();
+        return bottom > leadingEdge && top < leadingEdge + scroller.clientHeight;
+      });
+      const current = snapTarget ?? visible.find(chapter => {
+        const { top } = chapter.getBoundingClientRect();
+        return top <= leadingEdge + 1;
+      }) ?? visible[0];
+      if (current) select(current);
+      snapTarget = undefined;
+    }
+
+    if (!options.has('fallback') && 'onscrollsnapchange' in scroller) {
+      scroller.addEventListener('scrollsnapchange', event => {
+        const chapter = event.snapTargetBlock?.closest('.chapters > section');
+        snapTarget = chapters.includes(chapter) ? chapter : undefined;
+        if (snapTarget) select(snapTarget);
+      }, { signal });
+    }
+    if (!options.has('fallback') && 'onscrollend' in scroller) {
+      scroller.addEventListener('scrollend', settle, { signal });
+    } else {
+      scroller.addEventListener('scroll', () => {
+        clearTimeout(timer);
+        timer = setTimeout(settle, 120);
+      }, { passive: true, signal });
+    }
+    function placeFragment(initial = false) {
+      const target = document.getElementById(location.hash.slice(1));
+      const interior = target?.classList.contains('marsh-end');
+      root.classList.toggle('deep-fragment', Boolean(interior));
+      if (interior || (initial && chapters.includes(target))) {
+        target.scrollIntoView({ block: 'start', behavior: 'instant' });
+      }
+      settle();
+    }
+
+    const initialFrame = requestAnimationFrame(() => placeFragment(true));
+    window.addEventListener('resize', settle, { signal });
+    window.addEventListener('hashchange', () => {
+      snapTarget = undefined;
+      placeFragment();
+    }, { signal });
+
+    function finishEntrance() {
+      marsh.classList.add('seen');
+      marsh.classList.remove('arrive');
+    }
+    marker.addEventListener('animationstart', () => { fired = true; }, { signal });
+    marker.addEventListener('animationend', finishEntrance, { signal });
+    function updateEntrance() {
+      observer?.disconnect();
+      if (fired && !motion.matches) finishEntrance();
+      if (nativeTrigger || fired || !motion.matches || !('IntersectionObserver' in window)) return;
+      observer = new IntersectionObserver(entries => {
+        if (!motion.matches || !entries.some(entry => entry.isIntersecting)) return;
+        fired = true;
+        marsh.classList.add('arrive');
+        observer.disconnect();
+      }, { root: scroller, rootMargin: '0px 0px -10% 0px' });
+      observer.observe(marsh);
+    }
+    motion.addEventListener('change', updateEntrance, { signal });
+    updateEntrance();
+
+    stop = () => {
+      controller.abort();
+      observer?.disconnect();
+      cancelAnimationFrame(initialFrame);
+      clearTimeout(timer);
+      if (fired) finishEntrance();
+    };
+  }
+
+  window.addEventListener('pageshow', start);
+  window.addEventListener('pagehide', () => stop?.());
+</script>
+</html>

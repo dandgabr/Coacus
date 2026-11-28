@@ -1,6 +1,6 @@
 ---
 name: "ui-gpu-graphics-web"
-description: "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, generative canvases, or high-performance GPU interfaces."
+description: "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, fluid ink, persistent particle trails, masked GPU scene transitions, or high-performance GPU interfaces."
 tags:
   - webgpu
   - webgl
@@ -103,6 +103,10 @@ GPU memory in browsers is bounded and aggressively managed by operating system w
 - Mobile devices and laptops switching between integrated and dedicated GPUs frequently drop contexts to reclaim VRAM.
 - **WebGL2:** Listen for `webglcontextlost` (call `event.preventDefault()`) and `webglcontextrestored` to reload textures and recompile shaders.
 - **WebGPU:** Monitor `device.lost`. Re-request the `GPUDevice` and recreate render pipelines when device loss occurs.
+
+### 4. Feedback and postprocessing
+
+For pointer-driven ink, persistent trails or a masked GPU scene transition, use the [feedback and postprocessing recipes](references/feedback-and-postprocessing.md). Assign each pass explicit read and write resources, validate the effect's own render targets, and keep the poster available across initialization and loss.
 
 ---
 

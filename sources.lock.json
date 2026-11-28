@@ -18000,9 +18000,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "source_sha256": "91296bb2c2705ac06cccafa2c1db6d824f0126a693a9ac76584c027af73890d2",
+      "source_sha256": "7ff0189804834ee1602f85864eaf9242552f454d682795c7f27cac1abbf28225",
       "target_path": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "target_sha256": "91296bb2c2705ac06cccafa2c1db6d824f0126a693a9ac76584c027af73890d2",
+      "target_sha256": "7ff0189804834ee1602f85864eaf9242552f454d682795c7f27cac1abbf28225",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18270,9 +18270,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "source_sha256": "9cffbf482eef03b8323f8eef55b60d14d854aeba7a5ea79a932a22a0dfd80ff7",
+      "source_sha256": "f65f384beb922dd3c3ac4b507b7233833f75f527aa17f885323e650b7caa42cc",
       "target_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "target_sha256": "9cffbf482eef03b8323f8eef55b60d14d854aeba7a5ea79a932a22a0dfd80ff7",
+      "target_sha256": "f65f384beb922dd3c3ac4b507b7233833f75f527aa17f885323e650b7caa42cc",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -18315,9 +18315,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "source_sha256": "5e328d7de6892bd95aba6bb988bca8e142ae2980d129818704199021a90ac7c2",
+      "source_sha256": "2e931bcffdf2a6b3460ae43a0ab94f7a245464c3f4cd6c61213f7c6a4e3b1a3f",
       "target_path": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "target_sha256": "5e328d7de6892bd95aba6bb988bca8e142ae2980d129818704199021a90ac7c2",
+      "target_sha256": "2e931bcffdf2a6b3460ae43a0ab94f7a245464c3f4cd6c61213f7c6a4e3b1a3f",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19140,9 +19140,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "source_sha256": "398b06d9081f5aa742dde18cd9de6dec861cb4755186acf72d4a2d278bf0618a",
+      "source_sha256": "0c2ca948c64fcbb3126af0d4ed31eee56f347a9a8aa9faa843a6f29d112edeb0",
       "target_path": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "target_sha256": "398b06d9081f5aa742dde18cd9de6dec861cb4755186acf72d4a2d278bf0618a",
+      "target_sha256": "0c2ca948c64fcbb3126af0d4ed31eee56f347a9a8aa9faa843a6f29d112edeb0",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -19170,9 +19170,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "source_sha256": "89a1e4515c90bddc714bfe90171d9abaddd15b29d4d0ef2d14b4affc6eae8310",
+      "source_sha256": "2e30d6b9157472c1a91a2b5b3619d52a7c1d60dad6221c10c6eaa02f9bdd405e",
       "target_path": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "target_sha256": "89a1e4515c90bddc714bfe90171d9abaddd15b29d4d0ef2d14b4affc6eae8310",
+      "target_sha256": "2e30d6b9157472c1a91a2b5b3619d52a7c1d60dad6221c10c6eaa02f9bdd405e",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20670,9 +20670,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "source_sha256": "7c660286d1e71d9bb080ef382241c2bfd7b0efb55846edd4a1bf61e3e9e773d8",
+      "source_sha256": "50610d0b67c721f0b2c1a4e13a9350d02a54816c194e22cf9ed8850be9d9f637",
       "target_path": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "target_sha256": "7c660286d1e71d9bb080ef382241c2bfd7b0efb55846edd4a1bf61e3e9e773d8",
+      "target_sha256": "50610d0b67c721f0b2c1a4e13a9350d02a54816c194e22cf9ed8850be9d9f637",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -20685,9 +20685,9 @@
       "source_repo": "authoring",
       "source_commit": "native",
       "source_path": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "source_sha256": "39b20fd984e7a80017709492430e2eb3ed8afc1a4cbd0d501e2074869f5290fa",
+      "source_sha256": "dfe383c78639658cff67d4d0fc435316b746a8b8928eb7f82ae8ce6101286d99",
       "target_path": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "target_sha256": "39b20fd984e7a80017709492430e2eb3ed8afc1a4cbd0d501e2074869f5290fa",
+      "target_sha256": "dfe383c78639658cff67d4d0fc435316b746a8b8928eb7f82ae8ce6101286d99",
       "origin_license": "AGPL-3.0",
       "transform": [
         "authored"
@@ -21460,6 +21460,38 @@
       "aliases": [],
       "import_run_id": "authored-sync",
       "imported_at": "2026-11-27T21:52:49Z"
+    },
+    {
+      "source_repo": "https://github.com/google/fonts",
+      "source_commit": "5026800714d07231937d92eb4cceabf06e05d74e",
+      "source_path": "ofl/nabla/Nabla[EDPT,EHLT].ttf",
+      "source_sha256": "e45cec60eb2099b4b4ffee8ebe005d1d3060771071ede1caeeeb12e37a2c00ae",
+      "target_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/examples/assets/coacus-color-specimen.woff2",
+      "target_sha256": "267286e430343ad62e499b2236f7335c21d8a766086fe026f94a1e54319103e2",
+      "origin_license": "OFL-1.1",
+      "transform": [
+        "subset:latin",
+        "rename:coacus-color-specimen",
+        "retain:colr-paint",
+        "palette:shared-contrast",
+        "encode:woff2"
+      ],
+      "import_run_id": "website-effects-color-font",
+      "imported_at": "2026-11-28T01:47:39Z"
+    },
+    {
+      "source_repo": "https://github.com/google/fonts",
+      "source_commit": "5026800714d07231937d92eb4cceabf06e05d74e",
+      "source_path": "ofl/nabla/OFL.txt",
+      "source_sha256": "999d3ace5ea7f04761689794a9c877b0a5fc8b22a469518ffad78b4facb2e61b",
+      "target_path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/examples/assets/OFL.txt",
+      "target_sha256": "a9c3f069356805b1fbcd9b31f974625bb424bebeea891d44222a8ccf899267ad",
+      "origin_license": "OFL-1.1",
+      "transform": [
+        "normalize:trailing-whitespace"
+      ],
+      "import_run_id": "website-effects-color-font",
+      "imported_at": "2026-11-28T01:47:39Z"
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: "ui-motion-interaction"
-description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility."
+description: "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, auditing animation smoothness and motion accessibility, or adding live audio-reactive spectrum meters, optional sounds or media-clock cue overlays."
 tags:
   - motion-design
   - micro-interactions
@@ -29,6 +29,8 @@ Motion is not visual ornament; it is a spatial and temporal feedback system that
 
 - Durations, easing, spring tokens, interruption, Web Animations API, motion tokens: [motion-timing-engines](references/motion-timing-engines.md) (single source; do not restate values elsewhere).
 - Overlay coverage, active scenes and teardown: [effect-coverage-lifecycle](references/effect-coverage-lifecycle.md).
+- Live spectrum, waveform and optional interface sounds: [audio-reactive visuals](references/audio-reactive-visuals.md).
+- Video-clock annotations: [media-clock overlays](references/media-clock-overlays.md). For fixed-timeline export, load [deterministic motion rendering](../deterministic-motion-rendering/SKILL.md).
 - Scroll-linked and scroll-triggered motion: [ui-scroll-driven-motion](../ui-scroll-driven-motion/SKILL.md).
 - View Transitions, FLIP, shared-element and accordion/layout transitions: [ui-state-layout-transitions](../ui-state-layout-transitions/SKILL.md).
 - Pointer and gesture recipes: [pointer-and-gesture](references/pointer-and-gesture.md); text-effect recipes: [text-effect-recipes](references/text-effect-recipes.md).

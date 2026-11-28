@@ -43,7 +43,7 @@ The common technique applies an SVG displacement filter to the backdrop:
 }
 @supports (backdrop-filter: blur(1px)) {
   .refraction-bar {
-    /* 2. Plain blur: what Firefox and Safari actually render. */
+    /* 2. Plain blur for devices without a verified lens. */
     background: color-mix(in oklch, var(--glass-solid) 72%, transparent);
     backdrop-filter: blur(14px) saturate(160%);
   }
@@ -60,7 +60,8 @@ The common technique applies an SVG displacement filter to the backdrop:
 }
 ```
 
-- **Engine support:** `backdrop-filter: url(#filter)` is reported to render only in Chromium; Firefox and Safari do not render the SVG reference, so depending on the engine the lens is skipped or the whole declaration is dropped. This is unverified: MDN browser-compat-data does not track the `url()` value separately, and the claim rests on secondary articles. Feature detection with `@supports` cannot tell whether the SVG reference renders, so the `.is-lens` class must be opt-in per engine you have tested, with the blur declaration as the cascade fallback.
+- **Engine support:** Test the exact SVG graph and backdrop on each target browser before enabling `.is-lens`. The WebKit report shows a displacement reproduction that fails in Safari. The Mozilla report shows a turbulence and displacement reproduction that failed in the reported Firefox configuration. These are graph-specific observations. A browser may parse `backdrop-filter: url(#lens)` while painting no distortion. Keep the ordinary blur as the default enhancement and sample a moving, patterned backdrop before opting into the lens. [WebKit issue 245510](https://bugs.webkit.org/show_bug.cgi?id=245510), [Mozilla issue 2018607](https://bugzilla.mozilla.org/show_bug.cgi?id=2018607).
+- **Backdrop boundaries:** Test with and without ancestor masks, opacity or filters. These can establish a backdrop root and change which pixels are sampled. For a gradient rim that needs no backdrop sampling, use a separate decorative layer and follow the [layered mask recipe](../../ui-state-layout-transitions/references/css-svg-compositing.md). [CSSWG Backdrop Root draft, 2026-11-24](https://www.w3.org/TR/2026/WD-filter-effects-2-20261124/#BackdropRoot).
 - **Cost:** Displacement runs on every frame the backdrop changes (scroll, video, animation). Measure on low-end hardware before shipping; drop to the blur on long scrolling surfaces.
 - **Live DOM:** SVG filters read the real backdrop, so content stays live. A shader recreation instead samples a captured snapshot and goes stale; see [the GPU graphics skill](../../../../engineering/practices/ui-gpu-graphics-web/SKILL.md) for the refraction and chromatic-dispersion shader path and its fallbacks.
 - **Specular motion:** Tie the moving highlight to pointer or scroll only when it carries no information, freeze it under `prefers-reduced-motion: reduce`, and never loop it automatically for more than 5 seconds without a pause control. Canonical motion obligations live in [web accessibility](../../../../engineering/practices/web-accessibility-wcag/SKILL.md).
@@ -73,7 +74,7 @@ The common technique applies an SVG displacement filter to the backdrop:
 ## 5. Verification Checklist
 
 1. Measure text contrast (4.5:1) and icon or boundary contrast (3:1) over the worst backdrop the control can scroll over: the brightest and darkest frame, and the busiest pattern. A token calculation over the average backdrop is not evidence.
-2. Render in Chromium, Firefox and Safari; confirm the non-Chromium result is the intended blur, not a transparent bar.
+2. Render in Chromium, Firefox and Safari. Confirm the ordinary blur is visible wherever the lens is disabled.
 3. Enable `forced-colors: active` and confirm the control keeps a system-colour border and readable text.
 4. Enable reduced transparency where supported (Chrome, Firefox) and confirm the opaque state; on Safari confirm the default is already acceptable without it.
 5. Enable reduced motion and confirm the specular freezes.
@@ -86,5 +87,5 @@ Moving release pins in this file were resolved 2026-10-20:
 - **Liquid Glass announcement, 2025-06-09** (verified) — https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
 - **NN/g "Liquid Glass Is Cracked", Raluca Budiu, 2025-10-10** (unverified) — the nngroup.com page could not be fetched this session; title, author and date come from the coordinating brief
 - **iOS 26.1 Clear/Tinted toggle** (unverified) — secondary press coverage only; Apple release notes not re-read
-- **backdrop-filter: url() rendering in Chromium only** (unverified) — only secondary sources; MDN browser-compat-data does not track the `url()` value
+- **SVG backdrop-filter rendering** — graph-specific engine reports and the CSSWG backdrop root draft reviewed 2026-11-27. Rendering of the exact lens on target devices remains unverified.
 - **prefers-reduced-transparency: Chrome 118, Firefox 113, no Safari** (verified) — MDN browser-compat-data 8.1.6 (2026-10-15)

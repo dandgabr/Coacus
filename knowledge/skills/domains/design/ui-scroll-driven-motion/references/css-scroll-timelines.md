@@ -139,6 +139,33 @@ Notes:
 - Take reveal durations and curves from [motion timing engines](../../ui-motion-interaction/references/motion-timing-engines.md); scrubbed timelines have no duration.
 - For reveals that are not opacity and translate (clip-path or mask wipes, SVG line drawing), take the shapes from [ui-state-layout-transitions](../../ui-state-layout-transitions/SKILL.md) and drive them with the same timeline or observer.
 
+### Threshold triggers: once or repeat
+
+Choose the clock first. A scrubbed timeline samples a visual state from position, so reversing scroll reverses the animation. A threshold trigger starts an ordinary time-based animation. Once triggered, its duration and curve are independent of scrolling. Settled selection has a third contract and belongs to [scroll snapping](sticky-snap-overscroll.md#tracking-the-current-item).
+
+Keep the chapter heading and links visible. Animate a decorative marker in the supported path. Declare `animation-trigger` after the `animation` shorthand.
+
+```css
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-trigger: --arrive play-once none) and
+            (timeline-trigger: --arrive view() entry 0% exit 0%) {
+    #chapter { timeline-trigger: --arrive view() entry 0% exit 0%; }
+    #chapter .marker {
+      animation: mark var(--motion-state) var(--ease-enter) both;
+      animation-trigger: --arrive play-once none;
+    }
+  }
+}
+```
+
+- `play-once none` plays once for the animation instance and does nothing on exit. For deliberate repeats, choose `replay reset`. If many components declare the same trigger name, set `trigger-scope` on each owner and test the exact declaration.
+- Where either declaration is unsupported, observe the section within its actual scroll container. On the first intersecting entry, apply the animation class to the marker and disconnect. Tie observer setup and teardown to the view lifetime, suppress the animation when motion is reduced, and never make content visibility depend on an observer callback.
+- Test first entry, leaving before the animation ends, re-entry, an initial deep link and history restoration. Very tall sections may never achieve a high intersection ratio. Use an edge crossing and keep the resting marker visible even when no animation runs.
+
+The three-chapter [scroll effects example](../examples/scroll-effects.html) exercises continuous progress, a native or observer-driven entrance, and settled selection with the same chapter links. Open it normally, with `?fallback` to force the observer and debounced-scroll paths, or with `?plain` for native content alone. The second chapter is deliberately tall. Reload near its end, reverse direction, and open `#marsh` directly before testing keyboard focus. The example also demonstrates [stacked cards](sticky-snap-overscroll.md#stacked-cards).
+
+[Chrome trigger guide](https://developer.chrome.com/blog/scroll-triggered-animations) · [CSSWG trigger actions](https://drafts.csswg.org/animation-triggers-1/#valdef-animation-action-play-once)
+
 ## 4. GSAP ScrollTrigger essentials
 
 ```js
@@ -308,4 +335,4 @@ Moving release pins in this file were resolved 2026-10-20:
 - **lenis 1.3.27** (verified) — https://registry.npmjs.org/lenis ; options and defaults from https://github.com/darkroomengineering/lenis (README, main branch)
 - **locomotive-scroll 5.0.1** (verified) — https://registry.npmjs.org/locomotive-scroll (depends on lenis)
 - **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap ; ScrollTrigger and `gsap.matchMedia()` per https://gsap.com/docs/v3/Plugins/ScrollTrigger/
-- **Scroll-driven animations support** (verified) — https://registry.npmjs.org/@mdn/browser-compat-data 8.1.6: `animation-timeline` and `animation-range` Chrome 115, Safari 26, Firefox preview; `timeline-scope` Chrome 116, Safari 26
+- **CSS timelines, named timeline scope, WAAPI constructors and newer trigger support** — see the [capability matrix](../SKILL.md#-support-matrix), checked 2026-11-27. Guard each feature used by the recipe. Parsing a declaration does not verify that the chosen range advances correctly.

@@ -2747,10 +2747,10 @@
     },
     {
       "name": "ui-gpu-graphics-web",
-      "description": "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, generative canvases, or high-performance GPU interfaces.",
+      "description": "Provides architecture and engineering patterns for browser-based hardware-accelerated 2D and 3D graphics using GPU pipelines. Covers WebGPU pipelines, WebGL2 state machine, Canvas 2D / OffscreenCanvas rendering, shader engineering (WGSL, GLSL, Three.js TSL), compute shaders for massive data visualization and particle engines, Pixi.js v8+ 2D batching, Three.js WebGPURenderer 3D scenes, context loss recovery, and frame-rate budgeting (60fps/120fps) with accessible DOM fallbacks. Use when building interactive data visualizations, 3D product heroes, fluid ink, persistent particle trails, masked GPU scene transitions, or high-performance GPU interfaces.",
       "type": "archive",
       "url": "knowledge/skills/engineering/practices/ui-gpu-graphics-web/SKILL.md",
-      "digest": "sha256:4277b6bdd9e359f67723f12748c43d49dbca24f1f3b3d01c1c8f72464a3bc810"
+      "digest": "sha256:758dda54b22c6feae376fae4ec95fb036dfefe06135da55fc95ae8a8ff51c1ad"
     },
     {
       "name": "ui-hero-sections",
@@ -2761,10 +2761,10 @@
     },
     {
       "name": "ui-motion-interaction",
-      "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, or auditing animation smoothness and motion accessibility.",
+      "description": "Provides the motion hub for UI design engineering: tactile state transitions (hover, active, focus-visible, drag, disabled), pointer physics (spotlight gradients, magnetic pull, 3D tilt), the Accot-Zhai steering law for hover corridors, Dan Saffer's micro-interaction lifecycle, canonical duration bands and spring tokens (stiffness, damping, damping ratio, overshoot), interruption and retargeting behaviour, rendering performance for animation (compositor-friendly properties, forced layout, will-change, INP) and reduced-motion handling. Use when crafting interactive components, defining design system motion tokens, choosing between easing and springs, auditing animation smoothness and motion accessibility, or adding live audio-reactive spectrum meters, optional sounds or media-clock cue overlays.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-motion-interaction/SKILL.md",
-      "digest": "sha256:983fe5ea871ccebda45251805c0a4e5478ef1d05fc606a7c02f130236d3247ec"
+      "digest": "sha256:6e8eca6d90f5f7885c26ab14c0d9014dbbea2cb1393a9be6d8009514e5b335cb"
     },
     {
       "name": "ui-onboarding-tours",
@@ -2785,14 +2785,14 @@
       "description": "Provides implementation mechanics for scroll-triggered and scroll-linked web motion: IntersectionObserver reveals, CSS scroll and view timelines (animation-timeline, animation-range, timeline-scope), GSAP ScrollTrigger, smooth-scroll libraries such as Lenis, parallax, sticky positioning, faux-horizontal sections, scroll snapping, overscroll control and canvas image sequences. Use when building scroll animations, scrubbed or pinned scenes, snap carousels, pull-to-refresh or scroll-driven image sequences, when sticky positioning does not stick, or when reviewing scroll motion for browser support, reduced motion or performance.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-scroll-driven-motion/SKILL.md",
-      "digest": "sha256:cd9afa89928c194deb493059fcf3cd18db444226a06cf4dd56956b47f8d02e3b"
+      "digest": "sha256:00cafa8853c7d5e965b061c1cec5274b40cfb06534314ca6ad30c847e2b4a1e5"
     },
     {
       "name": "ui-state-layout-transitions",
-      "description": "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself.",
+      "description": "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, layered cutouts and SVG relief, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-state-layout-transitions/SKILL.md",
-      "digest": "sha256:b49b9beb363ade808fec2f300fe95e3aab33d1d02d5d7f099519caea7a2ccda0"
+      "digest": "sha256:d8eae7d07d00dcee549b50836fe4f5dd438f594b245dac957ce2d507bcba96d7"
     },
     {
       "name": "ui-style-3d-immersive-webgl",
@@ -3020,10 +3020,10 @@
     },
     {
       "name": "ui-style-expressive-variable-typography",
-      "description": "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites.",
-      "type": "skill-md",
+      "description": "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites. Also covers color-font palettes and readable outline fallbacks.",
+      "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/SKILL.md",
-      "digest": "sha256:9cffbf482eef03b8323f8eef55b60d14d854aeba7a5ea79a932a22a0dfd80ff7"
+      "digest": "sha256:ab3b70a7ea9edd87b47d5dcbf9989e656da7240d8c1a4522278972102658bdcc"
     },
     {
       "name": "ui-style-flat-design",
@@ -3051,7 +3051,7 @@
       "description": "Provides the canonical Glassmorphism & Spatial UI style (2020-present): multi-layered frosted glass surfaces, backdrop-filter optical blur, 1px specular white border highlights, subtle drop shadows, and spatial depth inspired by macOS Big Sur and visionOS. Covers contrast remediation, layered scrim fallbacks, design tokens, and WCAG 2.2 compliance. Use when designing premium fintech dashboards, spatial computing interfaces, or modern operating system shells.",
       "type": "archive",
       "url": "knowledge/skills/domains/design/ui-style-glassmorphism/SKILL.md",
-      "digest": "sha256:da5ebcdd68bfdeb3a095724866c3b4f13ebf9aeea7d1e43c97ac1b5a918c0919"
+      "digest": "sha256:6adf3530984ec8303105e8a9694e55b1e57334547697fb7db8c22e49fa9e4cce"
     },
     {
       "name": "ui-style-glitch",
@@ -3457,7 +3457,7 @@
       "description": "Provides inclusive web accessibility practice based on WCAG 2.2 and inclusive design patterns, covering semantic HTML5 landmarks and headings, the first rule of ARIA, accessible forms and navigation, alt-text composition, captions and transcripts, contrast and color-independence, motion and animation accessibility (pause controls, flash thresholds, reduced-motion house policy, accessible animated text), keyboard and screen-reader verification, AI-generated accessibility audits and alt text, and inclusive meetings and presentations. Use when building, auditing or reviewing web interfaces for disabled users or when generating accessible code with AI.",
       "type": "skill-md",
       "url": "knowledge/skills/engineering/practices/web-accessibility-wcag/SKILL.md",
-      "digest": "sha256:91296bb2c2705ac06cccafa2c1db6d824f0126a693a9ac76584c027af73890d2"
+      "digest": "sha256:7ff0189804834ee1602f85864eaf9242552f454d682795c7f27cac1abbf28225"
     },
     {
       "name": "web-injection-classes",

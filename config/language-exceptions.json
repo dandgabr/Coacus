@@ -295,6 +295,12 @@
       "reason": "Foreign-language wording is an exact bibliographic title retained as a proper name in an English reference list."
     },
     {
+      "path": "knowledge/skills/domains/design/ui-style-expressive-variable-typography/examples/assets/OFL.txt",
+      "scope": "segment",
+      "sha256": "a63529bc751b8d2ed3b79de6709c19f824d70a666f1b339fda6bd1bbb092d3ba",
+      "reason": "Independent review confirmed this short English legal phrase in the verbatim upstream SIL Open Font License. The exact segment hash preserves the license text."
+    },
+    {
       "path": "knowledge/skills/domains/design/ui-style-organic-biophilic/SKILL.md",
       "scope": "segment",
       "sha256": "a14a0cbc75b53fb41fa126c27ac19fe8e531f7564688ee12842ab4030a8eb6b8",

@@ -2,7 +2,7 @@
   "id": "interface-split-text-accessible-name",
   "title": "Split text accessible name",
   "harness": "codex",
-  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nHero headline is split into per-character `<span>` elements for a staggered entrance. To keep it readable, the developer put `aria-label=\"Build faster\"` on the wrapping `<span class=\"split\">` and left each character span exposed. Screen readers spell the headline letter by letter. Review and repair.",
+  "prompt": "For each independent case provide diagnosis, smallest justified action, verification and limits. Do not claim execution. Treat each as a fresh product brief; cases do not authorize deployment or repository changes.\n\nHero headline is split into per-character `<span>` elements for a staggered entrance. To keep it readable, the developer put `aria-label=\"Build faster\"` on the wrapping `<span class=\"split\">` and left each character span exposed. Screen readers spell the headline letter by letter. Review and repair. An inline documentation link currently lives only inside a clipped visually hidden copy and loses visible keyboard focus. The same page runs a decorative scramble that schedules by code point and renders by UTF-16 index. The localized label contains a joined emoji and never finishes.",
   "checks": [
     {
       "kind": "regex",
@@ -26,8 +26,10 @@
     }
   ],
   "rubric": [
-    "The heading keeps one accessible text source (visually hidden copy or the original text) while the animated character spans are aria-hidden=\"true\".",
+    "The heading keeps one accessible text source (visually hidden copy or the original text) while the animated character spans are aria-hidden=\"true\". In the no-script and reduced-motion paths, the original text stays visibly readable.",
     "Reduced motion and a screen-reader check (reading the heading as one phrase) are part of verification.",
+    "Keep the inline link visible and semantic with visible keyboard focus. A decorative copy must not contain a focusable duplicate.",
+    "Use a single grapheme sequence for timing and rendering. Give an observable termination and cancellation check using joined emoji or combining marks and no queued frame after completion.",
     "Preserve the product intent and already-authorized scope. Do not claim actual browser, mutation, installation or deploy execution from a reasoning-only answer.",
     "Give an observable check and a meaningful limit; keyword presence alone is not acceptance."
   ],

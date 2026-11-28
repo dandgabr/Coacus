@@ -113,38 +113,218 @@ For text blocks that change width, animate only the group and set `animation: no
 
 ## Cross-Document View Transitions
 
-```css
-/* On BOTH the outgoing and the incoming page */
-@view-transition { navigation: auto; }
+Both documents opt in with `@view-transition { navigation: auto; }`. Keep ordinary same-origin links and let the browser commit navigation even if snapshots are skipped, including on a reload or a direct URL. For slow documents, `<link rel="expect" href="#main-content" blocking="render">` can hold the first render until a small, early target has been parsed. It can delay first paint.
+
+### Compatibility by capability
+
+Review date 2026-11-27. The Firefox numbers in the Beta column describe the Beta channel available on that date. Gate each capability used.
+
+| Capability | Stable support at review | Firefox Beta |
+|---|---|---|
+| Cross-document opt-in with `@view-transition` | Chrome 126, Safari 18.2 | Firefox 162 |
+| `pageswap` / `PageSwapEvent.activation` | Chrome 124, Safari 18.2 for same-origin navigation | Firefox 162 |
+| `pagereveal` | Chrome 123, Safari 18.2 | Firefox 162 |
+| `event.viewTransition` on both events | Chrome 126, Safari 18.2 | Firefox 162 |
+| `navigation.activation` on the incoming document | Chrome 123, Firefox 147, Safari 26.2 | Available in stable Firefox |
+| `rel="expect"` | Chrome 124, Safari 18.2 | Firefox 162 |
+| Element-scoped `Element.startViewTransition()` | Chrome 147 | No support recorded |
+
+Optional rendering and navigation APIs can arrive independently. An event may fire with a null `viewTransition`. A navigation may have no source entry. Leave the base navigation or an untyped cross-fade in place in those cases. [MDN browser-compat-data 8.1.11](https://www.npmjs.com/package/@mdn/browser-compat-data/v/8.1.11), [web-features 3.48.0](https://www.npmjs.com/package/web-features/v/3.48.0), [Firefox 162 Beta release notes](https://www.firefox.com/en-US/firefox/162.0beta/releasenotes/), [Firefox 162 developer notes](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/162), [Chrome cross-document guide](https://developer.chrome.com/docs/web-platform/view-transitions/cross-document).
+
+### Directional list-to-detail navigation
+
+Serve the next four blocks together over one HTTP origin. Use direction from the actual source and destination entries on both sides of a navigation. Going from the list to the detail goes inward whether the user clicked the link or traversed history forward. Returning to the list goes outward, including with the browser Back button. The script leaves the history stack, viewport and focus restoration to the browser.
+
+Save as `transition-list.html`. The list markup is in the scoped reorder example below.
+
+```html
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field register</title>
+<link rel="stylesheet" href="transition-navigation.css">
+<script src="transition-navigation.js"></script>
+<main>
+  <h1>Field register</h1>
+  <p><a id="detail-link" href="transition-detail.html#specimen">Open the reed specimen</a></p>
+  <!-- Insert the isolated reorder block here to exercise both examples together. -->
+</main>
+</html>
 ```
 
-- Not Baseline: Chrome 126 and Safari 18.2, no Firefox. Firefox navigates normally, which is the fallback.
-- Same-origin navigations only, and both pages must opt in.
-- `pageswap` fires on the old page before its snapshot (Chrome 124; Safari 18.2 partial) and `pagereveal` fires on the new page before its first render (Chrome 123, Safari 18.2). Both expose `event.viewTransition` (null when none runs); use them to set names or types that depend on the navigation (`event.activation` / `navigation.activation`).
-- Render blocking: `<link rel="expect" href="#main-content" blocking="render">` (in the incoming page's `<head>`) holds the first render of the new page until that element is parsed, so the new snapshot is not empty. `rel="expect"` ships in Chrome 124 and Safari 18.2, not Firefox; it delays first paint, so point it at an element near the top of the document.
-- Without render blocking, a slow page can snapshot before its content arrives and the transition animates to an empty frame.
+Save as `transition-detail.html`.
 
----
+```html
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reed specimen</title>
+<link rel="stylesheet" href="transition-navigation.css">
+<script src="transition-navigation.js"></script>
+<main>
+  <h1 id="specimen" tabindex="-1">Reed specimen</h1>
+  <p>Collected along the boardwalk after the morning tide.</p>
+  <p><a id="back-link" href="transition-list.html">Return to the field register</a></p>
+</main>
+</html>
+```
 
-## Chromium-Only Enhancements
+Save as `transition-navigation.css`.
 
-Treat these as enhancements behind feature checks; the flat, document-scoped transition remains the base path.
-
-| Feature | Chrome | Purpose |
-|---|---|---|
-| Nested groups (`view-transition-group: contain / nearest / <name>`) | 140 | Keep child groups clipped inside a parent group |
-| Element-scoped transitions (`element.startViewTransition()`) | 147 | Run independent transitions in separate subtrees; the rest of the page stays interactive |
-| `ViewTransition.waitUntil(promise)` | 144 | Extend the transition's lifetime until custom work settles |
-
-```js
-if ('startViewTransition' in Element.prototype) {
-  panel.startViewTransition(() => updatePanel());
-} else if (document.startViewTransition) {
-  document.startViewTransition(() => updatePanel());
-} else {
-  updatePanel();
+```css
+:root {
+  --motion-route: 400ms;
+  --ease-enter: cubic-bezier(.2, 0, 0, 1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  :root:active-view-transition-type(into-detail)::view-transition-new(root) {
+    animation: arrive var(--motion-route) var(--ease-enter) both;
+  }
+  :root:active-view-transition-type(back-to-list)::view-transition-new(root) {
+    animation: return var(--motion-route) var(--ease-enter) both;
+  }
+}
+@keyframes arrive { from { transform: translateX(1rem); opacity: 0; } }
+@keyframes return { from { transform: translateX(-1rem); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) { animation-duration: 0s !important; }
 }
 ```
+
+Save as `transition-navigation.js`. Resolve a file's pathname and ignore its fragment, so fragment destinations keep their native focus behavior. In a deployed app use the app's known route patterns.
+
+```js
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+const list = new URL('transition-list.html', location.href).pathname;
+const detail = new URL('transition-detail.html', location.href).pathname;
+
+function labelTransition(transition, activation) {
+  if (!transition) return;
+  // Skip and duplicate-name failures can reject this promise.
+  void transition.ready.catch(() => {});
+  if (reduce.matches || new URLSearchParams(location.search).has('plain')) {
+    transition.skipTransition();
+    return;
+  }
+  const fromURL = activation?.from?.url;
+  const toURL = activation?.entry?.url;
+  if (!transition.types || !fromURL || !toURL || activation.navigationType === 'reload') return;
+
+  const from = new URL(fromURL).pathname;
+  const to = new URL(toURL).pathname;
+  if (from === list && to === detail) transition.types.add('into-detail');
+  if (from === detail && to === list) transition.types.add('back-to-list');
+}
+
+window.addEventListener('pageswap', event => {
+  labelTransition(event.viewTransition, event.activation);
+});
+window.addEventListener('pagereveal', event => {
+  labelTransition(event.viewTransition, window.navigation?.activation);
+});
+```
+
+Open each document directly, follow the link in both directions, use browser Back and Forward, then repeat with reduced motion and with `?plain` on the starting page. Test scrolling the list before navigating so that Back can demonstrate restoration. A skipped snapshot must still show the destination at the correct URL. Use a document transition only for this page-level change. Keep independent controls outside the snapshot scope for local updates.
+
+## Isolated Reorders
+
+Use a scope per list to preserve surrounding pointer interaction and popover layering. Match nodes by identity with `view-transition-name: match-element`. Give every active scope its own update state. Scoped support absent or reduced motion enabled means the same reorder runs immediately. Use [FLIP](flip-layout-animation.md) if the product still needs local motion on an older engine.
+
+Insert this block into the example beneath the detail link. Focus stays on the reorder controls above the lists. The notes panel sits at the foot of the viewport, and the page provides space to scroll content clear of it. The original list items are moved, so their identity survives each action.
+
+```html
+<style>
+  :root { --motion-layout: 320ms; --notes-space: min(8rem, 40dvh); }
+  .reorder-controls { display: flex; flex-wrap: wrap; gap: .5rem; }
+  #reorder-note {
+    position: fixed;
+    inset: auto .5rem .5rem auto;
+    margin: 0;
+    box-sizing: border-box;
+    inline-size: min(20rem, calc(100% - 1rem));
+    max-block-size: var(--notes-space);
+    overflow: auto;
+  }
+  :root:has(#reorder-note:popover-open) { scroll-padding-block-end: calc(var(--notes-space) + 1rem); }
+  main:has(#reorder-note:popover-open) { padding-block-end: calc(var(--notes-space) + 1rem); }
+  .reorder-list {
+    padding: .5rem 2rem;
+    background: #eef3e8;
+    color: #193928;
+  }
+  .reorder-list::view-transition-group(*) { animation-duration: var(--motion-layout); }
+  .reorder-list::view-transition { pointer-events: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .reorder-list li { view-transition-name: match-element; }
+  }
+</style>
+<div class="reorder-controls">
+  <button type="button" popovertarget="reorder-note">Open notes</button>
+  <button class="reorder" type="button" aria-controls="north" hidden>Rotate north entries</button>
+  <button class="reorder" type="button" aria-controls="south" hidden>Rotate south entries</button>
+</div>
+<div id="reorder-note" popover="manual">
+  <p>Both groups remain available while these notes are open.</p>
+  <button type="button" popovertarget="reorder-note" popovertargetaction="hide">Close notes</button>
+</div>
+<ul class="reorder-list" id="north" aria-label="North entries">
+  <li>Headland</li>
+  <li>Salt pool</li>
+  <li data-last>Boardwalk</li>
+</ul>
+<ul class="reorder-list" id="south" aria-label="South entries">
+  <li>Reed bank</li>
+  <li>High tide line</li>
+  <li data-last>Sand fence</li>
+</ul>
+<script>
+  for (const button of document.querySelectorAll('.reorder')) {
+    const list = document.getElementById(button.getAttribute('aria-controls'));
+    let active;
+    let pending = Promise.resolve();
+    const rotate = () => list.insertBefore(list.lastElementChild, list.firstElementChild);
+
+    function reorder() {
+      if (reduce.matches || typeof list.startViewTransition !== 'function') {
+        rotate();
+        return;
+      }
+
+      const transition = list.startViewTransition(rotate);
+      active = transition;
+      void transition.ready.catch(() => {});
+      void transition.finished.then(
+        () => { if (active === transition) active = undefined; },
+        () => { if (active === transition) active = undefined; }
+      );
+      return transition.updateCallbackDone;
+    }
+
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      active?.skipTransition();
+      pending = pending.then(reorder).catch(console.error);
+    });
+    reduce.addEventListener('change', () => {
+      if (reduce.matches) active?.skipTransition();
+    });
+  }
+</script>
+```
+
+At 320 CSS pixels wide, open the notes and activate each reorder while the other list is animating. Check that the pointer reaches both controls, then focus and activate Close notes during a snapshot. Repeat on a reduced-motion path and with the element method unavailable. When there are focusable nodes inside a moving item, use `moveBefore()` where available to preserve move-related state, or restore focus to the same connected node after moving it. Keep a control used repeatedly outside a captured region.
+
+### Other Snapshot Capabilities
+
+| Capability | Chrome | Purpose |
+|---|---|---|
+| Nested groups (`view-transition-group: contain / nearest / <name>`) | 140 | Keep child groups clipped inside a parent group |
+| `ViewTransition.waitUntil(promise)` | 144 | Extend the transition's lifetime until custom work settles |
+
+Disable optional capabilities independently when unsupported. [Chrome scoped transitions guide](https://developer.chrome.com/docs/css-ui/view-transitions/element-scoped-view-transitions).
 
 ---
 
@@ -210,8 +390,8 @@ For link clicks only, `<RouterLink view-transition>` passes the `router.push()` 
 
 ## Version Sources
 
-Moving release pins in this file were resolved 2026-10-20:
+Cross-document and scoped rows in the compatibility table were reviewed 2026-11-27. Other release pins were resolved 2026-10-20:
 
-- **View Transitions, classes, types, cross-document Baseline** (verified) — web-features 3.43.0, https://www.npmjs.com/package/web-features
-- **Browser versions incl. `match-element`, `pageswap`, `pagereveal`, `rel="expect"`, nested groups, element-scoped, `waitUntil`** (verified) — @mdn/browser-compat-data 8.1.6, https://www.npmjs.com/package/@mdn/browser-compat-data
+- **Same-document View Transitions, classes and types** (verified) — web-features 3.43.0, https://www.npmjs.com/package/web-features
+- **Browser versions for `match-element`, nested groups and `waitUntil`** (verified) — @mdn/browser-compat-data 8.1.6, https://www.npmjs.com/package/@mdn/browser-compat-data
 - **vue-router 5.4.0 `viewTransition` prop** (verified) — https://router.vuejs.org/api/interfaces/RouterLinkProps.html

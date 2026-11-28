@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color font palette specimen</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; color: #172033; background: #edf0f6; }
+    main { max-inline-size: 65rem; margin-inline: auto; padding: clamp(1rem, 4vw, 3rem); }
+    section { padding: clamp(1rem, 4vw, 2rem); margin-block: 1rem; border: 1px solid; }
+    .day { color: #172033; background: #fff; }
+    .night { color: #f1f5ff; background: #141c32; }
+    .specimen {
+      margin-block: .35em;
+      font-family: system-ui, sans-serif;
+      font-size: clamp(2rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+    @font-face {
+      font-family: "Coacus Color Specimen";
+      src: url("./assets/coacus-color-specimen.woff2") format("woff2") tech(color-COLRv1);
+      font-display: swap;
+    }
+    @font-palette-values --day-ink {
+      font-family: "Coacus Color Specimen";
+      base-palette: 0;
+      override-colors: 0 #172033, 1 #28368c, 2 #503481, 3 #145d5b, 4 #352266,
+        5 #654273, 6 #28368c, 7 #503481, 8 #172033, 9 #145d5b;
+    }
+    @font-palette-values --night-ink {
+      font-family: "Coacus Color Specimen";
+      base-palette: 0;
+      override-colors: 0 #f1f5ff, 1 #bdd7ff, 2 #d7c4ff, 3 #9eeaeb, 4 #f8caf0,
+        5 #d7c4ff, 6 #bdd7ff, 7 #9eeaeb, 8 #f1f5ff, 9 #f8caf0;
+    }
+    @supports font-tech(color-COLRv1) and (font-palette: normal) {
+      .specimen { font-family: "Coacus Color Specimen", system-ui, sans-serif; }
+      .day .specimen { font-palette: --day-ink; }
+      .night .specimen { font-palette: --night-ink; }
+    }
+    @media (forced-colors: active) {
+      .day .specimen, .night .specimen {
+        font-family: system-ui, sans-serif; font-palette: normal; color: CanvasText;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Choose colors for each surface</h1>
+    <section class="day" aria-label="Light surface">
+      <h2 class="specimen">INK</h2>
+    </section>
+    <section class="night" aria-label="Dark surface">
+      <h2 class="specimen">A BRIGHTER COLOR PALETTE</h2>
+    </section>
+  </main>
+</body>
+</html>
