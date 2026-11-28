@@ -59,6 +59,14 @@ Measure the real header height with a `ResizeObserver` into `--header-height` wh
 
 ---
 
+### Stacked cards
+
+Keep the stack in normal flow by default. In the [stack example](../examples/scroll-effects.html), every list item reserves its full height. Within the supported, motion-allowed branch, each item sticks at a progressively larger inset. The next card's named view timeline scales the current card's inner sheet during the next card's entry. Transform the inner sheet so scale leaves the sticky box, offsets and scroll geometry unchanged. The last sheet has no scale animation.
+
+Use explicit timeline names across siblings. Gate sticky positioning and sheet scale together on both capability and `prefers-reduced-motion: no-preference`. Confirm that the animation reaches its endpoint before its source sticks. Resize and scroll backward from the middle. At short viewport heights, disable the stack when the ledges plus a sheet would exceed the scrollport. Keep interactive controls outside the overlap. For interactive cards, prefer the in-flow layout unless keyboard focus reveals the entire focused control without a scroll jump.
+
+[Stacking card geometry reference](https://scroll-driven-animations.style/demos/stacking-cards/css/)
+
 ## 2. Faux-horizontal section
 
 Vertical scrolling drives horizontal travel of a track. Gate it first (see the "Default: No" box in [the skill](../SKILL.md)). The base layout is a vertical list; the enhancement only applies on wide viewports without a reduced-motion preference.
@@ -209,23 +217,14 @@ Below the breakpoint, or with reduced motion, the media query fails and the base
 
 ### Tracking the current item
 
-```js
-const setCurrent = (el) => { /* update aria-current, dots, buttons */ };
+- **Pending preview:** `scrollsnapchanging` can show a transient marker during the gesture. Screen reader state, linked content and selected controls stay on the committed item.
+- **Settled selection:** Read `scrollsnapchange` on the scroller. Use `snapTargetBlock` for the block axis and `snapTargetInline` for the inline axis. Ignore null or unknown targets. Keep a `scrollend` geometry check for initial or unsnapped positions and for engines without snap events. Where `scrollend` is also unavailable, debounce a passive `scroll` listener. That delay approximates settling.
+- **Geometry:** Compare items against the scrollport's logical leading edge, including scroll padding. A tall item that contains that edge remains current while the user reads through it. If there is a gap, choose the nearest visible item. Recompute after restoration and relevant resize or content changes.
+- **Semantics:** Keep real anchor or button destinations. Apply `aria-current="location"` to the one matching anchor and leave keyboard focus where the user put it. Avoid announcing each transient scroll position. Remove listeners and cancel a pending timer on teardown.
 
-if ('onscrollsnapchange' in window) {
-  carousel.addEventListener('scrollsnapchange', (event) => setCurrent(event.snapTargetInline));
-} else if ('onscrollend' in window) {
-  carousel.addEventListener('scrollend', () => setCurrent(nearestItem(carousel)));
-} else {
-  let timer;
-  carousel.addEventListener('scroll', () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => setCurrent(nearestItem(carousel)), 120);
-  }, { passive: true });
-}
-```
+The [scroll effects example](../examples/scroll-effects.html) shows a block-axis scroller. Its proximity snap preserves access to the bottom of a tall chapter, and its anchor navigation works without the selection script. Test normal scrolling, `?fallback`, a focused deep link and a reload inside the tall chapter.
 
-`scrollsnapchanging` fires during the gesture with the pending target, useful for previews.
+[Chrome scroll snap state sync](https://developer.chrome.com/docs/modern-web-guidance/guides/ui-behaviors/scroll-snap-state-sync)
 
 ### Buttons are the base path (2.5.7)
 
@@ -328,3 +327,5 @@ Moving release pins in this file were resolved 2026-10-20 against web-features 3
 - **`scrollbar-gutter`** (verified) — Baseline newly available 2024-12-11
 - **gsap 3.15.0** (verified) — https://registry.npmjs.org/gsap ; `containerAnimation` requires `ease: "none"` and cannot pin or snap per https://gsap.com/docs/v3/Plugins/ScrollTrigger/
 - **Alternative text in `content` with `attr()` for `::scroll-marker` names** (unverified) — not covered by BCD at this granularity; confirm in the accessibility tree
+
+Proximity snapping can also move focusable content inside a tall section out of view. In the [scroll fixture](../examples/scroll-effects.html), disable snapping for interior fragments and reveal the target again when history changes. Without script, leave the chapters in ordinary document flow. Keep other chapter navigation and progress enhancement independent of the deep-link handling. Test the focused element within both the viewport and the clipping ancestor, including Back navigation.

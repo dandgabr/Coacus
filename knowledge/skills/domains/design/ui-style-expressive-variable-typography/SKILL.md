@@ -1,6 +1,6 @@
 ---
 name: "ui-style-expressive-variable-typography"
-description: "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites."
+description: "Provides the expressive variable typography, big-type minimalism and monumental anti-hero UI style (2016-present): one variable font file used aggressively, colossal viewport-filling typography, zero decorative images, optical sizing and fluid clamp() scales. Covers OpenType 1.8 axes, anti-hero layout philosophy, reflow-safe animation and accessibility. Use when building type-led design systems, architectural portfolios or statement editorial sites. Also covers color-font palettes and readable outline fallbacks."
 ---
 
 # UI Style: Expressive Variable Typography & Monumental Anti-Hero
@@ -346,9 +346,9 @@ Typography is the complete identity of the interface:
 ## ♿ Accessibility & Environmental Contrast
 
 - **WCAG 2.2 Strict Contrast Math:**
-  - Carbon Black (`#141414`) over Plaster White (`#FBFBF9`) yields a monumental **15.6:1** contrast ratio (WCAG AAA).
-  - Terracotta accent (`#C8643B`) over Plaster White yields **4.9:1** (conforming to WCAG AA for normal text).
-- **Zero Layout Shift (CLS Guarantee):** Animating font weight with traditional font files shifts character widths, causing disastrous reflows and failing Core Web Vitals. Variable fonts prevent this: use the `GRAD` axis or ensure containers maintain fixed min-heights.
+  - Carbon Black (`#141414`) over Plaster White (`#FBFBF9`) yields a monumental **17.78:1** contrast ratio (WCAG AAA).
+  - Terracotta accent (`#C8643B`) over Plaster White yields **3.79:1** (meets the large-text AA threshold). Use a darker accent or Carbon Black for normal body text.
+- **Layout stability:** Check advance widths and actual line geometry in the selected font before and after a weight or grade change. Some grade axes preserve advance widths. Measure layout when the font swaps, and allow the container to grow if a translation wraps.
 - **Fluid Scalability:** Large headlines set in `clamp()` must cleanly zoom to 200% without clipping or colliding with neighboring DOM elements.
 
 ---
@@ -383,10 +383,12 @@ Typography is the complete identity of the interface:
 
 Require font-supported axes and check glyph extents after font readiness, language and hover at actual monument width; describe GRAD as avoiding advance-width changes rather than guaranteeing measured CLS, and let footer/actions reflow in shallow owners.
 
+For multicolor glyphs and theme palettes, read [color font effects](references/color-font-effects.md). The recipe keeps text selectable and exercises outline fallback, font-load failure and forced colors.
+
 ## Version Sources
 
 Moving release pins in this skill were resolved 2026-10-20 (Baseline from web-features 3.43.0, browser support from MDN BCD 8.1.6):
 
 - **Registered custom properties (`@property`)** — Baseline 2024-07-09; Chrome 85, Firefox 128, Safari 16.4 (verified) — https://github.com/mdn/browser-compat-data
-- **Scroll-driven animations (`animation-timeline`, `view()`, `animation-range`)** — Limited availability: Chrome 115, Safari 26, Firefox preview only (verified) — https://web-platform-dx.github.io/web-features-explorer/
+- **Scroll-driven animations (`animation-timeline`, `view()`, `animation-range`)** — Firefox 159 enabled core timelines and ranges by default on 2026-10-27 (reviewed 2026-11-27). See [Mozilla release notes](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/159) and the [scroll compatibility table](../ui-scroll-driven-motion/SKILL.md).
 - **`font-variation-settings`** — Baseline widely available (verified) — https://web-platform-dx.github.io/web-features-explorer/

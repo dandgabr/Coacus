@@ -56,6 +56,11 @@ For layered surfaces and appearance changes, use [painted contrast audits](../..
 
 - Captions include non-speech sound cues and speaker identification; treat auto-generated captions as drafts that miss context and sound cues.
 - Provide transcripts with timestamps so content is searchable and jumpable; remember many deaf users read the majority language as a second language.
+- Keep native caption tracks and keyboard-operable media controls available.
+  For meaningful timed visuals, provide a descriptive transcript or other
+  appropriate media alternative. Keep optional sounds off until opt-in and
+  convey every result in text or semantic state. For synchronized annotations,
+  use [media-clock overlays](../../../domains/design/ui-motion-interaction/references/media-clock-overlays.md).
 - Never rely on color alone to encode meaning; pair color with underline, bold, patterns or position. Roughly one in twelve men is color-blind.
 - Contrast minimums: 4.5:1 for normal text, 3:1 for large text; verify both light and dark modes.
 

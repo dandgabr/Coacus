@@ -172,7 +172,7 @@ document.getAnimations();     // every animation in the document
 
 Avoid leaving `fill: "forwards"` animations piling up; commit and cancel instead.
 
-Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Scroll-driven animations are not Baseline (support matrix in the scroll skill): feature-detect with `"ScrollTimeline" in window` and keep a static or IntersectionObserver fallback. Depth on scroll-linked motion belongs to [ui-scroll-driven-motion](../../ui-scroll-driven-motion/SKILL.md).
+Scroll timelines in script: `new ScrollTimeline({ source, axis })` and `new ViewTimeline({ subject, axis, inset })`, passed as `timeline` to `element.animate()`. Detect the constructor you actually use, `ScrollTimeline` for a scroll source or `ViewTimeline` for a subject. Keep a static path when absent. IntersectionObserver is an option when the intended result is a threshold change. Depth on scroll-linked motion belongs to [ui-scroll-driven-motion](../../ui-scroll-driven-motion/SKILL.md).
 
 ## 6. Motion tokens and choreography
 
@@ -227,7 +227,7 @@ For character and sprite motion review, use [game-animation-qa-motion](../../../
 Moving release pins in this file were resolved 2026-10-20:
 
 - **CSS `linear()` easing** (verified) — Baseline newly available December 2023, widely available June 2026 (Chrome 113, Firefox 112, Safari 17.2) — web-features 3.43.0 and MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
-- **Scroll-driven animations / `ScrollTimeline` / `ViewTimeline`** (verified) — Limited availability: Chrome 115, Safari 26, Firefox preview only — MDN BCD 8.1.6, https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline
+- **WAAPI `ScrollTimeline()` and `ViewTimeline()`** (reviewed 2026-11-27) — Chrome 115, Firefox 159 and Safari 26. Both reached Baseline newly available with the Firefox release on 2026-10-27. [Mozilla release notes](https://www.firefox.com/en-US/firefox/159.0/releasenotes/), [MDN browser-compat-data 8.1.11](https://www.npmjs.com/package/@mdn/browser-compat-data/v/8.1.11), [web-features 3.48.0](https://www.npmjs.com/package/web-features/v/3.48.0).
 - **Motion `spring` options** (verified) — motion 14.4.0 (2026-10-19), https://motion.dev/docs/spring and https://motion.dev/changelog
 - **Material 3 Expressive Compose motion scheme values** (verified) — androidx-main `MotionScheme.kt`, https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/MotionScheme.kt
 - **DTCG Format Module 2025.10** (verified) — Stable, published 2025-10-28, https://www.designtokens.org/TR/2025.10/format/

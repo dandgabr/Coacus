@@ -1,6 +1,6 @@
 ---
 name: "ui-state-layout-transitions"
-description: "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself."
+description: "Provides the mechanics for animating UI state and layout changes on the web: same-document and cross-document View Transitions, FLIP and shared-element layout animation (vanilla WAAPI, GSAP Flip, Motion layout and layoutId), entry and exit primitives (@starting-style, transition-behavior: allow-discrete, popover and dialog), auto-height accordions, clip-path and mask reveals, layered cutouts and SVG relief, skeleton and shimmer loaders, and SVG morphing and line drawing. Use when building a page transition or shared element transition, when a list reorders, a card expands into a detail view, a route or tab changes, an overlay opens or closes, a panel collapses, content loads behind a skeleton loader, or an SVG path must morph or draw itself."
 tags:
   - view-transitions
   - flip-animation
@@ -33,12 +33,14 @@ A state transition explains a change: where an element went, what replaced it, w
 | State change | Technique | Reference |
 |---|---|---|
 | Whole view or region swaps (tab, filter result, SPA route) | Same-document View Transition (`document.startViewTransition`) | [view-transitions.md](references/view-transitions.md) |
-| Multi-page site navigation, same origin | Cross-document View Transition (`@view-transition { navigation: auto; }`) | [view-transitions.md](references/view-transitions.md) |
+| Multi-page site navigation, same origin | Cross-document View Transition with optional navigation direction | [directional navigation](references/view-transitions.md#directional-list-to-detail-navigation) |
+| Separate regions reorder beneath active controls or an open popover | Element-scoped View Transitions | [isolated reorders](references/view-transitions.md#isolated-reorders) |
 | Items move inside a live, interactive layout (reorder, grid reflow, expand in place) | FLIP / layout animation (WAAPI, GSAP Flip, Motion `layout`) | [flip-layout-animation.md](references/flip-layout-animation.md) |
 | Element is inserted or shown for the first time | `@starting-style` entry transition | [reveal-collapse-loading.md](references/reveal-collapse-loading.md) |
 | Element leaves via `display: none`, popover or `<dialog>` close | Discrete exit with `transition-behavior: allow-discrete` (+ `overlay` in Chromium) | [reveal-collapse-loading.md](references/reveal-collapse-loading.md) |
 | Panel opens to intrinsic height | Grid `0fr ↔ 1fr` accordion; `<details>` with `::details-content` | [reveal-collapse-loading.md](references/reveal-collapse-loading.md) |
 | Section or media reveals | `clip-path` / `mask-image` reveal | [reveal-collapse-loading.md](references/reveal-collapse-loading.md) |
+| Decorative cutout, layered mask or embossed emblem | CSS mask composition or SVG filter primitives | [CSS and SVG compositing](references/css-svg-compositing.md) |
 | Data is in flight | Skeleton matching the final layout, optional shimmer | [reveal-collapse-loading.md](references/reveal-collapse-loading.md) |
 | Icon or shape changes form, outline traces itself | SVG `d` morph / MorphSVG; `stroke-dashoffset` line drawing | [svg-path-animation.md](references/svg-path-animation.md) |
 
@@ -54,8 +56,8 @@ Resolved against web-features and MDN browser-compat-data (see Version Sources).
 |---|---|---|
 | Same-document View Transitions | Baseline newly available 2025-10-14 (Chrome 111, Firefox 144, Safari 18) | Call the update directly; the DOM changes instantly |
 | `view-transition-class`, transition types | Baseline newly 2025-10-14 / 2026-01-13 | Style by `view-transition-name` only |
-| Cross-document View Transitions | Not Baseline: Chrome 126, Safari 18.2, no Firefox | Normal navigation |
-| Nested groups, element-scoped transitions, `waitUntil()` | Chromium only (140 / 147 / 144) | Document-scoped flat transition |
+| Cross-document View Transitions | Limited in stable releases: Chrome 126, Safari 18.2. Firefox 162 Beta | Normal navigation |
+| Nested groups, element-scoped transitions, `waitUntil()` | Chrome 140 / 147 / 144 | Instant update or FLIP for an isolated reorder |
 | `@starting-style`, `transition-behavior` | Baseline newly 2024-08-06 | Element appears without transition |
 | Transitioning `display` | Chrome 117, Safari 18; not Firefox | Exit is instant in Firefox |
 | `overlay` property | Chrome 117 only | Top-layer exit snaps closed |
@@ -113,7 +115,7 @@ The canonical success criteria, levels and tests are in the "Motion and Animatio
 
 ## Version Sources
 
-Moving release pins in this file were resolved 2026-10-20:
+Cross-document and scoped support was reviewed 2026-11-27. See [View Transitions compatibility](references/view-transitions.md#cross-document-view-transitions). Other release pins were resolved 2026-10-20:
 
 - **Baseline statuses** (verified) — web-features 3.43.0, https://www.npmjs.com/package/web-features
 - **Browser versions** (verified) — @mdn/browser-compat-data 8.1.6 (2026-10-15), https://www.npmjs.com/package/@mdn/browser-compat-data

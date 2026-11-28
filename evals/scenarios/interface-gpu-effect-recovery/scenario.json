@@ -1,0 +1,21 @@
+{
+  "id": "interface-gpu-effect-recovery",
+  "title": "GPU effect recovery and rendering evidence",
+  "harness": "codex",
+  "prompt": "Review this implementation and propose the smallest repair plus a browser test plan. A product page shows pointer-driven ink and a button that reveals a second GPU landscape. The ink update samples the float texture currently attached to its draw framebuffer. Startup waits for the renderer, which reports a WebGL fallback, and then removes the DOM poster. Resize replaces the framebuffer but checks only for the float extension. Context loss leaves the animation loop running; restoration reuses cached texture handles. In a hidden tab the loop relies on browser throttling. Toggling the scene midway restarts the mask at zero. The button and scene name must remain usable with reduced motion and when graphics fail. The only performance evidence so far is frame callback timestamps from a software-rendered browser. Review only. Do not change the repository or claim to run these checks.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)(framebuffer|render target)",
+      "reason": "Routing-level signal only. Score effect behavior and verification against the rubric."
+    }
+  ],
+  "rubric": [
+    "Separate previous-frame reads and next-frame writes, swap after the update, and specify resize reallocation, bounded simulation and numerical or pixel evidence of transport and decay.",
+    "Keep a semantic poster and live controls available, verify the actual float framebuffer rather than relying on renderer selection or extension presence, and distinguish initialization failure from context loss after a successful frame.",
+    "Cancel on hidden, offscreen, loss and teardown. Check actual submission counts, a positive single-chain resume, rejection of stale initialization and new handles on a bounded recovery attempt.",
+    "Compose two current images at intermediate progress, draw only the active image at each endpoint and preserve visible progress on reversal. Use rendered endpoint, midpoint and resize oracles and provide an immediate reduced-motion or unavailable-GPU swap.",
+    "Distinguish frame cadence from CPU submission and GPU execution time, identify the software renderer evidence limit, and make no unsupported execution claim."
+  ],
+  "acceptance": "The answer repairs the state, lifecycle and fallback without widening scope, and provides checks that can distinguish correct visual output and resource behavior from superficial success."
+}

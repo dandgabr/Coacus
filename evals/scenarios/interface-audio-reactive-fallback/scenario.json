@@ -1,0 +1,32 @@
+{
+  "id": "interface-audio-reactive-fallback",
+  "title": "Live audio fallback and media boundaries",
+  "harness": "codex",
+  "prompt": "For each independent case explain diagnosis, the smallest justified action, verification and limits. Give advice only.\n\n1. A customer starts a music spectrum monitor with keyboard or touch. On some visits play rejects, a panel can disappear while play is pending, and users can change their reduced-motion preference mid-song. A Bookmark button needs optional audio feedback. Describe how the interface should behave.\n\n2. A product section scrubs a silent clip from page progress. A teammate says video always uses less bandwidth and wants a soundtrack to follow scroll. Decide what to keep and how to compare delivery formats.\n\n3. A prerecorded product lesson needs topic labels as the viewer seeks in either direction and adjusts playback rate. It already has user-selectable captions. Choose how to implement labels and when a video frame callback is appropriate.",
+  "checks": [
+    {
+      "kind": "regex",
+      "value": "(?i)analyser(node)?|get(Byte|Float)FrequencyData",
+      "reason": "The plan must explain the live frequency analysis path."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)reduced.motion",
+      "reason": "The runtime preference needs an explicit fallback."
+    },
+    {
+      "kind": "regex",
+      "value": "(?i)cuechange|activeCues",
+      "reason": "Timed labels should follow the cue state on the media clock."
+    }
+  ],
+  "rubric": [
+    "Separate explicit activation, asynchronous playback, audio output and frame work. Handle rejection and retry; a late resolution after stop or unmount cannot start a source or loop. Reduced motion preserves an understandable static state while the user controls audio.",
+    "Default to silent with opt-in audio cues, one per committed bookmark and no cue when muted or disposed. Keep visible and programmatic confirmation of the bookmark and an audio fallback or meaningful text.",
+    "Keep scroll scrubbing visually driven and silent; compare transferred bytes, decoded memory and seek latency at comparable quality. Include a native-control or static fallback.",
+    "Derive annotations from current metadata cues, with native captions independent. Verify initial playback, seeks including cue-free gaps, pause and rate changes. Reserve a video frame callback for actual frame alignment.",
+    "Provide observable checks and evidence limits. Do not claim browser execution.",
+    "If separate playback controls disable themselves, preserve visible keyboard focus during a pending start, move it when the focused control becomes unavailable, and keep the focused starting action available when playback is rejected."
+  ],
+  "acceptance": "Correctly route all three cases and preserve user control and semantic fallbacks under playback, lifecycle and compatibility failures."
+}

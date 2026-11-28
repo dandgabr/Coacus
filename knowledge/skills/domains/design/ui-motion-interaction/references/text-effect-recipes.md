@@ -8,8 +8,8 @@ Animated fragments are presentation; the accessible name is the real sentence.
 
 ```html
 <h1 class="fx-text">
-  <span class="visually-hidden">Ship faster with fewer regressions</span>
-  <span class="fx-text__visual" aria-hidden="true"><!-- split / scrambled / typed fragments --></span>
+  <span class="fx-text__source">Ship faster with fewer regressions</span>
+  <span class="fx-text__visual" aria-hidden="true" hidden></span>
 </h1>
 ```
 
@@ -23,29 +23,55 @@ Animated fragments are presentation; the accessible name is the real sentence.
 
 - One visually-hidden full copy plus `aria-hidden="true"` on the animated fragments. Screen readers read one continuous sentence; per-character spans otherwise read as letters or stutter.
 - Never put `aria-label` on a generic `span`, `div` or `p`: ARIA 1.2 prohibits naming those roles and assistive technology ignores it inconsistently.
-- Links or emphasis inside the text must live in the visually-hidden copy (real, focusable) and only as styling in the visual copy, or the text must not be split.
+- Keep links and other interactive descendants visible and native. Animate a separate plain-text descendant when practical. Leave the whole phrase intact if splitting would hide focus, flatten meaningful markup or disrupt contextual shaping.
 - Never announce intermediate states. No `aria-live` on anything that changes per frame.
-- Without JavaScript, or before the effect runs, the final text must already be visible. Hide fragments, not content.
+- Render the source visibly by default and keep the decorative copy hidden. After the enhancement is ready, give the source the visually-hidden class and reveal the populated copy. Restore the visible source and hide the copy on completion, failure or teardown.
 
 ## Split text
 
 Split only after web fonts load, or line breaks are computed with fallback metrics and break again when the real font swaps in.
 
 ```js
-await document.fonts.ready;
-const split = SplitText.create('.fx-text__visual', {
-  type: 'words, chars',    // no 'lines': breaks are not frozen, so no autoSplit needed
-  aria: 'hidden',          // we provide the visually-hidden copy ourselves
-  mask: 'words',           // wrapper with clipping for slide-up reveals
-  onSplit(self) {          // build animations here; returning one lets revert() kill it
-    return gsap.from(self.chars, {
-      yPercent: 100, opacity: 0, duration: motionMs('--motion-layout') / 1000, ease: 'power3.out',
-      stagger: { amount: 0.4 },
+async function enhanceHeading(heading) {
+  const source = heading.querySelector('.fx-text__source');
+  const visual = heading.querySelector('.fx-text__visual');
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const duration = motionMs('--motion-layout') / 1000;
+  if (!source || !visual || source.childElementCount || !(duration > 0) ||
+      preference.matches) return () => {};
+
+  await document.fonts.ready;
+  if (!heading.isConnected || preference.matches) return () => {};
+
+  let split;
+  function restore() {
+    preference.removeEventListener('change', restore);
+    source.classList.remove('visually-hidden');
+    visual.hidden = true;
+    split?.revert();
+    split = undefined;
+  }
+  visual.textContent = source.textContent;
+  visual.hidden = false;
+  try {
+    split = SplitText.create(visual, {
+      type: 'words, chars',
+      aria: 'hidden',
+      mask: 'words',
+      onSplit(self) {
+        return gsap.from(self.chars, {
+          yPercent: 100, opacity: 0, duration, ease: 'power3.out',
+          stagger: { amount: 0.4 }, onComplete: () => queueMicrotask(restore),
+        });
+      },
     });
-  },
-});
-// On teardown (route change, unmount):
-split.revert();            // restores the original markup and kills the returned animation
+    source.classList.add('visually-hidden');
+    preference.addEventListener('change', restore);
+  } catch {
+    restore();
+  }
+  return restore; // Call on teardown. Remove the heading before a pending font wait resolves.
+}
 ```
 
 GSAP SplitText options that matter (rewritten in 3.13, free since then):
@@ -107,24 +133,53 @@ Prefer `amount` (total budget) over `each` for lists of unknown length. Reduced 
 Characters cycle through random glyphs and resolve left to right into the final string. Decorative; the final text must be accessible from the start.
 
 ```js
-function scramble(visualEl, finalText, { duration = motionMs('--motion-narrative'), chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' } = {}) {
+function scramble(visualEl, finalText, {
+  duration = motionMs('--motion-narrative'),
+  chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+} = {}) {
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  visualEl.textContent = finalText;
+  if (preference.matches || !Number.isFinite(duration) || duration <= 0 ||
+      !finalText || !chars || typeof Intl.Segmenter !== 'function') return () => {};
+
+  const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+  const glyphs = Array.from(segmenter.segment(finalText), entry => entry.segment);
+  const substitutes = Array.from(segmenter.segment(chars), entry => entry.segment);
   const start = performance.now();
-  // Each character resolves at a staggered time across the first 70% of the run.
-  const resolveAt = [...finalText].map((_, i) => (i / finalText.length) * 0.7 * duration + Math.random() * 0.3 * duration);
-  let frame = 0;
-  const tick = (now) => {
-    const t = now - start;
-    let out = '', done = true;
-    for (let i = 0; i < finalText.length; i++) {
-      const ch = finalText[i];
-      if (ch === ' ' || t >= resolveAt[i]) out += ch;
-      else { done = false; out += chars[(Math.random() * chars.length) | 0]; }
+  const resolveAt = glyphs.map((_, index) =>
+    duration * (0.7 * index / glyphs.length + 0.3 * Math.random())
+  );
+  let frame = null;
+
+  function finish() {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    preference.removeEventListener('change', preferenceChanged);
+    visualEl.textContent = finalText;
+  }
+
+  function preferenceChanged() {
+    if (preference.matches) finish();
+  }
+
+  function tick(now) {
+    frame = null;
+    const elapsed = now - start;
+    if (elapsed >= duration || resolveAt.every(time => time <= elapsed)) {
+      finish();
+      return;
     }
-    visualEl.textContent = out;                   // visual copy is aria-hidden
-    frame = done ? 0 : requestAnimationFrame(tick);
-  };
+
+    visualEl.textContent = glyphs.map((glyph, index) => {
+      if (/^\s+$/u.test(glyph) || elapsed >= resolveAt[index]) return glyph;
+      return substitutes[Math.floor(Math.random() * substitutes.length)];
+    }).join('');
+    frame = requestAnimationFrame(tick);
+  }
+
+  preference.addEventListener('change', preferenceChanged);
   frame = requestAnimationFrame(tick);
-  return () => { cancelAnimationFrame(frame); visualEl.textContent = finalText; };
+  return finish;
 }
 ```
 
@@ -132,6 +187,7 @@ GSAP's ScrambleTextPlugin (free) does the same with `scrambleText: { text, chars
 
 Pitfalls:
 
+- Use one grapheme sequence for scheduling and rendering. If segmentation is unavailable, retain the complete text. For contextual scripts, keep native shaping with a whole-word effect or static text.
 - Use a monospace font, or fix each character cell width, or the line width jitters every frame and reflows the surrounding layout.
 - Keep the final text in the visually-hidden copy; never `aria-live`, which would announce every random frame.
 - A looping or repeating scramble that runs longer than 5 seconds needs a visible pause/stop control (SC 2.2.2).

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decorative compositing</title>
+<script>
+  if (new URLSearchParams(location.search).has('plain')) {
+    document.documentElement.classList.add('plain');
+  }
+</script>
+<style>
+  :root { color: #132f31; background: #fcf9ec; font: 100%/1.5 system-ui; }
+  body { max-inline-size: 53rem; padding-inline: 1rem; margin: 2rem auto; }
+  .samples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+  .sample {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: .75rem;
+    block-size: 11rem;
+    border: 2px solid currentColor;
+    border-radius: 1rem;
+    background: #fcf9ec;
+    color: #132f31;
+    font-weight: bold;
+  }
+  a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+  .sample::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    padding: 8px;
+    border-radius: .65rem;
+    pointer-events: none;
+  }
+  .sample svg { inline-size: 6rem; block-size: 5rem; }
+  .lighting { display: none; }
+
+  @media (forced-colors: none) {
+    @supports (mask-composite: subtract) and (mask-mode: luminance) {
+      :root:not(.plain) :is(#alpha, #luminance.mask-ready)::before {
+        background: linear-gradient(125deg, #ffae35, #b55324 46%, #236d72);
+        mask-repeat: no-repeat;
+        mask-clip: border-box, content-box;
+        mask-origin: border-box, content-box;
+        mask-composite: subtract;
+      }
+      :root:not(.plain) #alpha::before {
+        mask-image: linear-gradient(black, black), linear-gradient(black, black);
+        mask-mode: alpha, alpha;
+      }
+      :root:not(.plain) #luminance.mask-ready::before {
+        mask-image: url("compositing-mask.svg"), linear-gradient(white, white);
+        mask-size: 100% 100%, auto;
+        mask-mode: luminance, luminance;
+      }
+    }
+    @supports (filter: url("#relief-graph")) {
+      :root:not(.plain) .lighting { display: inline; filter: url("#relief-graph"); }
+    }
+  }
+  @media (forced-colors: active) {
+    a:focus-visible { outline-color: Highlight; }
+    #relief svg { fill: LinkText; }
+  }
+</style>
+
+<main>
+  <h1>Decorative compositing</h1>
+  <div class="samples">
+    <a class="sample" id="alpha" href="#notes">Alpha cutout</a>
+    <a class="sample" id="luminance" href="#notes">Luminance cutout</a>
+    <a class="sample" id="relief" href="#notes">
+      <svg viewBox="0 0 96 80" aria-hidden="true" focusable="false">
+        <defs>
+          <path id="seal" d="M48 7 77 23v32L48 73 19 55V23Z"/>
+          <filter id="relief-graph" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse"
+            x="0" y="0" width="96" height="80">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="rounded"/>
+            <feSpecularLighting in="rounded" surfaceScale="6"
+              specularConstant=".9" specularExponent="24" lighting-color="#fff7d7" result="shine">
+              <feDistantLight azimuth="235" elevation="45"/>
+            </feSpecularLighting>
+            <feComposite in="shine" in2="SourceAlpha" operator="in" result="clipped-shine"/>
+          </filter>
+        </defs>
+        <use href="#seal" fill="#397d83"/>
+        <use href="#seal" class="lighting"/>
+      </svg>
+      SVG relief
+    </a>
+  </div>
+  <h2 id="notes" tabindex="-1">Sample notes</h2>
+  <p>Each label links here. The flat border and emblem remain visible when decorative paint is disabled.</p>
+</main>
+<script>
+  const plain = document.documentElement.classList.contains('plain');
+  const masking = CSS.supports('mask-composite: subtract') && CSS.supports('mask-mode: luminance');
+  if (!plain && masking) {
+    const asset = new Image();
+    asset.src = 'compositing-mask.svg';
+    asset.decode().then(() => {
+      document.querySelector('#luminance').classList.add('mask-ready');
+    }, () => {
+      // The ordinary outline already provides the fallback.
+    });
+  }
+</script>
+</html>
