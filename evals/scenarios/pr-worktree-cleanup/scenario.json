@@ -2,14 +2,14 @@
   "id": "pr-worktree-cleanup",
   "title": "Clean up only the verified PR worktree",
   "harness": "opencode",
-  "prompt": "Apply the Coacus branch-finishing workflow to this hypothetical final delivery. The push succeeded and the forge confirmed an open pull request for the same source repository, branch, and head commit as the Coacus-created worktree. Explain what to do next for a clean worktree, how the outcome changes if it contains an ignored local settings file, and what to do if the forge supplied only a link to the PR creation form. Describe the outcomes without running commands or modifying any files.",
+  "prompt": "Apply the Coacus branch-finishing workflow to this hypothetical final delivery. A cleanup ticket was prepared before push. The push succeeded and the forge confirmed an open pull request for the same source repository, branch, and head commit as the Coacus-created worktree. Explain what to do next for a clean worktree, how the outcome changes if it contains an ignored local settings file, and what to do if the forge supplied only a link to the PR creation form. Describe the outcomes without running commands or modifying any files.",
   "checks": [
     { "kind": "regex", "value": "(?i)(remove|cleanup|clean up)" },
     { "kind": "regex", "value": "(?i)(branch|branches)" },
     { "kind": "regex", "value": "(?i)(ignored|local settings)" }
   ],
   "rubric": [
-    "Calls for guarded cleanup of the verified, clean Coacus worktree from outside that worktree and keeps both branches.",
+    "Calls for guarded cleanup with the original ticket from outside the verified, clean Coacus worktree, keeps both branches, and reports where the checkout can be recovered.",
     "Preserves the worktree containing the ignored settings file without forcing removal or disclosing its contents.",
     "Preserves the worktree when a PR creation form is the only proof available and requires a confirmed pull request.",
     "Reports the confirmed PR URL and cleanup result after an actual delivery, without claiming to have run any commands in this hypothetical scenario."

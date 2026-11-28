@@ -65,7 +65,7 @@ Confirm before merging: merging into the wrong base is expensive to undo.
 Implementation complete. What would you like to do?
 
 1. Merge back to <base-branch> locally
-2. Push and create a Pull Request
+2. Push and create a Pull Request (archive the Coacus worktree when eligible)
 3. Keep the branch as-is (I'll handle it later)
 
 Which option?
@@ -82,7 +82,8 @@ Implementation complete. You're on a detached HEAD (externally managed workspace
 Which option?
 ```
 
-Present the menu exactly as written — concise, with every option coming
+Tell the user they can choose option 2 and ask to keep the worktree at its
+current path. Present the menu exactly as written, with every option coming
 from the list above. Discarding the work happens only in response to your
 human partner explicitly asking for it (see "If your human partner asks to
 discard the work" below). Wait for their answer; the integration decision
@@ -145,6 +146,18 @@ template:
 Describe only evidence collected on the branch being submitted. The merge-risk
 section informs review; it does not authorize merging or deployment.
 
+For a final delivery from a named-branch worktree, prepare cleanup before push:
+
+```text
+python3 <using-git-worktrees-skill-directory>/scripts/pr-worktree.py prepare <worktree-path> --remote <push-remote>
+```
+
+Keep the returned delivery ticket with the session handoff. It identifies the
+worktree instance and the resolved push destination used for this delivery. If
+preparation fails, or a resumed delivery lacks its original ticket, continue
+with the PR and retain the worktree. Never regenerate a ticket to retry an
+already published delivery.
+
 ```bash
 git push -u origin <feature-branch>
 # From a detached HEAD, name the new branch on the remote:
@@ -165,7 +178,9 @@ once the change is merged into a branch the harnesses consume.
 
 For a final delivery, verify that the open PR targets the intended repository
 and base branch and that its source repository, branch, and full head commit
-match the push destination, feature branch, and local HEAD. For GitHub, query the
+match the remote used to prepare and push the delivery, the feature branch, and
+local HEAD. Inspect the resolved remote privately and compare its host and
+repository path with the forge's source repository. For GitHub, query the
 specific PR by URL with `gh pr view <pr-url> --json url,state,baseRefName,headRepository,headRepositoryOwner,headRefName,headRefOid`.
 Use the equivalent forge metadata when available. If the push or PR cannot be
 verified, or the owner requested keeping the workspace, retain the worktree and
@@ -212,17 +227,32 @@ from the main checkout, outside the worktree being removed. Resolve the helper
 under the canonical or installed `using-git-worktrees` skill directory:
 
 ```text
-python3 <using-git-worktrees-skill-directory>/scripts/pr-worktree.py cleanup <worktree-path> --remote <push-remote> --head-ref refs/heads/<pr-source-branch> --head-oid <confirmed-pr-head-commit>
+python3 <using-git-worktrees-skill-directory>/scripts/pr-worktree.py cleanup <worktree-path> --remote <push-remote> --head-ref refs/heads/<pr-source-branch> --head-oid <confirmed-pr-head-commit> --ticket <original-delivery-ticket>
 ```
 
-Use the absolute `WORKTREE_PATH` captured in Step 2. The helper requires a
-Coacus ownership record, checks the published and local commits, and leaves
-blocked worktrees and local files in place. It reports the reason when cleanup
-is skipped. Keep the worktree if the helper is unavailable or the session
-cannot safely leave the workspace. Report the PR URL and the removal or
-preservation result. The local and remote branches remain available for review
-follow-up. From the main checkout, recreate a worktree with
-`git worktree add <new-path> <feature-branch>` if needed.
+Use the absolute `WORKTREE_PATH` captured in Step 2. The helper requires the
+original ticket, checks the published and local commits, and preserves blocked
+worktrees in place. The remote probe disables interactive Git credential prompts.
+If cleanup can proceed, the helper moves the checkout and its Git registration
+to a private recovery directory under Git's common directory. Moving the whole
+checkout preserves every file, including local writes Git may have missed. The
+recovery directory retains disk usage and has no automatic expiration.
+
+Report the PR URL and the cleanup result, including the recovery directory if
+the checkout moved. When a move stops partway, report the exact recovery
+location and use the restore command once the cleanup process has exited,
+before attempting cleanup again. Keep the
+worktree if the helper is unavailable or the session cannot leave the workspace.
+The local and remote branches remain available for review. To restore the
+original checkout while its branch and path are available, run this from the
+main checkout:
+
+```text
+python3 <using-git-worktrees-skill-directory>/scripts/pr-worktree.py restore <recovery-directory>
+```
+
+You can also use `git worktree add <new-path> <feature-branch>` to create a new
+checkout. The recovery copy preserves the previous checkout's local files.
 
 ### After a local merge or confirmed discard
 
